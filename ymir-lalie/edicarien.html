@@ -417,6 +417,26 @@
     .byline .who .lbl { font-size: .58rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
     .byline .who strong { font-size: .88rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink); }
 
+    /* ---------- Author credit band ---------- */
+    .credit-band {
+      display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 24px;
+      margin: 0 0 8px; padding: clamp(26px, 4vw, 38px);
+      border: 1px solid var(--line); border-radius: 3px;
+      background:
+        radial-gradient(120% 160% at 50% 0%, rgba(214,172,85,.12), transparent 62%),
+        linear-gradient(180deg, rgba(14,26,46,.4), rgba(7,12,26,.5));
+    }
+    .credit-band .credit-avatars { display: flex; }
+    .credit-band .credit-avatars img {
+      width: 66px; height: 66px; border-radius: 50%; object-fit: cover;
+      border: 2px solid var(--void); box-shadow: 0 0 0 2px var(--gold), 0 12px 30px rgba(0,0,0,.5);
+      background: var(--navy);
+    }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left: -20px; }
+    .credit-band .credit-text { display: flex; flex-direction: column; gap: 5px; }
+    .credit-band .lbl { font-family: var(--roman); font-size: .64rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+    .credit-band strong { font-family: var(--roman); font-size: clamp(1.3rem, 2.6vw, 1.6rem); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
+
     footer { border-top: 1px solid var(--line); padding: 30px 0 44px; color: var(--soft); font-size: .9rem; }
     footer main { display: block; width: auto; }
     footer strong { color: var(--parch); }
@@ -693,6 +713,17 @@
               <span class="tag">Cloudina</span>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <span class="credit-avatars">
+          <img src="lalie.jpeg" alt="Avatar de Lalie">
+          <img src="ymir.jpeg" alt="Avatar d'Ymir">
+        </span>
+        <div class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>Lalie &amp; Ymir</strong>
         </div>
       </section>
 
