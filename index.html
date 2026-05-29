@@ -3,658 +3,702 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Empire contre Intox - Index des pages</title>
-  <meta name="description" content="Index des pages publiques Empire contre Intox : résumés, transcriptions et contenus scientifiques structurés.">
+  <title>Empire contre Intox — Archives publiques</title>
+  <meta name="description" content="Archives publiques d'Empire contre Intox : dossiers scientifiques sur le temps profond, transcriptions structurées et esprit critique. Veritas omnia vincit.">
+  <meta name="theme-color" content="#060914">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
   <style>
     :root {
       color-scheme: dark;
-      --ink: #fff7e8;
-      --muted: #d7d2c2;
-      --soft: #aeb5ae;
-      --void: #05070b;
-      --deep: #0a1116;
-      --navy: #10183a;
-      --teal: #0c5961;
-      --gold: #e7c15f;
-      --silver: #d7d9dd;
-      --red: #b92128;
-      --line: rgba(255, 247, 232, .16);
-      --panel: rgba(8, 14, 18, .72);
-      --shadow: 0 28px 90px rgba(0, 0, 0, .42);
-      --max: 1180px;
+
+      /* Imperial codex palette — midnight void + gold leaf + parchment */
+      --void:        #050811;
+      --abyss:       #080d1d;
+      --navy:        #0f1735;
+      --ink:         #f4ecd8;
+      --parch:       #e7dcc1;
+      --muted:       #c0b59a;
+      --soft:        #8f8870;
+      --gold:        #d6ac55;
+      --gold-bright: #f3d98a;
+      --gold-deep:   #9c7228;
+      --verd:        #2f6f69;
+      --oxblood:     #b23139;
+
+      --line:    rgba(214, 172, 85, .20);
+      --line-2:  rgba(244, 236, 216, .10);
+      --glass:   rgba(8, 13, 29, .72);
+      --shadow:  0 40px 120px rgba(0, 0, 0, .55);
+
+      --serif:  "Fraunces", Georgia, "Times New Roman", serif;
+      --roman:  "Cinzel", Georgia, serif;
+      --max: 1200px;
+
+      --ease: cubic-bezier(.22, 1, .36, 1);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       min-height: 100vh;
       margin: 0;
-      background:
-        radial-gradient(circle at 15% 10%, rgba(231, 193, 95, .18), transparent 26rem),
-        radial-gradient(circle at 82% 18%, rgba(12, 89, 97, .22), transparent 28rem),
-        radial-gradient(circle at 55% 94%, rgba(185, 33, 40, .12), transparent 24rem),
-        linear-gradient(180deg, #030409 0%, var(--deep) 52%, #090c10 100%);
       color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.65;
-      letter-spacing: 0;
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-weight: 380;
+      line-height: 1.68;
+      letter-spacing: .002em;
+      background:
+        radial-gradient(140% 90% at 12% -8%, rgba(214, 172, 85, .16), transparent 42%),
+        radial-gradient(120% 80% at 88% 4%, rgba(47, 111, 105, .18), transparent 46%),
+        radial-gradient(120% 120% at 50% 116%, rgba(178, 49, 57, .12), transparent 48%),
+        linear-gradient(180deg, #03040c 0%, var(--void) 40%, var(--abyss) 100%);
+      background-attachment: fixed;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    body::before {
-      content: "";
+    /* Starfield + engraved grid + grain, layered behind everything */
+    .atmos {
       position: fixed;
       inset: 0;
+      z-index: 0;
       pointer-events: none;
+    }
+    .atmos::before {
+      /* faint engraved coordinate grid */
+      content: "";
+      position: absolute;
+      inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,.026) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: linear-gradient(to bottom, black, transparent 86vh);
+        linear-gradient(rgba(244, 236, 216, .03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244, 236, 216, .022) 1px, transparent 1px);
+      background-size: 84px 84px;
+      mask-image: radial-gradient(120% 90% at 50% 18%, #000 30%, transparent 78%);
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
+    .atmos::after {
+      /* scattered stars */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1.4px 1.4px at 18% 22%, rgba(255,255,255,.55), transparent 60%),
+        radial-gradient(1px 1px at 73% 14%, rgba(243,217,138,.7), transparent 60%),
+        radial-gradient(1.2px 1.2px at 41% 67%, rgba(255,255,255,.4), transparent 60%),
+        radial-gradient(1px 1px at 88% 58%, rgba(255,255,255,.45), transparent 60%),
+        radial-gradient(1.3px 1.3px at 9% 78%, rgba(243,217,138,.55), transparent 60%),
+        radial-gradient(1px 1px at 62% 88%, rgba(255,255,255,.4), transparent 60%),
+        radial-gradient(1.1px 1.1px at 30% 8%, rgba(255,255,255,.5), transparent 60%),
+        radial-gradient(1px 1px at 95% 33%, rgba(255,255,255,.35), transparent 60%);
+      animation: twinkle 7s ease-in-out infinite alternate;
     }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    .page {
-      position: relative;
+    .grain {
+      position: fixed;
+      inset: -50%;
       z-index: 1;
-      overflow: clip;
+      pointer-events: none;
+      opacity: .05;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
+    @keyframes twinkle { from { opacity: .55; } to { opacity: 1; } }
+
+    /* Document corner brackets — frame the whole page like a sealed charter */
+    .frame { position: fixed; inset: 0; z-index: 40; pointer-events: none; }
+    .frame i {
+      position: absolute;
+      width: 26px; height: 26px;
+      border: 1.5px solid var(--line);
+    }
+    .frame i:nth-child(1){ top: 16px; left: 16px; border-right: 0; border-bottom: 0; }
+    .frame i:nth-child(2){ top: 16px; right: 16px; border-left: 0; border-bottom: 0; }
+    .frame i:nth-child(3){ bottom: 16px; left: 16px; border-right: 0; border-top: 0; }
+    .frame i:nth-child(4){ bottom: 16px; right: 16px; border-left: 0; border-top: 0; }
+
+    /* Scroll progress — a thin gilded thread */
+    .progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      z-index: 60;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), var(--gold));
+      box-shadow: 0 0 14px rgba(243, 217, 138, .6);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    ::selection { background: rgba(214, 172, 85, .28); color: #fff; }
+
+    :focus-visible {
+      outline: 2px solid var(--gold-bright);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .shell { position: relative; z-index: 2; }
+    .wrap { width: min(100% - 48px, var(--max)); margin-inline: auto; }
+
+    /* ---------- Masthead ---------- */
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      position: sticky; top: 0; z-index: 50;
       border-bottom: 1px solid var(--line);
-      background: rgba(5, 7, 11, .82);
-      backdrop-filter: blur(18px);
+      background: rgba(5, 8, 17, .68);
+      backdrop-filter: blur(18px) saturate(140%);
     }
-
     .topbar-inner {
-      width: min(100% - 40px, var(--max));
-      min-height: 72px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
+      min-height: 76px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      color: var(--ink);
-      font-weight: 900;
-    }
-
-    .brand img {
-      width: 42px;
-      height: 42px;
-      border-radius: 11px;
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-seal {
+      width: 44px; height: 44px; border-radius: 50%;
       object-fit: cover;
-      border: 1px solid rgba(255,255,255,.22);
-      box-shadow: 0 10px 28px rgba(0,0,0,.36);
+      border: 1px solid rgba(214,172,85,.5);
+      box-shadow: 0 0 0 3px rgba(214,172,85,.1), 0 8px 22px rgba(0,0,0,.5);
     }
-
-    .brand span {
-      white-space: nowrap;
-    }
-
-    .nav-link {
-      display: inline-flex;
-      min-height: 40px;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 0 13px;
-      color: var(--muted);
-      background: rgba(255,255,255,.055);
-      font-size: .9rem;
-      font-weight: 850;
-    }
-
-    .top-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 8px;
-    }
-
-    .hero {
-      width: min(100% - 40px, var(--max));
-      min-height: calc(100vh - 72px);
-      margin: 0 auto;
-      padding: 76px 0 70px;
-      display: grid;
-      grid-template-columns: minmax(0, .98fr) minmax(300px, .72fr);
-      gap: 48px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 22px;
-      color: var(--gold);
-      font-size: .78rem;
-      font-weight: 950;
-      letter-spacing: .14em;
+    .brand-name {
+      font-family: var(--roman);
+      font-weight: 800;
+      font-size: .96rem;
+      letter-spacing: .22em;
+      line-height: 1.1;
+      color: var(--ink);
       text-transform: uppercase;
     }
-
-    .eyebrow::before {
-      content: "";
-      width: 42px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--silver), var(--red));
+    .brand-name small {
+      display: block;
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: .66rem;
+      letter-spacing: .14em;
+      color: var(--gold);
+      text-transform: none;
+      margin-top: 3px;
     }
+    .nav { display: flex; align-items: center; gap: 6px; }
+    .nav a {
+      position: relative;
+      padding: 10px 14px;
+      font-family: var(--roman);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .3s var(--ease);
+    }
+    .nav a::after {
+      content: "";
+      position: absolute; left: 14px; right: 14px; bottom: 6px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .35s var(--ease);
+    }
+    .nav a:hover { color: var(--ink); }
+    .nav a:hover::after { transform: scaleX(1); }
 
-    h1,
-    h2,
-    h3 {
-      margin: 0;
-      line-height: 1.03;
-      letter-spacing: 0;
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: clamp(56px, 9vw, 120px) 0 clamp(48px, 7vw, 96px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, .82fr);
+      gap: clamp(40px, 6vw, 84px);
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 14px;
+      margin: 0 0 26px;
+      font-family: var(--roman);
+      font-size: .72rem; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .eyebrow::before {
+      content: ""; width: 46px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
     }
 
     h1 {
-      max-width: 820px;
+      margin: 0;
+      font-family: var(--roman);
+      font-weight: 800;
+      font-size: clamp(2.9rem, 7.4vw, 6rem);
+      line-height: .98;
+      letter-spacing: -.005em;
+      text-transform: uppercase;
       color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 5.15rem;
       text-wrap: balance;
     }
+    .gold-foil {
+      background: linear-gradient(96deg, var(--gold-deep) 0%, var(--gold-bright) 32%, #fff6dc 48%, var(--gold-bright) 64%, var(--gold-deep) 100%);
+      background-size: 220% 100%;
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+      animation: foil 7s linear infinite;
+    }
+    @keyframes foil { to { background-position: 220% 0; } }
 
     .lead {
-      max-width: 730px;
-      margin: 24px 0 0;
+      max-width: 40ch;
+      margin: 28px 0 0;
+      font-size: clamp(1.04rem, 1.5vw, 1.22rem);
+      line-height: 1.7;
       color: var(--muted);
-      font-size: 1.14rem;
     }
+    .lead b { color: var(--parch); font-weight: 600; }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 34px;
+    .cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      min-height: 52px; padding: 0 24px;
+      font-family: var(--roman);
+      font-size: .78rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      border-radius: 2px;
+      transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease), color .3s var(--ease);
     }
-
-    .button {
-      min-height: 48px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 0 18px;
+    .btn .arrow { transition: transform .3s var(--ease); }
+    .btn:hover .arrow { transform: translateX(4px); }
+    .btn-gold {
+      color: #14110a;
+      background: linear-gradient(140deg, var(--gold-bright), var(--gold) 55%, var(--gold-deep));
+      box-shadow: 0 14px 38px rgba(214,172,85,.28), inset 0 1px 0 rgba(255,255,255,.5);
+    }
+    .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 22px 54px rgba(214,172,85,.42), inset 0 1px 0 rgba(255,255,255,.6); }
+    .btn-ghost {
       color: var(--ink);
-      background: rgba(255, 247, 232, .08);
-      font-weight: 900;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 247, 232, .15);
-      border-color: rgba(255, 247, 232, .34);
-    }
-
-    .button.primary {
-      background: var(--ink);
-      color: #111416;
-      border-color: var(--ink);
-    }
-
-    .logo-panel {
-      position: relative;
       border: 1px solid var(--line);
-      border-radius: 8px;
-      background:
-        linear-gradient(145deg, rgba(16, 24, 58, .68), rgba(12, 89, 97, .3)),
-        rgba(255,255,255,.045);
-      padding: 30px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
+      background: rgba(244,236,216,.04);
     }
+    .btn-ghost:hover { transform: translateY(-3px); border-color: rgba(214,172,85,.55); background: rgba(244,236,216,.08); }
 
-    .logo-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(231,193,95,.14), transparent 42%),
-        linear-gradient(180deg, transparent, rgba(0,0,0,.22));
-      pointer-events: none;
-    }
-
-    .logo-panel img {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 330px);
-      margin: 0 auto;
-      border: 1px solid rgba(255,255,255,.24);
-      border-radius: 34px;
-      object-fit: cover;
-      box-shadow: 0 30px 90px rgba(0,0,0,.48);
-    }
-
-    .logo-panel p {
-      position: relative;
-      z-index: 1;
-      margin: 24px 0 0;
+    .credentials {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px;
+      margin-top: 40px; padding-top: 26px;
+      border-top: 1px solid var(--line-2);
+      font-family: var(--roman);
+      font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
       color: var(--soft);
-      text-align: center;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
     }
+    .credentials b { color: var(--gold); font-weight: 600; }
+    .credentials .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--line); }
 
-    main {
-      width: min(100% - 40px, var(--max));
-      margin: 0 auto;
+    /* Emblem — ceremonial rotating seal */
+    .emblem {
+      position: relative;
+      width: min(440px, 82vw);
+      aspect-ratio: 1;
+      margin-inline: auto;
+      display: grid; place-items: center;
+      isolation: isolate;
     }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 22px 0;
-      border-top: 1px solid var(--line);
+    .emblem::before {
+      content: "";
+      position: absolute; inset: -8%;
+      background: radial-gradient(circle, rgba(214,172,85,.28), rgba(47,111,105,.12) 46%, transparent 68%);
+      filter: blur(8px);
+      z-index: -1;
+      animation: pulse 6s ease-in-out infinite;
     }
+    @keyframes pulse { 50% { opacity: .55; transform: scale(1.04); } }
 
-    .section-head h2 {
-      color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 2.55rem;
+    .emblem-ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 64s linear infinite; }
+    .emblem-ring text { font-family: var(--roman); font-size: 13.5px; font-weight: 600; letter-spacing: 4.5px; fill: var(--gold); text-transform: uppercase; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .emblem-ticks {
+      position: absolute; inset: 8%;
+      border-radius: 50%;
+      background: repeating-conic-gradient(from 0deg, var(--gold) 0deg .35deg, transparent .35deg 6deg);
+      -webkit-mask: radial-gradient(circle, transparent 0 47.5%, #000 47.5% 50%, transparent 50%);
+              mask: radial-gradient(circle, transparent 0 47.5%, #000 47.5% 50%, transparent 50%);
+      opacity: .55;
+      animation: spin 90s linear infinite reverse;
     }
+    .emblem-core {
+      position: relative;
+      width: 67%; aspect-ratio: 1;
+      border-radius: 50%;
+      padding: 5px;
+      background: conic-gradient(from 210deg, var(--gold-deep), var(--gold-bright), var(--gold), var(--gold-deep));
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+      animation: float 8s ease-in-out infinite;
+    }
+    .emblem-core img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--void); }
+    @keyframes float { 50% { transform: translateY(-12px); } }
 
-    .section-head p {
-      max-width: 460px;
+    /* ---------- Section heads ---------- */
+    .section { padding: clamp(40px, 6vw, 80px) 0; }
+    .sec-head {
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 28px;
+      padding-bottom: 28px; margin-bottom: 38px;
+      border-bottom: 1px solid var(--line);
+    }
+    .sec-head .kicker {
+      font-family: var(--roman); font-size: .7rem; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+      margin: 0 0 14px;
+    }
+    .sec-head h2 {
       margin: 0;
-      color: var(--soft);
+      font-family: var(--roman); font-weight: 700;
+      font-size: clamp(2rem, 4.2vw, 3.1rem);
+      letter-spacing: .01em; text-transform: uppercase; color: var(--ink);
+      line-height: 1;
     }
+    .sec-head p { max-width: 38ch; margin: 0; color: var(--soft); font-size: 1rem; }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-      padding: 20px 0 42px;
-    }
-
-    .card {
-      min-height: 540px;
-      display: grid;
-      grid-template-rows: 260px 1fr;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      box-shadow: 0 22px 70px rgba(0,0,0,.28);
-      overflow: hidden;
-      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 247, 232, .3);
-      box-shadow: 0 30px 90px rgba(0,0,0,.38);
-    }
-
-    .card-media {
+    /* ---------- Dossier cards ---------- */
+    .dossiers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+    .dossier {
       position: relative;
-      min-width: 0;
+      display: flex; flex-direction: column;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: linear-gradient(180deg, rgba(15,23,53,.5), rgba(8,13,29,.62));
+      overflow: hidden;
+      box-shadow: 0 26px 70px rgba(0,0,0,.4);
+      transition: transform .45s var(--ease), border-color .45s var(--ease), box-shadow .45s var(--ease);
+    }
+    .dossier:hover {
+      transform: translateY(-8px);
+      border-color: rgba(214,172,85,.5);
+      box-shadow: 0 44px 100px rgba(0,0,0,.55), 0 0 0 1px rgba(214,172,85,.2);
+    }
+    .dossier-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+    .dossier-media img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: saturate(.92) contrast(1.04);
+      transition: transform .8s var(--ease), filter .6s var(--ease);
+    }
+    .dossier:hover .dossier-media img { transform: scale(1.06); filter: saturate(1.08) contrast(1.06); }
+    .dossier-media::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(5,8,17,.05) 30%, rgba(5,8,17,.55) 72%, rgba(8,13,29,.95) 100%),
+        linear-gradient(120deg, rgba(214,172,85,.12), transparent 55%);
+    }
+    .dossier-no {
+      position: absolute; top: 16px; left: 18px; z-index: 2;
+      font-family: var(--roman); font-weight: 700;
+      font-size: .72rem; letter-spacing: .26em; text-transform: uppercase;
+      color: var(--gold-bright);
+      text-shadow: 0 2px 12px rgba(0,0,0,.7);
+    }
+    .dossier-no::before { content: ""; display: inline-block; width: 20px; height: 1px; background: var(--gold); margin-right: 10px; vertical-align: middle; }
+    .badge {
+      position: absolute; bottom: 16px; left: 18px; z-index: 2;
+      display: inline-flex; align-items: center; min-height: 30px; padding: 0 13px;
+      font-family: var(--roman); font-size: .64rem; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--ink);
+      border: 1px solid rgba(214,172,85,.4);
+      border-radius: 2px;
+      background: rgba(5,8,17,.6); backdrop-filter: blur(10px);
+    }
+    .dossier-body { display: flex; flex-direction: column; gap: 18px; padding: 28px; flex: 1; }
+    .dossier h3 {
+      margin: 0;
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+      line-height: 1.05; color: var(--ink);
+      letter-spacing: -.01em;
+    }
+    .dossier-body p { margin: 0; color: var(--muted); font-size: 1.01rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+    .tag {
+      display: inline-flex; align-items: center; min-height: 28px; padding: 0 12px;
+      font-family: var(--roman); font-size: .6rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--gold);
+      border: 1px solid var(--line); border-radius: 2px;
+      background: rgba(214,172,85,.06);
+    }
+    .byline { display: flex; align-items: center; gap: 12px; }
+    .byline .avatars { display: flex; }
+    .byline .avatars img {
+      width: 34px; height: 34px; border-radius: 50%; object-fit: cover;
+      border: 2px solid var(--void); box-shadow: 0 0 0 1.5px var(--gold);
+      background: var(--navy);
+    }
+    .byline .avatars img:not(:first-child) { margin-left: -12px; }
+    .byline .who { display: flex; flex-direction: column; gap: 2px; font-family: var(--roman); }
+    .byline .who .lbl { font-size: .56rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+    .byline .who strong { font-size: .82rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink); }
+
+    .dossier-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 6px;
+      font-family: var(--roman); font-size: .74rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--ink);
+      align-self: flex-start;
+    }
+    .dossier-link .arrow { transition: transform .3s var(--ease); color: var(--gold); }
+    .dossier:hover .dossier-link .arrow { transform: translateX(6px); }
+    .stretch { position: absolute; inset: 0; z-index: 3; }
+
+    /* ---------- Decree / parcours ---------- */
+    .decree {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: clamp(30px, 5vw, 60px);
+      background:
+        radial-gradient(120% 120% at 100% 0%, rgba(214,172,85,.1), transparent 50%),
+        linear-gradient(180deg, rgba(15,23,53,.4), rgba(8,13,29,.5));
       overflow: hidden;
     }
-
-    .card-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .35s ease;
+    .decree .kicker {
+      font-family: var(--roman); font-size: .7rem; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin: 0 0 16px;
     }
-
-    .card:hover .card-media img {
-      transform: scale(1.035);
+    .decree h2 {
+      margin: 0;
+      max-width: 18ch;
+      font-family: var(--serif); font-weight: 400; font-style: italic;
+      font-size: clamp(1.7rem, 3.4vw, 2.7rem);
+      line-height: 1.12; color: var(--ink);
     }
-
-    .card-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 45%, rgba(5,7,11,.74));
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
+    .step { position: relative; padding-top: 26px; border-top: 1px solid var(--line); }
+    .step .num {
+      font-family: var(--roman); font-weight: 700;
+      font-size: 2.2rem; line-height: 1; color: var(--gold);
+      -webkit-text-stroke: 0; opacity: .9;
     }
-
-    .badge {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      z-index: 1;
-      display: inline-flex;
-      min-height: 30px;
-      align-items: center;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 8px;
-      padding: 0 10px;
-      color: var(--ink);
-      background: rgba(5,7,11,.62);
-      backdrop-filter: blur(12px);
-      font-size: .78rem;
-      font-weight: 900;
-      letter-spacing: .1em;
-      text-transform: uppercase;
+    .step h4 {
+      margin: 14px 0 8px;
+      font-family: var(--roman); font-weight: 600; font-size: .9rem;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--ink);
     }
+    .step p { margin: 0; color: var(--muted); font-size: .98rem; }
 
-    .card-body {
-      display: grid;
-      align-content: space-between;
-      gap: 24px;
-      padding: 24px;
-    }
-
-    .card h3 {
-      color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 2rem;
-    }
-
-    .card p {
-      margin: 12px 0 0;
-      color: var(--muted);
-    }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
-    }
-
-    .tag {
-      display: inline-flex;
-      min-height: 28px;
-      align-items: center;
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 8px;
-      padding: 0 10px;
-      color: var(--ink);
-      background: rgba(255,255,255,.06);
-      font-size: .78rem;
-      font-weight: 850;
-    }
-
-    .card-link {
-      min-height: 44px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      justify-self: start;
-      border: 1px solid rgba(255, 247, 232, .22);
-      border-radius: 8px;
-      padding: 0 15px;
-      color: #111416;
-      background: var(--gold);
-      font-weight: 950;
-    }
-
-    .pathway {
-      margin: 0 0 92px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg, rgba(231,193,95,.1), transparent 34%),
-        linear-gradient(180deg, rgba(255,247,232,.065), rgba(255,247,232,.032));
-      padding: 26px;
-    }
-
-    .pathway h2 {
-      color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 2.2rem;
-    }
-
-    .pathway-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 22px;
-    }
-
-    .pathway-item {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255,255,255,.045);
-      padding: 18px;
-    }
-
-    .pathway-item span {
-      color: var(--gold);
-      font-size: .76rem;
-      font-weight: 950;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .pathway-item p {
-      margin: 10px 0 0;
-      color: var(--muted);
-    }
-
+    /* ---------- Footer ---------- */
     .footer {
+      margin-top: clamp(48px, 7vw, 96px);
       border-top: 1px solid var(--line);
-      padding: 30px 0 42px;
-      color: var(--soft);
+      padding: 48px 0 64px;
     }
+    .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+    .footer-brand { display: flex; align-items: center; gap: 14px; }
+    .footer-brand img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(214,172,85,.4); object-fit: cover; }
+    .footer-brand strong { font-family: var(--roman); font-weight: 700; letter-spacing: .18em; text-transform: uppercase; font-size: .82rem; color: var(--ink); }
+    .footer-motto { font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 1.05rem; letter-spacing: .04em; }
+    .footer small { color: var(--soft); font-size: .82rem; }
 
-    .footer-inner {
-      width: min(100% - 40px, var(--max));
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      align-items: center;
-    }
+    /* ---------- Reveal animations ---------- */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal[data-d="1"] { transition-delay: .08s; }
+    .reveal[data-d="2"] { transition-delay: .16s; }
+    .reveal[data-d="3"] { transition-delay: .24s; }
+    .reveal[data-d="4"] { transition-delay: .32s; }
+    .reveal[data-d="5"] { transition-delay: .4s; }
 
-    .footer strong {
-      color: var(--ink);
-    }
-
+    /* ---------- Responsive ---------- */
     @media (max-width: 920px) {
-      .hero {
-        min-height: auto;
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 4rem;
-      }
-
-      .logo-panel {
-        max-width: 520px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .pathway-grid {
-        grid-template-columns: 1fr;
-      }
+      .hero { grid-template-columns: 1fr; }
+      .emblem { order: -1; width: min(360px, 78vw); }
+      .dossiers { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .nav { display: none; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 32px, var(--max)); }
+      .sec-head { flex-direction: column; align-items: flex-start; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
     }
 
-    @media (max-width: 640px) {
-      .topbar-inner,
-      .hero,
-      main,
-      .footer-inner {
-        width: min(100% - 24px, var(--max));
-      }
-
-      .topbar-inner,
-      .section-head,
-      .footer-inner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .brand span {
-        white-space: normal;
-      }
-
-      .hero {
-        padding: 50px 0 52px;
-      }
-
-      h1 {
-        font-size: 2.85rem;
-      }
-
-      .lead {
-        font-size: 1.02rem;
-      }
-
-      .logo-panel {
-        padding: 20px;
-      }
-
-      .logo-panel img {
-        border-radius: 26px;
-      }
-
-      .section-head h2 {
-        font-size: 2.08rem;
-      }
-
-      .card {
-        min-height: auto;
-        grid-template-rows: 210px 1fr;
-      }
-
-      .card h3 {
-        font-size: 1.65rem;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <div class="shell">
     <header class="topbar">
-      <div class="topbar-inner">
+      <div class="wrap topbar-inner">
         <a class="brand" href="./index.html" aria-label="Accueil Empire contre Intox">
-          <img src="ymir-lalie/assets/logo-eci.jpg" alt="Logo Empire contre Intox">
-          <span>Empire contre Intox</span>
+          <img class="brand-seal" src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+          <span class="brand-name">Empire contre Intox<small>Veritas omnia vincit</small></span>
         </a>
-        <div class="top-actions" aria-label="Navigation rapide">
-          <a class="nav-link" href="#pages">Pages disponibles</a>
-          <a class="nav-link" href="ymir-lalie/edicarien.html">Édiacarien</a>
-          <a class="nav-link" href="ymir-lalie/resume-eres.html">Ères</a>
-        </div>
+        <nav class="nav" aria-label="Navigation principale">
+          <a href="#dossiers">Dossiers</a>
+          <a href="ymir-lalie/edicarien.html">Édiacarien</a>
+          <a href="ymir-lalie/resume-eres.html">Ères</a>
+          <a href="#decret">Méthode</a>
+        </nav>
       </div>
     </header>
 
-    <section class="hero">
-      <div>
-        <p class="eyebrow">Index public</p>
-        <h1>Les dossiers Empire contre Intox</h1>
-        <p class="lead">Un point d’entrée clair vers les pages HTML créées à partir des transcriptions : contenus scientifiques, structure lisible, design immersif et identité du collectif.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#pages">Explorer les pages</a>
-          <a class="button" href="ymir-lalie/edicarien.html">Ouvrir l'Édiacarien</a>
+    <main>
+      <section class="wrap hero">
+        <div>
+          <p class="eyebrow reveal in">Archives publiques · Anno MMXXVI</p>
+          <h1 class="reveal in" data-d="1">Le réel est déjà <span class="gold-foil">vertigineux</span>.</h1>
+          <p class="lead reveal in" data-d="2">Le fonds documentaire du collectif : des transcriptions devenues pages immersives, où la <b>science du temps profond</b> répond, fait par fait, aux récits de l'intox.</p>
+          <div class="cta reveal in" data-d="3">
+            <a class="btn btn-gold" href="#dossiers">Explorer les dossiers <span class="arrow">→</span></a>
+            <a class="btn btn-ghost" href="ymir-lalie/edicarien.html">Ouvrir l'Édiacarien</a>
+          </div>
+          <div class="credentials reveal in" data-d="4">
+            <span><b>II</b> dossiers</span>
+            <span class="dot"></span>
+            <span>Transcriptions structurées</span>
+            <span class="dot"></span>
+            <span>Esprit critique</span>
+          </div>
         </div>
-      </div>
-      <aside class="logo-panel" aria-label="Identité du collectif">
-        <img src="ymir-lalie/assets/logo-eci.jpg" alt="Logo Empire contre Intox">
-        <p>Veritas omnia vincit</p>
-      </aside>
-    </section>
 
-    <main id="pages">
-      <div class="section-head">
-        <h2>Pages HTML</h2>
-        <p>Deux expériences prêtes à partager, avec transcription structurée et mise en scène visuelle.</p>
-      </div>
+        <div class="emblem reveal in" data-d="2" aria-hidden="true">
+          <svg class="emblem-ring" viewBox="0 0 300 300">
+            <defs>
+              <path id="ringPath" d="M150,150 m-122,0 a122,122 0 1,1 244,0 a122,122 0 1,1 -244,0"></path>
+            </defs>
+            <text>
+              <textPath href="#ringPath" startOffset="0">· VERITAS OMNIA VINCIT · AD ASTRA PER ASPERA &#160;</textPath>
+            </text>
+          </svg>
+          <div class="emblem-ticks"></div>
+          <div class="emblem-core">
+            <img src="ymir-lalie/assets/logo-eci.jpg" alt="">
+          </div>
+        </div>
+      </section>
 
-      <section class="grid" aria-label="Liste des fichiers HTML">
-        <article class="card">
-          <a class="card-media" href="ymir-lalie/edicarien.html" aria-label="Ouvrir la page L'Édiacarien">
-            <img src="ymir-lalie/assets/ediacaran-hero.png" alt="Illustration d'un fond marin édiacarien">
-            <span class="badge">Transcription TikTok</span>
-          </a>
-          <div class="card-body">
-            <div>
+      <section class="wrap section" id="dossiers">
+        <div class="sec-head reveal">
+          <div>
+            <p class="kicker">Le fonds documentaire</p>
+            <h2>Les Dossiers</h2>
+          </div>
+          <p>Deux expériences prêtes à partager — transcription structurée, mise en scène visuelle et sources rendues lisibles.</p>
+        </div>
+
+        <div class="dossiers">
+          <article class="dossier reveal" data-d="1">
+            <div class="dossier-media">
+              <img src="ymir-lalie/assets/ediacaran-hero.png" alt="Illustration d'un fond marin édiacarien">
+              <span class="dossier-no">Dossier I</span>
+              <span class="badge">Transcription TikTok</span>
+            </div>
+            <div class="dossier-body">
               <h3>L'Édiacarien</h3>
-              <p>Une plongée dans les premiers écosystèmes complexes : tapis microbiens, Dickinsonia, Charnia, Kimberella, Cloudina et naissance de la prédation.</p>
-              <div class="meta">
+              <p>Une plongée dans les premiers écosystèmes complexes : tapis microbiens, Dickinsonia, Charnia, Kimberella, Cloudina — et la naissance de la prédation.</p>
+              <div class="tags">
                 <span class="tag">Paléontologie</span>
                 <span class="tag">Vie primitive</span>
                 <span class="tag">Design immersif</span>
               </div>
+              <div class="byline">
+                <span class="avatars">
+                  <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                  <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                </span>
+                <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+              </div>
+              <a class="dossier-link" href="ymir-lalie/edicarien.html">Consulter le dossier <span class="arrow">→</span></a>
+              <a class="stretch" href="ymir-lalie/edicarien.html" aria-label="Ouvrir le dossier L'Édiacarien"></a>
             </div>
-            <a class="card-link" href="ymir-lalie/edicarien.html">Ouvrir la page</a>
-          </div>
-        </article>
+          </article>
 
-        <article class="card">
-          <a class="card-media" href="ymir-lalie/resume-eres.html" aria-label="Ouvrir la page Résumé des Ères">
-            <img src="ymir-lalie/assets/eres-hero.png" alt="Illustration des ères géologiques de la Terre">
-            <span class="badge">Frise géologique</span>
-          </a>
-          <div class="card-body">
-            <div>
-              <h3>Résumé des Ères</h3>
-              <p>Le roman de la Terre en actes : Précambrien, Paléozoïque, Mésozoïque, Cénozoïque, puis la leçon vertigineuse de la dernière seconde humaine.</p>
-              <div class="meta">
+          <article class="dossier reveal" data-d="2">
+            <div class="dossier-media">
+              <img src="ymir-lalie/assets/eres-hero.png" alt="Illustration des ères géologiques de la Terre">
+              <span class="dossier-no">Dossier II</span>
+              <span class="badge">Frise géologique</span>
+            </div>
+            <div class="dossier-body">
+              <h3>Le Résumé des Ères</h3>
+              <p>Le roman de la Terre en actes : Précambrien, Paléozoïque, Mésozoïque, Cénozoïque — puis la leçon vertigineuse de la dernière seconde humaine.</p>
+              <div class="tags">
                 <span class="tag">Temps profond</span>
                 <span class="tag">Ères géologiques</span>
                 <span class="tag">Anti-intox</span>
               </div>
+              <div class="byline">
+                <span class="avatars">
+                  <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                  <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                </span>
+                <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+              </div>
+              <a class="dossier-link" href="ymir-lalie/resume-eres.html">Consulter le dossier <span class="arrow">→</span></a>
+              <a class="stretch" href="ymir-lalie/resume-eres.html" aria-label="Ouvrir le dossier Résumé des Ères"></a>
             </div>
-            <a class="card-link" href="ymir-lalie/resume-eres.html">Ouvrir la page</a>
-          </div>
-        </article>
+          </article>
+        </div>
       </section>
 
-      <section class="pathway" aria-labelledby="parcours">
-        <p class="eyebrow">Parcours pédagogique</p>
-        <h2 id="parcours">Comprendre le réel avant de débattre du faux.</h2>
-        <div class="pathway-grid">
-          <div class="pathway-item">
-            <span>1. Échelle</span>
-            <p>Commencer par le temps profond pour replacer l'humanité dans l'histoire longue de la Terre.</p>
-          </div>
-          <div class="pathway-item">
-            <span>2. Méthode</span>
-            <p>Observer comment la science relie fossiles, traces, chimie, géologie et hypothèses vérifiables.</p>
-          </div>
-          <div class="pathway-item">
-            <span>3. Esprit critique</span>
-            <p>Comparer la puissance du réel aux récits complotistes : la science est déjà vertigineuse.</p>
+      <section class="wrap section" id="decret">
+        <div class="decree reveal">
+          <p class="kicker">Décret méthodologique</p>
+          <h2>Comprendre le réel avant de débattre du faux.</h2>
+          <div class="steps">
+            <div class="step reveal" data-d="1">
+              <div class="num">I</div>
+              <h4>Échelle</h4>
+              <p>Commencer par le temps profond pour replacer l'humanité dans l'histoire longue de la Terre.</p>
+            </div>
+            <div class="step reveal" data-d="2">
+              <div class="num">II</div>
+              <h4>Méthode</h4>
+              <p>Observer comment la science relie fossiles, traces, chimie, géologie et hypothèses vérifiables.</p>
+            </div>
+            <div class="step reveal" data-d="3">
+              <div class="num">III</div>
+              <h4>Esprit critique</h4>
+              <p>Comparer la puissance du réel aux récits complotistes : la science est déjà vertigineuse.</p>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <div class="footer-inner">
-        <span><strong>Empire contre Intox</strong> - index des pages HTML.</span>
-        <span>Logo et identité visuelle ECI.</span>
+      <div class="wrap footer-inner">
+        <div class="footer-brand">
+          <img src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+          <strong>Empire contre Intox</strong>
+        </div>
+        <p class="footer-motto">Ad astra per aspera.</p>
+        <small>Archives publiques — index des dossiers HTML. Identité visuelle ECI.</small>
       </div>
     </footer>
   </div>
+
+  <script>
+    // Scroll progress thread
+    const bar = document.getElementById('progress');
+    const onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    };
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Staggered reveals for content below the fold
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }
+    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal:not(.in)').forEach((el) => io.observe(el));
+  </script>
 </body>
 </html>

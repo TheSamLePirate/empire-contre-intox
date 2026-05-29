@@ -3,940 +3,489 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>L'Édiacarien - Transcription du live TikTok</title>
-  <meta name="description" content="Transcription structurée et mise en scène du live TikTok consacré à l'Édiacarien, ses paysages, son climat, sa faune et ses tapis microbiens.">
+  <title>L'Édiacarien — Empire contre Intox</title>
+  <meta name="description" content="Transcription structurée et mise en scène du live consacré à l'Édiacarien : paysages, climat, faune et tapis microbiens. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
   <style>
     :root {
       color-scheme: dark;
-      --ink: #f7f1e4;
-      --muted: #c8d5cf;
-      --soft: #94aaa4;
-      --deep: #061315;
-      --basin: #09282b;
-      --reef: #0f484c;
-      --algae: #a9ca72;
-      --amber: #f0a75a;
-      --clay: #c46f4b;
-      --chalk: #fff8e8;
-      --line: rgba(247, 241, 228, .16);
-      --glass: rgba(6, 19, 21, .72);
-      --paper: rgba(255, 248, 232, .055);
-      --shadow: 0 24px 80px rgba(0, 0, 0, .36);
+
+      --void:        #050811;
+      --abyss:       #070c1a;
+      --navy:        #0e1a2e;
+      --ink:         #f4ecd8;
+      --parch:       #e7dcc1;
+      --muted:       #c0b59a;
+      --soft:        #8f8c78;
+      --gold:        #d6ac55;
+      --gold-bright: #f3d98a;
+      --gold-deep:   #9c7228;
+
+      /* Per-page secondary accents — the Édiacarien sea floor */
+      --verd:  #3a8f86;
+      --algae: #9fbf6e;
+      --amber: #e0a657;
+      --clay:  #c47a55;
+
+      --line:   rgba(214, 172, 85, .20);
+      --line-2: rgba(244, 236, 216, .10);
+      --glass:  rgba(7, 12, 26, .72);
+      --shadow: 0 40px 120px rgba(0, 0, 0, .55);
+
+      --serif: "Fraunces", Georgia, "Times New Roman", serif;
+      --roman: "Cinzel", Georgia, serif;
       --max: 1180px;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+
+      --hero: url("assets/ediacaran-hero.png");
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      background:
-        radial-gradient(circle at 14% 12%, rgba(169, 202, 114, .14), transparent 28rem),
-        radial-gradient(circle at 82% 3%, rgba(240, 167, 90, .12), transparent 24rem),
-        linear-gradient(180deg, #030708 0%, var(--deep) 42%, #0b1713 100%);
       color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.72;
-      letter-spacing: 0;
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-weight: 380;
+      line-height: 1.74;
+      letter-spacing: .002em;
+      background:
+        radial-gradient(130% 80% at 10% 4%, rgba(58, 143, 134, .16), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214, 172, 85, .14), transparent 46%),
+        linear-gradient(180deg, #03050d 0%, var(--void) 42%, var(--abyss) 100%);
+      background-attachment: fixed;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+    /* Atmosphere */
+    .atmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .atmos::before {
+      content: ""; position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: linear-gradient(to bottom, transparent, black 24vh, black 82vh, transparent);
+        linear-gradient(rgba(244,236,216,.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244,236,216,.02) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(120% 80% at 50% 30%, #000 30%, transparent 80%);
+    }
+    .atmos::after {
+      content: ""; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%, rgba(255,255,255,.5), transparent 60%),
+        radial-gradient(1px 1px at 72% 16%, rgba(243,217,138,.65), transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%, rgba(255,255,255,.4), transparent 60%),
+        radial-gradient(1px 1px at 88% 54%, rgba(255,255,255,.4), transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%, rgba(159,191,110,.5), transparent 60%),
+        radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,.35), transparent 60%);
+      animation: twinkle 7s ease-in-out infinite alternate;
+    }
+    .grain {
+      position: fixed; inset: -50%; z-index: 1; pointer-events: none;
+      opacity: .05; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    @keyframes twinkle { from { opacity: .5; } to { opacity: 1; } }
+
+    .frame { position: fixed; inset: 0; z-index: 45; pointer-events: none; }
+    .frame i { position: absolute; width: 26px; height: 26px; border: 1.5px solid var(--line); }
+    .frame i:nth-child(1){ top: 16px; left: 16px; border-right: 0; border-bottom: 0; }
+    .frame i:nth-child(2){ top: 16px; right: 16px; border-left: 0; border-bottom: 0; }
+    .frame i:nth-child(3){ bottom: 16px; left: 16px; border-right: 0; border-top: 0; }
+    .frame i:nth-child(4){ bottom: 16px; right: 16px; border-left: 0; border-top: 0; }
+
+    .progress-top {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%; z-index: 60;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), var(--verd));
+      box-shadow: 0 0 14px rgba(243, 217, 138, .55);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: rgba(214, 172, 85, .28); color: #fff; }
+    :focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; border-radius: 4px; }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
+    .page { position: relative; z-index: 2; overflow: clip; }
 
-    .page {
-      position: relative;
-      z-index: 1;
-      overflow: clip;
-    }
-
+    /* ---------- Hero ---------- */
     .hero {
-      min-height: 92vh;
-      display: grid;
-      align-items: end;
-      position: relative;
-      isolation: isolate;
+      min-height: 94vh;
+      display: grid; align-items: end;
+      position: relative; isolation: isolate;
       padding: 28px;
     }
-
     .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-      background-image: url("assets/ediacaran-hero.png");
-      background-size: cover;
-      background-position: center;
-      transform: scale(1.01);
+      content: ""; position: absolute; inset: 0; z-index: -3;
+      background-image: var(--hero);
+      background-size: cover; background-position: center;
+      transform: scale(1.02);
     }
-
     .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -2;
+      content: ""; position: absolute; inset: 0; z-index: -2;
       background:
-        linear-gradient(90deg, rgba(2, 8, 9, .92) 0%, rgba(2, 8, 9, .68) 34%, rgba(2, 8, 9, .18) 66%, rgba(2, 8, 9, .48) 100%),
-        linear-gradient(180deg, rgba(2, 8, 9, .12) 0%, rgba(2, 8, 9, .24) 54%, #061315 100%);
+        linear-gradient(86deg, rgba(3,6,13,.94) 0%, rgba(3,6,13,.7) 36%, rgba(3,6,13,.16) 68%, rgba(3,6,13,.5) 100%),
+        linear-gradient(180deg, rgba(3,6,13,.1) 0%, rgba(3,6,13,.26) 54%, var(--void) 100%);
     }
-
     .hero-waterline {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 24vh;
-      z-index: -1;
-      background:
-        linear-gradient(180deg, transparent 0%, rgba(6, 19, 21, .6) 38%, var(--deep) 100%);
+      position: absolute; left: 0; right: 0; bottom: -1px; height: 26vh; z-index: -1;
+      background: linear-gradient(180deg, transparent 0%, rgba(5,8,17,.6) 40%, var(--void) 100%);
     }
-
     .hero-inner {
-      width: min(100%, var(--max));
-      margin: 0 auto 7vh;
-      display: grid;
-      grid-template-columns: minmax(0, 740px) minmax(240px, 340px);
-      gap: 42px;
-      align-items: end;
+      width: min(100%, var(--max)); margin: 0 auto 7vh;
+      display: grid; grid-template-columns: minmax(0, 760px) minmax(250px, 350px);
+      gap: 46px; align-items: end;
     }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 22px;
-      color: var(--chalk);
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 14px; margin: 0 0 22px;
+      font-family: var(--roman); font-size: .72rem; font-weight: 600;
+      letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
     }
+    .eyebrow::before { content: ""; width: 44px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
 
-    .eyebrow::before {
-      content: "";
-      width: 42px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--amber), var(--algae));
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-      line-height: 1.04;
-      letter-spacing: 0;
-      margin: 0;
-    }
+    h1, h2, h3, h4 { margin: 0; line-height: 1.04; }
 
     h1 {
-      max-width: 760px;
-      color: var(--chalk);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 5.4rem;
-      font-weight: 700;
-      text-wrap: balance;
+      max-width: 14ch;
+      font-family: var(--roman); font-weight: 800;
+      font-size: clamp(3rem, 8vw, 6.2rem);
+      line-height: .96; letter-spacing: -.01em; text-transform: uppercase;
+      color: var(--ink); text-wrap: balance;
     }
+    h1 .foil {
+      background: linear-gradient(96deg, var(--gold-deep), var(--gold-bright) 40%, #fff6dc 50%, var(--gold-bright) 60%, var(--gold-deep));
+      background-size: 220% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: foil 7s linear infinite;
+    }
+    @keyframes foil { to { background-position: 220% 0; } }
 
     .hero-lead {
-      max-width: 690px;
-      margin: 24px 0 0;
-      color: var(--muted);
-      font-size: 1.16rem;
+      max-width: 56ch; margin: 26px 0 0; color: var(--muted);
+      font-size: clamp(1.04rem, 1.4vw, 1.2rem);
     }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 34px;
-    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
 
     .button {
-      min-height: 46px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 0 18px;
-      background: rgba(255, 248, 232, .09);
-      color: var(--chalk);
-      font-weight: 800;
-      backdrop-filter: blur(16px);
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+      display: inline-flex; align-items: center; gap: 10px;
+      min-height: 50px; padding: 0 22px;
+      font-family: var(--roman); font-size: .74rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      border-radius: 2px; border: 1px solid var(--line);
+      color: var(--ink); background: rgba(244,236,216,.05);
+      backdrop-filter: blur(12px);
+      transition: transform .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
     }
-
-    .button:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 248, 232, .16);
-      border-color: rgba(255, 248, 232, .34);
-    }
-
+    .button:hover { transform: translateY(-3px); border-color: rgba(214,172,85,.5); background: rgba(244,236,216,.1); }
     .button.primary {
-      background: var(--chalk);
-      color: #10201d;
-      border-color: var(--chalk);
+      color: #14110a; border-color: transparent;
+      background: linear-gradient(140deg, var(--gold-bright), var(--gold) 55%, var(--gold-deep));
+      box-shadow: 0 14px 38px rgba(214,172,85,.28), inset 0 1px 0 rgba(255,255,255,.5);
     }
+    .button.primary:hover { box-shadow: 0 22px 54px rgba(214,172,85,.4), inset 0 1px 0 rgba(255,255,255,.6); }
 
+    /* Signal board */
     .signal-board {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(5, 17, 19, .66);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      overflow: hidden;
+      border: 1px solid var(--line); border-radius: 3px;
+      background: var(--glass); box-shadow: var(--shadow);
+      backdrop-filter: blur(18px); overflow: hidden;
     }
-
-    .signal {
-      padding: 18px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .signal:last-child {
-      border-bottom: 0;
-    }
-
+    .signal { padding: 18px 20px; border-bottom: 1px solid var(--line-2); }
+    .signal:last-child { border-bottom: 0; }
     .signal span {
-      display: block;
-      color: var(--soft);
-      font-size: .72rem;
-      font-weight: 900;
-      letter-spacing: .13em;
-      text-transform: uppercase;
+      display: block; font-family: var(--roman); font-size: .62rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--gold);
     }
+    .signal strong { display: block; margin-top: 7px; color: var(--parch); font-size: 1.02rem; font-weight: 500; font-family: var(--serif); }
 
-    .signal strong {
-      display: block;
-      margin-top: 6px;
-      color: var(--chalk);
-      font-size: 1.02rem;
-    }
-
+    /* ---------- Topbar ---------- */
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
+      position: sticky; top: 0; z-index: 50;
       border-bottom: 1px solid var(--line);
-      background: rgba(4, 14, 15, .84);
-      backdrop-filter: blur(18px);
+      background: rgba(5, 8, 17, .72); backdrop-filter: blur(18px) saturate(140%);
     }
-
     .topbar-inner {
-      width: min(100% - 40px, var(--max));
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-      min-height: 68px;
+      width: min(100% - 40px, var(--max)); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 70px;
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: max-content;
-      color: var(--chalk);
-      font-weight: 900;
-    }
-
+    .brand { display: flex; align-items: center; gap: 13px; min-width: max-content; }
     .brand-mark {
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 10px;
-      object-fit: cover;
-      box-shadow: 0 8px 24px rgba(0,0,0,.32);
+      width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
+      border: 1px solid rgba(214,172,85,.5);
+      box-shadow: 0 0 0 3px rgba(214,172,85,.1), 0 8px 22px rgba(0,0,0,.5);
     }
-
-    .nav {
-      display: flex;
-      gap: 4px;
-      overflow-x: auto;
-      scrollbar-width: none;
+    .brand span {
+      font-family: var(--roman); font-weight: 700; font-size: .82rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--ink);
     }
-
-    .nav::-webkit-scrollbar {
-      display: none;
-    }
-
+    .nav { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+    .nav::-webkit-scrollbar { display: none; }
     .nav a {
-      flex: 0 0 auto;
-      border-radius: 8px;
-      padding: 9px 12px;
-      color: var(--muted);
-      font-size: .88rem;
-      font-weight: 800;
-      white-space: nowrap;
+      position: relative; flex: 0 0 auto; padding: 10px 13px;
+      font-family: var(--roman); font-size: .68rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+      white-space: nowrap; transition: color .3s var(--ease);
     }
-
-    .nav a:hover,
-    .nav a.active {
-      background: rgba(255,248,232,.09);
-      color: var(--chalk);
+    .nav a::after {
+      content: ""; position: absolute; left: 13px; right: 13px; bottom: 6px; height: 1px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+      transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease);
     }
+    .nav a:hover, .nav a.active { color: var(--ink); }
+    .nav a:hover::after, .nav a.active::after { transform: scaleX(1); }
 
     .home-link {
-      flex: 0 0 auto;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 0 12px;
-      color: var(--chalk);
-      background: rgba(255,248,232,.07);
-      font-size: .86rem;
-      font-weight: 900;
-      white-space: nowrap;
+      flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px;
+      font-family: var(--roman); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ink); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06);
+      white-space: nowrap; transition: border-color .3s var(--ease), background .3s var(--ease);
     }
+    .home-link:hover { border-color: rgba(214,172,85,.5); background: rgba(214,172,85,.12); }
 
-    .progress {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 2px;
-      background: rgba(255,255,255,.08);
-    }
+    .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: rgba(214,172,85,.1); }
+    .progress span { display: block; width: 0%; height: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), var(--verd)); }
 
-    .progress span {
-      display: block;
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--algae), var(--amber), var(--clay));
-    }
+    main { width: min(100% - 40px, var(--max)); margin: 0 auto; }
 
-    main {
-      width: min(100% - 40px, var(--max));
-      margin: 0 auto;
-    }
-
+    /* ---------- Intro band ---------- */
     .intro-band {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
-      gap: 26px;
-      padding: 82px 0 48px;
-      align-items: stretch;
+      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+      gap: 30px; padding: 84px 0 50px; align-items: stretch;
     }
-
-    .manifesto {
-      border-left: 3px solid var(--amber);
-      padding-left: 24px;
-    }
-
-    .manifesto p {
-      margin: 16px 0 0;
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-
     .section-kicker {
-      margin: 0 0 12px;
-      color: var(--amber);
-      font-size: .78rem;
-      font-weight: 900;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+      margin: 0 0 14px; font-family: var(--roman); font-size: .68rem; font-weight: 600;
+      letter-spacing: .26em; text-transform: uppercase; color: var(--gold);
     }
-
-    .manifesto h2,
-    .chapter h2 {
-      color: var(--chalk);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 2.8rem;
-      text-wrap: balance;
+    .manifesto { border-left: 2px solid var(--gold); padding-left: 26px; }
+    .manifesto h2, .chapter h2 {
+      font-family: var(--roman); font-weight: 700; font-size: clamp(1.8rem, 3.6vw, 2.9rem);
+      line-height: 1.04; letter-spacing: .005em; text-transform: uppercase; color: var(--ink); text-wrap: balance;
     }
+    .manifesto p { margin: 18px 0 0; color: var(--muted); font-size: 1.06rem; }
 
-    .timeline {
-      position: relative;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--paper);
-      padding: 22px;
+    .timeline { position: relative; border: 1px solid var(--line); border-radius: 3px; background: rgba(244,236,216,.03); padding: 8px 22px; }
+    .timeline-row { display: grid; grid-template-columns: 92px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom: 0; }
+    .timeline-row time, .timeline-row span {
+      font-family: var(--roman); font-weight: 600; font-size: .82rem; letter-spacing: .08em; color: var(--gold-bright);
     }
+    .timeline-row p { margin: 0; color: var(--muted); }
 
-    .timeline-row {
-      display: grid;
-      grid-template-columns: 92px 1fr;
-      gap: 18px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .timeline-row:last-child {
-      border-bottom: 0;
-    }
-
-    .timeline-row time,
-    .timeline-row span {
-      color: var(--algae);
-      font-weight: 900;
-    }
-
-    .timeline-row p {
-      margin: 0;
-      color: var(--muted);
-    }
-
+    /* ---------- Learning / program / pillar panels ---------- */
     .learning-panel {
-      margin: 24px 0 50px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
+      margin: 24px 0 56px; border: 1px solid var(--line); border-radius: 3px;
       background:
-        linear-gradient(135deg, rgba(240,167,90,.12), transparent 36%),
-        linear-gradient(180deg, rgba(255,248,232,.07), rgba(255,248,232,.035));
-      padding: 26px;
+        radial-gradient(120% 120% at 100% 0%, rgba(58,143,134,.12), transparent 50%),
+        linear-gradient(180deg, rgba(14,26,46,.4), rgba(7,12,26,.5));
+      padding: clamp(24px, 4vw, 40px);
     }
-
     .learning-panel h2 {
-      color: var(--chalk);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 2.25rem;
-      text-wrap: balance;
+      font-family: var(--serif); font-style: italic; font-weight: 400;
+      font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.12; color: var(--ink); text-wrap: balance;
     }
-
-    .learning-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 22px;
+    .learning-grid, .program-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+    .learning-item, .program-item {
+      border: 1px solid var(--line-2); border-radius: 3px; padding: 22px;
+      background: rgba(244,236,216,.035); border-top: 2px solid rgba(214,172,85,.4);
+      transition: transform .4s var(--ease), border-color .4s var(--ease), background .4s var(--ease);
     }
-
-    .learning-item {
-      min-height: 150px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255,255,255,.045);
-      padding: 18px;
+    .learning-item:hover, .program-item:hover { transform: translateY(-4px); border-top-color: var(--gold); background: rgba(244,236,216,.06); }
+    .learning-item span, .program-item span {
+      font-family: var(--roman); font-size: .66rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold);
     }
+    .learning-item p, .program-item p { margin: 12px 0 0; color: var(--muted); font-size: .98rem; }
+    .program-grid { margin: 24px 0 34px; }
 
-    .learning-item span {
-      color: var(--amber);
-      font-size: .76rem;
-      font-weight: 900;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .learning-item p {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: .96rem;
-    }
-
-    .chapter {
-      position: relative;
-      padding: 76px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .chapter-head {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 170px;
-      gap: 28px;
-      align-items: end;
-      margin-bottom: 30px;
-    }
-
+    /* ---------- Chapters ---------- */
+    .chapter { position: relative; padding: 80px 0; border-top: 1px solid var(--line); }
+    .chapter-head { display: grid; grid-template-columns: minmax(0, 1fr) 170px; gap: 28px; align-items: end; margin-bottom: 34px; }
     .chapter-number {
-      justify-self: end;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(255, 248, 232, .34);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 6rem;
-      line-height: .8;
+      justify-self: end; color: transparent;
+      -webkit-text-stroke: 1px rgba(214, 172, 85, .45);
+      font-family: var(--roman); font-weight: 700; font-size: 6rem; line-height: .8;
+    }
+    .transcript { display: grid; grid-template-columns: minmax(0, 780px) minmax(240px, 1fr); gap: 40px; align-items: start; }
+    .prose { min-width: 0; }
+    .prose p, .prose li { color: var(--muted); font-size: 1.05rem; }
+    .prose p { margin: 0 0 20px; }
+    .prose ul { margin: 14px 0 24px; padding-left: 4px; list-style: none; }
+    .prose li { position: relative; margin: 12px 0; padding-left: 26px; }
+    .prose li::before { content: "❖"; position: absolute; left: 0; top: 0; color: var(--gold); font-size: .8em; }
+    .prose strong, .prose em { color: var(--parch); font-style: normal; font-weight: 600; }
+    .group-title {
+      margin: 36px 0 14px; font-family: var(--roman); font-weight: 600;
+      font-size: 1.05rem; letter-spacing: .04em; text-transform: uppercase; color: var(--ink);
     }
 
-    .transcript {
-      display: grid;
-      grid-template-columns: minmax(0, 780px) minmax(240px, 1fr);
-      gap: 36px;
-      align-items: start;
+    .script-block, .science-block, .question-block {
+      border: 1px solid var(--line-2); border-left: 3px solid var(--gold);
+      border-radius: 3px; padding: 24px; margin: 24px 0;
+      background: rgba(244,236,216,.04);
     }
-
-    .prose {
-      min-width: 0;
-    }
-
-    .prose p,
-    .prose li {
-      color: var(--muted);
-      font-size: 1.03rem;
-    }
-
-    .prose p {
-      margin: 0 0 20px;
-    }
-
-    .prose ul {
-      margin: 14px 0 24px;
-      padding-left: 22px;
-    }
-
-    .prose li {
-      margin: 9px 0;
-      padding-left: 4px;
-    }
-
-    .prose strong {
-      color: var(--chalk);
-    }
-
-    .prose em {
-      color: var(--chalk);
-      font-style: normal;
-    }
-
-    .script-block,
-    .science-block,
-    .question-block {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 22px;
-      margin: 24px 0;
-      background: rgba(255, 248, 232, .052);
-    }
-
-    .script-block {
-      border-left: 3px solid var(--amber);
-    }
-
-    .science-block {
-      border-left: 3px solid var(--algae);
-    }
-
-    .question-block {
-      border-left: 3px solid var(--clay);
-      background: rgba(196, 111, 75, .1);
-    }
+    .script-block { border-left-color: var(--gold); }
+    .science-block { border-left-color: var(--algae); background: rgba(159,191,110,.06); }
+    .question-block { border-left-color: var(--clay); background: rgba(196,122,85,.1); }
+    .script-block p:last-child, .science-block p:last-child, .question-block p:last-child { margin-bottom: 0; }
 
     .side-note {
-      position: sticky;
-      top: 92px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(5, 17, 19, .58);
-      padding: 20px;
-      box-shadow: 0 18px 56px rgba(0,0,0,.18);
+      position: sticky; top: 92px; border: 1px solid var(--line); border-radius: 3px;
+      background: rgba(7,12,26,.6); padding: 22px; box-shadow: 0 18px 56px rgba(0,0,0,.25);
     }
-
     .side-note h3 {
-      color: var(--chalk);
-      font-size: 1rem;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: .12em;
+      margin: 0 0 14px; font-family: var(--roman); font-size: .76rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--gold);
     }
-
-    .side-note p {
-      margin: 0 0 14px;
-      color: var(--soft);
-      font-size: .92rem;
-    }
-
-    .side-note .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
+    .side-note p { margin: 0 0 14px; color: var(--soft); font-size: .94rem; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
     .tag {
-      display: inline-flex;
-      align-items: center;
-      min-height: 28px;
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 8px;
-      padding: 0 10px;
-      color: var(--chalk);
-      background: rgba(255,255,255,.06);
-      font-size: .78rem;
-      font-weight: 800;
+      display: inline-flex; align-items: center; min-height: 28px; padding: 0 11px;
+      font-family: var(--roman); font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06);
     }
 
-    .program-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin: 22px 0 34px;
-    }
-
-    .program-item {
-      min-height: 150px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 18px;
-      background: linear-gradient(180deg, rgba(255,248,232,.08), rgba(255,248,232,.035));
-    }
-
-    .program-item span {
-      color: var(--amber);
-      font-weight: 900;
-      font-size: .76rem;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-    }
-
-    .program-item p {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: .96rem;
-    }
-
-    .sommaire-list {
-      display: grid;
-      gap: 18px;
-      margin-top: 24px;
-    }
-
+    .sommaire-list { display: grid; gap: 18px; margin-top: 24px; }
     .pillar {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255,255,255,.045);
-      padding: 20px;
+      border: 1px solid var(--line-2); border-radius: 3px; padding: 24px;
+      background: rgba(244,236,216,.035); border-left: 3px solid rgba(214,172,85,.5);
     }
+    .pillar h3 { margin: 0 0 10px; font-family: var(--serif); font-weight: 600; font-size: 1.32rem; color: var(--ink); }
+    .pillar p { margin-bottom: 12px; }
 
-    .pillar h3 {
-      color: var(--chalk);
-      font-size: 1.22rem;
-      margin-bottom: 10px;
-    }
-
-    .pillar p {
-      margin-bottom: 12px;
-    }
-
-    .group-title {
-      margin: 34px 0 14px;
-      color: var(--chalk);
-      font-size: 1.4rem;
-    }
-
-    .two-column {
-      columns: 2 290px;
-      column-gap: 30px;
-    }
-
-    .two-column p,
-    .two-column ul {
-      break-inside: avoid;
-    }
+    .two-column { columns: 2 290px; column-gap: 34px; }
+    .two-column p, .two-column ul { break-inside: avoid; }
 
     .closing {
-      margin: 70px 0 90px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
+      margin: 76px 0 92px; border: 1px solid var(--line); border-radius: 3px;
       background:
-        linear-gradient(135deg, rgba(169,202,114,.13), transparent 36%),
-        linear-gradient(180deg, rgba(255,248,232,.075), rgba(255,248,232,.035));
-      padding: 32px;
+        radial-gradient(120% 120% at 0% 0%, rgba(159,191,110,.12), transparent 50%),
+        linear-gradient(180deg, rgba(14,26,46,.45), rgba(7,12,26,.5));
+      padding: clamp(28px, 4vw, 44px);
     }
-
     .closing h2 {
-      color: var(--chalk);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 2.2rem;
+      font-family: var(--serif); font-style: italic; font-weight: 400;
+      font-size: clamp(1.6rem, 3vw, 2.3rem); color: var(--ink); line-height: 1.14;
     }
+    .closing p { max-width: 80ch; margin: 16px 0 0; color: var(--muted); }
 
-    .closing p {
-      max-width: 820px;
-      margin: 14px 0 0;
-      color: var(--muted);
-    }
-
+    /* ---------- Collective footer ---------- */
     .collective-footer {
-      position: relative;
-      display: grid;
-      grid-template-columns: minmax(230px, 360px) minmax(0, 1fr);
-      gap: 34px;
-      align-items: center;
-      margin: 0 0 92px;
-      border: 1px solid rgba(255, 248, 232, .2);
-      border-radius: 8px;
+      position: relative; display: grid; grid-template-columns: minmax(230px, 360px) minmax(0, 1fr);
+      gap: 0; align-items: stretch; margin: 0 0 96px;
+      border: 1px solid var(--line); border-radius: 3px;
       background:
-        linear-gradient(120deg, rgba(9, 40, 43, .9), rgba(6, 19, 21, .62)),
-        linear-gradient(180deg, rgba(255,248,232,.08), rgba(255,248,232,.035));
-      box-shadow: var(--shadow);
-      overflow: hidden;
+        radial-gradient(120% 120% at 100% 0%, rgba(58,143,134,.16), transparent 55%),
+        linear-gradient(180deg, rgba(14,26,46,.6), rgba(7,12,26,.66));
+      box-shadow: var(--shadow); overflow: hidden;
     }
-
-    .collective-footer::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(90deg, rgba(240,167,90,.18), transparent 38%),
-        linear-gradient(180deg, transparent, rgba(0,0,0,.28));
-    }
-
     .collective-logo-wrap {
-      position: relative;
-      z-index: 1;
-      min-height: 360px;
-      display: grid;
-      place-items: center;
-      padding: 34px;
-      background: rgba(2, 8, 9, .26);
-      border-right: 1px solid var(--line);
+      position: relative; z-index: 1; min-height: 360px; display: grid; place-items: center;
+      padding: 38px; background: rgba(3,6,13,.3); border-right: 1px solid var(--line);
     }
-
     .collective-logo {
-      width: min(100%, 292px);
-      aspect-ratio: 1;
-      border-radius: 34px;
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,.24);
-      box-shadow: 0 28px 90px rgba(0,0,0,.5);
+      width: min(100%, 280px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; padding: 5px;
+      background: conic-gradient(from 210deg, var(--gold-deep), var(--gold-bright), var(--gold), var(--gold-deep));
+      box-shadow: 0 28px 80px rgba(0,0,0,.55);
     }
-
-    .collective-copy {
-      position: relative;
-      z-index: 1;
-      padding: 42px 42px 42px 0;
-    }
-
+    .collective-logo img, img.collective-logo { /* keep cover when img used directly */ }
+    .collective-copy { position: relative; z-index: 1; padding: clamp(34px, 4vw, 52px); }
     .collective-copy h2 {
-      max-width: 680px;
-      color: var(--chalk);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 3.25rem;
-      text-wrap: balance;
+      max-width: 14ch; font-family: var(--roman); font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3rem); letter-spacing: .01em; text-transform: uppercase; color: var(--ink);
     }
-
-    .collective-copy p {
-      max-width: 690px;
-      margin: 18px 0 0;
-      color: var(--muted);
-      font-size: 1.08rem;
-    }
-
+    .collective-copy p { max-width: 64ch; margin: 18px 0 0; color: var(--muted); font-size: 1.06rem; }
+    .collective-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
     .collective-motto {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      margin-top: 26px;
-      border: 1px solid rgba(255, 248, 232, .2);
-      border-radius: 8px;
-      padding: 0 13px;
-      color: var(--chalk);
-      background: rgba(255, 248, 232, .08);
-      font-size: .82rem;
-      font-weight: 900;
-      letter-spacing: .1em;
-      text-transform: uppercase;
+      display: inline-flex; align-items: center; min-height: 36px; margin-top: 24px; padding: 0 16px;
+      font-family: var(--serif); font-style: italic; font-size: 1rem; letter-spacing: .04em;
+      color: var(--gold); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06);
     }
 
-    .collective-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 26px;
-    }
+    .byline { display: flex; align-items: center; gap: 13px; margin-top: 26px; }
+    .byline .avatars { display: flex; }
+    .byline .avatars img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--void); box-shadow: 0 0 0 1.5px var(--gold); background: var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left: -14px; }
+    .byline .who { display: flex; flex-direction: column; gap: 2px; font-family: var(--roman); }
+    .byline .who .lbl { font-size: .58rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+    .byline .who strong { font-size: .88rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink); }
 
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 28px 0 40px;
-      color: var(--soft);
-      font-size: .9rem;
-    }
+    footer { border-top: 1px solid var(--line); padding: 30px 0 44px; color: var(--soft); font-size: .9rem; }
+    footer main { display: block; width: auto; }
+    footer strong { color: var(--parch); }
 
     .mobile-menu {
-      display: none;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255,255,255,.06);
-      color: var(--chalk);
-      padding: 9px 11px;
-      font-weight: 900;
+      display: none; border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.07);
+      color: var(--ink); padding: 10px 13px; font-family: var(--roman); font-weight: 700; font-size: .68rem;
+      letter-spacing: .12em; text-transform: uppercase;
     }
+
+    /* ---------- Reveal ---------- */
+    .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal[data-d="1"] { transition-delay: .08s; }
+    .reveal[data-d="2"] { transition-delay: .16s; }
+    .reveal[data-d="3"] { transition-delay: .24s; }
+
+    /* Hero load entrance */
+    @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+    .js .hero-inner > div > *, .js .signal-board { opacity: 0; animation: rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1) { animation-delay: .1s; }
+    .js .hero-inner > div > *:nth-child(2) { animation-delay: .2s; }
+    .js .hero-inner > div > *:nth-child(3) { animation-delay: .3s; }
+    .js .hero-inner > div > *:nth-child(4) { animation-delay: .4s; }
+    .js .signal-board { animation-delay: .45s; }
 
     @media (max-width: 980px) {
-      .hero {
-        min-height: 86vh;
-        padding: 22px;
-      }
-
-      .hero-inner,
-      .intro-band,
-      .transcript,
-      .chapter-head {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 4.1rem;
-      }
-
-      .signal-board {
-        max-width: 560px;
-      }
-
-      .chapter-number {
-        justify-self: start;
-        font-size: 4.2rem;
-      }
-
-      .side-note {
-        position: static;
-      }
-
-      .program-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .learning-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .collective-footer {
-        grid-template-columns: 1fr;
-      }
-
-      .collective-logo-wrap {
-        min-height: auto;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .collective-copy {
-        padding: 0 28px 34px;
-      }
-
-      .collective-copy h2 {
-        font-size: 2.55rem;
-      }
+      .hero { min-height: 88vh; padding: 22px; }
+      .hero-inner, .intro-band, .transcript, .chapter-head { grid-template-columns: 1fr; }
+      .signal-board { max-width: 560px; }
+      .chapter-number { justify-self: start; font-size: 4.4rem; }
+      .side-note { position: static; }
+      .program-grid, .learning-grid { grid-template-columns: 1fr; }
+      .collective-footer { grid-template-columns: 1fr; }
+      .collective-logo-wrap { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
     }
-
     @media (max-width: 720px) {
-      .topbar-inner {
-        width: min(100% - 24px, var(--max));
-        min-height: auto;
-        padding: 12px 0;
-        flex-wrap: wrap;
-      }
-
-      .mobile-menu {
-        display: inline-flex;
-      }
-
-      .nav {
-        display: none;
-        width: 100%;
-        padding: 8px 0 2px;
-      }
-
-      .nav.open {
-        display: flex;
-      }
-
-      main {
-        width: min(100% - 24px, var(--max));
-      }
-
-      .hero {
-        min-height: 88vh;
-        padding: 16px;
-      }
-
-      .hero::after {
-        background:
-          linear-gradient(90deg, rgba(2, 8, 9, .94), rgba(2, 8, 9, .46)),
-          linear-gradient(180deg, rgba(2, 8, 9, .12), #061315 100%);
-      }
-
-      .hero-inner {
-        margin-bottom: 5vh;
-        gap: 24px;
-      }
-
-      h1 {
-        font-size: 3.05rem;
-      }
-
-      .hero-lead {
-        font-size: 1.02rem;
-      }
-
-      .manifesto h2,
-      .chapter h2 {
-        font-size: 2.15rem;
-      }
-
-      .chapter {
-        padding: 58px 0;
-      }
-
-      .script-block,
-      .science-block,
-      .question-block,
-      .closing,
-      .learning-panel {
-        padding: 18px;
-      }
-
-      .collective-footer {
-        margin-bottom: 58px;
-      }
-
-      .collective-logo-wrap {
-        padding: 22px;
-      }
-
-      .collective-logo {
-        width: min(100%, 230px);
-        border-radius: 26px;
-      }
-
-      .collective-copy {
-        padding: 0 20px 24px;
-      }
-
-      .collective-copy h2 {
-        font-size: 2.05rem;
-      }
-
-      .collective-copy p {
-        font-size: 1rem;
-      }
+      .topbar-inner { width: min(100% - 24px, var(--max)); min-height: auto; padding: 12px 0; flex-wrap: wrap; }
+      .mobile-menu { display: inline-flex; }
+      .nav { display: none; width: 100%; padding: 8px 0 2px; flex-wrap: wrap; }
+      .nav.open { display: flex; }
+      main { width: min(100% - 24px, var(--max)); }
+      .hero { min-height: 86vh; padding: 16px; }
+      .hero::after { background: linear-gradient(90deg, rgba(3,6,13,.95), rgba(3,6,13,.5)), linear-gradient(180deg, rgba(3,6,13,.12), var(--void) 100%); }
+      .hero-inner { margin-bottom: 5vh; gap: 26px; }
+      .chapter { padding: 60px 0; }
+      .two-column { columns: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+      .js .hero-inner > div > *, .js .signal-board { opacity: 1; }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
   <div class="page">
     <header class="hero" id="top">
       <div class="hero-waterline"></div>
       <div class="hero-inner">
         <div>
-          <p class="eyebrow">Transcription du live TikTok</p>
-          <h1>L' EDIACARIEN</h1>
+          <p class="eyebrow">Dossier I · Transcription du live</p>
+          <h1>L'<span class="foil">Édiacarien</span></h1>
           <p class="hero-lead">Un voyage de 550 millions d'années dans les lagons primitifs, les tapis microbiens, les animaux sans bouche et le moment où la vie a commencé à inventer la guerre.</p>
           <div class="hero-actions">
             <a class="button primary" href="#transcription">Lire la transcription</a>
@@ -944,13 +493,13 @@
             <a class="button" href="../index.html">Accueil ECI</a>
           </div>
         </div>
-        <aside class="signal-board" aria-label="Reperes">
+        <aside class="signal-board" aria-label="Repères">
           <div class="signal">
-            <span>Periode</span>
+            <span>Période</span>
             <strong>Édiacarien</strong>
           </div>
           <div class="signal">
-            <span>Decor</span>
+            <span>Décor</span>
             <strong>Plateaux continentaux peu profonds</strong>
           </div>
           <div class="signal">
@@ -967,7 +516,7 @@
 
     <nav class="topbar" aria-label="Navigation principale">
       <div class="topbar-inner">
-        <a class="brand" href="#top" aria-label="Retour au debut">
+        <a class="brand" href="#top" aria-label="Retour au début">
           <img class="brand-mark" src="assets/logo-eci.jpg" alt="" aria-hidden="true">
           <span>Édiacarien</span>
         </a>
@@ -987,12 +536,12 @@
 
     <main id="transcription">
       <section class="intro-band" id="ouverture">
-        <div class="manifesto">
+        <div class="manifesto reveal">
           <p class="section-kicker">Ouverture du live</p>
-          <h2>La Terre avant les dinosaures, avant les trilobites, avant presque tous nos reperes.</h2>
+          <h2>La Terre avant les dinosaures, avant les trilobites, avant presque tous nos repères.</h2>
           <p>Cette page reprend la transcription du fichier texte et la transforme en lecture publique structurée, avec les chapitres du live et ses moments de démonstration.</p>
         </div>
-        <div class="timeline" aria-label="Fil conducteur">
+        <div class="timeline reveal" data-d="1" aria-label="Fil conducteur">
           <div class="timeline-row">
             <time>550 Ma</time>
             <p>On redescend dans un monde sous-marin où les continents sont encore des déserts minéraux.</p>
@@ -1003,56 +552,56 @@
           </div>
           <div class="timeline-row">
             <span>Faune</span>
-            <p>Dickinsonia, Charnia, Kimberella et Cloudina entrent en scene.</p>
+            <p>Dickinsonia, Charnia, Kimberella et Cloudina entrent en scène.</p>
           </div>
         </div>
       </section>
 
-      <section class="learning-panel" aria-labelledby="objectifs">
+      <section class="learning-panel reveal" aria-labelledby="objectifs">
         <p class="section-kicker">Objectifs pédagogiques</p>
         <h2 id="objectifs">Ce dossier apprend à lire un monde disparu avec des preuves.</h2>
         <div class="learning-grid">
-          <div class="learning-item">
+          <div class="learning-item reveal" data-d="1">
             <span>Comprendre</span>
             <p>Relier géologie, climat, oxygène et apparition de formes multicellulaires complexes.</p>
           </div>
-          <div class="learning-item">
+          <div class="learning-item reveal" data-d="2">
             <span>Identifier</span>
             <p>Reconnaître les grands groupes évoqués : fractales, bilatériens primitifs et premiers constructeurs.</p>
           </div>
-          <div class="learning-item">
+          <div class="learning-item reveal" data-d="3">
             <span>Raisonner</span>
             <p>Voir comment les fossiles, traces et biomarqueurs transforment une énigme en argument scientifique.</p>
           </div>
         </div>
       </section>
 
-      <section class="chapter" aria-labelledby="chapitre-ouverture">
+      <section class="chapter reveal" aria-labelledby="chapitre-ouverture">
         <div class="chapter-head">
           <div>
             <p class="section-kicker">Transcription mot pour mot</p>
-            <h2 id="chapitre-ouverture">L' EDIACARIEN</h2>
+            <h2 id="chapitre-ouverture">L'Édiacarien</h2>
           </div>
           <div class="chapter-number">01</div>
         </div>
         <div class="transcript">
           <article class="prose">
-            <p>Bonjour à tous. Installez-vous confortablement. Aujourd'hui, on va faire un voyage dans le temps qui va secouer vos repères. Oubliez les dinosaures, oubliez les mammouths, oubliez même les trilobites. Ce soir, on éteint la lumière, on coupe le son, et on redescend de 550 millions d’années.</p>
-            <p>Imaginez la Terre comme une immense maison de famille qui sort d'un hiver interminable. Pendant des milliards d’années, les seuls locataires de cette maison ont été des bactéries. Invisibles, microscopiques, solitaires. Et puis, d’un coup, la planète se réchauffe. La glace fond, l’oxygène sature les océans. C'est le printemps de la Terre. Et là, la vie fait quelque chose d'absolument inédit : elle décide de s'assembler. Les cellules s'organisent, se parlent, s'emboîtent. C’est la naissance des premiers géants.</p>
-            <p>A l'Édiacarien, les continents sont des déserts minéraux totaux.Pas un brin d'herbe, pas un insecte, pas une mousse. Si on marchait sur la Terre ferme à cette époque, on aurait l'impression d'être sur Mars ou dans un champ de régolithe, le silence complet en plus.</p>
+            <p>Bonjour à tous. Installez-vous confortablement. Aujourd'hui, on va faire un voyage dans le temps qui va secouer vos repères. Oubliez les dinosaures, oubliez les mammouths, oubliez même les trilobites. Ce soir, on éteint la lumière, on coupe le son, et on redescend de 550 millions d'années.</p>
+            <p>Imaginez la Terre comme une immense maison de famille qui sort d'un hiver interminable. Pendant des milliards d'années, les seuls locataires de cette maison ont été des bactéries. Invisibles, microscopiques, solitaires. Et puis, d'un coup, la planète se réchauffe. La glace fond, l'oxygène sature les océans. C'est le printemps de la Terre. Et là, la vie fait quelque chose d'absolument inédit : elle décide de s'assembler. Les cellules s'organisent, se parlent, s'emboîtent. C'est la naissance des premiers géants.</p>
+            <p>À l'Édiacarien, les continents sont des déserts minéraux totaux. Pas un brin d'herbe, pas un insecte, pas une mousse. Si on marchait sur la Terre ferme à cette époque, on aurait l'impression d'être sur Mars ou dans un champ de régolithe, le silence complet en plus.</p>
             <p>Tout le spectacle, toute l'innovation biologique, toute la folie évolutive se joue exclusivement sous l'eau, et plus précisément dans des zones très stratégiques.</p>
             <p>Bienvenue dans l'Édiacarien.</p>
             <p>Au programme ce soir :</p>
             <div class="program-grid">
-              <div class="program-item">
+              <div class="program-item reveal" data-d="1">
                 <span>Programme 1</span>
                 <p>On va analyser les fiches d'identité de ces créatures improbables : des tapis de bain moléculaires aux plumes de mer géantes.</p>
               </div>
-              <div class="program-item">
+              <div class="program-item reveal" data-d="2">
                 <span>Programme 2</span>
                 <p>On va faire de la vraie méthode scientifique : comment un simple résidu de cholestérol fossilisé a permis de résoudre l'un des plus grands mystères de la paléontologie moderne.</p>
               </div>
-              <div class="program-item">
+              <div class="program-item reveal" data-d="3">
                 <span>Programme 3</span>
                 <p>Et enfin, on verra comment ce monde paisible, ce "Jardin d'Édiacara", s'est effondré le jour où la vie a inventé deux choses terribles : la bouche et les dents.</p>
               </div>
@@ -1065,18 +614,18 @@
             <p>Le texte alterne narration immersive, analogies TikTok et points de rigueur scientifique.</p>
             <div class="tag-list">
               <span class="tag">Direct</span>
-              <span class="tag">Pedagogie</span>
-              <span class="tag">Paleo</span>
+              <span class="tag">Pédagogie</span>
+              <span class="tag">Paléo</span>
               <span class="tag">Suspense</span>
             </div>
           </aside>
         </div>
       </section>
 
-      <section class="chapter" id="sommaire" aria-labelledby="chapitre-sommaire">
+      <section class="chapter reveal" id="sommaire" aria-labelledby="chapitre-sommaire">
         <div class="chapter-head">
           <div>
-            <p class="section-kicker">SOMMAIRE</p>
+            <p class="section-kicker">Sommaire</p>
             <h2 id="chapitre-sommaire">Les quatre piliers du monde édiacarien.</h2>
           </div>
           <div class="chapter-number">02</div>
@@ -1084,7 +633,7 @@
         <div class="transcript">
           <article class="prose">
             <div class="sommaire-list">
-              <div class="pillar">
+              <div class="pillar reveal" data-d="1">
                 <h3>Pilier 1 : La Géologie – Le berceau tectonique</h3>
                 <p>On pose le décor physique. La Terre de l'Édiacarien ne ressemble absolument pas à la nôtre : les continents jouent à Tetris.</p>
                 <ul>
@@ -1093,16 +642,16 @@
                   <li>La sédimentation : Pas encore de plantes terrestres pour retenir les sols. Les rivières déversent des quantités phénoménales de sédiments et de minéraux dans les océans, fertilisant l'eau de manière inédite.</li>
                 </ul>
               </div>
-              <div class="pillar">
+              <div class="pillar reveal" data-d="1">
                 <h3>Pilier 2 : Le Climat – La grande décongélation</h3>
                 <p>C'est l'histoire d'un sauvetage planétaire. On sort de la pire crise climatique de l'histoire de la Terre.</p>
                 <ul>
-                  <li>L'après-Snowball Earth : L'Édiacarien s'ouvre pile après la glaciation Marinoenne (la Terre Boule de Neige). Le climat passe d'un congélateur global à un effet de serre puissant grâce au volcanisme qui a libéré d'immenses quantités de $CO_2$.</li>
+                  <li>L'après-Snowball Earth : L'Édiacarien s'ouvre pile après la glaciation Marinoenne (la Terre Boule de Neige). Le climat passe d'un congélateur global à un effet de serre puissant grâce au volcanisme qui a libéré d'immenses quantités de CO₂.</li>
                   <li>L'oxygénation néoprotérozoïque (NOE) : C'est le point scientifique crucial du live. Le réchauffement et l'activité des cyanobactéries provoquent une hausse spectaculaire du taux d'oxygène dans les océans profonds.</li>
                 </ul>
                 <p>L'analogie rigoureuse : L'oxygène, c'est le carburant métabolique. Sans lui, impossible de financer l'énergie nécessaire pour construire un corps multicellulaire de plus de quelques millimètres. L'Édiacarien, c'est le moment où la vie reçoit enfin son chèque énergétique.</p>
               </div>
-              <div class="pillar">
+              <div class="pillar reveal" data-d="1">
                 <h3>Pilier 3 : La "Flore" – Le règne invisible et les tapis de microbes</h3>
                 <p>Attention, point de rigueur scientifique pour le tchat : au sens strict, la flore (plantes vertes, algues complexes) est encore embryonnaire. On parle ici de structures photosynthétiques.</p>
                 <ul>
@@ -1110,7 +659,7 @@
                   <li>Les premières algues multicellulaires : On commence à voir de véritables algues rouges et vertes macroscopiques. Elles ne font pas de vagues, mais elles stabilisent les fonds marins et pompent le soleil pour produire de l'oxygène.</li>
                 </ul>
               </div>
-              <div class="pillar">
+              <div class="pillar reveal" data-d="1">
                 <h3>Pilier 4 : La Faune &amp; Les Animaux – Le grand zoo des formes</h3>
                 <p>C'est le clou du spectacle. C'est ici qu'on présente les fossiles et qu'on sépare les animaux des "fausses pistes". À l'Édiacarien, on sépare la faune en trois grands groupes morphologiques (les "assemblages") :</p>
                 <h4 class="group-title">A. Les Fractales et les "Vandobiontes" (Les énigmes)</h4>
@@ -1136,7 +685,7 @@
           </article>
           <aside class="side-note">
             <h3>Architecture</h3>
-            <p>Le sommaire sert de table d'orientation : decor physique, bascule climatique, moquette vivante, puis formes animales.</p>
+            <p>Le sommaire sert de table d'orientation : décor physique, bascule climatique, moquette vivante, puis formes animales.</p>
             <div class="tag-list">
               <span class="tag">Rodinia</span>
               <span class="tag">NOE</span>
@@ -1147,7 +696,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="geologie" aria-labelledby="chapitre-geologie">
+      <section class="chapter reveal" id="geologie" aria-labelledby="chapitre-geologie">
         <div class="chapter-head">
           <div>
             <p class="section-kicker">Pilier 1 : La Géologie</p>
@@ -1161,7 +710,7 @@
             <p><strong>Bloc 1 : Le Décor et la Météo (Géologie &amp; Climat)</strong></p>
             <h3 class="group-title">1. La Tectonique des plaques : Le grand puzzle</h3>
             <div class="script-block">
-              <p>Le script  : « Regardez une carte de la Terre aujourd'hui. On a des repères clairs. À l'Édiacarien, oubliez tout. C'est le chaos géologique. On sort de la dislocation d'un supercontinent géant qui s'appelait Rodinia. Ses morceaux dérivent et se rassemblent pour former une autre masse, Pannotia. Mais le plus important pour notre histoire, ce n'est pas la terre ferme (qui est un désert total, on le rappelle)... Ce qui compte, ce sont les fissures. »</p>
+              <p>Le script : « Regardez une carte de la Terre aujourd'hui. On a des repères clairs. À l'Édiacarien, oubliez tout. C'est le chaos géologique. On sort de la dislocation d'un supercontinent géant qui s'appelait Rodinia. Ses morceaux dérivent et se rassemblent pour former une autre masse, Pannotia. Mais le plus important pour notre histoire, ce n'est pas la terre ferme (qui est un désert total, on le rappelle)... Ce qui compte, ce sont les fissures. »</p>
             </div>
             <div class="science-block">
               <p>L'explication scientifique (Le focus) : En se fracturant, les continents créent d'immenses mers intérieures et des plateaux continentaux peu profonds. C'est l'équivalent de construire des milliers de kilomètres de lagons chauds. La vie n'aime pas le grand océan vide et profond ; la vie aime les eaux côtières stables où la lumière pénètre.</p>
@@ -1173,14 +722,14 @@
               <p>« Juste avant l'Édiacarien, la Terre a connu son époque la plus sombre : la glaciation marinoenne. Imaginez une couche de glace de plusieurs kilomètres d'épaisseur qui recouvre TOUTE la planète, des pôles jusqu'à l'équateur. Une Terre blanche, stérile, gelée. On appelle ça la Snowball Earth (la Terre Boule de Neige). Comment on s'en sort ? Grâce à l'enfer des volcans. »</p>
             </div>
             <div class="science-block">
-              <p>La bascule chimique : Les volcans continuent de cracher du CO_2 sous la glace. Le gaz s'accumule pendant des millions d'années, créant un effet de serre monstrueux. Quand la glace fond, elle fond vite. On passe d'un congélateur à une serre tropicale.</p>
+              <p>La bascule chimique : Les volcans continuent de cracher du CO₂ sous la glace. Le gaz s'accumule pendant des millions d'années, créant un effet de serre monstrueux. Quand la glace fond, elle fond vite. On passe d'un congélateur à une serre tropicale.</p>
               <p>Le Chèque Énergétique (La NOE) : C'est l'Oxygénation Néoprotérozoïque. Avec la chaleur, les cyanobactéries s'en donnent à cœur joie. Elles saturent l'océan d'oxygène.</p>
               <p>L'oxygène, c'est l'argent de l'évolution. En dessous d'un certain taux, tu ne peux pas payer le coût énergétique d'un corps avec des muscles ou des organes. À l'Édiacarien, la vie touche enfin son premier gros chèque énergétique.</p>
             </div>
             <div class="question-block">
               <p>Juste après avoir posé ce décor, avant de passer à la faune et aux fameux "tapis de bain", c'est le moment idéal pour un petit sondage ou une question ouverte :</p>
               <p>À votre avis, si le taux d'oxygène a explosé, pourquoi la vie n'a-t-elle pas tout de suite inventé des poissons ou des prédateurs géants ? Qu'est-ce qui manquait encore ?</p>
-              <p>La réponse est tout simplement que la vie devait d'abord apprendre à "s'emboîter" et à créer de la géométrie )</p>
+              <p>La réponse est tout simplement que la vie devait d'abord apprendre à "s'emboîter" et à créer de la géométrie.</p>
             </div>
           </article>
           <aside class="side-note">
@@ -1195,7 +744,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="ecosysteme" aria-labelledby="chapitre-ecosysteme">
+      <section class="chapter reveal" id="ecosysteme" aria-labelledby="chapitre-ecosysteme">
         <div class="chapter-head">
           <div>
             <p class="section-kicker">Piliers 3 et 4</p>
@@ -1209,11 +758,11 @@
             <p><strong>Bloc 2 : L'Écosystème – Tapis microbiens et Algues primitives</strong></p>
             <h3 class="group-title">1. Le règne des tapis microbiens (La moquette universelle)</h3>
             <div class="script-block">
-              <p>Le script:</p>
+              <p>Le script :</p>
               <p>« Imaginez qu'à cette époque, le fond de l'océan n'est pas fait de sable nu ou de vase comme aujourd'hui. Il est entièrement recouvert d'une "moquette" gluante, épaisse de plusieurs centimètres. Ce tapis est vivant : c'est un entrelacs massif de cyanobactéries et de micro-algues. C'est le buffet à volonté de la Terre primitive, le garde-manger universel de l'époque. Sans cette moquette microbienne, rien de ce qui va suivre n'aurait pu exister. »</p>
             </div>
             <div class="science-block">
-              <p>Le point de rigueur scientifique: Attention à la sémantique ! Si on parle de "flore", au sens strict, les plantes vertes et les algues complexes sont encore embryonnaires. On est principalement sur des structures photosynthétiques qui stabilisent les fonds marins et pompent la lumière du soleil pour saturer l'eau en oxygène.</p>
+              <p>Le point de rigueur scientifique : Attention à la sémantique ! Si on parle de "flore", au sens strict, les plantes vertes et les algues complexes sont encore embryonnaires. On est principalement sur des structures photosynthétiques qui stabilisent les fonds marins et pompent la lumière du soleil pour saturer l'eau en oxygène.</p>
             </div>
             <h3 class="group-title">2. Les pionnières macroscopiques</h3>
             <p>L'explication : On commence à voir apparaître les toutes premières algues rouges et vertes visibles à l'œil nu. Elles ne font pas de vagues, elles ne bougent pas, mais elles agissent comme des ancres biologiques qui fixent le sédiment.</p>
@@ -1230,7 +779,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="formes" aria-labelledby="chapitre-formes">
+      <section class="chapter reveal" id="formes" aria-labelledby="chapitre-formes">
         <div class="chapter-head">
           <div>
             <p class="section-kicker">Bloc 3 : La Faune</p>
@@ -1241,15 +790,15 @@
         <div class="transcript">
           <article class="prose">
             <div class="script-block">
-              <p>Le script:</p>
+              <p>Le script :</p>
               <p>« C'est le clou du spectacle. C'est ici qu'on trie les fossiles et qu'on sépare les vrais animaux des fausses pistes de l'évolution. À l'Édiacarien, la vie n'a pas encore de mode d'emploi. Elle teste des géométries folles. Pour s'y retrouver, les paléontologues séparent cette faune en trois grands groupes morphologiques, trois "assemblages" complètement différents. »</p>
             </div>
             <h3 class="group-title">Groupe A : Les Fractales et les "Vandobiontes" (Les Aliens)</h3>
             <ul>
               <li>Les caractéristiques : Des créatures étranges, plates, sans bouche, sans anus, et sans aucun organe interne apparent. Leur secret ? Elles grandissent par répétition de motifs géométriques, comme des fractales.</li>
-              <li>Les exemples : * Charnia : On dirait une plume de mer ou une feuille de fougère géante ancrée dans la moquette microbienne.</li>
+              <li>Les exemples : Charnia : On dirait une plume de mer ou une feuille de fougère géante ancrée dans la moquette microbienne.</li>
               <li>Dickinsonia : Le fameux "tapis de bain" moléculaire. Une galette ovale et segmentée posée sur le fond.</li>
-              <li>Le point méthode scientifique (La punchline Cholestérol) : Pendant des décennies, ces fossiles ont été un cauchemar pour la science. On les a classés chez les plantes, les lichens ou les champignons. Mais récemment, des chercheurs ont extrait des biomarqueurs d'un fossile de Dickinsonia et y ont trouvé... des traces de cholestérol fossilisé! C'est la preuve chimique absolue qu'il s'agissait bien d'animaux (des métazoaires basaux), et non de végétaux.</li>
+              <li>Le point méthode scientifique (La punchline Cholestérol) : Pendant des décennies, ces fossiles ont été un cauchemar pour la science. On les a classés chez les plantes, les lichens ou les champignons. Mais récemment, des chercheurs ont extrait des biomarqueurs d'un fossile de Dickinsonia et y ont trouvé... des traces de cholestérol fossilisé ! C'est la preuve chimique absolue qu'il s'agissait bien d'animaux (des métazoaires basaux), et non de végétaux.</li>
             </ul>
             <h3 class="group-title">Groupe B : Les Bilatériens primitifs (Nos grands-pères)</h3>
             <ul>
@@ -1261,7 +810,7 @@
             <ul>
               <li>Les caractéristiques : À la toute fin de l'Édiacarien, la vie fait une révolution technologique : elle commence à minéraliser, à fabriquer du dur.</li>
               <li>L'exemple : Cloudina. De minuscules tubes de calcaire emboîtés les uns dans les autres.</li>
-              <li>L'indice du premier crime de l'histoire : Pose la question à ton tchat : « Pourquoi fabriquer une armure en calcaire si le monde est un jardin pacifique? » C'est l'indice ultime. Sur certains tubes de Cloudina, on a retrouvé de minuscules trous de perforation. Quelque chose était en train de percer leur coquille pour manger l'animal à l'intérieur. La prédation venait de naître. Le "Jardin d'Édiacara" venait de vivre ses derniers instants de paix. La guerre de l'évolution venait de déclarer sa première bataille.</li>
+              <li>L'indice du premier crime de l'histoire : Pose la question à ton tchat : « Pourquoi fabriquer une armure en calcaire si le monde est un jardin pacifique ? » C'est l'indice ultime. Sur certains tubes de Cloudina, on a retrouvé de minuscules trous de perforation. Quelque chose était en train de percer leur coquille pour manger l'animal à l'intérieur. La prédation venait de naître. Le "Jardin d'Édiacara" venait de vivre ses derniers instants de paix. La guerre de l'évolution venait de déclarer sa première bataille.</li>
             </ul>
           </article>
           <aside class="side-note">
@@ -1277,23 +826,23 @@
         </div>
       </section>
 
-      <section class="chapter" id="eau" aria-labelledby="chapitre-eau">
+      <section class="chapter reveal" id="eau" aria-labelledby="chapitre-eau">
         <div class="chapter-head">
           <div>
-            <p class="section-kicker">POURQUOI DANS L'EAU</p>
-            <h2 id="chapitre-eau">La terre ferme etait interdite.</h2>
+            <p class="section-kicker">Pourquoi dans l'eau</p>
+            <h2 id="chapitre-eau">La terre ferme était interdite.</h2>
           </div>
           <div class="chapter-number">06</div>
         </div>
         <div class="transcript">
           <article class="prose">
-            <p><strong>POURQUOI DANS L'EAU</strong></p>
+            <p><strong>Pourquoi dans l'eau</strong></p>
             <h3 class="group-title">I. Les Causes : Pourquoi la terre ferme était interdite</h3>
             <p>Pour le tchat, il faut poser une vérité crue : à l'Édiacarien, la terre ferme n'est pas un havre de paix qui attend ses habitants, c'est une zone de mort. Deux barrières physiques majeures bloquent la vie hors de l'eau.</p>
             <div class="two-column">
               <p><strong>A. La barrière des radiations (Le bouclier d'ozone manquant)</strong></p>
               <ul>
-                <li>La cause : Bien que l'oxygène augmente dans les océans (grâce à l'Oxygénation Néoprotérozoïque ou NOE), l'atmosphère terrestre ne possède pas encore une couche d'ozone ($O_3$) suffisamment dense.</li>
+                <li>La cause : Bien que l'oxygène augmente dans les océans (grâce à l'Oxygénation Néoprotérozoïque ou NOE), l'atmosphère terrestre ne possède pas encore une couche d'ozone (O₃) suffisamment dense.</li>
                 <li>L'impact : Sans ce bouclier, la surface des continents est lourdement bombardée par les rayons ultraviolets (UV) mortels du Soleil. La terre ferme est littéralement stérilisée par le ciel. L'eau des océans sert de crème solaire globale : elle filtre ces radiations et permet à la vie de se développer en toute sécurité juste en dessous de la surface.</li>
               </ul>
               <p><strong>B. La barrière mécanique et hydrique (Pas d'armure contre la gravité)</strong></p>
@@ -1303,7 +852,7 @@
               </ul>
             </div>
             <h3 class="group-title">II. Les Conséquences : La vie en deux dimensions</h3>
-            <p>Puisque tout se joue exclusivement sous l'eau , et plus précisément sur les plateaux continentaux peu profonds créés par la dislocation de Rodinia, cet exil marin forcé va dicter la forme et le comportement des animaux.</p>
+            <p>Puisque tout se joue exclusivement sous l'eau, et plus précisément sur les plateaux continentaux peu profonds créés par la dislocation de Rodinia, cet exil marin forcé va dicter la forme et le comportement des animaux.</p>
             <div class="science-block">
               <p><strong>A. L'anatomie "Plate" ou le design de l'absorption</strong></p>
               <p>Puisque ces créatures vivent dans l'eau et n'ont pas encore développé de système digestif complexe, de branchies ou de cœur (pour la majorité), elles doivent maximiser leur surface de contact avec le milieu marin.</p>
@@ -1320,7 +869,7 @@
             <div class="science-block">
               <p><strong>C. Une fossilisation miraculeuse (Le style Édiacara)</strong></p>
               <ul>
-                <li>La conséquence : Comment fossiles-tu des animaux mous (sans os ni coquille) dans du sable? C'est le secret de l'environnement marin de l'époque. Lors des tempêtes sur ces plages primitives , des vagues de sédiments meubles venaient étouffer et recouvrir brutalement ces communautés. Le tapis microbien, très résistant et gluant, agissait comme une colle ou un moulage protecteur. Le sable a pris l'empreinte de l'animal mou avant que celui-ci ne se décompose, figeant ces formes pour l'éternité.</li>
+                <li>La conséquence : Comment fossilises-tu des animaux mous (sans os ni coquille) dans du sable ? C'est le secret de l'environnement marin de l'époque. Lors des tempêtes sur ces plages primitives, des vagues de sédiments meubles venaient étouffer et recouvrir brutalement ces communautés. Le tapis microbien, très résistant et gluant, agissait comme une colle ou un moulage protecteur. Le sable a pris l'empreinte de l'animal mou avant que celui-ci ne se décompose, figeant ces formes pour l'éternité.</li>
               </ul>
             </div>
           </article>
@@ -1337,19 +886,26 @@
         </div>
       </section>
 
-      <section class="closing" aria-labelledby="final">
-        <h2 id="final">Une lecture pour le public, gardee dans la voix du live.</h2>
+      <section class="closing reveal" aria-labelledby="final">
+        <h2 id="final">Une lecture pour le public, gardée dans la voix du live.</h2>
         <p>La page conserve le texte original comme transcription centrale, tout en donnant au public des points d'entrée clairs : le décor, la crise climatique, les tapis microbiens, les formes animales et la raison pour laquelle tout se passe sous l'eau.</p>
       </section>
 
-      <section class="collective-footer" aria-labelledby="collectif">
+      <section class="collective-footer reveal" aria-labelledby="collectif">
         <div class="collective-logo-wrap">
           <img class="collective-logo" src="assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
         </div>
         <div class="collective-copy">
           <p class="section-kicker">Collectif</p>
-          <h2 id="collectif">Empire contre intox</h2>
+          <h2 id="collectif">Empire contre Intox</h2>
           <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans les récits scientifiques. Cette page prolonge le live en donnant au public une version lisible, structurée et partageable de la transcription.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="lalie.jpeg" alt="Avatar de Lalie">
+              <img src="ymir.jpeg" alt="Avatar d'Ymir">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+          </div>
           <div class="collective-actions">
             <a class="button primary" href="../index.html">Retour à l'index</a>
             <a class="button" href="resume-eres.html">Lire Résumé des Ères</a>
@@ -1365,50 +921,40 @@
   </div>
 
   <script>
-    const progress = document.querySelector(".progress span");
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
     const navLinks = [...document.querySelectorAll(".nav a")];
-    const sections = navLinks
-      .map((link) => document.querySelector(link.getAttribute("href")))
-      .filter(Boolean);
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
     const mobileMenu = document.querySelector(".mobile-menu");
     const nav = document.querySelector(".nav");
 
     function updateProgress() {
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
-      progress.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
     }
-
     function updateActiveNav() {
-      const y = window.scrollY + 120;
+      const y = window.scrollY + 130;
       let activeId = sections[0]?.id;
-      for (const section of sections) {
-        if (section.offsetTop <= y) activeId = section.id;
-      }
-      navLinks.forEach((link) => {
-        link.classList.toggle("active", link.getAttribute("href") === `#${activeId}`);
-      });
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
     }
-
     mobileMenu.addEventListener("click", () => {
       const open = nav.classList.toggle("open");
       mobileMenu.setAttribute("aria-expanded", String(open));
     });
+    navLinks.forEach((l) => l.addEventListener("click", () => {
+      nav.classList.remove("open");
+      mobileMenu.setAttribute("aria-expanded", "false");
+    }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
 
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        nav.classList.remove("open");
-        mobileMenu.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    document.addEventListener("scroll", () => {
-      updateProgress();
-      updateActiveNav();
-    }, { passive: true });
-
-    updateProgress();
-    updateActiveNav();
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
   </script>
 </body>
 </html>

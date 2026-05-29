@@ -3,984 +3,494 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Résumé des Ères - Empire contre Intox</title>
-  <meta name="description" content="Transcription structurée et mise en scène du résumé des ères géologiques, de la formation de la Terre à la dernière seconde humaine.">
+  <title>Résumé des Ères — Empire contre Intox</title>
+  <meta name="description" content="Transcription structurée du résumé des ères géologiques, de la formation de la Terre à la dernière seconde humaine. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
   <style>
     :root {
       color-scheme: dark;
-      --ink: #fff7e8;
-      --muted: #d6d3c5;
-      --soft: #a9b2ad;
-      --void: #06080c;
-      --deep: #0b1517;
-      --ocean: #0c3c46;
-      --forest: #6f985b;
-      --ember: #f1853b;
-      --gold: #e9bd68;
-      --bone: #f6ead3;
-      --line: rgba(255, 247, 232, .16);
-      --panel: rgba(7, 16, 18, .72);
-      --paper: rgba(255, 247, 232, .06);
-      --shadow: 0 28px 90px rgba(0, 0, 0, .42);
+
+      --void:        #050811;
+      --abyss:       #0b0a14;
+      --navy:        #181225;
+      --ink:         #f4ecd8;
+      --parch:       #e7dcc1;
+      --muted:       #c0b59a;
+      --soft:        #8f8a78;
+      --gold:        #d6ac55;
+      --gold-bright: #f3d98a;
+      --gold-deep:   #9c7228;
+
+      /* Per-page secondary accents — the geological eras */
+      --ember:  #df8a4a;
+      --forest: #7d9b5b;
+      --ocean:  #2f7a82;
+      --clay:   #c4683f;
+
+      --line:   rgba(214, 172, 85, .20);
+      --line-2: rgba(244, 236, 216, .10);
+      --glass:  rgba(11, 10, 20, .72);
+      --shadow: 0 40px 120px rgba(0, 0, 0, .55);
+
+      --serif: "Fraunces", Georgia, "Times New Roman", serif;
+      --roman: "Cinzel", Georgia, serif;
       --max: 1180px;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+
+      --hero: url("assets/eres-hero.png");
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      background:
-        radial-gradient(circle at 10% 18%, rgba(241, 133, 59, .18), transparent 28rem),
-        radial-gradient(circle at 88% 8%, rgba(111, 152, 91, .16), transparent 30rem),
-        linear-gradient(180deg, #030406 0%, var(--deep) 48%, #0b100e 100%);
       color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.72;
-      letter-spacing: 0;
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-weight: 380;
+      line-height: 1.74;
+      letter-spacing: .002em;
+      background:
+        radial-gradient(130% 80% at 8% 6%, rgba(223, 138, 74, .16), transparent 44%),
+        radial-gradient(120% 70% at 92% 0%, rgba(125, 155, 91, .14), transparent 46%),
+        linear-gradient(180deg, #06050d 0%, var(--void) 42%, var(--abyss) 100%);
+      background-attachment: fixed;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+    /* Atmosphere */
+    .atmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .atmos::before {
+      content: ""; position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,.026) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-      background-size: 68px 68px;
-      mask-image: linear-gradient(to bottom, transparent, black 20vh, black 86vh, transparent);
+        linear-gradient(rgba(244,236,216,.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244,236,216,.02) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(120% 80% at 50% 30%, #000 30%, transparent 80%);
+    }
+    .atmos::after {
+      content: ""; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%, rgba(255,255,255,.5), transparent 60%),
+        radial-gradient(1px 1px at 72% 16%, rgba(243,217,138,.65), transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%, rgba(255,255,255,.4), transparent 60%),
+        radial-gradient(1px 1px at 88% 54%, rgba(255,255,255,.4), transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%, rgba(223,138,74,.5), transparent 60%),
+        radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,.35), transparent 60%);
+      animation: twinkle 7s ease-in-out infinite alternate;
+    }
+    .grain {
+      position: fixed; inset: -50%; z-index: 1; pointer-events: none;
+      opacity: .05; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    @keyframes twinkle { from { opacity: .5; } to { opacity: 1; } }
+
+    .frame { position: fixed; inset: 0; z-index: 45; pointer-events: none; }
+    .frame i { position: absolute; width: 26px; height: 26px; border: 1.5px solid var(--line); }
+    .frame i:nth-child(1){ top: 16px; left: 16px; border-right: 0; border-bottom: 0; }
+    .frame i:nth-child(2){ top: 16px; right: 16px; border-left: 0; border-bottom: 0; }
+    .frame i:nth-child(3){ bottom: 16px; left: 16px; border-right: 0; border-top: 0; }
+    .frame i:nth-child(4){ bottom: 16px; right: 16px; border-left: 0; border-top: 0; }
+
+    .progress-top {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%; z-index: 60;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), var(--ember));
+      box-shadow: 0 0 14px rgba(243, 217, 138, .55);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: rgba(214, 172, 85, .28); color: #fff; }
+    :focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; border-radius: 4px; }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
+    .page { position: relative; z-index: 2; overflow: clip; }
 
-    .page {
-      position: relative;
-      z-index: 1;
-      overflow: clip;
-    }
-
+    /* ---------- Hero ---------- */
     .hero {
-      min-height: 92vh;
-      display: grid;
-      align-items: end;
-      position: relative;
-      isolation: isolate;
+      min-height: 94vh;
+      display: grid; align-items: end;
+      position: relative; isolation: isolate;
       padding: 28px;
     }
-
     .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-      background-image: url("assets/eres-hero.png");
-      background-size: cover;
-      background-position: center;
-      transform: scale(1.01);
+      content: ""; position: absolute; inset: 0; z-index: -3;
+      background-image: var(--hero);
+      background-size: cover; background-position: center;
+      transform: scale(1.02);
     }
-
     .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -2;
+      content: ""; position: absolute; inset: 0; z-index: -2;
       background:
-        linear-gradient(90deg, rgba(3, 4, 6, .95) 0%, rgba(3, 4, 6, .7) 36%, rgba(3, 4, 6, .22) 70%, rgba(3, 4, 6, .54) 100%),
-        linear-gradient(180deg, rgba(3, 4, 6, .08) 0%, rgba(3, 4, 6, .26) 60%, #0b1517 100%);
+        linear-gradient(86deg, rgba(6,5,13,.95) 0%, rgba(6,5,13,.72) 38%, rgba(6,5,13,.18) 70%, rgba(6,5,13,.52) 100%),
+        linear-gradient(180deg, rgba(6,5,13,.1) 0%, rgba(6,5,13,.26) 56%, var(--void) 100%);
     }
-
     .hero-inner {
-      width: min(100%, var(--max));
-      margin: 0 auto 7vh;
-      display: grid;
-      grid-template-columns: minmax(0, 760px) minmax(250px, 350px);
-      gap: 42px;
-      align-items: end;
-    }
-
-    .eyebrow,
-    .section-kicker {
-      color: var(--gold);
-      font-size: .78rem;
-      font-weight: 900;
-      letter-spacing: .14em;
-      text-transform: uppercase;
+      width: min(100%, var(--max)); margin: 0 auto 7vh;
+      display: grid; grid-template-columns: minmax(0, 760px) minmax(250px, 350px);
+      gap: 46px; align-items: end;
     }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 22px;
-      color: var(--bone);
+      display: inline-flex; align-items: center; gap: 14px; margin: 0 0 22px;
+      font-family: var(--roman); font-size: .72rem; font-weight: 600;
+      letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
     }
+    .eyebrow::before { content: ""; width: 44px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
 
-    .eyebrow::before {
-      content: "";
-      width: 42px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--ember), var(--gold), var(--forest));
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-      line-height: 1.04;
-      letter-spacing: 0;
-      margin: 0;
-    }
+    h1, h2, h3, h4 { margin: 0; line-height: 1.04; }
 
     h1 {
-      max-width: 780px;
-      color: var(--bone);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 5.25rem;
-      font-weight: 700;
-      text-wrap: balance;
+      max-width: 14ch;
+      font-family: var(--roman); font-weight: 800;
+      font-size: clamp(2.9rem, 7.6vw, 6rem);
+      line-height: .96; letter-spacing: -.01em; text-transform: uppercase;
+      color: var(--ink); text-wrap: balance;
     }
+    h1 .foil {
+      background: linear-gradient(96deg, var(--gold-deep), var(--gold-bright) 40%, #fff6dc 50%, var(--gold-bright) 60%, var(--gold-deep));
+      background-size: 220% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: foil 7s linear infinite;
+    }
+    @keyframes foil { to { background-position: 220% 0; } }
 
     .hero-lead {
-      max-width: 710px;
-      margin: 24px 0 0;
-      color: var(--muted);
-      font-size: 1.15rem;
+      max-width: 56ch; margin: 26px 0 0; color: var(--muted);
+      font-size: clamp(1.04rem, 1.4vw, 1.2rem);
     }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 34px;
-    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
 
     .button {
-      min-height: 46px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 0 18px;
-      background: rgba(255, 247, 232, .09);
-      color: var(--bone);
-      font-weight: 850;
-      backdrop-filter: blur(16px);
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+      display: inline-flex; align-items: center; gap: 10px;
+      min-height: 50px; padding: 0 22px;
+      font-family: var(--roman); font-size: .74rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      border-radius: 2px; border: 1px solid var(--line);
+      color: var(--ink); background: rgba(244,236,216,.05);
+      backdrop-filter: blur(12px);
+      transition: transform .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
     }
-
-    .button:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 247, 232, .16);
-      border-color: rgba(255, 247, 232, .34);
-    }
-
+    .button:hover { transform: translateY(-3px); border-color: rgba(214,172,85,.5); background: rgba(244,236,216,.1); }
     .button.primary {
-      background: var(--bone);
-      color: #111714;
-      border-color: var(--bone);
+      color: #14110a; border-color: transparent;
+      background: linear-gradient(140deg, var(--gold-bright), var(--gold) 55%, var(--gold-deep));
+      box-shadow: 0 14px 38px rgba(214,172,85,.28), inset 0 1px 0 rgba(255,255,255,.5);
     }
+    .button.primary:hover { box-shadow: 0 22px 54px rgba(214,172,85,.4), inset 0 1px 0 rgba(255,255,255,.6); }
 
+    /* Time card — the deep-time clock */
     .time-card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(6, 8, 12, .72);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      overflow: hidden;
+      border: 1px solid var(--line); border-radius: 3px;
+      background: var(--glass); box-shadow: var(--shadow);
+      backdrop-filter: blur(18px); overflow: hidden;
     }
+    .time-card-header { padding: 24px 20px 20px; border-bottom: 1px solid var(--line-2); }
+    .deep-clock { width: 190px; margin: 2px auto 20px; }
+    .deep-clock svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 18px 36px rgba(0,0,0,.55)); }
+    .deep-clock .now-dot { transform-box: fill-box; transform-origin: center; animation: clockNow 2.4s ease-in-out infinite; }
+    @keyframes clockNow { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+    .time-card h2 { font-family: var(--roman); font-weight: 700; font-size: 1.2rem; letter-spacing: .04em; text-align: center; color: var(--ink); text-transform: uppercase; }
+    .time-stat { display: grid; grid-template-columns: 96px 1fr; gap: 18px; padding: 16px 20px; border-bottom: 1px solid var(--line-2); }
+    .time-stat:last-child { border-bottom: 0; }
+    .time-stat strong { font-family: var(--roman); font-weight: 600; color: var(--gold-bright); font-size: .9rem; letter-spacing: .04em; }
+    .time-stat span { color: var(--muted); font-weight: 450; }
 
-    .time-card-header {
-      padding: 20px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .clock-face {
-      width: 168px;
-      height: 168px;
-      margin: 0 auto 18px;
-      border: 2px solid rgba(255, 247, 232, .3);
-      border-radius: 50%;
-      position: relative;
-      background:
-        conic-gradient(from -90deg, rgba(241,133,59,.9) 0deg 18deg, rgba(233,189,104,.86) 18deg 42deg, rgba(111,152,91,.8) 42deg 96deg, rgba(12,60,70,.72) 96deg 360deg);
-      box-shadow: inset 0 0 0 12px rgba(0,0,0,.34), 0 16px 42px rgba(0,0,0,.34);
-    }
-
-    .clock-face::before,
-    .clock-face::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform-origin: left center;
-      background: var(--bone);
-      border-radius: 999px;
-    }
-
-    .clock-face::before {
-      width: 54px;
-      height: 3px;
-      transform: rotate(87deg);
-    }
-
-    .clock-face::after {
-      width: 70px;
-      height: 2px;
-      transform: rotate(354deg);
-      background: var(--ember);
-    }
-
-    .clock-dot {
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--bone);
-      left: calc(50% - 6px);
-      top: calc(50% - 6px);
-      box-shadow: 0 0 0 5px rgba(0,0,0,.24);
-    }
-
-    .time-card h2 {
-      color: var(--bone);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.8rem;
-      text-align: center;
-    }
-
-    .time-stat {
-      display: grid;
-      grid-template-columns: 96px 1fr;
-      gap: 18px;
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .time-stat:last-child {
-      border-bottom: 0;
-    }
-
-    .time-stat strong {
-      color: var(--gold);
-      font-size: .82rem;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-    }
-
-    .time-stat span {
-      color: var(--muted);
-      font-weight: 750;
-    }
-
+    /* ---------- Topbar ---------- */
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
+      position: sticky; top: 0; z-index: 50;
       border-bottom: 1px solid var(--line);
-      background: rgba(5, 8, 10, .86);
-      backdrop-filter: blur(18px);
+      background: rgba(11, 10, 20, .74); backdrop-filter: blur(18px) saturate(140%);
     }
-
     .topbar-inner {
-      width: min(100% - 40px, var(--max));
-      min-height: 68px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
+      width: min(100% - 40px, var(--max)); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 70px;
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: max-content;
-      color: var(--bone);
-      font-weight: 900;
-    }
-
+    .brand { display: flex; align-items: center; gap: 13px; min-width: max-content; }
     .brand-mark {
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 10px;
-      object-fit: cover;
-      box-shadow: 0 8px 24px rgba(0,0,0,.32);
+      width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
+      border: 1px solid rgba(214,172,85,.5);
+      box-shadow: 0 0 0 3px rgba(214,172,85,.1), 0 8px 22px rgba(0,0,0,.5);
     }
-
-    .nav {
-      display: flex;
-      gap: 4px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .nav::-webkit-scrollbar {
-      display: none;
-    }
-
+    .brand span { font-family: var(--roman); font-weight: 700; font-size: .82rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); }
+    .nav { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+    .nav::-webkit-scrollbar { display: none; }
     .nav a {
-      flex: 0 0 auto;
-      border-radius: 8px;
-      padding: 9px 12px;
-      color: var(--muted);
-      font-size: .88rem;
-      font-weight: 850;
-      white-space: nowrap;
+      position: relative; flex: 0 0 auto; padding: 10px 12px;
+      font-family: var(--roman); font-size: .66rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+      white-space: nowrap; transition: color .3s var(--ease);
     }
-
-    .nav a:hover,
-    .nav a.active {
-      background: rgba(255,247,232,.09);
-      color: var(--bone);
+    .nav a::after {
+      content: ""; position: absolute; left: 12px; right: 12px; bottom: 6px; height: 1px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+      transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease);
     }
-
+    .nav a:hover, .nav a.active { color: var(--ink); }
+    .nav a:hover::after, .nav a.active::after { transform: scaleX(1); }
     .home-link {
-      flex: 0 0 auto;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 0 12px;
-      color: var(--bone);
-      background: rgba(255,247,232,.07);
-      font-size: .86rem;
-      font-weight: 900;
-      white-space: nowrap;
+      flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px;
+      font-family: var(--roman); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ink); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06);
+      white-space: nowrap; transition: border-color .3s var(--ease), background .3s var(--ease);
     }
+    .home-link:hover { border-color: rgba(214,172,85,.5); background: rgba(214,172,85,.12); }
+    .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: rgba(214,172,85,.1); }
+    .progress span { display: block; width: 0%; height: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), var(--ember)); }
 
-    .progress {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 2px;
-      background: rgba(255,255,255,.08);
+    main { width: min(100% - 40px, var(--max)); margin: 0 auto; }
+
+    /* ---------- Intro band ---------- */
+    .intro-band { padding: 84px 0 8px; }
+    .intro-band .manifesto { max-width: 760px; }
+    .frise-band { padding: 40px 0 52px; }
+    .frise-band > .section-kicker { margin-bottom: 22px; }
+    .section-kicker { margin: 0 0 14px; font-family: var(--roman); font-size: .68rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+    .manifesto { border-left: 2px solid var(--ember); padding-left: 26px; }
+    .manifesto h2, .chapter h2 {
+      font-family: var(--roman); font-weight: 700; font-size: clamp(1.8rem, 3.6vw, 2.9rem);
+      line-height: 1.04; letter-spacing: .005em; text-transform: uppercase; color: var(--ink); text-wrap: balance;
     }
+    .manifesto p { margin: 18px 0 0; color: var(--muted); font-size: 1.06rem; }
 
-    .progress span {
-      display: block;
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--ember), var(--gold), var(--forest), var(--ocean));
+    /* ---------- Frieze — the deep-time timeline ---------- */
+    .e1 { --c: var(--ocean); }
+    .e2 { --c: var(--forest); }
+    .e3 { --c: var(--ember); }
+    .e4 { --c: var(--gold-bright); }
+
+    .frieze { display: grid; gap: 30px; }
+
+    .frieze-axis {
+      position: relative; display: grid; grid-template-columns: repeat(4, 1fr);
+      height: 26px; margin-bottom: 2px;
     }
-
-    main {
-      width: min(100% - 40px, var(--max));
-      margin: 0 auto;
+    .frieze-axis::before {
+      content: ""; position: absolute; left: 6%; right: 4%; top: 50%; height: 2px; transform: translateY(-50%);
+      background: linear-gradient(90deg, var(--ocean), var(--forest) 46%, var(--ember) 76%, var(--gold-bright));
+      border-radius: 2px;
     }
-
-    .intro-band {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, .78fr);
-      gap: 28px;
-      padding: 82px 0 46px;
-      align-items: stretch;
+    .frieze-axis .node {
+      position: relative; z-index: 1; justify-self: center; align-self: center;
+      width: 13px; height: 13px; border-radius: 50%;
+      background: var(--c); box-shadow: 0 0 0 4px var(--void), 0 0 14px var(--c);
     }
-
-    .manifesto {
-      border-left: 3px solid var(--ember);
-      padding-left: 24px;
+    .frieze-axis .now {
+      position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 1;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--roman); font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-bright);
     }
-
-    .manifesto h2,
-    .chapter h2 {
-      color: var(--bone);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 2.8rem;
-      text-wrap: balance;
+    .frieze-axis .now::before {
+      content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--gold-bright);
+      box-shadow: 0 0 0 4px var(--void), 0 0 12px var(--gold-bright); animation: nowpulse 2.4s ease-in-out infinite;
     }
+    @keyframes nowpulse { 50% { box-shadow: 0 0 0 4px var(--void), 0 0 24px var(--gold-bright); } }
 
-    .manifesto p {
-      margin: 16px 0 0;
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-
-    .era-strip {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      border: 1px solid var(--line);
-      border-radius: 8px;
+    .frieze-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .era-node {
+      position: relative; display: grid; align-content: start; gap: 11px;
+      min-height: 214px; padding: 24px 20px 22px;
+      border: 1px solid var(--line-2); border-top: 3px solid var(--c); border-radius: 3px;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--c) 13%, transparent), rgba(244,236,216,.02));
       overflow: hidden;
-      background: var(--paper);
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease);
     }
-
-    .era-mini {
-      min-height: 190px;
-      padding: 18px;
-      border-right: 1px solid var(--line);
-      display: grid;
-      align-content: space-between;
+    .era-node:hover { transform: translateY(-6px); box-shadow: 0 26px 60px rgba(0,0,0,.45), 0 0 0 1px color-mix(in srgb, var(--c) 50%, transparent); }
+    .era-node .act {
+      position: absolute; top: 8px; right: 14px;
+      font-family: var(--roman); font-weight: 700; font-size: 2.7rem; line-height: 1;
+      color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--c) 55%, transparent);
     }
+    .era-node .span { font-family: var(--roman); font-size: .58rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: color-mix(in srgb, var(--c) 70%, var(--parch)); }
+    .era-node h3 { font-family: var(--roman); font-weight: 700; font-size: 1.16rem; letter-spacing: .02em; text-transform: uppercase; color: var(--ink); }
+    .era-node p { margin: 4px 0 0; color: var(--soft); font-size: .92rem; line-height: 1.56; }
 
-    .era-mini:last-child {
-      border-right: 0;
+    .prop { margin: 0; }
+    .prop figcaption {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 13px;
+      font-family: var(--roman); font-size: .62rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold);
     }
-
-    .era-mini span {
-      color: var(--gold);
-      font-size: .72rem;
-      font-weight: 900;
-      letter-spacing: .12em;
-      text-transform: uppercase;
+    .prop figcaption::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    .prop-bar { display: flex; height: 34px; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; box-shadow: inset 0 0 30px rgba(0,0,0,.45); }
+    .prop-bar i { position: relative; display: block; min-width: 3px; transition: filter .35s var(--ease); }
+    .prop-bar i:hover { filter: brightness(1.18); }
+    .prop-bar .p1 { background: linear-gradient(180deg, #3a939a, #235a61); }
+    .prop-bar .p2 { background: linear-gradient(180deg, #8fae66, #5f7e46); }
+    .prop-bar .p3 { background: linear-gradient(180deg, #ec9a54, #c4703a); }
+    .prop-bar .p4 { background: linear-gradient(180deg, var(--gold-bright), var(--gold)); box-shadow: 0 0 18px rgba(243,217,138,.6); }
+    .prop-bar b {
+      position: absolute; inset: 0; display: grid; place-items: center;
+      font-family: var(--roman); font-size: .6rem; font-weight: 700; letter-spacing: .06em; color: #07060c; white-space: nowrap;
     }
+    .prop-legend { display: flex; flex-wrap: wrap; gap: 10px 24px; margin: 15px 0 0; padding: 0; list-style: none; }
+    .prop-legend li { display: flex; align-items: center; gap: 9px; font-size: .86rem; color: var(--muted); }
+    .prop-legend li::before { content: ""; width: 11px; height: 11px; border-radius: 3px; background: var(--c); box-shadow: 0 0 0 1px rgba(0,0,0,.35); }
+    .prop-legend b { font-family: var(--roman); font-weight: 600; font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); }
 
-    .era-mini strong {
-      display: block;
-      margin-top: 10px;
-      color: var(--bone);
-      font-size: 1.08rem;
-    }
-
-    .era-mini p {
-      margin: 18px 0 0;
-      color: var(--soft);
-      font-size: .92rem;
-    }
-
+    /* ---------- Learning panel ---------- */
     .learning-panel {
-      margin: 24px 0 50px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
+      margin: 24px 0 56px; border: 1px solid var(--line); border-radius: 3px;
       background:
-        linear-gradient(135deg, rgba(241,133,59,.12), transparent 36%),
-        linear-gradient(180deg, rgba(255,247,232,.07), rgba(255,247,232,.035));
-      padding: 26px;
+        radial-gradient(120% 120% at 100% 0%, rgba(223,138,74,.12), transparent 50%),
+        linear-gradient(180deg, rgba(24,18,37,.4), rgba(11,10,20,.5));
+      padding: clamp(24px, 4vw, 40px);
     }
+    .learning-panel h2 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.12; color: var(--ink); text-wrap: balance; }
+    .learning-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+    .learning-item { border: 1px solid var(--line-2); border-radius: 3px; padding: 22px; background: rgba(244,236,216,.035); border-top: 2px solid rgba(214,172,85,.4); transition: transform .4s var(--ease), border-color .4s var(--ease), background .4s var(--ease); }
+    .learning-item:hover { transform: translateY(-4px); border-top-color: var(--gold); background: rgba(244,236,216,.06); }
+    .learning-item span { font-family: var(--roman); font-size: .66rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+    .learning-item p { margin: 12px 0 0; color: var(--muted); font-size: .98rem; }
 
-    .learning-panel h2 {
-      color: var(--bone);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 2.25rem;
-      text-wrap: balance;
-    }
+    /* ---------- Chapters ---------- */
+    .chapter { position: relative; padding: 80px 0; border-top: 1px solid var(--line); }
+    .chapter-head { display: grid; grid-template-columns: minmax(0, 1fr) 170px; gap: 28px; align-items: end; margin-bottom: 34px; }
+    .chapter-number { justify-self: end; color: transparent; -webkit-text-stroke: 1px rgba(214, 172, 85, .45); font-family: var(--roman); font-weight: 700; font-size: 6rem; line-height: .8; }
+    .transcript { display: grid; grid-template-columns: minmax(0, 790px) minmax(245px, 1fr); gap: 40px; align-items: start; }
+    .prose { min-width: 0; }
+    .prose p, .prose li { color: var(--muted); font-size: 1.05rem; }
+    .prose p { margin: 0 0 20px; }
+    .prose ul { margin: 14px 0 24px; padding-left: 4px; list-style: none; }
+    .prose li { position: relative; margin: 12px 0; padding-left: 26px; }
+    .prose li::before { content: "❖"; position: absolute; left: 0; top: 0; color: var(--gold); font-size: .8em; }
+    .prose strong { color: var(--parch); font-weight: 600; }
 
-    .learning-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 22px;
+    .script-block, .lesson-block, .anti-intox-block {
+      border: 1px solid var(--line-2); border-left: 3px solid var(--gold);
+      border-radius: 3px; padding: 24px; margin: 24px 0; background: rgba(244,236,216,.04);
     }
+    .script-block { border-left-color: var(--gold); }
+    .lesson-block { border-left-color: var(--forest); background: rgba(125,155,91,.07); }
+    .anti-intox-block { border-left-color: var(--ember); background: rgba(223,138,74,.1); }
+    .script-block p:last-child, .lesson-block p:last-child, .anti-intox-block p:last-child { margin-bottom: 0; }
 
-    .learning-item {
-      min-height: 150px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255,255,255,.045);
-      padding: 18px;
-    }
-
-    .learning-item span {
-      color: var(--gold);
-      font-size: .76rem;
-      font-weight: 900;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .learning-item p {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: .96rem;
-    }
-
-    .chapter {
-      position: relative;
-      padding: 76px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .chapter-head {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 170px;
-      gap: 28px;
-      align-items: end;
-      margin-bottom: 30px;
-    }
-
-    .chapter-number {
-      justify-self: end;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(255, 247, 232, .35);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 6rem;
-      line-height: .8;
-    }
-
-    .transcript {
-      display: grid;
-      grid-template-columns: minmax(0, 790px) minmax(245px, 1fr);
-      gap: 36px;
-      align-items: start;
-    }
-
-    .prose {
-      min-width: 0;
-    }
-
-    .prose p,
-    .prose li {
-      color: var(--muted);
-      font-size: 1.03rem;
-    }
-
-    .prose p {
-      margin: 0 0 20px;
-    }
-
-    .prose ul {
-      margin: 14px 0 24px;
-      padding-left: 22px;
-    }
-
-    .prose li {
-      margin: 9px 0;
-      padding-left: 4px;
-    }
-
-    .prose strong {
-      color: var(--bone);
-    }
-
-    .script-block,
-    .lesson-block,
-    .anti-intox-block {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 22px;
-      margin: 24px 0;
-      background: rgba(255, 247, 232, .055);
-    }
-
-    .script-block {
-      border-left: 3px solid var(--gold);
-    }
-
-    .lesson-block {
-      border-left: 3px solid var(--forest);
-    }
-
-    .anti-intox-block {
-      border-left: 3px solid var(--ember);
-      background: rgba(241, 133, 59, .1);
-    }
-
-    .side-note {
-      position: sticky;
-      top: 92px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(6, 8, 12, .62);
-      padding: 20px;
-      box-shadow: 0 18px 56px rgba(0,0,0,.2);
-    }
-
-    .side-note h3 {
-      color: var(--bone);
-      font-size: 1rem;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-    }
-
-    .side-note p {
-      margin: 0 0 14px;
-      color: var(--soft);
-      font-size: .92rem;
-    }
-
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      min-height: 28px;
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 8px;
-      padding: 0 10px;
-      color: var(--bone);
-      background: rgba(255,255,255,.06);
-      font-size: .78rem;
-      font-weight: 850;
-    }
+    .side-note { position: sticky; top: 92px; border: 1px solid var(--line); border-radius: 3px; background: rgba(11,10,20,.6); padding: 22px; box-shadow: 0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin: 0 0 14px; font-family: var(--roman); font-size: .76rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+    .side-note p { margin: 0 0 14px; color: var(--soft); font-size: .94rem; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; align-items: center; min-height: 28px; padding: 0 11px; font-family: var(--roman); font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06); }
 
     .era-card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg, rgba(255,247,232,.08), rgba(255,247,232,.035)),
-        rgba(0,0,0,.12);
-      padding: 22px;
-      margin: 24px 0;
+      border: 1px solid var(--line-2); border-radius: 3px; padding: 26px; margin: 24px 0;
+      background: linear-gradient(180deg, rgba(244,236,216,.05), rgba(0,0,0,.1));
+      border-top: 2px solid rgba(214,172,85,.45);
     }
-
-    .era-card h3 {
-      color: var(--bone);
-      font-size: 1.42rem;
-      margin-bottom: 10px;
-    }
-
+    .era-card h3 { font-family: var(--serif); font-weight: 600; color: var(--ink); font-size: 1.5rem; margin-bottom: 10px; }
     .era-date {
-      display: inline-flex;
-      min-height: 30px;
-      align-items: center;
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 8px;
-      padding: 0 10px;
-      color: var(--gold);
-      background: rgba(255,255,255,.055);
-      font-size: .82rem;
-      font-weight: 900;
-      margin-bottom: 18px;
+      display: inline-flex; min-height: 30px; align-items: center; padding: 0 12px;
+      font-family: var(--roman); font-size: .66rem; font-weight: 600; letter-spacing: .08em;
+      color: var(--gold-bright); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06); margin-bottom: 20px;
     }
 
-    .clock-strip {
-      display: grid;
-      gap: 12px;
-      margin: 26px 0;
-    }
+    .clock-strip { display: grid; gap: 14px; margin: 28px 0; }
+    .clock-row { display: grid; grid-template-columns: 110px 1fr; gap: 18px; align-items: center; }
+    .clock-row strong { font-family: var(--roman); font-weight: 600; color: var(--gold-bright); font-size: .82rem; letter-spacing: .04em; }
+    .bar { position: relative; height: 14px; border-radius: 999px; background: rgba(244,236,216,.08); overflow: hidden; border: 1px solid var(--line-2); }
+    .bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--ember), var(--gold), var(--forest)); }
 
-    .clock-row {
-      display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .clock-row strong {
-      color: var(--gold);
-      font-size: .86rem;
-    }
-
-    .bar {
-      position: relative;
-      height: 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      overflow: hidden;
-    }
-
-    .bar span {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--ember), var(--gold), var(--forest));
-    }
-
+    /* ---------- Collective footer ---------- */
     .collective-footer {
-      position: relative;
-      display: grid;
-      grid-template-columns: minmax(230px, 360px) minmax(0, 1fr);
-      gap: 34px;
-      align-items: center;
-      margin: 0 0 92px;
-      border: 1px solid rgba(255, 247, 232, .2);
-      border-radius: 8px;
+      position: relative; display: grid; grid-template-columns: minmax(230px, 360px) minmax(0, 1fr);
+      align-items: stretch; margin: 0 0 96px;
+      border: 1px solid var(--line); border-radius: 3px;
       background:
-        linear-gradient(120deg, rgba(12, 60, 70, .84), rgba(7, 16, 18, .66)),
-        linear-gradient(180deg, rgba(255,247,232,.08), rgba(255,247,232,.035));
-      box-shadow: var(--shadow);
-      overflow: hidden;
+        radial-gradient(120% 120% at 100% 0%, rgba(223,138,74,.16), transparent 55%),
+        linear-gradient(180deg, rgba(24,18,37,.6), rgba(11,10,20,.66));
+      box-shadow: var(--shadow); overflow: hidden;
     }
+    .collective-logo-wrap { position: relative; z-index: 1; min-height: 360px; display: grid; place-items: center; padding: 38px; background: rgba(6,5,13,.3); border-right: 1px solid var(--line); }
+    .collective-logo { width: min(100%, 280px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; padding: 5px; background: conic-gradient(from 210deg, var(--gold-deep), var(--gold-bright), var(--gold), var(--gold-deep)); box-shadow: 0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position: relative; z-index: 1; padding: clamp(34px, 4vw, 52px); }
+    .collective-copy h2 { max-width: 14ch; font-family: var(--roman); font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: .01em; text-transform: uppercase; color: var(--ink); }
+    .collective-copy p { max-width: 64ch; margin: 18px 0 0; color: var(--muted); font-size: 1.06rem; }
+    .collective-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .collective-motto { display: inline-flex; align-items: center; min-height: 36px; margin-top: 24px; padding: 0 16px; font-family: var(--serif); font-style: italic; font-size: 1rem; letter-spacing: .04em; color: var(--gold); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06); }
 
-    .collective-footer::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(90deg, rgba(241,133,59,.18), transparent 38%),
-        linear-gradient(180deg, transparent, rgba(0,0,0,.28));
-    }
+    .byline { display: flex; align-items: center; gap: 13px; margin-top: 26px; }
+    .byline .avatars { display: flex; }
+    .byline .avatars img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--void); box-shadow: 0 0 0 1.5px var(--gold); background: var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left: -14px; }
+    .byline .who { display: flex; flex-direction: column; gap: 2px; font-family: var(--roman); }
+    .byline .who .lbl { font-size: .58rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+    .byline .who strong { font-size: .88rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink); }
 
-    .collective-logo-wrap {
-      position: relative;
-      z-index: 1;
-      min-height: 360px;
-      display: grid;
-      place-items: center;
-      padding: 34px;
-      background: rgba(2, 8, 9, .26);
-      border-right: 1px solid var(--line);
-    }
+    footer { border-top: 1px solid var(--line); padding: 30px 0 44px; color: var(--soft); font-size: .9rem; }
+    footer main { display: block; width: auto; }
+    footer strong { color: var(--parch); }
 
-    .collective-logo {
-      width: min(100%, 292px);
-      aspect-ratio: 1;
-      border-radius: 34px;
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,.24);
-      box-shadow: 0 28px 90px rgba(0,0,0,.5);
-    }
+    .mobile-menu { display: none; border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.07); color: var(--ink); padding: 10px 13px; font-family: var(--roman); font-weight: 700; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; }
 
-    .collective-copy {
-      position: relative;
-      z-index: 1;
-      padding: 42px 42px 42px 0;
-    }
+    /* ---------- Reveal ---------- */
+    .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal[data-d="1"] { transition-delay: .08s; }
+    .reveal[data-d="2"] { transition-delay: .16s; }
+    .reveal[data-d="3"] { transition-delay: .24s; }
 
-    .collective-copy h2 {
-      max-width: 680px;
-      color: var(--bone);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 3.25rem;
-      text-wrap: balance;
-    }
-
-    .collective-copy p {
-      max-width: 690px;
-      margin: 18px 0 0;
-      color: var(--muted);
-      font-size: 1.08rem;
-    }
-
-    .collective-motto {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      margin-top: 26px;
-      border: 1px solid rgba(255, 247, 232, .2);
-      border-radius: 8px;
-      padding: 0 13px;
-      color: var(--bone);
-      background: rgba(255, 247, 232, .08);
-      font-size: .82rem;
-      font-weight: 900;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .collective-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 26px;
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 28px 0 40px;
-      color: var(--soft);
-      font-size: .9rem;
-    }
-
-    .mobile-menu {
-      display: none;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255,255,255,.06);
-      color: var(--bone);
-      padding: 9px 11px;
-      font-weight: 900;
-    }
+    @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+    .js .hero-inner > div > *, .js .time-card { opacity: 0; animation: rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1) { animation-delay: .1s; }
+    .js .hero-inner > div > *:nth-child(2) { animation-delay: .2s; }
+    .js .hero-inner > div > *:nth-child(3) { animation-delay: .3s; }
+    .js .hero-inner > div > *:nth-child(4) { animation-delay: .4s; }
+    .js .time-card { animation-delay: .45s; }
 
     @media (max-width: 980px) {
-      .hero {
-        min-height: 86vh;
-        padding: 22px;
-      }
-
-      .hero-inner,
-      .intro-band,
-      .transcript,
-      .chapter-head {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 4.1rem;
-      }
-
-      .time-card {
-        max-width: 560px;
-      }
-
-      .era-strip {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .era-mini {
-        border-bottom: 1px solid var(--line);
-      }
-
-      .era-mini:nth-child(2) {
-        border-right: 0;
-      }
-
-      .era-mini:nth-child(n+3) {
-        border-bottom: 0;
-      }
-
-      .chapter-number {
-        justify-self: start;
-        font-size: 4.2rem;
-      }
-
-      .side-note {
-        position: static;
-      }
-
-      .learning-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .collective-footer {
-        grid-template-columns: 1fr;
-      }
-
-      .collective-logo-wrap {
-        min-height: auto;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .collective-copy {
-        padding: 0 28px 34px;
-      }
-
-      .collective-copy h2 {
-        font-size: 2.55rem;
-      }
+      .hero { min-height: 88vh; padding: 22px; }
+      .hero-inner, .intro-band, .transcript, .chapter-head { grid-template-columns: 1fr; }
+      .time-card { max-width: 560px; }
+      .frieze-axis { display: none; }
+      .frieze-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .chapter-number { justify-self: start; font-size: 4.4rem; }
+      .side-note { position: static; }
+      .learning-grid { grid-template-columns: 1fr; }
+      .collective-footer { grid-template-columns: 1fr; }
+      .collective-logo-wrap { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
     }
-
     @media (max-width: 720px) {
-      .topbar-inner {
-        width: min(100% - 24px, var(--max));
-        min-height: auto;
-        padding: 12px 0;
-        flex-wrap: wrap;
-      }
-
-      .mobile-menu {
-        display: inline-flex;
-      }
-
-      .nav {
-        display: none;
-        width: 100%;
-        padding: 8px 0 2px;
-      }
-
-      .nav.open {
-        display: flex;
-      }
-
-      main {
-        width: min(100% - 24px, var(--max));
-      }
-
-      .hero {
-        min-height: 88vh;
-        padding: 16px;
-      }
-
-      .hero-inner {
-        margin-bottom: 5vh;
-        gap: 24px;
-      }
-
-      h1 {
-        font-size: 3.05rem;
-      }
-
-      .hero-lead {
-        font-size: 1.02rem;
-      }
-
-      .manifesto h2,
-      .chapter h2 {
-        font-size: 2.15rem;
-      }
-
-      .chapter {
-        padding: 58px 0;
-      }
-
-      .era-strip {
-        grid-template-columns: 1fr;
-      }
-
-      .era-mini {
-        min-height: 150px;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .era-mini:last-child {
-        border-bottom: 0;
-      }
-
-      .script-block,
-      .lesson-block,
-      .anti-intox-block,
-      .era-card,
-      .learning-panel {
-        padding: 18px;
-      }
-
-      .clock-row {
-        grid-template-columns: 82px 1fr;
-      }
-
-      .collective-footer {
-        margin-bottom: 58px;
-      }
-
-      .collective-logo-wrap {
-        padding: 22px;
-      }
-
-      .collective-logo {
-        width: min(100%, 230px);
-        border-radius: 26px;
-      }
-
-      .collective-copy {
-        padding: 0 20px 24px;
-      }
-
-      .collective-copy h2 {
-        font-size: 2.05rem;
-      }
-
-      .collective-copy p {
-        font-size: 1rem;
-      }
+      .topbar-inner { width: min(100% - 24px, var(--max)); min-height: auto; padding: 12px 0; flex-wrap: wrap; }
+      .mobile-menu { display: inline-flex; }
+      .nav { display: none; width: 100%; padding: 8px 0 2px; flex-wrap: wrap; }
+      .nav.open { display: flex; }
+      main { width: min(100% - 24px, var(--max)); }
+      .hero { min-height: 86vh; padding: 16px; }
+      .hero::after { background: linear-gradient(90deg, rgba(6,5,13,.95), rgba(6,5,13,.52)), linear-gradient(180deg, rgba(6,5,13,.12), var(--void) 100%); }
+      .hero-inner { margin-bottom: 5vh; gap: 26px; }
+      .frieze-grid { grid-template-columns: 1fr; }
+      .era-node { min-height: auto; }
+      .chapter { padding: 60px 0; }
+      .clock-row { grid-template-columns: 82px 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+      .js .hero-inner > div > *, .js .time-card { opacity: 1; }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
   <div class="page">
     <header class="hero" id="top">
       <div class="hero-inner">
         <div>
-          <p class="eyebrow">Transcription publique</p>
-          <h1>Résumé des Ères</h1>
+          <p class="eyebrow">Dossier II · Transcription publique</p>
+          <h1>Résumé des <span class="foil">Ères</span></h1>
           <p class="hero-lead">De l'enfer de lave à la planète bleue, de la première vie microscopique aux dinosaures, puis à notre apparition dans la dernière seconde de l'histoire terrestre.</p>
           <div class="hero-actions">
             <a class="button primary" href="#transcription">Lire la transcription</a>
@@ -990,7 +500,62 @@
         </div>
         <aside class="time-card" aria-label="Horloge du temps profond">
           <div class="time-card-header">
-            <div class="clock-face" aria-hidden="true"><span class="clock-dot"></span></div>
+            <div class="deep-clock">
+              <svg viewBox="0 0 200 200" role="img" aria-label="Horloge du temps profond : ramenée à 24 heures, la vie n'apparaît qu'à 4h, les organismes complexes à 21h, les dinosaures de 22h40 à 23h39, et l'humanité à 23h58.">
+                <defs>
+                  <radialGradient id="face" cx="50%" cy="40%" r="72%">
+                    <stop offset="0%" stop-color="#101a30"/>
+                    <stop offset="68%" stop-color="#070c1a"/>
+                    <stop offset="100%" stop-color="#04060f"/>
+                  </radialGradient>
+                  <linearGradient id="bezel" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f3d98a"/>
+                    <stop offset="45%" stop-color="#d6ac55"/>
+                    <stop offset="100%" stop-color="#9c7228"/>
+                  </linearGradient>
+                  <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+                    <feGaussianBlur stdDeviation="2.2" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+
+                <!-- bezel + face -->
+                <circle cx="100" cy="100" r="91" fill="none" stroke="url(#bezel)" stroke-width="2.6"/>
+                <circle cx="100" cy="100" r="89" fill="url(#face)"/>
+                <circle cx="100" cy="100" r="71" fill="none" stroke="#d6ac55" stroke-width=".6" opacity=".16"/>
+
+                <!-- era ring (start at top = midnight, clockwise over 24h) -->
+                <g transform="rotate(-90 100 100)" fill="none" stroke-width="7" stroke-linecap="butt">
+                  <circle cx="100" cy="100" r="80" stroke="#16323a" stroke-dasharray="83.78 9999" stroke-dashoffset="0"/>
+                  <circle cx="100" cy="100" r="80" stroke="#2f7a82" stroke-dasharray="356.05 9999" stroke-dashoffset="-83.78"/>
+                  <circle cx="100" cy="100" r="80" stroke="#7d9b5b" stroke-dasharray="34.91 9999" stroke-dashoffset="-439.82"/>
+                  <circle cx="100" cy="100" r="80" stroke="#df8a4a" stroke-dasharray="20.59 9999" stroke-dashoffset="-474.74"/>
+                  <circle cx="100" cy="100" r="80" stroke="#f3d98a" stroke-dasharray="7.33 9999" stroke-dashoffset="-495.32"/>
+                </g>
+
+                <!-- tick marks (generated) -->
+                <g id="clockTicks" stroke="#d6ac55"></g>
+
+                <!-- 24-hour numerals -->
+                <g fill="#c0b59a" font-family="Cinzel, serif" font-size="9.5" font-weight="700" text-anchor="middle" dominant-baseline="central">
+                  <text x="100" y="35">24</text>
+                  <text x="165" y="100">6</text>
+                  <text x="100" y="165">12</text>
+                  <text x="35" y="100">18</text>
+                </g>
+
+                <!-- single deep-time hand → 23h58 -->
+                <g filter="url(#glow)">
+                  <circle cx="100.12" cy="114" r="4" fill="#f4ecd8"/>
+                  <polygon points="99.39,30.0 103.28,108.97 96.88,109.03" fill="#f4ecd8"/>
+                  <circle cx="100" cy="100" r="4.6" fill="#f3d98a" stroke="#9c7228" stroke-width="1"/>
+                </g>
+
+                <!-- "now" marker on the rim at 23h58 -->
+                <circle cx="99.3" cy="20" r="5.4" fill="#f3d98a" opacity=".25"/>
+                <circle class="now-dot" cx="99.3" cy="20" r="3.2" fill="#f3d98a" filter="url(#glow)"/>
+              </svg>
+            </div>
             <h2>4,6 milliards d'années en 24h</h2>
           </div>
           <div class="time-stat">
@@ -1013,7 +578,7 @@
       <div class="topbar-inner">
         <a class="brand" href="#top" aria-label="Retour au début">
           <img class="brand-mark" src="assets/logo-eci.jpg" alt="" aria-hidden="true">
-          <span>Empire contre intox</span>
+          <span>Résumé des Ères</span>
         </a>
         <a class="home-link" href="../index.html">Accueil ECI</a>
         <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
@@ -1033,63 +598,87 @@
 
     <main id="transcription">
       <section class="intro-band" id="ouverture">
-        <div class="manifesto">
-          <p class="section-kicker">RESUME DES ERES</p>
+        <div class="manifesto reveal">
+          <p class="section-kicker">Résumé des Ères</p>
           <h2>Le vrai roman de la Terre, raconté comme une grande traversée.</h2>
           <p>Cette page transforme la transcription en lecture publique : actes géologiques, frise du temps profond, horloge de 24 heures, puis bascule vers le thème du collectif Empire contre Intox.</p>
         </div>
-        <div class="era-strip" id="frise" aria-label="Frise des ères géologiques">
-          <div class="era-mini">
-            <div>
-              <span>-4,6 Ga à -541 Ma</span>
-              <strong>Précambrien</strong>
-            </div>
-            <p>Fondations du monde, océans, vie microscopique, oxygène et Ediacara.</p>
+      </section>
+
+      <section class="frise-band reveal" id="frise" aria-labelledby="frise-titre">
+        <p class="section-kicker" id="frise-titre">Frise du temps profond</p>
+        <div class="frieze" aria-label="Frise des ères géologiques">
+          <div class="frieze-axis" aria-hidden="true">
+            <span class="node e1"></span>
+            <span class="node e2"></span>
+            <span class="node e3"></span>
+            <span class="node e4"></span>
+            <span class="now">Nous</span>
           </div>
-          <div class="era-mini">
-            <div>
-              <span>-541 à -252 Ma</span>
-              <strong>Paléozoïque</strong>
-            </div>
-            <p>Explosion cambrienne, invasion des terres, Pangée et grande extinction.</p>
+          <div class="frieze-grid">
+            <article class="era-node e1">
+              <span class="act">I</span>
+              <span class="span">-4,6 Ga → -541 Ma</span>
+              <h3>Précambrien</h3>
+              <p>Fondations du monde, océans, vie microscopique, oxygène et Ediacara.</p>
+            </article>
+            <article class="era-node e2">
+              <span class="act">II</span>
+              <span class="span">-541 → -252 Ma</span>
+              <h3>Paléozoïque</h3>
+              <p>Explosion cambrienne, invasion des terres, Pangée et grande extinction.</p>
+            </article>
+            <article class="era-node e3">
+              <span class="act">III</span>
+              <span class="span">-252 → -66 Ma</span>
+              <h3>Mésozoïque</h3>
+              <p>Ascension des dinosaures, plantes à fleurs, astéroïde et hiver d'impact.</p>
+            </article>
+            <article class="era-node e4">
+              <span class="act">IV</span>
+              <span class="span">-66 Ma → aujourd'hui</span>
+              <h3>Cénozoïque</h3>
+              <p>Radiation des mammifères, glaciations, lignée humaine et Homo sapiens.</p>
+            </article>
           </div>
-          <div class="era-mini">
-            <div>
-              <span>-252 à -66 Ma</span>
-              <strong>Mésozoïque</strong>
+          <figure class="prop">
+            <figcaption>Proportions réelles · 4,6 milliards d'années</figcaption>
+            <div class="prop-bar" role="img" aria-label="Le Précambrien occupe 88 % de l'histoire de la Terre, le Paléozoïque 6 %, le Mésozoïque 4 %, le Cénozoïque 1 %.">
+              <i class="p1" style="flex: 88.2" title="Précambrien · 88,2 %"><b>Précambrien · 88 %</b></i>
+              <i class="p2" style="flex: 6.3" title="Paléozoïque · 6,3 %"><b>6,3 %</b></i>
+              <i class="p3" style="flex: 4.0" title="Mésozoïque · 4,0 %"><b>4 %</b></i>
+              <i class="p4" style="flex: 1.4" title="Cénozoïque · 1,4 % — la dernière seconde"></i>
             </div>
-            <p>Ascension des dinosaures, plantes à fleurs, astéroïde et hiver d'impact.</p>
-          </div>
-          <div class="era-mini">
-            <div>
-              <span>-66 Ma à aujourd'hui</span>
-              <strong>Cénozoïque</strong>
-            </div>
-            <p>Radiation des mammifères, glaciations, lignée humaine et Homo sapiens.</p>
-          </div>
+            <ul class="prop-legend">
+              <li class="e1"><b>Précambrien</b> 88,2 %</li>
+              <li class="e2"><b>Paléozoïque</b> 6,3 %</li>
+              <li class="e3"><b>Mésozoïque</b> 4,0 %</li>
+              <li class="e4"><b>Cénozoïque</b> 1,4 %</li>
+            </ul>
+          </figure>
         </div>
       </section>
 
-      <section class="learning-panel" aria-labelledby="objectifs">
+      <section class="learning-panel reveal" aria-labelledby="objectifs">
         <p class="section-kicker">Objectifs pédagogiques</p>
         <h2 id="objectifs">Ce dossier donne l'échelle avant de donner l'opinion.</h2>
         <div class="learning-grid">
-          <div class="learning-item">
+          <div class="learning-item reveal" data-d="1">
             <span>Situer</span>
             <p>Placer les grandes ères dans une chronologie lisible, du Précambrien au Cénozoïque.</p>
           </div>
-          <div class="learning-item">
+          <div class="learning-item reveal" data-d="2">
             <span>Relier</span>
             <p>Comprendre comment climat, tectonique, extinctions et évolution composent une même histoire.</p>
           </div>
-          <div class="learning-item">
+          <div class="learning-item reveal" data-d="3">
             <span>Questionner</span>
             <p>Utiliser le temps profond pour penser notre responsabilité dans la strate géologique de demain.</p>
           </div>
         </div>
       </section>
 
-      <section class="chapter" aria-labelledby="chapitre-ouverture">
+      <section class="chapter reveal" aria-labelledby="chapitre-ouverture">
         <div class="chapter-head">
           <div>
             <p class="section-kicker">Transcription mot pour mot</p>
@@ -1100,9 +689,9 @@
         <div class="transcript">
           <article class="prose">
             <div class="script-block">
-              <p>…....4,6 milliards d’années.</p>
-              <p>C’est le temps qu’il a fallu à notre bonne vieille Terre pour passer d’un enfer de lave en fusion à la planète bleue que nous connaissons aujourd’hui. 4,6 milliards d’années d'une histoire tumultueuse, tragique et absolument fascinante, écrite non pas avec des mots, mais dans la roche.</p>
-              <p>Quand on regarde nos paysages actuels, on a du mal à imaginer qu’ici même, sous nos pieds, des océans de magma ont bouilli, des scènes de apocalypse ont rayé 95 % de la vie de la carte, et des monstres géants ont régné en maîtres absolus pendant des millions d'années. Si l’on ramenait toute cette immense chronologie à une seule journée de 24 heures, l’humanité n’apparaîtrait qu’à 23h58. Nous ne sommes que les invités de la dernière seconde d'un immense opéra cosmique.</p>
+              <p>… 4,6 milliards d'années.</p>
+              <p>C'est le temps qu'il a fallu à notre bonne vieille Terre pour passer d'un enfer de lave en fusion à la planète bleue que nous connaissons aujourd'hui. 4,6 milliards d'années d'une histoire tumultueuse, tragique et absolument fascinante, écrite non pas avec des mots, mais dans la roche.</p>
+              <p>Quand on regarde nos paysages actuels, on a du mal à imaginer qu'ici même, sous nos pieds, des océans de magma ont bouilli, des scènes d'apocalypse ont rayé 95 % de la vie de la carte, et des monstres géants ont régné en maîtres absolus pendant des millions d'années. Si l'on ramenait toute cette immense chronologie à une seule journée de 24 heures, l'humanité n'apparaîtrait qu'à 23h58. Nous ne sommes que les invités de la dernière seconde d'un immense opéra cosmique.</p>
               <p>Alors, oubliez un instant notre quotidien. Remontons le temps, feuilletons les pages des grandes ères géologiques, et découvrons ensemble le vrai roman de la Terre. Attachez vos ceintures : des premières bactéries de l'invisible jusqu'au règne des titans, le voyage commence maintenant. »</p>
             </div>
           </article>
@@ -1118,7 +707,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="precambrien" aria-labelledby="chapitre-precambrien">
+      <section class="chapter reveal" id="precambrien" aria-labelledby="chapitre-precambrien">
         <div class="chapter-head">
           <div>
             <p class="section-kicker">Acte I</p>
@@ -1130,8 +719,8 @@
           <article class="prose">
             <div class="era-card">
               <h3>Acte I : Le Précambrien, les fondations du monde</h3>
-              <span class="era-date">(De -4,6 milliards à -541 millions d'années)</span>
-              <p>Le grand livre de la Terre s'ouvre sur un chaos indescriptible : l'Hadéen. La planète n'est qu'un océan de roche en fusion bombardé par des astéroïdes. C’est durant cette époque, suite à une collision titanesque avec une protoplanète de la taille de Mars, que va naître notre Lune.</p>
+              <span class="era-date">De -4,6 milliards à -541 millions d'années</span>
+              <p>Le grand livre de la Terre s'ouvre sur un chaos indescriptible : l'Hadéen. La planète n'est qu'un océan de roche en fusion bombardé par des astéroïdes. C'est durant cette époque, suite à une collision titanesque avec une protoplanète de la taille de Mars, que va naître notre Lune.</p>
               <p>Puis, la surface se refroidit. La vapeur d'eau se condense : les premiers océans apparaissent. C'est à l'Archéen, vers -3,8 milliards d'années, dans l'obscurité de ces abysses, que la chimie devient organique. La vie naît. Elle est microscopique et unicellulaire.</p>
               <p>Puis vient le Protérozoïque. Vers -2,4 milliards d'années, des colonies de bactéries d'un genre nouveau, les cyanobactéries, réalisent la photosynthèse et rejettent un gaz hautement toxique pour les organismes de l'époque : l'oxygène. Cet événement, que les scientifiques nomment la Grande Oxydation, bouleverse la chimie planétaire et déclenche une glaciation totale, transformant la Terre en une immense boule de neige.</p>
               <p>Il faudra attendre la toute fin du Précambrien, il y a environ 600 millions d'années, pour voir émerger dans les fonds marins la faune d'Ediacara : des créatures étranges, molles et plates, sans coquille ni squelette. Les premières ébauches de la vie complexe.</p>
@@ -1149,7 +738,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="paleozoique" aria-labelledby="chapitre-paleozoique">
+      <section class="chapter reveal" id="paleozoique" aria-labelledby="chapitre-paleozoique">
         <div class="chapter-head">
           <div>
             <p class="section-kicker">Acte II</p>
@@ -1161,7 +750,7 @@
           <article class="prose">
             <div class="era-card">
               <h3>Acte II : Le Paléozoïque, l'invasion des terres</h3>
-              <span class="era-date">(De -541 à -252 millions d'années)</span>
+              <span class="era-date">De -541 à -252 millions d'années</span>
               <p>Il y a 541 millions d'années, tout bascule. C'est l'Explosion Cambrienne. En à peine quelques millions d'années — un battement de cils géologique —, la vie invente les squelettes, les coquilles et les yeux. Les océans se remplissent de trilobites et de redoutables prédateurs comme Anomalocaris.</p>
               <p>Pendant les périodes du Silurien et du Dévonien, la vie marine se dote de vertèbres : les poissons se diversifient. Mais le vrai défi est ailleurs. Des pionniers audacieux — d'abord des plantes et des champignons, puis des arthropodes — s'aventurent hors de l'eau. Les poissons à poumons et nageoires charnues leur emboîtent le pas : les premiers tétrapodes marchent sur la Terre.</p>
               <p>Au Carbonifère, le climat chaud et humide favorise d'immenses forêts de fougères géantes. Le taux d'oxygène explose, permettant à des arthropodes géants de régner, comme Meganeura, une libellule de la taille d'un rapace.</p>
@@ -1180,7 +769,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="mesozoique" aria-labelledby="chapitre-mesozoique">
+      <section class="chapter reveal" id="mesozoique" aria-labelledby="chapitre-mesozoique">
         <div class="chapter-head">
           <div>
             <p class="section-kicker">Acte III</p>
@@ -1192,7 +781,7 @@
           <article class="prose">
             <div class="era-card">
               <h3>Acte III : Le Mésozoïque, le temps des titans</h3>
-              <span class="era-date">(De -252 à -66 millions d'années)</span>
+              <span class="era-date">De -252 à -66 millions d'années</span>
               <p>Sur cette Terre dévastée, les survivants se réorganisent. C'est le Trias. Un groupe de reptiles va profiter des niches écologiques vides pour entamer une ascension fulgurante : les dinosaures.</p>
               <p>Au Jurassique, la Pangée se fracture. Le climat s'humidifie et des géants comme les grands sauropodes colonisent les continents, tandis que les premiers oiseaux apparaissent, évoluant directement à partir de dinosaures théropodes. Dans les océans, les reptiles marins comme les plésiosaures chassent les ammonites.</p>
               <p>Le Crétacé voit l'apparition des premières plantes à fleurs, qui bouleversent les écosystèmes. C'est l'apogée de prédateurs emblématiques comme le Tyrannosaurus rex.</p>
@@ -1211,7 +800,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="cenozoique" aria-labelledby="chapitre-cenozoique">
+      <section class="chapter reveal" id="cenozoique" aria-labelledby="chapitre-cenozoique">
         <div class="chapter-head">
           <div>
             <p class="section-kicker">Acte IV</p>
@@ -1223,7 +812,7 @@
           <article class="prose">
             <div class="era-card">
               <h3>Acte IV : Le Cénozoïque, l'aube de notre monde</h3>
-              <span class="era-date">(De -66 millions d'années à aujourd'hui)</span>
+              <span class="era-date">De -66 millions d'années à aujourd'hui</span>
               <p>Le rideau se lève sur un monde vide de ses grands maîtres. Les grands survivants de la catastrophe sont petits, discrets et vivent souvent sous terre : ce sont les mammifères.</p>
               <p>Pendant le Paléogène et le Néogène, ces animaux vont connaître une radiation évolutive spectaculaire. Ils investissent la terre, les airs avec les chauves-souris, et retournent même à l'eau pour donner naissance aux cétacés. Les plaines de graminées remplacent les vieilles forêts denses, favorisant l'apparition des grands herbivores et de leurs prédateurs.</p>
               <p>Enfin, nous entrons dans le Quaternaire, marqué par des cycles de glaciations intenses. Les continents ont trouvé leur place actuelle. C'est dans ce décor changeant, il y a seulement quelques millions d'années en Afrique, que la lignée humaine se détache des autres primates. Homo sapiens apparaît il y a environ 300 000 ans.</p>
@@ -1241,7 +830,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="derniere-seconde" aria-labelledby="chapitre-seconde">
+      <section class="chapter reveal" id="derniere-seconde" aria-labelledby="chapitre-seconde">
         <div class="chapter-head">
           <div>
             <p class="section-kicker">La leçon de la dernière seconde</p>
@@ -1252,14 +841,14 @@
         <div class="transcript">
           <article class="prose">
             <div class="lesson-block">
-              <p>….La leçon de la "dernière seconde"</p>
-              <p>« Pour réaliser l'immensité de ce que nous venons de traverser, imaginons que les 4,6 milliards d’années de l’histoire de la Terre tiennent dans une seule journée de 24 heures.</p>
-              <p>À ce compte-là, il se passe énormément de temps avant que la vie ne montre le bout de son nez : ce n'est qu'aux alentours de 4h du matin que les premières bactéries apparaissent. Les organismes complexes attendent patiemment jusqu'à 21h pour exploser dans les océans. Les dinosaures, eux, ne dominent le monde qu’à partir de 22h40, pour disparaître brusquement à 23h39.</p>
-              <p>Et nous ? L’humanité, avec toute sa technologie, ses empires et ses débats, ne pointe le bout de son nez qu’à 23h58 et 43 secondes.</p>
+              <p>… La leçon de la "dernière seconde"</p>
+              <p>« Pour réaliser l'immensité de ce que nous venons de traverser, imaginons que les 4,6 milliards d'années de l'histoire de la Terre tiennent dans une seule journée de 24 heures.</p>
+              <p>À ce compte-là, il se passe énormément de temps avant que la vie ne montre le bout de son nez : ce n'est qu'aux alentours de 4h du matin que les premières bactéries apparaissent. Les organismes complexes attendent patiemment jusqu'à 21h pour exploser dans les océans. Les dinosaures, eux, ne dominent le monde qu'à partir de 22h40, pour disparaître brusquement à 23h39.</p>
+              <p>Et nous ? L'humanité, avec toute sa technologie, ses empires et ses débats, ne pointe le bout de son nez qu'à 23h58 et 43 secondes.</p>
               <p>En moins de 20 secondes, nous avons colonisé chaque continent, inventé l'écriture, la science, et commencé à comprendre notre propre histoire. Ce voyage à travers les ères nous rappelle une vérité fondamentale : la Terre a une résilience incroyable, elle a survécu à des extinctions de masse, à des périodes de glace totale et à des chaleurs extrêmes.</p>
               <p>Nous sommes les spectateurs privilégiés, et peut-être les gardiens, de ce dernier instant. La vie est une survivante acharnée qui a mis des milliards d'années à sculpter ce décor dans lequel nous vivons aujourd'hui. Prendre conscience de cette échelle de temps, c'est comprendre que notre responsabilité n'est pas seulement de vivre sur cette planète, mais de respecter le temps qu'il a fallu pour qu'elle devienne ce qu'elle est.</p>
               <p>La question n'est plus seulement de savoir d'où nous venons, mais quelle trace nous laisserons dans la strate géologique de demain. »</p>
-              <p>"Si nous ne sommes là que depuis 17 secondes, quelle est, selon vous, la plus grande erreur que nous ayons commise... ou la plus grande chance que nous ayons de durer ?"</p>
+              <p>« Si nous ne sommes là que depuis 17 secondes, quelle est, selon vous, la plus grande erreur que nous ayons commise... ou la plus grande chance que nous ayons de durer ? »</p>
             </div>
             <div class="clock-strip" aria-label="Compression en journée de 24 heures">
               <div class="clock-row">
@@ -1281,7 +870,7 @@
             </div>
             <div class="script-block">
               <p>L'impact visuel :</p>
-              <p> Un montage vidéo, c'est le moment idéal pour afficher une horloge qui tourne rapidement ou une frise chronologique qui défile en accéléré.</p>
+              <p>Un montage vidéo, c'est le moment idéal pour afficher une horloge qui tourne rapidement ou une frise chronologique qui défile en accéléré.</p>
             </div>
           </article>
           <aside class="side-note">
@@ -1296,7 +885,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="anti-intox" aria-labelledby="chapitre-anti-intox">
+      <section class="chapter reveal" id="anti-intox" aria-labelledby="chapitre-anti-intox">
         <div class="chapter-head">
           <div>
             <p class="section-kicker">Empire contre Intox</p>
@@ -1307,12 +896,12 @@
         <div class="transcript">
           <article class="prose">
             <div class="anti-intox-block">
-              <p>"Vous savez, après avoir analysé des milliers de commentaires, j'ai réalisé que certains d'entre vous vivent dans une version alternative de notre planète. Et franchement ? C'est un sacré scénario de film."</p>
-              <p>"Alors, bien sûr, on commence avec le classique : la Terre est plate. C’est un disque porté par... quoi, des tortues ? Des éléphants ? Et surtout, cet énorme mur de glace en Antarctique gardé par la NASA 24h/24 pour éviter qu'on tombe dans le vide. C’est un budget sécurité assez colossal, non ?"</p>
-              <p> "Mais attendez, c'est pas fini. Le ciel ? Un dôme. Les étoiles ? Des projecteurs LED de haute définition. Et les oiseaux ? Ne sont pas des animaux. Ce sont des drones espions rechargeables sur les lignes à haute tension. (Regarde fixement un pigeon par la fenêtre) On vous voit, les gars."</p>
-              <p> "Et pour couronner le tout, nos ancêtres étaient des géants bâtisseurs de pyramides, et les vaccins servent à nous faire écouter du jazz en boucle dans notre sommeil. (Sourire en coin)"</p>
-              <p>"Vous riez ? Moi aussi. C'est drôle, c'est créatif, c'est du génie narratif. Le problème, c'est que ce ne sont pas des théories de science-fiction pour un roman de gare. Ce sont des idées que certaines personnes croient vraiment."</p>
-              <p>"Sauf qu'entre le drone-pigeon et la réalité, il y a la science. La géologie, la biologie, la physique... elles sont là, elles sont vérifiables, et elles n'ont pas besoin de complot mondial pour être passionnantes.</p>
+              <p>« Vous savez, après avoir analysé des milliers de commentaires, j'ai réalisé que certains d'entre vous vivent dans une version alternative de notre planète. Et franchement ? C'est un sacré scénario de film. »</p>
+              <p>« Alors, bien sûr, on commence avec le classique : la Terre est plate. C'est un disque porté par... quoi, des tortues ? Des éléphants ? Et surtout, cet énorme mur de glace en Antarctique gardé par la NASA 24h/24 pour éviter qu'on tombe dans le vide. C'est un budget sécurité assez colossal, non ? »</p>
+              <p>« Mais attendez, c'est pas fini. Le ciel ? Un dôme. Les étoiles ? Des projecteurs LED de haute définition. Et les oiseaux ? Ne sont pas des animaux. Ce sont des drones espions rechargeables sur les lignes à haute tension. (Regarde fixement un pigeon par la fenêtre) On vous voit, les gars. »</p>
+              <p>« Et pour couronner le tout, nos ancêtres étaient des géants bâtisseurs de pyramides, et les vaccins servent à nous faire écouter du jazz en boucle dans notre sommeil. (Sourire en coin) »</p>
+              <p>« Vous riez ? Moi aussi. C'est drôle, c'est créatif, c'est du génie narratif. Le problème, c'est que ce ne sont pas des théories de science-fiction pour un roman de gare. Ce sont des idées que certaines personnes croient vraiment. »</p>
+              <p>« Sauf qu'entre le drone-pigeon et la réalité, il y a la science. La géologie, la biologie, la physique... elles sont là, elles sont vérifiables, et elles n'ont pas besoin de complot mondial pour être passionnantes. »</p>
             </div>
           </article>
           <aside class="side-note">
@@ -1327,14 +916,21 @@
         </div>
       </section>
 
-      <section class="collective-footer" aria-labelledby="collectif">
+      <section class="collective-footer reveal" aria-labelledby="collectif">
         <div class="collective-logo-wrap">
           <img class="collective-logo" src="assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
         </div>
         <div class="collective-copy">
           <p class="section-kicker">Collectif</p>
-          <h2 id="collectif">Empire contre intox</h2>
+          <h2 id="collectif">Empire contre Intox</h2>
           <p>Une page pensée pour transformer une trame de live en support public clair, visuel et partageable : raconter le réel, garder le sens critique, et montrer que la science n'a pas besoin de complot pour être vertigineuse.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="lalie.jpeg" alt="Avatar de Lalie">
+              <img src="ymir.jpeg" alt="Avatar d'Ymir">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+          </div>
           <div class="collective-actions">
             <a class="button primary" href="../index.html">Retour à l'index</a>
             <a class="button" href="edicarien.html">Lire L'Édiacarien</a>
@@ -1350,50 +946,57 @@
   </div>
 
   <script>
-    const progress = document.querySelector(".progress span");
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
     const navLinks = [...document.querySelectorAll(".nav a")];
-    const sections = navLinks
-      .map((link) => document.querySelector(link.getAttribute("href")))
-      .filter(Boolean);
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
     const mobileMenu = document.querySelector(".mobile-menu");
     const nav = document.querySelector(".nav");
 
     function updateProgress() {
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
-      progress.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
     }
-
     function updateActiveNav() {
-      const y = window.scrollY + 120;
+      const y = window.scrollY + 130;
       let activeId = sections[0]?.id;
-      for (const section of sections) {
-        if (section.offsetTop <= y) activeId = section.id;
-      }
-      navLinks.forEach((link) => {
-        link.classList.toggle("active", link.getAttribute("href") === `#${activeId}`);
-      });
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
     }
-
     mobileMenu.addEventListener("click", () => {
       const open = nav.classList.toggle("open");
       mobileMenu.setAttribute("aria-expanded", String(open));
     });
+    navLinks.forEach((l) => l.addEventListener("click", () => {
+      nav.classList.remove("open");
+      mobileMenu.setAttribute("aria-expanded", "false");
+    }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
 
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        nav.classList.remove("open");
-        mobileMenu.setAttribute("aria-expanded", "false");
-      });
-    });
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
-    document.addEventListener("scroll", () => {
-      updateProgress();
-      updateActiveNav();
-    }, { passive: true });
-
-    updateProgress();
-    updateActiveNav();
+    // Deep-time clock — 24 exact tick marks (1 per hour)
+    const ticks = document.getElementById("clockTicks");
+    if (ticks) {
+      const cx = 100, cy = 100, ro = 88;
+      let out = "";
+      for (let k = 0; k < 24; k++) {
+        const phi = (k * 15) * Math.PI / 180;
+        const sin = Math.sin(phi), cos = Math.cos(phi);
+        const major = k % 6 === 0;
+        const ri = major ? 83.5 : 85.5;
+        const x1 = (cx + ro * sin).toFixed(2), y1 = (cy - ro * cos).toFixed(2);
+        const x2 = (cx + ri * sin).toFixed(2), y2 = (cy - ri * cos).toFixed(2);
+        out += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-width="${major ? 2.2 : 1}" opacity="${major ? 0.95 : 0.4}"/>`;
+      }
+      ticks.innerHTML = out;
+    }
   </script>
 </body>
 </html>
