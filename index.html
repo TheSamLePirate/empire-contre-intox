@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Empire contre Intox - Index des pages</title>
+  <meta name="description" content="Index des pages publiques Empire contre Intox : résumés, transcriptions et contenus scientifiques structurés.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #fff7e8;
+      --muted: #d7d2c2;
+      --soft: #aeb5ae;
+      --void: #05070b;
+      --deep: #0a1116;
+      --navy: #10183a;
+      --teal: #0c5961;
+      --gold: #e7c15f;
+      --silver: #d7d9dd;
+      --red: #b92128;
+      --line: rgba(255, 247, 232, .16);
+      --panel: rgba(8, 14, 18, .72);
+      --shadow: 0 28px 90px rgba(0, 0, 0, .42);
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(231, 193, 95, .18), transparent 26rem),
+        radial-gradient(circle at 82% 18%, rgba(12, 89, 97, .22), transparent 28rem),
+        radial-gradient(circle at 55% 94%, rgba(185, 33, 40, .12), transparent 24rem),
+        linear-gradient(180deg, #030409 0%, var(--deep) 52%, #090c10 100%);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, black, transparent 86vh);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      overflow: clip;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5, 7, 11, .82);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+      width: min(100% - 40px, var(--max));
+      min-height: 72px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 10px 28px rgba(0,0,0,.36);
+    }
+
+    .brand span {
+      white-space: nowrap;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 13px;
+      color: var(--muted);
+      background: rgba(255,255,255,.055);
+      font-size: .9rem;
+      font-weight: 850;
+    }
+
+    .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .hero {
+      width: min(100% - 40px, var(--max));
+      min-height: calc(100vh - 72px);
+      margin: 0 auto;
+      padding: 76px 0 70px;
+      display: grid;
+      grid-template-columns: minmax(0, .98fr) minmax(300px, .72fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 22px;
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 950;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--silver), var(--red));
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.03;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 820px;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 5.15rem;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 730px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: 1.14rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 18px;
+      color: var(--ink);
+      background: rgba(255, 247, 232, .08);
+      font-weight: 900;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 247, 232, .15);
+      border-color: rgba(255, 247, 232, .34);
+    }
+
+    .button.primary {
+      background: var(--ink);
+      color: #111416;
+      border-color: var(--ink);
+    }
+
+    .logo-panel {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(145deg, rgba(16, 24, 58, .68), rgba(12, 89, 97, .3)),
+        rgba(255,255,255,.045);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .logo-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(231,193,95,.14), transparent 42%),
+        linear-gradient(180deg, transparent, rgba(0,0,0,.22));
+      pointer-events: none;
+    }
+
+    .logo-panel img {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 330px);
+      margin: 0 auto;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 34px;
+      object-fit: cover;
+      box-shadow: 0 30px 90px rgba(0,0,0,.48);
+    }
+
+    .logo-panel p {
+      position: relative;
+      z-index: 1;
+      margin: 24px 0 0;
+      color: var(--soft);
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    main {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head h2 {
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.55rem;
+    }
+
+    .section-head p {
+      max-width: 460px;
+      margin: 0;
+      color: var(--soft);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      padding: 20px 0 42px;
+    }
+
+    .card {
+      min-height: 540px;
+      display: grid;
+      grid-template-rows: 260px 1fr;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 22px 70px rgba(0,0,0,.28);
+      overflow: hidden;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 247, 232, .3);
+      box-shadow: 0 30px 90px rgba(0,0,0,.38);
+    }
+
+    .card-media {
+      position: relative;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+
+    .card:hover .card-media img {
+      transform: scale(1.035);
+    }
+
+    .card-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 45%, rgba(5,7,11,.74));
+    }
+
+    .badge {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      z-index: 1;
+      display: inline-flex;
+      min-height: 30px;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 8px;
+      padding: 0 10px;
+      color: var(--ink);
+      background: rgba(5,7,11,.62);
+      backdrop-filter: blur(12px);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .card-body {
+      display: grid;
+      align-content: space-between;
+      gap: 24px;
+      padding: 24px;
+    }
+
+    .card h3 {
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2rem;
+    }
+
+    .card p {
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 8px;
+      padding: 0 10px;
+      color: var(--ink);
+      background: rgba(255,255,255,.06);
+      font-size: .78rem;
+      font-weight: 850;
+    }
+
+    .card-link {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      justify-self: start;
+      border: 1px solid rgba(255, 247, 232, .22);
+      border-radius: 8px;
+      padding: 0 15px;
+      color: #111416;
+      background: var(--gold);
+      font-weight: 950;
+    }
+
+    .pathway {
+      margin: 0 0 92px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(231,193,95,.1), transparent 34%),
+        linear-gradient(180deg, rgba(255,247,232,.065), rgba(255,247,232,.032));
+      padding: 26px;
+    }
+
+    .pathway h2 {
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.2rem;
+    }
+
+    .pathway-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .pathway-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.045);
+      padding: 18px;
+    }
+
+    .pathway-item span {
+      color: var(--gold);
+      font-size: .76rem;
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .pathway-item p {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0 42px;
+      color: var(--soft);
+    }
+
+    .footer-inner {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .footer strong {
+      color: var(--ink);
+    }
+
+    @media (max-width: 920px) {
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 4rem;
+      }
+
+      .logo-panel {
+        max-width: 520px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pathway-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner,
+      .hero,
+      main,
+      .footer-inner {
+        width: min(100% - 24px, var(--max));
+      }
+
+      .topbar-inner,
+      .section-head,
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .brand span {
+        white-space: normal;
+      }
+
+      .hero {
+        padding: 50px 0 52px;
+      }
+
+      h1 {
+        font-size: 2.85rem;
+      }
+
+      .lead {
+        font-size: 1.02rem;
+      }
+
+      .logo-panel {
+        padding: 20px;
+      }
+
+      .logo-panel img {
+        border-radius: 26px;
+      }
+
+      .section-head h2 {
+        font-size: 2.08rem;
+      }
+
+      .card {
+        min-height: auto;
+        grid-template-rows: 210px 1fr;
+      }
+
+      .card h3 {
+        font-size: 1.65rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="./index.html" aria-label="Accueil Empire contre Intox">
+          <img src="ymir-lalie/assets/logo-eci.jpg" alt="Logo Empire contre Intox">
+          <span>Empire contre Intox</span>
+        </a>
+        <div class="top-actions" aria-label="Navigation rapide">
+          <a class="nav-link" href="#pages">Pages disponibles</a>
+          <a class="nav-link" href="ymir-lalie/edicarien.html">Édiacarien</a>
+          <a class="nav-link" href="ymir-lalie/resume-eres.html">Ères</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Index public</p>
+        <h1>Les dossiers Empire contre Intox</h1>
+        <p class="lead">Un point d’entrée clair vers les pages HTML créées à partir des transcriptions : contenus scientifiques, structure lisible, design immersif et identité du collectif.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#pages">Explorer les pages</a>
+          <a class="button" href="ymir-lalie/edicarien.html">Ouvrir l'Édiacarien</a>
+        </div>
+      </div>
+      <aside class="logo-panel" aria-label="Identité du collectif">
+        <img src="ymir-lalie/assets/logo-eci.jpg" alt="Logo Empire contre Intox">
+        <p>Veritas omnia vincit</p>
+      </aside>
+    </section>
+
+    <main id="pages">
+      <div class="section-head">
+        <h2>Pages HTML</h2>
+        <p>Deux expériences prêtes à partager, avec transcription structurée et mise en scène visuelle.</p>
+      </div>
+
+      <section class="grid" aria-label="Liste des fichiers HTML">
+        <article class="card">
+          <a class="card-media" href="ymir-lalie/edicarien.html" aria-label="Ouvrir la page L'Édiacarien">
+            <img src="ymir-lalie/assets/ediacaran-hero.png" alt="Illustration d'un fond marin édiacarien">
+            <span class="badge">Transcription TikTok</span>
+          </a>
+          <div class="card-body">
+            <div>
+              <h3>L'Édiacarien</h3>
+              <p>Une plongée dans les premiers écosystèmes complexes : tapis microbiens, Dickinsonia, Charnia, Kimberella, Cloudina et naissance de la prédation.</p>
+              <div class="meta">
+                <span class="tag">Paléontologie</span>
+                <span class="tag">Vie primitive</span>
+                <span class="tag">Design immersif</span>
+              </div>
+            </div>
+            <a class="card-link" href="ymir-lalie/edicarien.html">Ouvrir la page</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <a class="card-media" href="ymir-lalie/resume-eres.html" aria-label="Ouvrir la page Résumé des Ères">
+            <img src="ymir-lalie/assets/eres-hero.png" alt="Illustration des ères géologiques de la Terre">
+            <span class="badge">Frise géologique</span>
+          </a>
+          <div class="card-body">
+            <div>
+              <h3>Résumé des Ères</h3>
+              <p>Le roman de la Terre en actes : Précambrien, Paléozoïque, Mésozoïque, Cénozoïque, puis la leçon vertigineuse de la dernière seconde humaine.</p>
+              <div class="meta">
+                <span class="tag">Temps profond</span>
+                <span class="tag">Ères géologiques</span>
+                <span class="tag">Anti-intox</span>
+              </div>
+            </div>
+            <a class="card-link" href="ymir-lalie/resume-eres.html">Ouvrir la page</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="pathway" aria-labelledby="parcours">
+        <p class="eyebrow">Parcours pédagogique</p>
+        <h2 id="parcours">Comprendre le réel avant de débattre du faux.</h2>
+        <div class="pathway-grid">
+          <div class="pathway-item">
+            <span>1. Échelle</span>
+            <p>Commencer par le temps profond pour replacer l'humanité dans l'histoire longue de la Terre.</p>
+          </div>
+          <div class="pathway-item">
+            <span>2. Méthode</span>
+            <p>Observer comment la science relie fossiles, traces, chimie, géologie et hypothèses vérifiables.</p>
+          </div>
+          <div class="pathway-item">
+            <span>3. Esprit critique</span>
+            <p>Comparer la puissance du réel aux récits complotistes : la science est déjà vertigineuse.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span><strong>Empire contre Intox</strong> - index des pages HTML.</span>
+        <span>Logo et identité visuelle ECI.</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1399 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Résumé des Ères - Empire contre Intox</title>
+  <meta name="description" content="Transcription structurée et mise en scène du résumé des ères géologiques, de la formation de la Terre à la dernière seconde humaine.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #fff7e8;
+      --muted: #d6d3c5;
+      --soft: #a9b2ad;
+      --void: #06080c;
+      --deep: #0b1517;
+      --ocean: #0c3c46;
+      --forest: #6f985b;
+      --ember: #f1853b;
+      --gold: #e9bd68;
+      --bone: #f6ead3;
+      --line: rgba(255, 247, 232, .16);
+      --panel: rgba(7, 16, 18, .72);
+      --paper: rgba(255, 247, 232, .06);
+      --shadow: 0 28px 90px rgba(0, 0, 0, .42);
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% 18%, rgba(241, 133, 59, .18), transparent 28rem),
+        radial-gradient(circle at 88% 8%, rgba(111, 152, 91, .16), transparent 30rem),
+        linear-gradient(180deg, #030406 0%, var(--deep) 48%, #0b100e 100%);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.72;
+      letter-spacing: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 68px 68px;
+      mask-image: linear-gradient(to bottom, transparent, black 20vh, black 86vh, transparent);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      overflow: clip;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      align-items: end;
+      position: relative;
+      isolation: isolate;
+      padding: 28px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      background-image: url("assets/eres-hero.png");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.01);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(3, 4, 6, .95) 0%, rgba(3, 4, 6, .7) 36%, rgba(3, 4, 6, .22) 70%, rgba(3, 4, 6, .54) 100%),
+        linear-gradient(180deg, rgba(3, 4, 6, .08) 0%, rgba(3, 4, 6, .26) 60%, #0b1517 100%);
+    }
+
+    .hero-inner {
+      width: min(100%, var(--max));
+      margin: 0 auto 7vh;
+      display: grid;
+      grid-template-columns: minmax(0, 760px) minmax(250px, 350px);
+      gap: 42px;
+      align-items: end;
+    }
+
+    .eyebrow,
+    .section-kicker {
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 22px;
+      color: var(--bone);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--ember), var(--gold), var(--forest));
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      line-height: 1.04;
+      letter-spacing: 0;
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 780px;
+      color: var(--bone);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 5.25rem;
+      font-weight: 700;
+      text-wrap: balance;
+    }
+
+    .hero-lead {
+      max-width: 710px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 18px;
+      background: rgba(255, 247, 232, .09);
+      color: var(--bone);
+      font-weight: 850;
+      backdrop-filter: blur(16px);
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 247, 232, .16);
+      border-color: rgba(255, 247, 232, .34);
+    }
+
+    .button.primary {
+      background: var(--bone);
+      color: #111714;
+      border-color: var(--bone);
+    }
+
+    .time-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(6, 8, 12, .72);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .time-card-header {
+      padding: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .clock-face {
+      width: 168px;
+      height: 168px;
+      margin: 0 auto 18px;
+      border: 2px solid rgba(255, 247, 232, .3);
+      border-radius: 50%;
+      position: relative;
+      background:
+        conic-gradient(from -90deg, rgba(241,133,59,.9) 0deg 18deg, rgba(233,189,104,.86) 18deg 42deg, rgba(111,152,91,.8) 42deg 96deg, rgba(12,60,70,.72) 96deg 360deg);
+      box-shadow: inset 0 0 0 12px rgba(0,0,0,.34), 0 16px 42px rgba(0,0,0,.34);
+    }
+
+    .clock-face::before,
+    .clock-face::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-origin: left center;
+      background: var(--bone);
+      border-radius: 999px;
+    }
+
+    .clock-face::before {
+      width: 54px;
+      height: 3px;
+      transform: rotate(87deg);
+    }
+
+    .clock-face::after {
+      width: 70px;
+      height: 2px;
+      transform: rotate(354deg);
+      background: var(--ember);
+    }
+
+    .clock-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--bone);
+      left: calc(50% - 6px);
+      top: calc(50% - 6px);
+      box-shadow: 0 0 0 5px rgba(0,0,0,.24);
+    }
+
+    .time-card h2 {
+      color: var(--bone);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    .time-stat {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 18px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .time-stat:last-child {
+      border-bottom: 0;
+    }
+
+    .time-stat strong {
+      color: var(--gold);
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .time-stat span {
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5, 8, 10, .86);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+      width: min(100% - 40px, var(--max));
+      min-height: 68px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: max-content;
+      color: var(--bone);
+      font-weight: 900;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 8px 24px rgba(0,0,0,.32);
+    }
+
+    .nav {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav a {
+      flex: 0 0 auto;
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: var(--muted);
+      font-size: .88rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: rgba(255,247,232,.09);
+      color: var(--bone);
+    }
+
+    .home-link {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 12px;
+      color: var(--bone);
+      background: rgba(255,247,232,.07);
+      font-size: .86rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .progress {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      background: rgba(255,255,255,.08);
+    }
+
+    .progress span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--ember), var(--gold), var(--forest), var(--ocean));
+    }
+
+    main {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+    }
+
+    .intro-band {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .78fr);
+      gap: 28px;
+      padding: 82px 0 46px;
+      align-items: stretch;
+    }
+
+    .manifesto {
+      border-left: 3px solid var(--ember);
+      padding-left: 24px;
+    }
+
+    .manifesto h2,
+    .chapter h2 {
+      color: var(--bone);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.8rem;
+      text-wrap: balance;
+    }
+
+    .manifesto p {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .era-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .era-mini {
+      min-height: 190px;
+      padding: 18px;
+      border-right: 1px solid var(--line);
+      display: grid;
+      align-content: space-between;
+    }
+
+    .era-mini:last-child {
+      border-right: 0;
+    }
+
+    .era-mini span {
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .era-mini strong {
+      display: block;
+      margin-top: 10px;
+      color: var(--bone);
+      font-size: 1.08rem;
+    }
+
+    .era-mini p {
+      margin: 18px 0 0;
+      color: var(--soft);
+      font-size: .92rem;
+    }
+
+    .learning-panel {
+      margin: 24px 0 50px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(241,133,59,.12), transparent 36%),
+        linear-gradient(180deg, rgba(255,247,232,.07), rgba(255,247,232,.035));
+      padding: 26px;
+    }
+
+    .learning-panel h2 {
+      color: var(--bone);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.25rem;
+      text-wrap: balance;
+    }
+
+    .learning-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .learning-item {
+      min-height: 150px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.045);
+      padding: 18px;
+    }
+
+    .learning-item span {
+      color: var(--gold);
+      font-size: .76rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .learning-item p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .chapter {
+      position: relative;
+      padding: 76px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .chapter-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 170px;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .chapter-number {
+      justify-self: end;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255, 247, 232, .35);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 6rem;
+      line-height: .8;
+    }
+
+    .transcript {
+      display: grid;
+      grid-template-columns: minmax(0, 790px) minmax(245px, 1fr);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .prose {
+      min-width: 0;
+    }
+
+    .prose p,
+    .prose li {
+      color: var(--muted);
+      font-size: 1.03rem;
+    }
+
+    .prose p {
+      margin: 0 0 20px;
+    }
+
+    .prose ul {
+      margin: 14px 0 24px;
+      padding-left: 22px;
+    }
+
+    .prose li {
+      margin: 9px 0;
+      padding-left: 4px;
+    }
+
+    .prose strong {
+      color: var(--bone);
+    }
+
+    .script-block,
+    .lesson-block,
+    .anti-intox-block {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      margin: 24px 0;
+      background: rgba(255, 247, 232, .055);
+    }
+
+    .script-block {
+      border-left: 3px solid var(--gold);
+    }
+
+    .lesson-block {
+      border-left: 3px solid var(--forest);
+    }
+
+    .anti-intox-block {
+      border-left: 3px solid var(--ember);
+      background: rgba(241, 133, 59, .1);
+    }
+
+    .side-note {
+      position: sticky;
+      top: 92px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(6, 8, 12, .62);
+      padding: 20px;
+      box-shadow: 0 18px 56px rgba(0,0,0,.2);
+    }
+
+    .side-note h3 {
+      color: var(--bone);
+      font-size: 1rem;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .side-note p {
+      margin: 0 0 14px;
+      color: var(--soft);
+      font-size: .92rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 8px;
+      padding: 0 10px;
+      color: var(--bone);
+      background: rgba(255,255,255,.06);
+      font-size: .78rem;
+      font-weight: 850;
+    }
+
+    .era-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255,247,232,.08), rgba(255,247,232,.035)),
+        rgba(0,0,0,.12);
+      padding: 22px;
+      margin: 24px 0;
+    }
+
+    .era-card h3 {
+      color: var(--bone);
+      font-size: 1.42rem;
+      margin-bottom: 10px;
+    }
+
+    .era-date {
+      display: inline-flex;
+      min-height: 30px;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 8px;
+      padding: 0 10px;
+      color: var(--gold);
+      background: rgba(255,255,255,.055);
+      font-size: .82rem;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .clock-strip {
+      display: grid;
+      gap: 12px;
+      margin: 26px 0;
+    }
+
+    .clock-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .clock-row strong {
+      color: var(--gold);
+      font-size: .86rem;
+    }
+
+    .bar {
+      position: relative;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--ember), var(--gold), var(--forest));
+    }
+
+    .collective-footer {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(230px, 360px) minmax(0, 1fr);
+      gap: 34px;
+      align-items: center;
+      margin: 0 0 92px;
+      border: 1px solid rgba(255, 247, 232, .2);
+      border-radius: 8px;
+      background:
+        linear-gradient(120deg, rgba(12, 60, 70, .84), rgba(7, 16, 18, .66)),
+        linear-gradient(180deg, rgba(255,247,232,.08), rgba(255,247,232,.035));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .collective-footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(241,133,59,.18), transparent 38%),
+        linear-gradient(180deg, transparent, rgba(0,0,0,.28));
+    }
+
+    .collective-logo-wrap {
+      position: relative;
+      z-index: 1;
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      padding: 34px;
+      background: rgba(2, 8, 9, .26);
+      border-right: 1px solid var(--line);
+    }
+
+    .collective-logo {
+      width: min(100%, 292px);
+      aspect-ratio: 1;
+      border-radius: 34px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.24);
+      box-shadow: 0 28px 90px rgba(0,0,0,.5);
+    }
+
+    .collective-copy {
+      position: relative;
+      z-index: 1;
+      padding: 42px 42px 42px 0;
+    }
+
+    .collective-copy h2 {
+      max-width: 680px;
+      color: var(--bone);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 3.25rem;
+      text-wrap: balance;
+    }
+
+    .collective-copy p {
+      max-width: 690px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .collective-motto {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      margin-top: 26px;
+      border: 1px solid rgba(255, 247, 232, .2);
+      border-radius: 8px;
+      padding: 0 13px;
+      color: var(--bone);
+      background: rgba(255, 247, 232, .08);
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .collective-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0 40px;
+      color: var(--soft);
+      font-size: .9rem;
+    }
+
+    .mobile-menu {
+      display: none;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.06);
+      color: var(--bone);
+      padding: 9px 11px;
+      font-weight: 900;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        min-height: 86vh;
+        padding: 22px;
+      }
+
+      .hero-inner,
+      .intro-band,
+      .transcript,
+      .chapter-head {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 4.1rem;
+      }
+
+      .time-card {
+        max-width: 560px;
+      }
+
+      .era-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .era-mini {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .era-mini:nth-child(2) {
+        border-right: 0;
+      }
+
+      .era-mini:nth-child(n+3) {
+        border-bottom: 0;
+      }
+
+      .chapter-number {
+        justify-self: start;
+        font-size: 4.2rem;
+      }
+
+      .side-note {
+        position: static;
+      }
+
+      .learning-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .collective-footer {
+        grid-template-columns: 1fr;
+      }
+
+      .collective-logo-wrap {
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .collective-copy {
+        padding: 0 28px 34px;
+      }
+
+      .collective-copy h2 {
+        font-size: 2.55rem;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        width: min(100% - 24px, var(--max));
+        min-height: auto;
+        padding: 12px 0;
+        flex-wrap: wrap;
+      }
+
+      .mobile-menu {
+        display: inline-flex;
+      }
+
+      .nav {
+        display: none;
+        width: 100%;
+        padding: 8px 0 2px;
+      }
+
+      .nav.open {
+        display: flex;
+      }
+
+      main {
+        width: min(100% - 24px, var(--max));
+      }
+
+      .hero {
+        min-height: 88vh;
+        padding: 16px;
+      }
+
+      .hero-inner {
+        margin-bottom: 5vh;
+        gap: 24px;
+      }
+
+      h1 {
+        font-size: 3.05rem;
+      }
+
+      .hero-lead {
+        font-size: 1.02rem;
+      }
+
+      .manifesto h2,
+      .chapter h2 {
+        font-size: 2.15rem;
+      }
+
+      .chapter {
+        padding: 58px 0;
+      }
+
+      .era-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .era-mini {
+        min-height: 150px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .era-mini:last-child {
+        border-bottom: 0;
+      }
+
+      .script-block,
+      .lesson-block,
+      .anti-intox-block,
+      .era-card,
+      .learning-panel {
+        padding: 18px;
+      }
+
+      .clock-row {
+        grid-template-columns: 82px 1fr;
+      }
+
+      .collective-footer {
+        margin-bottom: 58px;
+      }
+
+      .collective-logo-wrap {
+        padding: 22px;
+      }
+
+      .collective-logo {
+        width: min(100%, 230px);
+        border-radius: 26px;
+      }
+
+      .collective-copy {
+        padding: 0 20px 24px;
+      }
+
+      .collective-copy h2 {
+        font-size: 2.05rem;
+      }
+
+      .collective-copy p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Transcription publique</p>
+          <h1>Résumé des Ères</h1>
+          <p class="hero-lead">De l'enfer de lave à la planète bleue, de la première vie microscopique aux dinosaures, puis à notre apparition dans la dernière seconde de l'histoire terrestre.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#transcription">Lire la transcription</a>
+            <a class="button" href="#frise">Voir la frise</a>
+            <a class="button" href="../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="time-card" aria-label="Horloge du temps profond">
+          <div class="time-card-header">
+            <div class="clock-face" aria-hidden="true"><span class="clock-dot"></span></div>
+            <h2>4,6 milliards d'années en 24h</h2>
+          </div>
+          <div class="time-stat">
+            <strong>4h</strong>
+            <span>Premières bactéries</span>
+          </div>
+          <div class="time-stat">
+            <strong>21h</strong>
+            <span>Organismes complexes</span>
+          </div>
+          <div class="time-stat">
+            <strong>23h58</strong>
+            <span>L'humanité arrive</span>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Empire contre intox</span>
+        </a>
+        <a class="home-link" href="../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#ouverture">Ouverture</a>
+          <a href="#frise">Frise</a>
+          <a href="#precambrien">Précambrien</a>
+          <a href="#paleozoique">Paléozoïque</a>
+          <a href="#mesozoique">Mésozoïque</a>
+          <a href="#cenozoique">Cénozoïque</a>
+          <a href="#derniere-seconde">Dernière seconde</a>
+          <a href="#anti-intox">Anti-intox</a>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </nav>
+
+    <main id="transcription">
+      <section class="intro-band" id="ouverture">
+        <div class="manifesto">
+          <p class="section-kicker">RESUME DES ERES</p>
+          <h2>Le vrai roman de la Terre, raconté comme une grande traversée.</h2>
+          <p>Cette page transforme la transcription en lecture publique : actes géologiques, frise du temps profond, horloge de 24 heures, puis bascule vers le thème du collectif Empire contre Intox.</p>
+        </div>
+        <div class="era-strip" id="frise" aria-label="Frise des ères géologiques">
+          <div class="era-mini">
+            <div>
+              <span>-4,6 Ga à -541 Ma</span>
+              <strong>Précambrien</strong>
+            </div>
+            <p>Fondations du monde, océans, vie microscopique, oxygène et Ediacara.</p>
+          </div>
+          <div class="era-mini">
+            <div>
+              <span>-541 à -252 Ma</span>
+              <strong>Paléozoïque</strong>
+            </div>
+            <p>Explosion cambrienne, invasion des terres, Pangée et grande extinction.</p>
+          </div>
+          <div class="era-mini">
+            <div>
+              <span>-252 à -66 Ma</span>
+              <strong>Mésozoïque</strong>
+            </div>
+            <p>Ascension des dinosaures, plantes à fleurs, astéroïde et hiver d'impact.</p>
+          </div>
+          <div class="era-mini">
+            <div>
+              <span>-66 Ma à aujourd'hui</span>
+              <strong>Cénozoïque</strong>
+            </div>
+            <p>Radiation des mammifères, glaciations, lignée humaine et Homo sapiens.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-panel" aria-labelledby="objectifs">
+        <p class="section-kicker">Objectifs pédagogiques</p>
+        <h2 id="objectifs">Ce dossier donne l'échelle avant de donner l'opinion.</h2>
+        <div class="learning-grid">
+          <div class="learning-item">
+            <span>Situer</span>
+            <p>Placer les grandes ères dans une chronologie lisible, du Précambrien au Cénozoïque.</p>
+          </div>
+          <div class="learning-item">
+            <span>Relier</span>
+            <p>Comprendre comment climat, tectonique, extinctions et évolution composent une même histoire.</p>
+          </div>
+          <div class="learning-item">
+            <span>Questionner</span>
+            <p>Utiliser le temps profond pour penser notre responsabilité dans la strate géologique de demain.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="chapitre-ouverture">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Transcription mot pour mot</p>
+            <h2 id="chapitre-ouverture">4,6 milliards d'années.</h2>
+          </div>
+          <div class="chapter-number">01</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="script-block">
+              <p>…....4,6 milliards d’années.</p>
+              <p>C’est le temps qu’il a fallu à notre bonne vieille Terre pour passer d’un enfer de lave en fusion à la planète bleue que nous connaissons aujourd’hui. 4,6 milliards d’années d'une histoire tumultueuse, tragique et absolument fascinante, écrite non pas avec des mots, mais dans la roche.</p>
+              <p>Quand on regarde nos paysages actuels, on a du mal à imaginer qu’ici même, sous nos pieds, des océans de magma ont bouilli, des scènes de apocalypse ont rayé 95 % de la vie de la carte, et des monstres géants ont régné en maîtres absolus pendant des millions d'années. Si l’on ramenait toute cette immense chronologie à une seule journée de 24 heures, l’humanité n’apparaîtrait qu’à 23h58. Nous ne sommes que les invités de la dernière seconde d'un immense opéra cosmique.</p>
+              <p>Alors, oubliez un instant notre quotidien. Remontons le temps, feuilletons les pages des grandes ères géologiques, et découvrons ensemble le vrai roman de la Terre. Attachez vos ceintures : des premières bactéries de l'invisible jusqu'au règne des titans, le voyage commence maintenant. »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Angle public</h3>
+            <p>La chronologie devient une scène : on passe du magma aux strates, puis des strates à la responsabilité humaine.</p>
+            <div class="tag-list">
+              <span class="tag">Temps profond</span>
+              <span class="tag">Roche</span>
+              <span class="tag">24h</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="precambrien" aria-labelledby="chapitre-precambrien">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Acte I</p>
+            <h2 id="chapitre-precambrien">Le Précambrien, les fondations du monde.</h2>
+          </div>
+          <div class="chapter-number">02</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="era-card">
+              <h3>Acte I : Le Précambrien, les fondations du monde</h3>
+              <span class="era-date">(De -4,6 milliards à -541 millions d'années)</span>
+              <p>Le grand livre de la Terre s'ouvre sur un chaos indescriptible : l'Hadéen. La planète n'est qu'un océan de roche en fusion bombardé par des astéroïdes. C’est durant cette époque, suite à une collision titanesque avec une protoplanète de la taille de Mars, que va naître notre Lune.</p>
+              <p>Puis, la surface se refroidit. La vapeur d'eau se condense : les premiers océans apparaissent. C'est à l'Archéen, vers -3,8 milliards d'années, dans l'obscurité de ces abysses, que la chimie devient organique. La vie naît. Elle est microscopique et unicellulaire.</p>
+              <p>Puis vient le Protérozoïque. Vers -2,4 milliards d'années, des colonies de bactéries d'un genre nouveau, les cyanobactéries, réalisent la photosynthèse et rejettent un gaz hautement toxique pour les organismes de l'époque : l'oxygène. Cet événement, que les scientifiques nomment la Grande Oxydation, bouleverse la chimie planétaire et déclenche une glaciation totale, transformant la Terre en une immense boule de neige.</p>
+              <p>Il faudra attendre la toute fin du Précambrien, il y a environ 600 millions d'années, pour voir émerger dans les fonds marins la faune d'Ediacara : des créatures étranges, molles et plates, sans coquille ni squelette. Les premières ébauches de la vie complexe.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Repères</h3>
+            <p>Lune, océans, vie, photosynthèse, oxygène : les bases de tout le reste sont déjà là.</p>
+            <div class="tag-list">
+              <span class="tag">Hadéen</span>
+              <span class="tag">Archéen</span>
+              <span class="tag">Protérozoïque</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="paleozoique" aria-labelledby="chapitre-paleozoique">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Acte II</p>
+            <h2 id="chapitre-paleozoique">Le Paléozoïque, l'invasion des terres.</h2>
+          </div>
+          <div class="chapter-number">03</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="era-card">
+              <h3>Acte II : Le Paléozoïque, l'invasion des terres</h3>
+              <span class="era-date">(De -541 à -252 millions d'années)</span>
+              <p>Il y a 541 millions d'années, tout bascule. C'est l'Explosion Cambrienne. En à peine quelques millions d'années — un battement de cils géologique —, la vie invente les squelettes, les coquilles et les yeux. Les océans se remplissent de trilobites et de redoutables prédateurs comme Anomalocaris.</p>
+              <p>Pendant les périodes du Silurien et du Dévonien, la vie marine se dote de vertèbres : les poissons se diversifient. Mais le vrai défi est ailleurs. Des pionniers audacieux — d'abord des plantes et des champignons, puis des arthropodes — s'aventurent hors de l'eau. Les poissons à poumons et nageoires charnues leur emboîtent le pas : les premiers tétrapodes marchent sur la Terre.</p>
+              <p>Au Carbonifère, le climat chaud et humide favorise d'immenses forêts de fougères géantes. Le taux d'oxygène explose, permettant à des arthropodes géants de régner, comme Meganeura, une libellule de la taille d'un rapace.</p>
+              <p>L'ère se termine au Permien avec la formation de la Pangée, un supercontinent unique. Mais ce monde s'éteint dans un cataclysme sans précédent : d'immenses éruptions volcaniques en Sibérie libèrent des quantités astronomiques de gaz à effet de serre. Acidification des océans, pic de chaleur mondial... L'extinction Permien-Trias élimine 95 % des espèces marines et 70 % des vertébrés terrestres. La Terre frôle la stérilisation totale.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Montée dramatique</h3>
+            <p>La vie sort de l'eau, conquiert les terres, puis traverse une extinction presque totale.</p>
+            <div class="tag-list">
+              <span class="tag">Cambrien</span>
+              <span class="tag">Tétrapodes</span>
+              <span class="tag">Pangée</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="mesozoique" aria-labelledby="chapitre-mesozoique">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Acte III</p>
+            <h2 id="chapitre-mesozoique">Le Mésozoïque, le temps des titans.</h2>
+          </div>
+          <div class="chapter-number">04</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="era-card">
+              <h3>Acte III : Le Mésozoïque, le temps des titans</h3>
+              <span class="era-date">(De -252 à -66 millions d'années)</span>
+              <p>Sur cette Terre dévastée, les survivants se réorganisent. C'est le Trias. Un groupe de reptiles va profiter des niches écologiques vides pour entamer une ascension fulgurante : les dinosaures.</p>
+              <p>Au Jurassique, la Pangée se fracture. Le climat s'humidifie et des géants comme les grands sauropodes colonisent les continents, tandis que les premiers oiseaux apparaissent, évoluant directement à partir de dinosaures théropodes. Dans les océans, les reptiles marins comme les plésiosaures chassent les ammonites.</p>
+              <p>Le Crétacé voit l'apparition des premières plantes à fleurs, qui bouleversent les écosystèmes. C'est l'apogée de prédateurs emblématiques comme le Tyrannosaurus rex.</p>
+              <p>Mais l'histoire se répète. Il y a 66 millions d'années, un astéroïde d'environ 10 kilomètres de diamètre percute la péninsule du Yucatán, au Mexique. L'impact, combiné aux gigantesques éruptions des Trapps du Deccan en Inde, plonge la Terre dans un hiver d'impact. Privées de lumière, les plantes dépérissent, entraînant l'effondrement des chaînes alimentaires. Les dinosaures non-aviens et les Ptérosaures disparaissent à jamais.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Point de bascule</h3>
+            <p>Les titans dominent, puis un impact orbital redistribue brutalement toutes les cartes.</p>
+            <div class="tag-list">
+              <span class="tag">Trias</span>
+              <span class="tag">Jurassique</span>
+              <span class="tag">Crétacé</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="cenozoique" aria-labelledby="chapitre-cenozoique">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Acte IV</p>
+            <h2 id="chapitre-cenozoique">Le Cénozoïque, l'aube de notre monde.</h2>
+          </div>
+          <div class="chapter-number">05</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="era-card">
+              <h3>Acte IV : Le Cénozoïque, l'aube de notre monde</h3>
+              <span class="era-date">(De -66 millions d'années à aujourd'hui)</span>
+              <p>Le rideau se lève sur un monde vide de ses grands maîtres. Les grands survivants de la catastrophe sont petits, discrets et vivent souvent sous terre : ce sont les mammifères.</p>
+              <p>Pendant le Paléogène et le Néogène, ces animaux vont connaître une radiation évolutive spectaculaire. Ils investissent la terre, les airs avec les chauves-souris, et retournent même à l'eau pour donner naissance aux cétacés. Les plaines de graminées remplacent les vieilles forêts denses, favorisant l'apparition des grands herbivores et de leurs prédateurs.</p>
+              <p>Enfin, nous entrons dans le Quaternaire, marqué par des cycles de glaciations intenses. Les continents ont trouvé leur place actuelle. C'est dans ce décor changeant, il y a seulement quelques millions d'années en Afrique, que la lignée humaine se détache des autres primates. Homo sapiens apparaît il y a environ 300 000 ans.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Notre décor</h3>
+            <p>Les continents se placent, les climats oscillent, et la branche humaine finit par émerger.</p>
+            <div class="tag-list">
+              <span class="tag">Mammifères</span>
+              <span class="tag">Quaternaire</span>
+              <span class="tag">Homo sapiens</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="derniere-seconde" aria-labelledby="chapitre-seconde">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">La leçon de la dernière seconde</p>
+            <h2 id="chapitre-seconde">Une journée de 24 heures pour comprendre notre place.</h2>
+          </div>
+          <div class="chapter-number">06</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="lesson-block">
+              <p>….La leçon de la "dernière seconde"</p>
+              <p>« Pour réaliser l'immensité de ce que nous venons de traverser, imaginons que les 4,6 milliards d’années de l’histoire de la Terre tiennent dans une seule journée de 24 heures.</p>
+              <p>À ce compte-là, il se passe énormément de temps avant que la vie ne montre le bout de son nez : ce n'est qu'aux alentours de 4h du matin que les premières bactéries apparaissent. Les organismes complexes attendent patiemment jusqu'à 21h pour exploser dans les océans. Les dinosaures, eux, ne dominent le monde qu’à partir de 22h40, pour disparaître brusquement à 23h39.</p>
+              <p>Et nous ? L’humanité, avec toute sa technologie, ses empires et ses débats, ne pointe le bout de son nez qu’à 23h58 et 43 secondes.</p>
+              <p>En moins de 20 secondes, nous avons colonisé chaque continent, inventé l'écriture, la science, et commencé à comprendre notre propre histoire. Ce voyage à travers les ères nous rappelle une vérité fondamentale : la Terre a une résilience incroyable, elle a survécu à des extinctions de masse, à des périodes de glace totale et à des chaleurs extrêmes.</p>
+              <p>Nous sommes les spectateurs privilégiés, et peut-être les gardiens, de ce dernier instant. La vie est une survivante acharnée qui a mis des milliards d'années à sculpter ce décor dans lequel nous vivons aujourd'hui. Prendre conscience de cette échelle de temps, c'est comprendre que notre responsabilité n'est pas seulement de vivre sur cette planète, mais de respecter le temps qu'il a fallu pour qu'elle devienne ce qu'elle est.</p>
+              <p>La question n'est plus seulement de savoir d'où nous venons, mais quelle trace nous laisserons dans la strate géologique de demain. »</p>
+              <p>"Si nous ne sommes là que depuis 17 secondes, quelle est, selon vous, la plus grande erreur que nous ayons commise... ou la plus grande chance que nous ayons de durer ?"</p>
+            </div>
+            <div class="clock-strip" aria-label="Compression en journée de 24 heures">
+              <div class="clock-row">
+                <strong>4h</strong>
+                <div class="bar"><span style="width: 17%;"></span></div>
+              </div>
+              <div class="clock-row">
+                <strong>21h</strong>
+                <div class="bar"><span style="width: 88%;"></span></div>
+              </div>
+              <div class="clock-row">
+                <strong>22h40</strong>
+                <div class="bar"><span style="width: 94%;"></span></div>
+              </div>
+              <div class="clock-row">
+                <strong>23h58</strong>
+                <div class="bar"><span style="width: 99.8%;"></span></div>
+              </div>
+            </div>
+            <div class="script-block">
+              <p>L'impact visuel :</p>
+              <p> Un montage vidéo, c'est le moment idéal pour afficher une horloge qui tourne rapidement ou une frise chronologique qui défile en accéléré.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Moment clé</h3>
+            <p>La page met ce passage en scène comme le cœur émotionnel : nous ne sommes pas le centre de l'histoire, mais nous pouvons en comprendre l'échelle.</p>
+            <div class="tag-list">
+              <span class="tag">23h58</span>
+              <span class="tag">Responsabilité</span>
+              <span class="tag">Strate</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="anti-intox" aria-labelledby="chapitre-anti-intox">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Empire contre Intox</p>
+            <h2 id="chapitre-anti-intox">Entre scénario de film et science vérifiable.</h2>
+          </div>
+          <div class="chapter-number">07</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="anti-intox-block">
+              <p>"Vous savez, après avoir analysé des milliers de commentaires, j'ai réalisé que certains d'entre vous vivent dans une version alternative de notre planète. Et franchement ? C'est un sacré scénario de film."</p>
+              <p>"Alors, bien sûr, on commence avec le classique : la Terre est plate. C’est un disque porté par... quoi, des tortues ? Des éléphants ? Et surtout, cet énorme mur de glace en Antarctique gardé par la NASA 24h/24 pour éviter qu'on tombe dans le vide. C’est un budget sécurité assez colossal, non ?"</p>
+              <p> "Mais attendez, c'est pas fini. Le ciel ? Un dôme. Les étoiles ? Des projecteurs LED de haute définition. Et les oiseaux ? Ne sont pas des animaux. Ce sont des drones espions rechargeables sur les lignes à haute tension. (Regarde fixement un pigeon par la fenêtre) On vous voit, les gars."</p>
+              <p> "Et pour couronner le tout, nos ancêtres étaient des géants bâtisseurs de pyramides, et les vaccins servent à nous faire écouter du jazz en boucle dans notre sommeil. (Sourire en coin)"</p>
+              <p>"Vous riez ? Moi aussi. C'est drôle, c'est créatif, c'est du génie narratif. Le problème, c'est que ce ne sont pas des théories de science-fiction pour un roman de gare. Ce sont des idées que certaines personnes croient vraiment."</p>
+              <p>"Sauf qu'entre le drone-pigeon et la réalité, il y a la science. La géologie, la biologie, la physique... elles sont là, elles sont vérifiables, et elles n'ont pas besoin de complot mondial pour être passionnantes.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Chute</h3>
+            <p>Le final raccorde la fresque géologique au projet anti-intox : la réalité scientifique est déjà assez spectaculaire.</p>
+            <div class="tag-list">
+              <span class="tag">Méthode</span>
+              <span class="tag">Vérifiable</span>
+              <span class="tag">Science</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="collective-footer" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre intox</h2>
+          <p>Une page pensée pour transformer une trame de live en support public clair, visuel et partageable : raconter le réel, garder le sens critique, et montrer que la science n'a pas besoin de complot pour être vertigineuse.</p>
+          <div class="collective-actions">
+            <a class="button primary" href="../index.html">Retour à l'index</a>
+            <a class="button" href="edicarien.html">Lire L'Édiacarien</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome créée à partir de <strong>resume-eres.txt</strong>. Image hero générée pour illustrer les ères géologiques.</main>
+    </footer>
+  </div>
+
+  <script>
+    const progress = document.querySelector(".progress span");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+      progress.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+    }
+
+    function updateActiveNav() {
+      const y = window.scrollY + 120;
+      let activeId = sections[0]?.id;
+      for (const section of sections) {
+        if (section.offsetTop <= y) activeId = section.id;
+      }
+      navLinks.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${activeId}`);
+      });
+    }
+
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("open");
+        mobileMenu.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.addEventListener("scroll", () => {
+      updateProgress();
+      updateActiveNav();
+    }, { passive: true });
+
+    updateProgress();
+    updateActiveNav();
+  </script>
+</body>
+</html>
