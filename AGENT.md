@@ -1,43 +1,88 @@
-# Agent Instructions - Empire contre Intox
+# Agent Instructions — Empire contre Intox
 
-Ce projet transforme des documents texte en pages HTML educatives, immersives et partageables, dans l'identite visuelle du collectif Empire contre Intox.
+Ce projet transforme des **déroulés de live** (transcriptions, scripts d'émission) en pages HTML éducatives, immersives et partageables, rassemblées dans un index commun et publiées en site statique.
+
+Le site est publié via GitHub Pages : **https://thesamlepirate.github.io/empire-contre-intox/** (dépôt `TheSamLePirate/empire-contre-intox`, branche `main`, racine).
 
 ## Objectif
 
-Quand un nouveau fichier `.txt` doit etre implemente en HTML, produire une page complete qui :
+Quand un nouveau déroulé (`.txt` ou script) doit être implémenté, produire une page complète qui :
 
-- conserve la transcription mot pour mot ;
+- conserve la transcription **mot pour mot** ;
 - structure le contenu en chapitres lisibles ;
-- ajoute une vraie mise en scene pedagogique ;
-- reprend l'identite Empire contre Intox ;
-- est referencee depuis `index.html` ;
+- ajoute une vraie mise en scène pédagogique ;
+- s'intègre à l'identité **Empire contre Intox** (au minimum : retour à l'index + footer ECI) ;
+- crédite ses auteur(s) ;
+- est référencée par une carte dans `index.html` ;
 - fonctionne comme un site statique autonome.
 
-## Methode obligatoire
+## Organisation des fichiers (par créateur / équipe)
 
-1. Lire tout le fichier texte avant de coder.
-2. Identifier le titre, le ton, les actes ou chapitres naturels, les passages forts et la chute.
-3. Ne pas corriger ni reecrire la transcription centrale, sauf pour l'integrer dans une structure HTML lisible.
-4. Creer une page HTML autonome dans le dossier du document, avec CSS et JS integres si necessaire.
-5. Utiliser le logo ECI depuis `ymir-lalie/assets/logo-eci.jpg`.
-6. Creer ou reutiliser une image hero adaptee au sujet dans `ymir-lalie/assets/`.
-7. Ajouter une navigation interne sticky, un hero fort, une structure en chapitres, des encadres pedagogiques, et un footer ECI.
-8. Ajouter des objectifs pedagogiques explicites.
-9. Ajouter des liens croises : retour `../index.html` et lien vers les autres dossiers pertinents.
-10. Mettre a jour `index.html` avec une nouvelle carte pour la page.
-11. Verifier dans un navigateur local : images chargees, liens corrects, pas de debordement horizontal.
+Chaque créateur ou équipe possède **son propre dossier** à la racine du dépôt. Un nouveau déroulé va dans le dossier de son auteur (en créer un si besoin) :
 
-## Style visuel — Codex scientifique imperial (OBLIGATOIRE)
+```
+index.html                      ← index commun (cartes de tous les dossiers)
+AGENT.md
+ymir-lalie/                     ← équipe Lalie & Ymir (style codex ECI)
+  assets/
+    logo-eci.jpg                ← SCEAU ECI PARTAGÉ (référencé par tous)
+    ediacaran-hero.png, eres-hero.png
+  edicarien.html, resume-eres.html
+  lalie.jpeg, ymir.jpeg         ← avatars auteurs
+provoxys/                       ← créateur Provoxys (identité visuelle propre)
+  assets/artemis2-hero.png
+  Artemis2.html
+  provoxys.jpeg, samlepirate.jpeg
+```
 
-Direction arretee : un **codex scientifique imperial** — capitales romaines gravees, or sur nuit profonde, gravite ceremonielle. Toute nouvelle page DOIT appliquer ce systeme pour rester coherente avec `index.html`, `edicarien.html` et `resume-eres.html`. Ne JAMAIS revenir a un theme "AI slop" (Inter, Georgia, degrades violet, cartes generiques).
+Règles :
+
+- Le **sceau ECI** est unique : `ymir-lalie/assets/logo-eci.jpg`. Le référencer avec le bon chemin relatif depuis le dossier du dossier (ex. depuis `provoxys/` : `../ymir-lalie/assets/logo-eci.jpg`).
+- Chaque dossier d'équipe contient ses **avatars auteurs** (`<auteur>.jpeg`) et un `assets/` pour ses images hero.
+- Les chemins dans l'index sont relatifs depuis la racine (`provoxys/Artemis2.html`, `ymir-lalie/assets/eres-hero.png`).
+
+## Deux voies de design (les deux sont valides)
+
+### Voie A — Codex scientifique impérial (par défaut, identité ECI)
+
+C'est le système de référence (`index.html`, `ymir-lalie/*.html`). À utiliser pour tout dossier produit dans l'identité ECI. Détails complets ci-dessous (« Style visuel »). Ne JAMAIS retomber dans le « AI slop » (Inter, Georgia, dégradés violet, cartes génériques).
+
+### Voie B — Identité d'un créateur invité
+
+Un créateur invité peut **conserver sa propre identité visuelle** (ex. `provoxys/Artemis2.html` : Bricolage Grotesque / Newsreader / JetBrains Mono, accents orange/teal sur nuit). Dans ce cas, le codex ECI n'est PAS imposé, **mais l'intégration ECI est OBLIGATOIRE**, stylée pour épouser le design de la page :
+
+- un **lien retour « Accueil ECI »** dans la barre de navigation (`href="../index.html"`) ;
+- un **bandeau de pied de page « Empire contre Intox »** reprenant les mêmes éléments que les autres dossiers : sceau ECI en cercle, titre « Empire contre Intox », court texte collectif, **liens croisés** (retour index + autres dossiers), devise **« Veritas omnia vincit »** ;
+- conserver le pied de page propre de l'auteur s'il en a un (le bandeau ECI vient en complément).
+- bonus : si le dossier a un **compagnon interactif externe** (ex. simulation), le lier (voir « Liens externes »).
+
+Voir `provoxys/Artemis2.html` (classes `.eci-home`, `.eci-collective`, `.eci-btn`) comme gabarit, en reprenant les variables CSS de la page hôte.
+
+## Méthode obligatoire
+
+1. Lire **tout** le déroulé avant de coder.
+2. Identifier le titre, le ton, les actes/chapitres naturels, les passages forts, la chute.
+3. Ne pas corriger ni réécrire la transcription centrale (seules des normalisations typo légères sont tolérées : `$CO_2$`→`CO₂`, accents/espaces, coquilles évidentes — les signaler).
+4. Créer la page HTML autonome **dans le dossier de son auteur**, CSS + JS intégrés.
+5. Référencer le sceau ECI avec le bon chemin relatif.
+6. Créer/placer une **image hero** pertinente dans `<dossier-auteur>/assets/` (nom explicite, ex. `artemis2-hero.png`).
+7. Hero fort + nav interne sticky + chapitres + encadrés pédagogiques.
+8. **Intégration ECI** : retour à l'index + footer/bandeau ECI (voie A ou voie B selon le design choisi).
+9. Liens croisés : `../index.html` + autres dossiers pertinents.
+10. **Crédit auteur** dans la page (footer ECI et/ou bandeau crédit après le sommaire) ET sur la carte d'index.
+11. Mettre à jour `index.html` (carte + compteurs + numérotation — voir « Mise à jour de l'index »).
+12. Vérifier en local : images chargées, liens corrects, pas de scroll horizontal.
+
+## Style visuel — Codex scientifique impérial (voie A)
+
+Capitales romaines gravées, or sur nuit profonde, gravité cérémonielle.
 
 ### Typographie
 
-- Display / labels / nav / boutons / titres : **Cinzel** (`--roman`), TOUJOURS en MAJUSCULES, letter-spacing genereux.
-- Corps de lecture, leads, descriptions, citations en italique : **Fraunces** (`--serif`), `font-optical-sizing: auto`, casse normale.
-- Charger via Google Fonts :
-  `Cinzel:wght@400..900` + `Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600`.
-- INTERDITS : Inter, Roboto, Arial, Space Grotesk, polices systeme.
+- Display / labels / nav / boutons / titres : **Cinzel** (`--roman`), TOUJOURS en MAJUSCULES, letter-spacing généreux.
+- Corps, leads, descriptions, citations italiques : **Fraunces** (`--serif`), `font-optical-sizing: auto`, casse normale.
+- Google Fonts : `Cinzel:wght@400..900` + `Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600`.
+- INTERDITS : Inter, Roboto, Arial, Space Grotesk, polices système.
 
 ### Jetons couleur (`:root`)
 
@@ -50,101 +95,103 @@ Direction arretee : un **codex scientifique imperial** — capitales romaines gr
 --ease:cubic-bezier(.22,1,.36,1);
 ```
 
-- Dominante : nuit profonde. Accent unique fort : **or**. Texte : parchemin/ivoire.
-- Chaque page ajoute **un seul accent secondaire** qui fait echo a son image hero, expose en variables (ex. Ediacarien : `--verd`, `--algae` ; Eres : `--ember`, `--forest`, `--ocean`). L'or reste partout l'accent maitre.
+- Dominante : nuit profonde. Accent maître : **or**. Texte : parchemin/ivoire.
+- Chaque page ajoute **un seul accent secondaire** qui fait écho à son image hero (ex. Édiacarien : `--verd`, `--algae` ; Ères : `--ember`, `--forest`, `--ocean`).
 
-### Atmosphere (a inclure sur chaque page)
+### Atmosphère (sur chaque page codex)
 
-- `.atmos` fixe : grille gravee masquee + champ d'etoiles scintillant (radial-gradients).
+- `.atmos` fixe : grille gravée masquée + champ d'étoiles scintillant (radial-gradients).
 - `.grain` fixe : bruit SVG `feTurbulence`, `opacity:.05`, `mix-blend-mode: overlay`.
-- `.frame` : 4 equerres or fixees aux coins (cadre de charte).
-- `.progress-top` : fil dore de progression de defilement (haut de page, `position:fixed`).
-- Fonds des panneaux : nuit translucide + `backdrop-filter: blur`, jamais des aplats plats.
+- `.frame` : 4 équerres or fixées aux coins (cadre de charte).
+- `.progress-top` : fil doré de progression de défilement (`position:fixed`).
+- Panneaux : nuit translucide + `backdrop-filter: blur`, jamais d'aplats plats.
 
 ### Composants
 
-- **Rayons** : 2–3px (pas 8px). Sobriete gravee, pas d'arrondis mous.
-- **Boutons** : primaire = degrade or (`.button.primary`/`.btn-gold`, texte sombre) ; secondaire = fantome borde or.
-- **Filets** : hairlines `--line` (or, 20% alpha) pour separateurs et bordures.
-- **Liens de nav** : Cinzel + soulignement or anime (`scaleX`) au survol / actif.
-- **Cartes** (dossiers, era-node, learning-item) : bordure `--line-2`, liseré superieur 2–3px en accent, survol = `translateY(-6px)` + halo accent.
-- **Tags / chips** : Cinzel minuscule, or, fond `rgba(214,172,85,.06)`.
-- **Numeros de chapitre** : grand chiffre Cinzel en contour (`-webkit-text-stroke` or transparent).
-- **Logo ECI** : cercle borde d'un anneau `conic-gradient` dore (sceau), dans la nav et en footer.
-- **Devise** : « Veritas omnia vincit » / « Ad astra per aspera » en Fraunces italique dore.
+- **Rayons** : 2–3px (pas 8px).
+- **Boutons** : primaire = dégradé or (texte sombre) ; secondaire = fantôme bordé or.
+- **Filets** : hairlines `--line`.
+- **Liens de nav** : Cinzel + soulignement or animé (`scaleX`).
+- **Cartes** : bordure `--line-2`, liseré supérieur 2–3px en accent, survol `translateY(-6px)` + halo.
+- **Tags** : Cinzel minuscule, or, fond `rgba(214,172,85,.06)`.
+- **Numéros de chapitre** : grand chiffre Cinzel en contour (`-webkit-text-stroke`).
+- **Logo ECI** : cercle bordé d'un anneau `conic-gradient` doré.
+- **Devise** : « Veritas omnia vincit » / « Ad astra per aspera » en Fraunces italique doré.
 
 ### Mouvement
 
-- Entree hero : `@keyframes rise` en cascade (`animation-delay` croissant).
-- Sous la ligne de flottaison : classe `.reveal` revelee via `IntersectionObserver` (ajout `.in`), delais `data-d="1..3"`.
-- Mot-accent du titre : `.foil` (degrade or anime, "feuille d'or").
-- TOUJOURS gerer `@media (prefers-reduced-motion: reduce)` (couper animations/transitions) et `:focus-visible` (contour `--gold-bright`).
+- Entrée hero : `@keyframes rise` en cascade.
+- Sous la ligne de flottaison : `.reveal` révélé via `IntersectionObserver` (`.in`), délais `data-d="1..3"`.
+- Mot-accent du titre : `.foil` (dégradé or animé).
+- TOUJOURS gérer `@media (prefers-reduced-motion: reduce)` + `:focus-visible` (`--gold-bright`).
 
-### Motif "frise / data-viz de temps profond"
+### Motifs réutilisables
 
-Quand le sujet implique une echelle de temps, privilegier une visualisation a deux niveaux (cf. `resume-eres.html`) :
-1. un **rail narratif** a espacement egal (axe degrade, noeuds, marqueur « Nous » pulsant) ;
-2. un **ruban de proportions reelles** (`flex` proportionnel) qui revele l'echelle vraie + legende.
-Une couleur par segment via une variable `--c` partagee (axe, liseré de carte, pastille de legende).
+- **Frise / data-viz de temps profond** (cf. `resume-eres.html`) : rail narratif à espacement égal (axe dégradé, nœuds, marqueur « Nous » pulsant) + ruban de proportions réelles (`flex` proportionnel) + légende ; une couleur par segment via `--c`.
+- **Horloge SVG** (cf. `resume-eres.html`) : si une métaphore temporelle existe, la rendre en SVG **géométriquement exact** (angles calculés), pas en CSS approximatif.
 
-Toute page peut avoir sa palette secondaire, mais elle DOIT rester dans ce systeme (or maitre, nuit profonde, Cinzel + Fraunces, atmosphere, mouvement).
+## Structure recommandée pour une page dossier
 
-## Structure recommandee pour une page dossier
-
-- `hero` : titre, sous-titre, image immersive, CTA "Lire la transcription", "Accueil ECI".
-- `topbar` : logo ECI, titre court, lien accueil, navigation par chapitres.
+- `hero` : titre, sous-titre, image immersive, CTA « Lire la transcription », « Accueil ECI ».
+- `topbar` sticky : sceau ECI, titre court, lien accueil, navigation par chapitres + barre de progression.
 - `intro` : intention de lecture et fil conducteur.
-- `learning-panel` : objectifs pedagogiques en 3 blocs.
-- `chapter` : sections de transcription, avec aside pedagogique.
-- encadres : script, methode scientifique, question au public, lecon, anti-intox selon le contenu.
-- `collective-footer` : grand logo ECI, texte collectif, liens vers index et autre dossier.
+- `learning-panel` : objectifs pédagogiques (3 blocs).
+- `chapter` : sections de transcription, avec aside pédagogique.
+- encadrés : script, méthode scientifique, question au public, leçon, anti-intox selon le contenu.
+- **bandeau crédit** après le sommaire (`.credit-band` : avatars + « Réalisé par <auteur(s)> »).
+- **collective-footer** : sceau ECI, texte collectif, liens vers index et autres dossiers, devise.
 - footer technique court.
 
-## Regles de contenu
+## Crédits auteurs (obligatoire)
 
-- La transcription doit rester visible et complete.
-- Les ajouts editoriaux doivent clarifier, orienter ou contextualiser.
-- Ne pas transformer le texte en resume uniquement.
+- Chaque dossier est crédité à **ses** créateurs, avec leurs **avatars** (dossier de l'équipe).
+- Format byline : avatars en cercles à anneau or (superposés) + sur-titre « Réalisé par » + noms.
+- Variante participation : ajouter une ligne `.note` « avec la participation de <nom> » (ex. *Provoxys, avec la participation de Samlepirate*).
+- Le crédit apparaît **sur la carte d'index** ET **dans la page** (bandeau crédit après le sommaire et/ou collective-footer).
+
+## Mise à jour de l'index (`index.html`)
+
+Pour chaque nouveau dossier :
+
+- **Nouvelle carte** dans `.dossiers` (grille `repeat(auto-fit, minmax(300px,1fr))`, elle absorbe N cartes).
+- **Image** : `<dossier-auteur>/assets/<nom>-hero.png` en `<img>` 16:10 (mêmes effets que les autres cartes). À défaut d'asset, une scène CSS temporaire est tolérée, mais ajouter une vraie image dès que possible.
+- **Numéro** : `Dossier I / II / III…` suivant **l'ordre d'affichage**. Si on réordonne, **renuméroter partout** : les cartes, l'ordre du menu de nav, et l'eyebrow « Dossier N » dans le hero de chaque page concernée.
+- **Titre**, **description courte**, **tags** (3), **lien relatif**.
+- **Byline** auteur (avatars + « Réalisé par … », + `.note` participation si besoin).
+- **Compteurs** : mettre à jour le hero (`<b>III</b> dossiers`) et le sec-head (« Trois expériences… »).
+- Les nouvelles cartes se placent **avant** le bandeau manifeste `#manifeste` (« Rejoignez l'Empire… »), qui reste juste après la grille des dossiers.
+
+## Liens externes / compagnons interactifs
+
+Si un dossier a un compagnon externe (ex. simulation `https://thesamlepirate.github.io/NebulaSim/...`) :
+
+- le surfacer à plusieurs endroits (CTA hero, lien nav sticky, mention footer) ;
+- toujours `target="_blank" rel="noopener"`.
+
+## Règles de contenu
+
+- La transcription reste **visible et complète** (jamais réduite à un résumé).
+- Les ajouts éditoriaux clarifient/orientent/contextualisent.
 - Ne pas supprimer les formulations orales si elles font partie du document.
-- Les titres de chapitres peuvent etre editorialises, mais le contenu original doit rester present.
-- Eviter les blocs trop longs sans respiration visuelle.
+- Les titres de chapitres peuvent être éditorialisés, le contenu original reste présent.
+- Éviter les blocs trop longs sans respiration visuelle.
 
-## Assets
+## Publication (GitHub Pages, via `gh`)
 
-Assets actuels :
+- Dépôt : `TheSamLePirate/empire-contre-intox` — Pages servies depuis `main` / racine.
+- **Commit / push uniquement quand l'utilisateur le demande.** Messages en français ; terminer chaque message de commit par :
+  `Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>`
+- Après push, Pages reconstruit (~1 min). Vérifier :
+  - `gh api repos/TheSamLePirate/empire-contre-intox/pages/builds/latest --jq .status` → `built` ;
+  - `curl -s -o /dev/null -w "%{http_code}"` sur les URLs touchées → `200`.
+- `.gitignore` en place : `.DS_Store` et fichiers verrou office (`.~lock.*#`). Ne jamais committer ce genre de fichiers.
 
-- `ymir-lalie/assets/logo-eci.jpg`
-- `ymir-lalie/assets/ediacaran-hero.png`
-- `ymir-lalie/assets/eres-hero.png`
-
-Pour un nouveau sujet :
-
-- generer ou ajouter une image hero pertinente ;
-- la sauvegarder dans `ymir-lalie/assets/` avec un nom explicite ;
-- ne jamais referencer une image uniquement depuis un dossier temporaire ;
-- verifier que l'image charge dans le navigateur.
-
-## Mise a jour de l'index
-
-Chaque nouvelle page doit etre ajoutee a `index.html` :
-
-- nouvelle carte dans la grille des pages ;
-- image de vignette ;
-- titre ;
-- description courte ;
-- tags ;
-- lien relatif vers le HTML ;
-- **byline auteur** : avatars (`.byline`, anneaux or superposes) + « Réalisé par <noms> » ; crediter les createur(s) du contenu (ex. Lalie, Ymir) sur la carte ET dans le `collective-footer` de la page dossier ;
-- si utile, mise a jour du parcours pedagogique.
-
-## Verification finale
+## Vérification finale
 
 Avant de terminer :
 
-- ouvrir `index.html` via un serveur local ;
-- ouvrir chaque page HTML referencee ;
-- verifier que toutes les images sont chargees ;
-- verifier les liens de navigation et retour accueil ;
-- verifier qu'il n'y a pas de scroll horizontal ;
-- mentionner les fichiers crees ou modifies.
-
+- ouvrir `index.html` et chaque page HTML référencée ;
+- vérifier images chargées, liens (nav, retour accueil, compagnons externes), pas de scroll horizontal ;
+- vérifier numérotation et compteurs cohérents (index ↔ eyebrows des pages) ;
+- si publication demandée : confirmer build Pages `built` + `200` sur les URLs ;
+- mentionner les fichiers créés ou modifiés.
