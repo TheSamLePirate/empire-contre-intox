@@ -481,6 +481,45 @@
     }
     .step p { margin: 0; color: var(--muted); font-size: .98rem; }
 
+    /* ---------- Manifesto / call to arms ---------- */
+    .manifesto-band {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: clamp(44px, 7vw, 88px) clamp(24px, 5vw, 64px);
+      text-align: center;
+      overflow: hidden;
+      background:
+        radial-gradient(120% 150% at 50% -25%, rgba(214,172,85,.15), transparent 60%),
+        radial-gradient(110% 130% at 50% 125%, rgba(47,111,105,.16), transparent 60%),
+        linear-gradient(180deg, rgba(15,23,53,.5), rgba(8,13,29,.64));
+    }
+    .manifesto-band .kicker {
+      display: inline-flex; align-items: center; gap: 14px;
+      margin: 0 0 26px;
+      font-family: var(--roman); font-size: .7rem; font-weight: 600;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+    }
+    .manifesto-band .kicker::before,
+    .manifesto-band .kicker::after {
+      content: ""; width: 34px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .manifesto-band .kicker::after { transform: scaleX(-1); }
+    .manifesto-text {
+      max-width: 26ch; margin: 0 auto;
+      font-family: var(--serif); font-style: italic; font-weight: 400;
+      font-size: clamp(1.4rem, 3.4vw, 2.5rem); line-height: 1.28;
+      color: var(--parch); text-wrap: balance;
+    }
+    .manifesto-text .hl { color: var(--gold-bright); }
+    .manifesto-cta {
+      max-width: 44ch; margin: 30px auto 0;
+      font-family: var(--roman); font-weight: 600;
+      font-size: clamp(.92rem, 1.5vw, 1.12rem); line-height: 1.55; letter-spacing: .03em;
+      text-transform: uppercase; color: var(--muted); text-wrap: balance;
+    }
+    .manifesto-cta strong { color: var(--ink); font-weight: 700; }
+
     /* ---------- Footer ---------- */
     .footer {
       margin-top: clamp(48px, 7vw, 96px);
@@ -668,6 +707,14 @@
               <a class="stretch" href="provoxys/Artemis2.html" aria-label="Ouvrir le dossier Artemis II"></a>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section class="wrap section" id="manifeste">
+        <div class="manifesto-band reveal">
+          <p class="kicker">Rejoignez l'Empire</p>
+          <p class="manifesto-text">Il y a bien longtemps, dans une galaxie envahie par des nuages de confusion, par les <span class="hl">fake news</span>… un groupe de résistants a décidé de <span class="hl">rétablir l'équilibre</span>.</p>
+          <p class="manifesto-cta">Ne soyez plus un simple spectateur de la guerre de l'info — <strong>devenez un pilote de la vérité</strong> avec l'<span class="gold-foil">Empire contre-intox</span> !</p>
         </div>
       </section>
 

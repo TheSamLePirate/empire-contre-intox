@@ -404,6 +404,22 @@
     .eci-inner { grid-template-columns: 1fr; gap: 24px; }
     .eci-seal { width: 112px; height: 112px; }
   }
+
+  /* Lien vers la simulation Nebula Orbit */
+  .sim-link { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); transition: color .25s ease, border-color .25s ease; }
+  .sim-link:hover { color: var(--core); border-color: var(--core); }
+  .sim-launch { margin-top: 34px; }
+  .sim-cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #1a0e05; text-decoration: none;
+    background: var(--core); border: 1px solid var(--core); padding: 15px 26px;
+    box-shadow: 0 12px 34px rgba(240,110,31,0.25);
+    transition: transform .25s ease, filter .25s ease, box-shadow .25s ease;
+  }
+  .sim-cta:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 18px 46px rgba(240,110,31,0.4); }
+  .sim-cta .ico { font-size: 12px; }
+  .sim-cta .ext { font-family: var(--body); font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 13px; color: rgba(26,14,5,0.65); }
 </style>
 </head>
 <body>
@@ -414,7 +430,7 @@
     <span class="live"><span class="dot"></span>EN DIRECT</span>
     <span>Provoxys · <strong>Artemis II</strong> · Émission spéciale</span>
   </div>
-  <div class="right">Avec une démo Nebula Orbit par Sam</div>
+  <div class="right"><a class="sim-link" href="https://thesamlepirate.github.io/NebulaSim/artemis2-multistage.fr.html" target="_blank" rel="noopener">Démo Nebula Orbit par Sam ↗</a></div>
 </nav>
 
 <div class="container">
@@ -442,6 +458,13 @@
       <span class="lbl">Preset utilisé</span>
       <span class="val">1ArtemisMultiStage.json</span>
     </div>
+  </div>
+
+  <div class="sim-launch">
+    <a class="sim-cta" href="https://thesamlepirate.github.io/NebulaSim/artemis2-multistage.fr.html" target="_blank" rel="noopener">
+      <span class="ico">▶</span> Lancer la simulation
+      <span class="ext">Nebula Orbit ↗</span>
+    </a>
   </div>
 </section>
 
@@ -1561,7 +1584,7 @@
     <p>Transcript intégral, mot pour mot, du live Provoxys « Artemis – L'Odyssée Lunaire : De la Genèse à Mars », enrichi des interventions live de Sam, développeur de Nebula Orbit, qui a fait tourner la simulation multi-étages en parallèle de l'émission. Sources Provoxys : NASA.gov, OIG, GAO, interviews équipage Artemis II.</p>
     <div class="signature">
       <div>Provoxys × Nebula Orbit · Émission spéciale · 2026</div>
-      <div>⟢  Simulation : 1ArtemisMultiStage.json · 20:00 de vol</div>
+      <div>⟢  <a class="sim-link" href="https://thesamlepirate.github.io/NebulaSim/artemis2-multistage.fr.html" target="_blank" rel="noopener">Lancer la simulation Nebula Orbit ↗</a> · 20:00 de vol</div>
     </div>
   </div>
 </footer>
