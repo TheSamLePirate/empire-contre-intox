@@ -358,7 +358,7 @@
     .sec-head p { max-width: 38ch; margin: 0; color: var(--soft); font-size: 1rem; }
 
     /* ---------- Dossier cards ---------- */
-    .dossiers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+    .dossiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 26px; }
     .dossier {
       position: relative;
       display: flex; flex-direction: column;
@@ -432,6 +432,7 @@
     .byline .who { display: flex; flex-direction: column; gap: 2px; font-family: var(--roman); }
     .byline .who .lbl { font-size: .56rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
     .byline .who strong { font-size: .82rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink); }
+    .byline .who .note { font-family: var(--serif); font-style: italic; font-size: .72rem; letter-spacing: 0; text-transform: none; color: var(--soft); margin-top: 2px; }
 
     .dossier-link {
       display: inline-flex; align-items: center; gap: 10px;
@@ -556,7 +557,7 @@
             <a class="btn btn-ghost" href="ymir-lalie/edicarien.html">Ouvrir l'Édiacarien</a>
           </div>
           <div class="credentials reveal in" data-d="4">
-            <span><b>II</b> dossiers</span>
+            <span><b>III</b> dossiers</span>
             <span class="dot"></span>
             <span>Transcriptions structurées</span>
             <span class="dot"></span>
@@ -586,7 +587,7 @@
             <p class="kicker">Le fonds documentaire</p>
             <h2>Les Dossiers</h2>
           </div>
-          <p>Deux expériences prêtes à partager — transcription structurée, mise en scène visuelle et sources rendues lisibles.</p>
+          <p>Trois expériences prêtes à partager — transcription structurée, mise en scène visuelle et sources rendues lisibles.</p>
         </div>
 
         <div class="dossiers">
@@ -639,6 +640,32 @@
               </div>
               <a class="dossier-link" href="ymir-lalie/edicarien.html">Consulter le dossier <span class="arrow">→</span></a>
               <a class="stretch" href="ymir-lalie/edicarien.html" aria-label="Ouvrir le dossier L'Édiacarien"></a>
+            </div>
+          </article>
+
+          <article class="dossier reveal" data-d="3">
+            <div class="dossier-media">
+              <img src="provoxys/assets/artemis2-hero.png" alt="Lancement du SLS Artemis II, avec la Terre et la Lune en arrière-plan">
+              <span class="dossier-no">Dossier III</span>
+              <span class="badge">Émission Provoxys</span>
+            </div>
+            <div class="dossier-body">
+              <h3>Artemis II — l'Odyssée Lunaire</h3>
+              <p>L'intégralité de l'émission Provoxys, mot pour mot : objectifs scientifiques, glace lunaire, Accords Artemis — ponctuée par la simulation multi-étages menée en direct par Sam (Nebula Orbit).</p>
+              <div class="tags">
+                <span class="tag">Artemis II</span>
+                <span class="tag">Exploration lunaire</span>
+                <span class="tag">Simulation</span>
+              </div>
+              <div class="byline">
+                <span class="avatars">
+                  <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
+                  <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                </span>
+                <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec la participation de Samlepirate</span></span>
+              </div>
+              <a class="dossier-link" href="provoxys/Artemis2.html">Consulter le dossier <span class="arrow">→</span></a>
+              <a class="stretch" href="provoxys/Artemis2.html" aria-label="Ouvrir le dossier Artemis II"></a>
             </div>
           </article>
         </div>
