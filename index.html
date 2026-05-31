@@ -207,13 +207,73 @@
     .nav a:hover::after { transform: scaleX(1); }
 
     /* ---------- Hero ---------- */
+    .hero-section { position: relative; isolation: isolate; overflow: hidden; border-bottom: 1px solid var(--line); }
+
+    /* Full-bleed mosaic : the 4 dossier images, sliced on the diagonal */
+    .hero-mosaic {
+      position: absolute; inset: 0; z-index: -1; overflow: hidden;
+      /* gold leaf shows through the thin diagonal seams between panels */
+      background: linear-gradient(106deg, var(--gold-deep), var(--gold-bright) 46%, #fff6dc 52%, var(--gold) 60%, var(--gold-deep));
+    }
+    .hm-panel {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: 50% 50%;
+      filter: saturate(1.08) contrast(1.07) brightness(1.04);
+      opacity: 0;
+      animation: panelIn 1.15s var(--ease) forwards, hmDrift 44s ease-in-out infinite alternate;
+    }
+    .hm-1 { background-image: url("ymir-lalie/assets/eres-hero.png");          clip-path: polygon(0 0, 32.75% 0, 16.75% 100%, 0 100%);            animation-delay: 0s, 0s; }
+    .hm-2 { background-image: url("ymir-lalie/assets/ediacaran-hero.png");     clip-path: polygon(33.25% 0, 57.75% 0, 41.75% 100%, 17.25% 100%);  animation-delay: .12s, .4s; }
+    .hm-3 { background-image: url("provoxys/assets/artemis2-hero.png");        clip-path: polygon(58.25% 0, 82.75% 0, 66.75% 100%, 42.25% 100%);  animation-delay: .24s, .8s; }
+    .hm-4 { background-image: url("horloge-univers/assets/temps-univers.png"); clip-path: polygon(83.25% 0, 100% 0, 100% 100%, 67.25% 100%);       animation-delay: .36s, 1.2s; }
+    @keyframes panelIn { from { opacity: 0; transform: scale(1.07); } to { opacity: 1; transform: none; } }
+    @keyframes hmDrift { from { background-position: 50% 40%; } to { background-position: 50% 60%; } }
+    /* legibility scrim : darken the left for the title, glow on the right, fade into the void */
+    .hero-mosaic::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background:
+        linear-gradient(94deg, rgba(4,6,15,.95) 0%, rgba(4,6,15,.82) 24%, rgba(5,8,17,.4) 44%, rgba(5,8,17,.06) 64%, transparent 78%, rgba(5,8,17,.24) 100%),
+        radial-gradient(95% 70% at 80% 16%, rgba(214,172,85,.14), transparent 60%),
+        linear-gradient(180deg, rgba(5,8,17,.42) 0%, transparent 26%, transparent 62%, rgba(5,8,17,.46) 84%, var(--void) 100%);
+    }
+
     .hero {
-      padding: clamp(56px, 9vw, 120px) 0 clamp(48px, 7vw, 96px);
+      position: relative; z-index: 1;
+      min-height: clamp(560px, 84vh, 880px);
+    }
+    /* localized dark pool behind the text column — image stays vivid elsewhere */
+    .hero::before {
+      content: ""; position: absolute; z-index: -1; pointer-events: none;
+      inset: 0 auto 0 -10vw; width: min(72%, 760px);
+      background: radial-gradient(80% 78% at 24% 50%, rgba(4,6,15,.8), rgba(4,6,15,.42) 52%, transparent 76%);
+    }
+    .hero {
+      padding: clamp(72px, 11vw, 150px) 0 clamp(64px, 9vw, 120px);
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(300px, .82fr);
       gap: clamp(40px, 6vw, 84px);
       align-items: center;
     }
+    .hero-section .eyebrow,
+    .hero-section h1,
+    .hero-section .lead,
+    .hero-section .credentials { text-shadow: 0 2px 22px rgba(5,8,17,.82), 0 1px 3px rgba(5,8,17,.7); }
+
+    /* scroll cue */
+    .scroll-cue {
+      position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 2;
+      display: inline-flex; flex-direction: column; align-items: center; gap: 9px;
+      font-family: var(--roman); font-size: .56rem; font-weight: 600; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--gold); opacity: .8; transition: opacity .3s var(--ease);
+    }
+    .scroll-cue:hover { opacity: 1; }
+    .scroll-cue i { width: 20px; height: 30px; border: 1px solid var(--line); border-radius: 12px; position: relative; }
+    .scroll-cue i::after {
+      content: ""; position: absolute; top: 6px; left: 50%; width: 3px; height: 6px; border-radius: 3px;
+      transform: translateX(-50%); background: var(--gold-bright);
+      animation: scrollDot 1.8s var(--ease) infinite;
+    }
+    @keyframes scrollDot { 0% { opacity: 0; transform: translate(-50%, 0); } 30% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, 11px); } }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 14px;
       margin: 0 0 26px;
@@ -269,11 +329,18 @@
     .btn .arrow { transition: transform .3s var(--ease); }
     .btn:hover .arrow { transform: translateX(4px); }
     .btn-gold {
+      position: relative; overflow: hidden;
       color: #14110a;
       background: linear-gradient(140deg, var(--gold-bright), var(--gold) 55%, var(--gold-deep));
       box-shadow: 0 14px 38px rgba(214,172,85,.28), inset 0 1px 0 rgba(255,255,255,.5);
     }
+    .btn-gold::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.55) 50%, transparent 62%);
+      transform: translateX(-130%); transition: transform .7s var(--ease);
+    }
     .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 22px 54px rgba(214,172,85,.42), inset 0 1px 0 rgba(255,255,255,.6); }
+    .btn-gold:hover::after { transform: translateX(130%); }
     .btn-ghost {
       color: var(--ink);
       border: 1px solid var(--line);
@@ -360,6 +427,7 @@
     /* ---------- Dossier cards ---------- */
     .dossiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 26px; }
     .dossier {
+      --accent: var(--gold);
       position: relative;
       display: flex; flex-direction: column;
       border: 1px solid var(--line);
@@ -369,12 +437,26 @@
       box-shadow: 0 26px 70px rgba(0,0,0,.4);
       transition: transform .45s var(--ease), border-color .45s var(--ease), box-shadow .45s var(--ease);
     }
-    .dossier:hover {
-      transform: translateY(-8px);
-      border-color: rgba(214,172,85,.5);
-      box-shadow: 0 44px 100px rgba(0,0,0,.55), 0 0 0 1px rgba(214,172,85,.2);
+    /* accent liseré along the top edge */
+    .dossier::before {
+      content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; z-index: 4;
+      background: linear-gradient(90deg, transparent, var(--accent) 22%, color-mix(in srgb, var(--accent) 70%, #fff) 50%, var(--accent) 78%, transparent);
+      opacity: .85; transition: opacity .45s var(--ease);
     }
+    .dossier:hover {
+      transform: translateY(-10px);
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+      box-shadow: 0 48px 110px rgba(0,0,0,.6), 0 0 0 1px color-mix(in srgb, var(--accent) 32%, transparent), 0 24px 60px -28px var(--accent);
+    }
+    .dossier:hover::before { opacity: 1; }
     .dossier-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+    /* sheen sweep on hover */
+    .dossier-media::before {
+      content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+      background: linear-gradient(118deg, transparent 32%, rgba(255,255,255,.16) 47%, rgba(255,255,255,.04) 54%, transparent 64%);
+      transform: translateX(-130%); transition: transform 1s var(--ease);
+    }
+    .dossier:hover .dossier-media::before { transform: translateX(130%); }
     .dossier-media img {
       width: 100%; height: 100%; object-fit: cover;
       filter: saturate(.92) contrast(1.04);
@@ -391,10 +473,10 @@
       position: absolute; top: 16px; left: 18px; z-index: 2;
       font-family: var(--roman); font-weight: 700;
       font-size: .72rem; letter-spacing: .26em; text-transform: uppercase;
-      color: var(--gold-bright);
-      text-shadow: 0 2px 12px rgba(0,0,0,.7);
+      color: color-mix(in srgb, var(--accent) 60%, #fff6dc);
+      text-shadow: 0 2px 12px rgba(0,0,0,.8);
     }
-    .dossier-no::before { content: ""; display: inline-block; width: 20px; height: 1px; background: var(--gold); margin-right: 10px; vertical-align: middle; }
+    .dossier-no::before { content: ""; display: inline-block; width: 20px; height: 1px; background: var(--accent); margin-right: 10px; vertical-align: middle; box-shadow: 0 0 8px var(--accent); }
     .badge {
       position: absolute; bottom: 16px; left: 18px; z-index: 2;
       display: inline-flex; align-items: center; min-height: 30px; padding: 0 13px;
@@ -467,13 +549,33 @@
       font-size: clamp(1.7rem, 3.4vw, 2.7rem);
       line-height: 1.12; color: var(--ink);
     }
-    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
-    .step { position: relative; padding-top: 26px; border-top: 1px solid var(--line); }
-    .step .num {
-      font-family: var(--roman); font-weight: 700;
-      font-size: 2.2rem; line-height: 1; color: var(--gold);
-      -webkit-text-stroke: 0; opacity: .9;
+    .decree-lead { max-width: 64ch; margin: 18px 0 0; color: var(--muted); font-size: clamp(1rem, 1.4vw, 1.14rem); line-height: 1.66; }
+    .decree-lead b { color: var(--parch); font-weight: 600; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(212px, 1fr)); gap: 26px 22px; margin-top: 46px; }
+    .step p b { color: var(--parch); font-weight: 600; }
+    .step-ref {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
+      font-family: var(--roman); font-size: .58rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--gold); transition: color .3s var(--ease);
     }
+    .step-ref .arrow { color: var(--gold); transition: transform .3s var(--ease); }
+    .step-ref:hover { color: var(--gold-bright); }
+    .step-ref:hover .arrow { transform: translateX(4px); }
+    .step { position: relative; padding-top: 30px; border-top: 1px solid var(--line); transition: border-color .4s var(--ease); }
+    .step::before {
+      content: ""; position: absolute; top: -1px; left: 0; width: 46px; height: 2px;
+      background: linear-gradient(90deg, var(--gold-bright), var(--gold)); box-shadow: 0 0 12px rgba(243,217,138,.5);
+      transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease);
+    }
+    .step.in::before { transform: scaleX(1); }
+    .step .num {
+      font-family: var(--roman); font-weight: 800;
+      font-size: clamp(2.8rem, 5vw, 3.8rem); line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1.4px var(--gold); text-stroke: 1.4px var(--gold);
+      opacity: .9; transition: color .4s var(--ease), opacity .4s var(--ease);
+    }
+    .step:hover .num { color: rgba(214,172,85,.16); opacity: 1; }
     .step h4 {
       margin: 14px 0 8px;
       font-family: var(--roman); font-weight: 600; font-size: .9rem;
@@ -532,6 +634,20 @@
     .footer-brand strong { font-family: var(--roman); font-weight: 700; letter-spacing: .18em; text-transform: uppercase; font-size: .82rem; color: var(--ink); }
     .footer-motto { font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 1.05rem; letter-spacing: .04em; }
     .footer small { color: var(--soft); font-size: .82rem; }
+    .footer-nav {
+      display: flex; flex-wrap: wrap; gap: 8px 22px;
+      margin: 30px 0 28px; padding: 22px 0;
+      border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2);
+    }
+    .footer-nav a {
+      position: relative; font-family: var(--roman); font-size: .64rem; font-weight: 600;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+      transition: color .3s var(--ease);
+    }
+    .footer-nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }
+    .footer-nav a:hover { color: var(--ink); }
+    .footer-nav a:hover::after { transform: scaleX(1); }
+    .footer-nav .to-top { margin-left: auto; color: var(--gold); }
 
     /* ---------- Reveal animations ---------- */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
@@ -559,6 +675,7 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .reveal { opacity: 1; transform: none; }
+      .hm-panel { opacity: 1; }
       html { scroll-behavior: auto; }
     }
   </style>
@@ -569,7 +686,7 @@
   <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="progress" id="progress" aria-hidden="true"></div>
 
-  <div class="shell">
+  <div class="shell" id="top">
     <header class="topbar">
       <div class="wrap topbar-inner">
         <a class="brand" href="./index.html" aria-label="Accueil Empire contre Intox">
@@ -585,7 +702,14 @@
     </header>
 
     <main>
-      <section class="wrap hero">
+      <section class="hero-section">
+        <div class="hero-mosaic" aria-hidden="true">
+          <div class="hm-panel hm-1"></div>
+          <div class="hm-panel hm-2"></div>
+          <div class="hm-panel hm-3"></div>
+          <div class="hm-panel hm-4"></div>
+        </div>
+        <div class="wrap hero">
         <div>
           <p class="eyebrow reveal in">Archives publiques · Anno MMXXVI</p>
           <h1 class="reveal in" data-d="1">Le réel est déjà <span class="gold-foil">vertigineux</span>.</h1>
@@ -617,6 +741,8 @@
             <img src="ymir-lalie/assets/logo-eci.jpg" alt="">
           </div>
         </div>
+        </div>
+        <a class="scroll-cue" href="#dossiers" aria-label="Défiler vers les dossiers"><span>Défiler</span><i></i></a>
       </section>
 
       <section class="wrap section" id="dossiers">
@@ -629,7 +755,7 @@
         </div>
 
         <div class="dossiers">
-          <article class="dossier reveal" data-d="1">
+          <article class="dossier reveal" data-d="1" style="--accent:#e0964a">
             <div class="dossier-media">
               <img src="ymir-lalie/assets/eres-hero.png" alt="Illustration des ères géologiques de la Terre">
               <span class="dossier-no">Dossier I</span>
@@ -655,7 +781,7 @@
             </div>
           </article>
 
-          <article class="dossier reveal" data-d="2">
+          <article class="dossier reveal" data-d="2" style="--accent:#56c8a6">
             <div class="dossier-media">
               <img src="ymir-lalie/assets/ediacaran-hero.png" alt="Illustration d'un fond marin édiacarien">
               <span class="dossier-no">Dossier II</span>
@@ -681,7 +807,7 @@
             </div>
           </article>
 
-          <article class="dossier reveal" data-d="3">
+          <article class="dossier reveal" data-d="3" style="--accent:#ff9a52">
             <div class="dossier-media">
               <img src="provoxys/assets/artemis2-hero.png" alt="Lancement du SLS Artemis II, avec la Terre et la Lune en arrière-plan">
               <span class="dossier-no">Dossier III</span>
@@ -707,7 +833,7 @@
             </div>
           </article>
 
-          <article class="dossier reveal" data-d="1">
+          <article class="dossier reveal" data-d="1" style="--accent:#9d8cff">
             <div class="dossier-media">
               <img src="horloge-univers/assets/temps-univers.png" alt="Le temps de l'univers : du Big Bang à aujourd'hui, 13,787 milliards d'années en une frise cosmique">
               <span class="dossier-no">Dossier IV</span>
@@ -746,21 +872,31 @@
         <div class="decree reveal">
           <p class="kicker">Décret méthodologique</p>
           <h2>Comprendre le réel avant de débattre du faux.</h2>
+          <p class="decree-lead">Nos dossiers ne demandent pas qu'on les croie : ils montrent <b>comment on sait</b>. De l'Édiacarien à Artemis II, la même démarche relie chaque page — poser l'échelle, mesurer, modéliser, puis confronter. Quatre gestes qui transforment une affirmation en savoir partagé.</p>
           <div class="steps">
             <div class="step reveal" data-d="1">
               <div class="num">I</div>
-              <h4>Échelle</h4>
-              <p>Commencer par le temps profond pour replacer l'humanité dans l'histoire longue de la Terre.</p>
+              <h4>L'échelle</h4>
+              <p>D'abord replacer l'humain dans le temps profond. Ramenés à une année, les <b>13,787 milliards d'années</b> de l'univers réduisent toute l'histoire écrite aux <b>onze dernières secondes</b> du 31 décembre.</p>
+              <a class="step-ref" href="horloge-univers/calendrier.html">Calendrier &amp; horloge cosmiques <span class="arrow">→</span></a>
             </div>
             <div class="step reveal" data-d="2">
               <div class="num">II</div>
-              <h4>Méthode</h4>
-              <p>Observer comment la science relie fossiles, traces, chimie, géologie et hypothèses vérifiables.</p>
+              <h4>La mesure</h4>
+              <p>Aucune date n'est inventée. <b>Datation radiométrique</b> des roches, fossiles, fond diffus à <b>2,725 K</b> mesuré par le satellite Planck : des horloges physiques indépendantes qui concordent.</p>
+              <a class="step-ref" href="ymir-lalie/resume-eres.html">Le Résumé des Ères <span class="arrow">→</span></a>
             </div>
             <div class="step reveal" data-d="3">
               <div class="num">III</div>
-              <h4>Esprit critique</h4>
-              <p>Comparer la puissance du réel aux récits complotistes : la science est déjà vertigineuse.</p>
+              <h4>Le modèle</h4>
+              <p>Une hypothèse n'a de valeur que si elle <b>se teste et se rejoue</b>. La mécanique orbitale d'Artemis II se simule en direct ; les mêmes lois prédisent la trajectoire comme le passé de la Terre.</p>
+              <a class="step-ref" href="provoxys/Artemis2.html">Artemis II &amp; la simulation <span class="arrow">→</span></a>
+            </div>
+            <div class="step reveal" data-d="4">
+              <div class="num">IV</div>
+              <h4>L'esprit critique</h4>
+              <p>Le savoir tient quand des preuves <b>indépendantes convergent</b> — c'est le consensus scientifique. Face à lui, l'intox ne propose qu'un récit. Comparez : le réel est déjà bien plus vertigineux.</p>
+              <a class="step-ref" href="#dossiers">Explorer les dossiers <span class="arrow">→</span></a>
             </div>
           </div>
         </div>
@@ -768,13 +904,22 @@
     </main>
 
     <footer class="footer">
-      <div class="wrap footer-inner">
-        <div class="footer-brand">
-          <img src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
-          <strong>Empire contre Intox</strong>
+      <div class="wrap">
+        <nav class="footer-nav" aria-label="Tous les dossiers">
+          <a href="ymir-lalie/resume-eres.html">I · Résumé des Ères</a>
+          <a href="ymir-lalie/edicarien.html">II · L'Édiacarien</a>
+          <a href="provoxys/Artemis2.html">III · Artemis II</a>
+          <a href="horloge-univers/chronos.html">IV · Horloge de l'Univers</a>
+          <a class="to-top" href="#top">Haut de page ↑</a>
+        </nav>
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <img src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+            <strong>Empire contre Intox</strong>
+          </div>
+          <p class="footer-motto">Ad astra per aspera.</p>
+          <small>Archives publiques — index des dossiers HTML. Identité visuelle ECI.</small>
         </div>
-        <p class="footer-motto">Ad astra per aspera.</p>
-        <small>Archives publiques — index des dossiers HTML. Identité visuelle ECI.</small>
       </div>
     </footer>
   </div>
@@ -797,6 +942,36 @@
       }
     }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.reveal:not(.in)').forEach((el) => io.observe(el));
+
+    // Reveal the method steps (border + numeral cue)
+    const stepIo = new IntersectionObserver((entries) => {
+      for (const e of entries) { if (e.isIntersecting) { e.target.classList.add('in'); stepIo.unobserve(e.target); } }
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.step').forEach((el) => stepIo.observe(el));
+
+    // Mouse parallax on the hero mosaic — depth per diagonal panel
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const heroSection = document.querySelector('.hero-section');
+    const hmPanels = [...document.querySelectorAll('.hm-panel')];
+    if (heroSection && hmPanels.length && !reduce) {
+      let raf = null, tx = 0, ty = 0;
+      const apply = () => {
+        hmPanels.forEach((p, i) => {
+          const f = (i + 1) * 3.2;
+          p.style.transform = `translate(${tx * f}px, ${ty * f}px) scale(1.07)`;
+        });
+        raf = null;
+      };
+      heroSection.addEventListener('pointermove', (e) => {
+        const r = heroSection.getBoundingClientRect();
+        tx = (e.clientX - r.left) / r.width - 0.5;
+        ty = (e.clientY - r.top) / r.height - 0.5;
+        if (!raf) raf = requestAnimationFrame(apply);
+      });
+      heroSection.addEventListener('pointerleave', () => {
+        hmPanels.forEach((p) => { p.style.transform = ''; });
+      });
+    }
   </script>
 </body>
 </html>
