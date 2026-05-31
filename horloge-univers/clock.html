@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>L'Horloge Cosmique — l'instant présent dans 13,787 milliards d'années — Empire contre Intox</title>
-  <meta name="description" content="Une horloge analogique à la seconde. L'heure est réelle ; l'anneau extérieur est le Calendrier Cosmique. La date d'aujourd'hui vous situe dans l'histoire de l'univers — et révèle l'événement en cours. Veritas omnia vincit.">
+  <meta name="description" content="Une horloge analogique à la seconde. L'heure est réelle ; toute l'histoire de l'univers tient en 24 h : 00:00:00 est le Big Bang, 23:59:59 l'instant présent. L'heure qu'il est révèle l'événement cosmique en cours. Veritas omnia vincit.">
   <meta name="theme-color" content="#050811">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,6 +49,21 @@
     @keyframes tw { from { opacity: .55; } to { opacity: 1; } }
     .grain { position: fixed; inset: 0; z-index: 41; pointer-events: none; opacity: .05; mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+    /* ---------- Living background : super-image of the current cosmic era ---------- */
+    .bgwrap { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: #04060f; }
+    .bg { position: absolute; inset: -3%; background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.4s var(--ease); transform: scale(1.04);
+      animation: kenburns 52s ease-in-out infinite alternate; will-change: opacity, transform; }
+    .bg.show { opacity: 1; }
+    @keyframes kenburns { from { transform: scale(1.04) translate3d(0,0,0); } to { transform: scale(1.17) translate3d(-1.6%, -2.4%, 0); } }
+    .scrim { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(118% 82% at 50% 6%, transparent 0%, rgba(5,8,17,.28) 46%, rgba(4,6,15,.9) 100%),
+        radial-gradient(120% 95% at 50% 122%, color-mix(in srgb, var(--era, #d6ac55) 18%, transparent), transparent 56%),
+        linear-gradient(180deg, rgba(5,8,17,.62), rgba(5,8,17,.38) 36%, rgba(4,6,15,.92));
+      transition: background 1s var(--ease); }
+
     .frame { position: fixed; inset: 0; z-index: 40; pointer-events: none; }
     .frame i { position: absolute; width: 22px; height: 22px; border: 1.5px solid var(--line); }
     .frame i:nth-child(1){ top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
@@ -88,10 +103,10 @@
     .digital .tz { font-family: var(--roman); font-size: .5rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-deep); margin-top: 6px; }
 
     /* ---------- Cosmic panel ---------- */
-    .panel { border: 1px solid var(--line); border-top: 3px solid var(--cat); border-radius: 6px; padding: clamp(22px, 3vw, 34px);
-      background: radial-gradient(130% 120% at 14% 0%, color-mix(in srgb, var(--cat) 20%, transparent), transparent 58%), linear-gradient(180deg, rgba(7,12,26,.72), rgba(5,8,17,.88));
-      box-shadow: var(--shadow), inset 0 0 80px color-mix(in srgb, var(--cat) 10%, transparent);
-      backdrop-filter: blur(14px);
+    .panel { position: relative; border: 1px solid rgba(244,236,216,.14); border-top: 3px solid var(--cat); border-radius: 12px; padding: clamp(22px, 3vw, 34px);
+      background: radial-gradient(130% 120% at 14% 0%, color-mix(in srgb, var(--cat) 10%, transparent), transparent 56%), linear-gradient(180deg, rgba(12,18,36,.16), rgba(6,10,22,.10));
+      backdrop-filter: blur(8px) saturate(125%); -webkit-backdrop-filter: blur(8px) saturate(125%);
+      box-shadow: 0 30px 90px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.14), inset 0 0 60px color-mix(in srgb, var(--cat) 6%, transparent);
       transition: border-color .6s var(--ease), background .6s var(--ease), box-shadow .6s var(--ease); }
     .eyebrow { display: flex; align-items: center; gap: 10px; font-family: var(--roman); font-size: .54rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
     .eyebrow::before { content: ""; width: 26px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
@@ -137,6 +152,8 @@
   </style>
 </head>
 <body>
+  <div class="bgwrap" aria-hidden="true"><div class="bg" id="bgA"></div><div class="bg" id="bgB"></div></div>
+  <div class="scrim" aria-hidden="true"></div>
   <div class="atmos" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
   <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -161,7 +178,7 @@
       <!-- ============ CLOCK ============ -->
       <div class="clockwrap">
         <div class="clock">
-          <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Horloge analogique affichant l'heure réelle. L'anneau extérieur représente le Calendrier Cosmique ; un repère y situe la date d'aujourd'hui dans l'histoire de l'univers.">
+          <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Horloge analogique affichant l'heure réelle. Toute l'histoire de l'univers est compressée en 24 h : minuit est le Big Bang, la fin de journée l'instant présent. Un repère situe l'heure actuelle dans cette histoire.">
             <defs>
               <radialGradient id="face" cx="50%" cy="42%" r="72%">
                 <stop offset="0%" stop-color="#101a30"/><stop offset="64%" stop-color="#070c1a"/><stop offset="100%" stop-color="#04060f"/>
@@ -322,7 +339,26 @@
       { ago: 5e3,        cat:"hum",    t:"L'histoire écrite",           d:"Premières écritures : toute l'histoire consignée tient dans les ~11 dernières secondes." },
       { ago: 250,        cat:"hum",    t:"L'ère industrielle",          d:"Machines, science moderne, explosion démographique : à peine 0,6 seconde cosmique." }
     ];
-    UNI.forEach(e => { e.f = Math.max(0, Math.min(1, 1 - e.ago / AGE)); });
+    // Super-images : index canonique 01→45, dans l'ordre exact du tableau UNI.
+    const IMG = [
+      "01-le-big-bang","02-le-fond-diffus-cosmologique","03-les-premieres-etoiles","04-les-premieres-galaxies",
+      "05-la-reionisation","06-la-voie-lactee-prend-forme","07-le-midi-cosmique","08-naissance-du-soleil",
+      "09-formation-de-la-terre","10-la-lune-collision-de-theia","11-les-premiers-oceans","12-la-premiere-vie",
+      "13-la-photosynthese","14-la-grande-oxydation","15-la-cellule-complexe","16-la-reproduction-sexuee",
+      "17-le-supercontinent-rodinia","18-la-terre-boule-de-neige","19-les-premiers-animaux-ediacara",
+      "20-l-explosion-cambrienne","21-les-plantes-sur-la-terre","22-1-extinction-ordovicien",
+      "23-la-vie-conquiert-la-terre","24-les-vertebres-sortent-de-l-eau","25-2-extinction-devonien",
+      "26-forets-et-insectes-geants","27-le-supercontinent-pangee","28-3-extinction-la-grande-mort",
+      "29-dinosaures-et-mammiferes","30-4-extinction-trias-jurassique","31-les-premiers-oiseaux",
+      "32-les-plantes-a-fleurs","33-5-extinction-k-pg","34-l-essor-des-mammiferes","35-l-antarctique-gele",
+      "36-prairies-et-grands-singes","37-les-premiers-hominines","38-lucy-australopitheque","39-le-genre-homo",
+      "40-la-maitrise-du-feu","41-homo-sapiens","42-art-et-grandes-migrations","43-l-agriculture",
+      "44-l-histoire-ecrite","45-l-ere-industrielle"
+    ];
+    UNI.forEach((e, idx) => {
+      e.f = Math.max(0, Math.min(1, 1 - e.ago / AGE));
+      e.img = IMG[idx] ? "assets/super-images/" + IMG[idx] + ".png" : null;
+    });
     const UNI_SORTED = [...UNI].sort((a, b) => a.f - b.f);
 
     /* ======= Helpers (repris de calendrier.html) ======= */
@@ -348,13 +384,11 @@
     }
     function curIndex(f){ let i = 0; for (let k = 0; k < UNI_SORTED.length; k++){ if (UNI_SORTED[k].f <= f + 1e-12) i = k; else break; } return i; }
 
-    /* ======= Cosmic position of the *real* current date ======= */
-    // L'année réelle entière (1ᵉʳ janv. 00:00 → 1ᵉʳ janv. suivant) = les 13,787 milliards d'années.
-    function yearFraction(now){
-      const y = now.getFullYear();
-      const start = new Date(y, 0, 1).getTime();
-      const end = new Date(y + 1, 0, 1).getTime();
-      return (now.getTime() - start) / (end - start);
+    /* ======= Cosmic position of the *real* current time of day ======= */
+    // La journée entière (00:00:00 → 23:59:59) = les 13,787 milliards d'années.
+    // 00:00:00 = le Big Bang ; 23:59:59 = l'instant présent.
+    function dayFraction(now){
+      return (now.getHours()*3600 + now.getMinutes()*60 + now.getSeconds() + now.getMilliseconds()/1000) / 86400;
     }
 
     /* ======= Build clock face ======= */
@@ -383,6 +417,25 @@
     const hHour = $("hHour"), hMin = $("hMin"), hSec = $("hSec"),
           cosmicMarker = $("cosmicMarker"), cosmicArc = $("cosmicArc"),
           panel = $("panel");
+
+    /* ======= Living background : cross-fade between two layers ======= */
+    const bgLayers = [$("bgA"), $("bgB")];
+    let bgActive = -1, bgWanted = null;
+    function setBackground(src){
+      if (!src || src === bgWanted) return;
+      bgWanted = src;
+      const incoming = bgLayers[(bgActive + 1) % 2] || bgLayers[0];
+      const pre = new Image();
+      pre.onload = () => {
+        if (bgWanted !== src) return;                 // a newer image won the race
+        incoming.style.backgroundImage = 'url("' + src + '")';
+        incoming.classList.add("show");
+        const idx = bgLayers.indexOf(incoming);
+        if (bgActive >= 0 && bgActive !== idx) bgLayers[bgActive].classList.remove("show");
+        bgActive = idx;
+      };
+      pre.src = src;                                  // images are considered present
+    }
     const ARC_R = 110, ARC_C = 2 * Math.PI * ARC_R;
     cosmicArc.setAttribute("stroke-dasharray", ARC_C);
 
@@ -394,63 +447,68 @@
     const dateFmt = new Intl.DateTimeFormat("fr-FR", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
     try { dTz.textContent = Intl.DateTimeFormat().resolvedOptions().timeZone.replace(/_/g," ") + " · heure locale"; } catch(e){}
 
-    function tick(){
+    // ---- Smooth analog hands : pure rAF, transforms only (never blocked by readout work) ----
+    function hands(){
       const now = new Date();
       const ms = now.getMilliseconds(), s = now.getSeconds(), m = now.getMinutes(), h = now.getHours();
-
-      // ---- real analog hands ----
       const secA = (s + ms/1000) * 6;
       const minA = (m + s/60) * 6;
       const hourA = ((h % 12) + m/60 + s/3600) * 30;
       hSec.style.transform  = "rotate(" + secA + "deg)";
       hMin.style.transform  = "rotate(" + minA + "deg)";
       hHour.style.transform = "rotate(" + hourA + "deg)";
+      requestAnimationFrame(hands);
+    }
+    requestAnimationFrame(hands);
 
-      // everything below changes at most once per second → throttle
-      if (s !== lastSec){
-        lastSec = s;
+    // ---- Once-per-second readout : digital time + cosmic position, decoupled from the hand loop ----
+    function readout(){
+      const now = new Date();
+      const s = now.getSeconds(), m = now.getMinutes(), h = now.getHours();
+      if (s === lastSec) return;
+      lastSec = s;
 
-        // ---- real digital ----
-        const hh = String(h).padStart(2,"0"), mm = String(m).padStart(2,"0"), ss = String(s).padStart(2,"0");
-        dTime.innerHTML = hh + ":" + mm + '<span class="sec">:' + ss + "</span>";
-        const dayKey = now.getDate();
-        if (dayKey !== lastDay){
-          const ds = dateFmt.format(now);
-          dDate.textContent = ds.charAt(0).toUpperCase() + ds.slice(1);
-          lastDay = dayKey;
-        }
-
-        // ---- cosmic position from the real date ----
-        const f = yearFraction(now);
-        cosmicMarker.style.transform = "rotate(" + (f * 360) + "deg)";
-        cosmicArc.setAttribute("stroke-dashoffset", ARC_C * (1 - f));
-
-        const i = curIndex(f);
-        const cur = UNI_SORTED[i], next = UNI_SORTED[Math.min(i + 1, UNI_SORTED.length - 1)];
-
-        // progress toward next threshold (advances in real time)
-        let prog = 1;
-        if (next.f > cur.f) prog = Math.max(0, Math.min(1, (f - cur.f) / (next.f - cur.f)));
-        nFill.style.width = (prog * 100).toFixed(2) + "%";
-        nPct.textContent = (prog * 100).toFixed(prog < 0.1 ? 2 : 1).replace(".", ",") + " %";
-
-        // only repaint the event block when the *event* changes
-        if (i !== lastIdx){
-          const c = CAT[cur.cat];
-          panel.style.setProperty("--cat", c.col);
-          pCat.textContent = c.label;
-          pTitle.textContent = cur.t;
-          pDesc.textContent = cur.d;
-          nTitle.textContent = (next === cur) ? "— (présent)" : next.t;
-          lastIdx = i;
-        }
-        pDate.textContent = fmtDate(f);
-        pAgo.textContent = fmtAgo((1 - f) * AGE);
+      // ---- real digital ----
+      const hh = String(h).padStart(2,"0"), mm = String(m).padStart(2,"0"), ss = String(s).padStart(2,"0");
+      dTime.innerHTML = hh + ":" + mm + '<span class="sec">:' + ss + "</span>";
+      const dayKey = now.getDate();
+      if (dayKey !== lastDay){
+        const ds = dateFmt.format(now);
+        dDate.textContent = ds.charAt(0).toUpperCase() + ds.slice(1);
+        lastDay = dayKey;
       }
 
-      requestAnimationFrame(tick);
+      // ---- cosmic position from the real time of day ----
+      const f = dayFraction(now);
+      cosmicMarker.style.transform = "rotate(" + (f * 360) + "deg)";
+      cosmicArc.setAttribute("stroke-dashoffset", ARC_C * (1 - f));
+
+      const i = curIndex(f);
+      const cur = UNI_SORTED[i], next = UNI_SORTED[Math.min(i + 1, UNI_SORTED.length - 1)];
+
+      // progress toward next threshold (advances in real time)
+      let prog = 1;
+      if (next.f > cur.f) prog = Math.max(0, Math.min(1, (f - cur.f) / (next.f - cur.f)));
+      nFill.style.width = (prog * 100).toFixed(2) + "%";
+      nPct.textContent = (prog * 100).toFixed(prog < 0.1 ? 2 : 1).replace(".", ",") + " %";
+
+      // only repaint the event block when the *event* changes
+      if (i !== lastIdx){
+        const c = CAT[cur.cat];
+        panel.style.setProperty("--cat", c.col);
+        document.body.style.setProperty("--era", c.col);
+        setBackground(cur.img);
+        pCat.textContent = c.label;
+        pTitle.textContent = cur.t;
+        pDesc.textContent = cur.d;
+        nTitle.textContent = (next === cur) ? "— (présent)" : next.t;
+        lastIdx = i;
+      }
+      pDate.textContent = fmtDate(f);
+      pAgo.textContent = fmtAgo((1 - f) * AGE);
     }
-    requestAnimationFrame(tick);
+    readout();
+    setInterval(readout, 250);
   </script>
 </body>
 </html>
