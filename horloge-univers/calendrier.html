@@ -45,6 +45,21 @@
         radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,.4), transparent 60%);
       animation: tw 7s ease-in-out infinite alternate; }
     @keyframes tw { from { opacity: .55; } to { opacity: 1; } }
+
+    /* ---------- Living background : super-image of the displayed era ---------- */
+    .bgwrap { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: #04060f; }
+    .bg { position: absolute; inset: -3%; background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.1s var(--ease); transform: scale(1.05);
+      animation: kenburns 60s ease-in-out infinite alternate; will-change: opacity, transform; }
+    .bg.show { opacity: 1; }
+    @keyframes kenburns { from { transform: scale(1.05) translate3d(0,0,0); } to { transform: scale(1.16) translate3d(-1.4%,-2%,0); } }
+    .scrim { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(120% 85% at 50% 4%, transparent 0%, rgba(5,8,17,.34) 44%, rgba(4,6,15,.9) 100%),
+        radial-gradient(120% 95% at 50% 122%, color-mix(in srgb, var(--era, #d6ac55) 16%, transparent), transparent 58%),
+        linear-gradient(180deg, rgba(5,8,17,.64), rgba(5,8,17,.46) 40%, rgba(4,6,15,.92));
+      transition: background 1s var(--ease); }
+
     .frame { position: fixed; inset: 0; z-index: 40; pointer-events: none; }
     .frame i { position: absolute; width: 22px; height: 22px; border: 1.5px solid var(--line); }
     .frame i:nth-child(1){ top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
@@ -72,16 +87,17 @@
     .body { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: clamp(12px, 1.6vw, 22px); min-height: 0; }
 
     .side { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 14px; min-height: 0; }
-    .clock-card { border: 1px solid var(--line); border-radius: 5px; background: var(--glass); box-shadow: var(--shadow); backdrop-filter: blur(14px); padding: 18px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .clock-card { border: 1px solid rgba(244,236,216,.14); border-radius: 12px; background: linear-gradient(180deg, rgba(12,18,36,.30), rgba(6,10,22,.18)); box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.14); backdrop-filter: blur(3px) saturate(118%); -webkit-backdrop-filter: blur(3px) saturate(118%); padding: 18px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
     .clock { width: min(82%, 220px); }
     .clock svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 14px 32px rgba(0,0,0,.55)); }
     #hand { transition: transform .08s linear; }
     .digital { font-family: var(--roman); font-weight: 800; font-size: 1.7rem; letter-spacing: .04em; color: var(--gold-bright); font-variant-numeric: tabular-nums; text-align: center; line-height: 1; }
     .digital small { display: block; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: .66rem; letter-spacing: 0; color: var(--soft); margin-top: 6px; }
 
-    .readout { border: 1px solid var(--line); border-top: 3px solid var(--cat); border-radius: 5px; padding: 22px; min-height: 0; overflow: auto; display: flex; flex-direction: column;
-      background: radial-gradient(120% 130% at 12% 0%, color-mix(in srgb, var(--cat) 22%, transparent), transparent 60%), linear-gradient(180deg, rgba(7,12,26,.7), rgba(5,8,17,.85));
-      box-shadow: inset 0 0 70px color-mix(in srgb, var(--cat) 12%, transparent);
+    .readout { border: 1px solid rgba(244,236,216,.14); border-top: 3px solid var(--cat); border-radius: 12px; padding: 22px; min-height: 0; overflow: auto; display: flex; flex-direction: column;
+      background: radial-gradient(120% 130% at 12% 0%, color-mix(in srgb, var(--cat) 12%, transparent), transparent 58%), linear-gradient(180deg, rgba(12,18,36,.20), rgba(6,10,22,.12));
+      backdrop-filter: blur(3px) saturate(118%); -webkit-backdrop-filter: blur(3px) saturate(118%);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.14), inset 0 0 60px color-mix(in srgb, var(--cat) 7%, transparent);
       transition: border-color .4s var(--ease), background .4s var(--ease), box-shadow .4s var(--ease); }
     .r-cat { align-self: flex-start; display: inline-flex; align-items: center; min-height: 26px; padding: 0 12px; font-family: var(--roman); font-size: .56rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #07060c; border-radius: 999px; background: var(--cat); transition: background .4s var(--ease); }
     .r-title { font-family: var(--roman); font-weight: 700; font-size: clamp(1.2rem, 2.2vw, 1.7rem); text-transform: uppercase; letter-spacing: .01em; color: var(--ink); margin: 14px 0 8px; line-height: 1.07; }
@@ -94,8 +110,8 @@
     .cal-cap { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-family: var(--roman); font-size: .56rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
     .cal-cap span:last-child { color: var(--soft); }
     .cal { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); gap: clamp(7px, .8vw, 12px); min-height: 0; }
-    .month { display: flex; flex-direction: column; min-height: 0; border: 1px solid var(--line-2); border-radius: 4px; padding: 9px 9px 10px; background: rgba(244,236,216,.022); transition: border-color .3s var(--ease), box-shadow .3s var(--ease); }
-    .month:hover { border-color: var(--line); box-shadow: 0 12px 30px rgba(0,0,0,.3); }
+    .month { display: flex; flex-direction: column; min-height: 0; border: 1px solid var(--line-2); border-radius: 8px; padding: 9px 9px 10px; background: rgba(7,11,22,.26); backdrop-filter: blur(2px) saturate(115%); -webkit-backdrop-filter: blur(2px) saturate(115%); transition: border-color .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease); }
+    .month:hover { border-color: var(--line); background: rgba(7,11,22,.4); box-shadow: 0 12px 30px rgba(0,0,0,.4); }
     .m-head { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; margin-bottom: 7px; padding-bottom: 6px; border-bottom: 1px solid var(--line-2); }
     .m-name { font-family: var(--roman); font-size: clamp(.6rem, 1.05vw, .78rem); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--parch); }
     .m-sub { font-family: var(--roman); font-size: clamp(.4rem, .72vw, .5rem); font-weight: 600; letter-spacing: .02em; text-transform: uppercase; color: var(--soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
@@ -154,6 +170,8 @@
   </style>
 </head>
 <body>
+  <div class="bgwrap" aria-hidden="true"><div class="bg" id="bgA"></div><div class="bg" id="bgB"></div></div>
+  <div class="scrim" aria-hidden="true"></div>
   <div class="atmos" aria-hidden="true"></div>
   <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
@@ -305,7 +323,27 @@
       { ago: 250,          cat:"hum",    t:"L'ère industrielle",          d:"Machines, science moderne, explosion démographique : à peine 0,6 seconde cosmique." },
       { ago: 0,            cat:"hum",    t:"Maintenant — vous êtes ici",  d:"31 décembre, minuit. 13,787 milliards d'années ont mené à cet instant." }
     ];
-    UNI.forEach((e) => { e.f = Math.max(0, Math.min(1, 1 - e.ago / AGE)); e.di = Math.min(364, Math.floor(e.f * YEAR_DAYS)); });
+    // Super-images : index canonique 01→46, dans l'ordre exact du tableau UNI.
+    const IMG = [
+      "01-le-big-bang","02-le-fond-diffus-cosmologique","03-les-premieres-etoiles","04-les-premieres-galaxies",
+      "05-la-reionisation","06-la-voie-lactee-prend-forme","07-le-midi-cosmique","08-naissance-du-soleil",
+      "09-formation-de-la-terre","10-la-lune-collision-de-theia","11-les-premiers-oceans","12-la-premiere-vie",
+      "13-la-photosynthese","14-la-grande-oxydation","15-la-cellule-complexe","16-la-reproduction-sexuee",
+      "17-le-supercontinent-rodinia","18-la-terre-boule-de-neige","19-les-premiers-animaux-ediacara",
+      "20-l-explosion-cambrienne","21-les-plantes-sur-la-terre","22-1-extinction-ordovicien",
+      "23-la-vie-conquiert-la-terre","24-les-vertebres-sortent-de-l-eau","25-2-extinction-devonien",
+      "26-forets-et-insectes-geants","27-le-supercontinent-pangee","28-3-extinction-la-grande-mort",
+      "29-dinosaures-et-mammiferes","30-4-extinction-trias-jurassique","31-les-premiers-oiseaux",
+      "32-les-plantes-a-fleurs","33-5-extinction-k-pg","34-l-essor-des-mammiferes","35-l-antarctique-gele",
+      "36-prairies-et-grands-singes","37-les-premiers-hominines","38-lucy-australopitheque","39-le-genre-homo",
+      "40-la-maitrise-du-feu","41-homo-sapiens","42-art-et-grandes-migrations","43-l-agriculture",
+      "44-l-histoire-ecrite","45-l-ere-industrielle","46-maintenant-vous-etes-ici"
+    ];
+    UNI.forEach((e, idx) => {
+      e.f = Math.max(0, Math.min(1, 1 - e.ago / AGE));
+      e.di = Math.min(364, Math.floor(e.f * YEAR_DAYS));
+      e.img = IMG[idx] ? "assets/super-images/" + IMG[idx] + ".png" : null;
+    });
     const UNI_SORTED = [...UNI].sort((a, b) => a.f - b.f);
     const evByDi = {}; UNI.forEach((e) => { const c = evByDi[e.di]; if (!c || e.f > c.f) evByDi[e.di] = e; });
 
@@ -348,6 +386,25 @@
       rCat = $("rCat"), rTitle = $("rTitle"), rDate = $("rDate"), rAgo = $("rAgo"), rDesc = $("rDesc"),
       cal = $("cal"), scrub = $("scrub"), play = $("play"), lastbar = $("lastbar");
 
+    /* ======= Living background : cross-fade between two layers ======= */
+    const bgLayers = [$("bgA"), $("bgB")];
+    let bgActive = -1, bgWanted = null;
+    function setBackground(src) {
+      if (!src || src === bgWanted) return;
+      bgWanted = src;
+      const incoming = bgLayers[(bgActive + 1) % 2] || bgLayers[0];
+      const pre = new Image();
+      pre.onload = () => {
+        if (bgWanted !== src) return;               // a newer image won the race
+        incoming.style.backgroundImage = 'url("' + src + '")';
+        incoming.classList.add("show");
+        const idx = bgLayers.indexOf(incoming);
+        if (bgActive >= 0 && bgActive !== idx) bgLayers[bgActive].classList.remove("show");
+        bgActive = idx;
+      };
+      pre.src = src;                                // images are considered present
+    }
+
     let selCell = null;
     function render(f, ev) {
       f = Math.max(0, Math.min(1, f));
@@ -355,6 +412,8 @@
       digital.innerHTML = fmt24(f) + "<small>l'univers sur 24 heures</small>";
       const e = ev || nearest(f), c = CAT[e.cat];
       readout.style.setProperty("--cat", c.col);
+      document.body.style.setProperty("--era", c.col);
+      setBackground(e.img);
       rCat.textContent = c.label; rTitle.textContent = e.t;
       rDate.textContent = fmtDate(f); rAgo.textContent = fmtAgo((1 - f) * AGE); rDesc.textContent = e.d;
       const di = Math.min(364, Math.floor(f * YEAR_DAYS));

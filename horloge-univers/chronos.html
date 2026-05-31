@@ -126,8 +126,11 @@
       position: relative; isolation: isolate;
       padding: 28px;
     }
-    /* Generated cosmic-birth scene (no external image) */
+    /* Hero scene : image temps-univers + halo génératif par-dessus */
     .hero-canvas { position: absolute; inset: 0; z-index: -3; overflow: hidden; }
+    .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;
+      filter: saturate(1.05) contrast(1.03); animation: heroDrift 32s var(--ease) infinite alternate; }
+    @keyframes heroDrift { from { transform: scale(1.06); } to { transform: scale(1.14) translate3d(-1.4%, -1.6%, 0); } }
     .hero-canvas::before {
       content: ""; position: absolute; inset: -20%;
       background:
@@ -146,7 +149,7 @@
         rgba(111,224,255,.06) 51deg 52deg, transparent 53deg);
       mask-image: radial-gradient(closest-side, #000 8%, transparent 70%);
       animation: spin 140s linear infinite;
-      opacity: .7;
+      opacity: .26;
     }
     @keyframes bang {
       from { transform: scale(1); opacity: .82; }
@@ -425,6 +428,19 @@
     .geo-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; cursor: grab; background: radial-gradient(circle at 36% 32%, #fff, var(--gold) 60%, var(--gold-deep)); box-shadow: 0 0 0 4px rgba(214,172,85,.18), 0 6px 16px rgba(0,0,0,.5); border: none; }
     .geo-slider::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; cursor: grab; background: radial-gradient(circle at 36% 32%, #fff, var(--gold) 60%, var(--gold-deep)); border: none; }
 
+    /* ---------- Illustrations (super-images) ---------- */
+    .illus { position: relative; margin: 30px 0 6px; border: 1px solid var(--line); border-top: 3px solid var(--gc, var(--gold)); border-radius: 6px; overflow: hidden; background: var(--abyss); box-shadow: 0 26px 70px rgba(0,0,0,.42); }
+    .illus img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; filter: saturate(1.04) contrast(1.03); transition: transform .9s var(--ease); }
+    .illus:hover img { transform: scale(1.045); }
+    .illus figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 18px 13px;
+      font-family: var(--roman); font-size: .62rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--parch);
+      background: linear-gradient(180deg, transparent, rgba(5,8,17,.42) 40%, rgba(5,8,17,.9)); }
+    .illus figcaption b { color: var(--gold-bright); font-weight: 700; }
+    .illus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 30px 0 6px; }
+    .illus-grid .illus { margin: 0; }
+    .illus-grid .illus img { aspect-ratio: 4 / 3; }
+    @media (max-width: 760px) { .illus-grid { grid-template-columns: 1fr; } }
+
     /* Big Five extinctions */
     .ext-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(178px, 1fr)); gap: 14px; margin-top: 24px; }
     .ext-card { position: relative; border: 1px solid var(--line-2); border-top: 3px solid var(--cmb); border-radius: 3px; padding: 20px; background: linear-gradient(180deg, rgba(255,122,77,.08), rgba(5,8,17,.2)); overflow: hidden; transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
@@ -503,7 +519,7 @@
 
   <div class="page">
     <header class="hero" id="top">
-      <div class="hero-canvas" aria-hidden="true"><div class="rays"></div></div>
+      <div class="hero-canvas" aria-hidden="true"><img class="hero-img" src="assets/temps-univers.png" alt=""><div class="rays"></div></div>
       <div class="hero-inner">
         <div>
           <p class="eyebrow">Dossier · Chronologie cosmique</p>
@@ -635,6 +651,8 @@
           <div class="group-head"><span class="gn">I</span><h3>L'univers primordial</h3></div>
           <p class="group-sub">La première seconde concentre une physique extrême : tout ce qui suit en découle. Les durées sont théoriques (modèle standard de la cosmologie), les températures décroissent comme l'inverse du facteur d'échelle.</p>
 
+          <figure class="illus reveal"><img src="assets/super-images/01-le-big-bang.png" alt="Vue d'artiste du Big Bang : éclat de lumière primordiale en expansion" loading="lazy"><figcaption><b>Le Big Bang</b> — l'espace, le temps et l'énergie surgissent ; l'inflation dilate l'univers d'un facteur 10²⁶.</figcaption></figure>
+
           <article class="ev">
             <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">10⁻⁴³ s<small>le « mur de Planck »</small></span></div>
             <div class="ev-body">
@@ -677,6 +695,8 @@
           <div class="group-head"><span class="gn">II</span><h3>La première lumière</h3></div>
           <p class="group-sub">Pendant des centaines de milliers d'années, l'univers reste un brouillard opaque. Puis il devient transparent — et libère le plus ancien rayonnement que l'on puisse observer.</p>
 
+          <figure class="illus reveal"><img src="assets/super-images/02-le-fond-diffus-cosmologique.png" alt="Le fond diffus cosmologique : première lumière de l'univers" loading="lazy"><figcaption><b>Le fond diffus cosmologique</b> — 380 000 ans après le Big Bang, l'univers devient transparent ; sa première lumière nous parvient encore à 2,725 K.</figcaption></figure>
+
           <article class="ev">
             <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">≈ 47 000 ans<small>il y a ~13,787 milliards d'années</small></span></div>
             <div class="ev-body">
@@ -710,6 +730,8 @@
           <div class="group-head"><span class="gn">III</span><h3>L'âge des étoiles et des galaxies</h3></div>
           <p class="group-sub">La gravité l'emporte : les premiers astres s'allument et forgent, dans leur cœur, les éléments dont tout le reste — y compris nous — sera fait.</p>
 
+          <figure class="illus reveal"><img src="assets/super-images/03-les-premieres-etoiles.png" alt="Les premières étoiles et galaxies s'allument dans l'univers primitif" loading="lazy"><figcaption><b>Les premières étoiles</b> — fin des âges sombres : des étoiles géantes s'allument et forgent les premiers éléments lourds.</figcaption></figure>
+
           <article class="ev">
             <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">≈ 100 – 200 Ma<small>il y a ~13,6 milliards d'années</small></span></div>
             <div class="ev-body">
@@ -742,6 +764,8 @@
         <div class="epoch-group reveal" id="vie" style="--gc: var(--marble)">
           <div class="group-head"><span class="gn">IV</span><h3>Le Soleil, la Terre et la vie</h3></div>
           <p class="group-sub">Sur l'échelle logarithmique, toute l'histoire de la Terre tient dans la dernière fine tranche. Voici la part qui nous concerne — datée par la radioactivité et les fossiles.</p>
+
+          <figure class="illus reveal"><img src="assets/super-images/08-naissance-du-soleil.png" alt="Naissance du Soleil et du disque protoplanétaire" loading="lazy"><figcaption><b>Naissance du Soleil</b> — il y a 4,6 milliards d'années, un nuage de gaz enrichi s'effondre ; le disque protoplanétaire forme les planètes.</figcaption></figure>
 
           <article class="ev">
             <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">≈ 9,2 Ga<small>il y a 4,6 milliards d'années</small></span></div>
@@ -790,6 +814,8 @@
           </div>
           <p>Sur la frise cosmique, toute l'histoire terrestre tient dans un dernier trait. La voici dépliée : éons, ères, périodes — et la vie qui les habite. Glissez ou cliquez une bande.</p>
         </div>
+
+        <figure class="illus reveal" style="--gc: var(--gold)"><img src="assets/super-images/09-formation-de-la-terre.png" alt="Formation de la Terre primitive dans un enfer de lave" loading="lazy"><figcaption><b>Formation de la Terre</b> — la planète s'accrète à partir de poussières et de planétésimaux, dans un enfer de lave, il y a 4,54 milliards d'années.</figcaption></figure>
 
         <div class="band-label"><span>Proportions réelles · 4 567 Ma — le Précambrien occupe 88 %</span><span>← plus ancien · récent →</span></div>
         <div class="geo-rail">
@@ -862,6 +888,12 @@
             <div class="ev-body"><h4>Les mammifères, puis l'humanité</h4><p>L'astéroïde efface les dinosaures non-aviens ; les mammifères se diversifient. Les premiers homininés se redressent (~7 Ma), le genre <em>Homo</em> apparaît (~2,8 Ma), et <em>Homo sapiens</em> il y a ~300 000 ans.</p>
             <div class="ev-data"><span class="chip">primates</span><span class="chip">Homo sapiens : <b>~−300 000 ans</b></span></div></div>
           </article>
+
+          <div class="illus-grid reveal">
+            <figure class="illus"><img src="assets/super-images/20-l-explosion-cambrienne.png" alt="L'explosion cambrienne : foisonnement de la vie marine" loading="lazy"><figcaption><b>L'explosion cambrienne</b><br>−538,8 Ma</figcaption></figure>
+            <figure class="illus"><img src="assets/super-images/29-dinosaures-et-mammiferes.png" alt="L'ère des dinosaures et des premiers mammifères" loading="lazy"><figcaption><b>L'ère des dinosaures</b><br>−252 → −66 Ma</figcaption></figure>
+            <figure class="illus"><img src="assets/super-images/33-5-extinction-k-pg.png" alt="L'impact de l'astéroïde du Yucatán, extinction K–Pg" loading="lazy"><figcaption><b>Extinction K–Pg</b><br>−66 Ma</figcaption></figure>
+          </div>
         </div>
       </section>
 
