@@ -337,9 +337,10 @@
       { ago: 65e3,       cat:"hum",    t:"Art & grandes migrations",    d:"Sapiens peuple la planète ; art rupestre, parures et sépultures." },
       { ago: 12e3,       cat:"hum",    t:"L'agriculture",               d:"Néolithique : domestication, premiers villages, fin de la dernière glaciation (~23 h 59 min 32 s)." },
       { ago: 5e3,        cat:"hum",    t:"L'histoire écrite",           d:"Premières écritures : toute l'histoire consignée tient dans les ~11 dernières secondes." },
-      { ago: 250,        cat:"hum",    t:"L'ère industrielle",          d:"Machines, science moderne, explosion démographique : à peine 0,6 seconde cosmique." }
+      { ago: 250,        cat:"hum",    t:"L'ère industrielle",          d:"Machines, science moderne, explosion démographique : à peine 0,6 seconde cosmique." },
+      { ago: 0,          cat:"hum",    t:"Maintenant — vous êtes ici",  d:"31 décembre, minuit. 13,787 milliards d'années ont mené à cet instant." }
     ];
-    // Super-images : index canonique 01→45, dans l'ordre exact du tableau UNI.
+    // Super-images : index canonique 01→46, dans l'ordre exact du tableau UNI.
     const IMG = [
       "01-le-big-bang","02-le-fond-diffus-cosmologique","03-les-premieres-etoiles","04-les-premieres-galaxies",
       "05-la-reionisation","06-la-voie-lactee-prend-forme","07-le-midi-cosmique","08-naissance-du-soleil",
@@ -353,7 +354,7 @@
       "32-les-plantes-a-fleurs","33-5-extinction-k-pg","34-l-essor-des-mammiferes","35-l-antarctique-gele",
       "36-prairies-et-grands-singes","37-les-premiers-hominines","38-lucy-australopitheque","39-le-genre-homo",
       "40-la-maitrise-du-feu","41-homo-sapiens","42-art-et-grandes-migrations","43-l-agriculture",
-      "44-l-histoire-ecrite","45-l-ere-industrielle"
+      "44-l-histoire-ecrite","45-l-ere-industrielle","46-maintenant-vous-etes-ici"
     ];
     UNI.forEach((e, idx) => {
       e.f = Math.max(0, Math.min(1, 1 - e.ago / AGE));
