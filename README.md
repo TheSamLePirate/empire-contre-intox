@@ -1,65 +1,61 @@
-# Empire contre Intox - Site educatif statique
+# Empire contre Intox — site éducatif statique
 
-Ce depot contient un mini-site HTML pour publier des transcriptions scientifiques sous forme de pages educatives immersives.
+Mini-site HTML qui transforme des **déroulés de live** (transcriptions, scripts d'émission) en pages éducatives immersives, rassemblées dans un index commun et publiées en site statique.
 
-## Pages disponibles
+🌐 **En ligne :** https://thesamlepirate.github.io/empire-contre-intox/
+(dépôt `TheSamLePirate/empire-contre-intox`, GitHub Pages servi depuis `main` / racine.)
 
-- `index.html` : accueil du site et index des dossiers.
-- `ymir-lalie/edicarien.html` : dossier sur l'Ediacarien.
-- `ymir-lalie/resume-eres.html` : dossier sur les grandes eres geologiques.
+## Organisation
 
-## Assets
+Chaque créateur ou équipe a **son propre dossier** à la racine ; `index.html` rassemble une carte par dossier. Le **sceau ECI** est partagé : `ymir-lalie/assets/logo-eci.jpg`.
 
-- `ymir-lalie/assets/logo-eci.jpg` : logo Empire contre Intox.
-- `ymir-lalie/assets/ediacaran-hero.png` : image hero du dossier Ediacarien.
-- `ymir-lalie/assets/eres-hero.png` : image hero du dossier Resume des Eres.
+## Dossiers (4)
 
-## Ajouter un nouveau document texte
+| Nº | Dossier | Page | Auteur(s) |
+|----|---------|------|-----------|
+| I | Résumé des Ères | `ymir-lalie/resume-eres.html` | Lalie & Ymir |
+| II | L'Édiacarien | `ymir-lalie/edicarien.html` | Lalie & Ymir |
+| III | Artemis II | `provoxys/Artemis2.html` | Provoxys (avec Samlepirate) |
+| IV | L'Horloge de l'Univers | `horloge-univers/chronos.html` | Samlepirate |
 
-Pour transformer un nouveau `.txt` en page HTML dans le meme style :
+Le **Dossier IV** est multi-pages et piloté par des données (une seule carte d'index pointe vers ses trois vues) :
 
-1. Placer le fichier texte dans le dossier approprie.
-2. Lire le document en entier.
-3. Identifier les chapitres naturels, les passages forts et les objectifs pedagogiques.
-4. Creer une page HTML autonome a cote du fichier texte.
-5. Conserver la transcription complete et mot pour mot.
-6. Ajouter une structure claire : hero, navigation, intro, objectifs pedagogiques, chapitres, encadres, footer ECI.
-7. Ajouter une image hero dans `ymir-lalie/assets/`.
-8. Ajouter le logo ECI dans la navigation et en footer.
-9. Ajouter des liens vers `../index.html` et vers les autres dossiers.
-10. Mettre a jour `index.html` avec une carte vers la nouvelle page.
-11. Verifier le rendu dans un navigateur.
+- `horloge-univers/chronos.html` — dossier complet (frise logarithmique + horloge de la Terre) ;
+- `horloge-univers/calendrier.html` — Calendrier Cosmique interactif plein écran ;
+- `horloge-univers/clock.html` — horloge temps réel où **00:00:00 = Big Bang** et **23:59:59 = maintenant** (toute l'histoire de l'univers sur 24 h) ;
+- `horloge-univers/assets/events.json` — **source canonique** des 46 événements (du Big Bang à aujourd'hui), reflétée à l'identique dans les tableaux inline de `clock.html` et `calendrier.html`, chaque événement ayant une image dans `assets/super-images/`.
+
+## Ajouter un nouveau document
+
+Pour transformer un nouveau `.txt`/script en page :
+
+1. Lire le document **en entier**.
+2. Identifier titre, ton, chapitres naturels, passages forts, chute.
+3. Créer une page HTML autonome **dans le dossier de son auteur** (en créer un si besoin), CSS + JS intégrés.
+4. Conserver la transcription **complète et mot pour mot**.
+5. Structure : hero, nav sticky, intro, objectifs pédagogiques, chapitres, encadrés.
+6. Image hero dans `<dossier-auteur>/assets/`.
+7. **Intégration ECI** : retour `../index.html` + footer/bandeau ECI (sceau, devise « Veritas omnia vincit »).
+8. **Créditer** l'auteur (dans la page **et** sur la carte d'index).
+9. Mettre à jour `index.html` (carte + numérotation + compteur de dossiers).
+10. Vérifier en local : images chargées, liens corrects, pas de scroll horizontal.
+
+> ℹ️ Les instructions détaillées (charte visuelle « codex impérial », règles de contenu, exactitude scientifique, publication) sont dans **`AGENT.md`** (`CLAUDE.md` est un lien symbolique vers `AGENT.md`).
 
 ## Lancer en local
 
-Depuis la racine du projet :
+Depuis la racine :
 
 ```bash
 python3 -m http.server 8080
 ```
 
-Puis ouvrir :
+Puis ouvrir http://127.0.0.1:8080/index.html
 
-```text
-http://127.0.0.1:8080/index.html
-```
+## Checklist qualité
 
-## Checklist qualite
-
-Avant de considerer une page comme terminee :
-
-- le fichier texte source a ete lu en entier ;
-- la transcription est complete ;
-- la page n'est pas un simple copier-coller brut ;
-- le design suit l'identite Empire contre Intox ;
-- le logo ECI est present ;
-- les images chargeent correctement ;
-- l'index reference la page ;
-- les liens internes fonctionnent ;
-- il n'y a pas de debordement horizontal ;
-- la page contient des objectifs pedagogiques.
-
-## Methode agent
-
-Les instructions detaillees pour reproduire cette methode sont dans `AGENT.md`.
-
+- texte source lu en entier ; transcription complète (pas un copier-coller brut) ;
+- design conforme à l'identité Empire contre Intox ; sceau ECI présent ;
+- images chargées ; index à jour ; liens internes OK ; pas de débordement horizontal ;
+- objectifs pédagogiques présents ;
+- **contenu scientifique défendable** : datations standard, fourchettes plutôt qu'affirmations absolues.

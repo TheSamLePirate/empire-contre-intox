@@ -22,7 +22,8 @@ Chaque créateur ou équipe possède **son propre dossier** à la racine du dép
 
 ```
 index.html                      ← index commun (cartes de tous les dossiers)
-AGENT.md
+AGENT.md                        ← instructions agent (CLAUDE.md = lien symbolique vers AGENT.md)
+README.md                       ← même contenu, survol humain
 ymir-lalie/                     ← équipe Lalie & Ymir (style codex ECI)
   assets/
     logo-eci.jpg                ← SCEAU ECI PARTAGÉ (référencé par tous)
@@ -33,7 +34,19 @@ provoxys/                       ← créateur Provoxys (identité visuelle propr
   assets/artemis2-hero.png
   Artemis2.html
   provoxys.jpeg, samlepirate.jpeg
+horloge-univers/                ← Samlepirate — « Horloge de l'Univers » (dossier multi-pages, piloté par des données)
+  chronos.html                  ← dossier complet (frise log + horloge de la Terre)
+  calendrier.html               ← Calendrier Cosmique plein écran
+  clock.html                    ← horloge temps réel (24 h = 13,787 Ga)
+  assets/
+    events.json                 ← SOURCE CANONIQUE des 46 événements (clock + calendrier)
+    super-images/               ← une image par événement (01 → 46)
+    extinctions/ · geologie/ · temps-univers.png
 ```
+
+> **IV dossiers** au total — l'index affiche **`<b>IV</b> dossiers`**. Numérotation (ordre d'affichage) :
+> I `ymir-lalie/resume-eres.html` · II `ymir-lalie/edicarien.html` ·
+> III `provoxys/Artemis2.html` · IV `horloge-univers/` (carte unique → `chronos.html` + `calendrier.html` + `clock.html`).
 
 Règles :
 
@@ -158,7 +171,7 @@ Pour chaque nouveau dossier :
 - **Numéro** : `Dossier I / II / III…` suivant **l'ordre d'affichage**. Si on réordonne, **renuméroter partout** : les cartes, l'ordre du menu de nav, et l'eyebrow « Dossier N » dans le hero de chaque page concernée.
 - **Titre**, **description courte**, **tags** (3), **lien relatif**.
 - **Byline** auteur (avatars + « Réalisé par … », + `.note` participation si besoin).
-- **Compteurs** : mettre à jour le hero (`<b>III</b> dossiers`) et le sec-head (« Trois expériences… »).
+- **Compteurs** : mettre à jour le hero (compteur en chiffres romains, actuellement `<b>IV</b> dossiers`) et le sec-head (la phrase qui chiffre le nombre de dossiers, actuellement « Quatre expériences… »).
 - Les nouvelles cartes se placent **avant** le bandeau manifeste `#manifeste` (« Rejoignez l'Empire… »), qui reste juste après la grille des dossiers.
 
 ## Liens externes / compagnons interactifs
@@ -167,6 +180,23 @@ Si un dossier a un compagnon externe (ex. simulation `https://thesamlepirate.git
 
 - le surfacer à plusieurs endroits (CTA hero, lien nav sticky, mention footer) ;
 - toujours `target="_blank" rel="noopener"`.
+
+## Dossiers pilotés par des données (ex. Horloge de l'Univers)
+
+Certains dossiers affichent le **même jeu de données** sur plusieurs pages (`horloge-univers/` : `clock.html`, `calendrier.html`, `chronos.html`). Règles :
+
+- Tenir une **source canonique** versionnée : `horloge-univers/assets/events.json` — les 46 événements du Calendrier Cosmique (`n`, `cat`, `ago` en années, `t`, `d`, `img`), du Big Bang à « Maintenant — vous êtes ici ».
+- Pour rester **autonomes en `file://`** (pas de `fetch`), `clock.html` et `calendrier.html` embarquent le tableau `UNI` **inline** ; il doit rester **strictement identique** à `events.json` (mêmes événements, même ordre). Le vérifier par `diff` après chaque modification — clock ↔ calendrier doivent être identiques.
+- Chaque événement pointe vers une **super-image existante** dans `assets/super-images/` (index `01 → 46`, dans l'ordre exact du tableau).
+- `clock.html` mappe **00:00:00 = Big Bang → 23:59:59 = maintenant** (toute l'histoire de l'univers sur 24 h, pilotée par l'heure locale).
+
+## Exactitude scientifique (contenu pédagogique)
+
+Le contenu doit rester **défendable** :
+
+- Dater chaque événement avec une valeur standard (ex. Terre ≈ 4,54 Ga) ; conserver les **bornes officielles ICS/GTS** là où elles s'appliquent (`chronos.html`).
+- Préférer des **fourchettes** et des marqueurs de prudence (« ~90–96 % », « probablement », « selon les estimations », « des indices suggèrent ») aux **affirmations absolues** (« tous », « tout le gaz », « presque tous les plans »).
+- En cas de révision des données, la répercuter dans **les trois** vues (`events.json`, `clock.html`, `calendrier.html`) et, si concerné, dans `chronos.html`.
 
 ## Règles de contenu
 
