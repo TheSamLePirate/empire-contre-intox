@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>L'Horloge Cosmique — l'instant présent dans 13,787 milliards d'années — Empire contre Intox</title>
+  <meta name="description" content="Une horloge analogique à la seconde. L'heure est réelle ; l'anneau extérieur est le Calendrier Cosmique. La date d'aujourd'hui vous situe dans l'histoire de l'univers — et révèle l'événement en cours. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+      --c-cosmos:#9d8cff; --c-terre:#5ec8ff; --c-vie:#7bd88f; --c-hum:#f3d98a;
+      --line:rgba(214,172,85,.20); --line-2:rgba(244,236,216,.10); --glass:rgba(7,12,26,.72);
+      --shadow:0 30px 90px rgba(0,0,0,.55);
+      --serif:"Fraunces",Georgia,serif; --roman:"Cinzel",Georgia,serif;
+      --ease:cubic-bezier(.22,1,.36,1); --cat:var(--gold);
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; }
+    body {
+      color: var(--ink); font-family: var(--serif); font-optical-sizing: auto; font-weight: 380;
+      min-height: 100dvh; overflow-x: hidden;
+      background:
+        radial-gradient(120% 80% at 10% 0%, rgba(157,140,255,.14), transparent 46%),
+        radial-gradient(120% 80% at 95% 8%, rgba(94,200,255,.1), transparent 48%),
+        linear-gradient(180deg, #06060f, var(--void) 55%, var(--abyss));
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: rgba(214,172,85,.28); color: #fff; }
+    :focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 2px; border-radius: 3px; }
+
+    /* ---------- Atmosphere ---------- */
+    .atmos { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        radial-gradient(1.2px 1.2px at 16% 28%, rgba(255,255,255,.5), transparent 60%),
+        radial-gradient(1px 1px at 72% 16%, rgba(243,217,138,.6), transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%, rgba(255,255,255,.4), transparent 60%),
+        radial-gradient(1px 1px at 88% 54%, rgba(111,224,255,.55), transparent 60%),
+        radial-gradient(1.1px 1.1px at 8% 82%, rgba(157,140,255,.55), transparent 60%),
+        radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,.4), transparent 60%);
+      animation: tw 7s ease-in-out infinite alternate; }
+    @keyframes tw { from { opacity: .55; } to { opacity: 1; } }
+    .grain { position: fixed; inset: 0; z-index: 41; pointer-events: none; opacity: .05; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .frame { position: fixed; inset: 0; z-index: 40; pointer-events: none; }
+    .frame i { position: absolute; width: 22px; height: 22px; border: 1.5px solid var(--line); }
+    .frame i:nth-child(1){ top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+    .frame i:nth-child(2){ top: 10px; right: 10px; border-left: 0; border-bottom: 0; }
+    .frame i:nth-child(3){ bottom: 10px; left: 10px; border-right: 0; border-top: 0; }
+    .frame i:nth-child(4){ bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+
+    /* ---------- Shell ---------- */
+    .app { position: relative; z-index: 1; min-height: 100dvh; display: flex; flex-direction: column;
+      padding: 16px clamp(14px, 2.4vw, 30px) 22px; gap: clamp(18px, 3vh, 34px); }
+
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(214,172,85,.5); box-shadow: 0 0 0 3px rgba(214,172,85,.1); flex: 0 0 auto; }
+    .brand .tt { min-width: 0; }
+    .brand .k { font-family: var(--roman); font-size: .54rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+    .brand h1 { margin: 2px 0 0; font-family: var(--roman); font-weight: 800; font-size: clamp(.95rem, 1.8vw, 1.35rem); letter-spacing: .02em; text-transform: uppercase; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .brand h1 .foil { background: linear-gradient(96deg, var(--gold-deep), var(--gold-bright) 45%, #fff6dc 52%, var(--gold-bright) 60%, var(--gold-deep)); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: foil 7s linear infinite; }
+    @keyframes foil { to { background-position: 220% 0; } }
+    .nav-links { display: flex; gap: 10px; flex: 0 0 auto; }
+    .lnk { display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px; font-family: var(--roman); font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06); white-space: nowrap; transition: border-color .3s var(--ease), background .3s var(--ease); }
+    .lnk:hover { border-color: rgba(214,172,85,.5); background: rgba(214,172,85,.12); }
+
+    /* ---------- Stage ---------- */
+    .stage { flex: 1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+      gap: clamp(20px, 3.4vw, 54px); align-items: center; }
+
+    /* ---------- Clock ---------- */
+    .clockwrap { display: flex; flex-direction: column; align-items: center; gap: clamp(14px, 2.4vh, 26px); }
+    .clock { width: min(78vw, 50vh, 460px); aspect-ratio: 1; }
+    .clock svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 22px 50px rgba(0,0,0,.6)); }
+    .h-hour, .h-min { transition: none; }
+    .digital { text-align: center; }
+    .digital .time { font-family: var(--roman); font-weight: 800; font-size: clamp(2rem, 5.2vw, 3.1rem); letter-spacing: .06em; color: var(--gold-bright); font-variant-numeric: tabular-nums; line-height: 1; text-shadow: 0 0 26px rgba(243,217,138,.22); }
+    .digital .time .sec { color: var(--muted); font-weight: 600; }
+    .digital .date { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(.78rem, 1.5vw, .98rem); color: var(--soft); margin-top: 10px; letter-spacing: .01em; }
+    .digital .tz { font-family: var(--roman); font-size: .5rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-deep); margin-top: 6px; }
+
+    /* ---------- Cosmic panel ---------- */
+    .panel { border: 1px solid var(--line); border-top: 3px solid var(--cat); border-radius: 6px; padding: clamp(22px, 3vw, 34px);
+      background: radial-gradient(130% 120% at 14% 0%, color-mix(in srgb, var(--cat) 20%, transparent), transparent 58%), linear-gradient(180deg, rgba(7,12,26,.72), rgba(5,8,17,.88));
+      box-shadow: var(--shadow), inset 0 0 80px color-mix(in srgb, var(--cat) 10%, transparent);
+      backdrop-filter: blur(14px);
+      transition: border-color .6s var(--ease), background .6s var(--ease), box-shadow .6s var(--ease); }
+    .eyebrow { display: flex; align-items: center; gap: 10px; font-family: var(--roman); font-size: .54rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+    .eyebrow::before { content: ""; width: 26px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--cat); box-shadow: 0 0 0 0 color-mix(in srgb, var(--cat) 70%, transparent); animation: ping 2.4s var(--ease) infinite; }
+    @keyframes ping { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--cat) 60%, transparent); } 70%,100% { box-shadow: 0 0 0 13px transparent; } }
+
+    .p-cat { align-self: flex-start; display: inline-flex; align-items: center; min-height: 26px; padding: 0 13px; margin-top: 18px; font-family: var(--roman); font-size: .56rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #07060c; border-radius: 999px; background: var(--cat); transition: background .6s var(--ease); }
+    .p-title { font-family: var(--roman); font-weight: 800; font-size: clamp(1.7rem, 3.6vw, 2.7rem); text-transform: uppercase; letter-spacing: .005em; color: var(--ink); margin: 16px 0 0; line-height: 1.04; }
+    .p-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 14px 0 0; }
+    .p-meta .it { display: flex; flex-direction: column; gap: 3px; }
+    .p-meta .lab { font-family: var(--roman); font-size: .5rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--soft); }
+    .p-meta .val { font-family: var(--roman); font-weight: 700; font-size: 1.02rem; color: var(--cat); letter-spacing: .01em; transition: color .6s var(--ease); }
+    .p-meta .val.neutral { color: var(--parch); }
+    .p-desc { color: var(--muted); font-size: clamp(.92rem, 1.5vw, 1.04rem); line-height: 1.6; margin: 18px 0 0; }
+
+    .toNext { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line-2); }
+    .toNext .row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-family: var(--roman); text-transform: uppercase; }
+    .toNext .row .l { font-size: .5rem; font-weight: 600; letter-spacing: .16em; color: var(--soft); }
+    .toNext .row .r { font-size: .62rem; font-weight: 700; letter-spacing: .04em; color: var(--parch); text-align: right; }
+    .track { position: relative; height: 6px; margin-top: 12px; border-radius: 6px; overflow: hidden; background: rgba(244,236,216,.07); border: 1px solid var(--line-2); }
+    .track .fill { position: absolute; inset: 0 auto 0 0; border-radius: 6px; background: linear-gradient(90deg, color-mix(in srgb, var(--cat) 55%, transparent), var(--cat)); box-shadow: 0 0 14px var(--cat); transition: width .5s var(--ease), background .6s var(--ease); }
+    .toNext .pct { display: flex; justify-content: flex-end; margin-top: 8px; font-family: var(--roman); font-size: .82rem; font-weight: 700; color: var(--gold-bright); font-variant-numeric: tabular-nums; letter-spacing: .03em; }
+
+    /* ---------- Footer ---------- */
+    .foot { display: flex; align-items: center; justify-content: center; gap: 10px 22px; flex-wrap: wrap; text-align: center; }
+    .legend { display: flex; gap: 8px 18px; flex-wrap: wrap; justify-content: center; }
+    .legend span { display: inline-flex; align-items: center; gap: 7px; font-family: var(--roman); font-size: .54rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .legend i { width: 10px; height: 10px; border-radius: 3px; box-shadow: 0 0 8px currentColor; }
+    .motto { font-family: var(--serif); font-style: italic; font-size: .92rem; color: var(--gold); opacity: .9; }
+    .sep { width: 1px; height: 16px; background: var(--line); }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 940px) {
+      .stage { grid-template-columns: 1fr; gap: 28px; }
+      .clock { width: min(80vw, 360px); }
+      .panel { order: 2; }
+    }
+    @media (max-width: 520px) {
+      .nav-links .full-only { display: none; }
+      .brand h1 { font-size: .9rem; white-space: normal; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="../index.html" aria-label="Accueil Empire contre Intox">
+        <img src="../ymir-lalie/assets/logo-eci.jpg" alt="">
+        <span class="tt">
+          <span class="k">Empire contre Intox</span>
+          <h1>L'Horloge <span class="foil">Cosmique</span></h1>
+        </span>
+      </a>
+      <nav class="nav-links">
+        <a class="lnk full-only" href="chronos.html">Dossier complet</a>
+        <a class="lnk full-only" href="calendrier.html">Le calendrier</a>
+        <a class="lnk" href="../index.html">Accueil ECI</a>
+      </nav>
+    </header>
+
+    <main class="stage">
+      <!-- ============ CLOCK ============ -->
+      <div class="clockwrap">
+        <div class="clock">
+          <svg viewBox="0 0 240 240" role="img" aria-label="Horloge analogique affichant l'heure réelle. L'anneau extérieur représente le Calendrier Cosmique ; un repère y situe la date d'aujourd'hui dans l'histoire de l'univers.">
+            <defs>
+              <radialGradient id="face" cx="50%" cy="42%" r="72%">
+                <stop offset="0%" stop-color="#101a30"/><stop offset="64%" stop-color="#070c1a"/><stop offset="100%" stop-color="#04060f"/>
+              </radialGradient>
+              <linearGradient id="bezel" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f3d98a"/><stop offset="46%" stop-color="#d6ac55"/><stop offset="100%" stop-color="#9c7228"/>
+              </linearGradient>
+              <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <filter id="softglow" x="-80%" y="-80%" width="260%" height="260%">
+                <feGaussianBlur stdDeviation="2.6"/>
+              </filter>
+            </defs>
+
+            <!-- Cosmic outer ring (the year = 13.787 Gyr) -->
+            <circle cx="120" cy="120" r="115" fill="none" stroke="url(#bezel)" stroke-width="1" opacity=".5"/>
+            <circle id="cosmicArc" cx="120" cy="120" r="110" fill="none" stroke="var(--gold)" stroke-width="2.4"
+                    stroke-linecap="round" opacity=".9" transform="rotate(-90 120 120)"/>
+            <circle cx="120" cy="120" r="110" fill="none" stroke="rgba(244,236,216,.08)" stroke-width="2.4"/>
+            <g id="cosmicDots"></g>
+            <g id="cosmicMarker" style="transform-origin:120px 120px">
+              <circle cx="120" cy="10" r="7" fill="none" stroke="var(--gold-bright)" stroke-width="1.4" filter="url(#softglow)" opacity=".7"/>
+              <polygon points="120,3 124.5,13 115.5,13" fill="#f3d98a" filter="url(#glow)"/>
+            </g>
+
+            <!-- Clock face -->
+            <circle cx="120" cy="120" r="100" fill="none" stroke="url(#bezel)" stroke-width="2.4"/>
+            <circle cx="120" cy="120" r="98" fill="url(#face)"/>
+            <circle cx="120" cy="120" r="74" fill="none" stroke="#d6ac55" stroke-width=".5" opacity=".14"/>
+
+            <g id="ticks"></g>
+            <g id="numerals" fill="#e7dcc1" font-family="Cinzel, serif" font-size="11" font-weight="700"
+               text-anchor="middle" dominant-baseline="central"></g>
+
+            <!-- Hands -->
+            <g id="hHour" class="h-hour" style="transform-origin:120px 120px">
+              <rect x="117.6" y="58" width="4.8" height="68" rx="2.4" fill="#e7dcc1" filter="url(#glow)"/>
+            </g>
+            <g id="hMin" class="h-min" style="transform-origin:120px 120px">
+              <rect x="118.4" y="34" width="3.2" height="92" rx="1.6" fill="#f4ecd8" filter="url(#glow)"/>
+            </g>
+            <g id="hSec" style="transform-origin:120px 120px">
+              <rect x="119.4" y="26" width="1.2" height="100" fill="#f3d98a"/>
+              <rect x="119" y="120" width="2" height="22" fill="#f3d98a"/>
+              <circle cx="120" cy="120" r="3" fill="none" stroke="#f3d98a" stroke-width="1.4"/>
+            </g>
+            <circle cx="120" cy="120" r="5.4" fill="#d6ac55" stroke="#9c7228" stroke-width="1.2"/>
+            <circle cx="120" cy="120" r="1.8" fill="#07060c"/>
+          </svg>
+        </div>
+
+        <div class="digital">
+          <div class="time" id="dTime">--:--<span class="sec">:--</span></div>
+          <div class="date" id="dDate">—</div>
+          <div class="tz" id="dTz">heure locale</div>
+        </div>
+      </div>
+
+      <!-- ============ COSMIC READOUT ============ -->
+      <aside class="panel" id="panel" aria-live="polite">
+        <div class="eyebrow"><span class="pulse" id="pulse"></span> En ce moment dans le Calendrier Cosmique</div>
+
+        <span class="p-cat" id="pCat">—</span>
+        <h2 class="p-title" id="pTitle">—</h2>
+
+        <div class="p-meta">
+          <div class="it"><span class="lab">Date cosmique</span><span class="val" id="pDate">—</span></div>
+          <div class="it"><span class="lab">Temps profond</span><span class="val neutral" id="pAgo">—</span></div>
+        </div>
+
+        <p class="p-desc" id="pDesc">—</p>
+
+        <div class="toNext">
+          <div class="row"><span class="l">Prochain seuil</span><span class="r" id="nTitle">—</span></div>
+          <div class="track"><div class="fill" id="nFill" style="width:0%"></div></div>
+          <div class="pct" id="nPct">—</div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="foot">
+      <div class="legend" aria-hidden="true">
+        <span><i style="color:var(--c-cosmos);background:var(--c-cosmos)"></i>Cosmos</span>
+        <span><i style="color:var(--c-terre);background:var(--c-terre)"></i>Soleil</span>
+        <span><i style="color:var(--c-vie);background:var(--c-vie)"></i>Vie</span>
+        <span><i style="color:var(--c-hum);background:var(--c-hum)"></i>Humanité</span>
+      </div>
+      <span class="sep" aria-hidden="true"></span>
+      <span class="motto">Veritas omnia vincit</span>
+    </footer>
+  </div>
+
+  <script>
+    /* ======= Cosmic timeline (identique à calendrier.html) ======= */
+    const AGE = 13.787e9, YEAR_DAYS = 365;
+    const MONTH_DAYS = [31,28,31,30,31,30,31,31,30,31,30,31];
+    const MONTH_NAMES = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+    const CAT = {
+      cosmos:{ label:"Cosmos", col:"#9d8cff" },
+      terre: { label:"Système solaire", col:"#5ec8ff" },
+      vie:   { label:"La vie", col:"#7bd88f" },
+      hum:   { label:"L'humanité", col:"#f3d98a" }
+    };
+    const UNI = [
+      { ago: AGE,        cat:"cosmos", t:"Le Big Bang",                 d:"L'espace, le temps, la matière et l'énergie surgissent. En une fraction de seconde, l'inflation dilate l'univers d'un facteur 10²⁶." },
+      { ago: AGE-380000, cat:"cosmos", t:"Le fond diffus cosmologique", d:"380 000 ans plus tard, les premiers atomes se forment : l'univers devient transparent. Sa première lumière nous parvient encore (2,7 K)." },
+      { ago: 13.6e9,     cat:"cosmos", t:"Les premières étoiles",       d:"Fin des âges sombres : des étoiles géantes s'allument et forgent les premiers éléments lourds." },
+      { ago: 13.4e9,     cat:"cosmos", t:"Les premières galaxies",      d:"La matière s'assemble en galaxies primitives, observées aujourd'hui par le télescope James-Webb." },
+      { ago: 12.8e9,     cat:"cosmos", t:"La réionisation",             d:"Le rayonnement des étoiles réionise tout le gaz : l'univers redevient transparent aux ultraviolets." },
+      { ago: 11.0e9,     cat:"cosmos", t:"La Voie lactée prend forme",  d:"Notre galaxie rassemble l'essentiel de ses étoiles." },
+      { ago: 10.3e9,     cat:"cosmos", t:"Le midi cosmique",            d:"Le taux de formation d'étoiles atteint son maximum dans toute l'histoire de l'univers." },
+      { ago: 4.6e9,      cat:"terre",  t:"Naissance du Soleil",         d:"Un nuage de gaz enrichi s'effondre : le Soleil s'allume, le disque protoplanétaire forme les planètes." },
+      { ago: 4.51e9,     cat:"terre",  t:"Formation de la Terre",       d:"La Terre s'accrète à partir de poussières et de planétésimaux, dans un enfer de lave." },
+      { ago: 4.5e9,      cat:"terre",  t:"La Lune (collision de Théia)", d:"Une protoplanète de la taille de Mars percute la Terre ; les débris s'agrègent en Lune." },
+      { ago: 4.4e9,      cat:"terre",  t:"Les premiers océans",         d:"La croûte se solidifie, la vapeur d'eau se condense : des océans liquides apparaissent." },
+      { ago: 3.8e9,      cat:"vie",    t:"La première vie",             d:"Premières cellules (procaryotes) dans les océans ; stromatolites bâtis par des bactéries." },
+      { ago: 3.4e9,      cat:"vie",    t:"La photosynthèse",            d:"Les cyanobactéries captent la lumière du Soleil et commencent à rejeter de l'oxygène." },
+      { ago: 2.4e9,      cat:"vie",    t:"La Grande Oxydation",         d:"L'oxygène s'accumule — toxique pour la vie d'alors — et déclenche une glaciation globale." },
+      { ago: 1.8e9,      cat:"vie",    t:"La cellule complexe",         d:"Apparaissent les eucaryotes (cellules à noyau), ancêtres des plantes et des animaux." },
+      { ago: 1.2e9,      cat:"vie",    t:"La reproduction sexuée",      d:"Le brassage des gènes accélère l'évolution (algues rouges, Bangiomorpha)." },
+      { ago: 1.0e9,      cat:"vie",    t:"Le supercontinent Rodinia",   d:"Les terres se rassemblent en un continent unique, puis se fragmentent." },
+      { ago: 720e6,      cat:"vie",    t:"La Terre boule de neige",     d:"Glaciations du Cryogénien : la planète gèle presque entièrement, des pôles à l'équateur." },
+      { ago: 635e6,      cat:"vie",    t:"Les premiers animaux (Ediacara)", d:"Premiers grands organismes mous : Dickinsonia, Charnia, Kimberella." },
+      { ago: 538.8e6,    cat:"vie",    t:"L'explosion cambrienne",      d:"Début du Phanérozoïque : squelettes, yeux, prédateurs ; presque tous les plans d'organisation animaux apparaissent." },
+      { ago: 470e6,      cat:"vie",    t:"Les plantes sur la terre",    d:"Ordovicien : mousses puis plantes colonisent peu à peu les continents." },
+      { ago: 443.8e6,    cat:"vie",    t:"1ʳᵉ extinction (Ordovicien)", d:"Une glaciation brutale efface ~85 % des espèces. La première des cinq grandes crises." },
+      { ago: 430e6,      cat:"vie",    t:"La vie conquiert la terre",   d:"Silurien : plantes vasculaires, premiers arthropodes terrestres, poissons à mâchoires." },
+      { ago: 375e6,      cat:"vie",    t:"Les vertébrés sortent de l'eau", d:"Dévonien : les premiers tétrapodes quittent l'eau et marchent sur la terre ferme." },
+      { ago: 372e6,      cat:"vie",    t:"2ᵉ extinction (Dévonien)",    d:"Vagues d'anoxie des océans : ~75 % des espèces disparaissent." },
+      { ago: 320e6,      cat:"vie",    t:"Forêts & insectes géants",    d:"Carbonifère : forêts de fougères, oxygène à ~35 %, libellules géantes (Meganeura)." },
+      { ago: 299e6,      cat:"vie",    t:"Le supercontinent Pangée",    d:"Permien : toutes les terres réunies ; règne des reptiles mammaliens (synapsides)." },
+      { ago: 252e6,      cat:"vie",    t:"3ᵉ extinction : la Grande Mort", d:"Volcanisme sibérien : ~95 % des espèces marines disparaissent. La pire de toute l'histoire." },
+      { ago: 230e6,      cat:"vie",    t:"Dinosaures & mammifères",     d:"Trias : les dinosaures entament leur règne ; les premiers mammifères apparaissent." },
+      { ago: 201e6,      cat:"vie",    t:"4ᵉ extinction (Trias–Jurassique)", d:"Volcanisme de l'Atlantique naissant : ~80 % des espèces ; les dinosaures dominent." },
+      { ago: 150e6,      cat:"vie",    t:"Les premiers oiseaux",        d:"Jurassique : Archaeopteryx ; grands sauropodes ; reptiles marins (plésiosaures)." },
+      { ago: 130e6,      cat:"vie",    t:"Les plantes à fleurs",        d:"Crétacé : les angiospermes apparaissent et bouleversent les écosystèmes." },
+      { ago: 66e6,       cat:"vie",    t:"5ᵉ extinction : K–Pg",        d:"Un astéroïde de ~10 km frappe le Yucatán : fin des dinosaures non-aviens." },
+      { ago: 60e6,       cat:"vie",    t:"L'essor des mammifères",      d:"Paléogène : radiation des mammifères et des oiseaux ; apparition des premiers primates." },
+      { ago: 34e6,       cat:"vie",    t:"L'Antarctique gèle",          d:"Refroidissement global : les premières calottes polaires se forment." },
+      { ago: 20e6,       cat:"vie",    t:"Prairies & grands singes",    d:"Néogène : expansion des herbes ; diversification des hominidés." },
+      { ago: 7e6,        cat:"hum",    t:"Les premiers homininés",      d:"En Afrique, des primates se redressent et marchent debout (Sahelanthropus, Orrorin)." },
+      { ago: 3.2e6,      cat:"hum",    t:"Lucy (Australopithèque)",     d:"Bipédie confirmée : petit cerveau, mais marche debout assurée." },
+      { ago: 2.8e6,      cat:"hum",    t:"Le genre Homo",               d:"Premiers outils de pierre taillée ; le genre Homo apparaît." },
+      { ago: 0.8e6,      cat:"hum",    t:"La maîtrise du feu",          d:"Homo erectus domestique le feu : cuisson, chaleur, protection." },
+      { ago: 300e3,      cat:"hum",    t:"Homo sapiens",                d:"Notre espèce apparaît en Afrique. Il est 23 h 49 le 31 décembre." },
+      { ago: 65e3,       cat:"hum",    t:"Art & grandes migrations",    d:"Sapiens peuple la planète ; art rupestre, parures et sépultures." },
+      { ago: 12e3,       cat:"hum",    t:"L'agriculture",               d:"Néolithique : domestication, premiers villages, fin de la dernière glaciation (~23 h 59 min 32 s)." },
+      { ago: 5e3,        cat:"hum",    t:"L'histoire écrite",           d:"Premières écritures : toute l'histoire consignée tient dans les ~11 dernières secondes." },
+      { ago: 250,        cat:"hum",    t:"L'ère industrielle",          d:"Machines, science moderne, explosion démographique : à peine 0,6 seconde cosmique." }
+    ];
+    UNI.forEach(e => { e.f = Math.max(0, Math.min(1, 1 - e.ago / AGE)); });
+    const UNI_SORTED = [...UNI].sort((a, b) => a.f - b.f);
+
+    /* ======= Helpers (repris de calendrier.html) ======= */
+    function num3(x){ if(x>=100) return Math.round(x).toLocaleString("fr-FR"); if(x>=10) return x.toFixed(1).replace(".",","); return x.toFixed(2).replace(".",","); }
+    function cosmicDate(f){
+      f = Math.min(0.999999, Math.max(0, f));
+      let day = f*YEAR_DAYS, m = 0;
+      while (day >= MONTH_DAYS[m]) { day -= MONTH_DAYS[m]; m++; }
+      const hf = (day - Math.floor(day))*24;
+      return { m, day: Math.floor(day)+1, h: Math.floor(hf), min: Math.floor((hf-Math.floor(hf))*60) };
+    }
+    function fmtDate(f){
+      if (f >= 0.999995) return "31 décembre · minuit";
+      const d = cosmicDate(f);
+      return d.day + " " + MONTH_NAMES[d.m].toLowerCase() + " · " + String(d.h).padStart(2,"0") + " h " + String(d.min).padStart(2,"0");
+    }
+    function fmtAgo(years){
+      if (years < 1) return "aujourd'hui";
+      if (years < 1e3) return "il y a " + Math.round(years) + " ans";
+      if (years < 1e6) return "il y a " + Math.round(years).toLocaleString("fr-FR") + " ans";
+      if (years < 1e9) return "il y a " + num3(years/1e6) + " millions d'années";
+      return "il y a " + num3(years/1e9) + " milliards d'années";
+    }
+    function curIndex(f){ let i = 0; for (let k = 0; k < UNI_SORTED.length; k++){ if (UNI_SORTED[k].f <= f + 1e-12) i = k; else break; } return i; }
+
+    /* ======= Cosmic position of the *real* current date ======= */
+    // L'année réelle entière (1ᵉʳ janv. 00:00 → 1ᵉʳ janv. suivant) = les 13,787 milliards d'années.
+    function yearFraction(now){
+      const y = now.getFullYear();
+      const start = new Date(y, 0, 1).getTime();
+      const end = new Date(y + 1, 0, 1).getTime();
+      return (now.getTime() - start) / (end - start);
+    }
+
+    /* ======= Build clock face ======= */
+    const $ = id => document.getElementById(id);
+    (function(){
+      // minute / hour ticks
+      let t = "";
+      for (let i = 0; i < 60; i++){
+        const a = i * 6 * Math.PI/180, big = i % 5 === 0;
+        const ro = 96, ri = big ? 88 : 92;
+        const x1 = 120 + ro*Math.sin(a), y1 = 120 - ro*Math.cos(a);
+        const x2 = 120 + ri*Math.sin(a), y2 = 120 - ri*Math.cos(a);
+        t += '<line x1="'+x1.toFixed(2)+'" y1="'+y1.toFixed(2)+'" x2="'+x2.toFixed(2)+'" y2="'+y2.toFixed(2)+'" stroke="#d6ac55" stroke-width="'+(big?2:0.8)+'" opacity="'+(big?0.92:0.32)+'" stroke-linecap="round"/>';
+      }
+      $("ticks").innerHTML = t;
+      // Roman numerals
+      const R = ["XII","I","II","III","IV","V","VI","VII","VIII","IX","X","XI"];
+      let n = "";
+      for (let i = 0; i < 12; i++){
+        const a = i * 30 * Math.PI/180, r = 78;
+        const x = 120 + r*Math.sin(a), y = 120 - r*Math.cos(a);
+        n += '<text x="'+x.toFixed(2)+'" y="'+y.toFixed(2)+'">'+R[i]+'</text>';
+      }
+      $("numerals").innerHTML = n;
+      // cosmic event dots on outer ring
+      let dd = "";
+      UNI.forEach(e => {
+        const a = e.f * 2*Math.PI, r = 110;
+        const x = 120 + r*Math.sin(a), y = 120 - r*Math.cos(a);
+        dd += '<circle cx="'+x.toFixed(2)+'" cy="'+y.toFixed(2)+'" r="2" fill="'+CAT[e.cat].col+'" opacity=".85"><title>'+e.t+' — '+fmtDate(e.f)+'</title></circle>';
+      });
+      $("cosmicDots").innerHTML = dd;
+    })();
+
+    const hHour = $("hHour"), hMin = $("hMin"), hSec = $("hSec"),
+          cosmicMarker = $("cosmicMarker"), cosmicArc = $("cosmicArc"),
+          panel = $("panel");
+    const ARC_R = 110, ARC_C = 2 * Math.PI * ARC_R;
+    cosmicArc.setAttribute("stroke-dasharray", ARC_C);
+
+    const dTime = $("dTime"), dDate = $("dDate"), dTz = $("dTz");
+    const pCat = $("pCat"), pTitle = $("pTitle"), pDate = $("pDate"), pAgo = $("pAgo"), pDesc = $("pDesc");
+    const nTitle = $("nTitle"), nFill = $("nFill"), nPct = $("nPct");
+
+    let lastIdx = -1, lastDay = -1, lastSec = -1;
+    const dateFmt = new Intl.DateTimeFormat("fr-FR", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
+    try { dTz.textContent = Intl.DateTimeFormat().resolvedOptions().timeZone.replace(/_/g," ") + " · heure locale"; } catch(e){}
+
+    function tick(){
+      const now = new Date();
+      const ms = now.getMilliseconds(), s = now.getSeconds(), m = now.getMinutes(), h = now.getHours();
+
+      // ---- real analog hands ----
+      const secA = (s + ms/1000) * 6;
+      const minA = (m + s/60) * 6;
+      const hourA = ((h % 12) + m/60 + s/3600) * 30;
+      hSec.style.transform  = "rotate(" + secA + "deg)";
+      hMin.style.transform  = "rotate(" + minA + "deg)";
+      hHour.style.transform = "rotate(" + hourA + "deg)";
+
+      // everything below changes at most once per second → throttle
+      if (s !== lastSec){
+        lastSec = s;
+
+        // ---- real digital ----
+        const hh = String(h).padStart(2,"0"), mm = String(m).padStart(2,"0"), ss = String(s).padStart(2,"0");
+        dTime.innerHTML = hh + ":" + mm + '<span class="sec">:' + ss + "</span>";
+        const dayKey = now.getDate();
+        if (dayKey !== lastDay){
+          const ds = dateFmt.format(now);
+          dDate.textContent = ds.charAt(0).toUpperCase() + ds.slice(1);
+          lastDay = dayKey;
+        }
+
+        // ---- cosmic position from the real date ----
+        const f = yearFraction(now);
+        cosmicMarker.style.transform = "rotate(" + (f * 360) + "deg)";
+        cosmicArc.setAttribute("stroke-dashoffset", ARC_C * (1 - f));
+
+        const i = curIndex(f);
+        const cur = UNI_SORTED[i], next = UNI_SORTED[Math.min(i + 1, UNI_SORTED.length - 1)];
+
+        // progress toward next threshold (advances in real time)
+        let prog = 1;
+        if (next.f > cur.f) prog = Math.max(0, Math.min(1, (f - cur.f) / (next.f - cur.f)));
+        nFill.style.width = (prog * 100).toFixed(2) + "%";
+        nPct.textContent = (prog * 100).toFixed(prog < 0.1 ? 2 : 1).replace(".", ",") + " %";
+
+        // only repaint the event block when the *event* changes
+        if (i !== lastIdx){
+          const c = CAT[cur.cat];
+          panel.style.setProperty("--cat", c.col);
+          pCat.textContent = c.label;
+          pTitle.textContent = cur.t;
+          pDesc.textContent = cur.d;
+          nTitle.textContent = (next === cur) ? "— (présent)" : next.t;
+          lastIdx = i;
+        }
+        pDate.textContent = fmtDate(f);
+        pAgo.textContent = fmtAgo((1 - f) * AGE);
+      }
+
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>

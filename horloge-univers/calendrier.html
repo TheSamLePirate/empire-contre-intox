@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Calendrier Cosmique — plein écran — Empire contre Intox</title>
+  <meta name="description" content="Le Grand Calendrier Cosmique en plein écran : 13,787 milliards d'années — du Big Bang à maintenant — ramenées à une année et à une horloge de 24 h. Interactif. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+      --c-cosmos:#9d8cff; --c-terre:#5ec8ff; --c-vie:#7bd88f; --c-hum:#f3d98a;
+      --line:rgba(214,172,85,.20); --line-2:rgba(244,236,216,.10); --glass:rgba(7,12,26,.72);
+      --shadow:0 30px 90px rgba(0,0,0,.55);
+      --serif:"Fraunces",Georgia,serif; --roman:"Cinzel",Georgia,serif;
+      --ease:cubic-bezier(.22,1,.36,1); --cat:var(--gold);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; overflow: hidden; }
+    body {
+      color: var(--ink); font-family: var(--serif); font-optical-sizing: auto; font-weight: 380;
+      background:
+        radial-gradient(120% 80% at 10% 0%, rgba(157,140,255,.14), transparent 46%),
+        radial-gradient(120% 80% at 95% 8%, rgba(94,200,255,.1), transparent 48%),
+        linear-gradient(180deg, #06060f, var(--void) 55%, var(--abyss));
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: rgba(214,172,85,.28); color: #fff; }
+    :focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 2px; border-radius: 3px; }
+
+    .atmos { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        radial-gradient(1.2px 1.2px at 16% 28%, rgba(255,255,255,.5), transparent 60%),
+        radial-gradient(1px 1px at 72% 16%, rgba(243,217,138,.6), transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%, rgba(255,255,255,.4), transparent 60%),
+        radial-gradient(1px 1px at 88% 54%, rgba(111,224,255,.55), transparent 60%),
+        radial-gradient(1.1px 1.1px at 8% 82%, rgba(157,140,255,.55), transparent 60%),
+        radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,.4), transparent 60%);
+      animation: tw 7s ease-in-out infinite alternate; }
+    @keyframes tw { from { opacity: .55; } to { opacity: 1; } }
+    .frame { position: fixed; inset: 0; z-index: 40; pointer-events: none; }
+    .frame i { position: absolute; width: 22px; height: 22px; border: 1.5px solid var(--line); }
+    .frame i:nth-child(1){ top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+    .frame i:nth-child(2){ top: 10px; right: 10px; border-left: 0; border-bottom: 0; }
+    .frame i:nth-child(3){ bottom: 10px; left: 10px; border-right: 0; border-top: 0; }
+    .frame i:nth-child(4){ bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+
+    /* ---------- App shell ---------- */
+    .app { position: relative; z-index: 1; height: 100dvh; display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto; gap: 0; padding: 16px clamp(14px, 2.4vw, 30px); }
+
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 14px; }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(214,172,85,.5); box-shadow: 0 0 0 3px rgba(214,172,85,.1); flex: 0 0 auto; }
+    .brand .tt { min-width: 0; }
+    .brand .k { font-family: var(--roman); font-size: .54rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+    .brand h1 { margin: 2px 0 0; font-family: var(--roman); font-weight: 800; font-size: clamp(.95rem, 1.8vw, 1.35rem); letter-spacing: .02em; text-transform: uppercase; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .brand h1 .foil { background: linear-gradient(96deg, var(--gold-deep), var(--gold-bright) 45%, #fff6dc 52%, var(--gold-bright) 60%, var(--gold-deep)); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: foil 7s linear infinite; }
+    @keyframes foil { to { background-position: 220% 0; } }
+    .nav-links { display: flex; gap: 10px; flex: 0 0 auto; }
+    .lnk { display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px; font-family: var(--roman); font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06); white-space: nowrap; transition: border-color .3s var(--ease), background .3s var(--ease); }
+    .lnk:hover { border-color: rgba(214,172,85,.5); background: rgba(214,172,85,.12); }
+
+    /* ---------- Body: sidebar + calendar ---------- */
+    .body { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: clamp(12px, 1.6vw, 22px); min-height: 0; }
+
+    .side { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 14px; min-height: 0; }
+    .clock-card { border: 1px solid var(--line); border-radius: 5px; background: var(--glass); box-shadow: var(--shadow); backdrop-filter: blur(14px); padding: 18px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .clock { width: min(82%, 220px); }
+    .clock svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 14px 32px rgba(0,0,0,.55)); }
+    #hand { transition: transform .08s linear; }
+    .digital { font-family: var(--roman); font-weight: 800; font-size: 1.7rem; letter-spacing: .04em; color: var(--gold-bright); font-variant-numeric: tabular-nums; text-align: center; line-height: 1; }
+    .digital small { display: block; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: .66rem; letter-spacing: 0; color: var(--soft); margin-top: 6px; }
+
+    .readout { border: 1px solid var(--line); border-top: 3px solid var(--cat); border-radius: 5px; padding: 22px; min-height: 0; overflow: auto; display: flex; flex-direction: column;
+      background: radial-gradient(120% 130% at 12% 0%, color-mix(in srgb, var(--cat) 22%, transparent), transparent 60%), linear-gradient(180deg, rgba(7,12,26,.7), rgba(5,8,17,.85));
+      box-shadow: inset 0 0 70px color-mix(in srgb, var(--cat) 12%, transparent);
+      transition: border-color .4s var(--ease), background .4s var(--ease), box-shadow .4s var(--ease); }
+    .r-cat { align-self: flex-start; display: inline-flex; align-items: center; min-height: 26px; padding: 0 12px; font-family: var(--roman); font-size: .56rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #07060c; border-radius: 999px; background: var(--cat); transition: background .4s var(--ease); }
+    .r-title { font-family: var(--roman); font-weight: 700; font-size: clamp(1.2rem, 2.2vw, 1.7rem); text-transform: uppercase; letter-spacing: .01em; color: var(--ink); margin: 14px 0 8px; line-height: 1.07; }
+    .r-date { font-family: var(--roman); font-weight: 700; font-size: 1.1rem; color: var(--cat); letter-spacing: .02em; transition: color .4s var(--ease); }
+    .r-ago { font-family: var(--roman); font-size: .58rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-top: 5px; }
+    .r-desc { color: var(--muted); font-size: .96rem; margin: 14px 0 0; }
+
+    /* ---------- Calendar (fills height, never overflows) ---------- */
+    .cal-wrap { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 10px; min-height: 0; }
+    .cal-cap { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-family: var(--roman); font-size: .56rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+    .cal-cap span:last-child { color: var(--soft); }
+    .cal { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); gap: clamp(7px, .8vw, 12px); min-height: 0; }
+    .month { display: flex; flex-direction: column; min-height: 0; border: 1px solid var(--line-2); border-radius: 4px; padding: 9px 9px 10px; background: rgba(244,236,216,.022); transition: border-color .3s var(--ease), box-shadow .3s var(--ease); }
+    .month:hover { border-color: var(--line); box-shadow: 0 12px 30px rgba(0,0,0,.3); }
+    .m-head { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; margin-bottom: 7px; padding-bottom: 6px; border-bottom: 1px solid var(--line-2); }
+    .m-name { font-family: var(--roman); font-size: clamp(.6rem, 1.05vw, .78rem); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--parch); }
+    .m-sub { font-family: var(--roman); font-size: clamp(.4rem, .72vw, .5rem); font-weight: 600; letter-spacing: .02em; text-transform: uppercase; color: var(--soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .days { flex: 1; display: grid; grid-template-columns: repeat(7, 1fr); grid-auto-rows: 1fr; gap: clamp(2px, .35vw, 4px); min-height: 0; }
+    .day { min-height: 0; min-width: 0; border-radius: 2px; background: rgba(244,236,216,.05); cursor: pointer; display: grid; place-items: center; overflow: hidden;
+      font-family: var(--roman); font-size: clamp(.34rem, .62vw, .54rem); font-weight: 600; color: var(--soft); line-height: 1;
+      transition: transform .14s var(--ease), box-shadow .2s, background .2s, color .2s; }
+    .day:hover { transform: scale(1.5); background: rgba(244,236,216,.2); box-shadow: 0 0 9px rgba(255,255,255,.5); color: var(--ink); z-index: 5; position: relative; }
+    .day.ev { background: var(--dc); color: #0a0a0a; box-shadow: 0 0 8px var(--dc); }
+    .day.sel { outline: 2px solid var(--gold-bright); outline-offset: 1px; box-shadow: 0 0 12px var(--gold-bright); z-index: 4; position: relative; }
+
+    /* ---------- Footer controls ---------- */
+    .foot { padding-top: 14px; display: grid; gap: 12px; }
+    .lastday { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: center; }
+    .lastday .lbl { font-family: var(--roman); font-size: .54rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--c-hum); white-space: nowrap; }
+    .lastbar { position: relative; height: 30px; border: 1px solid var(--line); border-radius: 3px; overflow: visible;
+      background: linear-gradient(90deg, #0a1226, #14112e 55%, #2a1640 82%, color-mix(in srgb, var(--c-hum) 30%, #2a1640)); }
+    .htick { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--line-2); }
+    .htick b { position: absolute; bottom: 2px; left: 3px; font-family: var(--roman); font-size: .46rem; color: var(--soft); }
+    .le { position: absolute; top: 50%; width: 11px; height: 11px; border-radius: 50%; transform: translate(-50%, -50%); border: 2px solid #07060c; cursor: pointer; z-index: 3; transition: transform .15s; }
+    .le:hover, .le:focus-visible { transform: translate(-50%, -50%) scale(1.4); }
+    .le .tip { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); width: max-content; max-width: 200px; padding: 6px 9px; background: rgba(5,8,17,.95); border: 1px solid var(--line); border-radius: 3px; opacity: 0; pointer-events: none; transition: opacity .2s; box-shadow: var(--shadow); z-index: 6; }
+    .le:hover .tip, .le:focus-visible .tip { opacity: 1; }
+    .le .tip b { display: block; font-family: var(--roman); font-size: .56rem; letter-spacing: .06em; text-transform: uppercase; color: var(--gold-bright); }
+    .le .tip span { display: block; font-size: .78rem; color: var(--muted); margin-top: 2px; }
+
+    .controls { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .play { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; cursor: pointer; font-family: var(--roman); font-size: .66rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #14110a; border: 0; border-radius: 2px; background: linear-gradient(140deg, var(--gold-bright), var(--gold) 55%, var(--gold-deep)); box-shadow: 0 10px 26px rgba(214,172,85,.25); white-space: nowrap; }
+    .play:hover { filter: brightness(1.06); }
+    .scrub { flex: 1 1 240px; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 4px; outline-offset: 6px;
+      background: linear-gradient(90deg, var(--c-cosmos) 0%, var(--c-terre) 38%, var(--c-vie) 66%, var(--c-hum) 100%); }
+    .scrub::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; cursor: grab; background: radial-gradient(circle at 36% 32%, #fff, var(--gold) 60%, var(--gold-deep)); box-shadow: 0 0 0 4px rgba(214,172,85,.18), 0 6px 16px rgba(0,0,0,.5); border: none; }
+    .scrub::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; cursor: grab; background: radial-gradient(circle at 36% 32%, #fff, var(--gold) 60%, var(--gold-deep)); border: none; }
+    .legend { display: flex; gap: 6px 16px; flex-wrap: wrap; }
+    .legend span { display: inline-flex; align-items: center; gap: 7px; font-family: var(--roman); font-size: .56rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .legend i { width: 11px; height: 11px; border-radius: 3px; box-shadow: 0 0 8px currentColor; }
+
+    /* ---------- Responsive: scrollable on small / short screens ---------- */
+    @media (max-width: 900px), (max-height: 600px) {
+      html, body { overflow: auto; }
+      .app { height: auto; min-height: 100dvh; }
+      .body { grid-template-columns: 1fr; }
+      .side { grid-template-rows: none; }
+      .clock { width: min(60%, 220px); }
+      .readout { overflow: visible; }
+      .cal { grid-template-columns: repeat(2, 1fr); grid-template-rows: none; }
+      .days { grid-auto-rows: auto; }
+      .day { aspect-ratio: 1; }
+    }
+    @media (max-width: 520px) {
+      .brand h1 { font-size: .9rem; white-space: normal; }
+      .nav-links .full-only { display: none; }
+      .cal { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="../index.html" aria-label="Accueil Empire contre Intox">
+        <img src="../ymir-lalie/assets/logo-eci.jpg" alt="">
+        <span class="tt">
+          <span class="k">Empire contre Intox</span>
+          <h1>Le Grand Calendrier <span class="foil">Cosmique</span></h1>
+        </span>
+      </a>
+      <nav class="nav-links">
+        <a class="lnk full-only" href="chronos.html">Dossier complet</a>
+        <a class="lnk full-only" href="clock.html">L'Horloge ↗</a>
+        <a class="lnk" href="../index.html">Accueil ECI</a>
+      </nav>
+    </header>
+
+    <div class="body">
+      <aside class="side">
+        <div class="clock-card">
+          <div class="clock">
+            <svg viewBox="0 0 200 200" role="img" aria-label="Horloge de 24 heures : minuit = Big Bang, minuit suivant = aujourd'hui.">
+              <defs>
+                <radialGradient id="face" cx="50%" cy="40%" r="72%">
+                  <stop offset="0%" stop-color="#101a30"/><stop offset="68%" stop-color="#070c1a"/><stop offset="100%" stop-color="#04060f"/>
+                </radialGradient>
+                <linearGradient id="bezel" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#f3d98a"/><stop offset="45%" stop-color="#d6ac55"/><stop offset="100%" stop-color="#9c7228"/>
+                </linearGradient>
+                <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <circle cx="100" cy="100" r="92" fill="none" stroke="url(#bezel)" stroke-width="2.6"/>
+              <circle cx="100" cy="100" r="90" fill="url(#face)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="#d6ac55" stroke-width=".6" opacity=".16"/>
+              <g id="ticks" stroke="#d6ac55"></g>
+              <g fill="#c0b59a" font-family="Cinzel, serif" font-size="9" font-weight="700" text-anchor="middle" dominant-baseline="central">
+                <text x="100" y="22">0 h</text><text x="178" y="100">6</text><text x="100" y="178">12</text><text x="22" y="100">18</text>
+              </g>
+              <g id="evdots"></g>
+              <g id="hand" style="transform-origin:100px 100px">
+                <polygon points="97.5,100 100,26 102.5,100" fill="#f3d98a" filter="url(#glow)"/>
+                <circle cx="100" cy="100" r="4.6" fill="#f3d98a" stroke="#9c7228" stroke-width="1"/>
+              </g>
+            </svg>
+          </div>
+          <div class="digital" id="digital">24:00:00<small>l'univers sur 24 heures</small></div>
+        </div>
+
+        <div class="readout" id="readout">
+          <span class="r-cat" id="rCat">—</span>
+          <h2 class="r-title" id="rTitle">—</h2>
+          <div class="r-date" id="rDate">—</div>
+          <div class="r-ago" id="rAgo">—</div>
+          <p class="r-desc" id="rDesc">—</p>
+        </div>
+      </aside>
+
+      <section class="cal-wrap">
+        <div class="cal-cap"><span>12 mois cosmiques · 1 case = 1 jour ≈ 37,8 Ma</span><span>survolez ou cliquez un jour</span></div>
+        <div class="cal" id="cal" aria-label="Calendrier cosmique des 12 mois"></div>
+      </section>
+    </div>
+
+    <footer class="foot">
+      <div class="lastday">
+        <span class="lbl">31 déc · toute l'humanité</span>
+        <div class="lastbar" id="lastbar"></div>
+      </div>
+      <div class="controls">
+        <button class="play" id="play" type="button" aria-label="Lancer la lecture de l'année cosmique">▶ Lancer l'année</button>
+        <input class="scrub" id="scrub" type="range" min="0" max="100000" value="100000" aria-label="Position dans l'année cosmique">
+        <div class="legend" aria-hidden="true">
+          <span><i style="color:var(--c-cosmos);background:var(--c-cosmos)"></i>Cosmos</span>
+          <span><i style="color:var(--c-terre);background:var(--c-terre)"></i>Soleil</span>
+          <span><i style="color:var(--c-vie);background:var(--c-vie)"></i>Vie</span>
+          <span><i style="color:var(--c-hum);background:var(--c-hum)"></i>Humanité</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const AGE = 13.787e9;                 // years
+    const YEAR_DAYS = 365;
+    const MONTH_DAYS = [31,28,31,30,31,30,31,31,30,31,30,31];
+    const MONTH_NAMES = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+    const CAT = {
+      cosmos: { label:"Cosmos",          col:"#9d8cff" },
+      terre:  { label:"Système solaire", col:"#5ec8ff" },
+      vie:    { label:"La vie",          col:"#7bd88f" },
+      hum:    { label:"L'humanité",      col:"#f3d98a" }
+    };
+    const UNI = [
+      // ---------- Cosmos ----------
+      { ago: AGE,          cat:"cosmos", t:"Le Big Bang",                 d:"L'espace, le temps, la matière et l'énergie surgissent. En une fraction de seconde, l'inflation dilate l'univers d'un facteur 10²⁶." },
+      { ago: AGE-380000,   cat:"cosmos", t:"Le fond diffus cosmologique", d:"380 000 ans plus tard, les premiers atomes se forment : l'univers devient transparent. Sa première lumière nous parvient encore (2,7 K)." },
+      { ago: 13.6e9,       cat:"cosmos", t:"Les premières étoiles",       d:"Fin des âges sombres : des étoiles géantes s'allument et forgent les premiers éléments lourds." },
+      { ago: 13.4e9,       cat:"cosmos", t:"Les premières galaxies",      d:"La matière s'assemble en galaxies primitives, observées aujourd'hui par le télescope James-Webb." },
+      { ago: 12.8e9,       cat:"cosmos", t:"La réionisation",             d:"Le rayonnement des étoiles réionise tout le gaz : l'univers redevient transparent aux ultraviolets." },
+      { ago: 11.0e9,       cat:"cosmos", t:"La Voie lactée prend forme",  d:"Notre galaxie rassemble l'essentiel de ses étoiles." },
+      { ago: 10.3e9,       cat:"cosmos", t:"Le midi cosmique",            d:"Le taux de formation d'étoiles atteint son maximum dans toute l'histoire de l'univers." },
+      // ---------- Système solaire & Terre ----------
+      { ago: 4.6e9,        cat:"terre",  t:"Naissance du Soleil",         d:"Un nuage de gaz enrichi s'effondre : le Soleil s'allume, le disque protoplanétaire forme les planètes." },
+      { ago: 4.51e9,       cat:"terre",  t:"Formation de la Terre",       d:"La Terre s'accrète à partir de poussières et de planétésimaux, dans un enfer de lave." },
+      { ago: 4.5e9,        cat:"terre",  t:"La Lune (collision de Théia)", d:"Une protoplanète de la taille de Mars percute la Terre ; les débris s'agrègent en Lune." },
+      { ago: 4.4e9,        cat:"terre",  t:"Les premiers océans",         d:"La croûte se solidifie, la vapeur d'eau se condense : des océans liquides apparaissent." },
+      // ---------- La vie : Précambrien ----------
+      { ago: 3.8e9,        cat:"vie",    t:"La première vie",             d:"Premières cellules (procaryotes) dans les océans ; stromatolites bâtis par des bactéries." },
+      { ago: 3.4e9,        cat:"vie",    t:"La photosynthèse",            d:"Les cyanobactéries captent la lumière du Soleil et commencent à rejeter de l'oxygène." },
+      { ago: 2.4e9,        cat:"vie",    t:"La Grande Oxydation",         d:"L'oxygène s'accumule — toxique pour la vie d'alors — et déclenche une glaciation globale." },
+      { ago: 1.8e9,        cat:"vie",    t:"La cellule complexe",         d:"Apparaissent les eucaryotes (cellules à noyau), ancêtres des plantes et des animaux." },
+      { ago: 1.2e9,        cat:"vie",    t:"La reproduction sexuée",      d:"Le brassage des gènes accélère l'évolution (algues rouges, Bangiomorpha)." },
+      { ago: 1.0e9,        cat:"vie",    t:"Le supercontinent Rodinia",   d:"Les terres se rassemblent en un continent unique, puis se fragmentent." },
+      { ago: 720e6,        cat:"vie",    t:"La Terre boule de neige",     d:"Glaciations du Cryogénien : la planète gèle presque entièrement, des pôles à l'équateur." },
+      { ago: 635e6,        cat:"vie",    t:"Les premiers animaux (Ediacara)", d:"Premiers grands organismes mous : Dickinsonia, Charnia, Kimberella." },
+      // ---------- Paléozoïque ----------
+      { ago: 538.8e6,      cat:"vie",    t:"L'explosion cambrienne",      d:"Début du Phanérozoïque : squelettes, yeux, prédateurs ; presque tous les plans d'organisation animaux apparaissent." },
+      { ago: 470e6,        cat:"vie",    t:"Les plantes sur la terre",    d:"Ordovicien : mousses puis plantes colonisent peu à peu les continents." },
+      { ago: 443.8e6,      cat:"vie",    t:"1ʳᵉ extinction (Ordovicien)", d:"Une glaciation brutale efface ~85 % des espèces. La première des cinq grandes crises." },
+      { ago: 430e6,        cat:"vie",    t:"La vie conquiert la terre",   d:"Silurien : plantes vasculaires, premiers arthropodes terrestres, poissons à mâchoires." },
+      { ago: 375e6,        cat:"vie",    t:"Les vertébrés sortent de l'eau", d:"Dévonien : les premiers tétrapodes quittent l'eau et marchent sur la terre ferme." },
+      { ago: 372e6,        cat:"vie",    t:"2ᵉ extinction (Dévonien)",    d:"Vagues d'anoxie des océans : ~75 % des espèces disparaissent." },
+      { ago: 320e6,        cat:"vie",    t:"Forêts & insectes géants",    d:"Carbonifère : forêts de fougères, oxygène à ~35 %, libellules géantes (Meganeura)." },
+      { ago: 299e6,        cat:"vie",    t:"Le supercontinent Pangée",    d:"Permien : toutes les terres réunies ; règne des reptiles mammaliens (synapsides)." },
+      { ago: 252e6,        cat:"vie",    t:"3ᵉ extinction : la Grande Mort", d:"Volcanisme sibérien : ~95 % des espèces marines disparaissent. La pire de toute l'histoire." },
+      // ---------- Mésozoïque ----------
+      { ago: 230e6,        cat:"vie",    t:"Dinosaures & mammifères",     d:"Trias : les dinosaures entament leur règne ; les premiers mammifères apparaissent." },
+      { ago: 201e6,        cat:"vie",    t:"4ᵉ extinction (Trias–Jurassique)", d:"Volcanisme de l'Atlantique naissant : ~80 % des espèces ; les dinosaures dominent." },
+      { ago: 150e6,        cat:"vie",    t:"Les premiers oiseaux",        d:"Jurassique : Archaeopteryx ; grands sauropodes ; reptiles marins (plésiosaures)." },
+      { ago: 130e6,        cat:"vie",    t:"Les plantes à fleurs",        d:"Crétacé : les angiospermes apparaissent et bouleversent les écosystèmes." },
+      { ago: 66e6,         cat:"vie",    t:"5ᵉ extinction : K–Pg",        d:"Un astéroïde de ~10 km frappe le Yucatán : fin des dinosaures non-aviens." },
+      // ---------- Cénozoïque ----------
+      { ago: 60e6,         cat:"vie",    t:"L'essor des mammifères",      d:"Paléogène : radiation des mammifères et des oiseaux ; apparition des premiers primates." },
+      { ago: 34e6,         cat:"vie",    t:"L'Antarctique gèle",          d:"Refroidissement global : les premières calottes polaires se forment." },
+      { ago: 20e6,         cat:"vie",    t:"Prairies & grands singes",    d:"Néogène : expansion des herbes ; diversification des hominidés." },
+      // ---------- L'humanité ----------
+      { ago: 7e6,          cat:"hum",    t:"Les premiers homininés",      d:"En Afrique, des primates se redressent et marchent debout (Sahelanthropus, Orrorin)." },
+      { ago: 3.2e6,        cat:"hum",    t:"Lucy (Australopithèque)",     d:"Bipédie confirmée : petit cerveau, mais marche debout assurée." },
+      { ago: 2.8e6,        cat:"hum",    t:"Le genre Homo",               d:"Premiers outils de pierre taillée ; le genre Homo apparaît." },
+      { ago: 0.8e6,        cat:"hum",    t:"La maîtrise du feu",          d:"Homo erectus domestique le feu : cuisson, chaleur, protection." },
+      { ago: 300e3,        cat:"hum",    t:"Homo sapiens",                d:"Notre espèce apparaît en Afrique. Il est 23 h 49 le 31 décembre." },
+      { ago: 65e3,         cat:"hum",    t:"Art & grandes migrations",    d:"Sapiens peuple la planète ; art rupestre, parures et sépultures." },
+      { ago: 12e3,         cat:"hum",    t:"L'agriculture",               d:"Néolithique : domestication, premiers villages, fin de la dernière glaciation (~23 h 59 min 32 s)." },
+      { ago: 5e3,          cat:"hum",    t:"L'histoire écrite",           d:"Premières écritures : toute l'histoire consignée tient dans les ~11 dernières secondes." },
+      { ago: 250,          cat:"hum",    t:"L'ère industrielle",          d:"Machines, science moderne, explosion démographique : à peine 0,6 seconde cosmique." },
+      { ago: 0,            cat:"hum",    t:"Maintenant — vous êtes ici",  d:"31 décembre, minuit. 13,787 milliards d'années ont mené à cet instant." }
+    ];
+    UNI.forEach((e) => { e.f = Math.max(0, Math.min(1, 1 - e.ago / AGE)); e.di = Math.min(364, Math.floor(e.f * YEAR_DAYS)); });
+    const UNI_SORTED = [...UNI].sort((a, b) => a.f - b.f);
+    const evByDi = {}; UNI.forEach((e) => { const c = evByDi[e.di]; if (!c || e.f > c.f) evByDi[e.di] = e; });
+
+    function num3(x) { if (x >= 100) return Math.round(x).toLocaleString("fr-FR"); if (x >= 10) return x.toFixed(1).replace(".", ","); return x.toFixed(2).replace(".", ","); }
+    function cosmicDate(f) {
+      f = Math.min(0.999999, Math.max(0, f));
+      let day = f * YEAR_DAYS, m = 0;
+      while (day >= MONTH_DAYS[m]) { day -= MONTH_DAYS[m]; m++; }
+      const hf = (day - Math.floor(day)) * 24;
+      return { m, day: Math.floor(day) + 1, h: Math.floor(hf), min: Math.floor((hf - Math.floor(hf)) * 60) };
+    }
+    function fmtDate(f) {
+      if (f >= 0.999995) return "31 décembre · minuit";
+      const d = cosmicDate(f);
+      return d.day + " " + MONTH_NAMES[d.m].toLowerCase() + " · " + String(d.h).padStart(2, "0") + " h " + String(d.min).padStart(2, "0");
+    }
+    function fmt24(f) {
+      if (f >= 0.999995) return "24:00:00";
+      const s = f * 86400, h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), se = Math.floor(s % 60);
+      return String(h).padStart(2, "0") + ":" + String(m).padStart(2, "0") + ":" + String(se).padStart(2, "0");
+    }
+    function fmtAgo(years) {
+      if (years < 1) return "aujourd'hui";
+      if (years < 1e3) return "il y a " + Math.round(years) + " ans";
+      if (years < 1e6) return "il y a " + Math.round(years).toLocaleString("fr-FR") + " ans";
+      if (years < 1e9) return "il y a " + num3(years / 1e6) + " millions d'années";
+      return "il y a " + num3(years / 1e9) + " milliards d'années";
+    }
+    function ageShort(f) {
+      const y = (1 - f) * AGE;
+      if (y < 1e3) return "auj.";
+      if (y < 1e6) return Math.round(y / 1e3) + " ka";
+      if (y < 1e9) return num3(y / 1e6) + " Ma";
+      return num3(y / 1e9) + " Ga";
+    }
+    function nearest(f) { let b = UNI_SORTED[0]; for (const e of UNI_SORTED) { if (e.f <= f + 1e-9) b = e; else break; } return b; }
+
+    const $ = (id) => document.getElementById(id);
+    const hand = $("hand"), digital = $("digital"), readout = $("readout"),
+      rCat = $("rCat"), rTitle = $("rTitle"), rDate = $("rDate"), rAgo = $("rAgo"), rDesc = $("rDesc"),
+      cal = $("cal"), scrub = $("scrub"), play = $("play"), lastbar = $("lastbar");
+
+    let selCell = null;
+    function render(f, ev) {
+      f = Math.max(0, Math.min(1, f));
+      hand.style.transform = "rotate(" + (f * 360) + "deg)";
+      digital.innerHTML = fmt24(f) + "<small>l'univers sur 24 heures</small>";
+      const e = ev || nearest(f), c = CAT[e.cat];
+      readout.style.setProperty("--cat", c.col);
+      rCat.textContent = c.label; rTitle.textContent = e.t;
+      rDate.textContent = fmtDate(f); rAgo.textContent = fmtAgo((1 - f) * AGE); rDesc.textContent = e.d;
+      const di = Math.min(364, Math.floor(f * YEAR_DAYS));
+      const cell = cal.querySelector('[data-di="' + di + '"]');
+      if (cell !== selCell) { if (selCell) selCell.classList.remove("sel"); if (cell) cell.classList.add("sel"); selCell = cell; }
+      const ls = 364 / 365;
+      lastCursor.style.opacity = f >= ls ? "1" : ".2";
+      lastCursor.style.left = f >= ls ? ((f - ls) / (1 / 365) * 100) + "%" : "0%";
+    }
+    function setF(f, ev) { scrub.value = Math.round(f * 100000); stopPlay(); render(f, ev); }
+
+    // Clock ticks
+    (function () { let o = ""; for (let k = 0; k < 24; k++) { const p = k * 15 * Math.PI / 180, M = k % 6 === 0, ro = 88, ri = M ? 82.5 : 85; o += '<line x1="' + (100 + ro * Math.sin(p)).toFixed(2) + '" y1="' + (100 - ro * Math.cos(p)).toFixed(2) + '" x2="' + (100 + ri * Math.sin(p)).toFixed(2) + '" y2="' + (100 - ri * Math.cos(p)).toFixed(2) + '" stroke-width="' + (M ? 2.2 : 1) + '" opacity="' + (M ? .95 : .4) + '"/>'; } $("ticks").innerHTML = o; })();
+    // Clock event dots
+    (function () { let o = ""; UNI.forEach((e) => { const p = e.f * 2 * Math.PI, r = 74; o += '<circle cx="' + (100 + r * Math.sin(p)).toFixed(2) + '" cy="' + (100 - r * Math.cos(p)).toFixed(2) + '" r="2.3" fill="' + CAT[e.cat].col + '"><title>' + e.t + ' — ' + fmtDate(e.f) + '</title></circle>'; }); $("evdots").innerHTML = o; })();
+
+    // Build calendar
+    (function () {
+      let cum = 0, html = "";
+      for (let m = 0; m < 12; m++) {
+        let cells = "";
+        for (let d = 0; d < MONTH_DAYS[m]; d++) {
+          const di = cum + d, e = evByDi[di], f = di / 365;
+          const title = (e ? e.t + " — " : "") + fmtDate(f);
+          cells += '<div class="day' + (e ? ' ev' : '') + '"' + (e ? ' style="--dc:' + CAT[e.cat].col + '"' : '') + ' data-di="' + di + '" data-f="' + f + '" title="' + title.replace(/"/g, '') + '"' + (e ? ' tabindex="0"' : '') + '>' + (d + 1) + '</div>';
+        }
+        html += '<div class="month"><div class="m-head"><span class="m-name">' + MONTH_NAMES[m] + '</span><span class="m-sub">' + ageShort(cum / 365) + ' → ' + ageShort((cum + MONTH_DAYS[m]) / 365) + '</span></div><div class="days">' + cells + '</div></div>';
+        cum += MONTH_DAYS[m];
+      }
+      cal.innerHTML = html;
+    })();
+    cal.addEventListener("click", (ev) => { const c = ev.target.closest(".day"); if (!c) return; setF(+c.dataset.f, evByDi[+c.dataset.di]); });
+    cal.addEventListener("keydown", (ev) => { if (ev.key !== "Enter" && ev.key !== " ") return; const c = ev.target.closest(".day"); if (!c) return; ev.preventDefault(); setF(+c.dataset.f, evByDi[+c.dataset.di]); });
+    cal.addEventListener("mousemove", (ev) => { const c = ev.target.closest(".day"); if (!c || playing) return; render(+c.dataset.f, evByDi[+c.dataset.di]); });
+    cal.addEventListener("mouseleave", () => { if (!playing) render(+scrub.value / 100000); });
+
+    // December 31 zoom
+    lastbar.innerHTML = '<div class="lastcursor" id="lastcursor"></div>';
+    const lastCursor = $("lastcursor");
+    lastCursor.style.cssText = "position:absolute;top:0;bottom:0;left:100%;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,var(--gold-bright),transparent);z-index:4;pointer-events:none";
+    (function () {
+      const oneDay = AGE / 365, ls = 364 / 365;
+      let ticks = "";
+      for (let h = 0; h <= 24; h += 6) ticks += '<div class="htick" style="left:' + (h / 24 * 100) + '%"><b>' + h + 'h</b></div>';
+      lastbar.insertAdjacentHTML("afterbegin", ticks);
+      UNI.filter((e) => e.ago > 0 && e.ago <= oneDay).forEach((e) => {
+        const within = (e.f - ls) / (1 / 365); if (within < 0) return;
+        const mk = document.createElement("button"); mk.type = "button"; mk.className = "le";
+        mk.style.left = (within * 100) + "%"; mk.style.background = CAT[e.cat].col; mk.style.boxShadow = "0 0 9px " + CAT[e.cat].col;
+        mk.setAttribute("aria-label", e.t + " — " + fmtDate(e.f));
+        mk.innerHTML = '<span class="tip"><b>' + e.t + '</b><span>' + fmtDate(e.f) + '</span></span>';
+        mk.addEventListener("click", () => setF(e.f, e));
+        lastbar.appendChild(mk);
+      });
+    })();
+
+    scrub.addEventListener("input", () => { stopPlay(); render(+scrub.value / 100000); });
+
+    // Play
+    let playing = false, raf = null, last = null;
+    const DURATION = 36;
+    function frame(ts) {
+      if (!playing) return;
+      if (last == null) last = ts;
+      const dp = (ts - last) / 1000 / DURATION; last = ts;
+      let f = +scrub.value / 100000 + dp;
+      if (f >= 1) { f = 1; scrub.value = 100000; render(1); stopPlay(); return; }
+      scrub.value = Math.round(f * 100000); render(f);
+      raf = requestAnimationFrame(frame);
+    }
+    function startPlay() { if (playing) return; if (+scrub.value >= 100000) scrub.value = 0; playing = true; last = null; play.textContent = "❚❚ Pause"; raf = requestAnimationFrame(frame); }
+    function stopPlay() { if (!playing) return; playing = false; if (raf) cancelAnimationFrame(raf); play.textContent = "▶ Lancer l'année"; }
+    play.addEventListener("click", () => { playing ? stopPlay() : startPlay(); });
+
+    render(1);
+  </script>
+</body>
+</html>

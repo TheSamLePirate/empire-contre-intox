@@ -1,0 +1,1361 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La Grande Horloge de l'Univers — Empire contre Intox</title>
+  <meta name="description" content="Du Big Bang à maintenant : une frise interactive et scientifiquement précise des 13,787 milliards d'années de l'univers, puis des 4,567 milliards d'années de la Terre — toutes les ères géologiques (éons, ères, périodes, époques), l'histoire du vivant et les cinq grandes extinctions. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+
+      --void:        #050811;
+      --abyss:       #070c1a;
+      --navy:        #0e1a2e;
+      --ink:         #f4ecd8;
+      --parch:       #e7dcc1;
+      --muted:       #c0b59a;
+      --soft:        #8f8c78;
+      --gold:        #d6ac55;
+      --gold-bright: #f3d98a;
+      --gold-deep:   #9c7228;
+
+      /* Secondary accents echoing cosmic epochs */
+      --plasma:  #ffcf8a;   /* feu primordial */
+      --cmb:     #ff7a4d;   /* première lumière */
+      --darkage: #3b3270;   /* âges sombres */
+      --dawn:    #6fe0ff;   /* aube stellaire */
+      --stellar: #9d8cff;   /* galaxies */
+      --marble:  #5ec8ff;   /* planète bleue */
+
+      --line:   rgba(214, 172, 85, .20);
+      --line-2: rgba(244, 236, 216, .10);
+      --glass:  rgba(7, 12, 26, .72);
+      --shadow: 0 40px 120px rgba(0, 0, 0, .55);
+
+      --serif: "Fraunces", Georgia, "Times New Roman", serif;
+      --roman: "Cinzel", Georgia, serif;
+      --max: 1180px;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+
+      --epoch: var(--plasma);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-weight: 380;
+      line-height: 1.74;
+      letter-spacing: .002em;
+      background:
+        radial-gradient(130% 80% at 8% 4%, rgba(157, 140, 255, .16), transparent 46%),
+        radial-gradient(120% 70% at 94% 0%, rgba(94, 200, 255, .12), transparent 48%),
+        linear-gradient(180deg, #06060f 0%, var(--void) 42%, var(--abyss) 100%);
+      background-attachment: fixed;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ---------- Atmosphere ---------- */
+    .atmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .atmos::before {
+      content: ""; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(244,236,216,.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244,236,216,.018) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(120% 80% at 50% 28%, #000 30%, transparent 82%);
+    }
+    .atmos::after {
+      content: ""; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%, rgba(255,255,255,.55), transparent 60%),
+        radial-gradient(1px 1px at 72% 16%, rgba(243,217,138,.7), transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%, rgba(255,255,255,.45), transparent 60%),
+        radial-gradient(1px 1px at 88% 54%, rgba(111,224,255,.6), transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%, rgba(157,140,255,.6), transparent 60%),
+        radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,.4), transparent 60%),
+        radial-gradient(1px 1px at 30% 50%, rgba(255,255,255,.32), transparent 60%);
+      animation: twinkle 7s ease-in-out infinite alternate;
+    }
+    .grain {
+      position: fixed; inset: -50%; z-index: 1; pointer-events: none;
+      opacity: .05; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    @keyframes twinkle { from { opacity: .5; } to { opacity: 1; } }
+
+    .frame { position: fixed; inset: 0; z-index: 45; pointer-events: none; }
+    .frame i { position: absolute; width: 26px; height: 26px; border: 1.5px solid var(--line); }
+    .frame i:nth-child(1){ top: 16px; left: 16px; border-right: 0; border-bottom: 0; }
+    .frame i:nth-child(2){ top: 16px; right: 16px; border-left: 0; border-bottom: 0; }
+    .frame i:nth-child(3){ bottom: 16px; left: 16px; border-right: 0; border-top: 0; }
+    .frame i:nth-child(4){ bottom: 16px; right: 16px; border-left: 0; border-top: 0; }
+
+    .progress-top {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%; z-index: 60;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), var(--dawn));
+      box-shadow: 0 0 14px rgba(243, 217, 138, .55);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: rgba(214, 172, 85, .28); color: #fff; }
+    :focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; border-radius: 4px; }
+
+    .page { position: relative; z-index: 2; overflow: clip; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      min-height: 96vh;
+      display: grid; align-items: end;
+      position: relative; isolation: isolate;
+      padding: 28px;
+    }
+    /* Generated cosmic-birth scene (no external image) */
+    .hero-canvas { position: absolute; inset: 0; z-index: -3; overflow: hidden; }
+    .hero-canvas::before {
+      content: ""; position: absolute; inset: -20%;
+      background:
+        radial-gradient(38% 38% at 18% 26%, rgba(255,234,196,.9), rgba(255,170,90,.34) 22%, transparent 52%),
+        radial-gradient(60% 60% at 18% 26%, rgba(157,140,255,.34), transparent 60%),
+        radial-gradient(120% 90% at 100% 100%, rgba(94,200,255,.12), transparent 60%);
+      filter: blur(2px);
+      animation: bang 9s var(--ease) infinite alternate;
+    }
+    .hero-canvas .rays {
+      position: absolute; left: 18%; top: 26%; width: 1400px; height: 1400px;
+      transform: translate(-50%, -50%);
+      background: conic-gradient(from 0deg,
+        transparent 0 8deg, rgba(255,228,178,.10) 9deg 10deg, transparent 11deg 26deg,
+        rgba(255,228,178,.07) 27deg 28deg, transparent 29deg 50deg,
+        rgba(111,224,255,.06) 51deg 52deg, transparent 53deg);
+      mask-image: radial-gradient(closest-side, #000 8%, transparent 70%);
+      animation: spin 140s linear infinite;
+      opacity: .7;
+    }
+    @keyframes bang {
+      from { transform: scale(1); opacity: .82; }
+      to   { transform: scale(1.12) translate(2%, -1%); opacity: 1; }
+    }
+    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+    .hero::after {
+      content: ""; position: absolute; inset: 0; z-index: -2;
+      background:
+        linear-gradient(86deg, rgba(5,8,17,.9) 0%, rgba(5,8,17,.6) 40%, rgba(5,8,17,.1) 72%, rgba(5,8,17,.5) 100%),
+        linear-gradient(180deg, rgba(5,8,17,.05) 0%, rgba(5,8,17,.24) 56%, var(--void) 100%);
+    }
+    .hero-inner {
+      width: min(100%, var(--max)); margin: 0 auto 7vh;
+      display: grid; grid-template-columns: minmax(0, 760px) minmax(260px, 360px);
+      gap: 46px; align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 14px; margin: 0 0 22px;
+      font-family: var(--roman); font-size: .72rem; font-weight: 600;
+      letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
+    }
+    .eyebrow::before { content: ""; width: 44px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+
+    h1, h2, h3, h4 { margin: 0; line-height: 1.04; }
+    h1 {
+      max-width: 15ch;
+      font-family: var(--roman); font-weight: 800;
+      font-size: clamp(2.8rem, 7.4vw, 5.8rem);
+      line-height: .95; letter-spacing: -.01em; text-transform: uppercase;
+      color: var(--ink); text-wrap: balance;
+    }
+    h1 .foil {
+      background: linear-gradient(96deg, var(--gold-deep), var(--gold-bright) 40%, #fff6dc 50%, var(--gold-bright) 60%, var(--gold-deep));
+      background-size: 220% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: foil 7s linear infinite;
+    }
+    @keyframes foil { to { background-position: 220% 0; } }
+
+    .hero-lead { max-width: 56ch; margin: 26px 0 0; color: var(--muted); font-size: clamp(1.04rem, 1.4vw, 1.2rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+
+    .button {
+      display: inline-flex; align-items: center; gap: 10px;
+      min-height: 50px; padding: 0 22px;
+      font-family: var(--roman); font-size: .74rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      border-radius: 2px; border: 1px solid var(--line);
+      color: var(--ink); background: rgba(244,236,216,.05);
+      backdrop-filter: blur(12px);
+      transition: transform .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+      cursor: pointer;
+    }
+    .button:hover { transform: translateY(-3px); border-color: rgba(214,172,85,.5); background: rgba(244,236,216,.1); }
+    .button.primary {
+      color: #14110a; border-color: transparent;
+      background: linear-gradient(140deg, var(--gold-bright), var(--gold) 55%, var(--gold-deep));
+      box-shadow: 0 14px 38px rgba(214,172,85,.28), inset 0 1px 0 rgba(255,255,255,.5);
+    }
+    .button.primary:hover { box-shadow: 0 22px 54px rgba(214,172,85,.4), inset 0 1px 0 rgba(255,255,255,.6); }
+
+    /* Time card */
+    .time-card {
+      border: 1px solid var(--line); border-radius: 3px;
+      background: var(--glass); box-shadow: var(--shadow);
+      backdrop-filter: blur(18px); overflow: hidden;
+    }
+    .time-card-header { padding: 24px 20px 18px; border-bottom: 1px solid var(--line-2); text-align: center; }
+    .time-card-header .k { font-family: var(--roman); font-size: .6rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+    .age-big { font-family: var(--roman); font-weight: 800; font-size: 2.5rem; line-height: 1; margin: 12px 0 4px; color: var(--gold-bright); }
+    .age-big small { display: block; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: .82rem; letter-spacing: 0; text-transform: none; color: var(--muted); margin-top: 8px; }
+    .time-stat { display: grid; grid-template-columns: 1fr auto; gap: 14px; padding: 13px 20px; border-bottom: 1px solid var(--line-2); align-items: baseline; }
+    .time-stat:last-child { border-bottom: 0; }
+    .time-stat span { color: var(--muted); font-size: .92rem; }
+    .time-stat strong { font-family: var(--roman); font-weight: 600; color: var(--gold-bright); font-size: .9rem; letter-spacing: .03em; text-align: right; }
+    .light-live { font-variant-numeric: tabular-nums; }
+
+    /* ---------- Topbar ---------- */
+    .topbar { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--line); background: rgba(7, 12, 26, .76); backdrop-filter: blur(18px) saturate(140%); }
+    .topbar-inner { width: min(100% - 40px, var(--max)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 70px; }
+    .brand { display: flex; align-items: center; gap: 13px; min-width: max-content; }
+    .brand-mark { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(214,172,85,.5); box-shadow: 0 0 0 3px rgba(214,172,85,.1), 0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family: var(--roman); font-weight: 700; font-size: .82rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink); }
+    .nav { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+    .nav::-webkit-scrollbar { display: none; }
+    .nav a { position: relative; flex: 0 0 auto; padding: 10px 12px; font-family: var(--roman); font-size: .66rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); white-space: nowrap; transition: color .3s var(--ease); }
+    .nav a::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 6px; height: 1px; background: linear-gradient(90deg, var(--gold), var(--gold-bright)); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+    .nav a:hover, .nav a.active { color: var(--ink); }
+    .nav a:hover::after, .nav a.active::after { transform: scaleX(1); }
+    .home-link { flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; font-family: var(--roman); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06); white-space: nowrap; transition: border-color .3s var(--ease), background .3s var(--ease); }
+    .home-link:hover { border-color: rgba(214,172,85,.5); background: rgba(214,172,85,.12); }
+    .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: rgba(214,172,85,.1); }
+    .progress span { display: block; width: 0%; height: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), var(--dawn)); }
+
+    main { width: min(100% - 40px, var(--max)); margin: 0 auto; }
+
+    /* ---------- Intro / sections ---------- */
+    .intro-band { padding: 84px 0 8px; }
+    .section-kicker { margin: 0 0 14px; font-family: var(--roman); font-size: .68rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+    .manifesto { max-width: 780px; border-left: 2px solid var(--stellar); padding-left: 26px; }
+    .manifesto h2 { font-family: var(--roman); font-weight: 700; font-size: clamp(1.8rem, 3.6vw, 2.9rem); line-height: 1.04; letter-spacing: .005em; text-transform: uppercase; color: var(--ink); text-wrap: balance; }
+    .manifesto p { margin: 18px 0 0; color: var(--muted); font-size: 1.06rem; }
+
+    /* ---------- Learning panel ---------- */
+    .learning-panel { margin: 48px 0 0; border: 1px solid var(--line); border-radius: 3px;
+      background: radial-gradient(120% 120% at 100% 0%, rgba(157,140,255,.12), transparent 50%), linear-gradient(180deg, rgba(14,26,46,.4), rgba(7,12,26,.5));
+      padding: clamp(24px, 4vw, 40px); }
+    .learning-panel h2 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.12; color: var(--ink); text-wrap: balance; }
+    .learning-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+    .learning-item { border: 1px solid var(--line-2); border-radius: 3px; padding: 22px; background: rgba(244,236,216,.035); border-top: 2px solid rgba(214,172,85,.4); transition: transform .4s var(--ease), border-color .4s var(--ease), background .4s var(--ease); }
+    .learning-item:hover { transform: translateY(-4px); border-top-color: var(--gold); background: rgba(244,236,216,.06); }
+    .learning-item span { font-family: var(--roman); font-size: .66rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+    .learning-item p { margin: 12px 0 0; color: var(--muted); font-size: .98rem; }
+
+    /* ================= CHRONOSCOPE (interactive) ================= */
+    .chronoscope { padding: 84px 0 24px; border-top: 1px solid var(--line); margin-top: 80px; }
+    .cs-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 18px; margin-bottom: 12px; }
+    .cs-head h2 { font-family: var(--roman); font-weight: 700; font-size: clamp(1.7rem, 3.4vw, 2.6rem); text-transform: uppercase; letter-spacing: .01em; color: var(--ink); }
+    .cs-head p { max-width: 52ch; margin: 0; color: var(--soft); font-size: .96rem; }
+
+    .cs-stage {
+      position: relative; margin-top: 26px; border-radius: 4px; overflow: hidden;
+      border: 1px solid var(--line); border-top: 3px solid var(--epoch);
+      background:
+        radial-gradient(120% 160% at 18% 0%, color-mix(in srgb, var(--epoch) 26%, transparent), transparent 60%),
+        linear-gradient(180deg, rgba(7,12,26,.7), rgba(5,8,17,.85));
+      box-shadow: var(--shadow), inset 0 0 90px color-mix(in srgb, var(--epoch) 14%, transparent);
+      transition: border-color .6s var(--ease), background .6s var(--ease), box-shadow .6s var(--ease);
+      min-height: 300px; display: grid; grid-template-columns: 1.05fr .95fr;
+    }
+    .cs-orb-wrap { position: relative; display: grid; place-items: center; padding: 30px; border-right: 1px solid var(--line-2); }
+    .cs-orb {
+      width: min(74%, 230px); aspect-ratio: 1; border-radius: 50%; position: relative;
+      background:
+        radial-gradient(circle at 38% 34%, #fff, color-mix(in srgb, var(--epoch) 80%, #fff) 16%, var(--epoch) 42%, color-mix(in srgb, var(--epoch) 40%, #04060f) 78%, #04060f 100%);
+      box-shadow: 0 0 60px color-mix(in srgb, var(--epoch) 55%, transparent), 0 0 0 1px rgba(255,255,255,.06), inset -16px -18px 50px rgba(0,0,0,.5);
+      transition: background .6s var(--ease), box-shadow .6s var(--ease), transform .6s var(--ease);
+    }
+    .cs-orb::after { content: ""; position: absolute; inset: -14%; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--epoch) 40%, transparent); opacity: .5; }
+    .cs-orb-cap { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-family: var(--roman); font-size: .58rem; letter-spacing: .22em; text-transform: uppercase; color: var(--soft); }
+
+    .cs-readout { padding: clamp(22px, 3vw, 34px); display: flex; flex-direction: column; }
+    .cs-era-tag { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 28px; padding: 0 12px; font-family: var(--roman); font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #07060c; border-radius: 999px; background: var(--epoch); transition: background .6s var(--ease); }
+    .cs-name { font-family: var(--roman); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: .01em; color: var(--ink); margin: 16px 0 6px; }
+    .cs-blurb { color: var(--muted); font-size: 1rem; margin: 6px 0 20px; min-height: 3.2em; }
+    .cs-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: auto; }
+    .cs-metric { border: 1px solid var(--line-2); border-radius: 3px; padding: 13px 14px; background: rgba(244,236,216,.035); }
+    .cs-metric .lbl { font-family: var(--roman); font-size: .54rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+    .cs-metric .val { font-family: var(--roman); font-weight: 700; font-size: 1.04rem; color: var(--ink); margin-top: 6px; line-height: 1.15; font-variant-numeric: tabular-nums; }
+    .cs-metric .val sup { font-size: .62em; }
+
+    /* Rail */
+    .cs-rail-wrap { margin-top: 30px; }
+    .cs-rail { position: relative; height: 86px; margin: 0 6px; }
+    .cs-track { position: absolute; left: 0; right: 0; top: 44px; height: 4px; border-radius: 4px;
+      background: linear-gradient(90deg, var(--plasma) 0%, var(--cmb) 26%, var(--darkage) 40%, var(--dawn) 55%, var(--stellar) 68%, var(--marble) 86%, var(--gold-bright) 100%);
+      box-shadow: 0 0 16px rgba(214,172,85,.25); }
+    .cs-tick { position: absolute; top: 38px; width: 1px; height: 16px; background: var(--line); }
+    .cs-tick b { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); font-family: var(--roman); font-size: .5rem; font-weight: 600; letter-spacing: .06em; color: var(--soft); white-space: nowrap; }
+    .cs-tick b sup { font-size: .8em; }
+    .cs-node { position: absolute; top: 44px; width: 11px; height: 11px; border-radius: 50%; transform: translate(-50%, -50%); background: var(--void); border: 2px solid var(--nodecol, var(--gold)); box-shadow: 0 0 8px var(--nodecol, var(--gold)); cursor: pointer; z-index: 2; transition: transform .2s var(--ease); }
+    .cs-node:hover, .cs-node:focus-visible { transform: translate(-50%, -50%) scale(1.5); }
+    .cs-node .nt { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); font-family: var(--roman); font-size: .5rem; letter-spacing: .04em; text-transform: uppercase; color: var(--parch); white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s; background: rgba(5,8,17,.86); padding: 2px 6px; border: 1px solid var(--line-2); border-radius: 2px; }
+    .cs-node:hover .nt, .cs-node:focus-visible .nt { opacity: 1; }
+    .cs-playhead { position: absolute; top: 44px; width: 2px; height: 60px; transform: translate(-50%, -50%); background: linear-gradient(180deg, transparent, var(--gold-bright), transparent); z-index: 3; pointer-events: none; }
+    .cs-playhead::before { content: ""; position: absolute; top: 50%; left: 50%; width: 16px; height: 16px; transform: translate(-50%, -50%) rotate(45deg); background: var(--gold-bright); box-shadow: 0 0 16px var(--gold-bright); border-radius: 3px; }
+
+    .cs-controls { display: flex; align-items: center; gap: 16px; margin: 22px 6px 0; flex-wrap: wrap; }
+    .cs-slider { flex: 1 1 320px; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 4px; background: var(--line); outline-offset: 6px; }
+    .cs-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; cursor: grab; background: radial-gradient(circle at 36% 32%, #fff, var(--gold) 60%, var(--gold-deep)); box-shadow: 0 0 0 4px rgba(214,172,85,.18), 0 6px 16px rgba(0,0,0,.5); border: none; }
+    .cs-slider::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; cursor: grab; background: radial-gradient(circle at 36% 32%, #fff, var(--gold) 60%, var(--gold-deep)); box-shadow: 0 0 0 4px rgba(214,172,85,.18); border: none; }
+    .cs-play { display: inline-flex; align-items: center; gap: 9px; min-height: 46px; padding: 0 20px; cursor: pointer; font-family: var(--roman); font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #14110a; border: 0; border-radius: 2px; background: linear-gradient(140deg, var(--gold-bright), var(--gold) 55%, var(--gold-deep)); box-shadow: 0 12px 30px rgba(214,172,85,.25); }
+    .cs-play:hover { filter: brightness(1.06); }
+    .cs-foot { margin: 14px 6px 0; font-size: .82rem; color: var(--soft); font-style: italic; }
+
+    /* ================= Chronology cards ================= */
+    .chronicle { padding: 70px 0; border-top: 1px solid var(--line); }
+    .epoch-group { margin-top: 40px; }
+    .epoch-group > .group-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 6px; }
+    .group-head .gn { font-family: var(--roman); font-weight: 700; font-size: 2.6rem; line-height: 1; color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--gc, var(--gold)) 60%, transparent); }
+    .group-head h3 { font-family: var(--roman); font-weight: 700; font-size: clamp(1.3rem, 2.6vw, 1.8rem); text-transform: uppercase; letter-spacing: .02em; color: var(--ink); }
+    .group-sub { color: var(--soft); font-size: .94rem; margin: 0 0 22px; max-width: 64ch; }
+
+    .ev { position: relative; display: grid; grid-template-columns: 188px minmax(0,1fr); gap: 26px; padding: 22px 0; border-top: 1px solid var(--line-2); }
+    .ev:first-of-type { border-top: 0; }
+    .ev-when { font-family: var(--roman); }
+    .ev-when .since { font-size: .58rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+    .ev-when .ago { display: block; margin-top: 6px; font-weight: 700; font-size: 1.08rem; color: var(--gold-bright); line-height: 1.2; }
+    .ev-when .ago small { display: block; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: .78rem; letter-spacing: 0; text-transform: none; color: var(--soft); margin-top: 4px; }
+    .ev-body h4 { font-family: var(--roman); font-weight: 700; font-size: 1.16rem; letter-spacing: .01em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
+    .ev-body p { margin: 0; color: var(--muted); font-size: 1rem; }
+    .ev-data { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .chip { display: inline-flex; align-items: center; gap: 7px; min-height: 28px; padding: 0 11px; font-family: var(--roman); font-size: .58rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--parch); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.05); }
+    .chip b { color: var(--gold-bright); font-weight: 700; }
+    .chip sup { font-size: .8em; }
+
+    /* ================= Cosmic calendar (interactive) ================= */
+    .calendar { padding: 72px 0; border-top: 1px solid var(--line); }
+    .cal-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 26px 0 34px; }
+    .cal-fact { border: 1px solid var(--line-2); border-radius: 3px; padding: 20px; background: rgba(244,236,216,.035); border-top: 2px solid var(--marble); }
+    .cal-fact .u { font-family: var(--roman); font-weight: 700; font-size: 1.5rem; color: var(--marble); }
+    .cal-fact .d { color: var(--muted); font-size: .92rem; margin-top: 6px; }
+    .cal-bar-wrap { position: relative; margin-top: 10px; }
+    .cal-months { display: grid; grid-template-columns: repeat(12, 1fr); margin-bottom: 8px; }
+    .cal-months span { font-family: var(--roman); font-size: .56rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); text-align: center; border-left: 1px solid var(--line-2); padding: 4px 0; }
+    .cal-months span:first-child { border-left: 0; }
+    .cal-track { position: relative; height: 64px; border: 1px solid var(--line); border-radius: 3px; overflow: hidden;
+      background: linear-gradient(90deg, #0a1226, #0a1226 92%, color-mix(in srgb, var(--gold) 22%, #0a1226)); }
+    .cal-track .grid { position: absolute; inset: 0; background-image: repeating-linear-gradient(90deg, transparent, transparent calc(100%/12 - 1px), var(--line-2) calc(100%/12 - 1px), var(--line-2) calc(100%/12)); }
+    .cal-fill { position: absolute; top: 0; bottom: 0; left: 0; background: linear-gradient(90deg, rgba(255,207,138,.18), rgba(157,140,255,.2) 55%, rgba(94,200,255,.28)); border-right: 2px solid var(--gold-bright); box-shadow: 0 0 18px rgba(243,217,138,.5); width: 100%; transition: width .05s linear; }
+    .cal-ev { position: absolute; top: 50%; width: 10px; height: 10px; border-radius: 50%; transform: translate(-50%, -50%); background: var(--ink); border: 2px solid var(--cmb); box-shadow: 0 0 8px rgba(0,0,0,.6); cursor: pointer; z-index: 3; }
+    .cal-ev:hover, .cal-ev:focus-visible { background: var(--gold-bright); }
+    .cal-ev .tip { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); width: max-content; max-width: 200px; padding: 8px 11px; background: rgba(5,8,17,.94); border: 1px solid var(--line); border-radius: 3px; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 5; box-shadow: var(--shadow); }
+    .cal-ev:hover .tip, .cal-ev:focus-visible .tip { opacity: 1; }
+    .cal-ev .tip b { display: block; font-family: var(--roman); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-bright); }
+    .cal-ev .tip span { display: block; font-size: .82rem; color: var(--muted); margin-top: 3px; }
+    .cal-readout { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 18px; margin-top: 22px; padding: 18px 20px; border: 1px solid var(--line); border-left: 3px solid var(--marble); border-radius: 3px; background: rgba(94,200,255,.06); }
+    .cal-readout .date { font-family: var(--roman); font-weight: 700; font-size: 1.4rem; color: var(--marble); }
+    .cal-readout .what { color: var(--muted); }
+    .cal-readout .real { font-family: var(--roman); font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+    .cal-slider { width: 100%; margin-top: 18px; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 4px; background: var(--line); }
+    .cal-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; cursor: grab; background: radial-gradient(circle at 36% 32%, #fff, var(--marble) 60%, #2b6f93); box-shadow: 0 0 0 4px rgba(94,200,255,.18); border: none; }
+    .cal-slider::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; cursor: grab; background: radial-gradient(circle at 36% 32%, #fff, var(--marble) 60%, #2b6f93); border: none; }
+
+    /* ================= Anti-intox ================= */
+    .anti { padding: 72px 0; border-top: 1px solid var(--line); }
+    .anti-intox-block { border: 1px solid var(--line-2); border-left: 3px solid var(--cmb); border-radius: 3px; padding: 26px; margin-top: 24px; background: rgba(255,122,77,.08); max-width: 820px; }
+    .anti-intox-block p { margin: 0 0 16px; color: var(--muted); font-size: 1.04rem; }
+    .anti-intox-block p:last-child { margin-bottom: 0; }
+    .anti-intox-block strong { color: var(--parch); }
+
+    /* ---------- Credit band ---------- */
+    .credit-band { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 22px; margin: 56px 0 0; padding: clamp(24px, 4vw, 34px); border: 1px solid var(--line); border-radius: 3px;
+      background: radial-gradient(120% 160% at 50% 0%, rgba(214,172,85,.12), transparent 62%), linear-gradient(180deg, rgba(14,26,46,.4), rgba(7,12,26,.5)); }
+    .credit-band .seal { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; padding: 3px; background: conic-gradient(from 210deg, var(--gold-deep), var(--gold-bright), var(--gold), var(--gold-deep)); }
+    .credit-band .credit-text { display: flex; flex-direction: column; gap: 4px; }
+    .credit-band .lbl { font-family: var(--roman); font-size: .62rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+    .credit-band strong { font-family: var(--roman); font-size: clamp(1.2rem, 2.4vw, 1.5rem); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
+
+    /* ---------- Collective footer ---------- */
+    .collective-footer { position: relative; display: grid; grid-template-columns: minmax(230px, 360px) minmax(0, 1fr); align-items: stretch; margin: 56px 0 96px; border: 1px solid var(--line); border-radius: 3px;
+      background: radial-gradient(120% 120% at 100% 0%, rgba(157,140,255,.16), transparent 55%), linear-gradient(180deg, rgba(14,26,46,.6), rgba(7,12,26,.66)); box-shadow: var(--shadow); overflow: hidden; }
+    .collective-logo-wrap { position: relative; z-index: 1; min-height: 320px; display: grid; place-items: center; padding: 38px; background: rgba(5,8,17,.3); border-right: 1px solid var(--line); }
+    .collective-logo { width: min(100%, 260px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; padding: 5px; background: conic-gradient(from 210deg, var(--gold-deep), var(--gold-bright), var(--gold), var(--gold-deep)); box-shadow: 0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position: relative; z-index: 1; padding: clamp(34px, 4vw, 52px); }
+    .collective-copy h2 { max-width: 14ch; font-family: var(--roman); font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: .01em; text-transform: uppercase; color: var(--ink); }
+    .collective-copy p { max-width: 64ch; margin: 18px 0 0; color: var(--muted); font-size: 1.06rem; }
+    .collective-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .collective-motto { display: inline-flex; align-items: center; min-height: 36px; margin-top: 24px; padding: 0 16px; font-family: var(--serif); font-style: italic; font-size: 1rem; letter-spacing: .04em; color: var(--gold); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06); }
+
+    footer { border-top: 1px solid var(--line); padding: 30px 0 44px; color: var(--soft); font-size: .9rem; }
+    footer main { display: block; width: auto; }
+    footer strong { color: var(--parch); }
+
+    .mobile-menu { display: none; border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.07); color: var(--ink); padding: 10px 13px; font-family: var(--roman); font-weight: 700; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; }
+
+    /* ================= GEOLOGY — Earth & life ================= */
+    .geo { padding: 84px 0 24px; border-top: 1px solid var(--line); }
+    .band-label { display: flex; justify-content: space-between; gap: 12px; margin: 28px 0 8px; font-family: var(--roman); font-size: .58rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+    .band-label span:last-child { color: var(--soft); }
+    .geo-rail { position: relative; padding: 7px 0; }
+    .eon-band, .phan-band { position: relative; display: flex; height: 50px; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; box-shadow: inset 0 0 30px rgba(0,0,0,.5); }
+    .eon-band button, .phan-band button { position: relative; display: flex; align-items: center; justify-content: center; min-width: 2px; cursor: pointer; border: 0; padding: 0; transition: filter .3s var(--ease); }
+    .eon-band button:hover, .phan-band button:hover, .eon-band button:focus-visible, .phan-band button:focus-visible { filter: brightness(1.22); z-index: 2; }
+    .eon-band button b, .phan-band button b { font-family: var(--roman); font-size: .54rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: #0c0a06; white-space: nowrap; padding: 0 5px; pointer-events: none; }
+    .geo-playhead { position: absolute; top: 0; bottom: 0; left: 100%; width: 2px; transform: translateX(-50%); background: linear-gradient(180deg, var(--gold-bright), rgba(243,217,138,.2)); z-index: 5; pointer-events: none; transition: left .05s linear; }
+    .geo-playhead::before { content: ""; position: absolute; top: -5px; left: 50%; width: 13px; height: 13px; transform: translateX(-50%) rotate(45deg); background: var(--gold-bright); box-shadow: 0 0 14px var(--gold-bright); border-radius: 2px; }
+    .geo-stage { margin-top: 24px; border: 1px solid var(--line); border-top: 3px solid var(--epoch); border-radius: 4px; padding: clamp(22px, 3vw, 32px);
+      background: radial-gradient(120% 160% at 12% 0%, color-mix(in srgb, var(--epoch) 24%, transparent), transparent 62%), linear-gradient(180deg, rgba(7,12,26,.72), rgba(5,8,17,.86));
+      box-shadow: inset 0 0 80px color-mix(in srgb, var(--epoch) 12%, transparent);
+      transition: border-color .5s var(--ease), background .5s var(--ease), box-shadow .5s var(--ease); }
+    .geo-event { margin: 18px 0 0; padding-left: 16px; border-left: 2px solid var(--epoch); color: var(--parch); font-style: italic; font-size: 1rem; transition: border-color .5s var(--ease); }
+    .geo-slider { width: 100%; margin: 18px 0 0; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 4px; background: var(--line); }
+    .geo-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; cursor: grab; background: radial-gradient(circle at 36% 32%, #fff, var(--gold) 60%, var(--gold-deep)); box-shadow: 0 0 0 4px rgba(214,172,85,.18), 0 6px 16px rgba(0,0,0,.5); border: none; }
+    .geo-slider::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; cursor: grab; background: radial-gradient(circle at 36% 32%, #fff, var(--gold) 60%, var(--gold-deep)); border: none; }
+
+    /* Big Five extinctions */
+    .ext-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(178px, 1fr)); gap: 14px; margin-top: 24px; }
+    .ext-card { position: relative; border: 1px solid var(--line-2); border-top: 3px solid var(--cmb); border-radius: 3px; padding: 20px; background: linear-gradient(180deg, rgba(255,122,77,.08), rgba(5,8,17,.2)); overflow: hidden; transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+    .ext-card:hover { transform: translateY(-5px); box-shadow: 0 22px 50px rgba(0,0,0,.45); }
+    .ext-card .pct { font-family: var(--roman); font-weight: 800; font-size: 2.1rem; line-height: 1; color: var(--cmb); }
+    .ext-card .pct small { display: block; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: .72rem; color: var(--soft); margin-top: 4px; letter-spacing: 0; }
+    .ext-card h4 { font-family: var(--roman); font-weight: 700; font-size: .92rem; letter-spacing: .02em; text-transform: uppercase; color: var(--ink); margin: 14px 0 6px; }
+    .ext-card .when { font-family: var(--roman); font-size: .56rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-bright); }
+    .ext-card p { margin: 8px 0 0; color: var(--muted); font-size: .88rem; }
+    .ext-note { margin: 22px 0 0; padding: 18px 20px; border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: 3px; background: rgba(214,172,85,.06); color: var(--muted); font-size: .96rem; }
+    .ext-note strong { color: var(--parch); }
+
+    /* GTS reference table */
+    .gts-wrap { margin-top: 26px; border: 1px solid var(--line); border-radius: 3px; overflow: auto; box-shadow: var(--shadow); }
+    table.gts { width: 100%; border-collapse: collapse; min-width: 680px; font-size: .9rem; }
+    table.gts th, table.gts td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line-2); vertical-align: top; }
+    table.gts thead th { font-family: var(--roman); font-size: .56rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); background: rgba(7,12,26,.96); position: sticky; top: 0; z-index: 1; }
+    table.gts td.cap { font-family: var(--roman); font-weight: 600; font-size: .74rem; letter-spacing: .04em; text-transform: uppercase; color: var(--parch); white-space: nowrap; }
+    table.gts td .sw { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-right: 9px; vertical-align: middle; box-shadow: 0 0 0 1px rgba(0,0,0,.4); }
+    table.gts td.age { font-variant-numeric: tabular-nums; color: var(--gold-bright); white-space: nowrap; font-family: var(--roman); font-size: .82rem; }
+    table.gts td.life { color: var(--muted); }
+    table.gts tbody tr:hover td { background: rgba(244,236,216,.03); }
+
+    @media (max-width: 720px) { .geo-stage .cs-metrics { grid-template-columns: 1fr; } }
+
+    /* ---------- Reveal ---------- */
+    .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal[data-d="1"] { transition-delay: .08s; }
+    .reveal[data-d="2"] { transition-delay: .16s; }
+    .reveal[data-d="3"] { transition-delay: .24s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+    .js .hero-inner > div > *, .js .time-card { opacity: 0; animation: rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1) { animation-delay: .1s; }
+    .js .hero-inner > div > *:nth-child(2) { animation-delay: .2s; }
+    .js .hero-inner > div > *:nth-child(3) { animation-delay: .3s; }
+    .js .hero-inner > div > *:nth-child(4) { animation-delay: .4s; }
+    .js .time-card { animation-delay: .45s; }
+
+    @media (max-width: 980px) {
+      .hero { min-height: 90vh; padding: 22px; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .time-card { max-width: 560px; }
+      .learning-grid { grid-template-columns: 1fr; }
+      .cs-stage { grid-template-columns: 1fr; }
+      .cs-orb-wrap { border-right: 0; border-bottom: 1px solid var(--line-2); }
+      .cal-facts { grid-template-columns: 1fr; }
+      .collective-footer { grid-template-columns: 1fr; }
+      .collective-logo-wrap { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+    }
+    @media (max-width: 720px) {
+      .topbar-inner { width: min(100% - 24px, var(--max)); min-height: auto; padding: 12px 0; flex-wrap: wrap; }
+      .mobile-menu { display: inline-flex; }
+      .nav { display: none; width: 100%; padding: 8px 0 2px; flex-wrap: wrap; }
+      .nav.open { display: flex; }
+      main { width: min(100% - 24px, var(--max)); }
+      .hero { min-height: 86vh; padding: 16px; }
+      .hero-inner { margin-bottom: 5vh; gap: 26px; }
+      .cs-metrics { grid-template-columns: 1fr; }
+      .ev { grid-template-columns: 1fr; gap: 10px; }
+      .cs-tick b { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+      .js .hero-inner > div > *, .js .time-card { opacity: 1; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-canvas" aria-hidden="true"><div class="rays"></div></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier · Chronologie cosmique</p>
+          <h1>La Grande Horloge de l'<span class="foil">Univers</span></h1>
+          <p class="hero-lead">Du Big Bang à cette seconde même : 13,787 milliards d'années sur une seule frise interactive. Faites glisser le temps depuis le mur de Planck (10⁻⁴³ s) — puis dépliez les 4,567 milliards d'années de la Terre, ses ères géologiques et toute l'histoire du vivant.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#chronoscope">Faire défiler le temps</a>
+            <a class="button" href="#terre">Histoire de la Terre</a>
+            <a class="button" href="calendrier.html">Calendrier plein écran ↗</a>
+            <a class="button" href="clock.html">L'Horloge cosmique ↗</a>
+            <a class="button" href="../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="time-card" aria-label="Données de l'univers">
+          <div class="time-card-header">
+            <p class="k">Âge de l'univers</p>
+            <p class="age-big">13,787<small>milliards d'années — mesure du satellite Planck (2018), incertitude ± 20 millions d'années</small></p>
+          </div>
+          <div class="time-stat"><span>Univers observable</span><strong>≈ 93 milliards d'al</strong></div>
+          <div class="time-stat"><span>Température du fond diffus</span><strong>2,725 K</strong></div>
+          <div class="time-stat"><span>Galaxies estimées</span><strong>≈ 2 × 10¹²</strong></div>
+          <div class="time-stat"><span>Lumière depuis votre arrivée</span><strong class="light-live" id="lightLive">0 km</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="../ymir-lalie/assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Horloge de l'Univers</span>
+        </a>
+        <a class="home-link" href="../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#ouverture">Ouverture</a>
+          <a href="#chronoscope">Chronoscope</a>
+          <a href="#primordial">Univers primordial</a>
+          <a href="#lumiere">Première lumière</a>
+          <a href="#etoiles">Âge des étoiles</a>
+          <a href="#vie">Soleil &amp; vie</a>
+          <a href="calendrier.html">Calendrier plein écran ↗</a>
+          <a href="clock.html">L'Horloge cosmique ↗</a>
+          <a href="#terre">Horloge de la Terre</a>
+          <a href="#vivant">Histoire du vivant</a>
+          <a href="#extinctions">Extinctions</a>
+          <a href="#echelle">Échelle des temps</a>
+          <a href="#anti-intox">Anti-intox</a>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </nav>
+
+    <main>
+      <section class="intro-band" id="ouverture">
+        <div class="manifesto reveal">
+          <p class="section-kicker">Ouverture</p>
+          <h2>Treize milliards d'années ne tiennent pas sur une règle ordinaire.</h2>
+          <p>Entre la première fraction de seconde de l'univers et aujourd'hui, l'écart est si vertigineux qu'aucune frise « à plat » ne peut les montrer ensemble. La seule manière honnête est l'échelle <strong>logarithmique</strong> : chaque graduation multiplie le temps par dix. C'est le cœur du Chronoscope ci-dessous — un instrument où le mur de Planck et l'instant présent cohabitent enfin. Et pour réunir <em>tout</em> sur une seule année et une horloge de 24 h — à la manière de Carl Sagan —, le <a href="calendrier.html" style="color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px;">Grand Calendrier Cosmique interactif en plein écran ↗</a> prolonge ce dossier.</p>
+          <p>Enfin, parce que toute l'histoire de la Terre ne forme qu'un dernier trait sur la frise cosmique, l'<strong>Horloge de la Terre</strong> la déplie en entier : les quatre éons, toutes les ères et périodes géologiques (échelle ICS), l'histoire du vivant des premières bactéries à nous, et les <strong>cinq grandes extinctions</strong>.</p>
+        </div>
+
+        <div class="learning-panel reveal" aria-labelledby="objectifs">
+          <p class="section-kicker">Objectifs pédagogiques</p>
+          <h2 id="objectifs">Donner l'échelle avant de donner l'avis.</h2>
+          <div class="learning-grid">
+            <div class="learning-item reveal" data-d="1">
+              <span>Ordonner</span>
+              <p>Replacer chaque grand événement — Big Bang, fond diffus, premières étoiles, Soleil, vie — dans une chronologie chiffrée et sourcée.</p>
+            </div>
+            <div class="learning-item reveal" data-d="2">
+              <span>Saisir l'échelle</span>
+              <p>Comprendre par la manipulation pourquoi l'échelle logarithmique et le calendrier cosmique disent deux vérités complémentaires.</p>
+            </div>
+            <div class="learning-item reveal" data-d="3">
+              <span>Vérifier</span>
+              <p>Distinguer un fait mesuré (température, décalage vers le rouge, datation) d'une affirmation invérifiable.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CHRONOSCOPE ================= -->
+      <section class="chronoscope reveal" id="chronoscope" aria-labelledby="cs-title">
+        <div class="cs-head">
+          <div>
+            <p class="section-kicker">Instrument · Échelle logarithmique</p>
+            <h2 id="cs-title">Le Chronoscope</h2>
+          </div>
+          <p>Chaque graduation multiplie le temps par 10. De 10⁻⁴³ seconde après le Big Bang jusqu'aux 4,35 × 10¹⁷ secondes d'aujourd'hui. Glissez, lisez, ou lancez la lecture.</p>
+        </div>
+
+        <div class="cs-stage" id="csStage">
+          <div class="cs-orb-wrap">
+            <div class="cs-orb" id="csOrb"></div>
+            <div class="cs-orb-cap">État de l'univers</div>
+          </div>
+          <div class="cs-readout">
+            <span class="cs-era-tag" id="csEra">—</span>
+            <h3 class="cs-name" id="csName">—</h3>
+            <p class="cs-blurb" id="csBlurb">—</p>
+            <div class="cs-metrics">
+              <div class="cs-metric"><div class="lbl">Depuis le Big Bang</div><div class="val" id="csTime">—</div></div>
+              <div class="cs-metric"><div class="lbl">Température</div><div class="val" id="csTemp">—</div></div>
+              <div class="cs-metric"><div class="lbl">Taille de l'univers</div><div class="val" id="csScale">—</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-rail-wrap">
+          <div class="cs-rail" id="csRail">
+            <div class="cs-track"></div>
+            <div class="cs-playhead" id="csPlayhead" style="left:50%"></div>
+          </div>
+          <div class="cs-controls">
+            <button class="cs-play" id="csToggle" type="button" aria-label="Lancer la lecture du temps">▶ Lecture</button>
+            <input class="cs-slider" id="csSlider" type="range" min="0" max="1000" value="0" aria-label="Position dans le temps cosmique (échelle logarithmique)">
+          </div>
+          <p class="cs-foot">Astuce : cliquez sur un repère de la frise pour y sauter, ou utilisez les flèches du clavier sur le curseur.</p>
+        </div>
+      </section>
+
+      <!-- ================= CHRONICLE ================= -->
+      <section class="chronicle" id="chronique" aria-label="Chronologie détaillée">
+        <p class="section-kicker reveal">Chronologie détaillée &amp; sourcée</p>
+
+        <!-- GROUP 1 -->
+        <div class="epoch-group reveal" id="primordial" style="--gc: var(--plasma)">
+          <div class="group-head"><span class="gn">I</span><h3>L'univers primordial</h3></div>
+          <p class="group-sub">La première seconde concentre une physique extrême : tout ce qui suit en découle. Les durées sont théoriques (modèle standard de la cosmologie), les températures décroissent comme l'inverse du facteur d'échelle.</p>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">10⁻⁴³ s<small>le « mur de Planck »</small></span></div>
+            <div class="ev-body">
+              <h4>Ère de Planck</h4>
+              <p>En deçà de ce temps, les quatre forces fondamentales ne sont plus séparables et la gravité elle-même devrait être quantique : aucune théorie validée ne décrit cet instant. C'est la frontière de ce que la physique sait dire.</p>
+              <div class="ev-data"><span class="chip">T ≈ <b>10<sup>32</sup> K</b></span><span class="chip">les 4 forces unifiées</span></div>
+            </div>
+          </article>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">10⁻³⁶ → 10⁻³² s<small>une fraction de fraction de seconde</small></span></div>
+            <div class="ev-body">
+              <h4>Inflation cosmique</h4>
+              <p>L'univers se dilate d'un facteur d'au moins 10²⁶ en un instant infime. Cette expansion fulgurante lisse l'espace et étire de minuscules fluctuations quantiques en germes des futures galaxies.</p>
+              <div class="ev-data"><span class="chip">expansion ×<b>10<sup>26</sup></b></span><span class="chip">graines de structure</span></div>
+            </div>
+          </article>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">10⁻¹² → 10⁻⁶ s<small>de la picoseconde à la microseconde</small></span></div>
+            <div class="ev-body">
+              <h4>Quarks puis hadrons</h4>
+              <p>Un plasma brûlant de quarks et de gluons emplit l'espace. En refroidissant sous ~2 × 10¹² K, les quarks se lient enfin pour former protons et neutrons : la matière prend sa structure familière.</p>
+              <div class="ev-data"><span class="chip">T : <b>10<sup>15</sup> → 10<sup>13</sup> K</b></span><span class="chip">naissance des protons</span></div>
+            </div>
+          </article>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">1 s → 20 min<small>la nucléosynthèse primordiale</small></span></div>
+            <div class="ev-body">
+              <h4>Les premiers noyaux</h4>
+              <p>Vers 1 seconde, les neutrinos se découplent. Entre la 10ᵉ seconde et la 20ᵉ minute, protons et neutrons fusionnent : il se forge environ <strong>75 % d'hydrogène et 25 % d'hélium</strong> (en masse), plus une trace de lithium. Cette composition, prédite puis mesurée, est l'une des grandes preuves du Big Bang.</p>
+              <div class="ev-data"><span class="chip">T ≈ <b>10<sup>9</sup> K</b></span><span class="chip">H : <b>~75 %</b></span><span class="chip">He : <b>~25 %</b></span></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- GROUP 2 -->
+        <div class="epoch-group reveal" id="lumiere" style="--gc: var(--cmb)">
+          <div class="group-head"><span class="gn">II</span><h3>La première lumière</h3></div>
+          <p class="group-sub">Pendant des centaines de milliers d'années, l'univers reste un brouillard opaque. Puis il devient transparent — et libère le plus ancien rayonnement que l'on puisse observer.</p>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">≈ 47 000 ans<small>il y a ~13,787 milliards d'années</small></span></div>
+            <div class="ev-body">
+              <h4>Égalité matière–rayonnement</h4>
+              <p>Jusqu'ici, l'énergie de l'univers était dominée par le rayonnement. La densité de matière prend le dessus : c'est le moment où la gravité peut commencer à structurer la matière.</p>
+              <div class="ev-data"><span class="chip">T ≈ <b>9 300 K</b></span><span class="chip">z ≈ <b>3 400</b></span></div>
+            </div>
+          </article>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">≈ 380 000 ans<small>il y a ~13,787 milliards d'années</small></span></div>
+            <div class="ev-body">
+              <h4>Recombinaison — le fond diffus cosmologique</h4>
+              <p>L'univers refroidit jusqu'à ~3 000 K : les électrons se lient enfin aux noyaux pour former des atomes neutres. La lumière, jusque-là sans cesse diffusée, peut voyager librement. Ce flash libéré, étiré par 13,8 milliards d'années d'expansion, nous parvient aujourd'hui à <strong>2,725 K</strong> : c'est le <strong>fond diffus cosmologique</strong>, la plus vieille image de l'univers.</p>
+              <div class="ev-data"><span class="chip">T ≈ <b>3 000 K</b></span><span class="chip">z ≈ <b>1 090</b></span><span class="chip">→ aujourd'hui <b>2,725 K</b></span></div>
+            </div>
+          </article>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">380 000 ans → ~150 Ma<small>l'ère sombre</small></span></div>
+            <div class="ev-body">
+              <h4>Les âges sombres</h4>
+              <p>Aucune étoile n'existe encore. L'univers n'est qu'un gaz d'hydrogène et d'hélium qui s'effondre lentement sous sa propre gravité, dans le noir, autour de la trame invisible de matière noire.</p>
+              <div class="ev-data"><span class="chip">aucune étoile</span><span class="chip">gaz neutre</span></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- GROUP 3 -->
+        <div class="epoch-group reveal" id="etoiles" style="--gc: var(--stellar)">
+          <div class="group-head"><span class="gn">III</span><h3>L'âge des étoiles et des galaxies</h3></div>
+          <p class="group-sub">La gravité l'emporte : les premiers astres s'allument et forgent, dans leur cœur, les éléments dont tout le reste — y compris nous — sera fait.</p>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">≈ 100 – 200 Ma<small>il y a ~13,6 milliards d'années</small></span></div>
+            <div class="ev-body">
+              <h4>Aube cosmique — premières étoiles</h4>
+              <p>Les premières étoiles (population III), géantes et brûlantes, s'allument et percent l'obscurité. Leur lumière ultraviolette réionise peu à peu le gaz environnant. En explosant en supernovas, elles dispersent les premiers éléments lourds.</p>
+              <div class="ev-data"><span class="chip">z ≈ <b>20</b></span><span class="chip">étoiles pop. III</span></div>
+            </div>
+          </article>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">≈ 0,4 – 1 Ga<small>il y a ~13 milliards d'années</small></span></div>
+            <div class="ev-body">
+              <h4>Premières galaxies &amp; réionisation</h4>
+              <p>Les étoiles se rassemblent en galaxies primitives, observées aujourd'hui par le télescope James-Webb. Vers 1 milliard d'années, l'univers est entièrement réionisé et redevient transparent à la lumière ultraviolette.</p>
+              <div class="ev-data"><span class="chip">z ≈ <b>11 → 6</b></span><span class="chip">galaxies primitives</span></div>
+            </div>
+          </article>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">≈ 3,5 Ga<small>il y a ~10 milliards d'années</small></span></div>
+            <div class="ev-body">
+              <h4>Le « midi cosmique »</h4>
+              <p>Le taux de formation d'étoiles atteint son maximum dans l'histoire de l'univers. Les grandes galaxies, dont la Voie lactée, assemblent l'essentiel de leur masse.</p>
+              <div class="ev-data"><span class="chip">z ≈ <b>2</b></span><span class="chip">pic de formation stellaire</span></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- GROUP 4 -->
+        <div class="epoch-group reveal" id="vie" style="--gc: var(--marble)">
+          <div class="group-head"><span class="gn">IV</span><h3>Le Soleil, la Terre et la vie</h3></div>
+          <p class="group-sub">Sur l'échelle logarithmique, toute l'histoire de la Terre tient dans la dernière fine tranche. Voici la part qui nous concerne — datée par la radioactivité et les fossiles.</p>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">≈ 9,2 Ga<small>il y a 4,6 milliards d'années</small></span></div>
+            <div class="ev-body">
+              <h4>Naissance du Soleil et de la Terre</h4>
+              <p>Un nuage de gaz et de poussière enrichi par des générations d'étoiles s'effondre : le Soleil s'allume, les planètes se forment. La Terre se solidifie il y a 4,54 milliards d'années ; une collision géante donne naissance à la Lune.</p>
+              <div class="ev-data"><span class="chip">Soleil : <b>−4,6 Ga</b></span><span class="chip">Terre : <b>−4,54 Ga</b></span></div>
+            </div>
+          </article>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">≈ 10 Ga<small>il y a ~3,8 milliards d'années</small></span></div>
+            <div class="ev-body">
+              <h4>L'apparition de la vie</h4>
+              <p>Les premières traces de vie — des bactéries unicellulaires — apparaissent dans les océans. Vers −2,4 Ga, la photosynthèse des cyanobactéries sature l'atmosphère en oxygène : la Grande Oxydation.</p>
+              <div class="ev-data"><span class="chip">vie : <b>−3,8 Ga</b></span><span class="chip">oxygène : <b>−2,4 Ga</b></span></div>
+            </div>
+          </article>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">≈ 13,25 Ga<small>il y a 541 millions d'années</small></span></div>
+            <div class="ev-body">
+              <h4>Explosion cambrienne &amp; règne des titans</h4>
+              <p>La vie complexe explose : squelettes, yeux, prédateurs. Puis les dinosaures dominent de −252 à −66 Ma, jusqu'à l'impact d'un astéroïde au Yucatán qui ouvre la voie aux mammifères.</p>
+              <div class="ev-data"><span class="chip">Cambrien : <b>−541 Ma</b></span><span class="chip">dinosaures : <b>−252 → −66 Ma</b></span></div>
+            </div>
+          </article>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Depuis le Big Bang</span><span class="ago">Maintenant<small>il y a moins de 300 000 ans pour Homo sapiens</small></span></div>
+            <div class="ev-body">
+              <h4>Homo sapiens — vous êtes ici</h4>
+              <p>Notre espèce apparaît il y a ~300 000 ans ; l'histoire écrite, ~5 000 ans. Sur les 13,787 milliards d'années de l'univers, toute l'aventure humaine tient dans une lueur finale. C'est cette dernière seconde qui regarde, mesure et raconte tout le reste.</p>
+              <div class="ev-data"><span class="chip">H. sapiens : <b>~−300 000 ans</b></span><span class="chip">aujourd'hui : <b>2,725 K</b></span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================= EARTH / GEOLOGY (interactive) ================= -->
+      <section class="geo reveal" id="terre" aria-labelledby="geo-title">
+        <div class="cs-head">
+          <div>
+            <p class="section-kicker">Zoom · les 4,567 milliards d'années de la Terre</p>
+            <h2 id="geo-title">L'Horloge de la Terre</h2>
+          </div>
+          <p>Sur la frise cosmique, toute l'histoire terrestre tient dans un dernier trait. La voici dépliée : éons, ères, périodes — et la vie qui les habite. Glissez ou cliquez une bande.</p>
+        </div>
+
+        <div class="band-label"><span>Proportions réelles · 4 567 Ma — le Précambrien occupe 88 %</span><span>← plus ancien · récent →</span></div>
+        <div class="geo-rail">
+          <div class="eon-band" id="eonBand" role="group" aria-label="Les éons de la Terre, à l'échelle"></div>
+          <div class="geo-playhead" id="geoPlayhead"></div>
+        </div>
+        <input class="geo-slider" id="geoSlider" type="range" min="0" max="1000" value="1000" aria-label="Position dans l'histoire de la Terre (millions d'années)">
+
+        <div class="geo-stage" id="geoStage">
+          <span class="cs-era-tag" id="geoEonTag">—</span>
+          <h3 class="cs-name" id="geoName">—</h3>
+          <p class="cs-blurb" id="geoLife">—</p>
+          <div class="cs-metrics">
+            <div class="cs-metric"><div class="lbl">Datation</div><div class="val" id="geoDate">—</div></div>
+            <div class="cs-metric"><div class="lbl">Atmosphère</div><div class="val" id="geoAtmo" style="font-size:.8rem;line-height:1.32;font-weight:600">—</div></div>
+            <div class="cs-metric"><div class="lbl">Si la Terre durait 24 h</div><div class="val" id="geoClock">—</div></div>
+          </div>
+          <p class="geo-event" id="geoEvent">—</p>
+        </div>
+
+        <div class="band-label"><span>Phanérozoïque déplié · 538,8 Ma → aujourd'hui</span><span>cliquez une période</span></div>
+        <div class="phan-band" id="phanBand" role="group" aria-label="Les périodes du Phanérozoïque"></div>
+      </section>
+
+      <!-- ================= HISTORY OF LIFE ================= -->
+      <section class="chronicle" id="vivant" aria-label="Histoire du vivant">
+        <p class="section-kicker reveal">L'histoire du vivant · grandes étapes</p>
+
+        <div class="epoch-group reveal" style="--gc: var(--dawn)">
+          <div class="group-head"><span class="gn">★</span><h3>Des premières bactéries à nous</h3></div>
+          <p class="group-sub">Sur 4 milliards d'années, la vie passe de l'unicellulaire invisible aux forêts, aux dinosaures et aux civilisations. Dates issues des fossiles et de la datation radiométrique.</p>
+
+          <article class="ev">
+            <div class="ev-when"><span class="since">Il y a</span><span class="ago">~3,8 Ga<small>Archéen</small></span></div>
+            <div class="ev-body"><h4>L'origine de la vie</h4><p>Dans les océans, la chimie devient biologie : premières cellules (procaryotes). Les stromatolites, construits par des bactéries, sont les plus vieux fossiles connus (~3,5 Ga).</p>
+            <div class="ev-data"><span class="chip">procaryotes</span><span class="chip">stromatolites</span></div></div>
+          </article>
+          <article class="ev">
+            <div class="ev-when"><span class="since">Il y a</span><span class="ago">~2,4 Ga<small>Paléoprotérozoïque</small></span></div>
+            <div class="ev-body"><h4>La Grande Oxydation</h4><p>Les cyanobactéries rejettent de l'oxygène par photosynthèse. Ce gaz, toxique pour la vie d'alors, bouleverse l'atmosphère et déclenche une glaciation globale — mais ouvre la voie à la respiration.</p>
+            <div class="ev-data"><span class="chip">O₂ : <b>0 → ~2 %</b></span><span class="chip">glaciation</span></div></div>
+          </article>
+          <article class="ev">
+            <div class="ev-when"><span class="since">Il y a</span><span class="ago">~2,1 – 1,6 Ga<small>Protérozoïque</small></span></div>
+            <div class="ev-body"><h4>La cellule complexe</h4><p>Apparaissent les eucaryotes — cellules à noyau, dont descendent plantes, champignons et animaux. La reproduction sexuée (~1,2 Ga) accélère l'évolution.</p>
+            <div class="ev-data"><span class="chip">eucaryotes</span><span class="chip">sexe : <b>~1,2 Ga</b></span></div></div>
+          </article>
+          <article class="ev">
+            <div class="ev-when"><span class="since">Il y a</span><span class="ago">635 – 539 Ma<small>Édiacarien</small></span></div>
+            <div class="ev-body"><h4>Les premiers animaux</h4><p>Après les « Terre boule de neige », la faune d'Ediacara — organismes mous et plats — inaugure la vie animale macroscopique, avant l'explosion cambrienne.</p>
+            <div class="ev-data"><span class="chip">Dickinsonia</span><span class="chip">Charnia</span></div></div>
+          </article>
+          <article class="ev">
+            <div class="ev-when"><span class="since">Il y a</span><span class="ago">539 – 419 Ma<small>Cambrien → Silurien</small></span></div>
+            <div class="ev-body"><h4>L'explosion de la vie &amp; la sortie des eaux</h4><p>L'explosion cambrienne invente squelettes, yeux et prédateurs. Puis plantes, champignons et arthropodes colonisent la terre ferme ; les premiers vertébrés à mâchoires nagent.</p>
+            <div class="ev-data"><span class="chip">trilobites</span><span class="chip">plantes terrestres</span></div></div>
+          </article>
+          <article class="ev">
+            <div class="ev-when"><span class="since">Il y a</span><span class="ago">375 – 299 Ma<small>Dévonien → Carbonifère</small></span></div>
+            <div class="ev-body"><h4>La conquête des continents</h4><p>Les tétrapodes marchent hors de l'eau (~375 Ma). Les forêts de fougères géantes, et un oxygène à ~35 %, nourrissent des insectes géants comme Meganeura. L'œuf à coquille libère les vertébrés de l'eau.</p>
+            <div class="ev-data"><span class="chip">tétrapodes</span><span class="chip">O₂ : <b>~35 %</b></span></div></div>
+          </article>
+          <article class="ev">
+            <div class="ev-when"><span class="since">Il y a</span><span class="ago">252 – 66 Ma<small>Mésozoïque</small></span></div>
+            <div class="ev-body"><h4>L'ère des dinosaures</h4><p>Après la « Grande Mort », les dinosaures dominent. Apparaissent les premiers mammifères (~225 Ma), les oiseaux (Archaeopteryx, ~150 Ma) et les plantes à fleurs (~130 Ma).</p>
+            <div class="ev-data"><span class="chip">dinosaures</span><span class="chip">premiers oiseaux</span></div></div>
+          </article>
+          <article class="ev">
+            <div class="ev-when"><span class="since">Il y a</span><span class="ago">66 Ma → nous<small>Cénozoïque</small></span></div>
+            <div class="ev-body"><h4>Les mammifères, puis l'humanité</h4><p>L'astéroïde efface les dinosaures non-aviens ; les mammifères se diversifient. Les premiers homininés se redressent (~7 Ma), le genre <em>Homo</em> apparaît (~2,8 Ma), et <em>Homo sapiens</em> il y a ~300 000 ans.</p>
+            <div class="ev-data"><span class="chip">primates</span><span class="chip">Homo sapiens : <b>~−300 000 ans</b></span></div></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================= MASS EXTINCTIONS ================= -->
+      <section class="geo reveal" id="extinctions" aria-labelledby="ext-title">
+        <p class="section-kicker">Les grands effondrements</p>
+        <h2 id="ext-title" style="font-family:var(--roman);font-weight:700;font-size:clamp(1.7rem,3.4vw,2.6rem);text-transform:uppercase;letter-spacing:.01em;color:var(--ink);">Les cinq grandes extinctions</h2>
+        <p class="group-sub" style="max-width:72ch;margin-top:14px;">L'histoire de la vie est aussi celle de ses quasi-anéantissements. Cinq crises majeures ont chacune effacé la majorité des espèces — pourcentages estimés par les paléontologues.</p>
+        <div class="ext-grid">
+          <div class="ext-card"><div class="pct">~85 %<small>des espèces</small></div><span class="when">≈ 443 Ma · fin Ordovicien</span><h4>Ordovicien–Silurien</h4><p>Une glaciation brutale fait chuter le niveau des mers, puis un réchauffement rapide. La première des cinq.</p></div>
+          <div class="ext-card"><div class="pct">~75 %<small>des espèces</small></div><span class="when">≈ 372 Ma · Dévonien tardif</span><h4>Crise du Dévonien</h4><p>Une série de pulsations d'anoxie (manque d'oxygène) des océans, sur plusieurs centaines de milliers d'années.</p></div>
+          <div class="ext-card"><div class="pct">~95 %<small>des espèces marines</small></div><span class="when">≈ 252 Ma · fin Permien</span><h4>La « Grande Mort »</h4><p>Éruptions colossales des trapps de Sibérie : réchauffement et acidification. La plus dévastatrice de toutes.</p></div>
+          <div class="ext-card"><div class="pct">~80 %<small>des espèces</small></div><span class="when">≈ 201 Ma · fin Trias</span><h4>Trias–Jurassique</h4><p>Volcanisme massif lié à l'ouverture de l'Atlantique. Elle libère la voie à la domination des dinosaures.</p></div>
+          <div class="ext-card"><div class="pct">~76 %<small>des espèces</small></div><span class="when">≈ 66 Ma · fin Crétacé</span><h4>K–Pg · les dinosaures</h4><p>Astéroïde de ~10 km au Yucatán, conjugué aux trapps du Deccan : un hiver d'impact planétaire.</p></div>
+        </div>
+        <p class="ext-note"><strong>Et une sixième ?</strong> De nombreux biologistes estiment qu'une sixième extinction de masse, d'origine humaine, est en cours : le rythme de disparition des espèces serait aujourd'hui 100 à 1 000 fois supérieur au taux naturel. À la différence des cinq précédentes, c'est la première dont une espèce — la nôtre — connaît la cause… et pourrait infléchir le cours.</p>
+      </section>
+
+      <!-- ================= GTS REFERENCE TABLE ================= -->
+      <section class="geo reveal" id="echelle" aria-labelledby="echelle-title">
+        <p class="section-kicker">Référence · Échelle des temps géologiques (ICS)</p>
+        <h2 id="echelle-title" style="font-family:var(--roman);font-weight:700;font-size:clamp(1.7rem,3.4vw,2.6rem);text-transform:uppercase;letter-spacing:.01em;color:var(--ink);">Toutes les ères, en une table</h2>
+        <p class="group-sub" style="max-width:72ch;margin-top:14px;">La charte chronostratigraphique internationale : éons, ères, périodes et époques, avec l'âge de leur début (en millions d'années) et la vie qui les caractérise. Les couleurs suivent la convention officielle de l'ICS.</p>
+        <div class="gts-wrap">
+          <table class="gts">
+            <thead>
+              <tr><th>Éon</th><th>Ère</th><th>Période</th><th>Époque</th><th>Début (Ma)</th><th>Vie marquante</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="cap"><span class="sw" style="background:#a0506e"></span>Hadéen</td><td class="cap">—</td><td class="cap">—</td><td class="cap">—</td><td class="age">4 567</td><td class="life">Monde stérile ; formation de la Terre et de la Lune</td></tr>
+              <tr><td class="cap"><span class="sw" style="background:#e23a8e"></span>Archéen</td><td class="cap">—</td><td class="cap">—</td><td class="cap">—</td><td class="age">4 031</td><td class="life">Premières bactéries, stromatolites, photosynthèse</td></tr>
+              <tr><td class="cap"><span class="sw" style="background:#f15a4a"></span>Protérozoïque</td><td class="cap">Paléoprotéro.</td><td class="cap">—</td><td class="cap">—</td><td class="age">2 500</td><td class="life">Grande Oxydation ; premiers eucaryotes</td></tr>
+              <tr><td class="cap">Protérozoïque</td><td class="cap">Mésoprotéro.</td><td class="cap">—</td><td class="cap">—</td><td class="age">1 600</td><td class="life">Reproduction sexuée ; algues</td></tr>
+              <tr><td class="cap">Protérozoïque</td><td class="cap">Néoprotéro.</td><td class="cap">Tonien</td><td class="cap">—</td><td class="age">1 000</td><td class="life">Premières éponges ; éclatement de Rodinia</td></tr>
+              <tr><td class="cap">Protérozoïque</td><td class="cap">Néoprotéro.</td><td class="cap">Cryogénien</td><td class="cap">—</td><td class="age">720</td><td class="life">« Terre boule de neige »</td></tr>
+              <tr><td class="cap">Protérozoïque</td><td class="cap">Néoprotéro.</td><td class="cap">Édiacarien</td><td class="cap">—</td><td class="age">635</td><td class="life">Faune d'Ediacara : vie animale molle</td></tr>
+              <tr><td class="cap"><span class="sw" style="background:#9ccd6a"></span>Phanérozoïque</td><td class="cap">Paléozoïque</td><td class="cap"><span class="sw" style="background:#7fa056"></span>Cambrien</td><td class="cap">—</td><td class="age">538,8</td><td class="life">Explosion cambrienne</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Paléozoïque</td><td class="cap"><span class="sw" style="background:#1a9d6f"></span>Ordovicien</td><td class="cap">—</td><td class="age">485,4</td><td class="life">Plantes terrestres ; 1ʳᵉ extinction</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Paléozoïque</td><td class="cap"><span class="sw" style="background:#b3dca2"></span>Silurien</td><td class="cap">—</td><td class="age">443,8</td><td class="life">Conquête des terres émergées</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Paléozoïque</td><td class="cap"><span class="sw" style="background:#cb8c37"></span>Dévonien</td><td class="cap">—</td><td class="age">419,2</td><td class="life">Poissons ; tétrapodes ; 2ᵉ extinction</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Paléozoïque</td><td class="cap"><span class="sw" style="background:#67a599"></span>Carbonifère</td><td class="cap">—</td><td class="age">358,9</td><td class="life">Forêts, insectes géants, O₂ maximal</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Paléozoïque</td><td class="cap"><span class="sw" style="background:#f04028"></span>Permien</td><td class="cap">—</td><td class="age">298,9</td><td class="life">Pangée ; 3ᵉ extinction (la plus sévère)</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Mésozoïque</td><td class="cap"><span class="sw" style="background:#812b92"></span>Trias</td><td class="cap">—</td><td class="age">251,9</td><td class="life">Dinosaures &amp; mammifères ; 4ᵉ extinction</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Mésozoïque</td><td class="cap"><span class="sw" style="background:#34b2c9"></span>Jurassique</td><td class="cap">—</td><td class="age">201,4</td><td class="life">Règne des dinosaures ; premiers oiseaux</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Mésozoïque</td><td class="cap"><span class="sw" style="background:#7fc64e"></span>Crétacé</td><td class="cap">—</td><td class="age">145,0</td><td class="life">Plantes à fleurs ; T. rex ; 5ᵉ extinction</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Cénozoïque</td><td class="cap"><span class="sw" style="background:#fd9a52"></span>Paléogène</td><td class="cap">Paléocène</td><td class="age">66,0</td><td class="life">Radiation des mammifères</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Cénozoïque</td><td class="cap">Paléogène</td><td class="cap">Éocène</td><td class="age">56,0</td><td class="life">Mammifères modernes</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Cénozoïque</td><td class="cap">Paléogène</td><td class="cap">Oligocène</td><td class="age">33,9</td><td class="life">Refroidissement global</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Cénozoïque</td><td class="cap"><span class="sw" style="background:#f1d000"></span>Néogène</td><td class="cap">Miocène</td><td class="age">23,03</td><td class="life">Hominidés ; bipédie</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Cénozoïque</td><td class="cap">Néogène</td><td class="cap">Pliocène</td><td class="age">5,333</td><td class="life">Australopithèques</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Cénozoïque</td><td class="cap"><span class="sw" style="background:#f7e98a"></span>Quaternaire</td><td class="cap">Pléistocène</td><td class="age">2,58</td><td class="life">Genre <em>Homo</em> ; âges glaciaires</td></tr>
+              <tr><td class="cap">Phanérozoïque</td><td class="cap">Cénozoïque</td><td class="cap">Quaternaire</td><td class="cap">Holocène</td><td class="age">0,0117</td><td class="life"><em>Homo sapiens</em> ; agriculture ; civilisation</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= ANTI-INTOX ================= -->
+      <section class="anti reveal" id="anti-intox" aria-labelledby="anti-title">
+        <p class="section-kicker">Empire contre Intox</p>
+        <h2 id="anti-title" style="font-family:var(--roman);font-weight:700;font-size:clamp(1.6rem,3.2vw,2.4rem);text-transform:uppercase;letter-spacing:.01em;color:var(--ink);">Comment sait-on tout cela ?</h2>
+        <div class="anti-intox-block">
+          <p>On entend parfois que « personne n'était là pour le voir », donc que ces dates seraient inventées. Mais l'âge de l'univers ne repose pas sur une croyance : il se <strong>mesure</strong>, par plusieurs méthodes indépendantes qui concordent.</p>
+          <p>Le <strong>fond diffus cosmologique</strong>, photographié par les satellites COBE, WMAP puis Planck, donne 13,787 milliards d'années à ± 0,2 % près. La <strong>datation radiométrique</strong> des roches et météorites fixe l'âge de la Terre à 4,54 milliards d'années. Le <strong>décalage vers le rouge</strong> des galaxies mesure l'expansion ; les <strong>amas globulaires</strong> les plus vieux sont cohérents avec cet âge.</p>
+          <p>Quatre méthodes, quatre disciplines, un même résultat. C'est ça, une preuve scientifique : non pas un témoin, mais des mesures reproductibles qui se recoupent. La réalité de cette horloge cosmique n'a besoin d'aucun complot pour être vertigineuse — elle l'est déjà.</p>
+        </div>
+      </section>
+
+      <section class="credit-band reveal" aria-label="Crédits">
+        <img class="seal" src="../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+        <div class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>Empire contre Intox</strong>
+        </div>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../ymir-lalie/assets/logo-eci.jpg" alt="Logo du collectif Empire contre Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Une page pensée pour rendre tangible la plus longue des chronologies : situer chaque chose à sa juste échelle, montrer comment on la mesure, et rappeler que la science n'a pas besoin de complot pour donner le vertige.</p>
+          <div class="collective-actions">
+            <a class="button primary" href="../index.html">Retour à l'index</a>
+            <a class="button" href="../ymir-lalie/resume-eres.html">Résumé des Ères</a>
+            <a class="button" href="../ymir-lalie/edicarien.html">L'Édiacarien</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome — frise interactive du Big Bang à aujourd'hui. Données : cosmologie standard (Planck 2018), datations radiométriques et fossiles. Scène cosmique générée en CSS/SVG.</main>
+    </footer>
+  </div>
+
+  <script>
+    /* ---------- Scroll progress + nav + reveal + mobile menu ---------- */
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => {
+      nav.classList.remove("open");
+      mobileMenu.setAttribute("aria-expanded", "false");
+    }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    /* ---------- Live light-distance counter (alive, scientific) ---------- */
+    const lightLive = document.getElementById("lightLive");
+    const t0 = performance.now();
+    function tickLight(now) {
+      const sec = (now - t0) / 1000;
+      const km = sec * 299792.458; // c in km/s
+      lightLive.textContent = Math.round(km).toLocaleString("fr-FR") + " km";
+      requestAnimationFrame(tickLight);
+    }
+    requestAnimationFrame(tickLight);
+
+    /* ================= CHRONOSCOPE engine ================= */
+    const SEC_PER_YEAR = 3.1557e7;
+    const AGE_YEARS = 13.787e9;
+    const AGE_SEC = AGE_YEARS * SEC_PER_YEAR;       // ≈ 4.351e17 s
+    const LOG_MIN = -43;
+    const LOG_MAX = Math.log10(AGE_SEC);            // ≈ 17.638
+    const SPAN = LOG_MAX - LOG_MIN;
+
+    // Temperature anchors [log10(t in s), T in K] — log-log interpolation.
+    const Tanchors = [
+      [-43, 1.417e32], [-36, 1e29], [-32, 1e28], [-12, 1e15], [-6, 1e13],
+      [0, 1.0e10], [2.26, 1e9], [12.17, 9300], [13.08, 2970],
+      [15.75, 57], [16.10, 33], [17.46, 3.8], [LOG_MAX, 2.725]
+    ];
+    function tempAt(logt) {
+      if (logt <= Tanchors[0][0]) return Tanchors[0][1];
+      if (logt >= Tanchors[Tanchors.length - 1][0]) return 2.725;
+      for (let i = 0; i < Tanchors.length - 1; i++) {
+        const [x0, T0] = Tanchors[i], [x1, T1] = Tanchors[i + 1];
+        if (logt >= x0 && logt <= x1) {
+          const f = (logt - x0) / (x1 - x0);
+          const lT = Math.log10(T0) + f * (Math.log10(T1) - Math.log10(T0));
+          return Math.pow(10, lT);
+        }
+      }
+      return 2.725;
+    }
+
+    // Epoch segments (start log10 t), with colour, label, short blurb.
+    const epochs = [
+      { s: -43,    col: "var(--plasma)",  era: "Frontière",       name: "Mur de Planck",            blurb: "La physique connue s'arrête ici : gravité quantique, les quatre forces unifiées. Aucune théorie validée ne décrit cet instant." },
+      { s: -36,    col: "var(--plasma)",  era: "Primordial",      name: "Inflation cosmique",       blurb: "En une fraction infime de seconde, l'espace se dilate d'un facteur 10²⁶ et sème les graines des futures galaxies." },
+      { s: -12,    col: "#bcd2ff",        era: "Primordial",      name: "Ère des quarks",           blurb: "Un plasma de quarks et de gluons emplit l'univers, trop chaud pour que la matière s'assemble." },
+      { s: -6,     col: "#bcd2ff",        era: "Primordial",      name: "Confinement des hadrons",  blurb: "En refroidissant, les quarks se lient : protons et neutrons apparaissent. La matière prend forme." },
+      { s: 0,      col: "var(--plasma)",  era: "Primordial",      name: "Nucléosynthèse primordiale", blurb: "En quelques minutes se forgent ~75 % d'hydrogène et ~25 % d'hélium — la composition mesurée du cosmos jeune." },
+      { s: 3,      col: "var(--cmb)",     era: "Opaque",          name: "Univers de plasma",        blurb: "L'univers est un brouillard incandescent : la lumière ne peut pas circuler, sans cesse diffusée par les électrons libres." },
+      { s: 12.17,  col: "var(--cmb)",     era: "Transition",      name: "Égalité matière–rayonnement", blurb: "La matière prend le pas sur le rayonnement. La gravité va pouvoir commencer à structurer le cosmos." },
+      { s: 13.08,  col: "var(--cmb)",     era: "Première lumière", name: "Recombinaison · fond diffus", blurb: "À ~3 000 K, les atomes neutres se forment. La lumière se libère : c'est le fond diffus cosmologique, la plus vieille image de l'univers." },
+      { s: 13.5,   col: "var(--darkage)", era: "Âges sombres",    name: "Les âges sombres",         blurb: "Aucune étoile encore. Un gaz d'hydrogène et d'hélium s'effondre lentement dans le noir, guidé par la matière noire." },
+      { s: 15.6,   col: "var(--dawn)",    era: "Aube cosmique",   name: "Premières étoiles",        blurb: "Les premières étoiles s'allument et percent l'obscurité, forgeant les premiers éléments lourds." },
+      { s: 16.0,   col: "var(--stellar)", era: "Âge des étoiles", name: "Premières galaxies",       blurb: "Les étoiles se rassemblent en galaxies primitives ; l'univers se réionise peu à peu." },
+      { s: 16.7,   col: "var(--stellar)", era: "Âge des étoiles", name: "Midi cosmique",            blurb: "La formation d'étoiles atteint son maximum. Les grandes galaxies, dont la Voie lactée, prennent forme." },
+      { s: 17.46,  col: "var(--marble)",  era: "Notre histoire",  name: "Naissance du Soleil",      blurb: "Un nuage enrichi s'effondre : le Soleil s'allume, la Terre se forme il y a 4,6 milliards d'années." },
+      { s: 17.50,  col: "var(--marble)",  era: "Notre histoire",  name: "L'apparition de la vie",   blurb: "Les premières bactéries peuplent les océans. La photosynthèse oxygènera l'atmosphère vers −2,4 Ga." },
+      { s: 17.62,  col: "var(--marble)",  era: "Notre histoire",  name: "Explosion cambrienne",     blurb: "La vie complexe explose, puis les dinosaures règnent jusqu'à l'impact d'un astéroïde, il y a 66 Ma." },
+      { s: 17.636, col: "var(--gold-bright)", era: "Maintenant",  name: "Vous êtes ici",            blurb: "Homo sapiens, ~300 000 ans ; l'histoire écrite, ~5 000 ans. Toute l'humanité tient dans la dernière lueur." }
+    ];
+    function epochAt(logt) {
+      let e = epochs[0];
+      for (const ep of epochs) if (logt >= ep.s) e = ep; else break;
+      return e;
+    }
+
+    /* ---- formatting ---- */
+    function num3(x) {
+      if (!isFinite(x)) return "—";
+      if (x >= 100) return Math.round(x).toLocaleString("fr-FR");
+      if (x >= 10) return x.toFixed(1).replace(".", ",");
+      return x.toFixed(2).replace(".", ",");
+    }
+    function sci(x) {
+      const exp = Math.floor(Math.log10(x));
+      const mant = x / Math.pow(10, exp);
+      const m = (Math.abs(mant - 1) < 0.05) ? "" : num3(mant) + " × ";
+      return m + "10<sup>" + exp + "</sup>";
+    }
+    function fmtTime(logt) {
+      const t = Math.pow(10, logt);
+      if (logt < 0) return sci(t) + " s";
+      if (t < 60) return num3(t) + " s";
+      if (t < 3600) return num3(t / 60) + " min";
+      if (t < 86400) return num3(t / 3600) + " h";
+      if (t < SEC_PER_YEAR) return num3(t / 86400) + " j";
+      const yr = t / SEC_PER_YEAR;
+      if (yr < 1e3) return num3(yr) + " ans";
+      if (yr < 1e6) return Math.round(yr).toLocaleString("fr-FR") + " ans";
+      if (yr < 1e9) return num3(yr / 1e6) + " Ma";
+      return num3(yr / 1e9) + " Ga";
+    }
+    function fmtTemp(T) {
+      if (T >= 1e6) return sci(T) + " K";
+      if (T >= 1000) return Math.round(T).toLocaleString("fr-FR") + " K";
+      return num3(T) + " K";
+    }
+    function fmtScale(T) {
+      const N = T / 2.725; // 1 + z = a_now / a
+      if (N < 1.05) return "taille actuelle";
+      if (N < 1e4) return "×" + Math.round(N).toLocaleString("fr-FR") + " plus petit";
+      return "×" + sci(N) + " plus petit";
+    }
+
+    /* ---- DOM refs ---- */
+    const stage = document.getElementById("csStage");
+    const orb = document.getElementById("csOrb");
+    const elEra = document.getElementById("csEra");
+    const elName = document.getElementById("csName");
+    const elBlurb = document.getElementById("csBlurb");
+    const elTime = document.getElementById("csTime");
+    const elTemp = document.getElementById("csTemp");
+    const elScale = document.getElementById("csScale");
+    const slider = document.getElementById("csSlider");
+    const playhead = document.getElementById("csPlayhead");
+    const rail = document.getElementById("csRail");
+    const toggle = document.getElementById("csToggle");
+
+    function logtFromP(p) { return LOG_MIN + p * SPAN; }
+    function pFromLogt(logt) { return (logt - LOG_MIN) / SPAN; }
+
+    function render(p) {
+      const logt = logtFromP(p);
+      const ep = epochAt(logt);
+      const T = tempAt(logt);
+      elEra.textContent = ep.era;
+      elName.textContent = ep.name;
+      elBlurb.textContent = ep.blurb;
+      elTime.innerHTML = fmtTime(logt);
+      elTemp.innerHTML = fmtTemp(T);
+      elScale.innerHTML = fmtScale(T);
+      stage.style.setProperty("--epoch", ep.col);
+      playhead.style.left = (p * 100) + "%";
+      // orb pulse on early hot epochs
+      const heat = Math.max(0, 1 - (logt - LOG_MIN) / 14);
+      orb.style.transform = "scale(" + (0.9 + heat * 0.18) + ")";
+    }
+
+    // Build decade ticks
+    (function buildTicks() {
+      for (let d = -40; d <= 15; d += 5) {
+        const p = pFromLogt(d);
+        if (p < 0 || p > 1) continue;
+        const tick = document.createElement("div");
+        tick.className = "cs-tick";
+        tick.style.left = (p * 100) + "%";
+        tick.innerHTML = '<b>10<sup>' + d + '</sup>s</b>';
+        rail.appendChild(tick);
+      }
+    })();
+
+    // Build event nodes from epochs
+    epochs.forEach((ep) => {
+      const p = pFromLogt(ep.s < LOG_MIN ? LOG_MIN : ep.s);
+      const node = document.createElement("button");
+      node.type = "button";
+      node.className = "cs-node";
+      node.style.left = (p * 100) + "%";
+      node.style.setProperty("--nodecol", ep.col);
+      node.setAttribute("aria-label", ep.name + " — " + fmtTime(ep.s < LOG_MIN ? LOG_MIN : ep.s).replace(/<[^>]+>/g, ""));
+      node.innerHTML = '<span class="nt">' + ep.name + '</span>';
+      node.addEventListener("click", () => {
+        stopPlay();
+        const targetP = pFromLogt(ep.s < LOG_MIN ? LOG_MIN : ep.s);
+        slider.value = Math.round(targetP * 1000);
+        render(targetP);
+      });
+      rail.appendChild(node);
+    });
+
+    slider.addEventListener("input", () => { stopPlay(); render(slider.value / 1000); });
+
+    /* ---- Play / pause animation ---- */
+    let playing = false, rafId = null, lastTs = null;
+    const PLAY_SECONDS = 26;
+    function frame(ts) {
+      if (!playing) return;
+      if (lastTs == null) lastTs = ts;
+      const dp = (ts - lastTs) / 1000 / PLAY_SECONDS;
+      lastTs = ts;
+      let p = slider.value / 1000 + dp;
+      if (p >= 1) { p = 1; slider.value = 1000; render(p); stopPlay(); return; }
+      slider.value = Math.round(p * 1000);
+      render(p);
+      rafId = requestAnimationFrame(frame);
+    }
+    function startPlay() {
+      if (playing) return;
+      if (slider.value >= 1000) slider.value = 0;
+      playing = true; lastTs = null; toggle.textContent = "❚❚ Pause";
+      rafId = requestAnimationFrame(frame);
+    }
+    function stopPlay() {
+      if (!playing) return;
+      playing = false; if (rafId) cancelAnimationFrame(rafId);
+      toggle.textContent = "▶ Lecture";
+    }
+    toggle.addEventListener("click", () => { playing ? stopPlay() : startPlay(); });
+
+    render(0);
+
+    /* ================= EARTH / GEOLOGY engine ================= */
+    const AGE_EARTH = 4567; // Ma
+    // Contiguous geological segments (start > end, in Ma) — ICS-inspired colours.
+    const SEGMENTS = [
+      { start: 4567, end: 4031, eon: "Hadéen", era: "Précambrien", name: "Hadéen", col: "#a0506e",
+        life: "Monde stérile : océans de magma, bombardement d'astéroïdes, premiers océans liquides en fin d'éon.",
+        atmo: "Sans oxygène — CO₂, vapeur, méthane.",
+        event: "Une collision géante arrache la matière qui formera la Lune (~4,5 Ga)." },
+      { start: 4031, end: 2500, eon: "Archéen", era: "Précambrien", name: "Archéen", col: "#e23a8e",
+        life: "Premiers êtres vivants : bactéries et archées, tapis microbiens et stromatolites.",
+        atmo: "Toujours sans O₂ libre.",
+        event: "Plus anciennes traces de vie (~3,7 Ga) ; invention de la photosynthèse (~3,4 Ga)." },
+      { start: 2500, end: 1600, eon: "Protérozoïque", era: "Paléoprotérozoïque", name: "Paléoprotérozoïque", col: "#f15a4a",
+        life: "Procaryotes partout ; apparition des premières cellules à noyau (eucaryotes).",
+        atmo: "Grande Oxydation (~2,4 Ga) : O₂ ~2 %.",
+        event: "Grande Oxydation et première glaciation globale (Huronienne)." },
+      { start: 1600, end: 1000, eon: "Protérozoïque", era: "Mésoprotérozoïque", name: "Mésoprotérozoïque", col: "#f47b5b",
+        life: "Eucaryotes établis ; reproduction sexuée (~1,2 Ga) ; premières algues rouges.",
+        atmo: "O₂ faible et stable — le « milliard ennuyeux ».",
+        event: "Lente diversification de la vie cellulaire complexe." },
+      { start: 1000, end: 720, eon: "Protérozoïque", era: "Néoprotérozoïque", name: "Tonien", col: "#fdb462",
+        life: "Premiers protistes complexes et probables premières éponges (racines du règne animal).",
+        atmo: "Oxygène en hausse.",
+        event: "Fragmentation du supercontinent Rodinia." },
+      { start: 720, end: 635, eon: "Protérozoïque", era: "Néoprotérozoïque", name: "Cryogénien", col: "#fdc886",
+        life: "Vie microbienne et éponges survivant sous les glaces.",
+        atmo: "Oxygène variable.",
+        event: "« Terre boule de neige » : glaciations planétaires extrêmes." },
+      { start: 635, end: 538.8, eon: "Protérozoïque", era: "Néoprotérozoïque", name: "Édiacarien", col: "#fed99b",
+        life: "Faune d'Ediacara : premiers grands organismes mous (Dickinsonia, Charnia, Kimberella).",
+        atmo: "Forte montée de l'oxygène.",
+        event: "Naissance de la vie animale macroscopique. (Voir le dossier L'Édiacarien.)" },
+      { start: 538.8, end: 485.4, eon: "Phanérozoïque", era: "Paléozoïque", name: "Cambrien", col: "#7fa056",
+        life: "Explosion cambrienne : coquilles, squelettes, yeux, prédateurs (trilobites, Anomalocaris).",
+        atmo: "O₂ ~ moitié de l'actuel.",
+        event: "Presque tous les grands plans d'organisation animaux apparaissent en quelques Ma." },
+      { start: 485.4, end: 443.8, eon: "Phanérozoïque", era: "Paléozoïque", name: "Ordovicien", col: "#1a9d6f",
+        life: "Vie marine foisonnante, premiers vertébrés sans mâchoire, premières plantes terrestres.",
+        atmo: "O₂ en hausse.",
+        event: "Se clôt par l'extinction Ordovicien–Silurien (~85 %) — 1ʳᵉ grande extinction." },
+      { start: 443.8, end: 419.2, eon: "Phanérozoïque", era: "Paléozoïque", name: "Silurien", col: "#b3dca2",
+        life: "Premières plantes vasculaires, arthropodes terrestres, poissons à mâchoires.",
+        atmo: "Proche de l'actuel.",
+        event: "La vie colonise durablement les terres émergées." },
+      { start: 419.2, end: 358.9, eon: "Phanérozoïque", era: "Paléozoïque", name: "Dévonien", col: "#cb8c37",
+        life: "« Âge des poissons » ; premiers tétrapodes sortent de l'eau ; premières forêts.",
+        atmo: "O₂ élevé.",
+        event: "Extinction du Dévonien tardif (~75 %) — 2ᵉ grande extinction." },
+      { start: 358.9, end: 298.9, eon: "Phanérozoïque", era: "Paléozoïque", name: "Carbonifère", col: "#67a599",
+        life: "Forêts géantes de fougères, insectes géants (Meganeura), premiers amniotes.",
+        atmo: "Pic d'oxygène historique (~35 %).",
+        event: "Accumulation du charbon ; les vertébrés s'affranchissent de l'eau (œuf à coquille)." },
+      { start: 298.9, end: 251.902, eon: "Phanérozoïque", era: "Paléozoïque", name: "Permien", col: "#f04028",
+        life: "Reptiles mammaliens (synapsides) dominants ; assemblage de la Pangée.",
+        atmo: "Décline en fin de période.",
+        event: "Extinction Permien–Trias (~95 % des espèces marines) — la « Grande Mort »." },
+      { start: 251.902, end: 201.4, eon: "Phanérozoïque", era: "Mésozoïque", name: "Trias", col: "#812b92",
+        life: "Reconquête du vivant ; apparition des dinosaures et des premiers mammifères (~225 Ma).",
+        atmo: "Proche de l'actuel.",
+        event: "Se clôt par l'extinction Trias–Jurassique (~80 %) — 4ᵉ grande extinction." },
+      { start: 201.4, end: 145.0, eon: "Phanérozoïque", era: "Mésozoïque", name: "Jurassique", col: "#34b2c9",
+        life: "Règne des dinosaures et des grands sauropodes ; premiers oiseaux (Archaeopteryx, ~150 Ma).",
+        atmo: "Climat chaud, sans calottes polaires.",
+        event: "La Pangée se fracture ; l'Atlantique commence à s'ouvrir." },
+      { start: 145.0, end: 66.0, eon: "Phanérozoïque", era: "Mésozoïque", name: "Crétacé", col: "#7fc64e",
+        life: "Apogée des dinosaures (Tyrannosaurus rex) ; premières plantes à fleurs (~130 Ma).",
+        atmo: "Chaud, CO₂ élevé.",
+        event: "Extinction Crétacé–Paléogène (~76 %) : astéroïde du Yucatán — 5ᵉ grande extinction." },
+      { start: 66.0, end: 23.03, eon: "Phanérozoïque", era: "Cénozoïque", name: "Paléogène", col: "#fd9a52",
+        life: "Radiation des mammifères et des oiseaux ; apparition des premiers primates.",
+        atmo: "Vers l'actuelle (~21 % d'O₂).",
+        event: "Après l'astéroïde, les mammifères occupent les niches vides (Paléocène · Éocène · Oligocène)." },
+      { start: 23.03, end: 2.58, eon: "Phanérozoïque", era: "Cénozoïque", name: "Néogène", col: "#f1d000",
+        life: "Mammifères modernes, prairies, hominidés ; bipédie (~7–4 Ma).",
+        atmo: "Refroidissement progressif.",
+        event: "Premiers homininés en Afrique (Miocène · Pliocène)." },
+      { start: 2.58, end: 0, eon: "Phanérozoïque", era: "Cénozoïque", name: "Quaternaire", col: "#f7e98a",
+        life: "Cycles glaciaires ; genre Homo (~2,8 Ma) ; Homo sapiens (~300 000 ans) ; civilisation.",
+        atmo: "21 % d'O₂.",
+        event: "Âges glaciaires, puis émergence de l'humanité (Pléistocène · Holocène)." }
+    ];
+    const CENO_EPOCHS = [
+      ["Paléocène", 66, 56], ["Éocène", 56, 33.9], ["Oligocène", 33.9, 23.03],
+      ["Miocène", 23.03, 5.333], ["Pliocène", 5.333, 2.58], ["Pléistocène", 2.58, 0.0117], ["Holocène", 0.0117, 0]
+    ];
+    function segAt(ma) { for (const s of SEGMENTS) if (ma <= s.start && ma >= s.end) return s; return SEGMENTS[SEGMENTS.length - 1]; }
+    function epochAtMa(ma) { if (ma > 66) return null; for (const [n, a, b] of CENO_EPOCHS) if (ma <= a && ma >= b) return n; return null; }
+    function fmtAgo(ma) {
+      if (ma <= 0.0001) return "aujourd'hui";
+      if (ma >= 1000) return num3(ma / 1000) + " milliards d'années";
+      if (ma >= 1) return num3(ma) + " millions d'années";
+      return Math.round(ma * 1e6).toLocaleString("fr-FR") + " ans";
+    }
+    function clock24(ma) {
+      if (ma <= 0.0001) return "minuit · 24h00";
+      const frac = (AGE_EARTH - ma) / AGE_EARTH;
+      const tot = Math.min(86399, Math.round(frac * 86400));
+      const h = Math.floor(tot / 3600), mn = Math.floor((tot % 3600) / 60), se = tot % 60;
+      return String(h).padStart(2, "0") + "h" + String(mn).padStart(2, "0") + "m" + String(se).padStart(2, "0") + "s";
+    }
+
+    const eonBand = document.getElementById("eonBand");
+    const phanBand = document.getElementById("phanBand");
+    const geoPlay = document.getElementById("geoPlayhead");
+    const geoSlider = document.getElementById("geoSlider");
+    const geoStage = document.getElementById("geoStage");
+    const gEon = document.getElementById("geoEonTag");
+    const gName = document.getElementById("geoName");
+    const gLife = document.getElementById("geoLife");
+    const gDate = document.getElementById("geoDate");
+    const gAtmo = document.getElementById("geoAtmo");
+    const gClock = document.getElementById("geoClock");
+    const gEvent = document.getElementById("geoEvent");
+
+    function maFromV(v) { return AGE_EARTH * (1 - v / 1000); }
+    function vFromMa(ma) { return Math.round((1 - ma / AGE_EARTH) * 1000); }
+
+    function renderGeo(v) {
+      const ma = maFromV(v);
+      const s = segAt(ma);
+      const ep = epochAtMa(ma);
+      gEon.textContent = s.eon + (s.era && s.era !== s.name && s.era !== "Précambrien" ? " · " + s.era : "");
+      gName.textContent = s.name + (ep && ep !== s.name ? " · " + ep : "");
+      gLife.textContent = s.life;
+      gDate.textContent = "il y a " + fmtAgo(ma);
+      gAtmo.textContent = s.atmo;
+      gClock.textContent = clock24(ma);
+      gEvent.textContent = s.event;
+      geoStage.style.setProperty("--epoch", s.col);
+      geoPlay.style.left = (v / 1000 * 100) + "%";
+    }
+
+    // Proportional eon band over 4567 Ma (honest scale: Precambrian dominates)
+    SEGMENTS.forEach((s) => {
+      const w = (s.start - s.end) / AGE_EARTH * 100;
+      const b = document.createElement("button");
+      b.type = "button"; b.style.flex = String(w); b.style.background = s.col;
+      b.title = s.name + " — " + fmtAgo(s.start) + " → " + fmtAgo(s.end);
+      b.setAttribute("aria-label", s.name + ", début il y a " + fmtAgo(s.start));
+      if (w > 7) b.innerHTML = "<b>" + s.eon + "</b>";
+      b.addEventListener("click", () => { const v = vFromMa((s.start + s.end) / 2); geoSlider.value = v; renderGeo(v); });
+      eonBand.appendChild(b);
+    });
+
+    // Expanded Phanerozoic band over 538.8 Ma
+    const PH = 538.8;
+    SEGMENTS.filter((s) => s.eon === "Phanérozoïque").forEach((s) => {
+      const w = (s.start - s.end) / PH * 100;
+      const b = document.createElement("button");
+      b.type = "button"; b.style.flex = String(w); b.style.background = s.col;
+      b.title = s.name + " · " + s.era;
+      b.setAttribute("aria-label", s.name);
+      if (w > 4) b.innerHTML = "<b>" + s.name + "</b>";
+      b.addEventListener("click", () => { const v = vFromMa((s.start + s.end) / 2); geoSlider.value = v; renderGeo(v); });
+      phanBand.appendChild(b);
+    });
+
+    geoSlider.addEventListener("input", () => renderGeo(+geoSlider.value));
+    renderGeo(1000);
+  </script>
+</body>
+</html>
