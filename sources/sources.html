@@ -285,6 +285,7 @@
 
   <script>
     const SI = "../horloge-univers/assets/super-images/";
+    const EL = "../jorge-zalex/assets/";
     const HER = { eres:"../ymir-lalie/assets/eres-hero.png", edia:"../ymir-lalie/assets/ediacaran-hero.png", artemis:"../provoxys/assets/artemis2-hero.png" };
     const VC = { ok:"var(--ok)", warn:"var(--warn)", deb:"var(--deb)", fresh:"var(--fresh)" };
     const VL = { ok:"Confirmé", warn:"À nuancer", deb:"Débattu", fresh:"Corrigé" };
@@ -407,46 +408,46 @@
     ];
 
     const ELEMENTS = [
-      { t:"Trois propriétés intrinsèques", d:"masse · charge · spin", v:"ok", img:SI+"01-le-big-bang.png",
+      { t:"Trois propriétés intrinsèques", d:"masse · charge · spin", v:"ok", img:EL+"p1-charge-masse-spin.png",
         s:"Toute particule est définie par sa masse, sa charge et son spin. (Un descriptif complet ajoute des nombres quantiques internes : couleur, saveur, isospin faible…) Charge élémentaire e = 1,602176634 × 10⁻¹⁹ C (SI).",
         src:[{n:"NIST · charge élémentaire",u:"https://physics.nist.gov/cgi-bin/cuu/Value?e"},{n:"PDG · Review of Particle Physics",u:"https://pdg.lbl.gov/"}] },
-      { t:"Stern & Gerlach (1922) : spin ?", d:"quantification spatiale ; spin lu en 1925", v:"fresh", img:SI+"02-le-fond-diffus-cosmologique.png",
+      { t:"Stern & Gerlach (1922) : spin ?", d:"quantification spatiale ; spin lu en 1925", v:"fresh", img:EL+"p1-charge-masse-spin.png",
         s:"Nuance appliquée : l'expérience prouve d'abord la quantification spatiale du moment magnétique. Sa lecture comme « signature du spin » de l'électron est postérieure — le spin est proposé par Uhlenbeck & Goudsmit en 1925.",
         src:[{n:"Stern–Gerlach",u:"https://en.wikipedia.org/wiki/Stern%E2%80%93Gerlach_experiment"},{n:"Gerlach & Stern 1922 (DOI)",u:"https://doi.org/10.1007/BF01326983"}] },
-      { t:"Modèle Standard : portée et limites", d:"17 (ou 25) particules · théorie incomplète", v:"fresh", img:SI+"03-les-premieres-etoiles.png",
+      { t:"Modèle Standard : portée et limites", d:"17 (ou 25) particules · théorie incomplète", v:"fresh", img:EL+"p1-modele-standard.png",
         s:"Reformulé après audit : le décompte standard est 17 (12 fermions + photon + gluon + W + Z + Higgs), ou 25 en comptant les 8 états de couleur du gluon. Et le modèle reste incomplet : ni gravitation, ni masses des neutrinos, ni matière/énergie noire.",
         src:[{n:"DOE · Standard Model",u:"https://www.energy.gov/science/doe-explainsthe-standard-model-particle-physics"},{n:"Standard Model (Wikipedia)",u:"https://en.wikipedia.org/wiki/Standard_Model"}] },
-      { t:"Bosons faibles W et Z", d:"W ≈ 80,4 GeV · Z⁰ ≈ 91,2 GeV", v:"ok", img:SI+"03-les-premieres-etoiles.png",
+      { t:"Bosons faibles W et Z", d:"W ≈ 80,4 GeV · Z⁰ ≈ 91,2 GeV", v:"ok", img:EL+"p2-interactions.png",
         s:"Masses confirmées (PDG : W = 80,369 GeV, Z⁰ = 91,188 GeV). Leur masse élevée explique la portée minuscule (~10⁻¹⁸ m) de l'interaction faible. W et Z découverts au CERN en 1983.",
         src:[{n:"PDG · bosons de jauge",u:"https://pdg.lbl.gov/2025/tables/rpp2025-sum-gauge-higgs-bosons.pdf"},{n:"CERN · boson Z",u:"https://home.cern/science/physics/z-boson"}] },
-      { t:"Désintégration β : ce qui est conservé", d:"A conservé, Z change", v:"fresh", img:SI+"02-le-fond-diffus-cosmologique.png",
+      { t:"Désintégration β : ce qui est conservé", d:"A conservé, Z change", v:"fresh", img:EL+"p4-radioactivite.png",
         s:"Corrigé après audit : la page disait « Z change, la masse non ». C'est le nombre de masse A (total de nucléons) qui est conservé, pas la masse — celle du noyau diminue, la différence étant libérée en énergie (E = Δm·c²). Au niveau quark : d → u + W⁻ → e⁻ + ν̄ₑ.",
         src:[{n:"Beta decay (Wikipedia)",u:"https://en.wikipedia.org/wiki/Beta_decay"},{n:"Fermi 1934 (DOI)",u:"https://doi.org/10.1007/BF01351864"}] },
-      { t:"Chronologie cosmique : hadronique / leptonique", d:"hadronique 10⁻⁶–1 s · leptonique ~1–10 s", v:"fresh", img:SI+"01-le-big-bang.png",
+      { t:"Chronologie cosmique : hadronique / leptonique", d:"hadronique 10⁻⁶–1 s · leptonique ~1–10 s", v:"fresh", img:EL+"p3-nucleosynthese.png",
         s:"Étiquetage corrigé après audit : l'intervalle 10⁻⁶ s–1 s est l'ère hadronique ; l'ère leptonique court de ~1 s à ~10 s. Inflation jusqu'à ~10⁻³² s ; découplage des neutrinos ~1 s (T ≈ 10¹⁰ K) ; rapport n/p ~1 pour 6–7.",
         src:[{n:"Chronology of the universe",u:"https://en.wikipedia.org/wiki/Chronology_of_the_universe"},{n:"PDG · BBN",u:"https://pdg.lbl.gov/"}] },
-      { t:"Nucléosynthèse primordiale", d:"≈ 75 % H · ≈ 25 % He (en masse)", v:"ok", img:SI+"05-la-reionisation.png",
+      { t:"Nucléosynthèse primordiale", d:"≈ 75 % H · ≈ 25 % He (en masse)", v:"ok", img:EL+"p3-abondance.png",
         s:"En moins de 3 minutes (T < 10⁹ K), la fusion forge ²H, ³He, ⁴He et un peu de ⁷Li ; les quatre réactions citées sont équilibrées. Fraction de masse d'⁴He Y_p ≈ 0,247 — prédite puis mesurée, grande preuve du Big Bang.",
         src:[{n:"Big Bang nucleosynthesis",u:"https://en.wikipedia.org/wiki/Big_Bang_nucleosynthesis"},{n:"Cyburt 2016 (DOI)",u:"https://doi.org/10.1103/RevModPhys.88.015004"}] },
-      { t:"Abondance des éléments", d:"H ≈ 90 % des atomes ; croûte ≠ Terre entière", v:"warn", img:SI+"09-formation-de-la-terre.png",
+      { t:"Abondance des éléments", d:"H ≈ 90 % des atomes ; croûte ≠ Terre entière", v:"warn", img:EL+"elements-hero.png",
         s:"À nuancer : l'abondance cosmique est donnée en nombre d'atomes (H ≈ 90–92 %). La colonne « Terre » décrit la croûte (O/Si/Al/Fe), pas la Terre entière, dominée par le fer (~32 %). Corps humain : O/C/H/N par masse.",
         src:[{n:"Abundance of the elements",u:"https://en.wikipedia.org/wiki/Abundance_of_the_chemical_elements"},{n:"Asplund 2009 (DOI)",u:"https://doi.org/10.1146/annurev.astro.46.060407.145222"}] },
-      { t:"Modèles de l'atome : Rutherford 1911", d:"noyau (le proton : ~1919–1920)", v:"ok", img:SI+"02-le-fond-diffus-cosmologique.png",
+      { t:"Modèles de l'atome : Rutherford 1911", d:"noyau (le proton : ~1919–1920)", v:"ok", img:EL+"p5-modeles-atome.png",
         s:"La diffusion de 1911 révèle le noyau, pas le proton — celui-ci est identifié vers 1919 (bombardement de l'azote) et nommé en 1920. Dalton 1808 · Thomson 1904 · Bohr 1913 · Schrödinger/Born 1926 · neutron (Chadwick) 1932.",
         src:[{n:"APS · Rutherford & le noyau",u:"https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus"},{n:"Rutherford 1911 (DOI)",u:"https://doi.org/10.1080/14786440508637080"}] },
-      { t:"Modèle de Bohr — niveaux de H", d:"E₃ = −1,51 eV · a₀ = 0,529 Å · vₙ = v₁/n", v:"fresh", img:SI+"02-le-fond-diffus-cosmologique.png",
+      { t:"Modèle de Bohr — niveaux de H", d:"E₃ = −1,51 eV · a₀ = 0,529 Å · vₙ = v₁/n", v:"fresh", img:EL+"p6-spectre-h.png",
         s:"Corrigé après audit : la présentation affichait E₃ = −1,21 eV ; Eₙ = −13,6/n² donne E₃ = −13,6/9 = −1,51 eV. Rayon de Bohr a₀ = 0,529 Å et vₙ = v₁/n confirmés (CODATA / NIST).",
         src:[{n:"Bohr model (Lumen)",u:"https://courses.lumenlearning.com/suny-physics/chapter/30-3-bohrs-theory-of-the-hydrogen-atom/"},{n:"NIST · rayon de Bohr",u:"https://physics.nist.gov/cgi-bin/cuu/Value?bohrrada0"}] },
-      { t:"Règle de Born & nombres quantiques", d:"dP/dV = |ψ(r,t)|² · (n,l,m)+mₛ", v:"fresh", img:SI+"03-les-premieres-etoiles.png",
+      { t:"Règle de Born & nombres quantiques", d:"dP/dV = |ψ(r,t)|² · (n,l,m)+mₛ", v:"fresh", img:EL+"p6-orbitales.png",
         s:"Corrigé : la densité de présence dépend de la position, dP/dV = |ψ(r,t)|² (et non |ψ(t)|²). Le triplet (n,l,m) définit une orbitale ; l'« adresse » d'un électron exige le 4ᵉ nombre, le spin mₛ = ±½ (principe d'exclusion de Pauli).",
         src:[{n:"Born 1926 (DOI)",u:"https://doi.org/10.1007/BF01397477"},{n:"Pauli exclusion (Britannica)",u:"https://www.britannica.com/science/Pauli-exclusion-principle"}] },
-      { t:"Configurations électroniques Z = 1 → 36", d:"séquence H → Kr conforme NIST", v:"ok", img:SI+"01-le-big-bang.png",
+      { t:"Configurations électroniques Z = 1 → 36", d:"séquence H → Kr conforme NIST", v:"ok", img:EL+"p7-remplissage.png",
         s:"Les 36 configurations sont exactes (NIST), y compris les deux seules exceptions Cr [Ar]3d⁵4s¹ et Cu [Ar]3d¹⁰4s¹. « Argon : n=3 partiellement rempli » est correct (3d vide). On parlera de « bloc d » (Z 21–30) — le zinc, à 3d¹⁰, étant souvent exclu des métaux de transition au sens IUPAC.",
         src:[{n:"NIST · ground levels",u:"https://www.nist.gov/pml/ground-levels-and-ionization-energies-neutral-atoms"},{n:"IUPAC · transition element",u:"https://goldbook.iupac.org/terms/view/T06456"}] },
-      { t:"Familles chimiques & gaz nobles", d:"« très peu réactifs » plutôt que « pas de liaison »", v:"fresh", img:SI+"03-les-premieres-etoiles.png",
+      { t:"Familles chimiques & gaz nobles", d:"« très peu réactifs » plutôt que « pas de liaison »", v:"fresh", img:EL+"p8-tableau-final.png",
         s:"Nuancé après audit : alcalins = réducteurs, halogènes = oxydants ; les gaz nobles sont très peu réactifs mais pas inertes (XeF₂, XeF₄, KrF₂). Les ions Li⁺/Na⁺/F⁻… sont stabilisés en cristal ou en solution (réticulaire, hydratation), pas isolés.",
         src:[{n:"Noble gas compounds",u:"https://en.wikipedia.org/wiki/Noble_gas_compound"},{n:"Groupes (IUPAC)",u:"https://en.wikipedia.org/wiki/Group_(periodic_table)"}] },
-      { t:"Tendances périodiques & affinité électronique", d:"affinité = tendance irrégulière (Cl > F)", v:"warn", img:SI+"09-formation-de-la-terre.png",
+      { t:"Tendances périodiques & affinité électronique", d:"affinité = tendance irrégulière (Cl > F)", v:"warn", img:EL+"p8-proprietes.png",
         s:"Rayon ↓ et ← ; énergie d'ionisation et électronégativité ↑ et → (max au fluor). L'affinité électronique suit globalement la même direction mais est la plus irrégulière : Cl > F, S > O ; gaz nobles et colonne 2 atypiques. Eₙ = −13,6·Z*²/n² = approximation hydrogénoïde (Slater).",
         src:[{n:"ACS · periodic trends",u:"https://www.acs.org/content/dam/acsorg/education/students/highschool/chemistryclubs/infographics/mastering-periodic-trends-infographic.pdf"},{n:"Electron affinity (LibreTexts)",u:"https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Physical_Properties_of_Matter/Atomic_and_Molecular_Properties/Electron_Affinity"}] }
     ];
