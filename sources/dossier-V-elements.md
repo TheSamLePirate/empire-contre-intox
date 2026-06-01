@@ -1,222 +1,288 @@
-# Sources — Dossier V · Le Tableau Périodique des éléments
+# Audit scientifique — Dossier V · Le Tableau périodique des éléments
 
-**Fichier audité :** `jorge-zalex/elements.html`
-**Réalisé par :** Jorge & Zalex (d'après la présentation de **Jorge**)
-**Date de l'audit :** 1ᵉʳ juin 2026
+**Fichier audité :** `jorge-zalex/elements.html`  
+**Dossier :** Jorge & Zalex, d'après la présentation de Jorge  
+**Date de l'audit :** 1ᵉʳ juin 2026  
+**Méthode :** lecture complète du HTML + recherche bibliographique en 4 lots parallèles : particules/interactions, cosmologie/nucléaire, modèles atomiques/quantique, chimie périodique.
 
-> Document de type **cours scientifique** (présentation PowerPoint convertie). L'audit vérifie chaque
-> donnée chiffrée, date, nom et affirmation. Vérification par recherche web + **4 agents en parallèle**
-> (particules, cosmologie, modèles de l'atome, tableau périodique). Sources autoritatives : NIST/CODATA,
-> Particle Data Group (PDG/LBL), CERN, ESA, IUPAC, LibreTexts/Britannica/Stanford ; encyclopédies en appoint.
+> Les DOI primaires et revues sont dans [`refs-doi-V-elements.md`](refs-doi-V-elements.md). Les constantes et tables vivantes relèvent surtout de NIST/CODATA, PDG, NIST ASD, IUPAC et NNDC : elles sont citées ici par URL, pas forcées dans un DOI d'article.
 
-## Légende des verdicts
+## Légende
 
-- ✅ **Confirmé** — exact au regard des sources autoritatives.
-- ⚠️ **Approximatif / à nuancer** — globalement correct mais imprécis ou dépendant du contexte.
-- 🔶 **Débattu / convention variable** — la valeur dépend d'une convention ou d'une définition.
-- ❌ **Erroné** — incorrect ; **corrigé** dans la page.
+- ✅ **Confirmé** — correct au niveau attendu pour un cours public.
+- ⚠️ **À nuancer** — correct dans l'idée, mais formulation trop forte, conventionnelle ou contextuelle.
+- 🔶 **Convention variable** — dépend de la définition retenue.
+- ❌ **À corriger** — formulation ou donnée incorrecte dans la page.
 
 ---
 
-## I — Les particules élémentaires
+## Synthèse courte
 
-### 1. Trois propriétés intrinsèques : masse, charge, spin
-**Verdict :** ✅ Confirmé — masse, charge électrique et spin sont les propriétés intrinsèques fondamentales d'une particule.
-**Sources :** https://en.wikipedia.org/wiki/Elementary_particle
+Le dossier est globalement solide et bien structuré : les constantes, les grandes dates, les masses, les abondances primordiales, la chronologie des modèles atomiques, les règles de remplissage et les tendances périodiques sont majoritairement exactes.
 
-### 2. Unité de charge = coulomb (C) ; charge élémentaire
-**Verdict :** ✅ Confirmé — e = **1,602176634 × 10⁻¹⁹ C** (valeur exacte, SI 2019).
-**Sources :** https://physics.nist.gov/cgi-bin/cuu/Value?e
+Points à corriger ou à renforcer dans le HTML si l'on veut une version scientifiquement stricte :
 
-### 3. 1 u = 1,6605 × 10⁻²⁷ kg = 931,5 MeV/c²
-**Verdict :** ✅ Confirmé — u = **1,66053906892 × 10⁻²⁷ kg** = **931,49410372 MeV/c²** (CODATA 2022).
-**Sources :** https://physics.nist.gov/cgi-bin/cuu/Value?eqmuc2mev · https://physics.nist.gov/cgi-bin/cuu/Value?ukg
-
-### 4. Masses de l'électron, du proton et du neutron
-**Verdict :** ✅ Confirmé — e⁻ : **0,51099895 MeV/c²** (9,109 × 10⁻³¹ kg) ; p : **938,272 MeV/c²** (1,67262 × 10⁻²⁷ kg) ; n : **939,565 MeV/c²** (1,67493 × 10⁻²⁷ kg). Le neutron est bien légèrement plus lourd que le proton.
-**Sources :** https://pdg.lbl.gov/2024/reviews/rpp2024-rev-phys-constants.pdf
-
-### 5. Expérience de Stern et Gerlach — 1922, Francfort — preuve du spin
-**Verdict :** ✅ Confirmé — conçue par Stern (1921), réalisée avec Gerlach à **Francfort en 1922** ; première preuve de la quantification spatiale (signature du spin).
-**Sources :** https://en.wikipedia.org/wiki/Stern%E2%80%93Gerlach_experiment
-
-### 6. Applications du spin : RMN, IRM, laser, supraconductivité, superfluidité, qubit
-**Verdict :** ⚠️ À nuancer — toutes sont liées au spin **ou à la statistique de spin**, mais par des mécanismes différents : RMN/IRM et qubit exploitent *directement* le spin (nucléaire ou électronique) ; **laser** (photons bosons), **supra-** et **superfluidité** relèvent de la *statistique de spin* (caractère bosonique), pas d'une manipulation directe du spin électronique. La page le présente comme « applications du spin » sans surinterpréter.
-**Sources :** https://en.wikipedia.org/wiki/Spin%E2%80%93statistics_theorem
-
-### 7. Les éléments du tableau = matière baryonique ; baryon = hadron de 3 quarks
-**Verdict :** ✅ Confirmé — la matière ordinaire (protons, neutrons) est dite « baryonique » ; un baryon est composé de 3 quarks.
-**Sources :** https://en.wikipedia.org/wiki/Standard_Model
+| Priorité | Passage | Verdict | Correction recommandée |
+|---|---|---:|---|
+| 1 | Modèle Standard « explique tous les phénomènes observables à l'échelle des particules » | ⚠️ | Dire qu'il décrit très précisément les particules connues et trois interactions, mais reste incomplet : gravité, matière noire, énergie noire, masses des neutrinos. |
+| 2 | β : « Z change, la masse non » | ❌ | Remplacer par : « Z change, le nombre de masse **A** ne change pas » ; la masse/énergie nucléaire change. |
+| 3 | Born : `dP/dV = |ψ(t)|²` | ❌ | Écrire `dP/dV = |ψ(r,t)|²` ou `dP = |ψ(r,t)|² dV`. |
+| 4 | « adresse unique à chaque électron » avec seulement `(n,l,m)` | ⚠️ | Le triplet adresse une orbitale ; l'électron exige aussi `m_s = ±1/2`. |
+| 5 | Ions Li⁺/Na⁺/K⁺/F⁻/Cl⁻ « plus stables que l'atome neutre » | ⚠️ | Les cations alcalins sont stabilisés en composé/solution/réseau ; isolément l'ionisation coûte de l'énergie. |
+| 6 | `E_n = -13,6·Z*²/n²` avec Slater | ⚠️ | Présenter comme approximation hydrogénoïde avec charge effective estimée, pas loi générale des atomes multiélectroniques. |
+| 7 | Gaz nobles « pas de liaison » | ⚠️ | Dire « très peu réactifs » ; Xe et Kr forment des composés sous conditions appropriées. |
+| 8 | Métaux de transition `Z=21–30` | 🔶 | Dire « bloc d de la 4ᵉ période » ; selon IUPAC strict, Zn n'est généralement pas un élément de transition. |
+| 9 | Affinité électronique « même tendance » | ⚠️ | Ajouter les exceptions majeures : Cl > F, S > O, gaz nobles/alcalino-terreux souvent défavorables. |
+| 10 | Stern–Gerlach = preuve directe du spin | ⚠️ | Historiquement : preuve de quantification spatiale ; interprétation moderne : spin de l'électron de valence de l'argent. |
 
 ---
 
-## II — Les quatre interactions fondamentales
+## I — Particules élémentaires
 
-### 8. « 25 particules élémentaires » du Modèle Standard
-**Verdict :** 🔶 Convention variable — le décompte **standard** est **17** (12 fermions + photon + W + Z + gluon + Higgs, le gluon compté une fois). **25** n'est exact que si l'on compte les **8 états de couleur du gluon** individuellement (12 + 8 + W⁺ + W⁻ + Z⁰ + γ + H = 25). **Correction appliquée :** la page indique « **17 particules fondamentales** (ou 25 en comptant les 8 états de couleur du gluon) ».
-**Sources :** https://en.wikipedia.org/wiki/Standard_Model · https://www.energy.gov/science/doe-explainsthe-standard-model-particle-physics
+### 1. Masse, charge, spin
+**Verdict :** ✅/⚠️ Confirmé comme triade pédagogique.  
+Une particule élémentaire est caractérisée par des propriétés intrinsèques dont masse, charge et spin. Pour être complet en physique des particules, il faut aussi les nombres quantiques internes : couleur, saveur, isospin faible, hypercharge, etc.  
+**Sources :** PDG Review of Particle Physics ; DOE, *The Standard Model of Particle Physics*.
 
-### 9. Interaction EM : photon neutre, masse nulle → portée infinie ; neutrino seul insensible
-**Verdict :** ⚠️ À nuancer — photon m = 0 → portée infinie ✅. **Reformulation appliquée :** « les neutrinos sont les **seules particules de matière sans charge électrique** » (au lieu de « seul fermion insensible à l'EM », qui prête à confusion — il y a 3 saveurs de neutrinos).
-**Sources :** http://hyperphysics.phy-astr.gsu.edu/hbase/Particles/zeromass.html
+### 2. Charge élémentaire et coulomb
+**Verdict :** ✅ Confirmé.  
+La charge élémentaire vaut exactement `e = 1,602176634 × 10⁻¹⁹ C` depuis la redéfinition SI.  
+**Source :** NIST/CODATA — https://physics.nist.gov/cgi-bin/cuu/Value?e
 
-### 10. Interaction forte : 8 gluons, charge de couleur, portée ~10⁻¹⁵ m, confinement
-**Verdict :** ✅ Confirmé — 8 gluons (octet SU(3)) porteurs de couleur ; portée ~10⁻¹⁵ m ; confinement des quarks ; hadrons « blancs » = baryons (qqq) ou mésons (qq̄).
-**Sources :** https://en.wikipedia.org/wiki/Standard_Model
+### 3. Unité de masse atomique
+**Verdict :** ✅ Confirmé.  
+`1 u = 1,66053906892 × 10⁻²⁷ kg = 931,49410372 MeV/c²` ; les valeurs de la page sont des arrondis corrects.  
+**Sources :** NIST/CODATA — https://physics.nist.gov/cgi-bin/cuu/Value?ukg ; https://physics.nist.gov/cgi-bin/cuu/Value?eqmuc2mev
 
-### 11. Interaction faible : W ≈ 80 GeV, Z⁰ ≈ 91 GeV, portée ~10⁻¹⁸ m
-**Verdict :** ✅ Confirmé (précisé) — **W = 80,369 GeV/c²**, **Z⁰ = 91,188 GeV/c²** (PDG 2024). La page indique « W ≈ 80,4 GeV, Z⁰ ≈ 91,2 GeV ». Seule interaction ressentie par le neutrino (hormis la gravité, négligeable).
-**Sources :** https://pdg.lbl.gov/2025/tables/rpp2025-sum-gauge-higgs-bosons.pdf · https://home.cern/science/physics/z-boson
+### 4. Masses électron/proton/neutron
+**Verdict :** ✅ Confirmé.  
+Électron `0,51099895 MeV/c²`, proton `938,272 MeV/c²`, neutron `939,565 MeV/c²`. Le neutron est légèrement plus lourd que le proton ; en β⁻ libre ou nucléaire, l'énergétique dépend aussi des énergies de liaison.  
+**Sources :** PDG physical constants ; Fermi 1934 pour la théorie β — DOI `10.1007/BF01351864`.
 
-### 12. Historique (QED 1948 ; Yang-Mills 1954 ; Glashow 1961 ; Weinberg-Salam 1967 ; W/Z 1983 ; GIM 1970 ; QCD ; Higgs 2012)
-**Verdict :** ✅ Confirmé — QED renormalisée 1947-49 ; Yang-Mills 1954 ; Glashow 1961 ; Weinberg 1967 ; W/Z découverts **1983** (UA1/UA2, CERN) ; GIM 1970 (quark charme) ; QCD/liberté asymptotique 1973 ; **boson de Higgs observé au LHC le 4 juillet 2012** (ATLAS & CMS).
-**Sources :** https://en.wikipedia.org/wiki/Electroweak_interaction · https://en.wikipedia.org/wiki/GIM_mechanism
+### 5. Stern–Gerlach
+**Verdict :** ✅/⚠️ Confirmé avec nuance historique.  
+L'expérience de Stern et Gerlach (Francfort, 1922) montre la quantification spatiale du moment magnétique. L'interprétation en termes de spin électronique est moderne : le concept de spin date de 1925.  
+**Source DOI :** Gerlach & Stern 1922 — `10.1007/BF01326983`.
 
-### 13. Radioactivité β⁻ : quark d → u + W⁻ → e⁻ + ν̄ₑ
-**Verdict :** ✅ Confirmé.
-**Sources :** https://en.wikipedia.org/wiki/Beta_decay
+### 6. Applications du spin
+**Verdict :** ✅/⚠️ À préciser.  
+RMN/IRM et certains qubits exploitent directement le spin. Laser, supraconductivité et superfluidité relèvent plus largement des statistiques quantiques et comportements collectifs.  
+**Sources DOI :** Bloch `10.1103/PhysRev.70.460`, Purcell `10.1103/PhysRev.69.37`, Pauli spin-statistique `10.1103/PhysRev.58.716`, BCS `10.1103/PhysRev.108.1175`.
 
----
-
-## III — La formation des atomes
-
-### 14. Chronologie des ères cosmiques (Planck, GUT, inflation, électrofaible, quarks, hadronique, leptonique, découplage des neutrinos)
-**Verdict :** ⚠️ À nuancer (nomenclature) — les ordres de grandeur sont corrects. **Nuances :** fin de l'inflation plus souvent citée ~10⁻³² s ; l'« ère leptonique » au sens strict est généralement **1 s – 10 s** (l'intervalle 10⁻⁶ s–1 s est la transition hadron→lepton). Découplage des neutrinos ~1 s, **T ≈ 10¹⁰ K** ✅.
-**Sources :** https://en.wikipedia.org/wiki/Chronology_of_the_universe
-
-### 15. Rapport neutron/proton gelé ≈ 1 pour 6 (→ ~1:7 à l'entrée de la nucléosynthèse)
-**Verdict :** ✅ Confirmé — gel à (n/p) ≈ 1/6 (T_f ≈ 0,8 MeV), évoluant vers ≈ 1/7 par désintégration des neutrons libres.
-**Sources :** https://people.ast.cam.ac.uk/~pettini/Intro%20Cosmology/Lecture08.pdf
-
-### 16. Nucléosynthèse primordiale : t < 3 min, T < 10⁹ K ; produits ²H, ³He, ⁴He, ⁷Li
-**Verdict :** ✅ Confirmé.
-**Sources :** https://en.wikipedia.org/wiki/Big_Bang_nucleosynthesis · https://pdg.lbl.gov/
-
-### 17. Recombinaison ≈ 380 000 ans, T ≈ 3000 K → premiers atomes → fond diffus cosmologique
-**Verdict :** ✅ Confirmé.
-**Sources :** https://www.esa.int/Science_Exploration/Space_Science/Cosmic_eras
-
-### 18. Bilan : ≈ 75 % hydrogène, ≈ 25 % hélium (en masse), traces de D/³He/⁷Li
-**Verdict :** ✅ Confirmé — fraction de masse d'⁴He Y_p ≈ 0,247 (~24–25 %). La page précise bien « **en masse** ».
-**Sources :** https://en.wikipedia.org/wiki/Big_Bang_nucleosynthesis
-
-### 19. Élément = numéro atomique Z (protons) ; isotope = composition du noyau (p + n)
-**Verdict :** ✅ Confirmé.
-**Sources :** https://en.wikipedia.org/wiki/Chemical_element
-
-### 20. Abondances : Univers ~H ; croûte terrestre O/Si/Al/Fe ; corps humain O/C/H
-**Verdict :** ⚠️ À nuancer — **corrections appliquées** : (a) l'abondance cosmique d'hydrogène est **≈ 90 % des atomes** (et non 93 %) — la page écrit désormais « ≈ 90 % des atomes » ; (b) les pourcentages O ~50 %, Si ~26 %, Al ~7 %, Fe ~4 % correspondent à la **croûte terrestre**, *pas* à la Terre entière (où le fer domine, ~32 %) — la page précise désormais « la **croûte** terrestre ». Composition du corps humain (O 65 %, C 18 %, H 10 %…) ✅.
-**Sources :** https://en.wikipedia.org/wiki/Abundance_of_the_chemical_elements · https://en.wikipedia.org/wiki/Composition_of_the_human_body
+### 7. Matière baryonique
+**Verdict :** ✅ Confirmé.  
+La matière ordinaire des éléments chimiques est baryonique : protons et neutrons sont des baryons, formés de trois quarks ; la chimie ordinaire combine noyaux et électrons.  
+**Sources :** PDG/DOE ; quark model — Gell-Mann `10.1016/S0031-9163(64)92001-3`.
 
 ---
 
-## IV — La stabilité des atomes
+## II — Interactions fondamentales
 
-### 21. Radioactivités α (noyau d'⁴He), β (n↔p + e∓ + (anti)ν), γ (photon de désexcitation)
-**Verdict :** ✅ Confirmé — α : perte de 2 en Z et 4 en A ; β : interaction faible, Z change ; γ : ni Z ni A ne changent.
-**Sources :** https://en.wikipedia.org/wiki/Radioactive_decay
+### 8. Modèle Standard et gravité
+**Verdict :** ⚠️ Formulation trop forte.  
+Le Modèle Standard décrit les particules connues et trois interactions quantiques : électromagnétique, forte, faible. La gravitation n'en fait pas partie ; le modèle minimal ne rend pas compte à lui seul de la matière noire, de l'énergie noire ni des masses de neutrinos.  
+**Sources :** DOE, PDG.
 
-### 22. Vallée de la stabilité (diagramme N–Z)
-**Verdict :** ✅ Confirmé — les noyaux stables forment une bande étroite ; les noyaux instables y « retombent » par désintégrations.
-**Sources :** https://en.wikipedia.org/wiki/Valley_of_stability
+### 9. Décompte 17 / 25 particules
+**Verdict :** 🔶 Correct si la convention est explicitée.  
+Décompte courant : 17 entités fondamentales (12 fermions, photon, gluon, W, Z, Higgs). Décompte 25 si les 8 états de couleur du gluon et W⁺/W⁻ sont séparés.  
+**Sources :** PDG particle listings ; DOE Standard Model.
 
----
+### 10. QED et photon
+**Verdict :** ✅ Confirmé.  
+Le photon est neutre et de masse nulle ; l'interaction électromagnétique a une portée infinie. Les neutrinos n'ont pas de charge électrique et ne couplent pas à QED.  
+**Sources DOI :** Schwinger `10.1103/PhysRev.74.1439`, Feynman `10.1103/PhysRev.76.769`, Dyson `10.1103/PhysRev.75.486`.
 
-## V — Les modèles de l'atome
+### 11. Interaction forte / QCD
+**Verdict :** ✅/⚠️ Confirmé avec nuance.  
+Quarks porteurs de couleur, 8 gluons, auto-interactions, confinement, hadrons incolores : correct. La portée `~10⁻¹⁵ m` est un ordre de grandeur de l'échelle hadronique/force nucléaire résiduelle ; la QCD confinante n'est pas une force de Yukawa simple.  
+**Sources DOI :** Yang–Mills `10.1103/PhysRev.96.191`, Gross & Wilczek `10.1103/PhysRevLett.30.1343`, Politzer `10.1103/PhysRevLett.30.1346`.
 
-### 23. Leucippe & Démocrite (V<sup>e</sup> s. av. J.-C.) ; Lucrèce (I<sup>er</sup> s. av. J.-C.) ; Aristote (384–322) continuité + 4 éléments
-**Verdict :** ✅ Confirmé (date Démocrite nuancée) — attributions correctes. La présentation source datait Démocrite « 450–360 av. J.-C. » ; la valeur standard est **~460–370 av. J.-C.** La page évite la date précise (« V<sup>e</sup> siècle av. J.-C. »).
-**Sources :** https://plato.stanford.edu/entries/atomism-ancient/ · https://www.britannica.com/science/atom/Development-of-atomic-theory
+### 12. Interaction faible
+**Verdict :** ✅/⚠️ Confirmé avec qualifier.  
+W± et Z⁰ sont les vecteurs faibles ; W ≈ 80,4 GeV et Z ≈ 91,2 GeV ; portée `~10⁻¹⁸ m`. Les neutrinos ressentent l'interaction faible dans le Modèle Standard, et aussi la gravitation.  
+**Sources :** PDG physical constants ; CERN W/Z ; Glashow `10.1016/0029-5582(61)90469-2`, Weinberg `10.1103/PhysRevLett.19.1264`.
 
-### 24. Dalton 1803–1808 (chaque élément = un type d'atome)
-**Verdict :** ✅ Confirmé — théorie développée dès 1803, publiée dans *A New System of Chemical Philosophy* (1808).
-**Sources :** https://www.britannica.com/biography/John-Dalton/Atomic-theory
+### 13. Historique QED, jauge, électrofaible, GIM, QCD, Higgs
+**Verdict :** ✅ Confirmé.  
+Les dates de la page sont de bons repères : QED 1947–49, Yang–Mills 1954, Glashow 1961, BEH/Higgs 1964, Weinberg 1967, Salam 1968, GIM 1970, QCD/liberté asymptotique 1973, W/Z 1983, boson de Higgs 2012.  
+**Sources DOI :** voir [`refs-doi-V-elements.md`](refs-doi-V-elements.md) sections particules.
 
-### 25. Thomson 1904 — modèle du « plum pudding »
-**Verdict :** ✅ Confirmé — *Philosophical Magazine* (1904), Ser. 6, vol. 7, p. 237–265.
-**Sources :** https://en.wikipedia.org/wiki/Plum_pudding_model
-
-### 26. Rutherford 1911 — « découverte du proton »
-**Verdict :** ⚠️ À nuancer — Rutherford découvre en 1911 le **noyau** (diffusion α sur feuille d'or). Le **proton** est identifié vers **1919** (bombardement de l'azote) et **nommé en 1920**. **Nuance appliquée** dans la page : « le nom et l'identification du proton viendront un peu plus tard, vers 1917–1920 ».
-**Sources :** https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus · https://en.wikipedia.org/wiki/Proton
-
-### 27. Bohr 1913 ; modèle quantique (ψ, |ψ|², 3 nombres quantiques) ; Chadwick 1932 (neutron)
-**Verdict :** ✅ Confirmé — Bohr 1913 ; règle de Born dP/dV = |ψ|² ; orbitale = (n, l, m) ; neutron annoncé par Chadwick en **mai 1932**.
-**Sources :** https://www.britannica.com/science/Bohr-model · https://www.aps.org/apsnews/2007/05/may-1932-chadwick-discovery-neutron
-
----
-
-## VI — La structure électronique des atomes
-
-### 28. Bohr (H) : L = mvr = n·h/2π ; Eₙ = −13,6/n² eV ; rₙ = a₀n² ; a₀ = 0,529 Å
-**Verdict :** ✅ Confirmé — a₀ = **5,29177 × 10⁻¹¹ m = 0,529 Å** (CODATA 2022) ; 13,6 eV = énergie d'ionisation de H.
-**Sources :** https://physics.nist.gov/cgi-bin/cuu/Value?bohrrada0 · https://courses.lumenlearning.com/suny-physics/chapter/30-3-bohrs-theory-of-the-hydrogen-atom/
-
-### 29. Niveaux d'énergie de H : E₁ = −13,6 ; E₂ = −3,4 ; **E₃** ; E₄ = −0,85 ; E₅ = −0,54 eV
-**Verdict :** ❌ Erroné (corrigé) — la présentation source affichait **E₃ = −1,21 eV**. La valeur correcte est **−13,6/9 = −1,51 eV**. **Correction appliquée** dans la page (E₃ = −1,51 eV). Les autres valeurs sont exactes.
-**Sources :** https://courses.lumenlearning.com/suny-physics/chapter/30-3-bohrs-theory-of-the-hydrogen-atom/
-
-### 30. Orbitales : ψ_{n,l,m} (Schrödinger) ; l = 0/1/2/3 → s/p/d/f ; orbitales par sous-couche s:1 p:3 d:5 f:7
-**Verdict :** ✅ Confirmé — nombre d'orbitales = 2l + 1.
-**Sources :** https://chem.libretexts.org/Bookshelves/Inorganic_Chemistry/Inorganic_Chemistry_(LibreTexts)/02:_Atomic_Structure
+### 14. β⁻ au niveau quark
+**Verdict :** ✅ Confirmé.  
+`d → u + W⁻`, puis `W⁻ → e⁻ + anti-ν_e` ; à l'échelle nucléaire, neutron → proton.  
+**Sources DOI :** Fermi `10.1007/BF01351864`, Weinberg `10.1103/PhysRevLett.19.1264`.
 
 ---
 
-## VII — La structure du Tableau périodique
+## III — Formation des atomes et cosmologie
 
-### 31. Règles de remplissage : Klechkowski (n+l croissant), Hund, Pauli
-**Verdict :** ✅ Confirmé — ordre 1s, 2s, 2p, 3s, 3p, **4s avant 3d**, … **Nuance appliquée** : la règle de Klechkowski connaît des **exceptions** (Cr = [Ar]3d⁵4s¹, Cu = [Ar]3d¹⁰4s¹), signalées dans la page.
-**Sources :** https://en.wikipedia.org/wiki/Aufbau_principle · https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Electronic_Structure_of_Atoms_and_Molecules/Electronic_Configurations/The_Order_of_Filling_3d_and_4s_Orbitals
+### 15. Ères cosmologiques très précoces
+**Verdict :** ⚠️ Correct comme récit standard, mais modèle-dépendant.  
+Ère de Planck, GUT, inflation, transition électrofaible : les ordres de grandeur sont pédagogiquement acceptables. Les phases Planck/GUT et les mécanismes exacts ne sont pas observés directement.  
+**Sources DOI :** PDG Review `10.1103/PhysRevD.110.030001`, Planck 2018 `10.1051/0004-6361/201833910`, Guth `10.1103/PhysRevD.23.347`, Linde `10.1103/PhysRevD.28.679`.
 
-### 32. Longueur des lignes : 2 (H,He) ; 8 (Li→Ne) ; 8 (Na→Ar, n=3 partiellement rempli) ; 18 (K→Kr)
-**Verdict :** ✅ Confirmé — la formulation « n=3 partiellement rempli » pour l'argon ([Ne]3s²3p⁶, 3d vide) est **exacte** ; période 4 = 4s + 3d(10) + 4p = 18.
-**Sources :** https://chem.libretexts.org/Bookshelves/General_Chemistry/Map:_Chemistry_-_The_Central_Science_(Brown_et_al.)/02:_Atoms_Molecules_and_Ions/2.05:_The_Periodic_Table
+### 16. Inflation
+**Verdict :** ✅/⚠️ Cadre standard, pas mesure directe du mécanisme.  
+L'inflation explique horizon/platitude ; le facteur `~10²⁶` correspond à un ordre de grandeur/minimum en e-folds, non à une valeur observée unique.  
+**Sources DOI :** Guth, Linde, Planck 2018.
 
-### 33. Symboles & noms Z = 1 → 36
-**Verdict :** ✅ Confirmé (1 coquille dans la source) — séquence correcte. La présentation source écrivait « **Souffre** » (Z=16) ; l'orthographe correcte est « **Soufre** ». La page utilise l'orthographe correcte.
-**Sources :** https://fr.wikipedia.org/wiki/Soufre
+### 17. Asymétrie matière–antimatière
+**Verdict :** ⚠️ À nuancer.  
+L'asymétrie baryonique est observée ; son mécanisme reste inconnu. Les scénarios GUT, leptogenèse ou électrofaibles sont des hypothèses au-delà du Modèle Standard établi.  
+**Sources DOI :** Sakharov `10.1070/PU1991v034n05ABEH002497`, Dine & Kusenko `10.1103/RevModPhys.76.1`.
 
-### 34. Familles : alcalins (col. 1), halogènes (col. 17), gaz nobles (col. 18), alcalino-terreux (col. 2), chalcogènes (col. 16)
-**Verdict :** ✅ Confirmé (1 nuance) — classification IUPAC correcte. **Nuance appliquée :** « gaz nobles → pas d'ions » est une simplification ; la page écrit « ne forment **quasiment** pas d'ions » (Xe/Kr forment des composés en conditions extrêmes).
-**Sources :** https://en.wikipedia.org/wiki/Group_(periodic_table)
+### 18. Découplage des neutrinos et rapport n/p
+**Verdict :** ✅ Confirmé.  
+Découplage autour de `t ~ 1 s`, `T ~ 10¹⁰ K`. Le rapport neutron/proton est environ `1/6` au freeze-out faible, puis évolue vers `~1/7` avant la BBN effective.  
+**Sources DOI :** Mangano `10.1016/j.nuclphysb.2005.09.041`, Cyburt `10.1103/RevModPhys.88.015004`.
 
-### 35. Métaux de transition (Z 21–30), lanthanides (57–71), actinides (89–103), terres rares (Sc+Y+lanthanides), métalloïdes (B, Si, Ge, As, Sb, Te, At)
-**Verdict :** ⚠️ À nuancer — lanthanides/actinides/terres rares ✅. **Nuance appliquée :** l'**astate (At)** n'est classé métalloïde que par *certaines* sources (souvent rangé avec les halogènes) ; la page le signale. Les 6 métalloïdes consensuels : B, Si, Ge, As, Sb, Te.
-**Sources :** https://en.wikipedia.org/wiki/Metalloid · https://en.wikipedia.org/wiki/Rare-earth_element
+### 19. Nucléosynthèse primordiale
+**Verdict :** ✅/⚠️ Confirmé, avec timing à préciser.  
+Le deutérium devient stable quand la température descend sous `~10⁹ K`, permettant la production de `²H, ³He, ⁴He, ⁷Li`. « Trois minutes » est une formule pédagogique : l'essentiel de l'hélium est produit dans les premières minutes, mais le gel final peut s'étendre davantage.  
+**Source DOI :** Cyburt et al. `10.1103/RevModPhys.88.015004`.
 
-### 36. Eₙ = −13,6 · Z*²/n² (charge effective, Slater)
-**Verdict :** ✅ Confirmé — formule hydrogénoïde avec Z* = Z − S (écran de Slater).
-**Sources :** https://chem.libretexts.org/Bookshelves/Inorganic_Chemistry/Map:_Inorganic_Chemistry_(Housecroft)
+### 20. Abondances primordiales H/He
+**Verdict :** ✅ Confirmé.  
+En masse : environ 75 % hydrogène et 25 % hélium, avec traces D, ³He, ⁷Li. Par nombre d'atomes, les pourcentages changent ; il faut toujours préciser masse vs nombre.  
+**Sources DOI :** Cyburt 2016 ; Planck 2018.
+
+### 21. Recombinaison / FDC
+**Verdict :** ✅ Confirmé.  
+Âge `~370–380 ka`, température `~3000 K`, redshift `z ~ 1090` : formation des atomes neutres, découplage photonique et fond diffus cosmologique. Transition étalée, pas instant ponctuel.  
+**Sources DOI :** Peebles `10.1086/149628`, Seager `10.1086/312250`, `10.1086/313388`, Planck 2018, Penzias & Wilson `10.1086/148307`.
+
+### 22. Élément et isotope
+**Verdict :** ✅ Confirmé.  
+Un élément est défini par son numéro atomique `Z` ; des isotopes ont même `Z` et nombres de neutrons/nombres de masse différents.  
+**Sources DOI :** IUPAC Gold Book `10.1351/goldbook.C01022`, `10.1351/goldbook.I03331`.
+
+### 23. Abondances Univers / croûte / corps humain
+**Verdict :** ✅/⚠️ Correct si les conventions sont explicites.  
+Univers : distinguer fraction massique primordiale et abondance par nombre. Croûte terrestre : O/Si/Al/Fe dominent ; ne pas confondre avec la Terre entière, dominée par le fer. Corps humain : O/C/H/N dominent par masse.  
+**Sources DOI :** Asplund `10.1146/annurev.astro.46.060407.145222`, Wang et al. corps humain `10.1152/ajpendo.1991.261.2.E190`; IUPAC/NIST pour masses et isotopes.
 
 ---
 
-## VIII — Les propriétés périodiques
+## IV — Stabilité nucléaire et radioactivité
 
-### 37. Rayon atomique, énergie d'ionisation, électronégativité, affinité électronique (directions)
-**Verdict :** ✅ Confirmé — à travers une période (→) : rayon ↓, EI ↑, électronégativité ↑ ; en descendant un groupe (↓) : rayon ↑, EI ↓, électronégativité ↓. Électronégativité maximale pour le fluor.
-**Sources :** https://www.acs.org/content/dam/acsorg/education/students/highschool/chemistryclubs/infographics/mastering-periodic-trends-infographic.pdf
+### 24. α, β, γ
+**Verdict :** ✅/❌.  
+α : émission d'un noyau `⁴He`, `Z − 2`, `A − 4`. β : conversion neutron/proton via interaction faible ; **Z change et le nombre de masse A reste inchangé**, pas « la masse ». γ : désexcitation par photon, `Z` et `A` inchangés.  
+**Sources DOI :** Rutherford & Soddy `10.1080/14786440309462960`, Fermi `10.1007/BF01351864`, Pfützner `10.1103/RevModPhys.84.567`.
 
-### 38. Mendeleïev a prédit des éléments à partir des régularités (cases vides)
-**Verdict :** ✅ Confirmé — Mendeleïev (1869) a laissé des cases vides et prédit les propriétés d'éléments inconnus (eka-aluminium = gallium, eka-silicium = germanium), confirmés ensuite.
-**Sources :** https://www.britannica.com/science/periodic-table/The-periodic-system
+### 25. Vallée de stabilité
+**Verdict :** ✅ Confirmé avec métaphore pédagogique.  
+Les noyaux stables forment une bande dans le plan `N–Z`; les noyaux instables évoluent vers des états plus stables par β, α, capture électronique, fission, émission n/p selon le cas.  
+**Sources :** NNDC NuDat ; Pfützner `10.1103/RevModPhys.84.567`.
+
+### 26. Datation radiométrique
+**Verdict :** ✅/⚠️ Correct mais conditions à rappeler.  
+La datation radiométrique repose sur demi-vies connues et rapports parent/fils ; elle suppose un système adapté et maîtrisé : fermeture, état initial, corrections et choix du chronomètre.  
+**Sources DOI :** Libby `10.1126/science.110.2869.678`, Patterson `10.1016/0016-7037(56)90036-9`, Dickin `10.1017/9781316163009.002`.
 
 ---
 
-## Synthèse
+## V — Modèles de l'atome
 
-**Aucune erreur factuelle franche subsistante.** Sur ~38 affirmations vérifiées, **une seule erreur numérique (❌)** a été détectée et **corrigée**, plus quelques nuances de formulation appliquées :
+### 27. Atomisme antique
+**Verdict :** ✅/⚠️ Correct comme récit grec simplifié.  
+Leucippe/Démocrite, Lucrèce et Aristote sont correctement situés. Nuance : l'atomisme antique n'est pas expérimental et il existe d'autres traditions atomistes.  
+**Source :** Stanford Encyclopedia of Philosophy, *Ancient Atomism* — https://plato.stanford.edu/entries/atomism-ancient/
 
-| # | Point | Nature | Action sur la page |
-|---|---|---|---|
-| 29 | E₃ de l'hydrogène : −1,21 → **−1,51 eV** | ❌ Erreur numérique (source) | **Corrigé** |
-| 33 | « Souffre » → « **Soufre** » (Z=16) | Coquille (source) | Orthographe correcte employée |
-| 8 | « 25 particules » | 🔶 Convention | Reformulé « **17** (ou 25 avec les 8 gluons) » |
-| 9 | Neutrino « seul fermion insensible à l'EM » | ⚠️ Imprécis | Reformulé « seules particules de matière sans charge » |
-| 26 | Proton « découvert en 1911 » | ⚠️ Conflation | Nuance ajoutée (proton ~1919–1920) |
-| 20 | H ≈ 93 % cosmique ; Terre O/Si/Al/Fe | ⚠️ Imprécis / croûte | Corrigé « ≈ 90 % » + « **croûte** terrestre » |
-| 35 | Astate métalloïde | ⚠️ Débattu | Nuancé « selon certaines sources » |
-| 34 | Gaz nobles « pas d'ions » | ⚠️ Simplification | Nuancé « ne forment quasiment pas d'ions » |
-| 14 | « Ère leptonique » 10⁻⁶–1 s | ⚠️ Nomenclature | Mentionnée comme transition (ordres de grandeur conservés) |
-| 23 | Démocrite « 450–360 av. J.-C. » | ⚠️ Date | Page : « V<sup>e</sup> siècle av. J.-C. » |
+### 28. Dalton
+**Verdict :** ✅/⚠️ Confirmé.  
+Dalton fonde la théorie atomique moderne (1803–1808). « Chaque élément = un type d'atome » est correct chimiquement, mais Dalton ignorait isotopes et numéros atomiques.  
+**Source :** Dalton, *A New System of Chemical Philosophy* (ouvrage sans DOI).
 
-Voir les **références primaires (DOI vérifiés)** dans [`refs-doi-V-elements.md`](refs-doi-V-elements.md).
+### 29. Thomson, Rutherford, Bohr, Schrödinger, Born, Chadwick
+**Verdict :** ✅ Confirmé avec nuances historiques.  
+Thomson 1904 ; Geiger–Marsden/Rutherford 1909–1911 ; Bohr 1913 pour H et ions hydrogénoïdes ; Schrödinger 1926 ; Born 1926 ; Chadwick 1932.  
+**Sources DOI :** Thomson `10.1080/14786440409463107`, Geiger–Marsden `10.1098/rspa.1909.0054`, Rutherford `10.1080/14786440508637080`, Bohr `10.1080/14786441308634955`, Schrödinger `10.1002/andp.19263840404`, Born `10.1007/BF01397477`, Chadwick `10.1038/129312a0` et `10.1098/rspa.1932.0112`.
+
+### 30. Proton après 1911
+**Verdict :** ✅ Confirmé.  
+1911 établit le noyau ; le proton est identifié/nommé plus tard, autour de 1919–1920.  
+**Source DOI :** Rutherford 1919 `10.1080/14786440608635919`.
+
+---
+
+## VI — Structure électronique
+
+### 31. Modèle de Bohr et niveaux de H
+**Verdict :** ✅ Confirmé.  
+`L = n h/2π`, `E_n = -13,6/n² eV`, `r_n = a₀n²`, `a₀ = 0,529 Å` : correct pour l'hydrogène/ions hydrogénoïdes avec arrondis. Les niveaux affichés `E₁` à `E₅` sont cohérents, notamment `E₃ = -1,51 eV`.  
+**Sources DOI/URL :** Bohr `10.1080/14786441308634955`, NIST CODATA `a₀`, NIST Rydberg, NIST ASD `10.18434/T4W30F`.
+
+### 32. Absorption/émission et raies spectrales
+**Verdict :** ✅ Confirmé.  
+Un photon absorbé/émis correspond à l'écart d'énergie entre niveaux. Les spectres identifient des éléments à distance, avec dépendance aux conditions physiques : température, ionisation, pression, abondances et décalage spectral.  
+**Sources :** NIST ASD ; Bohr 1913.
+
+### 33. Orbitales et nombres quantiques
+**Verdict :** ✅/⚠️ Confirmé avec précision.  
+Orbitales `ψ_{n,l,m_l}` ; `l = 0,1,2,3 → s,p,d,f`; `m_l = -l…+l`, donc `2l+1` orbitales : s 1, p 3, d 5, f 7. Le triplet décrit une orbitale ; le spin `m_s` distingue les deux électrons possibles.  
+**Sources DOI :** Schrödinger `10.1002/andp.19263840404`, Born `10.1007/BF01397477`, Pauli `10.1007/BF02980631`, NIST spectroscopy compendium.
+
+---
+
+## VII — Structure du tableau périodique
+
+### 34. Klechkowski/Madelung, Hund, Pauli
+**Verdict :** ✅/⚠️ Correct comme règles de remplissage empiriques.  
+Elles rationalisent l'essentiel de l'architecture du tableau, mais ne sont pas des lois exactes universelles. Cr et Cu sont correctement notés comme exceptions.  
+**Sources DOI :** Pauli `10.1007/BF02980631`, Hund `10.1007/BF01400218` / `10.1007/BF01494853`, Madelung/Aufbau `10.1021/ed056p714`, Schwarz & Rich `10.1021/ed800124m`.
+
+### 35. Configurations Z = 1–36
+**Verdict :** ✅ Confirmé.  
+La séquence H → Kr est correcte, y compris Cr `[Ar]3d⁵4s¹` et Cu `[Ar]3d¹⁰4s¹`.  
+**Source :** NIST Atomic Spectra Database — https://physics.nist.gov/PhysRefData/ASD/levels_form.html
+
+### 36. 4s avant 3d
+**Verdict :** ✅/⚠️ Correct pour construire la 4ᵉ période, mais simplifié.  
+K et Ca remplissent 4s avant 3d ; dans les métaux de transition et lors de l'ionisation, les relations d'énergie 4s/3d dépendent de l'atome/ion.  
+**Sources DOI :** Schwarz & Rich `10.1021/ed800124m`, Wang & Schwarz `10.1002/chem.200500945`.
+
+### 37. Stabilité des ions et charge effective
+**Verdict :** ⚠️ À reformuler.  
+Les configurations de gaz nobles expliquent la stabilité en composés, mais un cation alcalin isolé n'est pas plus stable que l'atome neutre : l'ionisation coûte de l'énergie. Slater donne un écran effectif semi-empirique ; la formule hydrogénoïde avec `Z*` est approximative.  
+**Sources DOI/URL :** Slater `10.1103/PhysRev.36.57`, NIST ionization energies, Hotop & Lineberger electron affinities.
+
+### 38. Familles chimiques
+**Verdict :** ✅/⚠️ Correct.  
+Groupes IUPAC : alcalins 1, alcalino-terreux 2, chalcogènes 16, halogènes 17, gaz nobles 18. Nuances : gaz nobles très peu réactifs mais pas « sans liaison » ; « métaux de transition » dépend de la définition ; astatine est un halogène et son statut de métalloïde est controversé.  
+**Sources DOI/URL :** IUPAC periodic table ; group numbering `10.1351/pac198860030431`, metalloids `10.1021/ed3008457`, astatine `10.1021/ed100308w`.
+
+---
+
+## VIII — Propriétés périodiques
+
+### 39. Rayon, ionisation, électronégativité
+**Verdict :** ✅ Confirmé comme tendances générales.  
+Rayon augmente vers bas/gauche ; énergie d'ionisation et électronégativité augmentent globalement vers haut/droite. Les rayons dépendent de la définition (covalent, métallique, van der Waals).  
+**Sources DOI/URL :** Cordero covalent radii `10.1039/B801115J`, NIST ionization energies, Pauling `10.1021/ja01348a011`, Allen `10.1021/ja00207a003`, IUPAC electronegativity `10.1351/goldbook.E01990`.
+
+### 40. Affinité électronique
+**Verdict :** ⚠️ Trop simplifié dans la page.  
+La tendance générale existe, mais les exceptions sont pédagogiquement importantes : Cl a une affinité électronique plus exothermique que F, S plus que O ; gaz nobles et alcalino-terreux sont atypiques. Il faut préciser la convention de signe.  
+**Sources DOI :** Hotop & Lineberger `10.1063/1.555524`, `10.1063/1.555735`, `10.1063/1.556047`; Rienstra-Kiracofe `10.1021/cr990044u`.
+
+### 41. Mendeleïev et prédictions
+**Verdict :** ✅ Confirmé.  
+Mendeleïev a laissé des cases vides et prédit des propriétés d'éléments inconnus, confirmées ensuite : eka-aluminium/gallium, eka-bore/scandium, eka-silicium/germanium.  
+**Source DOI :** historique moderne `10.1098/rsta.2019.0537`; les publications originales du XIXᵉ siècle n'ont pas de DOI usuel.
+
+---
+
+## Sources autoritatives sans DOI à citer directement
+
+- **PDG — Review of Particle Physics :** https://pdg.lbl.gov/
+- **NIST/CODATA constants :** https://physics.nist.gov/cuu/Constants/
+- **NIST Atomic Spectra Database :** https://physics.nist.gov/PhysRefData/ASD/
+- **NIST ionization energies :** https://physics.nist.gov/PhysRefData/ASD/ionEnergy.html
+- **IUPAC periodic table :** https://iupac.org/what-we-do/periodic-table-of-elements/
+- **IUPAC Gold Book :** https://goldbook.iupac.org/
+- **NNDC NuDat :** https://www.nndc.bnl.gov/nudat3/
+- **CERN — W/Z/Higgs :** https://home.cern/science/physics/
+- **DOE — Standard Model :** https://www.energy.gov/science/doe-explainsthe-standard-model-particle-physics
+- **ESA — Cosmic eras :** https://www.esa.int/Science_Exploration/Space_Science/Cosmic_eras

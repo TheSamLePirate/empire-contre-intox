@@ -23,7 +23,7 @@ Vérifié le **1ᵉʳ juin 2026** par recherche web (sources autoritatives : NAS
 
 ### Sources scientifiques — littérature primaire (DOI)
 
-Couche « sources scientifiques » : **~76 articles à comité de lecture, DOI vérifiés** (résolution Crossref + page éditeur ; aucun DOI inventé). C'est l'appareil de référence le plus strict.
+Couche « sources scientifiques » : **~146 articles à comité de lecture, DOI vérifiés ou sourcés par page éditeur** (résolution DOI/éditeur ; aucun DOI inventé). C'est l'appareil de référence le plus strict.
 
 | Fichier | DOI | Couverture |
 |---|---|---|
@@ -32,23 +32,23 @@ Couche « sources scientifiques » : **~76 articles à comité de lecture, DOI v
 | [`refs-doi-3-phanerozoique-extinctions.md`](refs-doi-3-phanerozoique-extinctions.md) | 15 | GTS2020, Raup & Sepkoski, Stanley, Burgess, Schulte/Alvarez (Chicxulub), Renne/Schoene/Sprain (Deccan), Nesbitt, Zachos |
 | [`refs-doi-4-humanite-ediacarien.md`](refs-doi-4-humanite-ediacarien.md) | 15 | Hublin/Richter (Jebel Irhoud), Harmand (Lomekwi), Villmoare, Brunet/Daver, Bobrovskiy, Fedonkin, Bengtson, Knoll, Mills |
 | [`refs-doi-5-lune-artemis.md`](refs-doi-5-lune-artemis.md) | 6 | Colaprete (LCROSS), Li, Honniball, Hayne, Pieters (M³), Hauri |
-| [`refs-doi-V-elements.md`](refs-doi-V-elements.md) | 11 | Stern-Gerlach 1922, Thomson 1904, Rutherford 1911, Bohr 1913, Chadwick 1932, Englert-Brout & Higgs 1964, ATLAS & CMS 2012, Dyson (QED), Hon & Goldstein |
+| [`refs-doi-V-elements.md`](refs-doi-V-elements.md) | 81 | Particules/interactions, cosmologie/BBN/CMB, radioactivité, modèles atomiques, mécanique quantique, règles de remplissage, propriétés périodiques, Mendeleïev |
 
 > Pièges à DOI détectés et corrigés par les agents : Kimberella (Fedonkin) `10.1038/42242` (et non 41048), Daver 2022, Renne 2015 `…aac7549`, Zachos 2001 `…1059412`. Les bornes ICS n'ont pas de DOI d'article unique → référence = GTS2020 (DOI volume) + charte officielle ICS.
 
 ## Bilan global
 
-Aucune **erreur factuelle franche (❌)** détectée dans l'ensemble des dossiers. Les grands repères sont corrects et sourcés. Restent des points *à nuancer* et **quelques corrections de cohérence/d'actualisation** :
+Les grands repères des dossiers sont corrects et sourcés. Restent des points *à nuancer* et quelques corrections de cohérence/d'actualisation ; pour le Dossier V, l'audit signale deux formulations à corriger strictement (`A` plutôt que « masse » en β, et `|ψ(r,t)|²` plutôt que `|ψ(t)|²`).
 
 ### Corrections recommandées (concrètes)
 1. **`horloge-univers/chronos.html` — reproduction sexuée :** affiche encore **~1,2 Ga** à 3 endroits (carte « cellule complexe » + chip, `SEGMENTS`, tableau des éons), alors que `events.json` porte la valeur à jour **1,047 Ga** (Bangiomorpha, Gibson et al. 2018). → aligner sur **1,047 Ga** (bascule Mésoprotérozoïque → Tonien/Néoprotérozoïque).
 2. **`ymir-lalie/resume-eres.html` — base du Cambrien :** indiquée à **541 Ma** ; valeur ICS actuelle = **538,8 Ma**. → actualiser.
 3. **`ymir-lalie/edicarien.html` — coquille :** « Vandobiontes » → orthographe correcte **« Vendobionta »** (Seilacher).
 
-### Dossier V — Le Tableau Périodique (corrections déjà appliquées dans la page)
-- **E₃ de l'hydrogène : −1,21 → −1,51 eV** (❌ erreur numérique de la présentation source) — **corrigé**.
-- **« Souffre » → « Soufre »** (Z=16) — orthographe correcte employée.
-- **« 25 particules »** reformulé en « 17 (ou 25 en comptant les 8 gluons) » ; **neutrino** : « seules particules de matière sans charge » ; **proton** : nuance 1911 (noyau) vs ~1919-20 (proton) ; **H ≈ 90 %** cosmique + « **croûte** terrestre » ; **astate** métalloïde nuancé ; gaz nobles « quasiment pas d'ions ». Détail : [`dossier-V-elements.md`](dossier-V-elements.md).
+### Dossier V — Le Tableau Périodique
+- Audit scientifique complet : [`dossier-V-elements.md`](dossier-V-elements.md).
+- Bibliographie DOI étendue : [`refs-doi-V-elements.md`](refs-doi-V-elements.md) (**81 DOI**) + sources autoritatives sans DOI (NIST/CODATA, PDG, NIST ASD, IUPAC, NNDC, CERN, ESA).
+- Points de précision principaux : Modèle Standard formulé trop largement ; β doit dire « nombre de masse A », pas « masse » ; formule de Born à écrire `|ψ(r,t)|²` ; le triplet `(n,l,m)` adresse une orbitale, pas un électron complet ; stabilité des ions et formule de Slater à contextualiser ; gaz nobles, métaux de transition et affinité électronique à nuancer.
 
 ### Points à nuancer (non bloquants)
 - **Nombre de galaxies (~2 × 10¹²)** [Dossier IV] : estimation modèle-dépendante, contestée (cf. New Horizons/Lauer 2021) — garder le « ≈ », signaler « estimation ».
