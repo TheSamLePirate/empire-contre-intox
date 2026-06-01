@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Les Sources — vérification scientifique des dossiers — Empire contre Intox</title>
+  <meta name="description" content="Chaque donnée des dossiers Empire contre Intox, vérifiée et sourcée : cosmologie, géologie, vie, Artemis II. Affirmation → résumé → verdict → source autoritative. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+      --ok:#7bd88f; --warn:#f0b95e; --deb:#6fb6ff; --fresh:#c79bff;
+      --line:rgba(214,172,85,.20); --line-2:rgba(244,236,216,.10); --glass:rgba(7,12,26,.72);
+      --shadow:0 36px 110px rgba(0,0,0,.55);
+      --serif:"Fraunces",Georgia,serif; --roman:"Cinzel",Georgia,serif;
+      --ease:cubic-bezier(.22,1,.36,1);
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{margin:0;color:var(--ink);font-family:var(--serif);font-optical-sizing:auto;font-weight:380;line-height:1.7;
+      min-height:100dvh;overflow-x:hidden;
+      background:
+        radial-gradient(140% 90% at 10% -6%,rgba(214,172,85,.15),transparent 42%),
+        radial-gradient(120% 80% at 92% 4%,rgba(111,182,255,.12),transparent 46%),
+        linear-gradient(180deg,#03040c,var(--void) 42%,var(--abyss));
+      background-attachment:fixed;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+    a{color:inherit;text-decoration:none;}
+    img{display:block;max-width:100%;}
+    ::selection{background:rgba(214,172,85,.28);color:#fff;}
+    :focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px;border-radius:4px;}
+
+    .atmos{position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:
+        radial-gradient(1.3px 1.3px at 18% 22%,rgba(255,255,255,.55),transparent 60%),
+        radial-gradient(1px 1px at 73% 14%,rgba(243,217,138,.7),transparent 60%),
+        radial-gradient(1.2px 1.2px at 41% 67%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1px 1px at 88% 58%,rgba(111,182,255,.5),transparent 60%),
+        radial-gradient(1.2px 1.2px at 9% 80%,rgba(243,217,138,.55),transparent 60%),
+        radial-gradient(1px 1px at 62% 90%,rgba(255,255,255,.4),transparent 60%);
+      animation:tw 7s ease-in-out infinite alternate;}
+    @keyframes tw{from{opacity:.55}to{opacity:1}}
+    .grain{position:fixed;inset:0;z-index:41;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+    .frame{position:fixed;inset:0;z-index:40;pointer-events:none;}
+    .frame i{position:absolute;width:24px;height:24px;border:1.5px solid var(--line);}
+    .frame i:nth-child(1){top:14px;left:14px;border-right:0;border-bottom:0;}
+    .frame i:nth-child(2){top:14px;right:14px;border-left:0;border-bottom:0;}
+    .frame i:nth-child(3){bottom:14px;left:14px;border-right:0;border-top:0;}
+    .frame i:nth-child(4){bottom:14px;right:14px;border-left:0;border-top:0;}
+    .progress{position:fixed;top:0;left:0;height:2px;width:0%;z-index:60;background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright),var(--gold));box-shadow:0 0 14px rgba(243,217,138,.6);}
+
+    .shell{position:relative;z-index:2;}
+    .wrap{width:min(100% - 44px,1180px);margin-inline:auto;}
+
+    /* topbar */
+    .topbar{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);background:rgba(5,8,17,.72);backdrop-filter:blur(18px) saturate(140%);}
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:70px;}
+    .brand{display:flex;align-items:center;gap:13px;min-width:0;}
+    .brand img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid rgba(214,172,85,.5);box-shadow:0 0 0 3px rgba(214,172,85,.1);}
+    .brand .k{font-family:var(--roman);font-size:.54rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);}
+    .brand h1{margin:2px 0 0;font-family:var(--roman);font-weight:800;font-size:clamp(.92rem,1.8vw,1.2rem);letter-spacing:.02em;text-transform:uppercase;white-space:nowrap;}
+    .brand .foil{background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 45%,#fff6dc 52%,var(--gold-bright) 60%,var(--gold-deep));background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 7s linear infinite;}
+    @keyframes foil{to{background-position:220% 0}}
+    .nav{display:flex;gap:4px;align-items:center;overflow-x:auto;scrollbar-width:none;}
+    .nav::-webkit-scrollbar{display:none;}
+    .nav a{flex:0 0 auto;padding:9px 11px;font-family:var(--roman);font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;transition:color .3s var(--ease);}
+    .nav a:hover{color:var(--ink);}
+    .nav .home{color:var(--ink);border:1px solid var(--line);border-radius:2px;background:rgba(214,172,85,.06);}
+
+    /* hero */
+    .hero{padding:clamp(48px,7vw,92px) 0 clamp(30px,4vw,52px);}
+    .eyebrow{display:inline-flex;align-items:center;gap:13px;margin:0 0 22px;font-family:var(--roman);font-size:.66rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);}
+    .eyebrow::before{content:"";width:42px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
+    .hero h2{margin:0;font-family:var(--roman);font-weight:800;font-size:clamp(2.6rem,7vw,5.2rem);line-height:.96;letter-spacing:-.005em;text-transform:uppercase;color:var(--ink);}
+    .hero .lead{max-width:60ch;margin:24px 0 0;color:var(--muted);font-size:clamp(1.02rem,1.5vw,1.18rem);}
+    .hero .lead b{color:var(--parch);font-weight:600;}
+    .stats{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:34px;padding-top:24px;border-top:1px solid var(--line-2);}
+    .stat .n{font-family:var(--roman);font-weight:800;font-size:1.6rem;color:var(--gold-bright);line-height:1;}
+    .stat .l{font-family:var(--roman);font-size:.56rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin-top:6px;}
+    .motto{margin-top:26px;font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1.04rem;}
+
+    /* legend */
+    .legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin:22px 0 0;}
+    .vbadge{display:inline-flex;align-items:center;gap:8px;font-family:var(--roman);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--parch);border:1px solid var(--line-2);border-radius:999px;padding:5px 12px;background:rgba(244,236,216,.03);}
+    .vbadge i{width:9px;height:9px;border-radius:50%;box-shadow:0 0 8px currentColor;}
+    .v-ok{color:var(--ok);} .v-warn{color:var(--warn);} .v-deb{color:var(--deb);} .v-fresh{color:var(--fresh);}
+
+    /* sections */
+    .section{padding:clamp(34px,5vw,64px) 0;border-top:1px solid var(--line);}
+    .sec-head{margin-bottom:28px;}
+    .sec-head .kick{font-family:var(--roman);font-size:.62rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:0 0 10px;}
+    .sec-head h3{margin:0;font-family:var(--roman);font-weight:700;font-size:clamp(1.6rem,3.4vw,2.5rem);text-transform:uppercase;letter-spacing:.01em;color:var(--ink);line-height:1.04;}
+    .sec-head p{margin:10px 0 0;color:var(--soft);font-size:.98rem;max-width:70ch;}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;}
+    .fiche{display:flex;flex-direction:column;border:1px solid var(--line);border-top:3px solid var(--vc,var(--gold));border-radius:4px;overflow:hidden;
+      background:linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5));box-shadow:0 22px 60px rgba(0,0,0,.4);
+      transition:transform .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease);}
+    .fiche:hover{transform:translateY(-6px);border-color:rgba(214,172,85,.5);box-shadow:0 36px 86px rgba(0,0,0,.55);}
+    .fiche .media{position:relative;aspect-ratio:16/10;overflow:hidden;background:#04060f;}
+    .fiche .media img{width:100%;height:100%;object-fit:cover;filter:saturate(.95) contrast(1.04);transition:transform .8s var(--ease);}
+    .fiche:hover .media img{transform:scale(1.06);}
+    .fiche .media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,17,.05) 40%,rgba(5,8,17,.55) 76%,rgba(7,12,26,.95));}
+    .fiche .verdict{position:absolute;top:12px;left:12px;z-index:2;display:inline-flex;align-items:center;gap:6px;font-family:var(--roman);font-size:.54rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);border:1px solid rgba(214,172,85,.4);border-radius:999px;padding:4px 10px;background:rgba(5,8,17,.7);backdrop-filter:blur(8px);}
+    .fiche .verdict i{width:8px;height:8px;border-radius:50%;box-shadow:0 0 8px currentColor;}
+    .fiche .body{display:flex;flex-direction:column;gap:10px;padding:18px 18px 20px;flex:1;}
+    .fiche h4{margin:0;font-family:var(--roman);font-weight:700;font-size:.96rem;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);line-height:1.2;}
+    .fiche .data{font-family:var(--roman);font-weight:700;font-size:1.04rem;color:var(--vc,var(--gold-bright));letter-spacing:.01em;}
+    .fiche .sum{margin:0;color:var(--muted);font-size:.92rem;line-height:1.55;}
+    .fiche .srcs{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px;padding-top:6px;}
+    .fiche .srcs a{display:inline-flex;align-items:center;gap:6px;font-family:var(--roman);font-size:.56rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);border-radius:2px;padding:5px 9px;background:rgba(214,172,85,.06);transition:border-color .3s,background .3s;}
+    .fiche .srcs a:hover{border-color:rgba(214,172,85,.55);background:rgba(214,172,85,.13);color:var(--gold-bright);}
+    .fiche .srcs a::after{content:"↗";font-size:.9em;opacity:.7;}
+
+    /* bibliography */
+    .biblio{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;}
+    .ref{border:1px solid var(--line-2);border-left:3px solid var(--rc,var(--gold));border-radius:3px;padding:16px 18px;background:rgba(244,236,216,.03);}
+    .ref .top{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+    .ref .tier{font-family:var(--roman);font-size:.5rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--rc,var(--gold));border:1px solid var(--line);border-radius:999px;padding:3px 8px;white-space:nowrap;}
+    .ref a.name{font-family:var(--roman);font-weight:700;font-size:.82rem;letter-spacing:.02em;color:var(--ink);}
+    .ref a.name:hover{color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px;}
+    .ref p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.5;}
+    .ref .url{display:block;margin-top:7px;font-size:.72rem;color:var(--soft);word-break:break-all;}
+
+    /* search */
+    .searchwrap{position:sticky;top:69px;z-index:45;background:rgba(5,8,17,.85);backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid var(--line);}
+    .searchwrap .inner{display:flex;align-items:center;gap:14px;padding:12px 0;}
+    .searchbox{flex:1;display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:3px;background:rgba(244,236,216,.04);padding:0 14px;min-height:46px;transition:border-color .3s var(--ease),background .3s var(--ease);}
+    .searchbox:focus-within{border-color:rgba(214,172,85,.55);background:rgba(244,236,216,.07);}
+    .searchbox svg{width:16px;height:16px;flex:0 0 auto;color:var(--gold);opacity:.85;}
+    .searchbox input{flex:1;min-width:0;background:none;border:0;outline:none;color:var(--ink);font-family:var(--serif);font-size:1rem;}
+    .searchbox input::placeholder{color:var(--soft);}
+    .searchbox input::-webkit-search-cancel-button{-webkit-appearance:none;}
+    .searchbox .clear{display:none;cursor:pointer;border:0;background:none;color:var(--soft);font-family:var(--roman);font-size:1rem;line-height:1;padding:4px 6px;}
+    .searchbox .clear:hover{color:var(--ink);}
+    .searchbox .clear.on{display:inline;}
+    .searchcount{font-family:var(--roman);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
+    .hidden{display:none !important;}
+    .noresults{display:none;text-align:center;color:var(--muted);font-style:italic;font-size:1.05rem;padding:48px 0 8px;}
+    .noresults.on{display:block;}
+    .noresults b{color:var(--parch);font-style:normal;}
+
+    /* references scientifiques (DOI) */
+    .refsci{display:flex;flex-direction:column;gap:32px;}
+    .refgrp-h{font-family:var(--roman);font-size:.66rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 14px;padding-bottom:9px;border-bottom:1px solid var(--line-2);}
+    .refgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;}
+    .refitem{border:1px solid var(--line-2);border-left:3px solid var(--gold);border-radius:3px;padding:17px 19px;background:rgba(244,236,216,.03);display:flex;flex-direction:column;gap:9px;transition:border-color .3s var(--ease),background .3s var(--ease);}
+    .refitem:hover{border-left-color:var(--gold-bright);background:rgba(244,236,216,.05);}
+    .refitem h4{margin:0;font-family:var(--serif);font-weight:600;font-size:1.02rem;line-height:1.25;color:var(--ink);}
+    .refitem h4 a:hover{color:var(--gold-bright);text-decoration:underline;text-underline-offset:3px;}
+    .refitem .cite{font-size:.82rem;color:var(--muted);}
+    .refitem .cite i{font-style:italic;color:var(--soft);}
+    .refitem .rmeta{display:flex;flex-wrap:wrap;gap:7px;}
+    .refitem .doi{font-family:var(--roman);font-size:.52rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);border-radius:2px;padding:4px 9px;background:rgba(214,172,85,.06);transition:border-color .3s,color .3s;}
+    .refitem .doi:hover{color:var(--gold-bright);border-color:rgba(214,172,85,.5);}
+    .refitem .kind{font-family:var(--roman);font-size:.52rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);border:1px solid var(--line-2);border-radius:2px;padding:4px 9px;}
+    .refitem .ab{margin:0;font-size:.88rem;line-height:1.56;color:var(--parch);}
+
+    /* collective footer */
+    .collective{margin:56px 0 0;border:1px solid var(--line);border-radius:4px;padding:clamp(28px,4vw,44px);text-align:center;
+      background:radial-gradient(120% 150% at 50% -20%,rgba(214,172,85,.14),transparent 60%),linear-gradient(180deg,rgba(14,26,46,.5),rgba(7,12,26,.62));}
+    .collective .seal{width:70px;height:70px;border-radius:50%;object-fit:cover;padding:4px;margin:0 auto 16px;background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep));}
+    .collective h3{font-family:var(--roman);font-weight:800;font-size:clamp(1.3rem,2.6vw,1.9rem);text-transform:uppercase;letter-spacing:.04em;margin:0;}
+    .collective p{max-width:60ch;margin:14px auto 0;color:var(--muted);}
+    .collective .links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px;}
+    .collective .links a{font-family:var(--roman);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);border:1px solid var(--line);border-radius:2px;padding:11px 16px;background:rgba(214,172,85,.06);transition:border-color .3s,background .3s;}
+    .collective .links a:hover{border-color:rgba(214,172,85,.5);background:rgba(214,172,85,.12);}
+    .collective .cmotto{display:inline-block;margin-top:22px;font-family:var(--serif);font-style:italic;color:var(--gold);}
+    footer.tech{border-top:1px solid var(--line);margin-top:48px;padding:26px 0 50px;color:var(--soft);font-size:.82rem;text-align:center;}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+    .reveal.in{opacity:1;transform:none;}
+    @media (max-width:560px){ .wrap{width:min(100% - 28px,1180px);} .hero h2{font-size:2.3rem;} }
+    @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;}.reveal{opacity:1;transform:none;}}
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <div class="shell">
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="../index.html" aria-label="Accueil Empire contre Intox">
+          <img src="../ymir-lalie/assets/logo-eci.jpg" alt="">
+          <span><span class="k">Empire contre Intox</span><h1>Les <span class="foil">Sources</span></h1></span>
+        </a>
+        <nav class="nav" aria-label="Navigation">
+          <a href="#cosmos">Cosmos</a>
+          <a href="#terre">Terre &amp; vie</a>
+          <a href="#geo">Géologie</a>
+          <a href="#hum">Humanité</a>
+          <a href="#eres">Ères</a>
+          <a href="#edia">Édiacarien</a>
+          <a href="#artemis">Artemis</a>
+          <a href="#refs">Références</a>
+          <a href="#biblio">Bibliographie</a>
+          <a class="home" href="../index.html">Accueil ECI</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="searchwrap">
+      <div class="wrap inner">
+        <label class="searchbox">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input id="q" type="search" placeholder="Rechercher une donnée, un auteur, un DOI, un mot-clé…" autocomplete="off" spellcheck="false" aria-label="Rechercher dans les sources">
+          <button class="clear" id="qclear" type="button" aria-label="Effacer la recherche">✕</button>
+        </label>
+        <span class="searchcount" id="qcount"></span>
+      </div>
+    </div>
+
+    <main>
+      <section class="wrap hero">
+        <p class="eyebrow">Dossier V · Vérification &amp; sources</p>
+        <h2>Chaque donnée,<br>vérifiée et <span class="foil">sourcée</span>.</h2>
+        <p class="lead">Pour chaque affirmation des dossiers — cosmologie, géologie, vie, exploration lunaire —, nous donnons un <b>résumé</b>, un <b>verdict</b> et la <b>source autoritative</b> (NASA, ESA, USGS, IUGS/ICS, Smithsonian, articles à comité de lecture). La science est déjà vertigineuse : encore faut-il pouvoir la vérifier.</p>
+        <div class="stats">
+          <div class="stat"><div class="n" id="stFiches">—</div><div class="l">Données vérifiées</div></div>
+          <div class="stat"><div class="n" id="stSrc">24</div><div class="l">Sources de référence</div></div>
+          <div class="stat"><div class="n" id="stDoi">—</div><div class="l">DOI vérifiés</div></div>
+          <div class="stat"><div class="n">4</div><div class="l">Dossiers audités</div></div>
+          <div class="stat"><div class="n">0</div><div class="l">Erreur factuelle (❌)</div></div>
+        </div>
+        <div class="legend" aria-label="Légende des verdicts">
+          <span class="vbadge"><i class="v-ok" style="background:currentColor"></i>Confirmé</span>
+          <span class="vbadge"><i class="v-warn" style="background:currentColor"></i>À nuancer</span>
+          <span class="vbadge"><i class="v-deb" style="background:currentColor"></i>Débattu</span>
+          <span class="vbadge"><i class="v-fresh" style="background:currentColor"></i>Corrigé après audit</span>
+        </div>
+        <p class="motto">Veritas omnia vincit.</p>
+      </section>
+
+      <section class="wrap section" id="cosmos"><div class="sec-head reveal"><p class="kick">Dossier IV · Horloge de l'Univers</p><h3>Cosmologie</h3><p>Du Big Bang aux premières galaxies — les repères mesurés par Planck, WMAP et le télescope Webb.</p></div><div class="grid" id="g-cosmos"></div></section>
+      <section class="wrap section" id="terre"><div class="sec-head reveal"><p class="kick">Dossier IV · Horloge de l'Univers</p><h3>Système solaire, Terre &amp; vie</h3><p>Naissance du Soleil, formation de la Terre, premières traces de vie et grande oxydation.</p></div><div class="grid" id="g-terre"></div></section>
+      <section class="wrap section" id="geo"><div class="sec-head reveal"><p class="kick">Dossier IV · Horloge de l'Univers</p><h3>Échelle des temps &amp; extinctions</h3><p>Les bornes officielles ICS 2024/12 et les cinq grandes crises de la vie.</p></div><div class="grid" id="g-geo"></div></section>
+      <section class="wrap section" id="hum"><div class="sec-head reveal"><p class="kick">Dossier IV · Horloge de l'Univers</p><h3>L'humanité</h3><p>De Lucy à aujourd'hui — et l'arithmétique du Calendrier Cosmique, recalculée.</p></div><div class="grid" id="g-hum"></div></section>
+      <section class="wrap section" id="eres"><div class="sec-head reveal"><p class="kick">Dossier I · Lalie &amp; Ymir</p><h3>Le Résumé des Ères</h3><p>L'échelle des temps géologiques et le roman de la Terre.</p></div><div class="grid" id="g-eres"></div></section>
+      <section class="wrap section" id="edia"><div class="sec-head reveal"><p class="kick">Dossier II · Lalie &amp; Ymir</p><h3>L'Édiacarien</h3><p>Les premiers grands organismes — et ce que la science peut réellement en dire.</p></div><div class="grid" id="g-edia"></div></section>
+      <section class="wrap section" id="artemis"><div class="sec-head reveal"><p class="kick">Dossier III · Provoxys</p><h3>Artemis II</h3><p>Le retour de l'humanité vers la Lune — faits vérifiés au 1ᵉʳ juin 2026.</p></div><div class="grid" id="g-artemis"></div></section>
+
+      <section class="wrap section" id="refs">
+        <div class="sec-head reveal"><p class="kick">Appareil critique · niveau le plus strict</p><h3>Références scientifiques</h3><p>La littérature primaire à comité de lecture derrière les données. Chaque <b>DOI a été vérifié</b> (résolution Crossref + page éditeur) — pour chacun : titre, citation et résumé.</p></div>
+        <div class="refsci" id="g-refs"></div>
+      </section>
+
+      <section class="wrap section" id="biblio">
+        <div class="sec-head reveal"><p class="kick">Appareil critique</p><h3>Bibliographie</h3><p>Les 24 sources de référence ayant servi à l'audit (rendu de <code>sources_audit_scientifique_chronos.csv</code>). 🟢 primaire/officielle · 🔵 institution · 🟡 presse scientifique · ⚪ encyclopédie.</p></div>
+        <div class="biblio" id="g-biblio"></div>
+      </section>
+
+      <p class="noresults wrap" id="noRes">Aucun résultat pour « <b id="noResQ"></b> ». Essayez un autre terme (ex. <i>Planck</i>, <i>Chicxulub</i>, <i>Bangiomorpha</i>, <i>10.1038</i>).</p>
+
+      <div class="wrap">
+        <section class="collective reveal">
+          <img class="seal" src="../ymir-lalie/assets/logo-eci.jpg" alt="">
+          <h3>Empire contre Intox</h3>
+          <p>Un collectif qui oppose, fait par fait, la puissance du réel aux récits de l'intox. Ici, rien n'est affirmé sans source.</p>
+          <div class="links">
+            <a href="../index.html">Accueil ECI</a>
+            <a href="../horloge-univers/chronos.html">Horloge de l'Univers</a>
+            <a href="../ymir-lalie/resume-eres.html">Résumé des Ères</a>
+            <a href="../ymir-lalie/edicarien.html">L'Édiacarien</a>
+            <a href="../provoxys/Artemis2.html">Artemis II</a>
+          </div>
+          <span class="cmotto">Ad astra per aspera.</span>
+        </section>
+      </div>
+    </main>
+
+    <footer class="tech"><div class="wrap">Vérifié le 1ᵉʳ juin 2026 · sources détaillées dans <code>sources/*.md</code> · Identité visuelle ECI.</div></footer>
+  </div>
+
+  <script>
+    const SI = "../horloge-univers/assets/super-images/";
+    const HER = { eres:"../ymir-lalie/assets/eres-hero.png", edia:"../ymir-lalie/assets/ediacaran-hero.png", artemis:"../provoxys/assets/artemis2-hero.png" };
+    const VC = { ok:"var(--ok)", warn:"var(--warn)", deb:"var(--deb)", fresh:"var(--fresh)" };
+    const VL = { ok:"Confirmé", warn:"À nuancer", deb:"Débattu", fresh:"Corrigé" };
+
+    const COSMOS = [
+      { t:"Âge de l'Univers", d:"13,787 Ga ± 20 Ma", v:"ok", img:SI+"01-le-big-bang.png",
+        s:"Mesuré par le satellite Planck (2018) sous le modèle ΛCDM. Valeur très contrainte, cohérente avec les amas globulaires les plus vieux.",
+        src:[{n:"Planck 2018 (A&A)",u:"https://www.aanda.org/articles/aa/pdf/2020/09/aa33880-18.pdf"}] },
+      { t:"Fond diffus cosmologique", d:"≈ 2,725 K · ~380 000 ans", v:"ok", img:SI+"02-le-fond-diffus-cosmologique.png",
+        s:"À la recombinaison (~3000 K), l'univers devient transparent et libère sa première lumière, observée aujourd'hui refroidie à 2,725 K.",
+        src:[{n:"NASA WMAP",u:"https://science.nasa.gov/mission/wmap/wmap-overview/"}] },
+      { t:"Inflation cosmique", d:"× au moins ~10²⁶", v:"warn", img:SI+"03-les-premieres-etoiles.png",
+        s:"Scénario fortement soutenu (homogénéité, platitude) mais non « prouvé » comme le CMB : ses mécanismes restent ouverts. Le dossier l'écrit au conditionnel.",
+        src:[{n:"Wikipedia · Big Bang",u:"https://en.wikipedia.org/wiki/Big_Bang"}] },
+      { t:"Premières étoiles", d:"~100–200 Ma après le BB", v:"warn", img:SI+"03-les-premieres-etoiles.png",
+        s:"Plausibles dès ~100 Ma, mais jamais observées directement : à présenter comme une estimation théorique.",
+        src:[{n:"NASA Webb",u:"https://science.nasa.gov/mission/webb/science-overview/science-explainers/what-were-the-first-stars-like/"}] },
+      { t:"Nombre de galaxies", d:"≈ 2 × 10¹²", v:"deb", img:SI+"04-les-premieres-galaxies.png",
+        s:"Estimation haute (Hubble/Conselice 2016), très dépendante du modèle. D'autres analyses (New Horizons) proposent « quelques centaines de milliards ». Garder le « ≈ ».",
+        src:[{n:"NASA Hubble",u:"https://science.nasa.gov/missions/hubble/hubble-reveals-observable-universe-contains-10-times-more-galaxies-than-previously-thought/"}] },
+      { t:"Univers observable", d:"≈ 93 milliards d'al", v:"ok", img:SI+"06-la-voie-lactee-prend-forme.png",
+        s:"Il s'agit du diamètre comobile actuel de la sphère observable — pas de la distance parcourue par la lumière depuis le Big Bang.",
+        src:[{n:"Wikipedia · Observable universe",u:"https://en.wikipedia.org/wiki/Observable_universe"}] },
+      { t:"Midi cosmique", d:"z ≈ 2 · ~3–4 Ga après le BB", v:"ok", img:SI+"07-le-midi-cosmique.png",
+        s:"Le taux de formation d'étoiles de l'univers culmine vers z ≈ 2, environ 3 à 3,5 milliards d'années après le Big Bang.",
+        src:[{n:"Madau & Dickinson 2014",u:"https://arxiv.org/abs/1403.0007"}] },
+      { t:"Nucléosynthèse primordiale", d:"~75 % H · ~25 % He", v:"ok", img:SI+"05-la-reionisation.png",
+        s:"Les noyaux légers se forgent dans les premières minutes (après le « goulot du deutérium »), figés vers ~20 min. Composition prédite puis mesurée : grande preuve du Big Bang.",
+        src:[{n:"BBN review (PDG)",u:"https://arxiv.org/abs/astro-ph/0307244"}] }
+    ];
+    const TERRE = [
+      { t:"Âge de la Terre", d:"≈ 4,54 Ga", v:"ok", img:SI+"09-formation-de-la-terre.png",
+        s:"Datation radiométrique (USGS, < 1 % d'incertitude). À distinguer des premiers solides du Système solaire (~4,567 Ga) : la Terre s'accrète juste après.",
+        src:[{n:"USGS · Age of the Earth",u:"https://pubs.usgs.gov/gip/geotime/age.html"}] },
+      { t:"La Lune (Théia)", d:"~4,5 Ga", v:"ok", img:SI+"10-la-lune-collision-de-theia.png",
+        s:"Un impact géant entre la jeune Terre et une protoplanète de la taille de Mars (Théia) projette les débris qui s'agrègent en Lune.",
+        src:[{n:"NASA · Moon formation",u:"https://moon.nasa.gov/inside-and-out/formation/"}] },
+      { t:"Première vie", d:"~3,5–3,8 Ga", v:"deb", img:SI+"12-la-premiere-vie.png",
+        s:"Les indices ~3,8 Ga (Isua) sont contestés ; les stromatolites ~3,48–3,5 Ga (Pilbara) sont parmi les preuves fossiles les plus robustes. Le dossier le dit « discuté ».",
+        src:[{n:"Stromatolites (PMC)",u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12329462/"}] },
+      { t:"Grande Oxydation", d:"~2,4 Ga", v:"warn", img:SI+"14-la-grande-oxydation.png",
+        s:"Les cyanobactéries enrichissent progressivement l'atmosphère en O₂ (sans la « saturer » : il reste longtemps très inférieur à l'actuel). Étalée jusqu'à ~2,1 Ga.",
+        src:[{n:"ASM · Great Oxidation Event",u:"https://asm.org/articles/2022/february/the-great-oxidation-event-how-cyanobacteria-change"}] },
+      { t:"Reproduction sexuée", d:"~1,047 Ga", v:"fresh", img:SI+"16-la-reproduction-sexuee.png",
+        s:"Datée d'après Bangiomorpha pubescens (Gibson et al. 2018). Valeur corrigée après audit pour aligner chronos.html sur events.json (était ~1,2 Ga).",
+        src:[{n:"Eucaryotes (PMC)",u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC5031615/"}] },
+      { t:"Cellule complexe (eucaryotes)", d:"~1,8 Ga (fourchette débattue)", v:"deb", img:SI+"15-la-cellule-complexe.png",
+        s:"L'apparition des eucaryotes (cellules à noyau) est placée ~1,8 Ga, mais la fourchette reste discutée (~2,1–1,6 Ga selon les marqueurs).",
+        src:[{n:"Eucaryotes (PMC)",u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC5031615/"}] }
+    ];
+    const GEO = [
+      { t:"Bornes ICS officielles", d:"Cambrien 538,8 · Ordovicien 486,85 Ma", v:"ok", img:SI+"20-l-explosion-cambrienne.png",
+        s:"Les 13 bornes du dossier sont conformes à la charte officielle ICS 2024/12 — y compris les valeurs révisées Ordovicien 486,85, Silurien 443,1 et Dévonien 419,62 Ma.",
+        src:[{n:"ICS · Chart 2024/12",u:"https://stratigraphy.org/ICSchart/ChronostratChart2024-12.pdf"}] },
+      { t:"Les cinq grandes extinctions", d:"~85 / 75 / 95 / 80 / 76 %", v:"warn", img:SI+"33-5-extinction-k-pg.png",
+        s:"Ordovicien, Dévonien, Permien, Trias, Crétacé. Les pourcentages varient selon le niveau taxonomique (espèces vs genres) : à présenter comme estimations.",
+        src:[{n:"Our World in Data",u:"https://ourworldindata.org/mass-extinctions"}] },
+      { t:"La « Grande Mort » (Permien)", d:"~90–96 % des espèces marines", v:"deb", img:SI+"28-3-extinction-la-grande-mort.png",
+        s:"La pire crise de l'histoire, liée aux trapps de Sibérie. L'ampleur exacte varie (~81 % selon Stanley 2016, jusqu'à ~96 % selon Raup) : une fourchette s'impose.",
+        src:[{n:"Our World in Data",u:"https://ourworldindata.org/mass-extinctions"}] },
+      { t:"Extinction K–Pg", d:"66 Ma · astéroïde de ~10 km", v:"ok", img:SI+"33-5-extinction-k-pg.png",
+        s:"L'impact de Chicxulub (Yucatán) est la cause principale robuste ; le rôle des trapps du Deccan reste complémentaire et discuté. Les oiseaux survivent.",
+        src:[{n:"National Park Service",u:"https://www.nps.gov/subjects/fossils/mass-extinctions-through-geologic-time.htm"}] },
+      { t:"Apparition des dinosaures", d:"~240–230 Ma (Trias)", v:"ok", img:SI+"29-dinosaures-et-mammiferes.png",
+        s:"Les dinosaures apparaissent au Trias et ne deviennent dominants qu'après la crise Trias–Jurassique (~201 Ma) — pas dès −252 Ma.",
+        src:[{n:"Reuters Science (2025)",u:"https://www.reuters.com/science/where-did-dinosaurs-first-evolve-scientists-have-an-answer-2025-01-23/"}] },
+      { t:"Premiers oiseaux", d:"Archaeopteryx ~150 Ma", v:"ok", img:SI+"31-les-premiers-oiseaux.png",
+        s:"Au Jurassique, Archaeopteryx illustre la transition dinosaures théropodes → oiseaux. Les angiospermes (plantes à fleurs) suivent au Crétacé (~130 Ma).",
+        src:[{n:"NPS · Fossils",u:"https://www.nps.gov/subjects/fossils/mass-extinctions-through-geologic-time.htm"}] }
+    ];
+    const HUM = [
+      { t:"Homo sapiens", d:"~300 000 ans", v:"ok", img:SI+"41-homo-sapiens.png",
+        s:"Les fossiles de Jebel Irhoud (Maroc), datés ~300–315 ka, comptent parmi les plus anciens attribués à notre espèce.",
+        src:[{n:"Smithsonian Human Origins",u:"https://humanorigins.si.edu/research/whats-hot-human-origins/our-species-arose-least-300000-years-ago"},{n:"Nature",u:"https://www.nature.com/articles/nature.2017.22114"}] },
+      { t:"Genre Homo & premiers outils", d:"Homo ~2,8 Ma · outils ~3,3 Ma", v:"ok", img:SI+"39-le-genre-homo.png",
+        s:"Le genre Homo apparaît ~2,8 Ma ; les plus anciens outils de pierre (Lomekwi) ~3,3 Ma précèdent même le genre ; l'Oldowayen se diffuse ~2,6 Ma.",
+        src:[{n:"Smithsonian Human Origins",u:"https://humanorigins.si.edu/evidence/behavior/stone-tools"}] },
+      { t:"Premiers homininés", d:"~7 Ma", v:"deb", img:SI+"37-les-premiers-hominines.png",
+        s:"Sahelanthropus et Orrorin montrent de possibles indices de bipédie ~7 Ma, mais cette bipédie reste débattue.",
+        src:[{n:"Smithsonian Human Origins",u:"https://humanorigins.si.edu/human-characteristics/walking-upright"}] },
+      { t:"Calendrier cosmique", d:"sapiens → 31 déc. 23 h 49", v:"ok", img:SI+"46-maintenant-vous-etes-ici.png",
+        s:"Arithmétique vérifiée par calcul : pour 13,787 Ga = 1 an, sapiens (300 ka) tombe à 23 h 48 min 34 s (≈ 23 h 49) ; l'agriculture à 23 h 59 min 32 s ; l'écriture dans les ~11 dernières secondes.",
+        src:[{n:"NASA · Cosmic Calendar (Sagan)",u:"https://science.nasa.gov/resource/cosmic-calendar/"}] }
+    ];
+    const ERES = [
+      { t:"Échelle des temps géologiques", d:"Précambrien ≈ 88 % du temps", v:"ok", img:HER.eres,
+        s:"La frise respecte les proportions réelles (Précambrien dominant) et l'échelle ICS. L'horloge SVG du dossier est géométriquement exacte.",
+        src:[{n:"ICS · Chart 2024/12",u:"https://stratigraphy.org/ICSchart/ChronostratChart2024-12.pdf"}] },
+      { t:"Base du Cambrien", d:"538,8 Ma", v:"fresh", img:HER.eres,
+        s:"Début du Phanérozoïque / explosion cambrienne. Valeur corrigée après audit (le dossier indiquait l'ancienne valeur 541 Ma).",
+        src:[{n:"ICS · Chart 2024/12",u:"https://stratigraphy.org/ICSchart/ChronostratChart2024-12.pdf"}] },
+      { t:"Extinction Permien–Trias", d:"~95 % (estimation)", v:"deb", img:HER.eres,
+        s:"Citée comme « la pire crise ». À présenter comme estimation : ~81 % (Stanley 2016) à ~96 % (Raup) selon la méthode.",
+        src:[{n:"Our World in Data",u:"https://ourworldindata.org/mass-extinctions"}] }
+    ];
+    const EDIA = [
+      { t:"Période édiacarienne", d:"635 → 538,8 Ma", v:"ok", img:HER.edia,
+        s:"Dernier système du Protérozoïque, bornes ratifiées par l'ICS. La faune classique d'Ediacara culmine vers ~575–560 Ma.",
+        src:[{n:"ICS · Chart 2024/12",u:"https://stratigraphy.org/ICSchart/ChronostratChart2024-12.pdf"}] },
+      { t:"Dickinsonia = animal", d:"biomarqueurs (cholestane)", v:"ok", img:HER.edia,
+        s:"L'analyse des biomarqueurs (Bobrovskiy et al. 2018, Science) rattache Dickinsonia aux animaux — mais toute la biote d'Ediacara n'est pas classée avec certitude.",
+        src:[{n:"Science · Dickinsonia",u:"https://www.science.org/doi/10.1126/science.aat7228"}] },
+      { t:"Premiers « animaux »", d:"à nuancer", v:"deb", img:HER.edia,
+        s:"Plusieurs organismes édiacariens sont interprétés comme animaux ou proches des animaux ; d'autres (Vendobionta) restent difficiles à classer.",
+        src:[{n:"Wikipedia · Ediacaran",u:"https://en.wikipedia.org/wiki/Ediacaran"}] }
+    ];
+    const ARTEMIS = [
+      { t:"Équipage Artemis II", d:"Wiseman · Glover · Koch · Hansen", v:"ok", img:HER.artemis,
+        s:"Reid Wiseman (cdt), Victor Glover (pilote), Christina Koch et Jeremy Hansen (CSA) — premier équipage autour de la Lune depuis Apollo 17 (1972).",
+        src:[{n:"NASA · Artemis II",u:"https://www.nasa.gov/mission/artemis-ii/"}] },
+      { t:"Nature de la mission", d:"survol lunaire habité, ~10 j", v:"ok", img:HER.artemis,
+        s:"Vol habité de circumlunaire sans alunissage, à bord d'Orion lancée par le SLS. La mission a volé du 1ᵉʳ au 11 avril 2026.",
+        src:[{n:"NASA · Artemis II",u:"https://www.nasa.gov/mission/artemis-ii/"}] },
+      { t:"Glace d'eau lunaire", d:"cratères en ombre permanente", v:"ok", img:HER.artemis,
+        s:"De la glace d'eau est piégée aux pôles, confirmée par Chandrayaan-1, LCROSS et LRO — ressource clé pour l'exploration future (Artemis III/IV).",
+        src:[{n:"NASA · Lunar water",u:"https://science.nasa.gov/moon/lunar-water/"}] },
+      { t:"Accords Artemis", d:"lancés en 2020", v:"ok", img:HER.artemis,
+        s:"Cadre diplomatique pour une exploration pacifique, signé par des dizaines d'États (67 au printemps 2026). L'ESA et la CSA sont agences partenaires.",
+        src:[{n:"NASA · Artemis Accords",u:"https://www.nasa.gov/artemis-accords/"}] }
+    ];
+
+    // 24 sources from sources_audit_scientifique_chronos.csv
+    const SOURCES = [
+      ["🟢","Planck Collaboration 2018 — Cosmological parameters","https://www.aanda.org/articles/aa/pdf/2020/09/aa33880-18.pdf","Âge de l'Univers ≈ 13,787 Ga ± 0,020 Ga (ΛCDM)."],
+      ["🟢","Planck 2018 — version arXiv","https://arxiv.org/abs/1807.06209","Âge, H₀, Ωm et cohérence du modèle ΛCDM."],
+      ["🔵","NASA WMAP — Overview","https://science.nasa.gov/mission/wmap/wmap-overview/","CMB ≈ 2,725 K ; recombinaison vers 375 000 ans."],
+      ["🔵","NASA Hubble — 10× more galaxies","https://science.nasa.gov/missions/hubble/hubble-reveals-observable-universe-contains-10-times-more-galaxies-than-previously-thought/","Estimation ≈ 2 × 10¹² galaxies (modèle-dépendante)."],
+      ["🔵","NASA Webb — What were the first stars like?","https://science.nasa.gov/mission/webb/science-overview/science-explainers/what-were-the-first-stars-like/","Premières étoiles ~100–200 Ma ; non observées directement."],
+      ["🟢","Madau & Dickinson 2014 — Cosmic Star-Formation History","https://arxiv.org/abs/1403.0007","« Midi cosmique » : pic vers z ≈ 2."],
+      ["🟡","Reionization review","https://arxiv.org/html/2405.21054v1","Réionisation progressive, achevée ~1 Ga (prépublication)."],
+      ["🟢","Big-Bang nucleosynthesis review (PDG)","https://arxiv.org/abs/astro-ph/0307244","BBN : noyaux légers en quelques minutes, arrêt ~20 min."],
+      ["🟢","USGS — Age of the Earth","https://pubs.usgs.gov/gip/geotime/age.html","Terre ≈ 4,54 Ga ; solides du Système solaire ~4,567 Ga."],
+      ["🟢","ICS — International Chronostratigraphic Chart 2024/12","https://stratigraphy.org/ICSchart/ChronostratChart2024-12.pdf","Source officielle des bornes géologiques (Cambrien → Holocène)."],
+      ["🟢","Stromatolites / premières traces de vie (PMC)","https://pmc.ncbi.nlm.nih.gov/articles/PMC12329462/","Indices ~3,8 Ga discutés ; stromatolites ~3,5 Ga robustes."],
+      ["🔵","ASM — The Great Oxidation Event","https://asm.org/articles/2022/february/the-great-oxidation-event-how-cyanobacteria-change","GOE ~2,4–2,1 Ga ; enrichissement progressif en O₂."],
+      ["🟢","Origine des eucaryotes (PMC)","https://pmc.ncbi.nlm.nih.gov/articles/PMC5031615/","Fourchettes discutées pour l'apparition des eucaryotes."],
+      ["🟢","Science — Dickinsonia biomarker","https://www.science.org/doi/10.1126/science.aat7228","Dickinsonia interprétée comme animal édiacarien."],
+      ["🔵","Our World in Data — Mass extinctions","https://ourworldindata.org/mass-extinctions","Cinq extinctions, % approximatifs ; prudence sur la « sixième »."],
+      ["🔵","National Park Service — Mass extinctions","https://www.nps.gov/subjects/fossils/mass-extinctions-through-geologic-time.htm","Aperçu des cinq crises ; K–Pg, Chicxulub."],
+      ["🟡","Reuters — Where did dinosaurs first evolve? (2025)","https://www.reuters.com/science/where-did-dinosaurs-first-evolve-scientists-have-an-answer-2025-01-23/","Apparition des dinosaures au Trias (≠ domination dès −252 Ma)."],
+      ["🔵","Smithsonian Human Origins — ≥ 300 000 ans","https://humanorigins.si.edu/research/whats-hot-human-origins/our-species-arose-least-300000-years-ago","Homo sapiens ≥ 300 ka ; Jebel Irhoud."],
+      ["🟡","Nature news — Jebel Irhoud","https://www.nature.com/articles/nature.2017.22114","Fossiles ~300–315 ka."],
+      ["⚪","Wikipedia — Big Bang","https://en.wikipedia.org/wiki/Big_Bang","Expansion depuis un état chaud et dense (≠ explosion dans l'espace)."],
+      ["⚪","Wikipedia — Grand Unified Theory","https://en.wikipedia.org/wiki/Grand_Unified_Theory","Les grandes unifications restent hypothétiques."],
+      ["⚪","Wikipedia — Observable universe","https://en.wikipedia.org/wiki/Observable_universe","Diamètre comobile ≈ 93 milliards d'al."],
+      ["⚪","Wikipedia — Ediacaran","https://en.wikipedia.org/wiki/Ediacaran","Bornes & contexte de la biote édiacarienne."],
+      ["🔵","Page auditée — Chronos / Horloge de l'Univers","https://thesamlepirate.github.io/empire-contre-intox/horloge-univers/chronos.html","Objet de l'audit : texte exact de la page vérifiée."]
+    ];
+    const TIER = { "🟢":"Primaire", "🔵":"Institution", "🟡":"Presse sci.", "⚪":"Encyclopédie" };
+    const TIERC = { "🟢":"var(--ok)", "🔵":"var(--gold)", "🟡":"var(--warn)", "⚪":"var(--soft)" };
+
+    function esc(x){ return String(x).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+    function norm(x){ return String(x).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/["']/g," "); }
+    function ficheHTML(f){
+      const srcs = f.src.map(s=>`<a href="${s.u}" target="_blank" rel="noopener">${esc(s.n)}</a>`).join("");
+      const ds = norm(f.t+" "+f.d+" "+f.s+" "+f.src.map(s=>s.n).join(" ")+" "+VL[f.v]);
+      return `<article class="fiche reveal" data-search="${ds}" style="--vc:${VC[f.v]}">
+        <div class="media"><img src="${f.img}" alt="" loading="lazy">
+          <span class="verdict"><i style="background:${VC[f.v]};color:${VC[f.v]}"></i>${VL[f.v]}</span></div>
+        <div class="body">
+          <h4>${esc(f.t)}</h4>
+          <div class="data">${f.d}</div>
+          <p class="sum">${esc(f.s)}</p>
+          <div class="srcs">${srcs}</div>
+        </div></article>`;
+    }
+    function fill(id,arr){ const el=document.getElementById(id); if(el) el.innerHTML=arr.map(ficheHTML).join(""); }
+    fill("g-cosmos",COSMOS); fill("g-terre",TERRE); fill("g-geo",GEO); fill("g-hum",HUM);
+    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS);
+
+    // ===== Références scientifiques primaires (DOI vérifiés) =====
+    const REFS = [
+      { g:"Cosmologie", items:[
+        { a:"Planck Collaboration (2020)", t:"Planck 2018 results. VI. Cosmological parameters", j:"Astronomy & Astrophysics 641, A6", k:"primary", doi:"10.1051/0004-6361/201833910",
+          ab:"Détermine les paramètres du modèle cosmologique standard ΛCDM à partir des anisotropies du fond diffus cosmologique mesurées par le satellite Planck : âge de l'Univers 13,787 ± 0,020 milliards d'années, H₀ ≈ 67,4 km/s/Mpc, Ωm ≈ 0,315." },
+        { a:"Fixsen, D. J. (2009)", t:"The Temperature of the Cosmic Microwave Background", j:"The Astrophysical Journal 707, 916–920", k:"primary", doi:"10.1088/0004-637X/707/2/916",
+          ab:"Combine les mesures de spectre du fond diffus (notamment COBE/FIRAS) pour établir la température actuelle du CMB à 2,7255 ± 0,0006 K — la valeur de référence aujourd'hui adoptée." },
+        { a:"Hu, W. & Dodelson, S. (2002)", t:"Cosmic Microwave Background Anisotropies", j:"Annual Review of Astronomy & Astrophysics 40, 171–216", k:"review", doi:"10.1146/annurev.astro.40.060401.093926",
+          ab:"Revue de référence sur la physique du CMB. La recombinaison — formation des premiers atomes neutres — libère le rayonnement de fond vers z ≈ 1090, soit environ 380 000 ans après le Big Bang." },
+        { a:"Cyburt, R. H. et al. (2016)", t:"Big Bang Nucleosynthesis: Present Status", j:"Reviews of Modern Physics 88, 015004", k:"review", doi:"10.1103/RevModPhys.88.015004",
+          ab:"Synthèse de la nucléosynthèse primordiale : la fusion des noyaux légers dans les premières minutes produit ~75 % d'hydrogène et ~25 % d'hélium-4 (en masse), plus des traces de deutérium, d'hélium-3 et de lithium-7, en accord avec les observations." },
+        { a:"Guth, A. H. (1981)", t:"Inflationary universe: A possible solution to the horizon and flatness problems", j:"Physical Review D 23, 347–356", k:"primary", doi:"10.1103/PhysRevD.23.347",
+          ab:"Article fondateur de l'inflation cosmique : une brève phase d'expansion exponentielle de l'Univers primordial qui résout naturellement les problèmes de l'horizon et de la platitude." },
+        { a:"Planck Collaboration (2020)", t:"Planck 2018 results. X. Constraints on inflation", j:"Astronomy & Astrophysics 641, A10", k:"primary", doi:"10.1051/0004-6361/201833887",
+          ab:"Contraintes observationnelles sur les modèles d'inflation : indice spectral ns ≈ 0,965, pas de non-gaussianité ni de modes B primordiaux détectés — compatibles avec une inflation à champ unique en roulement lent." },
+        { a:"Madau, P. & Dickinson, M. (2014)", t:"Cosmic Star-Formation History", j:"Annual Review of Astronomy & Astrophysics 52, 415–486", k:"review", doi:"10.1146/annurev-astro-081811-125615",
+          ab:"Compilation de l'histoire de la formation stellaire : le taux cosmique culmine vers z ≈ 1,9 (« midi cosmique », ~3,5 Ga après le Big Bang) puis décline d'environ un facteur 10 jusqu'à aujourd'hui." },
+        { a:"Robertson, B. E. (2022)", t:"Galaxy Formation and Reionization", j:"Annual Review of Astronomy & Astrophysics 60, 121–158", k:"review", doi:"10.1146/annurev-astro-120221-044656",
+          ab:"Revue de la formation des galaxies et de la réionisation : la réionisation de l'hydrogène intergalactique, alimentée par les premières galaxies, s'achève vers z ≈ 6, ~1 milliard d'années après le Big Bang." },
+        { a:"Curtis-Lake, E. et al. (2023)", t:"Spectroscopic confirmation of four metal-poor galaxies at z = 10.3–13.2", j:"Nature Astronomy 7, 622–632", k:"primary", doi:"10.1038/s41550-023-01918-w",
+          ab:"Confirmation spectroscopique par le JWST de quatre galaxies pauvres en métaux à z = 10,3–13,2, soit ~330–450 millions d'années après le Big Bang — parmi les plus lointaines confirmées." },
+        { a:"Conselice, C. J. et al. (2016)", t:"The Evolution of Galaxy Number Density at z < 8", j:"The Astrophysical Journal 830, 83", k:"primary", doi:"10.3847/0004-637X/830/2/83",
+          ab:"Estime, par extrapolation des fonctions de masse des galaxies, que l'Univers observable contiendrait ~2 × 10¹² galaxies — chiffre depuis contesté (voir Lauer 2021)." },
+        { a:"Lauer, T. R. et al. (2021)", t:"New Horizons Observations of the Cosmic Optical Background", j:"The Astrophysical Journal 906, 77", k:"primary", doi:"10.3847/1538-4357/abc881",
+          ab:"À partir du fond optique mesuré par la sonde New Horizons au-delà de la lumière zodiacale, suggère une densité de galaxies bien plus faible que Conselice 2016 — de l'ordre de quelques centaines de milliards." }
+      ]},
+      { g:"Système solaire, Terre & vie précambrienne", items:[
+        { a:"Connelly, J. N. et al. (2012)", t:"The Absolute Chronology and Thermal Processing of Solids in the Solar Protoplanetary Disk", j:"Science 338, 651–655", k:"primary", doi:"10.1126/science.1226919",
+          ab:"Datation U-Pb des inclusions réfractaires (CAI) à 4567,30 ± 0,16 Ma : l'« heure zéro » du Système solaire, distincte de l'âge de la Terre." },
+        { a:"Patterson, C. (1956)", t:"Age of meteorites and the earth", j:"Geochimica et Cosmochimica Acta 10, 230–237", k:"primary", doi:"10.1016/0016-7037(56)90036-9",
+          ab:"Première datation isochrone Pb-Pb de la Terre et des météorites à 4,55 ± 0,07 Ga — fonde la valeur moderne d'environ 4,54 milliards d'années." },
+        { a:"Canup, R. M. & Asphaug, E. (2001)", t:"Origin of the Moon in a giant impact near the end of the Earth's formation", j:"Nature 412, 708–712", k:"primary", doi:"10.1038/35089010",
+          ab:"Des simulations montrent qu'un impact oblique d'un corps de la taille de Mars (Théia) sur la proto-Terre engendre un disque de débris qui s'agrège en Lune." },
+        { a:"Wilde, S. A. et al. (2001)", t:"Evidence from detrital zircons for the existence of continental crust and oceans 4.4 Gyr ago", j:"Nature 409, 175–178", k:"primary", doi:"10.1038/35051550",
+          ab:"Les rapports isotopiques de l'oxygène de zircons détritiques de 4,4 Ga (Jack Hills) indiquent une interaction avec de l'eau liquide à basse température — donc une croûte et des océans très précoces." },
+        { a:"Valley, J. W. et al. (2014)", t:"Hadean age for a post-magma-ocean zircon confirmed by atom-probe tomography", j:"Nature Geoscience 7, 219–223", k:"primary", doi:"10.1038/ngeo2075",
+          ab:"La tomographie par sonde atomique confirme l'âge de 4,4 Ga d'un zircon de Jack Hills : la croûte terrestre existait bien dès l'Hadéen, après l'océan de magma." },
+        { a:"Nutman, A. P. et al. (2016)", t:"Rapid emergence of life shown by discovery of 3,700-million-year-old microbial structures", j:"Nature 537, 535–538", k:"primary", doi:"10.1038/nature19355",
+          ab:"Décrit des stromatolites de 3,7 Ga à Isua (Groenland), parmi les plus anciens indices de vie — interprétation toutefois débattue." },
+        { a:"Dodd, M. S. et al. (2017)", t:"Evidence for early life in Earth's oldest hydrothermal vent precipitates", j:"Nature 543, 60–64", k:"primary", doi:"10.1038/nature21377",
+          ab:"Décrit des filaments et tubes d'hématite interprétés comme des traces de vie hydrothermale d'au moins 3,77 Ga (Nuvvuagittuq, Québec) — interprétation contestée." },
+        { a:"Allwood, A. C. et al. (2006)", t:"Stromatolite reef from the Early Archaean era of Australia", j:"Nature 441, 714–718", k:"primary", doi:"10.1038/nature04764",
+          ab:"Décrit un récif stromatolitique d'environ 3,43 Ga dans le Pilbara (Australie) — preuve robuste et largement acceptée d'une vie microbienne ancienne." },
+        { a:"Fischer, W. W. et al. (2016)", t:"Evolution of Oxygenic Photosynthesis", j:"Annual Review of Earth & Planetary Sciences 44, 647–683", k:"review", doi:"10.1146/annurev-earth-060313-054810",
+          ab:"Revue situant l'émergence de la photosynthèse oxygénique (cyanobactéries) peu avant la Grande Oxydation, après examen des marqueurs géochimiques et phylogénétiques." },
+        { a:"Lyons, T. W. et al. (2014)", t:"The rise of oxygen in Earth's early ocean and atmosphere", j:"Nature 506, 307–315", k:"review", doi:"10.1038/nature13068",
+          ab:"Synthèse de référence sur la Grande Oxydation : montée de l'O₂ vers 2,4–2,3 Ga, qui reste ensuite longtemps à des niveaux très inférieurs à l'actuel." },
+        { a:"Gumsley, A. P. et al. (2017)", t:"Timing and tempo of the Great Oxidation Event", j:"PNAS 114, 1811–1816", k:"primary", doi:"10.1073/pnas.1608824114",
+          ab:"Datation U-Pb plaçant le début de la Grande Oxydation vers 2,43 Ga, en lien avec les glaciations huroniennes." },
+        { a:"Knoll, A. H. et al. (2006)", t:"Eukaryotic organisms in Proterozoic oceans", j:"Philosophical Transactions of the Royal Society B 361, 1023–1038", k:"review", doi:"10.1098/rstb.2006.1843",
+          ab:"Revue des fossiles eucaryotes du Protérozoïque : présence assurée et diversification progressive, avec des bornes d'apparition encore discutées." },
+        { a:"Gibson, T. M. et al. (2018)", t:"Precise age of Bangiomorpha pubescens dates the origin of eukaryotic photosynthesis", j:"Geology 46, 135–138", k:"primary", doi:"10.1130/G39829.1",
+          ab:"Date Bangiomorpha pubescens — algue rouge, plus ancien eucaryote sexué et multicellulaire complexe connu — à 1,047 Ga (Re-Os + U-Pb). C'est la valeur retenue par le dossier pour la reproduction sexuée." },
+        { a:"Li, Z. X. et al. (2008)", t:"Assembly, configuration, and break-up history of Rodinia: A synthesis", j:"Precambrian Research 160, 179–210", k:"review", doi:"10.1016/j.precamres.2007.04.021",
+          ab:"Synthèse de référence sur l'assemblage (~1,1–0,9 Ga) puis la fragmentation du supercontinent Rodinia." },
+        { a:"Hoffman, P. F. et al. (1998)", t:"A Neoproterozoic Snowball Earth", j:"Science 281, 1342–1346", k:"primary", doi:"10.1126/science.281.5381.1342",
+          ab:"Article fondateur de l'hypothèse « Terre boule de neige » : des glaciations globales du Néoprotérozoïque auraient recouvert la planète jusqu'à l'équateur." },
+        { a:"Hoffman, P. F. et al. (2017)", t:"Snowball Earth climate dynamics and Cryogenian geology-geobiology", j:"Science Advances 3, e1600983", k:"review", doi:"10.1126/sciadv.1600983",
+          ab:"Synthèse moderne de la dynamique climatique et de la géologie du Cryogénien (~717–635 Ma), confortant et précisant l'hypothèse Snowball Earth." }
+      ]},
+      { g:"Échelle des temps & extinctions", items:[
+        { a:"Gradstein, F. M. et al. (éds., 2020)", t:"Geologic Time Scale 2020", j:"Elsevier (2 vol.)", k:"review", doi:"10.1016/C2020-1-02369-3",
+          ab:"Ouvrage de référence calibrant l'échelle des temps géologiques ; base des bornes adoptées par l'ICS (Cambrien 538,8 ; Ordovicien 486,85 ; Silurien 443,1 ; Dévonien 419,62 Ma…). La charte officielle ICS (stratigraphy.org, sans DOI) la complète." },
+        { a:"Raup, D. M. & Sepkoski, J. J. (1982)", t:"Mass Extinctions in the Marine Fossil Record", j:"Science 215, 1501–1503", k:"primary", doi:"10.1126/science.215.4539.1501",
+          ab:"Identifie statistiquement les cinq grandes extinctions de masse (les « Big Five ») dans le registre fossile marin du Phanérozoïque." },
+        { a:"Stanley, S. M. (2016)", t:"Estimates of the magnitudes of major marine mass extinctions in earth history", j:"PNAS 113, E6325–E6334", k:"primary", doi:"10.1073/pnas.1613094113",
+          ab:"Réévalue l'ampleur des extinctions en corrigeant des biais : pour la fin du Permien, ~81 % des espèces marines disparues (et non ~96 %)." },
+        { a:"Burgess, S. D. et al. (2014)", t:"High-precision timeline for Earth's most severe extinction", j:"PNAS 111, 3316–3321", k:"primary", doi:"10.1073/pnas.1317692111",
+          ab:"Datation U-Pb : l'extinction principale de la fin du Permien dure moins de 61 000 ans autour de 251,94 Ma — une crise géologiquement brève." },
+        { a:"Burgess, S. D. & Bowring, S. A. (2015)", t:"High-precision geochronology confirms voluminous magmatism… before, during, and after Earth's most severe extinction", j:"Science Advances 1, e1500470", k:"primary", doi:"10.1126/sciadv.1500470",
+          ab:"Montre que les trapps de Sibérie encadrent et chevauchent l'extinction Permien–Trias — moteur volcanique majeur de la « Grande Mort »." },
+        { a:"Schulte, P. et al. (2010)", t:"The Chicxulub Asteroid Impact and Mass Extinction at the Cretaceous-Paleogene Boundary", j:"Science 327, 1214–1218", k:"primary", doi:"10.1126/science.1177265",
+          ab:"Synthèse de 41 auteurs concluant que l'impact d'astéroïde de Chicxulub (~66 Ma) est la cause de l'extinction K–Pg." },
+        { a:"Alvarez, L. W. et al. (1980)", t:"Extraterrestrial Cause for the Cretaceous-Tertiary Extinction", j:"Science 208, 1095–1108", k:"primary", doi:"10.1126/science.208.4448.1095",
+          ab:"Article fondateur : l'excès d'iridium à la limite Crétacé–Tertiaire révèle un impact extraterrestre comme cause de l'extinction." },
+        { a:"Renne, P. R. et al. (2015)", t:"State shift in Deccan volcanism at the Cretaceous-Paleogene boundary, possibly induced by impact", j:"Science 350, 76–78", k:"primary", doi:"10.1126/science.aac7549",
+          ab:"Propose que l'impact de Chicxulub a accéléré le volcanisme des trapps du Deccan — un rôle conjoint, encore débattu, dans la crise K–Pg." },
+        { a:"Schoene, B. et al. (2019)", t:"U-Pb constraints on pulsed eruption of the Deccan Traps across the end-Cretaceous mass extinction", j:"Science 363, 862–866", k:"primary", doi:"10.1126/science.aau2422",
+          ab:"Datation U-Pb : le Deccan s'épanche en quatre grandes pulsations, dont une partie précède la limite K–Pg (calendrier débattu face à Sprain 2019)." },
+        { a:"Sprain, C. J. et al. (2019)", t:"The eruptive tempo of Deccan volcanism in relation to the Cretaceous-Paleogene boundary", j:"Science 363, 866–870", k:"primary", doi:"10.1126/science.aav1446",
+          ab:"Datation ⁴⁰Ar/³⁹Ar : ~75 % du volume du Deccan serait émis après la limite K–Pg — calendrier différent de Schoene 2019, au cœur du débat impact/volcanisme." },
+        { a:"Nesbitt, S. J. et al. (2010)", t:"Ecologically distinct dinosaurian sister group shows early diversification of Ornithodira", j:"Nature 464, 95–98", k:"primary", doi:"10.1038/nature08718",
+          ab:"Décrit Asilisaurus et éclaire la diversification précoce des Ornithodira au Trias — contexte de l'apparition des dinosaures (~240–230 Ma)." },
+        { a:"Brusatte, S. L. et al. (2015)", t:"The Origin and Diversification of Birds", j:"Current Biology 25, R888–R898", k:"review", doi:"10.1016/j.cub.2015.08.003",
+          ab:"Revue de la transition des dinosaures théropodes vers les oiseaux, étalée sur des dizaines de millions d'années (Archaeopteryx ~150 Ma et au-delà)." },
+        { a:"Zachos, J. et al. (2001)", t:"Trends, Rhythms, and Aberrations in Global Climate 65 Ma to Present", j:"Science 292, 686–693", k:"primary", doi:"10.1126/science.1059412",
+          ab:"Courbe isotopique de référence du climat cénozoïque ; documente le refroidissement menant à l'englacement de l'Antarctique vers ~34 Ma." },
+        { a:"Edwards, E. J. et al. (2010)", t:"The Origins of C4 Grasslands", j:"Science 328, 587–591", k:"review", doi:"10.1126/science.1177216",
+          ab:"Montre que les prairies modernes à photosynthèse C4 s'étendent surtout à la fin du Miocène (~8–3 Ma), plus tard que l'apparition des herbes." },
+        { a:"Raup, D. M. (1979)", t:"Size of the Permo-Triassic bottleneck and its evolutionary implications", j:"Science 206, 217–218", k:"primary", doi:"10.1126/science.206.4415.217",
+          ab:"Estime, par raréfaction, ~96 % d'espèces marines disparues à la fin du Permien — origine du chiffre « 95–96 % », à mettre en regard du ~81 % de Stanley 2016 (méthodes différentes)." }
+      ]},
+      { g:"Évolution humaine", items:[
+        { a:"Hublin, J.-J. et al. (2017)", t:"New fossils from Jebel Irhoud, Morocco and the pan-African origin of Homo sapiens", j:"Nature 546, 289–292", k:"primary", doi:"10.1038/nature22336",
+          ab:"Les fossiles de Jebel Irhoud (Maroc) repoussent l'origine d'Homo sapiens à ~300 000 ans et plaident pour une émergence à l'échelle pan-africaine." },
+        { a:"Richter, D. et al. (2017)", t:"The age of the hominin fossils from Jebel Irhoud, Morocco", j:"Nature 546, 293–296", k:"primary", doi:"10.1038/nature22335",
+          ab:"Datation par thermoluminescence des niveaux de Jebel Irhoud à 315 ± 34 ka, cohérente avec l'attribution à Homo sapiens." },
+        { a:"Harmand, S. et al. (2015)", t:"3.3-million-year-old stone tools from Lomekwi 3, West Turkana, Kenya", j:"Nature 521, 310–315", k:"primary", doi:"10.1038/nature14464",
+          ab:"Décrit des outils de pierre de 3,3 Ma — antérieurs au genre Homo —, attribués à un autre hominine et repoussant l'origine de la taille lithique." },
+        { a:"Villmoare, B. et al. (2015)", t:"Early Homo at 2.8 Ma from Ledi-Geraru, Afar, Ethiopia", j:"Science 347, 1352–1355", k:"primary", doi:"10.1126/science.aaa1343",
+          ab:"La mandibule LD 350-1, datée ~2,8 Ma, est le plus ancien fossile attribué au genre Homo." },
+        { a:"Brunet, M. et al. (2002)", t:"A new hominid from the Upper Miocene of Chad, Central Africa", j:"Nature 418, 145–151", k:"primary", doi:"10.1038/nature00879",
+          ab:"Décrit Sahelanthropus tchadensis (crâne « Toumaï »), ~7 Ma — l'un des plus anciens homininés connus." },
+        { a:"Daver, G. et al. (2022)", t:"Postcranial evidence of late Miocene hominin bipedalism in Chad", j:"Nature 609, 94–100", k:"primary", doi:"10.1038/s41586-022-04901-z",
+          ab:"Le fémur et les ulnas de Sahelanthropus indiqueraient une bipédie habituelle dès ~7 Ma — interprétation contestée par d'autres équipes." },
+        { a:"Johanson, D. C. & Taieb, M. (1976)", t:"Plio-Pleistocene hominid discoveries in Hadar, Ethiopia", j:"Nature 260, 293–297", k:"primary", doi:"10.1038/260293a0",
+          ab:"Annonce les découvertes de Hadar, dont « Lucy » (Australopithecus afarensis, ~3,2 Ma), emblème de la bipédie australopithèque." },
+        { a:"Berna, F. et al. (2012)", t:"Microstratigraphic evidence of in situ fire… Wonderwerk Cave, South Africa", j:"PNAS 109, E1215–E1220", k:"primary", doi:"10.1073/pnas.1117620109",
+          ab:"Preuves de combustion in situ vers ~1 Ma — parmi les plus anciennes d'un usage contrôlé du feu (sujet néanmoins débattu)." },
+        { a:"Roebroeks, W. & Villa, P. (2011)", t:"On the earliest evidence for habitual use of fire in Europe", j:"PNAS 108, 5209–5214", k:"primary", doi:"10.1073/pnas.1018116108",
+          ab:"Soutient que l'usage habituel du feu n'est clairement attesté que vers ~400 ka, invitant à la prudence sur les dates plus anciennes." }
+      ]},
+      { g:"Édiacarien", items:[
+        { a:"Bobrovskiy, I. et al. (2018)", t:"Ancient steroids establish the Ediacaran fossil Dickinsonia as one of the earliest animals", j:"Science 361, 1246–1249", k:"primary", doi:"10.1126/science.aat7228",
+          ab:"Des biomarqueurs (cholestane) conservés établissent que Dickinsonia est un animal — l'un des plus anciens connus —, sans pour autant trancher le statut de toute la biote d'Ediacara." },
+        { a:"Fedonkin, M. A. & Waggoner, B. M. (1997)", t:"The Late Precambrian fossil Kimberella is a mollusc-like bilaterian organism", j:"Nature 388, 868–871", k:"primary", doi:"10.1038/42242",
+          ab:"Interprète Kimberella comme un bilatérien de type mollusque (~555 Ma) — un des plus anciens animaux complexes." },
+        { a:"Bengtson, S. & Zhao, Y. (1992)", t:"Predatorial Borings in Late Precambrian Mineralized Exoskeletons", j:"Science 257, 367–369", k:"primary", doi:"10.1126/science.257.5068.367",
+          ab:"Des perforations prédatrices dans les coquilles de Cloudina/Sinotubulites constituent la plus ancienne preuve de prédation sur squelettes minéralisés (~550 Ma)." },
+        { a:"Knoll, A. H. et al. (2006)", t:"The Ediacaran Period: a new addition to the geologic time scale", j:"Lethaia 39, 13–30", k:"primary", doi:"10.1080/00241160500409223",
+          ab:"Officialise la période édiacarienne (base ~635 Ma, sommet 538,8 Ma) — première nouvelle période ajoutée à l'échelle des temps depuis plus d'un siècle." },
+        { a:"Mills, D. B. et al. (2014)", t:"Oxygen requirements of the earliest animals", j:"PNAS 111, 4168–4172", k:"primary", doi:"10.1073/pnas.1400547111",
+          ab:"Montre que des éponges actuelles vivent à très faible teneur en O₂ — ce qui nuance le rôle « déclencheur » de l'oxygène dans l'apparition des animaux." },
+        { a:"Och, L. M. & Shields-Zhou, G. A. (2012)", t:"The Neoproterozoic oxygenation event", j:"Earth-Science Reviews 110, 26–57", k:"review", doi:"10.1016/j.earscirev.2011.09.004",
+          ab:"Revue de l'oxygénation néoprotérozoïque (NOE) et de ses liens, corrélés mais débattus, avec l'essor de la vie complexe." }
+      ]},
+      { g:"Science lunaire (Artemis II)", items:[
+        { a:"Colaprete, A. et al. (2010)", t:"Detection of Water in the LCROSS Ejecta Plume", j:"Science 330, 463–468", k:"primary", doi:"10.1126/science.1186986",
+          ab:"L'impact de la sonde LCROSS dans le cratère Cabeus (pôle Sud lunaire) révèle de l'eau dans le panache éjecté — preuve directe de glace d'eau dans les pièges froids." },
+        { a:"Li, S. et al. (2018)", t:"Direct evidence of surface exposed water ice in the lunar polar regions", j:"PNAS 115, 8907–8912", k:"primary", doi:"10.1073/pnas.1802345115",
+          ab:"À partir des données de l'instrument M³, met en évidence de la glace d'eau exposée en surface dans les cratères en ombre permanente des deux pôles lunaires." },
+        { a:"Honniball, C. I. et al. (2021)", t:"Molecular water detected on the sunlit Moon by SOFIA", j:"Nature Astronomy 5, 121–127", k:"primary", doi:"10.1038/s41550-020-01222-x",
+          ab:"L'observatoire SOFIA détecte de l'eau moléculaire (H₂O) sur la surface éclairée de la Lune (cratère Clavius), au-delà des seuls pôles." },
+        { a:"Hayne, P. O. et al. (2021)", t:"Micro cold traps on the Moon", j:"Nature Astronomy 5, 169–175", k:"primary", doi:"10.1038/s41550-020-1198-9",
+          ab:"Montre que d'innombrables « micro-pièges froids » de l'ordre du centimètre au mètre peuvent retenir de la glace, augmentant fortement la surface potentiellement glacée." },
+        { a:"Pieters, C. M. et al. (2009)", t:"Character and Spatial Distribution of OH/H2O on the Surface of the Moon (M3/Chandrayaan-1)", j:"Science 326, 568–572", k:"primary", doi:"10.1126/science.1178658",
+          ab:"L'imageur M³ à bord de Chandrayaan-1 détecte des signatures d'OH/H₂O répandues sur la surface lunaire — tournant dans l'étude de l'eau lunaire." },
+        { a:"Hauri, E. H. et al. (2017)", t:"Origin and Evolution of Water in the Moon's Interior", j:"Annual Review of Earth & Planetary Sciences 45, 89–111", k:"review", doi:"10.1146/annurev-earth-063016-020239",
+          ab:"Revue de l'origine et de l'évolution de l'eau de l'intérieur lunaire, révélée par les échantillons et la télédétection — la Lune est moins « sèche » qu'on le pensait." }
+      ]}
+    ];
+    function refHTML(r){
+      const kind = r.k === "review" ? "Revue" : "Article primaire";
+      const ds = norm(r.a+" "+r.t+" "+r.j+" "+r.doi+" "+r.ab+" "+kind);
+      return `<article class="refitem reveal" data-search="${ds}">
+        <h4><a href="https://doi.org/${r.doi}" target="_blank" rel="noopener">${esc(r.t)}</a></h4>
+        <div class="cite">${esc(r.a)} · <i>${esc(r.j)}</i></div>
+        <div class="rmeta"><a class="doi" href="https://doi.org/${r.doi}" target="_blank" rel="noopener">DOI ${esc(r.doi)} ↗</a><span class="kind">${kind}</span></div>
+        <p class="ab">${esc(r.ab)}</p>
+      </article>`;
+    }
+    document.getElementById("g-refs").innerHTML = REFS.map(grp =>
+      `<div class="refgrp"><h4 class="refgrp-h">${esc(grp.g)}</h4><div class="refgrid">${grp.items.map(refHTML).join("")}</div></div>`
+    ).join("");
+    const nDoi = REFS.reduce((a,grp)=>a+grp.items.length,0);
+    const stDoi = document.getElementById("stDoi"); if (stDoi) stDoi.textContent = nDoi;
+
+    document.getElementById("g-biblio").innerHTML = SOURCES.map(([tier,name,url,desc])=>`
+      <div class="ref reveal" data-search="${norm(name+" "+desc+" "+url+" "+TIER[tier])}" style="--rc:${TIERC[tier]}">
+        <div class="top"><span class="tier">${tier} ${TIER[tier]}</span><a class="name" href="${url}" target="_blank" rel="noopener">${esc(name)}</a></div>
+        <p>${esc(desc)}</p><span class="url">${esc(url)}</span>
+      </div>`).join("");
+
+    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length;
+    document.getElementById("stFiches").textContent = total;
+
+    const bar=document.getElementById("progress");
+    addEventListener("scroll",()=>{const h=document.documentElement;const m=h.scrollHeight-h.clientHeight;bar.style.width=(m>0?h.scrollTop/m*100:0)+"%";},{passive:true});
+    const io=new IntersectionObserver(es=>{for(const e of es) if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}},{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+    document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+    // ===== Recherche dans les sources =====
+    const q=document.getElementById("q"), qclear=document.getElementById("qclear"),
+          qcount=document.getElementById("qcount"), noRes=document.getElementById("noRes"), noResQ=document.getElementById("noResQ");
+    const SEARCHABLE = Array.from(document.querySelectorAll("[data-search]"));
+    function applyFilter(){
+      const raw = q.value.trim();
+      const terms = norm(raw).split(/\s+/).filter(Boolean);
+      let visible = 0;
+      SEARCHABLE.forEach(el=>{
+        const hay = el.getAttribute("data-search");
+        const ok = terms.every(t=>hay.indexOf(t) !== -1);
+        el.classList.toggle("hidden", !ok);
+        if(ok){ el.classList.add("in"); visible++; }
+      });
+      // masque les groupes de références vides
+      document.querySelectorAll(".refgrp").forEach(g=>{
+        const items=[...g.querySelectorAll("[data-search]")];
+        g.classList.toggle("hidden", items.length>0 && !items.some(i=>!i.classList.contains("hidden")));
+      });
+      // masque les sections entièrement vides
+      document.querySelectorAll("main > section.section").forEach(sec=>{
+        const items=[...sec.querySelectorAll("[data-search]")];
+        if(items.length) sec.classList.toggle("hidden", !items.some(i=>!i.classList.contains("hidden")));
+      });
+      qcount.textContent = raw ? (visible + " résultat" + (visible>1?"s":"")) : "";
+      qclear.classList.toggle("on", !!raw);
+      if(noResQ) noResQ.textContent = raw;
+      noRes.classList.toggle("on", !!raw && visible===0);
+    }
+    q.addEventListener("input", applyFilter);
+    q.addEventListener("keydown", e=>{ if(e.key==="Escape"){ q.value=""; applyFilter(); } });
+    qclear.addEventListener("click", ()=>{ q.value=""; applyFilter(); q.focus(); });
+  </script>
+</body>
+</html>

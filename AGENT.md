@@ -42,11 +42,18 @@ horloge-univers/                ← Samlepirate — « Horloge de l'Univers » (
     events.json                 ← SOURCE CANONIQUE des 46 événements (clock + calendrier)
     super-images/               ← une image par événement (01 → 46)
     extinctions/ · geologie/ · temps-univers.png
+sources/                        ← Dossier V « Les Sources » — vérification & sources de TOUS les dossiers
+  sources.html                  ← page codex (fiches donnée→résumé→verdict→source, références DOI, biblio, RECHERCHE)
+  README.md                     ← index des fichiers de sources + bilan d'audit
+  dossier-*.md                  ← audit par dossier (affirmation → verdict → source avec URL)
+  refs-doi-*.md                 ← références primaires à comité de lecture (DOI vérifiés)
+  chronos-bibliographie.md · sources_audit_scientifique_chronos.csv
 ```
 
-> **IV dossiers** au total — l'index affiche **`<b>IV</b> dossiers`**. Numérotation (ordre d'affichage) :
+> **V dossiers** au total — l'index affiche **`<b>V</b> dossiers`**. Numérotation (ordre d'affichage) :
 > I `ymir-lalie/resume-eres.html` · II `ymir-lalie/edicarien.html` ·
-> III `provoxys/Artemis2.html` · IV `horloge-univers/` (carte unique → `chronos.html` + `calendrier.html` + `clock.html`).
+> III `provoxys/Artemis2.html` · IV `horloge-univers/` (carte unique → `chronos.html` + `calendrier.html` + `clock.html`) ·
+> V `sources/sources.html` (« Les Sources » — appareil critique **commun à tous les dossiers**).
 
 Règles :
 
@@ -83,8 +90,9 @@ Voir `provoxys/Artemis2.html` (classes `.eci-home`, `.eci-collective`, `.eci-btn
 8. **Intégration ECI** : retour à l'index + footer/bandeau ECI (voie A ou voie B selon le design choisi).
 9. Liens croisés : `../index.html` + autres dossiers pertinents.
 10. **Crédit auteur** dans la page (footer ECI et/ou bandeau crédit après le sommaire) ET sur la carte d'index.
-11. Mettre à jour `index.html` (carte + compteurs + numérotation — voir « Mise à jour de l'index »).
-12. Vérifier en local : images chargées, liens corrects, pas de scroll horizontal.
+11. **Vérifier & sourcer** chaque information, affirmation et donnée du dossier, puis **alimenter le dossier `sources/`** (audit `.md` + références DOI + page `sources.html`) — voir « Vérification scientifique & sources ». **OBLIGATOIRE pour tout dossier**, existant ou nouveau.
+12. Mettre à jour `index.html` (carte + compteurs + numérotation — voir « Mise à jour de l'index »).
+13. Vérifier en local : images chargées, liens corrects, pas de scroll horizontal.
 
 ## Style visuel — Codex scientifique impérial (voie A)
 
@@ -171,7 +179,7 @@ Pour chaque nouveau dossier :
 - **Numéro** : `Dossier I / II / III…` suivant **l'ordre d'affichage**. Si on réordonne, **renuméroter partout** : les cartes, l'ordre du menu de nav, et l'eyebrow « Dossier N » dans le hero de chaque page concernée.
 - **Titre**, **description courte**, **tags** (3), **lien relatif**.
 - **Byline** auteur (avatars + « Réalisé par … », + `.note` participation si besoin).
-- **Compteurs** : mettre à jour le hero (compteur en chiffres romains, actuellement `<b>IV</b> dossiers`) et le sec-head (la phrase qui chiffre le nombre de dossiers, actuellement « Quatre expériences… »).
+- **Compteurs** : mettre à jour le hero (compteur en chiffres romains, actuellement `<b>V</b> dossiers`) et le sec-head (la phrase qui chiffre le nombre de dossiers, actuellement « Cinq dossiers… »). Penser aussi au **Décret méthodologique** (`#decret`) et au menu du pied de page si l'on ajoute/réordonne des dossiers.
 - Les nouvelles cartes se placent **avant** le bandeau manifeste `#manifeste` (« Rejoignez l'Empire… »), qui reste juste après la grille des dossiers.
 
 ## Liens externes / compagnons interactifs
@@ -198,6 +206,33 @@ Le contenu doit rester **défendable** :
 - Préférer des **fourchettes** et des marqueurs de prudence (« ~90–96 % », « probablement », « selon les estimations », « des indices suggèrent ») aux **affirmations absolues** (« tous », « tout le gaz », « presque tous les plans »).
 - En cas de révision des données, la répercuter dans **les trois** vues (`events.json`, `clock.html`, `calendrier.html`) et, si concerné, dans `chronos.html`.
 
+## Vérification scientifique & sources (obligatoire — Dossier V)
+
+**Pour CHAQUE dossier** — existant ou nouveau —, refaire le **même travail de vérification** et **centraliser toutes les sources dans le dossier `sources/`** (Dossier V, « Les Sources »). Aucune page ne doit affirmer sans preuve traçable. Le travail déjà réalisé pour les dossiers I→IV sert de gabarit (voir `sources/*.md` et `sources/sources.html`).
+
+### 1. Vérifier chaque information, affirmation et donnée
+- Extraire du dossier **toutes les affirmations factuelles et données chiffrées** : dates, durées, quantités, pourcentages, températures, noms d'espèces / de personnes / de missions, bornes géologiques, etc.
+- Les **vérifier par recherche web** en **lançant plusieurs agents en parallèle** (un par thème ou par sous-ensemble de claims) — outil `Agent`, plusieurs appels dans un même message.
+- Sources **autoritatives** d'abord : NASA, ESA, USGS, IUGS/ICS (`stratigraphy.org`), Smithsonian, articles à comité de lecture ; encyclopédies (Wikipédia) en dernier recours.
+- Attribuer à chaque claim un **verdict** : ✅ confirmé · ⚠️ approximatif / à nuancer · 🔶 débattu · ❌ erroné. **Corriger la page** pour les ❌ ; **nuancer** (fourchettes, « probablement », « selon les estimations ») pour les ⚠️/🔶.
+
+### 2. Documenter dans `sources/` (un ou plusieurs `.md`)
+- **Audit par dossier** — `sources/dossier-<n-nom>.md` : une entrée par affirmation → *citation → verdict → valeur de référence → source(s) avec URL réelle*. Terminer par une « ## Synthèse » (items ⚠️/🔶/❌ + corrections).
+- **Références primaires (DOI)** — `sources/refs-doi-<n-nom>.md` : littérature à comité de lecture → *donnée → citation complète (auteurs, année, revue, vol., pages) → DOI → ce que l'article établit*.
+- **Anti-hallucination — RÈGLE ABSOLUE :** ne **JAMAIS inventer ni deviner un DOI**. Vérifier chaque DOI (résolution `https://doi.org/<doi>` et/ou Crossref `api.crossref.org/works/<doi>` ; concordance titre / auteurs / revue / pages). À défaut de DOI fiable : écrire « DOI non trouvé — [source institutionnelle] » plutôt que d'en fabriquer un.
+- Mettre à jour l'**index** `sources/README.md` (table des fichiers + bilan global : ✅/⚠️/🔶/❌ et corrections appliquées).
+
+### 3. Surfacer dans la page `sources/sources.html` (Dossier V)
+Page codex ECI qui rassemble les sources de **tous** les dossiers, avec **barre de recherche** (filtre accents-insensible sur titre / donnée / résumé / auteur / revue / DOI). Pour chaque vérification, ajouter aux tableaux JS de `sources.html` :
+- une **fiche** dans la section thématique : *donnée → court résumé → verdict (badge couleur) → source(s) cliquable(s) → image* (réutiliser une `super-image` ou l'image hero du dossier) ;
+- une entrée dans **« Références scientifiques »** : *titre (lien DOI) → citation → badge DOI → résumé/abstract* ;
+- une entrée dans la **bibliographie** si une nouvelle source institutionnelle est utilisée.
+- Chaque élément interrogeable porte un attribut **`data-search`** (généré via `norm()` : minuscule + accents retirés). Mettre à jour les **compteurs** du hero (fiches, DOI). Tous les liens DOI/externes en `target="_blank" rel="noopener"`.
+
+### 4. Boucler
+- Répercuter toute **correction de donnée** dans la page d'origine **et** dans ses vues liées (dossiers data-driven : `events.json` + `clock.html` + `calendrier.html` + `chronos.html`).
+- Vérifier la cohérence (clock ↔ calendrier identiques ; `diff` à zéro) et que `sources/sources.html` se charge correctement (recherche, images, liens).
+
 ## Règles de contenu
 
 - La transcription reste **visible et complète** (jamais réduite à un résumé).
@@ -223,5 +258,6 @@ Avant de terminer :
 - ouvrir `index.html` et chaque page HTML référencée ;
 - vérifier images chargées, liens (nav, retour accueil, compagnons externes), pas de scroll horizontal ;
 - vérifier numérotation et compteurs cohérents (index ↔ eyebrows des pages) ;
+- **vérifier que chaque affirmation et donnée du dossier est sourcée** dans `sources/` (audit `.md` + références DOI) **et surfacée** dans `sources/sources.html` (fiche + référence) ;
 - si publication demandée : confirmer build Pages `built` + `200` sur les URLs ;
 - mentionner les fichiers créés ou modifiés.
