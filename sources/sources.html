@@ -201,6 +201,7 @@
           <a href="#eres">Ères</a>
           <a href="#edia">Édiacarien</a>
           <a href="#artemis">Artemis</a>
+          <a href="#elements">Éléments</a>
           <a href="#refs">Références</a>
           <a href="#biblio">Bibliographie</a>
           <a class="home" href="../index.html">Accueil ECI</a>
@@ -221,14 +222,14 @@
 
     <main>
       <section class="wrap hero">
-        <p class="eyebrow">Dossier V · Vérification &amp; sources</p>
+        <p class="eyebrow">Dossier VI · Vérification &amp; sources</p>
         <h2>Chaque donnée,<br>vérifiée et <span class="foil">sourcée</span>.</h2>
         <p class="lead">Pour chaque affirmation des dossiers — cosmologie, géologie, vie, exploration lunaire —, nous donnons un <b>résumé</b>, un <b>verdict</b> et la <b>source autoritative</b> (NASA, ESA, USGS, IUGS/ICS, Smithsonian, articles à comité de lecture). La science est déjà vertigineuse : encore faut-il pouvoir la vérifier.</p>
         <div class="stats">
           <div class="stat"><div class="n" id="stFiches">—</div><div class="l">Données vérifiées</div></div>
           <div class="stat"><div class="n" id="stSrc">24</div><div class="l">Sources de référence</div></div>
           <div class="stat"><div class="n" id="stDoi">—</div><div class="l">DOI vérifiés</div></div>
-          <div class="stat"><div class="n">4</div><div class="l">Dossiers audités</div></div>
+          <div class="stat"><div class="n">5</div><div class="l">Dossiers audités</div></div>
           <div class="stat"><div class="n">0</div><div class="l">Erreur factuelle (❌)</div></div>
         </div>
         <div class="legend" aria-label="Légende des verdicts">
@@ -247,6 +248,7 @@
       <section class="wrap section" id="eres"><div class="sec-head reveal"><p class="kick">Dossier I · Lalie &amp; Ymir</p><h3>Le Résumé des Ères</h3><p>L'échelle des temps géologiques et le roman de la Terre.</p></div><div class="grid" id="g-eres"></div></section>
       <section class="wrap section" id="edia"><div class="sec-head reveal"><p class="kick">Dossier II · Lalie &amp; Ymir</p><h3>L'Édiacarien</h3><p>Les premiers grands organismes — et ce que la science peut réellement en dire.</p></div><div class="grid" id="g-edia"></div></section>
       <section class="wrap section" id="artemis"><div class="sec-head reveal"><p class="kick">Dossier III · Provoxys</p><h3>Artemis II</h3><p>Le retour de l'humanité vers la Lune — faits vérifiés au 1ᵉʳ juin 2026.</p></div><div class="grid" id="g-artemis"></div></section>
+      <section class="wrap section" id="elements"><div class="sec-head reveal"><p class="kick">Dossier V · Jorge &amp; Zalex</p><h3>Le Tableau Périodique</h3><p>De la particule élémentaire à l'élément chimique — particules, interactions, formation des atomes, modèles et propriétés périodiques.</p></div><div class="grid" id="g-elements"></div></section>
 
       <section class="wrap section" id="refs">
         <div class="sec-head reveal"><p class="kick">Appareil critique · niveau le plus strict</p><h3>Références scientifiques</h3><p>La littérature primaire à comité de lecture derrière les données. Chaque <b>DOI a été vérifié</b> (résolution Crossref + page éditeur) — pour chacun : titre, citation et résumé.</p></div>
@@ -271,6 +273,7 @@
             <a href="../ymir-lalie/resume-eres.html">Résumé des Ères</a>
             <a href="../ymir-lalie/edicarien.html">L'Édiacarien</a>
             <a href="../provoxys/Artemis2.html">Artemis II</a>
+            <a href="../jorge-zalex/elements.html">Le Tableau Périodique</a>
           </div>
           <span class="cmotto">Ad astra per aspera.</span>
         </section>
@@ -403,6 +406,33 @@
         src:[{n:"NASA · Artemis Accords",u:"https://www.nasa.gov/artemis-accords/"}] }
     ];
 
+    const ELEMENTS = [
+      { t:"Trois propriétés intrinsèques", d:"masse · charge · spin", v:"ok", img:SI+"01-le-big-bang.png",
+        s:"Toute particule est définie par sa masse, sa charge électrique et son spin. Le spin, révélé par l'expérience de Stern & Gerlach (Francfort, 1922), est une propriété purement quantique.",
+        src:[{n:"NIST · charge élémentaire",u:"https://physics.nist.gov/cgi-bin/cuu/Value?e"},{n:"Stern–Gerlach",u:"https://en.wikipedia.org/wiki/Stern%E2%80%93Gerlach_experiment"}] },
+      { t:"Modèle Standard : combien de particules ?", d:"17 (ou 25 avec les 8 gluons)", v:"fresh", img:SI+"03-les-premieres-etoiles.png",
+        s:"Reformulé après audit. Le décompte standard est 17 (12 fermions + photon + W + Z + gluon + Higgs). Le chiffre « 25 » de la présentation n'est exact que si l'on compte les 8 états de couleur du gluon individuellement.",
+        src:[{n:"Standard Model (Wikipedia)",u:"https://en.wikipedia.org/wiki/Standard_Model"},{n:"DOE Explains",u:"https://www.energy.gov/science/doe-explainsthe-standard-model-particle-physics"}] },
+      { t:"Bosons faibles W et Z", d:"W ≈ 80,4 GeV · Z⁰ ≈ 91,2 GeV", v:"ok", img:SI+"03-les-premieres-etoiles.png",
+        s:"Masses confirmées (PDG 2024 : W = 80,369 GeV, Z⁰ = 91,188 GeV). Leur masse élevée explique la portée minuscule (~10⁻¹⁸ m) de l'interaction faible. Découverts au CERN en 1983.",
+        src:[{n:"PDG · bosons de jauge",u:"https://pdg.lbl.gov/2025/tables/rpp2025-sum-gauge-higgs-bosons.pdf"},{n:"CERN · boson Z",u:"https://home.cern/science/physics/z-boson"}] },
+      { t:"Nucléosynthèse primordiale", d:"≈ 75 % H · ≈ 25 % He (en masse)", v:"ok", img:SI+"05-la-reionisation.png",
+        s:"En moins de 3 minutes (T < 10⁹ K), la fusion forge ²H, ³He, ⁴He et un peu de ⁷Li. La fraction de masse d'⁴He Y_p ≈ 0,247 est prédite puis mesurée — l'une des grandes preuves du Big Bang.",
+        src:[{n:"Big Bang nucleosynthesis",u:"https://en.wikipedia.org/wiki/Big_Bang_nucleosynthesis"},{n:"PDG · BBN",u:"https://pdg.lbl.gov/"}] },
+      { t:"Abondance des éléments", d:"H cosmique ≈ 90 % des atomes ; croûte O/Si/Al/Fe", v:"warn", img:SI+"09-formation-de-la-terre.png",
+        s:"Corrigé après audit : l'hydrogène représente ≈ 90 % des atomes de l'Univers (et non 93 %). Les pourcentages O~50 %, Si~26 %, Al~7 %, Fe~4 % décrivent la croûte terrestre, pas la Terre entière (où le fer domine, ~32 %).",
+        src:[{n:"Abundance of the elements",u:"https://en.wikipedia.org/wiki/Abundance_of_the_chemical_elements"},{n:"Composition du corps humain",u:"https://en.wikipedia.org/wiki/Composition_of_the_human_body"}] },
+      { t:"Modèles de l'atome : Rutherford 1911", d:"noyau (le proton : ~1919–1920)", v:"warn", img:SI+"02-le-fond-diffus-cosmologique.png",
+        s:"Nuance ajoutée : la diffusion de 1911 révèle le noyau, pas le proton — celui-ci est identifié vers 1919 (bombardement de l'azote) et nommé en 1920. Bohr 1913 ; neutron par Chadwick en 1932.",
+        src:[{n:"APS · Rutherford & le noyau",u:"https://www.aps.org/apsnews/2006/05/rutherford-discovery-atomic-nucleus"},{n:"Proton (Wikipedia)",u:"https://en.wikipedia.org/wiki/Proton"}] },
+      { t:"Niveaux d'énergie de l'hydrogène", d:"E₃ = −1,51 eV (et non −1,21)", v:"fresh", img:SI+"02-le-fond-diffus-cosmologique.png",
+        s:"Corrigé après audit : la présentation source affichait E₃ = −1,21 eV ; la formule de Bohr donne Eₙ = −13,6/n², soit E₃ = −13,6/9 = −1,51 eV. Rayon de Bohr a₀ = 0,529 Å confirmé (CODATA 2022).",
+        src:[{n:"Bohr model (Lumen)",u:"https://courses.lumenlearning.com/suny-physics/chapter/30-3-bohrs-theory-of-the-hydrogen-atom/"},{n:"NIST · rayon de Bohr",u:"https://physics.nist.gov/cgi-bin/cuu/Value?bohrrada0"}] },
+      { t:"Structure du tableau & familles", d:"lignes 2 · 8 · 8 · 18 ; Klechkowski / Hund / Pauli", v:"ok", img:SI+"01-le-big-bang.png",
+        s:"Les longueurs de ligne découlent du remplissage des orbitales (4s avant 3d). « Argon : n=3 partiellement rempli » est exact (3d vide). Nuances : exceptions de Klechkowski (Cr, Cu) ; astate métalloïde selon certaines sources ; gaz nobles « quasiment » pas d'ions.",
+        src:[{n:"Aufbau / ordre de remplissage",u:"https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Electronic_Structure_of_Atoms_and_Molecules/Electronic_Configurations/The_Order_of_Filling_3d_and_4s_Orbitals"},{n:"Groupes (IUPAC)",u:"https://en.wikipedia.org/wiki/Group_(periodic_table)"}] }
+    ];
+
     // 24 sources from sources_audit_scientifique_chronos.csv
     const SOURCES = [
       ["🟢","Planck Collaboration 2018 — Cosmological parameters","https://www.aanda.org/articles/aa/pdf/2020/09/aa33880-18.pdf","Âge de l'Univers ≈ 13,787 Ga ± 0,020 Ga (ΛCDM)."],
@@ -450,7 +480,7 @@
     }
     function fill(id,arr){ const el=document.getElementById(id); if(el) el.innerHTML=arr.map(ficheHTML).join(""); }
     fill("g-cosmos",COSMOS); fill("g-terre",TERRE); fill("g-geo",GEO); fill("g-hum",HUM);
-    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS);
+    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS);
 
     // ===== Références scientifiques primaires (DOI vérifiés) =====
     const REFS = [
@@ -591,6 +621,30 @@
           ab:"L'imageur M³ à bord de Chandrayaan-1 détecte des signatures d'OH/H₂O répandues sur la surface lunaire — tournant dans l'étude de l'eau lunaire." },
         { a:"Hauri, E. H. et al. (2017)", t:"Origin and Evolution of Water in the Moon's Interior", j:"Annual Review of Earth & Planetary Sciences 45, 89–111", k:"review", doi:"10.1146/annurev-earth-063016-020239",
           ab:"Revue de l'origine et de l'évolution de l'eau de l'intérieur lunaire, révélée par les échantillons et la télédétection — la Lune est moins « sèche » qu'on le pensait." }
+      ]},
+      { g:"Particules & atome (Dossier V · Le Tableau Périodique)", items:[
+        { a:"Gerlach, W. & Stern, O. (1922)", t:"Der experimentelle Nachweis der Richtungsquantelung im Magnetfeld", j:"Zeitschrift für Physik 9, 349–352", k:"primary", doi:"10.1007/BF01326983",
+          ab:"L'expérience de Stern & Gerlach met en évidence la quantification spatiale du moment magnétique : un faisceau d'atomes d'argent se sépare en deux dans un champ inhomogène — première preuve directe du spin." },
+        { a:"Thomson, J. J. (1904)", t:"On the structure of the atom…", j:"Philosophical Magazine 7(39), 237–265", k:"primary", doi:"10.1080/14786440409463107",
+          ab:"Présente le modèle du « plum pudding » : des électrons disposés dans une sphère de charge positive — premier modèle quantitatif de la structure interne de l'atome." },
+        { a:"Rutherford, E. (1911)", t:"The scattering of α and β particles by matter and the structure of the atom", j:"Philosophical Magazine 21(125), 669–688", k:"primary", doi:"10.1080/14786440508637080",
+          ab:"L'analyse de la diffusion des particules α révèle que la charge positive et la masse sont concentrées dans un noyau minuscule : l'atome est essentiellement vide." },
+        { a:"Bohr, N. (1913)", t:"On the constitution of atoms and molecules", j:"Philosophical Magazine 26(151), 1–25", k:"primary", doi:"10.1080/14786441308634955",
+          ab:"Introduit la quantification des orbites électroniques, donne Eₙ = −13,6/n² eV et explique pour la première fois les raies spectrales de l'hydrogène." },
+        { a:"Chadwick, J. (1932)", t:"Possible Existence of a Neutron", j:"Nature 129, 312", k:"primary", doi:"10.1038/129312a0",
+          ab:"Met en évidence le neutron — particule neutre de masse proche de celle du proton — complétant le modèle proton/neutron du noyau atomique." },
+        { a:"Englert, F. & Brout, R. (1964)", t:"Broken Symmetry and the Mass of Gauge Vector Mesons", j:"Physical Review Letters 13, 321–323", k:"primary", doi:"10.1103/PhysRevLett.13.321",
+          ab:"L'un des deux articles fondateurs du mécanisme BEH : la brisure spontanée de symétrie permet de donner une masse aux bosons de jauge (W et Z)." },
+        { a:"Higgs, P. W. (1964)", t:"Broken Symmetries and the Masses of Gauge Bosons", j:"Physical Review Letters 13, 508–509", k:"primary", doi:"10.1103/PhysRevLett.13.508",
+          ab:"Prédit l'existence d'un boson scalaire massif (le boson de Higgs) associé au champ qui donne leur masse aux particules — observé au LHC en 2012." },
+        { a:"ATLAS Collaboration (2012)", t:"Observation of a new particle in the search for the Standard Model Higgs boson with the ATLAS detector", j:"Physics Letters B 716, 1–29", k:"primary", doi:"10.1016/j.physletb.2012.08.020",
+          ab:"Annonce l'observation d'une nouvelle particule à ~125 GeV compatible avec le boson de Higgs — confirmation de la dernière pièce prédite par le Modèle Standard." },
+        { a:"CMS Collaboration (2012)", t:"Observation of a new boson at a mass of 125 GeV with the CMS experiment at the LHC", j:"Physics Letters B 716, 30–61", k:"primary", doi:"10.1016/j.physletb.2012.08.021",
+          ab:"Confirmation indépendante, par l'expérience CMS, du nouveau boson à 125 GeV — l'autre découverte conjointe du boson de Higgs au LHC." },
+        { a:"Dyson, F. J. (1949)", t:"The Radiation Theories of Tomonaga, Schwinger, and Feynman", j:"Physical Review 75, 486–502", k:"primary", doi:"10.1103/PhysRev.75.486",
+          ab:"Unifie les formulations de Tomonaga, Schwinger et Feynman : aboutissement de l'électrodynamique quantique (QED), première théorie quantique des champs réellement prédictive." },
+        { a:"Hon, G. & Goldstein, B. R. (2013)", t:"J. J. Thomson's plum-pudding atomic model: The making of a scientific myth", j:"Annalen der Physik 525(8-9), A129–A133", k:"review", doi:"10.1002/andp.201300732",
+          ab:"Mise au point historiographique sur la portée réelle du modèle de Thomson — utile pour nuancer le récit pédagogique des modèles atomiques." }
       ]}
     ];
     function refHTML(r){
@@ -615,7 +669,7 @@
         <p>${esc(desc)}</p><span class="url">${esc(url)}</span>
       </div>`).join("");
 
-    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length;
+    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length;
     document.getElementById("stFiches").textContent = total;
 
     const bar=document.getElementById("progress");
