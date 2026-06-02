@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La Vie de la Terre — Empire contre Intox</title>
+  <meta name="description" content="Dossier Empire contre Intox consacré à l'application La Vie de la Terre : observatoire interactif du temps profond, événements majeurs, données ouvertes et pipeline reproductible.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents de l'observatoire : magma → océan → vie → glace */
+      --magma:#e5783d; --ocean:#5bd6e0; --life:#6fae5a; --ice:#8fb7ff; --violet:#b48cff;
+      --line:rgba(214,172,85,.20); --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72); --shadow:0 40px 120px rgba(0,0,0,.55);
+      --serif:"Fraunces",Georgia,"Times New Roman",serif; --roman:"Cinzel",Georgia,serif;
+      --max:1180px; --ease:cubic-bezier(.22,1,.36,1);
+      --hero:url("assets/earth-observatory.png");
+      --formation:url("assets/hero-formation.png");
+    }
+
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0; color:var(--ink); font-family:var(--serif); font-optical-sizing:auto; font-weight:380;
+      line-height:1.74; letter-spacing:.002em; min-height:100vh; overflow-x:hidden;
+      background:
+        radial-gradient(130% 80% at 10% 0%,rgba(229,120,61,.15),transparent 42%),
+        radial-gradient(120% 80% at 92% 4%,rgba(91,214,224,.13),transparent 46%),
+        radial-gradient(100% 90% at 54% 112%,rgba(111,174,90,.10),transparent 52%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    a{color:inherit;text-decoration:none;} img{display:block;max-width:100%;}
+    ::selection{background:rgba(214,172,85,.28);color:#fff;}
+    :focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px;border-radius:4px;}
+
+    .atmos{position:fixed;inset:0;z-index:0;pointer-events:none;}
+    .atmos::before{
+      content:"";position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px; mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%);
+    }
+    .atmos::after{
+      content:"";position:absolute;inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.65),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(91,214,224,.5),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(111,174,90,.55),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.35),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle{from{opacity:.5}to{opacity:1}}
+    .grain{position:fixed;inset:-50%;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+    .frame{position:fixed;inset:0;z-index:45;pointer-events:none;}
+    .frame i{position:absolute;width:26px;height:26px;border:1.5px solid var(--line);}
+    .frame i:nth-child(1){top:16px;left:16px;border-right:0;border-bottom:0;}
+    .frame i:nth-child(2){top:16px;right:16px;border-left:0;border-bottom:0;}
+    .frame i:nth-child(3){bottom:16px;left:16px;border-right:0;border-top:0;}
+    .frame i:nth-child(4){bottom:16px;right:16px;border-left:0;border-top:0;}
+    .progress-top{position:fixed;top:0;left:0;height:2px;width:0%;z-index:60;background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright),var(--ocean));box-shadow:0 0 14px rgba(243,217,138,.55);}
+
+    .page{position:relative;z-index:2;overflow:clip;}
+    .wrap{width:min(100% - 40px,var(--max));margin-inline:auto;}
+
+    /* ---------- Hero ---------- */
+    .hero{min-height:96vh;display:grid;align-items:end;position:relative;isolation:isolate;padding:28px;overflow:hidden;}
+    .hero::before{content:"";position:absolute;inset:0;z-index:-4;background-image:var(--hero);background-size:cover;background-position:center;transform:scale(1.02);filter:saturate(1.05) contrast(1.04);}
+    .hero::after{content:"";position:absolute;inset:0;z-index:-3;background:
+      linear-gradient(88deg,rgba(3,6,13,.96) 0%,rgba(3,6,13,.78) 34%,rgba(3,6,13,.20) 67%,rgba(3,6,13,.62) 100%),
+      linear-gradient(180deg,rgba(3,6,13,.10) 0%,rgba(3,6,13,.28) 56%,var(--void) 100%);}
+    .hero-orbit{position:absolute;right:-15vmin;top:11vh;width:min(58vw,720px);aspect-ratio:1;border-radius:50%;z-index:-2;border:1px solid rgba(214,172,85,.16);box-shadow:inset 0 0 80px rgba(91,214,224,.08),0 0 120px rgba(91,214,224,.10);}
+    .hero-orbit::before,.hero-orbit::after{content:"";position:absolute;inset:10%;border:1px solid rgba(214,172,85,.11);border-radius:50%;}
+    .hero-orbit::after{inset:24%;border-color:rgba(91,214,224,.16);}
+    .hero-inner{width:min(100%,var(--max));margin:0 auto 7vh;display:grid;grid-template-columns:minmax(0,760px) minmax(280px,360px);gap:46px;align-items:end;}
+    .eyebrow{display:inline-flex;align-items:center;gap:14px;margin:0 0 22px;font-family:var(--roman);font-size:.72rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);}
+    .eyebrow::before{content:"";width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
+    h1,h2,h3,h4{margin:0;line-height:1.04;}
+    h1{max-width:14ch;font-family:var(--roman);font-weight:800;font-size:clamp(3rem,8vw,6.2rem);line-height:.96;letter-spacing:-.01em;text-transform:uppercase;color:var(--ink);text-wrap:balance;}
+    .foil{background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 40%,#fff6dc 50%,var(--gold-bright) 60%,var(--gold-deep));background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 7s linear infinite;}
+    @keyframes foil{to{background-position:220% 0}}
+    .hero-lead{max-width:60ch;margin:26px 0 0;color:var(--muted);font-size:clamp(1.04rem,1.4vw,1.2rem);}
+    .hero-lead b{color:var(--parch);font-weight:600;}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;}
+    .button{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 22px;font-family:var(--roman);font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;border:1px solid var(--line);color:var(--ink);background:rgba(244,236,216,.05);backdrop-filter:blur(12px);transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease);}
+    .button:hover{transform:translateY(-3px);border-color:rgba(214,172,85,.5);background:rgba(244,236,216,.1);}
+    .button.primary{color:#14110a;border-color:transparent;background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep));box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5);}
+    .button.primary:hover{box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6);}
+    .button.cta-observatory{position:relative;isolation:isolate;overflow:hidden;min-height:62px;padding:0 30px;gap:15px;color:#080a0f;border:1px solid rgba(255,246,220,.9);background:linear-gradient(115deg,#fff4bd 0%,var(--gold-bright) 18%,var(--gold) 44%,#ff8f3d 68%,var(--gold-bright) 100%);background-size:220% 100%;box-shadow:0 0 0 1px rgba(255,246,220,.22),0 18px 52px rgba(243,217,138,.45),0 0 44px rgba(91,214,224,.25),inset 0 1px 0 rgba(255,255,255,.85);animation:ctaPulse 2.35s var(--ease) infinite,ctaGradient 5.5s linear infinite;}
+    .button.cta-observatory span{position:relative;z-index:1;text-shadow:0 1px 0 rgba(255,255,255,.42);}
+    .button.cta-observatory::before{content:"";position:absolute;z-index:0;inset:-55% -34%;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.88) 47%,rgba(255,246,220,.35) 53%,transparent 66%);transform:translateX(-86%) rotate(7deg);animation:ctaSweep 1.9s ease-in-out infinite;pointer-events:none;mix-blend-mode:screen;}
+    .button.cta-observatory::after{content:"↗";position:relative;z-index:1;display:grid;place-items:center;width:31px;height:31px;border-radius:50%;color:var(--gold-bright);background:rgba(5,8,17,.94);box-shadow:0 0 0 1px rgba(255,246,220,.35),0 0 20px rgba(91,214,224,.42);animation:ctaArrow 1.05s ease-in-out infinite;}
+    .button.cta-observatory:hover{transform:translateY(-5px) scale(1.035);border-color:#fff6dc;box-shadow:0 0 0 1px rgba(255,246,220,.45),0 24px 70px rgba(243,217,138,.62),0 0 70px rgba(91,214,224,.40),inset 0 1px 0 rgba(255,255,255,.95);}
+    @keyframes ctaPulse{0%,100%{box-shadow:0 0 0 1px rgba(255,246,220,.22),0 18px 52px rgba(243,217,138,.45),0 0 44px rgba(91,214,224,.25),inset 0 1px 0 rgba(255,255,255,.85);}50%{box-shadow:0 0 0 5px rgba(243,217,138,.16),0 28px 76px rgba(243,217,138,.64),0 0 76px rgba(91,214,224,.42),inset 0 1px 0 rgba(255,255,255,.95);}}
+    @keyframes ctaSweep{0%{transform:translateX(-92%) rotate(7deg);opacity:0;}18%,72%{opacity:1;}100%{transform:translateX(92%) rotate(7deg);opacity:0;}}
+    @keyframes ctaArrow{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4px,-4px) scale(1.08);}}
+    @keyframes ctaGradient{to{background-position:220% 0;}}
+    .button.ocean{border-color:rgba(91,214,224,.35);color:var(--parch);background:rgba(91,214,224,.06);}
+    .button.ocean:hover{border-color:rgba(91,214,224,.62);background:rgba(91,214,224,.11);}
+
+    .signal-board{border:1px solid var(--line);border-radius:3px;background:var(--glass);box-shadow:var(--shadow);backdrop-filter:blur(18px);overflow:hidden;}
+    .signal{padding:18px 20px;border-bottom:1px solid var(--line-2);}
+    .signal:last-child{border-bottom:0;}
+    .signal span{display:block;font-family:var(--roman);font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);}
+    .signal strong{display:block;margin-top:7px;color:var(--parch);font-size:1.05rem;font-weight:500;font-family:var(--serif);}
+    .signal em{color:var(--ocean);font-style:normal;}
+
+    /* ---------- Topbar ---------- */
+    .topbar{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);background:rgba(5,8,17,.72);backdrop-filter:blur(18px) saturate(140%);}
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:70px;}
+    .brand{display:flex;align-items:center;gap:13px;min-width:max-content;}
+    .brand-mark{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid rgba(214,172,85,.5);box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5);}
+    .brand span{font-family:var(--roman);font-weight:700;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);}
+    .nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;}
+    .nav::-webkit-scrollbar{display:none;}
+    .nav a{position:relative;flex:0 0 auto;padding:10px 11px;font-family:var(--roman);font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap;transition:color .3s var(--ease);}
+    .nav a::after{content:"";position:absolute;left:11px;right:11px;bottom:6px;height:1px;background:linear-gradient(90deg,var(--gold),var(--gold-bright));transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);}
+    .nav a:hover,.nav a.active{color:var(--ink);}
+    .nav a:hover::after,.nav a.active::after{transform:scaleX(1);}
+    .home-link{flex:0 0 auto;display:inline-flex;align-items:center;min-height:40px;padding:0 14px;font-family:var(--roman);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);border:1px solid var(--line);border-radius:2px;background:rgba(214,172,85,.06);white-space:nowrap;transition:border-color .3s var(--ease),background .3s var(--ease);}
+    .home-link:hover{border-color:rgba(214,172,85,.5);background:rgba(214,172,85,.12);}
+    .progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:rgba(214,172,85,.1);}
+    .progress span{display:block;width:0%;height:100%;background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright),var(--ocean));}
+
+    main{width:min(100% - 40px,var(--max));margin:0 auto;}
+    .section{padding:clamp(70px,9vw,112px) 0;border-top:1px solid var(--line);}
+    .section:first-child{border-top:0;}
+    .section-kicker{margin:0 0 14px;font-family:var(--roman);font-size:.68rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);}
+    .sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,420px);gap:36px;align-items:end;margin-bottom:38px;}
+    .sec-head h2{font-family:var(--roman);font-weight:800;font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.0;letter-spacing:.005em;text-transform:uppercase;color:var(--ink);text-wrap:balance;}
+    .sec-head p{margin:0;color:var(--muted);font-size:1.02rem;}
+
+    .intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:stretch;}
+    .codex-panel{border:1px solid var(--line);border-radius:3px;background:linear-gradient(180deg,rgba(14,26,46,.48),rgba(7,12,26,.62));box-shadow:0 28px 80px rgba(0,0,0,.35);backdrop-filter:blur(16px);}
+    .manifesto{padding:clamp(28px,4vw,42px);border-left:2px solid var(--ocean);}
+    .manifesto h2{font-family:var(--roman);font-weight:700;font-size:clamp(1.8rem,3.6vw,2.8rem);text-transform:uppercase;line-height:1.05;text-wrap:balance;}
+    .manifesto p{margin:18px 0 0;color:var(--muted);font-size:1.06rem;}
+    .observatory-shot{position:relative;overflow:hidden;min-height:360px;background:#03060d;}
+    .observatory-shot img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.06);}
+    .observatory-shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 36%,rgba(5,8,17,.88) 100%);}
+    .shot-caption{position:absolute;left:22px;right:22px;bottom:20px;z-index:1;color:var(--parch);}
+    .shot-caption span{display:block;font-family:var(--roman);font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+
+    .credit-band{margin-top:28px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;border:1px solid var(--line);border-radius:3px;background:rgba(214,172,85,.055);}
+    .credit-person{display:flex;align-items:center;gap:14px;}
+    .credit-person img{width:58px;height:58px;border-radius:50%;object-fit:cover;padding:3px;background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep));}
+    .credit-person span{display:block;font-family:var(--roman);font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);}
+    .credit-person strong{display:block;margin-top:2px;font-family:var(--roman);font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);}
+    .credit-band p{margin:0;color:var(--muted);max-width:54ch;}
+
+    /* App features */
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .feature{position:relative;padding:26px;border:1px solid var(--line-2);border-top:3px solid var(--accent,var(--gold));border-radius:3px;background:rgba(244,236,216,.035);min-height:250px;overflow:hidden;transition:transform .35s var(--ease),border-color .35s var(--ease),background .35s var(--ease);}
+    .feature:hover{transform:translateY(-6px);border-color:rgba(214,172,85,.44);background:rgba(244,236,216,.055);}
+    .feature .glyph{font-family:var(--roman);font-size:2.2rem;color:var(--accent,var(--gold));line-height:1;margin-bottom:20px;}
+    .feature h3{font-family:var(--roman);font-weight:700;font-size:1.02rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);}
+    .feature p{margin:14px 0 0;color:var(--muted);font-size:.98rem;}
+    .feature .micro{position:absolute;right:18px;bottom:16px;font-family:var(--roman);font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);}
+
+    /* Event atlas */
+    .filters{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px;}
+    .filter-btn{cursor:pointer;border:1px solid var(--line);border-radius:999px;padding:8px 13px;background:rgba(244,236,216,.04);color:var(--muted);font-family:var(--roman);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:color .25s,border-color .25s,background .25s;}
+    .filter-btn:hover,.filter-btn.active{color:var(--ink);border-color:rgba(214,172,85,.5);background:rgba(214,172,85,.10);}
+    .timeline-shell{border:1px solid var(--line);border-radius:3px;background:linear-gradient(180deg,rgba(14,26,46,.38),rgba(7,12,26,.52));padding:24px;overflow:hidden;}
+    .deep-rail{position:relative;height:86px;margin-bottom:28px;border-bottom:1px solid var(--line-2);}
+    .deep-axis{position:absolute;left:0;right:0;top:42px;height:2px;background:linear-gradient(90deg,var(--magma),var(--life),var(--ocean),var(--gold));box-shadow:0 0 16px rgba(243,217,138,.25);}
+    .era-zone{position:absolute;top:0;height:72px;border-left:1px solid rgba(244,236,216,.08);background:linear-gradient(180deg,var(--era-bg),transparent);}
+    .era-zone span{position:absolute;left:10px;top:8px;font-family:var(--roman);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--era-c);}
+    .event-dot{position:absolute;top:37px;width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,.38);background:var(--c);transform:translateX(-50%);box-shadow:0 0 12px var(--c);}
+    .event-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:14px;}
+    .event-card{position:relative;border:1px solid var(--line-2);border-left:3px solid var(--c);border-radius:3px;padding:16px 16px 18px;background:rgba(244,236,216,.03);transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease);}
+    .event-card:hover{transform:translateY(-4px);background:rgba(244,236,216,.055);border-color:rgba(214,172,85,.38);}
+    .event-card.hide{display:none;}
+    .event-card .age{font-family:var(--roman);font-size:.62rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--c);}
+    .event-card h3{margin-top:8px;font-family:var(--roman);font-size:.9rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1.18;color:var(--ink);}
+    .event-card p{margin:10px 0 0;color:var(--muted);font-size:.9rem;line-height:1.55;}
+    .cat-pill{position:absolute;right:12px;top:12px;font-family:var(--roman);font-size:.5rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c);border:1px solid color-mix(in srgb,var(--c),transparent 55%);border-radius:999px;padding:3px 7px;background:rgba(5,8,17,.45);}
+
+    /* Dataset cards */
+    .dataset-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+    .dataset{border:1px solid var(--line);border-radius:4px;background:linear-gradient(180deg,rgba(14,26,46,.42),rgba(7,12,26,.58));overflow:hidden;}
+    .dataset-head{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:start;padding:22px;border-bottom:1px solid var(--line-2);}
+    .dataset-glyph{width:52px;height:52px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;font-family:var(--roman);font-size:1.45rem;color:var(--accent);background:rgba(244,236,216,.035);box-shadow:0 0 24px color-mix(in srgb,var(--accent),transparent 84%);}
+    .dataset h3{font-family:var(--roman);font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);}
+    .dataset .summary{margin:8px 0 0;color:var(--muted);font-size:.95rem;line-height:1.5;}
+    .status{font-family:var(--roman);font-size:.52rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent),transparent 50%);border-radius:999px;padding:5px 9px;white-space:nowrap;}
+    .dataset-meta{display:flex;flex-wrap:wrap;gap:8px;padding:14px 22px;border-bottom:1px solid var(--line-2);}
+    .dataset-meta span,.mono-chip{font-family:var(--roman);font-size:.54rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);border:1px solid var(--line-2);border-radius:999px;padding:5px 9px;background:rgba(244,236,216,.025);}
+    .dataset-body{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;padding:22px;}
+    .dataset-body p{margin:0 0 12px;color:var(--muted);font-size:.92rem;line-height:1.58;}
+    .dataset-body p:last-child{margin-bottom:0;}
+    .how-label{font-family:var(--roman);font-size:.56rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+    .cite-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+    .cite-list a{display:inline;color:var(--gold);font-size:.9rem;text-decoration:underline;text-decoration-color:rgba(214,172,85,.25);text-underline-offset:3px;}
+    .cite-list a:hover{color:var(--gold-bright);text-decoration-color:var(--gold-bright);}
+
+    /* Pipeline */
+    .pipeline{display:grid;grid-template-columns:.82fr 1.18fr;gap:26px;align-items:stretch;}
+    .formation-card{position:relative;min-height:520px;overflow:hidden;border:1px solid var(--line);border-radius:3px;background-image:var(--formation);background-size:cover;background-position:center;box-shadow:0 32px 90px rgba(0,0,0,.45);}
+    .formation-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,17,.12),rgba(5,8,17,.88));}
+    .formation-card .caption{position:absolute;left:24px;right:24px;bottom:24px;z-index:1;}
+    .formation-card .caption h3{font-family:var(--roman);font-weight:800;text-transform:uppercase;font-size:1.35rem;}
+    .formation-card .caption p{margin:10px 0 0;color:var(--muted);}
+    .process-steps{list-style:none;margin:0;padding:0;display:grid;gap:13px;}
+    .process-step{display:grid;grid-template-columns:70px 1fr;gap:16px;align-items:start;padding:18px 20px;border:1px solid var(--line-2);border-left:3px solid var(--gold);border-radius:3px;background:rgba(244,236,216,.035);}
+    .step-num{font-family:var(--roman);font-weight:800;font-size:1.28rem;letter-spacing:.08em;color:var(--gold-bright);}
+    .step-title{font-family:var(--roman);font-weight:700;font-size:.88rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);}
+    .step-desc{margin-top:7px;color:var(--muted);font-size:.95rem;line-height:1.55;}
+
+    .download-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+    .dl-card{display:flex;flex-direction:column;gap:12px;min-height:210px;padding:24px;border:1px solid var(--line);border-radius:3px;background:rgba(214,172,85,.055);transition:transform .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);}
+    .dl-card:hover{transform:translateY(-6px);border-color:rgba(214,172,85,.55);background:rgba(214,172,85,.09);}
+    .dl-card strong{font-family:var(--roman);font-size:1rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);}
+    .dl-card span{color:var(--muted);font-size:.94rem;}
+    .dl-card .arrow{margin-top:auto;font-family:var(--roman);font-size:.62rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-bright);}
+
+    /* Collective footer */
+    .collective-footer{margin:56px 0 0;border:1px solid var(--line);border-radius:4px;padding:clamp(30px,4vw,46px);text-align:center;background:radial-gradient(120% 150% at 50% -20%,rgba(214,172,85,.14),transparent 60%),linear-gradient(180deg,rgba(14,26,46,.5),rgba(7,12,26,.62));}
+    .collective-footer .seal{width:74px;height:74px;border-radius:50%;object-fit:cover;padding:4px;margin:0 auto 16px;background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep));}
+    .collective-footer h3{font-family:var(--roman);font-weight:800;font-size:clamp(1.35rem,2.6vw,1.95rem);text-transform:uppercase;letter-spacing:.04em;margin:0;}
+    .collective-footer p{max-width:62ch;margin:14px auto 0;color:var(--muted);}
+    .footer-links{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px;}
+    .footer-links a{font-family:var(--roman);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);border:1px solid var(--line);border-radius:2px;padding:11px 16px;background:rgba(214,172,85,.06);transition:border-color .3s,background .3s;}
+    .footer-links a:hover{border-color:rgba(214,172,85,.5);background:rgba(214,172,85,.12);}
+    .footer-motto{display:inline-block;margin-top:22px;font-family:var(--serif);font-style:italic;color:var(--gold);}
+    .tech-footer{border-top:1px solid var(--line);margin-top:48px;padding:26px 0 50px;color:var(--soft);font-size:.82rem;text-align:center;}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+    .reveal.in{opacity:1;transform:none;}
+    .reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}.reveal[data-d="3"]{transition-delay:.24s}
+
+    @media (max-width:980px){
+      .hero-inner,.intro-grid,.sec-head,.pipeline{grid-template-columns:1fr;}
+      .feature-grid,.download-grid{grid-template-columns:1fr;}
+      .dataset-grid{grid-template-columns:1fr;}
+      .dataset-body{grid-template-columns:1fr;}
+      .hero{min-height:auto;padding:28px 20px 86px;}
+      .hero-inner{margin-top:22vh;}
+      .hero-inner > *{min-width:0;}
+      .hero-lead{overflow-wrap:break-word;}
+      .signal-board{width:100%;max-width:100%;}
+      .topbar-inner{min-height:64px;}
+    }
+    @media (max-width:640px){
+      .wrap,main{width:min(100% - 28px,var(--max));}
+      .eyebrow{font-size:.6rem;letter-spacing:.18em;line-height:1.45;flex-wrap:wrap;}
+      h1{font-size:clamp(2.45rem,15vw,3.5rem);}
+      .hero-actions{gap:10px;}.button{width:100%;justify-content:center;padding:0 14px;}
+      .credit-band{align-items:flex-start;flex-direction:column;}
+      .dataset-head{grid-template-columns:auto 1fr;}.status{grid-column:1/-1;width:max-content;}
+      .process-step{grid-template-columns:1fr;}
+      .deep-rail{height:112px;}
+      .brand span{font-size:.72rem;}
+    }
+    @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page" id="top">
+    <header class="hero" id="hero">
+      <div class="hero-orbit" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow reveal in">Dossier VI · Observatoire du temps profond</p>
+          <h1 class="reveal in" data-d="1">La Vie de <span class="foil">la Terre</span></h1>
+          <p class="hero-lead reveal in" data-d="2">Une application interactive pour traverser <b>4,54 milliards d'années</b> : continents qui dérivent, climat qui bascule, atmosphère qui s'oxygène, durée du jour qui s'allonge — et une règle d'or : chaque courbe doit pouvoir remonter à sa source.</p>
+          <div class="hero-actions reveal in" data-d="3">
+            <a class="button primary cta-observatory" href="https://thesamlepirate.github.io/la-vie-de-la-terre/" target="_blank" rel="noopener"><span>Lancer l'observatoire</span></a>
+            <a class="button ocean" href="https://thesamlepirate.github.io/la-vie-de-la-terre/#sources" target="_blank" rel="noopener">Voir les sources ↗</a>
+            <a class="button" href="../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board reveal in" data-d="2" aria-label="Chiffres clés de l'application">
+          <div class="signal"><span>Étendue temporelle</span><strong>4,54 Ga → présent</strong></div>
+          <div class="signal"><span>Cartographie</span><strong><em>201</em> heightmaps 16-bit</strong></div>
+          <div class="signal"><span>Télémétrie</span><strong><em>10</em> séries temporelles</strong></div>
+          <div class="signal"><span>Parcours narratif</span><strong><em>45</em> événements repères</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour en haut">
+          <img class="brand-mark" src="../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+          <span>La Vie de la Terre</span>
+        </a>
+        <nav class="nav" aria-label="Navigation du dossier">
+          <a href="#observatoire">Observatoire</a>
+          <a href="#parcours">Événements</a>
+          <a href="#donnees">Données</a>
+          <a href="#pipeline">Pipeline</a>
+          <a href="#telecharger">Télécharger</a>
+          <a href="#sources">Sources</a>
+          <a class="home-link" href="../index.html">Accueil ECI</a>
+        </nav>
+      </div>
+      <div class="progress" aria-hidden="true"><span id="progressNav"></span></div>
+    </header>
+
+    <main>
+      <section class="section" id="observatoire">
+        <div class="intro-grid">
+          <div class="codex-panel manifesto reveal">
+            <p class="section-kicker">Ce que l'application rend visible</p>
+            <h2>Un globe, une frise, des courbes — le même âge partout.</h2>
+            <p>Le curseur temporel pilote tout : la position des continents, les graphes de température, CO₂, O₂, CH₄, composition atmosphérique et durée du jour. L'application ne raconte pas « une jolie histoire » : elle montre où les mesures existent, où les modèles prennent le relais, et où l'incertitude impose une scène stylisée.</p>
+            <p>La page que vous lisez est le dossier ECI de l'observatoire : elle explique le parcours, les sources et la chaîne de production des données.</p>
+          </div>
+          <figure class="codex-panel observatory-shot reveal" data-d="1">
+            <img src="assets/earth-observatory.png" alt="Capture de l'application La Vie de la Terre montrant le globe, la frise et les télémétries">
+            <figcaption class="shot-caption"><span>Interface réelle</span>Globe Three.js, frise géologique et télémétrie synchronisée.</figcaption>
+          </figure>
+        </div>
+
+        <div class="credit-band reveal" data-d="2">
+          <div class="credit-person">
+            <img src="assets/samlepirate.jpeg" alt="Avatar de SamLePirate">
+            <div><span>Un projet de</span><strong>SamLePirate</strong></div>
+          </div>
+          <p>Données ouvertes, pipeline reproductible, intégration ECI : l'objectif est que chaque image spectaculaire soit accompagnée de sa méthode.</p>
+        </div>
+      </section>
+
+      <section class="section" id="interface">
+        <div class="sec-head reveal">
+          <div>
+            <p class="section-kicker">Mode d'emploi</p>
+            <h2>Lire la Terre comme un instrument.</h2>
+          </div>
+          <p>L'application est construite comme une console scientifique : les mêmes données alimentent le globe, les cartes, les graphes et les téléchargements.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature reveal" style="--accent:var(--ocean)">
+            <div class="glyph">◍</div>
+            <h3>Globe paléogéographique</h3>
+            <p>De 0 à 540 Ma, le relief vient de PaleoDEM ; de 540 à 1000 Ma, des masques tectoniques schématiques reconstruisent les terres ; avant 1 Ga, le rendu assume l'incertitude.</p>
+            <span class="micro">cartes interpolées</span>
+          </article>
+          <article class="feature reveal" data-d="1" style="--accent:var(--life)">
+            <div class="glyph">⌁</div>
+            <h3>Frise d'événements</h3>
+            <p>Formation de la Lune, premiers océans, Grande Oxydation, Ediacara, extinctions, Homo sapiens : 45 repères replacent chaque bascule dans le temps profond.</p>
+            <span class="micro">45 jalons</span>
+          </article>
+          <article class="feature reveal" data-d="2" style="--accent:var(--gold)">
+            <div class="glyph">T</div>
+            <h3>Télémétrie des proxies</h3>
+            <p>Température, CO₂, O₂, CH₄, composition et durée du jour : les courbes signalent si l'on observe, modélise ou estime — au lieu de mélanger tous les statuts.</p>
+            <span class="micro">10 séries</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="parcours">
+        <div class="sec-head reveal">
+          <div>
+            <p class="section-kicker">Atlas des bascules</p>
+            <h2>Les événements de la vie sur Terre.</h2>
+          </div>
+          <p>Filtrez les jalons par catégorie : planète, vivant, climat ou humanité. Les âges sont exprimés en Ma (millions d'années avant aujourd'hui) ; 0,3 Ma = 300 000 ans.</p>
+        </div>
+        <div class="timeline-shell reveal">
+          <div class="filters" id="filters" aria-label="Filtrer les événements"></div>
+          <div class="deep-rail" id="deepRail" aria-hidden="true"></div>
+          <div class="event-grid" id="eventGrid"></div>
+        </div>
+      </section>
+
+      <section class="section" id="donnees">
+        <div class="sec-head reveal">
+          <div>
+            <p class="section-kicker">D'où viennent les chiffres ?</p>
+            <h2>Mesuré, modélisé, estimé : trois statuts, pas trois vérités.</h2>
+          </div>
+          <p>La force de l'observatoire est de ne pas cacher la frontière entre mesure et reconstruction. Voici les variables affichées et la manière dont elles sont produites.</p>
+        </div>
+
+        <div class="dataset-grid">
+          <article class="dataset reveal" style="--accent:var(--ocean)">
+            <div class="dataset-head"><span class="dataset-glyph">◍</span><div><h3>Paléogéographie</h3><p class="summary">Position des continents, topographie et bathymétrie plaquées sur le globe.</p></div><span class="status">Mixte</span></div>
+            <div class="dataset-meta"><span>0 → 1000 Ma</span><span>201 cartes</span><span>grille 1°×1°</span></div>
+            <div class="dataset-body"><div><div class="how-label">Création</div><p>0–540 Ma : PaleoDEM de Scotese & Wright, converti en heightmaps PNG 16-bit.</p><p>540–1000 Ma : reconstructions Merdith et al. via pyGPlates, rasterisées en masques terre/mer.</p><p>Avant 1000 Ma : rendu stylisé, car la tectonique devient trop incertaine.</p></div><div><div class="how-label">Sources</div><ul class="cite-list"><li><a href="https://www.earthbyte.org/paleodem-resource-scotese-and-wright-2018/" target="_blank" rel="noopener">PALEOMAP PaleoDEMs</a></li><li><a href="https://doi.org/10.5281/zenodo.5460860" target="_blank" rel="noopener">Données Zenodo</a></li><li><a href="https://zenodo.org/records/13635864" target="_blank" rel="noopener">Merdith et al. 2021</a></li></ul></div></div>
+          </article>
+
+          <article class="dataset reveal" data-d="1" style="--accent:var(--magma)">
+            <div class="dataset-head"><span class="dataset-glyph">T</span><div><h3>Température moyenne globale</h3><p class="summary">GMST, de l'océan de magma au climat actuel.</p></div><span class="status">Mixte</span></div>
+            <div class="dataset-meta"><span>0 → 4540 Ma</span><span>PhanDA + ancrages</span><span>°C</span></div>
+            <div class="dataset-body"><div><div class="how-label">Création</div><p>0–485 Ma : PhanDA (Judd et al. 2024), assimilation de >150 000 mesures de proxies et >850 simulations climatiques.</p><p>485–4540 Ma : points d'ancrage issus de la littérature, signalés comme estimés puis interpolés.</p></div><div><div class="how-label">Sources</div><ul class="cite-list"><li><a href="https://www.science.org/doi/10.1126/science.adk3705" target="_blank" rel="noopener">Judd et al. 2024</a></li><li><a href="https://github.com/EJJudd/PhanDA" target="_blank" rel="noopener">PhanDA</a></li><li><a href="https://www.pnas.org/doi/abs/10.1073/pnas.1721296115" target="_blank" rel="noopener">Krissansen-Totton 2018</a></li></ul></div></div>
+          </article>
+
+          <article class="dataset reveal" data-d="2" style="--accent:var(--gold)">
+            <div class="dataset-head"><span class="dataset-glyph">C</span><div><h3>Dioxyde de carbone (CO₂)</h3><p class="summary">Trois reconstructions indépendantes affichées ensemble.</p></div><span class="status">Mixte</span></div>
+            <div class="dataset-meta"><span>0 → 570 Ma</span><span>3 méthodes</span><span>ppm · log</span></div>
+            <div class="dataset-body"><div><div class="how-label">Création</div><p>PhanDA co-estime CO₂ et température ; Foster et al. compilent >1200 proxies ; GEOCARBSULF calcule le cycle carbone-soufre en run déterministe.</p></div><div><div class="how-label">Sources</div><ul class="cite-list"><li><a href="https://www.nature.com/articles/ncomms14845" target="_blank" rel="noopener">Foster et al. 2017</a></li><li><a href="https://www.image.ucar.edu/idag/Papers/Berner_phanozericO2.pdf" target="_blank" rel="noopener">Berner 2006</a></li><li><a href="https://www.science.org/doi/10.1126/science.adk3705" target="_blank" rel="noopener">Judd et al. 2024</a></li></ul></div></div>
+          </article>
+
+          <article class="dataset reveal" style="--accent:var(--life)">
+            <div class="dataset-head"><span class="dataset-glyph">O</span><div><h3>Dioxygène (O₂)</h3><p class="summary">De l'anoxie archéenne au 21 % actuel.</p></div><span class="status">Mixte</span></div>
+            <div class="dataset-meta"><span>0 → 4000 Ma</span><span>modèle + ancrages</span><span>% atm</span></div>
+            <div class="dataset-body"><div><div class="how-label">Création</div><p>0–570 Ma : sortie O₂ de GEOCARBSULF, avec un pic carbonifère-permien. 570–4000 Ma : ancrages conceptuels issus de Lyons et al. pour la Grande Oxydation et le Précambrien.</p></div><div><div class="how-label">Sources</div><ul class="cite-list"><li><a href="https://www.nature.com/articles/nature13068" target="_blank" rel="noopener">Lyons et al. 2014</a></li><li><a href="https://www.image.ucar.edu/idag/Papers/Berner_phanozericO2.pdf" target="_blank" rel="noopener">GEOCARBSULF</a></li><li><a href="https://www.science.org/doi/10.1126/sciadv.aax1420" target="_blank" rel="noopener">Catling & Zahnle 2020</a></li></ul></div></div>
+          </article>
+
+          <article class="dataset reveal" data-d="1" style="--accent:var(--violet)">
+            <div class="dataset-head"><span class="dataset-glyph">M</span><div><h3>Méthane (CH₄)</h3><p class="summary">Gaz-clé de la Terre primitive, avant l'oxygénation.</p></div><span class="status">Estimé</span></div>
+            <div class="dataset-meta"><span>0 → 4000 Ma</span><span>ancrages modèles</span><span>ppm · log</span></div>
+            <div class="dataset-body"><div><div class="how-label">Création</div><p>Aucune mesure directe n'est possible : les valeurs sont des estimations de modèles. Le pic archéen s'effondre après la Grande Oxydation, lorsque l'O₂ détruit le CH₄ atmosphérique.</p></div><div><div class="how-label">Sources</div><ul class="cite-list"><li><a href="https://www.science.org/doi/10.1126/sciadv.aax1420" target="_blank" rel="noopener">Catling & Zahnle 2020</a></li><li><a href="https://www.pnas.org/doi/abs/10.1073/pnas.1721296115" target="_blank" rel="noopener">Krissansen-Totton 2018</a></li></ul></div></div>
+          </article>
+
+          <article class="dataset reveal" data-d="2" style="--accent:var(--ice)">
+            <div class="dataset-head"><span class="dataset-glyph">↻</span><div><h3>Durée du jour</h3><p class="summary">Le ralentissement de la rotation terrestre par les marées Terre-Lune.</p></div><span class="status">Mixte</span></div>
+            <div class="dataset-meta"><span>0 → 4500 Ma</span><span>proxies + modèle</span><span>heures</span></div>
+            <div class="dataset-body"><div><div class="how-label">Création</div><p>Rythmites de marée et sclérochronologie donnent des points fermes ; Farhat et al. reconstruisent la courbe Terre-Lune ; Mitchell & Kirscher documentent un palier proche de 19 h au Protérozoïque moyen.</p></div><div><div class="how-label">Sources</div><ul class="cite-list"><li><a href="https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/1999RG900016" target="_blank" rel="noopener">Williams 2000</a></li><li><a href="https://arxiv.org/abs/2207.00438" target="_blank" rel="noopener">Farhat et al. 2022</a></li><li><a href="https://www.nature.com/articles/s41561-023-01202-6" target="_blank" rel="noopener">Mitchell & Kirscher 2023</a></li></ul></div></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="pipeline">
+        <div class="sec-head reveal">
+          <div>
+            <p class="section-kicker">La donnée avant le spectacle</p>
+            <h2>Le pipeline reproductible.</h2>
+          </div>
+          <p>Les fichiers bruts publiés sont transformés hors runtime par scripts Python, puis l'interface lit des fichiers normalisés. Rien n'est inventé au moment de l'affichage.</p>
+        </div>
+        <div class="pipeline">
+          <figure class="formation-card reveal">
+            <figcaption class="caption"><h3>De l'océan de magma au globe bleu</h3><p>L'image spectaculaire ouvre le récit ; les données ouvertes le rendent vérifiable.</p></figcaption>
+          </figure>
+          <ol class="process-steps">
+            <li class="process-step reveal"><span class="step-num">01</span><div><div class="step-title">Collecte</div><div class="step-desc">Téléchargement des jeux publiés : Zenodo, dépôts des auteurs, suppléments d'articles et modèles tectoniques.</div></div></li>
+            <li class="process-step reveal" data-d="1"><span class="step-num">02</span><div><div class="step-title">Extraction</div><div class="step-desc">Lecture des formats sources — NetCDF, xlsx, GPML, fichiers .rot — et conversion en tables propres.</div></div></li>
+            <li class="process-step reveal" data-d="2"><span class="step-num">03</span><div><div class="step-title">Modélisation</div><div class="step-desc">Exécution des modèles quand il n'existe pas de mesure directe : GEOCARBSULF en Python, reconstruction pyGPlates.</div></div></li>
+            <li class="process-step reveal"><span class="step-num">04</span><div><div class="step-title">Unification</div><div class="step-desc">Fusion en un JSON unique de séries temporelles et en heightmaps PNG, avec marquage sourcé, modélisé ou estimé.</div></div></li>
+            <li class="process-step reveal" data-d="1"><span class="step-num">05</span><div><div class="step-title">Visualisation</div><div class="step-desc">L'app interpole les données par âge : le globe et les graphes restent fidèles aux fichiers produits par le pipeline.</div></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section" id="telecharger">
+        <div class="sec-head reveal">
+          <div>
+            <p class="section-kicker">Données ouvertes</p>
+            <h2>Tout doit pouvoir être repris.</h2>
+          </div>
+          <p>Les fichiers de sortie sont exposés par l'application : le JSON des séries, le manifeste des cartes et les exports CSV depuis la page sources.</p>
+        </div>
+        <div class="download-grid">
+          <a class="dl-card reveal" href="https://thesamlepirate.github.io/la-vie-de-la-terre/data/timeseries.json" target="_blank" rel="noopener"><strong>Séries temporelles</strong><span>JSON complet · 10 séries : température, CO₂, O₂, CH₄, composition, durée du jour.</span><span class="arrow">ouvrir le JSON ↗</span></a>
+          <a class="dl-card reveal" data-d="1" href="https://thesamlepirate.github.io/la-vie-de-la-terre/heightmaps/manifest.json" target="_blank" rel="noopener"><strong>Paléo-cartes</strong><span>Manifeste des 201 heightmaps PNG 16-bit, de 0 à 1 Ga.</span><span class="arrow">ouvrir le manifeste ↗</span></a>
+          <a class="dl-card reveal" data-d="2" href="https://thesamlepirate.github.io/la-vie-de-la-terre/#sources" target="_blank" rel="noopener"><strong>Exports CSV</strong><span>La page sources de l'app génère les CSV individuels depuis les séries chargées.</span><span class="arrow">aller aux sources ↗</span></a>
+        </div>
+      </section>
+
+      <section class="section" id="sources">
+        <div class="sec-head reveal">
+          <div>
+            <p class="section-kicker">Transparence</p>
+            <h2>Ce qui est solide, ce qui est reconstruit, ce qui est prudent.</h2>
+          </div>
+          <p>Le dossier ne remplace pas la page sources de l'application : il l'encadre. La page originale détaille chaque variable, ses jeux de données, ses citations et les fichiers téléchargeables.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature reveal" style="--accent:var(--life)"><div class="glyph">✓</div><h3>Sourcé — mesuré</h3><p>Proxies géochimiques, fossiles, sédiments, données publiées et compilées par des équipes scientifiques.</p><span class="micro">preuves directes</span></article>
+          <article class="feature reveal" data-d="1" style="--accent:var(--ocean)"><div class="glyph">≈</div><h3>Modélisé</h3><p>Calculs physiques ou géochimiques contraints par des observations : GEOCARBSULF, pyGPlates, assimilation climatique.</p><span class="micro">modèles contraints</span></article>
+          <article class="feature reveal" data-d="2" style="--accent:var(--magma)"><div class="glyph">?</div><h3>Estimé</h3><p>Ancrages de consensus, forte incertitude, surtout avant 1 Ga : l'interface le signale au lieu de le masquer.</p><span class="micro">prudence explicite</span></article>
+        </div>
+        <div class="hero-actions reveal" style="margin-top:28px">
+          <a class="button primary" href="https://thesamlepirate.github.io/la-vie-de-la-terre/#sources" target="_blank" rel="noopener">Lire la page sources de l'app ↗</a>
+          <a class="button" href="../sources/sources.html">Sources ECI</a>
+        </div>
+      </section>
+
+      <section class="collective-footer reveal">
+        <img class="seal" src="../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+        <h3>Empire contre Intox</h3>
+        <p>Un collectif qui oppose, fait par fait, la puissance du réel aux récits de l'intox. Ici, même la beauté d'un globe animé doit répondre à une question : <em>comment le sait-on ?</em></p>
+        <div class="footer-links">
+          <a href="../index.html">Accueil ECI</a>
+          <a href="../ymir-lalie/resume-eres.html">Résumé des Ères</a>
+          <a href="../ymir-lalie/edicarien.html">L'Édiacarien</a>
+          <a href="../horloge-univers/chronos.html">Horloge de l'Univers</a>
+          <a href="../jorge-zalex/elements.html">Le Tableau Périodique</a>
+          <a href="../sources/sources.html">Les Sources</a>
+        </div>
+        <span class="footer-motto">Ad astra per aspera.</span>
+      </section>
+    </main>
+
+    <footer class="tech-footer"><div class="wrap">Dossier VI · La Vie de la Terre · page HTML autonome, style codex ECI · Application externe : <a href="https://thesamlepirate.github.io/la-vie-de-la-terre/" target="_blank" rel="noopener">thesamlepirate.github.io/la-vie-de-la-terre/</a></div></footer>
+  </div>
+
+  <script>
+    const CAT = {
+      all:{label:"Tout", color:"var(--gold)"},
+      terre:{label:"Terre", color:"var(--magma)"},
+      vie:{label:"Vie", color:"var(--life)"},
+      clim:{label:"Climat", color:"var(--ocean)"},
+      hum:{label:"Humanité", color:"var(--gold-bright)"}
+    };
+    const EVENTS = [
+      { age:4540, cat:"terre", title:"Formation de la Terre", desc:"La Terre s'accrète à partir de poussières et de planétésimaux, dans un océan de magma." },
+      { age:4500, cat:"terre", title:"Collision de Théia → Lune", desc:"Une protoplanète de la taille de Mars percute la Terre ; les débris s'agrègent en Lune." },
+      { age:4400, cat:"terre", title:"Premiers océans", desc:"La vapeur d'eau se condense ; de l'eau liquide est possible dès ~4,4 Ga (zircons de Jack Hills)." },
+      { age:4100, cat:"terre", title:"Grand bombardement tardif", desc:"Intense pluie d'impacts d'astéroïdes (~4,1–3,8 Ga), aujourd'hui débattue." },
+      { age:3800, cat:"vie", title:"Première vie", desc:"Premiers indices de vie microbienne (procaryotes) dans les océans." },
+      { age:3450, cat:"vie", title:"Stromatolites", desc:"Tapis bactériens fossilisés (Pilbara, Australie) — la vie laisse des structures visibles." },
+      { age:3400, cat:"vie", title:"Photosynthèse", desc:"La photosynthèse oxygénique apparaît (~3,4–2,9 Ga) : les cyanobactéries rejettent de l'O₂." },
+      { age:2400, cat:"clim", title:"Grande Oxydation (GOE)", desc:"L'oxygène s'accumule et déclenche la glaciation huronienne." },
+      { age:2100, cat:"vie", title:"Excursion de Lomagundi", desc:"Plus grande anomalie isotopique du carbone ; pic transitoire d'oxygène." },
+      { age:1800, cat:"vie", title:"Cellule complexe (eucaryotes)", desc:"Apparition des cellules à noyau, ancêtres des plantes et des animaux." },
+      { age:1400, cat:"clim", title:"« Boring billion »", desc:"~1 milliard d'années de stabilité climatique, faible O₂ et durée du jour bloquée vers 19 h." },
+      { age:1047, cat:"vie", title:"Reproduction sexuée", desc:"Le brassage des gènes accélère l'évolution (algue rouge Bangiomorpha)." },
+      { age:1000, cat:"terre", title:"Supercontinent Rodinia", desc:"Les terres se rassemblent en un continent unique." },
+      { age:750, cat:"terre", title:"Fragmentation de Rodinia", desc:"Le supercontinent se disloque, ouvrant de nouveaux océans." },
+      { age:720, cat:"clim", title:"Terre boule de neige (Sturtien)", desc:"Glaciation du Cryogénien : la planète gèle des pôles à l'équateur." },
+      { age:650, cat:"clim", title:"Terre boule de neige (Marinoen)", desc:"Seconde englaciation globale majeure du Cryogénien." },
+      { age:575, cat:"vie", title:"Biote d'Ediacara", desc:"Premiers grands organismes mous : Dickinsonia, Charnia, Kimberella." },
+      { age:538.8, cat:"vie", title:"Explosion cambrienne", desc:"Début du Phanérozoïque : squelettes, yeux, prédateurs ; les grands plans d'organisation apparaissent." },
+      { age:470, cat:"vie", title:"Les plantes sur la terre", desc:"Ordovicien : mousses puis plantes colonisent peu à peu les continents." },
+      { age:443.8, cat:"vie", title:"1ʳᵉ extinction (Ordovicien)", desc:"Une glaciation brutale efface ~85 % des espèces." },
+      { age:430, cat:"vie", title:"La vie conquiert la terre", desc:"Silurien : plantes vasculaires, premiers arthropodes terrestres, poissons à mâchoires." },
+      { age:375, cat:"vie", title:"Vertébrés hors de l'eau", desc:"Dévonien : premiers tétrapodes ; la transition vers la vie terrestre s'amorce." },
+      { age:372, cat:"vie", title:"2ᵉ extinction (Dévonien)", desc:"Vagues d'anoxie océanique : ~75 % des espèces disparaissent." },
+      { age:320, cat:"clim", title:"Forêts & insectes géants", desc:"Carbonifère : forêts de fougères, O₂ élevé, libellules géantes (Meganeura)." },
+      { age:299, cat:"terre", title:"Supercontinent Pangée", desc:"Permien : toutes les terres réunies ; règne des synapsides." },
+      { age:252, cat:"vie", title:"La Grande Mort (Permien-Trias)", desc:"Trapps de Sibérie : ~90–96 % des espèces marines disparaissent. La pire crise." },
+      { age:230, cat:"vie", title:"Dinosaures & mammifères", desc:"Trias : les dinosaures entament leur règne ; premiers mammifères." },
+      { age:201, cat:"vie", title:"4ᵉ extinction (Trias-Jurassique)", desc:"Volcanisme de l'Atlantique naissant : ~80 % des espèces." },
+      { age:175, cat:"terre", title:"Fragmentation de la Pangée", desc:"L'Atlantique central s'ouvre ; les continents modernes se dispersent." },
+      { age:150, cat:"vie", title:"Premiers oiseaux", desc:"Jurassique : Archaeopteryx ; grands sauropodes ; reptiles marins." },
+      { age:130, cat:"vie", title:"Plantes à fleurs", desc:"Crétacé : les angiospermes apparaissent et bouleversent les écosystèmes." },
+      { age:66, cat:"vie", title:"5ᵉ extinction : K-Pg", desc:"Un astéroïde de ~10 km frappe le Yucatán : fin des dinosaures non-aviens." },
+      { age:56, cat:"clim", title:"Maximum thermique (PETM)", desc:"Réchauffement brutal de ~5–8 °C lié à une libération massive de carbone." },
+      { age:34, cat:"clim", title:"L'Antarctique gèle", desc:"Refroidissement global : les premières calottes polaires se forment." },
+      { age:20, cat:"vie", title:"Prairies & grands singes", desc:"Néogène : diversification des grands singes, expansion des milieux herbeux." },
+      { age:7, cat:"hum", title:"Premiers homininés", desc:"En Afrique, indices de bipédie (Sahelanthropus, Orrorin)." },
+      { age:3.2, cat:"hum", title:"Lucy (Australopithèque)", desc:"Bipédie confirmée : petit cerveau, marche debout assurée." },
+      { age:2.8, cat:"hum", title:"Le genre Homo", desc:"Apparition du genre Homo ; premiers outils oldowayens peu après." },
+      { age:2.58, cat:"clim", title:"Glaciations quaternaires", desc:"Début des cycles glaciaires-interglaciaires du Quaternaire." },
+      { age:0.8, cat:"hum", title:"Maîtrise du feu", desc:"Usage contrôlé du feu (~800 000 ans, Homo erectus) : cuisson, chaleur." },
+      { age:0.3, cat:"hum", title:"Homo sapiens", desc:"Notre espèce apparaît en Afrique (~300 000 ans)." },
+      { age:0.065, cat:"hum", title:"Art & grandes migrations", desc:"Expansions hors d'Afrique ; cultures symboliques, parures, art rupestre." },
+      { age:0.012, cat:"hum", title:"L'agriculture", desc:"Néolithique : domestication, premiers villages, fin de la dernière glaciation." },
+      { age:0.005, cat:"hum", title:"L'histoire écrite", desc:"Premières écritures ; début des temps historiques." },
+      { age:0.00025, cat:"hum", title:"L'ère industrielle", desc:"Machines, science moderne, explosion démographique — et du CO₂." }
+    ];
+    const ERAS = [
+      {name:"Hadéen", start:4540, end:4000, color:"var(--magma)"},
+      {name:"Archéen", start:4000, end:2500, color:"var(--life)"},
+      {name:"Protérozoïque", start:2500, end:538.8, color:"var(--ocean)"},
+      {name:"Phanérozoïque", start:538.8, end:0, color:"var(--gold)"}
+    ];
+    const maxAge = 4540;
+    const pos = age => (1 - age / maxAge) * 100;
+    const fmtAge = age => age >= 1000 ? (age/1000).toLocaleString('fr-FR',{maximumFractionDigits:2}) + ' Ga' : age >= 1 ? age.toLocaleString('fr-FR',{maximumFractionDigits:1}) + ' Ma' : Math.round(age*1000).toLocaleString('fr-FR') + ' ka';
+
+    function setupEvents(){
+      const filters = document.getElementById('filters');
+      const grid = document.getElementById('eventGrid');
+      const rail = document.getElementById('deepRail');
+      filters.innerHTML = Object.entries(CAT).map(([k,v],i)=>`<button class="filter-btn ${i===0?'active':''}" data-cat="${k}" type="button">${v.label}</button>`).join('');
+      rail.innerHTML = '<div class="deep-axis"></div>' + ERAS.map(e=>{
+        const left = pos(e.start), width = pos(e.end) - pos(e.start);
+        return `<div class="era-zone" style="left:${left}%;width:${width}%;--era-c:${e.color};--era-bg:color-mix(in srgb, ${e.color}, transparent 88%)"><span>${e.name}</span></div>`;
+      }).join('') + EVENTS.map(ev=>`<i class="event-dot" style="left:${pos(ev.age)}%;--c:${CAT[ev.cat].color}" title="${ev.title} · ${fmtAge(ev.age)}"></i>`).join('');
+      grid.innerHTML = EVENTS.map(ev=>`<article class="event-card" data-cat="${ev.cat}" style="--c:${CAT[ev.cat].color}"><span class="cat-pill">${CAT[ev.cat].label}</span><div class="age">${fmtAge(ev.age)}</div><h3>${ev.title}</h3><p>${ev.desc}</p></article>`).join('');
+      filters.addEventListener('click', e=>{
+        const btn = e.target.closest('[data-cat]'); if(!btn) return;
+        filters.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.cat;
+        grid.querySelectorAll('.event-card').forEach(card=>card.classList.toggle('hide', cat !== 'all' && card.dataset.cat !== cat));
+      });
+    }
+    setupEvents();
+
+    const topBar = document.getElementById('progressTop');
+    const navBar = document.getElementById('progressNav');
+    const onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const pct = max > 0 ? h.scrollTop / max * 100 : 0;
+      topBar.style.width = pct + '%'; navBar.style.width = pct + '%';
+    };
+    addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+    const io = new IntersectionObserver(entries=>{for(const e of entries){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}},{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const navLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
+    const activeIo = new IntersectionObserver(entries=>{
+      const visible = entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+      if(!visible) return;
+      navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#' + visible.target.id));
+    },{threshold:[.2,.45,.7],rootMargin:'-22% 0px -58% 0px'});
+    sections.forEach(s=>activeIo.observe(s));
+  </script>
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Les Sources — vérification scientifique des dossiers — Empire contre Intox</title>
-  <meta name="description" content="Chaque donnée des dossiers Empire contre Intox, vérifiée et sourcée : cosmologie, géologie, vie, Artemis II. Affirmation → résumé → verdict → source autoritative. Veritas omnia vincit.">
+  <meta name="description" content="Chaque donnée des dossiers Empire contre Intox, vérifiée et sourcée : cosmologie, géologie, vie, Artemis II, La Vie de la Terre. Affirmation → résumé → verdict → source autoritative. Veritas omnia vincit.">
   <meta name="theme-color" content="#050811">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -202,6 +202,7 @@
           <a href="#edia">Édiacarien</a>
           <a href="#artemis">Artemis</a>
           <a href="#elements">Éléments</a>
+          <a href="#terre-app">Terre 3D</a>
           <a href="#refs">Références</a>
           <a href="#biblio">Bibliographie</a>
           <a class="home" href="../index.html">Accueil ECI</a>
@@ -222,14 +223,14 @@
 
     <main>
       <section class="wrap hero">
-        <p class="eyebrow">Dossier VI · Vérification &amp; sources</p>
+        <p class="eyebrow">Dossier VII · Vérification &amp; sources</p>
         <h2>Chaque donnée,<br>vérifiée et <span class="foil">sourcée</span>.</h2>
-        <p class="lead">Pour chaque affirmation des dossiers — cosmologie, géologie, vie, exploration lunaire —, nous donnons un <b>résumé</b>, un <b>verdict</b> et la <b>source autoritative</b> (NASA, ESA, USGS, IUGS/ICS, Smithsonian, articles à comité de lecture). La science est déjà vertigineuse : encore faut-il pouvoir la vérifier.</p>
+        <p class="lead">Pour chaque affirmation des dossiers — cosmologie, géologie, vie, exploration lunaire, données de l'application Terre —, nous donnons un <b>résumé</b>, un <b>verdict</b> et la <b>source autoritative</b> (NASA, ESA, USGS, IUGS/ICS, Smithsonian, articles à comité de lecture). La science est déjà vertigineuse : encore faut-il pouvoir la vérifier.</p>
         <div class="stats">
           <div class="stat"><div class="n" id="stFiches">—</div><div class="l">Données vérifiées</div></div>
-          <div class="stat"><div class="n" id="stSrc">24</div><div class="l">Sources de référence</div></div>
+          <div class="stat"><div class="n" id="stSrc">—</div><div class="l">Sources de référence</div></div>
           <div class="stat"><div class="n" id="stDoi">—</div><div class="l">DOI vérifiés</div></div>
-          <div class="stat"><div class="n">5</div><div class="l">Dossiers audités</div></div>
+          <div class="stat"><div class="n">6</div><div class="l">Dossiers audités</div></div>
           <div class="stat"><div class="n">0</div><div class="l">Erreur factuelle (❌)</div></div>
         </div>
         <div class="legend" aria-label="Légende des verdicts">
@@ -249,6 +250,7 @@
       <section class="wrap section" id="edia"><div class="sec-head reveal"><p class="kick">Dossier II · Lalie &amp; Ymir</p><h3>L'Édiacarien</h3><p>Les premiers grands organismes — et ce que la science peut réellement en dire.</p></div><div class="grid" id="g-edia"></div></section>
       <section class="wrap section" id="artemis"><div class="sec-head reveal"><p class="kick">Dossier III · Provoxys</p><h3>Artemis II</h3><p>Le retour de l'humanité vers la Lune — faits vérifiés au 1ᵉʳ juin 2026.</p></div><div class="grid" id="g-artemis"></div></section>
       <section class="wrap section" id="elements"><div class="sec-head reveal"><p class="kick">Dossier V · Jorge &amp; Zalex</p><h3>Le Tableau Périodique</h3><p>De la particule élémentaire à l'élément chimique — particules, interactions, formation des atomes, modèles et propriétés périodiques.</p></div><div class="grid" id="g-elements"></div></section>
+      <section class="wrap section" id="terre-app"><div class="sec-head reveal"><p class="kick">Dossier VI · SamLePirate</p><h3>La Vie de la Terre</h3><p>Application interactive : globe paléogéographique, 10 séries temporelles, 201 heightmaps et pipeline reproductible.</p></div><div class="grid" id="g-terre-app"></div></section>
 
       <section class="wrap section" id="refs">
         <div class="sec-head reveal"><p class="kick">Appareil critique · niveau le plus strict</p><h3>Références scientifiques</h3><p>La littérature primaire à comité de lecture derrière les données. Chaque <b>DOI a été vérifié</b> (résolution Crossref + page éditeur) — pour chacun : titre, citation et résumé.</p></div>
@@ -256,7 +258,7 @@
       </section>
 
       <section class="wrap section" id="biblio">
-        <div class="sec-head reveal"><p class="kick">Appareil critique</p><h3>Bibliographie</h3><p>Les 24 sources de référence ayant servi à l'audit (rendu de <code>sources_audit_scientifique_chronos.csv</code>). 🟢 primaire/officielle · 🔵 institution · 🟡 presse scientifique · ⚪ encyclopédie.</p></div>
+        <div class="sec-head reveal"><p class="kick">Appareil critique</p><h3>Bibliographie</h3><p>Les sources de référence ayant servi aux audits, complétées par les sources documentées dans l'application La Vie de la Terre. 🟢 primaire/officielle · 🔵 institution · 🟡 presse scientifique · ⚪ encyclopédie.</p></div>
         <div class="biblio" id="g-biblio"></div>
       </section>
 
@@ -274,6 +276,7 @@
             <a href="../ymir-lalie/edicarien.html">L'Édiacarien</a>
             <a href="../provoxys/Artemis2.html">Artemis II</a>
             <a href="../jorge-zalex/elements.html">Le Tableau Périodique</a>
+            <a href="../la-vie-de-la-terre/index.html">La Vie de la Terre</a>
           </div>
           <span class="cmotto">Ad astra per aspera.</span>
         </section>
@@ -286,7 +289,7 @@
   <script>
     const SI = "../horloge-univers/assets/super-images/";
     const EL = "../jorge-zalex/assets/";
-    const HER = { eres:"../ymir-lalie/assets/eres-hero.png", edia:"../ymir-lalie/assets/ediacaran-hero.png", artemis:"../provoxys/assets/artemis2-hero.png" };
+    const HER = { eres:"../ymir-lalie/assets/eres-hero.png", edia:"../ymir-lalie/assets/ediacaran-hero.png", artemis:"../provoxys/assets/artemis2-hero.png", terreapp:"../la-vie-de-la-terre/assets/earth-observatory.png", formation:"../la-vie-de-la-terre/assets/hero-formation.png" };
     const VC = { ok:"var(--ok)", warn:"var(--warn)", deb:"var(--deb)", fresh:"var(--fresh)" };
     const VL = { ok:"Confirmé", warn:"À nuancer", deb:"Débattu", fresh:"Corrigé" };
 
@@ -452,7 +455,31 @@
         src:[{n:"ACS · periodic trends",u:"https://www.acs.org/content/dam/acsorg/education/students/highschool/chemistryclubs/infographics/mastering-periodic-trends-infographic.pdf"},{n:"Electron affinity (LibreTexts)",u:"https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Physical_Properties_of_Matter/Atomic_and_Molecular_Properties/Electron_Affinity"}] }
     ];
 
-    // 24 sources from sources_audit_scientifique_chronos.csv
+    const TERREAPP = [
+      { t:"Observatoire du temps profond", d:"4,54 Ga → présent", v:"ok", img:HER.terreapp,
+        s:"Le dossier présente l'application externe comme une console synchronisée : globe, frise, événements et télémétrie sont pilotés par le même âge géologique.",
+        src:[{n:"Application La Vie de la Terre",u:"https://thesamlepirate.github.io/la-vie-de-la-terre/"},{n:"Dossier ECI",u:"../la-vie-de-la-terre/index.html"}] },
+      { t:"Paléo-cartes", d:"201 heightmaps 16-bit · 0–1000 Ma", v:"ok", img:HER.terreapp,
+        s:"Le manifeste indique 201 cartes : PaleoDEM Scotese 0–540 Ma, puis masques Merdith 540–1000 Ma. Avant 1 Ga, le rendu est explicitement stylisé.",
+        src:[{n:"Manifest heightmaps",u:"https://thesamlepirate.github.io/la-vie-de-la-terre/heightmaps/manifest.json"},{n:"PaleoDEM Zenodo",u:"https://doi.org/10.5281/zenodo.5460860"},{n:"Merdith 2021",u:"https://doi.org/10.1016/j.earscirev.2020.103477"}] },
+      { t:"Séries temporelles", d:"10 séries JSON", v:"ok", img:HER.terreapp,
+        s:"Le fichier unifié contient température, CO₂ (3 reconstructions), O₂ (2), CH₄, composition atmosphérique et durée du jour, avec sources et champs d'incertitude quand disponibles.",
+        src:[{n:"timeseries.json",u:"https://thesamlepirate.github.io/la-vie-de-la-terre/data/timeseries.json"},{n:"Audit Dossier VI",u:"dossier-VI-la-vie-de-la-terre.md"}] },
+      { t:"Température globale", d:"PhanDA 0–485 Ma + ancrages", v:"ok", img:HER.formation,
+        s:"La reconstruction PhanDA combine >150 000 mesures de proxies et >850 simulations climatiques ; le temps profond utilise des ancrages estimés signalés comme tels.",
+        src:[{n:"Judd et al. 2024",u:"https://doi.org/10.1126/science.adk3705"},{n:"PhanDA",u:"https://github.com/EJJudd/PhanDA"}] },
+      { t:"CO₂ atmosphérique", d:"PhanDA · Foster · GEOCARBSULF", v:"ok", img:HER.terreapp,
+        s:"Trois méthodes sont affichées en parallèle : assimilation, proxies compilés et modèle géochimique carbone-soufre — bon choix pour montrer l'accord et les divergences.",
+        src:[{n:"Foster et al. 2017",u:"https://doi.org/10.1038/ncomms14845"},{n:"Berner 2006",u:"https://doi.org/10.1016/j.gca.2005.11.032"},{n:"Judd et al. 2024",u:"https://doi.org/10.1126/science.adk3705"}] },
+      { t:"O₂, CH₄ et atmosphère", d:"modèles + ancrages", v:"warn", img:HER.formation,
+        s:"Les niveaux précambriens sont incertains : l'application les marque comme estimés ou mixtes, en s'appuyant sur Lyons 2014, Catling & Zahnle 2020 et Krissansen-Totton 2018.",
+        src:[{n:"Lyons et al. 2014",u:"https://doi.org/10.1038/nature13068"},{n:"Catling & Zahnle 2020",u:"https://doi.org/10.1126/sciadv.aax1420"},{n:"Krissansen-Totton 2018",u:"https://doi.org/10.1073/pnas.1721296115"}] },
+      { t:"Durée du jour", d:"proxies + modèle Terre-Lune", v:"ok", img:HER.terreapp,
+        s:"La courbe combine rythmites/sclérochronologie, modèle d'évolution tidale et palier protérozoïque proche de 19 h ; elle reste une reconstruction contrainte.",
+        src:[{n:"Williams 2000",u:"https://doi.org/10.1029/1999RG900016"},{n:"Farhat et al. 2022",u:"https://doi.org/10.1051/0004-6361/202243445"},{n:"Mitchell & Kirscher 2023",u:"https://doi.org/10.1038/s41561-023-01202-6"}] }
+    ];
+
+    // Sources from sources_audit_scientifique_chronos.csv + app La Vie de la Terre
     const SOURCES = [
       ["🟢","Planck Collaboration 2018 — Cosmological parameters","https://www.aanda.org/articles/aa/pdf/2020/09/aa33880-18.pdf","Âge de l'Univers ≈ 13,787 Ga ± 0,020 Ga (ΛCDM)."],
       ["🟢","Planck 2018 — version arXiv","https://arxiv.org/abs/1807.06209","Âge, H₀, Ωm et cohérence du modèle ΛCDM."],
@@ -477,7 +504,15 @@
       ["⚪","Wikipedia — Grand Unified Theory","https://en.wikipedia.org/wiki/Grand_Unified_Theory","Les grandes unifications restent hypothétiques."],
       ["⚪","Wikipedia — Observable universe","https://en.wikipedia.org/wiki/Observable_universe","Diamètre comobile ≈ 93 milliards d'al."],
       ["⚪","Wikipedia — Ediacaran","https://en.wikipedia.org/wiki/Ediacaran","Bornes & contexte de la biote édiacarienne."],
-      ["🔵","Page auditée — Chronos / Horloge de l'Univers","https://thesamlepirate.github.io/empire-contre-intox/horloge-univers/chronos.html","Objet de l'audit : texte exact de la page vérifiée."]
+      ["🔵","Page auditée — Chronos / Horloge de l'Univers","https://thesamlepirate.github.io/empire-contre-intox/horloge-univers/chronos.html","Objet de l'audit : texte exact de la page vérifiée."],
+      ["🔵","Application La Vie de la Terre","https://thesamlepirate.github.io/la-vie-de-la-terre/","Observatoire interactif du temps profond : globe, frise, télémétrie et sources."],
+      ["🔵","La Vie de la Terre — sources de données","https://thesamlepirate.github.io/la-vie-de-la-terre/#sources","Documentation app : statut mesuré / modélisé / estimé, pipeline et téléchargements."],
+      ["🟢","Merdith et al. 2021 — modèle plein-plaque 1 Ga","https://doi.org/10.1016/j.earscirev.2020.103477","Base tectonique des masques continentaux 540–1000 Ma."],
+      ["🟢","PALEOMAP PaleoDEMs — Zenodo","https://doi.org/10.5281/zenodo.5460860","Données topo/bathy paléo converties en heightmaps 16-bit."],
+      ["🟢","Judd et al. 2024 — PhanDA","https://doi.org/10.1126/science.adk3705","Température moyenne globale et CO₂ par assimilation de données 0–485 Ma."],
+      ["🟢","Foster et al. 2017 — CO₂ proxies","https://doi.org/10.1038/ncomms14845","Compilation de proxies de CO₂ atmosphérique sur 420 Ma."],
+      ["🟢","Berner 2006 — GEOCARBSULF","https://doi.org/10.1016/j.gca.2005.11.032","Modèle géochimique phanérozoïque CO₂/O₂."],
+      ["🟢","Williams / Farhat / Mitchell — durée du jour","refs-doi-VI-la-vie-de-la-terre.md","Références Terre-Lune utilisées pour les ancrages et modèles de durée du jour."]
     ];
     const TIER = { "🟢":"Primaire", "🔵":"Institution", "🟡":"Presse sci.", "⚪":"Encyclopédie" };
     const TIERC = { "🟢":"var(--ok)", "🔵":"var(--gold)", "🟡":"var(--warn)", "⚪":"var(--soft)" };
@@ -499,7 +534,7 @@
     }
     function fill(id,arr){ const el=document.getElementById(id); if(el) el.innerHTML=arr.map(ficheHTML).join(""); }
     fill("g-cosmos",COSMOS); fill("g-terre",TERRE); fill("g-geo",GEO); fill("g-hum",HUM);
-    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS);
+    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP);
 
     // ===== Références scientifiques primaires (DOI vérifiés) =====
     const REFS = [
@@ -810,6 +845,30 @@
           ab:"Revue des affinités électroniques (irrégularités Cl > F, S > O)." },
         { a:"Phil. Trans. R. Soc. A (2020)", t:"The periodic table — histoire et prédictions de Mendeleïev", j:"Philosophical Transactions of the Royal Society A 378, 20190537", k:"review", doi:"10.1098/rsta.2019.0537",
           ab:"Histoire du tableau et des prédictions de Mendeleïev (eka-aluminium = gallium, eka-silicium = germanium)." }
+      ]},
+      { g:"La Vie de la Terre — données de l'app", items:[
+        { a:"Merdith et al. (2021)", t:"Extending full-plate tectonic models into deep time: Linking the Neoproterozoic and the Phanerozoic", j:"Earth-Science Reviews 214, 103477", k:"primary", doi:"10.1016/j.earscirev.2020.103477",
+          ab:"Modèle tectonique plein-plaque 1 Ga → présent, utilisé par l'application pour reconstruire des masques continentaux schématiques entre 540 et 1000 Ma." },
+        { a:"Scotese, Song, Mills & van der Meer (2021)", t:"Phanerozoic paleotemperatures: The earth's changing climate during the last 540 million years", j:"Earth-Science Reviews 215, 103503", k:"review", doi:"10.1016/j.earscirev.2021.103503",
+          ab:"Référence de synthèse sur les paléotempératures phanérozoïques, citée en complément des reconstructions PhanDA." },
+        { a:"Judd et al. (2024)", t:"A 485-million-year history of Earth's surface temperature", j:"Science 385", k:"primary", doi:"10.1126/science.adk3705",
+          ab:"Source PhanDA de la température moyenne globale et du CO₂ 0–485 Ma : assimilation de proxies et simulations climatiques, avec percentiles d'incertitude." },
+        { a:"Foster, Royer & Lunt (2017)", t:"Future climate forcing potentially without precedent in the last 420 million years", j:"Nature Communications 8, 14845", k:"primary", doi:"10.1038/ncomms14845",
+          ab:"Compilation de plus de 1200 estimations de CO₂ atmosphérique par proxies, utilisée pour la courbe Foster." },
+        { a:"Berner (2006)", t:"GEOCARBSULF: A combined model for Phanerozoic atmospheric O2 and CO2", j:"Geochimica et Cosmochimica Acta 70, 5653–5664", k:"primary", doi:"10.1016/j.gca.2005.11.032",
+          ab:"Modèle géochimique carbone-soufre utilisé pour les sorties CO₂ et O₂ du Phanérozoïque." },
+        { a:"Lyons, Reinhard & Planavsky (2014)", t:"The rise of oxygen in Earth's early ocean and atmosphere", j:"Nature 506, 307–315", k:"review", doi:"10.1038/nature13068",
+          ab:"Synthèse de référence sur la Grande Oxydation et l'évolution de l'oxygène précambrien." },
+        { a:"Krissansen-Totton, Arney & Catling (2018)", t:"Constraining the climate and ocean pH of the early Earth with a geological carbon cycle model", j:"PNAS 115", k:"primary", doi:"10.1073/pnas.1721296115",
+          ab:"Modèle du cycle géologique du carbone et du climat de la Terre primitive, utile pour les ancrages temps profond." },
+        { a:"Catling & Zahnle (2020)", t:"The Archean atmosphere", j:"Science Advances 6, eaax1420", k:"review", doi:"10.1126/sciadv.aax1420",
+          ab:"Synthèse sur l'atmosphère archéenne, les niveaux de CO₂, CH₄ et O₂ et les incertitudes associées." },
+        { a:"Williams (2000)", t:"Geological constraints on the Precambrian history of Earth's rotation and the Moon's orbit", j:"Reviews of Geophysics 38, 37–59", k:"review", doi:"10.1029/1999RG900016",
+          ab:"Contraintes géologiques sur la rotation terrestre et l'orbite lunaire à partir notamment des rythmites de marée." },
+        { a:"Farhat et al. (2022)", t:"The resonant tidal evolution of the Earth-Moon distance", j:"Astronomy & Astrophysics 665, L1", k:"primary", doi:"10.1051/0004-6361/202243445",
+          ab:"Modèle de l'évolution tidale Terre-Lune, utilisé pour contraindre la durée du jour sur 4,5 Ga." },
+        { a:"Mitchell & Kirscher (2023)", t:"Mid-Proterozoic day length stalled by tidal resonance", j:"Nature Geoscience 16, 567–569", k:"primary", doi:"10.1038/s41561-023-01202-6",
+          ab:"Met en évidence un palier de durée du jour proche de 19 h au Protérozoïque moyen, par résonance des marées thermiques atmosphériques." }
       ]}
     ];
     function refHTML(r){
@@ -833,8 +892,9 @@
         <div class="top"><span class="tier">${tier} ${TIER[tier]}</span><a class="name" href="${url}" target="_blank" rel="noopener">${esc(name)}</a></div>
         <p>${esc(desc)}</p><span class="url">${esc(url)}</span>
       </div>`).join("");
+    const stSrc = document.getElementById("stSrc"); if (stSrc) stSrc.textContent = SOURCES.length;
 
-    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length;
+    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length;
     document.getElementById("stFiches").textContent = total;
 
     const bar=document.getElementById("progress");

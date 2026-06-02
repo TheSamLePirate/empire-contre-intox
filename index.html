@@ -209,7 +209,7 @@
     /* ---------- Hero ---------- */
     .hero-section { position: relative; isolation: isolate; overflow: hidden; border-bottom: 1px solid var(--line); }
 
-    /* Full-bleed mosaic : the 4 dossier images, sliced on the diagonal */
+    /* Full-bleed mosaic : dossier images, sliced on the diagonal */
     .hero-mosaic {
       position: absolute; inset: 0; z-index: -1; overflow: hidden;
       /* gold leaf shows through the thin diagonal seams between panels */
@@ -222,10 +222,11 @@
       opacity: 0;
       animation: panelIn 1.15s var(--ease) forwards, hmDrift 44s ease-in-out infinite alternate;
     }
-    .hm-1 { background-image: url("ymir-lalie/assets/eres-hero.png");          clip-path: polygon(0 0, 32.75% 0, 16.75% 100%, 0 100%);            animation-delay: 0s, 0s; }
-    .hm-2 { background-image: url("ymir-lalie/assets/ediacaran-hero.png");     clip-path: polygon(33.25% 0, 57.75% 0, 41.75% 100%, 17.25% 100%);  animation-delay: .12s, .4s; }
-    .hm-3 { background-image: url("provoxys/assets/artemis2-hero.png");        clip-path: polygon(58.25% 0, 82.75% 0, 66.75% 100%, 42.25% 100%);  animation-delay: .24s, .8s; }
-    .hm-4 { background-image: url("horloge-univers/assets/temps-univers.png"); clip-path: polygon(83.25% 0, 100% 0, 100% 100%, 67.25% 100%);       animation-delay: .36s, 1.2s; }
+    .hm-1 { background-image: url("ymir-lalie/assets/eres-hero.png");                     clip-path: polygon(0 0, 25.75% 0, 14.75% 100%, 0 100%);          animation-delay: 0s, 0s; }
+    .hm-2 { background-image: url("ymir-lalie/assets/ediacaran-hero.png");                clip-path: polygon(26.25% 0, 47.75% 0, 36.75% 100%, 15.25% 100%); animation-delay: .12s, .4s; }
+    .hm-3 { background-image: url("provoxys/assets/artemis2-hero.png");                   clip-path: polygon(48.25% 0, 68.75% 0, 57.75% 100%, 37.25% 100%); animation-delay: .24s, .8s; }
+    .hm-4 { background-image: url("horloge-univers/assets/temps-univers.png");            clip-path: polygon(69.25% 0, 86.75% 0, 75.75% 100%, 58.25% 100%); animation-delay: .36s, 1.2s; }
+    .hm-5 { background-image: url("la-vie-de-la-terre/assets/earth-observatory.png");     clip-path: polygon(87.25% 0, 100% 0, 100% 100%, 76.25% 100%);      animation-delay: .48s, 1.6s; }
     @keyframes panelIn { from { opacity: 0; transform: scale(1.07); } to { opacity: 1; transform: none; } }
     @keyframes hmDrift { from { background-position: 50% 40%; } to { background-position: 50% 60%; } }
     /* legibility scrim : darken the left for the title, glow on the right, fade into the void */
@@ -708,6 +709,7 @@
           <div class="hm-panel hm-2"></div>
           <div class="hm-panel hm-3"></div>
           <div class="hm-panel hm-4"></div>
+          <div class="hm-panel hm-5"></div>
         </div>
         <div class="wrap hero">
         <div>
@@ -716,10 +718,10 @@
           <p class="lead reveal in" data-d="2">Le fonds documentaire du collectif : des transcriptions devenues pages immersives, où la <b>science du temps profond</b> répond, fait par fait, aux récits de l'intox.</p>
           <div class="cta reveal in" data-d="3">
             <a class="btn btn-gold" href="#dossiers">Explorer les dossiers <span class="arrow">→</span></a>
-            <a class="btn btn-ghost" href="ymir-lalie/edicarien.html">Ouvrir l'Édiacarien</a>
+            <a class="btn btn-ghost" href="la-vie-de-la-terre/index.html">Ouvrir La Vie de la Terre</a>
           </div>
           <div class="credentials reveal in" data-d="4">
-            <span><b>VI</b> dossiers</span>
+            <span><b>VII</b> dossiers</span>
             <span class="dot"></span>
             <span>Transcriptions structurées</span>
             <span class="dot"></span>
@@ -751,7 +753,7 @@
             <p class="kicker">Le fonds documentaire</p>
             <h2>Les Dossiers</h2>
           </div>
-          <p>Six dossiers prêts à partager — transcription structurée, mise en scène visuelle et, désormais, toutes les sources rendues vérifiables.</p>
+          <p>Sept dossiers prêts à partager — transcription structurée, mise en scène visuelle et, désormais, toutes les sources rendues vérifiables.</p>
         </div>
 
         <div class="dossiers">
@@ -884,10 +886,35 @@
             </div>
           </article>
 
+          <article class="dossier reveal" data-d="2" style="--accent:#5bd6e0">
+            <div class="dossier-media">
+              <img src="la-vie-de-la-terre/assets/earth-observatory.png" alt="Capture de l'application La Vie de la Terre : globe, frise du temps profond et télémétrie scientifique">
+              <span class="dossier-no">Dossier VI</span>
+              <span class="badge">Observatoire interactif</span>
+            </div>
+            <div class="dossier-body">
+              <h3>La Vie de la Terre</h3>
+              <p>L'application de SamLePirate mise en scène façon codex : 4,54 milliards d'années, 201 paléo-cartes, 10 séries temporelles et un pipeline reproductible pour distinguer mesure, modèle et estimation.</p>
+              <div class="tags">
+                <span class="tag">Temps profond</span>
+                <span class="tag">Données ouvertes</span>
+                <span class="tag">Paléoclimat</span>
+              </div>
+              <div class="byline">
+                <span class="avatars">
+                  <img src="la-vie-de-la-terre/assets/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                </span>
+                <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong></span>
+              </div>
+              <a class="dossier-link" href="la-vie-de-la-terre/index.html">Consulter le dossier <span class="arrow">→</span></a>
+              <a class="stretch" href="la-vie-de-la-terre/index.html" aria-label="Ouvrir le dossier La Vie de la Terre"></a>
+            </div>
+          </article>
+
           <article class="dossier reveal" data-d="1">
             <div class="dossier-media">
               <img src="horloge-univers/assets/super-images/44-l-histoire-ecrite.png" alt="Archives et écriture : toutes les sources des dossiers, rendues vérifiables">
-              <span class="dossier-no">Dossier VI</span>
+              <span class="dossier-no">Dossier VII</span>
               <span class="badge">Appareil critique</span>
             </div>
             <div class="dossier-body">
@@ -923,7 +950,7 @@
         <div class="decree reveal">
           <p class="kicker">Décret méthodologique</p>
           <h2>Comprendre le réel avant de débattre du faux.</h2>
-          <p class="decree-lead">Nos dossiers ne demandent pas qu'on les croie : ils montrent <b>comment on sait</b>. De l'Édiacarien à Artemis II, la même démarche relie chaque page — poser l'échelle, mesurer, modéliser, <b>sourcer</b>, puis confronter. Cinq gestes qui transforment une affirmation en <b>savoir vérifiable par tous</b>.</p>
+          <p class="decree-lead">Nos dossiers ne demandent pas qu'on les croie : ils montrent <b>comment on sait</b>. De l'Édiacarien à La Vie de la Terre, la même démarche relie chaque page — poser l'échelle, mesurer, modéliser, <b>sourcer</b>, puis confronter. Cinq gestes qui transforment une affirmation en <b>savoir vérifiable par tous</b>.</p>
           <div class="steps">
             <div class="step reveal" data-d="1">
               <div class="num">I</div>
@@ -940,8 +967,8 @@
             <div class="step reveal" data-d="3">
               <div class="num">III</div>
               <h4>Le modèle</h4>
-              <p>Une hypothèse n'a de valeur que si elle <b>se teste et se rejoue</b>. La mécanique orbitale d'Artemis II se simule en direct ; les mêmes lois prédisent la trajectoire comme le passé de la Terre.</p>
-              <a class="step-ref" href="provoxys/Artemis2.html">Artemis II &amp; la simulation <span class="arrow">→</span></a>
+              <p>Une hypothèse n'a de valeur que si elle <b>se teste et se rejoue</b>. La mécanique orbitale d'Artemis II se simule en direct ; la Terre ancienne se reconstruit par cartes, proxies et modèles contraints.</p>
+              <a class="step-ref" href="la-vie-de-la-terre/index.html">La Vie de la Terre &amp; les modèles <span class="arrow">→</span></a>
             </div>
             <div class="step reveal" data-d="4">
               <div class="num">IV</div>
@@ -968,7 +995,8 @@
           <a href="provoxys/Artemis2.html">III · Artemis II</a>
           <a href="horloge-univers/chronos.html">IV · Horloge de l'Univers</a>
           <a href="jorge-zalex/elements.html">V · Le Tableau Périodique</a>
-          <a href="sources/sources.html">VI · Les Sources</a>
+          <a href="la-vie-de-la-terre/index.html">VI · La Vie de la Terre</a>
+          <a href="sources/sources.html">VII · Les Sources</a>
           <a class="to-top" href="#top">Haut de page ↑</a>
         </nav>
         <div class="footer-inner">

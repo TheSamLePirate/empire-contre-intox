@@ -18,12 +18,13 @@ Vérifié le **1ᵉʳ juin 2026** par recherche web (sources autoritatives : NAS
 | II | [`dossier-II-ediacarien.md`](dossier-II-ediacarien.md) | L'Édiacarien (Lalie & Ymir) |
 | III | [`dossier-III-artemis2.md`](dossier-III-artemis2.md) | Artemis II (Provoxys) |
 | V | [`dossier-V-elements.md`](dossier-V-elements.md) | Le Tableau Périodique — particules, interactions, formation des atomes, radioactivité, modèles, orbitales, propriétés (Jorge & Zalex) |
+| VI | [`dossier-VI-la-vie-de-la-terre.md`](dossier-VI-la-vie-de-la-terre.md) | La Vie de la Terre — application interactive, paléogéographie, séries climatiques/atmosphériques, pipeline reproductible (SamLePirate) |
 
 > Données brutes fournies par l'auteur : `sources_audit_scientifique_chronos.csv`.
 
 ### Sources scientifiques — littérature primaire (DOI)
 
-Couche « sources scientifiques » : **~146 articles à comité de lecture, DOI vérifiés ou sourcés par page éditeur** (résolution DOI/éditeur ; aucun DOI inventé). C'est l'appareil de référence le plus strict.
+Couche « sources scientifiques » : **plus de 150 articles à comité de lecture, DOI vérifiés ou sourcés par page éditeur** (résolution DOI/éditeur ; aucun DOI inventé), plus quelques DOI de jeux de données. C'est l'appareil de référence le plus strict.
 
 | Fichier | DOI | Couverture |
 |---|---|---|
@@ -33,6 +34,7 @@ Couche « sources scientifiques » : **~146 articles à comité de lecture, DOI 
 | [`refs-doi-4-humanite-ediacarien.md`](refs-doi-4-humanite-ediacarien.md) | 15 | Hublin/Richter (Jebel Irhoud), Harmand (Lomekwi), Villmoare, Brunet/Daver, Bobrovskiy, Fedonkin, Bengtson, Knoll, Mills |
 | [`refs-doi-5-lune-artemis.md`](refs-doi-5-lune-artemis.md) | 6 | Colaprete (LCROSS), Li, Honniball, Hayne, Pieters (M³), Hauri |
 | [`refs-doi-V-elements.md`](refs-doi-V-elements.md) | 81 | Particules/interactions, cosmologie/BBN/CMB, radioactivité, modèles atomiques, mécanique quantique, règles de remplissage, propriétés périodiques, Mendeleïev |
+| [`refs-doi-VI-la-vie-de-la-terre.md`](refs-doi-VI-la-vie-de-la-terre.md) | 12 | Paléogéographie, PhanDA, CO₂/O₂/CH₄, GEOCARBSULF, Grande Oxydation, durée du jour Terre-Lune |
 
 > Pièges à DOI détectés et corrigés par les agents : Kimberella (Fedonkin) `10.1038/42242` (et non 41048), Daver 2022, Renne 2015 `…aac7549`, Zachos 2001 `…1059412`. Les bornes ICS n'ont pas de DOI d'article unique → référence = GTS2020 (DOI volume) + charte officielle ICS.
 
@@ -49,6 +51,11 @@ Les grands repères des dossiers sont corrects et sourcés. Restent des points *
 - Audit scientifique complet : [`dossier-V-elements.md`](dossier-V-elements.md).
 - Bibliographie DOI étendue : [`refs-doi-V-elements.md`](refs-doi-V-elements.md) (**81 DOI**) + sources autoritatives sans DOI (NIST/CODATA, PDG, NIST ASD, IUPAC, NNDC, CERN, ESA).
 - Points de précision principaux : Modèle Standard formulé trop largement ; β doit dire « nombre de masse A », pas « masse » ; formule de Born à écrire `|ψ(r,t)|²` ; le triplet `(n,l,m)` adresse une orbitale, pas un électron complet ; stabilité des ions et formule de Slater à contextualiser ; gaz nobles, métaux de transition et affinité électronique à nuancer.
+
+### Dossier VI — La Vie de la Terre
+- Audit léger : [`dossier-VI-la-vie-de-la-terre.md`](dossier-VI-la-vie-de-la-terre.md), basé sur la page sources et les fichiers internes de l'application.
+- Bibliographie DOI : [`refs-doi-VI-la-vie-de-la-terre.md`](refs-doi-VI-la-vie-de-la-terre.md) (**12 références**, dont un DOI Zenodo de jeu de données).
+- Points de précision principaux : les cartes >1 Ga sont stylisées, les séries précambriennes sont des ancrages/estimations et les événements biologiques profonds gardent des formulations prudentes.
 
 ### Points à nuancer (non bloquants)
 - **Nombre de galaxies (~2 × 10¹²)** [Dossier IV] : estimation modèle-dépendante, contestée (cf. New Horizons/Lauer 2021) — garder le « ≈ », signaler « estimation ».
