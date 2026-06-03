@@ -615,6 +615,21 @@
       color: var(--parch); text-wrap: balance;
     }
     .manifesto-text .hl { color: var(--gold-bright); }
+    .manifesto-video {
+      position: relative;
+      width: min(100%, 820px);
+      margin: 8px auto 0;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 36px 90px rgba(0,0,0,.6), 0 0 0 1px rgba(214,172,85,.14), inset 0 0 0 1px rgba(244,236,216,.04);
+    }
+    .manifesto-video::before {
+      content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      box-shadow: inset 0 0 70px rgba(5,8,17,.5);
+    }
+    .manifesto-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; }
     .manifesto-cta {
       max-width: 44ch; margin: 30px auto 0;
       font-family: var(--roman); font-weight: 600;
@@ -967,7 +982,13 @@
       <section class="wrap section" id="manifeste">
         <div class="manifesto-band reveal">
           <p class="kicker">Rejoignez l'Empire</p>
-          <p class="manifesto-text">Il y a bien longtemps, dans une galaxie envahie par des nuages de confusion, par les <span class="hl">fake news</span>… un groupe de résistants a décidé de <span class="hl">rétablir l'équilibre</span>.</p>
+          <div class="manifesto-video">
+            <video controls preload="metadata" playsinline poster="manifest-poster.jpg"
+                   aria-label="Manifeste vidéo de l'Empire contre Intox">
+              <source src="empire-contre-intox-manifest.mp4" type="video/mp4">
+              Votre navigateur ne peut pas lire cette vidéo. <a href="empire-contre-intox-manifest.mp4">Télécharger le manifeste</a>.
+            </video>
+          </div>
           <p class="manifesto-cta">Ne soyez plus un simple spectateur de la guerre de l'info — <strong>devenez un pilote de la vérité</strong> avec l'<span class="gold-foil">Empire contre-intox</span> !</p>
         </div>
       </section>
