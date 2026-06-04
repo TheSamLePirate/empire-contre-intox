@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Le langage des champs — Divergence &amp; Rotationnel · Empire contre Intox</title>
+<meta name="description" content="Atlas des écoulements : vecteurs, gradient, divergence, rotationnel — lire un champ comme un fluide, jusqu'aux équations de Maxwell. Dossier Samlepirate d'après 3Blue1Brown, hero génératif et ateliers interactifs." />
+<meta name="theme-color" content="#060814" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,380..600;1,6..72,380..500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink:    #060814;
+    --bg2:    #0a0e1e;
+    --surface:#10142c;
+    --line:   rgba(123, 140, 255, 0.16);
+    --line-2: rgba(238, 242, 255, 0.08);
+    --text:   #eaeefc;
+    --dim:    #9aa6c8;
+    --faint:  #59628a;
+    --iris:   #7b8cff;   /* accent maître — l'indigo des animations math */
+    --flow:   #43d6c4;   /* source / divergence positive */
+    --sink:   #ff6a4d;   /* puits / divergence négative */
+    --curl:   #f5b14a;   /* rotationnel */
+    --gold:   #d6ac55;   /* filet ECI */
+    --display:"Fraunces", Georgia, serif;
+    --body:   "Newsreader", Georgia, serif;
+    --mono:   "JetBrains Mono", ui-monospace, Menlo, monospace;
+    --ease:   cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink); color: var(--text);
+    font-family: var(--body); font-optical-sizing: auto;
+    font-size: 18.5px; line-height: 1.72; letter-spacing: 0.004em;
+    overflow-x: hidden; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  ::selection { background: rgba(123, 140, 255, 0.3); color: #fff; }
+  :focus-visible { outline: 2px solid var(--iris); outline-offset: 3px; border-radius: 3px; }
+
+  .wrap { width: min(100% - 44px, 1140px); margin-inline: auto; }
+
+  /* grain + cadre or */
+  .grain { position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: 0.045; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .frame { position: fixed; inset: 0; z-index: 40; pointer-events: none; }
+  .frame i { position: absolute; width: 24px; height: 24px; border: 1.5px solid var(--line); }
+  .frame i:nth-child(1){ top:14px; left:14px; border-right:0; border-bottom:0; }
+  .frame i:nth-child(2){ top:14px; right:14px; border-left:0; border-bottom:0; }
+  .frame i:nth-child(3){ bottom:14px; left:14px; border-right:0; border-top:0; }
+  .frame i:nth-child(4){ bottom:14px; right:14px; border-left:0; border-top:0; }
+
+  /* progress */
+  .progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; z-index: 60;
+    background: linear-gradient(90deg, var(--flow), var(--iris), var(--curl), var(--sink)); box-shadow: 0 0 12px rgba(123,140,255,.6); }
+
+  /* ===== HERO génératif ===== */
+  .hero { position: relative; height: 100svh; min-height: 640px; overflow: hidden; isolation: isolate; }
+  #flow { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; display: block; }
+  .hero-veil { position: absolute; inset: 0; z-index: -1; pointer-events: none; background:
+    radial-gradient(120% 90% at 18% 30%, rgba(6,8,20,.5), transparent 55%),
+    linear-gradient(180deg, rgba(6,8,20,.62) 0%, rgba(6,8,20,.18) 30%, rgba(6,8,20,.32) 64%, var(--ink) 100%); }
+  .hero-top { position: absolute; top: 0; left: 0; right: 0; z-index: 3; }
+  .hero-top .wrap { display: flex; align-items: center; justify-content: space-between; padding: 22px 0;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
+  .hero-top a.home { color: var(--iris); display: inline-flex; align-items: center; gap: 9px; }
+  .hero-top a.home img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+  .hero-top .live { display: inline-flex; align-items: center; gap: 8px; color: var(--flow); }
+  .hero-top .live .d { width: 7px; height: 7px; border-radius: 50%; background: var(--flow); box-shadow: 0 0 9px var(--flow); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .35; } }
+
+  .hero-inner { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; padding-bottom: clamp(40px, 7vh, 90px); }
+  .kick { font-family: var(--mono); font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--flow);
+    display: inline-flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+  .kick::before { content: ""; width: 46px; height: 1px; background: linear-gradient(90deg, transparent, var(--flow)); }
+  .hero h1 { font-family: var(--display); font-weight: 340; font-optical-sizing: auto;
+    font-size: clamp(56px, 11.5vw, 168px); line-height: 0.86; letter-spacing: -0.028em; }
+  .hero h1 .it { font-style: italic; font-weight: 360; background: linear-gradient(100deg, var(--flow), var(--iris) 55%, var(--curl));
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .sub { max-width: 56ch; margin-top: 30px; font-size: clamp(19px, 2.2vw, 25px); line-height: 1.46; color: #cdd5f0; }
+  .hero .sub b { color: var(--text); font-weight: 600; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 38px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px;
+    font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    transition: transform .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease); }
+  .btn .a { transition: transform .3s var(--ease); }
+  .btn:hover .a { transform: translateX(4px); }
+  .btn-1 { color: #05130f; background: linear-gradient(135deg, var(--flow), #34b8d8 60%, var(--iris)); box-shadow: 0 16px 40px rgba(67,214,196,.24); }
+  .btn-1:hover { transform: translateY(-3px); }
+  .btn-2 { color: var(--text); border: 1px solid var(--line); background: rgba(123,140,255,.05); }
+  .btn-2:hover { transform: translateY(-3px); border-color: var(--iris); }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--line-2);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+  .hero-meta b { color: var(--iris); font-weight: 600; }
+  .hero-meta .sep { width: 4px; height: 4px; border-radius: 50%; background: var(--line); align-self: center; }
+  .cue { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 3; color: var(--dim);
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; display: grid; justify-items: center; gap: 7px; opacity: .8; }
+  .cue i { width: 18px; height: 28px; border: 1px solid var(--line); border-radius: 10px; position: relative; }
+  .cue i::after { content: ""; position: absolute; top: 5px; left: 50%; width: 3px; height: 6px; border-radius: 3px; background: var(--flow);
+    transform: translateX(-50%); animation: cue 1.8s var(--ease) infinite; }
+  @keyframes cue { 0%{opacity:0;transform:translate(-50%,0);} 35%{opacity:1;} 70%{opacity:1;} 100%{opacity:0;transform:translate(-50%,10px);} }
+
+  /* ===== topbar sticky (après hero) ===== */
+  .topbar { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--line);
+    background: rgba(6,8,20,.82); backdrop-filter: blur(14px); }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 60px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .topbar .b { display: flex; align-items: center; gap: 10px; color: var(--dim); }
+  .topbar .b img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+  .topbar .b b { color: var(--text); }
+  .topbar nav { display: flex; gap: 2px; }
+  .topbar nav a { padding: 8px 10px; color: var(--faint); position: relative; transition: color .3s var(--ease); }
+  .topbar nav a::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 4px; height: 1px; background: var(--iris);
+    transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }
+  .topbar nav a:hover, .topbar nav a.on { color: var(--text); }
+  .topbar nav a:hover::after, .topbar nav a.on::after { transform: scaleX(1); }
+  .topbar .home { color: var(--iris) !important; }
+  @media (max-width: 920px){ .topbar nav .c { display: none; } }
+
+  /* ===== thèse ===== */
+  .these { padding: clamp(64px,9vh,120px) 0 0; }
+  .these .pull { font-family: var(--display); font-weight: 360; font-size: clamp(28px, 4vw, 46px); line-height: 1.18;
+    letter-spacing: -0.015em; max-width: 22ch; }
+  .these .pull em { font-style: italic; background: linear-gradient(100deg, var(--flow), var(--iris)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .these p { margin-top: 26px; max-width: 64ch; color: var(--dim); font-size: 19px; }
+  .these p b { color: var(--text); font-weight: 600; }
+
+  /* trois idées maîtresses */
+  .triad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+  @media (max-width: 820px){ .triad { grid-template-columns: 1fr; } }
+  .card { position: relative; padding: 28px 26px 26px; border: 1px solid var(--line); background:
+    linear-gradient(180deg, rgba(16,20,44,.6), rgba(10,14,30,.7)); overflow: hidden; transition: transform .4s var(--ease), border-color .4s var(--ease); }
+  .card:hover { transform: translateY(-6px); border-color: color-mix(in srgb, var(--c) 50%, var(--line)); }
+  .card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: var(--c); }
+  .card .ic { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--c); }
+  .card h4 { font-family: var(--display); font-weight: 420; font-size: 27px; letter-spacing: -0.01em; margin: 12px 0 8px; }
+  .card h4 em { font-style: italic; }
+  .card p { font-size: 16px; color: var(--dim); }
+  .card .sym { position: absolute; right: -10px; bottom: -22px; font-family: var(--display); font-style: italic; font-size: 120px;
+    line-height: 1; color: color-mix(in srgb, var(--c) 14%, transparent); pointer-events: none; }
+
+  /* ===== chapitre ===== */
+  .chapter { padding: clamp(70px,10vh,120px) 0 0; }
+  .chap-head { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: start; border-top: 1px solid var(--line); padding-top: 30px; }
+  .chap-head .big { font-family: var(--display); font-weight: 300; font-style: italic; font-size: clamp(54px, 9vw, 120px); line-height: 0.8;
+    color: transparent; -webkit-text-stroke: 1.2px color-mix(in srgb, var(--c) 70%, var(--faint)); }
+  .chap-head .meta .n { font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--c); margin-bottom: 12px; }
+  .chap-head h2 { font-family: var(--display); font-weight: 360; font-size: clamp(32px, 5.4vw, 60px); line-height: 0.98; letter-spacing: -0.02em; }
+  .chap-head h2 em { font-style: italic; color: var(--c); }
+  .chap-head .lede { margin-top: 16px; max-width: 54ch; color: var(--dim); font-size: 18px; }
+  /* plate — illustration pleine largeur en tête de chapitre */
+  .plate { margin: 30px 0 6px; position: relative; border: 1px solid var(--line); overflow: hidden;
+    background: linear-gradient(135deg, rgba(67,214,196,.06), rgba(255,106,77,.05)); }
+  .plate img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; transition: transform 1.1s var(--ease); }
+  .plate:hover img { transform: scale(1.03); }
+  .plate::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, transparent 60%, rgba(6,8,20,.55) 100%); }
+  .plate .tag { position: absolute; left: 16px; bottom: 14px; z-index: 2; font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--c, var(--iris)); }
+  .plate.miss { min-height: 200px; }
+  .plate.miss::before { content: "◫  Visuel"; position: absolute; inset: 0; display: grid; place-items: center;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--faint); }
+
+  .body { margin-top: 30px; max-width: 68ch; }
+  .body p { margin-bottom: 19px; color: #d3daf2; }
+  .body p b { color: var(--text); font-weight: 600; }
+  .w-flow { color: var(--flow); font-style: italic; }
+  .w-sink { color: var(--sink); font-style: italic; }
+  .w-curl { color: var(--curl); font-style: italic; }
+  .w-iris { color: var(--iris); font-style: italic; }
+
+  blockquote.q { margin: 30px 0; padding: 4px 0 4px 26px; border-left: 2px solid var(--c); max-width: 70ch; }
+  blockquote.q p { font-family: var(--display); font-weight: 350; font-style: italic; font-size: clamp(21px, 2.6vw, 28px);
+    line-height: 1.32; letter-spacing: -0.01em; color: #e7ebfb; }
+  blockquote.q .src { display: block; margin-top: 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); }
+
+  .panel { margin: 30px 0; padding: 24px 28px; border: 1px solid var(--line); border-left: 4px solid var(--pc, var(--gold));
+    background: linear-gradient(135deg, color-mix(in srgb, var(--pc, var(--gold)) 7%, transparent), transparent 70%); max-width: 70ch; }
+  .panel .pl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pc, var(--gold)); margin-bottom: 10px; }
+  .panel h5 { font-family: var(--display); font-weight: 440; font-size: 20px; margin-bottom: 8px; }
+  .panel p { font-size: 16.5px; color: var(--dim); }
+  .panel p + p { margin-top: 10px; }
+  .panel.flow { --pc: var(--flow); } .panel.sink { --pc: var(--sink); } .panel.iris { --pc: var(--iris); } .panel.curl { --pc: var(--curl); }
+
+  .fx { margin: 26px 0; padding: 22px 24px; border: 1px dashed var(--line); background: rgba(16,20,44,.5); text-align: center;
+    font-family: var(--mono); font-size: 17px; line-height: 2.1; color: var(--text); max-width: 70ch; }
+  .fx .l { display: block; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); margin-bottom: 6px; }
+  .fx .op { color: var(--curl); } .fx .v { color: var(--flow); } .fx sub { font-size: .7em; }
+
+  /* diagrammes svg */
+  .diagram { margin: 36px 0; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(16,20,44,.45), rgba(10,14,30,.6)); }
+  .diagram .canvas { display: grid; place-items: center; padding: 26px 20px 12px; }
+  .diagram svg { width: 100%; height: auto; max-width: 760px; }
+  .diagram .cap { padding: 12px 20px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; color: var(--faint); }
+  .diagram .cap b { color: var(--c, var(--iris)); font-weight: 500; }
+  .svglbl { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; }
+
+  /* ===== Atelier ===== */
+  .atelier { padding: clamp(80px,11vh,130px) 0 0; }
+  .atelier .band { border-top: 2px solid var(--iris); padding-top: 34px; }
+  .atelier .n { font-family: var(--mono); font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--iris); margin-bottom: 14px; }
+  .atelier h2 { font-family: var(--display); font-weight: 360; font-size: clamp(34px,6vw,64px); line-height: .96; letter-spacing: -0.02em; }
+  .atelier h2 em { font-style: italic; color: var(--iris); }
+  .atelier .lede { margin: 16px 0 30px; max-width: 64ch; color: var(--dim); font-size: 18px; }
+  .lab { display: grid; grid-template-columns: 1.22fr 0.78fr; gap: 0; border: 1px solid var(--line); background: var(--bg2); overflow: hidden; }
+  @media (max-width: 880px){ .lab { grid-template-columns: 1fr; } }
+  .lab-stage { position: relative; aspect-ratio: 1/1; background: radial-gradient(circle at 50% 45%, #0b1024, #05060f); }
+  .lab-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .lab-side { padding: 26px; display: flex; flex-direction: column; gap: 18px; border-left: 1px solid var(--line); }
+  @media (max-width: 880px){ .lab-side { border-left: none; border-top: 1px solid var(--line); } }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chips button { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 12px;
+    color: var(--dim); background: rgba(123,140,255,.05); border: 1px solid var(--line); cursor: pointer; transition: all .25s var(--ease); }
+  .chips button:hover { color: var(--text); border-color: var(--iris); }
+  .chips button.on { color: #05130f; background: var(--flow); border-color: var(--flow); font-weight: 700; }
+  .readout { display: grid; gap: 10px; }
+  .ro { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 15px; border: 1px solid var(--line); background: var(--ink); }
+  .ro .k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--dim); }
+  .ro .k b { color: var(--text); }
+  .ro .val { font-family: var(--mono); font-size: 14px; font-weight: 700; padding: 4px 12px; min-width: 56px; text-align: center; }
+  .ro .val.pos { color: var(--flow); border: 1px solid rgba(67,214,196,.4); }
+  .ro .val.neg { color: var(--sink); border: 1px solid rgba(255,106,77,.4); }
+  .ro .val.zero { color: var(--faint); border: 1px solid var(--line); }
+  .lab-desc { font-size: 16px; color: var(--dim); min-height: 3.6em; }
+  .lab-desc b { color: var(--text); font-weight: 600; }
+  .toggles { display: flex; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--dim); }
+  .toggles label { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+  .toggles input { accent-color: var(--flow); }
+  .legend { font-family: var(--mono); font-size: 10px; letter-spacing: .03em; color: var(--faint); line-height: 1.9; }
+  .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; vertical-align: middle; margin-right: 5px; }
+
+  /* phase portrait */
+  .phase-wrap { margin: 36px 0; display: grid; grid-template-columns: 1fr 0.82fr; gap: 22px; align-items: center; }
+  @media (max-width: 820px){ .phase-wrap { grid-template-columns: 1fr; } }
+  .phase-stage { position: relative; aspect-ratio: 1/1; border: 1px solid var(--line); background: radial-gradient(circle at 50% 50%, #0b1024, #05060f); overflow: hidden; }
+  .phase-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .phase-stage .ax { position: absolute; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+  .phase-note p { font-size: 16.5px; color: var(--dim); margin-bottom: 12px; }
+  .phase-note b { color: var(--text); }
+
+  /* compagnon */
+  .companion { margin: 44px 0 0; padding: 30px 32px; border: 1px solid var(--line);
+    background: linear-gradient(135deg, rgba(67,214,196,.08), rgba(123,140,255,.05) 60%, transparent);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; }
+  .companion .cl { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--flow); margin-bottom: 7px; }
+  .companion h4 { font-family: var(--display); font-weight: 440; font-size: 24px; }
+  .companion p { color: var(--dim); font-size: 15.5px; max-width: 52ch; margin-top: 4px; }
+
+  /* récap table */
+  .recap { padding: clamp(70px,10vh,120px) 0 0; }
+  .recap .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); margin-top: 30px; }
+  @media (max-width: 720px){ .recap .grid { grid-template-columns: 1fr; } }
+  .recap .col { padding: 30px; }
+  .recap .col:first-child { border-right: 1px solid var(--line); }
+  @media (max-width: 720px){ .recap .col:first-child { border-right: none; border-bottom: 1px solid var(--line); } }
+  .recap .col h3 { font-family: var(--display); font-weight: 400; font-style: italic; font-size: 34px; margin-bottom: 4px; }
+  .recap .col .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; }
+  .recap .col.d h3 { color: var(--flow); } .recap .col.d .tag { color: var(--flow); }
+  .recap .col.r h3 { color: var(--curl); } .recap .col.r .tag { color: var(--curl); }
+  .recap dl { margin-top: 20px; display: grid; gap: 14px; }
+  .recap dt { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+  .recap dd { font-size: 16.5px; color: #d3daf2; margin-top: 2px; }
+
+  /* coda */
+  .coda { padding: clamp(70px,10vh,120px) 0 0; }
+  .coda .inner { border-top: 2px solid var(--gold); padding-top: 36px; }
+  .coda .n { font-family: var(--mono); font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .coda blockquote { font-family: var(--display); font-weight: 340; font-style: italic; font-size: clamp(26px,4.4vw,44px);
+    line-height: 1.2; letter-spacing: -0.015em; max-width: 24ch; color: #eef1ff; }
+  .coda blockquote .hl { background: linear-gradient(100deg, var(--flow), var(--iris)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .coda p { max-width: 60ch; margin-top: 22px; color: var(--dim); font-size: 18px; }
+
+  /* crédit + footer ECI */
+  .credit { margin-top: clamp(70px,9vh,110px); padding: 28px 30px; border: 1px solid var(--line); background: var(--bg2); display: flex; align-items: center; gap: 18px; }
+  .credit img { width: 58px; height: 58px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); box-shadow: 0 0 0 2px rgba(123,140,255,.4); }
+  .credit .pl { font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--faint); }
+  .credit strong { display: block; font-family: var(--display); font-weight: 460; font-size: 21px; margin-top: 3px; }
+  .credit .note { font-style: italic; color: var(--dim); font-size: 15px; margin-top: 3px; }
+
+  .eci { margin-top: 24px; padding: 44px 36px; border: 1px solid var(--gold); position: relative; overflow: hidden;
+    background: radial-gradient(120% 130% at 100% 0%, rgba(214,172,85,.1), transparent 55%), var(--bg2); }
+  .eci .seal { width: 62px; height: 62px; border-radius: 50%; object-fit: cover; padding: 4px; background: conic-gradient(from 210deg, #9c7228, #f3d98a, #d6ac55, #9c7228); }
+  .eci h3 { font-family: var(--display); font-weight: 460; font-size: 24px; margin: 16px 0 6px; }
+  .eci p { color: var(--dim); max-width: 64ch; font-size: 15.5px; }
+  .eci .links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 22px 0; padding: 18px 0; border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2);
+    font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  .eci .links a { color: var(--dim); transition: color .25s var(--ease); }
+  .eci .links a:hover { color: var(--gold); }
+  .eci .devise { font-family: var(--display); font-style: italic; color: var(--gold); font-size: 17px; }
+
+  .foot { padding: 30px 0 64px; text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .85s var(--ease), transform .85s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal[data-d="1"]{ transition-delay: .08s; } .reveal[data-d="2"]{ transition-delay: .16s; } .reveal[data-d="3"]{ transition-delay: .24s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <canvas id="flow" aria-hidden="true"></canvas>
+    <div class="hero-veil" aria-hidden="true"></div>
+
+    <div class="hero-top">
+      <div class="wrap">
+        <a class="home" href="../index.html" aria-label="Accueil Empire contre Intox">
+          <img src="../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox" /> Empire contre Intox
+        </a>
+        <span class="live"><span class="d"></span> Champ vivant · rendu en direct</span>
+      </div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="wrap">
+        <p class="kick">Atlas des écoulements · Dossier VII</p>
+        <h1>Le langage<br />des <span class="it">champs</span></h1>
+        <p class="sub">Posez une <b>flèche</b> sur chaque point de l'espace, puis imaginez que c'est un <b>fluide</b> : le gradient, la divergence et le rotationnel deviennent visibles — jusqu'à faire parler les équations de Maxwell.</p>
+        <div class="hero-cta">
+          <a class="btn btn-1" href="#atelier">Ouvrir l'atelier <span class="a">→</span></a>
+          <a class="btn btn-2" href="#these">Commencer la lecture</a>
+        </div>
+        <div class="hero-meta">
+          <span>Réalisé par <b>Samlepirate</b></span><span class="sep"></span>
+          <span>D'après <b>3Blue1Brown</b></span><span class="sep"></span>
+          <span><b>2</b> ateliers interactifs</span><span class="sep"></span>
+          <span>Lecture ~14 min</span>
+        </div>
+      </div>
+    </div>
+    <a class="cue" href="#these" aria-label="Défiler"><span>Défiler</span><i></i></a>
+  </header>
+
+  <!-- ===== topbar ===== -->
+  <div class="topbar">
+    <div class="wrap">
+      <span class="b"><img src="../ymir-lalie/assets/logo-eci.jpg" alt="" /> <b>Le langage des champs</b></span>
+      <nav aria-label="Chapitres">
+        <a class="c" href="#these">Idée</a>
+        <a class="c" href="#champs">Champs</a>
+        <a class="c" href="#divergence">Divergence</a>
+        <a class="c" href="#rotationnel">Rotationnel</a>
+        <a class="c" href="#atelier">Atelier</a>
+        <a class="c" href="#maxwell">Maxwell</a>
+        <a class="c" href="#phases">Phases</a>
+        <a class="home" href="../index.html">Accueil ECI</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <!-- ===== THÈSE ===== -->
+    <section class="wrap these" id="these">
+      <p class="pull reveal">Tout commence par un geste minuscule : associer à chaque point une <em>flèche</em>. Tout finit par la lumière.</p>
+      <p class="reveal" data-d="1">Ce dossier porte en français l'épisode de <b>3Blue1Brown</b> (Grant Sanderson) sur la <b>divergence</b> et le <b>rotationnel</b> — « le langage des équations de Maxwell, de l'écoulement des fluides, et bien plus ». On part du plus simple — dessiner des flèches — pour atteindre deux opérations qui décrivent aussi bien l'eau qui coule, un champ électrique, ou la danse d'une population de renards et de lapins. Chaque idée est doublée d'un <b>atelier que l'on manipule</b>.</p>
+
+      <div class="triad">
+        <article class="card reveal" data-d="1" style="--c:var(--iris)">
+          <div class="ic">Le décor</div>
+          <h4>Le <em>champ</em></h4>
+          <p>Une flèche par point de l'espace. Vitesse d'un fluide, force de gravité, champ magnétique : le même dessin pour des mondes différents.</p>
+          <span class="sym">→</span>
+        </article>
+        <article class="card reveal" data-d="2" style="--c:var(--flow)">
+          <div class="ic">Ce qui jaillit</div>
+          <h4>La <em>divergence</em></h4>
+          <p>En chaque point : le fluide imaginé sort-il (source) ou entre-t-il (puits) ? Un seul nombre, une dérivée du flux.</p>
+          <span class="sym">∇·</span>
+        </article>
+        <article class="card reveal" data-d="3" style="--c:var(--curl)">
+          <div class="ic">Ce qui tourne</div>
+          <h4>Le <em>rotationnel</em></h4>
+          <p>Lâchez une brindille : tourne-t-elle ? La rotation locale du flux, encore un nombre, à lire avec son signe.</p>
+          <span class="sym">∇×</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CHAP I — CHAMPS ===== -->
+    <section class="wrap chapter" id="champs" style="--c:var(--iris)">
+      <div class="chap-head reveal">
+        <div class="big" aria-hidden="true">I</div>
+        <div class="meta">
+          <div class="n">Chapitre I — La brique de base</div>
+          <h2>Les champs de <em>vecteurs</em></h2>
+          <p class="lede">Pour être sûrs de parler de la même chose, commençons par le commencement.</p>
+        </div>
+      </div>
+      <figure class="plate reveal" data-d="1" style="--c:var(--iris)">
+        <img src="assets/champ-vecteurs-grille.jpg" alt="Une grille de vecteurs colorés du turquoise (courts) au corail (longs), sur fond étoilé" loading="lazy" onerror="this.closest('.plate').classList.add('miss'); this.remove()" />
+        <span class="tag">Une flèche par point · la couleur code la longueur</span>
+      </figure>
+      <div class="body reveal" data-d="1">
+        <p>Un champ de vecteurs, c'est ce qu'on obtient en <b>associant à chaque point de l'espace un vecteur</b> — une longueur et une direction. Ces flèches peuvent représenter la <span class="w-flow">vitesse des particules d'un fluide</span> en chaque point, la <b>force de gravité</b> à différents endroits, ou l'intensité d'un <b>champ magnétique</b>.</p>
+        <blockquote class="q">
+          <p>« Pour l'essentiel, un champ de vecteurs, c'est ce qu'on obtient en associant à chaque point de l'espace un vecteur — une grandeur et une direction. »</p>
+          <span class="src">3Blue1Brown — Divergence &amp; rotationnel</span>
+        </blockquote>
+        <p>Petite note de dessin. Si l'on traçait toutes les flèches <b>à l'échelle</b>, les plus longues encombreraient tout. On <b>triche donc un peu</b> : on raccourcit artificiellement celles qui débordent, en confiant souvent à la <b>couleur</b> le soin de redonner une vague idée de la longueur. (C'est exactement la convention du hero ci-dessus, et de l'atelier plus bas.)</p>
+        <p>Deux simplifications pour ce dossier. Les champs réels <i>changent</i> dans le temps — le vent vient par <span class="w-iris">rafales</span>, un champ électrique bouge avec ses charges — mais nous regarderons des <b>champs statiques</b>, comme un régime permanent. Et bien qu'un vecteur puisse vivre en 3D ou plus, nous resterons en <b>deux dimensions</b>.</p>
+      </div>
+
+      <div class="diagram reveal" data-d="1" style="--c:var(--iris)">
+        <div class="canvas">
+          <svg viewBox="0 0 760 220" role="img" aria-label="Convention de dessin : flèches à l'échelle, encombrées, versus flèches raccourcies et colorées">
+            <g id="scaled"></g>
+            <g id="clamped"></g>
+            <line x1="380" y1="24" x2="380" y2="196" stroke="rgba(123,140,255,.25)" stroke-dasharray="3 5"/>
+            <text x="190" y="210" text-anchor="middle" fill="#9aa6c8" class="svglbl">À L'ÉCHELLE · ÇA S'ENCOMBRE</text>
+            <text x="570" y="210" text-anchor="middle" fill="#43d6c4" class="svglbl">RACCOURCI + COULEUR · LISIBLE</text>
+          </svg>
+        </div>
+        <div class="cap"><b>Figure 1</b> — La même rangée de vecteurs, dessinée honnêtement (à gauche) puis « avec un petit mensonge » utile (à droite).</div>
+      </div>
+    </section>
+
+    <!-- ===== CHAP II — FLUIDE / GRADIENT ===== -->
+    <section class="wrap chapter" id="fluide" style="--c:var(--curl)">
+      <div class="chap-head reveal">
+        <div class="big" aria-hidden="true">II</div>
+        <div class="meta">
+          <div class="n">Chapitre II — Le grand truc mental</div>
+          <h2>Et si c'était un <em>fluide</em> ?</h2>
+          <p class="lede">Une idée qu'on tait trop souvent : on comprend mieux un champ en imaginant qu'il en représente un autre.</p>
+        </div>
+      </div>
+      <figure class="plate reveal" data-d="1" style="--c:var(--curl)">
+        <img src="assets/colline-gradient.jpg" alt="Une colline lumineuse en lignes de niveau, sommet turquoise, base corail, avec des flèches qui dévalent les pentes" loading="lazy" onerror="this.closest('.plate').classList.add('miss'); this.remove()" />
+        <span class="tag">Le gradient · la descente d'une colline de potentiel</span>
+      </figure>
+      <div class="body reveal" data-d="1">
+        <p>On comprend souvent bien mieux un champ qui décrit <i>un</i> phénomène en imaginant qu'il en décrit <i>un autre</i>. Et si ces vecteurs de force gravitationnelle définissaient plutôt un <span class="w-flow">écoulement</span> ? À quoi ressemblerait-il, et que nous apprendrait-il en retour sur la gravité de départ ?</p>
+        <blockquote class="q">
+          <p>« Et si les vecteurs qui définissent un écoulement décrivaient la direction de descente d'une certaine colline ? Une telle colline existe-t-elle seulement ? »</p>
+          <span class="src">3Blue1Brown — Divergence &amp; rotationnel</span>
+        </blockquote>
+        <p>Cette question-là, c'est <b>le gradient</b>, vu par l'envers. Le gradient d'une « colline » — un champ scalaire : une altitude, une température, un potentiel — est le champ de vecteurs qui pointe partout vers la plus forte <i>montée</i> ; son opposé dévale la pente. Demander « ce flux est-il la descente d'une colline ? », c'est demander s'il <b>dérive d'un potentiel</b>. Quand la réponse est oui, le champ est un gradient, et l'on sait déjà énormément de lui.</p>
+        <div class="panel flow">
+          <div class="pl">La leçon</div>
+          <h5>Changer de métaphore, c'est changer d'outils</h5>
+          <p>La divergence et le rotationnel se ressentent « dans le ventre » quand on pense <b>écoulement</b> — même si le champ décrit en vérité un champ électrique. Le gradient, lui, se ressent quand on pense <b>relief</b>. Un seul objet mathématique, éclairé sous deux lampes différentes.</p>
+        </div>
+      </div>
+      <div class="diagram reveal" data-d="1" style="--c:var(--curl)">
+        <div class="canvas">
+          <svg viewBox="0 0 760 260" role="img" aria-label="Une colline en lignes de niveau, avec des flèches de descente qui suivent la plus forte pente">
+            <g id="hill"></g>
+            <circle cx="380" cy="132" r="5" fill="#f5b14a"/>
+            <text x="380" y="250" text-anchor="middle" fill="#9aa6c8" class="svglbl">LE GRADIENT MONTE · SON OPPOSÉ DESCEND LA COLLINE</text>
+          </svg>
+        </div>
+        <div class="cap"><b>Figure 2</b> — Courbes de niveau d'un potentiel ; les flèches suivent la plus grande pente. L'écoulement « est » la descente d'une colline.</div>
+      </div>
+    </section>
+
+    <!-- ===== CHAP III — DIVERGENCE ===== -->
+    <section class="wrap chapter" id="divergence" style="--c:var(--flow)">
+      <div class="chap-head reveal">
+        <div class="big" aria-hidden="true">III</div>
+        <div class="meta">
+          <div class="n">Chapitre III — Sources &amp; puits</div>
+          <h2>La <em>divergence</em></h2>
+          <p class="lede">Regardez ce champ comme la vitesse d'un fluide. Il se comporte de façon très étrange, non physique.</p>
+        </div>
+      </div>
+      <div class="body reveal" data-d="1">
+        <p>Autour de certains points, le fluide <span class="w-flow">jaillit du néant</span>, comme s'il y avait là une <b>source</b>. Autour d'autres, il <span class="w-sink">disparaît dans le néant</span> : ce sont des <b>puits</b>.</p>
+        <blockquote class="q">
+          <p>« La divergence d'un champ en un point donné te dit à quel point ce fluide imaginé tend à sortir des petites régions voisines, ou à y entrer. »</p>
+          <span class="src">3Blue1Brown — Divergence &amp; rotationnel</span>
+        </blockquote>
+        <p>Sur une source, la divergence est <span class="w-flow">positive</span>. Et il n'est pas nécessaire que <i>tout</i> le fluide s'écarte : il suffit que le flux qui <b>arrive</b> d'un côté soit plus lent que celui qui <b>repart</b> de l'autre — cela trahit encore une génération spontanée. Inversement, si une petite région reçoit plus qu'elle ne laisse partir, la divergence y est <span class="w-sink">négative</span>.</p>
+        <div class="fx">
+          <span class="l">Notation</span>
+          <span class="op">∇·</span><span class="v">F</span> = ∂F<sub>x</sub>/∂x + ∂F<sub>y</sub>/∂y &nbsp;→&nbsp; <span style="color:var(--dim)">un seul nombre par point</span>
+        </div>
+        <p>Le champ est une fonction qui prend une entrée 2D et rend une sortie 2D. Sa divergence, elle, est une <b>nouvelle fonction</b> : elle prend un point et rend un <b>simple nombre</b>, dépendant du comportement du champ dans un petit voisinage. En cela, c'est l'analogue d'une <b>dérivée</b> — la mesure de « combien » ce point agit en source ou en puits. <i>(On retarde volontairement les calculs : comprendre ce que ça représente compte davantage.)</i></p>
+        <div class="panel">
+          <div class="pl">Définition opératoire</div>
+          <h5>Incompressible ⇒ divergence nulle partout</h5>
+          <p>Pour un vrai fluide comme l'eau — et non le fluide imaginé qui sert à illustrer —, s'il est <b>incompressible</b>, son champ de vitesse doit avoir une divergence <b>nulle en tout point</b>. C'est une contrainte forte sur les champs capables de résoudre un vrai problème d'écoulement.</p>
+        </div>
+      </div>
+      <div class="diagram reveal" data-d="1" style="--c:var(--flow)">
+        <div class="canvas">
+          <svg viewBox="0 0 760 240" role="img" aria-label="Une source à divergence positive et un puits à divergence négative">
+            <g id="raysrc" fill="none" stroke="#43d6c4" stroke-width="2"></g>
+            <circle cx="200" cy="120" r="6" fill="#43d6c4"/>
+            <g id="raysink" fill="none" stroke="#ff6a4d" stroke-width="2"></g>
+            <circle cx="560" cy="120" r="6" fill="#ff6a4d"/>
+            <text x="200" y="224" text-anchor="middle" fill="#43d6c4" class="svglbl">SOURCE · ∇·F &gt; 0</text>
+            <text x="560" y="224" text-anchor="middle" fill="#ff6a4d" class="svglbl">PUITS · ∇·F &lt; 0</text>
+          </svg>
+        </div>
+        <div class="cap"><b>Figure 3</b> — Le fluide jaillit (gauche) ou s'engouffre (droite). La divergence lit ce solde, point par point.</div>
+      </div>
+    </section>
+
+    <!-- ===== CHAP IV — ROTATIONNEL ===== -->
+    <section class="wrap chapter" id="rotationnel" style="--c:var(--curl)">
+      <div class="chap-head reveal">
+        <div class="big" aria-hidden="true">IV</div>
+        <div class="meta">
+          <div class="n">Chapitre IV — La brindille qui tourne</div>
+          <h2>Le <em>rotationnel</em></h2>
+          <p class="lede">Cette fois, on demande : en ce point, le fluide tend-il à tourner ?</p>
+        </div>
+      </div>
+      <div class="body reveal" data-d="1">
+        <p>Imaginez lâcher une <b>brindille</b> dans le fluide, en fixant son centre : tournerait-elle ? Là où la rotation est <span class="w-curl">horaire</span>, le rotationnel est dit positif ; là où elle est antihoraire, négatif.</p>
+        <blockquote class="q">
+          <p>« Autrement dit : si tu lâchais une brindille dans le fluide à ce point, en fixant son centre, tendrait-elle à tourner ? »</p>
+          <span class="src">3Blue1Brown — Divergence &amp; rotationnel</span>
+        </blockquote>
+        <p>Pas besoin que toutes les flèches tournent dans le même sens. Un point au cœur d'une zone de <b>cisaillement</b> — flux <i>lent en bas</i>, <i>rapide en haut</i> — a un rotationnel non nul : il en résulte une influence horaire nette.</p>
+        <div class="panel">
+          <div class="pl">Précision honnête</div>
+          <h5>Le vrai rotationnel est tridimensionnel</h5>
+          <p>Le rotationnel « propre » associe à chaque point de l'espace 3D un <b>nouveau vecteur</b>, selon une règle de la main droite. Ici, pour aller à l'essentiel, on n'utilise que sa <b>variante 2D</b>, qui associe à chaque point un <b>simple nombre</b> plutôt qu'un vecteur.</p>
+        </div>
+        <div class="fx">
+          <span class="l">Notation — variante 2D</span>
+          (<span class="op">∇×</span><span class="v">F</span>)<sub>z</sub> = ∂F<sub>y</sub>/∂x − ∂F<sub>x</sub>/∂y
+        </div>
+        <div class="panel sink">
+          <div class="pl">Garde-fou — la convention de signe</div>
+          <p>3Blue1Brown appelle <b>positif</b> le sens <b>horaire</b>, car l'axe vertical est inversé à l'écran. La convention mathématique usuelle (axe <i>y</i> vers le haut) appelle <b>positif</b> le sens <b>antihoraire</b>. Même physique, signe opposé : vérifiez toujours l'orientation avant de conclure. <i>Nos ateliers suivent la convention mathématique.</i></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ATELIER ===== -->
+    <section class="wrap atelier" id="atelier">
+      <div class="band reveal">
+        <div class="n">Atelier I — Manipulez le champ</div>
+        <h2>Lâchez une <em>brindille</em> dans le fluide</h2>
+        <p class="lede">Choisissez un champ, regardez les particules s'écouler et lisez sa divergence et son rotationnel en direct. La brindille au centre tourne au rythme du rotationnel ; l'anneau respire au rythme de la divergence. <i>(Convention mathématique : y vers le haut, antihoraire positif.)</i></p>
+      </div>
+      <div class="lab reveal" data-d="1">
+        <div class="lab-stage"><canvas id="field"></canvas></div>
+        <div class="lab-side">
+          <div class="chips" id="chips" role="group" aria-label="Choix du champ"></div>
+          <div class="readout">
+            <div class="ro"><span class="k">Divergence <b>∇·F</b></span><span class="val zero" id="rdiv">0</span></div>
+            <div class="ro"><span class="k">Rotationnel <b>(∇×F)z</b></span><span class="val zero" id="rcurl">0</span></div>
+          </div>
+          <p class="lab-desc" id="labdesc"></p>
+          <div class="toggles">
+            <label><input type="checkbox" id="tP" checked /> Particules</label>
+            <label><input type="checkbox" id="tA" checked /> Flèches</label>
+            <label><input type="checkbox" id="tT" checked /> Brindille</label>
+          </div>
+          <div class="legend">
+            <i style="background:#43d6c4"></i>flux rapide / sortant&nbsp;&nbsp;
+            <i style="background:#f5b14a"></i>intermédiaire&nbsp;&nbsp;
+            <i style="background:#ff6a4d"></i>lent / entrant
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CHAP V — MAXWELL ===== -->
+    <section class="wrap chapter" id="maxwell" style="--c:var(--flow)">
+      <div class="chap-head reveal">
+        <div class="big" aria-hidden="true">V</div>
+        <div class="meta">
+          <div class="n">Chapitre V — Quatre équations</div>
+          <h2>Le langage de <em>Maxwell</em></h2>
+          <p class="lede">Même nées dans les fluides, ces deux idées comptent pour bien d'autres champs.</p>
+        </div>
+      </div>
+      <figure class="plate reveal" data-d="1" style="--c:var(--flow)">
+        <img src="assets/maxwell-onde.jpg" alt="Une onde électromagnétique : champ électrique turquoise et champ magnétique ambre, perpendiculaires, se propageant" loading="lazy" onerror="this.closest('.plate').classList.add('miss'); this.remove()" />
+        <span class="tag">E ⊥ B · le va-et-vient qui engendre la lumière</span>
+      </figure>
+      <div class="body reveal" data-d="1">
+        <p>L'exemple maître : l'électricité et le magnétisme tiennent en <b>quatre équations</b> — les équations de Maxwell — écrites dans le langage de la divergence et du rotationnel.</p>
+        <p><b>Loi de Gauss.</b> La divergence du champ électrique en un point est proportionnelle à la <b>densité de charge</b> qui s'y trouve. Lisez-la en fluide : les régions <span class="w-flow">chargées positivement</span> sont des <b>sources</b>, les régions <span class="w-sink">négatives</span> des <b>puits</b>, et là où il n'y a pas de charge, le fluide s'écoule de façon incompressible, comme l'eau.</p>
+        <div class="fx">
+          <span class="l">Gauss · électrique &nbsp;—&nbsp; Magnétique</span>
+          <span class="op">∇·</span><span class="v">E</span> = ρ / ε₀ &nbsp;&nbsp;&nbsp;<span style="color:var(--faint)">|</span>&nbsp;&nbsp;&nbsp; <span class="op">∇·</span><span class="v">B</span> = 0
+        </div>
+        <p><b>Divergence du champ magnétique : zéro partout.</b> Le fluide correspondant est incompressible — <b>ni source, ni puits</b>. Autrement dit, les <b>monopôles magnétiques</b> — un pôle nord ou sud isolé — <i>n'existent pas</i> : rien d'analogue aux charges positives et négatives de l'électricité.</p>
+        <blockquote class="q">
+          <p>« Bien sûr, il n'existe pas de fluide électrique au sens propre — mais c'est une façon très utile, et très belle, de lire une équation comme celle-ci. »</p>
+          <span class="src">3Blue1Brown — Divergence &amp; rotationnel</span>
+        </blockquote>
+        <p>Enfin, les <b>deux dernières équations</b> disent que la façon dont l'un des champs change dépend du <b>rotationnel de l'autre</b>. C'est une idée purement tridimensionnelle ; mais voici le point : ce va-et-vient entre les deux équations est précisément ce qui donne naissance aux <span class="w-curl">ondes lumineuses</span>.</p>
+        <div class="panel sink">
+          <div class="pl">Esprit critique</div>
+          <h5>Une fiction utile n'est pas un mensonge</h5>
+          <p>Il n'y a pas de « fluide électrique » réel. Le modèle source/puits est une <b>image</b>, choisie parce qu'elle rend l'équation lisible et juste. Savoir distinguer la <b>métaphore</b> du <b>fait</b> — et dire laquelle est laquelle — c'est tout l'art de bien vulgariser sans tromper.</p>
+        </div>
+      </div>
+      <div class="diagram reveal" data-d="1" style="--c:var(--flow)">
+        <div class="canvas">
+          <svg viewBox="0 0 760 230" role="img" aria-label="Champs électrique et magnétique perpendiculaires, en quadrature, formant une onde">
+            <line x1="40" y1="115" x2="720" y2="115" stroke="rgba(123,140,255,.3)" stroke-dasharray="3 6"/>
+            <path id="waveE" fill="none" stroke="#43d6c4" stroke-width="2.5"/>
+            <path id="waveB" fill="none" stroke="#f5b14a" stroke-width="2.5"/>
+            <text x="60" y="40" fill="#43d6c4" class="svglbl">E — CHAMP ÉLECTRIQUE</text>
+            <text x="60" y="206" fill="#f5b14a" class="svglbl">B — CHAMP MAGNÉTIQUE</text>
+            <text x="600" y="206" fill="#9aa6c8" class="svglbl">→ PROPAGATION</text>
+          </svg>
+        </div>
+        <div class="cap"><b>Figure 4</b> — E et B perpendiculaires se relancent l'un l'autre ; de ce va-et-vient naît la lumière.</div>
+      </div>
+    </section>
+
+    <!-- ===== CHAP VI — PHASES (atelier live) ===== -->
+    <section class="wrap chapter" id="phases" style="--c:var(--sink)">
+      <div class="chap-head reveal">
+        <div class="big" aria-hidden="true">VI</div>
+        <div class="meta">
+          <div class="n">Chapitre VI — Au-delà de l'espace</div>
+          <h2>L'espace des <em>phases</em></h2>
+          <p class="lede">Ces idées servent souvent dans des contextes qui n'ont rien de spatial.</p>
+        </div>
+      </div>
+      <figure class="plate reveal" data-d="1" style="--c:var(--sink)">
+        <img src="assets/phase-renards-lapins.jpg" alt="Espace des phases prédateur-proie : des trajectoires en spirale entre constellations de renard et de lapin" loading="lazy" onerror="this.closest('.plate').classList.add('miss'); this.remove()" />
+        <span class="tag">Espace des phases · renards contre lapins</span>
+      </figure>
+      <div class="body reveal" data-d="1">
+        <p>Exemple classique en équations différentielles : suivre la taille de <b>deux populations</b>, dont l'une est le prédateur de l'autre. L'état du système à un instant — les deux effectifs — est un <b>point d'un plan</b> : son <b>espace des phases</b>. À chaque couple d'effectifs on associe un vecteur, qui dit <b>comment, et à quelle vitesse</b>, ils tendent à changer.</p>
+        <blockquote class="q">
+          <p>« Des opérations comme la divergence et le rotationnel peuvent te renseigner sur le système. Les effectifs convergent-ils vers un couple de valeurs, ou y a-t-il des valeurs dont ils s'écartent ? »</p>
+          <span class="src">3Blue1Brown — Divergence &amp; rotationnel</span>
+        </blockquote>
+      </div>
+
+      <div class="phase-wrap reveal" data-d="1">
+        <div class="phase-stage">
+          <canvas id="phase"></canvas>
+          <span class="ax" style="left:12px; bottom:10px;">→ lapins (proies)</span>
+          <span class="ax" style="left:12px; top:10px; writing-mode:vertical-rl; transform:rotate(180deg);">→ renards (prédateurs)</span>
+        </div>
+        <div class="phase-note">
+          <p>Beaucoup de <span class="w-sink">renards</span> et peu de <span class="w-flow">lapins</span> ? Les renards déclinent (faute de proies), les lapins aussi (mangés plus vite qu'ils ne se reproduisent). Le champ n'est plus dans l'espace physique : c'est la <b>représentation d'un système dynamique</b>.</p>
+          <p>L'écoulement associé s'appelle le <b>flot de phase</b>. Ici, il tourne en <b>boucles fermées</b> autour d'un équilibre : des <b>cycles</b> proie-prédateur. D'un coup d'œil, on voit comment une foule d'états initiaux évolueraient — et l'on devine pourquoi les mathématiciens tiennent tant aux <b>dimensions supérieures</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CHAP VII — DOT / CROSS ===== -->
+    <section class="wrap chapter" id="lien" style="--c:var(--iris)">
+      <div class="chap-head reveal">
+        <div class="big" aria-hidden="true">VII</div>
+        <div class="meta">
+          <div class="n">Chapitre VII — Le lien profond</div>
+          <h2>Produit <em>scalaire</em> &amp; vectoriel</h2>
+          <p class="lede">Le triangle renversé ∇ n'est pas qu'un truc mnémotechnique.</p>
+        </div>
+      </div>
+      <div class="body reveal" data-d="1">
+        <p>On écrit la divergence comme un <b>produit scalaire</b> entre ce triangle renversé <b>∇</b> et le champ, et le rotationnel comme un <b>produit vectoriel</b>. On dit parfois que c'est un simple tour de notation. C'est <b>plus que ça</b> : il existe un vrai lien entre divergence et produit scalaire, et entre rotationnel et produit vectoriel.</p>
+        <p>Faites un petit pas d'un point à un autre. Le vecteur au nouveau point diffère un peu : cette <b>différence</b> de la fonction sur de petits pas, c'est tout le calcul différentiel.</p>
+        <p>Le <b>produit scalaire</b> mesure à quel point deux vecteurs sont <b>alignés</b>. Le produit scalaire de votre <i>pas</i> par la <i>différence</i> qu'il provoque tend à être positif là où la divergence l'est : un pas qui provoque un changement <b>dans la même direction</b>, c'est un flux sortant.</p>
+        <blockquote class="q">
+          <p>« La divergence est une sorte de valeur moyenne de ce produit scalaire — un pas, multiplié par le changement qu'il provoque — sur toutes les directions de pas possibles. »</p>
+          <span class="src">3Blue1Brown — Divergence &amp; rotationnel</span>
+        </blockquote>
+        <p>De même, le <b>produit vectoriel</b> mesure à quel point deux vecteurs sont <b>perpendiculaires</b>. Le produit vectoriel du pas par la différence qu'il provoque tend à être positif là où le rotationnel l'est : un pas qui provoque un changement <b>perpendiculaire</b>, c'est une tendance à la <span class="w-curl">rotation</span>.</p>
+      </div>
+      <div class="diagram reveal" data-d="1" style="--c:var(--iris)">
+        <div class="canvas">
+          <svg viewBox="0 0 760 210" role="img" aria-label="Pas aligné avec son changement (divergence) versus pas perpendiculaire à son changement (rotationnel)">
+            <g stroke-width="2.6" fill="none" stroke-linecap="round">
+              <g stroke="#43d6c4">
+                <line x1="120" y1="150" x2="225" y2="92"/><polygon points="225,92 210,93 217,106" fill="#43d6c4" stroke="none"/>
+                <line x1="225" y1="92" x2="312" y2="44"/><polygon points="312,44 297,45 304,58" fill="#43d6c4" stroke="none"/>
+              </g>
+              <g stroke="#f5b14a">
+                <line x1="470" y1="150" x2="565" y2="120"/><polygon points="565,120 551,116 549,129" fill="#f5b14a" stroke="none"/>
+                <line x1="565" y1="120" x2="598" y2="40"/><polygon points="598,40 585,49 598,52" fill="#f5b14a" stroke="none"/>
+              </g>
+            </g>
+            <text x="215" y="186" text-anchor="middle" fill="#43d6c4" class="svglbl">PAS ∥ CHANGEMENT → DIVERGENCE</text>
+            <text x="548" y="186" text-anchor="middle" fill="#f5b14a" class="svglbl">PAS ⊥ CHANGEMENT → ROTATIONNEL</text>
+          </svg>
+        </div>
+        <div class="cap"><b>Figure 5</b> — Le pas et le changement qu'il provoque : alignés, ils signent la divergence ; perpendiculaires, le rotationnel.</div>
+      </div>
+
+      <div class="companion reveal" data-d="1">
+        <div>
+          <div class="cl">Compagnon interactif</div>
+          <h4>Le Visualiseur Maths &amp; Physique</h4>
+          <p>Ces ateliers sont un aperçu. L'application de Samlepirate pousse l'idée jusqu'aux 130 000 particules en WebGPU et aux équations de Maxwell résolues en direct (FDTD).</p>
+        </div>
+        <a class="btn btn-1" href="../index.html">Explorer l'Empire <span class="a">→</span></a>
+      </div>
+    </section>
+
+    <!-- ===== RÉCAP ===== -->
+    <section class="wrap recap">
+      <div class="chap-head reveal" style="--c:var(--iris)">
+        <div class="big" aria-hidden="true">∑</div>
+        <div class="meta">
+          <div class="n">Mémo — à garder en tête</div>
+          <h2>Deux nombres, <em>deux questions</em></h2>
+        </div>
+      </div>
+      <div class="grid reveal" data-d="1">
+        <div class="col d">
+          <span class="tag">∇· — produit scalaire</span>
+          <h3>Divergence</h3>
+          <dl>
+            <div><dt>La question</dt><dd>Le fluide sort-il ou entre-t-il, ici ?</dd></div>
+            <div><dt>Le signe</dt><dd>+ source · − puits · 0 conservé (incompressible)</dd></div>
+            <div><dt>Le test</dt><dd>La brindille n'a rien à voir ; on regarde le solde entrant/sortant.</dd></div>
+            <div><dt>En physique</dt><dd>Gauss : ∇·E ∝ charge · ∇·B = 0 (pas de monopôle)</dd></div>
+          </dl>
+        </div>
+        <div class="col r">
+          <span class="tag">∇× — produit vectoriel</span>
+          <h3>Rotationnel</h3>
+          <dl>
+            <div><dt>La question</dt><dd>Le fluide tourne-t-il, ici ?</dd></div>
+            <div><dt>Le signe</dt><dd>dépend de l'orientation choisie — fixez-la d'abord</dd></div>
+            <div><dt>Le test</dt><dd>La brindille fixée par son centre se met-elle à tourner ?</dd></div>
+            <div><dt>En physique</dt><dd>Le va-et-vient des deux derniers Maxwell → la lumière</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CODA ===== -->
+    <section class="wrap coda">
+      <div class="inner reveal">
+        <div class="n">Le mot de la fin</div>
+        <blockquote>« Juste toi et moi, <span class="hl">partageant un amour des maths</span>, sans autre motif. »</blockquote>
+        <p>3Blue1Brown referme l'épisode sur ce vœu : des vidéos faites pour la valeur qu'on y trouve, pas pour ce qu'elles vendent. Ce dossier prolonge cet esprit — on ne vous demande pas d'y croire, on vous le <b>montre</b>, et on vous laisse manipuler. Le réel est déjà bien assez vertigineux.</p>
+      </div>
+    </section>
+
+    <!-- ===== CRÉDIT ===== -->
+    <section class="wrap credit reveal">
+      <img src="samlepirate.jpeg" alt="Avatar de Samlepirate" />
+      <div>
+        <div class="pl">Réalisé par</div>
+        <strong>Samlepirate</strong>
+        <div class="note">D'après l'épisode « Divergence &amp; rotationnel » de 3Blue1Brown (Grant Sanderson), porté en français et augmenté de deux ateliers interactifs et d'un hero génératif.</div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ECI ===== -->
+    <section class="wrap eci reveal">
+      <img class="seal" src="../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox" />
+      <h3>Empire contre Intox</h3>
+      <p>Archives publiques du collectif : des transcriptions de lives devenues pages immersives, où la science répond, fait par fait, aux récits de l'intox. Ce dossier rejoint les autres au catalogue.</p>
+      <nav class="links" aria-label="Autres dossiers">
+        <a href="../index.html">↩ Accueil ECI</a>
+        <a href="../ymir-lalie/resume-eres.html">Le Résumé des Ères</a>
+        <a href="../provoxys/Artemis2.html">Artemis II</a>
+        <a href="../horloge-univers/chronos.html">Horloge de l'Univers</a>
+        <a href="../la-vie-de-la-terre/index.html">La Vie de la Terre</a>
+        <a href="../sources/sources.html">Les Sources</a>
+      </nav>
+      <p class="devise">Veritas omnia vincit · Ad astra per aspera.</p>
+    </section>
+
+    <p class="foot">Empire contre Intox — Dossier Samlepirate · Champs de vecteurs, divergence &amp; rotationnel · d'après 3Blue1Brown</p>
+  </main>
+
+  <script>
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // progress
+    const bar = document.getElementById('progress');
+    const onScroll = () => { const h = document.documentElement, m = h.scrollHeight - h.clientHeight;
+      bar.style.width = (m > 0 ? (h.scrollTop / m) * 100 : 0) + '%'; };
+    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    // reveal
+    const io = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } },
+      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // nav spy
+    const links = [...document.querySelectorAll('.topbar nav .c')];
+    const secs = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const spy = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting) {
+      const id = '#' + e.target.id; links.forEach((a) => a.classList.toggle('on', a.getAttribute('href') === id)); } },
+      { rootMargin: '-45% 0px -50% 0px' });
+    secs.forEach((s) => spy.observe(s));
+
+    // ---------- helpers SVG ----------
+    const arrow = (x0,y0,x1,y1,col,w=2) => {
+      const a = Math.atan2(y1-y0, x1-x0);
+      return `<line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="${col}" stroke-width="${w}"/>`+
+        `<line x1="${x1}" y1="${y1}" x2="${x1-Math.cos(a-0.42)*7}" y2="${y1-Math.sin(a-0.42)*7}" stroke="${col}" stroke-width="${w}"/>`+
+        `<line x1="${x1}" y1="${y1}" x2="${x1-Math.cos(a+0.42)*7}" y2="${y1-Math.sin(a+0.42)*7}" stroke="${col}" stroke-width="${w}"/>`;
+    };
+    (function fig1(){
+      const cols=['#43d6c4','#6f9fe0','#7b8cff','#c98be0','#ff6a4d']; let s='', c='';
+      for(let i=0;i<7;i++){ const x=70+i*42, mag=Math.abs(Math.sin(i*1.1))*1.0+0.25;
+        s+=arrow(x,150,x,150-mag*120,'#7b8cff',1.8);
+        const xc=430+i*42, L=24*(mag/(1+mag*0.6)), col=cols[Math.min(4,Math.floor(mag*3))];
+        c+=arrow(xc,120,xc,120-L-10,col,2.2); }
+      const A=document.getElementById('scaled'), C=document.getElementById('clamped');
+      if(A)A.innerHTML=s; if(C)C.innerHTML=c;
+    })();
+    (function hill(){
+      let s='';
+      for(let r=20;r<=120;r+=22) s+=`<ellipse cx="380" cy="132" rx="${r*1.5}" ry="${r*0.7}" fill="none" stroke="rgba(245,177,74,${0.5-r/300})" stroke-width="1"/>`;
+      for(let k=0;k<16;k++){ const a=k/16*Math.PI*2, x0=380+Math.cos(a)*40, y0=132+Math.sin(a)*19, x1=380+Math.cos(a)*150, y1=132+Math.sin(a)*70;
+        s+=arrow(x1,y1,x0,y0,'#f5b14a',1.6); }
+      const H=document.getElementById('hill'); if(H)H.innerHTML=s;
+    })();
+    (function rays(){
+      const mk=(cx,cy,into)=>{ let s=''; for(let k=0;k<12;k++){ const a=k/12*Math.PI*2,
+        r0=into?70:18, r1=into?20:70, x0=cx+Math.cos(a)*r0, y0=cy+Math.sin(a)*r0, x1=cx+Math.cos(a)*r1, y1=cy+Math.sin(a)*r1;
+        s+=arrow(x0,y0,x1,y1, into?'#ff6a4d':'#43d6c4', 2); } return s; };
+      const a=document.getElementById('raysrc'), b=document.getElementById('raysink');
+      if(a)a.innerHTML=mk(200,120,false); if(b)b.innerHTML=mk(560,120,true);
+    })();
+    (function wave(){
+      const E=document.getElementById('waveE'), B=document.getElementById('waveB'); if(!E)return;
+      let e='M40 115', b='M40 115';
+      for(let x=40;x<=720;x+=6){ const p=(x-40)/680*Math.PI*4; e+=` L${x} ${115-Math.sin(p)*64}`; b+=` L${x} ${115-Math.sin(p)*30}`; }
+      E.setAttribute('d',e); B.setAttribute('d',b);
+    })();
+
+    // ---------- HERO : champ d'écoulement génératif ----------
+    (function flow(){
+      const cv=document.getElementById('flow'); if(!cv)return; const ctx=cv.getContext('2d'); let W,H,dpr,pts=[];
+      const PAL=['#43d6c4','#5fb6e6','#7b8cff','#9b8cf0','#f5b14a','#ff6a4d'];
+      const field=(x,y,t)=> (Math.sin(x*0.0042+t*0.18)+Math.cos(y*0.0039-t*0.13)+0.6*Math.sin((x+y)*0.0026+t*0.09))*Math.PI;
+      const spawn=()=>({ x:Math.random()*W, y:Math.random()*H, life:Math.random()*200+40,
+        col:PAL[Math.random()<0.62?Math.floor(Math.random()*4):4+Math.floor(Math.random()*2)] });
+      function init(){ const r=cv.getBoundingClientRect(); dpr=Math.min(devicePixelRatio||1,2); cv.width=r.width*dpr; cv.height=r.height*dpr; W=cv.width; H=cv.height;
+        ctx.fillStyle='#060814'; ctx.fillRect(0,0,W,H); const N=Math.round(Math.min(1700,(r.width*r.height)/620)); pts=[]; for(let i=0;i<N;i++)pts.push(spawn()); }
+      let t=0, raf;
+      function step(){ t+=0.016; ctx.fillStyle='rgba(6,8,20,0.075)'; ctx.fillRect(0,0,W,H); ctx.lineWidth=1.25*dpr; ctx.lineCap='round';
+        for(const p of pts){ const a=field(p.x,p.y,t), nx=p.x+Math.cos(a)*1.5*dpr, ny=p.y+Math.sin(a)*1.5*dpr;
+          ctx.strokeStyle=p.col; ctx.globalAlpha=0.55; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(nx,ny); ctx.stroke();
+          p.x=nx; p.y=ny; p.life--; if(p.life<=0||p.x<0||p.y<0||p.x>W||p.y>H)Object.assign(p,spawn()); }
+        ctx.globalAlpha=1; raf=requestAnimationFrame(step); }
+      function staticFrame(){ for(let s=0;s<160;s++)for(const p of pts){ const a=field(p.x,p.y,t), nx=p.x+Math.cos(a)*1.5*dpr, ny=p.y+Math.sin(a)*1.5*dpr;
+          ctx.strokeStyle=p.col; ctx.globalAlpha=0.5; ctx.lineWidth=1.2*dpr; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(nx,ny); ctx.stroke();
+          p.x=nx; p.y=ny; if(p.x<0||p.y<0||p.x>W||p.y>H)Object.assign(p,spawn()); } ctx.globalAlpha=1; }
+      init(); reduce ? staticFrame() : step();
+      let to; addEventListener('resize',()=>{ clearTimeout(to); to=setTimeout(()=>{ cancelAnimationFrame(raf); init(); reduce?staticFrame():step(); },200); });
+    })();
+
+    // ---------- ATELIER I : champs analytiques ----------
+    (function lab(){
+      const cv=document.getElementById('field'); if(!cv)return; const ctx=cv.getContext('2d');
+      const F={
+        source:{nom:'Source',u:(x,y)=>x,v:(x,y)=>y,div:2,curl:0,d:'Le fluide <b>jaillit</b> du centre : divergence positive, aucune rotation. Comme une charge positive en loi de Gauss.'},
+        puits:{nom:'Puits',u:(x,y)=>-x,v:(x,y)=>-y,div:-2,curl:0,d:'Tout converge vers le centre : divergence <b>négative</b>. Une charge négative, un puits.'},
+        tourbillon:{nom:'Tourbillon',u:(x,y)=>-y,v:(x,y)=>x,div:0,curl:2,d:'Rotation pure antihoraire : rotationnel positif, divergence nulle. La brindille tourne, rien ne jaillit.'},
+        cisaillement:{nom:'Cisaillement',u:(x,y)=>y,v:(x,y)=>0,div:0,curl:-1,d:'Lent en bas, rapide en haut : pas de source, mais un rotationnel <b>non nul</b>. Le cas du chapitre IV.'},
+        selle:{nom:'Selle',u:(x,y)=>x,v:(x,y)=>-y,div:0,curl:0,d:'Il sort à droite/gauche, il entre en haut/bas : tout se compense. Divergence ET rotationnel nuls.'},
+        spirale:{nom:'Spirale',u:(x,y)=>x-y,v:(x,y)=>x+y,div:2,curl:2,d:'Source <b>et</b> tourbillon : ça jaillit en spiralant. Divergence et rotationnel tous deux positifs.'},
+      };
+      let cur='source', sP=true,sA=true,sT=true;
+      const box=document.getElementById('chips');
+      Object.keys(F).forEach(k=>{ const b=document.createElement('button'); b.textContent=F[k].nom; b.dataset.k=k;
+        if(k===cur)b.classList.add('on'); b.onclick=()=>{cur=k;sync();}; box.appendChild(b); });
+      const tP=document.getElementById('tP'),tA=document.getElementById('tA'),tT=document.getElementById('tT');
+      tP.onchange=()=>sP=tP.checked; tA.onchange=()=>sA=tA.checked; tT.onchange=()=>sT=tT.checked;
+      const rdiv=document.getElementById('rdiv'),rcurl=document.getElementById('rcurl'),desc=document.getElementById('labdesc');
+      const sg=n=>n>0.001?'pos':n<-0.001?'neg':'zero', fm=n=>(n>0?'+':'')+n.toFixed(0);
+      function sync(){ const f=F[cur]; [...box.children].forEach(b=>b.classList.toggle('on',b.dataset.k===cur));
+        rdiv.textContent=fm(f.div); rdiv.className='val '+sg(f.div); rcurl.textContent=fm(f.curl); rcurl.className='val '+sg(f.curl); desc.innerHTML=f.d; }
+      sync();
+      const R=4.2; let W,H,dpr;
+      function rs(){ const r=cv.getBoundingClientRect(); dpr=Math.min(devicePixelRatio||1,2); cv.width=r.width*dpr; cv.height=r.height*dpr; W=cv.width; H=cv.height; }
+      rs(); addEventListener('resize',rs);
+      const S=(x,y)=>[W/2+(x/R)*(W/2), H/2-(y/R)*(H/2)];
+      const col=m=>{ const t=Math.min(1,m/(R*1.1)); return t<0.5
+        ? `rgba(${67+(245-67)*(t*2)|0},${214+(177-214)*(t*2)|0},${196+(74-196)*(t*2)|0},0.9)`
+        : `rgba(255,${177+(106-177)*((t-0.5)*2)|0},${74+(77-74)*((t-0.5)*2)|0},0.9)`; };
+      const N=440, P=[]; const sp=p=>{p.x=(Math.random()*2-1)*R; p.y=(Math.random()*2-1)*R; p.life=Math.random()*60;};
+      for(let i=0;i<N;i++){const p={};sp(p);P.push(p);}
+      let twig=0,ring=0,t0=performance.now();
+      function fr(now){ const dt=Math.min(0.05,(now-t0)/1000); t0=now; const f=F[cur];
+        ctx.fillStyle='rgba(5,6,15,0.24)'; ctx.fillRect(0,0,W,H);
+        if(sA){ const G=13; ctx.lineWidth=1.4;
+          for(let i=0;i<=G;i++)for(let j=0;j<=G;j++){ const x=-R+2*R*i/G, y=-R+2*R*j/G, u=f.u(x,y), v=f.v(x,y), m=Math.hypot(u,v); if(m<1e-4)continue;
+            const L=28*(m/(1+m*0.6)), pt=S(x,y), sx=pt[0], sy=pt[1], dx=u/m*L, dy=-v/m*L, c=col(m); ctx.strokeStyle=c; ctx.fillStyle=c;
+            ctx.beginPath(); ctx.moveTo(sx,sy); ctx.lineTo(sx+dx,sy+dy); ctx.stroke(); const an=Math.atan2(dy,dx);
+            ctx.beginPath(); ctx.moveTo(sx+dx,sy+dy); ctx.lineTo(sx+dx-Math.cos(an-0.5)*5,sy+dy-Math.sin(an-0.5)*5);
+            ctx.lineTo(sx+dx-Math.cos(an+0.5)*5,sy+dy-Math.sin(an+0.5)*5); ctx.closePath(); ctx.fill(); } }
+        if(sP){ ctx.lineWidth=1.7; for(const p of P){ const u=f.u(p.x,p.y),v=f.v(p.x,p.y),m=Math.hypot(u,v),k=reduce?0:0.18;
+          const nx=p.x+u*k*dt*6, ny=p.y+v*k*dt*6, a=S(p.x,p.y), b=S(nx,ny);
+          ctx.strokeStyle=col(m); ctx.beginPath(); ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]); ctx.stroke();
+          p.x=nx; p.y=ny; p.life--; if(p.life<=0||Math.abs(p.x)>R||Math.abs(p.y)>R||m>50)sp(p); } }
+        const c0=S(0,0), cx=c0[0], cy=c0[1];
+        if(sT){ twig+=reduce?0:f.curl*0.5*dt; ring+=dt; const rr=30+(f.div!==0?Math.sin(ring*2)*6*Math.sign(f.div):0);
+          ctx.strokeStyle=f.div>0?'rgba(67,214,196,0.85)':f.div<0?'rgba(255,106,77,0.85)':'rgba(120,134,180,0.5)';
+          ctx.lineWidth=2; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.arc(cx,cy,rr,0,7); ctx.stroke(); ctx.setLineDash([]);
+          ctx.strokeStyle='#f5b14a'; ctx.lineWidth=3; ctx.lineCap='round'; ctx.beginPath();
+          ctx.moveTo(cx-Math.cos(twig)*26,cy-Math.sin(twig)*26); ctx.lineTo(cx+Math.cos(twig)*26,cy+Math.sin(twig)*26); ctx.stroke();
+          ctx.fillStyle='#f5b14a'; ctx.beginPath(); ctx.arc(cx,cy,3.5,0,7); ctx.fill(); }
+        requestAnimationFrame(fr);
+      }
+      requestAnimationFrame(fr);
+    })();
+
+    // ---------- ATELIER II : portrait de phase (Lotka–Volterra) ----------
+    (function phase(){
+      const cv=document.getElementById('phase'); if(!cv)return; const ctx=cv.getContext('2d');
+      const al=0.9,be=0.5,ga=0.9,de=0.5, MX=3.4; let W,H,dpr;
+      function rs(){ const r=cv.getBoundingClientRect(); dpr=Math.min(devicePixelRatio||1,2); cv.width=r.width*dpr; cv.height=r.height*dpr; W=cv.width; H=cv.height; ctx.fillStyle='#05060f'; ctx.fillRect(0,0,W,H); }
+      rs(); addEventListener('resize',rs);
+      const S=(x,y)=>[ (x/MX)*W, H-(y/MX)*H ];
+      const fx=(x,y)=>al*x-be*x*y, fy=(x,y)=>de*x*y-ga*y;
+      const N=300,P=[]; const sp=p=>{ p.x=0.15+Math.random()*3.0; p.y=0.15+Math.random()*3.0; p.life=Math.random()*120; };
+      for(let i=0;i<N;i++){const p={};sp(p);P.push(p);}
+      let t0=performance.now();
+      function fr(now){ const dt=Math.min(0.04,(now-t0)/1000); t0=now;
+        ctx.fillStyle='rgba(5,6,15,0.18)'; ctx.fillRect(0,0,W,H);
+        ctx.lineWidth=1.1; const G=9;
+        for(let i=1;i<G;i++)for(let j=1;j<G;j++){ const x=MX*i/G, y=MX*j/G, u=fx(x,y), v=fy(x,y), m=Math.hypot(u,v); if(m<1e-3)continue;
+          const s=S(x,y), L=14, dx=u/m*L, dy=-v/m*L; ctx.strokeStyle='rgba(123,140,255,0.22)';
+          ctx.beginPath(); ctx.moveTo(s[0],s[1]); ctx.lineTo(s[0]+dx,s[1]+dy); ctx.stroke(); }
+        ctx.lineWidth=1.7;
+        for(const p of P){ const u=fx(p.x,p.y),v=fy(p.x,p.y),k=reduce?0:0.5, nx=p.x+u*k*dt, ny=p.y+v*k*dt, a=S(p.x,p.y), b=S(nx,ny), m=Math.hypot(u,v);
+          ctx.strokeStyle = p.y>p.x ? 'rgba(255,106,77,0.8)' : 'rgba(67,214,196,0.8)';
+          ctx.beginPath(); ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]); ctx.stroke();
+          p.x=nx; p.y=ny; p.life--; if(p.life<=0||p.x<=0.02||p.y<=0.02||p.x>MX||p.y>MX||m>40)sp(p); }
+        const e=S(ga/de,al/be); ctx.fillStyle='#f5b14a'; ctx.beginPath(); ctx.arc(e[0],e[1],4,0,7); ctx.fill();
+        ctx.strokeStyle='rgba(245,177,74,0.35)'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(e[0],e[1],9,0,7); ctx.stroke();
+        requestAnimationFrame(fr);
+      }
+      requestAnimationFrame(fr);
+    })();
+  </script>
+</body>
+</html>
