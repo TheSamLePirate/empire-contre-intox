@@ -19,6 +19,7 @@ Vérifié le **1ᵉʳ juin 2026** par recherche web (sources autoritatives : NAS
 | III | [`dossier-III-artemis2.md`](dossier-III-artemis2.md) | Artemis II (Provoxys) |
 | V | [`dossier-V-elements.md`](dossier-V-elements.md) | Le Tableau Périodique — particules, interactions, formation des atomes, radioactivité, modèles, orbitales, propriétés (Jorge & Zalex) |
 | VI | [`dossier-VI-la-vie-de-la-terre.md`](dossier-VI-la-vie-de-la-terre.md) | La Vie de la Terre — application interactive, paléogéographie, séries climatiques/atmosphériques, pipeline reproductible (SamLePirate) |
+| VIII | [`dossier-VIII-ancetres-genetiques.md`](dossier-VIII-ancetres-genetiques.md) | Adam & Ève génétiques — Ève mitochondriale, Adam chromosome Y, LUCA, code génétique, science & foi (Lalie & Ymir) |
 
 > Données brutes fournies par l'auteur : `sources_audit_scientifique_chronos.csv`.
 
@@ -35,6 +36,7 @@ Couche « sources scientifiques » : **plus de 150 articles à comité de lectur
 | [`refs-doi-5-lune-artemis.md`](refs-doi-5-lune-artemis.md) | 6 | Colaprete (LCROSS), Li, Honniball, Hayne, Pieters (M³), Hauri |
 | [`refs-doi-V-elements.md`](refs-doi-V-elements.md) | 81 | Particules/interactions, cosmologie/BBN/CMB, radioactivité, modèles atomiques, mécanique quantique, règles de remplissage, propriétés périodiques, Mendeleïev |
 | [`refs-doi-VI-la-vie-de-la-terre.md`](refs-doi-VI-la-vie-de-la-terre.md) | 12 | Paléogéographie, PhanDA, CO₂/O₂/CH₄, GEOCARBSULF, Grande Oxydation, durée du jour Terre-Lune |
+| [`refs-doi-VIII-ancetres-genetiques.md`](refs-doi-VIII-ancetres-genetiques.md) | 7 | Cann 1987 (Ève mito.), Poznik 2013 (Adam-Y), Luo 2018 (ADNmt biparental), Mendez 2013 (A00), Moody 2024 (LUCA), Bell 2015 (zircon 4,1 Ga), Hublin 2017 (Jebel Irhoud) |
 
 > Pièges à DOI détectés et corrigés par les agents : Kimberella (Fedonkin) `10.1038/42242` (et non 41048), Daver 2022, Renne 2015 `…aac7549`, Zachos 2001 `…1059412`. Les bornes ICS n'ont pas de DOI d'article unique → référence = GTS2020 (DOI volume) + charte officielle ICS.
 
@@ -56,6 +58,11 @@ Les grands repères des dossiers sont corrects et sourcés. Restent des points *
 - Audit léger : [`dossier-VI-la-vie-de-la-terre.md`](dossier-VI-la-vie-de-la-terre.md), basé sur la page sources et les fichiers internes de l'application.
 - Bibliographie DOI : [`refs-doi-VI-la-vie-de-la-terre.md`](refs-doi-VI-la-vie-de-la-terre.md) (**12 références**, dont un DOI Zenodo de jeu de données).
 - Points de précision principaux : les cartes >1 Ga sont stylisées, les séries précambriennes sont des ancrages/estimations et les événements biologiques profonds gardent des formulations prudentes.
+
+### Dossier VIII — Adam & Ève, ancêtres génétiques
+- Audit complet : [`dossier-VIII-ancetres-genetiques.md`](dossier-VIII-ancetres-genetiques.md) ; bibliographie DOI : [`refs-doi-VIII-ancetres-genetiques.md`](refs-doi-VIII-ancetres-genetiques.md) (**7 DOI, tous vérifiés Crossref**).
+- Aucune **erreur ❌**. Points nuancés par des encadrés « Anti-intox » dans la page : dates Ève mito. (~150–200 ka, plutôt ~150–160 ka) et Adam-Y (~120–340 ka selon A00) à donner en **fourchettes** ; « jamais un couple, pas forcément contemporains » (écart débattu) ; LUCA **~4,2 Ga** (Moody et al. 2024) en complément du « 3,5–4 Ga » ; **99,9 %** attribué au Projet Génome Humain, avec ~99,5–99,6 % en variation structurale ; héritage mitochondrial maternel « sauf très rares exceptions ».
+- Piège à DOI évité : Moody 2024 LUCA = `10.1038/s41559-024-02461-1` (article), **pas** `…02474-w` (News & Views).
 
 ### Points à nuancer (non bloquants)
 - **Nombre de galaxies (~2 × 10¹²)** [Dossier IV] : estimation modèle-dépendante, contestée (cf. New Horizons/Lauer 2021) — garder le « ≈ », signaler « estimation ».

@@ -223,14 +223,14 @@
 
     <main>
       <section class="wrap hero">
-        <p class="eyebrow">Dossier VII · Vérification &amp; sources</p>
+        <p class="eyebrow">Dossier IX · Vérification &amp; sources</p>
         <h2>Chaque donnée,<br>vérifiée et <span class="foil">sourcée</span>.</h2>
         <p class="lead">Pour chaque affirmation des dossiers — cosmologie, géologie, vie, exploration lunaire, données de l'application Terre —, nous donnons un <b>résumé</b>, un <b>verdict</b> et la <b>source autoritative</b> (NASA, ESA, USGS, IUGS/ICS, Smithsonian, articles à comité de lecture). La science est déjà vertigineuse : encore faut-il pouvoir la vérifier.</p>
         <div class="stats">
           <div class="stat"><div class="n" id="stFiches">—</div><div class="l">Données vérifiées</div></div>
           <div class="stat"><div class="n" id="stSrc">—</div><div class="l">Sources de référence</div></div>
           <div class="stat"><div class="n" id="stDoi">—</div><div class="l">DOI vérifiés</div></div>
-          <div class="stat"><div class="n">6</div><div class="l">Dossiers audités</div></div>
+          <div class="stat"><div class="n">7</div><div class="l">Dossiers audités</div></div>
           <div class="stat"><div class="n">0</div><div class="l">Erreur factuelle (❌)</div></div>
         </div>
         <div class="legend" aria-label="Légende des verdicts">
@@ -251,6 +251,7 @@
       <section class="wrap section" id="artemis"><div class="sec-head reveal"><p class="kick">Dossier III · Provoxys</p><h3>Artemis II</h3><p>Le retour de l'humanité vers la Lune — faits vérifiés au 1ᵉʳ juin 2026.</p></div><div class="grid" id="g-artemis"></div></section>
       <section class="wrap section" id="elements"><div class="sec-head reveal"><p class="kick">Dossier V · Jorge &amp; Zalex</p><h3>Le Tableau Périodique</h3><p>De la particule élémentaire à l'élément chimique — particules, interactions, formation des atomes, modèles et propriétés périodiques.</p></div><div class="grid" id="g-elements"></div></section>
       <section class="wrap section" id="terre-app"><div class="sec-head reveal"><p class="kick">Dossier VI · SamLePirate</p><h3>La Vie de la Terre</h3><p>Application interactive : globe paléogéographique, 10 séries temporelles, 201 heightmaps et pipeline reproductible.</p></div><div class="grid" id="g-terre-app"></div></section>
+      <section class="wrap section" id="ancetres"><div class="sec-head reveal"><p class="kick">Dossier VIII · Lalie &amp; Ymir</p><h3>Adam &amp; Ève génétiques</h3><p>Ève mitochondriale, Adam chromosome Y, LUCA et code génétique — des points de coalescence, pas un couple fondateur.</p></div><div class="grid" id="g-ancetres"></div></section>
 
       <section class="wrap section" id="refs">
         <div class="sec-head reveal"><p class="kick">Appareil critique · niveau le plus strict</p><h3>Références scientifiques</h3><p>La littérature primaire à comité de lecture derrière les données. Chaque <b>DOI a été vérifié</b> (résolution Crossref + page éditeur) — pour chacun : titre, citation et résumé.</p></div>
@@ -277,6 +278,7 @@
             <a href="../provoxys/Artemis2.html">Artemis II</a>
             <a href="../jorge-zalex/elements.html">Le Tableau Périodique</a>
             <a href="../la-vie-de-la-terre/index.html">La Vie de la Terre</a>
+            <a href="../ymir-lalie/ancetres-genetiques/index.html">Ancêtres génétiques</a>
           </div>
           <span class="cmotto">Ad astra per aspera.</span>
         </section>
@@ -479,6 +481,40 @@
         src:[{n:"Williams 2000",u:"https://doi.org/10.1029/1999RG900016"},{n:"Farhat et al. 2022",u:"https://doi.org/10.1051/0004-6361/202243445"},{n:"Mitchell & Kirscher 2023",u:"https://doi.org/10.1038/s41561-023-01202-6"}] }
     ];
 
+    const AG = "../ymir-lalie/ancetres-genetiques/assets/";
+    const ANCETRES = [
+      { t:"« Adam » et « Ève » génétiques", d:"points de coalescence, pas un couple", v:"ok", img:AG+"ancetres-hero.png",
+        s:"Ce ne sont ni deux individus uniques ni un couple fondateur : ce sont les ancêtres communs les plus récents d'une seule lignée (mitochondriale ou Y). Tout le reste de notre ADN vient de milliers d'autres contemporains.",
+        src:[{n:"BioLogos · mtEve & Y-Adam",u:"https://biologos.org/series/evolution-basics/articles/mitochondrial-eve-and-y-chromosome-adam"},{n:"Wikipedia · Y-chromosomal Adam",u:"https://en.wikipedia.org/wiki/Y-chromosomal_Adam"}] },
+      { t:"Ève mitochondriale", d:"Afrique · ~150 000–200 000 ans", v:"warn", img:AG+"eve-mitochondriale.png",
+        s:"Ancêtre commune par la lignée maternelle (ADNmt transmis par la mère). Afrique : solide. Date : 140–200 ka en 1987, plutôt ~150–160 ka selon les estimations génomiques récentes — à donner en fourchette, pas en chiffre unique.",
+        src:[{n:"Cann et al. 1987 (Nature)",u:"https://doi.org/10.1038/325031a0"},{n:"Wikipedia · Mitochondrial Eve",u:"https://en.wikipedia.org/wiki/Mitochondrial_Eve"}] },
+      { t:"Adam chromosome Y", d:"Afrique · ~120 000–300 000 ans", v:"warn", img:AG+"adam-chromosome-y.png",
+        s:"Ancêtre commun par la lignée paternelle (Y transmis de père en fils, quasi sans recombinaison). Estimations : ~120–156 ka (Poznik 2013), ~192–307 ka (Karmin 2015), jusqu'à ~300 ka+ avec la lignée archaïque A00 (Mendez 2013). « 200–300 ka » est une borne haute défendable.",
+        src:[{n:"Poznik et al. 2013 (Science)",u:"https://doi.org/10.1126/science.1237619"},{n:"Mendez et al. 2013 (AJHG)",u:"https://doi.org/10.1016/j.ajhg.2013.02.002"}] },
+      { t:"Jamais un couple, pas contemporains", d:"écart débattu", v:"deb", img:AG+"adam-chromosome-y.png",
+        s:"Point ferme : Adam-Y et Ève mito. ne formaient pas un couple et n'avaient aucune raison d'être contemporains. L'écart exact est débattu : les fourchettes de 2013 se chevauchaient presque, la lignée archaïque du Y rouvre un écart de ~100 ka.",
+        src:[{n:"Stanford Med · Poznik 2013",u:"https://med.stanford.edu/news/all-news/2013/08/common-genetic-ancestors-lived-during-roughly-same-time-period-scientists-find.html"}] },
+      { t:"Héritage mitochondrial maternel", d:"sauf très rares exceptions", v:"ok", img:AG+"eve-mitochondriale.png",
+        s:"Les mitochondries du spermatozoïde sont éliminées dans le zygote : l'ADNmt est transmis par la mère. Quelques rares cas de transmission biparentale ont été documentés (Luo et al. 2018), mais la règle « par la mère » reste l'image juste.",
+        src:[{n:"Luo et al. 2018 (PNAS)",u:"https://doi.org/10.1073/pnas.1810946115"}] },
+      { t:"LUCA — ancêtre de toute vie", d:"~3,5–4 Ga · révisé ~4,2 Ga (2024)", v:"warn", img:AG+"luca-arbre-vie.png",
+        s:"Dernier ancêtre commun universel de toute la vie actuelle (pas l'origine de la vie). Estimation classique 3,5–4 Ga ; une étude majeure de 2024 (Moody et al.) la repousse vers ~4,2 Ga. Plus anciennes traces acceptées ~3,5 Ga.",
+        src:[{n:"Moody et al. 2024 (Nat. Ecol. Evol.)",u:"https://doi.org/10.1038/s41559-024-02461-1"},{n:"Quanta · LUCA",u:"https://www.quantamagazine.org/all-life-on-earth-today-descended-from-a-single-cell-meet-luca-20241120/"}] },
+      { t:"Code génétique quasi universel", d:"preuve d'ascendance commune", v:"ok", img:AG+"luca-arbre-vie.png",
+        s:"La même table de codons opère dans les trois domaines du vivant (à quelques variantes mineures près) : c'est l'explication la plus parcimonieuse d'une descendance depuis une lignée ancestrale unique.",
+        src:[{n:"Moody et al. 2024",u:"https://doi.org/10.1038/s41559-024-02461-1"}] },
+      { t:"Indices de vie ~4,1 Ga (zircon)", d:"potentiellement biogénique", v:"deb", img:AG+"luca-arbre-vie.png",
+        s:"Un graphite (δ¹³C ≈ −24 ‰) inclus dans un zircon de Jack Hills daté 4,10 Ga est « potentiellement » biogénique (Bell et al. 2015) — indice débattu, à présenter comme possible et non prouvé.",
+        src:[{n:"Bell et al. 2015 (PNAS)",u:"https://doi.org/10.1073/pnas.1517557112"}] },
+      { t:"Humains identiques à ~99,9 %", d:"~99,5–99,6 % avec la variation structurale", v:"warn", img:AG+"arbre-graine.png",
+        s:"Le « 99,9 % » est le chiffre du Projet Génome Humain (différence ~0,1 % au niveau des SNP). En comptant aussi les grandes différences de structure (indels, CNV), la similarité descend vers ~99,5–99,6 %. Les deux sont justes selon ce qu'on compte.",
+        src:[{n:"NHGRI / NIH",u:"https://www.genome.gov/about-genomics/fact-sheets/Participation-in-Genomic-Research"}] },
+      { t:"Homo sapiens ≥ 300 000 ans", d:"Jebel Irhoud (Maroc)", v:"ok", img:AG+"arbre-graine.png",
+        s:"Les plus anciens fossiles attribués à Homo sapiens (~300 ka, Jebel Irhoud) montrent une origine pan-africaine : une Ève/Adam génétiques apparaissent au sein d'une espèce et de populations déjà établies.",
+        src:[{n:"Hublin et al. 2017 (Nature)",u:"https://doi.org/10.1038/nature22336"},{n:"Smithsonian Human Origins",u:"https://humanorigins.si.edu/research/whats-hot-human-origins/our-species-arose-least-300000-years-ago"}] }
+    ];
+
     // Sources from sources_audit_scientifique_chronos.csv + app La Vie de la Terre
     const SOURCES = [
       ["🟢","Planck Collaboration 2018 — Cosmological parameters","https://www.aanda.org/articles/aa/pdf/2020/09/aa33880-18.pdf","Âge de l'Univers ≈ 13,787 Ga ± 0,020 Ga (ΛCDM)."],
@@ -512,7 +548,13 @@
       ["🟢","Judd et al. 2024 — PhanDA","https://doi.org/10.1126/science.adk3705","Température moyenne globale et CO₂ par assimilation de données 0–485 Ma."],
       ["🟢","Foster et al. 2017 — CO₂ proxies","https://doi.org/10.1038/ncomms14845","Compilation de proxies de CO₂ atmosphérique sur 420 Ma."],
       ["🟢","Berner 2006 — GEOCARBSULF","https://doi.org/10.1016/j.gca.2005.11.032","Modèle géochimique phanérozoïque CO₂/O₂."],
-      ["🟢","Williams / Farhat / Mitchell — durée du jour","refs-doi-VI-la-vie-de-la-terre.md","Références Terre-Lune utilisées pour les ancrages et modèles de durée du jour."]
+      ["🟢","Williams / Farhat / Mitchell — durée du jour","refs-doi-VI-la-vie-de-la-terre.md","Références Terre-Lune utilisées pour les ancrages et modèles de durée du jour."],
+      ["🔵","NHGRI / NIH — Genomic Research facts","https://www.genome.gov/about-genomics/fact-sheets/Participation-in-Genomic-Research","Deux humains partagent ~99,9 % de leur ADN (niveau SNP) ; ~99,5–99,6 % avec la variation structurale."],
+      ["🟡","Quanta Magazine — Meet LUCA (2024)","https://www.quantamagazine.org/all-life-on-earth-today-descended-from-a-single-cell-meet-luca-20241120/","Vulgarisation de Moody et al. 2024 : LUCA daté ~4,2 Ga, ancêtre commun de toute la vie actuelle."],
+      ["🔵","Stanford Medicine — Genetic Adam & Eve (2013)","https://med.stanford.edu/news/all-news/2013/08/common-genetic-ancestors-lived-during-roughly-same-time-period-scientists-find.html","Poznik et al. : Adam-Y et Ève mito. ne formaient pas un couple ; leurs fourchettes d'âge se chevauchent."],
+      ["⚪","BioLogos — Mitochondrial Eve & Y-Chromosome Adam","https://biologos.org/series/evolution-basics/articles/mitochondrial-eve-and-y-chromosome-adam","Explication accessible : des points de coalescence, pas un premier couple ni les seuls humains de leur temps."],
+      ["⚪","Wikipedia — Mitochondrial Eve","https://en.wikipedia.org/wiki/Mitochondrial_Eve","Définition, datation et mécanisme de coalescence de la lignée maternelle."],
+      ["⚪","Wikipedia — Y-chromosomal Adam","https://en.wikipedia.org/wiki/Y-chromosomal_Adam","Définition, haplogroupes basaux africains et datation de la lignée paternelle."]
     ];
     const TIER = { "🟢":"Primaire", "🔵":"Institution", "🟡":"Presse sci.", "⚪":"Encyclopédie" };
     const TIERC = { "🟢":"var(--ok)", "🔵":"var(--gold)", "🟡":"var(--warn)", "⚪":"var(--soft)" };
@@ -534,7 +576,7 @@
     }
     function fill(id,arr){ const el=document.getElementById(id); if(el) el.innerHTML=arr.map(ficheHTML).join(""); }
     fill("g-cosmos",COSMOS); fill("g-terre",TERRE); fill("g-geo",GEO); fill("g-hum",HUM);
-    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP);
+    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES);
 
     // ===== Références scientifiques primaires (DOI vérifiés) =====
     const REFS = [
@@ -869,6 +911,22 @@
           ab:"Modèle de l'évolution tidale Terre-Lune, utilisé pour contraindre la durée du jour sur 4,5 Ga." },
         { a:"Mitchell & Kirscher (2023)", t:"Mid-Proterozoic day length stalled by tidal resonance", j:"Nature Geoscience 16, 567–569", k:"primary", doi:"10.1038/s41561-023-01202-6",
           ab:"Met en évidence un palier de durée du jour proche de 19 h au Protérozoïque moyen, par résonance des marées thermiques atmosphériques." }
+      ]},
+      { g:"Dossier VIII · Ancêtres génétiques (Ève mito., Adam-Y, LUCA)", items:[
+        { a:"Cann, Stoneking & Wilson (1987)", t:"Mitochondrial DNA and human evolution", j:"Nature 325(6099), 31–36", k:"primary", doi:"10.1038/325031a0",
+          ab:"Étude fondatrice de l'« Ève mitochondriale » : l'analyse de l'ADN mitochondrial de 147 individus établit une ascendance maternelle commune africaine, estimée alors à ~200 000 ans. DOI vérifié via Crossref." },
+        { a:"Poznik, G. D. et al. (2013)", t:"Sequencing Y Chromosomes Resolves Discrepancy in Time to Common Ancestor of Males Versus Females", j:"Science 341(6145), 562–565", k:"primary", doi:"10.1126/science.1237619",
+          ab:"Séquençage de chromosomes Y entiers : TMRCA du Y ≈ 120 000–156 000 ans, de l'ADNmt ≈ 99 000–148 000 ans — les deux fourchettes se chevauchent, contre l'idée d'un « Adam » bien plus jeune que l'« Ève ». DOI vérifié via Crossref." },
+        { a:"Mendez, F. L. et al. (2013)", t:"An African American Paternal Lineage Adds an Extremely Ancient Root to the Human Y Chromosome Phylogenetic Tree", j:"American Journal of Human Genetics 92(3), 454–459", k:"primary", doi:"10.1016/j.ajhg.2013.02.002",
+          ab:"Découverte de l'haplogroupe archaïque A00 : la racine du chromosome Y est repoussée à ~338 000 ans (IC 95 % : 237–581 ka), plus ancienne que les plus vieux fossiles d'Homo sapiens. DOI vérifié via Crossref." },
+        { a:"Luo, S. et al. (2018)", t:"Biparental Inheritance of Mitochondrial DNA in Humans", j:"PNAS 115(51), 13039–13044", k:"primary", doi:"10.1073/pnas.1810946115",
+          ab:"Documente de rares cas de transmission biparentale de l'ADN mitochondrial — nuance la règle « héritage uniquement maternel », qui reste néanmoins l'image juste dans l'immense majorité des cas. DOI vérifié via Crossref." },
+        { a:"Moody, E. R. R. et al. (2024)", t:"The nature of the last universal common ancestor and its impact on the early Earth system", j:"Nature Ecology & Evolution 8(9), 1654–1666", k:"primary", doi:"10.1038/s41559-024-02461-1",
+          ab:"Estime LUCA, dernier ancêtre commun universel, à ~4,2 milliards d'années — génome ~2,5 Mb, ~2 600 protéines, acétogène anaérobie au sein d'un écosystème déjà existant. DOI de l'article (à ne pas confondre avec le News & Views …02474-w). Vérifié via Crossref." },
+        { a:"Bell, E. A. et al. (2015)", t:"Potentially biogenic carbon preserved in a 4.1 billion-year-old zircon", j:"PNAS 112(47), 14518–14521", k:"primary", doi:"10.1073/pnas.1517557112",
+          ab:"Graphite (δ¹³C ≈ −24 ‰) inclus dans un zircon de Jack Hills daté 4,10 Ga, « potentiellement » biogénique — indice débattu d'une vie très précoce, à présenter comme possible et non prouvé. DOI vérifié via Crossref." },
+        { a:"Hublin, J.-J. et al. (2017)", t:"New fossils from Jebel Irhoud, Morocco and the pan-African origin of Homo sapiens", j:"Nature 546(7657), 289–292", k:"primary", doi:"10.1038/nature22336",
+          ab:"Plus anciens fossiles attribués à Homo sapiens (~300 000 ans, Maroc), appuyant une origine pan-africaine : l'Ève et l'Adam génétiques apparaissent au sein d'une espèce et de populations déjà établies. DOI vérifié via Crossref." }
       ]}
     ];
     function refHTML(r){
@@ -894,7 +952,7 @@
       </div>`).join("");
     const stSrc = document.getElementById("stSrc"); if (stSrc) stSrc.textContent = SOURCES.length;
 
-    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length;
+    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length;
     document.getElementById("stFiches").textContent = total;
 
     const bar=document.getElementById("progress");

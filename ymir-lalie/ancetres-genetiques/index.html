@@ -1,0 +1,1274 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adam &amp; Ève — Ancêtres génétiques de l'être humain — Empire contre Intox</title>
+  <meta name="description" content="Ève mitochondriale, Adam chromosome Y, LUCA : ce que la génétique dit vraiment de nos ancêtres communs — et comment en parler sans opposer la science à la foi. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+
+      --void:        #050811;
+      --abyss:       #070c1a;
+      --navy:        #0e1a2e;
+      --ink:         #f4ecd8;
+      --parch:       #e7dcc1;
+      --muted:       #c0b59a;
+      --soft:        #8f8c78;
+      --gold:        #d6ac55;
+      --gold-bright: #f3d98a;
+      --gold-deep:   #9c7228;
+
+      /* Per-page secondary accents — la double hélice & la lignée */
+      --helix: #4aa6b8;   /* cyan ADN */
+      --rose:  #d78a8a;   /* lignée / sang */
+      --leaf:  #8fb46a;   /* vivant */
+      --violet:#9b8ad6;   /* profondeur du temps */
+
+      --line:   rgba(214, 172, 85, .20);
+      --line-2: rgba(244, 236, 216, .10);
+      --glass:  rgba(7, 12, 26, .72);
+      --shadow: 0 40px 120px rgba(0, 0, 0, .55);
+
+      --serif: "Fraunces", Georgia, "Times New Roman", serif;
+      --roman: "Cinzel", Georgia, serif;
+      --max: 1180px;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+
+      --hero: url("assets/ancetres-hero.png");
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-optical-sizing: auto;
+      font-weight: 380;
+      line-height: 1.74;
+      letter-spacing: .002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(74, 166, 184, .16), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214, 172, 85, .14), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(155, 138, 214, .10), transparent 60%),
+        linear-gradient(180deg, #03050d 0%, var(--void) 42%, var(--abyss) 100%);
+      background-attachment: fixed;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Atmosphere */
+    .atmos { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .atmos::before {
+      content: ""; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(244,236,216,.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244,236,216,.02) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(120% 80% at 50% 30%, #000 30%, transparent 80%);
+    }
+    .atmos::after {
+      content: ""; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%, rgba(255,255,255,.5), transparent 60%),
+        radial-gradient(1px 1px at 72% 16%, rgba(243,217,138,.65), transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%, rgba(74,166,184,.6), transparent 60%),
+        radial-gradient(1px 1px at 88% 54%, rgba(255,255,255,.4), transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%, rgba(215,138,138,.5), transparent 60%),
+        radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,.35), transparent 60%);
+      animation: twinkle 7s ease-in-out infinite alternate;
+    }
+    .grain {
+      position: fixed; inset: -50%; z-index: 1; pointer-events: none;
+      opacity: .05; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    @keyframes twinkle { from { opacity: .5; } to { opacity: 1; } }
+
+    .frame { position: fixed; inset: 0; z-index: 45; pointer-events: none; }
+    .frame i { position: absolute; width: 26px; height: 26px; border: 1.5px solid var(--line); }
+    .frame i:nth-child(1){ top: 16px; left: 16px; border-right: 0; border-bottom: 0; }
+    .frame i:nth-child(2){ top: 16px; right: 16px; border-left: 0; border-bottom: 0; }
+    .frame i:nth-child(3){ bottom: 16px; left: 16px; border-right: 0; border-top: 0; }
+    .frame i:nth-child(4){ bottom: 16px; right: 16px; border-left: 0; border-top: 0; }
+
+    .progress-top {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%; z-index: 60;
+      background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), var(--helix));
+      box-shadow: 0 0 14px rgba(243, 217, 138, .55);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: rgba(214, 172, 85, .28); color: #fff; }
+    :focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; border-radius: 4px; }
+
+    .page { position: relative; z-index: 2; overflow: clip; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      min-height: 94vh;
+      display: grid; align-items: end;
+      position: relative; isolation: isolate;
+      padding: 28px;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -3;
+      background-image: var(--hero);
+      background-size: cover; background-position: center;
+      transform: scale(1.02);
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0; z-index: -2;
+      background:
+        linear-gradient(86deg, rgba(3,6,13,.94) 0%, rgba(3,6,13,.7) 36%, rgba(3,6,13,.16) 68%, rgba(3,6,13,.5) 100%),
+        linear-gradient(180deg, rgba(3,6,13,.1) 0%, rgba(3,6,13,.26) 54%, var(--void) 100%);
+    }
+    .hero-waterline {
+      position: absolute; left: 0; right: 0; bottom: -1px; height: 26vh; z-index: -1;
+      background: linear-gradient(180deg, transparent 0%, rgba(5,8,17,.6) 40%, var(--void) 100%);
+    }
+    .hero-inner {
+      width: min(100%, var(--max)); margin: 0 auto 7vh;
+      display: grid; grid-template-columns: minmax(0, 760px) minmax(250px, 350px);
+      gap: 46px; align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 14px; margin: 0 0 22px;
+      font-family: var(--roman); font-size: .72rem; font-weight: 600;
+      letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
+    }
+    .eyebrow::before { content: ""; width: 44px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+
+    h1, h2, h3, h4 { margin: 0; line-height: 1.04; }
+
+    h1 {
+      max-width: 16ch;
+      font-family: var(--roman); font-weight: 800;
+      font-size: clamp(2.6rem, 7vw, 5.6rem);
+      line-height: .98; letter-spacing: -.01em; text-transform: uppercase;
+      color: var(--ink); text-wrap: balance;
+    }
+    h1 .foil {
+      background: linear-gradient(96deg, var(--gold-deep), var(--gold-bright) 40%, #fff6dc 50%, var(--gold-bright) 60%, var(--gold-deep));
+      background-size: 220% 100%;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: foil 7s linear infinite;
+    }
+    @keyframes foil { to { background-position: 220% 0; } }
+
+    .hero-lead {
+      max-width: 58ch; margin: 26px 0 0; color: var(--muted);
+      font-size: clamp(1.04rem, 1.4vw, 1.2rem);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+
+    .button {
+      display: inline-flex; align-items: center; gap: 10px;
+      min-height: 50px; padding: 0 22px;
+      font-family: var(--roman); font-size: .74rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      border-radius: 2px; border: 1px solid var(--line);
+      color: var(--ink); background: rgba(244,236,216,.05);
+      backdrop-filter: blur(12px);
+      transition: transform .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+    }
+    .button:hover { transform: translateY(-3px); border-color: rgba(214,172,85,.5); background: rgba(244,236,216,.1); }
+    .button.primary {
+      color: #14110a; border-color: transparent;
+      background: linear-gradient(140deg, var(--gold-bright), var(--gold) 55%, var(--gold-deep));
+      box-shadow: 0 14px 38px rgba(214,172,85,.28), inset 0 1px 0 rgba(255,255,255,.5);
+    }
+    .button.primary:hover { box-shadow: 0 22px 54px rgba(214,172,85,.4), inset 0 1px 0 rgba(255,255,255,.6); }
+
+    /* Signal board */
+    .signal-board {
+      border: 1px solid var(--line); border-radius: 3px;
+      background: var(--glass); box-shadow: var(--shadow);
+      backdrop-filter: blur(18px); overflow: hidden;
+    }
+    .signal { padding: 18px 20px; border-bottom: 1px solid var(--line-2); }
+    .signal:last-child { border-bottom: 0; }
+    .signal span {
+      display: block; font-family: var(--roman); font-size: .62rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--gold);
+    }
+    .signal strong { display: block; margin-top: 7px; color: var(--parch); font-size: 1.02rem; font-weight: 500; font-family: var(--serif); }
+
+    /* ---------- Topbar ---------- */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5, 8, 17, .72); backdrop-filter: blur(18px) saturate(140%);
+    }
+    .topbar-inner {
+      width: min(100% - 40px, var(--max)); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 70px;
+    }
+    .brand { display: flex; align-items: center; gap: 13px; min-width: max-content; }
+    .brand-mark {
+      width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
+      border: 1px solid rgba(214,172,85,.5);
+      box-shadow: 0 0 0 3px rgba(214,172,85,.1), 0 8px 22px rgba(0,0,0,.5);
+    }
+    .brand span {
+      font-family: var(--roman); font-weight: 700; font-size: .82rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--ink);
+    }
+    .nav { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+    .nav::-webkit-scrollbar { display: none; }
+    .nav a {
+      position: relative; flex: 0 0 auto; padding: 10px 13px;
+      font-family: var(--roman); font-size: .68rem; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+      white-space: nowrap; transition: color .3s var(--ease);
+    }
+    .nav a::after {
+      content: ""; position: absolute; left: 13px; right: 13px; bottom: 6px; height: 1px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+      transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease);
+    }
+    .nav a:hover, .nav a.active { color: var(--ink); }
+    .nav a:hover::after, .nav a.active::after { transform: scaleX(1); }
+
+    .home-link {
+      flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px;
+      font-family: var(--roman); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ink); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06);
+      white-space: nowrap; transition: border-color .3s var(--ease), background .3s var(--ease);
+    }
+    .home-link:hover { border-color: rgba(214,172,85,.5); background: rgba(214,172,85,.12); }
+
+    .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: rgba(214,172,85,.1); }
+    .progress span { display: block; width: 0%; height: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), var(--helix)); }
+
+    main { width: min(100% - 40px, var(--max)); margin: 0 auto; }
+
+    /* ---------- Intro band ---------- */
+    .intro-band {
+      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+      gap: 30px; padding: 84px 0 50px; align-items: stretch;
+    }
+    .section-kicker {
+      margin: 0 0 14px; font-family: var(--roman); font-size: .68rem; font-weight: 600;
+      letter-spacing: .26em; text-transform: uppercase; color: var(--gold);
+    }
+    .manifesto { border-left: 2px solid var(--gold); padding-left: 26px; }
+    .manifesto h2, .chapter h2 {
+      font-family: var(--roman); font-weight: 700; font-size: clamp(1.8rem, 3.6vw, 2.9rem);
+      line-height: 1.04; letter-spacing: .005em; text-transform: uppercase; color: var(--ink); text-wrap: balance;
+    }
+    .manifesto p { margin: 18px 0 0; color: var(--muted); font-size: 1.06rem; }
+
+    .timeline { position: relative; border: 1px solid var(--line); border-radius: 3px; background: rgba(244,236,216,.03); padding: 8px 22px; }
+    .timeline-row { display: grid; grid-template-columns: 96px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom: 0; }
+    .timeline-row time, .timeline-row span {
+      font-family: var(--roman); font-weight: 600; font-size: .8rem; letter-spacing: .06em; color: var(--gold-bright);
+    }
+    .timeline-row p { margin: 0; color: var(--muted); }
+
+    /* ---------- Learning / program / pillar panels ---------- */
+    .learning-panel {
+      margin: 24px 0 56px; border: 1px solid var(--line); border-radius: 3px;
+      background:
+        radial-gradient(120% 120% at 100% 0%, rgba(74,166,184,.12), transparent 50%),
+        linear-gradient(180deg, rgba(14,26,46,.4), rgba(7,12,26,.5));
+      padding: clamp(24px, 4vw, 40px);
+    }
+    .learning-panel h2 {
+      font-family: var(--serif); font-style: italic; font-weight: 400;
+      font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.12; color: var(--ink); text-wrap: balance;
+    }
+    .learning-grid, .program-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+    .learning-item, .program-item {
+      border: 1px solid var(--line-2); border-radius: 3px; padding: 22px;
+      background: rgba(244,236,216,.035); border-top: 2px solid rgba(214,172,85,.4);
+      transition: transform .4s var(--ease), border-color .4s var(--ease), background .4s var(--ease);
+    }
+    .learning-item:hover, .program-item:hover { transform: translateY(-4px); border-top-color: var(--gold); background: rgba(244,236,216,.06); }
+    .learning-item span, .program-item span {
+      font-family: var(--roman); font-size: .66rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold);
+    }
+    .learning-item p, .program-item p { margin: 12px 0 0; color: var(--muted); font-size: .98rem; }
+    .program-grid { margin: 24px 0 34px; }
+
+    /* ---------- Chapters ---------- */
+    .chapter { position: relative; padding: 80px 0; border-top: 1px solid var(--line); }
+    .chapter-head { display: grid; grid-template-columns: minmax(0, 1fr) 170px; gap: 28px; align-items: end; margin-bottom: 34px; }
+    .chapter-number {
+      justify-self: end; color: transparent;
+      -webkit-text-stroke: 1px rgba(214, 172, 85, .45);
+      font-family: var(--roman); font-weight: 700; font-size: 6rem; line-height: .8;
+    }
+    .transcript { display: grid; grid-template-columns: minmax(0, 780px) minmax(240px, 1fr); gap: 40px; align-items: start; }
+    .prose { min-width: 0; }
+    .prose p, .prose li { color: var(--muted); font-size: 1.05rem; }
+    .prose p { margin: 0 0 20px; }
+    .prose ul { margin: 14px 0 24px; padding-left: 4px; list-style: none; }
+    .prose li { position: relative; margin: 12px 0; padding-left: 26px; }
+    .prose li::before { content: "❖"; position: absolute; left: 0; top: 0; color: var(--gold); font-size: .8em; }
+    .prose strong, .prose em { color: var(--parch); font-style: normal; font-weight: 600; }
+    .group-title {
+      margin: 36px 0 14px; font-family: var(--roman); font-weight: 600;
+      font-size: 1.05rem; letter-spacing: .04em; text-transform: uppercase; color: var(--ink);
+    }
+    .lede { font-family: var(--serif); font-style: italic; color: var(--parch) !important; font-size: 1.16rem !important; }
+
+    .chapter-figure { margin: 8px 0 30px; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; background: rgba(3,6,13,.4); }
+    .chapter-figure img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+    .chapter-figure figcaption {
+      padding: 12px 16px; font-family: var(--roman); font-size: .62rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--gold); border-top: 1px solid var(--line-2);
+    }
+
+    .script-block, .science-block, .question-block, .lesson-block {
+      border: 1px solid var(--line-2); border-left: 3px solid var(--gold);
+      border-radius: 3px; padding: 24px; margin: 24px 0;
+      background: rgba(244,236,216,.04);
+    }
+    .script-block { border-left-color: var(--gold); }
+    .science-block { border-left-color: var(--helix); background: rgba(74,166,184,.07); }
+    .question-block { border-left-color: var(--rose); background: rgba(215,138,138,.09); }
+    .lesson-block { border-left-color: var(--leaf); background: rgba(143,180,106,.07); }
+    .script-block p:last-child, .science-block p:last-child, .question-block p:last-child, .lesson-block p:last-child { margin-bottom: 0; }
+    .block-label {
+      display: block; margin-bottom: 10px; font-family: var(--roman); font-size: .62rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--gold);
+    }
+    .science-block .block-label { color: var(--helix); }
+    .question-block .block-label { color: var(--rose); }
+    .lesson-block .block-label { color: var(--leaf); }
+
+    .side-note {
+      position: sticky; top: 92px; border: 1px solid var(--line); border-radius: 3px;
+      background: rgba(7,12,26,.6); padding: 22px; box-shadow: 0 18px 56px rgba(0,0,0,.25);
+    }
+    .side-note h3 {
+      margin: 0 0 14px; font-family: var(--roman); font-size: .76rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--gold);
+    }
+    .side-note p { margin: 0 0 14px; color: var(--soft); font-size: .94rem; }
+    .side-note p strong { color: var(--parch); font-weight: 600; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag {
+      display: inline-flex; align-items: center; min-height: 28px; padding: 0 11px;
+      font-family: var(--roman); font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06);
+    }
+
+    .sommaire-list { display: grid; gap: 18px; margin-top: 24px; }
+    .pillar {
+      border: 1px solid var(--line-2); border-radius: 3px; padding: 24px;
+      background: rgba(244,236,216,.035); border-left: 3px solid rgba(214,172,85,.5);
+    }
+    .pillar h3 { margin: 0 0 10px; font-family: var(--serif); font-weight: 600; font-size: 1.32rem; color: var(--ink); }
+    .pillar p { margin-bottom: 12px; }
+
+    /* ---------- Passerelle table ---------- */
+    .lexicon {
+      width: 100%; border-collapse: collapse; margin: 8px 0 8px;
+      border: 1px solid var(--line); border-radius: 3px; overflow: hidden;
+      font-size: .98rem;
+    }
+    .lexicon caption {
+      text-align: left; padding: 0 0 16px; color: var(--muted); font-style: italic; font-family: var(--serif);
+    }
+    .lexicon th {
+      text-align: left; padding: 14px 16px; font-family: var(--roman); font-size: .62rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--gold);
+      background: rgba(214,172,85,.06); border-bottom: 1px solid var(--line);
+    }
+    .lexicon td { padding: 14px 16px; vertical-align: top; border-bottom: 1px solid var(--line-2); color: var(--muted); }
+    .lexicon tr:last-child td { border-bottom: 0; }
+    .lexicon td.sci { color: var(--parch); font-weight: 600; }
+    .lexicon td.bridge { color: var(--helix); font-style: italic; font-family: var(--serif); }
+    .lexicon tr:hover td { background: rgba(244,236,216,.03); }
+
+    /* QA accordion-style list */
+    .qa { display: grid; gap: 0; margin-top: 8px; }
+    .qa details {
+      border: 1px solid var(--line-2); border-left: 3px solid var(--rose);
+      border-radius: 3px; margin: 0 0 14px; background: rgba(215,138,138,.06);
+      overflow: hidden;
+    }
+    .qa summary {
+      cursor: pointer; list-style: none; padding: 18px 22px;
+      font-family: var(--serif); font-weight: 600; font-style: italic; color: var(--ink); font-size: 1.06rem;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .qa summary::-webkit-details-marker { display: none; }
+    .qa summary::before {
+      content: "?"; flex: 0 0 auto; width: 26px; height: 26px; margin-top: 1px;
+      display: grid; place-items: center; border-radius: 50%;
+      font-family: var(--roman); font-weight: 700; font-size: .82rem; color: #14110a;
+      background: linear-gradient(140deg, var(--rose), #c47272);
+    }
+    .qa details[open] summary { border-bottom: 1px solid var(--line-2); }
+    .qa .answer { padding: 18px 22px 20px; }
+    .qa .answer p { margin: 0 0 14px; color: var(--muted); }
+    .qa .answer p:last-child { margin-bottom: 0; }
+
+    .two-column { columns: 2 290px; column-gap: 34px; }
+    .two-column p, .two-column ul { break-inside: avoid; }
+
+    .closing {
+      margin: 76px 0 50px; border: 1px solid var(--line); border-radius: 3px;
+      background:
+        radial-gradient(120% 120% at 0% 0%, rgba(155,138,214,.12), transparent 50%),
+        linear-gradient(180deg, rgba(14,26,46,.45), rgba(7,12,26,.5));
+      padding: clamp(28px, 4vw, 44px);
+    }
+    .closing h2 {
+      font-family: var(--serif); font-style: italic; font-weight: 400;
+      font-size: clamp(1.6rem, 3vw, 2.3rem); color: var(--ink); line-height: 1.14;
+    }
+    .closing p { max-width: 80ch; margin: 16px 0 0; color: var(--muted); }
+
+    /* Source references list */
+    .refs { display: grid; gap: 14px; margin: 18px 0 0; }
+    .ref {
+      border: 1px solid var(--line-2); border-radius: 3px; padding: 18px 20px;
+      background: rgba(244,236,216,.03); border-left: 3px solid var(--helix);
+    }
+    .ref h4 { margin: 0 0 8px; font-family: var(--serif); font-weight: 600; font-size: 1.08rem; color: var(--ink); }
+    .ref p { margin: 0 0 10px; color: var(--soft); font-size: .96rem; }
+    .ref a {
+      display: inline-flex; align-items: center; gap: 7px; font-family: var(--roman); font-size: .62rem;
+      font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold);
+      border-bottom: 1px solid var(--line);
+    }
+    .ref a:hover { color: var(--gold-bright); }
+    .ref .doi { color: var(--helix); }
+
+    /* ---------- Collective footer ---------- */
+    .collective-footer {
+      position: relative; display: grid; grid-template-columns: minmax(230px, 360px) minmax(0, 1fr);
+      gap: 0; align-items: stretch; margin: 50px 0 96px;
+      border: 1px solid var(--line); border-radius: 3px;
+      background:
+        radial-gradient(120% 120% at 100% 0%, rgba(74,166,184,.16), transparent 55%),
+        linear-gradient(180deg, rgba(14,26,46,.6), rgba(7,12,26,.66));
+      box-shadow: var(--shadow); overflow: hidden;
+    }
+    .collective-logo-wrap {
+      position: relative; z-index: 1; min-height: 360px; display: grid; place-items: center;
+      padding: 38px; background: rgba(3,6,13,.3); border-right: 1px solid var(--line);
+    }
+    .collective-logo {
+      width: min(100%, 280px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; padding: 5px;
+      background: conic-gradient(from 210deg, var(--gold-deep), var(--gold-bright), var(--gold), var(--gold-deep));
+      box-shadow: 0 28px 80px rgba(0,0,0,.55);
+    }
+    .collective-copy { position: relative; z-index: 1; padding: clamp(34px, 4vw, 52px); }
+    .collective-copy h2 {
+      max-width: 14ch; font-family: var(--roman); font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3rem); letter-spacing: .01em; text-transform: uppercase; color: var(--ink);
+    }
+    .collective-copy p { max-width: 64ch; margin: 18px 0 0; color: var(--muted); font-size: 1.06rem; }
+    .collective-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .collective-motto {
+      display: inline-flex; align-items: center; min-height: 36px; margin-top: 24px; padding: 0 16px;
+      font-family: var(--serif); font-style: italic; font-size: 1rem; letter-spacing: .04em;
+      color: var(--gold); border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.06);
+    }
+
+    .byline { display: flex; align-items: center; gap: 13px; margin-top: 26px; }
+    .byline .avatars { display: flex; }
+    .byline .avatars img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--void); box-shadow: 0 0 0 1.5px var(--gold); background: var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left: -14px; }
+    .byline .who { display: flex; flex-direction: column; gap: 2px; font-family: var(--roman); }
+    .byline .who .lbl { font-size: .58rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+    .byline .who strong { font-size: .88rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink); }
+
+    /* ---------- Author credit band ---------- */
+    .credit-band {
+      display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 24px;
+      margin: 0 0 8px; padding: clamp(26px, 4vw, 38px);
+      border: 1px solid var(--line); border-radius: 3px;
+      background:
+        radial-gradient(120% 160% at 50% 0%, rgba(214,172,85,.12), transparent 62%),
+        linear-gradient(180deg, rgba(14,26,46,.4), rgba(7,12,26,.5));
+    }
+    .credit-band .credit-avatars { display: flex; }
+    .credit-band .credit-avatars img {
+      width: 66px; height: 66px; border-radius: 50%; object-fit: cover;
+      border: 2px solid var(--void); box-shadow: 0 0 0 2px var(--gold), 0 12px 30px rgba(0,0,0,.5);
+      background: var(--navy);
+    }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left: -20px; }
+    .credit-band .credit-text { display: flex; flex-direction: column; gap: 5px; }
+    .credit-band .lbl { font-family: var(--roman); font-size: .64rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+    .credit-band strong { font-family: var(--roman); font-size: clamp(1.3rem, 2.6vw, 1.6rem); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
+
+    footer { border-top: 1px solid var(--line); padding: 30px 0 44px; color: var(--soft); font-size: .9rem; }
+    footer main { display: block; width: auto; }
+    footer strong { color: var(--parch); }
+
+    .mobile-menu {
+      display: none; border: 1px solid var(--line); border-radius: 2px; background: rgba(214,172,85,.07);
+      color: var(--ink); padding: 10px 13px; font-family: var(--roman); font-weight: 700; font-size: .68rem;
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+
+    /* ---------- Reveal ---------- */
+    .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal[data-d="1"] { transition-delay: .08s; }
+    .reveal[data-d="2"] { transition-delay: .16s; }
+    .reveal[data-d="3"] { transition-delay: .24s; }
+
+    @keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+    .js .hero-inner > div > *, .js .signal-board { opacity: 0; animation: rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1) { animation-delay: .1s; }
+    .js .hero-inner > div > *:nth-child(2) { animation-delay: .2s; }
+    .js .hero-inner > div > *:nth-child(3) { animation-delay: .3s; }
+    .js .hero-inner > div > *:nth-child(4) { animation-delay: .4s; }
+    .js .signal-board { animation-delay: .45s; }
+
+    @media (max-width: 980px) {
+      .hero { min-height: 88vh; padding: 22px; }
+      .hero-inner, .intro-band, .transcript, .chapter-head { grid-template-columns: 1fr; }
+      .signal-board { max-width: 560px; }
+      .chapter-number { justify-self: start; font-size: 4.4rem; }
+      .side-note { position: static; }
+      .program-grid, .learning-grid { grid-template-columns: 1fr; }
+      .collective-footer { grid-template-columns: 1fr; }
+      .collective-logo-wrap { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+    }
+    @media (max-width: 720px) {
+      .topbar-inner { width: min(100% - 24px, var(--max)); min-height: auto; padding: 12px 0; flex-wrap: wrap; }
+      .mobile-menu { display: inline-flex; }
+      .nav { display: none; width: 100%; padding: 8px 0 2px; flex-wrap: wrap; }
+      .nav.open { display: flex; }
+      main { width: min(100% - 24px, var(--max)); }
+      .hero { min-height: 86vh; padding: 16px; }
+      .hero::after { background: linear-gradient(90deg, rgba(3,6,13,.95), rgba(3,6,13,.5)), linear-gradient(180deg, rgba(3,6,13,.12), var(--void) 100%); }
+      .hero-inner { margin-bottom: 5vh; gap: 26px; }
+      .chapter { padding: 60px 0; }
+      .two-column { columns: 1; }
+      .lexicon, .lexicon thead, .lexicon tbody, .lexicon th, .lexicon td, .lexicon tr { display: block; }
+      .lexicon thead { display: none; }
+      .lexicon td { border-bottom: 0; padding: 6px 16px; }
+      .lexicon tr { border-bottom: 1px solid var(--line-2); padding: 12px 0; }
+      .lexicon td.sci::before { content: "Mot scientifique — "; color: var(--gold); font-family: var(--roman); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; }
+      .lexicon td.bridge::before { content: "Passerelle — "; color: var(--gold); font-family: var(--roman); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; font-style: normal; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+      .js .hero-inner > div > *, .js .signal-board { opacity: 1; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-waterline"></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier VIII · Génétique des populations</p>
+          <h1>Adam &amp; <span class="foil">Ève</span> génétiques</h1>
+          <p class="hero-lead">Ève mitochondriale, Adam chromosome Y, LUCA : ce que la science dit vraiment de nos ancêtres communs — et comment en parler sans jamais opposer la science à la foi. Le « comment » et le « pourquoi », côte à côte.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#transcription">Lire le dossier</a>
+            <a class="button" href="#sommaire">Voir les chapitres</a>
+            <a class="button" href="../../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board" aria-label="Repères">
+          <div class="signal">
+            <span>Lignée maternelle</span>
+            <strong>L'Ève mitochondriale</strong>
+          </div>
+          <div class="signal">
+            <span>Lignée paternelle</span>
+            <strong>L'Adam chromosome Y</strong>
+          </div>
+          <div class="signal">
+            <span>Racine du vivant</span>
+            <strong>LUCA — l'ancêtre de toute vie</strong>
+          </div>
+          <div class="signal">
+            <span>Le fil rouge</span>
+            <strong>Une seule famille humaine</strong>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="../assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Ancêtres génétiques</span>
+        </a>
+        <a class="home-link" href="../../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#ouverture">Ouverture</a>
+          <a href="#sommaire">Sommaire</a>
+          <a href="#eve">L'Ève mito.</a>
+          <a href="#adam">L'Adam Y</a>
+          <a href="#rencontre">Jamais rencontrés</a>
+          <a href="#luca">LUCA</a>
+          <a href="#bibliotheque">La bibliothèque</a>
+          <a href="#science-foi">Science &amp; foi</a>
+          <a href="#dialogue">Dialoguer</a>
+          <a href="#sources">Sources</a>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </nav>
+
+    <main id="transcription">
+      <section class="intro-band" id="ouverture">
+        <div class="manifesto reveal">
+          <p class="section-kicker">Ouverture du dossier</p>
+          <h2>Pas deux individus créés d'un coup, mais des points de convergence génétique.</h2>
+          <p>En biologie, on ne parle pas vraiment d'un « Adam » et d'une « Ève » au sens biblique (deux individus créant tout le reste d'un coup), mais plutôt de <strong>points de convergence génétique</strong> dans l'histoire de notre évolution. Cette page reprend le texte mot pour mot et le met en scène : ce que la science établit, et comment le partager avec respect.</p>
+        </div>
+        <div class="timeline reveal" data-d="1" aria-label="Fil conducteur">
+          <div class="timeline-row">
+            <time>~150–200 ka</time>
+            <p>L'Ève mitochondriale : l'ancêtre commune la plus récente par la lignée des mères.</p>
+          </div>
+          <div class="timeline-row">
+            <time>~200–300 ka</time>
+            <p>L'Adam chromosome Y : l'ancêtre commun le plus récent par la lignée des pères.</p>
+          </div>
+          <div class="timeline-row">
+            <time>~4 Ga</time>
+            <p>LUCA : la cellule ancestrale dont découle toute la vie sur Terre.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-panel reveal" aria-labelledby="objectifs">
+        <p class="section-kicker">Objectifs pédagogiques</p>
+        <h2 id="objectifs">Ce dossier apprend à distinguer la convergence génétique du mythe des « deux seuls humains ».</h2>
+        <div class="learning-grid">
+          <div class="learning-item reveal" data-d="1">
+            <span>Comprendre</span>
+            <p>Ce que sont vraiment l'Ève mitochondriale et l'Adam chromosome Y : des ancêtres communs <em>par une seule lignée</em>, pas le premier couple.</p>
+          </div>
+          <div class="learning-item reveal" data-d="2">
+            <span>Distinguer</span>
+            <p>Séparer le <em>comment</em> (gènes, cellules, mécanismes) du <em>pourquoi</em> (sens, dignité, morale) — deux lunettes sur la même réalité.</p>
+          </div>
+          <div class="learning-item reveal" data-d="3">
+            <span>Dialoguer</span>
+            <p>Répondre avec respect aux questions sensibles : science contre foi, singes ou Dieu, dates qui changent.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================== CH 01 — Ouverture ====================== -->
+      <section class="chapter reveal" aria-labelledby="chapitre-intro">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Texte mot pour mot</p>
+            <h2 id="chapitre-intro">Les « premières cellules » humaines, vues par la science.</h2>
+          </div>
+          <div class="chapter-number">01</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">En biologie, on ne parle pas vraiment d'un « Adam » et d'une « Ève » au sens biblique (deux individus créant tout le reste d'un coup), mais plutôt de points de convergence génétique dans l'histoire de notre évolution.</p>
+            <p>Voici comment la science explique ces « premières cellules » humaines.</p>
+            <div class="science-block">
+              <span class="block-label">Point de rigueur</span>
+              <p>« Ève » et « Adam » ne désignent pas un couple ni deux personnes uniques : ce sont des <strong>points de coalescence</strong>. Si l'on remonte la lignée <em>strictement maternelle</em> de chaque humain vivant, toutes ces lignées se rejoignent sur une même femme ; de même pour la lignée <em>strictement paternelle</em> et un même homme. Tout le reste de notre ADN (les autres chromosomes) provient de milliers d'autres contemporains.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Le ton du texte</h3>
+            <p>Un guide bienveillant : il explique la génétique <strong>et</strong> donne des mots pour en parler sans heurter les convictions de chacun.</p>
+            <div class="tag-list">
+              <span class="tag">Pédagogie</span>
+              <span class="tag">Génétique</span>
+              <span class="tag">Dialogue</span>
+              <span class="tag">Respect</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ====================== Sommaire ====================== -->
+      <section class="chapter reveal" id="sommaire" aria-labelledby="chapitre-sommaire">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Sommaire</p>
+            <h2 id="chapitre-sommaire">Trois ancêtres, une seule famille humaine.</h2>
+          </div>
+          <div class="chapter-number">02</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="sommaire-list">
+              <div class="pillar reveal" data-d="1">
+                <h3>1 · L'Ève mitochondriale — la lignée des mères</h3>
+                <p>La femme dont la lignée mitochondriale a survécu, sans interruption, jusqu'à tous les humains d'aujourd'hui. Probablement en Afrique, il y a environ 150 000 à 200 000 ans.</p>
+              </div>
+              <div class="pillar reveal" data-d="1">
+                <h3>2 · L'Adam chromosome Y — la lignée des pères</h3>
+                <p>L'équivalent masculin : le chromosome Y qui s'est transmis de père en fils jusqu'à remplacer tous les autres. En Afrique également, il y a environ 200 000 à 300 000 ans.</p>
+              </div>
+              <div class="pillar reveal" data-d="1">
+                <h3>3 · LUCA — la racine de toute vie</h3>
+                <p>Bien avant les humains : la toute première cellule dont découle toute la vie sur Terre, des bactéries aux baleines, il y a environ 3,5 à 4 milliards d'années.</p>
+              </div>
+              <div class="pillar reveal" data-d="1">
+                <h3>4 · Science &amp; foi — le « comment » et le « pourquoi »</h3>
+                <p>Deux regards sur la même réalité : la science cherche le mécanisme, la foi cherche le sens. Avec des mots, des images et des réponses pour en parler ensemble.</p>
+              </div>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Architecture</h3>
+            <p>D'abord les trois ancêtres génétiques, puis l'art du dialogue : images, questions fréquentes, et un lexique « passerelle ».</p>
+            <div class="tag-list">
+              <span class="tag">Ève mito.</span>
+              <span class="tag">Adam Y</span>
+              <span class="tag">LUCA</span>
+              <span class="tag">Comment / Pourquoi</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ====================== Crédit band ====================== -->
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <span class="credit-avatars">
+          <img src="../lalie.jpeg" alt="Avatar de Lalie">
+          <img src="../ymir.jpeg" alt="Avatar d'Ymir">
+        </span>
+        <div class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>Lalie &amp; Ymir</strong>
+        </div>
+      </section>
+
+      <!-- ====================== CH 03 — Ève mitochondriale ====================== -->
+      <section class="chapter reveal" id="eve" aria-labelledby="chapitre-eve">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Ancêtre n°1 · La lignée des mères</p>
+            <h2 id="chapitre-eve">L'Ève mitochondriale.</h2>
+          </div>
+          <div class="chapter-number">03</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/eve-mitochondriale.png" alt="Schéma de l'Ève mitochondriale : la transmission de l'ADN mitochondrial le long de la lignée des mères, qui converge vers une ancêtre commune en Afrique" loading="lazy">
+              <figcaption>L'ADN mitochondrial, transmis de mère en fille, converge vers une ancêtre commune</figcaption>
+            </figure>
+            <p class="lede">C'est la femme qui est l'ancêtre commune la plus récente de tous les êtres humains vivants, en suivant la lignée maternelle.</p>
+            <ul>
+              <li><strong>Le principe :</strong> Nous héritons de nos mitochondries (les centrales énergétiques de la cellule) uniquement par notre mère.</li>
+              <li><strong>La réalité :</strong> Elle n'était pas la seule femme sur Terre à son époque. Elle est simplement celle dont la lignée mitochondriale a survécu jusqu'à aujourd'hui sans interruption.</li>
+              <li><strong>Localisation :</strong> Elle vivait probablement en Afrique il y a environ 150 000 à 200 000 ans.</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">Anti-intox · ce que disent les données</span>
+              <p>L'Afrique est solidement établie. Pour la <strong>date</strong>, l'étude fondatrice de 1987 donnait 140 000–200 000 ans ; les estimations génomiques récentes pointent plutôt vers <strong>~120 000–200 000 ans, le plus souvent autour de 150 000–160 000 ans</strong>. Mieux vaut donner une fourchette qu'un chiffre unique : la science affine encore ses horloges.</p>
+              <p>Détail honnête : l'héritage mitochondrial est maternel <em>à de très rares exceptions près</em> (quelques cas de transmission biparentale documentés). La règle « par la mère » reste la bonne image.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>L'idée clé</h3>
+            <p>Elle n'est pas « la première femme » : elle est le point où <strong>toutes les lignées maternelles</strong> finissent par se rejoindre quand on remonte le temps.</p>
+            <div class="tag-list">
+              <span class="tag">Mitochondrie</span>
+              <span class="tag">ADN maternel</span>
+              <span class="tag">Coalescence</span>
+              <span class="tag">Afrique</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ====================== CH 04 — Adam Y ====================== -->
+      <section class="chapter reveal" id="adam" aria-labelledby="chapitre-adam">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Ancêtre n°2 · La lignée des pères</p>
+            <h2 id="chapitre-adam">L'Adam chromosome Y.</h2>
+          </div>
+          <div class="chapter-number">04</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/adam-chromosome-y.png" alt="Schéma de l'Adam chromosome Y : la transmission du chromosome Y de père en fils, qui converge vers un ancêtre commun masculin en Afrique" loading="lazy">
+              <figcaption>Le chromosome Y, transmis de père en fils, converge vers un ancêtre commun</figcaption>
+            </figure>
+            <p class="lede">C'est l'équivalent masculin, l'ancêtre commun le plus récent par la lignée paternelle.</p>
+            <ul>
+              <li><strong>Le principe :</strong> Le chromosome Y se transmet de père en fils presque sans changement.</li>
+              <li><strong>La réalité :</strong> Comme pour Ève, il n'était pas le seul homme. C'est le « gagnant » génétique dont le chromosome Y a fini par remplacer tous les autres au fil des millénaires.</li>
+              <li><strong>Localisation :</strong> Il vivait également en Afrique, et les estimations récentes suggèrent qu'il a vécu il y a environ 200 000 à 300 000 ans.</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">Anti-intox · ce que disent les données</span>
+              <p>Les estimations varient selon les jeux de données : <strong>~120 000–156 000 ans</strong> (Poznik et al. 2013), <strong>~192 000–307 000 ans</strong> (Karmin et al. 2015), et jusqu'à <strong>~300 000 ans et plus</strong> lorsqu'on inclut la lignée africaine archaïque A00 (Mendez et al. 2013). La fourchette « 200 000–300 000 ans » du texte est défendable, mais c'est <strong>une borne haute</strong> : à présenter comme un intervalle, pas comme un chiffre figé.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>L'image juste</h3>
+            <p>Le chromosome Y se transmet « comme un nom de famille » : il identifie une lignée paternelle, sans dire à lui seul d'où vient le reste de l'individu.</p>
+            <div class="tag-list">
+              <span class="tag">Chromosome Y</span>
+              <span class="tag">ADN paternel</span>
+              <span class="tag">Haplogroupes</span>
+              <span class="tag">Afrique</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ====================== CH 05 — Jamais rencontrés ====================== -->
+      <section class="chapter reveal" id="rencontre" aria-labelledby="chapitre-rencontre">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">La grande méprise</p>
+            <h2 id="chapitre-rencontre">Pourquoi « Adam » et « Ève » ne se sont jamais rencontrés.</h2>
+          </div>
+          <div class="chapter-number">05</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Contrairement au récit traditionnel, ces deux individus n'ont probablement jamais pris le café ensemble.</p>
+            <ul>
+              <li>Ils ont vécu à des dizaines de milliers d'années d'intervalles.</li>
+              <li>Ils faisaient partie de populations de chasseurs-cueilleurs déjà bien établies.</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">Anti-intox · nuance honnête</span>
+              <p>Le point solide : ils <strong>ne formaient pas un couple</strong> et n'avaient aucune raison d'être contemporains — chacun est un point de coalescence indépendant (l'un pour l'ADN mitochondrial, l'autre pour le chromosome Y). L'écart exact, lui, est <em>débattu</em> : certaines analyses de 2013 trouvaient des fourchettes qui se chevauchent presque, tandis que la lignée archaïque du Y rouvre un écart de l'ordre de 100 000 ans. À retenir : <strong>jamais un couple, pas forcément contemporains</strong>.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Pourquoi ça compte</h3>
+            <p>C'est le cœur du malentendu : on imagine un couple fondateur. La génétique décrit plutôt deux <strong>convergences de lignées</strong>, séparées dans le temps, au sein de vastes populations.</p>
+            <div class="tag-list">
+              <span class="tag">Pas un couple</span>
+              <span class="tag">Populations</span>
+              <span class="tag">Chasseurs-cueilleurs</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ====================== CH 06 — LUCA ====================== -->
+      <section class="chapter reveal" id="luca" aria-labelledby="chapitre-luca">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Le saviez-vous ? · La cellule ancestrale</p>
+            <h2 id="chapitre-luca">LUCA, la racine de tout le vivant.</h2>
+          </div>
+          <div class="chapter-number">06</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/luca-arbre-vie.png" alt="LUCA, le dernier ancêtre commun universel : la racine d'un arbre du vivant d'où partent les bactéries, les archées et les eucaryotes jusqu'aux baleines et aux humains" loading="lazy">
+              <figcaption>LUCA — la racine commune d'où partent toutes les branches du vivant</figcaption>
+            </figure>
+            <p class="lede">Si l'on remonte encore plus loin, bien avant les humains, il existe LUCA (Last Universal Common Ancestor).</p>
+            <p>C'est la toute première cellule (ou groupe de cellules) dont découle toute la vie sur Terre : des bactéries aux baleines, en passant par vous et moi.</p>
+            <div class="science-block">
+              <span class="block-label">Anti-intox · précision de date</span>
+              <p>LUCA n'est pas l'origine de la vie elle-même, mais la lignée vers laquelle <strong>toute la vie actuelle</strong> se rejoint quand on remonte l'arbre. Le « 3,5 à 4 milliards d'années » est l'estimation classique ; une étude majeure de 2024 (Moody et al., <em>Nature Ecology &amp; Evolution</em>) la repousse vers <strong>~4,2 milliards d'années</strong>. Les plus anciennes traces de vie acceptées remontent à ~3,5 Ga (stromatolites de Pilbara) ; des indices possibles mais débattus vont jusqu'à ~4,1 Ga.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>La grande image</h3>
+            <p>Tout être vivant partage un <strong>code génétique quasi identique</strong> : c'est l'indice le plus fort d'une racine commune unique. Une seule symphonie, jouée depuis 4 milliards d'années.</p>
+            <div class="tag-list">
+              <span class="tag">LUCA</span>
+              <span class="tag">Code génétique</span>
+              <span class="tag">Ascendance commune</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ====================== CH 07 — La bibliothèque ====================== -->
+      <section class="chapter reveal" id="bibliotheque" aria-labelledby="chapitre-biblio">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">L'explication très simple</p>
+            <h2 id="chapitre-biblio">Votre corps, une immense bibliothèque.</h2>
+          </div>
+          <div class="chapter-number">07</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Imaginez que votre corps soit une immense bibliothèque et que chaque cellule contient des livres de recettes (votre ADN) pour vous construire.</p>
+
+            <h3 class="group-title">1. L'Ève mitochondriale : « Le livre de la Maman »</h3>
+            <p>Dans chaque cellule, il y a une toute petite partie qui s'appelle la mitochondrie. C'est comme une petite pile qui donne de l'énergie.</p>
+            <ul>
+              <li><strong>La règle :</strong> Cette petite pile est spéciale : elle vient uniquement de la maman. La maman la donne à ses enfants, mais seule la fille peut la transmettre à son tour à ses propres enfants.</li>
+              <li><strong>L'histoire :</strong> Si on remonte le temps, de maman en maman, on finit par arriver à une femme qui a vécu il y a très longtemps en Afrique. On l'appelle « Ève » parce que c'est la « Grand-Mère » de toutes les piles (mitochondries) de tous les humains sur Terre aujourd'hui.</li>
+            </ul>
+
+            <h3 class="group-title">2. L'Adam chromosome Y : « Le livre du Papa »</h3>
+            <p>Pour les garçons, il y a un chapitre spécial dans le livre de recettes qu'on appelle le Chromosome Y.</p>
+            <ul>
+              <li><strong>La règle :</strong> Ce chapitre est transmis uniquement de père en fils. C'est comme un nom de famille qui ne changerait jamais.</li>
+              <li><strong>L'histoire :</strong> Si on remonte de papa en papa, on arrive à un homme qui est le « Grand-Père » de tous les chromosomes Y des hommes actuels.</li>
+            </ul>
+
+            <div class="lesson-block">
+              <span class="block-label">Ce qu'il faut retenir (très simplement)</span>
+              <ul>
+                <li><strong>Ce n'étaient pas les deux seuls humains :</strong> Il y avait plein d'autres gens autour d'eux à leur époque.</li>
+                <li><strong>Une question de chance :</strong> C'est juste que, par pur hasard, leurs lignées à eux ne se sont jamais arrêtées. Les autres familles de l'époque ont fini par n'avoir que des garçons (donc la lignée de la « pile » s'est arrêtée) ou que des filles (donc le « nom de famille Y » s'est arrêté).</li>
+                <li><strong>Ils ne se sont pas connus :</strong> Ils n'étaient pas mari et femme ! « Adam » a probablement vécu des milliers d'années après ou avant « Ève ».</li>
+              </ul>
+              <p>C'est un peu comme si tu découvrais que tout le monde dans ton quartier a le même arrière-arrière-arrière-grand-père, mais que ce grand-père n'a jamais connu l'arrière-arrière-grand-mère des voisins !</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Pour les plus jeunes</h3>
+            <p>La même vérité, racontée avec des piles et des livres de recettes : un excellent moyen d'expliquer la génétique à un enfant — ou en direct, au plus grand nombre.</p>
+            <div class="tag-list">
+              <span class="tag">Analogie</span>
+              <span class="tag">Le livre de Maman</span>
+              <span class="tag">Le livre de Papa</span>
+              <span class="tag">Hasard</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ====================== CH 08 — Science & foi ====================== -->
+      <section class="chapter reveal" id="science-foi" aria-labelledby="chapitre-scifoi">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Deux lunettes, une même réalité</p>
+            <h2 id="chapitre-scifoi">L'Arbre et la Graine.</h2>
+          </div>
+          <div class="chapter-number">08</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Il ne faut pas opposer la science à la foi, mais de montrer qu'elles regardent la même réalité avec des « lunettes » différentes.</p>
+            <figure class="chapter-figure">
+              <img src="assets/arbre-graine.png" alt="L'image de l'Arbre et la Graine : l'humanité comme un grand arbre de famille, la graine du point de vue spirituel, les racines et la sève du point de vue scientifique" loading="lazy">
+              <figcaption>L'humanité comme un grand arbre de famille : la graine, et les racines</figcaption>
+            </figure>
+            <h3 class="group-title">L'exemple de « L'Arbre et la Graine »</h3>
+            <p>Imaginez que l'humanité est un immense arbre de famille.</p>
+            <ul>
+              <li><strong>Le point de vue religieux :</strong> On regarde la graine plantée par Dieu au tout début. C'est l'histoire de l'origine, du « pourquoi » nous sommes là et de notre lien spirituel unique. Adam et Ève représentent cette essence humaine commune, créés à l'image de Dieu.</li>
+              <li><strong>Le point de vue scientifique :</strong> On regarde les racines et la sève sous la terre. Les scientifiques ne cherchent pas à remplacer l'histoire d'Adam et Ève, ils essaient juste de comprendre comment la « sève » (notre ADN) a voyagé à travers le temps.</li>
+            </ul>
+            <p>Quand la science parle d'un « Adam » ou d'une « Ève » génétique, elle dit simplement ceci : « Si on remonte les branches de l'arbre, on finit par trouver un tronc commun. »</p>
+            <p>Ce qui est beau, c'est que les deux disent la même chose fondamentale : Peu importe notre couleur de peau ou notre pays, nous sommes tous frères et sœurs. Nous venons tous d'une seule et même famille humaine. La religion l'appelle une « création », la science l'appelle une « ascendance commune », mais le message reste le même : nous sommes tous liés.</p>
+            <div class="lesson-block">
+              <span class="block-label">La posture juste</span>
+              <p>Ne pas dire que la religion a tort, ajouter qu'elle s'occupe du sens de la vie, tandis que la science s'occupe des détails techniques.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Le fond commun</h3>
+            <p>« Création » ou « ascendance commune » : deux mots, un même message — <strong>une seule famille humaine</strong>, une dignité partagée.</p>
+            <div class="tag-list">
+              <span class="tag">Le comment</span>
+              <span class="tag">Le pourquoi</span>
+              <span class="tag">Unité humaine</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ====================== CH 09 — Dialoguer (Q&A + conseils + passerelle) ====================== -->
+      <section class="chapter reveal" id="dialogue" aria-labelledby="chapitre-dialogue">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">L'art du dialogue</p>
+            <h2 id="chapitre-dialogue">Répondre avec respect aux questions sensibles.</h2>
+          </div>
+          <div class="chapter-number">09</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">Les questions qu'on vous posera</h3>
+            <p>Des réponses prêtes, mot pour mot — <strong>si on vous demande :</strong></p>
+            <div class="qa">
+              <details>
+                <summary>« Est-ce que la science dit qu'Adam et Ève n'ont pas existé ? »</summary>
+                <div class="answer">
+                  <p>« La science ne cherche pas à prouver ou à nier la Bible, elle raconte l'histoire avec d'autres outils. C'est un peu comme regarder un tableau : le croyant voit l'intention du peintre et le message de l'œuvre (Adam et Ève), alors que le scientifique analyse les couches de peinture et les pigments pour comprendre comment le tableau a été fait. Les deux regardent la même réalité, mais l'un cherche le sens et l'autre le mécanisme. »</p>
+                </div>
+              </details>
+              <details>
+                <summary>« Pourquoi la science parle-t-elle de milliers d'années alors que la Bible dit que c'était au début ? »</summary>
+                <div class="answer">
+                  <p>« Pour la science, le "temps" est très long parce qu'elle compte les battements de cœur de milliards de générations. Pour la foi, ce qui compte, c'est le moment où l'être humain est devenu spécial, capable de parler à Dieu et d'avoir une conscience. On peut voir les récits religieux comme un résumé spirituel : peu importe la durée exacte, l'important est de savoir que nous avons tous une origine commune et une dignité partagée. »</p>
+                </div>
+              </details>
+              <details>
+                <summary>« Mais alors, nous descendons des singes ou de Dieu ? »</summary>
+                <div class="answer">
+                  <p>« Ce n'est pas forcément l'un ou l'autre ! On peut voir le corps humain comme une magnifique "maison" que la nature a mis très longtemps à construire (c'est l'évolution). Et on peut croire que c'est Dieu qui a apporté la "lumière" dans cette maison (l'âme, la conscience). La science explique comment la maison est bâtie, la religion explique qui est l'habitant. »</p>
+                </div>
+              </details>
+            </div>
+
+            <h3 class="group-title">Conseils</h3>
+            <ul>
+              <li><strong>Utilisez le « Nous » :</strong> Dites « Notre famille humaine », « Nos origines ». Cela montre que vous êtes dans le même bateau qu'eux.</li>
+              <li><strong>Validez leur point de vue :</strong> Commencez par « Je comprends ce que vous voulez dire » ou « C'est une belle vision ». Cela ouvre l'écoute.</li>
+              <li><strong>L'image du « Comment » vs le « Pourquoi » :</strong> C'est l'argument le plus efficace. La science répond au <em>Comment</em> (les gènes, les cellules). La religion répond au <em>Pourquoi</em> (le but de la vie, l'amour, la morale).</li>
+            </ul>
+
+            <div class="qa">
+              <details>
+                <summary>« Si on descend tous d'un seul Adam et d'une seule Ève, pourquoi y a-t-il des espèces différentes ? »</summary>
+                <div class="answer">
+                  <p>Imagines une grande famille qui se sépare : certains partent vivre à la montagne, d'autres au bord de la mer. Au bout de milliers d'années, le soleil ou le froid changent un peu l'apparence de leurs descendants (la couleur de peau, la forme des yeux) pour les protéger. Mais si on regarde à l'intérieur, dans leur sang, c'est la même famille ! La science montre qu'on est identiques à 99,9 %. Les différences, c'est juste la « peinture » extérieure de la maison qui s'est adaptée au climat.</p>
+                </div>
+              </details>
+              <details>
+                <summary>« Comment la vie a pu commencer à partir de "rien" ou d'une seule cellule ? »</summary>
+                <div class="answer">
+                  <p>C'est là que la science et la foi se rejoignent dans l'émerveillement. La science voit une cellule minuscule capable de se diviser et de devenir, après des millions d'années, un être humain capable de réfléchir et d'aimer. Le croyant voit dans cette « force de vie » incroyable la main de Dieu. On peut voir la toute première cellule (LUCA) comme la première note d'une immense symphonie qui continue de jouer aujourd'hui.</p>
+                </div>
+              </details>
+              <details>
+                <summary>« Pourquoi la science change-t-elle tout le temps d'avis alors que la religion est stable ? »</summary>
+                <div class="answer">
+                  <p>« C'est vrai, la science progresse ! C'est comme une lampe de poche dans le noir : plus les piles sont neuves (nouvelles technologies), plus on voit loin dans le passé. La religion nous donne la carte du chemin (le sens de la vie), et la science nous donne la loupe pour regarder les cailloux et les fleurs sur la route. L'une donne la direction, l'autre explique les détails du décor. »</p>
+                  <p>« Au fond, ce qui est génial, c'est qu'on soit tous d'accord sur une chose : chaque être humain est unique et précieux. Que ce soit par la création ou par l'évolution, nous sommes tous connectés. »</p>
+                </div>
+              </details>
+            </div>
+
+            <div class="science-block">
+              <span class="block-label">Anti-intox · le « 99,9 % »</span>
+              <p>Le chiffre de <strong>99,9 % d'identité</strong> est bien celui du Projet Génome Humain (deux personnes diffèrent d'environ 0,1 % au niveau des « lettres » de l'ADN). En comptant aussi les grandes différences de structure (insertions, duplications), la similarité descend vers <strong>~99,5–99,6 %</strong>. Les deux chiffres sont justes — ils ne comptent simplement pas la même chose.</p>
+            </div>
+
+            <h3 class="group-title">Le mot scientifique &amp; le mot « passerelle »</h3>
+            <table class="lexicon">
+              <caption>Des mots plus doux pour ouvrir le dialogue — sans rien trahir de la science.</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Le mot scientifique</th>
+                  <th scope="col">Le mot « Passerelle » (plus doux)</th>
+                  <th scope="col">Pourquoi l'utiliser ?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="sci">Évolution</td>
+                  <td class="bridge">Cheminement de la vie</td>
+                  <td>« Évolution » fait parfois peur car on pense au hasard. « Cheminement » suggère une direction, un mouvement.</td>
+                </tr>
+                <tr>
+                  <td class="sci">Mutation / Hasard</td>
+                  <td class="bridge">Adaptation / Providence</td>
+                  <td>Dire que la vie « s'adapte merveilleusement » montre un respect pour la complexité de la création.</td>
+                </tr>
+                <tr>
+                  <td class="sci">Big Bang</td>
+                  <td class="bridge">L'Étincelle initiale</td>
+                  <td>Cela rejoint l'idée de la lumière (« Que la lumière soit ») sans entrer dans des calculs de physique complexes.</td>
+                </tr>
+                <tr>
+                  <td class="sci">Sélection naturelle</td>
+                  <td class="bridge">L'intelligence de la nature</td>
+                  <td>Cela permet de dire que la vie n'est pas « cruelle », mais qu'elle est organisée pour que le meilleur survive et continue.</td>
+                </tr>
+                <tr>
+                  <td class="sci">Ancêtre commun</td>
+                  <td class="bridge">Source commune / Racine</td>
+                  <td>« Ancêtre » fait penser au singe (ce qui peut braquer). « Source » ou « Racine » fait penser à une famille unie.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="lesson-block">
+              <span class="block-label">La phrase qui réconcilie</span>
+              <p>Si on te demande si tu « crois » à la science ou à la Bible, tu peux répondre :</p>
+              <p>« Je ne choisis pas entre les deux. La science m'aide à comprendre comment le monde fonctionne, et la foi m'aide à comprendre qui je suis et comment je dois agir. »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Boîte à outils</h3>
+            <p>Des réponses prêtes, des conseils d'écoute et un lexique « passerelle » : de quoi transformer un débat tendu en conversation.</p>
+            <div class="tag-list">
+              <span class="tag">Le « Nous »</span>
+              <span class="tag">Valider</span>
+              <span class="tag">Comment / Pourquoi</span>
+              <span class="tag">Passerelle</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ====================== CH 10 — Sources ====================== -->
+      <section class="chapter reveal" id="sources" aria-labelledby="chapitre-sources">
+        <div class="chapter-head">
+          <div>
+            <p class="section-kicker">Pour approfondir</p>
+            <h2 id="chapitre-sources">Les bases scientifiques de ces concepts.</h2>
+          </div>
+          <div class="chapter-number">10</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Pour approfondir ou partager ces informations, voici les bases scientifiques sur lesquelles reposent ces concepts. Ces sources sont largement reconnues par la communauté des généticiens.</p>
+
+            <h3 class="group-title">1. Les publications scientifiques de référence</h3>
+            <ul>
+              <li><strong>Pour l'Ève mitochondriale :</strong> L'étude fondatrice a été publiée dans la revue <em>Nature</em> en 1987 par Cann, Stoneking et Wilson. Elle s'intitule « Mitochondrial DNA and human evolution ». C'est elle qui a établi pour la première fois que nous descendons tous d'une lignée maternelle africaine.</li>
+              <li><strong>Pour l'Adam chromosome Y :</strong> De nombreuses études, notamment dans les revues <em>Science</em> et <em>Nature</em> (comme celle de Poznik et al. en 2013), ont affiné les dates de cet ancêtre paternel.</li>
+              <li><strong>Pour LUCA (l'ancêtre de toute vie) :</strong> Les travaux de recherche sur le génome des bactéries et des organismes complexes montrent que toutes les formes de vie partagent un code génétique identique, ce qui pointe vers un ancêtre commun il y a environ 3,5 à 4 milliards d'années.</li>
+            </ul>
+
+            <div class="refs">
+              <div class="ref">
+                <h4>Cann, Stoneking &amp; Wilson — « Mitochondrial DNA and human evolution » (1987)</h4>
+                <p><em>Nature</em>, 325(6099), 31–36. L'étude fondatrice de l'Ève mitochondriale : une origine maternelle africaine commune. <span class="doi">DOI vérifié (Crossref)</span>.</p>
+                <a href="https://doi.org/10.1038/325031a0" target="_blank" rel="noopener">doi.org/10.1038/325031a0 ↗</a>
+              </div>
+              <div class="ref">
+                <h4>Poznik et al. — « Sequencing Y Chromosomes Resolves Discrepancy… » (2013)</h4>
+                <p><em>Science</em>, 341(6145), 562–565. Affine les dates : Y ≈ 120 000–156 000 ans, mtADN ≈ 99 000–148 000 ans. <span class="doi">DOI vérifié (Crossref)</span>.</p>
+                <a href="https://doi.org/10.1126/science.1237619" target="_blank" rel="noopener">doi.org/10.1126/science.1237619 ↗</a>
+              </div>
+              <div class="ref">
+                <h4>Moody et al. — « The nature of the last universal common ancestor… » (2024)</h4>
+                <p><em>Nature Ecology &amp; Evolution</em>, 8, 1654–1666. Repousse LUCA à ~4,2 milliards d'années. <span class="doi">DOI vérifié (Crossref)</span>.</p>
+                <a href="https://doi.org/10.1038/s41559-024-02461-1" target="_blank" rel="noopener">doi.org/10.1038/s41559-024-02461-1 ↗</a>
+              </div>
+            </div>
+
+            <h3 class="group-title">2. Où trouver des explications fiables en ligne ?</h3>
+            <ul>
+              <li><strong>Hominides.com :</strong> Un site français très complet sur l'évolution humaine. Cherche les articles sur « L'Ève mitochondriale » ou « L'origine de l'homme moderne ».</li>
+              <li><strong>Muséum National d'Histoire Naturelle (MNHN) :</strong> Leur site propose souvent des dossiers pédagogiques simples sur la génétique des populations.</li>
+              <li><strong>Nature / Science :</strong> Ce sont les journaux scientifiques les plus prestigieux au monde. Leurs archives contiennent toutes les preuves sur les « haplogroupes » (les familles d'ADN).</li>
+              <li><strong>YouTube (chaînes de vulgarisation) :</strong> Des chaînes comme C'est pas sorcier ou DirtyBiology ont fait d'excellentes vidéos sur l'ADN et nos ancêtres communs avec des mots très simples.</li>
+            </ul>
+
+            <h3 class="group-title">3. Comment citer ces sources avec respect ?</h3>
+            <p>Les scientifiques qui étudient l'ADN, comme ceux qui travaillent pour le CNRS ou les grandes universités, ont découvert que nos gènes gardent la trace d'un héritage commun. Ils ont même donné les noms d'Adam et Ève à ces ancêtres pour montrer à quel point cette découverte rejoint l'idée de la Bible sur l'unité de l'humanité.</p>
+
+            <div class="lesson-block">
+              <span class="block-label">Petite précision utile</span>
+              <p>Les dates (entre 150 000 et 300 000 ans) changent parfois légèrement au fur et à mesure que la technologie s'améliore, ce qui montre que la science est une enquête qui continue d'avancer.</p>
+            </div>
+            <p style="margin-top:26px;">Toutes ces affirmations sont auditées, datées et sourcées dans le Dossier des Sources de l'Empire — chaque donnée renvoie à une référence vérifiable. <a href="../../sources/sources.html" style="color:var(--gold);border-bottom:1px solid var(--line);">Consulter l'appareil critique →</a></p>
+          </article>
+          <aside class="side-note">
+            <h3>Rien sans preuve</h3>
+            <p>Trois articles à comité de lecture, <strong>trois DOI vérifiés</strong> (résolution Crossref) — aucun inventé. Les dates sont données en fourchettes : c'est la marque d'une science honnête.</p>
+            <div class="tag-list">
+              <span class="tag">Nature 1987</span>
+              <span class="tag">Science 2013</span>
+              <span class="tag">Nat. Ecol. Evol. 2024</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="closing reveal" aria-labelledby="final">
+        <h2 id="final">Une seule famille humaine — racontée par les gènes, célébrée par le sens.</h2>
+        <p>Ce dossier conserve le texte original mot pour mot, tout en donnant au public des repères clairs : ce que sont vraiment l'Ève mitochondriale, l'Adam chromosome Y et LUCA ; pourquoi ils ne forment pas un couple fondateur ; et comment parler de tout cela sans opposer le « comment » de la science au « pourquoi » de la foi. La science l'appelle une ascendance commune, d'autres une création — le message reste : nous sommes tous liés.</p>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans les récits scientifiques. Ce dossier prolonge le live en donnant au public une version lisible, structurée et partageable du texte.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="../lalie.jpeg" alt="Avatar de Lalie">
+              <img src="../ymir.jpeg" alt="Avatar d'Ymir">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+          </div>
+          <div class="collective-actions">
+            <a class="button primary" href="../../index.html">Retour à l'index</a>
+            <a class="button" href="../edicarien.html">Lire L'Édiacarien</a>
+            <a class="button" href="../resume-eres.html">Lire Résumé des Ères</a>
+            <a class="button" href="../../sources/sources.html">Les Sources</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome créée à partir de <strong>transcript.txt</strong>. Images générées pour illustrer la double hélice, les lignées maternelle et paternelle, LUCA et l'arbre de famille humain.</main>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => {
+      nav.classList.remove("open");
+      mobileMenu.setAttribute("aria-expanded", "false");
+    }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>
