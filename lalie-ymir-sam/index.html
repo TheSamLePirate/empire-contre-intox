@@ -1,0 +1,1859 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comprendre la Politique Française en 2026 — Empire contre Intox</title>
+  <meta name="description" content="Le grand décryptage : municipales 2026, les quatre blocs de l'Assemblée, le financement des campagnes, le 49.3, les institutions de la Ve République, le clivage gauche-droite. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents civiques (République, hémicycle) */
+      --civic:#5b8fb0;   /* bleu institutionnel */
+      --rep:#c76b62;     /* rouge républicain */
+      --gauche:#d27a7a;  /* repère « gauche » */
+      --centre:#cda85f;  /* repère « centre » */
+      --droite:#6f9cc4;  /* repère « droite » */
+      --extreme:#8a6fb0; /* repère « extrême droite » */
+
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+
+      --hero:url("assets/politique-2026-hero.png");
+    }
+
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(91,143,176,.16), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.14), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(199,107,98,.10), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before {
+      content:""; position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px;
+      mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%);
+    }
+    .atmos::after {
+      content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.65),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(91,143,176,.6),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(199,107,98,.5),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.35),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate;
+    }
+    .grain {
+      position:fixed; inset:-50%; z-index:1; pointer-events:none;
+      opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+
+    .progress-top {
+      position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--gauche),var(--gold-bright),var(--droite));
+      box-shadow:0 0 14px rgba(243,217,138,.55);
+    }
+
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(214,172,85,.28); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    /* Hero */
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before {
+      content:""; position:absolute; inset:0; z-index:-3;
+      background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02);
+    }
+    .hero::after {
+      content:""; position:absolute; inset:0; z-index:-2;
+      background:
+        linear-gradient(86deg,rgba(3,6,13,.94) 0%,rgba(3,6,13,.7) 36%,rgba(3,6,13,.16) 68%,rgba(3,6,13,.5) 100%),
+        linear-gradient(180deg,rgba(3,6,13,.1) 0%,rgba(3,6,13,.26) 54%,var(--void) 100%);
+    }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1;
+      background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh;
+      display:grid; grid-template-columns:minmax(0,760px) minmax(250px,350px); gap:46px; align-items:end; }
+
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px;
+      font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:18ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.5rem,6.4vw,5.4rem);
+      line-height:.98; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil {
+      background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 40%,#fff6dc 50%,var(--gold-bright) 60%,var(--gold-deep));
+      background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite;
+    }
+    @keyframes foil { to{ background-position:220% 0; } }
+
+    .hero-lead { max-width:58ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px;
+      font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+      border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px);
+      transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent;
+      background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep));
+      box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--gauche),var(--gold-bright),var(--droite)); }
+
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    /* Intro band */
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.9rem); line-height:1.04; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:104px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time,.timeline-row span { font-family:var(--roman); font-weight:600; font-size:.78rem; letter-spacing:.05em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    /* Learning / act intro panels */
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(91,143,176,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4);
+      transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .act-band { margin:70px 0 0; padding:clamp(26px,4vw,44px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(130% 130% at 0% 0%,rgba(214,172,85,.12),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.55),rgba(7,12,26,.6));
+      text-align:center; }
+    .act-band .act-no { font-family:var(--roman); font-weight:700; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+    .act-band h2 { margin:14px 0 0; font-family:var(--roman); font-weight:800; font-size:clamp(1.9rem,4.4vw,3.2rem); text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .act-band p { max-width:70ch; margin:16px auto 0; color:var(--muted); }
+
+    /* Chapters */
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"❖"; position:absolute; left:0; top:0; color:var(--gold); font-size:.8em; }
+    .prose ol { margin:14px 0 24px; padding-left:24px; }
+    .prose ol li { padding-left:6px; }
+    .prose ol li::before { content:none; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+    .sub { margin:26px 0 10px; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--parch); }
+
+    .script-block,.science-block,.question-block,.lesson-block {
+      border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
+    .script-block { border-left-color:var(--gold); background:rgba(214,172,85,.06); }
+    .science-block { border-left-color:var(--civic); background:rgba(91,143,176,.08); }
+    .question-block { border-left-color:var(--rep); background:rgba(199,107,98,.09); }
+    .lesson-block { border-left-color:var(--gold-bright); background:rgba(243,217,138,.06); }
+    .script-block p:last-child,.science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,
+    .script-block ul:last-child,.science-block ul:last-child,.lesson-block ul:last-child { margin-bottom:0; }
+    .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .science-block .block-label { color:var(--civic); }
+    .question-block .block-label { color:var(--rep); }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    /* Tables */
+    .dtable { width:100%; border-collapse:collapse; margin:14px 0; border:1px solid var(--line); border-radius:3px; overflow:hidden; font-size:.98rem; }
+    .dtable caption { text-align:left; padding:0 0 14px; color:var(--muted); font-style:italic; font-family:var(--serif); }
+    .dtable th { text-align:left; padding:13px 15px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); background:rgba(214,172,85,.06); border-bottom:1px solid var(--line); }
+    .dtable td { padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--line-2); color:var(--muted); }
+    .dtable tr:last-child td { border-bottom:0; }
+    .dtable td.k { color:var(--parch); font-weight:600; }
+    .dtable tr:hover td { background:rgba(244,236,216,.03); }
+
+    /* Blocs (hémicycle) */
+    .blocs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:18px 0 8px; }
+    .bloc { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:3px solid var(--bc,var(--gold)); transition:transform .35s var(--ease),background .35s var(--ease); }
+    .bloc:hover { transform:translateY(-4px); background:rgba(244,236,216,.06); }
+    .bloc h4 { font-family:var(--roman); font-size:.95rem; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:var(--ink); }
+    .bloc .seats { display:inline-block; margin:8px 0 10px; font-family:var(--roman); font-size:.66rem; font-weight:700; letter-spacing:.08em; color:var(--bc,var(--gold)); }
+    .bloc p { margin:0; color:var(--muted); font-size:.96rem; }
+    .bloc ul { margin:10px 0 0; padding-left:2px; list-style:none; }
+    .bloc li { position:relative; padding-left:18px; margin:7px 0; color:var(--muted); font-size:.94rem; }
+    .bloc li::before { content:"—"; position:absolute; left:0; color:var(--bc,var(--gold)); }
+
+    /* Gauche / Droite split */
+    .gd { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:18px 0; }
+    .gd-col { border:1px solid var(--line-2); border-radius:3px; padding:24px; background:rgba(244,236,216,.035); }
+    .gd-col.gauche { border-top:3px solid var(--gauche); }
+    .gd-col.droite { border-top:3px solid var(--droite); }
+    .gd-col h4 { font-family:var(--roman); font-size:1rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+    .gd-col.gauche h4 { color:var(--gauche); }
+    .gd-col.droite h4 { color:var(--droite); }
+    .gd-col p { color:var(--muted); }
+    .gd-col ul { list-style:none; padding-left:2px; margin:12px 0 0; }
+    .gd-col li { position:relative; padding-left:20px; margin:9px 0; color:var(--muted); font-size:.98rem; }
+    .gd-col.gauche li::before { content:"◀"; position:absolute; left:0; color:var(--gauche); font-size:.7em; top:.25em; }
+    .gd-col.droite li::before { content:"▶"; position:absolute; left:0; color:var(--droite); font-size:.7em; top:.25em; }
+
+    .pillar { border:1px solid var(--line-2); border-radius:3px; padding:24px; background:rgba(244,236,216,.035); border-left:3px solid rgba(214,172,85,.5); margin:18px 0; }
+    .pillar h3 { margin:0 0 10px; font-family:var(--serif); font-weight:600; font-size:1.32rem; color:var(--ink); }
+    .pillar p { margin-bottom:12px; }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(199,107,98,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    /* Collective footer + credit band */
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(91,143,176,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px;
+      background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left:-14px; }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left:-20px; }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    .reveal[data-d="3"] { transition-delay:.24s; }
+
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .signal-board { animation-delay:.45s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid,.blocs,.gd { grid-template-columns:1fr; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+      .dtable { font-size:.9rem; }
+      .dtable th,.dtable td { padding:10px 11px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-waterline"></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier IX · Éducation civique</p>
+          <h1>Comprendre la <span class="foil">Politique</span> française en 2026</h1>
+          <p class="hero-lead">Le grand décryptage : municipales, quatre blocs à l'Assemblée, financement des campagnes, 49.3, institutions de la Ve République — et, en seconde partie, le clivage gauche-droite. Pourquoi votre bulletin a plus de pouvoir que vous ne le pensez.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#transcription">Lire le dossier</a>
+            <a class="button" href="#clivage">Le clivage gauche-droite</a>
+            <a class="button" href="../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board" aria-label="Repères">
+          <div class="signal"><span>Contexte</span><strong>Mars 2026 · municipales</strong></div>
+          <div class="signal"><span>L'Assemblée</span><strong>Quatre blocs, aucune majorité</strong></div>
+          <div class="signal"><span>L'enjeu</span><strong>Du local au Sénat de septembre</strong></div>
+          <div class="signal"><span>Le fil rouge</span><strong>S'informer pour décider</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="../ymir-lalie/assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Politique 2026</span>
+        </a>
+        <a class="home-link" href="../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#ouverture">Ouverture</a>
+          <a href="#voter">Voter</a>
+          <a href="#bulletin">Le vote</a>
+          <a href="#blocs">Les blocs</a>
+          <a href="#argent">L'argent &amp; les règles</a>
+          <a href="#institutions">Institutions</a>
+          <a href="#local-national">Du local au national</a>
+          <a href="#comparaisons">Regards comparés</a>
+          <a href="#dictature">Une dictature ?</a>
+          <a href="#actualite">Mars 2026</a>
+          <a href="#clivage">Gauche-droite</a>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </nav>
+
+    <main id="transcription">
+      <section class="intro-band" id="ouverture">
+        <div class="manifesto reveal">
+          <p class="section-kicker">Ouverture du live</p>
+          <h2>Quand personne n'a la majorité, votre bulletin pèse double.</h2>
+          <p>Ce dossier reprend mot pour mot le live « Comprendre la politique française en 2026 », puis, en seconde partie, l'explication du clivage gauche-droite. Une boussole pour s'y retrouver entre municipales, 49.3, quatre blocs et Sénat.</p>
+        </div>
+        <div class="timeline reveal" data-d="1" aria-label="Fil conducteur">
+          <div class="timeline-row"><time>15 &amp; 22 mars</time><p>Élections municipales : le grand test électoral de l'année.</p></div>
+          <div class="timeline-row"><time>Sept. 2026</time><p>Sénatoriales : les maires élus deviennent « grands électeurs ».</p></div>
+          <div class="timeline-row"><time>2027</time><p>La course à l'Élysée, déjà lancée en coulisses.</p></div>
+        </div>
+      </section>
+
+      <section class="learning-panel reveal" aria-labelledby="objectifs">
+        <p class="section-kicker">Objectifs pédagogiques</p>
+        <h2 id="objectifs">Décoder la vie politique sans se faire avoir par les petites phrases.</h2>
+        <div class="learning-grid">
+          <div class="learning-item reveal" data-d="1"><span>Comprendre</span><p>Le rôle du vote, des institutions et des contre-pouvoirs de la Ve République, du maire au Conseil constitutionnel.</p></div>
+          <div class="learning-item reveal" data-d="2"><span>Vérifier</span><p>Distinguer le « bruit » du projet : lire un programme, suivre les votes réels à l'Assemblée, repérer les fake news.</p></div>
+          <div class="learning-item reveal" data-d="3"><span>Situer</span><p>Lire le paysage des partis et le clivage gauche-droite — un repère utile, mais jamais une carte complète du réel.</p></div>
+        </div>
+      </section>
+
+      <!-- ============ CH 01 — OUVERTURE ============ -->
+      <section class="chapter reveal" aria-labelledby="c1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le script du live</p><h2 id="c1">« C'est parti pour le grand décryptage. »</h2></div>
+          <div class="chapter-number">01</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="script-block">
+              <span class="block-label">Au micro</span>
+              <p>« Salut à toutes et à tous ! Bienvenue dans ce live spécial. On est en mars 2026, et si vous avez ouvert vos boîtes aux lettres ou regardé la télé ces derniers jours, vous savez qu'on est en pleine ébullition. Dimanche, c'est le deuxième tour des élections municipales.</p>
+              <p>Mais au-delà de choisir qui va gérer votre ville, ce qui se joue en ce moment, c'est le futur visage de la France. Entre une Assemblée nationale bloquée par quatre blocs qui s'affrontent, un budget 2026 qui vient de passer de justesse au 49.3, et la course pour l'Élysée 2027 qui est déjà lancée... il y a de quoi être perdu.</p>
+              <p>Ce soir, on va tout remettre à plat : Qui sont les vraies forces en présence ? Comment fonctionne notre démocratie quand personne n'est d'accord ? Et surtout, pourquoi votre bulletin de vote de dimanche a beaucoup plus de pouvoir que vous ne le pensez. C'est parti pour le grand décryptage ! »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Le ton</h3>
+            <p>Un live pédagogique et direct, qui part du concret — votre rue, votre cantine — pour remonter jusqu'aux grands équilibres nationaux.</p>
+            <div class="tag-list"><span class="tag">Live</span><span class="tag">Mars 2026</span><span class="tag">Décryptage</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 02 — VOTER AUX MUNICIPALES ============ -->
+      <section class="chapter reveal" id="voter" aria-labelledby="c2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Élections municipales 2026</p><h2 id="c2">Pourquoi votre bulletin compte.</h2></div>
+          <div class="chapter-number">02</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">C'est une question fondamentale, surtout en ce mois de mars 2026. Voter n'est pas seulement un devoir civique « théorique », c'est un outil d'influence très concret sur votre vie et sur l'équilibre du pays.</p>
+            <p>Voici les trois raisons majeures pour lesquelles votre bulletin de vote compte aujourd'hui :</p>
+
+            <h3 class="group-title">1. Décider de votre « Quotidien Immédiat »</h3>
+            <p>Les élections municipales sont celles qui impactent le plus directement votre environnement. En votant les 15 et 22 mars, vous choisissez l'équipe qui décidera pendant 6 ans :</p>
+            <ul>
+              <li><strong>De la sécurité :</strong> Création d'une police municipale ou installation de caméras.</li>
+              <li><strong>De l'éducation :</strong> Rénovation des écoles et prix de la cantine (bio, locale, etc.).</li>
+              <li><strong>De l'écologie :</strong> Création de pistes cyclables, gestion des déchets et des espaces verts.</li>
+              <li><strong>De l'urbanisme :</strong> Construction de nouveaux logements ou protection du patrimoine.</li>
+            </ul>
+            <p><strong>L'impact :</strong> Si vous ne votez pas, vous laissez vos voisins décider pour vous de la couleur de votre rue et de l'avenir de votre quartier.</p>
+
+            <h3 class="group-title">2. Agir sur le « Grand Équilibre » National</h3>
+            <p>Comme nous l'avons vu précédemment, la France vit une crise politique depuis 2024 avec une Assemblée nationale bloquée.</p>
+            <ul>
+              <li><strong>Le Sénat :</strong> En élisant vos conseillers municipaux ce mois-ci, vous désignez indirectement les Grands Électeurs qui choisiront les sénateurs en septembre 2026.</li>
+              <li><strong>Le contre-pouvoir :</strong> Le Sénat est le seul capable de bloquer ou de modifier sérieusement les projets du Gouvernement. Voter aux municipales, c'est donc aussi donner (ou retirer) du pouvoir au camp d'Emmanuel Macron au niveau national.</li>
+            </ul>
+
+            <h3 class="group-title">3. Lutter contre l'Abstention et la « Crise de Légitimité »</h3>
+            <p>En 2026, la défiance envers les politiques est forte. Certains pensent que « voter ne change rien ». Pourtant :</p>
+            <ul>
+              <li><strong>Le poids du silence :</strong> L'abstention profite souvent aux partis les mieux organisés et aux candidats sortants.</li>
+              <li><strong>La légitimité :</strong> Un maire élu avec 30 % de participation a moins de force pour négocier avec l'État ou la Métropole qu'un maire élu avec une forte mobilisation.</li>
+              <li><strong>Le signal :</strong> Un vote massif est un message envoyé au pouvoir central sur les attentes réelles des Français (pouvoir d'achat, services publics, environnement).</li>
+            </ul>
+
+            <div class="science-block">
+              <span class="block-label">Un changement important en 2026</span>
+              <p>Pour ces élections, une nouvelle loi s'applique : dans toutes les communes (même celles de moins de 1 000 habitants), on vote désormais par liste paritaire. Vous ne pouvez plus rayer de noms. C'est une simplification qui vise à rendre le vote plus clair et plus représentatif.</p>
+            </div>
+            <p><strong>En résumé :</strong> Voter, c'est choisir le pilote de votre ville et influencer le contre-poids du gouvernement à Paris.</p>
+
+            <h3 class="group-title">Lire un programme politique</h3>
+            <p>Surtout pour les municipales des 15 et 22 mars 2026, est bien plus qu'une simple formalité : c'est le seul moyen de passer de l'image médiatique d'un candidat à la réalité de ce qu'il fera de vos impôts et de votre ville.</p>
+            <p>Voici pourquoi c'est une étape cruciale pour votre vote :</p>
+            <p class="sub">1. Distinguer le « Bruit » du « Projet »</p>
+            <p>À la télévision ou sur les réseaux sociaux, les candidats s'expriment souvent par petites phrases chocs. Le programme (ou profession de foi) est le document où ils sont obligés de poser une vision cohérente pour les 6 prochaines années.</p>
+            <ul><li><strong>Le programme, c'est le contrat :</strong> C'est le document de référence sur lequel vous pourrez les interpeller s'ils ne respectent pas leurs engagements une fois élus.</li></ul>
+            <p class="sub">2. Vérifier la faisabilité : « Qui paye quoi ? »</p>
+            <p>Un programme sérieux ne se contente pas de promettre une nouvelle piscine ou des bus gratuits. Il doit expliquer son financement.</p>
+            <ul>
+              <li><strong>L'argent :</strong> Si une liste propose d'énormes travaux sans expliquer s'ils seront financés par l'emprunt, par une hausse des impôts locaux ou par des économies ailleurs, c'est un signal d'alerte.</li>
+              <li><strong>Les compétences :</strong> La mairie ne peut pas tout faire. Lire le programme permet de vérifier si le candidat ne promet pas des choses qui dépendent de l'État ou de la Région (comme changer les programmes scolaires ou baisser la TVA).</li>
+            </ul>
+            <p class="sub">3. Mesurer l'impact sur votre vie quotidienne</p>
+            <p>Aux municipales, le programme touche à votre rue, votre quartier, votre immeuble. En le lisant, vous découvrez des choix très concrets :</p>
+            <ul>
+              <li>Priorité à la voiture ou aux vélos ? (Aménagement des voiries)</li>
+              <li>Construction de nouveaux logements ou préservation des espaces verts ? (Urbanisme)</li>
+              <li>Sécurité : Développement d'une police municipale armée ou médiation sociale ?</li>
+            </ul>
+            <p class="sub">4. Détecter les « Fake News » et les manipulations</p>
+            <p>En 2026, l'Arcom (le régulateur des médias) et de nombreuses associations alertent sur la manipulation de l'information, particulièrement sur les réseaux sociaux. Lire le programme officiel envoyé par la préfecture est le meilleur moyen de vérifier si ce que vous avez lu sur Internet est vrai ou s'il s'agit d'une rumeur.</p>
+            <div class="lesson-block">
+              <span class="block-label">Comment bien lire un programme ?</span>
+              <ul>
+                <li><strong>Regardez les chiffres :</strong> Sont-ils précis ?</li>
+                <li><strong>Cherchez le calendrier :</strong> Quand ces projets seront-ils réalisés ?</li>
+                <li><strong>Comparez les priorités :</strong> Quel est le premier sujet abordé ? (C'est souvent ce qui définit le candidat).</li>
+              </ul>
+              <p><strong>Bon à savoir :</strong> Depuis 2022, les candidats ont l'obligation de fournir une version FALC (Facile à Lire et à Comprendre) de leur programme, pour rendre les idées accessibles à tous, y compris aux personnes en situation de handicap ou ayant des difficultés de lecture.</p>
+            </div>
+
+            <h3 class="group-title">A. La Procuration : Voter à distance</h3>
+            <p>Pour clore notre tour d'horizon, voici comment gérer votre vote si vous ne pouvez pas vous déplacer ou si aucun candidat ne vous convainc.</p>
+            <p>La procuration permet de confier son vote à un autre électeur (le mandataire).</p>
+            <ul>
+              <li><strong>Qui peut être mandataire ?</strong> N'importe quel électeur inscrit sur une liste électorale (même s'il habite une autre commune). Attention : il devra se rendre dans votre bureau de vote pour voter à votre place.</li>
+              <li><strong>Les limites :</strong> Un mandataire ne peut porter qu'une seule procuration établie en France.</li>
+              <li><strong>Comment faire ?</strong> En ligne (100 % dématérialisé) : Si vous avez une Identité Numérique certifiée (via l'application France Identité), vous pouvez tout faire sur maprocuration.gouv.fr sans bouger de chez vous.
+                <ul>
+                  <li><strong>Classique :</strong> Remplissez le formulaire en ligne, puis rendez-vous au commissariat, en gendarmerie ou au tribunal pour valider votre identité.</li>
+                  <li><strong>Délai :</strong> Faites-le le plus tôt possible ! Même si la loi n'impose pas de date limite, il faut que la mairie reçoive le document avant le dimanche matin.</li>
+                </ul>
+              </li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · la réforme 2026</h3>
+            <p>Le live a raison : la <strong>réforme du mode de scrutin</strong> (lois du 21 mai 2025) s'applique pour la première fois aux municipales de mars 2026. Les communes de <strong>moins de 1 000 habitants</strong> passent au <strong>scrutin de liste paritaire</strong> — <strong>fin du panachage</strong> (on ne raye plus de noms).</p>
+            <p><strong>Sources :</strong> service-public.gouv.fr ; ministère de l'Intérieur.</p>
+            <div class="tag-list"><span class="tag">Municipales</span><span class="tag">Programme</span><span class="tag">Procuration</span><span class="tag">FALC</span></div>
+          </aside>
+        </div>
+      </section>
+      <!-- ============ CH 03 — LE VOTE, MODE D'EMPLOI ============ -->
+      <section class="chapter reveal" id="bulletin" aria-labelledby="c3">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Vérifier, pas seulement croire</p><h2 id="c3">Le carnet de vote &amp; le bulletin blanc.</h2></div>
+          <div class="chapter-number">03</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Les programmes sont des promesses, mais les votes sont des actes. Regarder comment les partis se sont comportés à l'Assemblée nationale ou au Sénat est le meilleur moyen de vérifier la cohérence entre ce qu'ils disent et ce qu'ils font réellement.</p>
+            <p>En mars 2026, avec une Assemblée toujours fragmentée, chaque vote compte double. Voici comment vous pouvez analyser ce « bilan législatif » :</p>
+
+            <p class="sub">1. Pourquoi est-ce plus fiable que le programme ?</p>
+            <p>Le programme est un exercice de communication souvent idéaliste. Le vote, lui, oblige à choisir un camp sous la contrainte de la réalité :</p>
+            <ul>
+              <li><strong>La discipline de vote :</strong> En France, les députés votent presque toujours comme leur groupe politique. En regardant le vote du groupe, vous voyez la vraie ligne du parti.</li>
+              <li><strong>Le compromis :</strong> Un parti peut promettre « plus d'écologie », mais voter contre une loi climat parce qu'il juge qu'elle ne va pas assez loin, ou l'inverse. C'est dans le détail des amendements que l'on voit les vraies priorités.</li>
+            </ul>
+            <p class="sub">2. Comment consulter ces votes ?</p>
+            <p>Le citoyen dispose d'outils numériques très puissants pour « fliquer » ses élus (dans le bon sens du terme) :</p>
+            <ul>
+              <li><strong>Datan.fr :</strong> C'est sans doute l'outil le plus accessible en 2026. Il décrypte les votes complexes en les classant par thèmes (économie, social, environnement) et montre si votre député a suivi la ligne de son parti ou non.</li>
+              <li><strong>NosDéputés.fr / NosSénateurs.fr :</strong> Ces observatoires citoyens listent l'activité complète : présence en commission, nombre d'amendements déposés et, bien sûr, les votes solennels.</li>
+              <li><strong>Le site de l'Assemblée nationale :</strong> Plus technique, il publie tous les « Scrutins publics » avec le détail nom par nom. On y voit qui a voté « Pour », « Contre » ou qui s'est « Abstenu ».</li>
+            </ul>
+            <p class="sub">3. Les votes clés à regarder en ce début 2026</p>
+            <p>Pour vous faire une idée avant les municipales et les futures échéances, voici ce qui a fait débat récemment :</p>
+            <ul>
+              <li><strong>Le Budget 2026 :</strong> Qui a voté les coupes budgétaires ? Qui a proposé des taxes sur les super-profits ?</li>
+              <li><strong>La Loi sur la Fin de Vie :</strong> Un vote de conscience où les groupes politiques ont parfois été divisés.</li>
+              <li><strong>Les motions de censure :</strong> Qui a tenté de renverser le gouvernement récemment ? Cela montre qui est dans l'opposition frontale et qui est dans une opposition constructive.</li>
+            </ul>
+            <p class="sub">4. Attention aux « pièges » du vote</p>
+            <p>Il faut parfois être prudent dans l'interprétation :</p>
+            <ul>
+              <li><strong>L'abstention tactique :</strong> Parfois, un parti s'abstient non pas parce qu'il n'a pas d'avis, mais pour laisser passer une loi sans l'approuver officiellement (souvent pour éviter une crise politique).</li>
+              <li><strong>Le vote contre par stratégie :</strong> Un parti peut voter contre une loi dont il approuve l'idée, simplement parce que le texte est porté par son adversaire principal.</li>
+            </ul>
+            <p><strong>Conclusion :</strong> Si le programme est la « carte d'identité » d'un candidat, son carnet de vote est son « casier judiciaire » (ou son « tableau d'honneur »). Les deux sont indispensables pour se faire une opinion complète.</p>
+
+            <h3 class="group-title">B. Vote Blanc vs Vote Nul : Quelle différence ?</h3>
+            <p>On confond souvent les deux, mais leur sens politique est très différent.</p>
+            <table class="dtable">
+              <caption>Deux gestes, deux significations très différentes.</caption>
+              <thead><tr><th scope="col">Type de vote</th><th scope="col">Comment faire ?</th><th scope="col">Signification</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Vote Blanc</td><td>Une enveloppe vide OU un bulletin blanc vierge.</td><td>« Je participe au vote, mais aucun candidat ne me convient. »</td></tr>
+                <tr><td class="k">Vote Nul</td><td>Bulletin déchiré, annoté, griffonné, ou plusieurs bulletins différents dans la même enveloppe.</td><td>Souvent une erreur de manipulation ou une protestation « hors-sujet ».</td></tr>
+              </tbody>
+            </table>
+            <p><strong>Le décompte :</strong> Depuis 2014, les votes blancs sont décomptés séparément des votes nuls et apparaissent officiellement dans les résultats.</p>
+            <ul>
+              <li><strong>L'impact réel :</strong> Malgré ce décompte, le vote blanc ne compte pas dans les « suffrages exprimés ».</li>
+              <li><strong>Exemple :</strong> Si un candidat obtient 51 % des voix et qu'il y a 10 % de votes blancs, il est élu dès le premier tour. Le vote blanc n'augmente pas le seuil nécessaire pour gagner.</li>
+            </ul>
+            <p class="sub">Pourquoi voter blanc plutôt que de s'abstenir ?</p>
+            <p>L'abstention est souvent interprétée comme de l'indifférence ou un oubli. Le vote blanc, lui, est un geste civique fort : vous avez fait l'effort de vous déplacer pour dire qu'aucune offre politique actuelle ne vous satisfait. C'est un message direct envoyé aux partis pour qu'ils fassent évoluer leurs programmes.</p>
+            <p>Le vote blanc est souvent perçu comme « peu pris en compte » parce qu'il occupe une place ambiguë dans le droit électoral français : il est comptabilisé, mais il n'est pas exprimé.</p>
+            <p>Voici les raisons précises de cette situation et les enjeux que cela soulève :</p>
+            <p class="sub">1. La distinction entre « votants » et « suffrages exprimés »</p>
+            <p>C'est le point technique majeur qui explique pourquoi le vote blanc ne change pas le résultat d'une élection :</p>
+            <ul>
+              <li><strong>Les votants :</strong> Ce sont toutes les personnes qui ont glissé une enveloppe dans l'urne.</li>
+              <li><strong>Les suffrages exprimés :</strong> Ce sont uniquement les votes qui se sont portés sur un candidat ou une liste.</li>
+              <li><strong>Le calcul :</strong> Pour être élu, un candidat doit obtenir la majorité des suffrages exprimés. Comme le vote blanc n'en fait pas partie, il n'augmente pas le nombre de voix nécessaires pour gagner.
+                <ul><li><strong>Exemple :</strong> Si sur 100 votants, 40 votent blanc, le candidat qui obtient 31 voix sur les 60 restantes est élu avec la majorité absolue (plus de 50 % des exprimés), même s'il ne représente que 31 % des gens qui se sont déplacés.</li></ul>
+              </li>
+            </ul>
+            <p class="sub">2. Une reconnaissance purement symbolique</p>
+            <p>Depuis une loi de 2014, les votes blancs sont décomptés séparément des votes nuls et apparaissent dans les résultats officiels. C'est une avancée, car cela permet de mesurer le mécontentement. Cependant, cette reconnaissance reste symbolique car elle n'a aucun impact juridique sur l'élection. Le vote blanc est considéré comme un comportement électoral à part entière, au même titre que l'abstention.</p>
+            <p class="sub">3. Les arguments contre une prise en compte totale</p>
+            <p>Si le vote blanc était considéré comme un suffrage exprimé, cela pourrait bloquer les institutions :</p>
+            <ul>
+              <li><strong>Le risque d'élection invalide :</strong> Si le vote blanc arrivait en tête (par exemple 55 % des voix), aucun candidat n'aurait la majorité. Il faudrait alors annuler l'élection et en réorganiser une nouvelle, ce qui pourrait mener à une instabilité permanente si les électeurs continuent de voter blanc.</li>
+              <li><strong>La difficulté de gouverner :</strong> Le système français (Ve République) est conçu pour dégager une majorité claire afin de pouvoir diriger le pays. Prendre en compte le vote blanc comme un suffrage exprimé rendrait l'obtention de cette majorité beaucoup plus difficile.</li>
+            </ul>
+            <p class="sub">4. Un débat politique permanent</p>
+            <p>En 2026, comme lors des scrutins précédents, de nombreux citoyens et responsables politiques demandent que le vote blanc soit reconnu comme un suffrage exprimé. L'objectif serait de :</p>
+            <ul>
+              <li>Mieux prendre en compte les aspirations des électeurs qui ne se reconnaissent dans aucune offre.</li>
+              <li>Réduire l'abstention en donnant une utilité réelle au geste de se déplacer pour dire « non » à tous les candidats.</li>
+            </ul>
+            <p><strong>En résumé :</strong> Le vote blanc est un message politique de mécontentement, mais pour l'instant, le législateur a choisi de privilégier l'efficacité de l'élection (désigner un vainqueur) plutôt que la représentativité du refus.</p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · vote blanc</h3>
+            <p>Exact : depuis la <strong>loi du 21 février 2014</strong>, les votes blancs sont décomptés à part, mais ils <strong>n'entrent pas dans les suffrages exprimés</strong> — ils ne relèvent donc pas le seuil pour gagner.</p>
+            <p><strong>Outils cités, bien réels :</strong> Datan.fr, NosDéputés.fr, NosSénateurs.fr, le site de l'Assemblée nationale.</p>
+            <div class="tag-list"><span class="tag">Suffrages exprimés</span><span class="tag">Datan</span><span class="tag">Discipline de vote</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 04 — LE VISAGE POLITIQUE ============ -->
+      <section class="chapter reveal" id="blocs" aria-labelledby="c4">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le visage politique en France</p><h2 id="c4">Quatre blocs, aucune majorité.</h2></div>
+          <div class="chapter-number">04</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Le paysage politique français en mars 2026 est marqué par une fragmentation inédite de l'Assemblée nationale, issue des législatives de 2024, et par la préparation intensive des élections municipales qui se tiennent ce mois-ci.</p>
+            <p>Voici les grandes lignes pour comprendre la situation actuelle :</p>
+            <p>On a une représentation visuelle du paysage politique français en mars 2026, structuré autour des quatre grands blocs qui composent l'Assemblée nationale depuis les législatives de 2024. Ce schéma met en évidence la tripartition (ou quadripartition, selon le rôle charnière de la droite LR) du Parlement, où aucune force ne détient la majorité absolue de 289 sièges.</p>
+            <p><em>[Image d'un schéma ou infographie montrant les partis politiques français divisés en quatre grands blocs : Nouveau Front Populaire, Ensemble, La Droite Républicaine, Rassemblement National, avec leurs logos et nombre de sièges approximatifs.]</em></p>
+
+            <h3 class="group-title">Comment lire ce schéma ?</h3>
+            <p>Le paysage est fracturé en blocs qui s'opposent ou négocient au coup par coup :</p>
+            <div class="blocs">
+              <div class="bloc" style="--bc:var(--gauche)"><h4>Le Nouveau Front Populaire (NFP)</h4><span class="seats">Gauche</span><p>C'est la coalition de gauche la plus nombreuse (environ 193 députés), mais elle reste en deçà de la majorité absolue. Elle rassemble LFI, le PS, Les Écologistes et le PCF.</p></div>
+              <div class="bloc" style="--bc:var(--centre)"><h4>Ensemble pour la République</h4><span class="seats">Centre</span><p>C'est le bloc central (ex-majorité présidentielle) avec environ 160 députés. Il soutient l'action du gouvernement mais doit composer avec les autres forces.</p></div>
+              <div class="bloc" style="--bc:var(--droite)"><h4>La Droite Républicaine (LR)</h4><span class="seats">Droite</span><p>Avec une cinquantaine de sièges, ce groupe joue souvent le rôle de « faiseur de rois » pour valider certains textes, notamment le budget, ou pour éviter une motion de censure.</p></div>
+              <div class="bloc" style="--bc:var(--extreme)"><h4>Le Rassemblement National (RN) et ses alliés</h4><span class="seats">Extrême droite</span><p>Avec environ 140 députés (dont l'UDR d'Éric Ciotti), c'est le premier groupe d'opposition unique, très puissant mais isolé à l'Assemblée.</p></div>
+            </div>
+
+            <h3 class="group-title">Pourquoi cette image est-elle cruciale en 2026 ?</h3>
+            <p>Cette configuration inédite depuis 2024 explique l'instabilité politique et l'utilisation fréquente d'outils comme le 49.3 par le gouvernement pour faire passer ses lois sans vote, faute de majorité assurée. C'est également ce paysage fracturé qui se projette dans les élections municipales de ce mois-ci, où chaque bloc tente de conquérir des mairies pour renforcer son ancrage local avant les sénatoriales de septembre.</p>
+            <p>Pour bien comprendre le paysage politique de 2026, il faut regarder le détail de chaque bloc. Voici un « zoom » sur les forces en présence, de la gauche à l'extrême droite.</p>
+
+            <p class="sub">1. Le Bloc de Gauche : Le Nouveau Front Populaire (NFP)</p>
+            <p>C'est une alliance électorale qui regroupe quatre partis principaux. Bien qu'unis pour les élections, ils gardent des sensibilités différentes :</p>
+            <ul>
+              <li><strong>La France Insoumise (LFI) :</strong> Le pôle le plus radical. Porté par les idées de rupture, il se concentre sur la VIe République, la planification écologique et la taxation des super-profits.</li>
+              <li><strong>Le Parti Socialiste (PS) :</strong> La force sociale-démocrate. Il prône une gauche de gouvernement, pro-européenne, très attachée aux services publics.</li>
+              <li><strong>Les Écologistes (EELV) :</strong> Leur priorité est la transition climatique, la protection de la biodiversité et une économie plus sobre.</li>
+              <li><strong>Le Parti Communiste Français (PCF) :</strong> Très axé sur la défense du monde ouvrier, la souveraineté industrielle et l'énergie nucléaire.</li>
+            </ul>
+            <p class="sub">2. Le Bloc Central : Ensemble pour la République</p>
+            <p>C'est le socle qui soutient l'action du président Emmanuel Macron. Il est composé de trois piliers :</p>
+            <ul>
+              <li><strong>Renaissance (ex-LREM) :</strong> Le parti présidentiel, libéral sur l'économie et progressiste sur les questions de société.</li>
+              <li><strong>Le MoDem :</strong> Le parti de François Bayrou. Il insiste sur le dialogue entre les blocs et la décentralisation.</li>
+              <li><strong>Horizons :</strong> Fondé par Édouard Philippe. Il prépare activement l'après-Macron avec une ligne plus ferme sur la sécurité et le sérieux budgétaire.</li>
+            </ul>
+            <p class="sub">3. Le Bloc de Droite : La Droite Républicaine (LR)</p>
+            <p>Héritiers du général de Gaulle et de Nicolas Sarkozy, ils sont dans une position charnière en 2026.</p>
+            <ul>
+              <li>Ils refusent de s'allier officiellement au camp Macron mais votent parfois avec lui pour éviter de bloquer le pays.</li>
+              <li><strong>Leurs priorités :</strong> Réduction drastique de la dépense publique, fermeté sur l'immigration et soutien aux entreprises.</li>
+            </ul>
+            <p class="sub">4. Le Bloc d'Extrême Droite : Le Rassemblement National et ses alliés</p>
+            <p>C'est le bloc qui a le plus progressé en nombre de députés depuis 2024.</p>
+            <ul>
+              <li><strong>Le Rassemblement National (RN) :</strong> Mené par Marine Le Pen et Jordan Bardella, il mise sur la « priorité nationale », le pouvoir d'achat et la lutte contre l'insécurité pour se présenter comme l'alternative de gouvernement.</li>
+              <li><strong>L'UDR :</strong> Le groupe d'Éric Ciotti qui a rompu avec LR pour s'allier directement au RN.</li>
+              <li><strong>Reconquête ! :</strong> Le parti d'Éric Zemmour, plus radical sur l'identité, mais moins influent à l'Assemblée nationale que le RN.</li>
+            </ul>
+
+            <h3 class="group-title">Récapitulatif : Les rapports de force</h3>
+            <table class="dtable">
+              <caption>Quatre blocs, quatre revendications phares en 2026.</caption>
+              <thead><tr><th scope="col">Bloc</th><th scope="col">Tendance</th><th scope="col">Principale revendication en 2026</th></tr></thead>
+              <tbody>
+                <tr><td class="k">NFP (Gauche)</td><td>Rupture / Social</td><td>Abrogation de la réforme des retraites</td></tr>
+                <tr><td class="k">Ensemble (Centre)</td><td>Libéral / Européen</td><td>Poursuite des réformes de compétitivité</td></tr>
+                <tr><td class="k">LR (Droite)</td><td>Conservateur</td><td>Rigueur budgétaire stricte</td></tr>
+                <tr><td class="k">RN (Extrême Droite)</td><td>Nationaliste</td><td>Maîtrise totale de l'immigration</td></tr>
+              </tbody>
+            </table>
+
+            <h3 class="group-title">Les « petits » partis, souvent influents</h3>
+            <p>Si les « quatre grands blocs » dominent l'Assemblée nationale en 2026, la vie politique française est riche de dizaines de partis plus petits. Certains n'ont aucun député mais des milliers d'élus locaux (maires, conseillers), tandis que d'autres servent de « satellites » aux grands partis.</p>
+            <p>Voici un tour d'horizon des forces plus discrètes mais souvent influentes :</p>
+            <p class="sub">1. La « Galaxie » Souverainiste et d'Extrême Droite</p>
+            <p>À côté du RN de Marine Le Pen, d'autres mouvements défendent une ligne très nationale :</p>
+            <ul>
+              <li><strong>Debout la France (DLF) :</strong> Le parti de Nicolas Dupont-Aignan. Il prône une sortie de l'euro ou une Europe des nations très libre.</li>
+              <li><strong>Les Patriotes :</strong> Mené par Florian Philippot, ce parti est le fer de lance du « Frexit » (sortie de la France de l'Union européenne).</li>
+              <li><strong>Reconquête ! :</strong> Le parti d'Éric Zemmour. Bien qu'il ait eu un fort écho médiatique, il peine en 2026 à transformer ses scores en sièges de députés, mais reste actif sur les réseaux sociaux.</li>
+            </ul>
+            <p class="sub">2. L'Extrême Gauche « Rupturiste »</p>
+            <p>Ils refusent souvent les alliances avec le PS ou les Écologistes, jugeant le Nouveau Front Populaire trop « mou » :</p>
+            <ul>
+              <li><strong>Lutte Ouvrière (LO) :</strong> Mené par Nathalie Arthaud, c'est le parti des travailleurs. Ils sont présents à chaque élection pour porter la voix de la lutte des classes.</li>
+              <li><strong>Nouveau Parti Anticapitaliste (NPA) :</strong> Divisé en plusieurs branches, il prône une révolution sociale et la fin du système capitaliste.</li>
+            </ul>
+            <p class="sub">3. Les Partis de « Niche » ou Thématiques</p>
+            <p>Ils se concentrent sur un sujet précis, ce qui leur permet de capter un électorat très fidèle :</p>
+            <ul>
+              <li><strong>Résistons ! :</strong> Le parti de Jean Lassalle. Très axé sur la défense du monde rural, des bergers et de la « France d'en bas ».</li>
+              <li><strong>Le Parti Animaliste :</strong> Il ne parle que d'une chose : la condition animale. Il obtient souvent des scores surprenants (autour de 2-3 %) aux élections européennes.</li>
+              <li><strong>L'Union Populaire Républicaine (UPR) :</strong> Le parti de François Asselineau, focalisé quasi exclusivement sur la sortie de l'UE, de l'Euro et de l'OTAN.</li>
+            </ul>
+            <p class="sub">4. Les Partis Régionalistes</p>
+            <p>En 2026, ils sont de plus en plus écoutés, notamment au Parlement via le groupe LIOT (Libertés, Indépendants, Outre-mer et Territoires) :</p>
+            <ul>
+              <li><strong>Femu a Corsica :</strong> Les autonomistes corses.</li>
+              <li><strong>UDB (Union Démocratique Bretonne) :</strong> Pour plus d'autonomie en Bretagne.</li>
+              <li><strong>Partis Ultra-marins :</strong> Très puissants en Guadeloupe, Martinique ou à la Réunion, ils sont souvent les alliés indispensables pour former une majorité à Paris.</li>
+            </ul>
+            <h3 class="group-title">Pourquoi ces « petits » partis sont-ils importants ?</h3>
+            <ol>
+              <li><strong>Le rôle de « Faiseur de rois » :</strong> À l'Assemblée, le petit groupe LIOT (environ 20 députés) peut faire basculer un vote ou une motion de censure car il n'appartient à aucun des quatre grands blocs.</li>
+              <li><strong>Le financement :</strong> En France, chaque voix obtenue aux législatives rapporte de l'argent public au parti. Même un petit parti qui fait 1 % peut ainsi financer son existence.</li>
+              <li><strong>Les idées :</strong> Des thèmes comme l'écologie radicale ou la cause animale ont d'abord été portés par de « petits » partis avant d'être récupérés par les grands.</li>
+            </ol>
+          </article>
+          <aside class="side-note">
+            <h3>Repère · scénario du live</h3>
+            <p>Les <strong>nombres de sièges</strong> (NFP ≈ 193, Ensemble ≈ 160, RN &amp; alliés ≈ 140, LR ≈ 50) sont ceux annoncés par le live pour son scénario de mars 2026 : des ordres de grandeur, pas un décompte officiel figé.</p>
+            <p>Le seuil de <strong>majorité absolue (289)</strong> et la mécanique des blocs, eux, sont exacts.</p>
+            <div class="tag-list"><span class="tag">NFP</span><span class="tag">Ensemble</span><span class="tag">LR</span><span class="tag">RN</span><span class="tag">LIOT</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 05 — L'ARGENT & LES RÈGLES ============ -->
+      <section class="chapter reveal" id="argent" aria-labelledby="c5">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le nerf de la guerre</p><h2 id="c5">L'argent &amp; les règles du jeu.</h2></div>
+          <div class="chapter-number">05</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Le financement, parlons-en. C'est le nerf de la guerre. En France, le financement des campagnes est extrêmement encadré pour éviter que l'argent ne devienne le seul critère de victoire (contrairement aux États-Unis, par exemple).</p>
+            <p>Voici comment on passe de simple citoyen à candidat, et comment on paye l'addition.</p>
+            <p class="sub">1. Qui peut se présenter ?</p>
+            <p>En théorie, presque tout le monde. Les conditions de base sont simples :</p>
+            <ul>
+              <li>Être de nationalité française.</li>
+              <li>Avoir 18 ans révolus.</li>
+              <li>Jouir de ses droits civils et politiques (ne pas avoir été condamné à une peine d'inéligibilité par un juge).</li>
+              <li>Être inscrit sur les listes électorales.</li>
+            </ul>
+            <p><strong>Le verrou des « 500 signatures » :</strong> Pour l'élection présidentielle uniquement, il faut recueillir le parrainage de 500 élus (maires, députés, sénateurs) issus d'au moins 30 départements différents. C'est le filtre qui empêche les candidatures « fantaisistes ».</p>
+            <p class="sub">2. Comment finance-t-on une campagne ?</p>
+            <p>En France, le financement est hybride : un mélange d'argent privé (très limité) et d'argent public (remboursement).</p>
+            <p class="sub">A. Les recettes (L'argent qui rentre)</p>
+            <ul>
+              <li><strong>L'apport personnel :</strong> Le candidat utilise ses propres économies ou contracte un prêt bancaire à son nom.</li>
+              <li><strong>Les dons des particuliers :</strong> Un citoyen peut donner au maximum 4 600 € par élection.</li>
+              <li><strong>L'aide du parti :</strong> Le parti politique du candidat peut verser des fonds.</li>
+              <li><strong>INTERDICTION :</strong> Les entreprises (personnes morales) ont l'interdiction totale de donner de l'argent à un candidat. Seules les personnes physiques peuvent le faire.</li>
+            </ul>
+            <p class="sub">B. Le plafonnement (La limite à ne pas dépasser)</p>
+            <p>Pour garantir l'équité, la loi fixe un plafond de dépenses que le candidat ne doit jamais dépasser.</p>
+            <ul><li><strong>Exemple :</strong> Pour la présidentielle, le plafond est d'environ 22,5 millions d'euros pour le second tour. Si vous dépassez d'un euro, votre élection peut être annulée.</li></ul>
+            <p class="sub">C. Le remboursement par l'État</p>
+            <p>C'est la règle d'or : si un candidat obtient plus de 5 % des voix, l'État lui rembourse environ 47 % du plafond de dépenses.</p>
+            <ul><li><strong>Le piège :</strong> Si le candidat fait moins de 5 %, le remboursement tombe à presque rien (environ 4,7 %). C'est souvent la faillite personnelle ou celle du petit parti.</li></ul>
+            <p class="sub">3. Les démarches concrètes</p>
+            <p>Si vous décidez de vous présenter aux législatives ou aux municipales de 2026, voici le parcours :</p>
+            <ol>
+              <li><strong>Déclaration de candidature :</strong> Il faut déposer un dossier à la Préfecture.</li>
+              <li><strong>Mandataire financier :</strong> C'est obligatoire. Vous devez nommer une personne (ou une association) qui gérera l'argent. Le candidat ne peut pas toucher l'argent lui-même.</li>
+              <li><strong>Le Compte de Campagne :</strong> Toutes les factures (impression des tracts, location de salle, publicités autorisées) doivent passer par un compte bancaire unique.</li>
+              <li><strong>Validation :</strong> Après l'élection, la CNCCFP (Commission nationale des comptes de campagne) épluche chaque facture. Si elle valide, l'État rembourse. Si elle rejette, le candidat perd son remboursement et peut être déclaré inéligible.</li>
+            </ol>
+            <p class="sub">4. Pourquoi est-ce important en 2026 ?</p>
+            <p>Avec les municipales de ce mois-ci, beaucoup de candidats de « petits » partis prennent un gros risque financier. S'ils ne franchissent pas la barre des 5 %, ils devront rembourser leurs dettes de campagne sur leurs propres deniers.</p>
+            <p>C'est aussi pour cela que l'on voit beaucoup de fusions de listes entre les deux tours : on partage les frais et on s'assure de dépasser les seuils de remboursement.</p>
+
+            <h3 class="group-title">La publicité politique, strictement réglementée</h3>
+            <p>En France, la publicité politique est strictement réglementée pour éviter que l'élection ne devienne un concours de moyens financiers. En mars 2026, pour les municipales, ces règles sont appliquées avec une rigueur particulière.</p>
+            <p>Voici pourquoi vous ne voyez pas de « pubs » politiques comme pour des yaourts ou des voitures :</p>
+            <p class="sub">1. L'interdiction de la publicité commerciale</p>
+            <p>Depuis le 1er septembre 2025 (soit 6 mois avant le scrutin), il est formellement interdit d'utiliser des procédés de publicité commerciale à des fins de propagande électorale.</p>
+            <ul>
+              <li><strong>Pas de publicités à la télé ou à la radio :</strong> Contrairement aux États-Unis, un candidat ne peut pas acheter un spot de 30 secondes sur TF1 ou RTL.</li>
+              <li><strong>Pas de publicités dans les journaux :</strong> On ne peut pas acheter une page entière dans Le Monde ou Le Figaro pour son programme.</li>
+              <li><strong>Pas de publicité sur Internet :</strong> Il est interdit de « sponsoriser » des publications sur Facebook, Instagram ou TikTok, ou d'acheter des bannières publicitaires (Google Ads) pour promouvoir sa candidature.</li>
+            </ul>
+            <p class="sub">2. L'affichage : Uniquement sur les panneaux officiels</p>
+            <p>L'affichage sauvage est interdit. La loi impose l'égalité :</p>
+            <ul>
+              <li><strong>Les panneaux électoraux :</strong> La mairie installe des panneaux devant chaque bureau de vote. Chaque candidat a droit à la même surface exacte.</li>
+              <li><strong>L'interdiction des vitrines :</strong> Un candidat ne peut même pas recouvrir entièrement la vitrine de son local de campagne avec des affiches de programme ou des slogans. Seules les informations factuelles (nom du candidat, heures d'ouverture) sont tolérées.</li>
+            </ul>
+            <p class="sub">3. La communication des mairies « gelée »</p>
+            <p>Pour éviter qu'un maire sortant n'utilise l'argent de la ville pour se faire réélire :</p>
+            <ul>
+              <li><strong>Pas de promotion du bilan :</strong> Six mois avant l'élection, la mairie ne peut plus publier de brochures vantant « les grandes réussites de la ville ».</li>
+              <li><strong>Neutralité des réseaux sociaux :</strong> Les comptes officiels de la ville (X, Facebook) doivent se contenter d'informations purement pratiques (travaux, météo, état civil).</li>
+            </ul>
+            <p>Puisque la publicité est interdite, l'État organise lui-même la diffusion des idées :</p>
+            <ul>
+              <li><strong>La « Profession de foi » :</strong> C'est le feuillet que vous recevez chez vous par courrier. Sa taille et son poids sont réglementés au millimètre près.</li>
+              <li><strong>Le bulletin de vote :</strong> Imprimé par le candidat, il doit respecter des normes strictes de papier et de couleur.</li>
+              <li><strong>Les réseaux sociaux (non payants) :</strong> Un candidat peut poster autant de vidéos ou de messages qu'il veut sur son profil personnel, tant qu'il ne paye pas la plateforme pour diffuser son message à plus de gens.</li>
+            </ul>
+            <p class="sub">Pourquoi ces règles ?</p>
+            <p>L'idée est de garantir que l'argent ne fasse pas l'élection. Un candidat très riche ne doit pas pouvoir « étouffer » un candidat plus modeste en occupant tout l'espace médiatique. En France, la campagne doit rester un débat d'idées, pas une guerre de budgets publicitaires.</p>
+
+            <h3 class="group-title">L'Arcom &amp; le ballet des secondes</h3>
+            <p>C'est l'un des aspects les plus fascinants (et contraignants) de la télévision française. En mars 2026, l'Arcom (l'autorité de régulation, ex-CSA) veille avec des chronomètres très précis pour que chaque sensibilité politique puisse s'exprimer.</p>
+            <p>Voici comment fonctionne ce « ballet » des secondes :</p>
+            <p class="sub">1. Pourquoi chronométrer ?</p>
+            <p>Le but est d'éviter qu'une chaîne de télé ne devienne le porte-voix d'un seul parti. Pour les élections municipales des 15 et 22 mars 2026, l'Arcom a activé des règles strictes depuis le début du mois de février.</p>
+            <ul>
+              <li><strong>Le pluralisme :</strong> Toutes les tendances (gauche, centre, droite, extrême droite) doivent avoir un accès équitable à l'antenne.</li>
+              <li><strong>L'équité :</strong> Cela ne veut pas dire que tout le monde a le même temps à la seconde près (sauf pour la présidentielle), mais que le temps de parole doit être proportionnel à la représentativité du parti (résultats aux dernières élections, nombre de députés, etc.).</li>
+            </ul>
+            <p class="sub">2. Qu'est-ce qu'on décompte exactement ?</p>
+            <p>Dès qu'un politique parle à l'écran, un compteur se déclenche. Mais attention, on sépare les « casquettes » :</p>
+            <ul>
+              <li><strong>Le temps « Gouvernemental » :</strong> Si un ministre parle de son action (ex : une nouvelle loi sur l'énergie), c'est compté à part.</li>
+              <li><strong>Le temps « Parti » :</strong> S'il parle de sa stratégie pour 2027 ou critique un adversaire.</li>
+              <li><strong>Le temps « Candidat » :</strong> S'il vient soutenir une liste pour les municipales de 2026.</li>
+            </ul>
+            <div class="lesson-block"><span class="block-label">Le saviez-vous ?</span><p>Si un invité politique parle pendant 10 minutes mais qu'il est interrompu par le journaliste pendant 2 minutes, l'Arcom ne décompte que 8 minutes de temps de parole effectif.</p></div>
+            <p class="sub">3. Le rattrapage : La « Balance »</p>
+            <p>Si une chaîne reçoit un leader du Rassemblement National le lundi matin, elle est obligée, dans les jours qui suivent, de proposer un temps équivalent au Nouveau Front Populaire ou à la Majorité Présidentielle.</p>
+            <ul><li>Si elle ne le fait pas, l'Arcom envoie d'abord une mise en garde, puis peut infliger de lourdes amendes financières.</li></ul>
+            <p class="sub">4. La Période de Réserve (Le « Silence radio »)</p>
+            <p>C'est le moment le plus critique du calendrier actuel :</p>
+            <ul>
+              <li>À partir du vendredi 13 mars 2026 à minuit (pour le premier tour), c'est le silence total.</li>
+              <li>Les candidats n'ont plus le droit de parler dans les médias.</li>
+              <li>Les journalistes n'ont plus le droit de diffuser d'interviews ou de sondages.</li>
+              <li><strong>Le but :</strong> Laisser les électeurs réfléchir au calme, sans être influencés par une dernière polémique à la télévision juste avant d'aller voter le dimanche matin.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · chiffres vérifiés</h3>
+            <p><strong>Don max : 4 600 €</strong> par particulier et par élection ✓. <strong>Plafond présidentielle 2e tour ≈ 22,5 M€</strong> (22 509 000 € en 2022) ✓. <strong>Remboursement : 47,5 %</strong> du plafond au-dessus de 5 %, <strong>~4,75 %</strong> en dessous ✓. <strong>500 parrainages, ≥ 30 départements</strong> ✓.</p>
+            <p><strong>Sources :</strong> CNCCFP ; Conseil constitutionnel ; service-public.gouv.fr ; Arcom.</p>
+            <div class="tag-list"><span class="tag">CNCCFP</span><span class="tag">Plafond</span><span class="tag">Arcom</span><span class="tag">Silence électoral</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 06 — PARLEMENT DIVISÉ & FAMILLES ============ -->
+      <section class="chapter reveal" aria-labelledby="c6">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Pourquoi est-ce si complexe en 2026 ?</p><h2 id="c6">Un Parlement éclaté, des familles à reconnaître.</h2></div>
+          <div class="chapter-number">06</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Avec les quatre blocs (Gauche, Centre, Droite, Extrême Droite) de force presque égale à l'Assemblée, les chaînes de télévision doivent faire des calculs d'apothicaire pour que personne ne se sente lésé.</p>
+            <p>C'est aussi pour cela que vous voyez souvent des plateaux avec quatre invités : c'est le moyen le plus simple pour les chaînes de respecter l'équilibre en une seule émission !</p>
+            <p class="sub">1. Un Parlement divisé en quatre blocs</p>
+            <p>Depuis 2024, aucune force politique ne détient la majorité absolue. L'Assemblée nationale est structurée autour de quatre pôles majeurs qui s'affrontent ou négocient au coup par coup :</p>
+            <ul>
+              <li><strong>Le Bloc d'Extrême Droite (Le plus nombreux) :</strong> Mené par le Rassemblement National (RN) avec environ 122 députés, allié à l'UDR (Éric Ciotti). Il s'affirme comme le premier groupe d'opposition.</li>
+              <li><strong>Le Bloc Central (Ex-majorité) :</strong> Réuni sous la bannière Ensemble pour la République (EPR, anciennement Renaissance) et ses alliés (MoDem, Horizons). Il compte environ 160 députés.</li>
+              <li><strong>Le Bloc de Gauche (Nouveau Front Populaire) :</strong> Une coalition fragile mais persistante regroupant La France Insoumise (LFI), le Parti Socialiste (PS), Les Écologistes et le PCF. Ils totalisent environ 193 sièges.</li>
+              <li><strong>La Droite Républicaine (LR) :</strong> Avec une cinquantaine de députés, ce groupe joue souvent le rôle de « faiseur de rois » pour valider certains textes législatifs ou le budget.</li>
+            </ul>
+            <p class="sub">2. Le Gouvernement et l'Exécutif</p>
+            <p>Le pays vit une forme de stabilité précaire. Emmanuel Macron, dont le mandat court jusqu'en 2027, fait face à une contestation sociale persistante, notamment sur le pouvoir d'achat et les services publics. Le gouvernement actuel doit naviguer à vue, texte par texte, sous la menace constante de motions de censure.</p>
+            <p class="sub">3. L'enjeu immédiat : Les Municipales de mars 2026</p>
+            <p>C'est le grand test électoral de l'année. Ces élections sont cruciales pour plusieurs raisons :</p>
+            <ul>
+              <li><strong>L'ancrage local du RN :</strong> Le parti de Marine Le Pen cherche à conquérir des villes moyennes pour prouver sa capacité de gestion avant la présidentielle de 2027.</li>
+              <li><strong>La survie des partis traditionnels :</strong> Le PS et LR, bien qu'affaiblis au niveau national, comptent sur leurs maires sortants pour conserver leur influence.</li>
+              <li><strong>L'union de la gauche :</strong> Les municipales testent la solidité du Nouveau Front Populaire à l'échelle locale.</li>
+            </ul>
+            <p class="sub">4. Les thèmes qui dominent le débat</p>
+            <ul>
+              <li><strong>L'économie :</strong> La rigueur budgétaire et la dette publique sont au centre des discussions parlementaires.</li>
+              <li><strong>L'écologie et l'agriculture :</strong> Suite aux crises agricoles de 2024-2025, la souveraineté alimentaire est devenue un sujet politique majeur.</li>
+              <li><strong>L'international :</strong> Le contexte géopolitique reste tendu, pesant sur les choix de défense et d'énergie de la France.</li>
+            </ul>
+
+            <h3 class="group-title">Les partis par grandes familles idéologiques</h3>
+            <p>Pour approfondir notre discussion sur le paysage politique français actuel, voici une présentation détaillée des principaux partis, classés par grandes familles idéologiques. En 2026, ces partis s'organisent souvent au sein de coalitions (comme le Nouveau Front Populaire ou Ensemble) pour peser davantage à l'Assemblée nationale.</p>
+            <p class="sub">1. La Gauche et l'Extrême Gauche (Le Nouveau Front Populaire - NFP)</p>
+            <p>Cette famille met l'accent sur la justice sociale, le partage des richesses et les services publics.</p>
+            <ul>
+              <li><strong>La France Insoumise (LFI) :</strong> Mené par les figures du mouvement « insoumis », c'est le pôle le plus radical de la coalition. Il prône une rupture avec le capitalisme, la VIe République et une transition écologique forte.</li>
+              <li><strong>Le Parti Socialiste (PS) :</strong> La force sociale-démocrate. Après une période d'affaiblissement, il a repris des couleurs en misant sur une ligne de gauche modérée et européenne.</li>
+              <li><strong>Les Écologistes (EELV) :</strong> Leur priorité est la transformation environnementale de la société, souvent liée à des enjeux de justice sociale.</li>
+              <li><strong>Le Parti Communiste Français (PCF) :</strong> Très présent dans les débats sur l'industrie et l'énergie, il défend une vision de la gauche centrée sur le travail et la production nationale.</li>
+            </ul>
+            <p class="sub">2. Le Centre / Bloc Central (Ensemble pour la République)</p>
+            <p>C'est le courant qui soutient l'action du président Emmanuel Macron. Il se définit par un mélange de libéralisme économique et de progressisme social.</p>
+            <ul>
+              <li><strong>Renaissance :</strong> Le parti présidentiel. Il défend les réformes économiques, l'Union européenne et la modernisation de l'État.</li>
+              <li><strong>Le MoDem :</strong> Allié historique du centre, il insiste sur la décentralisation, l'éducation et l'équilibre des pouvoirs.</li>
+              <li><strong>Horizons :</strong> Créé par l'ancien Premier ministre Édouard Philippe, ce parti se positionne sur une ligne plus à droite au sein du bloc central, avec une vision de long terme sur les enjeux de sécurité et de finances publiques.</li>
+            </ul>
+            <p class="sub">3. La Droite (La Droite Républicaine)</p>
+            <p>Elle se concentre sur l'autorité, la liberté d'entreprendre et la maîtrise de la dépense publique.</p>
+            <ul>
+              <li><strong>Les Républicains (LR) :</strong> Héritiers du gaullisme, ils sont actuellement dans une position charnière. Ils défendent la baisse des impôts, la fermeté sur l'immigration et la sécurité, tout en refusant de se fondre totalement dans le bloc central.</li>
+            </ul>
+            <p class="sub">4. L'Extrême Droite (Le Bloc National)</p>
+            <p>Cette famille politique est axée sur la souveraineté nationale, l'identité et la lutte contre l'immigration.</p>
+            <ul>
+              <li><strong>Le Rassemblement National (RN) :</strong> Premier groupe d'opposition à l'Assemblée. Il cherche à se « notabiliser » pour rassurer les électeurs en vue de 2027, en mettant en avant le pouvoir d'achat et la sécurité.</li>
+              <li><strong>L'UDR (Union des Droites pour la République) :</strong> Le nouveau mouvement d'Éric Ciotti, qui fait le pont entre la droite LR traditionnelle et le RN.</li>
+              <li><strong>Reconquête ! :</strong> Le parti d'Éric Zemmour, plus radical sur les questions identitaires et culturelles, mais actuellement plus en retrait au Parlement.</li>
+            </ul>
+            <p class="sub">Résumé des forces en présence (estimations 2026)</p>
+            <ul>
+              <li><strong>Gouverner sans majorité :</strong> Puisqu'aucun de ces partis n'a la majorité absolue seul, le paysage est marqué par une culture du compromis (ou de l'affrontement) texte par texte.</li>
+              <li><strong>L'enjeu du moment :</strong> Tous ces partis sont actuellement en pleine campagne pour les élections municipales de mars 2026, qui serviront de baromètre de popularité avant la présidentielle de l'année prochaine.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Repère · deux instantanés</h3>
+            <p>Le live donne ici un second décompte (RN ≈ 122) à côté de celui du chapitre précédent (≈ 140 avec alliés) : ce sont des <strong>estimations du scénario</strong>, qui varient selon qu'on compte le groupe RN seul ou avec l'UDR.</p>
+            <div class="tag-list"><span class="tag">Familles</span><span class="tag">Coalitions</span><span class="tag">Compromis</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 07 — INSTITUTIONS DE LA Ve RÉPUBLIQUE ============ -->
+      <section class="chapter reveal" id="institutions" aria-labelledby="c7">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le fonctionnement de l'État</p><h2 id="c7">Les institutions de la Ve République.</h2></div>
+          <div class="chapter-number">07</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">En France, le fonctionnement de l'État repose sur la Constitution de la Ve République (établie en 1958). Elle organise un régime « semi-présidentiel » où le pouvoir est partagé, mais avec un rôle prédominant pour le Président de la République.</p>
+            <p>Voici les quatre piliers majeurs de nos institutions :</p>
+            <p class="sub">1. Le Pouvoir Exécutif (Ceux qui dirigent)</p>
+            <p>Il est composé de deux têtes :</p>
+            <ul>
+              <li><strong>Le Président de la République (Emmanuel Macron) :</strong> Élu pour 5 ans au suffrage universel direct. Il est le chef de l'État, chef des armées, et garant de la Constitution. Il nomme le Premier ministre. Dans la situation actuelle de 2026, il doit composer avec une Assemblée sans majorité absolue, ce qui limite sa marge de manœuvre.</li>
+              <li><strong>Le Gouvernement :</strong> Dirigé par le Premier ministre. Il conduit la politique de la Nation et assure l'exécution des lois. Le gouvernement est responsable devant l'Assemblée nationale (il peut être renversé par une motion de censure).</li>
+            </ul>
+            <p class="sub">2. Le Pouvoir Législatif (Ceux qui votent les lois)</p>
+            <p>Le Parlement est « bicaméral », c'est-à-dire qu'il possède deux chambres :</p>
+            <ul>
+              <li><strong>L'Assemblée nationale :</strong> Composée de 577 députés élus directement par les citoyens. C'est la chambre la plus puissante car elle a le dernier mot en cas de désaccord sur une loi. Comme nous l'avons vu, elle est actuellement divisée en quatre blocs (NFP, Ensemble, RN, LR), ce qui rend le vote des lois complexe.</li>
+              <li><strong>Le Sénat :</strong> Composé de 348 sénateurs élus au suffrage indirect (par les élus locaux comme les maires). Il représente les territoires. Le Sénat est traditionnellement plus stable et ancré à droite.</li>
+            </ul>
+            <p class="sub">3. Les Institutions de Contrôle (Les gardiens)</p>
+            <ul>
+              <li><strong>Le Conseil Constitutionnel :</strong> Surnommé « les Sages », il vérifie que les lois votées respectent bien la Constitution. Il peut censurer (annuler) tout ou partie d'une loi.</li>
+              <li><strong>Le Conseil d'État :</strong> Il conseille le gouvernement sur la rédaction des projets de loi et sert de juge suprême pour les décisions de l'administration.</li>
+            </ul>
+            <p class="sub">4. Les Collectivités Territoriales (Le pouvoir local)</p>
+            <p>Ce sont elles qui sont au cœur de l'actualité avec les élections municipales de mars 2026 :</p>
+            <ul>
+              <li><strong>La Commune (Mairie) :</strong> Gère la vie quotidienne (écoles, urbanisme).</li>
+              <li><strong>Le Département :</strong> S'occupe principalement de l'action sociale (RSA, aide aux personnes âgées) et des collèges.</li>
+              <li><strong>La Région :</strong> Gère les transports régionaux (TER), les lycées et le développement économique.</li>
+            </ul>
+            <p class="sub">Pourquoi est-ce particulier en 2026 ?</p>
+            <p>D'ordinaire, le Président dispose d'une majorité nette à l'Assemblée pour appliquer son programme. Mais depuis 2024, nous sommes dans une situation de parlementarisme de fait : le gouvernement doit négocier chaque loi avec les différents partis mentionnés précédemment. Si l'Assemblée nationale vote une motion de censure, le gouvernement tombe. C'est cette menace permanente qui définit le climat politique actuel.</p>
+
+            <h3 class="group-title">Le 49.3 : l'arme à double tranchant</h3>
+            <p class="sub">1. Le fameux article 49.3</p>
+            <p>L'article 49.3 de la Constitution permet au Premier ministre d'engager la responsabilité de son gouvernement sur un texte (généralement le Budget ou le financement de la Sécurité sociale).</p>
+            <ul>
+              <li><strong>Comment ça marche ?</strong> Le texte est considéré comme adopté sans vote, sauf si une motion de censure est déposée par l'opposition dans les 24 heures et votée à la majorité absolue (289 voix).</li>
+              <li><strong>Le risque :</strong> Si la motion de censure est votée, le texte est rejeté et le gouvernement doit démissionner.</li>
+              <li><strong>En 2026 :</strong> Comme le bloc central (Ensemble) n'a pas la majorité absolue, le gouvernement est tenté d'utiliser le 49.3 pour faire passer le budget. Mais avec une Assemblée divisée en quatre blocs, le risque qu'une motion de censure réunisse les voix de la gauche (NFP) et de l'extrême droite (RN) est très élevé. C'est ce qu'on appelle « l'épée de Damoclès ».</li>
+            </ul>
+            <p class="sub">2. Le parcours classique d'une loi (La « Navette »)</p>
+            <p>Quand le gouvernement ne peut ou ne veut pas utiliser le 49.3, il doit suivre le chemin démocratique classique :</p>
+            <ol>
+              <li><strong>Dépôt :</strong> Le projet de loi est déposé soit par le Gouvernement, soit par un député/sénateur.</li>
+              <li><strong>Examen en Commission :</strong> Un petit groupe de députés spécialisés (ex : commission des finances) étudie le texte et propose des modifications (amendements).</li>
+              <li><strong>Débat et Vote :</strong> Le texte est discuté dans l'hémicycle. En 2026, c'est là que tout se joue : le gouvernement doit convaincre, par exemple, les Républicains (LR) ou une partie du PS de voter avec lui.</li>
+              <li><strong>La Navette :</strong> Le texte part ensuite au Sénat. S'il est modifié, il revient à l'Assemblée. Ce va-et-vient continue jusqu'à ce que les deux chambres votent le même texte.</li>
+              <li><strong>Le dernier mot :</strong> En cas de désaccord persistant, c'est l'Assemblée nationale qui a le pouvoir de trancher et de voter le texte final.</li>
+            </ol>
+            <p class="sub">Pourquoi est-ce si difficile aujourd'hui ?</p>
+            <p>Dans la configuration actuelle (mars 2026), le gouvernement doit faire du « sur-mesure » :</p>
+            <ul>
+              <li>Pour une loi sur la sécurité, il va chercher les voix de la Droite (LR) et parfois du RN.</li>
+              <li>Pour une loi sociale, il va essayer de négocier avec la Gauche modérée (PS).</li>
+            </ul>
+            <p>C'est un exercice d'équilibriste permanent. Si le gouvernement échoue à trouver une majorité sur un texte important, il est bloqué, ce qui peut mener à une crise politique ou à une nouvelle dissolution de l'Assemblée par le Président.</p>
+
+            <h3 class="group-title">Le rôle de l'Assemblée, du Sénat et du Conseil constitutionnel</h3>
+            <p>Pour bien comprendre le fonctionnement de l'État en 2026, il faut voir ces trois institutions comme des contre-pouvoirs qui se surveillent mutuellement. Voici le rôle spécifique de chacun :</p>
+            <p class="sub">1. L'Assemblée nationale : Le « Cœur » battant de la démocratie</p>
+            <p>C'est la chambre basse du Parlement, composée de 577 députés élus directement par les citoyens.</p>
+            <ul>
+              <li><strong>Voter la loi :</strong> Les députés débattent, amendent (modifient) et votent les projets de loi.</li>
+              <li><strong>Le dernier mot :</strong> En cas de désaccord avec le Sénat, c'est l'Assemblée qui a le pouvoir final de décider.</li>
+              <li><strong>Contrôler le Gouvernement :</strong> C'est la seule institution qui peut renverser le Gouvernement par une « motion de censure ».</li>
+              <li><strong>En 2026 :</strong> Comme aucun parti n'a la majorité absolue (division en 4 blocs), l'Assemblée est le lieu de négociations permanentes et de tensions fortes.</li>
+            </ul>
+            <p class="sub">2. Le Sénat : Le « Grand Conseil » des territoires</p>
+            <p>C'est la chambre haute, composée de 348 sénateurs élus au suffrage indirect (par les maires, conseillers régionaux, etc.).</p>
+            <ul>
+              <li><strong>Représenter les communes et régions :</strong> Le Sénat veille à ce que les lois respectent les intérêts des collectivités locales.</li>
+              <li><strong>Voter la loi :</strong> Il examine les textes après ou avant l'Assemblée. Il apporte souvent une expertise plus technique et moins « électrique » que les députés.</li>
+              <li><strong>Stabilité :</strong> Le Sénat ne peut pas être dissous par le Président, et il ne peut pas renverser le Gouvernement. Il assure la continuité de l'État.</li>
+              <li><strong>Suppléance :</strong> Si le Président de la République décède ou démissionne, c'est le Président du Sénat qui assure l'intérim.</li>
+            </ul>
+            <p class="sub">3. Le Conseil constitutionnel : Le « Juge de paix »</p>
+            <p>Composé de 9 membres (nommés pour 9 ans), on les appelle souvent « les Sages ».</p>
+            <ul>
+              <li><strong>Vérifier la conformité :</strong> Son rôle principal est de s'assurer que les lois votées par le Parlement respectent la Constitution. Si une loi est jugée « inconstitutionnelle », elle est annulée et ne peut pas entrer en vigueur.</li>
+              <li><strong>Protéger les libertés :</strong> Il veille à ce que les lois ne portent pas atteinte aux droits fondamentaux des citoyens (liberté d'expression, droit de grève, etc.).</li>
+              <li><strong>Arbitre électoral :</strong> Il veille à la régularité des élections présidentielles et législatives.</li>
+              <li><strong>La QPC (Question Prioritaire de Constitutionnalité) :</strong> N'importe quel citoyen peut, lors d'un procès, demander au Conseil de vérifier si une loi ancienne est toujours conforme à la Constitution.</li>
+            </ul>
+            <div class="lesson-block"><span class="block-label">Résumé : Qui fait quoi ?</span>
+              <ul>
+                <li><strong>L'Assemblée</strong> propose et vote (sous la menace de tomber si elle censure le gouvernement).</li>
+                <li><strong>Le Sénat</strong> tempère, modifie et représente les élus locaux.</li>
+                <li><strong>Le Conseil constitutionnel</strong> siffle la fin de la récréation si la loi dépasse les limites de la Constitution.</li>
+              </ul>
+            </div>
+
+            <h3 class="group-title">Comment sont choisis ceux qui nous gouvernent</h3>
+            <p>Le mode d'élection varie énormément selon l'institution, car elles ne tirent pas leur légitimité de la même source. Voici comment sont choisis ceux qui nous gouvernent et nous jugent :</p>
+            <p class="sub">1. L'Assemblée nationale : Le suffrage universel direct</p>
+            <p>Les 577 députés sont élus directement par les citoyens au scrutin majoritaire à deux tours par circonscription.</p>
+            <ul>
+              <li><strong>Premier tour :</strong> Si un candidat obtient plus de 50 % des voix (avec au moins 25 % des inscrits), il est élu.</li>
+              <li><strong>Second tour :</strong> Sinon, les deux premiers (et ceux ayant plus de 12,5 % des inscrits) se maintiennent. Celui qui arrive en tête gagne.</li>
+              <li><strong>Fréquence :</strong> Tous les 5 ans (sauf en cas de dissolution, comme en 2024).</li>
+            </ul>
+            <p class="sub">2. Le Sénat : Le suffrage universel indirect</p>
+            <p>Les 348 sénateurs ne sont pas élus par les citoyens, mais par un collège de « grands électeurs » (environ 160 000 personnes).</p>
+            <ul>
+              <li><strong>Qui vote ?</strong> Les députés, les conseillers régionaux, les conseillers départementaux et, surtout, les délégués des conseils municipaux (95 % du collège).</li>
+              <li><strong>Mode de scrutin :</strong> Il dépend de la taille du département (majoritaire pour les petits, proportionnel pour les plus grands).</li>
+              <li><strong>Fréquence :</strong> Élus pour 6 ans, le Sénat est renouvelé par moitié tous les 3 ans. Les prochaines élections sénatoriales auront d'ailleurs lieu en septembre 2026, juste après les municipales.</li>
+            </ul>
+            <p class="sub">3. Le Conseil constitutionnel : La nomination</p>
+            <p>C'est une institution nommée, pas élue, pour garantir son indépendance vis-à-vis des électeurs. Il comprend 9 membres nommés pour 9 ans (non renouvelables) :</p>
+            <ul>
+              <li>3 membres sont nommés par le Président de la République.</li>
+              <li>3 membres par le Président de l'Assemblée nationale.</li>
+              <li>3 membres par le Président du Sénat.</li>
+              <li><strong>Le renouvellement :</strong> Il se fait par tiers tous les 3 ans.</li>
+              <li><strong>Note :</strong> Les anciens Présidents de la République sont membres de droit à vie, bien que la plupart ne siègent plus aujourd'hui.</li>
+            </ul>
+            <div class="lesson-block"><span class="block-label">En résumé : Pourquoi ces différences ?</span>
+              <ul>
+                <li><strong>L'Assemblée</strong> représente le peuple (direct).</li>
+                <li><strong>Le Sénat</strong> représente les territoires (indirect).</li>
+                <li><strong>Le Conseil constitutionnel</strong> représente la Loi suprême (nommé).</li>
+              </ul>
+            </div>
+            <p><strong>À noter :</strong> En ce mois de mars 2026, nous sommes en plein cœur des élections municipales (15 et 22 mars). C'est un scrutin de liste à deux tours où vous élisez vos conseillers municipaux, qui éliront ensuite le maire.</p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · institutions</h3>
+            <p>Tout est exact : <strong>577 députés</strong>, <strong>348 sénateurs</strong>, <strong>Conseil constitutionnel 9 membres / 9 ans</strong> renouvelés par tiers, <strong>QPC</strong> (depuis le 1er mars 2010), intérim par le président du Sénat. Une nuance : la Constitution de 1958 est <strong>« souvent qualifiée » de semi-présidentielle</strong> (catégorie débattue ; à l'origine un parlementarisme rationalisé).</p>
+            <p><strong>Sources :</strong> conseil-constitutionnel.fr ; assemblee-nationale.fr ; senat.fr ; vie-publique.fr.</p>
+            <div class="tag-list"><span class="tag">577 / 348</span><span class="tag">49.3</span><span class="tag">Les Sages</span><span class="tag">QPC</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 08 — DU LOCAL AU NATIONAL ============ -->
+      <section class="chapter reveal" id="local-national" aria-labelledby="c8">
+        <div class="chapter-head">
+          <div><p class="section-kicker">L'effet domino</p><h2 id="c8">Du local au national : le maire, clé du Sénat.</h2></div>
+          <div class="chapter-number">08</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">On vous explique pourquoi les municipales de ce mois-ci sont si importantes pour les futures élections sénatoriales de septembre ?</p>
+            <p>C'est un point clé du système politique français : les élections municipales de ce mois-ci (mars 2026) sont le moteur des élections sénatoriales de septembre 2026. Voici pourquoi le résultat dans vos mairies va directement basculer l'équilibre du Sénat dans six mois :</p>
+            <p class="sub">1. Les maires sont les « Grands Électeurs »</p>
+            <p>Comme nous l'avons vu, les sénateurs sont élus au suffrage indirect. Le collège électoral est composé à 95 % de délégués des conseils municipaux (maires, adjoints et conseillers).</p>
+            <ul>
+              <li>Si un parti (par exemple le Rassemblement National ou le Parti Socialiste) gagne beaucoup de mairies ce mois-ci, il gagne mécaniquement des milliers de « grands électeurs ».</li>
+              <li>Ces nouveaux élus voteront en septembre pour les sénateurs de leur département.</li>
+            </ul>
+            <p class="sub">2. L'enjeu de l'ancrage local</p>
+            <p>Le Sénat est actuellement dominé par une majorité de droite et du centre (LR et alliés).</p>
+            <ul>
+              <li><strong>Pour la Droite (LR) :</strong> Les municipales sont une question de survie. S'ils perdent leurs maires, ils perdent leur bastion historique : le Sénat.</li>
+              <li><strong>Pour le RN et la Gauche (NFP) :</strong> L'objectif est de transformer leurs succès locaux en sièges au Sénat pour, pour la première fois, peser sérieusement dans cette chambre qui leur échappe souvent.</li>
+            </ul>
+            <p class="sub">3. Le rôle de « contre-poids » du Sénat</p>
+            <p>Le Sénat a un pouvoir très important : il peut ralentir ou modifier les lois du gouvernement.</p>
+            <ul>
+              <li>Si les municipales de mars 2026 tournent à la sanction pour le camp d'Emmanuel Macron, le Sénat de septembre 2026 sera encore plus offensif contre le gouvernement.</li>
+              <li>De plus, pour modifier la Constitution, il faut l'accord du Sénat. Sans majorité là-bas, le Président est bloqué pour les grandes réformes institutionnelles.</li>
+            </ul>
+            <div class="lesson-block"><span class="block-label">En résumé : l'effet double</span>
+              <p>Le bulletin de vote que les Français glissent dans l'urne ce dimanche pour leur maire a un « effet double » :</p>
+              <ol>
+                <li>Il choisit l'équipe qui gérera la ville pour les 6 prochaines années.</li>
+                <li>Il détermine la couleur politique de la chambre qui contrôlera le gouvernement au niveau national dès l'automne prochain.</li>
+              </ol>
+              <p>C'est pour cela que les états-majors des partis surveillent les résultats ville par ville avec autant d'attention !</p>
+            </div>
+
+            <h3 class="group-title">Comment les maires sont élus</h3>
+            <p>Le scrutin municipal est un peu particulier car on ne vote pas directement pour un nom (le maire), mais pour une liste de candidats. Voici comment cela fonctionne en fonction de la taille de votre commune, car les règles changent :</p>
+            <p class="sub">1. Dans les communes de 1 000 habitants et plus (Le cas le plus courant)</p>
+            <p>C'est un scrutin de liste à deux tours avec une dose de proportionnelle.</p>
+            <ul>
+              <li><strong>Le vote des citoyens :</strong> Vous votez pour une liste complète. On ne peut pas rayer de noms ou en ajouter (ce serait nul). La liste doit respecter la parité (alternativement un homme, une femme).</li>
+              <li><strong>Le premier tour :</strong> Si une liste obtient la majorité absolue (plus de 50 % des voix), elle gagne tout de suite.</li>
+              <li><strong>Le second tour :</strong> Si aucune liste n'a 50 %, un second tour est organisé. Seules les listes ayant obtenu au moins 10 % des voix peuvent se maintenir. Celles qui ont fait entre 5 % et 10 % peuvent fusionner avec une autre liste.</li>
+              <li><strong>La « Prime majoritaire » :</strong> C'est la particularité française. La liste qui arrive en tête (même avec seulement 35 % des voix au second tour) reçoit automatiquement la moitié des sièges du conseil municipal. L'autre moitié est répartie à la proportionnelle entre toutes les listes (y compris la gagnante). Cela garantit au maire d'avoir une majorité stable pour diriger.</li>
+            </ul>
+            <p class="sub">2. Dans les petites communes (Moins de 1 000 habitants)</p>
+            <p>C'est plus souple :</p>
+            <ul>
+              <li>On peut voter pour des candidats individuels (on peut rayer des noms ou en ajouter sur son bulletin : c'est le panachage).</li>
+              <li>Les candidats les plus populaires sont élus conseillers municipaux.</li>
+            </ul>
+            <p class="sub">3. L'élection du Maire (Le « Troisième tour »)</p>
+            <p>Une fois que les citoyens ont élu les conseillers municipaux, ce sont ces derniers qui élisent le Maire lors de la première séance du nouveau conseil (environ une semaine après l'élection).</p>
+            <ul>
+              <li>Le Maire est presque toujours la « tête de liste » qui a gagné les élections.</li>
+              <li>Il est élu à bulletins secrets par les conseillers.</li>
+              <li>On élit aussi les Adjoints au maire au cours de cette même séance.</li>
+            </ul>
+            <p class="sub">4. Le cas particulier de Paris, Lyon et Marseille</p>
+            <p>Ces trois villes sont découpées en secteurs ou arrondissements.</p>
+            <ul>
+              <li>On vote pour des listes par secteur.</li>
+              <li>Les élus des secteurs forment ensuite le Conseil municipal de la ville (ex : le Conseil de Paris), qui élit à son tour le Maire de la ville (ex : Anne Hidalgo à Paris jusqu'ici).</li>
+            </ul>
+            <p class="sub">Pourquoi est-ce important ce mois-ci (mars 2026) ?</p>
+            <ul>
+              <li><strong>La gestion locale :</strong> Le maire est l'élu préféré des Français, il gère la proximité (écoles, parcs, sécurité, voirie).</li>
+              <li><strong>Le poids politique :</strong> Une fois élus, ces maires et leurs adjoints deviendront en septembre les « Grands Électeurs » qui choisiront les nouveaux sénateurs.</li>
+            </ul>
+            <p>C'est pour cela que les partis nationaux (RN, PS, Renaissance, LR, LFI) poussent leurs candidats : chaque maire gagné est une voix de plus pour contrôler le Sénat à la fin de l'année !</p>
+
+            <h3 class="group-title">Les pouvoirs concrets qu'a un maire une fois qu'il est installé dans son fauteuil</h3>
+            <p>Une fois élu et installé, le maire devient le personnage central de la commune. Il possède une particularité unique dans nos institutions : il porte deux casquettes.</p>
+            <p class="sub">1. La casquette d'« Exécutif de la commune »</p>
+            <p>C'est son rôle de « patron » de la ville. Il agit au nom de la municipalité pour gérer le quotidien des habitants :</p>
+            <ul>
+              <li><strong>Le Budget :</strong> Il prépare et propose le budget au conseil municipal, puis ordonne les dépenses (travaux, achats de matériel).</li>
+              <li><strong>Les Écoles :</strong> Il est responsable des écoles maternelles et primaires (bâtiments, cantines, personnel non-enseignant).</li>
+              <li><strong>L'Urbanisme :</strong> C'est lui qui signe les permis de construire et décide de l'aménagement des quartiers (places, parcs, voirie).</li>
+              <li><strong>Le Personnel :</strong> Il est le chef de tous les agents municipaux (ATSEM dans les écoles, agents d'entretien, police municipale).</li>
+              <li><strong>La Sécurité :</strong> Il dispose d'un « pouvoir de police » pour assurer le bon ordre, la sûreté et la salubrité (arrêtés de circulation, gestion des nuisances).</li>
+            </ul>
+            <p class="sub">2. La casquette d'« Agent de l'État »</p>
+            <p>Dans ce rôle, il agit sous l'autorité du Préfet ou du Procureur. Il représente la France entière dans sa commune :</p>
+            <ul>
+              <li><strong>L'État Civil :</strong> C'est lui (ou ses adjoints) qui célèbre les mariages, enregistre les naissances et les décès.</li>
+              <li><strong>Les Élections :</strong> Il est responsable de la tenue des listes électorales et de l'organisation des bureaux de vote.</li>
+              <li><strong>La Loi :</strong> Il est chargé de publier et de faire appliquer les lois et règlements nationaux sur son territoire.</li>
+              <li><strong>Police Judiciaire :</strong> Le maire a officiellement la qualité d'officier de police judiciaire (il peut constater des infractions).</li>
+            </ul>
+            <div class="science-block"><span class="block-label">Une nuance importante en 2026 : L'Intercommunalité</span>
+              <p>Aujourd'hui, un maire ne fait plus tout tout seul. Pour faire des économies et être plus efficaces, les communes se regroupent en Intercommunalités (Communautés de communes, d'agglomération ou Métropoles). Le maire délègue alors souvent de grosses compétences à ce niveau supérieur :</p>
+              <ul>
+                <li>Le ramassage des poubelles.</li>
+                <li>Les transports en commun (bus, tram).</li>
+                <li>Le traitement de l'eau.</li>
+                <li>Le développement économique (zones industrielles).</li>
+              </ul>
+            </div>
+            <p class="sub">Pourquoi dit-on que c'est le mandat « préféré » des Français ?</p>
+            <p>C'est parce que c'est l'élu que l'on peut croiser au marché, celui qui a un impact direct sur la vie de quartier (un trou dans la route, une place en crèche, l'éclairage public). C'est le seul élu qui a un pouvoir de décision immédiat et visible.</p>
+
+            <h3 class="group-title">Suffrage direct ou indirect</h3>
+            <p>Ces deux modes de scrutin sont les deux piliers qui permettent d'équilibrer la démocratie française. La différence réside simplement dans le nombre d'étapes entre votre vote et l'élu final.</p>
+            <p class="sub">1. Le Suffrage Direct : « Une personne, une voix »</p>
+            <p>C'est le mode de scrutin le plus simple et le plus connu. Les citoyens votent directement pour la personne ou la liste qu'ils veulent voir élue.</p>
+            <ul>
+              <li><strong>Le principe :</strong> Vous allez au bureau de vote, vous glissez votre bulletin dans l'urne, et ce bulletin compte directement pour l'élection du candidat.</li>
+              <li><strong>Qui est élu ainsi ?</strong> Le Président de la République (tous les Français votent pour lui) ; les Députés (vous votez pour le candidat de votre circonscription) ; les Conseillers Municipaux (vous choisissez la liste qui dirigera votre ville) ; les Députés Européens.</li>
+              <li><strong>L'objectif :</strong> Donner une légitimité populaire immédiate. L'élu sait qu'il tient son pouvoir directement du peuple.</li>
+            </ul>
+            <p class="sub">2. Le Suffrage Indirect : « L'élection des élus »</p>
+            <p>Ici, il y a un intermédiaire. Les citoyens ne votent pas pour l'élu final, mais pour des personnes (les « Grands Électeurs ») qui, elles, voteront ensuite pour l'élu.</p>
+            <ul>
+              <li><strong>Le principe :</strong> C'est une élection à deux degrés. 1) Le peuple élit des représentants locaux (Maires, Conseillers régionaux...). 2) Ces représentants se réunissent ensuite pour élire, par exemple, les sénateurs.</li>
+              <li><strong>Qui est élu ainsi ?</strong> Les Sénateurs : Ils sont élus par environ 160 000 « Grands Électeurs » (dont 95 % sont des délégués des conseils municipaux) ; le Maire (techniquement, vous ne votez pas pour le maire, mais pour des conseillers municipaux qui, une semaine plus tard, élisent le maire entre eux) ; le Président d'une Intercommunalité (Métropole, Communauté de communes).</li>
+              <li><strong>L'objectif :</strong> Apporter de la stabilité et filtrer les passions du moment. Le suffrage indirect favorise souvent l'expérience locale et la continuité.</li>
+            </ul>
+            <table class="dtable">
+              <caption>Comparaison rapide des deux suffrages.</caption>
+              <thead><tr><th scope="col">Caractéristique</th><th scope="col">Suffrage Direct</th><th scope="col">Suffrage Indirect</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Électeurs</td><td>Tous les citoyens inscrits</td><td>Un collège d'élus (Grands Électeurs)</td></tr>
+                <tr><td class="k">Légitimité</td><td>Populaire et immédiate</td><td>Territoriale et institutionnelle</td></tr>
+                <tr><td class="k">Exemple phare</td><td>Le Président de la République</td><td>Les Sénateurs</td></tr>
+                <tr><td class="k">Fréquence</td><td>Souvent lié aux crises ou mandats courts</td><td>Souvent gage de stabilité (mandats longs)</td></tr>
+              </tbody>
+            </table>
+            <p class="sub">Pourquoi avoir les deux ?</p>
+            <p>C'est le cœur de l'équilibre de la Ve République :</p>
+            <ul>
+              <li><strong>L'Assemblée nationale (Direct)</strong> représente la volonté du peuple à un instant T (souvent plus changeante).</li>
+              <li><strong>Le Sénat (Indirect)</strong> représente la permanence des territoires et des communes (plus stable).</li>
+            </ul>
+            <p>C'est pour cela que les élections municipales de ce mois-ci (mars 2026) sont si cruciales : elles sont le premier degré (direct) qui va fabriquer le second degré (indirect) des sénatoriales de septembre !</p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le maire &amp; PLM</h3>
+            <p>Exact : le maire est élu <strong>par le conseil municipal</strong> au scrutin secret, jamais directement. Pour le panachage en petites communes, voir le chapitre 02 : la <strong>réforme 2025</strong> y met fin dès mars 2026. Pour <strong>Paris-Lyon-Marseille</strong>, la loi du 11 août 2025 introduit un double bulletin et une prime de 25 % (le live décrit le système d'avant 2026).</p>
+            <div class="tag-list"><span class="tag">Prime majoritaire</span><span class="tag">Grands électeurs</span><span class="tag">Deux casquettes</span><span class="tag">PLM</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 09 — REGARDS COMPARÉS ============ -->
+      <section class="chapter reveal" id="comparaisons" aria-labelledby="c9">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Comparaison avec d'autres pays</p><h2 id="c9">Regards comparés : USA &amp; Allemagne.</h2></div>
+          <div class="chapter-number">09</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">C'est fascinant car, contrairement à la France où le Président est élu au suffrage direct (celui qui a le plus de voix gagne), les États-Unis utilisent un suffrage indirect très particulier pour leur élection présidentielle.</p>
+            <p>Voici comment cela fonctionne et pourquoi c'est si différent de notre système :</p>
+            <p class="sub">1. Le système des « Grands Électeurs » (Electoral College)</p>
+            <p>Aux États-Unis, les citoyens ne votent pas techniquement pour un candidat (ex : le futur président en 2028), mais pour 538 Grands Électeurs répartis entre les 50 États.</p>
+            <ul>
+              <li><strong>Le calcul :</strong> Chaque État a un nombre de Grands Électeurs égal à son nombre de parlementaires (députés + sénateurs). Par exemple, la Californie en a beaucoup (54), tandis que le Wyoming n'en a que 3.</li>
+              <li><strong>La règle du « Winner-Take-All » :</strong> C'est la grande différence avec nous. Dans presque tous les États, le candidat qui arrive en tête (même d'une seule voix) remporte tous les Grands Électeurs de cet État.
+                <ul><li><strong>Exemple :</strong> Si un candidat gagne 50,1 % des voix en Floride, il prend les 30 Grands Électeurs. Son adversaire en a 0.</li></ul>
+              </li>
+            </ul>
+            <p class="sub">2. Les conséquences : On peut perdre avec le plus de voix !</p>
+            <p>C'est le paradoxe du système américain. Un candidat peut obtenir plus de voix au niveau national (le « Popular Vote ») mais perdre l'élection parce qu'il n'a pas gagné les « bons » États.</p>
+            <ul><li><strong>C'est arrivé en 2016 :</strong> Hillary Clinton avait près de 3 millions de voix de plus que Donald Trump, mais il a gagné car il a remporté plus de Grands Électeurs dans les États clés.</li></ul>
+            <p class="sub">3. Comparaison avec le suffrage indirect du Sénat français</p>
+            <p>Il ne faut pas confondre les deux, car leurs buts sont opposés :</p>
+            <table class="dtable">
+              <caption>Deux suffrages indirects aux buts opposés.</caption>
+              <thead><tr><th scope="col">Caractéristique</th><th scope="col">Sénat Français (Indirect)</th><th scope="col">Président US (Indirect)</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Qui vote ?</td><td>Des élus locaux (maires, conseillers).</td><td>Des citoyens (qui choisissent des délégués).</td></tr>
+                <tr><td class="k">Le but</td><td>Représenter les territoires (communes).</td><td>Représenter les États de la fédération.</td></tr>
+                <tr><td class="k">La durée</td><td>Les électeurs sont élus pour 6 ans.</td><td>Les électeurs n'existent que pour un jour.</td></tr>
+                <tr><td class="k">L'effet</td><td>Apporte de la stabilité sur le long terme.</td><td>Peut créer un décalage avec le vote populaire.</td></tr>
+              </tbody>
+            </table>
+            <p class="sub">4. Pourquoi les Américains gardent-ils ce système ?</p>
+            <p>C'est un héritage de la création du pays. Les « Pères Fondateurs » voulaient un compromis :</p>
+            <ul>
+              <li>Que les petits États ne soient pas écrasés par les gros (comme la Californie ou le Texas).</li>
+              <li>Que le pouvoir ne soit pas concentré uniquement dans les grandes villes.</li>
+            </ul>
+            <p><strong>En résumé :</strong> En France, en 2026, si vous votez aux municipales, votre voix compte directement pour votre maire, et indirectement (via vos élus) pour les sénateurs en septembre. C'est un système qui cherche à lier le local au national. Aux États-Unis, le suffrage indirect cherche surtout à équilibrer le poids des différents États entre eux.</p>
+
+            <h3 class="group-title">Le modèle allemand</h3>
+            <p>Pour prendre de la hauteur. Pour contraster avec la France et les États-Unis, regardons le système de l'Allemagne, qui est souvent cité comme un modèle de stabilité, mais qui fonctionne de manière radicalement différente. En France, nous avons un régime semi-présidentiel (un Président fort). En Allemagne, c'est un régime parlementaire fédéral.</p>
+            <p class="sub">1. Le « Chancelier » au lieu du Président</p>
+            <p>En Allemagne, le Président a un rôle purement honorifique (il « représente » le pays mais n'a pas de pouvoir politique).</p>
+            <ul>
+              <li><strong>Le vrai chef, c'est le Chancelier (ou la Chancelière) :</strong> Il est l'équivalent de notre Premier ministre, mais avec beaucoup plus de pouvoir.</li>
+              <li><strong>Comment est-il élu ?</strong> Au suffrage indirect total par les députés du Parlement (le Bundestag). Les citoyens votent pour des partis, et ce sont les partis qui s'entendent pour désigner le Chancelier.</li>
+            </ul>
+            <p class="sub">2. Le mode de scrutin : La Proportionnelle (Le « Mixte »)</p>
+            <p>C'est la plus grande différence avec la France. Chez nous, au second tour, le gagnant prend tout. En Allemagne, on utilise la proportionnelle.</p>
+            <ul>
+              <li><strong>Le principe :</strong> Si un parti obtient 20 % des voix des citoyens, il aura environ 20 % des sièges au Parlement.</li>
+              <li><strong>La conséquence :</strong> Aucun parti n'a jamais la majorité absolue seul. Ils sont obligés de former des coalitions. Par exemple, les sociaux-démocrates doivent s'allier avec les écologistes et les libéraux pour gouverner.</li>
+              <li><strong>Le résultat :</strong> Cela prend des mois pour former un gouvernement, mais une fois qu'il est là, il est très stable car tout a été négocié par écrit dans un « contrat de coalition ».</li>
+            </ul>
+            <p class="sub">3. Le Fédéralisme : Le pouvoir appartient aux régions (Länder)</p>
+            <p>Contrairement à la France qui est un pays très centralisé (tout se décide beaucoup à Paris), l'Allemagne est un État fédéral.</p>
+            <ul>
+              <li>Les 16 régions (Länder) comme la Bavière ou la Saxe ont leur propre gouvernement, leur propre ministre de l'Éducation, leur propre police.</li>
+              <li>Le gouvernement central à Berlin n'a pas le droit d'intervenir dans de nombreux domaines réservés aux régions.</li>
+            </ul>
+            <table class="dtable">
+              <caption>Résumé : France vs Allemagne vs États-Unis.</caption>
+              <thead><tr><th scope="col">Pays</th><th scope="col">Type de Régime</th><th scope="col">Élection du Chef de l'Exécutif</th><th scope="col">Mode de scrutin législatif</th></tr></thead>
+              <tbody>
+                <tr><td class="k">France</td><td>Semi-présidentiel</td><td>Direct (Peuple)</td><td>Majoritaire à 2 tours</td></tr>
+                <tr><td class="k">USA</td><td>Présidentiel</td><td>Indirect (Grands Électeurs)</td><td>Majoritaire à 1 tour</td></tr>
+                <tr><td class="k">Allemagne</td><td>Parlementaire</td><td>Indirect (Par les Députés)</td><td>Proportionnel</td></tr>
+              </tbody>
+            </table>
+            <p class="sub">Pourquoi est-ce intéressant pour nous en 2026 ?</p>
+            <p>En France, depuis 2024, comme nous n'avons plus de majorité absolue à l'Assemblée, nous vivons une situation qui ressemble un peu au modèle allemand : le gouvernement doit négocier chaque texte. Mais comme nous n'avons pas la culture de la coalition (les partis français ont du mal à signer des contrats d'alliance sur le long terme), la situation reste beaucoup plus instable qu'en Allemagne.</p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · comparaisons</h3>
+            <p>Vérifié : <strong>538 grands électeurs</strong>, Californie 54, Wyoming 3, Floride 30, « winner-take-all » sauf Maine et Nebraska ; en <strong>2016</strong>, Clinton ≈ <strong>2,9 M</strong> de voix de plus mais battue (304-227). Allemagne : <strong>16 Länder</strong>, chancelier élu par le Bundestag, scrutin proportionnel mixte.</p>
+            <p>Le dossier reste centré sur la France : ces comparaisons servent à mieux éclairer notre propre système.</p>
+            <div class="tag-list"><span class="tag">Electoral College</span><span class="tag">Bundestag</span><span class="tag">Proportionnelle</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 10 — LA FRANCE, UNE DICTATURE ? ============ -->
+      <section class="chapter reveal" id="dictature" aria-labelledby="c10">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La France ? Une dictature ?</p><h2 id="c10">Frustration démocratique n'est pas dictature.</h2></div>
+          <div class="chapter-number">10</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">C'est un sujet qui revient souvent dans le débat public, surtout dans les périodes de forte tension sociale comme celle que nous traversons en 2026. Pour répondre de manière posée et objective, il est utile de comparer le fonctionnement de la France avec les critères scientifiques et juridiques qui définissent une dictature.</p>
+            <p>Voici des arguments pour structurer une réponse équilibrée :</p>
+            <p class="sub">1. Les critères de la démocratie (Ce que nous avons)</p>
+            <p>Pour qu'un pays soit considéré comme une démocratie, il doit respecter plusieurs piliers que la France conserve :</p>
+            <ul>
+              <li><strong>L'alternance et le vote :</strong> En ce mois de mars 2026, les Français votent librement pour leurs maires. Si le pouvoir en place déplaît, il peut être sanctionné dans les urnes. Dans une dictature, soit il n'y a pas d'élections, soit le résultat est connu d'avance (99 % pour le chef).</li>
+              <li><strong>La séparation des pouvoirs :</strong> Comme nous l'avons vu, le Président ne peut pas tout faire. Le Conseil constitutionnel peut annuler ses lois, et l'Assemblée nationale peut renverser son gouvernement.</li>
+              <li><strong>La liberté de la presse :</strong> Les médias critiquent quotidiennement le gouvernement. Dans une dictature, les journalistes d'opposition sont emprisonnés ou les médias sont tous contrôlés par l'État.</li>
+            </ul>
+            <p class="sub">2. Pourquoi certains utilisent-ils ce mot ? (Le ressenti)</p>
+            <p>Ceux qui parlent de « dictature » n'utilisent généralement pas le terme au sens strict, mais pour exprimer une frustration réelle :</p>
+            <ul>
+              <li><strong>L'usage d'outils autoritaires :</strong> L'utilisation répétée de l'article 49.3 donne l'impression que le gouvernement « passe en force » sans l'accord des députés.</li>
+              <li><strong>Le sentiment d'impuissance :</strong> Quand une grande partie de la population manifeste contre une réforme et que celle-ci est tout de même appliquée, cela crée un sentiment de « surdité » du pouvoir.</li>
+              <li><strong>La gestion des manifestations :</strong> Les violences lors des maintiens de l'ordre sont souvent citées comme une dérive autoritaire.</li>
+            </ul>
+            <p class="sub">3. La nuance : « L'illibéralisme » ou la « Crise démocratique »</p>
+            <p>Plutôt que « dictature », les politologues parlent souvent de « démocratie illibérale » ou de « crise de la représentation ».</p>
+            <ul>
+              <li>Ce n'est pas une dictature (on peut manifester, voter, critiquer, voyager), mais ce n'est plus une démocratie parfaitement apaisée.</li>
+              <li>Le système de la Ve République est très « présidentiel », ce qui concentre beaucoup de pouvoir entre les mains d'un seul homme, là où d'autres pays (comme l'Allemagne) partagent beaucoup plus le pouvoir.</li>
+            </ul>
+            <div class="question-block"><span class="block-label">La réponse posée</span>
+              <p>« Une dictature, c'est un régime où l'on ne peut pas changer de dirigeant par le vote, où la justice est aux ordres du chef et où la presse est muselée. En France, le système est très rigide et le gouvernement utilise des outils contestés (comme le 49.3), ce qui crée une frustration démocratique, mais les contre-pouvoirs (juges, médias, élections) fonctionnent toujours. »</p>
+              <p>C'est un débat qui touche à la légitimité du pouvoir plutôt qu'à sa nature réelle.</p>
+            </div>
+
+            <h3 class="group-title">Comment une démocratie peut « basculer »</h3>
+            <p>On vous donne des exemples de pays qui sont passés de la démocratie à la dictature pour voir la différence concrète (comme le Venezuela ou la Hongrie qui est entre les deux) ?</p>
+            <p>C'est une excellente façon de comprendre la différence : regarder comment une démocratie peut « basculer » ou se transformer. Les politologues appellent cela la dérive autoritaire. Contrairement aux coups d'État militaires d'autrefois, les dictatures modernes naissent souvent d'un dirigeant élu démocratiquement qui « casse » les institutions de l'intérieur.</p>
+            <p>Voici trois exemples gradués pour bien situer la France par rapport à ces régimes :</p>
+            <p class="sub">1. La Hongrie de Viktor Orbán : La « Démocratie illibérale »</p>
+            <p>C'est le stade intermédiaire. On y vote encore, mais le jeu est faussé.</p>
+            <ul>
+              <li><strong>Contrôle des médias :</strong> Presque tous les journaux et télévisions appartiennent à des amis du pouvoir. L'opposition n'a plus d'espace pour parler.</li>
+              <li><strong>Affaiblissement des juges :</strong> Le gouvernement nomme des juges fidèles pour ne plus être contredit sur ses lois.</li>
+              <li><strong>Modification des règles électorales :</strong> Les règles sont changées juste avant les élections pour favoriser le parti au pouvoir.</li>
+              <li><strong>Différence avec la France :</strong> En France, le Conseil constitutionnel et le Conseil d'État censurent régulièrement le gouvernement (comme sur la loi immigration ou certaines mesures de sécurité), ce qui prouve que la justice reste indépendante.</li>
+            </ul>
+            <p class="sub">2. Le Venezuela : La rupture démocratique</p>
+            <p>Ici, on a basculé au-delà de l'illibéralisme.</p>
+            <ul>
+              <li><strong>Neutralisation du Parlement :</strong> Lorsque l'opposition a gagné les élections législatives, le président Maduro a créé une « autre » Assemblée composée uniquement de ses partisans pour annuler le pouvoir des députés élus.</li>
+              <li><strong>Répression violente :</strong> Les opposants politiques sont systématiquement emprisonnés ou poussés à l'exil.</li>
+              <li><strong>Élections truquées :</strong> Les observateurs internationaux ne reconnaissent plus la validité des scrutins.</li>
+              <li><strong>Différence avec la France :</strong> En France, l'Assemblée nationale (élue en 2024) est le centre du pouvoir et le gouvernement tremble chaque jour devant une possible motion de censure.</li>
+            </ul>
+            <p class="sub">3. La Corée du Nord ou l'Érythrée : La Dictature totale</p>
+            <p>C'est le niveau ultime.</p>
+            <ul>
+              <li><strong>Parti unique :</strong> Un seul parti est autorisé. Toute critique est passible de mort ou de camp de travail.</li>
+              <li><strong>Culte de la personnalité :</strong> Le chef est présenté comme un dieu infaillible.</li>
+              <li><strong>Contrôle total de la vie :</strong> Pas d'Internet libre, pas de droit de quitter le pays, pas de liberté de culte.</li>
+            </ul>
+            <p class="sub">Pourquoi la France n'est pas dans ces catégories ?</p>
+            <p>Pour répondre à l'argument « on est en dictature », on peut observer ces trois verrous qui sautent toujours dans une vraie dictature :</p>
+            <ol>
+              <li><strong>Le pluralisme :</strong> En France, l'extrême droite (RN), la gauche (NFP) et le centre s'affrontent violemment mais librement. Dans une dictature, l'opposition est interdite ou « achetée ».</li>
+              <li><strong>L'indépendance de la justice :</strong> Un ministre français peut être mis en examen ou condamné par des juges (comme cela est arrivé plusieurs fois ces dernières années). Dans une dictature, le juge obéit au ministre.</li>
+              <li><strong>La liberté de manifestation :</strong> Même si elles sont parfois encadrées ou réprimées, des millions de personnes défilent en France. Dans une dictature, une manifestation de 10 personnes est dispersée à balles réelles instantanément.</li>
+            </ol>
+            <p><strong>En conclusion</strong> : Le terme « dictature » est souvent utilisé en France comme un cri de colère face à un pouvoir jugé trop sourd ou trop vertical (le « Jupiterisme »). C'est un signe de crise de confiance, mais techniquement, les outils de la démocratie (vote, recours juridiques, presse libre) sont toujours là pour changer les choses.</p>
+
+            <h3 class="group-title">La leçon de l'Histoire : le régime de Vichy</h3>
+            <p>On vous montre comment, historiquement, la France a déjà connu de vraies périodes sans démocratie (comme sous le régime de Vichy) pour comparer ?</p>
+            <p>Pour bien comprendre ce qu'est une rupture démocratique, il est utile de regarder l'histoire. Le régime de Vichy (1940-1944) est l'exemple le plus frappant d'une dictature installée sur le sol français. Comparer les institutions de 2026 avec celles de Vichy permet de voir concrètement ce que l'on perd quand la démocratie s'effondre.</p>
+            <p class="sub">1. La fin de la séparation des pouvoirs</p>
+            <p>À Vichy, la démocratie a été suspendue dès le 10 juillet 1940.</p>
+            <ul>
+              <li><strong>Le pouvoir personnel :</strong> Le Maréchal Pétain s'est autoproclamé « Chef de l'État français ». Il détenait à lui seul le pouvoir législatif (faire les lois) et le pouvoir exécutif (les appliquer).</li>
+              <li><strong>Aujourd'hui :</strong> En 2026, le pouvoir est divisé. Le Président ne peut pas voter de lois seul, il a besoin de l'Assemblée et du Sénat. S'il abuse de son pouvoir, le Conseil constitutionnel peut censurer ses décisions.</li>
+            </ul>
+            <p class="sub">2. La suppression des libertés fondamentales</p>
+            <p>Sous Vichy, les piliers de la liberté ont été abolis :</p>
+            <ul>
+              <li><strong>Interdiction des partis et syndicats :</strong> Seule la pensée officielle du régime (la « Révolution Nationale ») était autorisée. L'opposition était traquée par la Milice.</li>
+              <li><strong>Censure totale :</strong> La presse, la radio et le cinéma étaient sous le contrôle direct du gouvernement. Critiquer le Chef de l'État était un crime.</li>
+              <li><strong>Aujourd'hui :</strong> En 2026, vous pouvez manifester, créer un parti politique, et les médias passent leur journée à critiquer l'action du gouvernement sans être fermés par la police.</li>
+            </ul>
+            <p class="sub">3. L'exclusion et l'arbitraire</p>
+            <p>Le régime de Vichy a mis fin à l'égalité devant la loi :</p>
+            <ul>
+              <li><strong>Lois d'exception :</strong> Le régime a créé des lois antisémites et xénophobes (le « Statut des Juifs ») excluant une partie de la population de la citoyenneté et de nombreux métiers.</li>
+              <li><strong>Justice aux ordres :</strong> Les juges devaient prêter serment de fidélité au Maréchal.</li>
+              <li><strong>Aujourd'hui :</strong> La Constitution garantit que tous les citoyens sont égaux, sans distinction d'origine ou de religion. Les juges sont indépendants et peuvent même condamner des membres du gouvernement.</li>
+            </ul>
+            <p class="sub">Pourquoi la comparaison est-elle importante ?</p>
+            <p>Dire que l'on est en « dictature » en 2026 est souvent une façon d'exprimer que l'on ne se sent pas écouté par le pouvoir. C'est un signe de malaise démocratique. Cependant, historiquement et juridiquement, il y a une différence immense entre :</p>
+            <ol>
+              <li>Une démocratie qui fonctionne mal (sentiment d'injustice, usage du 49.3, tensions sociales).</li>
+              <li>Une dictature (fin des élections, presse muselée, opposants en prison, fin de la justice indépendante).</li>
+            </ol>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · repères vérifiés</h3>
+            <p><strong>Vichy :</strong> pleins pouvoirs à Pétain le <strong>10 juillet 1940</strong> (569 pour, 80 contre, 20 abstentions) ; premier « Statut des Juifs » le 3 octobre 1940. <strong>Hongrie :</strong> « démocratie illibérale » revendiquée par Orbán (2014). <strong>Venezuela :</strong> Assemblée constituante de 2017 contournant l'Assemblée élue. Tous confirmés.</p>
+            <div class="tag-list"><span class="tag">Contre-pouvoirs</span><span class="tag">Illibéralisme</span><span class="tag">Vichy 1940</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 11 — MARS 2026 & CONCLUSION ============ -->
+      <section class="chapter reveal" id="actualite" aria-labelledby="c11">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Pour conclure ce tour d'horizon</p><h2 id="c11">Mars 2026 : tout converge vers vous.</h2></div>
+          <div class="chapter-number">11</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Pour conclure ce tour d'horizon, il est important de noter que le paysage politique français de ce mois de mars 2026 est en pleine ébullition. Voici trois points clés qui complètent notre discussion :</p>
+            <p class="sub">1. L'actualité législative : Des réformes sous haute tension</p>
+            <p>Malgré la campagne des municipales, l'Assemblée nationale reste le théâtre de débats intenses. Le gouvernement vient de faire adopter le Projet de Loi de Finances (PLF) pour 2026 en utilisant à nouveau l'article 49.3, après avoir survécu à deux motions de censure déposées par la gauche et l'extrême droite fin janvier. D'autres textes majeurs sont en cours de discussion pour ce printemps :</p>
+            <ul>
+              <li><strong>La fin de vie :</strong> Une proposition de loi sur les soins palliatifs et l'aide à mourir est examinée ce mois-ci.</li>
+              <li><strong>La protection des mineurs :</strong> Des textes visent à encadrer plus strictement l'utilisation des réseaux sociaux par les plus jeunes.</li>
+              <li><strong>Le pouvoir d'achat :</strong> Une nouvelle taxe sur les « petits colis » de l'e-commerce (hors UE) vient d'entrer en vigueur le 1er mars pour soutenir le commerce de proximité.</li>
+            </ul>
+            <p class="sub">2. Cap sur 2027 : La course à l'Élysée est lancée</p>
+            <p>Les élections municipales de ces 15 et 22 mars sont perçues par tous les états-majors comme le « premier tour de piste » de l'élection présidentielle de l'année prochaine. Plusieurs candidats se sont déjà déclarés ou positionnés :</p>
+            <ul>
+              <li><strong>À Droite :</strong> Bruno Retailleau et Laurent Wauquiez ont officialisé leurs ambitions en février dernier.</li>
+              <li><strong>Au Centre :</strong> Édouard Philippe (Horizons) joue sa réélection au Havre ce mois-ci, une étape cruciale pour sa stature de présidentiable.</li>
+              <li><strong>À Gauche et chez les Écologistes :</strong> Marine Tondelier a été désignée candidate des Écologistes, tandis que des discussions pour une candidature unique du Nouveau Front Populaire se poursuivent, non sans tensions entre LFI et le PS.</li>
+              <li><strong>À l'Extrême Droite :</strong> Marine Le Pen reste la figure centrale du RN, bien que Jordan Bardella gagne en influence.</li>
+            </ul>
+            <p class="sub">3. Les droits des femmes au cœur du débat</p>
+            <p>Ce 8 mars 2026, la Journée internationale des droits des femmes prend une résonance particulière. Le gouvernement met en avant son plan « Toutes et Tous Égaux » 2023-2027, axé sur l'égalité professionnelle et la lutte contre les violences. Dans le cadre des municipales, la question de la parité est scrutée de près : bien que les listes soient paritaires, les femmes ne représentent toujours qu'une minorité des maires sortants.</p>
+            <p class="sub">Pourquoi tout cela converge vers vous ?</p>
+            <p>Toutes ces réformes nationales et ces ambitions présidentielles vont être testées dans les urnes de votre commune dans quelques jours. Votre maire est souvent votre premier rempart face aux crises (climatiques, économiques) et votre premier interlocuteur pour l'égalité et la sécurité au quotidien.</p>
+
+            <div class="script-block">
+              <span class="block-label">Conclusion : « Le Pouvoir de l'Action »</span>
+              <p>« On arrive au bout de ce live, et j'espère que tout ça est plus clair pour vous. Si on devait retenir trois choses ce soir, c'est que :</p>
+              <ol>
+                <li><strong>La politique, c'est du concret :</strong> Ce n'est pas juste des gens qui crient à la télé, c'est le budget de votre cantine, la sécurité de votre rue et l'avenir de vos services publics.</li>
+                <li><strong>Les institutions sont nos garde-fous :</strong> Malgré les tensions et les usages du 49.3, la France reste une démocratie solide avec des contre-pouvoirs qui fonctionnent.</li>
+                <li><strong>L'information est votre meilleure arme :</strong> Ne vous contentez pas des promesses des programmes, allez voir ce que les partis votent réellement à l'Assemblée. C'est là que se cache la vérité.</li>
+              </ol>
+              <p>Dimanche, que vous votiez pour une liste, que vous votiez blanc ou que vous fassiez une procuration, l'important c'est que votre voix soit entendue. Ne laissez pas les autres choisir le monde dans lequel vous allez vivre.</p>
+              <p>Merci. On se retrouve très vite, et d'ici là, restez curieux et engagés. Bonne soirée à tous ! »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Le fil rouge</h3>
+            <p>La politique, c'est <strong>du concret</strong> ; les institutions sont <strong>des garde-fous</strong> ; l'information est <strong>votre meilleure arme</strong>. Trois idées pour ne plus subir le débat, mais le décoder.</p>
+            <div class="tag-list"><span class="tag">PLF 2026</span><span class="tag">Cap 2027</span><span class="tag">8 mars</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CRÉDIT ============ -->
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <span class="credit-avatars">
+          <img src="lalie.jpeg" alt="Avatar de Lalie">
+          <img src="ymir.jpeg" alt="Avatar d'Ymir">
+          <img src="sam.jpeg" alt="Avatar de Sam">
+        </span>
+        <div class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>Lalie, Ymir &amp; Sam</strong>
+        </div>
+      </section>
+
+      <!-- ============ PARTIE B — LE CLIVAGE GAUCHE-DROITE ============ -->
+      <section class="act-band reveal" id="clivage" aria-labelledby="actB">
+        <p class="act-no">Partie II · Pour aller plus loin</p>
+        <h2 id="actB">Le clivage gauche-droite</h2>
+        <p>Une grille de lecture puissante, mais jamais une carte complète du réel. Pour bien la manier, il faut séparer trois plans : les idéologies, les partis et les individus.</p>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="cB1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Introduction</p><h2 id="cB1">Trois plans à ne jamais confondre.</h2></div>
+          <div class="chapter-number">I</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Le clivage gauche-droite est l'une des manières les plus connues de décrire la vie politique. On l'utilise pour classer des idées, des partis, des programmes, des gouvernements et même des individus. Pourtant, cette opposition est souvent utilisée de façon vague, comme si tout le monde savait exactement ce qu'elle signifie. En réalité, elle est à la fois utile, historique, mouvante et imparfaite.</p>
+            <p>Pour l'expliquer clairement, il faut distinguer trois niveaux :</p>
+            <ol>
+              <li>les idéologies ;</li>
+              <li>les partis politiques ;</li>
+              <li>les individus.</li>
+            </ol>
+            <p>C'est seulement en séparant ces trois plans qu'on comprend ce que recouvre vraiment l'opposition entre gauche et droite.</p>
+
+            <h3 class="group-title">1. D'où vient la distinction gauche-droite ?</h3>
+            <p>L'origine du clivage gauche-droite remonte à la Révolution française. Dans les assemblées, les députés favorables aux transformations politiques profondes se plaçaient d'un côté, tandis que ceux qui défendaient davantage l'ordre établi, les traditions et la continuité se retrouvaient de l'autre. Peu à peu, cette disposition spatiale est devenue une manière de désigner deux grandes orientations politiques.</p>
+            <p>Avec le temps, les contenus ont changé, les contextes historiques ont évolué, de nouvelles questions sont apparues, mais les mots sont restés. Aujourd'hui encore, parler de gauche et de droite, c'est faire référence à deux sensibilités politiques qui ne donnent pas les mêmes réponses aux mêmes problèmes.</p>
+            <p>Le point important est le suivant : la gauche et la droite ne sont pas seulement deux camps électoraux ; ce sont d'abord deux manières différentes de regarder la société.</p>
+
+            <h3 class="group-title">2. Le cœur du clivage : l'égalité contre la justification des hiérarchies</h3>
+            <p>Le moyen le plus clair de comprendre la différence entre gauche et droite consiste à partir d'une question simple :</p>
+            <p class="lede">Comment faut-il considérer les inégalités dans une société ?</p>
+            <div class="gd">
+              <div class="gd-col gauche">
+                <h4>La gauche</h4>
+                <p>La gauche part de l'idée que les inégalités sociales, économiques ou politiques sont en grande partie produites par l'organisation de la société. Elles ne sont donc ni naturelles, ni forcément justes, ni souhaitables. Elles doivent être limitées, corrigées ou compensées.</p>
+                <p>Cela conduit généralement la gauche à valoriser :</p>
+                <ul>
+                  <li>l'égalité ou la réduction des inégalités ;</li>
+                  <li>la justice sociale ;</li>
+                  <li>la solidarité ;</li>
+                  <li>l'intervention collective, souvent par l'État, pour protéger, redistribuer et corriger les déséquilibres.</li>
+                </ul>
+                <p>Autrement dit, la gauche considère que la liberté n'est pas réelle si les conditions matérielles sont trop inégales. Une personne peut être juridiquement libre, mais ne pas avoir, dans les faits, les moyens de choisir sa vie. Pour cette raison, la gauche insiste souvent sur les conditions concrètes d'existence : le travail, le logement, l'école, la santé, les services publics, les protections sociales.</p>
+              </div>
+              <div class="gd-col droite">
+                <h4>La droite</h4>
+                <p>La droite, de son côté, tend davantage à considérer que les différences entre les individus, les positions sociales, les hiérarchies ou les écarts de réussite ne sont pas nécessairement injustes. Elles peuvent être vues comme normales, inévitables, voire utiles au fonctionnement de la société.</p>
+                <p>Cela conduit généralement la droite à valoriser :</p>
+                <ul>
+                  <li>la liberté individuelle ;</li>
+                  <li>la responsabilité personnelle ;</li>
+                  <li>le mérite ;</li>
+                  <li>la propriété ;</li>
+                  <li>l'ordre social ;</li>
+                  <li>la stabilité ;</li>
+                  <li>la tradition ou la continuité historique.</li>
+                </ul>
+                <p>Dans cette perspective, trop vouloir réduire les inégalités peut conduire à affaiblir la liberté, l'initiative, l'autorité ou l'efficacité économique. La droite tend donc souvent à se méfier d'une intervention trop forte de l'État, qu'elle peut voir comme une contrainte excessive.</p>
+              </div>
+            </div>
+            <p class="sub">La différence essentielle</p>
+            <p>On peut résumer ainsi le désaccord central :</p>
+            <ul>
+              <li>la gauche pense que les inégalités sont d'abord un problème politique à corriger ;</li>
+              <li>la droite pense plus volontiers qu'elles sont un fait social normal, parfois légitime, parfois nécessaire, qu'il ne faut pas chercher à effacer complètement.</li>
+            </ul>
+            <p>C'est ce point qui structure le clivage plus profondément que les débats du moment.</p>
+
+            <h3 class="group-title">3. Ce que la gauche et la droite valorisent en priorité</h3>
+            <p>Le clivage gauche-droite ne signifie pas que l'un aime la liberté et l'autre non, ou que l'un aime l'égalité et l'autre non. En réalité, les deux camps peuvent revendiquer la liberté, la justice ou l'intérêt général. La différence porte surtout sur ce qu'ils mettent en premier, sur ce qu'ils considèrent comme le principal danger, et sur les moyens qu'ils jugent légitimes.</p>
+            <div class="gd">
+              <div class="gd-col gauche">
+                <h4>Ce que la gauche met en avant</h4>
+                <p>La gauche tend à dire :</p>
+                <ul>
+                  <li>une société trop inégalitaire n'est pas vraiment juste ;</li>
+                  <li>l'action publique est nécessaire pour protéger les plus faibles ;</li>
+                  <li>la collectivité peut et doit corriger les déséquilibres ;</li>
+                  <li>les hiérarchies doivent toujours être interrogées et justifiées.</li>
+                </ul>
+              </div>
+              <div class="gd-col droite">
+                <h4>Ce que la droite met en avant</h4>
+                <p>La droite tend à dire :</p>
+                <ul>
+                  <li>une société a besoin d'ordre, de cadre et de stabilité ;</li>
+                  <li>les individus doivent pouvoir agir librement et être récompensés selon leurs efforts ;</li>
+                  <li>toutes les différences ne sont pas injustes ;</li>
+                  <li>trop d'égalitarisme peut détruire les incitations, l'autorité et les libertés.</li>
+                </ul>
+              </div>
+            </div>
+            <p>Ainsi, le clivage gauche-droite n'oppose pas simplement deux opinions contraires ; il oppose deux hiérarchies de valeurs.</p>
+
+            <h3 class="group-title">4. Pourquoi ce clivage reste utile</h3>
+            <p>Malgré toutes ses limites, le clivage gauche-droite reste utile pour une raison simple : il permet de repérer rapidement des orientations politiques générales.</p>
+            <p>Lorsqu'on entend une proposition politique, on peut se demander :</p>
+            <ul>
+              <li>cherche-t-elle surtout à réduire une inégalité ?</li>
+              <li>ou cherche-t-elle surtout à préserver une liberté, une hiérarchie, un ordre ou une continuité ?</li>
+            </ul>
+            <p>Cette grille permet de comprendre pourquoi certains désaccords reviennent sans cesse, même quand les sujets changent. Les débats sur les impôts, le droit du travail, les aides sociales, l'école, la sécurité, l'immigration, le rôle de l'État, la famille, l'autorité ou les libertés publiques réactivent souvent cette opposition de fond.</p>
+            <p>Le clivage est donc utile comme outil de lecture. Il donne un repère. Il aide à comprendre les tendances générales. Mais il ne suffit pas à décrire toute la réalité politique.</p>
+
+            <h3 class="group-title">5. Pourquoi ce clivage est aussi insuffisant</h3>
+            <p>Dire qu'une idée est « de gauche » ou « de droite » donne une indication, mais pas une explication complète.</p>
+            <p class="sub">Première limite : les idées politiques ne tiennent pas sur une seule ligne</p>
+            <p>On présente souvent la politique comme un axe unique allant de l'extrême gauche à l'extrême droite. C'est pratique, mais réducteur. En réalité, une personne ou un mouvement peut être :</p>
+            <ul>
+              <li>économiquement favorable à l'intervention de l'État ;</li>
+              <li>mais socialement conservateur ;</li>
+              <li>ou au contraire libéral sur les mœurs ;</li>
+              <li>mais favorable à moins de redistribution.</li>
+            </ul>
+            <p>Autrement dit, toutes les positions ne s'alignent pas parfaitement sur une seule échelle.</p>
+            <p class="sub">Deuxième limite : les mots changent avec l'histoire</p>
+            <p>Ce qui est considéré comme « de gauche » ou « de droite » dépend de l'époque. Certaines idées autrefois jugées radicales peuvent devenir banales. D'autres peuvent changer de camp ou de signification selon le contexte national.</p>
+            <p class="sub">Troisième limite : les enjeux nouveaux déplacent les repères</p>
+            <p>Des questions récentes ou devenues centrales, comme l'écologie, la mondialisation, l'intégration européenne, le numérique, ou certaines questions culturelles, ne se laissent pas toujours classer immédiatement selon l'opposition traditionnelle.</p>
+            <p>Le clivage gauche-droite reste donc important, mais il simplifie une réalité plus complexe.</p>
+
+            <h3 class="group-title">6. Les partis politiques : ils ne sont pas des idéologies pures</h3>
+            <p>Une erreur fréquente consiste à croire qu'un parti politique est la traduction fidèle et cohérente d'une idéologie. En pratique, ce n'est presque jamais le cas.</p>
+            <p>Un parti est d'abord une organisation de conquête et d'exercice du pouvoir. Il doit :</p>
+            <ul>
+              <li>rassembler des électeurs différents ;</li>
+              <li>construire des alliances ;</li>
+              <li>arbitrer entre plusieurs sensibilités internes ;</li>
+              <li>adapter son discours au contexte ;</li>
+              <li>transformer des principes généraux en mesures concrètes ;</li>
+              <li>chercher à gagner des élections.</li>
+            </ul>
+            <p>Un parti est donc toujours un compromis.</p>
+            <p class="sub">Un parti rassemble plusieurs courants</p>
+            <p>Dans presque tous les partis, on trouve des tendances différentes. Certaines sont plus attachées à l'égalité, d'autres à l'autorité, d'autres au pragmatisme économique, d'autres aux enjeux culturels ou moraux. Le parti doit faire tenir ensemble ces orientations.</p>
+            <p class="sub">Un parti simplifie et sélectionne</p>
+            <p>Une idéologie est un ensemble de principes. Un parti, lui, doit choisir un programme, une stratégie, un vocabulaire, des priorités, des candidats, des alliances. Il ne peut pas défendre tout avec la même intensité. Il hiérarchise donc ses combats.</p>
+            <p class="sub">Un parti change</p>
+            <p>Les partis évoluent. Ils se transforment selon :</p>
+            <ul>
+              <li>les crises économiques ;</li>
+              <li>les transformations sociales ;</li>
+              <li>les attentes de leur électorat ;</li>
+              <li>les leaderships ;</li>
+              <li>les contraintes institutionnelles ;</li>
+              <li>la concurrence électorale.</li>
+            </ul>
+            <p>Ainsi, un parti classé à gauche ou à droite ne l'est jamais de manière totalement fixe, pure ou éternelle.</p>
+
+            <h3 class="group-title">7. Pourquoi les étiquettes partisanes sont souvent approximatives</h3>
+            <p>Dans la pratique, les partis mélangent souvent des positions qui ne relèvent pas toutes du même registre.</p>
+            <p>Un parti peut par exemple :</p>
+            <ul>
+              <li>défendre le marché sur le plan économique ;</li>
+              <li>mais adopter des positions autoritaires sur le plan politique ;</li>
+              <li>ou soutenir des protections sociales tout en conservant une vision traditionnelle de la société.</li>
+            </ul>
+            <p>Cela signifie qu'un parti n'est jamais la simple incarnation parfaite de « la gauche » ou de « la droite ». Il occupe une place relative dans un paysage politique donné.</p>
+            <p>Quand on dit qu'un parti est « de gauche » ou « de droite », on ne décrit donc pas une essence immuable. On indique surtout :</p>
+            <ul>
+              <li>la famille politique à laquelle il se rattache le plus ;</li>
+              <li>les valeurs qu'il met globalement en avant ;</li>
+              <li>les électeurs qu'il cherche à représenter ;</li>
+              <li>les adversaires auxquels il s'oppose.</li>
+            </ul>
+            <p>Les étiquettes politiques sont utiles, mais elles sont toujours approximatives.</p>
+
+            <h3 class="group-title">8. Les individus : personne n'est la copie parfaite d'une idéologie</h3>
+            <p>Le troisième niveau est celui des individus. C'est souvent là que la complexité apparaît le plus clairement.</p>
+            <p>On imagine parfois qu'un individu « de gauche » ou « de droite » possède un ensemble d'idées parfaitement cohérent. En réalité, c'est rarement le cas.</p>
+            <p>Les personnes ont des opinions politiques issues de plusieurs sources :</p>
+            <ul>
+              <li>leur milieu social ;</li>
+              <li>leur histoire familiale ;</li>
+              <li>leur niveau d'études ;</li>
+              <li>leur profession ;</li>
+              <li>leurs expériences personnelles ;</li>
+              <li>leur rapport à l'autorité ;</li>
+              <li>leurs valeurs morales ;</li>
+              <li>leur perception de la justice ;</li>
+              <li>leurs émotions politiques ;</li>
+              <li>leur appartenance à un groupe ou à une culture.</li>
+            </ul>
+            <p>Le résultat, ce sont souvent des opinions composites.</p>
+            <p class="sub">Des combinaisons très fréquentes</p>
+            <p>Il est très courant de rencontrer des personnes qui veulent en même temps :</p>
+            <ul>
+              <li>moins d'impôts ;</li>
+              <li>mais davantage de services publics ;</li>
+              <li>plus de liberté économique ;</li>
+              <li>mais aussi plus de protection ;</li>
+              <li>plus d'autorité sur certains sujets ;</li>
+              <li>et plus de tolérance sur d'autres.</li>
+            </ul>
+            <p>Ces combinaisons ne sont pas des anomalies : elles montrent simplement que les individus ne raisonnent pas toujours comme des systèmes philosophiques cohérents.</p>
+
+            <h3 class="group-title">9. Pourquoi les individus ne sont pas toujours idéologiquement cohérents</h3>
+            <p>Il y a plusieurs raisons à cela.</p>
+            <p class="sub">Les opinions répondent à des problèmes concrets</p>
+            <p>Beaucoup de personnes ne partent pas de grands principes abstraits. Elles partent de leurs préoccupations immédiates : le travail, le coût de la vie, la sécurité, l'école, la santé, la retraite, l'avenir des enfants. Leurs positions se construisent souvent à partir de ces expériences concrètes, pas à partir d'une doctrine complète.</p>
+            <p class="sub">Les valeurs peuvent entrer en tension</p>
+            <p>Un même individu peut valoriser à la fois :</p>
+            <ul>
+              <li>l'égalité et le mérite ;</li>
+              <li>la liberté et la sécurité ;</li>
+              <li>la solidarité et la responsabilité ;</li>
+              <li>la tolérance et l'autorité.</li>
+            </ul>
+            <p>Or ces valeurs ne conduisent pas toujours aux mêmes choix politiques. Cela produit des opinions parfois contradictoires.</p>
+            <p class="sub">L'identité politique est aussi affective</p>
+            <p>Les individus ne choisissent pas seulement des idées. Ils s'identifient aussi à des groupes, à des styles politiques, à des symboles, à des récits. La politique n'est pas uniquement rationnelle. Elle touche aussi à l'identité, à l'appartenance, à la confiance, à la peur, à l'espoir, au sentiment de justice ou d'injustice.</p>
+            <p>C'est pour cela qu'on peut défendre des positions peu cohérentes sur le papier, mais très cohérentes du point de vue du vécu personnel.</p>
+
+            <h3 class="group-title">10. Ce que le clivage gauche-droite permet de comprendre chez les individus</h3>
+            <p>Même si les individus sont complexes, le clivage gauche-droite conserve un pouvoir explicatif.</p>
+            <p>Il permet de repérer des tendances générales :</p>
+            <ul>
+              <li>certains seront plus sensibles aux inégalités et à la solidarité ;</li>
+              <li>d'autres à l'autonomie, à l'ordre ou à la responsabilité ;</li>
+              <li>certains feront confiance à l'action collective ;</li>
+              <li>d'autres privilégieront les mécanismes de choix individuels ou les traditions sociales.</li>
+            </ul>
+            <p>Mais il faut éviter une erreur : classer une personne une fois pour toutes à partir d'une seule opinion. Une position ponctuelle ne suffit pas à résumer tout un rapport au politique.</p>
+
+            <h3 class="group-title">11. Ce qu'il faut retenir absolument</h3>
+            <p>Le clivage gauche-droite est une grille de lecture puissante, mais ce n'est pas une carte complète du réel.</p>
+            <p class="sub">Il est puissant parce qu'il met au jour un désaccord central</p>
+            <p>Ce désaccord porte sur :</p>
+            <ul>
+              <li>la manière de comprendre les inégalités ;</li>
+              <li>la place à donner à l'égalité ;</li>
+              <li>le rôle de l'État ;</li>
+              <li>la valeur du mérite, de l'ordre, de la hiérarchie et de la tradition.</li>
+            </ul>
+            <p class="sub">Il est limité parce qu'il simplifie trois réalités différentes</p>
+            <p>Il faut toujours distinguer :</p>
+            <ul>
+              <li>les idéologies, qui sont des systèmes de valeurs et de principes ;</li>
+              <li>les partis, qui sont des organisations stratégiques et électorales ;</li>
+              <li>les individus, qui ont des opinions mêlées, évolutives et parfois contradictoires.</li>
+            </ul>
+            <p>Quand on confond ces trois niveaux, on finit par mal comprendre la politique.</p>
+
+            <h3 class="group-title">12. Formulation de conclusion pour l'oral</h3>
+            <div class="script-block">
+              <span class="block-label">À dire</span>
+              <p>Le clivage gauche-droite n'est ni une illusion, ni une explication suffisante à lui seul. Il reste pertinent parce qu'il exprime un désaccord profond sur ce qu'est une société juste : faut-il d'abord réduire les inégalités, ou accepter davantage les différences et les hiérarchies au nom de la liberté, du mérite, de l'ordre ou de la continuité ?</p>
+              <p>Mais ce clivage ne doit jamais être utilisé de façon naïve. Les idées sont plus variées qu'on ne le croit, les partis sont des compromis, et les individus ne sont jamais des idéologies vivantes. En ce sens, la distinction gauche-droite est indispensable pour se repérer, mais insuffisante pour tout expliquer.</p>
+            </div>
+
+            <h3 class="group-title">13. Version très synthétique à dire en une minute</h3>
+            <div class="lesson-block">
+              <span class="block-label">En une minute</span>
+              <p>La gauche et la droite ne se distinguent pas seulement par des programmes différents, mais par une manière différente de juger les inégalités et le rôle de l'État. La gauche considère plus volontiers que les inégalités doivent être corrigées par l'action collective au nom de l'égalité et de la justice sociale. La droite accorde davantage d'importance à la liberté individuelle, au mérite, à l'ordre, à la propriété et à la continuité, et accepte plus facilement l'existence de hiérarchies ou de différences. Mais cette opposition ne suffit pas à tout décrire : les partis sont des compromis électoraux, et les individus ont souvent des opinions mélangées. Le clivage gauche-droite est donc un repère utile, à condition de ne pas le prendre pour une explication totale de la vie politique.</p>
+            </div>
+
+            <h3 class="group-title">14. Phrases utiles pour la prise de parole</h3>
+            <ul>
+              <li>« Le clivage gauche-droite est d'abord une opposition entre deux façons de penser la justice sociale. »</li>
+              <li>« La question centrale est celle des inégalités : faut-il surtout les réduire, ou considérer qu'elles sont en partie normales, utiles ou légitimes ? »</li>
+              <li>« La gauche et la droite ne défendent pas nécessairement des valeurs opposées, mais elles ne les hiérarchisent pas de la même manière. »</li>
+              <li>« Il faut distinguer les idéologies, les partis et les individus, sinon on mélange des réalités très différentes. »</li>
+              <li>« Le clivage gauche-droite est utile pour se repérer, mais il devient trompeur dès qu'on le transforme en schéma trop simple. »</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>La boussole de Sam</h3>
+            <p>Un seul axe ne suffit pas : une personne peut être <strong>interventionniste sur l'économie</strong> et <strong>conservatrice sur les mœurs</strong>, ou l'inverse. Le clivage <strong>oriente</strong>, il ne <strong>classe</strong> pas définitivement.</p>
+            <div class="tag-list"><span class="tag">Idéologies</span><span class="tag">Partis</span><span class="tag">Individus</span><span class="tag">Inégalités</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="closing reveal" aria-labelledby="final">
+        <h2 id="final">S'informer, c'est déjà reprendre du pouvoir.</h2>
+        <p>Ce dossier conserve mot pour mot les deux interventions : le grand live « Comprendre la politique française en 2026 » et l'explication du clivage gauche-droite. Du bulletin municipal au Conseil constitutionnel, du 49.3 à la nuance entre frustration démocratique et dictature, un même fil : la politique se décode, et chaque voix pèse plus qu'on ne le croit. Ne laissez pas les autres choisir le monde dans lequel vous allez vivre.</p>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../ymir-lalie/assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans le débat public. Ce dossier prolonge le live en donnant au public une version lisible, structurée et partageable des deux interventions.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="lalie.jpeg" alt="Avatar de Lalie">
+              <img src="ymir.jpeg" alt="Avatar d'Ymir">
+              <img src="sam.jpeg" alt="Avatar de Sam">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Lalie, Ymir &amp; Sam</strong></span>
+          </div>
+          <div class="collective-actions">
+            <a class="button primary" href="../index.html">Retour à l'index</a>
+            <a class="button" href="../ymir-lalie/ancetres-genetiques/index.html">Ancêtres génétiques</a>
+            <a class="button" href="../sources/sources.html">Les Sources</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome créée à partir de <strong>transcript.txt</strong> (« Comprendre la politique française en 2026 ») et <strong>transcript-sam.txt</strong> (« Le clivage gauche-droite »). Transcriptions conservées mot pour mot. Faits civiques vérifiés (CNCCFP, Conseil constitutionnel, vie-publique.fr, service-public.gouv.fr, Arcom).</main>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => {
+      nav.classList.remove("open");
+      mobileMenu.setAttribute("aria-expanded", "false");
+    }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // Filet de sécurité : toute section restée masquée (ex. très grande, jamais "intersectée")
+    // est révélée si son haut a déjà dépassé le bas de la fenêtre.
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.9) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }
+    document.addEventListener("scroll", revealTall, { passive: true });
+    window.addEventListener("resize", revealTall, { passive: true });
+    revealTall();
+  </script>
+</body>
+</html>

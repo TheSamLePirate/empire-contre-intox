@@ -20,6 +20,7 @@ Vérifié le **1ᵉʳ juin 2026** par recherche web (sources autoritatives : NAS
 | V | [`dossier-V-elements.md`](dossier-V-elements.md) | Le Tableau Périodique — particules, interactions, formation des atomes, radioactivité, modèles, orbitales, propriétés (Jorge & Zalex) |
 | VI | [`dossier-VI-la-vie-de-la-terre.md`](dossier-VI-la-vie-de-la-terre.md) | La Vie de la Terre — application interactive, paléogéographie, séries climatiques/atmosphériques, pipeline reproductible (SamLePirate) |
 | VIII | [`dossier-VIII-ancetres-genetiques.md`](dossier-VIII-ancetres-genetiques.md) | Adam & Ève génétiques — Ève mitochondriale, Adam chromosome Y, LUCA, code génétique, science & foi (Lalie & Ymir) |
+| IX | [`dossier-IX-politique-france-2026.md`](dossier-IX-politique-france-2026.md) | Politique française 2026 — institutions Ve République, municipales, 49.3, financement, médias, clivage gauche-droite (Lalie, Ymir & Sam) · **dossier civique : sources officielles, pas de DOI** → [`refs-institutionnels-IX-politique-france-2026.md`](refs-institutionnels-IX-politique-france-2026.md) |
 
 > Données brutes fournies par l'auteur : `sources_audit_scientifique_chronos.csv`.
 
@@ -63,6 +64,11 @@ Les grands repères des dossiers sont corrects et sourcés. Restent des points *
 - Audit complet : [`dossier-VIII-ancetres-genetiques.md`](dossier-VIII-ancetres-genetiques.md) ; bibliographie DOI : [`refs-doi-VIII-ancetres-genetiques.md`](refs-doi-VIII-ancetres-genetiques.md) (**48 DOI uniques, vérifiés Crossref**).
 - Points principaux : Ève mitochondriale et Adam-Y sont des **coalescences de lignées**, pas un couple ; dates à donner en fourchettes (Ève ~120–200 ka ; Adam-Y ~120–307 ka selon calibrage, avec A00 comme borne haute discutée) ; LUCA n'est **pas la première cellule** mais le dernier ancêtre commun de la vie actuelle, avec estimation 2024 ~4,2 Ga ; **99,9 %** vaut pour les différences ponctuelles, ~99,5–99,6 % avec variation structurale ; l'héritage mitochondrial est maternel sauf très rares exceptions.
 - Corrections de rigueur signalées : « scientifiques ont nommé Adam/Ève pour rejoindre la Bible » n'est pas sourçable ; « Adam et Ève ne se sont jamais rencontrés » doit être formulé « pas un couple, pas nécessairement contemporains » ; « meilleur survit » et les adaptations de forme des yeux sont à nuancer.
+
+### Dossier IX — Comprendre la Politique Française en 2026
+- Audit complet : [`dossier-IX-politique-france-2026.md`](dossier-IX-politique-france-2026.md) ; références **institutionnelles** : [`refs-institutionnels-IX-politique-france-2026.md`](refs-institutionnels-IX-politique-france-2026.md) (**25 sources officielles** — dossier **civique, sans DOI**).
+- Aucune **erreur ❌**. Tous les chiffres clés vérifiés sur sources officielles : **577 députés / 348 sénateurs / 289** ; Conseil constitutionnel **9 membres / 9 ans** ; **49.3** (motion en 24 h, 289 voix) ; **QPC** (depuis 2010) ; don max **4 600 €**, plafond présidentielle **22,5 M€**, remboursement **47,5 % / 4,75 %**, **500 parrainages / 30 départements** ; **538** grands électeurs US ; Vichy **10 juillet 1940**.
+- Nuances surfacées par des encadrés « Anti-intox » : régime **« souvent qualifié de »** semi-présidentiel ; **réforme 2025** du scrutin municipal (<1000 hab. + PLM) appliquée pour la 1re fois en mars 2026 ; collège sénatorial ≈ **162 000** (live : ~160 000) ; nombres de sièges des 4 blocs = **estimations du scénario** du live.
 
 ### Points à nuancer (non bloquants)
 - **Nombre de galaxies (~2 × 10¹²)** [Dossier IV] : estimation modèle-dépendante, contestée (cf. New Horizons/Lauer 2021) — garder le « ≈ », signaler « estimation ».

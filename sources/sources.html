@@ -253,6 +253,7 @@
       <section class="wrap section" id="elements"><div class="sec-head reveal"><p class="kick">Dossier V · Jorge &amp; Zalex</p><h3>Le Tableau Périodique</h3><p>De la particule élémentaire à l'élément chimique — particules, interactions, formation des atomes, modèles et propriétés périodiques.</p></div><div class="grid" id="g-elements"></div></section>
       <section class="wrap section" id="terre-app"><div class="sec-head reveal"><p class="kick">Dossier VI · SamLePirate</p><h3>La Vie de la Terre</h3><p>Application interactive : globe paléogéographique, 10 séries temporelles, 201 heightmaps et pipeline reproductible.</p></div><div class="grid" id="g-terre-app"></div></section>
       <section class="wrap section" id="ancetres"><div class="sec-head reveal"><p class="kick">Dossier VIII · Lalie &amp; Ymir</p><h3>Adam &amp; Ève génétiques</h3><p>Ève mitochondriale, Adam chromosome Y, LUCA et code génétique — des points de coalescence, pas un couple fondateur.</p></div><div class="grid" id="g-ancetres"></div></section>
+      <section class="wrap section" id="politique"><div class="sec-head reveal"><p class="kick">Dossier IX · Lalie, Ymir &amp; Sam</p><h3>Politique française 2026</h3><p>Institutions de la Ve République, élections, financement, médias et clivage gauche-droite — dossier <b>civique</b> : sources officielles (Légifrance, Conseil constitutionnel, Assemblée, Sénat, CNCCFP, Arcom), pas de DOI.</p></div><div class="grid" id="g-politique"></div></section>
 
       <section class="wrap section" id="refs">
         <div class="sec-head reveal"><p class="kick">Appareil critique · niveau le plus strict</p><h3>Références scientifiques</h3><p>La littérature primaire à comité de lecture derrière les données. Chaque <b>DOI a été vérifié</b> (résolution Crossref + page éditeur) — pour chacun : titre, citation et résumé.</p></div>
@@ -525,6 +526,46 @@
         src:[{n:"National Academies 2008",u:"https://doi.org/10.17226/11876"},{n:"Smithsonian primer",u:"https://humanorigins.si.edu/about/broader-social-impacts-committee/science-religion-evolution-and-creationism-primer"}] }
     ];
 
+    const PG = "../lalie-ymir-sam/assets/";
+    const POLITIQUE = [
+      { t:"Assemblée &amp; Sénat", d:"577 députés · 348 sénateurs · majorité 289", v:"ok", img:PG+"politique-2026-hero.png",
+        s:"577 députés au scrutin uninominal majoritaire à 2 tours (mandat 5 ans) ; 348 sénateurs au suffrage indirect (mandat 6 ans, renouvelé par moitié). Majorité absolue = 289.",
+        src:[{n:"Assemblée nationale",u:"https://www.assemblee-nationale.fr/dyn/synthese/deputes-groupes-parlementaires/l-election-des-deputes"},{n:"Sénat",u:"https://www.senat.fr/connaitre-le-senat/role-et-fonctionnement/mode-delection-des-senateurs.html"}] },
+      { t:"Le Conseil constitutionnel", d:"9 membres · 9 ans · par tiers", v:"ok", img:PG+"politique-2026-hero.png",
+        s:"9 membres nommés pour 9 ans non renouvelables (3 par le Président, 3 par l'AN, 3 par le Sénat), renouvelés par tiers tous les 3 ans ; anciens présidents membres de droit. QPC depuis le 1er mars 2010.",
+        src:[{n:"Conseil constitutionnel · statut",u:"https://www.conseil-constitutionnel.fr/les-membres/statut-des-membres"},{n:"vie-publique · QPC",u:"https://www.vie-publique.fr/fiches/19560-quest-ce-que-la-question-prioritaire-de-constitutionnalite-qpc"}] },
+      { t:"L'article 49.3", d:"motion en 24 h · 289 voix", v:"ok", img:PG+"politique-2026-hero.png",
+        s:"Le texte est adopté sans vote sauf motion de censure déposée dans les 24 h et votée à la majorité absolue (289). Si elle passe, le texte est rejeté et le gouvernement démissionne (art. 50).",
+        src:[{n:"info.gouv.fr · 49.3",u:"https://www.info.gouv.fr/actualite/l-article-49-3-comment-ca-marche"},{n:"Légifrance · art. 49",u:"https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006527529/"}] },
+      { t:"Régime « semi-présidentiel »", d:"qualification courante mais débattue", v:"warn", img:PG+"politique-2026-hero.png",
+        s:"Constitution de 1958 : exact. « Semi-présidentiel » (Duverger) est l'étiquette usuelle mais débattue — à l'origine un parlementarisme rationalisé, basculé en 1962 avec l'élection présidentielle au suffrage direct. Préférer « souvent qualifié de ».",
+        src:[{n:"Assemblée · la Constitution",u:"https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/cinquieme-republique/la-constitution-de-la-cinquieme-republique"}] },
+      { t:"Le vote blanc", d:"décompté mais non exprimé", v:"ok", img:PG+"politique-2026-hero.png",
+        s:"Depuis la loi du 21 février 2014, les votes blancs sont décomptés à part des nuls et figurent dans les résultats, mais n'entrent pas dans les « suffrages exprimés » : ils ne relèvent pas le seuil pour être élu.",
+        src:[{n:"vie-publique · vote blanc",u:"https://www.vie-publique.fr/loi/20890-elections-vote-blanc"}] },
+      { t:"Réforme du scrutin municipal 2026", d:"&lt;1000 hab. : fin du panachage", v:"ok", img:PG+"politique-2026-hero.png",
+        s:"Lois du 21 mai 2025 : dès mars 2026, les communes de moins de 1 000 habitants passent au scrutin de liste paritaire (fin du panachage). Paris-Lyon-Marseille : loi du 11 août 2025 (double bulletin, prime de 25 %).",
+        src:[{n:"service-public · municipales",u:"https://www.service-public.gouv.fr/particuliers/actualites/A18432"},{n:"vie-publique · réforme PLM",u:"https://www.vie-publique.fr/loi/298090-loi-reforme-plm-mode-de-scrutin-municipales-paris-lyon-marseille"}] },
+      { t:"Financement des campagnes", d:"don 4 600 € · entreprises interdites", v:"ok", img:PG+"politique-2026-hero.png",
+        s:"Don max d'un particulier : 4 600 € par élection ; les personnes morales (entreprises) ne peuvent pas financer (seuls les partis le peuvent). Mandataire financier et compte de campagne obligatoires, contrôlés par la CNCCFP.",
+        src:[{n:"financement-electoral.fr",u:"https://www.financement-electoral.fr/compte-de-campagne/les-recettes-%C3%A9lectorales/les-contributions-de-personnes-physiques/"},{n:"CNCCFP",u:"https://www.cnccfp.fr/"}] },
+      { t:"Présidentielle : plafond &amp; remboursement", d:"≈ 22,5 M€ · 47,5 % / 4,75 %", v:"ok", img:PG+"politique-2026-hero.png",
+        s:"Plafond 2e tour ≈ 22,5 M€ (22 509 000 € en 2022). Au-dessus de 5 % des voix : remboursement de 47,5 % du plafond ; en dessous : 4,75 %. Parrainages : 500 élus, au moins 30 départements.",
+        src:[{n:"Conseil constitutionnel · seuils",u:"https://presidentielle2022.conseil-constitutionnel.fr/l-election/le-financement-de-la-campagne/seuils-de-remboursement-frais-de-campagne.html"},{n:"vie-publique · parrainages",u:"https://www.vie-publique.fr/eclairage/23872-parrainage-des-candidats-la-presidentielle-les-500-signatures"}] },
+      { t:"Pub, médias &amp; Arcom", d:"interdiction 6 mois · équité · FALC", v:"ok", img:PG+"politique-2026-hero.png",
+        s:"Publicité commerciale électorale interdite 6 mois avant (art. L52-1) ; communication des collectivités gelée ; l'Arcom veille au pluralisme et à l'équité du temps de parole ; profession de foi en version FALC obligatoire depuis 2022 (décret du 22 déc. 2021).",
+        src:[{n:"Légifrance · L52-1",u:"https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000023883001"},{n:"Arcom",u:"https://www.arcom.fr/proteger/garantie-des-droits-et-libertes/le-pluralisme-politique"}] },
+      { t:"USA : le collège électoral", d:"538 grands électeurs · winner-take-all", v:"ok", img:PG+"politique-2026-hero.png",
+        s:"538 grands électeurs (Californie 54, Wyoming 3, Floride 30) ; « winner-take-all » sauf Maine et Nebraska. En 2016, Clinton a obtenu ≈ 2,9 M de voix de plus que Trump mais a perdu au collège (304-227).",
+        src:[{n:"U.S. National Archives",u:"https://www.archives.gov/electoral-college/allocation"}] },
+      { t:"Vichy (1940-1944)", d:"pleins pouvoirs le 10 juillet 1940", v:"ok", img:PG+"politique-2026-hero.png",
+        s:"Le 10 juillet 1940, l'Assemblée vote les pleins pouvoirs constituants à Pétain (569 pour, 80 contre, 20 abstentions) : fin de la séparation des pouvoirs, censure, « Statut des Juifs » (3 oct. 1940). Le contraste avec 2026 illustre ce qu'est une vraie rupture démocratique.",
+        src:[{n:"Loi constitutionnelle du 10 juillet 1940",u:"https://fr.wikipedia.org/wiki/Loi_constitutionnelle_du_10_juillet_1940"},{n:"herodote.net",u:"https://www.herodote.net/10_juillet_1940-evenement-19400710.php"}] },
+      { t:"Le clivage gauche-droite", d:"repère utile, carte incomplète", v:"ok", img:PG+"politique-2026-hero.png",
+        s:"Né du placement des députés sous la Révolution française. Il structure un désaccord sur les inégalités et le rôle de l'État, mais simplifie trois réalités distinctes (idéologies, partis, individus) et ne tient pas sur un seul axe.",
+        src:[{n:"vie-publique.fr",u:"https://www.vie-publique.fr/"},{n:"Audit Dossier IX",u:"dossier-IX-politique-france-2026.md"}] }
+    ];
+
     // Sources from sources_audit_scientifique_chronos.csv + app La Vie de la Terre
     const SOURCES = [
       ["🟢","Planck Collaboration 2018 — Cosmological parameters","https://www.aanda.org/articles/aa/pdf/2020/09/aa33880-18.pdf","Âge de l'Univers ≈ 13,787 Ga ± 0,020 Ga (ΛCDM)."],
@@ -592,7 +633,7 @@
     }
     function fill(id,arr){ const el=document.getElementById(id); if(el) el.innerHTML=arr.map(ficheHTML).join(""); }
     fill("g-cosmos",COSMOS); fill("g-terre",TERRE); fill("g-geo",GEO); fill("g-hum",HUM);
-    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES);
+    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES); fill("g-politique",POLITIQUE);
 
     // ===== Références scientifiques primaires (DOI vérifiés) =====
     const REFS = [
@@ -1050,7 +1091,7 @@
       </div>`).join("");
     const stSrc = document.getElementById("stSrc"); if (stSrc) stSrc.textContent = SOURCES.length;
 
-    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length;
+    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length+POLITIQUE.length;
     document.getElementById("stFiches").textContent = total;
 
     const bar=document.getElementById("progress");
