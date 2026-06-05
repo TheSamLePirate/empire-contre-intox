@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Les Sources — vérification scientifique des dossiers — Empire contre Intox</title>
-  <meta name="description" content="Chaque donnée des dossiers Empire contre Intox, vérifiée et sourcée : cosmologie, géologie, vie, Artemis II, La Vie de la Terre. Affirmation → résumé → verdict → source autoritative. Veritas omnia vincit.">
+  <meta name="description" content="Chaque donnée des dossiers Empire contre Intox, vérifiée et sourcée : cosmologie, géologie, vie, éléments chimiques, Terre 3D, ancêtres génétiques. Affirmation → résumé → verdict → source autoritative. Veritas omnia vincit.">
   <meta name="theme-color" content="#050811">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -203,6 +203,7 @@
           <a href="#artemis">Artemis</a>
           <a href="#elements">Éléments</a>
           <a href="#terre-app">Terre 3D</a>
+          <a href="#ancetres">Ancêtres</a>
           <a href="#refs">Références</a>
           <a href="#biblio">Bibliographie</a>
           <a class="home" href="../index.html">Accueil ECI</a>
@@ -225,13 +226,13 @@
       <section class="wrap hero">
         <p class="eyebrow">Dossier IX · Vérification &amp; sources</p>
         <h2>Chaque donnée,<br>vérifiée et <span class="foil">sourcée</span>.</h2>
-        <p class="lead">Pour chaque affirmation des dossiers — cosmologie, géologie, vie, exploration lunaire, données de l'application Terre —, nous donnons un <b>résumé</b>, un <b>verdict</b> et la <b>source autoritative</b> (NASA, ESA, USGS, IUGS/ICS, Smithsonian, articles à comité de lecture). La science est déjà vertigineuse : encore faut-il pouvoir la vérifier.</p>
+        <p class="lead">Pour chaque affirmation des dossiers — cosmologie, géologie, vie, exploration lunaire, éléments chimiques, données Terre 3D, ancêtres génétiques —, nous donnons un <b>résumé</b>, un <b>verdict</b> et la <b>source autoritative</b> (NASA, ESA, USGS, IUGS/ICS, Smithsonian, NIST, NHGRI, articles à comité de lecture). La science est déjà vertigineuse : encore faut-il pouvoir la vérifier.</p>
         <div class="stats">
           <div class="stat"><div class="n" id="stFiches">—</div><div class="l">Données vérifiées</div></div>
           <div class="stat"><div class="n" id="stSrc">—</div><div class="l">Sources de référence</div></div>
           <div class="stat"><div class="n" id="stDoi">—</div><div class="l">DOI vérifiés</div></div>
-          <div class="stat"><div class="n">7</div><div class="l">Dossiers audités</div></div>
-          <div class="stat"><div class="n">0</div><div class="l">Erreur factuelle (❌)</div></div>
+          <div class="stat"><div class="n">8</div><div class="l">Dossiers audités</div></div>
+          <div class="stat"><div class="n">2</div><div class="l">Formulations à corriger</div></div>
         </div>
         <div class="legend" aria-label="Légende des verdicts">
           <span class="vbadge"><i class="v-ok" style="background:currentColor"></i>Confirmé</span>
@@ -285,7 +286,7 @@
       </div>
     </main>
 
-    <footer class="tech"><div class="wrap">Vérifié le 1ᵉʳ juin 2026 · sources détaillées dans <code>sources/*.md</code> · Identité visuelle ECI.</div></footer>
+    <footer class="tech"><div class="wrap">Vérifié le 5 juin 2026 · sources détaillées dans <code>sources/*.md</code> · Identité visuelle ECI.</div></footer>
   </div>
 
   <script>
@@ -483,36 +484,45 @@
 
     const AG = "../ymir-lalie/ancetres-genetiques/assets/";
     const ANCETRES = [
-      { t:"« Adam » et « Ève » génétiques", d:"points de coalescence, pas un couple", v:"ok", img:AG+"ancetres-hero.png",
-        s:"Ce ne sont ni deux individus uniques ni un couple fondateur : ce sont les ancêtres communs les plus récents d'une seule lignée (mitochondriale ou Y). Tout le reste de notre ADN vient de milliers d'autres contemporains.",
-        src:[{n:"BioLogos · mtEve & Y-Adam",u:"https://biologos.org/series/evolution-basics/articles/mitochondrial-eve-and-y-chromosome-adam"},{n:"Wikipedia · Y-chromosomal Adam",u:"https://en.wikipedia.org/wiki/Y-chromosomal_Adam"}] },
-      { t:"Ève mitochondriale", d:"Afrique · ~150 000–200 000 ans", v:"warn", img:AG+"eve-mitochondriale.png",
-        s:"Ancêtre commune par la lignée maternelle (ADNmt transmis par la mère). Afrique : solide. Date : 140–200 ka en 1987, plutôt ~150–160 ka selon les estimations génomiques récentes — à donner en fourchette, pas en chiffre unique.",
-        src:[{n:"Cann et al. 1987 (Nature)",u:"https://doi.org/10.1038/325031a0"},{n:"Wikipedia · Mitochondrial Eve",u:"https://en.wikipedia.org/wiki/Mitochondrial_Eve"}] },
-      { t:"Adam chromosome Y", d:"Afrique · ~120 000–300 000 ans", v:"warn", img:AG+"adam-chromosome-y.png",
-        s:"Ancêtre commun par la lignée paternelle (Y transmis de père en fils, quasi sans recombinaison). Estimations : ~120–156 ka (Poznik 2013), ~192–307 ka (Karmin 2015), jusqu'à ~300 ka+ avec la lignée archaïque A00 (Mendez 2013). « 200–300 ka » est une borne haute défendable.",
-        src:[{n:"Poznik et al. 2013 (Science)",u:"https://doi.org/10.1126/science.1237619"},{n:"Mendez et al. 2013 (AJHG)",u:"https://doi.org/10.1016/j.ajhg.2013.02.002"}] },
-      { t:"Jamais un couple, pas contemporains", d:"écart débattu", v:"deb", img:AG+"adam-chromosome-y.png",
-        s:"Point ferme : Adam-Y et Ève mito. ne formaient pas un couple et n'avaient aucune raison d'être contemporains. L'écart exact est débattu : les fourchettes de 2013 se chevauchaient presque, la lignée archaïque du Y rouvre un écart de ~100 ka.",
-        src:[{n:"Stanford Med · Poznik 2013",u:"https://med.stanford.edu/news/all-news/2013/08/common-genetic-ancestors-lived-during-roughly-same-time-period-scientists-find.html"}] },
-      { t:"Héritage mitochondrial maternel", d:"sauf très rares exceptions", v:"ok", img:AG+"eve-mitochondriale.png",
-        s:"Les mitochondries du spermatozoïde sont éliminées dans le zygote : l'ADNmt est transmis par la mère. Quelques rares cas de transmission biparentale ont été documentés (Luo et al. 2018), mais la règle « par la mère » reste l'image juste.",
-        src:[{n:"Luo et al. 2018 (PNAS)",u:"https://doi.org/10.1073/pnas.1810946115"}] },
-      { t:"LUCA — ancêtre de toute vie", d:"~3,5–4 Ga · révisé ~4,2 Ga (2024)", v:"warn", img:AG+"luca-arbre-vie.png",
-        s:"Dernier ancêtre commun universel de toute la vie actuelle (pas l'origine de la vie). Estimation classique 3,5–4 Ga ; une étude majeure de 2024 (Moody et al.) la repousse vers ~4,2 Ga. Plus anciennes traces acceptées ~3,5 Ga.",
-        src:[{n:"Moody et al. 2024 (Nat. Ecol. Evol.)",u:"https://doi.org/10.1038/s41559-024-02461-1"},{n:"Quanta · LUCA",u:"https://www.quantamagazine.org/all-life-on-earth-today-descended-from-a-single-cell-meet-luca-20241120/"}] },
-      { t:"Code génétique quasi universel", d:"preuve d'ascendance commune", v:"ok", img:AG+"luca-arbre-vie.png",
-        s:"La même table de codons opère dans les trois domaines du vivant (à quelques variantes mineures près) : c'est l'explication la plus parcimonieuse d'une descendance depuis une lignée ancestrale unique.",
-        src:[{n:"Moody et al. 2024",u:"https://doi.org/10.1038/s41559-024-02461-1"}] },
-      { t:"Indices de vie ~4,1 Ga (zircon)", d:"potentiellement biogénique", v:"deb", img:AG+"luca-arbre-vie.png",
-        s:"Un graphite (δ¹³C ≈ −24 ‰) inclus dans un zircon de Jack Hills daté 4,10 Ga est « potentiellement » biogénique (Bell et al. 2015) — indice débattu, à présenter comme possible et non prouvé.",
-        src:[{n:"Bell et al. 2015 (PNAS)",u:"https://doi.org/10.1073/pnas.1517557112"}] },
-      { t:"Humains identiques à ~99,9 %", d:"~99,5–99,6 % avec la variation structurale", v:"warn", img:AG+"arbre-graine.png",
-        s:"Le « 99,9 % » est le chiffre du Projet Génome Humain (différence ~0,1 % au niveau des SNP). En comptant aussi les grandes différences de structure (indels, CNV), la similarité descend vers ~99,5–99,6 %. Les deux sont justes selon ce qu'on compte.",
-        src:[{n:"NHGRI / NIH",u:"https://www.genome.gov/about-genomics/fact-sheets/Participation-in-Genomic-Research"}] },
-      { t:"Homo sapiens ≥ 300 000 ans", d:"Jebel Irhoud (Maroc)", v:"ok", img:AG+"arbre-graine.png",
-        s:"Les plus anciens fossiles attribués à Homo sapiens (~300 ka, Jebel Irhoud) montrent une origine pan-africaine : une Ève/Adam génétiques apparaissent au sein d'une espèce et de populations déjà établies.",
-        src:[{n:"Hublin et al. 2017 (Nature)",u:"https://doi.org/10.1038/nature22336"},{n:"Smithsonian Human Origins",u:"https://humanorigins.si.edu/research/whats-hot-human-origins/our-species-arose-least-300000-years-ago"}] }
+      { t:"« Adam » et « Ève » génétiques", d:"coalescences, pas un couple", v:"ok", img:AG+"ancetres-hero.png",
+        s:"Ce ne sont ni les premiers humains, ni les seuls humains de leur époque : ce sont les ancêtres communs les plus récents d'une seule lignée (ADN mitochondrial ou chromosome Y). Le reste du génome vient d'un grand ensemble de populations ancestrales.",
+        src:[{n:"Ayala 1995 (Science)",u:"https://doi.org/10.1126/science.270.5244.1930"},{n:"Rosenberg & Nordborg 2002",u:"https://doi.org/10.1038/nrg795"}] },
+      { t:"Ève mitochondriale", d:"Afrique · ~120 000–200 000 ans", v:"warn", img:AG+"eve-mitochondriale.png",
+        s:"Ancêtre commune des ADN mitochondriaux humains actuels, en lignée maternelle stricte. Afrique : solide. La date dépend de l'horloge moléculaire : Cann 1987 donnait ~140–200 ka ; Fu 2013 donne ~157 ka (HPD 120–197 ka).",
+        src:[{n:"Cann et al. 1987",u:"https://doi.org/10.1038/325031a0"},{n:"Fu et al. 2013",u:"https://doi.org/10.1016/j.cub.2013.02.044"}] },
+      { t:"Héritage mitochondrial maternel", d:"règle forte, exceptions rares", v:"ok", img:AG+"eve-mitochondriale.png",
+        s:"L'ADN mitochondrial vient presque toujours de la mère. Formulation précise : la mère le transmet à ses enfants ; seules les filles le retransmettent ensuite. De rares transmissions paternelles/biparentales sont documentées.",
+        src:[{n:"Giles et al. 1980",u:"https://doi.org/10.1073/pnas.77.11.6715"},{n:"Luo et al. 2018",u:"https://doi.org/10.1073/pnas.1810946115"}] },
+      { t:"Adam chromosome Y", d:"Afrique · ~120 000–307 000 ans", v:"warn", img:AG+"adam-chromosome-y.png",
+        s:"Ancêtre commun des chromosomes Y actuels, en lignée paternelle stricte. Estimations : 120–156 ka (Poznik 2013), 254 ka [192–307] avec A00 et calibration ADN ancien (Karmin 2015), valeur A00 publiée plus haute chez Mendez 2013.",
+        src:[{n:"Poznik et al. 2013",u:"https://doi.org/10.1126/science.1237619"},{n:"Karmin et al. 2015",u:"https://doi.org/10.1101/gr.186684.114"},{n:"Mendez et al. 2013",u:"https://doi.org/10.1016/j.ajhg.2013.02.002"}] },
+      { t:"Chromosome Y : transmission", d:"MSY quasi non recombinante", v:"warn", img:AG+"adam-chromosome-y.png",
+        s:"Dire « comme un nom de famille qui ne changerait jamais » est une image : la région mâle-spécifique du Y se transmet surtout en bloc, mais elle accumule mutations, variants structuraux et contient des zones pseudoautosomiques recombinantes.",
+        src:[{n:"Skaletsky et al. 2003",u:"https://doi.org/10.1038/nature01722"},{n:"Jobling & Tyler-Smith 2003",u:"https://doi.org/10.1038/nrg1124"}] },
+      { t:"Jamais un couple fondateur", d:"non-contemporanéité débattue", v:"deb", img:AG+"adam-chromosome-y.png",
+        s:"Point ferme : Adam-Y et Ève mitochondriale ne forment pas un couple et n'ont aucune raison d'être contemporains. Dire « ne se sont jamais rencontrés » comme impossibilité stricte est trop fort : certaines fourchettes publiées se chevauchent.",
+        src:[{n:"Poznik et al. 2013",u:"https://doi.org/10.1126/science.1237619"},{n:"Stanford Medicine",u:"https://med.stanford.edu/news/all-news/2013/08/common-genetic-ancestors-lived-during-roughly-same-time-period-scientists-find.html"}] },
+      { t:"LUCA", d:"pas la première cellule · ~4,2 Ga ?", v:"warn", img:AG+"luca-arbre-vie.png",
+        s:"Correction stricte : LUCA n'est pas l'origine de la vie ni « la toute première cellule » ; c'est le dernier ancêtre commun universel de la vie cellulaire actuelle connue, probablement une population déjà complexe. Moody 2024 l'estime à ~4,2 Ga.",
+        src:[{n:"Moody et al. 2024",u:"https://doi.org/10.1038/s41559-024-02461-1"},{n:"Weiss et al. 2016",u:"https://doi.org/10.1038/nmicrobiol.2016.116"}] },
+      { t:"Code génétique quasi universel", d:"ascendance commune", v:"ok", img:AG+"luca-arbre-vie.png",
+        s:"Le code génétique est presque universel, avec des variantes dérivées (mitochondries, microbes). Cette quasi-universalité, les ribosomes et les gènes conservés soutiennent fortement une ascendance commune de la vie actuelle.",
+        src:[{n:"Theobald 2010",u:"https://doi.org/10.1038/nature09014"},{n:"Knight et al. 2001",u:"https://doi.org/10.1038/35047500"}] },
+      { t:"Premières traces de vie", d:"Pilbara ~3,48 Ga · zircon 4,1 Ga débattu", v:"deb", img:AG+"luca-arbre-vie.png",
+        s:"Les stromatolites/biosignatures de Pilbara-Dresser (~3,48 Ga) font partie des traces robustes. Le graphite de Jack Hills à 4,1 Ga est seulement « potentiellement biogénique » : indice possible, pas preuve établie.",
+        src:[{n:"Djokic et al. 2017",u:"https://doi.org/10.1038/ncomms15263"},{n:"Bell et al. 2015",u:"https://doi.org/10.1073/pnas.1517557112"}] },
+      { t:"Humains identiques à ~99,9 %", d:"~99,5–99,6 % avec variation structurale", v:"warn", img:AG+"arbre-graine.png",
+        s:"Le « 99,9 % » est le chiffre pédagogique pour les différences ponctuelles. En incluant indels, CNV et grandes variations structurales, deux génomes humains sont plutôt ~99,5–99,6 % identiques.",
+        src:[{n:"NHGRI / NIH",u:"https://www.genome.gov/about-genomics/educational-resources/fact-sheets/human-genomic-variation"},{n:"Sudmant et al. 2015",u:"https://doi.org/10.1038/nature15394"}] },
+      { t:"Homo sapiens ≥ 300 000 ans", d:"Jebel Irhoud · origine pan-africaine", v:"ok", img:AG+"arbre-graine.png",
+        s:"Les fossiles de Jebel Irhoud (~315 ± 34 ka) montrent que l'Ève mitochondriale et l'Adam-Y se situent au sein d'une espèce déjà établie, issue de populations africaines structurées.",
+        src:[{n:"Hublin et al. 2017",u:"https://doi.org/10.1038/nature22336"},{n:"Richter et al. 2017",u:"https://doi.org/10.1038/nature22335"}] },
+      { t:"Peau, yeux et adaptation", d:"peau solide · yeux à nuancer", v:"warn", img:AG+"arbre-graine.png",
+        s:"La pigmentation de la peau comme adaptation aux UV est bien établie. Les explications simples sur la forme/couleur des yeux comme protection climatique sont beaucoup moins solides et doivent rester prudentes.",
+        src:[{n:"Jablonski & Chaplin 2000",u:"https://doi.org/10.1006/jhev.2000.0403"},{n:"Eiberg et al. 2008",u:"https://doi.org/10.1007/s00439-007-0460-x"}] },
+      { t:"Science & foi", d:"comment / pourquoi", v:"warn", img:AG+"arbre-graine.png",
+        s:"La distinction est utile pour dialoguer, mais ce n'est pas une preuve scientifique : la science produit des explications naturelles testables ; les traditions religieuses parlent aussi de sens, valeur et morale.",
+        src:[{n:"National Academies 2008",u:"https://doi.org/10.17226/11876"},{n:"Smithsonian primer",u:"https://humanorigins.si.edu/about/broader-social-impacts-committee/science-religion-evolution-and-creationism-primer"}] }
     ];
 
     // Sources from sources_audit_scientifique_chronos.csv + app La Vie de la Terre
@@ -549,12 +559,18 @@
       ["🟢","Foster et al. 2017 — CO₂ proxies","https://doi.org/10.1038/ncomms14845","Compilation de proxies de CO₂ atmosphérique sur 420 Ma."],
       ["🟢","Berner 2006 — GEOCARBSULF","https://doi.org/10.1016/j.gca.2005.11.032","Modèle géochimique phanérozoïque CO₂/O₂."],
       ["🟢","Williams / Farhat / Mitchell — durée du jour","refs-doi-VI-la-vie-de-la-terre.md","Références Terre-Lune utilisées pour les ancrages et modèles de durée du jour."],
-      ["🔵","NHGRI / NIH — Genomic Research facts","https://www.genome.gov/about-genomics/fact-sheets/Participation-in-Genomic-Research","Deux humains partagent ~99,9 % de leur ADN (niveau SNP) ; ~99,5–99,6 % avec la variation structurale."],
+      ["🔵","NHGRI / NIH — Human Genomic Variation","https://www.genome.gov/about-genomics/educational-resources/fact-sheets/human-genomic-variation","Deux humains partagent ~99,9 % de leur ADN si l'on compte surtout les différences ponctuelles ; ~99,5–99,6 % avec la variation structurale."],
+      ["🔵","NCBI Bookshelf — Mitochondria","https://www.ncbi.nlm.nih.gov/books/NBK9896/","Biologie mitochondriale et héritage maternel de l'ADN mitochondrial."],
+      ["🔵","MedlinePlus Genetics — mitochondrial DNA","https://medlineplus.gov/genetics/chromosome/mitochondrial-dna/","Source NIH grand public sur l'ADN mitochondrial."],
+      ["🔵","Smithsonian Human Origins — One Species, Living Worldwide","https://humanorigins.si.edu/evidence/genetics/one-species-living-worldwide","Unité de l'espèce humaine, origine africaine et variation génétique partagée."],
+      ["🔵","Smithsonian Human Origins — skin color variation","https://humanorigins.si.edu/evidence/genetics/human-skin-color-variation","Pigmentation humaine et adaptation aux UV."],
+      ["🔵","Smithsonian — science / religion / evolution primer","https://humanorigins.si.edu/about/broader-social-impacts-committee/science-religion-evolution-and-creationism-primer","Cadre de dialogue science-religion sans confusion méthodologique."],
+      ["🟢","National Academies — Science, Evolution, and Creationism","https://doi.org/10.17226/11876","Distinction entre explications scientifiques testables et questions théologiques de sens."],
       ["🟡","Quanta Magazine — Meet LUCA (2024)","https://www.quantamagazine.org/all-life-on-earth-today-descended-from-a-single-cell-meet-luca-20241120/","Vulgarisation de Moody et al. 2024 : LUCA daté ~4,2 Ga, ancêtre commun de toute la vie actuelle."],
       ["🔵","Stanford Medicine — Genetic Adam & Eve (2013)","https://med.stanford.edu/news/all-news/2013/08/common-genetic-ancestors-lived-during-roughly-same-time-period-scientists-find.html","Poznik et al. : Adam-Y et Ève mito. ne formaient pas un couple ; leurs fourchettes d'âge se chevauchent."],
-      ["⚪","BioLogos — Mitochondrial Eve & Y-Chromosome Adam","https://biologos.org/series/evolution-basics/articles/mitochondrial-eve-and-y-chromosome-adam","Explication accessible : des points de coalescence, pas un premier couple ni les seuls humains de leur temps."],
-      ["⚪","Wikipedia — Mitochondrial Eve","https://en.wikipedia.org/wiki/Mitochondrial_Eve","Définition, datation et mécanisme de coalescence de la lignée maternelle."],
-      ["⚪","Wikipedia — Y-chromosomal Adam","https://en.wikipedia.org/wiki/Y-chromosomal_Adam","Définition, haplogroupes basaux africains et datation de la lignée paternelle."]
+      ["🟢","Dossier VIII — audit scientifique markdown","dossier-VIII-ancetres-genetiques.md","Audit complet de ymir-lalie/ancetres-genetiques/index.html : 28 groupes d'affirmations vérifiés."],
+      ["🟢","Dossier VIII — bibliographie DOI markdown","refs-doi-VIII-ancetres-genetiques.md","Bibliographie étendue : 48 DOI uniques vérifiés via Crossref."],
+      ["⚪","BioLogos — Mitochondrial Eve & Y-Chromosome Adam","https://biologos.org/series/evolution-basics/articles/mitochondrial-eve-and-y-chromosome-adam","Explication accessible : des points de coalescence, pas un premier couple ni les seuls humains de leur temps."]
     ];
     const TIER = { "🟢":"Primaire", "🔵":"Institution", "🟡":"Presse sci.", "⚪":"Encyclopédie" };
     const TIERC = { "🟢":"var(--ok)", "🔵":"var(--gold)", "🟡":"var(--warn)", "⚪":"var(--soft)" };
@@ -912,21 +928,103 @@
         { a:"Mitchell & Kirscher (2023)", t:"Mid-Proterozoic day length stalled by tidal resonance", j:"Nature Geoscience 16, 567–569", k:"primary", doi:"10.1038/s41561-023-01202-6",
           ab:"Met en évidence un palier de durée du jour proche de 19 h au Protérozoïque moyen, par résonance des marées thermiques atmosphériques." }
       ]},
-      { g:"Dossier VIII · Ancêtres génétiques (Ève mito., Adam-Y, LUCA)", items:[
-        { a:"Cann, Stoneking & Wilson (1987)", t:"Mitochondrial DNA and human evolution", j:"Nature 325(6099), 31–36", k:"primary", doi:"10.1038/325031a0",
-          ab:"Étude fondatrice de l'« Ève mitochondriale » : l'analyse de l'ADN mitochondrial de 147 individus établit une ascendance maternelle commune africaine, estimée alors à ~200 000 ans. DOI vérifié via Crossref." },
-        { a:"Poznik, G. D. et al. (2013)", t:"Sequencing Y Chromosomes Resolves Discrepancy in Time to Common Ancestor of Males Versus Females", j:"Science 341(6145), 562–565", k:"primary", doi:"10.1126/science.1237619",
-          ab:"Séquençage de chromosomes Y entiers : TMRCA du Y ≈ 120 000–156 000 ans, de l'ADNmt ≈ 99 000–148 000 ans — les deux fourchettes se chevauchent, contre l'idée d'un « Adam » bien plus jeune que l'« Ève ». DOI vérifié via Crossref." },
-        { a:"Mendez, F. L. et al. (2013)", t:"An African American Paternal Lineage Adds an Extremely Ancient Root to the Human Y Chromosome Phylogenetic Tree", j:"American Journal of Human Genetics 92(3), 454–459", k:"primary", doi:"10.1016/j.ajhg.2013.02.002",
-          ab:"Découverte de l'haplogroupe archaïque A00 : la racine du chromosome Y est repoussée à ~338 000 ans (IC 95 % : 237–581 ka), plus ancienne que les plus vieux fossiles d'Homo sapiens. DOI vérifié via Crossref." },
-        { a:"Luo, S. et al. (2018)", t:"Biparental Inheritance of Mitochondrial DNA in Humans", j:"PNAS 115(51), 13039–13044", k:"primary", doi:"10.1073/pnas.1810946115",
-          ab:"Documente de rares cas de transmission biparentale de l'ADN mitochondrial — nuance la règle « héritage uniquement maternel », qui reste néanmoins l'image juste dans l'immense majorité des cas. DOI vérifié via Crossref." },
-        { a:"Moody, E. R. R. et al. (2024)", t:"The nature of the last universal common ancestor and its impact on the early Earth system", j:"Nature Ecology & Evolution 8(9), 1654–1666", k:"primary", doi:"10.1038/s41559-024-02461-1",
-          ab:"Estime LUCA, dernier ancêtre commun universel, à ~4,2 milliards d'années — génome ~2,5 Mb, ~2 600 protéines, acétogène anaérobie au sein d'un écosystème déjà existant. DOI de l'article (à ne pas confondre avec le News & Views …02474-w). Vérifié via Crossref." },
-        { a:"Bell, E. A. et al. (2015)", t:"Potentially biogenic carbon preserved in a 4.1 billion-year-old zircon", j:"PNAS 112(47), 14518–14521", k:"primary", doi:"10.1073/pnas.1517557112",
-          ab:"Graphite (δ¹³C ≈ −24 ‰) inclus dans un zircon de Jack Hills daté 4,10 Ga, « potentiellement » biogénique — indice débattu d'une vie très précoce, à présenter comme possible et non prouvé. DOI vérifié via Crossref." },
-        { a:"Hublin, J.-J. et al. (2017)", t:"New fossils from Jebel Irhoud, Morocco and the pan-African origin of Homo sapiens", j:"Nature 546(7657), 289–292", k:"primary", doi:"10.1038/nature22336",
-          ab:"Plus anciens fossiles attribués à Homo sapiens (~300 000 ans, Maroc), appuyant une origine pan-africaine : l'Ève et l'Adam génétiques apparaissent au sein d'une espèce et de populations déjà établies. DOI vérifié via Crossref." }
+      { g:"Dossier VIII · Ancêtres génétiques (48 DOI)", items:[
+        { a:"Coalescence, Ève mitochondriale et ADN mitochondrial", t:"Giles, Blanc, Cann & Wallace (1980), Maternal inheritance of human mitochondrial DNA, PNAS", j:"Héritage maternel de l'ADNmt", k:"primary", doi:"10.1073/pnas.77.11.6715",
+          ab:"Héritage maternel de l'ADNmt" },
+        { a:"Coalescence, Ève mitochondriale et ADN mitochondrial", t:"Cann, Stoneking & Wilson (1987), Mitochondrial DNA and human evolution, Nature", j:"Étude fondatrice Ève mitochondriale, origine maternelle africaine", k:"primary", doi:"10.1038/325031a0",
+          ab:"Étude fondatrice Ève mitochondriale, origine maternelle africaine" },
+        { a:"Coalescence, Ève mitochondriale et ADN mitochondrial", t:"Vigilant et al. (1991), African Populations and the Evolution of Human Mitochondrial DNA, Science", j:"Branches profondes africaines de l'ADNmt, dates anciennes", k:"primary", doi:"10.1126/science.1840702",
+          ab:"Branches profondes africaines de l'ADNmt, dates anciennes" },
+        { a:"Coalescence, Ève mitochondriale et ADN mitochondrial", t:"Ingman et al. (2000), Mitochondrial genome variation and the origin of modern humans, Nature", j:"Mitogénomes complets, origine africaine", k:"primary", doi:"10.1038/35047064",
+          ab:"Mitogénomes complets, origine africaine" },
+        { a:"Coalescence, Ève mitochondriale et ADN mitochondrial", t:"Soares et al. (2009), Correcting for Purifying Selection: An Improved Human Mitochondrial Molecular Clock, AJHG", j:"Horloge moléculaire ADNmt, sélection purifiante", k:"primary", doi:"10.1016/j.ajhg.2009.05.001",
+          ab:"Horloge moléculaire ADNmt, sélection purifiante" },
+        { a:"Coalescence, Ève mitochondriale et ADN mitochondrial", t:"Behar et al. (2012), A “Copernican” Reassessment of the Human Mitochondrial DNA Tree from its Root, AJHG", j:"Racine de l'arbre ADNmt, RSRS, coalescence", k:"primary", doi:"10.1016/j.ajhg.2012.03.002",
+          ab:"Racine de l'arbre ADNmt, RSRS, coalescence" },
+        { a:"Coalescence, Ève mitochondriale et ADN mitochondrial", t:"Fu et al. (2013), A Revised Timescale for Human Evolution Based on Ancient Mitochondrial Genomes, Current Biology", j:"ADN ancien, mtDNA MRCA ~157 ka (HPD 120–197 ka)", k:"primary", doi:"10.1016/j.cub.2013.02.044",
+          ab:"ADN ancien, mtDNA MRCA ~157 ka (HPD 120–197 ka)" },
+        { a:"Coalescence, Ève mitochondriale et ADN mitochondrial", t:"Ayala (1995), The Myth of Eve: Molecular Biology and Human Origins, Science", j:"Pourquoi Ève mitochondriale n'est pas une première femme/couple fondateur", k:"primary", doi:"10.1126/science.270.5244.1930",
+          ab:"Pourquoi Ève mitochondriale n'est pas une première femme/couple fondateur" },
+        { a:"Coalescence, Ève mitochondriale et ADN mitochondrial", t:"Schwartz & Vissing (2002), Paternal Inheritance of Mitochondrial DNA, NEJM", j:"Cas rare de transmission paternelle de l'ADNmt", k:"primary", doi:"10.1056/NEJMoa020350",
+          ab:"Cas rare de transmission paternelle de l'ADNmt" },
+        { a:"Coalescence, Ève mitochondriale et ADN mitochondrial", t:"Luo et al. (2018), Biparental Inheritance of Mitochondrial DNA in Humans, PNAS", j:"Rares transmissions biparentales de l'ADNmt", k:"primary", doi:"10.1073/pnas.1810946115",
+          ab:"Rares transmissions biparentales de l'ADNmt" },
+        { a:"Adam chromosome Y, phylogénie Y et démographie masculine", t:"Jobling & Tyler-Smith (2003), The human Y chromosome: an evolutionary marker comes of age, Nature Reviews Genetics", j:"Y comme marqueur évolutif, héritage paternel", k:"review", doi:"10.1038/nrg1124",
+          ab:"Y comme marqueur évolutif, héritage paternel" },
+        { a:"Adam chromosome Y, phylogénie Y et démographie masculine", t:"Skaletsky et al. (2003), The male-specific region of the human Y chromosome is a mosaic…, Nature", j:"Structure du chromosome Y, MSY ~95 %, recombinaison limitée", k:"primary", doi:"10.1038/nature01722",
+          ab:"Structure du chromosome Y, MSY ~95 %, recombinaison limitée" },
+        { a:"Adam chromosome Y, phylogénie Y et démographie masculine", t:"Underhill & Kivisild (2007), Use of Y chromosome and mitochondrial DNA population structure in tracing human migrations, Annual Review of Genetics", j:"ADNmt/Y, migrations, lignées uniparentales", k:"review", doi:"10.1146/annurev.genet.41.110306.130407",
+          ab:"ADNmt/Y, migrations, lignées uniparentales" },
+        { a:"Adam chromosome Y, phylogénie Y et démographie masculine", t:"Cruciani et al. (2011), A revised root for the human Y chromosomal phylogenetic tree…, AJHG", j:"Racine africaine de la phylogénie Y", k:"primary", doi:"10.1016/j.ajhg.2011.05.002",
+          ab:"Racine africaine de la phylogénie Y" },
+        { a:"Adam chromosome Y, phylogénie Y et démographie masculine", t:"Poznik et al. (2013), Sequencing Y Chromosomes Resolves Discrepancy…, Science", j:"Y-TMRCA 120–156 ka ; mtDNA 99–148 ka", k:"primary", doi:"10.1126/science.1237619",
+          ab:"Y-TMRCA 120–156 ka ; mtDNA 99–148 ka" },
+        { a:"Adam chromosome Y, phylogénie Y et démographie masculine", t:"Mendez et al. (2013), An African American Paternal Lineage Adds an Extremely Ancient Root…, AJHG", j:"Lignée A00, Y-TMRCA haut (~338 ka publié)", k:"primary", doi:"10.1016/j.ajhg.2013.02.002",
+          ab:"Lignée A00, Y-TMRCA haut (~338 ka publié)" },
+        { a:"Adam chromosome Y, phylogénie Y et démographie masculine", t:"Elhaik et al. (2014), The “extremely ancient” chromosome that isn’t…, EJHG", j:"Critique/nuance de l'âge A00 très élevé", k:"primary", doi:"10.1038/ejhg.2013.303",
+          ab:"Critique/nuance de l'âge A00 très élevé" },
+        { a:"Adam chromosome Y, phylogénie Y et démographie masculine", t:"Karmin et al. (2015), A recent bottleneck of Y chromosome diversity…, Genome Research", j:"456 Y ; MRCA Y ~254 ka (IC 192–307 ka) ; expansions masculines", k:"primary", doi:"10.1101/gr.186684.114",
+          ab:"456 Y ; MRCA Y ~254 ka (IC 192–307 ka) ; expansions masculines" },
+        { a:"Adam chromosome Y, phylogénie Y et démographie masculine", t:"Hallast et al. (2015), The Y-chromosome tree bursts into leaf…, Molecular Biology and Evolution", j:"Arbre Y, SNPs haute confiance, révisions phylogénétiques", k:"primary", doi:"10.1093/molbev/msu327",
+          ab:"Arbre Y, SNPs haute confiance, révisions phylogénétiques" },
+        { a:"Adam chromosome Y, phylogénie Y et démographie masculine", t:"Poznik et al. (2016), Punctuated bursts in human male demography…, Nature Genetics", j:"1 244 Y, démographie masculine, TMRCA modèle-dépendant", k:"primary", doi:"10.1038/ng.3559",
+          ab:"1 244 Y, démographie masculine, TMRCA modèle-dépendant" },
+        { a:"Adam chromosome Y, phylogénie Y et démographie masculine", t:"Francalacci et al. (2013), Low-pass DNA sequencing of 1200 Sardinians…, Science", j:"Résolution phylogénétique Y par séquençage populationnel", k:"primary", doi:"10.1126/science.1237947",
+          ab:"Résolution phylogénétique Y par séquençage populationnel" },
+        { a:"Adam chromosome Y, phylogénie Y et démographie masculine", t:"Rosenberg & Nordborg (2002), Genealogical trees, coalescent theory and the analysis of genetic polymorphisms, Nature Reviews Genetics", j:"Coalescence : arbre d'un gène ≠ arbre des personnes", k:"review", doi:"10.1038/nrg795",
+          ab:"Coalescence : arbre d'un gène ≠ arbre des personnes" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Moody et al. (2024), The nature of the last universal common ancestor and its impact on the early Earth system, Nature Ecology & Evolution", j:"LUCA ~4,2 Ga, nature et impact de LUCA", k:"primary", doi:"10.1038/s41559-024-02461-1",
+          ab:"LUCA ~4,2 Ga, nature et impact de LUCA" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Theobald (2010), A formal test of the theory of universal common ancestry, Nature", j:"Test formel de l'ascendance commune universelle", k:"primary", doi:"10.1038/nature09014",
+          ab:"Test formel de l'ascendance commune universelle" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Weiss et al. (2016), The physiology and habitat of the last universal common ancestor, Nature Microbiology", j:"Physiologie/habitat de LUCA", k:"primary", doi:"10.1038/nmicrobiol.2016.116",
+          ab:"Physiologie/habitat de LUCA" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Crapitto et al. (2022), A consensus view of the proteome of the last universal common ancestor, Ecology and Evolution", j:"Protéome de LUCA, reconstructions comparées", k:"primary", doi:"10.1002/ece3.8930",
+          ab:"Protéome de LUCA, reconstructions comparées" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Knight, Freeland & Landweber (2001), Rewiring the keyboard: evolvability of the genetic code, Nature Reviews Genetics", j:"Code génétique quasi universel et variantes", k:"review", doi:"10.1038/35047500",
+          ab:"Code génétique quasi universel et variantes" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Knight, Freeland & Landweber (1999), Selection, history and chemistry: the three faces of the genetic code, Trends in Biochemical Sciences", j:"Origine et évolution du code génétique", k:"primary", doi:"10.1016/S0968-0004(99)01392-4",
+          ab:"Origine et évolution du code génétique" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Djokic et al. (2017), Earliest signs of life on land preserved in ca. 3.5 Ga hot spring deposits, Nature Communications", j:"Dresser/Pilbara ~3,48 Ga, biosignatures", k:"primary", doi:"10.1038/ncomms15263",
+          ab:"Dresser/Pilbara ~3,48 Ga, biosignatures" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Hickman-Lewis et al. (2023), Advanced two- and three-dimensional insights into Earth's oldest stromatolites…, Geology", j:"Stromatolites ~3,5 Ga, Dresser Formation", k:"primary", doi:"10.1130/G50390.1",
+          ab:"Stromatolites ~3,5 Ga, Dresser Formation" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Baumgartner et al. (2019), Nano-porous pyrite and organic matter in 3.5-billion-year-old stromatolites…, Geology", j:"Matière organique et pyrite dans stromatolites ~3,5 Ga", k:"primary", doi:"10.1130/G46365.1",
+          ab:"Matière organique et pyrite dans stromatolites ~3,5 Ga" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Van Kranendonk (2006), Volcanic degassing, hydrothermal circulation and the flourishing of early life…, Earth-Science Reviews", j:"Revue contexte Pilbara, premières biosignatures", k:"review", doi:"10.1016/j.earscirev.2005.09.005",
+          ab:"Revue contexte Pilbara, premières biosignatures" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Van Kranendonk et al. (2008), Geological setting of Earth's oldest fossils…, Precambrian Research", j:"Cadre géologique Dresser Formation", k:"primary", doi:"10.1016/j.precamres.2008.07.003",
+          ab:"Cadre géologique Dresser Formation" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Allwood et al. (2006), Stromatolite reef from the Early Archaean era of Australia, Nature", j:"Strelley Pool ~3,43 Ga, stromatolites archéens", k:"primary", doi:"10.1038/nature04764",
+          ab:"Strelley Pool ~3,43 Ga, stromatolites archéens" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Bell et al. (2015), Potentially biogenic carbon preserved in a 4.1 billion-year-old zircon, PNAS", j:"Zircon Jack Hills 4,1 Ga, indice possible/débattu", k:"primary", doi:"10.1073/pnas.1517557112",
+          ab:"Zircon Jack Hills 4,1 Ga, indice possible/débattu" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Nutman et al. (2016), Rapid emergence of life shown by discovery of 3,700-million-year-old microbial structures, Nature", j:"Claim Isua ~3,7 Ga, débattu", k:"primary", doi:"10.1038/nature19355",
+          ab:"Claim Isua ~3,7 Ga, débattu" },
+        { a:"LUCA, ascendance commune universelle et premières traces de vie", t:"Dodd et al. (2017), Evidence for early life in Earth's oldest hydrothermal vent precipitates, Nature", j:"Claim Nuvvuagittuq >3,7 Ga, débattu", k:"primary", doi:"10.1038/nature21377",
+          ab:"Claim Nuvvuagittuq >3,7 Ga, débattu" },
+        { a:"Homo sapiens, variation humaine, identité génétique", t:"Hublin et al. (2017), New fossils from Jebel Irhoud, Morocco and the pan-African origin of Homo sapiens, Nature", j:"Plus anciens fossiles *H. sapiens* ~300 ka, origine pan-africaine", k:"primary", doi:"10.1038/nature22336",
+          ab:"Plus anciens fossiles *H. sapiens* ~300 ka, origine pan-africaine" },
+        { a:"Homo sapiens, variation humaine, identité génétique", t:"Richter et al. (2017), The age of the hominin fossils from Jebel Irhoud…, Nature", j:"Datation Jebel Irhoud ~315 ± 34 ka", k:"primary", doi:"10.1038/nature22335",
+          ab:"Datation Jebel Irhoud ~315 ± 34 ka" },
+        { a:"Homo sapiens, variation humaine, identité génétique", t:"Scerri et al. (2018), Did Our Species Evolve in Subdivided Populations across Africa…, TREE", j:"Modèle pan-africain, populations structurées", k:"primary", doi:"10.1016/j.tree.2018.05.005",
+          ab:"Modèle pan-africain, populations structurées" },
+        { a:"Homo sapiens, variation humaine, identité génétique", t:"Rosenberg et al. (2002), Genetic Structure of Human Populations, Science", j:"Structure génétique humaine, variation partagée", k:"primary", doi:"10.1126/science.1078311",
+          ab:"Structure génétique humaine, variation partagée" },
+        { a:"Homo sapiens, variation humaine, identité génétique", t:"Hu et al. (2023), Genomic inference of a severe human bottleneck…, Science", j:"Goulot ancien inféré, pas goulot à deux individus", k:"primary", doi:"10.1126/science.abq7487",
+          ab:"Goulot ancien inféré, pas goulot à deux individus" },
+        { a:"Homo sapiens, variation humaine, identité génétique", t:"Levy et al. (2007), The diploid genome sequence of an individual human, PLOS Biology", j:"Variation individuelle, indels/SV vs SNP", k:"primary", doi:"10.1371/journal.pbio.0050254",
+          ab:"Variation individuelle, indels/SV vs SNP" },
+        { a:"Homo sapiens, variation humaine, identité génétique", t:"Sudmant et al. (2015), An integrated map of structural variation in 2,504 human genomes, Nature", j:"Variation structurale humaine", k:"primary", doi:"10.1038/nature15394",
+          ab:"Variation structurale humaine" },
+        { a:"Homo sapiens, variation humaine, identité génétique", t:"Jablonski & Chaplin (2000), The evolution of human skin coloration, Journal of Human Evolution", j:"Pigmentation, UV, folate/vitamine D", k:"primary", doi:"10.1006/jhev.2000.0403",
+          ab:"Pigmentation, UV, folate/vitamine D" },
+        { a:"Homo sapiens, variation humaine, identité génétique", t:"Crawford et al. (2017), Loci associated with skin pigmentation identified in African populations, Science", j:"Gènes de pigmentation en Afrique, complexité adaptative", k:"primary", doi:"10.1126/science.aan8433",
+          ab:"Gènes de pigmentation en Afrique, complexité adaptative" },
+        { a:"Homo sapiens, variation humaine, identité génétique", t:"Eiberg et al. (2008), Blue eye color in humans may be caused by a perfectly associated founder mutation…, Human Genetics", j:"Génétique de la couleur des yeux", k:"primary", doi:"10.1007/s00439-007-0460-x",
+          ab:"Génétique de la couleur des yeux" },
+        { a:"Science, évolution et dialogue avec la foi", t:"National Academies (2008), Science, Evolution, and Creationism, National Academies Press", j:"Distinguer méthode scientifique, évolution et questions théologiques", k:"review", doi:"10.17226/11876",
+          ab:"Distinguer méthode scientifique, évolution et questions théologiques" }
       ]}
     ];
     function refHTML(r){

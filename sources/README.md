@@ -25,7 +25,7 @@ Vérifié le **1ᵉʳ juin 2026** par recherche web (sources autoritatives : NAS
 
 ### Sources scientifiques — littérature primaire (DOI)
 
-Couche « sources scientifiques » : **plus de 150 articles à comité de lecture, DOI vérifiés ou sourcés par page éditeur** (résolution DOI/éditeur ; aucun DOI inventé), plus quelques DOI de jeux de données. C'est l'appareil de référence le plus strict.
+Couche « sources scientifiques » : **près de 200 articles à comité de lecture, DOI vérifiés ou sourcés par page éditeur** (résolution DOI/éditeur ; aucun DOI inventé), plus quelques DOI de jeux de données. C'est l'appareil de référence le plus strict.
 
 | Fichier | DOI | Couverture |
 |---|---|---|
@@ -36,13 +36,13 @@ Couche « sources scientifiques » : **plus de 150 articles à comité de lectur
 | [`refs-doi-5-lune-artemis.md`](refs-doi-5-lune-artemis.md) | 6 | Colaprete (LCROSS), Li, Honniball, Hayne, Pieters (M³), Hauri |
 | [`refs-doi-V-elements.md`](refs-doi-V-elements.md) | 81 | Particules/interactions, cosmologie/BBN/CMB, radioactivité, modèles atomiques, mécanique quantique, règles de remplissage, propriétés périodiques, Mendeleïev |
 | [`refs-doi-VI-la-vie-de-la-terre.md`](refs-doi-VI-la-vie-de-la-terre.md) | 12 | Paléogéographie, PhanDA, CO₂/O₂/CH₄, GEOCARBSULF, Grande Oxydation, durée du jour Terre-Lune |
-| [`refs-doi-VIII-ancetres-genetiques.md`](refs-doi-VIII-ancetres-genetiques.md) | 7 | Cann 1987 (Ève mito.), Poznik 2013 (Adam-Y), Luo 2018 (ADNmt biparental), Mendez 2013 (A00), Moody 2024 (LUCA), Bell 2015 (zircon 4,1 Ga), Hublin 2017 (Jebel Irhoud) |
+| [`refs-doi-VIII-ancetres-genetiques.md`](refs-doi-VIII-ancetres-genetiques.md) | 48 | Ève mitochondriale, Adam chromosome Y, coalescence, LUCA, code génétique, premières traces de vie, variation humaine, science & foi |
 
 > Pièges à DOI détectés et corrigés par les agents : Kimberella (Fedonkin) `10.1038/42242` (et non 41048), Daver 2022, Renne 2015 `…aac7549`, Zachos 2001 `…1059412`. Les bornes ICS n'ont pas de DOI d'article unique → référence = GTS2020 (DOI volume) + charte officielle ICS.
 
 ## Bilan global
 
-Les grands repères des dossiers sont corrects et sourcés. Restent des points *à nuancer* et quelques corrections de cohérence/d'actualisation ; pour le Dossier V, l'audit signale deux formulations à corriger strictement (`A` plutôt que « masse » en β, et `|ψ(r,t)|²` plutôt que `|ψ(t)|²`).
+Les grands repères des dossiers sont corrects et sourcés. Restent des points *à nuancer* et quelques corrections de cohérence/d'actualisation ; pour les dossiers V et VIII, les audits signalent plusieurs formulations à corriger strictement ou à renforcer.
 
 ### Corrections recommandées (concrètes)
 1. **`horloge-univers/chronos.html` — reproduction sexuée :** affiche encore **~1,2 Ga** à 3 endroits (carte « cellule complexe » + chip, `SEGMENTS`, tableau des éons), alors que `events.json` porte la valeur à jour **1,047 Ga** (Bangiomorpha, Gibson et al. 2018). → aligner sur **1,047 Ga** (bascule Mésoprotérozoïque → Tonien/Néoprotérozoïque).
@@ -60,9 +60,9 @@ Les grands repères des dossiers sont corrects et sourcés. Restent des points *
 - Points de précision principaux : les cartes >1 Ga sont stylisées, les séries précambriennes sont des ancrages/estimations et les événements biologiques profonds gardent des formulations prudentes.
 
 ### Dossier VIII — Adam & Ève, ancêtres génétiques
-- Audit complet : [`dossier-VIII-ancetres-genetiques.md`](dossier-VIII-ancetres-genetiques.md) ; bibliographie DOI : [`refs-doi-VIII-ancetres-genetiques.md`](refs-doi-VIII-ancetres-genetiques.md) (**7 DOI, tous vérifiés Crossref**).
-- Aucune **erreur ❌**. Points nuancés par des encadrés « Anti-intox » dans la page : dates Ève mito. (~150–200 ka, plutôt ~150–160 ka) et Adam-Y (~120–340 ka selon A00) à donner en **fourchettes** ; « jamais un couple, pas forcément contemporains » (écart débattu) ; LUCA **~4,2 Ga** (Moody et al. 2024) en complément du « 3,5–4 Ga » ; **99,9 %** attribué au Projet Génome Humain, avec ~99,5–99,6 % en variation structurale ; héritage mitochondrial maternel « sauf très rares exceptions ».
-- Piège à DOI évité : Moody 2024 LUCA = `10.1038/s41559-024-02461-1` (article), **pas** `…02474-w` (News & Views).
+- Audit complet : [`dossier-VIII-ancetres-genetiques.md`](dossier-VIII-ancetres-genetiques.md) ; bibliographie DOI : [`refs-doi-VIII-ancetres-genetiques.md`](refs-doi-VIII-ancetres-genetiques.md) (**48 DOI uniques, vérifiés Crossref**).
+- Points principaux : Ève mitochondriale et Adam-Y sont des **coalescences de lignées**, pas un couple ; dates à donner en fourchettes (Ève ~120–200 ka ; Adam-Y ~120–307 ka selon calibrage, avec A00 comme borne haute discutée) ; LUCA n'est **pas la première cellule** mais le dernier ancêtre commun de la vie actuelle, avec estimation 2024 ~4,2 Ga ; **99,9 %** vaut pour les différences ponctuelles, ~99,5–99,6 % avec variation structurale ; l'héritage mitochondrial est maternel sauf très rares exceptions.
+- Corrections de rigueur signalées : « scientifiques ont nommé Adam/Ève pour rejoindre la Bible » n'est pas sourçable ; « Adam et Ève ne se sont jamais rencontrés » doit être formulé « pas un couple, pas nécessairement contemporains » ; « meilleur survit » et les adaptations de forme des yeux sont à nuancer.
 
 ### Points à nuancer (non bloquants)
 - **Nombre de galaxies (~2 × 10¹²)** [Dossier IV] : estimation modèle-dépendante, contestée (cf. New Horizons/Lauer 2021) — garder le « ≈ », signaler « estimation ».
