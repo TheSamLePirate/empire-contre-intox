@@ -9,6 +9,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,380..600;1,6..72,380..500&display=swap" rel="stylesheet" />
+<!-- KaTeX — rendu des vraies formules mathématiques -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <style>
   :root {
     --ink:    #060814;
@@ -190,6 +193,34 @@
     font-family: var(--mono); font-size: 17px; line-height: 2.1; color: var(--text); max-width: 70ch; }
   .fx .l { display: block; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); margin-bottom: 6px; }
   .fx .op { color: var(--curl); } .fx .v { color: var(--flow); } .fx sub { font-size: .7em; }
+
+  /* ===== Formules mathématiques (KaTeX) ===== */
+  /* inline : une formule glissée au fil du texte */
+  .imath { display: inline-block; line-height: 1; vertical-align: -.16em; }
+  .imath .katex { font-size: 1.02em; color: var(--iris); }
+  .imath:empty { display: none; }
+  /* bloc « tableau noir » : formule rappelée ou expliquée — accent = couleur du chapitre */
+  .formula-block { margin: 30px 0; position: relative; border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    background: radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--c, var(--iris)) 12%, transparent), transparent 56%),
+      linear-gradient(180deg, rgba(16,20,44,.72), rgba(10,14,30,.66));
+    box-shadow: 0 26px 70px rgba(0,0,0,.42); }
+  .formula-block::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+    background-image: linear-gradient(var(--line-2) 1px, transparent 1px), linear-gradient(90deg, var(--line-2) 1px, transparent 1px);
+    background-size: 34px 34px; }
+  .formula-block > * { position: relative; z-index: 1; }
+  .formula-block .fb-head { display: flex; align-items: center; gap: 11px; padding: 11px 22px; border-bottom: 1px solid var(--line);
+    background: rgba(6,8,20,.42); font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c, var(--iris)); }
+  .formula-block .fb-head::before { content: "ƒ"; display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; flex: none;
+    border: 1px solid var(--c, var(--iris)); border-radius: 50%; font-family: var(--display); font-style: italic; font-size: 13px; letter-spacing: 0; color: var(--c, var(--iris)); }
+  .formula-block .fb-head .fb-tag { margin-left: auto; color: var(--faint); letter-spacing: 0.12em; }
+  .formula { display: block; margin: 0; padding: 24px 22px; text-align: center; overflow-x: auto; }   /* cible KaTeX display */
+  .formula .katex { font-size: 1.42rem; color: var(--text); }
+  .formula + .formula { padding-top: 0; }
+  .formula:empty { display: none; }
+  .formula-block .fb-note { padding: 2px 22px 18px; margin: 0; font-family: var(--body); font-size: 15.5px; line-height: 1.6; color: var(--dim); }
+  .formula-block .fb-note b { color: var(--text); font-weight: 600; }
+  .formula-block .fb-note .imath .katex { font-size: 1em; color: var(--c, var(--iris)); }
+  @media (max-width: 640px) { .formula .katex { font-size: 1.12rem; } .formula-block .fb-head { padding: 10px 16px; } .formula, .formula-block .fb-note { padding-left: 16px; padding-right: 16px; } }
 
   /* diagrammes svg */
   .diagram { margin: 36px 0; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(16,20,44,.45), rgba(10,14,30,.6)); }
@@ -449,6 +480,12 @@
           <span class="src">3Blue1Brown — Divergence &amp; rotationnel</span>
         </blockquote>
         <p>Cette question-là, c'est <b>le gradient</b>, vu par l'envers. Le gradient d'une « colline » — un champ scalaire : une altitude, une température, un potentiel — est le champ de vecteurs qui pointe partout vers la plus forte <i>montée</i> ; son opposé dévale la pente. Demander « ce flux est-il la descente d'une colline ? », c'est demander s'il <b>dérive d'un potentiel</b>. Quand la réponse est oui, le champ est un gradient, et l'on sait déjà énormément de lui.</p>
+        <div class="formula-block">
+          <div class="fb-head">Le gradient <span class="fb-tag">la pente d'une colline</span></div>
+          <div class="formula" data-tex="\nabla f=\left(\dfrac{\partial f}{\partial x},\ \dfrac{\partial f}{\partial y}\right)"></div>
+          <div class="formula" data-tex="\vec F=-\,\nabla V"></div>
+          <p class="fb-note">Le gradient d'un champ scalaire <span class="imath" data-tex="f"></span> (altitude, température, potentiel) est le vecteur qui pointe vers la plus forte <b>montée</b> ; son opposé dévale la pente. Un écoulement « dérive d'un potentiel » quand il s'écrit <span class="imath" data-tex="\vec F=-\nabla V"></span> — il <b>est</b> alors la descente d'une colline.</p>
+        </div>
         <div class="panel flow">
           <div class="pl">La leçon</div>
           <h5>Changer de métaphore, c'est changer d'outils</h5>
@@ -484,9 +521,11 @@
           <span class="src">3Blue1Brown — Divergence &amp; rotationnel</span>
         </blockquote>
         <p>Sur une source, la divergence est <span class="w-flow">positive</span>. Et il n'est pas nécessaire que <i>tout</i> le fluide s'écarte : il suffit que le flux qui <b>arrive</b> d'un côté soit plus lent que celui qui <b>repart</b> de l'autre — cela trahit encore une génération spontanée. Inversement, si une petite région reçoit plus qu'elle ne laisse partir, la divergence y est <span class="w-sink">négative</span>.</p>
-        <div class="fx">
-          <span class="l">Notation</span>
-          <span class="op">∇·</span><span class="v">F</span> = ∂F<sub>x</sub>/∂x + ∂F<sub>y</sub>/∂y &nbsp;→&nbsp; <span style="color:var(--dim)">un seul nombre par point</span>
+        <div class="formula-block">
+          <div class="fb-head">La divergence <span class="fb-tag">∇·F — un nombre par point</span></div>
+          <div class="formula" data-tex="\nabla\cdot\vec F=\dfrac{\partial F_x}{\partial x}+\dfrac{\partial F_y}{\partial y}"></div>
+          <div class="formula" data-tex="\operatorname{div}\vec F(p)=\lim_{A\to 0}\dfrac{1}{A}\oint_{\partial A}\vec F\cdot\vec n\,\mathrm d\ell"></div>
+          <p class="fb-note">La première écriture se calcule ; la seconde dit ce que ça <b>veut dire</b> : le flux net qui traverse le bord d'une petite région, divisé par son aire, quand cette région se réduit à un point. <span class="imath" data-tex=">0"></span> = source, <span class="imath" data-tex="<0"></span> = puits, <span class="imath" data-tex="=0"></span> = incompressible.</p>
         </div>
         <p>Le champ est une fonction qui prend une entrée 2D et rend une sortie 2D. Sa divergence, elle, est une <b>nouvelle fonction</b> : elle prend un point et rend un <b>simple nombre</b>, dépendant du comportement du champ dans un petit voisinage. En cela, c'est l'analogue d'une <b>dérivée</b> — la mesure de « combien » ce point agit en source ou en puits. <i>(On retarde volontairement les calculs : comprendre ce que ça représente compte davantage.)</i></p>
         <div class="panel">
@@ -532,9 +571,11 @@
           <h5>Le vrai rotationnel est tridimensionnel</h5>
           <p>Le rotationnel « propre » associe à chaque point de l'espace 3D un <b>nouveau vecteur</b>, selon une règle de la main droite. Ici, pour aller à l'essentiel, on n'utilise que sa <b>variante 2D</b>, qui associe à chaque point un <b>simple nombre</b> plutôt qu'un vecteur.</p>
         </div>
-        <div class="fx">
-          <span class="l">Notation — variante 2D</span>
-          (<span class="op">∇×</span><span class="v">F</span>)<sub>z</sub> = ∂F<sub>y</sub>/∂x − ∂F<sub>x</sub>/∂y
+        <div class="formula-block">
+          <div class="fb-head">Le rotationnel <span class="fb-tag">2D : un nombre · 3D : un vecteur</span></div>
+          <div class="formula" data-tex="(\nabla\times\vec F)_z=\dfrac{\partial F_y}{\partial x}-\dfrac{\partial F_x}{\partial y}"></div>
+          <div class="formula" data-tex="\nabla\times\vec F=\begin{vmatrix}\vec\imath & \vec\jmath & \vec k\\[2pt]\dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z}\\[6pt] F_x & F_y & F_z\end{vmatrix}"></div>
+          <p class="fb-note">La <b>variante 2D</b> (en haut) rend un simple nombre — le sens de rotation. Le <b>vrai rotationnel</b> (en bas) associe à chaque point de l'espace 3D un <b>vecteur</b>, selon la règle de la main droite : son axe est celui de la rotation, sa longueur l'intensité.</p>
         </div>
         <div class="panel sink">
           <div class="pl">Garde-fou — la convention de signe</div>
@@ -555,8 +596,8 @@
         <div class="lab-side">
           <div class="chips" id="chips" role="group" aria-label="Choix du champ"></div>
           <div class="readout">
-            <div class="ro"><span class="k">Divergence <b>∇·F</b></span><span class="val zero" id="rdiv">0</span></div>
-            <div class="ro"><span class="k">Rotationnel <b>(∇×F)z</b></span><span class="val zero" id="rcurl">0</span></div>
+            <div class="ro"><span class="k">Divergence <span class="imath" data-tex="\nabla\cdot\vec F"></span></span><span class="val zero" id="rdiv">0</span></div>
+            <div class="ro"><span class="k">Rotationnel <span class="imath" data-tex="(\nabla\times\vec F)_z"></span></span><span class="val zero" id="rcurl">0</span></div>
           </div>
           <p class="lab-desc" id="labdesc"></p>
           <div class="toggles">
@@ -590,9 +631,11 @@
       <div class="body reveal" data-d="1">
         <p>L'exemple maître : l'électricité et le magnétisme tiennent en <b>quatre équations</b> — les équations de Maxwell — écrites dans le langage de la divergence et du rotationnel.</p>
         <p><b>Loi de Gauss.</b> La divergence du champ électrique en un point est proportionnelle à la <b>densité de charge</b> qui s'y trouve. Lisez-la en fluide : les régions <span class="w-flow">chargées positivement</span> sont des <b>sources</b>, les régions <span class="w-sink">négatives</span> des <b>puits</b>, et là où il n'y a pas de charge, le fluide s'écoule de façon incompressible, comme l'eau.</p>
-        <div class="fx">
-          <span class="l">Gauss · électrique &nbsp;—&nbsp; Magnétique</span>
-          <span class="op">∇·</span><span class="v">E</span> = ρ / ε₀ &nbsp;&nbsp;&nbsp;<span style="color:var(--faint)">|</span>&nbsp;&nbsp;&nbsp; <span class="op">∇·</span><span class="v">B</span> = 0
+        <div class="formula-block">
+          <div class="fb-head">Les quatre équations de Maxwell <span class="fb-tag">le langage des champs</span></div>
+          <div class="formula" data-tex="\nabla\cdot\vec E=\dfrac{\rho}{\varepsilon_0}\qquad\qquad \nabla\cdot\vec B=0"></div>
+          <div class="formula" data-tex="\nabla\times\vec E=-\dfrac{\partial \vec B}{\partial t}\qquad \nabla\times\vec B=\mu_0\vec J+\mu_0\varepsilon_0\dfrac{\partial \vec E}{\partial t}"></div>
+          <p class="fb-note">En haut, les deux <b>divergences</b> : <span class="imath" data-tex="\nabla\cdot\vec E"></span> proportionnelle à la densité de charge <span class="imath" data-tex="\rho"></span> (<b>Gauss</b> — charges = sources/puits), et <span class="imath" data-tex="\nabla\cdot\vec B=0"></span> (<b>pas de monopôle</b> magnétique : ni source ni puits). En bas, les deux <b>rotationnels</b> : <b>Faraday</b> et <b>Ampère-Maxwell</b> disent que la variation de chaque champ dépend du rotationnel de l'autre — ce va-et-vient est exactement ce qui engendre la <b>lumière</b>.</p>
         </div>
         <p><b>Divergence du champ magnétique : zéro partout.</b> Le fluide correspondant est incompressible — <b>ni source, ni puits</b>. Autrement dit, les <b>monopôles magnétiques</b> — un pôle nord ou sud isolé — <i>n'existent pas</i> : rien d'analogue aux charges positives et négatives de l'électricité.</p>
         <blockquote class="q">
@@ -641,6 +684,11 @@
           <p>« Des opérations comme la divergence et le rotationnel peuvent te renseigner sur le système. Les effectifs convergent-ils vers un couple de valeurs, ou y a-t-il des valeurs dont ils s'écartent ? »</p>
           <span class="src">3Blue1Brown — Divergence &amp; rotationnel</span>
         </blockquote>
+        <div class="formula-block">
+          <div class="fb-head">Le champ de l'espace des phases <span class="fb-tag">Lotka-Volterra · proie-prédateur</span></div>
+          <div class="formula" data-tex="\dfrac{dx}{dt}=\alpha x-\beta x y\qquad \dfrac{dy}{dt}=\delta x y-\gamma y"></div>
+          <p class="fb-note">Avec <span class="imath" data-tex="x"></span> les proies (lapins) et <span class="imath" data-tex="y"></span> les prédateurs (renards), ce système associe à chaque état <span class="imath" data-tex="(x,y)"></span> le vecteur <span class="imath" data-tex="\left(\tfrac{dx}{dt},\tfrac{dy}{dt}\right)"></span> : c'est exactement le <b>champ de vecteurs</b> de l'écran. Son flot tourne en <b>boucles fermées</b> autour de l'équilibre <span class="imath" data-tex="\left(\tfrac{\gamma}{\delta},\tfrac{\alpha}{\beta}\right)"></span> — les cycles proie-prédateur.</p>
+        </div>
       </div>
 
       <div class="phase-wrap reveal" data-d="1">
@@ -675,6 +723,13 @@
           <span class="src">3Blue1Brown — Divergence &amp; rotationnel</span>
         </blockquote>
         <p>De même, le <b>produit vectoriel</b> mesure à quel point deux vecteurs sont <b>perpendiculaires</b>. Le produit vectoriel du pas par la différence qu'il provoque tend à être positif là où le rotationnel l'est : un pas qui provoque un changement <b>perpendiculaire</b>, c'est une tendance à la <span class="w-curl">rotation</span>.</p>
+        <div class="formula-block">
+          <div class="fb-head">Pourquoi ∇· et ∇× <span class="fb-tag">scalaire ↔ divergence · vectoriel ↔ rotationnel</span></div>
+          <div class="formula" data-tex="\nabla=\left(\dfrac{\partial}{\partial x},\ \dfrac{\partial}{\partial y},\ \dfrac{\partial}{\partial z}\right)"></div>
+          <div class="formula" data-tex="\vec a\cdot\vec b=\lVert\vec a\rVert\,\lVert\vec b\rVert\cos\theta \qquad \lVert\vec a\times\vec b\rVert=\lVert\vec a\rVert\,\lVert\vec b\rVert\sin\theta"></div>
+          <div class="formula" data-tex="\operatorname{div}\vec F=\nabla\cdot\vec F \qquad \operatorname{rot}\vec F=\nabla\times\vec F"></div>
+          <p class="fb-note">Le <b>nabla</b> <span class="imath" data-tex="\nabla"></span> est un vecteur d'opérateurs de dérivation. Le produit <b>scalaire</b> mesure l'<b>alignement</b> (<span class="imath" data-tex="\cos\theta"></span>) — un pas aligné avec le changement qu'il provoque, c'est de la divergence ; le produit <b>vectoriel</b> mesure la <b>perpendicularité</b> (<span class="imath" data-tex="\sin\theta"></span>) — un changement perpendiculaire, c'est de la rotation. La notation n'est donc pas qu'un truc mnémotechnique.</p>
+        </div>
       </div>
       <div class="diagram reveal" data-d="1" style="--c:var(--iris)">
         <div class="canvas">
@@ -717,17 +772,17 @@
       </div>
       <div class="grid reveal" data-d="1">
         <div class="col d">
-          <span class="tag">∇· — produit scalaire</span>
+          <span class="tag"><span class="imath" data-tex="\nabla\cdot"></span> — produit scalaire</span>
           <h3>Divergence</h3>
           <dl>
             <div><dt>La question</dt><dd>Le fluide sort-il ou entre-t-il, ici ?</dd></div>
             <div><dt>Le signe</dt><dd>+ source · − puits · 0 conservé (incompressible)</dd></div>
             <div><dt>Le test</dt><dd>La brindille n'a rien à voir ; on regarde le solde entrant/sortant.</dd></div>
-            <div><dt>En physique</dt><dd>Gauss : ∇·E ∝ charge · ∇·B = 0 (pas de monopôle)</dd></div>
+            <div><dt>En physique</dt><dd>Gauss : <span class="imath" data-tex="\nabla\cdot\vec E\propto\text{charge}"></span> · <span class="imath" data-tex="\nabla\cdot\vec B=0"></span> (pas de monopôle)</dd></div>
           </dl>
         </div>
         <div class="col r">
-          <span class="tag">∇× — produit vectoriel</span>
+          <span class="tag"><span class="imath" data-tex="\nabla\times"></span> — produit vectoriel</span>
           <h3>Rotationnel</h3>
           <dl>
             <div><dt>La question</dt><dd>Le fluide tourne-t-il, ici ?</dd></div>
@@ -942,6 +997,24 @@
       }
       requestAnimationFrame(fr);
     })();
+  </script>
+
+  <!-- Rendu des formules en LaTeX (KaTeX, chargé en defer) -->
+  <script>
+    function renderMath() {
+      document.querySelectorAll(".imath[data-tex], .formula[data-tex]").forEach((node) => {
+        const tex = node.getAttribute("data-tex");
+        const display = node.classList.contains("formula");
+        if (window.katex) {
+          try { katex.render(tex, node, { throwOnError: false, displayMode: display }); return; }
+          catch (e) { /* repli ci-dessous */ }
+        }
+        node.textContent = tex; // repli lisible si KaTeX indisponible
+      });
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderMath);
+    else renderMath();
+    window.addEventListener("load", renderMath); // filet de sécurité (CDN lent)
   </script>
 </body>
 </html>
