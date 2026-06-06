@@ -9,7 +9,7 @@ Le site est publié via GitHub Pages : **https://thesamlepirate.github.io/empire
 > Pour créer un dossier à partir d'un transcript, **utilise la skill `/nouveau-dossier`**
 > (`.claude/skills/nouveau-dossier/`). Elle reproduit pas à pas le process éprouvé sur
 > les derniers dossiers et fournit les outils prêts :
-> - **`SKILL.md`** — le playbook en 14 étapes (lecture intégrale → page codex → 100 %
+> - **`SKILL.md`** — le playbook en 15 étapes (lecture intégrale → page codex → 100 %
 >   verbatim → vérification factuelle → images → sources → index → publication) ;
 > - **`reference/design-system.md`** — jetons codex, structure, chemins relatifs, le
 >   **correctif de révélation** des sections hautes (`threshold:0` + filet de sécurité),
@@ -21,6 +21,10 @@ Le site est publié via GitHub Pages : **https://thesamlepirate.github.io/empire
 >   des images confiée à **Codex**, lancée **en parallèle** de la construction) ;
 > - **`scripts/check-coverage.py`** — contrôle **obligatoire** des 100 % mot pour mot ;
 > - **`scripts/optimize-pngs.sh`** — optimisation PNG du site (pngquant + oxipng).
+>
+> À la racine du dépôt : **`scripts/generate-rss.py`** — régénère **`rss.xml`**
+> (flux RSS riche) depuis `index.html` ; à relancer **pour chaque dossier** (voir
+> « Flux RSS »).
 >
 > La présente charte (`AGENT.md`) reste la **référence de fond** ; la skill en est la
 > mise en œuvre opérationnelle. En cas de divergence, suivre `AGENT.md`.
@@ -113,7 +117,8 @@ Voir `provoxys/Artemis2.html` (classes `.eci-home`, `.eci-collective`, `.eci-btn
 10. **Crédit auteur** dans la page (footer ECI et/ou bandeau crédit après le sommaire) ET sur la carte d'index.
 11. **Vérifier & sourcer** chaque information, affirmation et donnée du dossier, puis **alimenter le dossier `sources/`** (audit `.md` + références DOI + page `sources.html`) — voir « Vérification scientifique & sources ». **OBLIGATOIRE pour tout dossier**, existant ou nouveau.
 12. Mettre à jour `index.html` (carte + compteurs + numérotation — voir « Mise à jour de l'index »).
-13. Vérifier en local : images chargées, liens corrects, pas de scroll horizontal.
+13. **Régénérer le flux RSS** : `python3 scripts/generate-rss.py` (relit `index.html` → réécrit `rss.xml`). **OBLIGATOIRE pour tout dossier** ajouté/modifié/réordonné — voir « Flux RSS ».
+14. Vérifier en local : images chargées, liens corrects, pas de scroll horizontal.
 
 ## Style visuel — Codex scientifique impérial (voie A)
 
@@ -203,6 +208,34 @@ Pour chaque nouveau dossier :
 - **Compteurs** : mettre à jour le hero (compteur en chiffres romains, actuellement `<b>V</b> dossiers`) et le sec-head (la phrase qui chiffre le nombre de dossiers, actuellement « Cinq dossiers… »). Penser aussi au **Décret méthodologique** (`#decret`) et au menu du pied de page si l'on ajoute/réordonne des dossiers.
 - Les nouvelles cartes se placent **avant** le bandeau manifeste `#manifeste` (« Rejoignez l'Empire… »), qui reste juste après la grille des dossiers.
 
+## Flux RSS (`rss.xml`) — obligatoire à chaque dossier
+
+Le site expose un **flux RSS riche** à `rss.xml` (racine), servi sur
+`https://thesamlepirate.github.io/empire-contre-intox/rss.xml` et déclaré dans le
+`<head>` de `index.html` (`<link rel="alternate" type="application/rss+xml">`).
+
+- **Ne pas éditer `rss.xml` à la main** : il est **généré** depuis les cartes de
+  `index.html` par `scripts/generate-rss.py`. Toute info (titre, lien, image,
+  résumé, tags, badge, auteurs) est donc reprise telle quelle de la carte d'index
+  → **mettre l'index à jour d'abord**, puis régénérer.
+- **Après toute modification de l'index** (ajout, modification, **réordonnancement**
+  ou renumérotation d'un dossier), lancer depuis la racine :
+
+  ```bash
+  python3 scripts/generate-rss.py   # relit index.html → réécrit rss.xml
+  ```
+
+- Le script produit un `<item>` par carte (dossiers + carte « Calendrier des lives ») :
+  `title` (« Dossier N — Titre »), `link`/`guid` absolus, `dc:creator` (auteurs +
+  mention de participation), `description` + `content:encoded` (HTML riche : image,
+  résumé, crédit, tags, lien), `enclosure` + `media:content`/`media:thumbnail`
+  (image hero, taille réelle), `category` (tags + badge), `pubDate` (date du 1er
+  commit git du dossier ; repli sinon). Items **antéchronologiques** (récents en tête).
+- **Vérifier** que `rss.xml` reste bien formé : `python3 -c "import xml.dom.minidom;
+  xml.dom.minidom.parse('rss.xml')"`, et qu'il compte le **bon nombre d'items**.
+- À la **publication**, stager `rss.xml` **avec** `index.html` (sinon le flux pointe
+  vers un dossier non publié, ou omet le nouveau — cf. piège des références orphelines).
+
 ## Liens externes / compagnons interactifs
 
 Si un dossier a un compagnon externe (ex. simulation `https://thesamlepirate.github.io/NebulaSim/...`) :
@@ -270,7 +303,8 @@ Page codex ECI qui rassemble les sources de **tous** les dossiers, avec **barre 
 - Après push, Pages reconstruit (~1 min). Vérifier :
   - `gh api repos/TheSamLePirate/empire-contre-intox/pages/builds/latest --jq .status` → `built` ;
   - `curl -s -o /dev/null -w "%{http_code}"` sur les URLs touchées → `200`.
-- `.gitignore` en place : `.DS_Store` et fichiers verrou office (`.~lock.*#`). Ne jamais committer ce genre de fichiers.
+- `.gitignore` en place : `.DS_Store`, fichiers verrou office (`.~lock.*#`), `a_traiter/` (sources de travail privées). Ne jamais committer ce genre de fichiers.
+- **Toujours stager `rss.xml` avec `index.html`** (régénéré via `scripts/generate-rss.py`) pour que le flux reflète les dossiers publiés.
 
 ## Vérification finale
 
@@ -280,5 +314,6 @@ Avant de terminer :
 - vérifier images chargées, liens (nav, retour accueil, compagnons externes), pas de scroll horizontal ;
 - vérifier numérotation et compteurs cohérents (index ↔ eyebrows des pages) ;
 - **vérifier que chaque affirmation et donnée du dossier est sourcée** dans `sources/` (audit `.md` + références DOI) **et surfacée** dans `sources/sources.html` (fiche + référence) ;
+- **régénérer `rss.xml`** (`python3 scripts/generate-rss.py`) et vérifier qu'il est bien formé + qu'il contient le nouveau dossier (voir « Flux RSS ») ;
 - si publication demandée : confirmer build Pages `built` + `200` sur les URLs ;
 - mentionner les fichiers créés ou modifiés.

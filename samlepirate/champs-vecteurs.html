@@ -382,6 +382,7 @@
       <span class="b"><img src="../ymir-lalie/assets/logo-eci.jpg" alt="" /> <b>Le langage des champs</b></span>
       <nav aria-label="Chapitres">
         <a class="c" href="#these">Idée</a>
+        <a class="c" href="#lexique">Bases</a>
         <a class="c" href="#champs">Champs</a>
         <a class="c" href="#divergence">Divergence</a>
         <a class="c" href="#rotationnel">Rotationnel</a>
@@ -421,12 +422,65 @@
       </div>
     </section>
 
-    <!-- ===== CHAP I — CHAMPS ===== -->
-    <section class="wrap chapter" id="champs" style="--c:var(--iris)">
+    <!-- ===== CHAP I — SCALAIRE / VECTEUR / CHAMP ===== -->
+    <section class="wrap chapter" id="lexique" style="--c:var(--iris)">
       <div class="chap-head reveal">
         <div class="big" aria-hidden="true">I</div>
         <div class="meta">
-          <div class="n">Chapitre I — La brique de base</div>
+          <div class="n">Chapitre I — Le vocabulaire</div>
+          <h2>Scalaire, vecteur, <em>champ</em></h2>
+          <p class="lede">Avant de poser une flèche sur chaque point, accordons-nous sur trois mots. Tout le reste en découle.</p>
+        </div>
+      </div>
+      <div class="body reveal" data-d="1">
+        <p>Le monde se décrit avec deux sortes de grandeurs. Les unes tiennent en <b>un seul nombre</b> : ce sont les <b>scalaires</b>. Les autres réclament en plus une <b>direction</b> : ce sont les <b>vecteurs</b>. Et lorsqu'on attache l'une de ces grandeurs <b>à chaque point de l'espace</b>, on obtient un <b>champ</b>. C'est tout le vocabulaire dont ce dossier a besoin.</p>
+      </div>
+
+      <div class="triad reveal" data-d="1">
+        <article class="card" style="--c:var(--flow)">
+          <div class="ic">Une valeur</div>
+          <h4>Le <em>scalaire</em></h4>
+          <p>Un simple <b>nombre</b>, entièrement décrit par sa valeur (et son unité) — <i>aucune direction</i>. La température (37 °C), la masse (5 kg), l'altitude, la pression, le temps. On les compare et on les additionne comme des nombres.</p>
+          <span class="sym">λ</span>
+        </article>
+        <article class="card" style="--c:var(--iris)">
+          <div class="ic">Une valeur + un sens</div>
+          <h4>Le <em>vecteur</em></h4>
+          <p>Une grandeur qui a une intensité <b>et</b> une direction : une <b>flèche</b>. Sa longueur dit « combien », son orientation dit « vers où ». La vitesse (90 km/h plein nord), une force, un déplacement.</p>
+          <span class="sym">→</span>
+        </article>
+        <article class="card" style="--c:var(--curl)">
+          <div class="ic">Une valeur par point</div>
+          <h4>Le <em>champ scalaire</em></h4>
+          <p>À <b>chaque point</b> de l'espace, on associe un scalaire. Une carte de températures, le relief d'une colline (l'altitude en chaque endroit), la pression dans une pièce. On le lit en <b>couleurs</b> ou en <b>lignes de niveau</b>.</p>
+          <span class="sym">T</span>
+        </article>
+      </div>
+
+      <div class="body reveal" data-d="2">
+        <p>Un vecteur, en deux dimensions, se range en <b>deux composantes</b> — de combien il avance horizontalement, de combien verticalement. Sa <b>norme</b> est la longueur de la flèche, son intensité&nbsp;:</p>
+        <div class="formula-block">
+          <div class="fb-head">Un vecteur en 2D <span class="fb-tag">composantes &amp; norme</span></div>
+          <div class="formula" data-tex="\vec v=(v_x,\,v_y)"></div>
+          <div class="formula" data-tex="\lVert\vec v\rVert=\sqrt{v_x^{2}+v_y^{2}}"></div>
+          <p class="fb-note">Les deux composantes <span class="imath" data-tex="v_x"></span> et <span class="imath" data-tex="v_y"></span> situent la pointe de la flèche ; la <b>norme</b> <span class="imath" data-tex="\lVert\vec v\rVert"></span> est sa longueur (l'intensité), et sa <b>direction</b> est l'angle qu'elle fait. Un scalaire, lui, n'aurait que la première information — jamais le « vers où ».</p>
+        </div>
+        <p>Un <b>champ</b>, c'est une <b>fonction</b> : elle prend un point en entrée et rend une grandeur en sortie. Si elle rend un nombre, c'est un <b>champ scalaire</b> ; si elle rend une flèche, c'est un <b>champ de vecteurs</b> — l'objet de tout ce dossier.</p>
+        <div class="formula-block">
+          <div class="fb-head">Champ scalaire vs champ de vecteurs <span class="fb-tag">un nombre · une flèche</span></div>
+          <div class="formula" data-tex="f:\mathbb{R}^2\rightarrow\mathbb{R},\qquad (x,y)\mapsto f(x,y)"></div>
+          <div class="formula" data-tex="\vec F:\mathbb{R}^2\rightarrow\mathbb{R}^2,\qquad (x,y)\mapsto\bigl(F_x(x,y),\,F_y(x,y)\bigr)"></div>
+          <p class="fb-note">Le <b>champ scalaire</b> <span class="imath" data-tex="f"></span> attache un nombre à chaque point (la colline d'altitude du chapitre suivant). Le <b>champ de vecteurs</b> <span class="imath" data-tex="\vec F"></span> attache une flèche à chaque point. Le pont entre les deux a un nom — le <b>gradient</b> — et c'est là que commence l'aventure.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CHAP II — CHAMPS ===== -->
+    <section class="wrap chapter" id="champs" style="--c:var(--iris)">
+      <div class="chap-head reveal">
+        <div class="big" aria-hidden="true">II</div>
+        <div class="meta">
+          <div class="n">Chapitre II — La brique de base</div>
           <h2>Les champs de <em>vecteurs</em></h2>
           <p class="lede">Pour être sûrs de parler de la même chose, commençons par le commencement.</p>
         </div>
@@ -459,12 +513,12 @@
       </div>
     </section>
 
-    <!-- ===== CHAP II — FLUIDE / GRADIENT ===== -->
+    <!-- ===== CHAP III — FLUIDE / GRADIENT ===== -->
     <section class="wrap chapter" id="fluide" style="--c:var(--curl)">
       <div class="chap-head reveal">
-        <div class="big" aria-hidden="true">II</div>
+        <div class="big" aria-hidden="true">III</div>
         <div class="meta">
-          <div class="n">Chapitre II — Le grand truc mental</div>
+          <div class="n">Chapitre III — Le grand truc mental</div>
           <h2>Et si c'était un <em>fluide</em> ?</h2>
           <p class="lede">Une idée qu'on tait trop souvent : on comprend mieux un champ en imaginant qu'il en représente un autre.</p>
         </div>
@@ -504,12 +558,12 @@
       </div>
     </section>
 
-    <!-- ===== CHAP III — DIVERGENCE ===== -->
+    <!-- ===== CHAP IV — DIVERGENCE ===== -->
     <section class="wrap chapter" id="divergence" style="--c:var(--flow)">
       <div class="chap-head reveal">
-        <div class="big" aria-hidden="true">III</div>
+        <div class="big" aria-hidden="true">IV</div>
         <div class="meta">
-          <div class="n">Chapitre III — Sources &amp; puits</div>
+          <div class="n">Chapitre IV — Sources &amp; puits</div>
           <h2>La <em>divergence</em></h2>
           <p class="lede">Regardez ce champ comme la vitesse d'un fluide. Il se comporte de façon très étrange, non physique.</p>
         </div>
@@ -549,12 +603,12 @@
       </div>
     </section>
 
-    <!-- ===== CHAP IV — ROTATIONNEL ===== -->
+    <!-- ===== CHAP V — ROTATIONNEL ===== -->
     <section class="wrap chapter" id="rotationnel" style="--c:var(--curl)">
       <div class="chap-head reveal">
-        <div class="big" aria-hidden="true">IV</div>
+        <div class="big" aria-hidden="true">V</div>
         <div class="meta">
-          <div class="n">Chapitre IV — La brindille qui tourne</div>
+          <div class="n">Chapitre V — La brindille qui tourne</div>
           <h2>Le <em>rotationnel</em></h2>
           <p class="lede">Cette fois, on demande : en ce point, le fluide tend-il à tourner ?</p>
         </div>
@@ -614,12 +668,12 @@
       </div>
     </section>
 
-    <!-- ===== CHAP V — MAXWELL ===== -->
+    <!-- ===== CHAP VI — MAXWELL ===== -->
     <section class="wrap chapter" id="maxwell" style="--c:var(--flow)">
       <div class="chap-head reveal">
-        <div class="big" aria-hidden="true">V</div>
+        <div class="big" aria-hidden="true">VI</div>
         <div class="meta">
-          <div class="n">Chapitre V — Quatre équations</div>
+          <div class="n">Chapitre VI — Quatre équations</div>
           <h2>Le langage de <em>Maxwell</em></h2>
           <p class="lede">Même nées dans les fluides, ces deux idées comptent pour bien d'autres champs.</p>
         </div>
@@ -664,12 +718,12 @@
       </div>
     </section>
 
-    <!-- ===== CHAP VI — PHASES (atelier live) ===== -->
+    <!-- ===== CHAP VII — PHASES (atelier live) ===== -->
     <section class="wrap chapter" id="phases" style="--c:var(--sink)">
       <div class="chap-head reveal">
-        <div class="big" aria-hidden="true">VI</div>
+        <div class="big" aria-hidden="true">VII</div>
         <div class="meta">
-          <div class="n">Chapitre VI — Au-delà de l'espace</div>
+          <div class="n">Chapitre VII — Au-delà de l'espace</div>
           <h2>L'espace des <em>phases</em></h2>
           <p class="lede">Ces idées servent souvent dans des contextes qui n'ont rien de spatial.</p>
         </div>
@@ -704,12 +758,12 @@
       </div>
     </section>
 
-    <!-- ===== CHAP VII — DOT / CROSS ===== -->
+    <!-- ===== CHAP VIII — DOT / CROSS ===== -->
     <section class="wrap chapter" id="lien" style="--c:var(--iris)">
       <div class="chap-head reveal">
-        <div class="big" aria-hidden="true">VII</div>
+        <div class="big" aria-hidden="true">VIII</div>
         <div class="meta">
-          <div class="n">Chapitre VII — Le lien profond</div>
+          <div class="n">Chapitre VIII — Le lien profond</div>
           <h2>Produit <em>scalaire</em> &amp; vectoriel</h2>
           <p class="lede">Le triangle renversé ∇ n'est pas qu'un truc mnémotechnique.</p>
         </div>
@@ -962,7 +1016,7 @@
           ctx.strokeStyle=f.div>0?'rgba(67,214,196,0.85)':f.div<0?'rgba(255,106,77,0.85)':'rgba(120,134,180,0.5)';
           ctx.lineWidth=2; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.arc(cx,cy,rr,0,7); ctx.stroke(); ctx.setLineDash([]);
           ctx.strokeStyle='#f5b14a'; ctx.lineWidth=3; ctx.lineCap='round'; ctx.beginPath();
-          ctx.moveTo(cx-Math.cos(twig)*26,cy-Math.sin(twig)*26); ctx.lineTo(cx+Math.cos(twig)*26,cy+Math.sin(twig)*26); ctx.stroke();
+          ctx.moveTo(cx-Math.cos(twig)*26,cy+Math.sin(twig)*26); ctx.lineTo(cx+Math.cos(twig)*26,cy-Math.sin(twig)*26); ctx.stroke();
           ctx.fillStyle='#f5b14a'; ctx.beginPath(); ctx.arc(cx,cy,3.5,0,7); ctx.fill(); }
         requestAnimationFrame(fr);
       }

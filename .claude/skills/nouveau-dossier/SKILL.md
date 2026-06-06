@@ -32,7 +32,7 @@ Les chemins ci-dessous sont relatifs à la racine du dépôt et à
 
 ---
 
-## Vue d'ensemble — les 14 étapes
+## Vue d'ensemble — les 15 étapes
 
 0. Lire AGENT.md + ce skill.
 1. **Lire 100 % du/des transcript(s)** (en entier, vraiment).
@@ -67,10 +67,14 @@ Les chemins ci-dessous sont relatifs à la racine du dépôt et à
     `sources.html`** (section + fiches + compteurs). Voir `reference/sources-and-index.md`.
 11. **Mettre à jour `index.html`** : nouvelle carte, renuméroter « Les Sources »,
     compteurs, nav de pied. (Lire l'état courant d'abord — la numérotation bouge.)
-12. **(Quand les images sont générées)** vérifier visuellement, intégrer (hero +
+12. **Régénérer le flux RSS** : `python3 scripts/generate-rss.py` (depuis la racine
+    du dépôt) relit `index.html` et réécrit `rss.xml`. **OBLIGATOIRE dès que l'index
+    change** (ajout/modif/réordonnancement). Vérifier que le flux est bien formé et
+    contient le nouveau dossier — voir « Flux RSS » ci-dessous.
+13. **(Quand les images sont générées)** vérifier visuellement, intégrer (hero +
     figures), **optimiser** (`scripts/optimize-pngs.sh`), réutiliser dans `sources.html`.
-13. **(Optionnel) Dataviz SVG interactives** dans le langage codex (design-system §5).
-14. **Publier seulement si demandé** : commit (FR, co-author) + push, puis vérifier
+14. **(Optionnel) Dataviz SVG interactives** dans le langage codex (design-system §5).
+15. **Publier seulement si demandé** : commit (FR, co-author) + push, puis vérifier
     build Pages `built` + `200`. Attention au **piège des références orphelines**.
 
 ---
@@ -169,6 +173,32 @@ Avec `playwright-core` (Chrome système, sans téléchargement) :
 
 ---
 
+## Flux RSS (`rss.xml`) — à régénérer pour chaque dossier
+
+Le site publie un **flux RSS riche** à `rss.xml` (racine), déclaré dans le `<head>`
+de `index.html`. Il est **généré**, jamais édité à la main.
+
+- **Source unique = `index.html`.** Le script `scripts/generate-rss.py` parse les
+  cartes de dossiers (titre, lien, image hero, résumé, tags, badge, byline) et écrit
+  `rss.xml`. Donc : **mettre l'index à jour d'abord** (étape 11), **puis** régénérer.
+- Lancer **depuis la racine du dépôt** :
+
+  ```bash
+  python3 scripts/generate-rss.py
+  # → "rss.xml généré : N items"
+  ```
+
+- Chaque carte donne un `<item>` : `title` « Dossier N — Titre », `link`/`guid`
+  absolus, `dc:creator` (auteurs + participation), `description` + `content:encoded`
+  (HTML riche : image, résumé, crédit, tags, lien), `enclosure` +
+  `media:content`/`media:thumbnail` (image hero, taille réelle), `category` (tags +
+  badge), `pubDate` (1er commit git ; repli sinon). Tri **antéchronologique**.
+- **Vérifier** : `python3 -c "import xml.dom.minidom; xml.dom.minidom.parse('rss.xml')"`
+  (bien formé) et que le **nombre d'items** inclut le nouveau dossier.
+- **Publication** : stager `rss.xml` **avec** `index.html`.
+
+---
+
 ## Vérification finale (checklist)
 
 - [ ] `check-coverage.py` → **0 manquant** sur chaque transcript ;
@@ -181,6 +211,8 @@ Avec `playwright-core` (Chrome système, sans téléchargement) :
       de pied ↔ `sources.html`) ;
 - [ ] chaque affirmation/donnée **sourcée** dans `sources/` (audit + refs) **et
       surfacée** dans `sources.html` (fiche + compteurs) ;
+- [ ] **`rss.xml` régénéré** (`python3 scripts/generate-rss.py`), bien formé, et
+      contenant le nouveau dossier (voir « Flux RSS ») ;
 - [ ] encadrés « anti-intox » pour tous les ⚠️/🔶, corrections des ❌ ;
 - [ ] JS valide (balises équilibrées, pas d'erreur console), révélation OK sur
       sections hautes ;
@@ -193,8 +225,9 @@ Avec `playwright-core` (Chrome système, sans téléchargement) :
 ## Publication (uniquement quand l'utilisateur le demande)
 
 - Stager **précisément** les fichiers du dossier (page, .txt, avatars, `assets/*.png`
-  optimisés, `index.html`, `sources/*`) — **ne pas** balayer les dossiers non suivis
-  sans rapport (`.pi/`, `a_traiter/`, etc.). Utiliser `git add <chemins explicites>`.
+  optimisés, `index.html`, **`rss.xml`**, `sources/*`) — **ne pas** balayer les
+  dossiers non suivis sans rapport (`.pi/`, `a_traiter/`, etc.). Utiliser
+  `git add <chemins explicites>`.
 - Message de commit **en français**, terminé par :
   `Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>`
 - `git config http.postBuffer 524288000` avant un push lourd d'images.
