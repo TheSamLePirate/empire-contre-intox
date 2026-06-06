@@ -290,10 +290,90 @@
       .dtable { font-size:.9rem; }
       .dtable th,.dtable td { padding:10px 11px; }
     }
+    /* ============ Visualisations interactives ============ */
+    .viz { margin:30px 0; border:1px solid var(--line); border-radius:4px; overflow:hidden;
+      background:radial-gradient(140% 120% at 100% 0%,rgba(63,107,120,.1),transparent 55%),linear-gradient(180deg,rgba(7,12,26,.66),rgba(5,8,17,.74));
+      box-shadow:0 22px 64px rgba(0,0,0,.36); }
+    .viz-head { padding:20px 24px 0; }
+    .viz-eyebrow { display:inline-flex; align-items:center; gap:10px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
+    .viz-eyebrow::before { content:""; width:22px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    .viz-title { margin:10px 0 5px; font-family:var(--serif); font-weight:600; font-size:1.28rem; color:var(--ink); line-height:1.15; }
+    .viz-sub { margin:0; color:var(--soft); font-size:.92rem; }
+    .viz-body { padding:14px 24px 8px; }
+    .viz svg { display:block; width:100%; height:auto; overflow:visible; }
+    .viz-foot { padding:6px 24px 18px; font-family:var(--serif); font-style:italic; color:var(--soft); font-size:.84rem; }
+    .viz-foot a { color:var(--gold); border-bottom:1px solid var(--line); }
+    .viz text { font-family:var(--roman); fill:var(--muted); }
+    .viz-legend { display:flex; flex-wrap:wrap; gap:8px 16px; padding:0 24px 14px; }
+    .viz-legend span { display:inline-flex; align-items:center; gap:7px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .viz-legend i { width:11px; height:11px; border-radius:2px; display:inline-block; }
+
+    /* — Carte triangulaire — */
+    .tri-legs path.hit { stroke:transparent; stroke-width:34; fill:none; cursor:pointer; }
+    .tri-legs path.route { fill:none; stroke-width:2.4; stroke-linecap:round; transition:stroke-width .35s,opacity .35s; }
+    .tri-legs g.leg path.route { opacity:.4; }
+    .tri-legs g.leg.active path.route { opacity:1; stroke-width:3.4; }
+    .tri-legs path.flow { fill:none; stroke-width:3.2; stroke-linecap:round; stroke-dasharray:2 16; opacity:0; }
+    .tri-legs g.leg.active path.flow { opacity:1; animation:triflow 2.4s linear infinite; }
+    @keyframes triflow { to { stroke-dashoffset:-180; } }
+    .tri-node circle { fill:rgba(5,8,17,.9); stroke:var(--gold); stroke-width:1.4; }
+    .tri-node text { fill:var(--parch); font-weight:600; font-size:13px; letter-spacing:.04em; }
+    .tri-node .sub { fill:var(--soft); font-size:10px; font-weight:600; }
+    .leg-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:4px 24px; }
+    .leg-card { border:1px solid var(--line-2); border-left:3px solid var(--lc,var(--gold)); border-radius:3px; padding:13px 15px; background:rgba(244,236,216,.03); cursor:pointer; transition:transform .3s var(--ease),background .3s; text-align:left; }
+    .leg-card:hover { transform:translateY(-3px); background:rgba(244,236,216,.06); }
+    .leg-card.active { background:rgba(244,236,216,.08); box-shadow:0 0 0 1px var(--lc,var(--gold)) inset; }
+    .leg-card h5 { margin:0 0 3px; font-family:var(--roman); font-size:.64rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lc,var(--gold)); }
+    .leg-card p { margin:0; color:var(--muted); font-size:.85rem; }
+    .leg-detail { margin:14px 24px 4px; border-top:1px solid var(--line-2); padding-top:16px; min-height:104px; }
+    .leg-detail .lab { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--lc,var(--gold)); }
+    .leg-detail h4 { margin:7px 0 8px; font-family:var(--serif); font-weight:600; font-size:1.18rem; color:var(--ink); }
+    .leg-detail p { margin:0 0 10px; color:var(--muted); font-size:.96rem; }
+    .leg-detail ul { margin:0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+    .leg-detail li { font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--parch); border:1px solid var(--line); border-radius:2px; padding:5px 10px; background:rgba(214,172,85,.05); }
+    .leg-detail li::before { content:none; }
+
+    /* — Frise chronologique — */
+    .tl-node { cursor:pointer; }
+    .tl-node circle.dot { fill:var(--void); stroke-width:2; transition:r .25s; }
+    .tl-node:hover circle.dot,.tl-node.active circle.dot { r:8.5; }
+    .tl-node text { fill:var(--soft); font-size:10.5px; font-weight:600; letter-spacing:.02em; transition:fill .25s; }
+    .tl-node:hover text,.tl-node.active text { fill:var(--parch); }
+    .tl-detail { margin:6px 24px 4px; border-top:1px solid var(--line-2); padding-top:14px; min-height:74px; }
+    .tl-detail .yr { font-family:var(--roman); font-weight:800; font-size:1.15rem; color:var(--gold-bright); letter-spacing:.02em; }
+    .tl-detail h4 { margin:3px 0 6px; font-family:var(--serif); font-weight:600; font-size:1.1rem; color:var(--ink); }
+    .tl-detail p { margin:0; color:var(--muted); font-size:.95rem; }
+
+    /* — Bar chart Nantes — */
+    .bars-row { cursor:pointer; }
+    .bars-row rect.bar { transition:filter .3s; }
+    .bars-row:hover rect.bar,.bars-row.active rect.bar { filter:brightness(1.3); }
+    .bars-row text.cap { fill:var(--parch); font-size:11px; font-weight:700; }
+    .bars-row text.yr { fill:var(--soft); font-size:10px; font-weight:600; }
+    .bars-detail { margin:10px 24px 4px; border-top:1px solid var(--line-2); padding-top:14px; min-height:58px; color:var(--muted); font-size:.95rem; }
+    .bars-detail b { color:var(--parch); }
+
+    /* — Plan du navire — */
+    .ship-controls { display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; padding:4px 24px 12px; }
+    .ship-toggle { display:inline-flex; border:1px solid var(--line); border-radius:3px; overflow:hidden; }
+    .ship-toggle button { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); background:transparent; border:0; padding:9px 14px; cursor:pointer; transition:background .25s,color .25s; }
+    .ship-toggle button.on { background:linear-gradient(140deg,var(--gold-bright),var(--gold-deep)); color:#14110a; }
+    .ship-readout { font-family:var(--serif); color:var(--muted); font-size:.94rem; }
+    .ship-readout b { font-family:var(--roman); font-weight:800; font-size:1.18rem; color:var(--gold-bright); letter-spacing:.02em; }
+    .ship svg .hull { fill:rgba(124,135,148,.07); stroke:var(--iron); stroke-width:1.4; }
+    .ship svg .deckline { stroke:var(--line); stroke-width:1; stroke-dasharray:3 4; }
+    .ship svg .fig { fill:var(--gold); opacity:.6; }
+    .ship svg .barricado { stroke:var(--ember); stroke-width:2.4; stroke-dasharray:5 4; }
+    .ship svg text.lbl { fill:var(--soft); font-size:10px; font-weight:600; }
+
+    @media (max-width:720px) {
+      .leg-cards { grid-template-columns:1fr; }
+    }
     @media (prefers-reduced-motion:reduce) {
       *,*::before,*::after { animation:none !important; transition:none !important; }
       .js .reveal { opacity:1; transform:none; }
       .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      .tri-legs g.leg path.flow { opacity:0 !important; }
       html { scroll-behavior:auto; }
     }
   </style>
@@ -377,6 +457,22 @@
           <div class="learning-item reveal" data-d="3"><span>Se souvenir</span><p>Redonner leur humanité aux « pièces d'Inde » : la résistance, les femmes, et le fil qui relie 1685 à l'esclavage moderne de 2026.</p></div>
         </div>
       </section>
+      <section class="viz reveal" id="frise" aria-label="Chronologie de l'esclavage en France et dans ses colonies">
+        <div class="viz-head">
+          <span class="viz-eyebrow">Repères · interactif</span>
+          <p class="viz-title">De l'édit de 1685 à la loi Taubira (2001)</p>
+          <p class="viz-sub">Cliquez (ou survolez) une date. La bande marque les périodes où l'esclavage est <em>légal</em> aux colonies — et les deux brèches : l'abolition de 1794, puis l'abolition définitive de 1848.</p>
+        </div>
+        <div class="viz-body"><div id="tlMount"></div></div>
+        <div class="tl-detail" id="tlDetail"></div>
+        <div class="viz-legend">
+          <span><i style="background:var(--ember)"></i>Esclavage légal aux colonies</span>
+          <span><i style="background:var(--ocean)"></i>Aboli</span>
+          <span><i style="background:var(--gold)"></i>Résistance &amp; mémoire</span>
+        </div>
+        <div class="viz-foot">Sources : Fondation pour la mémoire de l'esclavage · Légifrance. <a href="../../sources/sources.html">Appareil critique →</a></div>
+      </section>
+
       <section class="act-band reveal" id="acteI" aria-labelledby="actI">
         <p class="act-no">Partie I · Le grand live</p>
         <h2 id="actI">L'esclavage triangulaire</h2>
@@ -689,6 +785,30 @@
               <li><strong>La mortalité :</strong> Entre 10 % et 20 % des captifs mouraient pendant le voyage (dysenterie, scorbut, suicide). Pour l'armateur nantais, c'était une "perte de marchandise" calculée dans ses frais.</li>
               <li><strong>La révolte :</strong> Elle était constante. Les navires étaient équipés de "barricados" (murs en bois avec des canons chargés à la mitraille tournés vers les captifs) pour protéger l'équipage en cas d'insurrection.</li>
             </ul>
+            <div class="viz ship" id="ship" aria-label="Plan d'entassement d'un navire négrier d'après le diagramme abolitionniste du Brookes (1788)">
+              <div class="viz-head">
+                <span class="viz-eyebrow">L'entassement · interactif</span>
+                <p class="viz-title">Le plan du Brookes (1788)</p>
+                <p class="viz-sub">Le diagramme produit par les <em>abolitionnistes</em> pour révéler l'entassement « en cuillère ». Changez l'espace alloué par personne — et voyez la densité changer.</p>
+              </div>
+              <div class="ship-controls">
+                <span class="ship-toggle" role="group" aria-label="Espace par personne">
+                  <button type="button" data-cm="150" class="on">Ce que dit le live · 1,50 m</button>
+                  <button type="button" data-cm="183">Plan du Brookes · 1,83 m</button>
+                </span>
+                <span class="ship-readout" id="shipReadout"></span>
+              </div>
+              <div class="viz-body">
+                <svg viewBox="0 0 760 300" role="img" aria-label="Coupe schématique du pont inférieur d'un navire négrier">
+                  <path class="hull" d="M96,78 L636,78 Q714,80 716,150 Q714,220 636,222 L96,222 Q58,222 58,182 L58,118 Q58,78 96,78 Z"/>
+                  <line class="barricado" x1="470" y1="84" x2="470" y2="216"/>
+                  <text class="lbl" x="476" y="96">Barricado</text>
+                  <g id="shipFigs"></g>
+                </svg>
+              </div>
+              <div class="viz-foot">Représentation abstraite et respectueuse, d'après le célèbre plan du <em>Brookes</em> (1788). Ce diagramme documentait <strong>454 captifs</strong> sur le pont inférieur réglementaire (jusqu'à <strong>609</strong> auparavant), sur plusieurs niveaux. Le live évoque « 150 cm » ; la mesure de référence du plan est plutôt <strong>1,83 m × 41 cm</strong> par homme adulte.</div>
+            </div>
+
             <h3 class="group-title">3. Le livre de l'IFAN : La réalité de l'Afrique</h3>
             <p>C'est ici que ta source devient précieuse. Le bulletin de l'IFAN (Dakar) permet de briser le mythe d'une Afrique sauvage.</p>
             <ul>
@@ -806,6 +926,64 @@
               <img src="assets/route-atlantique.png" alt="Un navire solitaire traversant l'Atlantique au crépuscule ; sous la ligne de flottaison, des points de lumière dorée descendent dans l'abîme, en mémoire des vies perdues" loading="lazy">
               <figcaption>Le passage du milieu — l'immensité de l'océan, en mémoire des disparus</figcaption>
             </figure>
+
+            <div class="viz" id="triangle" aria-label="Carte interactive du commerce triangulaire">
+              <div class="viz-head">
+                <span class="viz-eyebrow">Le triangle · interactif</span>
+                <p class="viz-title">Trois continents, trois jambes, un seul profit</p>
+                <p class="viz-sub">Cliquez une jambe du triangle (ou une carte) pour voir ce qui circulait — et à quel prix humain.</p>
+              </div>
+              <div class="viz-body">
+                <svg viewBox="0 0 760 430" role="img" aria-label="Carte schématique du commerce triangulaire reliant l'Europe, l'Afrique de l'Ouest et les Amériques">
+                  <defs>
+                    <pattern id="seagrid" width="48" height="48" patternUnits="userSpaceOnUse">
+                      <path d="M48 0H0V48" fill="none" stroke="rgba(244,236,216,.05)" stroke-width="1"/>
+                    </pattern>
+                  </defs>
+                  <rect x="0" y="0" width="760" height="430" fill="url(#seagrid)" opacity=".6"/>
+                  <g class="tri-legs">
+                    <g class="leg" data-leg="0">
+                      <path class="route" style="stroke:var(--iron)" d="M615,108 C672,175 660,285 572,338"/>
+                      <path class="flow"  style="stroke:var(--iron)" d="M615,108 C672,175 660,285 572,338"/>
+                      <path class="hit" d="M615,108 C672,175 660,285 572,338"/>
+                    </g>
+                    <g class="leg" data-leg="1">
+                      <path class="route" style="stroke:var(--ember)" d="M548,348 C410,432 235,402 148,272"/>
+                      <path class="flow"  style="stroke:var(--ember)" d="M548,348 C410,432 235,402 148,272"/>
+                      <path class="hit" d="M548,348 C410,432 235,402 148,272"/>
+                    </g>
+                    <g class="leg" data-leg="2">
+                      <path class="route" style="stroke:var(--gold)" d="M140,236 C245,118 470,58 606,90"/>
+                      <path class="flow"  style="stroke:var(--gold)" d="M140,236 C245,118 470,58 606,90"/>
+                      <path class="hit" d="M140,236 C245,118 470,58 606,90"/>
+                    </g>
+                  </g>
+                  <g class="tri-node">
+                    <circle cx="615" cy="100" r="9"/>
+                    <text x="598" y="96" text-anchor="end">Europe</text>
+                    <text x="598" y="111" text-anchor="end" class="sub">Nantes · Quai de la Fosse</text>
+                  </g>
+                  <g class="tri-node">
+                    <circle cx="560" cy="345" r="9"/>
+                    <text x="544" y="343" text-anchor="end">Afrique de l'Ouest</text>
+                    <text x="544" y="358" text-anchor="end" class="sub">Gorée · Ouidah · Luanda</text>
+                  </g>
+                  <g class="tri-node">
+                    <circle cx="135" cy="250" r="9"/>
+                    <text x="153" y="248">Amériques</text>
+                    <text x="153" y="263" class="sub">Saint-Domingue · Antilles</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="leg-cards">
+                <button type="button" class="leg-card" data-leg="0" style="--lc:var(--iron)"><h5>① L'aller</h5><p>Marchandises de troc</p></button>
+                <button type="button" class="leg-card" data-leg="1" style="--lc:var(--ember)"><h5>② Le passage du milieu</h5><p>La cargaison humaine</p></button>
+                <button type="button" class="leg-card" data-leg="2" style="--lc:var(--gold)"><h5>③ Le retour</h5><p>L'or blanc : le sucre</p></button>
+              </div>
+              <div class="leg-detail" id="legDetail"></div>
+              <div class="viz-foot">Carte schématique (les comptoirs et destinations sont réels, la géométrie est simplifiée). Source : SlaveVoyages · Musée d'histoire de Nantes.</div>
+            </div>
+
             <h3 class="group-title">1. La Route : Une navigation calculée</h3>
             <p>Le commerce triangulaire n'est pas une ligne droite, c'est une exploitation des vents et des courants.</p>
             <ul>
@@ -1691,6 +1869,17 @@
               <li>Bien que la traite soit interdite (théoriquement) dès 1815, Nantes devient le centre de la traite clandestine.</li>
               <li><strong>Entre 1815 et 1831 :</strong> On estime que plus de 300 expéditions illégales partent de Nantes. Les bénéfices étaient tels que les armateurs préféraient payer des amendes ou risquer la prison.</li>
             </ul>
+            <div class="viz" id="nantesbars" aria-label="Intensité de la traite négrière à Nantes par période, de 1783 à 1830">
+              <div class="viz-head">
+                <span class="viz-eyebrow">Le « trou d'air » · interactif</span>
+                <p class="viz-title">L'activité négrière de Nantes, 1783 → 1830</p>
+                <p class="viz-sub">Cliquez une période. Le rétablissement de 1802 n'a pas relancé la machine : c'est <em>après</em> la chute de Napoléon que la traite (devenue illégale) rebondit.</p>
+              </div>
+              <div class="viz-body"><div id="barsMount"></div></div>
+              <div class="bars-detail" id="barsDetail"></div>
+              <div class="viz-foot">Intensité <em>qualitative</em> (les comptages annuels varient selon les sources) — d'après le tableau comparatif du live et les données du Mémorial de Nantes.</div>
+            </div>
+
             <table class="dtable">
               <caption>Résumé pour un tableau comparatif.</caption>
               <thead><tr><th scope="col">Période</th><th scope="col">Contexte</th><th scope="col">Activité à Nantes</th></tr></thead>
@@ -1819,6 +2008,132 @@
     document.addEventListener("scroll", revealTall, { passive: true });
     window.addEventListener("resize", revealTall, { passive: true });
     revealTall();
+
+    /* ===================== Visualisations interactives ===================== */
+    const NS = "http://www.w3.org/2000/svg";
+    const el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+
+    /* — 1. Carte du commerce triangulaire — */
+    (function(){
+      const root = document.getElementById("triangle"); if (!root) return;
+      const legs = [
+        { lc:"var(--iron)", lab:"① L'aller — l'armement", title:"De Nantes à l'Afrique",
+          txt:"Le navire quitte le Quai de la Fosse, cales pleines de marchandises de troc fabriquées en France pour « plaire aux chefs africains » décrits dans le livre de l'IFAN.",
+          tags:["Indiennes","Fusils","Eaux-de-vie","Fer","Cauris"] },
+        { lc:"var(--ember)", lab:"② Le passage du milieu", title:"De l'Afrique aux Amériques",
+          txt:"La traversée la plus meurtrière : 40 à 80 jours, entassement « en cuillère », mortalité d'environ 15 %. Une « perte de marchandise » calculée d'avance par l'armateur.",
+          tags:["40-80 jours","≈ 15 % de morts","Barricados","Speculum oris"] },
+        { lc:"var(--gold)", lab:"③ Le retour — l'or blanc", title:"Des Antilles à Nantes",
+          txt:"On vend les survivants à Saint-Domingue, puis on remplit les cales de sucre, de café et d'indigo, raffinés dans les usines nantaises. L'armateur devient multimillionnaire.",
+          tags:["Sucre","Café","Indigo","Raffineries"] }
+      ];
+      const detail = root.querySelector("#legDetail");
+      const cards = [...root.querySelectorAll(".leg-card")];
+      const glegs = [...root.querySelectorAll(".tri-legs .leg")];
+      function show(i){
+        cards.forEach((c,j) => c.classList.toggle("active", j===i));
+        glegs.forEach((g,j) => g.classList.toggle("active", j===i));
+        const L = legs[i];
+        detail.style.setProperty("--lc", L.lc);
+        detail.innerHTML = '<div class="lab">'+L.lab+'</div><h4>'+L.title+'</h4><p>'+L.txt+'</p><ul>'+L.tags.map(t=>"<li>"+t+"</li>").join("")+'</ul>';
+      }
+      cards.forEach((c,i) => c.addEventListener("click", () => show(i)));
+      glegs.forEach((g,i) => g.querySelector(".hit").addEventListener("click", () => show(i)));
+      show(1);
+    })();
+
+    /* — 2. Frise chronologique 1685 → 2001 — */
+    (function(){
+      const mount = document.getElementById("tlMount"); if (!mount) return;
+      const detail = document.getElementById("tlDetail");
+      const EV = [
+        { y:1685, t:"legal",  h:"Le Code Noir", d:"L'édit de mars 1685 fait de l'esclave un « bien meuble » et organise juridiquement l'esclavage aux colonies." },
+        { y:1707, t:"legal",  h:"Premier navire négrier nantais", d:"Nantes arme ses premiers bateaux pour la traite (L'Hercule). Le commerce d'Afrique s'ouvre vraiment aux ports en 1716." },
+        { y:1791, t:"resist", h:"Bois-Caïman · Saint-Domingue", d:"Dans la nuit du 14 août 1791, la cérémonie de Bois-Caïman lance la révolution haïtienne (insurrection générale le 22 août)." },
+        { y:1794, t:"abol",   h:"Première abolition", d:"La Convention abolit l'esclavage le 4 février 1794 (16 pluviôse an II) dans les colonies françaises." },
+        { y:1802, t:"legal",  h:"Rétablissement · Delgrès", d:"Napoléon rétablit l'esclavage (loi du 20 mai 1802). Louis Delgrès se sacrifie à Matouba le 28 mai 1802 : « Vivre libre ou mourir »." },
+        { y:1803, t:"resist", h:"Toussaint † · Vertières", d:"Toussaint Louverture meurt au Fort de Joux le 7 avril 1803 ; les insurgés l'emportent à Vertières (18 novembre)." },
+        { y:1804, t:"resist", h:"Indépendance d'Haïti", d:"Le 1er janvier 1804, Haïti devient le seul État né d'une révolte d'esclaves victorieuse." },
+        { y:1815, t:"abol",   h:"Décret des Cent-Jours", d:"Napoléon interdit la traite (29 mars 1815), par calcul stratégique. La prohibition est confirmée par Louis XVIII (ordonnance de 1817)." },
+        { y:1848, t:"abol",   h:"Abolition définitive", d:"Le décret du 27 avril 1848 (Victor Schœlcher) abolit définitivement l'esclavage dans les colonies françaises." },
+        { y:2001, t:"abol",   h:"Loi Taubira", d:"La loi du 21 mai 2001 reconnaît la traite et l'esclavage comme crime contre l'humanité (25 ans en 2026)." }
+      ];
+      const statusAfter = (y) => ((y>=1794 && y<1802) || (y>=1848)) ? "abol" : "legal";
+      const dotCol = (t) => t==="legal" ? "var(--ember)" : t==="resist" ? "var(--gold)" : "var(--ocean)";
+      const W=920, H=150, x0=54, x1=866, ay=80, n=EV.length;
+      const xs = EV.map((e,i) => x0 + (x1-x0)*i/(n-1));
+      const svg = el("svg", { viewBox:"0 0 "+W+" "+H, role:"img", "aria-label":"Frise chronologique de l'esclavage en France, 1685-2001" });
+      for (let i=0;i<n-1;i++){
+        svg.appendChild(el("line", { x1:xs[i], y1:ay, x2:xs[i+1], y2:ay, stroke: statusAfter(EV[i].y)==="abol" ? "var(--ocean)" : "var(--ember)", "stroke-width":6, opacity:.5, "stroke-linecap":"round" }));
+      }
+      const nodes = [];
+      EV.forEach((e,i) => {
+        const g = el("g", { class:"tl-node", tabindex:0, role:"button", "aria-label":e.y+" "+e.h });
+        g.appendChild(el("circle", { class:"dot", cx:xs[i], cy:ay, r:6, stroke:dotCol(e.t) }));
+        const ty = i%2 ? ay-15 : ay+25;
+        const yr = el("text", { x:xs[i], y:ty, "text-anchor":"middle" }); yr.textContent = e.y;
+        g.appendChild(yr);
+        const pick = () => { nodes.forEach((nd,j) => nd.classList.toggle("active", j===i)); detail.innerHTML = '<span class="yr">'+e.y+'</span><h4>'+e.h+'</h4><p>'+e.d+'</p>'; };
+        g.addEventListener("click", pick); g.addEventListener("mouseenter", pick); g.addEventListener("focus", pick);
+        svg.appendChild(g); nodes.push(g);
+      });
+      mount.appendChild(svg);
+      nodes[0].classList.add("active");
+      detail.innerHTML = '<span class="yr">'+EV[0].y+'</span><h4>'+EV[0].h+'</h4><p>'+EV[0].d+'</p>';
+    })();
+
+    /* — 3. L'activité négrière de Nantes par période — */
+    (function(){
+      const mount = document.getElementById("barsMount"); if (!mount) return;
+      const detail = document.getElementById("barsDetail");
+      const D = [
+        { p:"1783-1792", c:"Apogée · Louis XVI", a:"Très intense", v:100, col:"var(--gold)", d:"Le record absolu de navires. La traite nantaise est à son sommet sous Louis XVI." },
+        { p:"1794-1802", c:"1ʳᵉ Abolition", a:"Nulle", v:4, col:"var(--ocean)", d:"La Convention a aboli l'esclavage (1794) : la traite est officiellement arrêtée." },
+        { p:"1802-1815", c:"Empire · Napoléon", a:"Très faible", v:13, col:"var(--iron)", d:"Napoléon rétablit l'esclavage (1802), mais le blocus maritime anglais paralyse les ports : c'est le « trou d'air »." },
+        { p:"1815-1830", c:"Restauration", a:"Forte (illégale)", v:66, col:"var(--ember)", d:"Interdite dès 1815, la traite devient clandestine : Nantes en est le centre (~318 navires entre 1814 et 1831)." }
+      ];
+      const W=760, H=300, padL=20, padR=20, top=24, base=234, cw=(W-padL-padR)/D.length;
+      const svg = el("svg", { viewBox:"0 0 "+W+" "+H, role:"img", "aria-label":"Intensité de la traite à Nantes par période" });
+      svg.appendChild(el("line", { x1:padL, x2:W-padR, y1:base, y2:base, stroke:"var(--line)" }));
+      const rows = [];
+      D.forEach((d,i) => {
+        const g = el("g", { class:"bars-row", tabindex:0, role:"button", "aria-label":d.p+" "+d.a });
+        const bw=cw*0.46, cx=padL+cw*i+cw/2, bx=cx-bw/2, bh=(base-top)*(d.v/100), by=base-bh;
+        g.appendChild(el("rect", { class:"bar", x:bx, y:by, width:bw, height:bh, rx:2, fill:d.col, opacity:.82 }));
+        const cap = el("text", { class:"cap", x:cx, y:by-9, "text-anchor":"middle" }); cap.textContent=d.a; g.appendChild(cap);
+        const yr = el("text", { class:"yr", x:cx, y:base+18, "text-anchor":"middle" }); yr.textContent=d.p; g.appendChild(yr);
+        const ct = el("text", { class:"yr", x:cx, y:base+32, "text-anchor":"middle", opacity:.7 }); ct.textContent=d.c; g.appendChild(ct);
+        const pick = () => { rows.forEach((r,j) => r.classList.toggle("active", j===i)); detail.innerHTML = "<b>"+d.p+" — "+d.c+" :</b> "+d.d; };
+        g.addEventListener("click", pick); g.addEventListener("mouseenter", pick); g.addEventListener("focus", pick);
+        svg.appendChild(g); rows.push(g);
+      });
+      mount.appendChild(svg);
+      rows[3].classList.add("active");
+      detail.innerHTML = "<b>"+D[3].p+" — "+D[3].c+" :</b> "+D[3].d;
+    })();
+
+    /* — 4. Plan du navire (Brookes 1788) — */
+    (function(){
+      const root = document.getElementById("ship"); if (!root) return;
+      const figs = root.querySelector("#shipFigs");
+      const readout = root.querySelector("#shipReadout");
+      const btns = [...root.querySelectorAll(".ship-toggle button")];
+      const region = { x:100, y:92, w:524, h:120 };
+      function build(cm){
+        while (figs.firstChild) figs.removeChild(figs.firstChild);
+        const cellW = cm/183*30;   /* longueur par personne (183 cm → 30 px) */
+        const cellH = 14;          /* largeur 41 cm, fixe */
+        const cols = Math.floor(region.w/cellW), rows = Math.floor(region.h/cellH);
+        let count = 0;
+        for (let r=0;r<rows;r++) for (let c=0;c<cols;c++){
+          figs.appendChild(el("rect", { class:"fig", x:region.x+c*cellW+1, y:region.y+r*cellH+1, width:cellW-2, height:cellH-2.6, rx:2.4 }));
+          count++;
+        }
+        readout.innerHTML = "<b>"+(cm/100).toFixed(2).replace(".",",")+" m</b> par personne · ≈ <b>"+count+"</b> figurés sur ce pont";
+      }
+      btns.forEach(b => b.addEventListener("click", () => { btns.forEach(x => x.classList.remove("on")); b.classList.add("on"); build(+b.dataset.cm); }));
+      build(150);
+    })();
   </script>
 </body>
 </html>
