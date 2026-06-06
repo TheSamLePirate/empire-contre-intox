@@ -32,6 +32,15 @@ Dossier **d'histoire et de mémoire** : les références sont **muséales, insti
 16. **Slavery and Remembrance** — Gorée, Ouidah, Elmina, barracoons, Mackandal. https://slaveryandremembrance.org/
 17. **Pièce d'Inde** — unité de compte de la traite (Cairn). https://shs.cairn.info/revue-annales-historiques-de-la-revolution-francaise-2019-1-page-81
 
+## Le regard depuis l'Afrique — le bulletin de l'IFAN (objet montré en live)
+
+17bis. **Bulletin de l'Institut Français d'Afrique Noire (IFAN), Dakar — Tome XXV, n°3-4 (juillet-octobre 1963), série B : Sciences Humaines.** Couverture conservée par l'équipe (montrée pendant le live ; image `ymir-lalie/esclavage/assets/bulletin-ifan-1963.jpg`).
+   - Notice de la revue (série B), BnF : https://data.bnf.fr/fr/34418689/bulletin_de_l_institut_francais_d_afrique_noire__serie_b__sciences_humaines/
+   - IFAN Cheikh Anta Diop (UCAD), présentation : https://ifan.ucad.sn/
+   - Article attesté dans ce numéro : **Y. Wane, « État actuel de la documentation au sujet des Toucouleurs », p. 457-477** (tiré-à-part référencé). https://www.abebooks.fr/Tir%C3%A9-part-Etat-actuel-documentation-sujet/31394574387/bd
+   - **IFAN** : créé par arrêté de 1936, ouvert en 1938 à Dakar sous Théodore Monod ; renommé « Institut *fondamental* d'Afrique noire » en 1966, puis « IFAN Cheikh Anta Diop » en 1986. https://fr.wikipedia.org/wiki/Bulletin_de_l'Institut_fondamental_d'Afrique_noire
+   - ⚠️ **Limite de vérification** : le sommaire complet du n°3-4 n'est pas accessible en ligne ; on **ne peut pas affirmer** que ce numéro contient des listes de prix de captifs / tables de la « Pièce d'Inde ». La série B documente bien l'histoire et l'ethnographie des sociétés ouest-africaines (royaumes, castes, justice), ce qui appuie le propos « décentrer le regard ».
+
 ## Révolution haïtienne & résistances
 
 18. **Bois Caïman (14 août 1791)** ; **Révolution haïtienne** (Toussaint, Dessalines, Vertières, indépendance 1804). https://fr.wikipedia.org/wiki/Bois_Ca%C3%AFman · https://fr.wikipedia.org/wiki/Bataille_de_Verti%C3%A8res

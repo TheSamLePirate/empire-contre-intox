@@ -32,7 +32,7 @@ Vérifié le **6 juin 2026** par recherche web (sources autoritatives : **Musée
 | **Indiennes** (cotonnades) pour le troc ; raffineries de sucre ; reconversion vers **conserveries (Cassegrain, Saupiquet)** et **biscuiterie (LU)**. | ✅ | La reconversion (LU 1846, Cassegrain 1856, Saupiquet) est **postérieure**, au XIXe s. | patrimonia.nantes.fr |
 | **500 à 1 000** personnes noires à Nantes au plus fort de la traite. | ⚠️ | Estimation (recensement de 1777 ≈ 700). | Traite négrière à Nantes |
 | **« Pièce d'Inde »** : captif jeune et vigoureux ; enfants/vieillards = fractions. | ✅ | Homme ~25-30 ans, sans défaut. Le terme vient d'une pièce de toile indienne (unité de troc). | Pièce d'Inde (Cairn) |
-| **Bulletin de l'IFAN** (Dakar), série B (Sciences humaines), 1963 ; Wolof, Dahomey, Fouta-Djallon. | ✅ | IFAN fondé 1938 (devenu « Institut fondamental d'Afrique noire » en 1966) ; série B et numéro de 1963 cohérents. Référence d'article précis à vérifier (titre/auteur). | IFAN (UCAD) ; HathiTrust |
+| **Bulletin de l'IFAN** (Dakar), série B (Sciences humaines), 1963 ; Wolof, Dahomey, Fouta-Djallon. | ✅ | **Numéro identifié, couverture en main : Tome XXV, n°3-4 (juillet-octobre 1963), série B.** IFAN fondé 1936 / ouvert 1938 (Th. Monod ; « Institut fondamental d'Afrique noire » en 1966). Article attesté dans ce n° : Y. Wane, « État actuel de la documentation au sujet des Toucouleurs », p. 457-477. ⚠️ Que **ce** numéro reproduise des **listes de prix de captifs** n'a pu être confirmé (sommaire complet non en ligne) — à ne pas affirmer ; la « Pièce d'Inde » est attestée indépendamment. | BnF (notice série B) ; IFAN-UCAD ; AbeBooks (tiré-à-part Wane) |
 
 ## Le passage du milieu, la plantation, la résistance
 
