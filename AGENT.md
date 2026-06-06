@@ -4,6 +4,27 @@ Ce projet transforme des **déroulés de live** (transcriptions, scripts d'émis
 
 Le site est publié via GitHub Pages : **https://thesamlepirate.github.io/empire-contre-intox/** (dépôt `TheSamLePirate/empire-contre-intox`, branche `main`, racine).
 
+> ## ▶ Skill `nouveau-dossier` (process automatisé)
+>
+> Pour créer un dossier à partir d'un transcript, **utilise la skill `/nouveau-dossier`**
+> (`.claude/skills/nouveau-dossier/`). Elle reproduit pas à pas le process éprouvé sur
+> les derniers dossiers et fournit les outils prêts :
+> - **`SKILL.md`** — le playbook en 14 étapes (lecture intégrale → page codex → 100 %
+>   verbatim → vérification factuelle → images → sources → index → publication) ;
+> - **`reference/design-system.md`** — jetons codex, structure, chemins relatifs, le
+>   **correctif de révélation** des sections hautes (`threshold:0` + filet de sécurité),
+>   patterns de dataviz SVG, règles de dignité ;
+> - **`reference/sources-and-index.md`** — vérification par agents //, anti-hallucination
+>   DOI (Crossref), câblage exact de `sources.html`, numérotation de l'index, piège des
+>   « références orphelines » ;
+> - **`reference/images-template.md`** — gabarit `images_a_generer.md` (génération
+>   des images confiée à **Codex**, lancée **en parallèle** de la construction) ;
+> - **`scripts/check-coverage.py`** — contrôle **obligatoire** des 100 % mot pour mot ;
+> - **`scripts/optimize-pngs.sh`** — optimisation PNG du site (pngquant + oxipng).
+>
+> La présente charte (`AGENT.md`) reste la **référence de fond** ; la skill en est la
+> mise en œuvre opérationnelle. En cas de divergence, suivre `AGENT.md`.
+
 ## Objectif
 
 Quand un nouveau déroulé (`.txt` ou script) doit être implémenté, produire une page complète qui :
