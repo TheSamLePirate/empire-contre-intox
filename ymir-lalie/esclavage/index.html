@@ -113,7 +113,9 @@
     .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
     .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
     .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
-    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1 1 auto; min-width:0; -webkit-overflow-scrolling:touch;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent); }
     .nav::-webkit-scrollbar { display:none; }
     .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
     .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
@@ -174,6 +176,17 @@
     .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
     .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
     .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); }
+    /* doc-figure — présentation d'un document d'archive (couverture portrait + provenance) */
+    .doc-figure { display:grid; grid-template-columns:minmax(0,210px) 1fr; margin:8px 0 32px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:linear-gradient(180deg,rgba(12,9,7,.55),rgba(3,6,13,.55)); }
+    .doc-figure .doc-img { display:grid; place-items:center; padding:22px; background:radial-gradient(120% 90% at 50% 0%, rgba(179,80,62,.12), transparent 62%); }
+    .doc-figure .doc-img img { width:100%; max-width:186px; height:auto; border-radius:2px; box-shadow:0 16px 42px rgba(0,0,0,.6), 0 0 0 1px var(--line-2); }
+    .doc-figure figcaption { padding:22px 24px; border-left:1px solid var(--line-2); align-self:center; }
+    .doc-figure .doc-k { font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .doc-figure .doc-t { font-family:var(--serif); font-size:1.04rem; color:var(--parch); margin:9px 0 0; line-height:1.5; }
+    .doc-figure .doc-t b { color:var(--gold-bright); font-weight:600; }
+    .doc-figure .doc-m { font-size:.84rem; color:var(--muted); margin:11px 0 0; line-height:1.58; }
+    .doc-figure .doc-m a { color:var(--gold); }
+    @media (max-width:640px){ .doc-figure { grid-template-columns:1fr; } .doc-figure figcaption { border-left:0; border-top:1px solid var(--line-2); } .doc-figure .doc-img img { max-width:150px; } }
 
     .script-block,.science-block,.question-block,.lesson-block,.dialogue-block {
       border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
@@ -417,16 +430,16 @@
         <a class="home-link" href="../../index.html">Accueil ECI</a>
         <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
         <div class="nav" id="navLinks">
-          <a href="#fil">Le fil invisible</a>
+          <a href="#fil">Fil invisible</a>
           <a href="#sommaire">Sommaire</a>
           <a href="#definir">Définir</a>
-          <a href="#code-noir">Le Code Noir</a>
-          <a href="#envers">L'envers du décor</a>
-          <a href="#ifan">Le bulletin de l'IFAN</a>
-          <a href="#route">La route de l'horreur</a>
-          <a href="#resistance">La résistance</a>
+          <a href="#code-noir">Code Noir</a>
+          <a href="#envers">Coulisses</a>
+          <a href="#ifan">IFAN</a>
+          <a href="#route">La route</a>
+          <a href="#resistance">Résistance</a>
           <a href="#nantes">Nantes</a>
-          <a href="#mecanismes">Les mécanismes</a>
+          <a href="#mecanismes">Mécanismes</a>
           <a href="#napoleon">Napoléon</a>
         </div>
       </div>
@@ -841,6 +854,16 @@
         </div>
         <div class="transcript">
           <article class="prose">
+            <figure class="doc-figure">
+              <div class="doc-img">
+                <img src="assets/bulletin-ifan-1963.jpg" alt="Couverture orange du Bulletin de l'Institut Français d'Afrique Noire, Tome XXV, juillet-octobre 1963, n°3-4, série B Sciences Humaines, Dakar — avec le logo IFAN en médaillon (carte de l'Afrique)" loading="lazy">
+              </div>
+              <figcaption>
+                <span class="doc-k">Pièce d'archive · la couverture montrée pendant le live</span>
+                <p class="doc-t"><b>Bulletin de l'IFAN</b> — Dakar · Tome XXV, n°3-4, <b>juillet-octobre 1963</b> · Série B : Sciences Humaines.</p>
+                <p class="doc-m">Institut Français d'Afrique Noire — fondé en 1936, ouvert en 1938 par Théodore Monod ; devenu « Institut <i>fondamental</i> d'Afrique noire » en 1966, puis « IFAN Cheikh Anta Diop » en 1986. Ce numéro contient notamment Y. Wane, « État actuel de la documentation au sujet des Toucouleurs » (p. 457-477) — une société ouest-africaine documentée. Notices : <a href="https://data.bnf.fr/fr/34418689/bulletin_de_l_institut_francais_d_afrique_noire__serie_b__sciences_humaines/" target="_blank" rel="noopener">BnF</a> · <a href="https://ifan.ucad.sn/" target="_blank" rel="noopener">IFAN-UCAD</a>.</p>
+              </figcaption>
+            </figure>
             <p class="lede">Le Bulletin de l'Institut Français d'Afrique Noire (IFAN), série B (Sciences Humaines), est un outil puissant pour ce live car il apporte une caution scientifique et "décentre" le regard : on ne regarde plus seulement depuis le port de Nantes, on regarde depuis l'Afrique.</p>
             <h3 class="group-title">Zoom sur la Source : Le Bulletin de l'IFAN (Dakar)</h3>
             <p class="sub">1. Qu'est-ce que l'IFAN ?</p>
@@ -907,8 +930,8 @@
           </article>
           <aside class="side-note">
             <h3>Anti-intox · l'IFAN &amp; la « Pièce d'Inde »</h3>
-            <p>L'<strong>Institut français d'Afrique noire</strong> (Dakar, fondé 1938 ; devenu « Institut fondamental d'Afrique noire » en 1966) et son <strong>Bulletin série B (Sciences humaines)</strong> existent bien ; un numéro de 1963 est cohérent.</p>
-            <p>La <strong>« Pièce d'Inde »</strong> : unité de compte d'un captif d'environ 25-30 ans, robuste, sans défaut ; femmes, enfants et vieillards comptés en fractions. Le terme vient d'abord d'une pièce de toile indienne servant de troc.</p>
+            <p>La couverture montrée est <strong>authentique</strong> : <em>Bulletin de l'IFAN</em>, Dakar — <strong>Tome XXV, n°3-4, 1963</strong>, série B (Sciences humaines). L'<strong>Institut français d'Afrique noire</strong> (fondé 1936, ouvert 1938 par Th. Monod ; « Institut <em>fondamental</em> d'Afrique noire » en 1966) et sa série B existent bien ; ce numéro contient p. ex. un article documenté sur les <strong>Toucouleurs</strong> (Y. Wane). 1963 est aussi l'année où l'IFAN se dote d'un laboratoire de radiocarbone (Cheikh Anta Diop &amp; Monod).</p>
+            <p><strong>Nuance :</strong> que <em>ce</em> numéro précis reproduise des listes de prix de captifs n'a pas pu être vérifié (son sommaire complet n'est pas en ligne). En revanche la <strong>« Pièce d'Inde »</strong> — unité de compte d'un captif d'environ 25-30 ans, robuste ; femmes, enfants et vieillards en fractions ; le terme vient d'une pièce de toile indienne de troc — et l'échange « vies humaines contre armes à feu » sont solidement attestés par ailleurs.</p>
             <div class="tag-list"><span class="tag">Dakar 1963</span><span class="tag">Décentrer</span><span class="tag">Pièce d'Inde</span><span class="tag">Cauris</span></div>
           </aside>
         </div>
