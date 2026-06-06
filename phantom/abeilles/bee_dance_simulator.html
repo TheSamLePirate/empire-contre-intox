@@ -46,6 +46,11 @@
   }
   #header h1 { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--amber); letter-spacing: 0.03em; }
   #header .subtitle { font-size: 12px; color: var(--gray); font-family: var(--font-mono); }
+  #header .eci-home { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+  #header .eci-logo { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1.5px solid rgba(245,158,11,0.55); box-shadow: 0 0 0 2px rgba(245,158,11,0.12); display: block; transition: border-color 0.2s, box-shadow 0.2s; }
+  #header .eci-home:hover .eci-logo { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(245,158,11,0.2); }
+  .btn.eci-back { text-decoration: none; display: inline-flex; align-items: center; }
+  @media (max-width: 720px) { #header .subtitle { display: none; } }
   #header .actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
   .btn {
     background: transparent; border: 1px solid rgba(245,158,11,0.35); color: var(--amber);
@@ -235,11 +240,15 @@
 <body>
 <div id="app">
   <header id="header">
+    <a class="eci-home" href="../../index.html" title="Empire contre Intox — Accueil">
+      <img class="eci-logo" src="../../ymir-lalie/assets/logo-eci.jpg" alt="Empire contre Intox">
+    </a>
     <div>
       <h1>🐝 La Danse des Abeilles</h1>
     </div>
     <span class="subtitle">Simulateur biologique interactif · von Frisch 1952</span>
     <div class="actions">
+      <a class="btn eci-back" href="index.html" title="Retour au dossier « L'Abeille »">← Le dossier</a>
       <button class="btn" id="btn-geolocate" title="Géolocaliser la ruche">📍 Ma position</button>
       <button class="btn" id="btn-tts">🔊 Voix</button>
       <button class="btn" id="btn-reset">↺ Réinitialiser</button>
