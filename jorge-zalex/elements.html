@@ -11,6 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
 
+  <!-- KaTeX — rendu des vraies formules mathématiques -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+
   <script>document.documentElement.classList.add('js');</script>
 
   <style>
@@ -286,8 +290,54 @@
     .script-block p:last-child, .lesson-block p:last-child, .anti-intox-block p:last-child, .method-block p:last-child { margin-bottom: 0; }
 
     /* formula callout */
-    .formula { display: block; margin: 22px 0; padding: 18px 22px; border: 1px solid var(--line); border-radius: 3px; background: linear-gradient(180deg, rgba(214,172,85,.07), rgba(0,0,0,.12)); font-family: var(--serif); font-size: 1.18rem; color: var(--gold-bright); text-align: center; letter-spacing: .01em; }
+    /* ---------- Formules mathématiques (KaTeX) ---------- */
+    /* Inline : une formule glissée au fil du texte */
+    .imath { display: inline-block; line-height: 1; vertical-align: -.16em; }
+    .imath .katex { font-size: 1.02em; color: var(--gold-bright); }
+    .imath:empty { display: none; }
+
+    /* Bloc « stèle gravée » : encadré cérémoniel pour une formule rappelée ou expliquée */
+    .formula-block {
+      margin: 26px 0; position: relative; border: 1px solid var(--line); border-radius: 3px; overflow: hidden;
+      background:
+        radial-gradient(120% 140% at 0% 0%, rgba(214,172,85,.12), transparent 55%),
+        radial-gradient(120% 140% at 100% 100%, rgba(95,210,230,.07), transparent 55%),
+        linear-gradient(180deg, rgba(14,26,46,.58), rgba(7,12,26,.66));
+      box-shadow: var(--shadow);
+    }
+    .formula-block::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(214,172,85,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(214,172,85,.05) 1px, transparent 1px);
+      background-size: 38px 38px; opacity: .5;
+    }
+    .formula-block > * { position: relative; z-index: 1; }
+    .formula-block .fb-head {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 22px; border-bottom: 1px solid var(--line); background: rgba(5,8,17,.42);
+      font-family: var(--roman); font-size: .62rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--gold);
+    }
+    .formula-block .fb-head::before {
+      content: "ƒ"; display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; flex: none; border: 1px solid var(--gold); border-radius: 50%;
+      font-family: var(--serif); font-style: italic; font-size: 13px; letter-spacing: 0; color: var(--gold-bright); background: rgba(214,172,85,.08);
+    }
+    .formula-block .fb-head .fb-tag { margin-left: auto; color: var(--soft); letter-spacing: .14em; }
+
+    /* Cible de rendu KaTeX en display (anciennement <span class="formula">) */
+    .formula { display: block; margin: 0; padding: 24px 22px; text-align: center; overflow-x: auto; }
+    .formula .katex { font-size: 1.42rem; color: var(--gold-bright); }
+    .formula + .formula { padding-top: 0; }
+    .formula:empty { display: none; }
     .formula small { display: block; margin-top: 8px; font-family: var(--roman); font-size: .6rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); }
+
+    .formula-block .fb-note { padding: 2px 22px 18px; margin: 0; font-family: var(--serif); font-size: .96rem; line-height: 1.62; color: var(--muted); }
+    .formula-block .fb-note b { color: var(--ink); font-weight: 600; }
+    .formula-block .fb-note .imath .katex { font-size: 1em; color: var(--quanta); }
+    @media (max-width: 640px) {
+      .formula .katex { font-size: 1.12rem; }
+      .formula-block .fb-head { padding: 10px 16px; }
+      .formula, .formula-block .fb-note { padding-left: 16px; padding-right: 16px; }
+    }
 
     /* illustration plate (placeholder-friendly) */
     .plate { margin: 26px 0; }
@@ -663,7 +713,7 @@
             <p>Avant l'atome, il y a la <strong>particule élémentaire</strong>. Toute particule de l'Univers est définie par trois propriétés <em>intrinsèques</em> — immuables, comme les coordonnées de son existence :</p>
             <ul>
               <li><strong>La charge électrique</strong> — sa sensibilité à la force électromagnétique. Sans charge, une particule est invisible à l'électricité et au magnétisme. Unité : le <strong>coulomb (C)</strong>.</li>
-              <li><strong>La masse</strong> — son inertie, son couplage à la gravité. On la mesure en kilogrammes, mais aussi via <em>E = mc²</em> en eV/c², ou en unité de masse atomique.</li>
+              <li><strong>La masse</strong> — son inertie, son couplage à la gravité. On la mesure en kilogrammes, mais aussi via <span class="imath" data-tex="E=mc^2"></span> en eV/c², ou en unité de masse atomique.</li>
               <li><strong>Le spin</strong> — son moment cinétique intrinsèque, une propriété purement quantique sans équivalent classique.</li>
             </ul>
             <div class="plate reveal">
@@ -673,7 +723,12 @@
               </figure>
             </div>
             <p>Pour la masse, deux unités cohabitent. L'équivalence masse-énergie permet d'exprimer une masse en électronvolts ; et pour les atomes, on utilise l'<strong>unité de masse atomique</strong> (u) :</p>
-            <span class="formula">E = mc² &nbsp;⟹&nbsp; m = E / c²<br>1 u = 1,6605 × 10⁻²⁷ kg = 931,5 MeV/c²<small>Constantes CODATA / PDG</small></span>
+            <div class="formula-block">
+              <div class="fb-head">Équivalence masse–énergie <span class="fb-tag">Einstein · CODATA / PDG</span></div>
+              <div class="formula" data-tex="E=mc^2 \quad\Longrightarrow\quad m=\dfrac{E}{c^2}"></div>
+              <div class="formula" data-tex="1\ \mathrm{u}=1{,}6605\times10^{-27}\ \mathrm{kg}=931{,}5\ \mathrm{MeV}/c^2"></div>
+              <p class="fb-note">L'énergie <span class="imath" data-tex="E"></span> et la masse <span class="imath" data-tex="m"></span> sont deux faces d'une même grandeur, reliées par le carré de la vitesse de la lumière <span class="imath" data-tex="c"></span>. C'est ce qui permet d'exprimer la masse d'une particule en <b>MeV/c²</b>, et de définir l'unité de masse atomique.</p>
+            </div>
             <p>Ces unités donnent les masses des trois briques de l'atome : l'<strong>électron</strong> (≈ 0,511 MeV/c²), le <strong>proton</strong> (≈ 938,3 MeV/c²) et le <strong>neutron</strong> (≈ 939,6 MeV/c²) — le neutron, très légèrement plus lourd que le proton, ce qui rendra possible toute la radioactivité β.</p>
             <div class="method-block">
               <h4>Méthode · l'expérience de Stern et Gerlach (1922)</h4>
@@ -786,7 +841,13 @@
               <p>Un <strong>élément chimique</strong> est défini par son numéro atomique <strong>Z</strong> (le nombre de protons). Un <strong>isotope</strong> d'un élément est caractérisé par la composition de son noyau (protons <em>+</em> neutrons). Changer Z, c'est changer d'élément ; changer le nombre de neutrons, c'est changer d'isotope.</p>
             </div>
             <p>Les premiers éléments naissent ainsi dans l'ordre de leur numéro atomique : l'<strong>hydrogène</strong> (Z = 1), l'<strong>hélium</strong> (Z = 2) et le <strong>lithium</strong> (Z = 3). Les réactions clés :</p>
-            <span class="formula">p + n → ²H &nbsp;(deutérium)<br>²H + ²H → ³He + n &nbsp;·&nbsp; ²H + ²H → ³H (tritium) + p<br>³H + ²H → ⁴He + n<small>Fusion des noyaux légers · premières minutes</small></span>
+            <div class="formula-block">
+              <div class="fb-head">Nucléosynthèse primordiale <span class="fb-tag">Fusion · premières minutes</span></div>
+              <div class="formula" data-tex="p + n \rightarrow {}^{2}\mathrm{H}\quad(\text{deutérium})"></div>
+              <div class="formula" data-tex="{}^{2}\mathrm{H} + {}^{2}\mathrm{H} \rightarrow {}^{3}\mathrm{He} + n \qquad {}^{2}\mathrm{H} + {}^{2}\mathrm{H} \rightarrow {}^{3}\mathrm{H} + p"></div>
+              <div class="formula" data-tex="{}^{3}\mathrm{H} + {}^{2}\mathrm{H} \rightarrow {}^{4}\mathrm{He} + n"></div>
+              <p class="fb-note">Sous <span class="imath" data-tex="10^{9}\ \mathrm{K}"></span>, le deutérium <span class="imath" data-tex="{}^{2}\mathrm{H}"></span> devient stable et la fusion enchaîne les noyaux légers jusqu'à l'<b>hélium-4</b>, avec une trace de tritium <span class="imath" data-tex="{}^{3}\mathrm{H}"></span> et de lithium-7. Bilan : ≈ 75 % H et 25 % He en masse.</p>
+            </div>
             <p>L'Univers reste ensuite un plasma opaque pendant ~380 000 ans. Puis survient la <strong>recombinaison</strong> (T ≈ 3000 K) : noyaux et électrons s'unissent enfin en <strong>premiers atomes</strong>, l'Univers devient transparent et libère le <strong>fond diffus cosmologique</strong>. Bilan de cette époque : environ <strong>75 % d'hydrogène</strong> et <strong>25 % d'hélium</strong> (en masse), avec des traces de deutérium, d'hélium-3 et de lithium. Tous les éléments plus lourds viendront <em>plus tard</em>, forgés dans les étoiles.</p>
             <figure class="reveal" style="margin:24px 0 0">
               <figcaption class="section-kicker" style="margin-bottom:14px">Abondance des éléments — où va la matière</figcaption>
@@ -866,9 +927,21 @@
             <p>Tous les noyaux ne sont pas stables. Quand le rapport entre protons et neutrons s'éloigne trop d'un certain équilibre, le noyau se réorganise : c'est la <strong>radioactivité</strong>, qui prend trois grandes formes.</p>
             <ul>
               <li><strong>Radioactivité α</strong> — le noyau éjecte un noyau d'hélium-4 (2 protons + 2 neutrons). Il perd 2 en Z et 4 en nombre de masse A.</li>
-              <li><strong>Radioactivité β</strong> — un neutron se mue en proton (β⁻) avec émission d'un électron et d'un anti-neutrino, ou l'inverse (β⁺). C'est l'interaction faible à l'œuvre dans le noyau. Le <strong>nombre de masse A</strong> (total de nucléons) est conservé, mais le <strong>numéro atomique Z</strong> change : un élément en devient un autre. La masse du noyau, elle, diminue légèrement — la différence est libérée en énergie (E = Δm·c²).</li>
+              <li><strong>Radioactivité β</strong> — un neutron se mue en proton (β⁻) avec émission d'un électron et d'un anti-neutrino, ou l'inverse (β⁺). C'est l'interaction faible à l'œuvre dans le noyau. Le <strong>nombre de masse A</strong> (total de nucléons) est conservé, mais le <strong>numéro atomique Z</strong> change : un élément en devient un autre. La masse du noyau, elle, diminue légèrement — la différence est libérée en énergie (<span class="imath" data-tex="E=\Delta m\,c^{2}"></span>).</li>
               <li><strong>Radioactivité γ</strong> — un noyau excité se désexcite en émettant un photon de très haute énergie. Ni Z ni A ne changent : seul le niveau d'énergie redescend.</li>
             </ul>
+            <div class="formula-block">
+              <div class="fb-head">Les trois désintégrations <span class="fb-tag">α · β · γ</span></div>
+              <div class="formula" data-tex="{}^{A}_{Z}\mathrm{X}\;\rightarrow\;{}^{A-4}_{Z-2}\mathrm{Y}\;+\;{}^{4}_{2}\mathrm{He}\quad(\alpha)"></div>
+              <div class="formula" data-tex="{}^{A}_{Z}\mathrm{X}\;\rightarrow\;{}^{A}_{Z+1}\mathrm{Y}\;+\;e^{-}+\bar{\nu}_e\quad(\beta^{-})"></div>
+              <div class="formula" data-tex="{}^{A}_{Z}\mathrm{X}^{*}\;\rightarrow\;{}^{A}_{Z}\mathrm{X}\;+\;\gamma\quad(\gamma)"></div>
+              <p class="fb-note">En <b>α</b>, le noyau perd 2 protons et 2 neutrons ; en <b>β⁻</b>, un neutron devient proton (<span class="imath" data-tex="Z\to Z+1"></span>, A inchangé) — un élément en devient un autre ; en <b>γ</b>, seul le niveau d'énergie redescend. La perte de masse part en énergie selon <span class="imath" data-tex="E=\Delta m\,c^{2}"></span>.</p>
+            </div>
+            <div class="formula-block">
+              <div class="fb-head">Loi de décroissance radioactive <span class="fb-tag">Datation radiométrique</span></div>
+              <div class="formula" data-tex="N(t)=N_0\,e^{-\lambda t}\qquad t_{1/2}=\dfrac{\ln 2}{\lambda}"></div>
+              <p class="fb-note">Le nombre de noyaux <span class="imath" data-tex="N"></span> décroît exponentiellement avec la constante <span class="imath" data-tex="\lambda"></span> ; la <b>demi-vie</b> <span class="imath" data-tex="t_{1/2}"></span> est le temps au bout duquel la moitié s'est désintégrée. C'est l'horloge qui permet de lire l'âge des roches.</p>
+            </div>
             <div class="plate reveal">
               <figure>
                 <div class="frameimg"><img src="assets/p4-radioactivite.png" alt="Désintégrations alpha, bêta et gamma, et la vallée de la stabilité des noyaux" loading="lazy"></div>
@@ -919,7 +992,11 @@
             <div class="method-block">
               <h4>Le saut quantique</h4>
               <p>Dans le modèle quantique, l'électron est décrit par une <strong>fonction d'onde</strong> ψ(r, θ, φ, t) et un état |ψ⟩. On ne connaît plus sa position, mais une <strong>densité de probabilité de présence</strong> :</p>
-              <span class="formula">dP / dV = |ψ(r, t)|²<small>Règle de Born (1926) · densité fonction de la position r</small></span>
+              <div class="formula-block">
+                <div class="fb-head">Règle de Born <span class="fb-tag">Probabilité quantique · 1926</span></div>
+                <div class="formula" data-tex="\dfrac{dP}{dV}=\bigl|\psi(\vec r,\,t)\bigr|^{2}"></div>
+                <p class="fb-note">Le carré du module de la fonction d'onde <span class="imath" data-tex="\psi"></span> donne la <b>densité de probabilité</b> de trouver l'électron au point <span class="imath" data-tex="\vec r"></span> : on abandonne la trajectoire pour un nuage de présence.</p>
+              </div>
               <p>Et en <strong>1932</strong>, <strong>Chadwick</strong> découvre le <strong>neutron</strong> : le noyau a enfin tous ses constituants.</p>
             </div>
           </article>
@@ -947,7 +1024,12 @@
         <div class="transcript">
           <article class="prose">
             <p>Le modèle de Bohr, appliqué à l'atome d'hydrogène, est le premier à <em>calculer</em> le spectre. Il quantifie le moment cinétique de l'électron, ce qui n'autorise que certaines orbites et certains niveaux d'énergie :</p>
-            <span class="formula">L = mvr = n · h/2π &nbsp;;&nbsp; Eₙ = − 13,6 / n² (eV)<br>vₙ = v₁ / n &nbsp;;&nbsp; rₙ = a₀ · n²<small>Rayon de Bohr a₀ = 0,529 Å</small></span>
+            <div class="formula-block">
+              <div class="fb-head">Modèle de Bohr <span class="fb-tag">Quantification · a₀ = 0,529 Å</span></div>
+              <div class="formula" data-tex="L=mvr=n\,\dfrac{h}{2\pi}\qquad E_n=-\dfrac{13{,}6}{n^{2}}\ \mathrm{eV}"></div>
+              <div class="formula" data-tex="v_n=\dfrac{v_1}{n}\qquad r_n=a_0\,n^{2}"></div>
+              <p class="fb-note">En quantifiant le moment cinétique <span class="imath" data-tex="L"></span> par un entier <span class="imath" data-tex="n"></span>, Bohr n'autorise que certaines orbites : l'énergie <span class="imath" data-tex="E_n"></span> ne prend que des valeurs discrètes (en <span class="imath" data-tex="-1/n^{2}"></span>) et le rayon croît comme <span class="imath" data-tex="n^{2}"></span>. C'est ce qui explique enfin les <b>raies spectrales</b> de l'hydrogène.</p>
+            </div>
             <p>Les niveaux d'énergie de l'hydrogène se resserrent vers le haut : E₁ = −13,6 eV, E₂ = −3,40 eV, <strong>E₃ = −1,51 eV</strong>, E₄ = −0,85 eV, E₅ = −0,54 eV, jusqu'à E∞ = 0 (l'électron est libre : ionisation).</p>
             <div class="plate reveal">
               <figure>
@@ -956,12 +1038,23 @@
               </figure>
             </div>
             <p>Quand l'électron <strong>absorbe</strong> un photon, il monte de niveau ; quand il <strong>retombe</strong>, il émet un photon dont l'énergie vaut exactement l'écart entre deux niveaux. Ces transitions produisent les <strong>raies spectrales</strong> — la signature lumineuse de chaque élément, lisible à des milliards d'années-lumière.</p>
+            <div class="formula-block">
+              <div class="fb-head">Photon d'une transition <span class="fb-tag">Raies spectrales · Rydberg</span></div>
+              <div class="formula" data-tex="E_{\text{photon}}=E_{n_2}-E_{n_1}=h\nu=\dfrac{hc}{\lambda}"></div>
+              <div class="formula" data-tex="\dfrac{1}{\lambda}=R_H\left(\dfrac{1}{n_1^{2}}-\dfrac{1}{n_2^{2}}\right)"></div>
+              <p class="fb-note">L'énergie du photon émis ou absorbé vaut <b>exactement</b> l'écart entre deux niveaux ; sa fréquence <span class="imath" data-tex="\nu"></span> et sa longueur d'onde <span class="imath" data-tex="\lambda"></span> en découlent (<span class="imath" data-tex="h"></span> = constante de Planck). La formule de Rydberg (<span class="imath" data-tex="R_H"></span>) prédit la position de chaque raie de l'hydrogène.</p>
+            </div>
             <p>Le modèle de Bohr atteint vite ses limites. La <strong>résolution de l'équation de Schrödinger</strong> lui succède et donne les véritables états de l'électron, les <strong>orbitales atomiques</strong> ψ<sub>n,l,m</sub>, chacune définie par <strong>trois nombres quantiques</strong> :</p>
             <ul>
               <li><strong>n</strong> (principal) — le niveau d'énergie, n = 1, 2, 3…</li>
               <li><strong>l</strong> (azimutal) — la forme : l = 0 → orbitale « s », l = 1 → « p », l = 2 → « d », l = 3 → « f ».</li>
               <li><strong>m</strong> (magnétique) — l'orientation dans l'espace. Une sous-couche s en compte 1, p en compte 3, d en compte 5, f en compte 7.</li>
             </ul>
+            <div class="formula-block">
+              <div class="fb-head">Équation de Schrödinger <span class="fb-tag">États stationnaires · orbitales</span></div>
+              <div class="formula" data-tex="\hat{H}\,\psi = E\,\psi"></div>
+              <p class="fb-note">Ses solutions stationnaires sont les <b>orbitales atomiques</b> <span class="imath" data-tex="\psi_{n,\ell,m}"></span>, chacune repérée par le trio de nombres quantiques <span class="imath" data-tex="(n,\ell,m)"></span> : <span class="imath" data-tex="\hat H"></span> est l'opérateur d'énergie (hamiltonien), <span class="imath" data-tex="E"></span> l'énergie de l'état.</p>
+            </div>
             <div class="plate reveal">
               <figure>
                 <div class="frameimg"><img src="assets/p6-orbitales.png" alt="Formes 3D des orbitales atomiques s, p, d, f" loading="lazy"></div>
@@ -998,10 +1091,16 @@
           <article class="prose">
             <p>Voici le cœur du dossier : <strong>pourquoi</strong> le tableau a cette forme. Trois règles dictent l'ordre dans lequel les électrons remplissent les orbitales.</p>
             <ul>
-              <li><strong>Règle de Klechkowski</strong> (Madelung) — on remplit par valeurs de <strong>n + l</strong> croissantes ; à n + l égal, le plus petit n d'abord. D'où l'ordre 1s, 2s, 2p, 3s, 3p, <strong>4s avant 3d</strong>, 4p…</li>
+              <li><strong>Règle de Klechkowski</strong> (Madelung) — on remplit par valeurs de <span class="imath" data-tex="n+\ell"></span> croissantes ; à <span class="imath" data-tex="n+\ell"></span> égal, le plus petit <span class="imath" data-tex="n"></span> d'abord. D'où l'ordre 1s, 2s, 2p, 3s, 3p, <strong>4s avant 3d</strong>, 4p…</li>
               <li><strong>Règle de Hund</strong> — dans une même sous-couche, les électrons s'installent d'abord seuls, spins parallèles, avant de s'apparier.</li>
               <li><strong>Principe d'exclusion de Pauli</strong> — deux électrons ne peuvent partager les quatre mêmes nombres quantiques : une orbitale n'accueille que 2 électrons (spins opposés).</li>
             </ul>
+            <div class="formula-block">
+              <div class="fb-head">Capacité des couches <span class="fb-tag">D'où viennent 2, 8, 18, 32</span></div>
+              <div class="formula" data-tex="\text{sous-couche : } 2\,(2\ell+1)\;\Rightarrow\; \mathrm{s}=2,\ \mathrm{p}=6,\ \mathrm{d}=10,\ \mathrm{f}=14"></div>
+              <div class="formula" data-tex="\text{couche } n : \;\sum_{\ell=0}^{n-1} 2\,(2\ell+1)=2n^{2}\;\Rightarrow\; 2,\ 8,\ 18,\ 32"></div>
+              <p class="fb-note">Chaque orbitale tient <b>2</b> électrons (Pauli) ; une sous-couche en compte <span class="imath" data-tex="2(2\ell+1)"></span> et une couche entière <span class="imath" data-tex="2n^{2}"></span>. L'ordre de remplissage de Klechkowski (4s avant 3d…) découpe ensuite ces capacités en <b>lignes</b> du tableau : 2, 8, 8, 18…</p>
+            </div>
             <div class="plate reveal">
               <figure>
                 <div class="frameimg"><img class="r43" src="assets/p7-remplissage.png" alt="Ordre de remplissage de Klechkowski et construction des lignes du tableau" loading="lazy"></div>
@@ -1060,7 +1159,11 @@
               </table>
             </div>
             <p>On comprend aussi pourquoi certains <strong>ions</strong> sont favorisés : en adoptant la configuration saturée du gaz noble voisin, Li⁺, Na⁺, K⁺ (et F⁻, Cl⁻…) deviennent stables — non pas isolés (arracher un électron coûte toujours de l'énergie), mais <strong>une fois engagés dans un cristal ou en solution</strong>, où l'énergie réticulaire et l'hydratation rendent le bilan favorable. La formule de Bohr, corrigée par une <strong>charge nucléaire effective</strong> (règles de Slater), en donne une bonne <em>approximation hydrogénoïde</em> — non pas une loi exacte des atomes polyélectroniques, mais un fil conducteur commode :</p>
-            <span class="formula">Eₙ = − 13,6 · Z*² / n² (eV)<small>Z* = charge nucléaire effective</small></span>
+            <div class="formula-block">
+              <div class="fb-head">Approximation hydrogénoïde <span class="fb-tag">Slater · charge effective Z*</span></div>
+              <div class="formula" data-tex="E_n=-\,13{,}6\;\dfrac{Z^{*2}}{n^{2}}\ \mathrm{eV}"></div>
+              <p class="fb-note">Pour un atome à plusieurs électrons, on corrige la formule de Bohr par la <b>charge nucléaire effective</b> <span class="imath" data-tex="Z^{*}"></span> (les électrons internes écrantent une partie de la charge du noyau, règles de Slater) : un fil conducteur commode, sans être une loi exacte.</p>
+            </div>
             <p>Le tableau se découpe enfin en <strong>familles</strong>, qui partagent leur couche de valence :</p>
             <div class="families">
               <div class="family" style="--fc:var(--gold-bright)"><h4>Alcalins · col. 1</h4><p>1 électron « s » célibataire, cédé facilement → cation (Li⁺, Na⁺, K⁺) ; ce sont de bons réducteurs (donneurs d'électron, au sens de Lewis).</p></div>
@@ -1378,6 +1481,24 @@
         else if (e.key === "ArrowRight") show(cur + 1);
       });
     })();
+  </script>
+
+  <!-- Rendu des formules en LaTeX (KaTeX, chargé en defer) -->
+  <script>
+    function renderMath() {
+      document.querySelectorAll(".imath[data-tex], .formula[data-tex]").forEach((node) => {
+        const tex = node.getAttribute("data-tex");
+        const display = node.classList.contains("formula");
+        if (window.katex) {
+          try { katex.render(tex, node, { throwOnError: false, displayMode: display }); return; }
+          catch (e) { /* repli ci-dessous */ }
+        }
+        node.textContent = tex; // repli lisible si KaTeX indisponible
+      });
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderMath);
+    else renderMath();
+    window.addEventListener("load", renderMath); // filet de sécurité (CDN lent)
   </script>
 </body>
 </html>

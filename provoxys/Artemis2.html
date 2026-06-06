@@ -7,6 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<!-- KaTeX — rendu des vraies formules mathématiques -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <style>
   :root {
     --ink: #ede4cf;
@@ -420,6 +423,63 @@
   .sim-cta:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 18px 46px rgba(240,110,31,0.4); }
   .sim-cta .ico { font-size: 12px; }
   .sim-cta .ext { font-family: var(--body); font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 13px; color: rgba(26,14,5,0.65); }
+
+  /* ───────── Formules mathématiques (KaTeX) ───────── */
+  /* Inline : une formule glissée au fil du texte */
+  .imath { display: inline-block; line-height: 1; vertical-align: -0.18em; }
+  .imath .katex { font-size: 1.04em; color: var(--core); }
+  .imath:empty { display: none; }
+
+  /* Bloc « tableau noir » : encadré cérémoniel pour une formule expliquée */
+  .formula-block {
+    margin: 30px 0; position: relative;
+    border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+    background:
+      radial-gradient(120% 140% at 0% 0%, rgba(240,110,31,0.10), transparent 55%),
+      radial-gradient(120% 140% at 100% 100%, rgba(127,200,179,0.07), transparent 55%),
+      linear-gradient(180deg, var(--surface), var(--bg-2));
+    box-shadow: 0 18px 50px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+  .formula-block::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.9 0 0 0 0 0.8 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay; opacity: 0.5;
+  }
+  .formula-block > * { position: relative; z-index: 1; }
+  .formula-block .fb-head {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 22px; border-bottom: 1px solid var(--line);
+    background: rgba(10,13,24,0.35);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--core);
+  }
+  .formula-block .fb-head::before {
+    content: "ƒ"; display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; flex: none;
+    border: 1px solid var(--core); border-radius: 50%;
+    font-family: var(--body); font-style: italic; font-size: 13px; letter-spacing: 0;
+    color: var(--core); background: rgba(240,110,31,0.08);
+  }
+  .formula-block .fb-head .fb-tag {
+    margin-left: auto; color: var(--ink-faint); letter-spacing: 0.16em;
+  }
+  .formula {
+    margin: 0; padding: 26px 22px; text-align: center; overflow-x: auto;
+  }
+  .formula .katex { font-size: 1.5rem; color: var(--ink); }
+  .formula + .formula { padding-top: 0; }
+  .formula:empty { display: none; }
+  .formula-block .fb-note {
+    padding: 0 22px 18px; margin: 0;
+    font-family: var(--body); font-size: 14.5px; line-height: 1.6; color: var(--ink-dim);
+  }
+  .formula-block .fb-note b { color: var(--ink); font-weight: 600; }
+  .formula-block .fb-note .imath .katex { font-size: 1em; color: var(--sam); }
+  @media (max-width: 720px) {
+    .formula .katex { font-size: 1.18rem; }
+    .formula-block .fb-head { padding: 10px 16px; }
+    .formula, .formula-block .fb-note { padding-left: 16px; padding-right: 16px; }
+  }
 </style>
 </head>
 <body>
@@ -510,6 +570,18 @@
       <div class="who"><b>Provoxys</b><span class="ts">suite</span></div>
       <p>bruit et les vibrations lors du décollage. Ces infrastructures ont été conçues pour supporter la puissance colossale des moteurs, comme nous le verrons dans le chapitre dédié au pas de tir.</p>
     </div>
+
+    <div class="formula-block">
+      <div class="fb-head">Équation de vis-viva <span class="fb-tag">Mécanique orbitale</span></div>
+      <div class="formula" data-tex="v=\sqrt{\mu\left(\dfrac{2}{r}-\dfrac{1}{a}\right)}"></div>
+      <p class="fb-note">Elle donne la vitesse <b>v</b> d'un vaisseau à la distance <b>r</b> du centre de la Terre sur une orbite de demi-grand axe <b>a</b>, où <span class="imath" data-tex="\mu=GM"></span> est le paramètre gravitationnel terrestre. C'est elle qui fixe le delta-v de chaque mise à feu.</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="fb-head">S'extraire de l'attraction terrestre <span class="fb-tag">Apollo → Artemis</span></div>
+      <div class="formula" data-tex="v_{\text{orb}}=\sqrt{\dfrac{GM}{r}}\approx 7{,}8\ \mathrm{km/s} \qquad v_{\text{lib}}=\sqrt{\dfrac{2GM}{r}}=\sqrt{2}\,v_{\text{orb}}\approx 11{,}2\ \mathrm{km/s}"></div>
+      <p class="fb-note">On atteint d'abord la <b>vitesse orbitale</b> (≈ 7,8 km/s) en orbite basse, puis on ajoute le delta-v d'injection translunaire <span class="imath" data-tex="\Delta v_{\text{TLI}}\approx 3{,}1\ \mathrm{km/s}"></span> — bien moins coûteux que de viser directement la <b>vitesse de libération</b> de 11,2 km/s.</p>
+    </div>
   </div>
 
   <div class="part">
@@ -518,6 +590,13 @@
     <div class="provoxy">
       <div class="who"><b>Provoxys</b><span class="ts">Ch.1 · P.2</span></div>
       <p>Au cœur de ce retour se trouvent des objectifs scientifiques et stratégiques d'une richesse fascinante. Prenons d'abord l'eau sous forme de glace aux pôles sud, concentrée notamment dans le cratère Shackleton : les estimations, basées sur les données précises de la sonde LRO (Lunar Reconnaissance Orbiter, soit orbiteur de reconnaissance lunaire), du LEND et du Diviner, parlent d'environ 600 millions de tonnes, avec des cartes détaillées de l'hydrogène (WEH) et une stabilité de la glace maintenue à des températures inférieures à 110 kelvins dans les régions perpétuellement ombragées (permanently shadowed regions ou PSR). Cette glace n'est pas seulement une curiosité : elle permet l'ISRU (In-Situ Resource Utilization, c'est-à-dire l'utilisation des ressources in situ), c'est-à-dire l'électrolyse de H₂O pour obtenir de l'hydrogène et de l'oxygène liquides (LH2/LOX) qui serviront de propergol, réduisant ainsi considérablement la masse que nous devons lancer depuis la Terre (pourquoi ? Parce que chaque kilogramme lancé depuis la Terre coûte des millions de dollars et limite la charge utile, permettant à long terme des missions plus autonomes et durables, et résolvant le défi futur de la logistique pour une base lunaire permanente, avec un rendement mathématique précis de 1 kg d'eau produisant 0,11 kg d'hydrogène et 0,89 kg d'oxygène par électrolyse, calculé selon la loi de Faraday). Sur le plan géologique, les échantillons lunaires âgés de 4,5 milliards d'années nous racontent l'histoire complète du système solaire et de notre Soleil. La radiation, avec les capteurs ARCHER, prépare directement les futures missions vers Mars en mesurant les rayons cosmiques galactiques (GCR) et les particules solaires. L'astrobiologie, l'économie spatiale (mines de volatiles et tourisme lunaire) et la diversité complètent le tableau : pour la première fois, une femme et une personne de couleur fouleront le sol lunaire. Stratégiquement, tout cela renforce le leadership américain grâce aux 67 signataires des Accords Artemis (dont le Paraguay le 7 mai 2026), qui reposent sur les principes du traité de l'espace de 1967 : paix, transparence, durabilité et règles claires pour l'ISRU (In-Situ Resource Utilization). Ce cheminement des objectifs remonte à 2017, s'enrichit des données LRO depuis 2009 et priorise le pôle sud grâce aux confirmations de glace par Diviner en 2009-2010, transformant une simple exploration en une véritable stratégie à long terme pour l'humanité, avec des tests techniques exhaustifs sur chaque système comme le bouclier thermique d'Orion ou les parachutes validés lors d'Artemis I en novembre 2022 qui ont duré 25,5 jours et parcouru 2 250 000 km, préparant les défis futurs comme la construction d'une base lunaire avec habitats gonflables et systèmes ISRU à grande échelle, et des trajectoires choisies pour échapper à l'attraction terrestre en passant d'abord par une orbite basse à 7,8 km/s avant d'ajouter le delta-v nécessaire pour atteindre la Lune. Le ravitaillement orbital, grâce aux tankers Starship, permettra d'ajouter des tonnes de propergol en orbite, rendant ces objectifs réalisables à grande échelle pour des missions durables. Le poste de lancement LC-39B joue un rôle central dans ces objectifs, car il est conçu pour supporter les vibrations extrêmes du SLS lors du décollage, avec une infrastructure qui permet des lancements cadencés et une évacuation rapide des gaz d'échappement pour protéger les systèmes électroniques du véhicule. Ces éléments techniques s'inscrivent dans une vision globale où chaque lancement depuis LC-39B devient une étape concrète vers une présence humaine permanente sur la Lune.</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="fb-head">Électrolyse de l'eau lunaire <span class="fb-tag">ISRU · loi de Faraday</span></div>
+      <div class="formula" data-tex="2\,\mathrm{H_2O}\;\xrightarrow{\ \text{électrolyse}\ }\;2\,\mathrm{H_2}\uparrow + \mathrm{O_2}\uparrow"></div>
+      <div class="formula" data-tex="1\ \mathrm{kg\ H_2O}\;\longrightarrow\;0{,}11\ \mathrm{kg\ H_2}\ +\ 0{,}89\ \mathrm{kg\ O_2}"></div>
+      <p class="fb-note">La molécule d'eau pèse <span class="imath" data-tex="M_{\mathrm{H_2O}}=18\ \mathrm{g/mol}"></span> : sur 18 g, 2 g sont de l'hydrogène (≈ 11 %) et 16 g de l'oxygène (≈ 89 %). La <b>loi de Faraday</b> relie la masse produite à la charge électrique fournie — chaque kilo d'eau extrait du cratère Shackleton devient du propergol <span class="imath" data-tex="\mathrm{LH_2/LOX}"></span> qu'on n'a pas eu à lancer depuis la Terre.</p>
     </div>
     <div class="show-ts">Repère original · 04:55</div>
   </div>
@@ -564,7 +643,25 @@
     <div class="show-ts">Repère original · 04:55</div>
     <div class="provoxy">
       <div class="who"><b>Provoxys</b><span class="ts">suite</span></div>
-      <p>La puissance dégagée par les moteurs du SLS est colossale : les quatre moteurs RS-25 produisent chacun environ 2 280 kN au niveau de la mer, et les deux boosters à propergol solide ajoutent le reste pour atteindre 39 000 kN au total, soit l'équivalent d'une force capable de propulser une masse de 4 000 tonnes à une accélération de près de 10 m/s². Mathématiquement, la puissance cinétique de l'échappement se calcule par P = (1/2) * m_dot * v_e² où m_dot est le débit massique (environ 1 500 kg/s pour le SLS) et v_e la vitesse d'échappement (environ 2 650 m/s pour les RS-25), donnant une puissance instantanée de l'ordre de plusieurs dizaines de gigawatts au décollage. Cette puissance se ressent jusqu'à plus de 100 km à la ronde sous forme de vibrations et de bruit intense (plus de 140 décibels près du pad), avec une propagation du son qui suit la loi de l'inverse du carré pour l'intensité acoustique (I ∝ 1/r²), expliquant pourquoi les habitants de Titusville ou Cocoa Beach ressentent un grondement sourd pendant plusieurs minutes. Le poste de lancement LC-39B est conçu précisément pour absorber et dissiper cette énergie grâce à sa tranchée à flammes et son système de déluge d'eau.</p>
+      <p>La puissance dégagée par les moteurs du SLS est colossale : les quatre moteurs RS-25 produisent chacun environ 2 280 kN au niveau de la mer, et les deux boosters à propergol solide ajoutent le reste pour atteindre 39 000 kN au total, soit l'équivalent d'une force capable de propulser une masse de 4 000 tonnes à une accélération de près de 10 m/s². Mathématiquement, la puissance cinétique de l'échappement se calcule par <span class="imath" data-tex="P=\tfrac{1}{2}\,\dot m\,v_e^{2}"></span> où m_dot est le débit massique (environ 1 500 kg/s pour le SLS) et v_e la vitesse d'échappement (environ 2 650 m/s pour les RS-25), donnant une puissance instantanée de l'ordre de plusieurs dizaines de gigawatts au décollage. Cette puissance se ressent jusqu'à plus de 100 km à la ronde sous forme de vibrations et de bruit intense (plus de 140 décibels près du pad), avec une propagation du son qui suit la loi de l'inverse du carré pour l'intensité acoustique (<span class="imath" data-tex="I\propto 1/r^{2}"></span>), expliquant pourquoi les habitants de Titusville ou Cocoa Beach ressentent un grondement sourd pendant plusieurs minutes. Le poste de lancement LC-39B est conçu précisément pour absorber et dissiper cette énergie grâce à sa tranchée à flammes et son système de déluge d'eau.</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="fb-head">Poussée → accélération <span class="fb-tag">2ᵉ loi de Newton</span></div>
+      <div class="formula" data-tex="F=m\,a \;\Longrightarrow\; a=\dfrac{F}{m}=\dfrac{39\,000\ \mathrm{kN}}{4{,}0\times10^{6}\ \mathrm{kg}}\approx 9{,}8\ \mathrm{m/s^2}"></div>
+      <p class="fb-note">Les <b>39 000 kN</b> de poussée du SLS divisés par les ~4 000 tonnes de la pile donnent une accélération de près de <b>10 m/s²</b> — d'où l'image d'« une masse de 4 000 tonnes propulsée à près de 10 m/s² ».</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="fb-head">Équation de Tsiolkovsky <span class="fb-tag">Pourquoi le delta-v ?</span></div>
+      <div class="formula" data-tex="\Delta v = I_{sp}\,g_0\,\ln\!\left(\dfrac{m_0}{m_f}\right)"></div>
+      <p class="fb-note">L'<b>impulsion spécifique</b> <span class="imath" data-tex="I_{sp}=452\ \mathrm{s}"></span> des RS-25 (dans le vide) et <span class="imath" data-tex="g_0=9{,}81\ \mathrm{m/s^2}"></span> convertissent le rapport de masse <span class="imath" data-tex="m_0/m_f"></span> (plein / à sec) en delta-v. Plus on veut de delta-v, plus il faut de propergol — exponentiellement : c'est tout l'enjeu du ravitaillement orbital.</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="fb-head">Puissance cinétique de l'échappement <span class="fb-tag">Le grondement du décollage</span></div>
+      <div class="formula" data-tex="P=\tfrac{1}{2}\,\dot m\,v_e^{2}\qquad\text{avec}\quad \dot m\approx 1500\ \mathrm{kg/s},\ \ v_e\approx 2650\ \mathrm{m/s}"></div>
+      <p class="fb-note">Le débit massique <span class="imath" data-tex="\dot m"></span> de gaz éjectés, multiplié par le carré de leur vitesse d'éjection <span class="imath" data-tex="v_e"></span>, libère une puissance de l'ordre du gigawatt. Cette énergie se propage en suivant la loi de l'inverse du carré <span class="imath" data-tex="I\propto 1/r^{2}"></span> : l'intensité acoustique chute comme <span class="imath" data-tex="1/r^{2}"></span> avec la distance <span class="imath" data-tex="r"></span> au pas de tir.</p>
     </div>
   </div>
 
@@ -574,6 +671,12 @@
     <div class="provoxy">
       <div class="who"><b>Provoxys</b><span class="ts">Ch.1 · P.7</span></div>
       <p>Un exemple concret est l'intégration des données d'Artemis I sur le bouclier thermique Avcoat d'Orion, qui a subi des températures de près de 2 760 °C lors de la rentrée à plus de 40 000 km/h. Pourquoi tester cela ? Parce que la rentrée à vitesse lunaire est bien plus chaude et rapide que celle d'Apollo, et ces données ont permis d'optimiser l'épaisseur et la composition du bouclier pour Artemis II et au-delà, protégeant les vies humaines et ouvrant la voie à des voyages plus sûrs vers Mars, tout en anticipant les défis futurs de la base lunaire comme la protection thermique des habitats contre les variations extrêmes de température (-173 °C la nuit à +127 °C le jour), avec des modèles mathématiques de transfert de chaleur basés sur l'équation de Fourier. Le ravitaillement orbital ajoutera une couche supplémentaire de sécurité en permettant des missions avec plus de redondance. Ces leçons s'appliquent directement au poste de lancement LC-39B, dont les infrastructures ont été renforcées pour supporter les vibrations du SLS lors du décollage d'Artemis II.</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="fb-head">Loi de Fourier <span class="fb-tag">Bouclier thermique d'Orion</span></div>
+      <div class="formula" data-tex="\vec{q}=-k\,\vec{\nabla}T"></div>
+      <p class="fb-note">Le flux de chaleur <span class="imath" data-tex="\vec{q}"></span> qui traverse le bouclier Avcoat est proportionnel à la conductivité <span class="imath" data-tex="k"></span> du matériau et au gradient de température <span class="imath" data-tex="\vec{\nabla}T"></span>. C'est ce modèle qui permet de dimensionner l'épaisseur de l'écran face aux <b>2 760 °C</b> de la rentrée à plus de 40 000 km/h.</p>
     </div>
   </div>
 
@@ -677,7 +780,7 @@
     <div class="show-ts">Repère original · 04:55</div>
     <div class="provoxy">
       <div class="who"><b>Provoxys</b><span class="ts">suite</span></div>
-      <p>l'orbite basse terrestre à 7,8 km/s avant d'ajouter le delta-v pour s'extraire de l'attraction terrestre. Le ravitaillement orbital s'appuie sur ces bases pour permettre des transferts cryogéniques complexes. La puissance dégagée est phénoménale : chaque RS-25 génère une poussée de 2 280 kN au niveau de la mer, et les boosters solides ajoutent le complément pour atteindre les 39 000 kN totaux. Mathématiquement, la puissance cinétique de l'échappement est donnée par P = (1/2) m_dot v_e², où m_dot ≈ 1 500 kg/s et v_e ≈ 2 650 m/s, produisant des dizaines de gigawatts au décollage. Cette énergie se ressent sous forme de vibrations et de bruit jusqu'à plus de 100 km, avec une atténuation suivant la loi de l'inverse du carré pour l'intensité acoustique. Le poste de lancement LC-39B, avec sa tranchée à flammes et son déluge d'eau, est conçu pour absorber cette puissance.</p>
+      <p>l'orbite basse terrestre à 7,8 km/s avant d'ajouter le delta-v pour s'extraire de l'attraction terrestre. Le ravitaillement orbital s'appuie sur ces bases pour permettre des transferts cryogéniques complexes. La puissance dégagée est phénoménale : chaque RS-25 génère une poussée de 2 280 kN au niveau de la mer, et les boosters solides ajoutent le complément pour atteindre les 39 000 kN totaux. Mathématiquement, la puissance cinétique de l'échappement est donnée par <span class="imath" data-tex="P=\tfrac{1}{2}\,\dot m\,v_e^{2}"></span>, où <span class="imath" data-tex="\dot m\approx 1500\ \mathrm{kg/s}"></span> et <span class="imath" data-tex="v_e\approx 2650\ \mathrm{m/s}"></span>, produisant des dizaines de gigawatts au décollage. Cette énergie se ressent sous forme de vibrations et de bruit jusqu'à plus de 100 km, avec une atténuation suivant la loi de l'inverse du carré pour l'intensité acoustique. Le poste de lancement LC-39B, avec sa tranchée à flammes et son déluge d'eau, est conçu pour absorber cette puissance.</p>
     </div>
   </div>
 
@@ -687,6 +790,13 @@
     <div class="provoxy">
       <div class="who"><b>Provoxys</b><span class="ts">Ch.2 · P.7</span></div>
       <p>Orion, avec son bouclier thermique testé à 2 760 °C et son module de service ESA (European Space Agency), inclut des capteurs ARCHER pour les GCR (Galactic Cosmic Rays). Pourquoi ces mesures précises ? Parce qu'elles permettent de protéger les astronautes contre les radiations ionisantes, apportant des avancées médicales pour la radiothérapie sur Terre, et anticipant les défis de la base lunaire où la radiation cosmique sera constante sans atmosphère protectrice, avec des modèles mathématiques de dose cumulée basés sur le flux de 1,8 particules par cm² par seconde. Ces technologies s'intègrent au ravitaillement pour des missions plus longues. La puissance des moteurs du SLS, ressentie depuis LC-39B, illustre les défis scientifiques de la propagation des ondes lors du décollage.</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="fb-head">Flux &amp; dose des rayons cosmiques <span class="fb-tag">Capteurs ARCHER · GCR</span></div>
+      <div class="formula" data-tex="\Phi\approx 1{,}8\ \mathrm{particules}\cdot\mathrm{cm^{-2}}\cdot\mathrm{s^{-1}}"></div>
+      <div class="formula" data-tex="N=\Phi\,A\,t \qquad\Longrightarrow\qquad D=\dfrac{E\,N}{m}"></div>
+      <p class="fb-note">Le <b>flux</b> <span class="imath" data-tex="\Phi"></span> mesuré par ARCHER (1,8 particule par cm² et par seconde) donne, sur une surface <span class="imath" data-tex="A"></span> exposée pendant un temps <span class="imath" data-tex="t"></span>, le nombre de particules <span class="imath" data-tex="N"></span> reçues. La <b>dose cumulée</b> <span class="imath" data-tex="D"></span> qui en résulte croît avec la durée du vol — d'où l'enjeu du blindage pour les longs séjours.</p>
     </div>
   </div>
 
@@ -762,7 +872,7 @@
     <h3>Déroulement technique d'Artemis II.</h3>
     <div class="provoxy">
       <div class="who"><b>Provoxys</b><span class="ts">Ch.3 · P.4</span></div>
-      <p>Artemis II, lancée le 1er avril 2026 à 18:35 EDT depuis le Launch Complex 39B (LC-39B), a suivi des préparatifs rigoureux (arrivée de l'équipage le 27 mars, deux Wet Dress Rehearsals en février 2026 pour valider le remplissage des réservoirs cryogéniques et les procédures de compte à rebours). La trajectoire en figure de huit a emmené Orion à 406 773 km de la Terre, avec un survol de la face cachée de la Lune au milieu du voyage et un retour à une vitesse de rentrée de plus de 40 000 km/h. Pourquoi cette trajectoire ? Parce qu'elle maximise les tests en espace profond tout en minimisant les risques, et sert de répétition générale pour le voyage vers la base lunaire future, avec un delta-v total de 3,1 km/s pour l'injection translunaire et une fenêtre de tir de seulement 2 minutes tous les 28 jours pour aligner les plans orbitaux Terre-Lune, évitant ainsi une consommation excessive de propergol et garantissant une rentrée sécurisée, car pour s'extraire de l'attraction terrestre, il faut d'abord atteindre l'orbite basse à 7,8 km/s avant d'ajouter le delta-v pour la Lune. Ces tests préparent les systèmes de ravitaillement pour les missions futures. Le décollage depuis LC-39B a été spectaculaire : la puissance des moteurs du SLS (39 000 kN, soit kilonewtons, grâce à quatre moteurs RS-25 modernisés des SSME, 2 280 kN chacun au niveau de la mer jusqu'à 2 670 kN dans le vide, Isp 452 s, LH2/LOX, refroidissement régénératif et throttle 67-109 %) a généré un grondement ressenti jusqu'à plus de 100 km, avec une intensité acoustique qui suit la loi de l'inverse du carré, et des vibrations qui ont été mesurées par des sismomètres locaux. L'équipage a décrit le décollage comme un tremblement de terre contrôlé. Les analyses des données sismiques d'Artemis II, enregistrées par les capteurs au sol autour de LC-39B, ont montré des pics de vibration de l'ordre de 0,5 à 1 g (accélération gravitationnelle) à proximité immédiate du pad, s'atténuant rapidement selon la loi de propagation des ondes sismiques (amplitude décroissant en 1/r² pour les ondes de surface). Ces données ont permis de calibrer les modèles de propagation des ondes de choc et de valider la résistance des infrastructures du complexe de lancement, tout en fournissant des références précieuses pour les futurs réseaux sismiques lunaires.</p>
+      <p>Artemis II, lancée le 1er avril 2026 à 18:35 EDT depuis le Launch Complex 39B (LC-39B), a suivi des préparatifs rigoureux (arrivée de l'équipage le 27 mars, deux Wet Dress Rehearsals en février 2026 pour valider le remplissage des réservoirs cryogéniques et les procédures de compte à rebours). La trajectoire en figure de huit a emmené Orion à 406 773 km de la Terre, avec un survol de la face cachée de la Lune au milieu du voyage et un retour à une vitesse de rentrée de plus de 40 000 km/h. Pourquoi cette trajectoire ? Parce qu'elle maximise les tests en espace profond tout en minimisant les risques, et sert de répétition générale pour le voyage vers la base lunaire future, avec un delta-v total de 3,1 km/s pour l'injection translunaire et une fenêtre de tir de seulement 2 minutes tous les 28 jours pour aligner les plans orbitaux Terre-Lune, évitant ainsi une consommation excessive de propergol et garantissant une rentrée sécurisée, car pour s'extraire de l'attraction terrestre, il faut d'abord atteindre l'orbite basse à 7,8 km/s avant d'ajouter le delta-v pour la Lune. Ces tests préparent les systèmes de ravitaillement pour les missions futures. Le décollage depuis LC-39B a été spectaculaire : la puissance des moteurs du SLS (39 000 kN, soit kilonewtons, grâce à quatre moteurs RS-25 modernisés des SSME, 2 280 kN chacun au niveau de la mer jusqu'à 2 670 kN dans le vide, Isp 452 s, LH2/LOX, refroidissement régénératif et throttle 67-109 %) a généré un grondement ressenti jusqu'à plus de 100 km, avec une intensité acoustique qui suit la loi de l'inverse du carré, et des vibrations qui ont été mesurées par des sismomètres locaux. L'équipage a décrit le décollage comme un tremblement de terre contrôlé. Les analyses des données sismiques d'Artemis II, enregistrées par les capteurs au sol autour de LC-39B, ont montré des pics de vibration de l'ordre de 0,5 à 1 g (accélération gravitationnelle) à proximité immédiate du pad, s'atténuant rapidement selon la loi de propagation des ondes sismiques (amplitude décroissant en <span class="imath" data-tex="1/r^{2}"></span> pour les ondes de surface). Ces données ont permis de calibrer les modèles de propagation des ondes de choc et de valider la résistance des infrastructures du complexe de lancement, tout en fournissant des références précieuses pour les futurs réseaux sismiques lunaires.</p>
     </div>
   </div>
 
@@ -1056,7 +1166,7 @@
     <h3>Récapitulatif global.</h3>
     <div class="provoxy">
       <div class="who"><b>Provoxys</b><span class="ts">Ch.6 · P.1</span></div>
-      <p>Synthèse de tout le programme Artemis. Pourquoi ce récap ? Parce qu'il permet de connecter tous les fils pour une vision cohérente, incluant les futurs défis du déroulé de l'alunissage et de la base lunaire, depuis le décollage jusqu'à la vie quotidienne sur la surface lunaire, avec des trajectoires précises et des fenêtres de tir limitées à quelques minutes tous les 28 jours pour optimiser l'alignement Terre-Lune et minimiser la consommation de carburant (delta-v total pour la descente lunaire : environ 2 km/s). Le ravitaillement orbital unifie cette synthèse en permettant des missions durables. Ce récapitulatif commence par un retour chronologique complet sur les missions Artemis I et II, qui ont validé les systèmes de base, puis passe aux leçons tirées des rapports OIG et GAO de mai 2026 sur les dépassements budgétaires et les retards techniques. Il intègre également les témoignages de l'équipage Artemis II, qui soulignent l'importance psychologique et physiologique des vols longs. Mathématiquement, la synthèse repose sur l'équation de vis-viva pour calculer les delta-v nécessaires à chaque phase (exemple : delta-v d'injection translunaire = 3,1 km/s, calculé à partir de la vitesse orbitale terrestre de 7,8 km/s et de la vitesse d'échappement lunaire), démontrant comment chaque trajectoire est optimisée pour minimiser la consommation de propergol tout en respectant les lois de la mécanique céleste de Kepler et Newton. Ce cheminement historique montre comment Artemis évolue d'un programme de retour vers la Lune en un pont vers Mars, avec le ravitaillement orbital comme pivot technologique qui réduit la masse lancée depuis la Terre de 50 à 70 % selon les modèles NASA 2026. Le poste de lancement LC-39B et la puissance des moteurs du SLS au décollage d'Artemis II restent les images emblématiques de ce début. Les analyses des données sismiques d'Artemis II, enregistrées autour de LC-39B, ont montré des pics de vibration de l'ordre de 0,5 à 1 g près du pad, s'atténuant rapidement selon la loi de propagation des ondes sismiques (amplitude décroissant en 1/r² pour les ondes de surface). Ces données ont permis de calibrer les modèles de propagation des ondes de choc et de valider la résistance des infrastructures du complexe de lancement, tout en fournissant des références précieuses pour les futurs réseaux sismiques lunaires qui mesureront les moonquakes avec une sensibilité bien supérieure.</p>
+      <p>Synthèse de tout le programme Artemis. Pourquoi ce récap ? Parce qu'il permet de connecter tous les fils pour une vision cohérente, incluant les futurs défis du déroulé de l'alunissage et de la base lunaire, depuis le décollage jusqu'à la vie quotidienne sur la surface lunaire, avec des trajectoires précises et des fenêtres de tir limitées à quelques minutes tous les 28 jours pour optimiser l'alignement Terre-Lune et minimiser la consommation de carburant (delta-v total pour la descente lunaire : environ 2 km/s). Le ravitaillement orbital unifie cette synthèse en permettant des missions durables. Ce récapitulatif commence par un retour chronologique complet sur les missions Artemis I et II, qui ont validé les systèmes de base, puis passe aux leçons tirées des rapports OIG et GAO de mai 2026 sur les dépassements budgétaires et les retards techniques. Il intègre également les témoignages de l'équipage Artemis II, qui soulignent l'importance psychologique et physiologique des vols longs. Mathématiquement, la synthèse repose sur l'équation de vis-viva pour calculer les delta-v nécessaires à chaque phase (exemple : <span class="imath" data-tex="\Delta v_{\text{TLI}}=3{,}1\ \mathrm{km/s}"></span>, calculé à partir de la vitesse orbitale terrestre de 7,8 km/s et de la vitesse d'échappement lunaire), démontrant comment chaque trajectoire est optimisée pour minimiser la consommation de propergol tout en respectant les lois de la mécanique céleste de Kepler et Newton. Ce cheminement historique montre comment Artemis évolue d'un programme de retour vers la Lune en un pont vers Mars, avec le ravitaillement orbital comme pivot technologique qui réduit la masse lancée depuis la Terre de 50 à 70 % selon les modèles NASA 2026. Le poste de lancement LC-39B et la puissance des moteurs du SLS au décollage d'Artemis II restent les images emblématiques de ce début. Les analyses des données sismiques d'Artemis II, enregistrées autour de LC-39B, ont montré des pics de vibration de l'ordre de 0,5 à 1 g près du pad, s'atténuant rapidement selon la loi de propagation des ondes sismiques (amplitude décroissant en <span class="imath" data-tex="1/r^{2}"></span> pour les ondes de surface). Ces données ont permis de calibrer les modèles de propagation des ondes de choc et de valider la résistance des infrastructures du complexe de lancement, tout en fournissant des références précieuses pour les futurs réseaux sismiques lunaires qui mesureront les moonquakes avec une sensibilité bien supérieure.</p>
     </div>
   </div>
 
@@ -1216,7 +1326,7 @@
     <h3>Ignition, liftoff et puissance des moteurs.</h3>
     <div class="provoxy">
       <div class="who"><b>Provoxys</b><span class="ts">Ch.8 · P.6</span></div>
-      <p>L'ignition est le moment le plus spectaculaire : les quatre moteurs RS-25 (modernisés des SSME, 2 280 kN chacun au niveau de la mer jusqu'à 2 670 kN dans le vide, Isp 452 s, LH2/LOX, refroidissement régénératif, throttle 67-109 %) s'allument à T–6,6 secondes, produisant chacun 2 280 kN de poussée, puis les deux boosters à propergol solide s'embrasent à T–0 pour atteindre les 39 000 kN totaux. Pourquoi cet ordre ? Parce qu'il permet une montée progressive en puissance et une vérification des moteurs principaux avant le décollage complet. Mathématiquement, la puissance cinétique de l'échappement est donnée par P = (1/2) m_dot v_e², avec m_dot ≈ 1 500 kg/s et v_e ≈ 2 650 m/s, libérant des dizaines de gigawatts en quelques secondes. Cette énergie se ressent immédiatement : un grondement de plus de 140 décibels près du pad, des vibrations de 0,5 à 1 g mesurées par les capteurs sismiques, et une onde de choc qui se propage jusqu'à plus de 100 km avec une intensité qui suit la loi de l'inverse du carré (I ∝ 1/r²). Le système de déluge d'eau entre alors en action à pleine puissance, projetant 1,1 million de litres d'eau par minute pour créer un rideau de vapeur qui absorbe l'énergie acoustique et thermique, protégeant à la fois le véhicule et le pad. Comparé au LC-39A (déluge plus ciblé pour des lancements plus fréquents mais moins puissants), le LC-39B gère une charge thermique et acoustique supérieure, avec un volume d'eau presque triple par rapport à certains lancements commerciaux, ce qui explique sa robustesse historique adaptée aux missions Artemis lourdes.</p>
+      <p>L'ignition est le moment le plus spectaculaire : les quatre moteurs RS-25 (modernisés des SSME, 2 280 kN chacun au niveau de la mer jusqu'à 2 670 kN dans le vide, Isp 452 s, LH2/LOX, refroidissement régénératif, throttle 67-109 %) s'allument à T–6,6 secondes, produisant chacun 2 280 kN de poussée, puis les deux boosters à propergol solide s'embrasent à T–0 pour atteindre les 39 000 kN totaux. Pourquoi cet ordre ? Parce qu'il permet une montée progressive en puissance et une vérification des moteurs principaux avant le décollage complet. Mathématiquement, la puissance cinétique de l'échappement est donnée par <span class="imath" data-tex="P=\tfrac{1}{2}\,\dot m\,v_e^{2}"></span>, avec <span class="imath" data-tex="\dot m\approx 1500\ \mathrm{kg/s}"></span> et <span class="imath" data-tex="v_e\approx 2650\ \mathrm{m/s}"></span>, libérant des dizaines de gigawatts en quelques secondes. Cette énergie se ressent immédiatement : un grondement de plus de 140 décibels près du pad, des vibrations de 0,5 à 1 g mesurées par les capteurs sismiques, et une onde de choc qui se propage jusqu'à plus de 100 km avec une intensité qui suit la loi de l'inverse du carré (<span class="imath" data-tex="I\propto 1/r^{2}"></span>). Le système de déluge d'eau entre alors en action à pleine puissance, projetant 1,1 million de litres d'eau par minute pour créer un rideau de vapeur qui absorbe l'énergie acoustique et thermique, protégeant à la fois le véhicule et le pad. Comparé au LC-39A (déluge plus ciblé pour des lancements plus fréquents mais moins puissants), le LC-39B gère une charge thermique et acoustique supérieure, avec un volume d'eau presque triple par rapport à certains lancements commerciaux, ce qui explique sa robustesse historique adaptée aux missions Artemis lourdes.</p>
     </div>
   </div>
 
@@ -1234,7 +1344,13 @@
     <h3>Analyse des données sismiques d'Artemis II.</h3>
     <div class="provoxy">
       <div class="who"><b>Provoxys</b><span class="ts">Ch.8 · P.8</span></div>
-      <p>Les capteurs sismiques installés autour de LC-39B ont enregistré les vibrations du décollage d'Artemis II avec une précision exceptionnelle. Les pics atteignaient 0,5 à 1 g près du pad et s'atténuaient selon la loi de propagation des ondes sismiques (amplitude décroissant en 1/r² pour les ondes de surface). Ces données ont permis de calibrer les modèles numériques de la NASA et de valider la conception du pad pour les futures missions, tout en fournissant des références pour le futur réseau sismique lunaire qui mesurera les moonquakes.</p>
+      <p>Les capteurs sismiques installés autour de LC-39B ont enregistré les vibrations du décollage d'Artemis II avec une précision exceptionnelle. Les pics atteignaient 0,5 à 1 g près du pad et s'atténuaient selon la loi de propagation des ondes sismiques (amplitude décroissant en <span class="imath" data-tex="1/r^{2}"></span> pour les ondes de surface). Ces données ont permis de calibrer les modèles numériques de la NASA et de valider la conception du pad pour les futures missions, tout en fournissant des références pour le futur réseau sismique lunaire qui mesurera les moonquakes.</p>
+    </div>
+
+    <div class="formula-block">
+      <div class="fb-head">Atténuation des ondes sismiques <span class="fb-tag">Capteurs au sol · LC-39B</span></div>
+      <div class="formula" data-tex="A(r)\propto \dfrac{1}{r^{2}} \qquad \text{pics au pad : } 0{,}5\text{–}1\ g"></div>
+      <p class="fb-note">L'amplitude <span class="imath" data-tex="A"></span> des ondes de surface décroît comme l'inverse du carré de la distance <span class="imath" data-tex="r"></span> au pas de tir : les <b>0,5 à 1 g</b> mesurés près du pad s'effondrent vite en s'éloignant, ce qui explique le grondement « tremblement de terre contrôlé » ressenti à des dizaines de kilomètres mais sans dégât.</p>
     </div>
   </div>
 
@@ -1413,6 +1529,13 @@
     </div>
   </div>
 
+  <div class="formula-block">
+    <div class="fb-head">Transfert de Hohmann vers la Lune <span class="fb-tag">a1m_23_tli_burn</span></div>
+    <div class="formula" data-tex="\Delta v_{\text{tot}}=\sqrt{\dfrac{\mu}{r_1}}\!\left(\sqrt{\dfrac{2r_2}{r_1+r_2}}-1\right)+\sqrt{\dfrac{\mu}{r_2}}\!\left(1-\sqrt{\dfrac{2r_1}{r_1+r_2}}\right)"></div>
+    <div class="formula" data-tex="\gamma=\pi\left[1-\left(\dfrac{r_1+r_2}{2\,r_2}\right)^{3/2}\right]"></div>
+    <p class="fb-note">Le transfert le plus économe en propergol entre l'orbite basse (rayon <span class="imath" data-tex="r_1"></span>) et l'orbite de la Lune (<span class="imath" data-tex="r_2"></span>) se fait en <b>deux mises à feu</b> tangentes. L'autopilote <em>auto_transfer</em> attend que l'<b>angle de phase</b> <span class="imath" data-tex="\gamma"></span> entre Orion et la position future de la Lune soit exactement bon — c'est la « fenêtre de transfert » : tirer trop tôt ou trop tard, et on manque la Lune.</p>
+  </div>
+
   <!-- ACTE III -->
   <div class="sim-act">
     <div class="roman">III</div>
@@ -1576,6 +1699,24 @@
 </section>
 
 </div>
+
+<!-- Rendu des formules en LaTeX (KaTeX, chargé en defer) -->
+<script>
+  function renderMath() {
+    document.querySelectorAll(".imath[data-tex], .formula[data-tex]").forEach((node) => {
+      const tex = node.getAttribute("data-tex");
+      const display = node.classList.contains("formula");
+      if (window.katex) {
+        try { katex.render(tex, node, { throwOnError: false, displayMode: display }); return; }
+        catch (e) { /* repli ci-dessous */ }
+      }
+      node.textContent = tex; // repli lisible si KaTeX indisponible
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderMath);
+  else renderMath();
+  window.addEventListener("load", renderMath); // filet de sécurité (CDN lent)
+</script>
 
 <!-- FOOTER -->
 <footer class="foot">

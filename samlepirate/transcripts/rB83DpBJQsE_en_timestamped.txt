@@ -1,0 +1,239 @@
+[00:00] [Translated by Grant Sanderson. Submit corrections at criblate.com]
+Today, you and I are going to get into divergence and curl.
+[00:06] To make sure we're all on the same page, let's begin by talking about vector fields.
+[00:11] Essentially a vector field is what you get if you associate each
+[00:14] point in space with a vector, some magnitude and direction.
+[00:18] Maybe those vectors represent the velocities of particles of fluid at
+[00:22] each point in space, or maybe they represent the force of gravity at
+[00:26] many different points in space, or maybe a magnetic field strength.
+[00:31] Quick note on drawing these, often if you were to draw the vectors to scale,
+[00:35] the longer ones end up just cluttering up the whole thing,
+[00:38] so it's common to basically lie a little and artificially shorten ones
+[00:41] that are too long, maybe using color to give some vague sense of length.
+[00:46] In principle, vector fields in physics might change over time.
+[00:50] In almost all real-world fluid flow, the velocities of particles in a given
+[00:54] region of space will change over time in response to the surrounding context.
+[00:59] Wind is not a constant, it comes in gusts.
+[01:02] An electric field changes as the charged particles characterizing it move around.
+[01:08] But here we'll just be looking at static vector fields,
+[01:10] which maybe you think of as describing a steady-state system.
+[01:14] Also, while such vectors could in principle be three-dimensional,
+[01:17] or even higher, we're just going to be looking at two dimensions.
+[01:21] An important idea which regularly goes unsaid is that you can often
+[01:25] understand a vector field which represents one physical phenomenon
+[01:28] better by imagining what if it represented a different physical phenomenon.
+[01:33] What if these vectors describing gravitational force instead defined a fluid flow?
+[01:38] What would that flow look like?
+[01:40] And what can the properties of that flow tell us about the original gravitational force?
+[01:45] And what if the vectors defining a fluid flow were thought
+[01:48] of as describing the downhill direction of a certain hill?
+[01:51] Does such a hill even exist?
+[01:53] And if so, what does it tell us about the original flow?
+[01:57] These sorts of questions can be surprisingly helpful.
+[01:59] For example, the ideas of divergence and curl are particularly viscerally understood
+[02:04] when the vector field is thought of as representing fluid flow,
+[02:07] even if the field you're looking at is really meant to describe something else,
+[02:11] like an electric field.
+[02:16] Here, take a look at this vector field, and think of each
+[02:19] vector as describing the velocity of a fluid at that point.
+[02:23] Notice that when you do this, that fluid behaves in a very strange, non-physical way.
+[02:28] Around some points, like these ones, the fluid seems to just spring into
+[02:32] existence from nothingness, as if there's some kind of source there.
+[02:36] Some other points act more like sinks, where the
+[02:38] fluid seems to disappear into nothingness.
+[02:41] The divergence of a vector field at a particular point of the plane tells you
+[02:46] how much this imagined fluid tends to flow out of or into small regions near it.
+[02:52] For example, the divergence of our vector field evaluated at all
+[02:56] of those points that act like sources will give a positive number.
+[03:01] And it doesn't just have to be that all of the fluid is flowing away from that point.
+[03:05] The divergence would also be positive if it was just that the fluid coming into
+[03:09] it from one direction was slower than the flow coming out of it in another direction,
+[03:14] since that would still insinuate a certain spontaneous generation.
+[03:20] Now on the flip side, if in a small region around a point there seems to be more fluid
+[03:25] flowing into it than out of it, the divergence at that point would be a negative number.
+[03:33] Remember, this vector field is really a function that takes
+[03:36] in 2-dimensional inputs and spits out 2-dimensional outputs.
+[03:44] The divergence of that vector field gives you a new function,
+[03:48] one that takes in a single 2d point as its input,
+[03:51] but its output depends on the behavior of the field in a small
+[03:55] neighborhood around that point.
+[03:57] In this way it's analogous to a derivative, and that output is just a single number,
+[04:02] measuring how much that point acts as a source or a sink.
+[04:05] I'm purposely delaying discussion of computations here,
+[04:08] the understanding for what it represents is more important.
+[04:11] Notice, this means that for an actual physical fluid,
+[04:14] like water rather than some imagined one used to illustrate an arbitrary vector field,
+[04:19] then if that fluid is incompressible, the velocity vector field must have a divergence
+[04:24] of zero everywhere.
+[04:26] That's an important constraint on what kinds of vector
+[04:29] fields could solve real-world fluid flow problems.
+[04:32] For the curl at a given point, you also think about the fluid flow around it,
+[04:37] but this time you ask how much that fluid tends to rotate around the point.
+[04:42] As in, if you were to drop a twig in the fluid at that point,
+[04:45] somehow fixing its center in place, would it tend to spin around?
+[04:50] Regions where that rotation is clockwise are said to have positive curl,
+[04:54] and regions where it's counterclockwise have negative curl.
+[04:58] It doesn't have to be that all the vectors around the input are
+[05:00] pointing counterclockwise, or all of them are pointing clockwise.
+[05:04] A point inside a region like this one, for example, would also have non-zero curl,
+[05:09] since the flow is slow at the bottom, but quick up top,
+[05:13] resulting in a net clockwise influence.
+[05:19] And really, true proper curl is a three-dimensional idea,
+[05:22] one where you associate each point in 3D space with a new vector characterizing
+[05:27] the rotation around that point, according to a certain right-hand rule,
+[05:30] and I have plenty of content from my time at Khan Academy describing this in more
+[05:35] detail if you want, but for our main purpose,
+[05:37] I'll just be referring to the two-dimensional variant of curl,
+[05:41] which associates each point in 2D space with a single number rather than a new vector.
+[05:48] As I said, even though these intuitions are given in the context of fluid flow,
+[05:52] both of these ideas are significant for other sorts of vector fields.
+[05:56] One very important example is how electricity and
+[05:59] magnetism are described by four special equations.
+[06:02] These are known as Maxwell's equations, and they're
+[06:05] written in the language of divergence and curl.
+[06:08] This top one, for example, is Gauss's law, stating that the divergence of an
+[06:12] electric field at a given point is proportional to the charge density at that point.
+[06:19] Unpacking the intuition for this, you might imagine positively charged regions
+[06:23] as acting like sources of some imagined fluid,
+[06:26] and negatively charged regions as being the sinks of that fluid,
+[06:29] and throughout parts of space where there is no charge,
+[06:32] the fluid would be flowing incompressibly, just like water.
+[06:36] Of course, there's not some literal electric fluid,
+[06:39] but it's a very useful and pretty way to read an equation like this.
+[06:44] Similarly, another important equation is that the divergence of the
+[06:48] magnetic field is zero everywhere, and you can understand that by
+[06:52] saying that if the field represents a fluid flow,
+[06:55] that fluid would be incompressible, with no sources and no sinks,
+[06:58] it acts just like water.
+[07:01] This also has the interpretation that magnetic monopoles,
+[07:04] something that acts just like a north or south end of a magnet in isolation,
+[07:08] don't exist, there's nothing analogous to positive and negative charges in
+[07:11] an electric field.
+[07:13] Likewise, the last two equations tell us that the way one of
+[07:17] these fields changes depends on the curl of the other field.
+[07:21] And really, this is a purely three-dimensional idea,
+[07:24] and a little outside of our main focus here, but the point is that
+[07:28] divergence and curl arise in contexts that are unrelated to flow,
+[07:31] and side note, the back and forth from these last two equations is what
+[07:35] gives rise to light waves.
+[07:38] And quite often, these ideas are useful in contexts
+[07:40] which don't even seem spatial in nature at first.
+[07:44] To take a classic example that students of differential equations often study,
+[07:48] let's say that you wanted to track the population sizes of two different species,
+[07:52] where maybe one of them is a predator of another.
+[07:55] The state of this system at a given time, meaning the two population sizes,
+[08:00] could be thought of as a point in two-dimensional space,
+[08:03] what you would call the phase space of this system.
+[08:07] For a given pair of population sizes, these populations may be inclined
+[08:11] to change based on things like how reproductive are the two species,
+[08:14] or just how much does one of them enjoy eating the other one.
+[08:19] These rates of change would typically be written
+[08:22] analytically as a set of differential equations.
+[08:25] It's okay if you don't understand these particular equations,
+[08:28] I'm just throwing them up for those of you who are curious,
+[08:30] and because replacing variables with pictures makes me laugh a little bit.
+[08:34] But the relevance here is that a nice way to visualize what such a set of equations
+[08:39] is really saying is to associate each point on the plane, each pair of population sizes,
+[08:44] with a vector, indicating the rates of change for both variables.
+[08:49] For example, when there are lots of foxes, but relatively few rabbits,
+[08:52] the number of foxes might tend to go down because of the constrained food supply,
+[08:56] and the number of rabbits might also tend to go down because they're getting
+[08:59] eaten by all of the foxes, potentially at a rate that's faster than they can reproduce.
+[09:04] So a given vector here is telling you how, and how quickly,
+[09:08] a given pair of population sizes tends to change.
+[09:12] Notice, this is a case where the vector field is not about physical space,
+[09:16] but instead it's a representation of a certain dynamic system that has two variables,
+[09:21] and how that system evolves over time.
+[09:23] This can maybe also give a sense for why mathematicians
+[09:26] care about studying the geometry of higher dimensions.
+[09:28] What if our system was tracking more than just two or three numbers?
+[09:32] The flow associated with this field is called the phase flow for
+[09:36] our differential equation, and it's a way to conceptualize,
+[09:40] at a glance, how many possible starting states would evolve over time.
+[09:44] Operations like divergence and curl can help to inform you about the system.
+[09:49] Do the population sizes converge towards a particular pair of numbers,
+[09:53] or are there some values they diverge away from?
+[09:56] Are there cyclic patterns, and are those cycles stable or unstable?
+[10:02] To be perfectly honest with you, for something like this you'd often want to bring
+[10:06] in related tools beyond just divergence and curl, those would give you the full story,
+[10:10] but the frame of mind that practice with these two ideas brings you carries over
+[10:14] well to studying setups like this with similar pieces of mathematical machinery.
+[10:19] If you really want to get a handle on these ideas,
+[10:21] you'd want to learn how to compute them and practice those computations,
+[10:25] and I'll leave links to where you can learn about this and practice if you want.
+[10:29] Again, I did some videos and articles and worked examples for Khan Academy on this
+[10:33] topic during my time there, so too much detail here will start to feel redundant for me.
+[10:38] But there is one thing worth bringing up, regarding
+[10:41] the notation associated with these computations.
+[10:44] Commonly, the divergence is written as a dot product between this upside-down triangle
+[10:49] thing and your vector field function, and the curl is written as a similar cross product.
+[10:54] Sometimes students are told that this is just a notational trick,
+[10:58] each computation involves a certain sum of certain derivatives,
+[11:01] and treating this upside-down triangle as if it was a vector of derivative operators can
+[11:06] be a helpful way to keep everything straight.
+[11:10] But it is actually more than just a mnemonic device,
+[11:12] there is a real connection between divergence and the dot product,
+[11:15] and between curl and the cross product.
+[11:18] Even though we won't be doing practice computations here,
+[11:21] I would like to give you at least some vague sense for how these four ideas
+[11:25] are connected.
+[11:32] Imagine taking some small step from one point of your vector field to another.
+[11:37] The vector at this new point will likely be a little different from the one at
+[11:41] the first point, there will be some change to the function after that step,
+[11:44] which you might see by subtracting off your original vector from that new one.
+[11:49] And this kind of difference to your function over
+[11:52] small steps is what differential calculus is all about.
+[11:56] The dot product gives you a measure of how aligned two vectors are, right?
+[12:03] The dot product of your step vector with that difference vector it causes tends
+[12:08] to be positive in regions where the divergence is positive, and vice versa.
+[12:13] In fact, in some sense, the divergence is a sort of average value for this
+[12:17] dot product of a step with a change to the output it causes over all
+[12:21] possible step directions, assuming that things are rescaled appropriately.
+[12:26] I mean, think about it, if a step in some direction causes a change to that vector in
+[12:32] that same direction, this corresponds to a tendency for outward flow,
+[12:36] for positive divergence.
+[12:39] And on the flip side, if those dot products tend to be negative,
+[12:42] meaning the difference vector is pointing in the opposite direction from
+[12:46] the step vector, that corresponds with a tendency for inward flow, negative divergence.
+[12:52] Similarly, remember that the cross product is a sort of measure for how perpendicular
+[12:57] two vectors are, so the cross product of your step vector with the difference vector
+[13:02] it causes tends to be positive in regions where the curl is positive, and vice versa.
+[13:08] You might think of the curl as a sort of average of
+[13:11] this step vector difference vector cross product.
+[13:14] If a step in some direction corresponds to a change perpendicular to that step,
+[13:19] that corresponds to a tendency for flow rotation.
+[13:29] So, typically this is the part where there might be some kind of sponsor message.
+[13:34] But one thing I want to do with the channel moving ahead is to stop doing sponsored
+[13:37] content, and instead make things just about the direct relationship with the audience.
+[13:42] I mean that not only in the sense of the funding model,
+[13:45] with direct support through Patreon, but also in the sense that I think these videos
+[13:49] can better accomplish their goal if each one of them feels like it's just about you
+[13:53] and me sharing in a love of math, with no other motive,
+[13:56] especially in the cases where the viewers are students.
+[13:59] There are some other reasons, and I wrote up some of my full thoughts on this over on
+[14:02] Patreon, which you certainly don't have to be a supporter to read,
+[14:05] that's just where it lives.
+[14:07] I think advertising on the internet occupies a super wide spectrum,
+[14:11] from truly degenerate clickbait up to genuinely well-aligned win-win-win partnerships.
+[14:16] I've always taken care only to do promotions for
+[14:19] companies that I would genuinely recommend.
+[14:22] To take one example, you may have noticed that I did a number of promos for Brilliant,
+[14:25] and it's really hard to imagine better alignment than that.
+[14:29] I try to inspire people to be interested in math,
+[14:31] but I'm also a firm believer that videos aren't enough,
+[14:34] that you need to actively solve problems, and here's a platform that provides practice.
+[14:39] And likewise for any others I've promoted too, I always make sure to feel good alignment.
+[14:42] But even still, even if you seek out the best possible partnerships,
+[14:46] whenever advertising is in the equation, the incentives will
+[14:50] always be to try reaching as many people as possible.
+[14:53] But when the model is more exclusively about a direct relationship with the audience,
+[14:57] the incentives are pointed towards maximizing how valuable
+[15:00] people find the experiences they're given.
+[15:02] I think those two goals are correlated, but not always perfectly.
+[15:06] I like to think that I'll always try to maximize the value of the
+[15:09] experience no matter what, but for that matter I also like to think
+[15:12] that I can consistently wake up early and resist eating too much sugar.
+[15:16] What matters more than wanting something is to actually align incentives.
+[15:20] Anyway, if you want to hear more of my thoughts, I'll link to the Patreon post.
+[15:23] And thank you again to existing supporters for making this possible,
+[15:26] and I'll see you all next video.

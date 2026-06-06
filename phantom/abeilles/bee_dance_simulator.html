@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐝 La Danse des Abeilles — Simulateur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/suncalc@1.9.0/suncalc.min.js"></script>
+<style>
+  :root {
+    --amber: #F59E0B;
+    --amber-dark: #D97706;
+    --amber-light: #FEF3C7;
+    --amber-glow: #FBBF24;
+    --black: #0A0A0A;
+    --black-2: #111111;
+    --black-3: #1A1A1A;
+    --black-4: #242424;
+    --black-5: #2E2E2E;
+    --gray: #6B7280;
+    --gray-light: #9CA3AF;
+    --white: #F9FAFB;
+    --white-dim: rgba(249,250,251,0.85);
+    --green: #10B981;
+    --red: #EF4444;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Outfit', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; background: var(--black); color: var(--white); font-family: var(--font-body); overflow: hidden; }
+
+  /* Layout */
+  #app { display: grid; grid-template-columns: 1fr 380px; grid-template-rows: 52px 1fr; height: 100vh; }
+
+  /* Header */
+  #header {
+    grid-column: 1 / -1;
+    background: var(--black-2);
+    border-bottom: 1px solid rgba(245,158,11,0.2);
+    display: flex; align-items: center; gap: 16px; padding: 0 20px;
+    position: relative; z-index: 1000;
+  }
+  #header h1 { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--amber); letter-spacing: 0.03em; }
+  #header .subtitle { font-size: 12px; color: var(--gray); font-family: var(--font-mono); }
+  #header .actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+  .btn {
+    background: transparent; border: 1px solid rgba(245,158,11,0.35); color: var(--amber);
+    font-family: var(--font-body); font-size: 12px; padding: 5px 12px;
+    border-radius: 6px; cursor: pointer; transition: all 0.2s;
+  }
+  .btn:hover { background: rgba(245,158,11,0.1); border-color: var(--amber); }
+  .btn.active { background: rgba(245,158,11,0.15); border-color: var(--amber); }
+  .btn.primary { background: var(--amber); color: var(--black); border-color: var(--amber); font-weight: 500; }
+  .btn.primary:hover { background: var(--amber-dark); }
+
+  /* Map */
+  #map-container { position: relative; }
+  #map { height: 100%; width: 100%; }
+  #map-hint {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: rgba(10,10,10,0.85); border: 1px solid rgba(245,158,11,0.3);
+    color: var(--amber-glow); font-size: 12px; padding: 8px 16px;
+    border-radius: 20px; pointer-events: none; transition: opacity 0.5s;
+    font-family: var(--font-mono); white-space: nowrap; z-index: 500;
+  }
+  #sun-indicator {
+    position: absolute; top: 16px; left: 16px;
+    background: rgba(10,10,10,0.88); border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 10px; padding: 10px 14px; z-index: 500; min-width: 180px;
+  }
+  #sun-indicator .label { font-size: 10px; color: var(--gray); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+  #sun-indicator .value { font-size: 14px; color: var(--amber-glow); font-family: var(--font-mono); font-weight: 500; margin-top: 2px; }
+  #sun-arrow {
+    display: inline-block; width: 20px; height: 20px; vertical-align: middle; margin-left: 4px;
+  }
+
+  /* Side Panel */
+  #panel {
+    background: var(--black-2); border-left: 1px solid rgba(245,158,11,0.15);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+
+  /* Dance Canvas Area */
+  #dance-section {
+    padding: 16px;
+    border-bottom: 1px solid rgba(245,158,11,0.1);
+    flex-shrink: 0;
+  }
+  #dance-title {
+    font-family: var(--font-display); font-size: 16px; color: var(--amber-glow);
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  #dance-type-badge {
+    font-size: 10px; font-family: var(--font-mono); background: rgba(245,158,11,0.15);
+    color: var(--amber); border: 1px solid rgba(245,158,11,0.3); border-radius: 4px;
+    padding: 2px 8px; margin-left: auto;
+  }
+  #dance-canvas-wrap {
+    position: relative; display: flex; justify-content: center;
+  }
+  #dance-canvas {
+    border-radius: 8px; background: var(--black-3);
+    border: 1px solid rgba(245,158,11,0.12);
+    display: block;
+  }
+  #sun-compass {
+    position: absolute; top: 6px; right: 6px;
+    width: 44px; height: 44px;
+  }
+
+  /* Data Section */
+  #data-section {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(245,158,11,0.1);
+    flex-shrink: 0;
+  }
+  .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .data-card {
+    background: var(--black-3); border: 1px solid rgba(245,158,11,0.12);
+    border-radius: 8px; padding: 10px 12px;
+  }
+  .data-card .dc-label { font-size: 10px; color: var(--gray); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+  .data-card .dc-value { font-size: 20px; font-family: var(--font-mono); color: var(--white); font-weight: 500; margin-top: 2px; }
+  .data-card .dc-unit { font-size: 11px; color: var(--gray-light); }
+  .data-card .dc-note { font-size: 10px; color: var(--gray); margin-top: 3px; }
+
+  /* TTS Speech Bubble */
+  #speech-bubble {
+    margin: 0 16px 14px; background: var(--black-3);
+    border: 1px solid rgba(245,158,11,0.18); border-radius: 8px; padding: 10px 12px;
+    flex-shrink: 0; display: none;
+  }
+  #speech-bubble.visible { display: block; }
+  #speech-bubble .sb-label { font-size: 10px; color: var(--amber); font-family: var(--font-mono); text-transform: uppercase; margin-bottom: 5px; }
+  #speech-bubble .sb-text { font-size: 12px; color: var(--gray-light); font-family: var(--font-body); line-height: 1.5; font-style: italic; }
+  .speaking { animation: pulse-amber 1s ease-in-out infinite; }
+  @keyframes pulse-amber { 0%,100% { border-color: rgba(245,158,11,0.18); } 50% { border-color: rgba(245,158,11,0.6); } }
+
+  /* Tabs */
+  #tabs { display: flex; border-bottom: 1px solid rgba(245,158,11,0.1); flex-shrink: 0; }
+  .tab {
+    flex: 1; padding: 8px 6px; font-size: 11px; text-align: center;
+    color: var(--gray); cursor: pointer; border: none; background: transparent;
+    font-family: var(--font-body); transition: all 0.2s; border-bottom: 2px solid transparent;
+    letter-spacing: 0.02em;
+  }
+  .tab.active { color: var(--amber); border-bottom-color: var(--amber); }
+  .tab:hover:not(.active) { color: var(--gray-light); }
+
+  /* Tab content */
+  #tab-content { flex: 1; overflow-y: auto; }
+  .tab-pane { display: none; padding: 14px 16px; }
+  .tab-pane.active { display: block; }
+
+  /* History */
+  #history-list { display: flex; flex-direction: column; gap: 6px; }
+  .hist-item {
+    background: var(--black-3); border: 1px solid rgba(245,158,11,0.1);
+    border-radius: 6px; padding: 8px 10px; cursor: pointer;
+    display: flex; align-items: center; gap: 10px; transition: border-color 0.2s;
+  }
+  .hist-item:hover { border-color: rgba(245,158,11,0.35); }
+  .hist-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .hist-dot.round { background: var(--amber); }
+  .hist-dot.waggle { background: var(--green); }
+  .hist-info { flex: 1; min-width: 0; }
+  .hist-dist { font-size: 13px; color: var(--white); font-family: var(--font-mono); }
+  .hist-angle { font-size: 11px; color: var(--gray); }
+  .hist-time { font-size: 10px; color: var(--gray); font-family: var(--font-mono); }
+  .hist-replay { font-size: 10px; color: var(--amber); opacity: 0; transition: opacity 0.2s; }
+  .hist-item:hover .hist-replay { opacity: 1; }
+  #hist-empty { color: var(--gray); font-size: 12px; text-align: center; padding: 20px 0; }
+
+  /* Quiz Tab */
+  #quiz-section { }
+  .quiz-card {
+    background: var(--black-3); border: 1px solid rgba(245,158,11,0.15);
+    border-radius: 10px; padding: 16px; margin-bottom: 12px;
+  }
+  .quiz-q { font-size: 14px; color: var(--white-dim); margin-bottom: 12px; line-height: 1.5; }
+  .quiz-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .quiz-choice {
+    background: var(--black-4); border: 1px solid rgba(245,158,11,0.15); color: var(--gray-light);
+    font-size: 12px; padding: 8px; border-radius: 6px; cursor: pointer; text-align: center;
+    font-family: var(--font-body); transition: all 0.2s;
+  }
+  .quiz-choice:hover:not(.disabled) { border-color: var(--amber); color: var(--amber); }
+  .quiz-choice.correct { border-color: var(--green); color: var(--green); background: rgba(16,185,129,0.08); }
+  .quiz-choice.wrong { border-color: var(--red); color: var(--red); background: rgba(239,68,68,0.08); }
+  .quiz-choice.disabled { cursor: default; }
+  .quiz-score { text-align: center; font-family: var(--font-mono); color: var(--amber); font-size: 18px; }
+  .quiz-score small { font-size: 12px; color: var(--gray); }
+  #quiz-canvas-wrap { display: flex; justify-content: center; margin-bottom: 12px; }
+  #quiz-canvas { border-radius: 8px; background: var(--black-4); border: 1px solid rgba(245,158,11,0.1); }
+
+  /* Pédagogie Tab */
+  .peda-section { margin-bottom: 20px; }
+  .peda-section h3 { font-family: var(--font-display); font-size: 16px; color: var(--amber-glow); margin-bottom: 8px; }
+  .peda-section p { font-size: 12px; color: var(--gray-light); line-height: 1.6; margin-bottom: 6px; }
+  .peda-section cite { font-size: 11px; color: var(--gray); display: block; margin-top: 4px; font-style: normal; }
+  .dance-schema { display: flex; gap: 12px; margin: 10px 0; }
+  .dance-schema canvas { border-radius: 6px; background: var(--black-4); border: 1px solid rgba(245,158,11,0.1); flex-shrink: 0; }
+  .dance-schema .schema-desc { font-size: 11px; color: var(--gray-light); line-height: 1.55; }
+  .dance-schema .schema-title { font-size: 12px; color: var(--amber); font-weight: 500; margin-bottom: 4px; }
+
+  /* Scrollbar */
+  #tab-content::-webkit-scrollbar { width: 4px; }
+  #tab-content::-webkit-scrollbar-track { background: transparent; }
+  #tab-content::-webkit-scrollbar-thumb { background: rgba(245,158,11,0.2); border-radius: 2px; }
+
+  /* Leaflet overrides */
+  .leaflet-container { background: #0f0f0f; }
+  .leaflet-tile { filter: brightness(0.85) contrast(1.05) saturate(0.7); }
+  .leaflet-popup-content-wrapper { background: var(--black-2); border: 1px solid rgba(245,158,11,0.3); border-radius: 8px; color: var(--white); box-shadow: 0 4px 16px rgba(0,0,0,0.5); }
+  .leaflet-popup-tip { background: var(--black-2); }
+
+  /* Waggle path on map */
+  .flight-path { stroke: var(--amber); stroke-width: 2; stroke-dasharray: 6 4; opacity: 0.7; }
+
+  /* Responsiveness note at bottom of panel */
+  #panel-footer {
+    padding: 8px 14px;
+    border-top: 1px solid rgba(245,158,11,0.08);
+    font-size: 10px; color: var(--gray); font-family: var(--font-mono);
+    flex-shrink: 0; display: flex; gap: 12px; align-items: center;
+  }
+  .dot-live { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 2s ease-in-out infinite; display: inline-block; margin-right: 4px; }
+  @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+</style>
+</head>
+<body>
+<div id="app">
+  <header id="header">
+    <div>
+      <h1>🐝 La Danse des Abeilles</h1>
+    </div>
+    <span class="subtitle">Simulateur biologique interactif · von Frisch 1952</span>
+    <div class="actions">
+      <button class="btn" id="btn-geolocate" title="Géolocaliser la ruche">📍 Ma position</button>
+      <button class="btn" id="btn-tts">🔊 Voix</button>
+      <button class="btn" id="btn-reset">↺ Réinitialiser</button>
+    </div>
+  </header>
+
+  <div id="map-container">
+    <div id="map"></div>
+    <div id="map-hint">Cliquez sur la carte pour placer une source de nectar</div>
+    <div id="sun-indicator">
+      <div class="label">☀ Azimut solaire</div>
+      <div class="value" id="sun-az-val">—</div>
+      <div class="label" style="margin-top:6px">Altitude</div>
+      <div class="value" id="sun-alt-val">—</div>
+    </div>
+  </div>
+
+  <div id="panel">
+    <!-- Dance canvas -->
+    <div id="dance-section">
+      <div id="dance-title">
+        Danse de l'Abeille
+        <span id="dance-type-badge">En attente…</span>
+      </div>
+      <div id="dance-canvas-wrap">
+        <canvas id="dance-canvas" width="348" height="200"></canvas>
+        <svg id="sun-compass" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" title="Boussole solaire"></svg>
+      </div>
+    </div>
+
+    <!-- Data cards -->
+    <div id="data-section">
+      <div class="data-grid">
+        <div class="data-card">
+          <div class="dc-label">Distance</div>
+          <div class="dc-value" id="dc-dist">—</div>
+          <div class="dc-unit">mètres</div>
+          <div class="dc-note" id="dc-dance-note">—</div>
+        </div>
+        <div class="data-card">
+          <div class="dc-label">Azimut / Soleil</div>
+          <div class="dc-value" id="dc-angle">—</div>
+          <div class="dc-unit">degrés</div>
+          <div class="dc-note" id="dc-dir-note">—</div>
+        </div>
+        <div class="data-card">
+          <div class="dc-label">Rythme danse</div>
+          <div class="dc-value" id="dc-rhythm">—</div>
+          <div class="dc-unit">tours/min</div>
+        </div>
+        <div class="data-card">
+          <div class="dc-label">Durée frétillement</div>
+          <div class="dc-value" id="dc-waggle">—</div>
+          <div class="dc-unit">secondes</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Speech bubble -->
+    <div id="speech-bubble">
+      <div class="sb-label">🐝 Message aux ouvrières</div>
+      <div class="sb-text" id="sb-text"></div>
+    </div>
+
+    <!-- Tabs -->
+    <div id="tabs">
+      <button class="tab active" data-tab="history">Historique</button>
+      <button class="tab" data-tab="quiz">Quiz</button>
+      <button class="tab" data-tab="peda">Biologie</button>
+    </div>
+
+    <div id="tab-content">
+      <!-- History -->
+      <div class="tab-pane active" id="tab-history">
+        <div id="history-list">
+          <div id="hist-empty">Aucune observation. Cliquez sur la carte.</div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="tab-pane" id="tab-quiz">
+        <div id="quiz-section">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <span style="font-family:var(--font-display);font-size:16px;color:var(--amber-glow)">Mode Quiz</span>
+            <div class="quiz-score" id="quiz-score">
+              <span id="qs-correct">0</span>/<span id="qs-total">0</span> <small>correct</small>
+            </div>
+          </div>
+          <div id="quiz-canvas-wrap">
+            <canvas id="quiz-canvas" width="200" height="200"></canvas>
+          </div>
+          <div class="quiz-card" id="quiz-card">
+            <div class="quiz-q" id="quiz-q">Chargement du quiz...</div>
+            <div class="quiz-choices" id="quiz-choices"></div>
+          </div>
+          <button class="btn primary" id="btn-next-quiz" style="width:100%;margin-top:4px;">Nouvelle question →</button>
+        </div>
+      </div>
+
+      <!-- Pédagogie -->
+      <div class="tab-pane" id="tab-peda">
+        <div class="peda-section">
+          <h3>La danse en rond</h3>
+          <div class="dance-schema">
+            <canvas id="schema-round" width="80" height="80"></canvas>
+            <div>
+              <div class="schema-title">Distance &lt; 100 m</div>
+              <p class="schema-desc">L'exploratrice exécute des cercles alternés sur les rayons. Les butineuses sortent chercher aux environs de la ruche une source ayant l'odeur portée par la danseuse.</p>
+            </div>
+          </div>
+          <cite>von Frisch, 1952 — Bulletin de Psychologie, tome 6 n°1</cite>
+        </div>
+        <div class="peda-section">
+          <h3>La danse frétillante (Waggle Dance)</h3>
+          <div class="dance-schema">
+            <canvas id="schema-waggle" width="80" height="80"></canvas>
+            <div>
+              <div class="schema-title">Distance &gt; 100 m</div>
+              <p class="schema-desc">Danse en figure-8. L'axe central incliné indique la direction par rapport au soleil. Le rythme (tours/min) encode la distance : plus c'est loin, plus c'est lent.</p>
+            </div>
+          </div>
+          <cite>Michelsen, 1986 · Seeley, 1995</cite>
+        </div>
+        <div class="peda-section">
+          <h3>La danse en croissant</h3>
+          <div class="dance-schema">
+            <canvas id="schema-crescent" width="80" height="80"></canvas>
+            <div>
+              <div class="schema-title">Race italienne (Apis mellifera ligustica)</div>
+              <p class="schema-desc">Les abeilles de race italienne utilisent une danse intermédiaire en croissant pour les distances courtes. L'ouverture du croissant est dirigée vers la source.</p>
+            </div>
+          </div>
+          <cite>Tschumi, 1950 · Hein, 1950</cite>
+        </div>
+        <div class="peda-section">
+          <h3>Le support vibratoire</h3>
+          <p>Le vecteur des vibrations est la <strong style="color:var(--amber)">cire</strong>. Les cadres atténuent les fréquences élevées. Les rayons naturels assurent une meilleure propagation.</p>
+          <cite>Sandeman, Tautz, Lindauer, 1996 · Fayet, 2019</cite>
+        </div>
+        <div class="peda-section">
+          <h3>La polarisation de la lumière</h3>
+          <p>Par ciel nuageux, les abeilles utilisent la polarisation partielle de la lumière bleue pour repérer la position du soleil — capacité partagée par de nombreux arthropodes.</p>
+          <cite>Stockhammer (dressage) · von Frisch, 1949</cite>
+        </div>
+        <div class="peda-section">
+          <h3>Azimut solaire dynamique</h3>
+          <p>Cet outil utilise <strong style="color:var(--amber)">SunCalc.js</strong> (Agafonkin) pour calculer la position réelle du soleil à votre localisation et à l'heure actuelle. L'angle de la danse frétillante est ainsi biologiquement précis.</p>
+          <cite>Wario et al. 2017 — PLOS ONE · Machine Learning Waggle Dance Decoder</cite>
+        </div>
+      </div>
+    </div>
+
+    <div id="panel-footer">
+      <span><span class="dot-live"></span>Temps réel</span>
+      <span id="footer-time">—</span>
+      <span id="footer-coords" style="margin-left:auto;">—</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── State ───────────────────────────────────────────────────────
+let hiveLatLng = { lat: 45.7578, lng: 4.8320 }; // Lyon default
+let flowerMarker = null, hiveMarker = null, flightPath = null;
+let history = [];
+let animFrame = null;
+let ttsEnabled = true;
+let quizScore = { correct: 0, total: 0 };
+let quizCurrentAnswer = null;
+let quizAnswered = false;
+
+// ─── Map Setup ───────────────────────────────────────────────────
+const map = L.map('map', { zoomControl: true, attributionControl: false });
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+map.setView([hiveLatLng.lat, hiveLatLng.lng], 14);
+
+// Custom icons
+const hiveIcon = L.divIcon({
+  html: `<div style="font-size:26px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));cursor:move;" title="Ruche (glissez pour déplacer)">🏠</div>`,
+  className: '', iconAnchor: [13, 26], iconSize: [26, 26]
+});
+const flowerIcon = L.divIcon({
+  html: `<div style="font-size:24px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.8));">🌸</div>`,
+  className: '', iconAnchor: [12, 24], iconSize: [24, 24]
+});
+
+hiveMarker = L.marker([hiveLatLng.lat, hiveLatLng.lng], { icon: hiveIcon, draggable: true, zIndexOffset: 1000 }).addTo(map);
+hiveMarker.bindTooltip('<b>Ruche</b><br>Glissez pour déplacer', { direction: 'top', className: 'leaflet-dark-tip' });
+hiveMarker.on('dragend', e => {
+  hiveLatLng = e.target.getLatLng();
+  updateSunInfo();
+  if (flowerMarker) computeAndAnimate(flowerMarker.getLatLng());
+  document.getElementById('footer-coords').textContent = `${hiveLatLng.lat.toFixed(4)}, ${hiveLatLng.lng.toFixed(4)}`;
+});
+
+map.on('click', e => {
+  const latlng = e.latlng;
+  if (flowerMarker) { map.removeLayer(flowerMarker); }
+  if (flightPath) { map.removeLayer(flightPath); }
+  flowerMarker = L.marker([latlng.lat, latlng.lng], { icon: flowerIcon }).addTo(map);
+  flowerMarker.bindTooltip('Source de nectar', { direction: 'top' });
+  flightPath = L.polyline([[hiveLatLng.lat, hiveLatLng.lng], [latlng.lat, latlng.lng]], {
+    color: '#F59E0B', weight: 2, dashArray: '8 5', opacity: 0.7
+  }).addTo(map);
+  document.getElementById('map-hint').style.opacity = '0';
+  computeAndAnimate(latlng);
+});
+
+// ─── Geo / Sun ───────────────────────────────────────────────────
+function getSunAzimuthDeg(lat, lng) {
+  const pos = SunCalc.getPosition(new Date(), lat, lng);
+  // SunCalc: azimuth is measured from south→west; 0=south, π=north (inverted)
+  // Convert to standard meteorological azimuth (0=North, clockwise)
+  let az = pos.azimuth * 180 / Math.PI + 180; // south=0 → +180 to get north=0
+  return ((az % 360) + 360) % 360;
+}
+function getSunAltitudeDeg(lat, lng) {
+  const pos = SunCalc.getPosition(new Date(), lat, lng);
+  return pos.altitude * 180 / Math.PI;
+}
+
+function updateSunInfo() {
+  const az = getSunAzimuthDeg(hiveLatLng.lat, hiveLatLng.lng);
+  const alt = getSunAltitudeDeg(hiveLatLng.lat, hiveLatLng.lng);
+  document.getElementById('sun-az-val').textContent = az.toFixed(1) + '°';
+  document.getElementById('sun-alt-val').textContent = alt.toFixed(1) + '°';
+  drawSunCompass(az);
+  updateFooterTime();
+}
+
+function updateFooterTime() {
+  const now = new Date();
+  document.getElementById('footer-time').textContent = now.toLocaleTimeString('fr-FR');
+}
+
+setInterval(updateSunInfo, 60000);
+updateSunInfo();
+document.getElementById('footer-coords').textContent = `${hiveLatLng.lat.toFixed(4)}, ${hiveLatLng.lng.toFixed(4)}`;
+
+// ─── Sun Compass SVG ─────────────────────────────────────────────
+function drawSunCompass(sunAzDeg) {
+  const svg = document.getElementById('sun-compass');
+  const rad = sunAzDeg * Math.PI / 180;
+  const cx = 22, cy = 22, r = 16;
+  const sx = cx + r * Math.sin(rad), sy = cy - r * Math.cos(rad);
+  svg.innerHTML = `
+    <circle cx="22" cy="22" r="20" fill="rgba(0,0,0,0.6)" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+    <text x="22" y="8" text-anchor="middle" fill="rgba(245,158,11,0.5)" font-size="7" font-family="Outfit,sans-serif">N</text>
+    <line x1="22" y1="6" x2="22" y2="38" stroke="rgba(245,158,11,0.15)" stroke-width="0.5"/>
+    <line x1="6" y1="22" x2="38" y2="22" stroke="rgba(245,158,11,0.15)" stroke-width="0.5"/>
+    <circle cx="${sx.toFixed(1)}" cy="${sy.toFixed(1)}" r="4" fill="#F59E0B" opacity="0.9"/>
+    <line x1="22" y1="22" x2="${sx.toFixed(1)}" y2="${sy.toFixed(1)}" stroke="#F59E0B" stroke-width="1" opacity="0.6"/>
+    <circle cx="22" cy="22" r="2" fill="rgba(245,158,11,0.4)"/>
+  `;
+}
+
+// ─── Geo Math ────────────────────────────────────────────────────
+function haversineMeters(lat1, lon1, lat2, lon2) {
+  const R = 6371000, dLat = (lat2-lat1)*Math.PI/180, dLon = (lon2-lon1)*Math.PI/180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function bearingDeg(lat1, lon1, lat2, lon2) {
+  const dLon = (lon2-lon1)*Math.PI/180;
+  const y = Math.sin(dLon)*Math.cos(lat2*Math.PI/180);
+  const x = Math.cos(lat1*Math.PI/180)*Math.sin(lat2*Math.PI/180) - Math.sin(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.cos(dLon);
+  return ((Math.atan2(y,x)*180/Math.PI) + 360) % 360;
+}
+
+function waggleRhythm(distM) {
+  // von Frisch empirical: ~40 turns/min at 150m, ~4 at 11km
+  if (distM < 100) return null;
+  const r = Math.max(3.5, 40 * Math.exp(-distM / 2200));
+  return parseFloat(r.toFixed(1));
+}
+
+function waggleDuration(distM) {
+  // Seeley 1995: ~1s/km roughly; 0.5s min at 100m
+  if (distM < 100) return null;
+  const d = 0.3 + (distM / 1000) * 0.7;
+  return parseFloat(d.toFixed(2));
+}
+
+// ─── Core Computation ────────────────────────────────────────────
+function computeAndAnimate(flowerLL) {
+  const dist = haversineMeters(hiveLatLng.lat, hiveLatLng.lng, flowerLL.lat, flowerLL.lng);
+  const bearingToFlower = bearingDeg(hiveLatLng.lat, hiveLatLng.lng, flowerLL.lat, flowerLL.lng);
+  const sunAz = getSunAzimuthDeg(hiveLatLng.lat, hiveLatLng.lng);
+  const sunAlt = getSunAltitudeDeg(hiveLatLng.lat, hiveLatLng.lng);
+
+  // Angle relative to sun (dance axis on vertical comb)
+  let relAngle = bearingToFlower - sunAz;
+  relAngle = ((relAngle % 360) + 360) % 360;
+  if (relAngle > 180) relAngle -= 360; // range -180..180
+
+  const isWaggle = dist >= 100;
+  const rhythm = isWaggle ? waggleRhythm(dist) : null;
+  const waggle = isWaggle ? waggleDuration(dist) : null;
+
+  // Update data cards
+  document.getElementById('dc-dist').textContent = Math.round(dist);
+  document.getElementById('dc-angle').textContent = Math.round(bearingToFlower) + '°';
+  document.getElementById('dc-dance-note').textContent = isWaggle ? 'Danse frétillante' : 'Danse en rond';
+  document.getElementById('dc-dir-note').textContent = `Soleil: ${Math.round(sunAz)}°`;
+  document.getElementById('dc-rhythm').textContent = isWaggle ? rhythm : '~25';
+  document.getElementById('dc-waggle').textContent = isWaggle ? waggle : '—';
+  document.getElementById('dance-type-badge').textContent = isWaggle ? '🌀 Frétillante' : '⭕ En rond';
+
+  // Speech
+  const speechText = buildSpeech(dist, bearingToFlower, sunAz, sunAlt, relAngle, isWaggle, rhythm);
+  showSpeech(speechText);
+  if (ttsEnabled && 'speechSynthesis' in window) speak(speechText);
+
+  // Animation
+  if (animFrame) cancelAnimationFrame(animFrame);
+  const danceData = { dist, bearingToFlower, relAngle, sunAz, sunAlt, isWaggle, rhythm, waggle };
+  animateDance('dance-canvas', danceData);
+
+  // History
+  addHistory({ dist, bearingToFlower, relAngle, sunAz, isWaggle, rhythm, waggle, time: new Date(), flowerLL });
+}
+
+function buildSpeech(dist, bearing, sunAz, sunAlt, relAngle, isWaggle, rhythm) {
+  const dir = cardinalDir(bearing);
+  if (!isWaggle) {
+    return `Mes sœurs ! J'ai trouvé du nectar à seulement ${Math.round(dist)} mètres de la ruche ! Cherchez aux alentours, l'odeur sur mon corps vous guidera.`;
+  }
+  const relDesc = relAngle > 0 ? `${Math.round(Math.abs(relAngle))}° à droite du soleil` : `${Math.round(Math.abs(relAngle))}° à gauche du soleil`;
+  return `Mes sœurs, j'ai trouvé du nectar à ${Math.round(dist)} mètres, direction ${Math.round(bearing)} degrés, ${relDesc}. Rythme : ${rhythm} tours par minute.`;
+}
+
+function cardinalDir(az) {
+  const dirs = ['Nord','Nord-Est','Est','Sud-Est','Sud','Sud-Ouest','Ouest','Nord-Ouest'];
+  return dirs[Math.round(az / 45) % 8];
+}
+
+// ─── Speech ──────────────────────────────────────────────────────
+function showSpeech(text) {
+  const bubble = document.getElementById('speech-bubble');
+  document.getElementById('sb-text').textContent = text;
+  bubble.classList.add('visible');
+}
+
+function speak(text) {
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'fr-FR'; utterance.rate = 0.95; utterance.pitch = 1.1;
+  const bubble = document.getElementById('speech-bubble');
+  utterance.onstart = () => bubble.classList.add('speaking');
+  utterance.onend = () => bubble.classList.remove('speaking');
+  window.speechSynthesis.speak(utterance);
+}
+
+// ─── Dance Animation ─────────────────────────────────────────────
+function animateDance(canvasId, data) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2;
+  let t = 0;
+
+  function drawBeeBody(bx, by, angle, waggling) {
+    ctx.save();
+    ctx.translate(bx, by);
+    ctx.rotate(angle);
+    // Abdomen
+    const grad = ctx.createRadialGradient(0, 4, 2, 0, 4, 8);
+    grad.addColorStop(0, '#F59E0B');
+    grad.addColorStop(0.5, '#D97706');
+    grad.addColorStop(1, '#92400E');
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.ellipse(0, 5, 5, 8, 0, 0, Math.PI*2); ctx.fill();
+    // Stripes
+    ctx.strokeStyle = '#1A1A1A'; ctx.lineWidth = 1.5;
+    for (let s = 1; s <= 3; s++) {
+      ctx.beginPath(); ctx.moveTo(-5 + s*0.5, 1 + s*3); ctx.lineTo(5 - s*0.5, 1 + s*3); ctx.stroke();
+    }
+    // Thorax
+    ctx.fillStyle = '#1A1A1A';
+    ctx.beginPath(); ctx.ellipse(0, -2, 4, 4.5, 0, 0, Math.PI*2); ctx.fill();
+    // Wings
+    ctx.globalAlpha = 0.35;
+    ctx.fillStyle = '#BAE6FD';
+    ctx.beginPath(); ctx.ellipse(-6, -4, 5, 3, -0.4, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(6, -4, 5, 3, 0.4, 0, Math.PI*2); ctx.fill();
+    ctx.globalAlpha = 1;
+    // Head
+    ctx.fillStyle = '#92400E';
+    ctx.beginPath(); ctx.arc(0, -7, 3.5, 0, Math.PI*2); ctx.fill();
+    // Antennae
+    ctx.strokeStyle = '#92400E'; ctx.lineWidth = 0.8;
+    ctx.beginPath(); ctx.moveTo(-1.5, -9); ctx.lineTo(-4, -14); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(1.5, -9); ctx.lineTo(4, -14); ctx.stroke();
+    // Waggle effect
+    if (waggling) {
+      const shake = Math.sin(t * 20) * 2;
+      ctx.fillStyle = 'rgba(245,158,11,0.3)';
+      ctx.beginPath(); ctx.arc(0, 6, 7 + Math.abs(shake), 0, Math.PI*2); ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawGrid() {
+    // Subtle honeycomb-like bg
+    ctx.fillStyle = '#111111';
+    ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = 'rgba(245,158,11,0.05)'; ctx.lineWidth = 0.5;
+    const hex = 22;
+    for (let row = -1; row < H/hex + 2; row++) {
+      for (let col = -1; col < W/hex + 2; col++) {
+        const hx = col * hex * 1.5 + (row % 2 === 0 ? 0 : hex * 0.75);
+        const hy = row * hex * 0.866;
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const a = Math.PI/3*i - Math.PI/6;
+          const px = hx + hex*0.5*Math.cos(a), py = hy + hex*0.5*Math.sin(a);
+          i===0 ? ctx.moveTo(px,py) : ctx.lineTo(px,py);
+        }
+        ctx.closePath(); ctx.stroke();
+      }
+    }
+  }
+
+  function drawRoundDance() {
+    drawGrid();
+    const r = 60;
+    const speed = 0.025;
+    const angle = t * speed;
+    const dir = Math.floor(t * speed / (Math.PI * 2)) % 2 === 0 ? 1 : -1;
+
+    // Trail
+    ctx.strokeStyle = 'rgba(245,158,11,0.25)'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (let i = 0; i < 100; i++) {
+      const a = angle - i * 0.04 * dir;
+      const px = cx + r * Math.cos(a), py = cy + r * Math.sin(a);
+      i === 0 ? ctx.moveTo(px,py) : ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+
+    // Full circle guide
+    ctx.strokeStyle = 'rgba(245,158,11,0.1)'; ctx.lineWidth = 1;
+    ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Direction arrow
+    const beeX = cx + r * Math.cos(angle), beeY = cy + r * Math.sin(angle);
+    const beeAngle = angle * dir + Math.PI / 2;
+    drawBeeBody(beeX, beeY, beeAngle, false);
+
+    // Center label
+    ctx.fillStyle = 'rgba(245,158,11,0.4)';
+    ctx.font = '9px JetBrains Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('Ruche', cx, cy + 3);
+    ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI*2); ctx.fill();
+
+    // Distance label
+    ctx.fillStyle = 'rgba(245,158,11,0.5)'; ctx.font = '10px Outfit,sans-serif'; ctx.textAlign = 'left';
+    ctx.fillText(`< 100m`, 6, H - 8);
+  }
+
+  function drawWaggleDance() {
+    drawGrid();
+    // The dance axis angle = relAngle relative to vertical (up = sun direction)
+    const danceAxisRad = data.relAngle * Math.PI / 180;
+    // Speed based on distance (rhythm)
+    const speed = data.rhythm ? (data.rhythm / 40) * 0.018 : 0.018;
+    const lobeR = 55;
+
+    // Draw figure-8 guide
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(danceAxisRad);
+    ctx.strokeStyle = 'rgba(245,158,11,0.12)'; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+    // Top lobe
+    ctx.beginPath(); ctx.arc(0, -lobeR*0.6, lobeR*0.55, 0, Math.PI*2); ctx.stroke();
+    // Bottom lobe
+    ctx.beginPath(); ctx.arc(0, lobeR*0.6, lobeR*0.55, 0, Math.PI*2); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Central waggle axis
+    ctx.strokeStyle = 'rgba(245,158,11,0.3)'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(0, -lobeR); ctx.lineTo(0, lobeR); ctx.stroke();
+
+    // Sun direction indicator
+    ctx.fillStyle = 'rgba(245,158,11,0.7)';
+    ctx.font = '9px Outfit,sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('☀', 0, -lobeR - 8);
+
+    ctx.restore();
+
+    // Trail
+    const trail = [];
+    for (let i = -60; i <= 0; i++) {
+      const tt = t * speed + i * 0.025;
+      trail.push(wagglePath(tt, cx, cy, danceAxisRad, lobeR));
+    }
+    ctx.strokeStyle = 'rgba(245,158,11,0.2)'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    trail.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+    ctx.stroke();
+
+    // Bee position
+    const pos = wagglePath(t * speed, cx, cy, danceAxisRad, lobeR);
+    const prevPos = wagglePath(t * speed - 0.05, cx, cy, danceAxisRad, lobeR);
+    const beeAngle = Math.atan2(pos.y - prevPos.y, pos.x - prevPos.x) + Math.PI/2;
+    drawBeeBody(pos.x, pos.y, beeAngle, pos.waggling);
+
+    // Angle annotation
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.strokeStyle = 'rgba(245,158,11,0.4)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(0, -20); ctx.lineTo(0, -40); ctx.stroke();
+    const labelAngle = danceAxisRad / 2;
+    ctx.fillStyle = 'rgba(245,158,11,0.6)'; ctx.font = '9px JetBrains Mono, monospace'; ctx.textAlign = 'center';
+    const la = Math.round(data.relAngle);
+    ctx.fillText(`${la > 0 ? '+' : ''}${la}°`, Math.sin(danceAxisRad/2)*25, -30 + Math.cos(danceAxisRad/2)*10);
+    ctx.restore();
+
+    // Distance label
+    ctx.fillStyle = 'rgba(245,158,11,0.5)'; ctx.font = '10px Outfit,sans-serif'; ctx.textAlign = 'left';
+    ctx.fillText(`${Math.round(data.dist)}m · ${data.rhythm} t/min`, 6, H - 8);
+  }
+
+  function wagglePath(tt, cx, cy, axisRad, r) {
+    // Parametric figure-8 with waggle on straight segment
+    const period = Math.PI * 2;
+    const phase = ((tt % period) + period) % period;
+    let x, y, waggling = false;
+
+    if (phase < Math.PI) {
+      // Right return arc
+      const a = phase;
+      x = Math.sin(a) * r * 0.55;
+      y = -Math.cos(a) * r * 0.55 - r * 0.6;
+    } else if (phase < Math.PI * 1.1) {
+      // Waggle run (straight up = toward sun)
+      const p = (phase - Math.PI) / (Math.PI * 0.1);
+      x = Math.sin(phase) * 3; // slight waggle
+      y = -r + p * r * 2;
+      waggling = true;
+    } else {
+      // Left return arc
+      const a = phase - Math.PI * 1.1;
+      x = -Math.sin(a) * r * 0.55;
+      y = -Math.cos(a) * r * 0.55 + r * 0.6;
+    }
+
+    // Rotate by dance axis
+    const rx = x * Math.cos(axisRad) - y * Math.sin(axisRad);
+    const ry = x * Math.sin(axisRad) + y * Math.cos(axisRad);
+    return { x: cx + rx, y: cy + ry, waggling };
+  }
+
+  function loop() {
+    t++;
+    if (data.isWaggle) drawWaggleDance();
+    else drawRoundDance();
+    animFrame = requestAnimationFrame(loop);
+  }
+  loop();
+}
+
+// ─── History ─────────────────────────────────────────────────────
+function addHistory(entry) {
+  history.unshift(entry);
+  if (history.length > 20) history.pop();
+  renderHistory();
+}
+
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  document.getElementById('hist-empty').style.display = history.length ? 'none' : 'block';
+  const existing = list.querySelectorAll('.hist-item');
+  existing.forEach(e => e.remove());
+
+  history.forEach((h, idx) => {
+    const el = document.createElement('div');
+    el.className = 'hist-item';
+    el.innerHTML = `
+      <div class="hist-dot ${h.isWaggle ? 'waggle' : 'round'}"></div>
+      <div class="hist-info">
+        <div class="hist-dist">${Math.round(h.dist)}m · ${Math.round(h.bearingToFlower)}°</div>
+        <div class="hist-angle">${h.isWaggle ? `Frétillante · ${h.rhythm} t/min` : 'En rond'}</div>
+      </div>
+      <div class="hist-time">${h.time.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}</div>
+      <div class="hist-replay">▶</div>
+    `;
+    el.addEventListener('click', () => {
+      if (flowerMarker) map.removeLayer(flowerMarker);
+      if (flightPath) map.removeLayer(flightPath);
+      flowerMarker = L.marker([h.flowerLL.lat, h.flowerLL.lng], { icon: flowerIcon }).addTo(map);
+      flightPath = L.polyline([[hiveLatLng.lat, hiveLatLng.lng], [h.flowerLL.lat, h.flowerLL.lng]], {
+        color: '#F59E0B', weight: 2, dashArray: '8 5', opacity: 0.7
+      }).addTo(map);
+      if (animFrame) cancelAnimationFrame(animFrame);
+      const danceData = { dist: h.dist, bearingToFlower: h.bearingToFlower, relAngle: h.relAngle, sunAz: h.sunAz, isWaggle: h.isWaggle, rhythm: h.rhythm, waggle: h.waggle };
+      animateDance('dance-canvas', danceData);
+    });
+    list.appendChild(el);
+  });
+}
+
+// ─── Quiz ─────────────────────────────────────────────────────────
+const QUIZ_QUESTIONS = [
+  {
+    type: 'dance_type',
+    generate: () => {
+      const dist = Math.floor(Math.random() * 800) + 20;
+      return {
+        q: `Une butineuse rentre à la ruche après avoir trouvé du nectar à ${dist} mètres. Quelle danse effectue-t-elle ?`,
+        answer: dist < 100 ? 'round' : 'waggle',
+        choices: ['Danse en rond', 'Danse frétillante (8)', 'Danse en croissant', 'Aucune danse'],
+        correct: dist < 100 ? 0 : 1,
+        draw: (ctx, W, H) => drawQuizDance(ctx, W, H, dist, 0)
+      };
+    }
+  },
+  {
+    type: 'distance',
+    generate: () => {
+      const dists = [150, 500, 2000, 8000];
+      const d = dists[Math.floor(Math.random() * dists.length)];
+      const r = parseFloat((Math.max(3.5, 40 * Math.exp(-d / 2200))).toFixed(1));
+      return {
+        q: `Une abeille danse à ${r} tours par minute. Quelle est la distance approximative de la source ?`,
+        answer: d,
+        choices: dists.map(x => `${x < 1000 ? x + ' m' : (x/1000) + ' km'}`),
+        correct: dists.indexOf(d),
+        draw: (ctx, W, H) => { ctx.clearRect(0,0,W,H); drawQuizBeeSimple(ctx, W, H, d, 0); }
+      };
+    }
+  },
+  {
+    type: 'direction',
+    generate: () => {
+      const angle = [-90, -45, 0, 45, 90][Math.floor(Math.random() * 5)];
+      const labels = ['-90° (gauche soleil)', '-45° (gauche)', '0° (vers soleil)', '+45° (droite)', '+90° (droite soleil)'];
+      const idx = [-90, -45, 0, 45, 90].indexOf(angle);
+      return {
+        q: `L'axe frétillant de la danse est incliné de ${angle}° par rapport à la verticale. Que signifie cet angle ?`,
+        answer: angle,
+        choices: labels,
+        correct: idx,
+        draw: (ctx, W, H) => drawQuizWaggleAxis(ctx, W, H, angle)
+      };
+    }
+  }
+];
+
+let currentQuiz = null;
+
+function generateQuiz() {
+  const qType = QUIZ_QUESTIONS[Math.floor(Math.random() * QUIZ_QUESTIONS.length)];
+  currentQuiz = qType.generate();
+  quizAnswered = false;
+
+  document.getElementById('quiz-q').textContent = currentQuiz.q;
+  const choicesEl = document.getElementById('quiz-choices');
+  choicesEl.innerHTML = '';
+  currentQuiz.choices.forEach((c, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-choice'; btn.textContent = c;
+    btn.addEventListener('click', () => answerQuiz(i, btn));
+    choicesEl.appendChild(btn);
+  });
+
+  // Draw quiz canvas
+  const qCanvas = document.getElementById('quiz-canvas');
+  const ctx = qCanvas.getContext('2d');
+  ctx.fillStyle = '#111'; ctx.fillRect(0, 0, 200, 200);
+  currentQuiz.draw(ctx, 200, 200);
+}
+
+function drawQuizDance(ctx, W, H, dist, relAngle) {
+  ctx.fillStyle = '#111'; ctx.fillRect(0,0,W,H);
+  const cx = W/2, cy = H/2;
+  if (dist < 100) {
+    ctx.strokeStyle = '#F59E0B'; ctx.lineWidth = 2.5; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.arc(cx, cy, 60, 0, Math.PI*2); ctx.stroke();
+    ctx.strokeStyle = 'rgba(245,158,11,0.4)'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(cx, cy, 40, 0, Math.PI*2); ctx.stroke();
+    ctx.fillStyle = '#F59E0B'; ctx.beginPath(); ctx.arc(cx+60, cy, 6, 0, Math.PI*2); ctx.fill();
+  } else {
+    const ar = relAngle * Math.PI / 180;
+    ctx.strokeStyle = 'rgba(245,158,11,0.3)'; ctx.lineWidth = 1; ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.arc(cx, cy-35, 35, 0, Math.PI*2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy+35, 35, 0, Math.PI*2); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.save(); ctx.translate(cx,cy); ctx.rotate(ar);
+    ctx.strokeStyle = '#F59E0B'; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(0,-70); ctx.lineTo(0,70); ctx.stroke();
+    ctx.fillStyle = '#F59E0B'; ctx.beginPath(); ctx.arc(0,-70,5,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(245,158,11,0.7)'; ctx.font='10px Outfit,sans-serif'; ctx.textAlign='center';
+    ctx.fillText('☀',0,-82);
+    ctx.restore();
+  }
+}
+
+function drawQuizWaggleAxis(ctx, W, H, angleDeg) {
+  ctx.fillStyle = '#111'; ctx.fillRect(0,0,W,H);
+  const cx = W/2, cy = H/2, ar = angleDeg * Math.PI / 180;
+  // Vertical reference
+  ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+  ctx.beginPath(); ctx.moveTo(cx,20); ctx.lineTo(cx,H-20); ctx.stroke();
+  ctx.setLineDash([]);
+  // Dance axis
+  ctx.save(); ctx.translate(cx,cy); ctx.rotate(ar);
+  ctx.strokeStyle = '#F59E0B'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(0,-75); ctx.lineTo(0,75); ctx.stroke();
+  // Arrow at top
+  ctx.fillStyle = '#F59E0B';
+  ctx.beginPath(); ctx.moveTo(0,-75); ctx.lineTo(-5,-60); ctx.lineTo(5,-60); ctx.closePath(); ctx.fill();
+  ctx.fillStyle='rgba(245,158,11,0.8)'; ctx.font='11px Outfit,sans-serif'; ctx.textAlign='center';
+  ctx.fillText('☀', 0, -85);
+  ctx.restore();
+  // Angle arc
+  if (angleDeg !== 0) {
+    ctx.strokeStyle='rgba(245,158,11,0.35)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.arc(cx, cy, 30, -Math.PI/2, -Math.PI/2 + ar, ar < 0); ctx.stroke();
+  }
+  ctx.fillStyle='rgba(245,158,11,0.5)'; ctx.font='10px JetBrains Mono,monospace'; ctx.textAlign='center';
+  ctx.fillText(`${angleDeg > 0 ? '+' : ''}${angleDeg}°`, cx, cy + 45);
+}
+
+function drawQuizBeeSimple(ctx, W, H, dist, relAngle) {
+  ctx.fillStyle = '#111'; ctx.fillRect(0,0,W,H);
+  const cx = W/2, cy = H/2, r = parseFloat((Math.max(3.5, 40*Math.exp(-dist/2200))).toFixed(1));
+  ctx.strokeStyle = '#F59E0B'; ctx.lineWidth = 1.5; ctx.setLineDash([]);
+  for (let i = 0; i < Math.round(r); i++) {
+    ctx.beginPath(); ctx.arc(cx, cy, 20 + i*12, 0, Math.PI*2); ctx.stroke();
+  }
+  ctx.fillStyle='rgba(245,158,11,0.7)'; ctx.font='11px JetBrains Mono,monospace'; ctx.textAlign='center';
+  ctx.fillText(`${r} t/min`, cx, H-10);
+}
+
+function answerQuiz(chosen, btnEl) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const buttons = document.querySelectorAll('.quiz-choice');
+  buttons.forEach((b, i) => {
+    b.classList.add('disabled');
+    if (i === currentQuiz.correct) b.classList.add('correct');
+    else if (i === chosen && chosen !== currentQuiz.correct) b.classList.add('wrong');
+  });
+  quizScore.total++;
+  if (chosen === currentQuiz.correct) quizScore.correct++;
+  document.getElementById('qs-correct').textContent = quizScore.correct;
+  document.getElementById('qs-total').textContent = quizScore.total;
+}
+
+document.getElementById('btn-next-quiz').addEventListener('click', generateQuiz);
+
+// ─── Static Schema Drawings ───────────────────────────────────────
+function drawStaticSchemas() {
+  // Round dance schema
+  const c1 = document.getElementById('schema-round').getContext('2d');
+  c1.fillStyle = '#1A1A1A'; c1.fillRect(0,0,80,80);
+  c1.strokeStyle = '#F59E0B'; c1.lineWidth = 2;
+  c1.beginPath(); c1.arc(40,40,28,0,Math.PI*2); c1.stroke();
+  c1.strokeStyle = 'rgba(245,158,11,0.4)'; c1.lineWidth = 1;
+  c1.beginPath(); c1.arc(40,40,18,0,Math.PI*2); c1.stroke();
+  c1.fillStyle = '#F59E0B'; c1.beginPath(); c1.arc(68,40,4,0,Math.PI*2); c1.fill();
+
+  // Waggle dance schema
+  const c2 = document.getElementById('schema-waggle').getContext('2d');
+  c2.fillStyle = '#1A1A1A'; c2.fillRect(0,0,80,80);
+  c2.strokeStyle = 'rgba(245,158,11,0.3)'; c2.lineWidth = 1; c2.setLineDash([3,3]);
+  c2.beginPath(); c2.arc(40,25,18,0,Math.PI*2); c2.stroke();
+  c2.beginPath(); c2.arc(40,55,18,0,Math.PI*2); c2.stroke();
+  c2.setLineDash([]);
+  c2.strokeStyle = '#F59E0B'; c2.lineWidth = 2;
+  c2.beginPath(); c2.moveTo(40,7); c2.lineTo(40,73); c2.stroke();
+  c2.fillStyle = 'rgba(245,158,11,0.7)'; c2.font='8px Outfit,sans-serif'; c2.textAlign='center';
+  c2.fillText('☀',40,4);
+
+  // Crescent dance schema
+  const c3 = document.getElementById('schema-crescent').getContext('2d');
+  c3.fillStyle = '#1A1A1A'; c3.fillRect(0,0,80,80);
+  c3.strokeStyle = '#F59E0B'; c3.lineWidth = 2;
+  c3.beginPath(); c3.arc(40,45,28,-Math.PI*0.8,Math.PI*0.8); c3.stroke();
+  c3.fillStyle='rgba(245,158,11,0.6)'; c3.font='8px Outfit,sans-serif'; c3.textAlign='center';
+  c3.fillText('Source →',40,20);
+}
+
+// ─── Tabs ──────────────────────────────────────────────────────────
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    if (tab.dataset.tab === 'quiz' && !currentQuiz) generateQuiz();
+  });
+});
+
+// ─── Buttons ──────────────────────────────────────────────────────
+document.getElementById('btn-tts').addEventListener('click', () => {
+  ttsEnabled = !ttsEnabled;
+  document.getElementById('btn-tts').classList.toggle('active', ttsEnabled);
+  if (!ttsEnabled) window.speechSynthesis.cancel();
+});
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  if (flowerMarker) { map.removeLayer(flowerMarker); flowerMarker = null; }
+  if (flightPath) { map.removeLayer(flightPath); flightPath = null; }
+  if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null; }
+  window.speechSynthesis.cancel();
+  // Reset canvas
+  const c = document.getElementById('dance-canvas');
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#111'; ctx.fillRect(0,0,c.width,c.height);
+  ctx.fillStyle = 'rgba(245,158,11,0.3)'; ctx.font='13px Outfit,sans-serif'; ctx.textAlign='center';
+  ctx.fillText('Cliquez sur la carte pour commencer', c.width/2, c.height/2);
+  document.getElementById('dc-dist').textContent = '—';
+  document.getElementById('dc-angle').textContent = '—';
+  document.getElementById('dc-rhythm').textContent = '—';
+  document.getElementById('dc-waggle').textContent = '—';
+  document.getElementById('dc-dance-note').textContent = '—';
+  document.getElementById('dc-dir-note').textContent = '—';
+  document.getElementById('dance-type-badge').textContent = 'En attente…';
+  document.getElementById('speech-bubble').classList.remove('visible');
+  document.getElementById('map-hint').style.opacity = '1';
+  history = []; renderHistory();
+});
+
+document.getElementById('btn-geolocate').addEventListener('click', () => {
+  if (!navigator.geolocation) { alert('Géolocalisation non disponible.'); return; }
+  navigator.geolocation.getCurrentPosition(pos => {
+    hiveLatLng = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+    hiveMarker.setLatLng([hiveLatLng.lat, hiveLatLng.lng]);
+    map.setView([hiveLatLng.lat, hiveLatLng.lng], 15);
+    updateSunInfo();
+    document.getElementById('footer-coords').textContent = `${hiveLatLng.lat.toFixed(4)}, ${hiveLatLng.lng.toFixed(4)}`;
+  }, () => alert('Impossible d\'obtenir la position.'));
+});
+
+// ─── Init idle canvas ─────────────────────────────────────────────
+(function initCanvas() {
+  const c = document.getElementById('dance-canvas');
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#111'; ctx.fillRect(0,0,c.width,c.height);
+  // Honeycomb bg
+  ctx.strokeStyle = 'rgba(245,158,11,0.05)'; ctx.lineWidth = 0.5;
+  const hex = 22;
+  for (let row = -1; row < c.height/hex + 2; row++) {
+    for (let col = -1; col < c.width/hex + 2; col++) {
+      const hx = col * hex * 1.5 + (row % 2 === 0 ? 0 : hex * 0.75);
+      const hy = row * hex * 0.866;
+      ctx.beginPath();
+      for (let i = 0; i < 6; i++) {
+        const a = Math.PI/3*i - Math.PI/6;
+        const px = hx + hex*0.5*Math.cos(a), py = hy + hex*0.5*Math.sin(a);
+        i===0 ? ctx.moveTo(px,py) : ctx.lineTo(px,py);
+      }
+      ctx.closePath(); ctx.stroke();
+    }
+  }
+  ctx.fillStyle = 'rgba(245,158,11,0.3)'; ctx.font='13px Outfit,sans-serif'; ctx.textAlign='center';
+  ctx.fillText('Cliquez sur la carte pour commencer', c.width/2, c.height/2);
+  drawStaticSchemas();
+})();
+
+// TTS button initial state
+document.getElementById('btn-tts').classList.toggle('active', ttsEnabled);
+
+// Update time every second
+setInterval(updateFooterTime, 1000);
+</script>
+</body>
+</html>

@@ -231,7 +231,7 @@
           <div class="stat"><div class="n" id="stFiches">—</div><div class="l">Données vérifiées</div></div>
           <div class="stat"><div class="n" id="stSrc">—</div><div class="l">Sources de référence</div></div>
           <div class="stat"><div class="n" id="stDoi">—</div><div class="l">DOI vérifiés</div></div>
-          <div class="stat"><div class="n">10</div><div class="l">Dossiers audités</div></div>
+          <div class="stat"><div class="n">12</div><div class="l">Dossiers audités</div></div>
           <div class="stat"><div class="n">2</div><div class="l">Formulations à corriger</div></div>
         </div>
         <div class="legend" aria-label="Légende des verdicts">
@@ -256,6 +256,8 @@
       <section class="wrap section" id="politique"><div class="sec-head reveal"><p class="kick">Dossier IX · Lalie, Ymir &amp; Sam</p><h3>Politique française 2026</h3><p>Institutions de la Ve République, élections, financement, médias et clivage gauche-droite — dossier <b>civique</b> : sources officielles (Légifrance, Conseil constitutionnel, Assemblée, Sénat, CNCCFP, Arcom), pas de DOI.</p></div><div class="grid" id="g-politique"></div></section>
       <section class="wrap section" id="singe"><div class="sec-head reveal"><p class="kick">Dossier X · Lalie &amp; Ymir</p><h3>Le Singe Aquatique</h3><p>L'hypothèse de l'ancêtre aquatique au crible : pourquoi elle est rejetée (fossiles, sueur, sel, mains palmées) — et ce qui surnage : le régime côtier et les Oméga-3.</p></div><div class="grid" id="g-singe"></div></section>
       <section class="wrap section" id="esclavage"><div class="sec-head reveal"><p class="kick">Dossier XI · Lalie &amp; Ymir</p><h3>L'Esclavage triangulaire</h3><p>Traite atlantique, Code Noir, bulletin de l'IFAN, Nantes port négrier et fracture napoléonienne — dossier <b>d'histoire</b> : sources muséales et institutionnelles (Musée d'histoire de Nantes, Fondation pour la mémoire de l'esclavage, SlaveVoyages, BnF), pas de DOI.</p></div><div class="grid" id="g-esclavage"></div></section>
+      <section class="wrap section" id="tornades-cyclones"><div class="sec-head reveal"><p class="kick">Dossier XII · Provoxys</p><h3>Tornades, Typhons &amp; Ouragans</h3><p>Le live de Provoxys : physique des vortex, simulation Navier–Stokes 3D, et un grand tour des tempêtes — sources autoritatives (NOAA, NSSL, NWS, SPC, JMA, JTWC, HKO, NHC, IPCC) et <b>19 DOI vérifiés</b> via Crossref.</p></div><div class="grid" id="g-tornades-cyclones"></div></section>
+      <section class="wrap section" id="abeilles"><div class="sec-head reveal"><p class="kick">Dossier XIII · PhantomBlast</p><h3>L'Abeille — Apis mellifera</h3><p>De la biologie moléculaire à l'écologie globale : classification, géométrie de l'alvéole, société, miel, pollinisation, danse, menaces et apithérapie — sources autoritatives (INRAE, MNHN, USDA, IPBES, FAO, OMS/BMJ) et <b>12 DOI vérifiés</b> via Crossref.</p></div><div class="grid" id="g-abeilles"></div></section>
 
       <section class="wrap section" id="refs">
         <div class="sec-head reveal"><p class="kick">Appareil critique · niveau le plus strict</p><h3>Références scientifiques</h3><p>La littérature primaire à comité de lecture derrière les données. Chaque <b>DOI a été vérifié</b> (résolution Crossref + page éditeur) — pour chacun : titre, citation et résumé.</p></div>
@@ -649,6 +651,92 @@
         src:[{n:"OIT · 50 millions",u:"https://www.ilo.org/resource/news/50-million-people-worldwide-modern-slavery-0"}] }
     ];
 
+    const TC = "../provoxys/tornades/assets/";
+    const TORNADES = [
+      { t:"Anatomie d'un vortex tornadique", d:"Rankine · déficit de pression · condensation", v:"ok", img:TC+"tornades-anatomie.png",
+        s:"Le cœur du dossier, et il est solide : profil de vent en tourbillon de Rankine combiné (anneau de vent maximum = « mur de l'œil »), déficit de pression cyclostrophique au centre (~100 hPa), refroidissement adiabatique et condensation qui rendent la tornade visible. La simulation Navier–Stokes 3D le retrouve « toute seule ».",
+        src:[{n:"NSSL · Severe Weather 101 (tornadoes)",u:"https://www.nssl.noaa.gov/education/svrwx101/tornadoes/"},{n:"Wurman 2007 (BAMS, DOI)",u:"https://doi.org/10.1175/BAMS-88-1-31"}] },
+      { t:"Record de vent — Bridge Creek 1999", d:"~517 km/h (réanalyse 2021)", v:"fresh", img:TC+"sim-multivortex.png",
+        s:"Le live dit « 486-510 km/h, Monthly Weather Review 2001 ». À corriger : le record a été réanalysé en 2021 à ~517 km/h (321 mph), et la référence correcte est Wurman et al. 2007 (BAMS), pas MWR 2001. Ces vents extrêmes viennent de l'addition d'un sous-vortex et du vortex parent.",
+        src:[{n:"Wurman et al. 2007 (BAMS, DOI)",u:"https://doi.org/10.1175/BAMS-88-1-31"},{n:"NWS Norman · 3 mai 1999",u:"https://www.weather.gov/oun/events-19990503"}] },
+      { t:"El Reno 2013 : EF3 ou EF5 ?", d:"largeur record 4 km · EF3 officielle", v:"ok", img:TC+"tornades-multivortex.png",
+        s:"Tornade la plus large jamais enregistrée (~4,2 km), confirmé. Classée EF3 par les dégâts au sol (déclassée le 30 août 2013) bien que les vents radar fussent compatibles EF5 (~470 km/h) : l'échelle EF classe ce que la tornade a réellement cassé. Les deux affirmations sont vraies en même temps.",
+        src:[{n:"Wurman et al. 2014 (BAMS, DOI)",u:"https://doi.org/10.1175/BAMS-D-13-00221.1"},{n:"NWS · 2013 El Reno",u:"https://www.weather.gov/oun/events-20130531"}] },
+      { t:"Échelle Enhanced Fujita", d:"NWS · 1er février 2007 · 28 indicateurs", v:"ok", img:TC+"tornades-hero.png",
+        s:"Opérationnelle aux États-Unis le 1er février 2007, EF0 à EF5, 28 Damage Indicators calibrés par des ingénieurs. (Précision : c'est le NWS qui en est l'autorité, et non « NOAA » au sens large.)",
+        src:[{n:"NWS Norman · EF-scale",u:"https://www.weather.gov/oun/efscale"},{n:"SPC · EF-scale",u:"https://www.spc.noaa.gov/efscale/"}] },
+      { t:"« Record EF2 en France 2022 »", d:"en réalité EF3 (Bihucourt)", v:"fresh", img:TC+"tornades-hero.png",
+        s:"Le live parle d'un « record EF2 en France en 2022 ». À corriger : 2022 a connu un EF3 à Bihucourt (Pas-de-Calais, 23 oct.), donc l'EF2 n'est pas le record de l'année. La source de référence pour le classement EF en France est KERAUNOS (Observatoire Français des Tornades).",
+        src:[{n:"KERAUNOS · bilan 2022",u:"https://www.keraunos.org/actualites/fil-infos/2023/fevrier/tornades-en-france-2022-bilan-nombre-intensite-climatologie"}] },
+      { t:"Tim Samaras · sonde de Manchester (2003)", d:"record = chute de pression ~100 hPa", v:"warn", img:TC+"sim-pressure-deficit.png",
+        s:"Le record de Manchester (24 juin 2003) est une chute de pression d'environ 100 hPa, pas une vitesse de vent : la sonde « turtle » (HITPR) n'a pas mesuré de vent, donc les « 430 km/h / 267 mph au sol » ne sont pas une mesure. La publication est un preprint de conférence AMS, pas le Journal of Atmospheric and Oceanic Technology.",
+        src:[{n:"NWS Sioux Falls · Manchester 2003",u:"https://www.weather.gov/fsd/20030624-tornadosamaras"},{n:"World Records · pressure drop",u:"https://world-records.org/greatest-pressure-drop-measured-in-a-tornado/"}] },
+      { t:"EF5 Enderlin (20 juin 2025)", d:"réelle · 1ʳᵉ EF5 US depuis 2013", v:"warn", img:TC+"sim-vz.png",
+        s:"La tornade d'Enderlin (Dakota du Nord, 20 juin 2025, 3 morts) est réelle et fut la première EF5 officielle aux USA depuis Moore 2013. Mais le « RFD filmé à >400 km/h validant VORTEX-USA » et l'« alerte WoFS de 28 min + évacuation d'une école » ne sont attestés par aucune source ; les vents officiels plafonnent à ~340 km/h.",
+        src:[{n:"NWS · Enderlin tornado (PDF)",u:"https://www.weather.gov/media/fgf/Enderlin.pdf"},{n:"NSSL · Warn-on-Forecast",u:"https://www.nssl.noaa.gov/projects/wof/"}] },
+      { t:"Mars 2025 : record de tornades", d:"~300 en un mois · ENSO neutre", v:"ok", img:TC+"tornades-hero.png",
+        s:"Confirmé : l'outbreak du 13-16 mars 2025 fut le plus grand jamais enregistré pour un mois de mars (~118 tornades sur l'épisode), et le mois entier en a totalisé environ 300, en phase ENSO neutre. Un cas réel, pas une donnée inventée.",
+        src:[{n:"Outbreak 13-16 mars 2025",u:"https://en.wikipedia.org/wiki/Tornado_outbreak_of_March_13%E2%80%9316,_2025"},{n:"NOAA Climate.gov · ENSO mars 2025",u:"https://www.climate.gov/news-features/blogs/enso/march-2025-enso-update-neutral-conditions-expected-soon"}] },
+      { t:"Coriolis : tornade vs typhon", d:"ne joue pas sur les tornades", v:"ok", img:TC+"typhon-oeil.png",
+        s:"La précision est exacte : Coriolis structure les cyclones tropicaux (centaines de km, plusieurs jours) mais pas les tornades (trop petites, trop brèves). Une tornade tourne statistiquement antihoraire dans l'hémisphère nord parce qu'elle hérite le sens de sa supercellule mère, qui, elle, est gouvernée par Coriolis.",
+        src:[{n:"NOAA · Coriolis & tornadoes",u:"https://www.nssl.noaa.gov/education/svrwx101/tornadoes/"},{n:"Emanuel 1986 (DOI)",u:"https://doi.org/10.1175/1520-0469(1986)043%3C0585:AASITF%3E2.0.CO;2"}] },
+      { t:"Typhon Tip (1979) & CAPE", d:"2220 km, 870 hPa · CAPE surévalué", v:"warn", img:TC+"typhon-oeil.png",
+        s:"Tip reste le plus grand cyclone jamais enregistré (2220 km, 870 hPa) — confirmé. En revanche, le « CAPE typhon 2500-4000 J/kg » est surévalué : l'environnement tropical tourne plutôt à 1000-2500 J/kg, et l'eyewall n'est pas une zone de fort CAPE.",
+        src:[{n:"Typhoon Tip (record)",u:"https://www.guinnessworldrecords.com/world-records/415608-most-intense-tropical-cyclone"},{n:"Emanuel 1986 (DOI)",u:"https://doi.org/10.1175/1520-0469(1986)043%3C0585:AASITF%3E2.0.CO;2"}] },
+      { t:"Haiyan 2013", d:"surge ~6 m · > 6300 morts", v:"warn", img:TC+"typhon-oeil.png",
+        s:"Onde de tempête de 5-7 m et plus de 6300 morts à Tacloban : confirmé. Le « 90 % de la ville détruit » est un chiffre médiatique à atténuer, et la référence « Lin et al. 2014 » est à préciser (probablement Lin, Pun & Lin 2014, GRL, sur la couche océanique chaude).",
+        src:[{n:"Britannica · Super Typhon Haiyan",u:"https://www.britannica.com/event/Super-Typhoon-Haiyan"},{n:"OMS · mortalité Tacloban",u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC4710076/"}] },
+      { t:"Ouragans : un nom par bassin", d:"Saffir-Simpson · 3 Cat 5 en 2025", v:"ok", img:TC+"ouragan-atlantique.png",
+        s:"Même phénomène, trois noms : ouragan (Atlantique/Pacifique E), typhon (Pacifique NO), cyclone (océan Indien/Pacifique S). Échelle Saffir-Simpson (1971), majeur dès Cat 3. La saison atlantique 2025 a bien compté 13 tempêtes nommées et 3 ouragans Cat 5 : Erin, Humberto, Melissa.",
+        src:[{n:"NHC · Saffir-Simpson",u:"https://www.nhc.noaa.gov/aboutsshws.php"},{n:"NOAA · bilan saison 2025",u:"https://www.noaa.gov/news-release/2025-atlantic-hurricane-season-marked-by-striking-contrasts"}] },
+      { t:"Great Hurricane de 1780", d:"> 22 000 morts (un ouragan, pas un typhon)", v:"ok", img:TC+"ouragan-atlantique.png",
+        s:"Plus de 22 000 morts dans les Caraïbes — l'ouragan atlantique le plus meurtrier jamais enregistré. Le live le nomme « typhon » par inadvertance : c'est bien un ouragan (Atlantique). Camille 1969, pour sa part, a touché terre Cat 5 au Mississippi (Waveland).",
+        src:[{n:"NOAA AOML · Great Hurricane 1780",u:"https://www.aoml.noaa.gov/hurricane_blog/235th-anniversary-of-the-great-hurricane-of-1780/"}] },
+      { t:"ENSO : El Niño / La Niña", d:"régulateur des bassins", v:"ok", img:TC+"enso-pacifique.png",
+        s:"El Niño (réchauffement du Pacifique équatorial) augmente le cisaillement sur l'Atlantique → moins d'ouragans atlantiques, et favorise le Pacifique ; La Niña fait l'inverse. Mécanisme solide. (Note : « Gensini 2021 » cité pour le climat porte en réalité sur les orages violents, pas les cyclones tropicaux.)",
+        src:[{n:"NOAA Climate.gov · ENSO & saison",u:"https://www.climate.gov/news-features/blogs/enso/impacts-el-nino-and-la-nina-hurricane-season"},{n:"Knutson et al. 2020 (DOI)",u:"https://doi.org/10.1175/BAMS-D-18-0194.1"}] },
+      { t:"La simulation : ses limites assumées", d:"96³ · pas de genèse, pas de microphysique", v:"ok", img:TC+"sim-lic.png",
+        s:"Le moment le plus honnête du live : on énonce ce que la simulation ne calcule PAS — pas de genèse (vortex injecté via Burgers–Rott), pas de microphysique nuageuse, pas de terrain ni de bâtiments, résolution 96³ (~20 m), quasi-stationnaire. Un outil « physiquement honnête sur la dynamique du vortex », ni plus ni moins. Expliquer n'est pas prévoir.",
+        src:[{n:"Le simulateur (live)",u:"https://tornado-sim.puter.site/"},{n:"La physique expliquée",u:"https://thesamlepirate.github.io/tornado-simulator/"}] }
+    ];
+
+    const AB = "../phantom/abeilles/assets/";
+    const ABEILLES = [
+      { t:"Classification & évolution", d:"Apis mellifera · ~100 Ma au Crétacé", v:"warn", img:AB+"abeilles-hero.png",
+        s:"Hyménoptère, famille Apidae. Les abeilles sont datées de ~120-100 Ma (co-évolution avec les Angiospermes) ; « ~100 Ma » est prudent. « Socialité ~30 Ma » à nuancer : l'eusocialité est bien plus ancienne (~87 Ma), ~30 Ma correspond au genre Apis. >20 000 espèces (jusqu'à ~25 000 selon des recensements 2026).",
+        src:[{n:"Poinar & Danforth 2006 (DOI)",u:"https://doi.org/10.1126/science.1134103"},{n:"Cardinal & Danforth 2011 (DOI)",u:"https://doi.org/10.1371/journal.pone.0021086"}] },
+      { t:"La géométrie de l'alvéole", d:"hexagone = optimum (Hales 1999)", v:"ok", img:AB+"abeilles-alveole.png",
+        s:"L'hexagone minimise le périmètre d'un pavage à aire égale, donc la cire : démontré formellement par Thomas Hales (1999, publié 2001). Angle interne 120° (trois cellules à 360/3). L'inclinaison de 13° est réelle, mais sert surtout à augmenter la capacité de charge du rayon — pas à empêcher l'écoulement (Bauer & Bienefeld 2020).",
+        src:[{n:"Hales 2001 (DOI)",u:"https://doi.org/10.1007/s004540010071"},{n:"Bauer & Bienefeld 2020 (DOI)",u:"https://doi.org/10.1007/s13592-020-00807-9"}] },
+      { t:"Déterminisme de caste", d:"royalactine : remise en cause", v:"deb", img:AB+"abeilles-societe.png",
+        s:"La caste reine/ouvrière n'est pas génétique mais nutritionnelle (gelée royale, voies mTOR/insuline). Le rôle d'une protéine unique, la royalactine (Kamakura 2011), a été réfuté : réplication échouée (Buttstedt et al. 2016). « Inhibe FOXO » non établi. La quantité de gelée royale est déterminante.",
+        src:[{n:"Kamakura 2011 (DOI)",u:"https://doi.org/10.1038/nature10093"},{n:"Buttstedt 2016 (DOI)",u:"https://doi.org/10.1038/nature19349"}] },
+      { t:"La phéromone royale (9-ODA)", d:"contrôle chimique de la colonie", v:"ok", img:AB+"abeilles-societe.png",
+        s:"Le 9-ODA (acide 9-oxo-2-décénoïque), composant de la phéromone mandibulaire de la reine, inhibe le développement ovarien des ouvrières et attire les faux-bourdons. Récepteur olfactif identifié (Wanner et al. 2007). Colonie = superorganisme de 40 000-80 000 individus au pic estival.",
+        src:[{n:"Wanner et al. 2007 (DOI)",u:"https://doi.org/10.1073/pnas.0705459104"}] },
+      { t:"Du nectar au miel", d:"fructose 38 · glucose 31 · eau <18 %", v:"ok", img:AB+"abeilles-produits.png",
+        s:"Le miel est un nectar transformé par les enzymes (invertase → glucose+fructose ; glucose-oxydase → H₂O₂). Composition moyenne : fructose ~38 %, glucose ~31 %, eau < 18 %, pH ~3,9. Operculé à < 18 % d'eau, il se conserve très longtemps. Point de fusion de la cire plutôt 62-65 °C (le dossier dit 70).",
+        src:[{n:"USDA / White · honey composition",u:"https://www.ars.usda.gov/ARSUserFiles/oc/np/honey/honey.pdf"},{n:"Beeswax (point de fusion)",u:"https://en.wikipedia.org/wiki/Beeswax"}] },
+      { t:"La valeur de la pollinisation", d:"84 % UE · 153 Md€ (mondial)", v:"warn", img:AB+"abeilles-pollinisation.png",
+        s:"84 % des espèces cultivées en Europe dépendent des pollinisateurs (IPBES : ~75 % des grandes cultures mondiales). Les « 153 milliards € » viennent de Gallai et al. 2009 (valeur mondiale 2005) — pas de la FAO. « 1/3 des calories » est à reformuler : c'est ~1/3 de l'alimentation en volume (Klein 2007 : 35 % de la production) ; en calories, ~5-8 %.",
+        src:[{n:"Gallai et al. 2009 (DOI)",u:"https://doi.org/10.1016/j.ecolecon.2008.06.014"},{n:"Klein et al. 2007 (DOI)",u:"https://doi.org/10.1098/rspb.2006.3721"},{n:"IPBES · pollinisateurs",u:"https://www.ipbes.net/assessment-reports/pollinators"}] },
+      { t:"Varroa destructor", d:"se nourrit du corps gras, pas du sang", v:"fresh", img:AB+"abeilles-menaces.png",
+        s:"Correction majeure : Varroa se nourrit principalement du corps gras (fat body) de l'abeille — et non de l'hémolymphe comme on l'a cru pendant des décennies (Ramsey et al. 2019, PNAS). Acarien venu d'Asie, vecteur du virus des ailes déformées (DWV), première cause de mortalité des colonies ; traitement à l'acide oxalique.",
+        src:[{n:"Ramsey et al. 2019 (DOI)",u:"https://doi.org/10.1073/pnas.1818371116"}] },
+      { t:"Frelon asiatique & néonicotinoïdes", d:"Vespa velutina (2004) · interdiction 2018", v:"ok", img:AB+"abeilles-menaces.png",
+        s:"Vespa velutina, arrivé en France en 2004, occupe la quasi-totalité du territoire ; il décapite les ouvrières devant les ruches. Apis cerana se défend par « boule thermique », pas Apis mellifera. Les néonicotinoïdes (imidaclopride…) sont interdits en plein champ dans l'UE depuis le 19 décembre 2018 (dérogations résiduelles).",
+        src:[{n:"ANSES · Vespa velutina",u:"https://www.anses.fr/fr/content/le-frelon-asiatique-vespa-velutina"},{n:"EFSA · néonicotinoïdes",u:"https://www.efsa.europa.eu/en/topics/topic/neonicotinoids"}] },
+      { t:"Le langage de la danse", d:"von Frisch · Nobel 1973", v:"ok", img:AB+"abeilles-danse.png",
+        s:"La danse en huit encode la direction (angle de la course par rapport à la verticale = angle vs soleil) et la distance (durée, ~1 s ≈ 1 km). Décodée par Karl von Frisch (publié 1946), Prix Nobel de physiologie/médecine 1973 avec Tinbergen et Lorenz. Les recrues « lisent » par l'organe de Johnston (vibrations 200-300 Hz).",
+        src:[{n:"Nobel 1973",u:"https://www.nobelprize.org/prizes/medicine/1973/summary/"},{n:"Nieh & Tautz 2000",u:"https://pubmed.ncbi.nlm.nih.gov/10769219/"}] },
+      { t:"Apithérapie : miel & toux", d:"BMJ Evidence-Based Medicine 2021", v:"warn", img:AB+"abeilles-produits.png",
+        s:"Le miel (Manuka) est utilisé en pansements homologués (Medihoney®), actif contre le SARM. Contre la toux, la revue BMJ Evidence-Based Medicine (Abuelgasim 2020/2021) montre une supériorité sur les soins habituels (pas sur placebo). Jamais de miel avant 1 an (botulisme). Propolis antivirale, gelée royale, BVT : surtout préclinique ; BVT à risque d'anaphylaxie.",
+        src:[{n:"Abuelgasim et al. 2021 (DOI)",u:"https://doi.org/10.1136/bmjebm-2020-111336"},{n:"OMS · soins de la toux",u:"https://www.who.int/"}] },
+      { t:"La citation « Einstein »", d:"4 ans à vivre — apocryphe", v:"fresh", img:AB+"abeilles-hero.png",
+        s:"« Si les abeilles disparaissaient, l'humanité n'aurait plus que quatre ans à vivre » : aucune source attestée d'Einstein (Snopes, Quote Investigator). Origine probable : Pierre Pascaud, 1965, puis un tract apicole. L'avertissement écologique, lui, est réel : l'abeille est un pilier de la biodiversité.",
+        src:[{n:"Snopes · Einstein & bees",u:"https://www.snopes.com/fact-check/einstein-on-bees/"},{n:"Quote Investigator",u:"https://quoteinvestigator.com/2013/08/27/einstein-bees/"}] }
+    ];
+
     // Sources from sources_audit_scientifique_chronos.csv + app La Vie de la Terre
     const SOURCES = [
       ["🟢","Planck Collaboration 2018 — Cosmological parameters","https://www.aanda.org/articles/aa/pdf/2020/09/aa33880-18.pdf","Âge de l'Univers ≈ 13,787 Ga ± 0,020 Ga (ΛCDM)."],
@@ -716,7 +804,7 @@
     }
     function fill(id,arr){ const el=document.getElementById(id); if(el) el.innerHTML=arr.map(ficheHTML).join(""); }
     fill("g-cosmos",COSMOS); fill("g-terre",TERRE); fill("g-geo",GEO); fill("g-hum",HUM);
-    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES); fill("g-politique",POLITIQUE); fill("g-singe",SINGE); fill("g-esclavage",ESCLAVAGE);
+    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES); fill("g-politique",POLITIQUE); fill("g-singe",SINGE); fill("g-esclavage",ESCLAVAGE); fill("g-tornades-cyclones",TORNADES); fill("g-abeilles",ABEILLES);
 
     // ===== Références scientifiques primaires (DOI vérifiés) =====
     const REFS = [
@@ -1171,6 +1259,72 @@
           ab:"Coquilles gravées de Trinil (~540–430 ka) par Homo erectus : exploitation des coquillages comme outils/support, sujet distinct des acides gras. DOI vérifié via Crossref." },
         { a:"Marean, C. W. et al. (2007)", t:"Early human use of marine resources and pigment in South Africa during the Middle Pleistocene", j:"Nature 449, 905–908", k:"primary", doi:"10.1038/nature06204",
           ab:"Pinnacle Point : consommation systématique de fruits de mer il y a ~164 000 ans — la preuve archéologique de la vie au bord de l'eau. DOI vérifié via Crossref." }
+      ]},
+      { g:"Dossier XII · Tornades, Typhons & Ouragans (11 DOI)", items:[
+        { a:"Wurman, J. et al. (2007)", t:"Low-Level Winds in Tornadoes and Potential Catastrophic Tornado Impacts in Urban Areas", j:"Bulletin of the American Meteorological Society 88(1), 31–46", k:"primary", doi:"10.1175/BAMS-88-1-31",
+          ab:"Vents radar de basse altitude des tornades, dont Bridge Creek (3 mai 1999) : la référence correcte pour ce record (et non « Monthly Weather Review 2001 »). DOI vérifié via Crossref." },
+        { a:"Wurman, J., Kosiba, K. et al. (2014)", t:"The Role of Multiple-Vortex Tornado Structure in Causing Storm Researcher Fatalities", j:"Bulletin of the American Meteorological Society 95(1), 31–45", k:"primary", doi:"10.1175/BAMS-D-13-00221.1",
+          ab:"Reconstruit, à partir des données Doppler on Wheels, comment un sous-vortex d'El Reno (2013) a tué l'équipe TWISTEX (Tim & Paul Samaras, Carl Young) — une analyse, pas une « enquête NTSB ». DOI vérifié via Crossref." },
+        { a:"Thompson, R. L. et al. (2003)", t:"Close Proximity Soundings within Supercell Environments Obtained from the RUC", j:"Weather and Forecasting 18(6), 1243–1261", k:"primary", doi:"10.1175/1520-0434(2003)018<1243:CPSWSE>2.0.CO;2",
+          ab:"Paramètres d'environnement (CAPE, hélicité relative SRH, STP) distinguant supercellules tornadiques et non tornadiques. L'article n'énonce pas la « probabilité > 80 % » citée au micro. DOI vérifié via Crossref." },
+        { a:"Markowski, P., Straka, J. & Rasmussen, E. (2002)", t:"Direct Surface Thermodynamic Observations within the Rear-Flank Downdrafts of Nontornadic and Tornadic Supercells", j:"Monthly Weather Review 130(7), 1692–1721", k:"primary", doi:"10.1175/1520-0493(2002)130<1692:DSTOWT>2.0.CO;2",
+          ab:"Les RFD des supercellules tornadiques sont plus chaudes / moins négativement flottantes : la clé de la concentration de rotation près du sol. DOI vérifié via Crossref." },
+        { a:"Smith, B. T. et al. (2012)", t:"Convective Modes for Significant Severe Thunderstorms… Part I: Storm Classification and Climatology", j:"Weather and Forecasting 27(5), 1114–1135", k:"primary", doi:"10.1175/WAF-D-11-00115.1",
+          ab:"Classification et climatologie des modes convectifs des orages violents aux États-Unis. DOI vérifié via Crossref." },
+        { a:"Thompson, R. L. et al. (2012)", t:"Convective Modes for Significant Severe Thunderstorms… Part II: Supercell and QLCS Tornado Environments", j:"Weather and Forecasting 27(5), 1136–1154", k:"primary", doi:"10.1175/WAF-D-11-00116.1",
+          ab:"La référence correcte pour les environnements de tornades supercellulaires et de QLCS (plutôt que la Part I). DOI vérifié via Crossref." },
+        { a:"Golden, J. H. (1974)", t:"The Life Cycle of Florida Keys' Waterspouts. I", j:"Journal of Applied Meteorology 13(6), 676–692", k:"primary", doi:"10.1175/1520-0450(1974)013<0676:TLCOFK>2.0.CO;2",
+          ab:"Les cinq stades du cycle de vie d'une trombe marine (waterspout) — la référence « Golden (1974) » citée dans le live. DOI vérifié via Crossref." },
+        { a:"Antonescu, B. et al. (2019)", t:"100 Years Later: Reflecting on Alfred Wegener's Contributions to Tornado Research in Europe", j:"Bulletin of the American Meteorological Society 100(4)", k:"review", doi:"10.1175/BAMS-D-17-0316.1",
+          ab:"Confirme que Wegener (1917) a produit la première climatologie pan-européenne des tornades (258 cas, 1456–1913). DOI vérifié via Crossref." },
+        { a:"Emanuel, K. A. (1986)", t:"An Air-Sea Interaction Theory for Tropical Cyclones. Part I: Steady-State Maintenance", j:"Journal of the Atmospheric Sciences 43(6), 585–604", k:"primary", doi:"10.1175/1520-0469(1986)043<0585:AASITF>2.0.CO;2",
+          ab:"La théorie « moteur de Carnot » / WISHE de l'intensité des cyclones tropicaux — la référence « Emanuel 1986 » citée pour typhons et ouragans. DOI vérifié via Crossref." },
+        { a:"Hart, R. E. (2003)", t:"A Cyclone Phase Space Derived from Thermal Wind and Thermal Asymmetry", j:"Monthly Weather Review 131(4), 585–616", k:"primary", doi:"10.1175/1520-0493(2003)131<0585:ACPSDF>2.0.CO;2",
+          ab:"Le « cyclone phase space » cité pour la classification des typhons hybrides / la transition extratropicale. DOI vérifié via Crossref." },
+        { a:"Knutson, T. et al. (2020)", t:"Tropical Cyclones and Climate Change Assessment: Part II: Projected Response to Anthropogenic Warming", j:"Bulletin of the American Meteorological Society 101(3)", k:"review", doi:"10.1175/BAMS-D-18-0194.1",
+          ab:"Projections d'intensité, de précipitations et d'inondations côtières des cyclones tropicaux sous réchauffement — la référence « Knutson et al. 2020 ». DOI vérifié via Crossref." },
+        { a:"Karstens, C. D. et al. (2010)", t:"Near-Ground Pressure and Wind Measurements in Tornadoes", j:"Monthly Weather Review 138(7), 2570–2588", k:"primary", doi:"10.1175/2010MWR3201.1",
+          ab:"Mesures in-situ de pression/vent au ras du sol : documente le déficit de ~100 hPa relevé par la sonde HITPR de Tim Samaras (Manchester, SD, 24 juin 2003). La vraie référence du record de pression — et non une « vitesse de 430 km/h ». DOI vérifié via Crossref." },
+        { a:"Lin, I.-I., Pun, I.-F. & Lien, C.-C. (2014)", t:"« Category-6 » supertyphoon Haiyan in global warming hiatus: Contribution from subsurface ocean warming", j:"Geophysical Research Letters 41(23), 8547–8553", k:"primary", doi:"10.1002/2014GL061281",
+          ab:"La référence « Lin et al. 2014 » sur Haiyan : une couche océanique chaude profonde a alimenté l'intensification. Attention, le 3ᵉ auteur est Lien (et non « Lin »). DOI vérifié via Crossref." },
+        { a:"Stumpf, G. J. et al. (1998)", t:"The NSSL Mesocyclone Detection Algorithm for the WSR-88D", j:"Weather and Forecasting 13(2), 304–326", k:"primary", doi:"10.1175/1520-0434(1998)013<0304:TNSSLM>2.0.CO;2",
+          ab:"L'algorithme NSSL de détection de mésocyclone sur le radar WSR-88D — la référence « Stumpf et al. 1998 » derrière la signature radar (TVS) du chapitre Surveillance. DOI vérifié via Crossref." },
+        { a:"Brooks, H. E., Carbin, G. W. & Marsh, P. T. (2014)", t:"Increased variability of tornado occurrence in the United States", j:"Science 346(6207), 349–352", k:"primary", doi:"10.1126/science.1257460",
+          ab:"Variabilité accrue de l'occurrence des tornades aux États-Unis — la référence « Brooks et al. 2014 » citée pour les outbreaks. DOI vérifié via Crossref." },
+        { a:"Agee, E. et al. (2016)", t:"Spatial Redistribution of U.S. Tornado Activity between 1954 and 2013", j:"Journal of Applied Meteorology and Climatology 55(8), 1681–1697", k:"primary", doi:"10.1175/JAMC-D-15-0342.1",
+          ab:"Redistribution spatiale de l'activité tornadique américaine sur six décennies — la référence « Agee et al. 2016 » du chapitre Cas célèbres. DOI vérifié via Crossref." },
+        { a:"Lagerquist, R. et al. (2020)", t:"Deep Learning on Three-Dimensional Multiscale Data for Next-Hour Tornado Prediction", j:"Monthly Weather Review 148(7), 2837–2861", k:"primary", doi:"10.1175/MWR-D-19-0372.1",
+          ab:"L'apprentissage profond appliqué à la prévision de tornade à une heure — le vrai « Lagerquist » premier-auteur (2020, et non « 2023 ») cité pour l'IA et la WoFS. DOI vérifié via Crossref." },
+        { a:"Gensini, V. A. (2021)", t:"Severe convective storms in a changing climate (Climate Change and Extreme Events, Elsevier)", j:"Chapitre, pp. 39–56", k:"review", doi:"10.1016/B978-0-12-822700-8.00007-X",
+          ab:"« Gensini et al. 2021 » porte sur les ORAGES VIOLENTS (tornades, grêle, vents convectifs) en climat changeant — PAS sur les cyclones tropicaux : à ne pas confondre avec Emanuel/Knutson. DOI vérifié via Crossref." },
+        { a:"Emanuel, K. (2021)", t:"Response of Global Tropical Cyclone Activity to Increasing CO₂: Results from Downscaling CMIP6 Models", j:"Journal of Climate 34(1), 57–70", k:"primary", doi:"10.1175/JCLI-D-20-0367.1",
+          ab:"Réponse de l'activité cyclonique tropicale globale au CO₂ par descente d'échelle de modèles CMIP6 — complément à Knutson 2020. DOI vérifié via Crossref." }
+      ]},
+      { g:"Dossier XIII · L'Abeille (Apis mellifera) — 12 DOI", items:[
+        { a:"Ramsey, S. D. et al. (2019)", t:"Varroa destructor feeds primarily on honey bee fat body tissue and not hemolymph", j:"PNAS 116(5), 1792–1801", k:"primary", doi:"10.1073/pnas.1818371116",
+          ab:"Renverse une croyance ancienne : Varroa se nourrit surtout du corps gras (fat body), pas de l'hémolymphe. Correction-clé du dossier. DOI vérifié via Crossref." },
+        { a:"Bauer, D. & Bienefeld, K. (2020)", t:"The upward tilt of honeycomb cells increases the carrying capacity of the comb", j:"Apidologie 51, 1098–1109", k:"primary", doi:"10.1007/s13592-020-00807-9",
+          ab:"L'inclinaison ~13° des alvéoles augmente la capacité de charge du rayon — et n'a pas pour fonction d'empêcher l'écoulement du miel. DOI vérifié via Crossref." },
+        { a:"Hales, T. C. (2001)", t:"The Honeycomb Conjecture", j:"Discrete & Computational Geometry 25, 1–22", k:"primary", doi:"10.1007/s004540010071",
+          ab:"Démonstration formelle (1999, publiée 2001) que l'hexagone régulier minimise le périmètre d'un pavage à aire égale — donc la cire. DOI vérifié via Crossref." },
+        { a:"Kamakura, M. (2011)", t:"Royalactin induces queen differentiation in honeybees", j:"Nature 473, 478–483", k:"primary", doi:"10.1038/nature10093",
+          ab:"Propose que la royalactine de la gelée royale induit la caste reine — résultat ensuite remis en cause (voir Buttstedt 2016). DOI vérifié via Crossref." },
+        { a:"Buttstedt, A. et al. (2016)", t:"Royalactin is not a royal making of a queen", j:"Nature 537, E10–E12", k:"primary", doi:"10.1038/nature19349",
+          ab:"Réfutation : la réplication échoue ; la différenciation en reine dépend de la quantité de gelée royale et de plusieurs voies, pas d'une protéine unique. DOI vérifié via Crossref." },
+        { a:"Wanner, K. W. et al. (2007)", t:"A honey bee odorant receptor for the queen substance 9-oxo-2-decenoic acid", j:"PNAS 104(36), 14383–14388", k:"primary", doi:"10.1073/pnas.0705459104",
+          ab:"Identifie le récepteur olfactif du 9-ODA, la « substance royale » qui structure la colonie. DOI vérifié via Crossref." },
+        { a:"Gallai, N. et al. (2009)", t:"Economic valuation of the vulnerability of world agriculture confronted with pollinator decline", j:"Ecological Economics 68(3), 810–821", k:"primary", doi:"10.1016/j.ecolecon.2008.06.014",
+          ab:"La vraie source des « 153 milliards € » (2005, valeur mondiale) du service de pollinisation — et non la FAO. DOI vérifié via Crossref." },
+        { a:"Klein, A.-M. et al. (2007)", t:"Importance of pollinators in changing landscapes for world crops", j:"Proc. R. Soc. B 274(1608), 303–313", k:"primary", doi:"10.1098/rspb.2006.3721",
+          ab:"35 % du volume de la production alimentaire mondiale dépend des pollinisateurs (≈ « 1/3 de l'alimentation », pas des calories). DOI vérifié via Crossref." },
+        { a:"Di Pasquale, G. et al. (2013)", t:"Influence of Pollen Nutrition on Honey Bee Health", j:"PLoS ONE 8(8), e72016", k:"primary", doi:"10.1371/journal.pone.0072016",
+          ab:"La diversité du pollen améliore survie et immunité, surtout chez les abeilles parasitées (le « -30 % » précis n'est pas une valeur générale). DOI vérifié via Crossref." },
+        { a:"Abuelgasim, H., Albury, C. & Lee, J. (2021)", t:"Effectiveness of honey for symptomatic relief in upper respiratory tract infections", j:"BMJ Evidence-Based Medicine 26(2), 57–64", k:"review", doi:"10.1136/bmjebm-2020-111336",
+          ab:"Le miel est supérieur aux soins habituels sur la toux/les symptômes (pas démontré vs placebo). DOI vérifié via Crossref." },
+        { a:"Poinar, G. O. & Danforth, B. N. (2006)", t:"A Fossil Bee from Early Cretaceous Burmese Amber", j:"Science 314(5799), 614", k:"primary", doi:"10.1126/science.1134103",
+          ab:"Melittosphex burmensis (~100 Ma), caractères mixtes guêpe/abeille ; son statut de « première abeille » a ensuite été débattu. DOI vérifié via Crossref." },
+        { a:"Cardinal, S. & Danforth, B. N. (2011)", t:"The Antiquity and Evolutionary History of Social Behavior in Bees", j:"PLoS ONE 6(6), e21086", k:"primary", doi:"10.1371/journal.pone.0021086",
+          ab:"L'eusocialité des abeilles à corbeille est ancienne (~87 Ma) — bien avant le « ~30 Ma » du dossier. DOI vérifié via Crossref." }
       ]}
     ];
     function refHTML(r){
@@ -1196,7 +1350,7 @@
       </div>`).join("");
     const stSrc = document.getElementById("stSrc"); if (stSrc) stSrc.textContent = SOURCES.length;
 
-    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length+POLITIQUE.length+SINGE.length+ESCLAVAGE.length;
+    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length+POLITIQUE.length+SINGE.length+ESCLAVAGE.length+TORNADES.length+ABEILLES.length;
     document.getElementById("stFiches").textContent = total;
 
     const bar=document.getElementById("progress");

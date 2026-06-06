@@ -5,3 +5,13 @@
 # LibreOffice / office lock files
 .~lock.*#
 **/.~lock.*#
+
+# Sources de travail non publiées (contiennent des métadonnées privées,
+# ex. le vrai nom de l'auteur dans les .pptx) — ne jamais publier.
+a_traiter/
+
+# Outils / plans de l'agent (pas du contenu du site)
+.pi/
+
+# Dépôt git imbriqué (projet séparé, publié sur ses propres Pages) — ne pas embarquer
+empire-calendrier/

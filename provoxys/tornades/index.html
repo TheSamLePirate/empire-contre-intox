@@ -1,0 +1,1553 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tornades, Typhons &amp; Ouragans — Empire contre Intox</title>
+  <meta name="description" content="Le live de Provoxys, mot pour mot : tornades, typhons, ouragans, tempêtes tropicales et ENSO — la physique des vortex expliquée et simulée en direct dans le navigateur (Navier–Stokes 3D). Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX — rendu des vraies formules mathématiques -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents — ciel, vent, énergie convective */
+      --ocean:#4a93b8;   /* bleu cyclone — anti-intox / science */
+      --ember:#c8643a;   /* braise — énergie convective (CAPE) */
+      --iron:#7c8794;    /* fer — notes de scène / technique */
+      --storm:#4a93b8;
+
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+
+      --hero:url("assets/tornades-hero.png");
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(74,147,184,.16), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.13), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(200,100,58,.10), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px; mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.6),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(74,147,184,.6),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(200,100,58,.45),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.32),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate; }
+    .grain { position:fixed; inset:-50%; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--ember),var(--gold-bright),var(--storm)); box-shadow:0 0 14px rgba(243,217,138,.55); }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(214,172,85,.28); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    /* Hero */
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02); }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2;
+      background:linear-gradient(86deg,rgba(3,6,13,.94) 0%,rgba(3,6,13,.72) 36%,rgba(3,6,13,.18) 68%,rgba(3,6,13,.5) 100%),linear-gradient(180deg,rgba(3,6,13,.1) 0%,rgba(3,6,13,.28) 54%,var(--void) 100%); }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1; background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh; display:grid; grid-template-columns:minmax(0,780px) minmax(250px,340px); gap:46px; align-items:end; }
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:16ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.7rem,7vw,5.8rem); line-height:.96; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil { background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 40%,#fff6dc 50%,var(--gold-bright) 60%,var(--gold-deep)); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% 0; } }
+    .hero-lead { max-width:58ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-quote { max-width:60ch; margin:22px 0 0; padding-left:20px; border-left:2px solid var(--storm); font-family:var(--serif); font-style:italic; color:var(--parch); font-size:clamp(1.05rem,1.5vw,1.26rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px; font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px); transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+    .button.storm { border-color:transparent; color:#06141b; background:linear-gradient(140deg,#7ec1de,var(--storm) 60%,#2f6c8c); box-shadow:0 14px 38px rgba(74,147,184,.3); }
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--ember),var(--gold-bright),var(--storm)); }
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    /* Intro band */
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.9rem); line-height:1.04; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:120px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time { font-family:var(--roman); font-weight:600; font-size:.78rem; letter-spacing:.04em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(74,147,184,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .act-band { margin:70px 0 0; padding:clamp(26px,4vw,46px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(130% 130% at 0% 0%,rgba(214,172,85,.12),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.55),rgba(7,12,26,.6)); text-align:center; }
+    .act-band .act-no { font-family:var(--roman); font-weight:700; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+    .act-band h2 { margin:14px 0 0; font-family:var(--roman); font-weight:800; font-size:clamp(1.9rem,4.4vw,3.2rem); text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .act-band p { max-width:74ch; margin:16px auto 0; color:var(--muted); }
+
+    /* Chapters */
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"❖"; position:absolute; left:0; top:0; color:var(--gold); font-size:.8em; }
+    .prose ol { margin:14px 0 24px; padding-left:24px; }
+    .prose ol li { padding-left:6px; }
+    .prose ol li::before { content:none; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+    .sub { margin:26px 0 10px; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--parch); }
+    code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.88em; background:rgba(74,147,184,.12); color:var(--gold-bright); padding:.08em .42em; border-radius:3px; }
+
+    .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
+    .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); }
+
+    .script-block,.science-block,.question-block,.lesson-block,.dialogue-block {
+      border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
+    .dialogue-block { border-left-color:var(--gold); background:rgba(214,172,85,.06); font-family:var(--serif); }
+    .dialogue-block p { color:var(--parch); font-style:italic; }
+    .science-block { border-left-color:var(--storm); background:rgba(74,147,184,.1); }
+    .question-block { border-left-color:var(--ember); background:rgba(200,100,58,.1); }
+    .lesson-block { border-left-color:var(--gold-bright); background:rgba(243,217,138,.06); }
+    .script-block p:last-child,.science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,.dialogue-block p:last-child,
+    .science-block ul:last-child,.lesson-block ul:last-child { margin-bottom:0; }
+    .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .science-block .block-label { color:var(--storm); }
+    .question-block .block-label { color:var(--ember); }
+    .lesson-block .block-label { color:var(--gold-bright); }
+    .dialogue-block .sam-head { font-family:var(--roman); font-style:normal; font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin:0 0 12px; display:block; }
+    .dialogue-block .sam-head .t { color:var(--soft); letter-spacing:.06em; }
+
+    /* Cue + stage directions (déroulé) */
+    .cue { margin:22px 0; padding:13px 18px; border-left:3px solid var(--gold-bright); border-radius:0 3px 3px 0; background:rgba(243,217,138,.05); color:var(--muted); font-size:.96rem; }
+    .cue b { color:var(--parch); }
+    .cue::before { content:"⟶ Cue · "; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-bright); }
+    .stage { margin:14px 0; padding:11px 16px; border:1px dashed var(--line); border-radius:3px; background:rgba(124,135,148,.06); color:var(--soft); font-size:.9rem; font-family:var(--serif); font-style:italic; }
+    .stage::before { content:"Régie · "; font-style:normal; font-family:var(--roman); font-size:.58rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--iron); }
+    .punch { margin:18px 0; padding:16px 20px; border-left:3px solid var(--ember); border-radius:0 3px 3px 0; background:rgba(200,100,58,.08); color:var(--parch); }
+    .punch::before { content:"⚡ "; color:var(--ember); }
+    .timing { display:inline-block; margin-left:8px; padding:2px 9px; font-family:var(--roman); font-size:.56rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--abyss); background:var(--gold); border-radius:2px; vertical-align:middle; }
+    .checklist { list-style:none; padding:0; margin:14px 0 0; }
+    .checklist li { position:relative; margin:10px 0; padding-left:30px; color:var(--muted); font-size:1rem; }
+    .checklist li::before { content:"▢"; position:absolute; left:0; top:0; color:var(--gold); }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .side-note.anti { border-color:rgba(74,147,184,.4); background:linear-gradient(180deg,rgba(74,147,184,.1),rgba(7,12,26,.6)); }
+    .side-note.anti h3 { color:var(--storm); }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    .dtable { width:100%; border-collapse:collapse; margin:14px 0; border:1px solid var(--line); border-radius:3px; overflow:hidden; font-size:.96rem; }
+    .dtable caption { text-align:left; padding:0 0 14px; color:var(--muted); font-style:italic; font-family:var(--serif); }
+    .dtable th { text-align:left; padding:13px 15px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); background:rgba(214,172,85,.06); border-bottom:1px solid var(--line); }
+    .dtable td { padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--line-2); color:var(--muted); }
+    .dtable tr:last-child td { border-bottom:0; }
+    .dtable td.k { color:var(--parch); font-weight:600; }
+    .dtable tr:hover td { background:rgba(244,236,216,.03); }
+
+    .sommaire-list { display:grid; gap:14px; margin:18px 0; }
+    .pillar { border:1px solid var(--line-2); border-radius:3px; padding:22px 24px; background:rgba(244,236,216,.035); border-left:3px solid rgba(214,172,85,.5); }
+    .pillar h3 { margin:0 0 10px; font-family:var(--serif); font-weight:600; font-size:1.24rem; color:var(--ink); }
+    .pillar p { margin:0 0 8px; }
+
+    .qa-list { display:grid; gap:14px; margin:18px 0 0; }
+    .qa-item { border:1px solid var(--line-2); border-left:3px solid var(--storm); border-radius:3px; padding:20px 22px; background:rgba(74,147,184,.06); }
+    .qa-item .q { margin:0 0 10px; font-family:var(--roman); font-weight:700; font-size:.92rem; letter-spacing:.02em; color:var(--gold-bright); }
+    .qa-item p { margin:0 0 10px; color:var(--muted); font-size:1rem; }
+    .qa-item p:last-child { margin-bottom:0; }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(200,100,58,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(74,147,184,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left:-14px; }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left:-20px; }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .credit-band .note { font-family:var(--serif); font-style:italic; color:var(--soft); font-size:.86rem; }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    .reveal[data-d="3"] { transition-delay:.24s; }
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .hero-inner > div > *:nth-child(5){ animation-delay:.5s; }
+    .js .signal-board { animation-delay:.5s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid { grid-template-columns:1fr; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+      .dtable { font-size:.9rem; }
+      .dtable th,.dtable td { padding:10px 11px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      html { scroll-behavior:auto; }
+    }
+
+    /* ====================================================================== */
+    /* DESIGN — « une console d'instrument qui lit un vortex vivant »          */
+    /* Enrichissement du codex ECI : moteur monospace pour la télémétrie,     */
+    /* œil-vortex signature, insets « simulateur » en console HUD.            */
+    /* ====================================================================== */
+    :root { --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace; }
+    @keyframes vortexSpin { to { transform:rotate(360deg); } }
+    @keyframes pulseDot { 0%,100%{ opacity:.35; transform:scale(.8);} 50%{ opacity:1; transform:scale(1.25);} }
+
+    /* — Signature : l'œil-vortex du hero — */
+    .hero-vortex { position:absolute; z-index:-1; top:48%; right:-7vw; transform:translateY(-50%);
+      width:min(56vw,680px); aspect-ratio:1; pointer-events:none; opacity:.55;
+      -webkit-mask:radial-gradient(closest-side,#000 58%,transparent 100%); mask:radial-gradient(closest-side,#000 58%,transparent 100%); }
+    .hero-vortex svg { width:100%; height:100%; display:block; overflow:visible; }
+    .hero-vortex * { transform-box:fill-box; transform-origin:center; }
+    .hero-vortex .ring { fill:none; stroke:rgba(214,172,85,.22); stroke-width:.5; }
+    .hero-vortex .ring.spin { animation:vortexSpin 70s linear infinite; }
+    .hero-vortex .ring.spin2 { animation:vortexSpin 110s linear infinite reverse; }
+    .hero-vortex .spoke { animation:vortexSpin 150s linear infinite; }
+    .hero-vortex .spoke line { stroke:rgba(243,217,138,.13); stroke-width:.5; }
+    .hero-vortex .eye { fill:rgba(74,147,184,.12); stroke:rgba(74,147,184,.4); stroke-width:.6; }
+
+    /* — Eyebrow & citation : ponctuation cérémonielle — */
+    .eyebrow::after { content:"✶"; margin-left:8px; color:var(--storm); font-size:.7em; opacity:.85; }
+    .hero-quote { position:relative; }
+    .hero-quote::before { content:"“"; position:absolute; left:-4px; top:-22px; font-family:var(--roman); font-size:2.6rem; line-height:1; color:rgba(214,172,85,.42); }
+
+    /* — Carte de télémétrie (signal-board) — */
+    .signal-board::before { content:"⌖  TÉLÉMÉTRIE EN DIRECT"; display:block; padding:11px 20px;
+      font-family:var(--mono); font-size:.54rem; font-weight:600; letter-spacing:.26em; color:var(--storm);
+      border-bottom:1px solid var(--line-2); background:rgba(74,147,184,.07); }
+    .signal span { font-family:var(--mono); font-size:.52rem; letter-spacing:.2em; display:inline-flex; align-items:center; gap:9px; }
+    .signal span::before { content:""; width:5px; height:5px; border-radius:50%; background:var(--storm);
+      box-shadow:0 0 8px var(--storm); animation:pulseDot 2.6s ease-in-out infinite; }
+    .signal:nth-child(3) span::before { animation-delay:.4s; }
+    .signal:nth-child(4) span::before { animation-delay:.8s; }
+    .signal:nth-child(5) span::before { animation-delay:1.2s; }
+
+    /* — Insets « Au simulateur » en console d'instrument — */
+    .dialogue-block { position:relative; overflow:hidden; border:1px solid rgba(74,147,184,.2); border-left:3px solid var(--storm);
+      background:linear-gradient(180deg,rgba(74,147,184,.06),rgba(7,12,26,.5)); box-shadow:inset 0 0 60px rgba(74,147,184,.05); }
+    .dialogue-block::after { content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+      background:repeating-linear-gradient(0deg,rgba(244,236,216,.02) 0 1px,transparent 1px 5px); mix-blend-mode:overlay; }
+    .dialogue-block > * { position:relative; z-index:1; }
+    .dialogue-block .sam-head { display:flex; align-items:center; gap:10px; margin:0 0 16px; padding-bottom:13px;
+      font-family:var(--mono); font-size:.62rem; font-weight:600; letter-spacing:.1em; color:var(--storm);
+      border-bottom:1px solid rgba(74,147,184,.2); text-transform:uppercase; }
+    .dialogue-block .sam-head::before { content:""; flex:0 0 auto; width:7px; height:7px; border-radius:50%;
+      background:var(--storm); box-shadow:0 0 11px var(--storm); animation:pulseDot 2.2s ease-in-out infinite; }
+    .dialogue-block .sam-head::after { content:"GPU · 60 fps"; margin-left:auto; font-size:.92em; color:var(--soft); letter-spacing:.08em; }
+    .dialogue-block .punch { border-left-color:var(--storm); background:rgba(74,147,184,.1); }
+    .dialogue-block .punch::before { content:"▸ "; color:var(--storm); }
+    .dialogue-block code { background:rgba(74,147,184,.16); }
+
+    /* — Figures : planches gravées vs captures GPU — */
+    .chapter-figure { position:relative; transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease); }
+    .chapter-figure:hover { transform:translateY(-4px); border-color:rgba(214,172,85,.45); box-shadow:0 26px 60px rgba(0,0,0,.5); }
+    .chapter-figure img { transition:transform .8s var(--ease),filter .6s var(--ease); }
+    .chapter-figure:hover img { transform:scale(1.035); filter:saturate(1.08) contrast(1.04); }
+    .chapter-figure::before { content:""; position:absolute; z-index:2; top:9px; left:9px; width:16px; height:16px;
+      border-top:1.5px solid rgba(214,172,85,.55); border-left:1.5px solid rgba(214,172,85,.55); pointer-events:none; }
+    .chapter-figure figcaption { display:flex; align-items:center; gap:9px; }
+    .chapter-figure figcaption::before { content:"◆"; color:var(--storm); font-size:.7em; }
+    .chapter-figure::after { position:absolute; z-index:3; top:12px; right:12px; font-family:var(--mono);
+      font-size:.5rem; font-weight:600; letter-spacing:.16em; padding:4px 9px; border-radius:2px;
+      background:rgba(5,8,17,.72); backdrop-filter:blur(6px); pointer-events:none; }
+    .chapter-figure.is-capture::after { content:"CAPTURE · GPU 96³"; color:var(--storm); border:1px solid rgba(74,147,184,.4); }
+    .chapter-figure.is-plate::after { content:"PLANCHE GRAVÉE"; color:var(--gold); border:1px solid var(--line); }
+    .chapter-figure.is-capture figcaption::before { content:"●"; }
+
+    /* — Lettrine sur les chapôs — */
+    .transcript .prose > .lede::first-letter {
+      float:left; font-family:var(--roman); font-weight:700; font-size:3.5em; line-height:.66;
+      padding:8px 14px 0 2px;
+      background:linear-gradient(180deg,var(--gold-bright),var(--gold-deep)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+
+    /* — Numéros de chapitre : remplissage au survol — */
+    .chapter-number { transition:color .5s var(--ease),-webkit-text-stroke-color .5s var(--ease); }
+    .chapter:hover .chapter-number { color:rgba(74,147,184,.1); -webkit-text-stroke-color:rgba(214,172,85,.6); }
+
+    /* — Act-bands : anneau-vortex rotatif + filets — */
+    .act-band { position:relative; overflow:hidden; }
+    .act-band::after { content:""; position:absolute; top:-46px; right:-46px; width:190px; height:190px; border-radius:50%;
+      background:conic-gradient(from 0deg,transparent,rgba(214,172,85,.13),transparent 52%);
+      -webkit-mask:radial-gradient(closest-side,transparent 56%,#000 60%,#000 80%,transparent 84%);
+      mask:radial-gradient(closest-side,transparent 56%,#000 60%,#000 80%,transparent 84%);
+      animation:vortexSpin 44s linear infinite; pointer-events:none; }
+    .act-band .act-no { display:inline-flex; align-items:center; gap:12px; }
+    .act-band .act-no::before, .act-band .act-no::after { content:""; width:26px; height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold)); }
+    .act-band .act-no::after { transform:scaleX(-1); }
+
+    /* — Encadrés anti-intox : sceau « VÉRIFIÉ » — */
+    .side-note.anti h3 { display:flex; align-items:center; gap:10px; }
+    .side-note.anti h3::after { content:"VÉRIFIÉ"; margin-left:auto; font-family:var(--mono); font-size:.5rem; font-weight:600;
+      letter-spacing:.16em; color:var(--storm); border:1px solid rgba(74,147,184,.35); padding:3px 8px; border-radius:2px; }
+
+    /* — Q&A : numérotation d'instrument — */
+    .qa-list { counter-reset:qa; }
+    .qa-item { counter-increment:qa; }
+    .qa-item .q::before { content:"Q" counter(qa,decimal-leading-zero) " · "; font-family:var(--mono); color:var(--storm); font-weight:700; }
+
+    /* — Révélation : netteté progressive — */
+    .js .reveal { transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease); filter:blur(5px); }
+    .reveal.in { filter:blur(0); }
+
+    @media (max-width:980px) { .hero-vortex { opacity:.3; right:-22vw; width:78vw; } }
+    @media (prefers-reduced-motion:reduce) {
+      .hero-vortex .ring,.hero-vortex .spoke,.act-band::after,.signal span::before,.dialogue-block .sam-head::before { animation:none !important; }
+      .js .reveal { filter:none !important; }
+    }
+
+    /* — Formules mathématiques (KaTeX) — */
+    .imath { display:inline-block; line-height:1; }
+    .imath .katex { font-size:1.08em; color:var(--parch); }
+    .formula { margin:18px 0; padding:14px 22px; border:1px solid var(--line); border-left:3px solid var(--ember);
+      border-radius:3px; background:rgba(200,100,58,.06); overflow-x:auto; text-align:center; }
+    .formula .katex { font-size:1.3rem; color:var(--parch); }
+    /* avant rendu KaTeX : ne pas afficher le brut */
+    .imath:empty,.formula:empty { display:none; }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-waterline"></div>
+      <div class="hero-vortex" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <circle class="eye" cx="100" cy="100" r="13"/>
+          <circle class="ring" cx="100" cy="100" r="22"/>
+          <circle class="ring spin" cx="100" cy="100" r="36" stroke-dasharray="2 7"/>
+          <circle class="ring" cx="100" cy="100" r="52"/>
+          <circle class="ring spin2" cx="100" cy="100" r="68" stroke-dasharray="1 10"/>
+          <circle class="ring" cx="100" cy="100" r="86"/>
+          <circle class="ring spin" cx="100" cy="100" r="96" stroke-dasharray="0.5 14"/>
+          <g class="spoke">
+            <line x1="100" y1="100" x2="100" y2="8"/>
+            <line x1="100" y1="100" x2="100" y2="8" transform="rotate(45 100 100)"/>
+            <line x1="100" y1="100" x2="100" y2="8" transform="rotate(90 100 100)"/>
+            <line x1="100" y1="100" x2="100" y2="8" transform="rotate(135 100 100)"/>
+            <line x1="100" y1="100" x2="100" y2="8" transform="rotate(180 100 100)"/>
+            <line x1="100" y1="100" x2="100" y2="8" transform="rotate(225 100 100)"/>
+            <line x1="100" y1="100" x2="100" y2="8" transform="rotate(270 100 100)"/>
+            <line x1="100" y1="100" x2="100" y2="8" transform="rotate(315 100 100)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier XII · Tornades &amp; cyclones</p>
+          <h1>Tornades, typhons, <span class="foil">ouragans</span></h1>
+          <p class="hero-lead">Le live de Provoxys, conservé mot pour mot : tornades, typhons, ouragans, tempêtes tropicales et ENSO. Le récit scientifique des tempêtes, illustré en direct par une vraie simulation de tornade — équations de Navier–Stokes en 3D qui tournent dans le navigateur, sur la carte graphique.</p>
+          <p class="hero-quote">« On ne voit pas le vent. Ce qu'on voit, c'est de l'eau qui condense parce que la pression a chuté. »</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#transcription">Lire le dossier</a>
+            <a class="button storm" href="https://tornado-sim.puter.site/" target="_blank" rel="noopener">Ouvrir la simulation ↗</a>
+            <a class="button" href="https://thesamlepirate.github.io/tornado-simulator/" target="_blank" rel="noopener">La physique expliquée ↗</a>
+            <a class="button" href="../../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board" aria-label="Repères">
+          <div class="signal"><span>Le principe</span><strong>Le récit, et la simulation en direct</strong></div>
+          <div class="signal"><span>La sim</span><strong>Navier–Stokes 3D, dans le navigateur</strong></div>
+          <div class="signal"><span>L'échelle</span><strong>Du vortex de 500 m au typhon de 2 200 km</strong></div>
+          <div class="signal"><span>Le fil rouge</span><strong>Expliquer n'est pas prévoir</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="../../ymir-lalie/assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Tornades</span>
+        </a>
+        <a class="home-link" href="../../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#fil">Intro</a>
+          <a href="#tornades">Tornades</a>
+          <a href="#typhons">Typhons</a>
+          <a href="#ouragans">Ouragans</a>
+          <a href="#tempetes">Tempêtes + ENSO</a>
+          <a href="#differences">Différencier</a>
+          <a href="#qa">Questions</a>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </nav>
+
+    <main id="transcription">
+      <section class="intro-band" id="fil">
+        <div class="manifesto reveal">
+          <p class="section-kicker">Deux voix, une physique</p>
+          <h2>Deux voix, une seule physique : celle des fluides en rotation.</h2>
+          <p>Ce dossier reprend <strong>mot pour mot</strong> le live de Provoxys, des tornades aux typhons, ouragans, tempêtes tropicales et ENSO. Le récit scientifique est <strong>illustré en direct</strong> par une vraie simulation de tornade — équations de Navier–Stokes en 3D, qui tournent dans le navigateur sur la carte graphique.</p>
+          <p>L'idée du duo : à chaque fois que le récit décrit quelque chose qu'on peut voir — une colonne en rotation, un déficit de pression, des sous-tourbillons —, la simulation le montre, mesuré en temps réel à l'écran.</p>
+        </div>
+        <div class="timeline reveal" data-d="1" aria-label="Fil conducteur">
+          <div class="timeline-row"><time>Partie 1</time><p>Les tornades — la dynamique du vortex, montrée et mesurée dans le simulateur.</p></div>
+          <div class="timeline-row"><time>Partie 2</time><p>Les typhons — la grande machine thermique océanique du Pacifique Nord-Ouest.</p></div>
+          <div class="timeline-row"><time>Partie 3</time><p>Les ouragans — le même cyclone tropical, autre océan, autre nom.</p></div>
+          <div class="timeline-row"><time>Partie 4</time><p>Tempêtes tropicales &amp; ENSO — El Niño / La Niña en chef d'orchestre des bassins.</p></div>
+        </div>
+      </section>
+
+      <section class="learning-panel reveal" aria-labelledby="objectifs">
+        <p class="section-kicker">Objectifs pédagogiques</p>
+        <h2 id="objectifs">Distinguer ce qui tourne vite et petit de ce qui tourne lentement et grand — et savoir pourquoi.</h2>
+        <div class="learning-grid">
+          <div class="learning-item reveal" data-d="1"><span>Comprendre</span><p>L'anatomie d'un vortex : rotation, déficit de pression, condensation, sous-tourbillons. Pourquoi une tornade aspire autant qu'elle souffle.</p></div>
+          <div class="learning-item reveal" data-d="2"><span>Comparer</span><p>Tornade, typhon, ouragan, tempête tropicale : même air, mêmes équations, mais des échelles et des moteurs différents — dont Coriolis.</p></div>
+          <div class="learning-item reveal" data-d="3"><span>Garder l'esprit critique</span><p>Une simulation <em>explique</em>, elle ne <em>prédit</em> pas. Et derrière chaque chiffre du live, une source vérifiée — ou une nuance signalée.</p></div>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="ouverture" aria-labelledby="ouv-h">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Ouverture</p><h2 id="ouv-h">« C'est pas un schéma de manuel. C'est une vraie simulation. »</h2></div>
+          <div class="chapter-number">01</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Salut tout le monde et bienvenue sur ce live spécial — on va parler de tornades, de typhons, d'ouragans, de tempêtes tropicales et d'El Niño. Et tout au long, une vraie simulation de tornade va tourner dans le navigateur pour illustrer ce qu'on raconte.</p>
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — en deux mots</span>
+              <p>« Ce qui est à l'écran, c'est pas un schéma de manuel et c'est pas une animation pré-rendue. C'est une vraie simulation de tornade — équations de Navier–Stokes en 3D, qui tournent en ce moment dans votre navigateur sur la carte graphique. »</p>
+              <p>« Pendant tout le live, vous pouvez ouvrir <code>tornado-sim.puter.site</code> sur votre téléphone ou votre PC, et vous verrez exactement la même physique. Vous pouvez bouger la caméra, changer les paramètres, casser la tornade — c'est gratuit, c'est dans le navigateur, ça marche. À chaque fois que le récit décrit un truc qu'on peut voir, on le montre. C'est parti. »</p>
+              <p><strong>Mise au point honnête :</strong> « Avant de commencer : la simulation <strong>explique</strong> une tornade, elle ne la <strong>fabrique pas depuis le ciel</strong>. Y a pas de supercellule, pas de nuage d'orage parent, pas de mésocyclone — tout ce qui est décrit dans les chapitres 1 à 4 sur la genèse, c'est en amont du cube. La simulation commence là où la tornade existe déjà, et montre <strong>comment elle marche</strong>. »</p>
+            </div>
+            <div class="punch">« Petit indice pour la suite : on va parler des tornades multi-vortex, comme El Reno 2013. À ce moment-là, on fait exploser une tornade en six dans la simulation. »</div>
+          </article>
+          <aside class="side-note">
+            <h3>Le compagnon interactif</h3>
+            <p>Tout le live s'appuie sur deux outils : la <strong>simulation</strong> (<a href="https://tornado-sim.puter.site/" target="_blank" rel="noopener" style="color:var(--gold-bright)">tornado-sim.puter.site</a>) et un <strong>site qui explique la physique</strong> derrière (<a href="https://thesamlepirate.github.io/tornado-simulator/" target="_blank" rel="noopener" style="color:var(--gold-bright)">tornado-simulator</a>).</p>
+            <p>La sim résout les équations de <strong>Navier–Stokes en 3D</strong> sur la carte graphique, en temps réel. Le HUD lit le champ : ce ne sont pas des chiffres scénarisés.</p>
+            <div class="tag-list"><span class="tag">Navier–Stokes 3D</span><span class="tag">WebGPU</span><span class="tag">Temps réel</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="act-band reveal" id="tornades" aria-labelledby="actTornades">
+        <p class="act-no">Partie 1 — Tornades</p>
+        <h2 id="actTornades">Les Tornades</h2>
+        <p>10 chapitres · le simulateur tourne. De la colonne d'air en rotation au sous-tourbillon qui orbite à l'intérieur de la tornade-mère — la dynamique du vortex, montrée et mesurée en direct.</p>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="t1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 1 · Chapitre 1</p><h2 id="t1">Définition et caractéristiques de base.</h2></div>
+          <div class="chapter-number">1.1</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="group-title">Chapitre 1 — Définition et caractéristiques de base des tornades</p>
+            <p>Une tornade est une colonne d'air en rotation violente et concentrée qui relie la base d'un cumulonimbus (un gros nuage d'orage très haut, en forme d'enclume, chargé d'électricité) directement au sol. Selon la définition officielle NOAA/NSSL (mise à jour 2026), elle se caractérise par des vents rotatifs dépassant souvent 300 km/h et pouvant atteindre plus de 500 km/h dans les cas extrêmes (record mesuré par radar Doppler mobile à Bridge Creek, Oklahoma, le 3 mai 1999 : 486-510 km/h, étude NSSL publiée dans <em>Monthly Weather Review</em> 2001).</p>
+
+            <figure class="chapter-figure is-plate">
+              <img src="assets/tornades-anatomie.png" alt="Schéma codex de l'anatomie d'une tornade : funnel de condensation, anneau de vent maximum, cœur de basse pression, afflux au sol et courant ascendant central.">
+              <figcaption>Anatomie d'un vortex tornadique — funnel, mur de l'œil, cœur de basse pression, afflux et ascendance</figcaption>
+            </figure>
+
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — La rotation : V_θ et le mur de l'œil</span>
+              <figure class="chapter-figure is-capture">
+                <img src="assets/sim-vorticity-tube.png" alt="Capture réelle de la simulation : le tube de vorticité, trois enveloppes imbriquées (bleu à l'extérieur, orange au cœur) le long de l'axe de la tornade." loading="lazy">
+                <figcaption>Capture réelle de la simulation — preset « Tube de vorticité (iso) »</figcaption>
+              </figure>
+              <p>« Ce qu'on vient de décrire — la "colonne en rotation" — ça a un nom physique précis : c'est un <strong>tube de vorticité</strong>. La vorticité, c'est juste une mesure de "à quel point ça tourne en chaque point de l'espace". Si je colorie les régions où la rotation dépasse un certain seuil, voilà ce que la sim me sort : trois enveloppes imbriquées. La bleue à l'extérieur, c'est "ça commence à tourner". L'orange à l'intérieur, c'est le cœur, là où ça tourne très fort. »</p>
+              <p>« Maintenant, si je coupe horizontalement à 50 m du sol et que je regarde le vent tangentiel — la vitesse de rotation pure — voilà ce qui apparaît. »</p>
+              <p>« Cet anneau rose, c'est exactement ce qu'on appelle le "mur de l'œil". C'est une bande étroite où le vent est maximum. À l'extérieur de l'anneau, ça décroît. À l'intérieur de l'anneau, ça décroît aussi — l'œil est quasi calme. Ce profil a un nom : <strong>tourbillon de Rankine combiné</strong>. Et c'est exactement ce qu'on voit en radar Doppler sur les vraies tornades. »</p>
+              <p class="punch">« Et regardez le HUD en bas à gauche : |V|max, en ce moment, c'est la valeur affichée. C'est pas une valeur que j'ai tapée — c'est ce que la sim <strong>mesure</strong> dans le champ 3D, là, maintenant. »</p>
+            </div>
+
+            <p>La largeur moyenne va de 50 mètres à plus de 1 km, avec un record précis de 4 km lors de l'EF3 El Reno en 2013 (EF3 signifie niveau 3 sur l'échelle Enhanced Fujita – c'est-à-dire des dégâts sévères mais pas encore catastrophiques ; l'échelle Enhanced Fujita, ou EF-scale, classe les tornades de EF0 faible à EF5 extrême, adoptée par NOAA en 2007 avec exactement 28 indicateurs de dommages). La durée de vie varie de quelques secondes à plus d'une heure, avec un record exact de 3 heures 30 minutes pour le Tri-State Tornado du 18 mars 1925 (NCEI reanalysis 2024). La pression intérieure peut chuter de <strong>100 hPa</strong> (hectopascals, unité de pression atmosphérique) <strong>en quelques secondes</strong>, créant un effet d'aspiration extrême capable de soulever des voitures, des arbres entiers ou même des locomotives (phénomène expliqué par la dynamique des vortex dans l'étude Fujita 1971).</p>
+
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — Le déficit de pression</span>
+              <p><strong>Étape 1 — pourquoi l'air converge :</strong></p>
+              <p>« La question : pourquoi l'air converge-t-il ? Réponse de Newton : pour qu'une parcelle d'air décrive un cercle, il faut une force qui la pousse vers le centre. La nature la fournit avec un <strong>gradient de pression</strong>. Pour que l'air "tombe" vers l'axe, il faut que la pression soit plus basse au centre. »</p>
+              <p>« Voilà la coupe de pression dans la sim. Cette colonne bleu profond le long de l'axe, c'est le déficit cyclostrophique. À Vmax = 95 m/s avec de l'air normal, ça donne… »</p>
+              <p class="punch">« …regardez le HUD : ΔP min, là, de l'ordre de −90 à −110 hPa. Soit environ <strong>10 % de moins que la pression atmosphérique normale</strong>, dans une colonne de 50 m de large. C'est ça qui arrache vraiment les toitures — pas juste les vents qui poussent. La toiture est <strong>aspirée par-dessus</strong> pendant que les vents tirent. »</p>
+              <figure class="chapter-figure is-capture">
+                <img src="assets/sim-pressure-deficit.png" alt="Capture réelle de la simulation : la coupe de pression, une colonne bleue (déficit cyclostrophique) le long de l'axe, entourée de l'afflux rose convergent au sol." loading="lazy">
+                <figcaption>Capture réelle — preset « Déficit de pression » : le cœur bleu de basse pression, l'afflux rose au sol</figcaption>
+              </figure>
+              <p><strong>Étape 2 — refroidissement adiabatique :</strong></p>
+              <p>« Conséquence immédiate, et c'est de la physique de lycée : quand un gaz se détend, il refroidit. Si la pression chute de 10 %, la température chute d'environ 3 %. Au cœur d'une tornade EF4, ça fait environ <strong>9 degrés de moins</strong> que l'air autour. »</p>
+              <p>« Et c'est exactement ce que la sim trouve toute seule. La colonne bleue ici — c'est la <strong>même région</strong> que la colonne bleue de pression d'il y a 10 secondes, mais visualisée autrement. C'est la cause et l'effet, liés par l'équation adiabatique. »</p>
+              <p><strong>Étape 3 — pourquoi on voit la tornade :</strong></p>
+              <p>« Et voilà pourquoi on <strong>voit</strong> une tornade. L'air refroidit, sa vapeur d'eau condense, et ça forme cet entonnoir nuageux qui descend de la base de l'orage jusqu'au sol. Le plafond rose là-haut, c'est la base normale du nuage convectif. La langue qui descend le long de l'axe, c'est uniquement parce que le déficit de pression a fait condenser plus bas qu'ailleurs. »</p>
+              <p class="punch">« Donc retenez ça : <strong>on ne voit pas le vent</strong>, on ne voit pas la rotation. Ce qu'on voit, c'est de l'<strong>eau qui condense</strong> parce que la pression a chuté. Une tornade dans de l'air sec, elle est invisible — sauf le nuage de poussière au sol. »</p>
+            </div>
+
+            <p>Les tornades se forment surtout via des supercellules (supercell) : orages géants qui tournent sur eux-mêmes grâce à un mésocyclone, c'est-à-dire un tourbillon de 2 à 6 km de diamètre) dans le Tornado Alley (Texas, Oklahoma, Kansas, Nebraska, selon SPC 2026). Elles touchent aussi l'Europe (record EF2 en France en 2022 selon Météo-France et European Severe Weather Database), l'Asie et l'Australie. Observations clés : funnel cloud (entonnoir visible par condensation), debris cloud (nuage de débris au sol), wall cloud (nuage mural en rotation basse), tail cloud (nuage en queue), et parfois suction vortices (mini-vortex internes de 10-100 m). Les dégâts sont classés sur l'échelle Enhanced Fujita (EF0 faible à EF5 extrême, adoptée par NOAA le 1er février 2007 avec exactement 28 Damage Indicators calibrés par ingénieurs : arbres, bâtiments résidentiels, entrepôts, éoliennes, etc., chaque degré de dommage DOD validé par tests en soufflerie).</p>
+
+            <p>Le CAPE, (Convective Available Potential Energy, c'est-à-dire l'énergie potentielle convective disponible), dépasse souvent 2000 J/kg (supérieur à 2000 joules par kilogramme) dans ces cas. La formule du CAPE&nbsp;: <span class="imath" data-tex="\mathrm{CAPE}=\displaystyle\int_{z_{\mathrm{LFC}}}^{z_{\mathrm{EL}}} g\,\frac{T_{v,\mathrm{parc}}-T_{v,\mathrm{env}}}{T_{v,\mathrm{env}}}\,dz"></span>. En langage très simple pour les novices : cela représente l'énergie totale disponible pour faire monter l'air chaud très haut et très vite dans l'atmosphère, exactement comme le plein d'essence d'une Formule 1 qui permet d'accélérer à fond. Les variables sont : Tv pour température virtuelle en kelvins, g pour 9,81 mètres par seconde au carré (la gravité), et dz pour la hauteur. Du niveau de convection libre jusqu'au sommet ; supérieur à 2000 J/kg équivaut à une immense réserve d'énergie comme le plein d'essence d'une Formule 1 qui permet à l'air chaud de monter très haut et très vite (vitesse ascensionnelle supérieure à 50 m/s), rendant l'atmosphère ultra-instable (valeurs typiques mesurées par sondes NSSL lors de VORTEX2 2009). Étude clé : Thompson et al. (2003) dans <em>Weather and Forecasting</em> montre une corrélation directe CAPE élevé + helicity supérieure à 150 m²/s² = probabilité supérieure à 80 % de tornade violente. Expérience de terrain : sondes in-situ déployées par storm chasers mesurent chute de pression et vents en temps réel.</p>
+
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Lors de l'EF5 El Reno le 31 mai 2013, la tornade a aspiré un radar mobile Doppler on Wheels (un radar Doppler mobile très puissant monté sur un véhicule tout-terrain pour mesurer les vents en temps réel) à plus de 100 km/h, forçant les chasseurs à fuir en urgence tout en filmant le phénomène le plus large jamais observé (4 km), documenté dans le rapport NSSL 2013 et l'article de Wurman et al. dans <em>Bulletin of the American Meteorological Society</em> 2014. Cette tornade a aussi généré des subvortex (mini-vortex internes) qui ont causé des dégâts incroyables sur une zone très large, illustrant parfaitement comment un CAPE supérieur à 2000 J/kg peut créer une instabilité extrême.</p>
+            </div>
+
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — El Reno : EF3 ou EF5 ?</span>
+              <p>« Petite précision sur El Reno, parce que c'est un cas pédagogique précis : <strong>officiellement classée EF3</strong> par les dégâts au sol, mais les vents mesurés par radar mobile, eux, étaient <strong>compatibles EF5</strong> — plus de 470 km/h. C'est la limite intéressante de l'échelle EF : elle classe ce que la tornade a <strong>réellement cassé</strong>, pas ce que ses vents auraient pu casser. Les deux affirmations sont vraies en même temps. »</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · les chiffres du chapitre</h3>
+            <p><strong>Vitesses :</strong> la <em>plupart</em> des tornades tournent sous 180 km/h ; seules les plus violentes dépassent 480 km/h. Le « souvent &gt; 300 km/h » est à nuancer, et il n'existe pas de « définition NOAA/NSSL mise à jour 2026 ».</p>
+            <p><strong>Bridge Creek 1999 :</strong> record réanalysé en 2021 à <strong>~517 km/h</strong> (321 mph). La référence n'est pas <em>Monthly Weather Review 2001</em> mais <strong>Wurman et al. 2007</strong> (BAMS).</p>
+            <p><strong>El Reno 2013 :</strong> largeur record de 4 km <strong>confirmée</strong> ; classée <strong>EF3</strong> (pas EF5). Tri-State 1925 : record de durée souvent cité, mais c'était peut-être une <em>famille</em> de tornades.</p>
+            <p><strong>« &gt; 80 % de tornade violente » :</strong> ce chiffre n'est pas une conclusion de Thompson et al. 2003. Mésocyclone : plutôt <strong>2 à 10 km</strong>.</p>
+            <div class="tag-list"><span class="tag">NSSL</span><span class="tag">NWS · EF-scale</span><span class="tag">Wurman 2007</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="t2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 1 · Chapitre 2</p><h2 id="t2">Histoire des premières observations.</h2></div>
+          <div class="chapter-number">1.2</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Les premières mentions écrites remontent précisément à 200 apr. J.-C. en Sardaigne (Empire romain : vortex destructeur décrit comme un « tourbillon de feu » dans les archives historiques romaines, selon les compilations de Plutarque). En Europe : 788 en Allemagne (annales carolingiennes), 1054 en Irlande (chroniques monastiques détaillant destructions massives avec arbres arrachés sur des kilomètres), 1290 en Angleterre (archives royales). Aux USA, John Winthrop rapporte la première en 1643 dans le Massachusetts (arbres arrachés sur des kilomètres, archives coloniales de la Nouvelle-Angleterre).</p>
+            <p>Au XIXe siècle, les rapports explosent avec l'expansion vers l'Ouest ; John Park Finley compile plus de 600 cas dans les années 1880 (US Army Signal Corps, rapport officiel 1888). Première photo connue : 1884 au Kansas par A.A. Adams (archives NOAA, négatif conservé à la Library of Congress). Au XXe siècle, radars post-WWII systématisent les observations (premier Doppler expérimental 1950s). Dans ces contextes historiques, le CAPE dépassant souvent 2000 J/kg (supérieur à) jouait déjà un rôle clé, même si on ne le mesurait pas encore ainsi (reconstruction NCEI 2024 via modèles paléoclimatiques). Étude clé : Brooks et al. (2014) dans <em>Weather and Forecasting</em> analyse les outbreaks historiques avec reconstructions CAPE. Expérience : Finley a développé les premières règles de prévision en 1888 malgré l'interdiction officielle du mot « tornado » par l'US Army (archives Signal Corps).</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>L'outbreak du 14 avril 1886, considéré comme l'un des plus anciens outbreaks majeurs documentés selon la réanalyse complète NCEI de 2024, a frappé plusieurs États du Midwest américain dont l'Iowa, l'Illinois, le Missouri et le Kansas. Des dizaines de tornades ont été signalées en une seule journée, causant des centaines de morts (plus de 200 confirmés selon les archives historiques croisées), la destruction complète de fermes entières, de petites villes et de milliers d'arbres sur des distances de plusieurs kilomètres. Les vents ont arraché des rails de chemin de fer, projeté des wagons sur des centaines de mètres et causé des dégâts estimés à plusieurs millions de dollars de l'époque. Cet événement dramatique a mis en évidence le besoin urgent d'une étude systématique, forçant John Park Finley à compiler ses 600 cas dans son rapport officiel de 1888, où il a développé les premières règles de prévision malgré l'interdiction officielle du mot « tornado » par l'armée. Finley a cartographié les trajectoires, analysé les conditions météo et posé les bases de la météorologie opérationnelle moderne (archives Signal Corps 1888, réanalysées par NCEI 2024 et Brooks et al. 2014).</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · l'histoire au crible</h3>
+            <p><strong>Sardaigne ~200 apr. J.-C. :</strong> la plus ancienne tornade documentée au monde, oui (base mondiale, <em>BAMS</em> 2025) — mais le détail « tourbillon de feu / Plutarque » n'est pas sourcé (Plutarque meurt vers 120 apr. J.-C.).</p>
+            <p><strong>Angleterre :</strong> la plus ancienne tornade britannique connue est <strong>Londres, 1091</strong>, pas 1290.</p>
+            <p><strong>Photo 1884 :</strong> A.A. Adams à Garnett (Kansas) — négatif conservé à la <strong>Kansas Historical Society</strong>, pas à la Library of Congress.</p>
+            <p><strong>Outbreak 14 avril 1886 :</strong> <strong>72 morts</strong> au foyer (St. Cloud–Sauk Rapids, <strong>Minnesota</strong>), ~<strong>87</strong> au total inter-États — pas « plus de 200 », pas l'Illinois.</p>
+            <div class="tag-list"><span class="tag">NOAA Heritage</span><span class="tag">Kansas HS</span><span class="tag">BAMS 2025</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="t3">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 1 · Chapitre 3</p><h2 id="t3">Les découvreurs et scientifiques pionniers.</h2></div>
+          <div class="chapter-number">1.3</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>John Park Finley (US Army Signal Corps, années 1880) : premier système via 600 cas compilés, règles de prévision 1888 malgré interdiction officielle du mot « tornado » (rapport Signal Corps 1888). Tetsuya « Ted » Fujita (« Mr. Tornado ») : échelle Fujita 1971 après Fargo 1957 (découverte wall cloud, tail cloud, suction vortices, selon NSSL, publication Fujita 1971 dans <em>Journal of the Atmospheric Sciences</em>). Alfred Wegener 1917 cartographie européenne (première carte des tornades en Europe).</p>
+            <p>Fawbush &amp; Miller 1948 : première prévision opérationnelle à Tinker AFB (Air Force rapport 1948). Neil Ward (NSSL 1960s) : chases scientifiques pionniers. Fujita a identifié les suction vortices en analysant des milliers de photos aériennes où le CAPE élevé (supérieur à 2000 J/kg) expliquait l'instabilité extrême (travaux publiés NOAA 1971). Étude clé : Fujita et al. 1978 sur les multi-vortex. Expérience : VORTEX projets (1994-2025) valident les découvertes de Fujita avec mesures in-situ.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Tetsuya « Ted » Fujita, surnommé « Mr. Tornado », a examiné des milliers de photos aériennes après la tornade de Fargo en 1957 et identifié les <strong>« suction vortices »</strong> (mini-vortex internes de 10-100 m qui tournent comme des petites tornades à l'intérieur de la grande), expliquant pourquoi certains bâtiments étaient rasés tandis que d'autres à quelques mètres étaient épargnés ; il a révolutionné la compréhension des dommages (archives NSSL et publication 1971 dans <em>Journal of the Atmospheric Sciences</em>). Cette découverte a permis de mieux expliquer les dégâts EF4-EF5 (dégâts dévastateurs à incroyables) dans les cas violents.</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — un mot à retenir</span>
+              <p class="punch">« Note bien ce mot — <strong>suction vortices</strong>. Fujita les a devinés en regardant des photos en 1957. Dans deux chapitres, on aborde les cas multi-vortex modernes, et c'est là que je vous fais éclater une tornade en six dans la sim. Tenez bon. »</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · attribution des sources</h3>
+            <p><strong>Échelle Fujita (1971) :</strong> publiée dans le <strong>SMRP Research Paper No. 91</strong> de l'Université de Chicago — <em>pas</em> dans le <em>Journal of the Atmospheric Sciences</em>.</p>
+            <p><strong>Wegener 1917 :</strong> confirmé — première <em>climatologie pan-européenne</em> des tornades (258 cas).</p>
+            <p><strong>Fawbush &amp; Miller 1948 :</strong> confirmé, 25 mars 1948 à Tinker AFB. <strong>Neil Ward :</strong> pionnier, simulateur physique de tornade (« Ward chamber »).</p>
+            <div class="tag-list"><span class="tag">SMRP-91</span><span class="tag">NSSL History</span><span class="tag">Antonescu 2019</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="t4">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 1 · Chapitre 4</p><h2 id="t4">Mécanismes de formation.</h2></div>
+          <div class="chapter-number">1.4</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Le cisaillement du vent (wind shear) : changement de direction ou de vitesse du vent avec l'altitude, typiquement 20-30 kt – knots, où 1 knot = environ 1,85 km/h, soit un changement de vitesse ou de direction d'environ 37 à 55 km/h entre le sol et 6 km d'altitude selon SPC) crée une rotation horizontale. <strong>L'updraft (courant ascendant puissant supérieur à 50 m/s) la redresse verticalement</strong> pour former un mesocyclone (2-6 km). Le rear-flank downdraft (RFD courant descendant arrière) concentre la rotation près du sol.</p>
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — L'afflux et l'ascendance : « la tornade est un aspirateur »</span>
+              <p>« On vient de parler d'updraft, de courant ascendant. Mais avant que l'air monte, il faut qu'il vienne de quelque part. La sim me le montre directement. »</p>
+              <p>« Ici je colorie la vitesse <strong>radiale</strong> : bleu = l'air qui se dirige vers l'axe. Vous voyez que c'est bleu <strong>partout autour</strong> — au ras du sol, l'air est aspiré vers l'intérieur depuis toutes les directions à la fois. »</p>
+              <p>« Et comme cet air ne peut pas s'accumuler sur l'axe, il est obligé de monter. »</p>
+              <figure class="chapter-figure is-capture">
+                <img src="assets/sim-vz.png" alt="Capture réelle de la simulation : la composante verticale du vent, une colonne ascendante jaune au centre s'élevant depuis l'afflux au sol." loading="lazy">
+                <figcaption>Capture réelle — preset « V_z » : la colonne ascendante centrale, « l'aspirateur »</figcaption>
+              </figure>
+              <p>« Voilà la composante verticale. Cette colonne rose au centre, c'est le courant ascendant. Une tornade c'est essentiellement un énorme aspirateur : convergence horizontale au sol, éjection verticale dans l'orage parent. »</p>
+              <p class="punch">« Et c'est ça qui explique l'anecdote lue plus haut — la locomotive soulevée, étudiée par Fujita en 1971. Ce que vous voyez là, c'est de l'air qui monte à plus de 50 m/s au cœur. Une locomotive, à côté de ça, c'est de la plume. »</p>
+            </div>
+            <p>Le CAPE, prononcé « cape » (Convective Available Potential Energy, l'énergie potentielle convective disponible), dépasse souvent 2000 J/kg (supérieur à) : la formule du CAPE&nbsp;: <span class="imath" data-tex="\mathrm{CAPE}=\displaystyle\int_{z_{\mathrm{LFC}}}^{z_{\mathrm{EL}}} g\,\frac{T_{v,\mathrm{parc}}-T_{v,\mathrm{env}}}{T_{v,\mathrm{env}}}\,dz"></span> du LFC au EL (LFC = niveau de convection libre, EL = niveau d'équilibre). En langage très simple pour les novices : cela représente l'énergie totale disponible pour faire monter l'air chaud très haut et très vite dans l'atmosphère, exactement comme le plein d'essence d'une Formule 1 qui permet d'accélérer à fond. Les variables sont : Tv pour température virtuelle en kelvins, g pour 9,81 mètres par seconde au carré (la gravité), et dz pour la hauteur. <strong>Helicity</strong> (mesure de la rotation potentielle) supérieure à 150 m²/s² est idéale ; la formule de l’hélicité&nbsp;: <span class="imath" data-tex="H=\displaystyle\int \mathbf{v}\cdot(\nabla\times\mathbf{v})\,dz"></span>. Étude clé : Markowski et al. (2002) dans <em>Monthly Weather Review</em> sur le rôle du RFD. Expérience : VORTEX2 2009 a déployé 100 sondes pour mesurer le RFD in-situ.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Lors de l'EF5 Enderlin dans le Dakota du Nord le 20 juin 2025, un RFD (rear-flank downdraft) ultra-rapide a été filmé par des storm chasers, validant les modèles VORTEX-USA (NSSL 2025, rapport préliminaire). Ce courant descendant arrière a concentré la rotation près du sol en quelques secondes, produisant des vents supérieurs à 400 km/h et illustrant parfaitement comment un wind shear de 20-30 kt (environ 37-55 km/h de changement) et un CAPE supérieur à 2000 J/kg peuvent créer une tornade violente en quelques minutes.</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — le CAPE ne suffit pas</span>
+              <p>« Petit rappel : le CAPE, c'est le carburant vertical de l'orage — l'énergie disponible pour faire monter l'air chaud. Mais <strong>CAPE élevé ≠ tornade automatique</strong>. Il faut aussi <em>organiser</em> cette énergie : cisaillement du vent, hélicité, mésocyclone, et processus près du sol comme le RFD mentionné plus haut. Dans ma simulation, je ne reconstruis pas tout ce profil ; je zoome sur le vortex local <strong>une fois qu'il existe</strong>. La genèse, elle, se joue en amont. »</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · genèse &amp; Enderlin</h3>
+            <p><strong>EF5 Enderlin (20 juin 2025) :</strong> bien réelle — 3 morts, <strong>première EF5 officielle aux USA depuis Moore 2013</strong>. Mais vents officiels ≈ <strong>340 km/h</strong> (pas « &gt; 400 »), et le « RFD filmé validant VORTEX-USA » n'est attesté par aucune source.</p>
+            <p><strong>Cisaillement :</strong> 20-30 kt sur 0-6 km est <em>faible</em> ; les supercellules tornadiques demandent plutôt <strong>≥ 35 kt</strong>.</p>
+            <p><strong>VORTEX2 (2009) :</strong> ~70 instruments et une dizaine de radars mobiles, pas exactement « 100 sondes ». La nuance (CAPE nécessaire mais pas suffisant) est exacte.</p>
+            <div class="tag-list"><span class="tag">NWS · Enderlin</span><span class="tag">SPC</span><span class="tag">Markowski 2002</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="t5">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 1 · Chapitre 5</p><h2 id="t5">Types de tornades — et le pic du show.</h2></div>
+          <div class="chapter-number">1.5</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Vous voyez maintenant comment elles naissent ? Passons aux différents types avec une précision extrême, car comprendre ces distinctions est essentiel pour évaluer les risques et interpréter les alertes (selon Enhanced Fujita Scale NOAA 2007).</p>
+            <p><strong>Supercell tornado</strong> (tornade de supercellule) : 80-90 % des cas violents (NSSL 2026). Naît d'une supercellule avec mésocyclone 2-6 km. CAPE supérieur à 2000 J/kg fournit énergie pour updraft puissant. Durée longue, multi-vortex possibles, dégâts EF4-EF5 (EF4-EF5 = dégâts dévastateurs à incroyables sur l'échelle Enhanced Fujita). Étude : Smith et al. (2012).</p>
+            <p><strong>Landspout</strong> (tornade terrestre non-supercellulaire) : Le long d'une boundary (front de convergence) sans supercellule claire. Shear faible, CAPE inférieur à 1500 J/kg. Moins violentes (EF0-EF2).</p>
+            <p><strong>Waterspout</strong> (trombe marine) : Version aquatique. Deux sous-types. Diamètre 5-30 m. Étude : Golden (1974).</p>
+            <p><strong>Gustnado</strong> : Rotation brève liée à gust front.</p>
+            <p><strong>Dust devil</strong> (diable de poussière) : Thermique faible.</p>
+            <p><strong>Multi-vortex tornado</strong> (tornade multi-vortex) : Plusieurs suction vortices. CAPE supérieur à 2500 J/kg. Exemple El Reno 2013. Étude : Wurman et al. 2014.</p>
+            <p><strong>Autres hybrides</strong> : Les hybrides (hybrid tornadoes) sont des tornades de transition qui combinent des caractéristiques de plusieurs types, par exemple une landspout qui devient une waterspout en touchant l'eau, ou un cold-air funnel (entonnoir d'air froid) qui se renforce en gustnado. Elles sont moins fréquentes mais peuvent surprendre car elles évoluent rapidement d'un type à l'autre selon les conditions locales de température, d'humidité et de shear.</p>
+            <p>Comparaison détaillée : Les supercell sont les plus destructrices grâce à organisation + CAPE élevé. Expérience : Doppler on Wheels valide multi-vortex.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Lors de la tornade El Reno le 31 mai 2013 (largeur record de 4 km), des suction vortices (mini-vortex internes) ont été filmés avec des vents supérieurs à 400 km/h (NSSL/Wurman 2014). Ce multi-vortex a projeté un radar mobile à plus de 100 km/h, illustrant comment un CAPE supérieur à 2500 J/kg et un wind shear de 20-30 kt (environ 37-55 km/h de changement) peuvent créer des tornades hybrides ultra-destructrices en quelques minutes.</p>
+            </div>
+            <figure class="chapter-figure is-plate">
+              <img src="assets/tornades-multivortex.png" alt="Tornade multi-vortex : plusieurs sous-tourbillons (suction vortices) orbitant autour de l'axe d'un vortex parent, rendus comme des filaments lumineux en spirale.">
+              <figcaption>Tornade multi-vortex — des sous-tourbillons qui orbitent dans la tornade-mère (S = 1.2)</figcaption>
+            </figure>
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — Le rapport de swirl (S = 0.4 → 1.2)</span>
+              <p>« OK, accrochez-vous. Toutes les tornades ne se ressemblent pas à l'intérieur. Il y a un paramètre qui contrôle ce qui se passe au cœur, c'est le <strong>rapport de swirl</strong> S. Grossièrement : à quel point l'air tourne au bord, comparé à la vitesse à laquelle il rentre. »</p>
+              <figure class="chapter-figure is-capture">
+                <img src="assets/sim-swirl-low.png" alt="Capture réelle de la simulation à swirl faible (S = 0.4) : une colonne ascendante unique et laminaire." loading="lazy">
+                <figcaption>Capture réelle — S = 0.4, tornade unicellulaire : un tube ascendant propre</figcaption>
+              </figure>
+              <p>« À S = 0.4 — swirl faible. Une seule colonne ascendante propre, bien laminaire. C'est ce qu'on appelle une tornade unicellulaire. Tube parfait. »</p>
+              <p>« Je monte le swirl. Regardez la colonne se concentrer, devenir plus intense, plus serrée. À ce niveau-là, sur une vraie tornade mieux résolue que la nôtre, le centre commence à inverser : un courant <strong>descendant</strong> apparaît sur l'axe pendant que l'ascendance migre dans un anneau autour. C'est la fameuse structure bicellulaire. »</p>
+              <p>« Et là — boum. À S = 1.2 le tube central devient instable et il <strong>éclate en plusieurs sous-tourbillons</strong> qui orbitent autour de l'axe. C'est exactement le phénomène que Fujita avait deviné en 1971 en regardant les photos aériennes après Fargo, et qu'on vient de mentionner — les <strong>suction vortices</strong>. »</p>
+              <p class="punch">« Regardez le slab en bas : au lieu d'un anneau de vorticité, on a <strong>plusieurs taches lumineuses arrangées en spirale</strong>. Chacune est un sous-tourbillon. »</p>
+              <figure class="chapter-figure is-capture">
+                <img src="assets/sim-multivortex.png" alt="Capture réelle de la simulation à S = 1.2 : le tube central éclaté en plusieurs sous-tourbillons (suction vortices) arrangés en spirale autour de l'axe." loading="lazy">
+                <figcaption>Capture réelle — S = 1.2, le tube éclate en sous-tourbillons : les « suction vortices » de Fujita</figcaption>
+              </figure>
+              <p>« Et c'est pour ça que sur le terrain, deux maisons séparées de quelques dizaines de mètres peuvent avoir des dégâts <strong>totalement différents</strong> : l'une passe sous un sous-vortex, l'autre non. C'est pas une incohérence dans les témoignages, c'est la <strong>structure interne</strong> de la tornade. C'est exactement ce que Fujita avait compris en regardant les photos aériennes après Fargo en 1957. »</p>
+              <p>« Et dans la vraie vie, les vents à l'intérieur de ces sous-tourbillons s'<strong>ajoutent</strong> à la rotation du tourbillon principal. Les vents extrêmes mesurés par radar, comme les 486 à 510 km/h à <strong>Bridge Creek en 1999</strong> cités plus haut, ou les vitesses folles observées dans les sous-vortex d'<strong>El Reno en 2013</strong>, viennent justement de cette <strong>addition locale</strong> entre le vortex parent et les petits vortex internes. C'est pas la tornade mère qui souffle à 500 km/h, c'est un de ses petits qui orbite à 200 dans une mère qui tourne à 300. »</p>
+              <p>« Et c'est aussi ce qui a piégé Tim Samaras à El Reno en 2013. Le danger, c'est que les sous-vortex changeaient de position très vite. Même des chasseurs expérimentés pouvaient se retrouver coincés par une structure qui n'était <strong>pas lisible à l'œil nu</strong> — seulement au radar mobile, et avec quelques secondes de retard. »</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · types &amp; swirl</h3>
+            <p><strong>Multi-vortex :</strong> c'est une <em>structure</em> (sous-tourbillons), pas une catégorie définie par un seuil de CAPE. Les seuils « CAPE &lt; 1500 / &gt; 2500 J/kg » par type ne sont pas des critères de classification standards.</p>
+            <p><strong>Supercellules :</strong> ce sont surtout <em>les tornades violentes</em> (EF4-EF5) qui sont presque toujours supercellulaires, plus que « 80-90 % ».</p>
+            <p><strong>Golden 1974</strong> (cycle de vie des trombes) et <strong>Wurman et al. 2014</strong> (sous-vortex d'El Reno) sont des références réelles. L'idée-clé — les vitesses extrêmes viennent de l'<em>addition</em> sous-vortex + vortex parent — est correcte.</p>
+            <div class="tag-list"><span class="tag">NSSL · Types</span><span class="tag">Golden 1974</span><span class="tag">Wurman 2014</span></div>
+          </aside>
+        </div>
+      </section>
+      <section class="chapter reveal" aria-labelledby="t6">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 1 · Chapitre 6</p><h2 id="t6">Comment on les étudie.</h2></div>
+          <div class="chapter-number">1.6</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Storm chasers depuis 1956 (Hoadley). Projets : Tornado Intercept 1975, VORTEX 1994-95, VORTEX2 2009 (100 sondes), VORTEX-USA 2025 (LiDAR, 13 événements NSSL). Drones, Doppler on Wheels, sondes in-situ. CAPE mesuré pour prédiction (SPC 2026). Étude : Wurman et al. 2012. Expérience : <strong>Tim Samaras</strong>, ingénieur météorologue et storm chaser américain de renom, a fondé le projet TWISTEX (Tactical Weather Instrumented Sampling in/near Tornadoes Experiment) dans les années 2000. Il a conçu et déployé les premières sondes in-situ robustes surnommées « Turtle probes » (sondes en forme de tortue, durcies pour résister aux débris et aux vents extrêmes). Ces instruments mesuraient en temps réel la pression, la température, l'humidité et la vitesse du vent directement au sol à l'intérieur même de la tornade. Le 24 juin 2003, lors de la tornade EF4 (niveau 4 sur l'échelle Enhanced Fujita, soit des dégâts dévastateurs) près de Manchester dans le Dakota du Sud, l'une de ses Turtle probes a enregistré un record mondial de vents à 430 km/h (267 mph) et une chute de pression de plus de 100 hPa (hectopascals) en quelques secondes, fournissant les premières mesures directes au sol confirmant la dynamique extrême de basse pression et de rotation (source officielle : NSSL et article de Samaras et al. publié dans le <em>Journal of Atmospheric and Oceanic Technology</em> en 2004). Cette expérience a révolutionné la compréhension scientifique en apportant des données in-situ précises là où les radars Doppler mobiles ne pouvaient pas toujours atteindre le sol.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Malheureusement, le 31 mai 2013, lors de la poursuite de la tornade géante EF3 d'El Reno en Oklahoma (largeur record de 4 km), Tim Samaras, son fils Paul Samaras (également chaser et vidéaste) et leur collègue Carl Young ont perdu la vie lorsque leur véhicule a été percuté et projeté sur environ 650 yards (environ 600 mètres) par l'un des multiples suction vortices (mini-vortex internes) imbriqués dans la tornade principale. Malgré leur expertise exceptionnelle, la taille exceptionnelle du phénomène et l'évolution ultra-rapide des subvortex ont rendu toute échappatoire impossible. Le rapport officiel du NSSL de 2013, l'enquête du National Transportation Safety Board (NTSB) et l'analyse détaillée de Wurman et al. dans le <em>Bulletin of the American Meteorological Society</em> (2014) ont confirmé que, bien que l'équipe disposait de données radar en temps réel, la complexité du multi-vortex a dépassé les prévisions. Cette tragédie a conduit à une révision complète des protocoles de sécurité pour les storm chasers (distances minimales, communication en équipe, utilisation accrue de drones) et a souligné les limites des outils les plus avancés face à des phénomènes extrêmes, tout en inspirant de nouvelles générations de recherches sur la prévision des subvortex (NSSL rapport 2013 et mises à jour 2025).</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · Tim Samaras</h3>
+            <p><strong>Record de Manchester (24 juin 2003) :</strong> c'est une <strong>chute de pression de ~100 hPa</strong>, le record. La sonde n'a <em>pas</em> mesuré de vent : les « 430 km/h / 267 mph au sol » ne sont pas une mesure. La sonde est une <strong>HITPR</strong> (« turtle »).</p>
+            <p><strong>Publication :</strong> Samaras &amp; Lee 2004 est un <em>preprint de conférence AMS</em>, pas un article du <em>J. Atmos. Oceanic Technology</em>.</p>
+            <p><strong>El Reno 2013 :</strong> le véhicule projeté était celui de <strong>TWISTEX</strong> ; les Doppler on Wheels / RaXPol <em>mesuraient</em>. Pas d'« enquête NTSB » sur la tornade. Hommage : Tim &amp; Paul Samaras, Carl Young.</p>
+            <div class="tag-list"><span class="tag">NWS · Manchester</span><span class="tag">Wurman 2014</span><span class="tag">TWISTEX</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="t7">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 1 · Chapitre 7</p><h2 id="t7">Surveillance — avec quels outils ?</h2></div>
+          <div class="chapter-number">1.7</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>WSR-88D (160 unités, <strong>TVS = Tornado Vortex Signature</strong> qui indique une rotation serrée, <strong>hook echo</strong> = forme en crochet du mésocyclone, <strong>velocity couplet</strong> = couleurs opposées rouge/vert). Phased-array (inférieur à 1 min). GOES-R (30 s). Doppler on Wheels, LiDAR, NTDA/WoFS IA (NOAA 2026). CAPE intégré algorithmes SPC. Étude : Stumpf et al. 1998 sur TVS. Expérience : Outbreak 2011 – 30 min avertissement (NOAA).</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Lors des tests NSSL de 2025, le phased-array radar (un radar qui scanne en moins d'une minute grâce à des antennes électroniques sans pièces mobiles) a réduit le temps de détection à moins de 8 minutes, permettant une alerte plus rapide lors d'un outbreak testé en conditions réelles (NSSL rapport technique 2025).</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — La vue d'ensemble : LIC</span>
+              <figure class="chapter-figure is-capture">
+                <img src="assets/sim-lic.png" alt="Capture réelle de la simulation : le preset |V| + LIC, la norme du vent superposée à un grain suivant la direction de l'écoulement — jumelle visuelle d'un radar Doppler." loading="lazy">
+                <figcaption>Capture réelle — preset « |V| + LIC » : la signature radar d'une tornade, vue de près</figcaption>
+              </figure>
+              <p>« Petit aparté visuel. Jusqu'ici je vous ai séparé le vent en trois composantes — tangentielle, radiale, verticale. Mais en vrai le vent réel c'est une spirale qui combine les trois. Ce preset superpose la <strong>norme</strong> du vent et un grain qui suit la <strong>direction</strong> de l'écoulement à chaque pixel. »</p>
+              <p>« Vous voyez l'œil sombre, le mur de l'œil jaune, et — si vous regardez fin — les stries qui filent <strong>tangentiellement</strong> le long du mur de l'œil. C'est exactement ce que verrait un radar Doppler en superposition réflectivité / vitesse. À beaucoup plus fine résolution. »</p>
+              <p class="punch">« Donc quand on parle de TVS et de velocity couplet — la signature radar d'une tornade — c'est cette structure-là, vue de loin, qu'on cherche. Mon écran vous la montre vue de près. »</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · radars &amp; IA</h3>
+            <p><strong>WSR-88D, hook echo, velocity couplet, TVS :</strong> tous réels et bien décrits.</p>
+            <p><strong>Phased-array (NSSL) :</strong> programme réel (NWRT) — il réduit surtout le <em>temps de balayage</em> à moins d'une minute ; le « moins de 8 min de détection » est un chiffre à attribuer prudemment.</p>
+            <p><strong>NTDA :</strong> attention, c'est un algorithme de <em>turbulence aéronautique</em> — hors-sujet pour les tornades. <strong>WoFS</strong>, en revanche, est bien un système de prévision du NSSL.</p>
+            <div class="tag-list"><span class="tag">WSR-88D</span><span class="tag">NSSL · PAR</span><span class="tag">WoFS</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="t8">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 1 · Chapitre 8</p><h2 id="t8">Inventions et avancées technologiques.</h2></div>
+          <div class="chapter-number">1.8</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Radar Doppler 1960–70 (WSR-88D 1990s). EF-scale 1er février 2007 (28 DI = Damage Indicators). NTDA, WoFS, IA 2026 (lead time supérieur à 20 min). Phased-array, drones LiDAR. Impact : lead time de 3 à 15–45 min (SPC 2026). Étude : Lagerquist et al. 2023 sur WoFS.</p>
+            <p>Expérience : WoFS Enderlin 2025 alerte 28 min (NSSL).</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Le 20 juin 2025 lors de l'EF5 Enderlin, l'IA WoFS (Warn-on-Forecast System, un système qui fusionne des données radar et satellites en temps réel pour prédire les tornades jusqu'à 3 heures à l'avance) a donné une alerte précise de 28 minutes, permettant l'évacuation d'une école et sauvant des vies (NSSL rapport final 2025).</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · WoFS &amp; lead time</h3>
+            <p><strong>WoFS</strong> est réel et prévoit bien à <strong>3-6 h</strong> à l'avance (résolution 3 km). Mais l'<strong>alerte « 28 min » + « évacuation d'une école » à Enderlin</strong> n'est attestée par aucune source — et la tornade a frappé vers 23 h, ce qui rend l'évacuation d'une école peu plausible.</p>
+            <p>Le <strong>lead-time tornade</strong> officiel actuel est d'environ <strong>10-11 min</strong> ; les chiffres « 15-45 min » décrivent un objectif futur, pas l'état acquis.</p>
+            <div class="tag-list"><span class="tag">NSSL · WoFS</span><span class="tag">Lead time</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="t9">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 1 · Chapitre 9</p><h2 id="t9">Cas d'études célèbres.</h2></div>
+          <div class="chapter-number">1.9</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Tri-State 1925 (695 morts NCEI), Joplin 2011 (161 morts), El Reno 2013, Enderlin EF5 2025 (3 morts, 5 EF4, 68 fatalités, mars supérieur à 300 SPC). CAPE supérieur à 2000 J/kg amplifie (NSSL). 2026 supérieur à 200 rapports. Étude : Agee et al. 2016.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>En mars 2025, pendant une phase neutre ENSO (pas d'El Niño ni de La Niña), plus de 300 tornades ont été rapportées aux États-Unis en un seul mois, un record selon le SPC, avec un CAPE souvent supérieur à 2000 J/kg qui a amplifié l'instabilité (SPC rapport mensuel mars 2025).</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · cas célèbres</h3>
+            <p><strong>Mars 2025 :</strong> confirmé — l'<em>outbreak du 13-16 mars 2025</em> fut le plus grand jamais enregistré pour un mois de mars, ~<strong>300 tornades</strong> sur le mois, en phase ENSO neutre.</p>
+            <p><strong>Tri-State 695 morts :</strong> confirmé (tornade la plus meurtrière des USA). <strong>Joplin 2011 :</strong> 158 (NWS) à 161 (NIST) morts selon la méthode.</p>
+            <div class="tag-list"><span class="tag">SPC</span><span class="tag">NCEI</span><span class="tag">NIST · Joplin</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="t10">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 1 · Chapitre 10</p><h2 id="t10">Prévision, sécurité, perspectives 2026 + ENSO.</h2></div>
+          <div class="chapter-number">1.10</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="group-title">Chapitre 10 — Prévision, sécurité et perspectives futures (2026) + ENSO</p>
+            <p>SPC outlook (1–5), safe room, « Get low, stay low ». El Niño probable fin 2026 : moins nombreuses mais plus intenses (shear/CAPE CPC). La Niña : plus. Réchauffement augmente CAPE/outbreaks (NCEI/IPCC AR6). Étude : Gensini et al. 2021.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>En mars 2025, pendant une phase neutre ENSO, plus de 300 tornades ont été rapportées aux États-Unis en un seul mois, un record selon le SPC, avec un CAPE souvent supérieur à 2000 J/kg qui a amplifié l'instabilité (SPC rapport mensuel mars 2025).</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — Explication ≠ prévision</span>
+              <p>« Avant qu'on quitte les tornades : un truc important. Cette sim, c'est de l'<strong>explication</strong>, pas de la <strong>prévision</strong>. Pour la prévision, il faut le NSSL, la WoFS évoquée plus haut, des téraoctets de données radar et satellites assimilés en temps réel. Mon app, elle vous montre <strong>comment</strong> une tornade marche une fois qu'elle existe — pas <strong>quand</strong> une va se former. C'est complémentaire. »</p>
+              <p class="punch">« Ouvrez <code>tornado-sim.puter.site</code> pendant qu'on embraye sur les typhons — ça vaut le coup de jouer avec les sliders. »</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · climat &amp; ENSO</h3>
+            <p><strong>IPCC AR6 :</strong> le réchauffement accroît l'instabilité (CAPE) et les extrêmes — solide. Mais <strong>Gensini et al. 2021</strong> porte sur les <em>orages violents</em> (tornades, grêle), à ne pas confondre avec les études sur les cyclones tropicaux.</p>
+            <p><strong>ENSO sur les tornades US :</strong> le lien El Niño / La Niña est réel mais plus diffus et régional que sur les ouragans — à présenter avec prudence.</p>
+            <div class="tag-list"><span class="tag">IPCC AR6</span><span class="tag">CPC · ENSO</span><span class="tag">Gensini 2021</span></div>
+          </aside>
+        </div>
+      </section>
+      <section class="act-band reveal" id="typhons" aria-labelledby="actTyphons">
+        <p class="act-no">Partie 2 — Typhons</p>
+        <h2 id="actTyphons">Les Typhons</h2>
+        <p>Le simulateur s'efface — on n'y revient que pour les ponts physiques (œil, Coriolis, CAPE). Le cyclone tropical du Pacifique Nord-Ouest : une machine thermique océanique, gouvernée par Coriolis, qui se nourrit des eaux chaudes pendant des jours.</p>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="ty1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 2 · Chapitre 1</p><h2 id="ty1">Définition et caractéristiques de base.</h2></div>
+          <div class="chapter-number">2.1</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="group-title">Chapitre 1 — Définition et caractéristiques de base des typhons</p>
+            <p>Un typhon est un cyclone tropical mature et intense dans le Pacifique Nord-Ouest (JMA/RSMC Tokyo). Circulation fermée, vents supérieur à 118 km/h (10 min), <strong>œil 10-50 km</strong> (pression inférieur à 900 hPa = hectopascals), <strong>eyewall</strong> (mur de l'œil, la zone la plus violente) supérieur à 300 km/h, pluies 500-2000 mm/24h (HKO), surge (onde de tempête) 3-10 m. Diamètre 500-2220 km (Tip 1979). Durée 5-15 jours, rapid intensification (+30 kt/24h – knots, où 1 knot = environ 1,85 km/h, soit une augmentation de vitesse d'environ 55 km/h en 24 heures) (eaux supérieur à 26,5 °C sur profondeur supérieur à 50 m).</p>
+            <p>Le CAPE 2500-4000 J/kg = réservoir Formule 1, convection supérieur à 50 m/s. La formule du CAPE&nbsp;: <span class="imath" data-tex="\mathrm{CAPE}=\displaystyle\int_{z_{\mathrm{LFC}}}^{z_{\mathrm{EL}}} g\,\frac{T_{v,\mathrm{parc}}-T_{v,\mathrm{env}}}{T_{v,\mathrm{env}}}\,dz"></span>. En langage très simple pour les novices : cela représente l'énergie totale disponible pour faire monter l'air chaud très haut et très vite dans l'atmosphère, exactement comme le plein d'essence d'une Formule 1 qui permet d'accélérer à fond. 2025 : 27 systèmes, 13 typhons, 653 morts, 10,8 Md$ (JMA/HKO/NCEI 5 mai 2026).</p>
+            <p>Spiral bands (bandes spirales), eye replacement cycle (remplacement de l'œil). Étude : Emanuel 1986.</p>
+            <p>Expérience : Dropsondes JTWC.</p>
+            <figure class="chapter-figure is-plate">
+              <img src="assets/typhon-oeil.png" alt="Super-typhon vu de l'orbite : un vaste tourbillon de bandes nuageuses avec un œil circulaire dégagé au centre, sur un océan sombre.">
+              <figcaption>L'œil d'un typhon vu de l'orbite — œil dégagé, mur de l'œil, bandes spirales</figcaption>
+            </figure>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Le typhon Tip en 1979 reste le plus grand jamais enregistré (diamètre 2220 km, pression centrale 870 hPa) et illustre parfaitement le type « large » avec un eye replacement cycle observé. Il a traversé le Pacifique sur plus de 10 000 km, causant des dégâts massifs au Japon tout en maintenant une intensité extrême grâce à un CAPE constamment supérieur à 3000 J/kg sur des eaux très chaudes (JTWC rapport officiel 1979 et analyse rétrospective Chen et al. 2018).</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — œil de tornade, œil de typhon</span>
+              <p>« On vient de décrire l'œil d'un typhon. Visuellement, on retrouve une idée proche dans la tornade qu'on regardait toute la première partie : un centre plus calme, et un anneau de vents très forts autour. »</p>
+              <p>« Mais attention : <strong>l'échelle et le moteur physique ne sont pas les mêmes</strong>. Le typhon, c'est une grande machine thermique océanique, gouvernée par Coriolis, qui se nourrit des eaux chaudes pendant des jours. La tornade, c'est un vortex local qui vit quelques minutes à l'échelle du kilomètre. Même air, mêmes équations de base, mais pas le même phénomène. »</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · le typhon en chiffres</h3>
+            <p><strong>Tip 1979 :</strong> confirmé — plus grand cyclone jamais enregistré (2220 km, 870 hPa).</p>
+            <p><strong>CAPE 2500-4000 J/kg :</strong> surévalué. L'environnement tropical tourne plutôt à <strong>1000-2500 J/kg</strong>, et le cœur de l'eyewall n'est pas une zone de fort CAPE.</p>
+            <p><strong>Œil :</strong> plutôt <strong>20-50 km</strong> ; eyewall &gt; 300 km/h = super-typhons extrêmes seulement ; surge 3-10 m → plutôt 1-7 m. <strong>Saison 2025 :</strong> 27 tempêtes nommées, 13 typhons (les bilans 653 morts / 10,8 Md$ sont à sourcer finement).</p>
+            <div class="tag-list"><span class="tag">JMA · RSMC Tokyo</span><span class="tag">Emanuel 1986</span><span class="tag">Typhoon Tip</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="ty2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 2 · Chapitre 2</p><h2 id="ty2">Histoire des premières observations.</h2></div>
+          <div class="chapter-number">2.2</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Archives chinoises VIIe siècle (« tai fung »). Portugais XVIe « tufão ». Perry 1853. Jésuites 1865. HKO 1884 alertes. JMA 1920s. Satellites 1960. CAPE reconstruit (NCEI).</p>
+            <p>Étude : Chen et al. 2018.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>En 1281, les <strong>kamikaze</strong> (vents divins, prononcé « ka-mi-ka-zé ») ont sauvé le Japon d'une invasion du peuple des steppes en détruisant la flotte ennemie lors d'un typhon puissant ; cet événement historique est documenté dans les chroniques japonaises et illustre comment un typhon peut changer le cours de l'histoire (archives impériales japonaises, réanalysées par Chen et al. 2018). En 1922, un typhon en Chine a causé plus de 50 000 morts, forçant les premières alertes modernes (HKO archives).</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · histoire des typhons</h3>
+            <p><strong>Kamikaze 1281 :</strong> confirmé — la flotte mongole de Kubilai Khan anéantie par un typhon (preuves sédimentaires à l'appui).</p>
+            <p><strong>Typhon de Chine 1922 (Swatow) :</strong> au moins <strong>50 000 morts</strong> (estimations jusqu'à 100 000) — confirmé. <strong>HKO 1884 :</strong> premières alertes et canon à typhon — confirmé.</p>
+            <p><strong>Étymologie :</strong> « tufão » portugais (XVIe) bien attesté ; la datation « VIIe siècle » du chinois est à prendre avec prudence.</p>
+            <div class="tag-list"><span class="tag">NOAA AOML</span><span class="tag">HKO</span><span class="tag">1922 Swatow</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="ty3">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 2 · Chapitre 3</p><h2 id="ty3">Les découvreurs et scientifiques pionniers.</h2></div>
+          <div class="chapter-number">2.3</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>HKO 1880s, JTWC 1959, JMA 1945–1950. T-PARC 2008–2010. CAPE clé JMA 2026. Étude : T-PARC 2010.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>En 1884, le HKO (Hong Kong Observatory) a émis ses premières alertes pour éviter des naufrages lors d'un typhon qui menaçait la flotte britannique ; cela a sauvé des centaines de vies et marqué le début des systèmes d'alerte modernes (archives HKO 1884, réanalysées dans les rapports annuels JMA).</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · pionniers</h3>
+            <p><strong>JTWC :</strong> fondé le <strong>1er mai 1959</strong> sur Guam — confirmé.</p>
+            <p><strong>T-PARC :</strong> la campagne s'est tenue en <strong>2008</strong> (août-octobre), pas « 2008-2010 ».</p>
+            <p><strong>JMA :</strong> l'agence telle quelle date de 1956 ; le service météo japonais émettait des avis de typhon avant 1945.</p>
+            <div class="tag-list"><span class="tag">JTWC</span><span class="tag">T-PARC 2008</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="ty4">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 2 · Chapitre 4</p><h2 id="ty4">Mécanismes de formation.</h2></div>
+          <div class="chapter-number">2.4</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Eaux supérieur à 26,5 °C sur profondeur supérieur à 50 m + shear inférieur à 10 m/s + humidité supérieur à 70 % + Coriolis <span class="imath" data-tex="f = 2\,\Omega\,\sin\varphi"></span> + perturbation.</p>
+            <p>La formule de Coriolis&nbsp;: <span class="imath" data-tex="f = 2\,\Omega\,\sin\varphi"></span>. En langage très simple : cela représente la force qui fait tourner les vents dans le sens anti-horaire dans l'hémisphère nord. Air monte, chaleur latente, spirale.</p>
+            <p>Le CAPE supérieur à 2000 J/kg instabilité ; la formule du CAPE&nbsp;: <span class="imath" data-tex="\mathrm{CAPE}=\displaystyle\int_{z_{\mathrm{LFC}}}^{z_{\mathrm{EL}}} g\,\frac{T_{v,\mathrm{parc}}-T_{v,\mathrm{env}}}{T_{v,\mathrm{env}}}\,dz"></span>. En langage très simple pour les novices : cela représente l'énergie totale disponible pour faire monter l'air chaud très haut et très vite dans l'atmosphère, exactement comme le plein d'essence d'une Formule 1 qui permet d'accélérer à fond. Étude : Emanuel 1986 + T-PARC.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>En 2025, plusieurs typhons ont connu une rapid intensification (+30 kt/24h, soit environ +55 km/h en 24 heures) grâce à des eaux très chaudes pendant une phase neutre ENSO, validant les modèles JMA (JMA rapport saisonnier 2025).</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — Coriolis : tornade ≠ typhon</span>
+              <p>« Important — et c'est souvent confondu : <strong>Coriolis ne joue aucun rôle direct sur les tornades</strong>. L'échelle est trop petite, ça vit trop court. Coriolis fait tourner les <strong>typhons et les ouragans</strong> dans le bon sens hémisphère par hémisphère, parce qu'ils mesurent des centaines de kilomètres et durent des jours. »</p>
+              <p>« Une tornade, elle, peut tourner dans n'importe quel sens. Statistiquement, elle tourne antihoraire dans l'hémisphère nord — mais c'est <strong>parce que sa supercellule mère</strong>, qui est grande et qui dure plus longtemps, tourne antihoraire à cause de Coriolis. La tornade hérite la direction de sa parente, elle ne la décide pas. »</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · le rôle de Coriolis</h3>
+            <p>La précision est <strong>exacte et essentielle</strong> : Coriolis structure les cyclones tropicaux (centaines de km, plusieurs jours) mais pas les tornades (trop petites, trop brèves). Une tornade hérite le sens de rotation de sa supercellule mère.</p>
+            <p>Conditions de cyclogenèse (eaux &gt; 26,5 °C sur &gt; 50 m, faible shear, humidité, Corislois, perturbation) : <strong>standard et correct</strong>.</p>
+            <div class="tag-list"><span class="tag">Coriolis</span><span class="tag">Cyclogenèse</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="ty5">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 2 · Chapitre 5</p><h2 id="ty5">Types de typhons.</h2></div>
+          <div class="chapter-number">2.5</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Les typhons se classent selon plusieurs critères précis définis par la JMA et le JTWC (mises à jour 2026). Cette classification repose sur la vitesse maximale soutenue sur 10 minutes, la structure interne, la taille, le comportement de mouvement et l'intensité convective mesurée par le CAPE (Convective Available Potential Energy, énergie potentielle convective disponible, supérieur à 2000 J/kg pour une convection explosive).</p>
+            <p>La formule du CAPE&nbsp;: <span class="imath" data-tex="\mathrm{CAPE}=\displaystyle\int_{z_{\mathrm{LFC}}}^{z_{\mathrm{EL}}} g\,\frac{T_{v,\mathrm{parc}}-T_{v,\mathrm{env}}}{T_{v,\mathrm{env}}}\,dz"></span>. En langage très simple pour les novices : cela représente l'énergie totale disponible pour faire monter l'air chaud très haut et très vite dans l'atmosphère, exactement comme le plein d'essence d'une Formule 1 qui permet d'accélérer à fond.</p>
+            <p><strong>Super-typhon</strong> (super typhoon) : Vents maximums soutenus supérieur à 240 km/h (130 kt). Ces systèmes présentent un œil très bien défini, un eyewall (mur de l'œil) extrêmement compact et dense, et une convection très profonde avec CAPE souvent supérieur à 3000-4000 J/kg. Ils sont capables de rapid intensification (+30 kt/24h ou plus). Exemple historique : Tip 1979 (870 hPa) et Haiyan 2013. Selon les statistiques JTWC 2025, environ 20-25 % des typhons atteignent ce stade, causant plus de 70 % des dommages économiques totaux.</p>
+            <p><strong>Typhon classique</strong> : Vents entre 118 km/h et 240 km/h. Œil présent mais moins stable, bandes spirales (spiral bands) bien marquées. CAPE typiquement 2500-3500 J/kg. Ils représentent la majorité des systèmes matures (environ 60 % selon JMA 2026).</p>
+            <p><strong>Typhon hybride</strong> (hybrid typhoon) : Combinaison de caractéristiques tropicales et extratropicales (transition vers un cyclone extratropical lorsque le centre devient froid). Souvent observés en fin de vie, avec un CAPE plus faible (inférieur à 2000 J/kg) mais une taille augmentée et des vents étendus. Étude clé : Hart (2003) sur la classification cyclone phase space.</p>
+            <p><strong>Typhon à œil clair / nuageux</strong> : Œil bien dégagé (clair) ou rempli de nuages (nuageux). L'œil clair indique souvent une intensité maximale et une stabilité interne élevée (faible shear).</p>
+            <p><strong>Typhon stagnant</strong> (slow-moving ou quasi-stationary) : Vitesse de déplacement inférieure à 10 km/h. Ils produisent des accumulations de pluies extrêmes (supérieur à 1000 mm en 48h) et des inondations catastrophiques.</p>
+            <p>Exemple : Morakot 2009 (Taiwan).</p>
+            <p><strong>Typhon compact</strong> (midget typhoon) : Diamètre inférieur à 300-400 km. Vents très concentrés, intensification rapide grâce à un CAPE élevé dans un petit volume. Moins prévisibles mais très destructeurs localement.</p>
+            <p><strong>Typhon large</strong> (large typhoon) : Diamètre supérieur à 1000-2000 km (comme Tip 1979 avec 2220 km). Vents étendus, onde de tempête (storm surge) importante sur de vastes zones côtières. Ils influencent le climat régional sur des milliers de kilomètres.</p>
+            <p><strong>Autres sous-types</strong> :</p>
+            <p>Typhon annulaire (eyewall symétrique et circulaire), typhon avec eye replacement cycle (cycle de remplacement de l'œil, processus naturel où un nouvel eyewall se forme à l'extérieur de l'ancien, causant une fluctuation temporaire d'intensité).</p>
+            <p>Le CAPE supérieur à 2000 J/kg est le facteur commun favorisant les super-typhons et la rapid intensification (Emanuel 1986, mise à jour JMA 2026). Selon les données HKO et JTWC 2025, les typhons avec CAPE élevé montrent une probabilité de 85 % d'atteindre le stade super-typhon.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Le typhon Tip (1979) reste le plus grand jamais enregistré (diamètre 2220 km, pression centrale 870 hPa) et illustre parfaitement le type « large » avec un eye replacement cycle observé. Il a traversé le Pacifique sur plus de 10 000 km, causant des dégâts massifs au Japon tout en maintenant une intensité extrême grâce à un CAPE constamment supérieur à 3000 J/kg sur des eaux très chaudes (JTWC rapport officiel 1979 et analyse rétrospective Chen et al. 2018).</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · classification</h3>
+            <p><strong>Super-typhon ≥ 240 km/h (130 kt) :</strong> confirmé (sur base vent 1 min du JTWC). <strong>Eye replacement cycle</strong>, <strong>Hart 2003</strong> (cyclone phase space) : réels.</p>
+            <p><strong>Les seuils de CAPE par sous-type</strong> (3000-4000, 2500-3500, &lt; 2000…) sont à prendre comme illustratifs : ce ne sont pas des critères de classification officiels, et les valeurs de CAPE réelles sont plus basses.</p>
+            <p><strong>Morakot 2009 :</strong> typhon stagnant, pic de pluie ~2777 mm — exemple parfait.</p>
+            <div class="tag-list"><span class="tag">JTWC</span><span class="tag">Hart 2003</span><span class="tag">Morakot</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="ty6">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 2 · Chapitres 6 à 9</p><h2 id="ty6">Étudier, surveiller, inventer — et les grands cas.</h2></div>
+          <div class="chapter-number">2.6</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="group-title">Chapitre 6 — Comment on les étudie</p>
+            <p>Himawari-9 (10 min 16 canaux), Argo (supérieur à 4000 bouées 2000 m), Saildrones, T-PARC dropsondes. CAPE radiosondages.</p>
+            <p>Étude : Argo Program 2026.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Le réseau Argo (plus de 4000 bouées autonomes qui descendent jusqu'à 2000 m de profondeur pour mesurer la température et la salinité) a fourni des profils verticaux précis de l'énergie océanique pendant la saison 2025, permettant de prédire avec une précision accrue la rapid intensification des typhons (Argo Program rapport annuel 2026).</p>
+            </div>
+            <p class="group-title">Chapitre 7 — Surveillance avec quels outils</p>
+            <p>Himawari 10 min, scatteromètres ASCAT/OSCAT (vents surface 25 km), radars côtiers, JMA-GSM EPS 51 membres, IA 2026. CAPE temps réel.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Les scatteromètres (instruments qui mesurent la vitesse du vent à la surface de l'océan en analysant les vagues) sont irremplaçables en océan ouvert, comme lors de la surveillance du typhon de 2025 où ils ont détecté des vents supérieurs à 200 km/h bien avant que les satellites ne le confirment (JMA rapport 2025).</p>
+            </div>
+            <p class="group-title">Chapitre 8 — Inventions et avancées technologiques</p>
+            <p>Noms 1945 (US → JMA), modèles 1990s, IA JMA 2026, phased-array côtiers. CAPE intégré.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Les phased-array radars côtiers (radars qui balayent en 30 secondes grâce à des antennes électroniques) ont permis une mise à jour ultra-rapide des vents près des côtes lors de la saison 2025, améliorant les évacuations (JMA rapport technique 2025).</p>
+            </div>
+            <p class="group-title">Chapitre 9 — Cas d'études célèbres</p>
+            <p>Tip 1979 (870 hPa, 2220 km), Haiyan 2013 (supérieur à 6300 morts, surge 6 m), Mangkhut 2018, 2025 (653 morts 10,8 Md$). CAPE amplifie (JMA). Étude : Lin et al. 2014 Haiyan.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Le typhon Haiyan en 2013 a détruit 90 % de la ville de Tacloban aux Philippines avec une onde de tempête de 6 m et plus de 6300 morts, illustrant comment un CAPE supérieur à 3000 J/kg et une rapid intensification peuvent causer des catastrophes humaines massives (JTWC et JMA rapports officiels 2013, étude Lin et al. 2014).</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · instruments &amp; grands cas</h3>
+            <p><strong>Argo</strong> (~4000 flotteurs, 2000 m), <strong>Himawari-9</strong> (16 canaux, 10 min), <strong>scatteromètres ASCAT/OSCAT</strong> (25 km) : tous confirmés.</p>
+            <p><strong>Haiyan 2013 :</strong> surge ~6 m et <strong>&gt; 6300 morts</strong> confirmés ; « 90 % de Tacloban » est un chiffre médiatique à atténuer. La référence « Lin et al. 2014 » est à vérifier (probable Lin, Pun &amp; Lin 2014, GRL).</p>
+            <div class="tag-list"><span class="tag">Argo</span><span class="tag">Himawari-9</span><span class="tag">Haiyan</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="ty10">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 2 · Chapitre 10</p><h2 id="ty10">Prévision, sécurité, perspectives 2026 + El Niño.</h2></div>
+          <div class="chapter-number">2.10</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Alertes JMA/HKO niveaux 1-10 (évacuation niveau 3), abris renforcés. El Niño faible shear → plus intenses Pacifique Ouest (CPC). La Niña shear fort. 2026 El Niño risque élevé. Réchauffement CAPE + extrêmes (IPCC AR6/JMA).</p>
+            <p>Étude : Knutson et al. 2020.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Lors d'un typhon de 2025, l'évacuation obligatoire recommandée par le HKO a sauvé des milliers de vies en déplaçant les populations vers des abris anti-typhon renforcés, démontrant l'efficacité des systèmes d'alerte modernes (HKO rapport annuel 2025).</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · ENSO &amp; typhons</h3>
+            <p><strong>El Niño / Pacifique Ouest :</strong> le lien est réel (modulation du shear et de la position des typhons). <strong>Knutson et al. 2020</strong> (BAMS, cyclones &amp; changement climatique) est une référence solide.</p>
+            <p>L'efficacité des <strong>systèmes d'alerte HKO/JMA</strong> et de l'évacuation obligatoire est bien documentée.</p>
+            <div class="tag-list"><span class="tag">CPC · ENSO</span><span class="tag">Knutson 2020</span><span class="tag">HKO</span></div>
+          </aside>
+        </div>
+      </section>
+      <section class="act-band reveal" id="ouragans" aria-labelledby="actOuragans">
+        <p class="act-no">Partie 3 — Ouragans</p>
+        <h2 id="actOuragans">Les Ouragans</h2>
+        <p>Le même grand cyclone tropical que le typhon, mais dans l'Atlantique ou le Pacifique Est. La seule différence : le nom et la région.</p>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="o1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 3 · Chapitre 1</p><h2 id="o1">Définition et caractéristiques.</h2></div>
+          <div class="chapter-number">3.1</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Un ouragan est un cyclone tropical dans l'Atlantique ou Pacifique Est (NHC = National Hurricane Center). Imaginez un énorme tourbillon géant qui tourne dans le sens anti-horaire (comme une vis qui s'enfonce dans le sol) et qui peut mesurer des centaines de kilomètres de diamètre : c'est exactement ce qu'est un ouragan. Il possède une structure très organisée avec un œil (zone calme et claire au centre, comme le trou d'un donut), un eyewall (mur de l'œil, la zone la plus violente avec les vents les plus forts et les pluies les plus intenses) et des bandes spirales (rainbands) qui tournent autour comme les bras d'une galaxie. Selon la définition officielle du NHC (mise à jour 2026), les ouragans se classent sur l'échelle <strong>Saffir-Simpson</strong> (échelle qui classe de Cat 1 à Cat 5 selon la vitesse du vent) : Cat 1 (supérieur à 119 km/h, vents qui cassent des branches), jusqu'à Cat 5 (supérieur à 252 km/h, vents qui détruisent tout comme une bombe). En 2025, il y a eu 13 systèmes nommés, 5 ouragans, 3 Cat 5, avec un ACE (Accumulated Cyclone Energy, indice qui mesure l'énergie totale libérée par les tempêtes) de 130,8 (NHC). L'onde de tempête (storm surge, montée brutale du niveau de la mer causée par les vents qui poussent l'eau vers la côte) peut atteindre 9 m, et les pluies peuvent dépasser 500 mm en quelques jours. Le CAPE (Convective Available Potential Energy, c'est-à-dire l'énergie potentielle convective disponible) supérieur à 2000 J/kg (supérieur à 2000 joules par kilogramme) fournit l'énergie comme une batterie pleine qui alimente la convection (montée d'air chaud très rapide). La formule du CAPE&nbsp;: <span class="imath" data-tex="\mathrm{CAPE}=\displaystyle\int_{z_{\mathrm{LFC}}}^{z_{\mathrm{EL}}} g\,\frac{T_{v,\mathrm{parc}}-T_{v,\mathrm{env}}}{T_{v,\mathrm{env}}}\,dz"></span>.</p>
+            <p>En langage très simple pour les novices : cela représente l'énergie totale disponible pour faire monter l'air chaud très haut et très vite dans l'atmosphère, exactement comme le plein d'essence d'une Formule 1 qui permet d'accélérer à fond. Étude clé : NHC HURDAT2 (base de données réanalysée des ouragans historiques). Expérience historique : le vol de Duckworth en 1943 qui a pénétré l'œil d'un ouragan pour la première fois.</p>
+            <figure class="chapter-figure is-plate">
+              <img src="assets/ouragan-atlantique.png" alt="Un grand ouragan atlantique en approche d'une côte, rendu comme une carte ancienne fusionnée avec une vue satellite : spirale, œil dégagé, onde de tempête le long du rivage.">
+              <figcaption>Un ouragan sur l'Atlantique — œil, bandes spirales et onde de tempête en approche de la côte</figcaption>
+            </figure>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Le vol de Duckworth en 1943 est né d'un pari avec un passager pendant la Seconde Guerre mondiale ; le pilote a traversé l'œil d'un ouragan et a prouvé que c'était possible, donnant naissance aux Hurricane Hunters (NHC rapport historique 1943). Ce vol a permis de collecter les premières données in-situ sur la structure interne d'un ouragan, révolutionnant les prévisions.</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · l'ouragan en chiffres</h3>
+            <p><strong>Saffir-Simpson :</strong> Cat 1 &gt; 119 km/h, Cat 5 ≥ 252 km/h, ouragan majeur dès Cat 3 — confirmé. <strong>Duckworth 1943 :</strong> premier vol dans l'œil, né d'un pari — confirmé (27 juillet 1943).</p>
+            <p><strong>Saison atlantique 2025 :</strong> 13 tempêtes nommées et <strong>3 ouragans Cat 5</strong> (Erin, Humberto, Melissa) — confirmé. Le NHC a retiré l'onde de tempête de l'échelle (elle dépend du littoral) : « 9 m » = cas extrême, pas une valeur fixe de Cat 5.</p>
+            <div class="tag-list"><span class="tag">NHC</span><span class="tag">Saffir-Simpson</span><span class="tag">Hurricane Hunters</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="o2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 3 · Chapitres 2 à 10</p><h2 id="o2">Histoire, mécanismes, surveillance et grands cas.</h2></div>
+          <div class="chapter-number">3.2</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="group-title">Chapitre 2 — Histoire des premières observations</p>
+            <p>Colomb 1492, Redfield 1821 rotation, HURDAT supérieur à 1000 cas 1851 (NHC). CAPE reconstruit. Étude : Landsea et al. 2004.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Le Great Hurricane de 1780 a tué plus de 22 000 personnes dans les Caraïbes et reste l'un des plus meurtriers jamais enregistrés (archives coloniales britanniques et espagnoles, réanalysées par NHC 2026). Ce typhon a détruit des flottes entières et des villes, illustrant la puissance dévastatrice des ouragans avant toute surveillance moderne.</p>
+            </div>
+            <p class="group-title">Chapitre 3 — Les découvreurs et scientifiques pionniers</p>
+            <p>Duckworth 1943, NHC 1935, HRD 1960s. CAPE mesuré.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Duckworth a parié avec un passager qu'il pouvait traverser l'œil d'un ouragan sans danger ; ce vol a donné naissance aux Hurricane Hunters (rapport NHC 1943). Il a collecté les premières mesures directes de pression et de vent à l'intérieur de l'œil.</p>
+            </div>
+            <p class="group-title">Chapitre 4 — Mécanismes de formation</p>
+            <p>Les ouragans se forment au-dessus d'eaux supérieures à 26,5 °C sur une profondeur supérieure à 50 m (énergie thermique comme une batterie), avec un shear (cisaillement du vent) faible, un Coriolis effect (force qui fait tourner les vents) et une humidité élevée. Le CAPE supérieur à 2000 J/kg fournit l'énergie pour une convection explosive. La formule du CAPE&nbsp;: <span class="imath" data-tex="\mathrm{CAPE}=\displaystyle\int_{z_{\mathrm{LFC}}}^{z_{\mathrm{EL}}} g\,\frac{T_{v,\mathrm{parc}}-T_{v,\mathrm{env}}}{T_{v,\mathrm{env}}}\,dz"></span>. En langage très simple pour les novices : cela représente l'énergie totale disponible pour faire monter l'air chaud très haut et très vite dans l'atmosphère, exactement comme le plein d'essence d'une Formule 1 qui permet d'accélérer à fond. Étude : HWRF (Hurricane Weather Research and Forecasting model).</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Les eaux chaudes de 2025 ont permis à 3 ouragans d'atteindre la catégorie 5, avec un CAPE supérieur à 2000 J/kg qui a alimenté une convection explosive (NHC rapport saisonnier 2025).</p>
+            </div>
+            <p class="group-title">Chapitre 5 — Types d'ouragans</p>
+            <p>Cat 1-5 sur l'échelle Saffir-Simpson, majeurs à partir de Cat 3 (supérieur à 178 km/h), œil clair ou en cycle de remplacement, hybrides. CAPE favorise les catégories élevées.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Les ouragans de catégorie 5 peuvent produire une onde de tempête jusqu'à 9 m, comme observé historiquement, causant des inondations côtières massives sur des centaines de kilomètres (NHC HURDAT2).</p>
+            </div>
+            <p class="group-title">Chapitre 6 — Comment on les étudie</p>
+            <p>Avions WC-130J (Hurricane Hunters) larguent des dropsondes (sondes qui mesurent température, pression, vent pendant la descente). Saildrones et TROPICS (satellites). CAPE mesuré en vol.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Les dropsondes (sondes larguées des avions qui mesurent température, pression et vent pendant leur descente) traversent l'eyewall pour fournir des profils précis, comme lors des vols Hurricane Hunters de 2025 (NHC rapport 2025).</p>
+            </div>
+            <p class="group-title">Chapitre 7 — Surveillance avec quels outils</p>
+            <p>GOES-R (satellites avec scans toutes les 30 secondes), modèle HWRF (haute résolution), radars côtiers, bouées océaniques. CAPE intégré en temps réel.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Le satellite GOES-R détecte les overshooting tops (nuages qui percent la tropopause, indiquant une convection très forte) en 30 secondes, permettant un suivi minute par minute des ouragans (NOAA rapport 2026).</p>
+            </div>
+            <p class="group-title">Chapitre 8 — Inventions et avancées technologiques</p>
+            <p>Échelle Saffir-Simpson (1971), IA 2026, Saildrones autonomes.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>L'IA de 2026 a amélioré le lead time (temps d'avertissement) de plusieurs heures lors de la saison 2025, en fusionnant des données océaniques et atmosphériques en temps réel (NHC rapport IA 2025).</p>
+            </div>
+            <p class="group-title">Chapitre 9 — Cas d'études célèbres</p>
+            <p>Camille 1969 (Cat 5 record), Katrina 2005 (surge catastrophique), 2025 Erin/Humberto/Melissa (ACE élevé). CAPE amplifie (NHC).</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>L'ouragan Camille en 1969 a maintenu une intensité extrême au moment du landfall (arrivée sur terre) avec des vents supérieurs à 250 km/h, causant des dégâts massifs en Louisiane et au Mississippi (NHC HURDAT2 réanalysis 2026).</p>
+            </div>
+            <p class="group-title">Chapitre 10 — Prévision, sécurité et perspectives futures (2026) + El Niño</p>
+            <p>NHC watches/warnings, évacuation obligatoire. El Niño augmente le shear (supérieur) dans l'Atlantique et réduit le nombre d'ouragans (CPC).</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Lors des surges (ondes de tempête) de 2025, l'évacuation obligatoire des zones basses a sauvé des milliers de vies, démontrant l'efficacité des protocoles NHC (NHC rapport post-saison 2025).</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · ouragans</h3>
+            <p><strong>Colomb :</strong> la première description européenne d'un ouragan date de <strong>1494</strong> (2e voyage), pas 1492. <strong>Redfield :</strong> observation en 1821, démonstration de la rotation publiée en <strong>1831</strong>.</p>
+            <p><strong>Great Hurricane 1780 :</strong> &gt; 22 000 morts — confirmé (c'est un <em>ouragan</em>, le texte le nomme par erreur « typhon »). <strong>Camille 1969 :</strong> landfall Cat 5 au <strong>Mississippi</strong> (Waveland).</p>
+            <p><strong>HWRF :</strong> retiré fin 2023, remplacé par <strong>HAFS</strong>. Le mécanisme El Niño → plus de shear → moins d'ouragans atlantiques est <strong>exact</strong>.</p>
+            <div class="tag-list"><span class="tag">NHC · HURDAT2</span><span class="tag">NOAA AOML</span><span class="tag">HAFS</span></div>
+          </aside>
+        </div>
+      </section>
+      <section class="act-band reveal" id="tempetes" aria-labelledby="actTempetes">
+        <p class="act-no">Partie 4 — Tempêtes tropicales + El Niño / La Niña / Phase neutre ENSO</p>
+        <h2 id="actTempetes">Tempêtes &amp; ENSO</h2>
+        <p>La tempête tropicale, ce stade plus faible qui n'atteint pas l'ouragan — et ENSO, le grand régulateur qui rebat les cartes d'un bassin à l'autre.</p>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="te1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 4 · Chapitre 1</p><h2 id="te1">Définition et caractéristiques des tempêtes tropicales.</h2></div>
+          <div class="chapter-number">4.1</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p><strong>Tempête tropicale</strong> (tropical storm) : vents 63-118 km/h, circulation fermée. Supérieur à 50 % restent à ce stade. Danger pluies/inondations. CAPE supérieur à 2000 J/kg peut transformer. La formule du CAPE&nbsp;: <span class="imath" data-tex="\mathrm{CAPE}=\displaystyle\int_{z_{\mathrm{LFC}}}^{z_{\mathrm{EL}}} g\,\frac{T_{v,\mathrm{parc}}-T_{v,\mathrm{env}}}{T_{v,\mathrm{env}}}\,dz"></span>. En langage très simple pour les novices : cela représente l'énergie totale disponible pour faire monter l'air chaud très haut et très vite dans l'atmosphère, exactement comme le plein d'essence d'une Formule 1 qui permet d'accélérer à fond. Allison 2001 : 90+ cm pluie, 41-55 morts, supérieur à 9 Md$ (NHC).</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>(youpi!!!) La tempête tropicale Allison en 2001 a déversé plus de 90 cm de pluie sur Houston, inondant des hôpitaux et causant 41 à 55 morts ainsi que plus de 9 milliards de dollars de dégâts, illustrant comment une tempête qui ne devient pas ouragan peut causer des inondations catastrophiques (NHC rapport final 2001).</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · tempêtes tropicales</h3>
+            <p><strong>Allison 2001 :</strong> &gt; 90 cm de pluie sur Houston et 41-55 morts confirmés ; coût ~<strong>8,5 milliards $ (2001)</strong> plutôt que « plus de 9 ».</p>
+            <p><strong>« &gt; 50 % restent au stade tempête » :</strong> vrai à l'échelle mondiale (environ la moitié des systèmes nommés n'atteignent pas l'ouragan) — mais faux pour l'Atlantique seul, où la majorité devient ouragan.</p>
+            <div class="tag-list"><span class="tag">NHC</span><span class="tag">Allison 2001</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" aria-labelledby="te2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie 4 · Chapitres 2 à 10</p><h2 id="te2">Histoire, mécanismes, types et l'intégration ENSO.</h2></div>
+          <div class="chapter-number">4.2</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="group-title">Chapitre 2 — Histoire des premières observations</p>
+            <p>Colomb 1492, navires 1800s, nomenclature 1953. CAPE présent.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Les rapports de navires au XIXe siècle étaient sporadiques et souvent imprécis, mais ils ont permis de cartographier les premières trajectoires de tempêtes tropicales avant l'ère des satellites (archives maritimes NHC).</p>
+            </div>
+            <p class="group-title">Chapitre 3 — Les découvreurs et scientifiques pionniers</p>
+            <p>Redfield, Duckworth 1943, HRD transition. CAPE anticipé.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Le vol de Duckworth en 1943 a donné naissance aux Hurricane Hunters, permettant d'étudier la transition des tempêtes tropicales vers les ouragans (rapport NHC 1943).</p>
+            </div>
+            <p class="group-title">Chapitre 4 — Mécanismes de formation des tempêtes tropicales</p>
+            <p>Eaux supérieur à 26,5 °C, faible shear, Coriolis, convergence. Shear bloque. CAPE réservoir. La formule du CAPE&nbsp;: <span class="imath" data-tex="\mathrm{CAPE}=\displaystyle\int_{z_{\mathrm{LFC}}}^{z_{\mathrm{EL}}} g\,\frac{T_{v,\mathrm{parc}}-T_{v,\mathrm{env}}}{T_{v,\mathrm{env}}}\,dz"></span>. En langage très simple pour les novices : cela représente l'énergie totale disponible pour faire monter l'air chaud très haut et très vite dans l'atmosphère, exactement comme le plein d'essence d'une Formule 1 qui permet d'accélérer à fond.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Un shear fort maintient souvent une tempête au stade tropical, comme observé en 2025 où plusieurs systèmes n'ont pas pu s'intensifier (NHC rapport 2025).</p>
+            </div>
+            <p class="group-title">Chapitre 5 — Types de tempêtes tropicales</p>
+            <p>Pures (centre chaud), <strong>subtropicales</strong> (centre froid), rainbands. CAPE favorise transitions.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Les rainbands (bandes de pluie) de tempêtes tropicales peuvent causer des pluies torrentielles localisées, comme lors d'Allison 2001 (NHC).</p>
+            </div>
+            <p class="group-title">Chapitre 6 — Comment on les étudie (intégration El Niño)</p>
+            <p>Hunters dropsondes, Saildrones, TROPICS. CAPE vol. El Niño shear Atlantique supérieur (CPC).</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Les dropsondes ont permis d'observer la transition d'une tempête tropicale vers un ouragan en 2025, avec des mesures de CAPE en temps réel (NHC).</p>
+            </div>
+            <p class="group-title">Chapitre 7 — Surveillance avec quels outils (intégration El Niño)</p>
+            <p>GOES-R 30 s, Argo, Saildrones, HWRF. CPC ENSO ajuste.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Le GOES-R a fourni des images toutes les 30 secondes pendant la saison 2025, permettant un suivi ultra-précis des tempêtes tropicales (NOAA).</p>
+            </div>
+            <p class="group-title">Chapitre 8 — Inventions et avancées technologiques (intégration El Niño)</p>
+            <p>Noms 1950s, modèles, IA 2026. CAPE intégré. Modèles ENSO.</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>L'IA de 2026 a révolutionné l'évolution des tempêtes tropicales en prédisant leur intensification avec une précision accrue (NHC rapport IA 2025).</p>
+            </div>
+            <p class="group-title">Chapitre 9 — Cas d'études célèbres (intégration El Niño)</p>
+            <p>Allison 2001, Harvey 2017, 2025 pluvieuses. CAPE clé. El Niño 2015-2016 boost Pacifique (CPC).</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Allison en 2001 a causé plus de 90 cm de pluie sur Houston, inondant des hôpitaux et causant 41-55 morts (NHC rapport 2001).</p>
+            </div>
+            <p class="group-title">Chapitre 10 — Prévision, sécurité et perspectives futures (2026) + El Niño / La Niña</p>
+            <p>NHC watches, évacuation inondables. El Niño Pacifique +, Atlantique - shear. La Niña inverse. 2026 risque Pacifique. CAPE supérieur réchauffement (IPCC).</p>
+            <div class="lesson-block">
+              <span class="block-label">Anecdote</span>
+              <p>Lors d'El Niño, les tempêtes tropicales restent souvent au stade de tempête et causent des inondations records, comme observé en 2015–2016 dans le Pacifique (CPC rapport).</p>
+            </div>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · ENSO &amp; transitions</h3>
+            <p><strong>Subtropicale = centre (partiellement) froid / tropicale = centre chaud :</strong> distinction correcte en vulgarisation. <strong>Harvey 2017 :</strong> record US de pluie cyclonique (~1,54 m).</p>
+            <p><strong>El Niño 2015-2016 :</strong> a bien dopé le Pacifique. Le mécanisme ENSO (El Niño → plus de shear atlantique → moins d'ouragans ; La Niña → l'inverse) est <strong>solide</strong>.</p>
+            <div class="tag-list"><span class="tag">CPC · ENSO</span><span class="tag">Harvey 2017</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="differences" aria-labelledby="diff">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Différenciation</p><h2 id="diff">Tornade, typhon, ouragan, tempête tropicale et El Niño.</h2></div>
+          <div class="chapter-number">5.0</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="group-title">Différenciation entre tornade, typhon, ouragan, tempête tropicale et El Niño</p>
+            <p class="sub">Petite conclusion</p>
+            <p>Une <strong>tornade</strong> est un vortex très localisé et extrêmement violent (quelques centaines de mètres de large) issu d'un orage, avec des vents rotatifs destructeurs sur une zone limitée et une durée courte.</p>
+            <p>Un <strong>typhon</strong> est un vaste cyclone tropical dans le Pacifique Nord-Ouest : des centaines de kilomètres de diamètre, plusieurs jours de durée, vents forts, pluies massives et onde de tempête sur de grandes régions côtières.</p>
+            <p>Un <strong>ouragan</strong> est exactement le même type de grand cyclone tropical, mais dans l'Atlantique ou le Pacifique Est. La seule différence est le nom et la région géographique.</p>
+            <p>Une <strong>tempête tropicale</strong> est un système plus faible (vents 63-118 km/h) qui n'atteint pas encore le statut d'ouragan ou de typhon. Elle reste souvent à ce stade et son principal danger reste les inondations par pluies torrentielles.</p>
+            <p><strong>El Niño</strong> n'est pas une tempête : c'est un phénomène climatique naturel de réchauffement des eaux du Pacifique équatorial qui modifie la circulation atmosphérique mondiale. Il réduit souvent les ouragans dans l'Atlantique tout en favorisant plus de typhons et de tempêtes dans le Pacifique. La Niña est l'inverse (eaux plus froides).</p>
+            <p>Ces distinctions montrent bien que les tornades sont des phénomènes locaux et ultra-violents, tandis que les typhons, ouragans et tempêtes tropicales sont des systèmes à grande échelle durables. El Niño agit comme un régulateur global qui influence leur formation selon les bassins. Fin du live extinction des lumières...</p>
+            <figure class="chapter-figure is-plate">
+              <img src="assets/enso-pacifique.png" alt="Globe schématique centré sur le Pacifique équatorial illustrant ENSO : une langue d'eau chaude orange (El Niño) opposée à une langue d'eau froide bleue (La Niña), en courants océaniques gravés.">
+              <figcaption>ENSO — la langue chaude d'El Niño et la langue froide de La Niña sur le Pacifique équatorial</figcaption>
+            </figure>
+          </article>
+          <aside class="side-note">
+            <h3>La règle des noms</h3>
+            <p>Même phénomène, trois noms selon le bassin : <strong>ouragan</strong> (Atlantique, Pacifique Est), <strong>typhon</strong> (Pacifique Nord-Ouest), <strong>cyclone</strong> (océan Indien, Pacifique Sud).</p>
+            <p>Et la grande ligne de partage : la <strong>tornade</strong> est petite, brève, locale ; les <strong>cyclones tropicaux</strong> sont vastes, lents, durables. Coriolis sépare les deux mondes.</p>
+            <div class="tag-list"><span class="tag">Échelles</span><span class="tag">ENSO</span><span class="tag">Bassins</span></div>
+          </aside>
+        </div>
+      </section>
+      <section class="chapter reveal" id="fermeture" aria-labelledby="ferm">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Fermeture</p><h2 id="ferm">Le mot de la fin.</h2></div>
+          <div class="chapter-number">6.0</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>« Voilà, on arrive au bout. »</p>
+            <div class="dialogue-block">
+              <span class="sam-head">Au simulateur — pour aller plus loin</span>
+              <p>« Si vous voulez creuser tout ce qu'on a montré : <code>tornado-sim.puter.site</code>. Le bouton <strong>📘 Doc</strong> dans le menu ouvre une explication illustrée en français de toute la physique vue ce soir. Chaque figure de la doc a un préréglage qui correspond, donc on lit et on manipule en parallèle. Le code est libre, sur GitHub. À la prochaine. »</p>
+            </div>
+            <p>« Merci à vous tous d'avoir suivi. Fin du live, extinction des lumières… »</p>
+          </article>
+          <aside class="side-note">
+            <h3>Pour aller plus loin</h3>
+            <p>La <strong>simulation</strong> : <a href="https://tornado-sim.puter.site/" target="_blank" rel="noopener" style="color:var(--gold-bright)">tornado-sim.puter.site</a>. La <strong>documentation illustrée</strong> de la physique : <a href="https://thesamlepirate.github.io/tornado-simulator/" target="_blank" rel="noopener" style="color:var(--gold-bright)">tornado-simulator</a>. Code libre, sur GitHub.</p>
+            <div class="tag-list"><span class="tag">Open source</span><span class="tag">Doc FR</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="qa" aria-labelledby="qa-h">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Questions du chat</p><h2 id="qa-h">Les réponses, prêtes.</h2></div>
+          <div class="chapter-number">7.0</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="qa-list">
+              <div class="qa-item">
+                <p class="q">Q : « C'est en temps réel, vraiment ? »</p>
+                <p>« Oui. Le solveur tourne à 60 images par seconde sur une grille 96³, en compute shaders, sur la carte graphique. À chaque frame, il résout l'advection du vent, la divergence, la pression par Jacobi rouge-noir 14 itérations, soustrait le gradient, applique la fermeture sous-maille de Smagorinsky, et boucle. Aucun rendu pré-calculé, aucune animation pré-enregistrée. Tout ce qui bouge, c'est de la physique qui se résout devant vous. »</p>
+              </div>
+              <div class="qa-item">
+                <p class="q">Q : « Pourquoi le HUD c'est important ? »</p>
+                <p>« Parce que c'est la différence entre une démo et une simulation. Le HUD lit <strong>directement le champ 3D du GPU</strong>. Quand il dit "ΔP min = -107 hPa", c'est qu'il est allé chercher le minimum de pression dans tout le cube — c'est pas un nombre que j'ai tapé. Si je désactive la chaleur latente, ce nombre va chuter tout seul, sans que je touche à rien d'autre. La sim <strong>trouve</strong> la physique, je la lui ai pas dictée. »</p>
+              </div>
+              <div class="qa-item">
+                <p class="q">Q : « Pourquoi 96³, c'est petit non ? »</p>
+                <p>« Oui, c'est petit pour de la recherche — les modèles VORTEX tournent à des résolutions bien plus fines. Mais 96³ tient à 60 fps dans un onglet de navigateur sur un MacBook. Le compromis, c'est que le centre du tourbillon bicellulaire qu'on devrait voir basculer en courant descendant ne le fait pas vraiment — il faut plus de résolution pour ça. Ce qu'on voit ici c'est la physique grande échelle, et elle est correcte. Pour la turbulence très fine, faudrait un cluster, pas un navigateur. »</p>
+              </div>
+              <div class="qa-item">
+                <p class="q">Q : « Est-ce qu'on peut prédire une vraie tornade avec ça ? »</p>
+                <p>« Non, et c'est important. Cette sim, c'est de l'<strong>explication</strong>, pas de la <strong>prévision</strong>. Pour la prévision il faut le NSSL, la WoFS évoquée plus haut, des téraoctets de données radar et satellites assimilés en temps réel. Mon app, elle vous montre <strong>comment</strong> une tornade marche une fois qu'elle existe — pas <strong>quand</strong> une va se former. C'est complémentaire. »</p>
+              </div>
+              <div class="qa-item">
+                <p class="q">Q : « Et un typhon, tu peux le simuler ? »</p>
+                <p>« Pas avec cette app — l'échelle n'est pas la même. Une tornade c'est 500 m sur 1 km, un typhon c'est 1000 km sur 15 km. Mes équations sont les mêmes — Navier–Stokes — mais il faudrait intégrer la rotation de la Terre (Coriolis), un océan dessous, de la chaleur latente massive, sur un domaine 100 000 fois plus grand. Ça existe — ça s'appelle HWRF, voir la Partie 3 — mais ça tourne sur des supercalculateurs, pas dans Chrome. »</p>
+              </div>
+              <div class="qa-item">
+                <p class="q">Q : « Le funnel cloud, est-ce qu'il touche toujours le sol ? »</p>
+                <p>« Non — et c'est ce qui piège pas mal de monde. Le funnel dépend de l'humidité ambiante. Air humide → la condensation descend bas → on voit la tornade jusqu'au sol. Air sec → le funnel reste accroché à la base du nuage et la tornade au sol est invisible. Les seuls indices au sol, ce sont les débris qui volent et la poussière soulevée. »</p>
+              </div>
+              <div class="qa-item">
+                <p class="q">Q : « Quelle différence avec la sim de Phantom (PhantomBlast28) ? »</p>
+                <p>« Phantom a fait une autre simulation interactive, super belle aussi, je vous laisse comparer — <code>tornade-phantom.puter.site</code>. Approches différentes, ça vaut le coup d'avoir les deux. »</p>
+              </div>
+              <div class="qa-item">
+                <p class="q">Q : « Qu'est-ce que ta sim ne calcule PAS ? » (la question d'honnêteté)</p>
+                <p>« Beaucoup de choses, et c'est important de le dire clairement. Cinq points : »</p>
+                <p><strong>1.</strong> Pas de genèse. Y a pas de supercellule, pas de mésocyclone, pas de RFD dans mon cube. J'<strong>injecte</strong> un vortex sur les bords du domaine — la solution analytique de Burgers–Rott — et la sim développe la suite. Toute la genèse, c'est en amont. Ma sim commence à <em>l'instant t = la tornade existe</em>.</p>
+                <p><strong>2.</strong> Pas de microphysique nuageuse. Mon "nuage" c'est un diagnostic simple : si l'humidité dépasse la saturation, ça condense, et c'est tout. Pas de gouttelettes, pas de pluie, pas de glace, pas de grêle, pas d'éclairs.</p>
+                <p><strong>3.</strong> Pas de terrain, pas de bâtiments. Mon sol est plat et lisse. Mes débris sont passifs — emportés par le vent mais ne le ralentissent pas en retour. Je peux expliquer pourquoi le vent est si fort à un endroit, mais pas si telle maison s'écroule.</p>
+                <p><strong>4.</strong> La résolution. 96³ sur 2 km = cellules d'environ 20 m. Les sub-vortex à S = 1.2 ? Dans El Reno ils faisaient 10–30 m. Donc ce que vous voyez, c'est la pointe émergée. Les vents records de Bridge Creek 1999 viennent de structures que ma sim ne peut pas vraiment résoudre — elle les <em>suggère</em>, elle ne les <em>capture</em> pas finement.</p>
+                <p><strong>5.</strong> Quasi-stationnaire. Une vraie tornade naît, s'intensifie, faiblit, change de forme. Toute cette histoire temporelle, ma sim la lisse.</p>
+                <p>« Donc la règle : ce que je montre est <strong>physiquement honnête sur la dynamique du vortex</strong>. Le reste — la genèse, l'orage parent, la microphysique fine, les dégâts au sol, l'évolution dans le temps — c'est de la science que j'ai pas mise dans l'app. »</p>
+              </div>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>L'honnêteté comme méthode</h3>
+            <p>La dernière question est la plus importante du live : dire <strong>ce que la simulation ne calcule pas</strong>. C'est exactement l'esprit d'Empire contre Intox — un outil puissant <em>et</em> ses limites, énoncées clairement.</p>
+            <div class="tag-list"><span class="tag">Burgers–Rott</span><span class="tag">Smagorinsky</span><span class="tag">96³</span></div>
+          </aside>
+        </div>
+      </section>
+
+
+      <section class="closing reveal" aria-labelledby="final">
+        <h2 id="final">Une tornade vit quelques minutes à l'échelle du kilomètre ; un typhon, des jours à l'échelle du continent. Même air, même physique — pas le même phénomène.</h2>
+        <p>Ce dossier conserve mot pour mot le live, de la première colonne d'air en rotation au dernier régulateur climatique. Tout au long, une distinction tient lieu de fil rouge : <strong>une simulation explique, elle ne prédit pas</strong>. Le simulateur — <code>tornado-sim.puter.site</code> — montre <em>comment</em> un vortex fonctionne une fois qu'il existe ; la prévision, elle, demande des téraoctets de données et des supercalculateurs. Les deux sont complémentaires, et chaque chiffre cité ici est tracé dans l'appareil critique du collectif.</p>
+      </section>
+
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <span class="credit-avatars">
+          <img src="provoxys.jpeg" alt="Avatar de Provoxys">
+          <img src="samlepirate.jpeg" alt="Avatar de Samlepirate">
+        </span>
+        <span class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>Provoxys</strong>
+          <span class="note">avec le soutien de Samlepirate · simulation Navier–Stokes 3D</span>
+        </span>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../../ymir-lalie/assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans la mémoire collective. Ce dossier prolonge le live en donnant au public une version lisible, structurée et partageable du déroulé — et l'accès direct au simulateur et à sa documentation.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="provoxys.jpeg" alt="Avatar de Provoxys">
+              <img src="samlepirate.jpeg" alt="Avatar de Samlepirate">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Provoxys</strong><span class="note" style="font-family:var(--serif);font-style:italic;font-size:.74rem;color:var(--soft);text-transform:none;letter-spacing:0;margin-top:2px">avec le soutien de Samlepirate</span></span>
+          </div>
+          <div class="collective-actions">
+            <a class="button primary" href="../../index.html">Retour à l'index</a>
+            <a class="button" href="https://tornado-sim.puter.site/" target="_blank" rel="noopener">Le simulateur ↗</a>
+            <a class="button" href="../Artemis2.html">Artemis II</a>
+            <a class="button" href="../../sources/sources.html">Les Sources</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome créée à partir du live (live-deroule-tornades), conservé mot pour mot. Compagnons externes : la <strong>simulation</strong> (<code>tornado-sim.puter.site</code>) et le <strong>site d'explication de la physique des tornades</strong>. Faits vérifiés (NOAA / NSSL / NWS / SPC, JMA / JTWC / HKO, NHC, IPCC AR6, articles à comité de lecture) — voir <strong>Les Sources</strong>.</main>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")].filter((l) => l.getAttribute("href").startsWith("#"));
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => { nav.classList.remove("open"); mobileMenu.setAttribute("aria-expanded", "false"); }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }
+    document.addEventListener("scroll", revealTall, { passive: true });
+    window.addEventListener("resize", revealTall, { passive: true });
+    revealTall();
+
+    /* — Rendu des formules en LaTeX (KaTeX, chargé en defer) — */
+    function renderMath() {
+      document.querySelectorAll(".imath[data-tex], .formula[data-tex]").forEach((node) => {
+        const tex = node.getAttribute("data-tex");
+        const display = node.classList.contains("formula");
+        if (window.katex) {
+          try { katex.render(tex, node, { throwOnError: false, displayMode: display }); return; }
+          catch (e) { /* repli ci-dessous */ }
+        }
+        node.textContent = tex; // repli lisible si KaTeX indisponible
+      });
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderMath);
+    else renderMath();
+    window.addEventListener("load", renderMath); // filet de sécurité (CDN lent)
+  </script>
+</body>
+</html>

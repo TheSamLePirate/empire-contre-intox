@@ -21,6 +21,7 @@ au transcript, **factuellement vérifiée**, intégrée à l'index et au dossier
 > Lire d'abord `AGENT.md` (à la racine du dépôt) : c'est la charte du projet, ce
 > skill en est la mise en œuvre opérationnelle. Ce dossier contient en plus :
 > - `reference/design-system.md` — tokens codex + **correctif révélation** + dataviz
+>   + **formules LaTeX/KaTeX obligatoires (§7)**
 > - `reference/sources-and-index.md` — vérification, `sources/`, `sources.html`, index
 > - `reference/images-template.md` — gabarit `images_a_generer.md`
 > - `scripts/check-coverage.py` — **contrôle obligatoire** des 100 % verbatim
@@ -48,6 +49,10 @@ Les chemins ci-dessous sont relatifs à la racine du dépôt et à
    **correctif de révélation** (design-system §4). Voir « Construction » ci-dessous.
 6. **100 % du transcript, mot pour mot.** Puis **vérifier** avec `check-coverage.py`
    et **corriger jusqu'à 0 manquant** (hors coquilles légères signalées).
+   **+ Formules en LaTeX (OBLIGATOIRE)** : toute formule prononcée, rappelée ou à
+   expliquer est rendue en **KaTeX** (inline `.imath` à l'endroit exact + bloc
+   `.formula-block` titré et **expliqué** à sa 1ʳᵉ occurrence). Jamais de formule en
+   texte brut. Setup + CSS + script + validation : **`reference/design-system.md` §7**.
 7. Intégrer les **nuances** des agents en **encadrés « anti-intox »** (sans toucher
    au verbatim). Crédit auteur (bandeau + collective-footer + carte d'index).
 8. Créer **`images_a_generer.md`** (gabarit `reference/images-template.md`).
@@ -128,7 +133,8 @@ vide jusqu'à génération — le signaler à l'utilisateur).
   le **corps**.
 - Convertir les **tableaux** du transcript en `.dtable`, les **citations orales** en
   `.dialogue-block`, les **articles de loi** en `.article-noir`, le **sommaire** en
-  `.pillar`.
+  `.pillar`, et **toute formule mathématique** (orale ou à rappeler) en **KaTeX** —
+  `.imath` inline + `.formula-block` expliqué (voir `reference/design-system.md` §7).
 - **credit-band** après le sommaire ; **collective-footer** (sceau, texte, actions,
   « Veritas omnia vincit ») ; **footer** technique court mentionnant les .txt sources.
 - Construire **par ajouts successifs** (Edit) sur une page longue : insérer chaque
@@ -166,6 +172,8 @@ Avec `playwright-core` (Chrome système, sans téléchargement) :
 ## Vérification finale (checklist)
 
 - [ ] `check-coverage.py` → **0 manquant** sur chaque transcript ;
+- [ ] **formules** : toutes en KaTeX (inline + blocs expliqués), rendu réel vérifié
+      → **0 failure** (script de validation §7), aucune formule en texte brut ;
 - [ ] images chargées (ou hero briefé si pas encore généré), pas de scroll horizontal ;
 - [ ] liens : nav interne, retour Accueil, compagnons externes (`target="_blank"
       rel="noopener"`), liens croisés ;

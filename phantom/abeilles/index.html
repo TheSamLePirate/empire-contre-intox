@@ -1,0 +1,1454 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>L'Abeille — Apis mellifera — Empire contre Intox</title>
+  <meta name="description" content="L'abeille domestique Apis mellifera, de la biologie moléculaire à l'écologie globale : 15 chapitres mot pour mot — classification, ruche, anatomie, société, miel, pollinisation, phéromones, danse, menaces et apithérapie. Faits vérifiés. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents — miel, ambre, botanique */
+      --amber:#e0962f;   /* le miel, le nectar */
+      --honey:#f0b73d;   /* or chaud */
+      --verd:#6f9457;    /* végétal, pollinisation */
+      --ember:#c46a33;   /* alerte / menaces */
+
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+
+      --hero:url("assets/abeilles-hero.png");
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(224,150,47,.16), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.14), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(111,148,87,.10), transparent 60%),
+        linear-gradient(180deg,#0a0905 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    /* Atmosphère : grille + étoiles + trame d'alvéoles hexagonales */
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='96' viewBox='0 0 56 96'%3E%3Cg fill='none' stroke='%23e0962f' stroke-opacity='0.05' stroke-width='1'%3E%3Cpath d='M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z'/%3E%3Cpath d='M28 64 L56 80 L56 112 M28 64 L0 80 L0 112'/%3E%3C/g%3E%3C/svg%3E");
+      background-size:56px 96px; mask-image:radial-gradient(125% 90% at 50% 22%,#000 26%,transparent 80%); opacity:.9; }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.6),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(224,150,47,.55),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(111,148,87,.45),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.32),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate; }
+    .grain { position:fixed; inset:-50%; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--verd),var(--gold-bright),var(--amber)); box-shadow:0 0 14px rgba(243,217,138,.55); }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(224,150,47,.30); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    /* Hero */
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02); }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2;
+      background:linear-gradient(86deg,rgba(5,6,4,.94) 0%,rgba(5,6,4,.72) 36%,rgba(5,8,17,.18) 68%,rgba(5,8,17,.5) 100%),linear-gradient(180deg,rgba(5,8,17,.1) 0%,rgba(5,8,17,.28) 54%,var(--void) 100%); }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1; background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh; display:grid; grid-template-columns:minmax(0,780px) minmax(250px,340px); gap:46px; align-items:end; }
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:16ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.7rem,7vw,5.8rem); line-height:.96; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil { background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 38%,#fff6dc 50%,var(--honey) 62%,var(--gold-deep)); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% 0; } }
+    .hero-lead { max-width:58ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-quote { max-width:60ch; margin:22px 0 0; padding-left:20px; border-left:2px solid var(--amber); font-family:var(--serif); font-style:italic; color:var(--parch); font-size:clamp(1.05rem,1.5vw,1.26rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px; font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px); transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+    .button.honey { color:#1a1206; border-color:transparent; background:linear-gradient(140deg,var(--honey),var(--amber) 60%,#9c5a16); box-shadow:0 14px 38px rgba(224,150,47,.3); }
+    .button.honey:hover { box-shadow:0 22px 54px rgba(224,150,47,.42); }
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 12px; font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:12px; right:12px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--verd),var(--gold-bright),var(--amber)); }
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    /* Intro band */
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.9rem); line-height:1.04; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:104px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time { font-family:var(--roman); font-weight:600; font-size:.78rem; letter-spacing:.04em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(224,150,47,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .act-band { margin:70px 0 0; padding:clamp(26px,4vw,46px); border:1px solid var(--line); border-radius:3px; position:relative; overflow:hidden;
+      background:radial-gradient(130% 130% at 0% 0%,rgba(224,150,47,.14),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.55),rgba(7,12,26,.6)); text-align:center; }
+    .act-band .act-no { font-family:var(--roman); font-weight:700; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); display:inline-flex; gap:12px; align-items:center; }
+    .act-band .act-no::before,.act-band .act-no::after { content:""; width:26px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    .act-band .act-no::after { transform:scaleX(-1); }
+    .act-band h2 { margin:14px 0 0; font-family:var(--roman); font-weight:800; font-size:clamp(1.9rem,4.4vw,3.2rem); text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .act-band p { max-width:74ch; margin:16px auto 0; color:var(--muted); }
+
+    /* Chapters */
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; transition:color .5s var(--ease); }
+    .chapter:hover .chapter-number { color:rgba(224,150,47,.10); }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"⬡"; position:absolute; left:0; top:0; color:var(--amber); font-size:.85em; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .group-title { margin:38px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); display:flex; align-items:center; gap:12px; }
+    .group-title::before { content:""; width:18px; height:18px; flex:0 0 auto; background:var(--amber);
+      -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 28'%3E%3Cpath d='M12 0 L24 7 L24 21 L12 28 L0 21 L0 7 Z'/%3E%3C/svg%3E") center/contain no-repeat;
+      mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 28'%3E%3Cpath d='M12 0 L24 7 L24 21 L12 28 L0 21 L0 7 Z'/%3E%3C/svg%3E") center/contain no-repeat; }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+    .lede::first-letter { float:left; font-family:var(--roman); font-weight:700; font-size:3.4em; line-height:.64; padding:8px 14px 0 2px; font-style:normal;
+      background:linear-gradient(180deg,var(--gold-bright),var(--gold-deep)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+    .sub { margin:26px 0 10px; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--parch); }
+
+    .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); position:relative; transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease); }
+    .chapter-figure:hover { transform:translateY(-4px); border-color:rgba(214,172,85,.45); box-shadow:0 26px 60px rgba(0,0,0,.5); }
+    .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; transition:transform .8s var(--ease),filter .6s var(--ease); }
+    .chapter-figure:hover img { transform:scale(1.035); filter:saturate(1.07); }
+    .chapter-figure::before { content:""; position:absolute; z-index:2; top:9px; left:9px; width:16px; height:16px; border-top:1.5px solid rgba(214,172,85,.55); border-left:1.5px solid rgba(214,172,85,.55); pointer-events:none; }
+    .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); display:flex; align-items:center; gap:9px; }
+    .chapter-figure figcaption::before { content:"⬡"; color:var(--amber); }
+
+    .script-block,.science-block,.question-block,.lesson-block,.dialogue-block {
+      border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
+    .dialogue-block { border-left-color:var(--gold); background:rgba(214,172,85,.06); font-family:var(--serif); }
+    .dialogue-block p { color:var(--parch); font-style:italic; }
+    .science-block { border-left-color:var(--verd); background:rgba(111,148,87,.1); }
+    .question-block { border-left-color:var(--amber); background:rgba(224,150,47,.1); }
+    .lesson-block { border-left-color:var(--gold-bright); background:rgba(243,217,138,.06); }
+    .science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,.dialogue-block p:last-child,
+    .science-block ul:last-child,.lesson-block ul:last-child { margin-bottom:0; }
+    .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .science-block .block-label { color:var(--verd); }
+    .question-block .block-label { color:var(--amber); }
+    .lesson-block .block-label { color:var(--gold-bright); }
+
+    /* Stat grids (chiffres-clés) */
+    .stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:22px 0; }
+    .stat-card { border:1px solid var(--line-2); border-top:2px solid var(--amber); border-radius:3px; padding:18px 16px; background:rgba(224,150,47,.05); text-align:center; transition:transform .4s var(--ease),background .4s; }
+    .stat-card:hover { transform:translateY(-4px); background:rgba(224,150,47,.1); }
+    .stat-card b { display:block; font-family:var(--roman); font-weight:800; font-size:clamp(1.4rem,3vw,1.9rem); color:var(--gold-bright); letter-spacing:.01em; }
+    .stat-card span { display:block; margin-top:6px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--parch); }
+    .stat-card em { display:block; margin-top:5px; font-style:normal; color:var(--soft); font-size:.85rem; }
+
+    /* Rôles (castes, phéromones, produits, menaces) : icône + texte */
+    .roles { display:grid; gap:14px; margin:22px 0; }
+    .role { display:grid; grid-template-columns:54px 1fr; gap:16px; align-items:start; border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:18px 20px; background:rgba(244,236,216,.035); }
+    .role .ic { font-size:1.7rem; line-height:1; text-align:center; }
+    .role h4 { font-family:var(--roman); font-size:.92rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--gold); margin:2px 0 8px; }
+    .role p { margin:0 0 6px; color:var(--muted); font-size:.99rem; }
+    .role.verd { border-left-color:var(--verd); } .role.verd h4{ color:var(--verd); }
+    .role.amber { border-left-color:var(--amber); } .role.amber h4{ color:var(--amber); }
+    .role.ember { border-left-color:var(--ember); background:rgba(196,106,51,.07); } .role.ember h4{ color:var(--ember); }
+
+    /* Deux colonnes (chaud/froid, danse rond/huit) */
+    .facts2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:22px 0; }
+    .facts2 > div { border:1px solid var(--line-2); border-radius:3px; padding:20px 22px; background:rgba(244,236,216,.035); }
+    .facts2 h4 { font-family:var(--roman); font-size:.86rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--gold); margin:0 0 10px; }
+    .facts2 p { margin:0 0 10px; color:var(--muted); font-size:.98rem; }
+    .facts2 p:last-child { margin-bottom:0; }
+
+    /* Mémo lexique */
+    .memo { margin:26px 0; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(7,12,26,.4); }
+    .memo-head { padding:11px 18px; font-family:var(--mono); font-size:.6rem; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--amber); background:rgba(224,150,47,.08); border-bottom:1px solid var(--line-2); }
+    .memo-row { display:grid; grid-template-columns:minmax(120px,200px) 1fr; gap:18px; padding:13px 18px; border-bottom:1px solid var(--line-2); }
+    .memo-row:last-child { border-bottom:0; }
+    .memo-row dt { font-family:var(--roman); font-weight:700; font-size:.74rem; letter-spacing:.06em; text-transform:uppercase; color:var(--parch); margin:0; }
+    .memo-row dd { margin:0; color:var(--muted); font-size:.96rem; }
+    dl.memo > * { margin:0; }
+
+    .dtable { width:100%; border-collapse:collapse; margin:18px 0; border:1px solid var(--line); border-radius:3px; overflow:hidden; font-size:.98rem; }
+    .dtable caption { text-align:left; padding:0 0 14px; color:var(--muted); font-style:italic; font-family:var(--serif); }
+    .dtable th { text-align:left; padding:13px 15px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); background:rgba(214,172,85,.06); border-bottom:1px solid var(--line); }
+    .dtable td { padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--line-2); color:var(--muted); }
+    .dtable tr:last-child td { border-bottom:0; }
+    .dtable td.k { color:var(--parch); font-weight:600; }
+    .dtable td.n { color:var(--gold-bright); font-weight:700; font-family:var(--roman); white-space:nowrap; }
+    .dtable tr:hover td { background:rgba(244,236,216,.03); }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .side-note.anti { border-color:rgba(111,148,87,.4); background:linear-gradient(180deg,rgba(111,148,87,.1),rgba(7,12,26,.6)); }
+    .side-note.anti h3 { color:var(--verd); display:flex; align-items:center; gap:10px; }
+    .side-note.anti h3::after { content:"VÉRIFIÉ"; margin-left:auto; font-family:var(--mono); font-size:.5rem; font-weight:600; letter-spacing:.14em; color:var(--verd); border:1px solid rgba(111,148,87,.4); padding:3px 7px; border-radius:2px; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    .dedication { margin:26px 0; padding:clamp(24px,4vw,40px); border:1px solid var(--line); border-radius:3px; text-align:center;
+      background:radial-gradient(120% 140% at 50% 0%,rgba(224,150,47,.12),transparent 60%),linear-gradient(180deg,rgba(14,26,46,.5),rgba(7,12,26,.55)); }
+    .dedication p { max-width:62ch; margin:0 auto; font-family:var(--serif); font-style:italic; font-size:clamp(1.1rem,2vw,1.4rem); line-height:1.5; color:var(--parch); }
+    .dedication .ded-mark { font-family:var(--roman); font-size:1.8rem; color:var(--amber); line-height:1; }
+
+    /* Deux figures côte à côte (ex. Varroa + frelon asiatique) */
+    .figrow { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:8px 0 30px; }
+    .figrow .chapter-figure { margin:0; }
+    @media (max-width:680px){ .figrow { grid-template-columns:1fr; } }
+
+    /* Grille des livres « pour aller plus loin » */
+    .books { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:18px; margin:18px 0 8px; }
+    .book { margin:0; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4);
+      transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease); }
+    .book:hover { transform:translateY(-4px); border-color:rgba(214,172,85,.45); box-shadow:0 22px 50px rgba(0,0,0,.5); }
+    .book img { width:100%; aspect-ratio:3/4; object-fit:cover; display:block; transition:transform .8s var(--ease); }
+    .book:hover img { transform:scale(1.03); }
+    .book figcaption { padding:11px 14px; font-family:var(--serif); font-size:.82rem; line-height:1.35; color:var(--parch); border-top:1px solid var(--line-2); }
+
+    /* Visionneuse PDF — le live original */
+    .pdf-deck { display:grid; gap:30px; margin-top:30px; }
+    .pdf-doc { border:1px solid var(--line); border-radius:4px; overflow:hidden;
+      background:radial-gradient(140% 120% at 0% 0%,rgba(224,150,47,.09),transparent 55%),linear-gradient(180deg,rgba(7,12,26,.72),rgba(5,8,17,.8)); box-shadow:0 22px 60px rgba(0,0,0,.4); }
+    .pdf-bar { display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:16px 20px; border-bottom:1px solid var(--line); }
+    .pdf-bar .pdf-ic { font-size:1.25rem; line-height:1; }
+    .pdf-bar h3 { margin:0; font-family:var(--roman); font-size:.96rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--gold); }
+    .pdf-bar .pdf-meta { font-family:var(--mono); font-size:.6rem; letter-spacing:.08em; text-transform:uppercase; color:var(--soft); }
+    .pdf-bar .pdf-actions { margin-left:auto; display:flex; gap:9px; flex-wrap:wrap; }
+    .pdf-frame { position:relative; width:100%; height:min(78vh,860px); background:#0a0e1a; }
+    .pdf-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+    .pdf-fallback { padding:20px; font-family:var(--serif); color:var(--muted); }
+    @media (max-width:680px){ .pdf-frame { height:62vh; } .pdf-bar .pdf-actions { width:100%; margin-left:0; } }
+
+    /* Dataviz */
+    .viz { margin:30px 0; border:1px solid var(--line); border-radius:4px; overflow:hidden;
+      background:radial-gradient(140% 120% at 100% 0%,rgba(224,150,47,.1),transparent 55%),linear-gradient(180deg,rgba(7,12,26,.66),rgba(5,8,17,.74)); box-shadow:0 22px 64px rgba(0,0,0,.36); }
+    .viz-head { padding:20px 24px 0; }
+    .viz-eyebrow { display:inline-flex; align-items:center; gap:10px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--amber); }
+    .viz-eyebrow::before { content:""; width:22px; height:1px; background:linear-gradient(90deg,transparent,var(--amber)); }
+    .viz-title { margin:10px 0 5px; font-family:var(--serif); font-weight:600; font-size:1.28rem; color:var(--ink); line-height:1.15; }
+    .viz-sub { margin:0; color:var(--soft); font-size:.92rem; }
+    .viz-body { padding:14px 24px 8px; }
+    .viz svg { display:block; width:100%; height:auto; overflow:visible; }
+    .viz-foot { padding:6px 24px 18px; font-family:var(--serif); font-style:italic; color:var(--soft); font-size:.84rem; }
+    .viz-foot a { color:var(--gold); border-bottom:1px solid var(--line); }
+    .viz text { font-family:var(--roman); fill:var(--muted); }
+    .viz .ctrl { display:inline-flex; border:1px solid var(--line); border-radius:3px; overflow:hidden; margin:0 24px 14px; }
+    .viz .ctrl button { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); background:transparent; border:0; padding:9px 15px; cursor:pointer; transition:background .25s,color .25s; }
+    .viz .ctrl button.on { background:linear-gradient(140deg,var(--gold-bright),var(--gold-deep)); color:#14110a; }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(224,150,47,.13),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(224,150,47,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:44px; height:44px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+    .byline .who .note { font-family:var(--serif); font-style:italic; font-size:.74rem; letter-spacing:0; text-transform:none; color:var(--soft); margin-top:2px; }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(224,150,47,.13),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .credit-band .note { font-family:var(--serif); font-style:italic; color:var(--soft); font-size:.86rem; }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); filter:blur(5px); transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; filter:blur(0); }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    .reveal[data-d="3"] { transition-delay:.24s; }
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .hero-inner > div > *:nth-child(5){ animation-delay:.5s; }
+    .js .signal-board { animation-delay:.5s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid { grid-template-columns:1fr; }
+      .facts2 { grid-template-columns:1fr; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(5,6,4,.95),rgba(5,8,17,.5)),linear-gradient(180deg,rgba(5,8,17,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+      .memo-row { grid-template-columns:1fr; gap:4px; }
+      .dtable { font-size:.9rem; } .dtable th,.dtable td { padding:10px 11px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; filter:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-waterline"></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier XIII · 15 chapitres — Édition enrichie</p>
+          <h1>L'Abeille <span class="foil">Apis mellifera</span></h1>
+          <p class="hero-lead">De la biologie moléculaire à l'écologie globale, en quinze chapitres conservés mot pour mot : classification, ruche, anatomie, société, miel, pollinisation, phéromones, danse et menaces. Un superorganisme vieux de 100 millions d'années, pilier de la biodiversité.</p>
+          <p class="hero-quote">« Si les abeilles disparaissaient de la Terre, l'humanité n'aurait plus que quatre ans à vivre. » — une phrase apocryphe, mais un avertissement réel.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#transcription">Lire le dossier</a>
+            <a class="button honey" href="bee_dance_simulator.html" target="_blank" rel="noopener">Simulateur de danse ↗</a>
+            <a class="button" href="#alveole">La géométrie de l'alvéole</a>
+            <a class="button" href="../../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board" aria-label="Repères">
+          <div class="signal"><span>L'espèce</span><strong>Apis mellifera — Hyménoptère, Apidae</strong></div>
+          <div class="signal"><span>La colonie</span><strong>Un superorganisme de 40 000 à 80 000 individus</strong></div>
+          <div class="signal"><span>L'optimum</span><strong>L'alvéole hexagonale — preuve mathématique (1999)</strong></div>
+          <div class="signal"><span>L'enjeu</span><strong>84 % des cultures européennes pollinisées</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="../../ymir-lalie/assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>L'Abeille</span>
+        </a>
+        <a class="home-link" href="../../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#fil">Le fil</a>
+          <a href="#classification">Classification</a>
+          <a href="#ruche">La ruche</a>
+          <a href="#anatomie">Anatomie</a>
+          <a href="#societe">Société</a>
+          <a href="#miel">Miel &amp; cire</a>
+          <a href="#ecologie">Écologie</a>
+          <a href="#danse">Danse</a>
+          <a href="#menaces">Menaces</a>
+          <a href="#apitherapie">Apithérapie</a>
+          <a href="#presentation">La présentation</a>
+          <a href="#pdf">Le live (PDF)</a>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </nav>
+
+    <main id="transcription">
+      <section class="intro-band" id="fil">
+        <div class="manifesto reveal">
+          <p class="section-kicker">Le fil conducteur</p>
+          <h2>Un insecte de 1 milligramme de cerveau, et toute une civilisation.</h2>
+          <p>Ce dossier reprend <strong>mot pour mot</strong> l'étude enrichie de PhantomBlast sur <em>L'Abeille — Apis mellifera, de la biologie moléculaire à l'écologie globale</em> : 15 chapitres, de la classification à l'apithérapie. Chaque chiffre a été vérifié ; les nuances et corrections sont signalées en encadrés « anti-intox », sans toucher au texte d'origine.</p>
+        </div>
+        <div class="timeline reveal" data-d="1" aria-label="Fil conducteur">
+          <div class="timeline-row"><time>~100 Ma</time><p>Apparition des abeilles au Crétacé, en co-évolution avec les plantes à fleurs.</p></div>
+          <div class="timeline-row"><time>La colonie</time><p>Trois castes, six métiers, aucune autorité centrale : une intelligence distribuée.</p></div>
+          <div class="timeline-row"><time>Le miel</time><p>Du nectar transformé par les enzymes — un aliment qui se conserve presque indéfiniment.</p></div>
+          <div class="timeline-row"><time>Aujourd'hui</time><p>Varroa, frelon asiatique, pesticides, climat : un pilier de la biodiversité menacé.</p></div>
+        </div>
+      </section>
+
+      <section class="learning-panel reveal" aria-labelledby="objectifs">
+        <p class="section-kicker">Objectifs pédagogiques</p>
+        <h2 id="objectifs">Comprendre l'abeille comme un système — moléculaire, social et écologique.</h2>
+        <div class="learning-grid">
+          <div class="learning-item reveal" data-d="1"><span>Comprendre</span><p>L'anatomie, le cycle de vie et le déterminisme de caste — comment l'alimentation, et non les gènes, fabrique une reine.</p></div>
+          <div class="learning-item reveal" data-d="2"><span>Relier</span><p>De l'alvéole hexagonale à la pollinisation mondiale : la même logique d'efficacité, des mathématiques à l'écosystème.</p></div>
+          <div class="learning-item reveal" data-d="3"><span>Garder l'esprit critique</span><p>Distinguer le fait établi de l'allégation. Derrière chaque chiffre, une source — ou une nuance signalée.</p></div>
+        </div>
+      </section>
+      <section class="chapter reveal" id="classification" aria-labelledby="c1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 1</p><h2 id="c1">Classification Scientifique</h2></div>
+          <div class="chapter-number">01</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">L'abeille domestique appartient à un groupe d'insectes aux caractéristiques bien définies. Sa classification reflète sa place unique dans l'évolution des arthropodes.</p>
+            <table class="dtable">
+              <caption>L'arbre du vivant — d'Apis mellifera</caption>
+              <thead><tr><th>Niveau</th><th>Taxon</th><th>Caractéristique</th></tr></thead>
+              <tbody>
+                <tr><td class="k">🌍 Règne</td><td class="n">Animalia</td><td>Organisme eucaryote hétérotrophe</td></tr>
+                <tr><td class="k">🦴 Embranchement</td><td class="n">Arthropodes</td><td>Exosquelette en chitine, appendices articulés</td></tr>
+                <tr><td class="k">🪶 Ordre</td><td class="n">Hyménoptères</td><td>4 ailes membraneuses (hymen = membrane en grec)</td></tr>
+                <tr><td class="k">🐝 Famille / Espèce</td><td class="n">Apidae / Apis mellifera</td><td>Mellifera = "qui porte le miel" (latin)</td></tr>
+              </tbody>
+            </table>
+            <div class="stat-grid">
+              <div class="stat-card"><b>&gt; 20 000</b><span>Espèces d'abeilles</span><em>dans le monde</em></div>
+              <div class="stat-card"><b>100 Ma</b><span>Apparition</span><em>au Crétacé</em></div>
+              <div class="stat-card"><b>1 seule</b><span>Élevée à grande échelle</span><em>Apis mellifera</em></div>
+            </div>
+
+            <p class="group-title">1.1 Évolution — Du Crétacé à nos jours</p>
+            <p>Originaire d'Afrique et d'Europe, Apis mellifera est issue d'une longue histoire évolutive qui a transformé une guêpe prédatrice en pollinisatrice indispensable.</p>
+            <div class="roles">
+              <div class="role"><div class="ic">①</div><div><h4>Le Crétacé — ~100 Ma</h4><p>Melittosphex burmensis, premier ancêtre piégé dans l'ambre, présente des caractéristiques mixtes guêpe/abeille. Coïncide avec l'apparition des Angiospermes — début d'un partenariat écologique durable.</p></div></div>
+              <div class="role"><div class="ic">②</div><div><h4>Diversification — ~60 Ma (Paléogène)</h4><p>Après l'extinction des dinosaures, diversification massive des espèces solitaires (abeilles maçonnes, coupeuses de feuilles). Colonisation progressive de l'Europe, de l'Afrique et de l'Amérique du Nord.</p></div></div>
+              <div class="role"><div class="ic">③</div><div><h4>Socialité — ~30 Ma</h4><p>Étape cruciale : abandon du mode solitaire, mise en place de la division du travail reine/ouvrières. Apparition des premiers bourdons et ancêtres des abeilles mélipones (trigones).</p></div></div>
+              <div class="role"><div class="ic">④</div><div><h4>Ère Moderne — 10 Ma → aujourd'hui</h4><p>Dispersion mondiale d'Apis mellifera, introduite en Amérique et Australie à partir de 1600. Développement de l'apiculture. Aujourd'hui : confrontation aux menaces modernes (pesticides, Varroa, changement climatique).</p></div></div>
+            </div>
+
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>Arthropode</dt><dd>Animal à corps segmenté, exosquelette chitineux et pattes articulées</dd></div>
+              <div class="memo-row"><dt>Hyménoptère</dt><dd>Insecte à 4 ailes membraneuses (abeilles, fourmis, guêpes)</dd></div>
+              <div class="memo-row"><dt>Apidés</dt><dd>Famille regroupant les abeilles sociales productrices de miel</dd></div>
+              <div class="memo-row"><dt>Taxinomie</dt><dd>Science de la classification du vivant</dd></div>
+              <div class="memo-row"><dt>Angiospermes</dt><dd>Plantes à fleurs — apparues en même temps que les abeilles modernes</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox</h3>
+            <p><strong>Apparition :</strong> les abeilles sont datées de <strong>~120-100 Ma</strong> ; « ~100 Ma » est prudent. Aire native : Afrique, Europe <em>et Asie occidentale</em>.</p>
+            <p><strong>Socialité « ~30 Ma » :</strong> à nuancer — l'eusocialité des abeilles à corbeille est bien plus ancienne (~87 Ma) ; ~30 Ma correspond plutôt à l'apparition du genre <em>Apis</em>.</p>
+            <p><strong>« > 20 000 espèces » :</strong> ordre de grandeur classique ; des recensements récents (2026) montent jusqu'à ~25 000. <strong>Melittosphex</strong> : statut de « première abeille » débattu (peut-être une guêpe apoïde). <strong>Australie</strong> : introduite au XIXᵉ siècle (pas 1600).</p>
+            <div class="tag-list"><span class="tag">INRAE</span><span class="tag">Poinar & Danforth 2006</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="ruche" aria-labelledby="c2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 2</p><h2 id="c2">L'Habitat — La Ruche</h2></div>
+          <div class="chapter-number">02</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="group-title">2.1 Ruche naturelle</p>
+            <p class="lede">Les abeilles sauvages occupent des cavités naturelles : creux d'arbres, rochers, terriers. Elles y construisent des rayons de cire suspendus verticalement.</p>
+            <div class="stat-grid">
+              <div class="stat-card"><b>30–60 L</b><span>Volume idéal</span><em>de la cavité</em></div>
+              <div class="stat-card"><b>35 °C</b><span>Température couvain</span><em>maintenue en permanence</em></div>
+              <div class="stat-card"><b>Fixe</b><span>Rayons de cire</span><em>attachés à la paroi</em></div>
+            </div>
+            <figure class="chapter-figure">
+              <img src="assets/photos/photo-rucher.jpg" alt="Un rucher : plusieurs ruches Dadant en bois à toits colorés, sous un abri en lisière de bois." loading="lazy">
+              <figcaption>Photographie — un rucher de ruches Dadant</figcaption>
+            </figure>
+            <p class="sub">Organisation verticale du nid naturel</p>
+            <div class="roles">
+              <div class="role"><div class="ic">⬆</div><div><h4>1 — Stockage du miel (zone supérieure)</h4><p>Zone la plus chaude (chaleur montante). Miel operculé pour la conservation à long terme. Réserve énergétique principale.</p></div></div>
+              <div class="role"><div class="ic">🥚</div><div><h4>2 — Zone de couvain (cœur du nid)</h4><p>Juste sous le miel. La reine y pond. Température très précise : 34-35 °C. Contient œufs, larves et nymphes en développement.</p></div></div>
+              <div class="role"><div class="ic">🌼</div><div><h4>3 — Stockage du pollen</h4><p>En bordure immédiate du couvain. Permet le nourrissage rapide des larves en protéines. C'est le "pain des abeilles".</p></div></div>
+              <div class="role"><div class="ic">🔒</div><div><h4>4 — Zone inférieure et entrée</h4><p>Abeilles gardiennes et ventileuses. Entrée étroite en bas — protection contre les courants froids et les prédateurs.</p></div></div>
+            </div>
+
+            <p class="group-title">2.2 Ruche artificielle (Dadant)</p>
+            <p>Inventée au XIXe siècle, la ruche Dadant révolutionne l'apiculture en permettant l'extraction du miel sans détruire la colonie.</p>
+            <div class="roles">
+              <div class="role amber"><div class="ic">🏠</div><div><h4>Toit &amp; Couvre-cadres</h4><p>Protègent la colonie des intempéries et assurent l'isolation thermique.</p></div></div>
+              <div class="role amber"><div class="ic">🍯</div><div><h4>La Hausse</h4><p>Étage amovible supérieur. Les abeilles y stockent le surplus de miel operculé — récolte de l'apiculteur sans perturber le couvain.</p></div></div>
+              <div class="role amber"><div class="ic">🚫</div><div><h4>Grille à Reine</h4><p>Empêche la reine de pondre dans les hausses. Garantit que les cadres de hausse ne contiennent que du miel.</p></div></div>
+              <div class="role amber"><div class="ic">🫀</div><div><h4>Corps de Ruche</h4><p>10 à 12 grands cadres mobiles : couvain (œufs, larves, nymphes) + réserves alimentaires. Cœur vivant de la colonie.</p></div></div>
+              <div class="role amber"><div class="ic">🔬</div><div><h4>Tiroir Varroa</h4><p>Plateau grillagé coulissant. Permet la surveillance de l'infestation par Varroa destructor et maintient l'hygiène de la ruche.</p></div></div>
+            </div>
+
+            <p class="group-title" id="alveole">2.3 Géométrie parfaite des alvéoles</p>
+            <p>Les abeilles construisent des alvéoles hexagonales — l'hexagone est la forme géométrique optimale permettant de couvrir une surface avec le minimum de cire tout en offrant une résistance maximale. Cette propriété mathématique a été démontrée formellement en 1999 par Thomas Hales (conjecture du rayon de miel).</p>
+            <figure class="chapter-figure">
+              <img src="assets/abeilles-alveole.png" alt="Schéma codex de la géométrie de l'alvéole : cellules hexagonales dorées, angle interne de 120° et inclinaison vers le haut." loading="lazy">
+              <figcaption>La géométrie de l'alvéole — l'hexagone, optimum mathématique du rayon</figcaption>
+            </figure>
+            <div class="stat-grid">
+              <div class="stat-card"><b>~5,4 mm</b><span>Diamètre alvéole</span><em>calibré pour le couvain</em></div>
+              <div class="stat-card"><b>13°</b><span>Inclinaison anti-fuite</span><em>empêche l'écoulement du nectar</em></div>
+              <div class="stat-card"><b>0,073 mm</b><span>Épaisseur paroi</span><em>précision remarquable</em></div>
+            </div>
+            <div class="lesson-block"><span class="block-label">💡 Angle de 120° — La perfection géométrique</span>
+              <p>Dans un pavage hexagonal, trois hexagones se rejoignent en un point. Un tour complet (360°) divisé par 3 donne exactement 120° — l'angle interne de l'hexagone régulier. Cet angle est le plus stable pour la répartition des tensions (on le retrouve dans les bulles de savon et les cristaux).</p></div>
+            <div class="lesson-block"><span class="block-label">💡 Angle de 13° — L'inclinaison pratique</span>
+              <p>Les alvéoles ne sont pas horizontales : elles sont inclinées vers le haut d'environ 13° de l'entrée vers le fond. Cette pente empêche le nectar liquide de s'écouler avant d'être transformé en miel, et répartit mieux le poids du miel sur la paroi centrale du rayon.</p></div>
+
+            <div class="viz reveal" id="hexViz">
+              <div class="viz-head"><span class="viz-eyebrow">Interactif · géométrie</span><p class="viz-title">Pourquoi l'hexagone ? Le moins de cire pour le plus d'espace</p><p class="viz-sub">Comparez les trois formes qui pavent un plan sans laisser de vide. Pour une aire donnée, l'hexagone a le plus petit périmètre — donc le moins de cire.</p></div>
+              <div class="ctrl"><button class="on" data-s="hex">Hexagone</button><button data-s="sq">Carré</button><button data-s="tri">Triangle</button></div>
+              <div class="viz-body"></div>
+              <div class="viz-foot" id="hexOut"></div>
+              <div class="viz-foot">Démonstration : conjecture du nid d'abeille, Thomas Hales (1999). <a href="../../sources/sources.html">Appareil critique →</a></div>
+            </div>
+
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>Alvéole</dt><dd>Cellule hexagonale de cire, unité de base du rayon</dd></div>
+              <div class="memo-row"><dt>Rayon de cire</dt><dd>Feuille de cire composée d'alvéoles dos-à-dos</dd></div>
+              <div class="memo-row"><dt>Hausse</dt><dd>Étage supérieur de la ruche dédié au stockage du miel</dd></div>
+              <div class="memo-row"><dt>Apiculteur</dt><dd>Éleveur d'abeilles domestiques</dd></div>
+              <div class="memo-row"><dt>Conjecture du rayon de miel</dt><dd>Théorème démontré en 1999 — l'hexagone est la forme la plus efficace pour paver un plan</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox</h3>
+            <p><strong>Conjecture du nid d'abeille :</strong> ✅ démontrée par <strong>Thomas Hales en 1999</strong> — l'hexagone minimise bien le périmètre (la cire).</p>
+            <p><strong>L'inclinaison de 13° :</strong> la valeur est juste, mais sa fonction serait surtout d'augmenter la <em>capacité de charge</em> du rayon — pas d'empêcher l'écoulement (Bauer &amp; Bienefeld, 2020).</p>
+            <p><strong>Paroi :</strong> ~0,073 mm est dans l'ordre de grandeur ; une mesure publiée donne ~0,088 mm. Diamètre d'ouvrière plutôt <strong>5,2-5,4 mm</strong>.</p>
+            <div class="tag-list"><span class="tag">Hales 1999</span><span class="tag">Apidologie 2020</span></div>
+          </aside>
+        </div>
+      </section>
+      <section class="chapter reveal" id="anatomie" aria-labelledby="c3">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 3</p><h2 id="c3">Anatomie — Morphologie</h2></div>
+          <div class="chapter-number">03</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Comme tous les insectes, l'abeille possède un corps divisé en 3 tagmes : tête, thorax, abdomen. Son corps est protégé par un exosquelette en chitine, à la fois léger, résistant et imperméable.</p>
+            <figure class="chapter-figure">
+              <img src="assets/abeilles-anatomie.png" alt="Planche anatomique codex d'une abeille : tête (antennes, yeux composés), thorax (ailes, corbeilles à pollen), abdomen." loading="lazy">
+              <figcaption>Anatomie d'Apis mellifera — les trois tagmes</figcaption>
+            </figure>
+            <figure class="chapter-figure">
+              <img src="assets/photos/photo-tete.jpg" alt="Photographie macro de la tête d'une abeille : gros yeux composés et pilosité dense." loading="lazy">
+              <figcaption>Photographie — la tête : yeux composés et pilosité</figcaption>
+            </figure>
+            <div class="roles">
+              <div class="role"><div class="ic">👁</div><div><h4>Tête</h4>
+                <p>▸ 2 yeux composés — vision en mosaïque, détectent les UV</p>
+                <p>▸ 3 ocelles — détection de la lumière et de l'horizon</p>
+                <p>▸ 2 antennes — toucher + odorat (30 000 cellules olfactives)</p>
+                <p>▸ Trompe de succion (glossa) — jusqu'à 7 mm de long</p>
+                <p>▸ Mandibules — manipulation de la cire et des autres abeilles</p></div></div>
+              <div class="role"><div class="ic">🪶</div><div><h4>Thorax</h4>
+                <p>▸ 3 paires de pattes (6 pattes)</p>
+                <p>▸ 2 paires d'ailes membraneuses couplées</p>
+                <p>▸ Pattes postérieures : corbeilles à pollen (corbicula)</p>
+                <p>▸ Crochets unguaux pour s'accrocher aux fleurs</p>
+                <p>▸ Battement d'ailes : 200–250 fois/seconde</p></div></div>
+              <div class="role"><div class="ic">🍯</div><div><h4>Abdomen</h4>
+                <p>▸ Jabot mellifère — transport du nectar (40 mg max)</p>
+                <p>▸ 4 paires de glandes cirières (sternites 4-7)</p>
+                <p>▸ Glandes de Nassanoff — phéromones d'orientation</p>
+                <p>▸ Glandes de Koschevnikov — phéromones d'alarme</p>
+                <p>▸ Dard barbelé (ouvrière) — mortel pour l'abeille après piqûre</p></div></div>
+            </div>
+            <p class="group-title">Système sensoriel avancé</p>
+            <p>L'abeille possède un équipement sensoriel remarquablement sophistiqué pour sa taille. Ses antennes sont dotées de 170 types de récepteurs olfactifs différents — elle peut détecter des phéromones à des concentrations de l'ordre du nanogramme. Ses yeux composés perçoivent les ultraviolets, ce qui lui permet de localiser le nectar caché sur les pétales.</p>
+            <div class="lesson-block"><span class="block-label">🔬 Le cerveau de l'abeille</span>
+              <p>Bien que ne pesant que 1 mg, le cerveau de l'abeille contient environ 1 million de neurones. Il lui permet d'apprendre, de mémoriser des odeurs et des formes, de naviguer sur plusieurs kilomètres en se repérant au soleil, et d'exécuter des danses complexes encodant direction et distance. Des études récentes suggèrent même qu'elle possède une forme de conscience subjective rudimentaire.</p></div>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>Tagme</dt><dd>Grande région du corps d'un arthropode (tête, thorax, abdomen)</dd></div>
+              <div class="memo-row"><dt>Corbicula</dt><dd>Panier à pollen sur la 3e paire de pattes, formé de soies rigides</dd></div>
+              <div class="memo-row"><dt>Jabot</dt><dd>Poche extensible permettant le transport du nectar — se vide dans la ruche</dd></div>
+              <div class="memo-row"><dt>Ocelle</dt><dd>Œil simple permettant la perception de la lumière et la stabilisation du vol</dd></div>
+              <div class="memo-row"><dt>Phéromone</dt><dd>Substance chimique assurant la communication entre individus</dd></div>
+              <div class="memo-row"><dt>Glossa</dt><dd>Langue extensible de l'abeille utilisée pour aspirer le nectar</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox</h3>
+            <p><strong>Olfaction :</strong> ~170 types de récepteurs olfactifs ✅ ; les « 30 000 cellules olfactives » sont à préciser — on compte plutôt ~<strong>60 000 neurones récepteurs</strong> au total (≈ 30 000 par antenne).</p>
+            <p><strong>Trompe :</strong> ~7 mm = le <em>proboscis complet</em> ; la glossa seule fait ~2 mm. <strong>Jabot :</strong> 40 mg = charge typique (capacité jusqu'à ~70 mg).</p>
+            <p><strong>Cerveau :</strong> ~1 million de neurones ✅ ; mieux exprimé en volume (~1 mm³) qu'en masse.</p>
+            <div class="tag-list"><span class="tag">Génome A. mellifera</span><span class="tag">Neurosciences</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="cycle" aria-labelledby="c4">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 4</p><h2 id="c4">Cycle de Vie — Les 4 Stades</h2></div>
+          <div class="chapter-number">04</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">L'abeille subit une métamorphose complète (holométabole) en 4 stades. La durée de développement varie selon la caste — différence déterminée principalement par l'alimentation (gelée royale) et non par la génétique.</p>
+            <figure class="chapter-figure">
+              <img src="assets/photos/photo-couvain.png" alt="Couvain : larves blanches en forme de C au fond des alvéoles de cire." loading="lazy">
+              <figcaption>Photographie — le couvain : larves dans les alvéoles</figcaption>
+            </figure>
+            <div class="roles">
+              <div class="role"><div class="ic">🥚</div><div><h4>Œuf — Jours 1 à 3</h4><p>La reine pond jusqu'à 2 000 œufs par jour. L'œuf (~1,3 mm) est déposé verticalement au fond d'une alvéole nettoyée. Un œuf fécondé donnera une ouvrière ou une reine ; un œuf non fécondé, un faux-bourdon.</p></div></div>
+              <div class="role"><div class="ic">🐛</div><div><h4>Larve — Jours 4 à 9</h4><p>Nourrie de gelée royale pendant les 3 premiers jours (toutes castes). Ensuite, les ouvrières reçoivent de la bouillie (pollen + miel), la future reine reçoit de la gelée royale toute sa vie. La larve mue plusieurs fois et grossit rapidement.</p></div></div>
+              <div class="role"><div class="ic">🫘</div><div><h4>Nymphe (Pupe) — Jours 10 à 21</h4><p>L'alvéole est operculée. La larve tisse un cocon. Métamorphose complète : dissolution des tissus larvaires et reconstitution de l'ensemble des organes adultes — ailes, yeux composés, appareil digestif, système nerveux.</p></div></div>
+              <div class="role"><div class="ic">🐝</div><div><h4>Adulte (Imago) — Jour 21+</h4><p>L'abeille ronge l'opercule et émerge. Elle est couverte de duvet qu'elle perd progressivement. Elle commence par nettoyer sa cellule, puis progresse dans la hiérarchie des métiers.</p></div></div>
+            </div>
+            <div class="stat-grid">
+              <div class="stat-card"><b>21 j</b><span>Ouvrière</span><em>développement standard</em></div>
+              <div class="stat-card"><b>16 j</b><span>Reine</span><em>gelée royale = + rapide</em></div>
+              <div class="stat-card"><b>24 j</b><span>Faux-bourdon</span><em>développement le plus long</em></div>
+            </div>
+            <div class="lesson-block"><span class="block-label">🔬 Le déterminisme de caste</span>
+              <p>La différenciation reine/ouvrière n'est pas génétique mais épigénétique. Toutes les larves femelles sont génétiquement identiques. C'est la royalactine présente dans la gelée royale qui active la voie de signalisation mTOR (et inhibe FOXO), accélérant le développement ovarien et augmentant la taille corporelle. Cette découverte (Kamakura, 2011) est une révolution dans la biologie du développement.</p></div>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>Holométabole</dt><dd>Insecte à métamorphose complète : œuf → larve → nymphe → adulte</dd></div>
+              <div class="memo-row"><dt>Opercule</dt><dd>Bouchon de cire fermant une alvéole contenant une nymphe ou du miel mûr</dd></div>
+              <div class="memo-row"><dt>Gelée royale</dt><dd>Sécrétion des glandes hypopharyngiennes des nourrices — aliment déterminant la caste</dd></div>
+              <div class="memo-row"><dt>Imago</dt><dd>Stade adulte d'un insecte après métamorphose complète</dd></div>
+              <div class="memo-row"><dt>Royalactine</dt><dd>Protéine spécifique de la gelée royale activant la différenciation en reine via mTOR</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox</h3>
+            <p><strong>Déterminisme de caste :</strong> épigénétique et nutritionnel — solidement établi (gelée royale en quantité, voies mTOR/insuline).</p>
+            <p><strong>Royalactine (Kamakura 2011) :</strong> 🔶 fortement <em>remis en cause</em> — la réplication a échoué (Buttstedt et al., 2016, Nature). C'est un facteur parmi d'autres, la <em>quantité</em> de gelée royale étant déterminante. « Inhibe FOXO » : non établi.</p>
+            <p>Durées de développement (21/16/24 j) ✅.</p>
+            <div class="tag-list"><span class="tag">Kamakura 2011</span><span class="tag">Buttstedt 2016</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="societe" aria-labelledby="c5">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 5</p><h2 id="c5">La Société — Hiérarchie et Castes</h2></div>
+          <div class="chapter-number">05</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">La colonie d'abeilles est un superorganisme de 40 000 à 80 000 individus structuré en 3 castes distinctes. Sa cohésion repose sur un réseau dense de phéromones et de comportements collectifs, sans aucune autorité centralisée.</p>
+            <figure class="chapter-figure">
+              <img src="assets/abeilles-societe.png" alt="Planche codex de la colonie : une reine au long abdomen entourée d'ouvrières sur le rayon, et quelques faux-bourdons." loading="lazy">
+              <figcaption>Le superorganisme — reine, ouvrières et faux-bourdons</figcaption>
+            </figure>
+            <figure class="chapter-figure">
+              <img src="assets/photos/photo-reine.jpg" alt="Une reine au long abdomen, marquée d'une pastille verte, entourée de ses ouvrières sur le rayon." loading="lazy">
+              <figcaption>Photographie — la reine, marquée, au cœur de la colonie</figcaption>
+            </figure>
+            <div class="roles">
+              <div class="role"><div class="ic">👑</div><div><h4>Reine</h4>
+                <p><strong>Population :</strong> 1 seule par ruche (parfois 2 lors de la transition)</p>
+                <p><strong>Taille :</strong> 18–22 mm — la plus grande de la colonie</p>
+                <p><strong>Ponte :</strong> 1 500 à 2 000 œufs par jour au pic printanier</p>
+                <p><strong>Durée de vie :</strong> 3 à 5 ans (vs 5-6 semaines pour les ouvrières)</p>
+                <p><strong>Phéromone :</strong> 9-ODA — inhibe les ovaires des ouvrières, attire les mâles</p>
+                <p><strong>Fécondation :</strong> Vol nuptial unique avec 10-20 faux-bourdons, stockage dans la spermathèque</p></div></div>
+              <div class="role"><div class="ic">🪰</div><div><h4>Faux-bourdons</h4>
+                <p><strong>Population :</strong> 200 à 1 000 mâles (printemps/été uniquement)</p>
+                <p><strong>Origine :</strong> Œufs non fécondés — parthénogenèse, individus haploïdes</p>
+                <p><strong>Rôle unique :</strong> Féconder la reine lors du vol nuptial</p>
+                <p><strong>Expulsion :</strong> En automne, chassés par les ouvrières — meurent de faim</p>
+                <p><strong>Anatomie :</strong> Pas de dard, pas de corbicula, yeux composés très larges</p></div></div>
+              <div class="role"><div class="ic">🛠</div><div><h4>Ouvrières</h4>
+                <p><strong>Population :</strong> 40 000 à 80 000 femelles stériles</p>
+                <p><strong>Taille :</strong> 12–15 mm</p>
+                <p><strong>Durée de vie :</strong> 5–6 semaines en été (usure), 4–6 mois en hiver (hivernage)</p>
+                <p><strong>Stérilité :</strong> Ovaires inhibés par la phéromone royale 9-ODA</p>
+                <p><strong>Dard :</strong> Barbelé — reste planté dans la peau, injecte venin + phéromone d'alarme</p>
+                <p><strong>Rôle :</strong> Toutes les tâches de la colonie selon l'âge (polyéthisme)</p></div></div>
+            </div>
+            <div class="lesson-block"><span class="block-label">🐝 L'essaimage — Division de la colonie</span>
+              <p>Lorsque la colonie devient trop peuplée (printemps), une nouvelle reine est élevée. L'ancienne reine quitte la ruche avec 30 à 50 % des ouvrières pour former un essaim. L'essaim se pose temporairement (en grappe sur une branche) et envoie des éclaireuses chercher un nouveau nid. La décision finale se prend par consensus — les butineuses « dansent » pour défendre leur site favori jusqu'à ce qu'un accord soit atteint.</p></div>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>Superorganisme</dt><dd>Colonie fonctionnant comme un seul organisme intégré — décisions collectives sans cerveau central</dd></div>
+              <div class="memo-row"><dt>Phéromone royale (9-ODA)</dt><dd>Acide 9-oxo-trans-décénoïque — contrôle la physiologie de toute la colonie</dd></div>
+              <div class="memo-row"><dt>Parthénogenèse</dt><dd>Développement d'un œuf non fécondé — faux-bourdons haploïdes (n=16 chromosomes)</dd></div>
+              <div class="memo-row"><dt>Essaimage</dt><dd>Division de la colonie — l'ancienne reine part avec une partie des abeilles</dd></div>
+              <div class="memo-row"><dt>Spermathèque</dt><dd>Organe de la reine stockant jusqu'à 6 millions de spermatozoïdes après le vol nuptial</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox</h3>
+            <p><strong>Superorganisme &amp; 3 castes :</strong> ✅ solidement établi. « 40 000-80 000 » correspond au <em>pic estival</em> (bien moins en hiver).</p>
+            <p><strong>9-ODA :</strong> ✅ inhibe les ovaires + attire les mâles (en synergie avec les autres composants de la phéromone mandibulaire). Parthénogenèse arrhénotoque (n=16) ✅.</p>
+            <div class="tag-list"><span class="tag">Seeley</span><span class="tag">Wanner 2007</span></div>
+          </aside>
+        </div>
+      </section>
+      <section class="chapter reveal" id="metiers" aria-labelledby="c6">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 6</p><h2 id="c6">Organisation du Travail — Les 6 Métiers</h2></div>
+          <div class="chapter-number">06</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">L'ouvrière change de rôle au cours de sa vie selon un ordre précis lié à sa maturation physiologique. On parle de polyéthisme d'âge. Chaque métier correspond à l'activation séquentielle de différentes glandes.</p>
+            <div class="roles">
+              <div class="role"><div class="ic">1</div><div><h4>Nettoyeuse — Jours 1–3</h4><p>Nettoie les alvéoles vides avec ses mandibules, les prépare pour la reine. Inspecte et enlève tout débris ou individu mort. C'est aussi l'étape d'apprentissage — l'abeille mémorise la morphologie de sa ruche.</p></div></div>
+              <div class="role"><div class="ic">2</div><div><h4>Nourrice — Jours 4–12</h4><p>Sécrète la gelée royale (glandes hypopharyngiennes matures). Nourrit les larves et la reine. C'est le poste le plus chronophage. Une nourrice visite une larve jusqu'à 1 300 fois par jour.</p></div></div>
+              <div class="role"><div class="ic">3</div><div><h4>Cirière — Jours 13–18</h4><p>Ses 4 paires de glandes cirières sont actives. Produit des écailles de cire, les malaxe avec ses mandibules. Construit et répare les rayons. Operculine le miel mûr et les nymphes.</p></div></div>
+              <div class="role"><div class="ic">4</div><div><h4>Magasinière — Jours 16–20</h4><p>Réceptionne le nectar des butineuses par trophallaxie. Malaxe le mélange, ajoute ses propres enzymes, dépose dans les alvéoles. Ventile pour accélérer l'évaporation.</p></div></div>
+              <div class="role"><div class="ic">5</div><div><h4>Garde — Jours 18–21</h4><p>Surveille l'entrée de la ruche. Identifie les congénères par l'odeur (phéromone de colonie). Attaque les intrus en les mordant et en piquant. Active ses glandes d'alarme si nécessaire.</p></div></div>
+              <div class="role"><div class="ic">6</div><div><h4>Butineuse — Jours 21–42</h4><p>Collecte nectar, pollen, propolis, eau. Rayon d'action : 3 km (max 14 km). 10 à 15 sorties par jour. Volume de miel produit en vie entière : 1/12e de cuillère à café. Usera ses ailes jusqu'à la mort.</p></div></div>
+            </div>
+            <div class="lesson-block"><span class="block-label">📊 Les chiffres de la production</span>
+              <p>Une ouvrière butineuse produit en toute sa vie seulement 1/12e de cuillère à café de miel. Pour produire 1 kg de miel, la colonie doit effectuer 2 millions de sorties et butiner 4 millions de fleurs. Un essaim de 80 000 abeilles peut produire entre 20 et 80 kg de miel par an dans de bonnes conditions.</p></div>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>Polyéthisme d'âge</dt><dd>Division du travail selon l'âge au sein d'une société d'insectes</dd></div>
+              <div class="memo-row"><dt>Propolis</dt><dd>Résine végétale aux propriétés antibactériennes — colmatage et désinfection de la ruche</dd></div>
+              <div class="memo-row"><dt>Trophallaxie</dt><dd>Échange de nourriture bouche-à-bouche — permet la transmission d'enzymes</dd></div>
+              <div class="memo-row"><dt>Butinage</dt><dd>Récolte du nectar, du pollen et d'autres ressources hors de la ruche</dd></div>
+              <div class="memo-row"><dt>Corbicula</dt><dd>Panier à pollen sur les pattes postérieures — peut contenir jusqu'à 20 mg de pollen</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox</h3>
+            <p><strong>Polyéthisme d'âge :</strong> ✅ réel, mais les bornes en jours se <em>chevauchent</em> et sont plastiques (la colonie peut accélérer ou inverser la séquence).</p>
+            <p><strong>« 2 millions de sorties pour 1 kg » :</strong> ⚠️ confusion — c'est ~2 millions de <em>fleurs par livre</em>. Le nombre de <em>voyages</em> par kg est de l'ordre de <strong>quelques dizaines de milliers</strong> (~60 000). « 4 millions de fleurs » et « 1/12 c. à café » ✅.</p>
+            <div class="tag-list"><span class="tag">Lindauer</span><span class="tag">USDA</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="miel" aria-labelledby="c7">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 7</p><h2 id="c7">Le Laboratoire de la Ruche — Miel et Cire</h2></div>
+          <div class="chapter-number">07</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="group-title">7.1 Production de la Cire</p>
+            <p class="lede">La cire est produite par 4 paires de glandes cirières situées sur la face ventrale de l'abdomen (sternites 4 à 7). Elle sort sous forme de petites écailles translucides que la cirière saisit avec ses pattes et malaxe pour la ramollir.</p>
+            <div class="stat-grid">
+              <div class="stat-card"><b>7–8 kg</b><span>de miel consommé</span><em>pour produire 1 kg de cire</em></div>
+              <div class="stat-card"><b>0,8 mg</b><span>par écaille de cire</span><em>production unitaire</em></div>
+              <div class="stat-card"><b>70 °C</b><span>Point de fusion</span><em>de la cire d'abeille</em></div>
+            </div>
+            <p>Composition de la cire : esters d'acides gras (71 %), alcools (13 %), hydrocarbures (14 %), acides gras libres (1 %). Sa structure cristalline lui confère une résistance remarquable et une imperméabilité totale.</p>
+
+            <p class="group-title">7.2 Transformation du Nectar en Miel</p>
+            <p>Le miel n'est pas du nectar stocké — c'est un nectar chimiquement transformé par les enzymes des abeilles. Le processus prend 7 à 10 jours et implique l'ensemble de la colonie.</p>
+            <figure class="chapter-figure">
+              <img src="assets/photos/photo-miel.jpg" alt="Un rayon dont les alvéoles hexagonales sont gorgées de miel ambré et brun." loading="lazy">
+              <figcaption>Photographie — un rayon gorgé de miel</figcaption>
+            </figure>
+            <div class="roles">
+              <div class="role amber"><div class="ic">①</div><div><h4>Récolte du nectar</h4><p>La butineuse aspire le nectar (80 % d'eau, 20 % saccharose) dans son jabot. Dès ce stade, la salive apporte des enzymes (invertase, glucose-oxydase).</p></div></div>
+              <div class="role amber"><div class="ic">②</div><div><h4>Trophallaxie</h4><p>Échange bouche-à-bouche entre 5 à 20 abeilles magasinières. Chaque passage enrichit le mélange en enzymes et permet une première évaporation.</p></div></div>
+              <div class="role amber"><div class="ic">③</div><div><h4>Hydrolyse enzymatique</h4><p>L'invertase transforme le saccharose en glucose + fructose. La glucose-oxydase produit du peroxyde d'hydrogène (antibactérien naturel). Le pH chute à ~3,9.</p></div></div>
+              <div class="role amber"><div class="ic">④</div><div><h4>Évaporation</h4><p>Ventilation forcée des alvéoles (battement d'ailes coordonné). L'humidité passe de 80 % à moins de 18 % — seuil en dessous duquel bactéries et levures ne peuvent se développer.</p></div></div>
+              <div class="role amber"><div class="ic">⑤</div><div><h4>Operculation</h4><p>Quand le miel est mûr (&lt; 18 % d'eau), les cirières scellent l'alvéole avec un bouchon de cire. Le miel peut se conserver indéfiniment.</p></div></div>
+            </div>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>Invertase</dt><dd>Enzyme qui coupe le saccharose en glucose + fructose (hydrolyse)</dd></div>
+              <div class="memo-row"><dt>Glucose-oxydase</dt><dd>Enzyme produisant du peroxyde d'hydrogène — propriétés antiseptiques du miel</dd></div>
+              <div class="memo-row"><dt>Hygroscopicité</dt><dd>Propriété du miel à absorber l'humidité — assure sa conservation naturelle</dd></div>
+              <div class="memo-row"><dt>Operculation</dt><dd>Scellement d'une alvéole avec de la cire quand le miel est à moins de 18 % d'eau</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox</h3>
+            <p><strong>Point de fusion de la cire :</strong> ⚠️ plutôt <strong>62-65 °C</strong> que 70 °C. La composition (esters majoritaires) est globalement correcte.</p>
+            <p><strong>Nectar « 80 % d'eau » :</strong> variable selon la fleur (~50-80 %). Le reste de la transformation (trophallaxie, &lt; 18 %, operculation, conservation très longue si scellé) ✅.</p>
+            <div class="tag-list"><span class="tag">Beeswax · point de fusion</span><span class="tag">White · honey</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="ecologie" aria-labelledby="c8">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 8</p><h2 id="c8">Écologie — La Pollinisation Mondiale</h2></div>
+          <div class="chapter-number">08</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Les abeilles sont indispensables à la reproduction de la majorité des plantes à fleurs et au maintien de la biodiversité mondiale. Elles assurent un service écosystémique dont la valeur économique est sans équivalent.</p>
+            <figure class="chapter-figure">
+              <img src="assets/abeilles-pollinisation.png" alt="Illustration codex de la pollinisation : abeille en vol couverte de pollen approchant une fleur, arcs de transfert du pollen." loading="lazy">
+              <figcaption>La pollinisation — cent millions d'années de co-évolution fleur-abeille</figcaption>
+            </figure>
+            <figure class="chapter-figure">
+              <img src="assets/photos/photo-butinage.jpg" alt="Une abeille butine une fleur rose d'amandier, couverte de pollen, trompe déployée." loading="lazy">
+              <figcaption>Photographie — le butinage et le transport du pollen</figcaption>
+            </figure>
+            <div class="stat-grid">
+              <div class="stat-card"><b>84 %</b><span>des cultures européennes</span><em>dépendent des pollinisateurs</em></div>
+              <div class="stat-card"><b>153 Mrd €</b><span>valeur mondiale annuelle</span><em>service de pollinisation (FAO)</em></div>
+              <div class="stat-card"><b>1/3</b><span>des calories humaines</span><em>de plantes dépendant des pollinisateurs</em></div>
+              <div class="stat-card"><b>3 km</b><span>rayon de butinage</span><em>(max 14 km en milieu appauvri)</em></div>
+            </div>
+            <p class="group-title">8.1 Mécanisme de la pollinisation</p>
+            <p>En butinant, l'abeille se couvre de grains de pollen chargés électrostatiquement par son corps velu. En visitant une autre fleur de la même espèce, elle dépose une partie du pollen sur le pistil (partie femelle), permettant la fécondation et la formation de graines et de fruits.</p>
+            <div class="lesson-block"><span class="block-label">🌸 La co-évolution fleur-abeille</span>
+              <p>La fleur et l'abeille ont co-évolué pendant 100 millions d'années. Les fleurs ont développé des couleurs visibles dans les UV (invisibles à l'œil humain mais perçus par l'abeille), des guides nectarifères, des parfums spécifiques, et des formes adaptées à la morphologie des abeilles. L'abeille, en retour, a développé ses corbicules, sa trompe et son organe olfactif exceptionnel.</p></div>
+            <p class="group-title">8.2 Pollinisateurs et biodiversité</p>
+            <p>Si les abeilles mellifères sont les pollinisateurs les plus connus, elles ne sont pas les seules. Les 20 000+ espèces d'abeilles sauvages (dont 1 000 espèces en France), les bourdons, les papillons, les syrphes et même certains oiseaux et chauves-souris participent à la pollinisation. Chaque espèce végétale a souvent ses pollinisateurs préférentiels.</p>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>Pollinisation</dt><dd>Transport du pollen de l'étamine (organe mâle) vers le pistil (organe femelle) d'une fleur</dd></div>
+              <div class="memo-row"><dt>Service écosystémique</dt><dd>Bénéfice fourni gratuitement par la nature à l'humanité (eau, air, pollinisation...)</dd></div>
+              <div class="memo-row"><dt>Biodiversité</dt><dd>Variété du vivant à tous les niveaux : gènes, espèces, écosystèmes</dd></div>
+              <div class="memo-row"><dt>Co-évolution</dt><dd>Évolution simultanée de deux espèces qui exercent des pressions sélectives l'une sur l'autre</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox</h3>
+            <p><strong>84 % des cultures européennes :</strong> ✅ (en nombre d'<em>espèces</em> cultivées). À l'échelle mondiale, l'IPBES retient <strong>~75 %</strong> des grandes cultures.</p>
+            <p><strong>« 153 Md€ (FAO) » :</strong> chiffre exact mais la source est <strong>Gallai et al. 2009</strong> (et c'est une valeur <em>mondiale</em>), pas la FAO.</p>
+            <p><strong>« 1/3 des calories » :</strong> ❌ à reformuler — c'est ~1/3 de notre alimentation <em>en volume/diversité</em> ; en calories, les pollinisateurs ne pèsent que ~5-8 % (les céréales de base n'en dépendent pas).</p>
+            <div class="tag-list"><span class="tag">Gallai 2009</span><span class="tag">Klein 2007</span><span class="tag">IPBES</span></div>
+          </aside>
+        </div>
+      </section>
+      <section class="chapter reveal" id="thermo" aria-labelledby="c9">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 9</p><h2 id="c9">Thermorégulation — La Ruche Homéotherme</h2></div>
+          <div class="chapter-number">09</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">La colonie maintient une température constante de 34–36 °C au centre du couvain toute l'année. C'est un exemple remarquable d'homéothermie collective chez un invertébré, sans organe central de contrôle.</p>
+            <figure class="chapter-figure">
+              <img src="assets/photos/photo-thermo.jpg" alt="Thermographie infrarouge (FLIR) d'une ruche : la grappe chaude apparaît en rouge et jaune sur le bleu froid." loading="lazy">
+              <figcaption>Thermographie FLIR — la chaleur de la grappe au cœur de la ruche</figcaption>
+            </figure>
+            <div class="stat-grid">
+              <div class="stat-card"><b>34–36 °C</b><span>Température couvain</span><em>maintenue en permanence</em></div>
+              <div class="stat-card"><b>± 1 °C</b><span>Tolérance maximale</span><em>au-delà : mortalité larvaire</em></div>
+              <div class="stat-card"><b>15–20 kg</b><span>de miel consommé</span><em>pour chauffer en hiver</em></div>
+            </div>
+            <div class="facts2">
+              <div><h4>❄️ Chauffage hivernal</h4>
+                <p>Par temps froid, les ouvrières forment une grappe hivernale sphérique. Elles contractent leurs muscles thoraciques sans actionner leurs ailes — contraction isométrique générant de la chaleur (comme le frisson chez les mammifères).</p>
+                <p>La grappe se resserre ou s'élargit pour réguler la température. Les abeilles en périphérie se refroidissent progressivement puis rejoignent le centre — rotation continue garantissant la survie de toutes.</p></div>
+              <div><h4>☀️ Refroidissement estival</h4>
+                <p>Par fortes chaleurs, des ouvrières ventileuses se positionnent en chaîne de l'entrée vers le cœur de la ruche et battent des ailes coordonnément (comme des ventilateurs en série).</p>
+                <p>Simultanément, d'autres déposent des gouttelettes d'eau sur les alvéoles. L'évaporation absorbe la chaleur latente — effet climatiseur naturel permettant de tenir même quand la température extérieure dépasse 45 °C.</p></div>
+            </div>
+            <div class="lesson-block"><span class="block-label">🔬 Intelligence collective sans chef</span>
+              <p>La thermorégulation de la ruche est un exemple d'intelligence distribuée : aucune abeille ne "décide" de la stratégie globale. Chaque individu réagit à des stimuli locaux simples (trop chaud/froid, manque d'air) selon des règles comportementales encodées génétiquement. L'ensemble produit un comportement sophistiqué et adaptatif à l'échelle de la colonie.</p></div>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>Homéothermie</dt><dd>Capacité à maintenir une température interne constante malgré les variations externes</dd></div>
+              <div class="memo-row"><dt>Grappe hivernale</dt><dd>Formation sphérique des abeilles en hiver pour concentrer et conserver la chaleur</dd></div>
+              <div class="memo-row"><dt>Contraction isométrique</dt><dd>Contraction musculaire sans déplacement — produit de la chaleur sans mouvement visible</dd></div>
+              <div class="memo-row"><dt>Chaleur latente d'évaporation</dt><dd>Énergie thermique absorbée par l'évaporation d'un liquide (principe du climatiseur)</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note">
+            <h3>Pourquoi 35 °C ?</h3>
+            <p>C'est la température optimale de développement du couvain. Un écart de plus de <strong>1 °C</strong> prolongé entraîne des malformations (ailes, comportement). La colonie « chauffe » donc en priorité, quitte à brûler 15-20 kg de miel l'hiver.</p>
+            <div class="tag-list"><span class="tag">Homéothermie</span><span class="tag">Intelligence distribuée</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="pheromones" aria-labelledby="c10">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 10</p><h2 id="c10">Communication Chimique — Les Phéromones</h2></div>
+          <div class="chapter-number">10</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">La cohésion sociale de la ruche repose sur un réseau complexe de signaux chimiques. Les phéromones sont sécrétées par des glandes spécialisées et transmises par contact, par l'air et par la trophallaxie. On distingue deux types : les phéromones de primer (effets physiologiques durables) et de releaser (comportements immédiats).</p>
+            <div class="roles">
+              <div class="role"><div class="ic">👑</div><div><h4>Phéromone Royale (9-ODA — acide 9-oxo-trans-décénoïque)</h4><p>Émise par les glandes mandibulaires de la reine. Effet double : inhibe le développement des ovaires des ouvrières (phéromone de primer) et attire les faux-bourdons lors du vol nuptial (phéromone de releaser). Sa réduction ou disparition déclenche l'élevage d'une nouvelle reine en urgence.</p></div></div>
+              <div class="role"><div class="ic">🧭</div><div><h4>Glande de Nassanoff (phéromone d'orientation)</h4><p>Située sur l'abdomen (entre les tergites 6 et 7). Mélange de géraniol, néraldol et acide nerolique. Les abeilles exposent la glande en relevant l'abdomen et battent des ailes pour diffuser. Guide les butineuses vers l'entrée, signale une source d'eau ou de nourriture, facilite le rassemblement lors de l'essaimage.</p></div></div>
+              <div class="role ember"><div class="ic">⚠️</div><div><h4>Phéromone d'Alarme (acétate d'isoamyle + 2-heptanone)</h4><p>Émise par la glande à venin lors d'une piqûre. Odeur caractéristique de banane. Recrute rapidement d'autres gardiennes et incite à l'attaque collective. Explique pourquoi une première piqûre entraîne d'autres piqûres au même endroit. La 2-heptanone, émise par les mandibules, a un effet anesthésiant sur les petits intrus.</p></div></div>
+              <div class="role"><div class="ic">🍼</div><div><h4>Phéromone de Couvain (acides gras saturés)</h4><p>Émise par les larves. Signale aux nourrices leur présence et leur stade de développement. Inhibe le comportement de butinage des jeunes ouvrières (les maintenant à la ruche) et active les glandes nourricières. Quand le couvain est absent, des ouvrières dites "couvain-less" peuvent activer leurs ovaires.</p></div></div>
+            </div>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>9-ODA</dt><dd>Acide 9-oxo-trans-2-décénoïque — composant principal de la phéromone royale</dd></div>
+              <div class="memo-row"><dt>Glande de Nassanoff</dt><dd>Glande exocrine abdominale produisant des phéromones d'orientation</dd></div>
+              <div class="memo-row"><dt>Acétate d'isoamyle</dt><dd>Molécule volatile à odeur de banane — composant principal de la phéromone d'alarme</dd></div>
+              <div class="memo-row"><dt>Phéromone de primer</dt><dd>Phéromone modifiant physiologiquement le récepteur (ex : inhibition des ovaires)</dd></div>
+              <div class="memo-row"><dt>Phéromone de releaser</dt><dd>Phéromone déclenchant un comportement immédiat et réversible</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note">
+            <h3>Un langage chimique</h3>
+            <p>La ruche « parle » surtout par molécules : plus de 50 phéromones identifiées. La reine, à elle seule, façonne la physiologie de dizaines de milliers d'ouvrières — un contrôle sans hiérarchie ni ordre donné.</p>
+            <div class="tag-list"><span class="tag">9-ODA</span><span class="tag">Nassanoff</span><span class="tag">Alarme</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="produits" aria-labelledby="c11">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 11</p><h2 id="c11">Les Autres Produits de la Ruche</h2></div>
+          <div class="chapter-number">11</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">L'abeille ne produit pas que du miel et de la cire. La ruche est un véritable laboratoire biochimique produisant plusieurs substances aux propriétés remarquables, utilisées depuis des millénaires par l'humanité.</p>
+            <figure class="chapter-figure">
+              <img src="assets/abeilles-produits.png" alt="Nature morte codex des produits de la ruche : pot de miel doré, rayon de cire, propolis, gelée royale, bloc de cire." loading="lazy">
+              <figcaption>Les produits de la ruche — miel, cire, propolis, gelée royale, pollen, venin</figcaption>
+            </figure>
+            <figure class="chapter-figure">
+              <img src="assets/photos/photo-propolis.jpg" alt="Propolis brute : amas de fragments de résine ocre et brun récoltée sur les bourgeons." loading="lazy">
+              <figcaption>Photographie — la propolis brute, « mortier » de la ruche</figcaption>
+            </figure>
+            <div class="roles">
+              <div class="role verd"><div class="ic">🌿</div><div><h4>Propolis — Mortier et antibiotique naturel</h4><p>Résine végétale récoltée sur les bourgeons d'arbres (peupliers, bouleaux, conifères), mélangée à de la cire et des enzymes salivaires. Sert de mortier pour boucher les fissures et d'antibiotique naturel. Contient plus de 300 composés : flavonoïdes, terpènes, acides phénoliques. Utilisée pour momifier les intrus trop grands pour être évacués.</p></div></div>
+              <div class="role"><div class="ic">👑</div><div><h4>Gelée Royale — Nourriture royale</h4><p>Sécrétée par les glandes hypopharyngiennes des nourrices. Blanche, crémeuse, au goût acide. Toutes les larves en reçoivent pendant 3 jours. La future reine en est nourrie toute sa vie. Composition : eau 60-70 %, protéines 9-18 % (dont royalactine), sucres, lipides, vitamines. Détermine à elle seule la différenciation en reine.</p></div></div>
+              <div class="role amber"><div class="ic">🌾</div><div><h4>Pain d'abeille (pollen fermenté)</h4><p>Pollen compacté dans les corbicules avec nectar et sécrétions salivaires. Fermente dans les alvéoles grâce aux bactéries lactiques (Lactobacillus) — le "pain d'abeille" est plus digestible et plus riche que le pollen frais. Source principale de protéines, vitamines et minéraux de la colonie. Sans pollen, aucun couvain n'est possible.</p></div></div>
+              <div class="role ember"><div class="ic">💉</div><div><h4>Venin (Apitoxine) — Arsenal défensif</h4><p>Produit par les glandes à venin. Composé de mélittine (50 % — perfore les membranes), phospholipase A2, hyaluronidase, apamine (neuropeptide). Quantité par piqûre : 50–100 μg. Le dard barbelé reste planté et continue d'injecter venin + phéromone d'alarme — retirer rapidement le dard par grattage (pas en pinçant).</p></div></div>
+            </div>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>Flavonoïde</dt><dd>Molécules végétales antioxydantes et antibactériennes — présentes dans la propolis</dd></div>
+              <div class="memo-row"><dt>Royalactine</dt><dd>Protéine de la gelée royale activant la différenciation en reine via la voie mTOR</dd></div>
+              <div class="memo-row"><dt>Pain d'abeille</dt><dd>Pollen fermenté par bactéries lactiques — plus digestible et riche en probiotiques</dd></div>
+              <div class="memo-row"><dt>Mélittine</dt><dd>Principal peptide du venin d'abeille — perfore les membranes et provoque l'inflammation</dd></div>
+              <div class="memo-row"><dt>Apithérapie</dt><dd>Utilisation thérapeutique des produits de la ruche (miel, propolis, venin, gelée royale)</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox</h3>
+            <p><strong>Retrait du dard :</strong> conseil daté — c'est la <em>rapidité</em> du retrait qui compte, peu importe gratter ou pincer (AAFP 2023). Dose réelle : ~50-140 µg.</p>
+            <p><strong>Propolis &gt; 300 composés :</strong> ✅. <strong>Mélittine ~50 %</strong> (forme des pores) : ✅. Les vertus thérapeutiques relèvent surtout de l'étude préclinique — voir chapitre 15.</p>
+            <div class="tag-list"><span class="tag">Apitoxine</span><span class="tag">AAFP 2023</span></div>
+          </aside>
+        </div>
+      </section>
+      <section class="chapter reveal" id="menaces" aria-labelledby="c12">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 12</p><h2 id="c12">Les Menaces — Prédateurs et Disparition</h2></div>
+          <div class="chapter-number">12</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Les colonies d'abeilles font face à une convergence de menaces biologiques et anthropiques sans précédent. Le Colony Collapse Disorder (CCD), syndrome de l'effondrement des colonies, a causé la disparition de 30 à 50 % des ruches en Europe et en Amérique du Nord depuis les années 2000.</p>
+            <figure class="chapter-figure">
+              <img src="assets/abeilles-menaces.png" alt="Illustration codex sobre des menaces : une abeille au premier plan, silhouettes scientifiques d'un acarien Varroa et d'un frelon asiatique en retrait." loading="lazy">
+              <figcaption>Les menaces — Varroa, frelon asiatique, pesticides, climat</figcaption>
+            </figure>
+            <div class="figrow">
+              <figure class="chapter-figure">
+                <img src="assets/photos/photo-frelons.jpg" alt="Comparaison du frelon européen (Vespa crabro) et du frelon asiatique (Vespa velutina) sur une feuille." loading="lazy">
+                <figcaption>Frelon européen vs frelon asiatique</figcaption>
+              </figure>
+              <figure class="chapter-figure">
+                <img src="assets/photos/photo-varroa.jpg" alt="Gros plan macro de l'acarien parasite Varroa destructor." loading="lazy">
+                <figcaption>L'acarien Varroa destructor</figcaption>
+              </figure>
+            </div>
+            <p class="group-title">12.1 Menaces biologiques</p>
+            <div class="roles">
+              <div class="role ember"><div class="ic">🕷</div><div><h4>Varroa destructor — L'ennemi numéro 1</h4><p>Acarien parasite arrivé d'Asie (années 1970-80). Se nourrit de l'hémolymphe des abeilles et des larves en se glissant sous les tergites abdominaux. Transmet des virus (ailes déformées, paralysie aiguë). Principale cause de mortalité mondiale des colonies. Sans traitement, une ruche infestée meurt en 2-3 ans. Traitement : acide oxalique en hiver.</p></div></div>
+              <div class="role ember"><div class="ic">🐝</div><div><h4>Frelon asiatique (Vespa velutina)</h4><p>Espèce invasive arrivée en France en 2004, désormais présente dans 95 % du territoire. S'installe à proximité des ruches et décapite les ouvrières en vol pour nourrir ses larves. Une colonie de frelons peut décimer une ruche de 50 000 abeilles. Classé danger écologique majeur en Europe. Les abeilles asiatiques ont développé des comportements défensifs (boule thermique) — pas les européennes.</p></div></div>
+            </div>
+            <p class="group-title">12.2 Menaces anthropiques</p>
+            <div class="roles">
+              <div class="role ember"><div class="ic">☠️</div><div><h4>Néonicotinoïdes — Insecticides systémiques</h4><p>Imidaclopride, clothianidine, thiaméthoxame — neurotoxiques agissant sur les récepteurs nicotiniques de l'acétylcholine. Perturbent l'orientation, la mémoire, les comportements de danse et d'apprentissage. Subletaux à doses de terrain mais cumulatifs. Interdits en Europe depuis 2018 pour la plupart, mais dérogations persistantes et substituts controversés.</p></div></div>
+              <div class="role ember"><div class="ic">🌡</div><div><h4>Changement climatique et décalage phénologique</h4><p>Les fleurs fleurissent 2 à 3 semaines plus tôt qu'il y a 50 ans, avant le réveil printanier des colonies. Les hivers doux favorisent la reproduction de Varroa pendant la saison froide. Les sécheresses réitérées réduisent disponibilité en nectar et pollen. Les événements climatiques extrêmes détruisent les milieux floraux.</p></div></div>
+              <div class="role ember"><div class="ic">🌾</div><div><h4>Destruction des habitats</h4><p>Monocultures intensives, artificialisation des terres, disparition des haies, prairies fleuries et jachères. La désertification florale prive les colonies de la diversité alimentaire nécessaire à leur immunité. Un abeille nourrie avec un seul type de pollen a une durée de vie réduite de 30 %.</p></div></div>
+            </div>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>CCD (Colony Collapse Disorder)</dt><dd>Syndrome d'effondrement des colonies — disparition soudaine et massive des ouvrières</dd></div>
+              <div class="memo-row"><dt>Néonicotinoïde</dt><dd>Insecticide systémique neurotoxique bloquant les récepteurs nicotiniques — imprègne toute la plante</dd></div>
+              <div class="memo-row"><dt>Hémolymphe</dt><dd>Liquide circulatoire des insectes — équivalent du sang, sans hémoglobine</dd></div>
+              <div class="memo-row"><dt>Espèce invasive</dt><dd>Espèce introduite hors de son aire naturelle, sans prédateurs locaux — prolifération incontrôlée</dd></div>
+              <div class="memo-row"><dt>Décalage phénologique</dt><dd>Désynchronisation entre les calendriers biologiques de deux espèces interdépendantes</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox</h3>
+            <p><strong>Varroa :</strong> ❌ correction majeure — il se nourrit principalement du <strong>corps gras (fat body)</strong>, et non de l'hémolymphe comme on l'a longtemps cru (<em>Ramsey et al., 2019, PNAS</em>). Vecteur du virus des ailes déformées (DWV) ✅.</p>
+            <p><strong>Néonicotinoïdes :</strong> interdiction en plein champ effective au <strong>19 décembre 2018</strong> (3 principaux), dérogations résiduelles. <strong>Vespa velutina</strong> : quasi-totalité du territoire métropolitain.</p>
+            <p><strong>CCD :</strong> le CCD <em>stricto sensu</em> est surtout nord-américain et distinct des pertes hivernales (~20 % en Europe). « -30 % de durée de vie (pollen unique) » : non attesté comme valeur générale.</p>
+            <div class="tag-list"><span class="tag">Ramsey 2019 · PNAS</span><span class="tag">ANSES</span><span class="tag">EFSA</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="danse" aria-labelledby="c13">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 13</p><h2 id="c13">Communication par la Danse — Le Langage des Abeilles</h2></div>
+          <div class="chapter-number">13</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Découverte par Karl von Frisch (Prix Nobel de physiologie 1973), la danse des abeilles est l'un des systèmes de communication animale les plus sophistiqués jamais découverts. C'est le seul exemple connu de communication symbolique chez un invertébré — le signal représente un objet absent dans l'espace et le temps.</p>
+            <figure class="chapter-figure">
+              <img src="assets/abeilles-danse.png" alt="Diagramme codex de la danse en huit : une abeille sur un rayon vertical, l'angle de la course par rapport à la verticale et un motif de soleil." loading="lazy">
+              <figcaption>La danse en huit — direction (angle solaire) et distance (durée)</figcaption>
+            </figure>
+            <div class="facts2">
+              <div><h4>Danse en Rond</h4><p><em>Source &lt; 50 mètres</em></p>
+                <p>L'abeille tourne en cercles alternés gauche/droite sans direction précise. Indique une source proche. Les spectatrices captent l'information par contact, par les phéromones déposées et par les vibrations.</p>
+                <p>Le parfum du nectar transporté guide les recrues vers la bonne espèce florale.</p></div>
+              <div><h4>Danse en Huit (Waggle Dance)</h4><p><em>Source &gt; 50 mètres</em></p>
+                <p>Figure en huit avec une course droite centrale (le « trot frétillant »). L'angle de la course par rapport à la verticale encode la direction par rapport au soleil. La durée encode la distance.</p>
+                <p>Les vibrations abdominales à 200-300 Hz et les émissions sonores renforcent le message. Les recrues « lisent » la danse par toucher et vibration (organe de Johnston).</p></div>
+            </div>
+            <div class="stat-grid">
+              <div class="stat-card"><b>Angle</b><span>Direction encodée</span><em>par rapport à la verticale = angle vs soleil</em></div>
+              <div class="stat-card"><b>~1 sec</b><span>≈ 1 km de distance</span><em>durée de la course droite</em></div>
+              <div class="stat-card"><b>200–300 Hz</b><span>Fréquence vibration</span><em>signaux mécaniques de la danseuse</em></div>
+            </div>
+
+            <div class="viz reveal" id="danceViz">
+              <div class="viz-head"><span class="viz-eyebrow">Interactif · waggle dance</span><p class="viz-title">L'angle qui dit le soleil</p><p class="viz-sub">Sur le rayon vertical, l'angle de la course frétillante par rapport à la verticale reproduit l'angle de la direction de la nourriture par rapport au soleil. Changez l'angle.</p></div>
+              <div class="ctrl"><button data-a="0">0°</button><button class="on" data-a="40">40°</button><button data-a="90">90°</button><button data-a="135">135°</button></div>
+              <div class="viz-body"></div>
+              <div class="viz-foot" id="danceOut"></div>
+              <div class="viz-foot">D'après Karl von Frisch (Nobel 1973). <a href="../../sources/sources.html">Appareil critique →</a></div>
+            </div>
+            <div class="lesson-block" style="text-align:center; border-left-color:var(--amber)">
+              <span class="block-label" style="color:var(--amber)">🐝 Compagnon interactif</span>
+              <p style="color:var(--parch); font-size:1.05rem">PhantomBlast a poussé l'idée plus loin : un <strong>simulateur de la danse des abeilles</strong> qui place une vraie carte et la position réelle du soleil, et traduit la danse en huit en cap sur le terrain.</p>
+              <p style="margin-top:18px; margin-bottom:0"><a class="button honey" href="bee_dance_simulator.html" target="_blank" rel="noopener">Ouvrir le simulateur de danse ↗</a></p>
+            </div>
+
+            <p class="group-title">13.1 L'Organe de Johnston</p>
+            <p>L'organe de Johnston est un récepteur mécano-sensoriel situé dans le pédicelle de l'antenne. Il est composé de milliers de cellules sensorielles (scolopophores) capables de détecter les vibrations de l'air et du substrat avec une précision extraordinaire. C'est grâce à lui que les recrues, dans l'obscurité totale de la ruche, peuvent décoder les signaux de la danseuse.</p>
+            <div class="lesson-block"><span class="block-label">🏆 Une découverte Nobel</span>
+              <p>Karl von Frisch a passé 30 ans à décoder le langage des abeilles. Sa découverte de 1946 — que la danse encode à la fois la direction et la distance d'une source — a été contestée pendant des décennies avant d'être définitivement confirmée. Elle lui a valu le Prix Nobel de médecine et physiologie en 1973, partagé avec Nikolaas Tinbergen et Konrad Lorenz.</p></div>
+            <p class="group-title">13.2 Mémoire et apprentissage</p>
+            <p>L'abeille possède une mémoire spatiale et olfactive à long terme remarquable. Elle peut mémoriser jusqu'à 7 odeurs florales différentes, naviguer sur plusieurs kilomètres en utilisant le soleil comme compas, et corriger sa trajectoire en tenant compte du mouvement apparent du soleil dans le ciel (horloge circadienne interne de 24h).</p>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>Waggle Dance</dt><dd>Danse en huit encodant direction et distance d'une ressource éloignée (&gt; 50 m)</dd></div>
+              <div class="memo-row"><dt>Organe de Johnston</dt><dd>Récepteur mécano-sensoriel de l'antenne — détecte les vibrations de la danseuse</dd></div>
+              <div class="memo-row"><dt>Communication symbolique</dt><dd>Système où le signal représente un objet absent — très rare chez les non-humains</dd></div>
+              <div class="memo-row"><dt>Scolopophore</dt><dd>Cellule sensorielle de l'organe de Johnston spécialisée dans la détection des vibrations</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox</h3>
+            <p><strong>von Frisch :</strong> ✅ Prix Nobel 1973 (partagé avec Tinbergen et Lorenz) ; décodage publié en <strong>1946</strong>. Danse, organe de Johnston, 200-300 Hz, ~1 s ≈ 1 km : ✅.</p>
+            <p><strong>« 7 odeurs » :</strong> chiffre non sourcé — l'abeille apprend et mémorise en réalité de très nombreuses odeurs. L'horloge circadienne ~24 h ✅.</p>
+            <div class="tag-list"><span class="tag">Nobel 1973</span><span class="tag">Nieh &amp; Tautz 2000</span></div>
+          </aside>
+        </div>
+      </section>
+      <section class="chapter reveal" id="le-miel" aria-labelledby="c14">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 14</p><h2 id="c14">Le Miel — Composition, Production et Contrefaçons</h2></div>
+          <div class="chapter-number">14</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Surnommé depuis l'Antiquité "l'or liquide", le miel est bien plus qu'un simple sucrant : c'est un aliment vivant, issu d'une transformation biochimique complexe. Sa composition unique, sa conservation quasi illimitée et ses propriétés thérapeutiques en font une substance d'exception. Pourtant, la mondialisation a favorisé l'essor massif de contrefaçons.</p>
+            <p class="group-title">14.1 Composition biochimique du miel</p>
+            <table class="dtable">
+              <thead><tr><th>Composant</th><th>%</th><th>Rôle principal</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Fructose</td><td class="n">38 %</td><td>Sucre principal, index glycémique bas, ne cristallise pas</td></tr>
+                <tr><td class="k">Glucose</td><td class="n">31 %</td><td>Énergie rapide, favorise la cristallisation</td></tr>
+                <tr><td class="k">Eau</td><td class="n">&lt; 18 %</td><td>Conservation — activité de l'eau très basse</td></tr>
+                <tr><td class="k">Acides organiques</td><td class="n">0,57 %</td><td>pH acide (~3,9), propriétés antibactériennes</td></tr>
+                <tr><td class="k">Invertase, glucose-oxydase</td><td class="n">Traces</td><td>Hydrolyse des sucres, production de H₂O₂ antiseptique</td></tr>
+                <tr><td class="k">Polyphénols &amp; flavonoïdes</td><td class="n">Variables</td><td>Antioxydants puissants, marqueurs floraux</td></tr>
+                <tr><td class="k">Vitamines B1, B2, B6, C &amp; minéraux</td><td class="n">Traces</td><td>Potassium, magnésium, phosphore, fer</td></tr>
+              </tbody>
+            </table>
+            <p class="group-title">14.2 Les miels monofloraux</p>
+            <p>Chaque variété possède des caractéristiques organoleptiques et thérapeutiques propres liées à l'origine florale.</p>
+            <div class="roles">
+              <div class="role amber"><div class="ic">🌿</div><div><h4>Manuka (NZ)</h4><p>Riche en méthylglyoxal (MGO). Activité antibactérienne exceptionnelle contre les bactéries multirésistantes (SARM). Utilisé en pansements médicaux homologués (Medihoney®).</p></div></div>
+              <div class="role amber"><div class="ic">🌸</div><div><h4>Thym</h4><p>Très riche en polyphénols. Antioxydant puissant. Réputé pour les voies respiratoires et comme expectorant naturel.</p></div></div>
+              <div class="role amber"><div class="ic">🤍</div><div><h4>Acacia</h4><p>Très liquide, cristallise très lentement (forte teneur en fructose). Doux, idéal en pédiatrie (après 1 an). Index glycémique parmi les plus bas.</p></div></div>
+              <div class="role amber"><div class="ic">🌰</div><div><h4>Châtaignier</h4><p>Ambre foncé, saveur prononcée. Riche en minéraux et tanins. Propriétés antiseptiques et tonifiantes. Cristallisation grossière.</p></div></div>
+              <div class="role amber"><div class="ic">💜</div><div><h4>Lavande</h4><p>Cristallisation fine et crémeuse. Arômes floraux. Effets apaisants reconnus sur le système nerveux. Propriétés cicatrisantes.</p></div></div>
+            </div>
+            <p class="group-title">14.3 Contrefaçons — Un fléau mondial</p>
+            <div class="roles">
+              <div class="role ember"><div class="ic">🚫</div><div><h4>Miel synthétique</h4><p>Fabriqué à partir de sirop de maïs/riz/betterave enrichi en arômes. Aucune enzyme, aucun pollen, aucune propriété thérapeutique. Coût de production 10× inférieur au vrai miel.</p></div></div>
+              <div class="role ember"><div class="ic">💧</div><div><h4>Miel coupé ou dilué</h4><p>Vrai miel allongé avec sucres industriels. Teneur en eau &gt; 20 % → fermentation prématurée. Détectable par mesure de l'activité enzymatique (diastase).</p></div></div>
+              <div class="role ember"><div class="ic">🔬</div><div><h4>Fraude à l'origine géographique</h4><p>Miels asiatiques reconditionnés dans des pays européens. En 2021, l'opération Europol OPSON a saisi plus de 47 tonnes de miel frelaté. La RMN (Résonance Magnétique Nucléaire) permet une détection précise de l'origine et des ajouts.</p></div></div>
+            </div>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>RMN</dt><dd>Résonance Magnétique Nucléaire — technique analytique détectant les fraudes avec précision au %</dd></div>
+              <div class="memo-row"><dt>Analyse pollinique</dt><dd>Mélissopalynologie — identification des grains de pollen du miel pour authentifier son origine florale et géographique (un miel filtré sans pollen est suspect)</dd></div>
+              <div class="memo-row"><dt>MGO (méthylglyoxal)</dt><dd>Composé actif du miel de manuka, responsable de son activité antibiotique non-peroxydique</dd></div>
+              <div class="memo-row"><dt>Diastase</dt><dd>Enzyme (amylase) du miel — son activité mesure l'authenticité et la fraîcheur</dd></div>
+              <div class="memo-row"><dt>Indice glycémique</dt><dd>Mesure l'impact d'un aliment sur la glycémie — le miel a un IG variable selon la variété</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox</h3>
+            <p><strong>Composition :</strong> fructose ~38 %, glucose ~31 %, eau &lt; 18 %, pH ~3,9 ✅ (valeurs moyennes de référence).</p>
+            <p><strong>Manuka/Medihoney® :</strong> ✅ dispositif de cicatrisation homologué, actif contre le SARM (in vitro / pansements). <strong>OPSON 2021 :</strong> saisies de miel frelaté confirmées (Europol).</p>
+            <p><strong>Lavande « cicatrisant » :</strong> propriété générique du miel (sucre, pH, H₂O₂), peu de données propres à la lavande.</p>
+            <div class="tag-list"><span class="tag">USDA · White</span><span class="tag">Europol OPSON</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="apitherapie" aria-labelledby="c15">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 15</p><h2 id="c15">L'Apithérapie — Les Soins par les Abeilles</h2></div>
+          <div class="chapter-number">15</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">L'apithérapie est l'utilisation à des fins thérapeutiques des produits de la ruche : miel, propolis, gelée royale, pollen, venin (apitoxine) et cire. Cette pratique millénaire, décrite dans les écrits d'Hippocrate et utilisée en Égypte ancienne, connaît aujourd'hui un regain d'intérêt scientifique avec des centaines d'études cliniques publiées depuis les années 1980.</p>
+            <p class="group-title">15.1 Le miel en médecine</p>
+            <ul>
+              <li><strong>Cicatrisation :</strong> Le miel (surtout de manuka) est utilisé en milieu hospitalier sous forme de pansements médicaux homologués (Medihoney®). Actif contre les bactéries multirésistantes (SARM). Prévient l'infection, réduit l'inflammation.</li>
+              <li><strong>Toux et ORL :</strong> L'OMS reconnaît le miel comme antitussif de premier choix chez l'enfant de plus d'un an. Une étude publiée dans le British Medical Journal (2021) démontre sa supériorité sur les sirops conventionnels.</li>
+              <li><strong>Santé digestive :</strong> Propriétés prébiotiques. Le miel de manuka est utilisé dans le traitement des gastrites à Helicobacter pylori et la prévention des ulcères gastriques.</li>
+            </ul>
+            <p class="group-title">15.2 La propolis — L'antibiotique naturel</p>
+            <p>La propolis contient plus de 300 composés identifiés dont des flavonoïdes, acides phénoliques, terpènes et acides gras. Elle est active contre plus de 30 souches bactériennes, antivirale (grippe, herpès, HPV) et antifongique (Candida albicans). Sa teneur en artépilline C (propolis verte du Brésil) fait l'objet d'études prometteuses en oncologie.</p>
+            <p class="group-title">15.3 La gelée royale — Secret de longévité</p>
+            <p>La gelée royale permet à la reine de vivre 40 à 60 fois plus longtemps que les ouvrières, génétiquement identiques. Riche en 10-HDA (acide 10-hydroxydécénoïque), acétylcholine et vitamines B (notamment B5 en quantité remarquable). En apithérapie : effets immunostimulants, adaptogènes, tonifiants. Recherches actives pour ses effets neuroprotecteurs et anti-tumoraux.</p>
+            <p class="group-title">15.4 Le venin d'abeille (apitoxine)</p>
+            <p>Bien que redouté pour ses risques allergiques, le venin d'abeille est étudié avec un intérêt croissant. La mélittine inhibe la voie NF-kB (inflammation chronique). L'apamine, neuropeptide traversant la barrière hémato-encéphalique, est à l'étude pour la sclérose en plaques et la maladie de Parkinson. La BVT (Bee Venom Therapy) est pratiquée dans le traitement de l'arthrite rhumatoïde avec des résultats prometteurs.</p>
+            <p class="group-title">15.5 Pollen et cire</p>
+            <ul>
+              <li><strong>Pollen apicole :</strong> Contient tous les acides aminés essentiels, vitamines A, B, C, D, E et K. Prescrit comme tonique général, immunostimulant et pour soulager les troubles prostatiques.</li>
+              <li><strong>Cire d'abeille :</strong> Propriétés émollientes et cicatrisantes. Entre dans la composition de baumes à lèvres, crèmes de soin et onguents médicaux. Structure en esters de cire (myricyl palmitate) — imperméabilité et résistance remarquables.</li>
+            </ul>
+            <dl class="memo">
+              <div class="memo-head">📖 Mémo lexique</div>
+              <div class="memo-row"><dt>Apithérapie</dt><dd>Pratiques thérapeutiques utilisant les produits de la ruche à des fins médicinales</dd></div>
+              <div class="memo-row"><dt>Apitoxine</dt><dd>Venin d'abeille — substance complexe de peptides, enzymes et amines biogènes</dd></div>
+              <div class="memo-row"><dt>Mélittine</dt><dd>Peptide majoritaire du venin, anti-inflammatoire agissant sur la voie NF-kB</dd></div>
+              <div class="memo-row"><dt>10-HDA</dt><dd>Acide gras spécifique à la gelée royale — propriétés antivirales et potentiellement anti-tumorales</dd></div>
+              <div class="memo-row"><dt>Artépilline C</dt><dd>Composé phénolique de la propolis verte du Brésil — études en recherche anti-cancéreuse</dd></div>
+              <div class="memo-row"><dt>BVT</dt><dd>Bee Venom Therapy — thérapie par piqûres contrôlées ou injections de venin purifié</dd></div>
+            </dl>
+          </article>
+          <aside class="side-note anti">
+            <h3>Anti-intox · allégations santé</h3>
+            <p><strong>Solide :</strong> miel cicatrisant (Medihoney®/SARM) ; miel &amp; toux — la revue <em>BMJ Evidence-Based Medicine</em> (Abuelgasim, 2020/2021) montre une supériorité <em>sur les soins habituels</em> (pas sur placebo). ⚠️ Jamais de miel avant 1 an (botulisme infantile).</p>
+            <p><strong>À nuancer (préclinique / non démontré chez l'humain) :</strong> propolis antivirale, artépilline C en oncologie, gelée royale, miel contre H. pylori. <strong>Gelée royale « 40-60× » :</strong> exagéré — plutôt <strong>~20×</strong> (jusqu'à ~40×).</p>
+            <p><strong>BVT :</strong> non recommandée par les sociétés savantes — <strong>risque d'anaphylaxie</strong>. « OMS antitussif » : recommandation surtout NICE/AAP.</p>
+            <div class="tag-list"><span class="tag">BMJ EBM 2021</span><span class="tag">Cochrane</span><span class="tag">OMS</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="synthese" aria-labelledby="c16">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Synthèse finale</p><h2 id="c16">🐝 Ce qu'il faut retenir</h2></div>
+          <div class="chapter-number">16</div>
+        </div>
+        <div class="transcript">
+          <article class="prose" style="grid-column:1 / -1; max-width:none">
+            <div class="roles" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+              <div class="role"><div class="ic">🔬</div><div><h4>Classification</h4><p>Arthropode › Insecte › Hyménoptère › Apidé. Espèce : Apis mellifera. Évolution depuis 100 Ma, co-évolution avec les Angiospermes.</p></div></div>
+              <div class="role"><div class="ic">🏠</div><div><h4>Habitat</h4><p>Alvéoles hexagonales = optimum mathématique. Ruche naturelle (cavités, rayons fixes) ou Dadant (cadres mobiles). Organisation verticale précise.</p></div></div>
+              <div class="role"><div class="ic">🐝</div><div><h4>Anatomie</h4><p>3 tagmes : Tête (antennes, yeux UV), Thorax (ailes 200-250 Hz, corbicula), Abdomen (jabot, glandes cirières, dard).</p></div></div>
+              <div class="role"><div class="ic">🔄</div><div><h4>Cycle de vie</h4><p>4 stades holométaboles : œuf → larve → nymphe → adulte. Différenciation caste par la gelée royale (royalactine).</p></div></div>
+              <div class="role"><div class="ic">👑</div><div><h4>Société</h4><p>3 castes : Reine (ponte 2 000/j), Ouvrières (40-80k), Faux-bourdons. Régulation par phéromones (9-ODA).</p></div></div>
+              <div class="role"><div class="ic">🛠</div><div><h4>6 Métiers</h4><p>Nettoyeuse → Nourrice → Cirière → Magasinière → Garde → Butineuse. Polyéthisme d'âge.</p></div></div>
+              <div class="role amber"><div class="ic">🍯</div><div><h4>Miel &amp; cire</h4><p>Nectar transformé enzymatiquement. 7-8 kg miel = 1 kg cire. Conservation quasi illimitée (&lt; 18 % eau).</p></div></div>
+              <div class="role"><div class="ic">🌡</div><div><h4>Thermorégulation</h4><p>34-36 °C maintenus : grappe hivernale (chaleur musculaire) + ventilation/eau (climatisation naturelle).</p></div></div>
+              <div class="role"><div class="ic">💬</div><div><h4>Phéromones</h4><p>9-ODA (royale), Nassanoff (orientation), Acétate isoamyle (alarme). Cohésion chimique.</p></div></div>
+              <div class="role verd"><div class="ic">🛍</div><div><h4>Produits</h4><p>Miel, cire, propolis (antimicrobien), gelée royale, pain d'abeille (protéines), venin (apithérapie).</p></div></div>
+              <div class="role verd"><div class="ic">🌍</div><div><h4>Écologie</h4><p>84 % cultures européennes dépendantes. 153 Mrd €/an (FAO). 1/3 des calories humaines.</p></div></div>
+              <div class="role ember"><div class="ic">⚠️</div><div><h4>Menaces</h4><p>Varroa, frelon asiatique, néonicotinoïdes, CCD, réchauffement climatique — urgence mondiale.</p></div></div>
+              <div class="role"><div class="ic">💃</div><div><h4>Communication</h4><p>Danse en rond (&lt; 50 m) et en huit (direction + distance). Prix Nobel von Frisch 1973.</p></div></div>
+              <div class="role"><div class="ic">💊</div><div><h4>Apithérapie</h4><p>Miel cicatrisant, propolis antimicrobienne, venin anti-inflammatoire — médecine intégrative reconnue.</p></div></div>
+            </div>
+            <div class="lesson-block" style="text-align:center; margin-top:30px">
+              <p class="lede" style="font-size:1.3rem !important">« Si les abeilles disparaissaient de la Terre, l'humanité n'aurait plus que quatre ans à vivre. »</p>
+              <p>Phrase souvent attribuée à Einstein — elle illustre l'interdépendance de toute vie sur Terre.</p>
+            </div>
+            <p style="text-align:center; color:var(--soft); font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; margin-top:24px">© PhantomBlast — Abeille, tous droits réservés</p>
+          </article>
+        </div>
+      </section>
+      <section class="chapter reveal" id="presentation" aria-labelledby="cpres">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le Live Sur Les Abeilles</p><h2 id="cpres">La présentation &amp; l'hommage</h2></div>
+          <div class="chapter-number">17</div>
+        </div>
+        <div class="transcript">
+          <article class="prose" style="grid-column:1 / -1; max-width:none">
+            <p class="lede">Ce dossier prolonge la présentation « Le Live Sur Les Abeilles », présentée par PhantomBlast &amp; Abeillaud. Tout le savoir des diapositives a été fondu dans les chapitres ci-dessus et illustré de ses photographies ; il restait à recueillir ce que le diaporama disait en propre.</p>
+            <p>L'abeille domestique est un insecte social dont le génome a été entièrement séquencé, révélant des adaptations uniques pour la vie en société.</p>
+            <div class="science-block"><span class="block-label">À l'étude — le 10-HDA</span>
+              <p>L'acide de la reine des abeilles est un acide gras présent dans la gelée royale. L'acide de la reine des abeilles est à l'étude pour ses activités pharmacologiques potentielles. Il favorise la neurogenèse des cellules souches/progénitrices neurales in vitro.</p></div>
+            <div class="dedication"><span class="ded-mark">❝</span>
+              <p>Je rends hommage à la passion de mon père et au savoir qu'il me dispense avec générosité ; si les abeilles semblent lui vouer une dévotion que je ne partage pas encore, mon corps en porte les stigmates, le bonheur de passer ces instants à ses côtés surpasse la douleur de chaque piqûre.</p></div>
+            <p class="group-title">Pour aller plus loin — les livres</p>
+            <div class="books">
+              <figure class="book"><img src="assets/photos/livre-riondet.jpg" alt="Couverture du livre L'apiculture mois par mois de Jean Riondet, éditions Ulmer." loading="lazy"><figcaption>L'apiculture mois par mois — Jean Riondet (Ulmer)</figcaption></figure>
+              <figure class="book"><img src="assets/photos/livre-nuls.png" alt="Couverture du livre L'Apiculture pour les nuls de Henri Clément." loading="lazy"><figcaption>L'Apiculture pour les nuls — Henri Clément</figcaption></figure>
+            </div>
+            <p class="group-title">Mes recherches — mes sources, mes observations</p>
+            <p>La présentation s'appuie sur des observations de terrain et une iconographie sourcée. Domaines cités par l'auteur :</p>
+            <div class="tag-list"><span class="tag">www.usgs.gov</span><span class="tag">www.britannica.com</span><span class="tag">en.wikipedia.org</span><span class="tag">honeybee.drawwing.org</span><span class="tag">www.dadant.com</span><span class="tag">carolinahoneybees.com</span><span class="tag">www.honeybeesuite.com</span><span class="tag">www.sciencefriday.com</span><span class="tag">askabiologist.asu.edu</span><span class="tag">www.planetbee.org</span><span class="tag">beeglossary.org</span><span class="tag">adventuresinbeeland.com</span><span class="tag">www.honeyflow.com</span><span class="tag">www.blog-veto-pharma.com</span><span class="tag">www.nestle.com</span><span class="tag">www.eurac.edu</span></div>
+            <p class="closing" style="margin-top:30px; text-align:center; font-style:italic; font-size:1.2rem; color:var(--parch); border:0; background:none; padding:14px 0 0">« Protéger l'abeille, c'est protéger l'humanité. » — Merci de votre attention.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="chapter reveal" id="pdf" aria-labelledby="cpdf">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Archives — Documents d'origine</p><h2 id="cpdf">Le live en PDF</h2></div>
+          <div class="chapter-number">📄</div>
+        </div>
+        <div class="transcript">
+          <article class="prose" style="grid-column:1 / -1; max-width:none">
+            <p class="lede">Le diaporama complet de PhantomBlast est consultable ci-dessous, page par page, tel qu'il a été présenté en live. Deux versions : la <strong>v4 enrichie</strong> (la plus complète) et la version initiale.</p>
+            <div class="pdf-deck">
+              <figure class="pdf-doc">
+                <figcaption class="pdf-bar">
+                  <span class="pdf-ic">📄</span>
+                  <span><h3>Live sur Apis mellifera — v4 (enrichie)</h3><span class="pdf-meta">76 pages · diaporama complet</span></span>
+                  <span class="pdf-actions">
+                    <a class="button" href="assets/pdf/live-apis-mellifera-v4.pdf" target="_blank" rel="noopener">Plein écran ↗</a>
+                    <a class="button primary" href="assets/pdf/live-apis-mellifera-v4.pdf" download>Télécharger</a>
+                  </span>
+                </figcaption>
+                <div class="pdf-frame">
+                  <iframe src="assets/pdf/live-apis-mellifera-v4.pdf#view=FitH" title="Live sur Apis mellifera — version 4 enrichie (PDF)" loading="lazy"></iframe>
+                </div>
+                <p class="pdf-fallback">Si la visionneuse ne s'affiche pas, <a href="assets/pdf/live-apis-mellifera-v4.pdf" target="_blank" rel="noopener">ouvrez le PDF dans un nouvel onglet</a>.</p>
+              </figure>
+              <figure class="pdf-doc">
+                <figcaption class="pdf-bar">
+                  <span class="pdf-ic">📄</span>
+                  <span><h3>Live sur Apis mellifera — version initiale</h3><span class="pdf-meta">22 pages · première mouture</span></span>
+                  <span class="pdf-actions">
+                    <a class="button" href="assets/pdf/live-apis-mellifera.pdf" target="_blank" rel="noopener">Plein écran ↗</a>
+                    <a class="button primary" href="assets/pdf/live-apis-mellifera.pdf" download>Télécharger</a>
+                  </span>
+                </figcaption>
+                <div class="pdf-frame">
+                  <iframe src="assets/pdf/live-apis-mellifera.pdf#view=FitH" title="Live sur Apis mellifera — version initiale (PDF)" loading="lazy"></iframe>
+                </div>
+                <p class="pdf-fallback">Si la visionneuse ne s'affiche pas, <a href="assets/pdf/live-apis-mellifera.pdf" target="_blank" rel="noopener">ouvrez le PDF dans un nouvel onglet</a>.</p>
+              </figure>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="closing reveal" aria-labelledby="final">
+        <h2 id="final">Un superorganisme d'un million d'années, devenu sentinelle de la biodiversité.</h2>
+        <p>De la guêpe prédatrice du Crétacé à la pollinisatrice indispensable d'aujourd'hui, l'abeille domestique conjugue une biologie d'une précision extrême et une organisation sociale sans chef. Ce dossier en conserve le récit complet, mot pour mot ; les corrections factuelles sont signalées en encadrés « anti-intox » et tracées dans l'appareil critique du collectif. Protéger l'abeille, c'est lire ce qu'elle nous apprend — sans l'enjoliver.</p>
+      </section>
+
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <span class="credit-avatars">
+          <img src="phantom-avatar.png" alt="Avatar de PhantomBlast">
+        </span>
+        <span class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>PhantomBlast</strong>
+          <span class="note">Étude « L'Abeille — Apis mellifera », édition enrichie · avec Abeillaud</span>
+        </span>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../../ymir-lalie/assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans la connaissance partagée. Ce dossier prolonge l'étude de PhantomBlast en une version lisible, structurée, vérifiée et partageable.</p>
+          <div class="byline">
+            <span class="avatars"><img src="phantom-avatar.png" alt="Avatar de PhantomBlast"></span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>PhantomBlast</strong><span class="note">avec Abeillaud</span></span>
+          </div>
+          <div class="collective-actions">
+            <a class="button primary" href="../../index.html">Retour à l'index</a>
+            <a class="button" href="bee_dance_simulator.html" target="_blank" rel="noopener">Simulateur de danse ↗</a>
+            <a class="button" href="../../sources/sources.html">Les Sources</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome créée à partir de l'étude <strong>« Les_abeilles_v4_enrichi »</strong> de PhantomBlast (édition enrichie, 15 chapitres). Le texte est conservé mot pour mot. Compagnon interactif : le <strong>Simulateur de la Danse des Abeilles</strong> de PhantomBlast (<code>bee_dance_simulator.html</code>). Faits vérifiés (INRAE, MNHN, USDA, IPBES, FAO, OMS/BMJ, articles à comité de lecture) — voir <strong>Les Sources</strong>.</main>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")].filter((l) => l.getAttribute("href").startsWith("#"));
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => { nav.classList.remove("open"); mobileMenu.setAttribute("aria-expanded", "false"); }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }
+    document.addEventListener("scroll", revealTall, { passive: true });
+    window.addEventListener("resize", revealTall, { passive: true });
+    revealTall();
+
+    /* ===== Dataviz ===== */
+    const NS="http://www.w3.org/2000/svg";
+    const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+
+    /* Géométrie de l'alvéole : hexagone vs carré vs triangle (périmètre pour aire égale) */
+    (function(){
+      const root=document.getElementById("hexViz"); if(!root) return;
+      const mount=root.querySelector(".viz-body"), out=root.querySelector("#hexOut");
+      const shapes={
+        hex:{lab:"Hexagone", n:6, peri:"3,722 × √A", note:"La forme retenue par l'abeille : le plus court périmètre, donc le moins de cire. Trois alvéoles se rejoignent à 120°."},
+        sq:{lab:"Carré", n:4, peri:"4,000 × √A", note:"Pave le plan, mais à périmètre égal il faut plus de cire que l'hexagone."},
+        tri:{lab:"Triangle", n:3, peri:"4,559 × √A", note:"Pave le plan, mais c'est la forme la plus coûteuse en paroi des trois."}
+      };
+      function poly(cx,cy,r,n,rot){let p=[];for(let i=0;i<n;i++){const a=rot+i*2*Math.PI/n;p.push((cx+r*Math.cos(a)).toFixed(1)+","+(cy+r*Math.sin(a)).toFixed(1));}return p.join(" ");}
+      function draw(key){
+        mount.querySelectorAll("svg").forEach(s=>s.remove());
+        const s=el("svg",{viewBox:"0 0 320 200",role:"img","aria-label":"Comparaison de formes de pavage"});
+        const conf=shapes[key];
+        // tiling of chosen shape (schematic)
+        if(key==="hex"){ for(let r=0;r<3;r++)for(let c=0;c<4;c++){const cx=70+c*52+(r%2?26:0),cy=60+r*45;s.appendChild(el("polygon",{points:poly(cx,cy,26,6,Math.PI/6),fill:"rgba(224,150,47,.14)",stroke:"var(--amber)","stroke-width":1.4}));}}
+        else if(key==="sq"){ for(let r=0;r<3;r++)for(let c=0;c<5;c++){s.appendChild(el("rect",{x:60+c*44,y:40+r*44,width:42,height:42,fill:"rgba(214,172,85,.12)",stroke:"var(--gold)","stroke-width":1.3}));}}
+        else { for(let r=0;r<4;r++)for(let c=0;c<6;c++){const up=(c+r)%2===0;const x=55+c*24,y=45+r*40;const pts=up?`${x},${y+40} ${x+24},${y+40} ${x+12},${y}`:`${x},${y} ${x+24},${y} ${x+12},${y+40}`;s.appendChild(el("polygon",{points:pts,fill:"rgba(196,106,51,.12)",stroke:"var(--ember)","stroke-width":1.1}));}}
+        mount.appendChild(s);
+        out.innerHTML="<b>"+conf.lab+" — "+conf.n+" côtés · périmètre "+conf.peri+"</b><br>"+conf.note;
+      }
+      root.querySelectorAll(".ctrl button").forEach(b=>b.addEventListener("click",()=>{root.querySelectorAll(".ctrl button").forEach(x=>x.classList.remove("on"));b.classList.add("on");draw(b.dataset.s);}));
+      draw("hex");
+    })();
+
+    /* Danse en huit : angle = direction par rapport au soleil */
+    (function(){
+      const root=document.getElementById("danceViz"); if(!root) return;
+      const mount=root.querySelector(".viz-body"), out=root.querySelector("#danceOut");
+      const svg=el("svg",{viewBox:"0 0 320 240",role:"img","aria-label":"Danse en huit et angle solaire"});
+      // comb (vertical), gravity arrow
+      svg.appendChild(el("line",{x1:160,y1:30,x2:160,y2:210,stroke:"var(--line)","stroke-width":1,"stroke-dasharray":"4 5"}));
+      const sun=el("circle",{cx:240,cy:48,r:12,fill:"var(--honey)"}); svg.appendChild(sun);
+      const t1=el("text",{x:240,y:30,"text-anchor":"middle","font-size":"10"}); t1.textContent="Soleil"; svg.appendChild(t1);
+      const run=el("line",{x1:160,y1:140,x2:160,y2:90,stroke:"var(--amber)","stroke-width":4,"stroke-linecap":"round"}); svg.appendChild(run);
+      const arc=el("path",{fill:"none",stroke:"var(--gold-bright)","stroke-width":1.4}); svg.appendChild(arc);
+      const lbl=el("text",{x:188,y:96,"font-size":"12",fill:"var(--gold-bright)"}); lbl.textContent="α"; svg.appendChild(lbl);
+      const loop=el("path",{fill:"none",stroke:"var(--muted)","stroke-width":1,"stroke-dasharray":"3 4",opacity:.7}); svg.appendChild(loop);
+      mount.appendChild(svg);
+      function set(a){
+        const rad=a*Math.PI/180, L=50;
+        const x2=160+L*Math.sin(rad), y2=140-L*Math.cos(rad);
+        run.setAttribute("x2",x2.toFixed(1)); run.setAttribute("y2",y2.toFixed(1));
+        arc.setAttribute("d",`M160 110 A30 30 0 0 1 ${(160+30*Math.sin(rad)).toFixed(1)} ${(140-30*Math.cos(rad)).toFixed(1)}`);
+        loop.setAttribute("d",`M${x2.toFixed(1)} ${y2.toFixed(1)} q -34 14 0 28 q 34 -14 0 -28 M160 140 q -34 14 0 28 q 34 -14 0 -28`);
+        out.innerHTML="<b>α = "+a+"° par rapport à la verticale</b><br>Sur le rayon vertical et dans l'obscurité, l'angle de la course frétillante par rapport à la pesanteur reproduit l'angle de la direction de la nourriture par rapport au soleil. La durée de la course (~1 s ≈ 1 km) encode la distance.";
+      }
+      root.querySelectorAll(".ctrl button").forEach(b=>b.addEventListener("click",()=>{root.querySelectorAll(".ctrl button").forEach(x=>x.classList.remove("on"));b.classList.add("on");set(+b.dataset.a);}));
+      set(40);
+    })();
+  </script>
+</body>
+</html>

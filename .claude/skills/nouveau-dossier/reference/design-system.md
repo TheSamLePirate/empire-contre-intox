@@ -155,3 +155,133 @@ CSS/JS de référence : copier depuis `ymir-lalie/esclavage/index.html` (blocs `
 - Marqueurs de prudence : fourchettes, « probablement », « selon les estimations ».
 - Sujets sensibles (esclavage, mémoire, religion, politique) : registre **grave,
   respectueux, non moralisateur, non partisan** ; encadrés « anti-intox » factuels.
+
+---
+
+## 7. ⚠️ OBLIGATOIRE — Formules mathématiques en LaTeX (KaTeX), écrites ET expliquées
+
+**Règle :** dès qu'un dossier énonce, rappelle ou a besoin d'expliquer une formule
+(équation prononcée à l'oral — « E égale m c carré » —, loi physique, réaction
+chimique, relation utile à rappeler), elle doit être **rendue en vrai LaTeX via
+KaTeX** *et* **expliquée** (variables + sens physique). Jamais de formule laissée
+en texte brut ASCII/Unicode (`P = (1/2) m_dot v_e²`, `dP/dV = |ψ|²`) : on la
+typographie. Deux niveaux :
+
+- **inline** `.imath` — une formule glissée au fil de la phrase (à l'endroit exact
+  où l'oral la prononce) ;
+- **bloc expliqué** `.formula-block` — une stèle gravée (titre + formule(s) en
+  display + note explicative) pour chaque formule importante, à sa **première
+  occurrence**. Les occurrences suivantes peuvent rester en `.imath`.
+
+Exemple de référence déjà livré : `provoxys/Artemis2.html` (Voie B, accents orange)
+et `jorge-zalex/elements.html` (Voie A, accents or).
+
+### a) Charger KaTeX (dans le `<head>`, après les Google Fonts)
+```html
+<!-- KaTeX — rendu des vraies formules mathématiques -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+```
+
+### b) Script de rendu (juste avant `</body>`)
+```html
+<script>
+  function renderMath() {
+    document.querySelectorAll(".imath[data-tex], .formula[data-tex]").forEach((node) => {
+      const tex = node.getAttribute("data-tex");
+      const display = node.classList.contains("formula");
+      if (window.katex) {
+        try { katex.render(tex, node, { throwOnError: false, displayMode: display }); return; }
+        catch (e) { /* repli ci-dessous */ }
+      }
+      node.textContent = tex; // repli lisible si KaTeX indisponible
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderMath);
+  else renderMath();
+  window.addEventListener("load", renderMath); // filet de sécurité (CDN lent)
+</script>
+```
+
+### c) CSS — Voie A (codex/or). En Voie B, remplacer `--gold*` par les accents de la page hôte.
+```css
+/* Inline : formule au fil du texte */
+.imath { display:inline-block; line-height:1; vertical-align:-.16em; }
+.imath .katex { font-size:1.02em; color:var(--gold-bright); }
+.imath:empty { display:none; }
+/* Bloc « stèle gravée » : formule rappelée ou expliquée */
+.formula-block { margin:26px 0; position:relative; border:1px solid var(--line); border-radius:3px; overflow:hidden;
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(214,172,85,.12), transparent 55%),
+    radial-gradient(120% 140% at 100% 100%, rgba(95,210,230,.07), transparent 55%),
+    linear-gradient(180deg, rgba(14,26,46,.58), rgba(7,12,26,.66));
+  box-shadow:var(--shadow); }
+.formula-block::before { content:""; position:absolute; inset:0; pointer-events:none;
+  background-image:linear-gradient(rgba(214,172,85,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(214,172,85,.05) 1px, transparent 1px);
+  background-size:38px 38px; opacity:.5; }
+.formula-block > * { position:relative; z-index:1; }
+.formula-block .fb-head { display:flex; align-items:center; gap:12px; padding:11px 22px; border-bottom:1px solid var(--line);
+  background:rgba(5,8,17,.42); font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); }
+.formula-block .fb-head::before { content:"ƒ"; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; flex:none;
+  border:1px solid var(--gold); border-radius:50%; font-family:var(--serif); font-style:italic; font-size:13px; letter-spacing:0; color:var(--gold-bright); background:rgba(214,172,85,.08); }
+.formula-block .fb-head .fb-tag { margin-left:auto; color:var(--soft); letter-spacing:.14em; }
+.formula { display:block; margin:0; padding:24px 22px; text-align:center; overflow-x:auto; }   /* cible KaTeX display */
+.formula .katex { font-size:1.42rem; color:var(--gold-bright); }
+.formula + .formula { padding-top:0; }
+.formula:empty { display:none; }
+.formula-block .fb-note { padding:2px 22px 18px; margin:0; font-family:var(--serif); font-size:.96rem; line-height:1.62; color:var(--muted); }
+.formula-block .fb-note b { color:var(--ink); font-weight:600; }
+.formula-block .fb-note .imath .katex { font-size:1em; color:var(--quanta); }
+@media (max-width:640px){ .formula .katex{ font-size:1.12rem; } .formula-block .fb-head{ padding:10px 16px; } .formula,.formula-block .fb-note{ padding-left:16px; padding-right:16px; } }
+```
+
+### d) Markup
+```html
+<!-- inline, à l'endroit exact où l'oral prononce la formule -->
+… la puissance se calcule par <span class="imath" data-tex="P=\tfrac12\,\dot m\,v_e^{2}"></span> où …
+
+<!-- bloc expliqué (titre + 1..n formules display + note variables/sens) -->
+<div class="formula-block">
+  <div class="fb-head">Équation de vis-viva <span class="fb-tag">Mécanique orbitale</span></div>
+  <div class="formula" data-tex="v=\sqrt{\mu\left(\dfrac{2}{r}-\dfrac{1}{a}\right)}"></div>
+  <p class="fb-note">Vitesse <b>v</b> à la distance <b>r</b>, sur une orbite de demi-grand axe <b>a</b>,
+     avec <span class="imath" data-tex="\mu=GM"></span> le paramètre gravitationnel. …</p>
+</div>
+```
+- `katex.render` **remplace** le contenu du nœud : le titre/la note vont dans
+  `.fb-head` / `.fb-note` (frères), **jamais** dans le `.formula[data-tex]`.
+- Note **fidèle** : n'expliquer que des valeurs présentes dans le transcript ou des
+  constantes standard ; ne jamais inventer un chiffre. Si la page d'origine porte
+  une coquille de formule, la **corriger** et la signaler (cf. §6).
+
+### e) Vérifier (obligatoire) — 0 erreur de rendu
+```bash
+# équilibrage accolades + \left/\right (rapide)
+python3 - <<'PY'
+import re,html
+s=open("<equipe>/<dossier>/index.html",encoding="utf-8").read()
+for t in re.findall(r'data-tex="([^"]*)"',s):
+    u=html.unescape(t)
+    assert u.count("{")==u.count("}"), u
+print("accolades OK")
+PY
+# rendu réel de CHAQUE expression (échoue si une formule est invalide)
+cd /tmp && mkdir -p kx && cd kx && npm i katex@0.16.11 --no-save --silent && node -e '
+const fs=require("fs"),katex=require("katex");
+const s=fs.readFileSync(process.argv[1],"utf8");
+const dec=t=>t.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,"\"");
+let n=0,bad=0;for(const m of s.matchAll(/data-tex="([^"]*)"/g)){n++;try{katex.renderToString(dec(m[1]),{throwOnError:true});}catch(e){bad++;console.log("FAIL:",m[1]);}}
+console.log(`rendered ${n}, ${bad} failures`);' <chemin absolu>/index.html
+```
+Boucler jusqu'à **0 failure**. `check-coverage.py` reste vert : `data-tex` est un
+attribut, son contenu n'est pas du texte rendu — le verbatim transcrit autour reste
+intact (on **enveloppe** la formule, on ne la supprime pas).
+
+### f) Aide-mémoire LaTeX (constructions KaTeX éprouvées sur ces dossiers)
+`\dfrac{a}{b}` · `\tfrac12` · `\sqrt{}` · `x^{2}` `x_{n}` · `\Delta v` · `\propto`
+· `\rightarrow` `\Longrightarrow` `\xrightarrow{\ \text{électrolyse}\ }` ·
+indices nucléaires `{}^{A}_{Z}\mathrm{X}` · `\bar{\nu}_e` · `\hat{H}\psi=E\psi` ·
+`\bigl|\psi\bigr|^{2}` · `\sum_{\ell=0}^{n-1}` · `\underbrace{…}_{\text{…}}` ·
+`\mathrm{kg}` pour les unités · décimales françaises `931{,}5` (la virgule entre
+accolades garde l'espacement correct). Lettres grecques : `\mu \nu \lambda \psi
+\alpha \beta \gamma \Phi \Omega`.
