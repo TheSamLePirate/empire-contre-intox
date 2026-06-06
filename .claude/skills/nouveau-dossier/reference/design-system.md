@@ -285,3 +285,33 @@ indices nucléaires `{}^{A}_{Z}\mathrm{X}` · `\bar{\nu}_e` · `\hat{H}\psi=E\ps
 `\mathrm{kg}` pour les unités · décimales françaises `931{,}5` (la virgule entre
 accolades garde l'espacement correct). Lettres grecques : `\mu \nu \lambda \psi
 \alpha \beta \gamma \Phi \Omega`.
+
+---
+
+## 8. ⚠️ Barre de nav qui déborde (chapitres nombreux/longs)
+
+Symptôme : avec beaucoup de chapitres (ou des libellés longs), la `.nav` sticky
+**pousse la barre au-delà du conteneur** → débordement horizontal de la page.
+Cause : la `.nav` (flex de liens `nowrap`) n'est **pas contrainte en largeur**,
+donc son `overflow-x:auto` ne s'active jamais et elle s'étale.
+
+**Correctif (toujours appliquer à `.nav`)** — la rendre flexible et bornée, avec
+un fondu sur les bords qui rend le scroll horizontal intentionnel :
+
+```css
+.nav {
+  display:flex; gap:2px; overflow-x:auto; scrollbar-width:none;
+  flex:1 1 auto; min-width:0; -webkit-overflow-scrolling:touch;     /* ← la clé */
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);
+}
+```
+
+En complément : **raccourcir les libellés** de nav — « Le bulletin de l'IFAN » →
+« IFAN », « La route de l'horreur » → « La route », « L'envers du décor » →
+« Coulisses »… En `@media (max-width:720px)`, la nav passe déjà en `display:none`
+au profit du bouton « Menu » — ne pas y toucher.
+
+**Vérifier en navigateur** (toutes largeurs 1280 → 768 px) :
+`document.documentElement.scrollWidth - clientWidth === 0` (aucun débordement) ;
+la nav doit scroller **dans** la barre, pas pousser la page.
