@@ -1,0 +1,1824 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>L'Esclavage triangulaire — Empire contre Intox</title>
+  <meta name="description" content="Le commerce triangulaire, le Code Noir, le bulletin de l'IFAN, la route de l'horreur, la résistance et la fracture napoléonienne — vu depuis Nantes, premier port négrier de France. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents — mémoire, fer, sang, Atlantique */
+      --ocean:#3f6b78;   /* l'Atlantique */
+      --ember:#b3503e;   /* le sang, la braise */
+      --iron:#7c8794;    /* le fer, les chaînes */
+      --sugar:#e6dcc4;   /* l'or blanc / le sucre */
+
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+
+      --hero:url("assets/esclavage-hero.png");
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(63,107,120,.16), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.13), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(179,80,62,.10), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px; mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.6),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(63,107,120,.6),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(179,80,62,.45),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.32),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate; }
+    .grain { position:fixed; inset:-50%; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--ember),var(--gold-bright),var(--ocean)); box-shadow:0 0 14px rgba(243,217,138,.55); }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(214,172,85,.28); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    /* Hero */
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02); }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2;
+      background:linear-gradient(86deg,rgba(3,6,13,.94) 0%,rgba(3,6,13,.72) 36%,rgba(3,6,13,.18) 68%,rgba(3,6,13,.5) 100%),linear-gradient(180deg,rgba(3,6,13,.1) 0%,rgba(3,6,13,.28) 54%,var(--void) 100%); }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1; background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh; display:grid; grid-template-columns:minmax(0,780px) minmax(250px,340px); gap:46px; align-items:end; }
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:16ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.7rem,7vw,5.8rem); line-height:.96; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil { background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 40%,#fff6dc 50%,var(--gold-bright) 60%,var(--gold-deep)); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% 0; } }
+    .hero-lead { max-width:58ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-quote { max-width:60ch; margin:22px 0 0; padding-left:20px; border-left:2px solid var(--ember); font-family:var(--serif); font-style:italic; color:var(--parch); font-size:clamp(1.05rem,1.5vw,1.26rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px; font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px); transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--ember),var(--gold-bright),var(--ocean)); }
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    /* Intro band */
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.9rem); line-height:1.04; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:96px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time { font-family:var(--roman); font-weight:600; font-size:.8rem; letter-spacing:.04em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(63,107,120,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .act-band { margin:70px 0 0; padding:clamp(26px,4vw,46px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(130% 130% at 0% 0%,rgba(214,172,85,.12),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.55),rgba(7,12,26,.6)); text-align:center; }
+    .act-band .act-no { font-family:var(--roman); font-weight:700; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+    .act-band h2 { margin:14px 0 0; font-family:var(--roman); font-weight:800; font-size:clamp(1.9rem,4.4vw,3.2rem); text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .act-band p { max-width:72ch; margin:16px auto 0; color:var(--muted); }
+
+    /* Chapters */
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"❖"; position:absolute; left:0; top:0; color:var(--gold); font-size:.8em; }
+    .prose ol { margin:14px 0 24px; padding-left:24px; }
+    .prose ol li { padding-left:6px; }
+    .prose ol li::before { content:none; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+    .sub { margin:26px 0 10px; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--parch); }
+
+    .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
+    .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); }
+
+    .script-block,.science-block,.question-block,.lesson-block,.dialogue-block {
+      border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
+    .dialogue-block { border-left-color:var(--gold); background:rgba(214,172,85,.06); font-family:var(--serif); }
+    .dialogue-block p { color:var(--parch); font-style:italic; }
+    .science-block { border-left-color:var(--ocean); background:rgba(63,107,120,.09); }
+    .question-block { border-left-color:var(--ember); background:rgba(179,80,62,.1); }
+    .lesson-block { border-left-color:var(--gold-bright); background:rgba(243,217,138,.06); }
+    .script-block p:last-child,.science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,.dialogue-block p:last-child,
+    .science-block ul:last-child,.lesson-block ul:last-child { margin-bottom:0; }
+    .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .science-block .block-label { color:var(--ocean); }
+    .question-block .block-label { color:var(--ember); }
+
+    /* Code Noir articles */
+    .articles { display:grid; gap:14px; margin:18px 0; }
+    .article-noir { border:1px solid var(--line-2); border-left:3px solid var(--ember); border-radius:3px; padding:20px 22px; background:rgba(179,80,62,.07); }
+    .article-noir h4 { font-family:var(--roman); font-size:.82rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ember); margin:0 0 8px; }
+    .article-noir .cite { display:block; font-family:var(--serif); font-style:italic; color:var(--parch); margin:0 0 10px; padding-left:14px; border-left:1px solid var(--line); }
+    .article-noir p { margin:0; color:var(--muted); font-size:.98rem; }
+    .article-noir p strong { color:var(--parch); }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    .dtable { width:100%; border-collapse:collapse; margin:14px 0; border:1px solid var(--line); border-radius:3px; overflow:hidden; font-size:.98rem; }
+    .dtable caption { text-align:left; padding:0 0 14px; color:var(--muted); font-style:italic; font-family:var(--serif); }
+    .dtable th { text-align:left; padding:13px 15px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); background:rgba(214,172,85,.06); border-bottom:1px solid var(--line); }
+    .dtable td { padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--line-2); color:var(--muted); }
+    .dtable tr:last-child td { border-bottom:0; }
+    .dtable td.k { color:var(--parch); font-weight:600; }
+    .dtable tr:hover td { background:rgba(244,236,216,.03); }
+
+    .sommaire-list { display:grid; gap:14px; margin:18px 0; }
+    .pillar { border:1px solid var(--line-2); border-radius:3px; padding:22px 24px; background:rgba(244,236,216,.035); border-left:3px solid rgba(214,172,85,.5); }
+    .pillar h3 { margin:0 0 10px; font-family:var(--serif); font-weight:600; font-size:1.24rem; color:var(--ink); }
+    .pillar p { margin:0 0 8px; }
+    .pillar ul { margin:8px 0 0; }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(179,80,62,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(63,107,120,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left:-14px; }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left:-20px; }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    .reveal[data-d="3"] { transition-delay:.24s; }
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .hero-inner > div > *:nth-child(5){ animation-delay:.5s; }
+    .js .signal-board { animation-delay:.5s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid { grid-template-columns:1fr; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+      .dtable { font-size:.9rem; }
+      .dtable th,.dtable td { padding:10px 11px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-waterline"></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier XI · Mémoire &amp; histoire</p>
+          <h1>L'Esclavage <span class="foil">triangulaire</span></h1>
+          <p class="hero-lead">Le commerce triangulaire, le Code Noir, le bulletin de l'IFAN, la route de l'horreur, la résistance et la fracture napoléonienne — vu depuis Nantes, premier port négrier de France.</p>
+          <p class="hero-quote">« Nul ne serait tenu en esclavage ni en servitude. L'esclavage et la traite des esclaves sont interdits sous toutes leurs formes. »</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#transcription">Lire le dossier</a>
+            <a class="button" href="#napoleon">La fracture napoléonienne</a>
+            <a class="button" href="../../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board" aria-label="Repères">
+          <div class="signal"><span>Le système</span><strong>Trois continents, trois siècles</strong></div>
+          <div class="signal"><span>La loi</span><strong>Le Code Noir (1685)</strong></div>
+          <div class="signal"><span>Le port</span><strong>Nantes, près d'un navire sur deux</strong></div>
+          <div class="signal"><span>Le fil rouge</span><strong>Regarder le passé en face</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="../assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Esclavage</span>
+        </a>
+        <a class="home-link" href="../../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#fil">Le fil invisible</a>
+          <a href="#sommaire">Sommaire</a>
+          <a href="#definir">Définir</a>
+          <a href="#code-noir">Le Code Noir</a>
+          <a href="#envers">L'envers du décor</a>
+          <a href="#ifan">Le bulletin de l'IFAN</a>
+          <a href="#route">La route de l'horreur</a>
+          <a href="#resistance">La résistance</a>
+          <a href="#nantes">Nantes</a>
+          <a href="#mecanismes">Les mécanismes</a>
+          <a href="#napoleon">Napoléon</a>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </nav>
+
+    <main id="transcription">
+      <section class="intro-band" id="fil">
+        <div class="manifesto reveal">
+          <p class="section-kicker">Le fil invisible</p>
+          <h2>Comment le monde moderne est né d'un crime contre l'humanité.</h2>
+          <p>Ce dossier reprend mot pour mot les trois parties du live consacré à l'esclavage triangulaire : l'immense récit de la traite vu depuis Nantes, la synthèse de ses mécanismes, puis la fracture napoléonienne. Un voyage de mémoire, pour aimer une ville et un pays sans détourner le regard de leur passé.</p>
+        </div>
+        <div class="timeline reveal" data-d="1" aria-label="Fil conducteur">
+          <div class="timeline-row"><time>1685</time><p>Le Code Noir transforme l'être humain en « bien meuble ».</p></div>
+          <div class="timeline-row"><time>1707</time><p>Nantes arme ses premiers navires négriers et devient « l'Or Blanc ».</p></div>
+          <div class="timeline-row"><time>1791</time><p>La révolte de Saint-Domingue : la seule à fonder un État libre, Haïti.</p></div>
+          <div class="timeline-row"><time>1794 · 1802 · 1848</time><p>Abolition, rétablissement par Napoléon, puis abolition définitive.</p></div>
+        </div>
+      </section>
+
+      <section class="learning-panel reveal" aria-labelledby="objectifs">
+        <p class="section-kicker">Objectifs pédagogiques</p>
+        <h2 id="objectifs">Comprendre une machine économique qui a broyé des millions de vies pour un morceau de sucre.</h2>
+        <div class="learning-grid">
+          <div class="learning-item reveal" data-d="1"><span>Comprendre</span><p>La logique du commerce triangulaire, le rôle de l'État et des lois, et l'ancrage de la traite dans la prospérité de Nantes.</p></div>
+          <div class="learning-item reveal" data-d="2"><span>Décentrer</span><p>Regarder depuis l'Afrique grâce au bulletin de l'IFAN : des sociétés organisées, une économie de prédation forcée, pas un mythe de « terre sauvage ».</p></div>
+          <div class="learning-item reveal" data-d="3"><span>Se souvenir</span><p>Redonner leur humanité aux « pièces d'Inde » : la résistance, les femmes, et le fil qui relie 1685 à l'esclavage moderne de 2026.</p></div>
+        </div>
+      </section>
+      <section class="act-band reveal" id="acteI" aria-labelledby="actI">
+        <p class="act-no">Partie I · Le grand live</p>
+        <h2 id="actI">L'esclavage triangulaire</h2>
+        <p>« Imaginez un immense filet jeté sur l'Océan Atlantique, reliant trois continents dans une étreinte tragique. » Le récit complet, depuis Nantes, du système qui a bâti des empires et broyé des millions de vies.</p>
+      </section>
+
+      <!-- ===== CH 01 — LE FIL INVISIBLE ===== -->
+      <section class="chapter reveal" aria-labelledby="c1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Ouverture du live</p><h2 id="c1">« Bienvenue dans cette exploration. »</h2></div>
+          <div class="chapter-number">01</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="dialogue-block">
+              <span class="block-label">Au micro</span>
+              <p>« Imaginez un immense filet jeté sur l'Océan Atlantique, reliant trois continents dans une étreinte tragique. Pendant plus de trois siècles, ce filet a déplacé des millions de vies, broyé des destins et bâti des empires. Aujourd'hui, nous allons suivre ce fil invisible pour comprendre comment le monde moderne est né d'un système que l'humanité a fini par nommer "Crime contre l'humanité".</p>
+              <p>Imaginez qu'ici, sous nos pieds, 1 717 navires sont partis pour ne jamais revenir avec la même cargaison. C'est le point de départ de notre live. Bienvenue dans cette exploration du commerce triangulaire. »</p>
+            </div>
+            <div class="science-block">
+              <span class="block-label">La méthode</span>
+              <p>« Pour cette préparation, nous nous sommes appuyés sur les travaux de recherche du Musée d'histoire de Nantes et sur les données récentes de l'exposition Expression(s) décoloniale(s) de 2026, tout en croisant ces sources avec les bases de données internationales comme SlaveVoyages. »</p>
+            </div>
+            <p>À l'époque, les salons parisiens et nantais s'arrachent le sucre pour le café. C'est le signe extérieur de richesse." <em>Ymir (photo sucre) peut faire un geste de la main pour soupeser (sucre-vie humaine).</em></p>
+            <p>Mais pour obtenir ce morceau, il faut des plantations à Saint-Domingue, le Code Noir pour briser les corps, et les navires qui partent du Quai de la Fosse. Un seul morceau de sucre représentait des journées de travail forcé sous un soleil de plomb. <em>(Lalie)</em></p>
+            <p>Ce sucre fond dans votre café en 10 secondes, mais il a fallu des siècles de combat et des millions de vies pour que l'on reconnaisse enfin l'esclavage comme un crime contre l'humanité.</p>
+          </article>
+          <aside class="side-note">
+            <h3>Le décor</h3>
+            <p>Le live se tient à Nantes, sur le <strong>Mémorial de l'abolition de l'esclavage</strong>, et croise un objet rare : un <strong>bulletin de l'IFAN</strong> de Dakar (1963), pour regarder l'histoire depuis l'Afrique.</p>
+            <div class="tag-list"><span class="tag">Commerce triangulaire</span><span class="tag">Nantes</span><span class="tag">SlaveVoyages</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 02 — SOMMAIRE ===== -->
+      <section class="chapter reveal" id="sommaire" aria-labelledby="c2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Sommaire</p><h2 id="c2">L'Esclavage et le Commerce Triangulaire.</h2></div>
+          <div class="chapter-number">02</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="sommaire-list">
+              <div class="pillar reveal" data-d="1"><h3>I. Introduction et Définitions</h3>
+                <ul>
+                  <li>Présentation du commerce triangulaire : Un système global reliant trois continents pendant plus de trois siècles.</li>
+                  <li>Définition historique (Le Code Noir) : La transformation de l'être humain en "bien meuble", entraînant dépossession et déshumanisation.</li>
+                  <li>L'esclavage moderne en 2026 : Persistance sous forme de travail forcé (50 millions de personnes) et de dettes.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>II. La Genèse et la Logique du Système</h3>
+                <ul>
+                  <li>La rencontre de trois besoins : Le capital européen, les terres des Amériques (sucre, tabac, café) et la main-d'œuvre africaine.</li>
+                  <li>La logique du profit : L'investissement le plus rentable de l'époque et le passage à une consommation de masse.</li>
+                  <li>Complicité politique : Le rôle des États européens dans l'encouragement du commerce par les lois.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>III. Le Cadre Juridique : Le Code Noir (1685)</h3>
+                <ul>
+                  <li>Origine et but : Rédigé par Colbert sous Louis XIV pour régir la vie des esclaves et protéger l'investissement des colons.</li>
+                  <li>Les piliers du Code : L'article 44 (l'esclave défini comme un objet mobilier) ; l'effacement culturel — baptême catholique obligatoire (Article 2) ; l'esclavage héréditaire — le statut de l'enfant suit celui de la mère (Article 12).</li>
+                  <li>La légalisation de la violence : Punitions pour fuite (marronnage) et droit de battre les esclaves (Articles 38, 42).</li>
+                  <li>Sources juridiques : Influences du droit romain, du modèle ibérique et de la Coutume de Paris.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>IV. L'Afrique : Réalités et Déstabilisation (Source IFAN)</h3>
+                <ul>
+                  <li>L'apport scientifique du bulletin de l'IFAN (Dakar, 1963) : Briser le mythe d'une Afrique "sauvage" en documentant des sociétés organisées.</li>
+                  <li>L'économie de prédation : Comment la demande européenne et l'échange contre des armes ont militarisé et déstabilisé les royaumes africains.</li>
+                  <li>La valeur marchande : L'unité de mesure "Pièce d'Inde" et le troc de vies humaines contre des marchandises (fusils, textiles).</li>
+                  <li>La complicité des élites locales : Analyse des structures politiques et des enjeux de survie des chefs locaux.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>V. Nantes : Capitale de la Traite Négrière</h3>
+                <ul>
+                  <li>L'ascension d'un port : Comment un choix politique et économique a transformé Nantes en premier port négrier de France.</li>
+                  <li>Les familles d'armateurs : Le rôle des Walsh, Montaudouin et Deurbroucq dans le lobbying à Versailles.</li>
+                  <li>L'urbanisme de l'Or Blanc : La construction de l'Île Feydeau, du Quai de la Fosse et des hôtels particuliers grâce aux profits de la traite.</li>
+                  <li>L'industrie régionale : Textiles (Indiennes), raffinage du sucre et fabrication d'outils de contention.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>VI. Le Calvaire et la Résistance des Esclaves</h3>
+                <ul>
+                  <li>La Route de l'Horreur : Les conditions atroces de la traversée (Middle Passage) et l'entassement sur les navires.</li>
+                  <li>La vie en plantation : Travail épuisant dans les moulins à sucre et espérance de vie réduite (5 à 7 ans).</li>
+                  <li>Le rôle du commandeur : Un système de division pour maintenir l'ordre.</li>
+                  <li>Les formes de résistance : Quotidienne (sabotages, travail lent, empoisonnements) ; Spirituelle (maintien des cultes africains et naissance du Vaudou) ; Le Marronnage (la fuite et la création de villages libres).</li>
+                  <li>Le destin spécifique des femmes : Double exploitation (travail et violences sexuelles) et figures de proue comme la Mulete Solitude.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>VII. Conclusion et Mémoire</h3>
+                <ul>
+                  <li>La fin du système : Rôle des révoltes d'esclaves (Saint-Domingue, 1791) et abolition définitive en 1848.</li>
+                  <li>Héritage et réflexion personnelle : Regarder le passé de Nantes en face pour mieux comprendre les enjeux de dignité humaine aujourd'hui.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Architecture</h3>
+            <p>Sept actes, des définitions à la mémoire — en passant par le Code Noir, l'Afrique vue par l'IFAN, Nantes, la route de l'horreur et la résistance.</p>
+            <div class="tag-list"><span class="tag">Code Noir</span><span class="tag">IFAN</span><span class="tag">Résistance</span><span class="tag">Mémoire</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CRÉDIT ===== -->
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <span class="credit-avatars">
+          <img src="lalie.jpeg" alt="Avatar de Lalie">
+          <img src="ymir.jpeg" alt="Avatar d'Ymir">
+        </span>
+        <div class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>Lalie &amp; Ymir</strong>
+        </div>
+      </section>
+
+      <!-- ===== CH 03 — DÉFINIR ===== -->
+      <section class="chapter reveal" id="definir" aria-labelledby="c3">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Introduction &amp; définitions</p><h2 id="c3">L'homme transformé en « bien meuble ».</h2></div>
+          <div class="chapter-number">03</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">1. Définir l'Esclavage : Une dépossession totale</h3>
+            <p>L'esclavage, au sens historique du terme (le "Code Noir" en France), c'est la transformation d'un être humain en "bien meuble".</p>
+            <ul>
+              <li><strong>La dépossession :</strong> L'esclave n'appartient plus à lui-même. Il n'a plus de nom (celui du maître), plus de famille (ses enfants appartiennent au maître), plus de liberté de mouvement.</li>
+              <li><strong>La déshumanisation :</strong> Pour justifier ce système, on a inventé des théories racistes prétendant que certains peuples étaient "inférieurs".</li>
+            </ul>
+            <p class="sub">Le parallèle avec aujourd'hui : L'esclavage moderne</p>
+            <p>Même si l'esclavage "légal" n'existe plus, l'esclavage réel persiste sous d'autres formes :</p>
+            <ul>
+              <li><strong>Le travail forcé :</strong> On estime à près de 50 millions le nombre de personnes vivant dans l'esclavage moderne (travail forcé dans les mines, l'industrie textile, ou l'agriculture intensive).</li>
+              <li><strong>La dette :</strong> Des familles entières sont liées à un employeur pour rembourser une dette qui ne s'éteint jamais.</li>
+              <li><strong>Le point commun :</strong> Hier comme aujourd'hui, c'est l'exploitation de la vulnérabilité extrême pour un profit maximum.</li>
+            </ul>
+            <h3 class="group-title">2. Les débuts du Commerce Triangulaire</h3>
+            <p>Le système ne s'est pas fait en un jour. Il est né d'une rencontre brutale entre trois besoins :</p>
+            <ul>
+              <li><strong>Le besoin de l'Europe (Le capital) :</strong> Après la "découverte" des Amériques, l'Europe veut exploiter ces terres immenses. Mais elle manque de bras (les populations autochtones ont été décimées par les maladies et les guerres).</li>
+              <li><strong>Le besoin des Amériques (La terre) :</strong> Le sol est riche, idéal pour le sucre, le tabac et le café. Ces produits deviennent des drogues douces dont toute l'Europe raffole.</li>
+              <li><strong>La réponse en Afrique (La main-d'œuvre) :</strong> L'Afrique devient le réservoir de force humaine.</li>
+            </ul>
+            <h3 class="group-title">3. Les "Pourquoi" : Une machine économique</h3>
+            <p>Pourquoi ce système a-t-il été si puissant et si long ?</p>
+            <ul>
+              <li><strong>Le Profit pur :</strong> C'était l'investissement le plus rentable de l'époque. Un navire qui réussissait son "triangle" pouvait enrichir son armateur pour des générations.</li>
+              <li><strong>La consommation de masse :</strong> Le sucre est passé d'un produit de luxe à un produit quotidien. Pour maintenir des prix bas, il fallait une main-d'œuvre gratuite.</li>
+              <li><strong>La complicité politique :</strong> Les États européens (France, Angleterre, Portugal) ont encouragé ce commerce par des lois pour affirmer leur puissance mondiale.</li>
+            </ul>
+            <div class="lesson-block">
+              <span class="block-label">Le lien avec aujourd'hui</span>
+              <p>On pense souvent que l'esclavage est une vieille histoire, mais quand on regarde nos téléphones ou nos vêtements aujourd'hui, on réalise que la logique de l'exploitation pour le confort de quelques-uns n'a pas totalement disparu."</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · l'esclavage moderne</h3>
+            <p>Le chiffre de <strong>~50 millions</strong> de personnes en esclavage moderne est l'estimation conjointe <strong>OIT / Walk Free / OIM de 2022</strong> : ~28 millions en travail forcé + ~22 millions en mariage forcé. Femmes et enfants y sont surreprésentés.</p>
+            <div class="tag-list"><span class="tag">Bien meuble</span><span class="tag">Trois besoins</span><span class="tag">Travail forcé</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 04 — LE CODE NOIR ===== -->
+      <section class="chapter reveal" id="code-noir" aria-labelledby="c4">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le cadre juridique (1685)</p><h2 id="c4">Le Code Noir : l'homme devenu « chose ».</h2></div>
+          <div class="chapter-number">04</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Imaginé par Colbert sous Louis XIV en 1685, ce recueil d'articles est l'un des textes les plus sombres de l'histoire de France. Il a pour but de régir la vie des esclaves dans les colonies.</p>
+            <figure class="chapter-figure">
+              <img src="assets/code-noir.png" alt="L'édit du Code Noir de 1685, scellé d'une fleur de lys d'or, dont les chaînes dorées transforment la page en cage" loading="lazy">
+              <figcaption>L'édit de 1685 — la loi du Roi qui rend l'horreur légale</figcaption>
+            </figure>
+            <p>Le Code Noir n'est pas là pour protéger l'esclave, mais pour protéger l'investissement de l'armateur et du colon. Voici ses piliers principaux :</p>
+            <h3 class="group-title">1. Le Statut Juridique : Le "Bien Meuble" (Article 44)</h3>
+            <p>C'est l'article le plus terrible. L'esclave est déclaré "meuble".</p>
+            <ul>
+              <li>Cela signifie qu'il peut être vendu, acheté, échangé ou saisi par la justice, exactement comme une table, un mouton ou un sac de sucre.</li>
+              <li>Il n'a aucune personnalité juridique : il ne peut pas témoigner en justice, ne peut rien posséder en propre, et ses enfants appartiennent d'office au maître de sa mère.</li>
+            </ul>
+            <h3 class="group-title">2. Le Contrôle de la Vie Quotidienne</h3>
+            <ul>
+              <li><strong>Religion :</strong> L'édit impose le baptême catholique obligatoire. C'est une manière d'effacer l'identité culturelle et religieuse africaine (dont parle ton livre de l'IFAN).</li>
+              <li><strong>Mariage :</strong> Un esclave ne peut se marier qu'avec l'autorisation de son maître.</li>
+              <li><strong>Rassemblements :</strong> Interdiction stricte de se réunir, même pour des mariages ou des fêtes, de peur que les esclaves n'organisent une révolte.</li>
+            </ul>
+            <h3 class="group-title">3. La Discipline et les Supplices</h3>
+            <p>Le Code Noir encadre la violence pour éviter que les maîtres ne tuent "inutilement" leur main-d'œuvre, mais il légalise la torture :</p>
+            <ul>
+              <li><strong>La fuite (Le Marronnage) :</strong> Si un esclave s'enfuit pendant un mois, on lui coupe les oreilles et on le marque d'une fleur de lys au fer rouge. À la deuxième tentative, on lui coupe le jarret (le tendon d'Achille). À la troisième, c'est la mort.</li>
+              <li><strong>L'obéissance :</strong> Le maître a le droit de "chaîner et battre de verges" ses esclaves.</li>
+            </ul>
+            <h3 class="group-title">Pourquoi en parler ?</h3>
+            <p>Il y a un paradoxe fascinant et terrible à Nantes :</p>
+            <ul>
+              <li>Les armateurs nantais étaient souvent des gens très éduqués, des "humanistes" qui lisaient les philosophes des Lumières.</li>
+              <li>Pourtant, ils appliquaient le Code Noir sans sourciller car c'était la Loi du Roi.</li>
+            </ul>
+            <div class="question-block">
+              <span class="block-label">Le parallèle avec aujourd'hui</span>
+              <p>"Le Code Noir rendait l'horreur légale. Est-ce que, parce qu'une chose est légale, elle est forcément morale ?".</p>
+            </div>
+
+            <h3 class="group-title">Les Articles Clés du Code Noir</h3>
+            <p>Voici quelques articles originaux du Code Noir de 1685 produira un effet de choc garanti. C'est le moment où l'histoire devient réelle et brutale pour ton audience. Voici les 5 articles les plus emblématiques à citer :</p>
+            <div class="articles">
+              <div class="article-noir">
+                <h4>Article 44 : L'esclave est un objet</h4>
+                <span class="cite">"Déclarons les esclaves être meubles et comme tels entrer dans la communauté..."</span>
+                <p><strong>Le décodage pour ton live :</strong> C'est le fondement de tout. Un esclave n'est pas une personne, c'est un "meuble". On peut l'hériter comme une armoire ou le vendre comme un sac de blé. À Nantes, les inventaires après décès des riches armateurs listaient les esclaves entre les meubles du salon et le bétail.</p>
+              </div>
+              <div class="article-noir">
+                <h4>Article 2 : L'effacement culturel</h4>
+                <span class="cite">"Tous les esclaves qui seront dans nos îles seront baptisés et instruits dans la religion catholique, apostolique et romaine."</span>
+                <p><strong>Le décodage :</strong> On arrache aux captifs leurs croyances africaines (celles dont parle le livre de l'IFAN) pour leur imposer la religion du maître. C'est une forme de contrôle mental.</p>
+              </div>
+              <div class="article-noir">
+                <h4>Article 12 : L'esclavage héréditaire</h4>
+                <span class="cite">"Les enfants qui naîtront des mariages entre esclaves seront esclaves et appartiendront aux maîtres des femmes esclaves."</span>
+                <p><strong>Le décodage :</strong> L'esclavage est un piège sans fin. Si tu nais d'une mère esclave, tu es esclave dès ton premier cri. C'est une "production" de main-d'œuvre gratuite pour le futur.</p>
+              </div>
+              <div class="article-noir">
+                <h4>Article 38 : La punition de la fuite (Le Marronnage)</h4>
+                <span class="cite">"L'esclave fugitif qui aura été en fuite pendant un mois [...] aura les oreilles coupées et sera marqué d'une fleur de lys sur une épaule ; s'il récidive [...] il aura le jarret coupé et sera marqué d'une fleur de lys sur l'autre épaule ; et la troisième fois, il sera puni de mort."</span>
+                <p><strong>Le décodage :</strong> Le corps de l'esclave est marqué comme celui d'un animal. On le mutile pour qu'il ne puisse plus courir. La fleur de lys (symbole du Roi) rappelle que c'est l'État français qui cautionne cette torture.</p>
+              </div>
+              <div class="article-noir">
+                <h4>Article 42 : La "retenue" du maître</h4>
+                <span class="cite">"Pourront seulement les maîtres, lorsqu'ils croiront que leurs esclaves l'auront mérité, les faire enchaîner et les faire battre de verges ou de cordes."</span>
+                <p><strong>Le décodage :</strong> Le maître est juge et bourreau sur sa plantation. La violence est quotidienne et légale.</p>
+              </div>
+            </div>
+            <div class="lesson-block">
+              <span class="block-label">Les liens</span>
+              <p><strong>Le lien avec Nantes :</strong> "Pendant que ces lois étaient écrites à Versailles, à Nantes, on construisait les bateaux pour aller chercher ces 'meubles' en Afrique."</p>
+              <p><strong>Le lien avec l'IFAN :</strong> "Le livre de l'IFAN nous montre que ces hommes et femmes avaient une culture, des rois, des systèmes de justice... que le Code Noir a voulu nier totalement."</p>
+            </div>
+
+            <div class="dialogue-block">
+              <p>"Le Code Noir n'est pas tombé du ciel. Ses rédacteurs sont allés chercher dans les poubelles de l'histoire, notamment dans le droit romain vieux de 15 siècles, pour trouver des arguments légaux permettant de traiter un homme comme une armoire. Ce n'est pas une invention, c'est un recyclage de la barbarie pour servir l'économie sucrière de Nantes."</p>
+            </div>
+
+            <h3 class="group-title">D'où vient le Code Noir ?</h3>
+            <p>Le Code Noir n'est pas une "copie" mot pour mot d'un livre préexistant, mais il s'inspire de plusieurs sources anciennes. Voici les trois grandes influences qui ont permis à Colbert et ses juristes de rédiger ce texte en 1685 :</p>
+            <p class="sub">1. Le Droit Romain (Le "Corpus Iuris Civilis")</p>
+            <p>C'est la source principale. Les juristes de Louis XIV ont puisé dans le droit de l'Empire romain, vieux de plus de 1000 ans.</p>
+            <ul>
+              <li><strong>Le concept de l'esclave-objet :</strong> À Rome, l'esclave était déjà défini comme une Res (une chose).</li>
+              <li><strong>L'analogie :</strong> Le Code Noir a repris cette structure juridique pour l'adapter aux colonies. Ils n'ont pas "inventé" l'idée que l'homme puisse être un meuble, ils l'ont exhumée du droit antique.</li>
+            </ul>
+            <p class="sub">2. Les "Siete Partidas" (Le Code Espagnol)</p>
+            <p>L'Espagne et le Portugal avaient commencé la colonisation et la traite bien avant la France.</p>
+            <ul>
+              <li><strong>Le modèle ibérique :</strong> Dès le XIIIe siècle, les Siete Partidas en Espagne régissaient déjà l'esclavage. Les juristes français ont regardé comment les Espagnols géraient leurs esclaves à Cuba ou Hispaniola pour s'en inspirer, notamment sur les questions de baptême et de mariage.</li>
+            </ul>
+            <p class="sub">3. La "Coutume de Paris"</p>
+            <p>Avant 1685, il n'y avait pas de loi unique pour les colonies. Les gouverneurs sur place utilisaient la Coutume de Paris (le droit civil de l'époque en France).</p>
+            <ul>
+              <li><strong>Le problème :</strong> La Coutume de Paris ne prévoyait pas l'esclavage, car "le sol de France affranchit celui qui le touche".</li>
+              <li><strong>La solution :</strong> Le Code Noir a été écrit pour "légaliser" aux Antilles ce qui était illégal en métropole. C'est un texte "sur-mesure" qui mélange des morceaux de droit romain avec les nécessités économiques des planteurs.</li>
+            </ul>
+            <p class="sub">Le point de vigilance (La confusion possible)</p>
+            <p>Il arrive que certaines personnes affirment que le Code Noir a été copié sur des textes religieux ou d'autres législations plus anciennes de l'Ancien Testament.</p>
+            <ul>
+              <li><strong>La réalité :</strong> S'il y a des points communs (comme la gestion de la fuite ou du vol), le Code Noir est avant tout un outil technocratique et économique. Il a été rédigé par des bureaucrates (Colbert et son fils Seignelay) pour maximiser la production de sucre.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le texte &amp; ses sources</h3>
+            <p>Édit de <strong>mars 1685</strong>, voulu par Colbert (†1683) et <strong>finalisé sous son fils Seignelay</strong>, promulgué au nom de Louis XIV. Les citations des articles 44, 2, 12, 38, 42 sont exactes (BnF / Gallica).</p>
+            <p>Nuance d'historiens : l'influence du <strong>droit romain est débattue</strong> (pas une filiation établie) ; le principe « le sol de France affranchit » est en réalité <strong>opposé</strong> au Code Noir, pas une source — il vaut en métropole, le Code Noir aux colonies.</p>
+            <div class="tag-list"><span class="tag">Art. 44</span><span class="tag">Marronnage</span><span class="tag">Droit romain</span><span class="tag">Seignelay</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 05 — L'ENVERS DU DÉCOR ===== -->
+      <section class="chapter reveal" id="envers" aria-labelledby="c5">
+        <div class="chapter-head">
+          <div><p class="section-kicker">L'envers du décor</p><h2 id="c5">L'État, le navire-prison, l'Afrique &amp; l'idéologie.</h2></div>
+          <div class="chapter-number">05</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>"L'envers du décor"</p>
+            <ol>
+              <li>"D'abord, l'argent et l'État" (Les Compagnies).</li>
+              <li>"Ensuite, l'idéologie" (Comment on se donne bonne conscience).</li>
+              <li>"La réalité humaine en Afrique" (Grâce au livre de l'IFAN).</li>
+              <li>"Et enfin, l'horreur du transport" (La vie à bord).</li>
+            </ol>
+            <h3 class="group-title">1. Les Compagnies de Commerce : L'État comme "Cerveau"</h3>
+            <p>Le commerce triangulaire n'était pas une initiative de petits marins isolés. C'était une stratégie d'État.</p>
+            <ul>
+              <li><strong>Colbert et la Compagnie des Indes Occidentales (1664) :</strong> Louis XIV et son ministre voulaient briser le monopole des Hollandais. Ils ont créé des méga-entreprises avec des privilèges fiscaux énormes.</li>
+              <li><strong>Le rôle de Nantes :</strong> Au début, l'État contrôlait tout. Mais plus tard, il a ouvert le commerce aux "particuliers". C'est là que les grandes familles nantaises (les armateurs) ont pris le relais et ont fait exploser les chiffres.</li>
+              <li><strong>L'idée forte :</strong> C'était le "capitalisme de monopole". L'État donnait le droit de commercer, et les ports comme Nantes fournissaient les navires.</li>
+            </ul>
+            <h3 class="group-title">2. La vie à bord : Le navire-prison</h3>
+            <p>Pour ton live, il faut décrire l'horreur technique de la traversée (le Middle Passage).</p>
+            <ul>
+              <li><strong>L'optimisation de l'espace :</strong> Les captifs étaient rangés comme des "cuillères". On séparait les hommes (enchaînés deux par deux) des femmes et des enfants.</li>
+              <li><strong>La mortalité :</strong> Entre 10 % et 20 % des captifs mouraient pendant le voyage (dysenterie, scorbut, suicide). Pour l'armateur nantais, c'était une "perte de marchandise" calculée dans ses frais.</li>
+              <li><strong>La révolte :</strong> Elle était constante. Les navires étaient équipés de "barricados" (murs en bois avec des canons chargés à la mitraille tournés vers les captifs) pour protéger l'équipage en cas d'insurrection.</li>
+            </ul>
+            <h3 class="group-title">3. Le livre de l'IFAN : La réalité de l'Afrique</h3>
+            <p>C'est ici que ta source devient précieuse. Le bulletin de l'IFAN (Dakar) permet de briser le mythe d'une Afrique sauvage.</p>
+            <ul>
+              <li><strong>Des sociétés organisées :</strong> Le livre explique que les royaumes (comme le Dahomey ou les empires Wolofs) avaient leurs propres lois, leur diplomatie et leur artisanat.</li>
+              <li><strong>L'impact de la traite :</strong> La demande européenne en esclaves a militarisé l'Afrique. Pour ne pas être capturés, certains royaumes ont dû capturer leurs voisins. Le livre de l'IFAN documente comment cela a déstabilisé des civilisations entières pendant des siècles.</li>
+              <li><strong>Lien avec Nantes :</strong> Les navires nantais allaient souvent vers la côte du Bénin (Ouidah) ou le Sénégal (Gorée).</li>
+            </ul>
+            <h3 class="group-title">4. L'Idéologie : Justifier l'injustifiable</h3>
+            <p>Comment des chrétiens, des "humanistes" du XVIIIe siècle, pouvaient-ils faire cela ?</p>
+            <ul>
+              <li><strong>La Malédiction (Canaan) de Cham :</strong> Une interprétation détournée de la Bible prétendant que les descendants de Cham (associés aux Africains) étaient condamnés à l'esclavage.</li>
+              <li><strong>La "Mission Civilisatrice" :</strong> On prétendait que l'esclavage était une chance pour les captifs car cela leur permettait de devenir chrétiens et de "sortir de la barbarie".</li>
+              <li><strong>Le Racisme "Scientifique" :</strong> On a commencé à classer les humains par "races" pour prouver que la "race blanche" était faite pour diriger et les autres pour servir.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · la « malédiction de Cham »</h3>
+            <p>La « malédiction de Cham » (Genèse 9) est un <strong>détournement</strong> : le texte biblique ne mentionne ni couleur de peau ni Afrique. Elle a servi, après coup, à habiller de religion une exploitation économique.</p>
+            <p>Mortalité du Middle Passage : <strong>~15 % en moyenne</strong> (12–20 % selon route et période), avec des traversées catastrophiques au-delà de 50 % en cas d'épidémie.</p>
+            <div class="tag-list"><span class="tag">Compagnie des Indes</span><span class="tag">Barricados</span><span class="tag">Idéologie</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 06 — LE BULLETIN DE L'IFAN ===== -->
+      <section class="chapter reveal" id="ifan" aria-labelledby="c6">
+        <div class="chapter-head">
+          <div><p class="section-kicker">L'Afrique : réalités &amp; déstabilisation</p><h2 id="c6">Le bulletin de l'IFAN : regarder depuis Dakar.</h2></div>
+          <div class="chapter-number">06</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Le Bulletin de l'Institut Français d'Afrique Noire (IFAN), série B (Sciences Humaines), est un outil puissant pour ce live car il apporte une caution scientifique et "décentre" le regard : on ne regarde plus seulement depuis le port de Nantes, on regarde depuis l'Afrique.</p>
+            <h3 class="group-title">Zoom sur la Source : Le Bulletin de l'IFAN (Dakar)</h3>
+            <p class="sub">1. Qu'est-ce que l'IFAN ?</p>
+            <p>Cet institut, basé à Dakar (Sénégal), a été le cœur de la recherche en sciences humaines en Afrique de l'Ouest.</p>
+            <ul>
+              <li><strong>L'intérêt :</strong> Ce ne sont pas des récits de capitaines négriers nantais, mais des études d'historiens et d'ethnologues sur les sociétés africaines elles-mêmes.</li>
+              <li><strong>La Série B :</strong> Elle est dédiée à l'anthropologie, à l'histoire et à la sociologie.</li>
+            </ul>
+            <h3 class="group-title">2. Ce que le livre nous apprend sur l'Afrique de la Traite</h3>
+            <p>On peut utiliser ce livre pour briser trois idées reçues :</p>
+            <ul>
+              <li><strong>Idée reçue 1 :</strong> "L'Afrique était une terre sauvage sans lois." <br><strong>La réalité (via l'IFAN) :</strong> Le livre documente des structures politiques complexes (Empires Wolof, Royaume du Dahomey, États Fouta-Djallon). Ces États avaient des systèmes de castes, de justice et d'impôts bien avant l'arrivée des Européens.</li>
+              <li><strong>Idée reçue 2 :</strong> "Les Africains ont vendu les leurs par simple cruauté." <br><strong>La réalité (via l'IFAN) :</strong> Le livre montre comment la demande européenne en armes à feu a créé un cercle vicieux. Pour protéger son royaume contre un voisin armé par les Européens, il fallait soi-même obtenir des fusils... et la seule "monnaie" acceptée par les navires nantais était l'être humain. C'était une économie de survie forcée.</li>
+              <li><strong>Idée reçue 3 :</strong> "L'esclavage en Afrique était le même que celui des colonies." <br><strong>La réalité (via l'IFAN) :</strong> Le bulletin explique souvent la différence entre la "servitude domestique" (souvent temporaire ou intégrée à la famille) et la "traite transatlantique" (industrielle, raciale et déshumanisante via le Code Noir).</li>
+            </ul>
+            <h3 class="group-title">3. Comment utiliser en Live ?</h3>
+            <ul>
+              <li><strong>Le "Show and Tell" :</strong> On vous montre la couverture. Son aspect académique et ancien donne du poids à nos propos.</li>
+              <li><strong>La lecture d'un passage :</strong> Trouver une page qui mentionne un lieu (ex : Gorée, Ouidah, ou la Côte des Esclaves). "Regardez, ce livre publié à Dakar nous explique que dans cette région, la traite a fait disparaître des villages entiers pour alimenter les ports comme Nantes."</li>
+            </ul>
+
+            <h3 class="group-title">Présentation de l'objet (Le "Unboxing" historique)</h3>
+            <p>Montrer la couverture à la caméra.</p>
+            <ul>
+              <li><strong>Le contexte :</strong> Explique que ce numéro date de 1963, soit seulement 3 ans après les indépendances de nombreux pays d'Afrique de l'Ouest. C'est une période où les chercheurs (africains et français) commencent à réécrire l'histoire de l'Afrique non plus du point de vue des colons, mais de manière scientifique.</li>
+              <li><strong>Le logo de l'IFAN :</strong> On y voit une carte de l'Afrique. C'est le symbole de la volonté de centraliser toutes les connaissances (archéologie, ethnologie, histoire) à Dakar.</li>
+            </ul>
+            <p class="sub">Pourquoi la "Série B : Sciences Humaines" est cruciale ?</p>
+            <p>Contrairement à la Série A (sciences naturelles), la Série B parle des hommes, des cultures et de l'économie.</p>
+            <ul>
+              <li>Dans ce volume de 1963, les articles traitent souvent de la démographie et de l'histoire des royaumes.</li>
+              <li>Nous pouvons dire que : "Ce livre nous prouve que les captifs qui arrivaient à Nantes ne venaient pas de nulle part. Ils venaient de sociétés documentées ici, avec leurs propres structures sociales que la traite a violemment perturbées."</li>
+            </ul>
+            <h3 class="group-title">3. Transformer l'horreur en statistiques (L'histoire économique)</h3>
+            <p>À l'époque de la rédaction de ces articles (milieu du XXe siècle), les historiens voulaient comprendre comment le capitalisme moderne s'est construit.</p>
+            <ul>
+              <li><strong>La valeur marchande :</strong> Les listes de prix que l'on voit servaient à prouver que l'esclavage n'était pas un "accident", mais une gestion comptable froide.</li>
+              <li><strong>Le "Pièce d'Inde" :</strong> C'était l'unité de mesure. Un homme jeune et vigoureux valait "1 Pièce d'Inde". Les enfants ou les personnes âgées valaient des fractions (1/2 ou 2/3 de "pièce").</li>
+            </ul>
+            <p class="sub">Documenter le "Troc" (Ce qu'on échangeait contre des vies)</p>
+            <p>Le livre liste souvent ce qu'un navire nantais devait donner pour obtenir un captif. On y voit que la valeur d'une vie humaine était traduite en :</p>
+            <ul>
+              <li><strong>Marchandises :</strong> Tant de barils de poudre, tant de fusils, tant de mètres de textile ("Indiennes"), ou des cauris (coquillages servant de monnaie).</li>
+              <li><strong>L'intérêt pour ton live :</strong> Montrer ces pages prouve que pour les armateurs de Nantes, acheter un homme était identique à acheter un sac de café. C'est la preuve ultime de la déshumanisation prévue par le Code Noir.</li>
+            </ul>
+            <p class="sub">Analyser l'impact sur les sociétés africaines</p>
+            <p>L'IFAN n'a pas publié ces prix pour "vendre" des gens, mais pour montrer comment l'économie européenne a corrompu les économies africaines.</p>
+            <ul>
+              <li>En fixant des prix élevés sur les êtres humains et en payant avec des armes, les Européens ont forcé les royaumes africains à se faire la guerre pour capturer des voisins et les vendre.</li>
+            </ul>
+            <div class="dialogue-block">
+              <p>Sachez que ce que l'on vous montre avec cette une page de ce bulletin de l'IFAN. ne sont pas des prix de marchandises ordinaires. Ce sont les prix de femmes, d'hommes et d'enfants."</p>
+              <p><strong>La comparaison :</strong> "Regardez : ici, un homme est évalué à 15 fusils ou 30 pièces de tissu. C'est l'application directe de l'Article 44 du Code Noir que nous avons vu : l'homme est un meuble, un objet avec une étiquette de prix."</p>
+            </div>
+            <p>Ces pages peuvent être choquantes. Précisons bien que ces livres sont des outils de mémoire : on étudie ces prix aujourd'hui non pas pour valider ce commerce, mais pour mesurer l'ampleur du crime et ne jamais l'oublier.</p>
+            <h3 class="group-title">Le lien avec les produits du quotidien (L'impact invisible)</h3>
+            <p>Beaucoup de gens pensent que l'esclavage est une histoire lointaine. Montrons-leur que c'est dans leur cuisine.</p>
+            <ul>
+              <li><strong>L'idée :</strong> Préparer un morceau de sucre, un paquet de café ou du coton.</li>
+              <li><strong>Ce qu'il faut dire :</strong> "À l'époque, Nantes était la capitale européenne du raffinage du sucre. On l'appelait 'l'or blanc'. Chaque morceau de sucre consommé à Paris ou à Versailles passait par les quais de Nantes et était souillé par le sang des captifs décrits dans le livre de l'IFAN."</li>
+              <li><strong>Lien avec aujourd'hui :</strong> Posons-nous la question : "Aujourd'hui, quand on achète un vêtement à très bas prix, est-ce qu'on ne reproduit pas un peu ce schéma ?"</li>
+            </ul>
+            <p><em>Ceci sans être moralisateur !</em></p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · l'IFAN &amp; la « Pièce d'Inde »</h3>
+            <p>L'<strong>Institut français d'Afrique noire</strong> (Dakar, fondé 1938 ; devenu « Institut fondamental d'Afrique noire » en 1966) et son <strong>Bulletin série B (Sciences humaines)</strong> existent bien ; un numéro de 1963 est cohérent.</p>
+            <p>La <strong>« Pièce d'Inde »</strong> : unité de compte d'un captif d'environ 25-30 ans, robuste, sans défaut ; femmes, enfants et vieillards comptés en fractions. Le terme vient d'abord d'une pièce de toile indienne servant de troc.</p>
+            <div class="tag-list"><span class="tag">Dakar 1963</span><span class="tag">Décentrer</span><span class="tag">Pièce d'Inde</span><span class="tag">Cauris</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 07 — LA ROUTE DE L'HORREUR ===== -->
+      <section class="chapter reveal" id="route" aria-labelledby="c7">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le calvaire</p><h2 id="c7">La route de l'horreur.</h2></div>
+          <div class="chapter-number">07</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/route-atlantique.png" alt="Un navire solitaire traversant l'Atlantique au crépuscule ; sous la ligne de flottaison, des points de lumière dorée descendent dans l'abîme, en mémoire des vies perdues" loading="lazy">
+              <figcaption>Le passage du milieu — l'immensité de l'océan, en mémoire des disparus</figcaption>
+            </figure>
+            <h3 class="group-title">1. La Route : Une navigation calculée</h3>
+            <p>Le commerce triangulaire n'est pas une ligne droite, c'est une exploitation des vents et des courants.</p>
+            <ul>
+              <li><strong>Le départ :</strong> On quitte l'Europe (Nantes, Bordeaux, Liverpool) en descendant vers le Sud pour attraper les alizés.</li>
+              <li><strong>La traversée du milieu (Middle Passage) :</strong> Le trajet entre l'Afrique et les Amériques. C'est la partie la plus meurtrière. Elle dure entre 40 et 80 jours selon les vents.</li>
+              <li><strong>Le retour :</strong> On remonte vers le Nord (Floride) pour attraper les courants de l'Atlantique Nord qui ramènent les navires vers l'Europe.</li>
+            </ul>
+            <h3 class="group-title">2. Les Ports d'Afrique : Les "Entrepôts de Vies"</h3>
+            <p>Grâce à au livre de l'IFAN, on peut citer des noms précis. Les navires nantais ne s'arrêtaient pas n'importe où :</p>
+            <ul>
+              <li><strong>Gorée (Sénégal) :</strong> Un point de départ majeur.</li>
+              <li><strong>Ouidah (Bénin) :</strong> Surnommée la "Côte des Esclaves". C'est là que les courtiers locaux échangeaient les captifs contre les marchandises nantaises.</li>
+              <li><strong>Luanda (Angola) :</strong> Pour les trajets plus longs.</li>
+              <li><strong>Le détail choc :</strong> Les captifs attendaient parfois des mois dans des barracons (enclos sur la plage) ou des vents des forts avant que le navire ne soit "plein".</li>
+            </ul>
+            <h3 class="group-title">3. Les Conditions de vie à bord (L'enfer flottant)</h3>
+            <p>C'est ici que l'on peut faire le lien avec le Code Noir (qui ne prévoyait rien pour le confort, seulement pour la survie minimale du "meuble").</p>
+            <ul>
+              <li><strong>L'entassement :</strong> Les hommes étaient couchés sur le côté pour gagner de la place. L'air était irrespirable (chaleur, odeurs, maladies comme la dysenterie).</li>
+              <li><strong>La "danse" forcée :</strong> Pour éviter que les muscles ne s'atrophient et que la "marchandise" ne perde de sa valeur, on forçait les esclaves à monter sur le pont pour sauter ou danser sous la menace du fouet.</li>
+              <li><strong>La nourriture :</strong> Des bouillies de fèves ou de riz, souvent infectées.</li>
+            </ul>
+            <h3 class="group-title">4. Les Ports d'arrivée : "La mise aux enchères"</h3>
+            <p>Les navires nantais visaient principalement les Antilles françaises :</p>
+            <ul>
+              <li><strong>Saint-Domingue (Haïti) :</strong> La "Perle des Antilles". C'était la destination numéro 1 pour Nantes. On y produisait des quantités astronomiques de sucre.</li>
+              <li><strong>La Martinique et la Guadeloupe :</strong> Les autres points de chute.</li>
+              <li><strong>L'arrivée :</strong> À peine descendus du bateau, les esclaves étaient "préparés" (on huilait leur peau pour cacher les cicatrices et les maladies) pour être vendus aux enchères sur la place publique.</li>
+            </ul>
+            <h3 class="group-title">5. Le Destin des Esclaves</h3>
+            <p>Une fois vendus, c'est le début d'une vie de travail forcé jusqu'à la mort.</p>
+            <ul>
+              <li><strong>Le "Grand Travail" :</strong> La coupe de la canne à sucre sous un soleil de plomb. C'est un travail épuisant et dangereux (les moulins à sucre broyaient souvent les membres des travailleurs).</li>
+              <li><strong>L'espérance de vie :</strong> À Saint-Domingue, un esclave qui arrivait d'Afrique avait une espérance de vie de seulement 5 à 7 ans à cause de la dureté du travail.</li>
+              <li><strong>Le Marronnage :</strong> Certains s'enfuyaient dans les montagnes (les "Nègres Marrons"). C'est là qu'on appliquait l'Article 38 du Code Noir (oreilles coupées, marquage au fer).</li>
+            </ul>
+            <div class="dialogue-block">
+              <p>"Pendant que ces hommes et ces femmes mouraient d'épuisement à Saint-Domingue pour produire du sucre, les armateurs à Nantes surveillaient l'horizon. Chaque mort en mer était une perte financière, mais chaque sac de sucre qui arrivait au Quai de la Fosse était un pas de plus vers la construction de ces palais que l'on va vous montrer plus tard."</p>
+            </div>
+            <p>C'est le moment d'aborder la partie la plus sombre de la "chaîne logistique". Il est crucial de montrer que la capture n'était pas un événement isolé, mais une déstabilisation organisée de tout un continent. Le livre de l'IFAN (Tome XXV) est précieux ici, car il analyse justement comment les structures sociales africaines ont été percutées.</p>
+
+            <h3 class="group-title">1. Les mécanismes de capture : Comment devenait-on captif ?</h3>
+            <p>Contrairement à l'imagerie populaire, les marins nantais descendaient rarement eux-mêmes chasser les gens dans la brousse (trop risqué pour eux à cause des maladies et de la résistance locale). Ils utilisaient des leviers indirects :</p>
+            <ul>
+              <li><strong>Les Guerres de Traite :</strong> C'était la source principale. Les Européens fournissaient des fusils à un royaume A. Pour ne pas être détruit, le royaume B devait aussi avoir des fusils. Pour payer ces fusils aux Nantais, il fallait livrer des prisonniers de guerre. C'était un cercle vicieux.</li>
+              <li><strong>Les Raids (Razzias) :</strong> Des bandes armées attaquaient les villages isolés, souvent la nuit, pour capturer les jeunes hommes et femmes les plus vigoureux.</li>
+              <li><strong>Le Kidnapping :</strong> Des enlèvements individuels en bord de forêt ou près des points d'eau.</li>
+              <li><strong>La Justice détournée :</strong> Sous la pression de la demande européenne, certains délits mineurs (dettes, adultères, vols) commençaient à être punis par la vente en esclavage.</li>
+            </ul>
+            <h3 class="group-title">A. La Traversée : Le "Passage du Milieu"</h3>
+            <p>C'est la phase la plus traumatisante. Le navire n'est plus un moyen de transport, c'est une machine à broyer l'humain.</p>
+            <ul>
+              <li><strong>L'Espace :</strong> Dans le livre de l'IFAN, on comprend que la rentabilité était la seule règle. Un navire de 30 mètres pouvait transporter jusqu'à 400 ou 500 personnes. Les captifs disposaient d'un espace d'environ 150 cm de long sur 40 cm de large.</li>
+              <li><strong>L'Hygiène :</strong> Sans accès à l'eau propre, les maladies comme la dysenterie (appelée "le flux de sang") se propageaient à une vitesse folle. Le taux de mortalité moyen était de 15 %, mais pouvait monter à 50 % en cas d'épidémie.</li>
+              <li><strong>La Révolte du désespoir :</strong> Beaucoup de captifs préféraient la mort. On installait des filets autour du navire pour empêcher ceux qui montaient sur le pont de se jeter à la mer. Ceux qui faisaient une grève de la faim étaient nourris de force avec un instrument en fer appelé le speculum oris.</li>
+            </ul>
+            <h3 class="group-title">2. La Marche vers la Côte : Le premier calvaire</h3>
+            <p>Une fois capturés, les futurs esclaves devaient rejoindre les ports de départ (ceux cités dans l'IFAN : Ouidah, Gorée, etc.).</p>
+            <ul>
+              <li><strong>Les "Cofles" :</strong> On attachait les captifs les uns aux autres par le cou avec des fourches en bois ou des chaînes. Ils marchaient parfois des centaines de kilomètres sous un soleil de plomb.</li>
+              <li><strong>Le Tri :</strong> Ceux qui tombaient d'épuisement étaient abandonnés ou tués sur place car ils n'avaient plus de "valeur marchande". C'est la première étape de la déshumanisation : on ne voit plus l'humain, on voit la "pièce d'Inde" (l'unité de mesure dont on parlait).</li>
+            </ul>
+            <h3 class="group-title">3. Les Forts et les "Barracons" (L'attente)</h3>
+            <p>Arrivés sur la côte, les captifs ne montaient pas tout de suite sur les navires nantais.</p>
+            <ul>
+              <li><strong>Les Prisons :</strong> Ils étaient enfermés dans des donjons (comme au Fort d'Elmina ou à Gorée) ou dans des enclos sur la plage appelés barracons.</li>
+              <li><strong>L'Examen médical :</strong> Les chirurgiens des navires nantais inspectaient les corps : on vérifiait les dents, les yeux, la musculature. On marquait ensuite le corps au fer rouge (le "marquage") avec le sigle de la compagnie ou de l'armateur pour prouver la propriété. C'est l'application physique de l'Article 44 du Code Noir avant même le départ.</li>
+            </ul>
+            <h3 class="group-title">4. Le Destin : Pourquoi eux ? (La sélection)</h3>
+            <p>Les acheteurs nantais cherchaient des profils spécifiques pour les plantations de Saint-Domingue :</p>
+            <ul>
+              <li><strong>Les "Nègres de jardin" :</strong> Pour le travail de force dans la canne à sucre.</li>
+              <li><strong>Les artisans :</strong> Parfois, ils cherchaient des forgerons ou des menuisiers dont les compétences étaient déjà reconnues en Afrique (compétences souvent détaillées dans les études de l'IFAN).</li>
+              <li><strong>Les femmes :</strong> Utilisées pour le travail domestique mais aussi pour la "reproduction" de la main-d'œuvre (l'Article 12 du Code Noir stipulant que l'enfant suit la condition de la mère).</li>
+            </ul>
+            <h3 class="group-title">A. L'Arrivée aux Antilles : La "Préparation"</h3>
+            <p>Avant d'être vendus dans les ports comme Port-au-Prince ou Cap-Français, les esclaves subissaient un traitement pour augmenter leur "prix" (ceux que tu as vus dans ton livre).</p>
+            <ul>
+              <li><strong>Le camouflage :</strong> On rasait les cheveux pour cacher les poux, on frottait la peau avec de l'huile de palme pour faire briller les muscles, et on utilisait de la poudre pour masquer les plaies et les maladies de peau.</li>
+              <li><strong>La marque finale :</strong> C'est souvent là qu'on appliquait le fer rouge une dernière fois pour marquer l'esclave du sceau de son nouveau propriétaire (le colon).</li>
+            </ul>
+            <h3 class="group-title">B. Le Travail en Plantation : Une mort programmée</h3>
+            <p>L'esclave ne devenait pas seulement un travailleur, il devenait un outil de production.</p>
+            <ul>
+              <li><strong>Le cycle de la canne :</strong> C'est le travail le plus dur. Il fallait défricher, planter, puis couper la canne sous un soleil de plomb. Mais le pire était le moulin : le broyage de la canne se faisait jour et nuit. Si un esclave, épuisé, se faisait prendre la main dans l'engrenage, on avait toujours une hache à côté pour trancher le bras immédiatement et ne pas arrêter la machine.</li>
+              <li><strong>L'alimentation :</strong> Le Code Noir (Article 22) obligeait le maître à fournir une certaine quantité de nourriture (farine de manioc, poisson salé), mais dans la réalité, beaucoup de maîtres préféraient laisser les esclaves mourir de faim et en racheter de nouveaux, car cela coûtait moins cher que de les nourrir correctement.</li>
+            </ul>
+            <h3 class="group-title">C. Les pourquoi : Pourquoi cette cruauté était-elle "normale" ?</h3>
+            <ul>
+              <li><strong>La déshumanisation par le droit :</strong> Le Code Noir permettait de dormir tranquille. Si l'esclave est un "meuble", alors le battre n'est pas plus grave que de casser une chaise.</li>
+              <li><strong>L'économie monde :</strong> L'Europe était "accro" au sucre. Cette demande mondiale rendait l'esclavage indispensable aux yeux des puissances de l'époque.</li>
+            </ul>
+            <div class="dialogue-block">
+              <p>"Ce livre nous montre des chiffres de population en Afrique. On voit des régions qui se vident de leurs hommes jeunes. C'est l'explication de ce que je vous raconte : on a déporté la force vive de tout un continent pour faire tourner les moulins à sucre des Antilles."</p>
+            </div>
+
+            <h3 class="group-title">Les dirigeants d'Afrique pouvaient-ils être complices ?</h3>
+            <p>Une question subsiste, les dirigeants des pays d'Afrique pouvaient-ils être complices ? C'est une question cruciale et souvent sensible, mais la réponse historique est oui, il y avait une complicité active de certaines élites et dirigeants africains, mais il faut comprendre pourquoi et comment pour ne pas faire de raccourcis. Le livre de l'IFAN (1963) est justement là pour analyser ces structures politiques. Voici les faits pour ton live :</p>
+            <p class="sub">1. Un partenariat commercial, pas une invasion</p>
+            <p>Au début, les Européens (dont les Nantais) n'avaient pas les moyens militaires d'envahir l'Afrique. Ils restaient sur les côtes.</p>
+            <ul>
+              <li><strong>Le deal :</strong> Les rois et chefs locaux (comme ceux du Dahomey, de l'Ashanti ou du Kongo) contrôlaient l'accès à l'intérieur des terres.</li>
+              <li><strong>Le profit :</strong> En échange des captifs, ces dirigeants recevaient des marchandises de prestige : tissus de luxe, alcool, coraux, mais surtout des armes à feu.</li>
+            </ul>
+            <p class="sub">2. Le piège du fusil (Le cercle vicieux)</p>
+            <p>Si un roi africain refusait de vendre des esclaves, il n'avait pas de fusils.</p>
+            <ul>
+              <li>Son voisin, lui, acceptait le deal et obtenait des armes.</li>
+              <li>Le voisin attaquait alors le premier roi pour capturer son peuple et le vendre.</li>
+              <li><strong>Résultat :</strong> Pour survivre et protéger son propre peuple, chaque dirigeant était poussé à faire la guerre aux autres pour fournir des captifs aux Européens. C'est ce qu'on appelle l'économie de prédation.</li>
+            </ul>
+            <p class="sub">3. Qui étaient les captifs ?</p>
+            <p>Les rois africains ne vendaient pas "leur propre peuple" au sens de leurs sujets directs.</p>
+            <ul>
+              <li>Ils vendaient des prisonniers de guerre, des criminels, des débiteurs ou des membres de tribus rivales capturés lors de raids (razzias).</li>
+              <li>Pour eux, à l'époque, la notion d' "Afrique" ou de "Fraternité noire" n'existait pas. Ils voyaient les voisins comme des étrangers ou des ennemis, exactement comme les rois européens se faisaient la guerre entre eux.</li>
+            </ul>
+            <p class="sub">4. Les résistances oubliées</p>
+            <p>Il ne faut pas dire que tous étaient complices. Le livre de l'IFAN évoque sans doute des résistances :</p>
+            <ul>
+              <li>Certains dirigeants, comme la Reine Nzinga (en Angola) ou le Roi Almamy du Fouta-Toro, ont essayé d'interdire la traite sur leurs terres ou de détourner le commerce vers d'autres produits.</li>
+              <li>Mais face à la puissance financière des ports comme Nantes et à la demande mondiale de sucre, ces résistances ont souvent été écrasées par la force ou par des coups d'État financés par les négriers.</li>
+            </ul>
+            <div class="dialogue-block">
+              <p>"C'était un crime à deux mains. L'Europe (Nantes) fournissait le capital et la demande, et certaines élites africaines fournissaient la 'marchandise'. Mais attention : c'est l'Europe qui a créé ce marché et qui a imposé le fusil comme monnaie d'échange. Sans le sucre des Antilles et l'argent de Nantes, cette complicité n'aurait jamais pu atteindre une échelle industrielle."</p>
+              <p>"L'histoire n'est jamais toute blanche ou toute noire, c'est une machine économique qui a broyé des millions de gens pour un morceau de sucre."</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · chiffres &amp; faits</h3>
+            <p><strong>Mortalité</strong> du Middle Passage ≈ 15 % en moyenne (le « 50 % » = cas extrême d'épidémie). L'<strong>espace</strong> de ~150 cm est sous-estimé : la référence (plan du <em>Brookes</em>, 1788) donne ~180 cm × 41 cm pour un homme adulte.</p>
+            <p><strong>Espérance de vie 5-7 ans</strong> : estimation. <strong>Speculum oris</strong>, <strong>barracons</strong>, <strong>coffles</strong>, marquage au fer : tous documentés. La <strong>Reine Nzinga</strong> (Ndongo/Matamba) a bien résisté aux Portugais.</p>
+            <div class="tag-list"><span class="tag">Middle Passage</span><span class="tag">Speculum oris</span><span class="tag">Économie de prédation</span><span class="tag">Nzinga</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 08 — LA RÉSISTANCE & LES FEMMES ===== -->
+      <section class="chapter reveal" id="resistance" aria-labelledby="c8">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Briser les chaînes</p><h2 id="c8">La résistance &amp; le destin des femmes.</h2></div>
+          <div class="chapter-number">08</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Il est important de souligner que des résistances s'organisaient.</p>
+            <h3 class="group-title">1. La Résistance : Briser les chaînes</h3>
+            <p>L'esclavage n'a jamais été accepté. La résistance commençait dès le navire et continuait sur terre.</p>
+            <ul>
+              <li><strong>Le Marronnage (La fuite) :</strong> C'est l'acte de s'enfuir de la plantation. Le "Petit Marronnage" : s'absenter quelques jours pour voir de la famille sur une autre plantation ou pour protester contre un mauvais traitement. Le "Grand Marronnage" : s'enfuir définitivement dans les montagnes ou les forêts impénétrables (comme à Saint-Domingue ou en Jamaïque). Les esclaves y créaient de véritables villages libres cachés.</li>
+              <li><strong>Les Sabotages :</strong> C'était la résistance du quotidien. Casser un outil, travailler lentement, ou mettre le feu aux champs de canne à sucre pour ruiner le colon.</li>
+              <li><strong>Les Révoltes armées :</strong> La plus célèbre est celle de Saint-Domingue en 1791, menée par Toussaint Louverture. C'est la seule révolte d'esclaves dans l'histoire qui a mené à la création d'un État libre : Haïti.</li>
+            </ul>
+            <p>N'oublions pas ces femmes qui ont souffert doublement mais qui se sont dressées contre le rétablissement de l'esclavage mais qui existe encore en 2026.....</p>
+            <h3 class="group-title">1. Le destin des femmes : Une double oppression</h3>
+            <p>Dans ton livre de l'IFAN, on voit que les femmes étaient très présentes dans les cargaisons. Leur calvaire était spécifique :</p>
+            <ul>
+              <li><strong>L'exploitation sexuelle :</strong> En plus du travail forcé, les femmes subissaient les violences des maîtres et des commandeurs. Le Code Noir tentait d'encadrer cela (en punissant théoriquement les maîtres qui avaient des enfants avec des esclaves), mais dans la réalité, c'était la loi du plus fort.</li>
+              <li><strong>La "Production" d'esclaves :</strong> Le ventre des femmes était considéré comme une usine à main-d'œuvre. Selon l'Article 12 du Code Noir, l'enfant né d'une femme esclave devenait automatiquement la propriété du maître.</li>
+              <li><strong>Les figures de proue :</strong> Parle de femmes comme la Mulete Solitude en Guadeloupe. Elle s'est battue les armes à la main contre le rétablissement de l'esclavage par Napoléon en 1802, alors qu'elle était enceinte. Elle est devenue un symbole de résistance héroïque.</li>
+            </ul>
+            <p>C'est une observation très juste et elle touche au cœur de ce qu'on appelle l'esclavage moderne. Aujourd'hui encore, les femmes et les filles sont statistiquement les premières victimes des formes contemporaines d'esclavage. Faire ce pont entre le Code Noir de 1685 et la réalité de 2026 donne une profondeur incroyable à au sujet. Voici pourquoi et comment les femmes en sont toujours victimes :</p>
+            <h3 class="group-title">1. La vulnérabilité persistante (Le parallaxe historique)</h3>
+            <p>Hier, le Code Noir utilisait le corps des femmes pour "produire" de la main-d'œuvre gratuite (l'enfant suivait le sort de la mère). Aujourd'hui, la logique d'exploitation n'a pas disparu, elle a changé de nom.</p>
+            <p class="sub">Les formes actuelles d'esclavage pour les femmes :</p>
+            <ul>
+              <li><strong>Le travail forcé domestique :</strong> C'est "l'esclavage invisible". Des femmes (souvent migrantes) sont enfermées dans des foyers privés, privées de passeport, non payées, et travaillent 15h par jour. C'est le prolongement direct des "servantes" des maisons d'armateurs à Nantes.</li>
+              <li><strong>L'exploitation sexuelle commerciale :</strong> C'est la forme la plus violente. Des réseaux de traite utilisent la menace et la dette pour contraindre des femmes. C'est la marchandisation pure du corps humain, comme au temps des enchères coloniales.</li>
+              <li><strong>Le mariage forcé :</strong> Dans beaucoup de régions du monde, le mariage forcé est considéré par l'ONU comme une forme d'esclavage moderne, car la femme perd toute autonomie et appartient légalement ou socialement à son époux ou à sa belle-famille.</li>
+            </ul>
+            <h3 class="group-title">2. Pourquoi les femmes en particulier ?</h3>
+            <p>C'est une question de structure sociale (le patriarcat) qui rejoint l'économie :</p>
+            <ul>
+              <li><strong>La pauvreté féminisée :</strong> Les femmes ont souvent moins accès à la propriété ou à l'éducation. Les trafiquants utilisent cette précarité pour leur promettre des emplois de "serveuse" ou de "nounou" en Europe, avant de les piéger.</li>
+              <li><strong>Le silence :</strong> Comme au XVIIIe siècle, la honte et la menace de représailles sur la famille empêchent beaucoup de victimes de parler.</li>
+            </ul>
+            <p>Avec le bulletin de l'IFAN pour montrer que la résistance des femmes ne date pas d'hier.</p>
+            <ul>
+              <li>Dans les sociétés africaines étudiées par l'IFAN, les femmes avaient souvent des rôles de conseillères, de commerçantes ou de guerrières.</li>
+              <li><strong>Le message :</strong> L'esclavage a tenté de briser ce pouvoir féminin. Aujourd'hui, la lutte contre l'esclavage moderne passe d'abord par l'éducation et l'autonomisation des femmes.</li>
+            </ul>
+            <div class="lesson-block">
+              <span class="block-label">Ce qu'il faut retenir</span>
+              <p>L'esclavage n'est pas mort, il a juste enlevé ses chaînes en fer pour mettre des chaînes invisibles (dettes, menaces, pression sociale).</p>
+              <p>On nous a souvent appris que l'esclavage s'est arrêté parce que des politiciens l'ont décidé. C'est faux. L'esclavage a reculé parce que les esclaves eux-mêmes ont rendu le système ingérable par leurs révoltes, leur courage et leur refus de mourir en silence. Quand nous verrons les pierres de Nantes tout à l'heure, rappelez-vous que derrière chaque façade, il y avait des hommes et des femmes qui rêvaient de liberté.</p>
+              <p>On regarde les photos de Nantes, on lit le Code Noir et on se dit 'Quelle horreur, heureusement que c'est fini'. Mais regardez autour de vous. Quand on achète un vêtement fabriqué dans un atelier clandestin à l'autre bout du monde, ou quand on ignore la traite des êtres humains qui se joue parfois dans l'immeuble d'à côté, on est dans la même position que les Nantais du XVIIIe siècle qui buvaient leur café sucré en ignorant la souffrance des femmes dans les plantations.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · figures &amp; nuances</h3>
+            <p>« <strong>Mulete Solitude</strong> » : coquille pour la <strong>« Mulâtresse Solitude »</strong> (Guadeloupe, enceinte lors de sa capture, exécutée le 29 novembre 1802). La révolte de 1791 est <strong>déclenchée en août 1791</strong> ; Toussaint Louverture <strong>la rejoint peu après</strong> et en devient le chef — elle aboutit à Haïti, seul État né d'une révolte d'esclaves.</p>
+            <div class="tag-list"><span class="tag">Marronnage</span><span class="tag">Solitude</span><span class="tag">Saint-Domingue 1791</span><span class="tag">Esclavage moderne</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 09 — LES TRACES INVISIBLES ===== -->
+      <section class="chapter reveal" aria-labelledby="c9">
+        <div class="chapter-head">
+          <div><p class="section-kicker">L'héritage</p><h2 id="c9">Les traces invisibles.</h2></div>
+          <div class="chapter-number">09</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">1. Les mots qui nous restent</h3>
+            <ul>
+              <li><strong>"Pacotille" :</strong> Explique que c'était la marchandise (perles, miroirs) que les marins nantais emportaient pour leur propre compte. Aujourd'hui, on l'utilise pour dire "de mauvaise qualité".</li>
+              <li><strong>"Indiennes" :</strong> Ce sont les tissus fabriqués à Nantes pour être échangés contre des humains. C'est l'ancêtre de toute l'industrie textile de la région.</li>
+            </ul>
+            <h3 class="group-title">2. L'objet "témoin" : Le Sucre ou le Café</h3>
+            <ul>
+              <li>un morceau de sucre ou une tasse de café à côté du livre de l'IFAN.</li>
+              <li><strong>Le message :</strong> "On l'appelait 'l'Or Blanc'. Nantes s'est enrichie en raffinant ce sucre. Chaque grain de sucre qui arrivait au Quai de la Fosse au XVIIIe siècle était le résultat direct du travail forcé et des prix que nous lisons dans ce bulletin de Dakar."</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · « pacotille »</h3>
+            <p>« Pacotille » vient de l'espagnol <em>pacotilla</em> (petit ballot de marchandises qu'un marin embarquait pour son propre compte). Nuance utile : ces biens de troc n'étaient pas « sans valeur » — les négociants africains étaient des partenaires exigeants ; le glissement vers « camelote » est postérieur.</p>
+            <div class="tag-list"><span class="tag">Pacotille</span><span class="tag">Indiennes</span><span class="tag">Or Blanc</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 10 — NANTES (1) ===== -->
+      <section class="chapter reveal" id="nantes" aria-labelledby="c10">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Nantes, capitale de la traite</p><h2 id="c10">Sur quoi cette ville s'est-elle bâtie ?</h2></div>
+          <div class="chapter-number">10</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/nantes-memoire.png" alt="Les façades et balcons de fer forgé de l'Île Feydeau à Nantes, reflétés dans la Loire où le même fer se transforme en chaînes" loading="lazy">
+              <figcaption>Le fer des balcons, le fer des chaînes — deux faces d'une même pièce</figcaption>
+            </figure>
+            <div class="dialogue-block">
+              <p>Aujourd'hui, je vous emmène avec moi dans un voyage très particulier. Vous connaissez sans doute ses machines de l'île, son château, ses beaux immeubles de pierre blanche... Mais est-ce que vous savez vraiment sur quoi cette ville s'est bâtie ?</p>
+              <p>Si on regarde de près les façades de l'Île Feydeau ou du Quai de la Fosse, les pierres nous racontent une histoire que l'on a longtemps voulu oublier : celle du commerce triangulaire. Nantes n'a pas seulement été un port, elle a été la capitale française de la traite négrière. Près d'un navire sur deux partait d'ici.</p>
+              <p>Pour comprendre ce système, on ne va pas seulement regarder des photos. On va plonger dans les textes. Nous avons avec nous une source rare : ce bulletin de l'IFAN de Dakar de 1963. À l'intérieur, il y a des chiffres, des prix de vies humaines, des analyses sur les sociétés africaines que Nantes est allée percuter de plein fouet.</p>
+              <p>Je suis née ici, à Nantes. J'ai grandi dans ces rues, j'ai marché sur ces quais des milliers de fois, j'ai admiré ces façades blanches sans toujours savoir ce qu'elles cachaient vraiment. Nantes, c'est ma ville, j'en suis fière, mais pour bien aimer sa ville, il faut aussi oser regarder son passé en face.</p>
+              <p>Pendant longtemps, on a parlé du 'commerce de Nantes'. Mais ce commerce, c'était le sang et l'or. C'était le commerce triangulaire. Nantes a été le premier port négrier de France. Près de la moitié des expéditions vers l'Afrique partaient d'ici, de nos quais.</p>
+              <p>Pour comprendre comment ma ville est devenue cette métropole magnifique, j'ai voulu remonter à la source. C'est pour ça que ce livre : le nous avons le bulletin de l'IFAN de 1963. À l'intérieur, il y a la voix de l'Afrique, il y a des chiffres, des prix... la preuve que derrière chaque balcon en fer forgé de l'île Feydeau, il y avait une réalité humaine que le Code Noir de 1685 avait décidé d'effacer.</p>
+              <p>Aujourd'hui, en tant que Nantaise, je ne veux plus juste 'voir' ma ville, je veux la 'comprendre'. On va parler ensemble des textes, des captures en Afrique, pour arriver jusqu'aux photos que j'ai prises pour vous dans les rues de Nantes.</p>
+              <p>"Au tout début, Nantes était une ville de marins comme les autres. Mais vers 1700, Nantes a fait un choix : celui de l'Or Blanc. Ils ont regardé vers l'Océan, ils ont lu les nouvelles lois du Code Noir, et ils ont lancé les premiers navires. C'est à ce moment-là que le destin de ma ville a basculé pour devenir ce qu'elle est aujourd'hui."</p>
+            </div>
+            <p>Comment une petite ville de province est devenue un géant européen. Nantes n'a pas toujours été un port négrier ; elle l'est devenue par un choix politique et économique très précis à la fin du XVIIe siècle. Il faut remonter au moment où Nantes n'était qu'un port de province et comment, en quelques décennies, elle est devenue le "piston" de l'économie coloniale française. Voici le début de l'histoire,</p>
+            <h3 class="group-title">1. 1685-1700 : Le "Déclic" (Le Code Noir et Colbert)</h3>
+            <p>Avant 1700, Nantes commerce surtout avec l'Europe (sel, vin). Mais le ministre de Louis XIV, Colbert, veut que la France ait son propre sucre pour ne plus l'acheter aux Hollandais.</p>
+            <ul>
+              <li><strong>L'outil :</strong> Il rédige le Code Noir en 1685. Ce texte donne un cadre "légal" à l'horreur. Il définit l'esclave comme un "bien meuble".</li>
+              <li><strong>L'opportunité :</strong> Pour les commerçants nantais, c'est le signal. Puisque la loi autorise et que le Roi encourage, ils vont se lancer.</li>
+              <li><strong>Le premier navire :</strong> En 1707, le monopole des grandes compagnies d'État est brisé. Les familles nantaises ont enfin le droit d'armer leurs propres bateaux pour la traite. C'est l'explosion.</li>
+            </ul>
+            <h3 class="group-title">2. Pourquoi Nantes et pas un autre port ?</h3>
+            <p>En tant que Nantaise, je sais que la ville est une île (ou l'était). C'est sa force :</p>
+            <ul>
+              <li><strong>La Loire (L'autoroute) :</strong> On fait descendre par le fleuve tout ce qu'on va échanger en Afrique : les eaux-de-vie d'Anjou, le bois de construction, et surtout les Indiennes (tissus de coton imprimés à Nantes).</li>
+              <li><strong>Le savoir-faire :</strong> Nantes avait déjà les meilleurs charpentiers de marine et les meilleurs tonneliers.</li>
+              <li><strong>L'absence de scrupules :</strong> Contrairement à d'autres ports plus conservateurs, Nantes accueille des familles d'affaires venues de partout (Irlande, Hollande) qui veulent faire fortune très vite.</li>
+            </ul>
+            <h3 class="group-title">3. Le premier "Commerce Triangulaire"</h3>
+            <p>Voici comment se déroulaient les premières expéditions (celles qui ont financé les premiers hôtels particuliers) :</p>
+            <ol>
+              <li><strong>Le départ de Nantes :</strong> Le navire part du Quai de la Fosse. Il est rempli de tissus, de fusils et d'alcool.</li>
+              <li><strong>L'escale en Afrique :</strong> C'est là que le livre de l'IFAN intervient. Les Nantais négocient avec les chefs locaux sur la "Côte des Esclaves" (Bénin, Togo actuels). On échange les tissus contre des hommes, des femmes et des enfants.</li>
+              <li><strong>La traversée (Le passage du milieu) :</strong> 2 mois d'enfer. C'est la phase où la "marchandise" meurt le plus.</li>
+              <li><strong>La vente aux Antilles :</strong> On vend les survivants à Saint-Domingue contre du sucre brut, du café et de l'indigo.</li>
+              <li><strong>Le retour à Nantes :</strong> On décharge le sucre, on le raffine dans les usines nantaises, et l'armateur devient multimillionnaire.</li>
+            </ol>
+            <h3 class="group-title">4. Les premières "Dynasties"</h3>
+            <p>C'est à ce moment-là que des noms comme Walsh, Montaudouin ou Deurbroucq apparaissent.</p>
+            <ul>
+              <li>Ils ne sont pas encore dans les grands palais de l'Île Feydeau (qui n'existe pas encore sous sa forme actuelle).</li>
+              <li>Ils vivent dans le "Vieux Nantes" (quartier Bouffay), mais ils commencent à acheter des terres et à planifier la construction de la ville monumentale que je connais.</li>
+            </ul>
+            <div class="dialogue-block">
+              <p>Je suis née ici, et pendant longtemps, j'ai cru que Nantes était devenue riche grâce au sel ou au vin. Mais quand on remonte au début, vers 1700, on découvre que le vrai moteur de ma ville, ça a été le sucre. Et pour avoir ce sucre, il a fallu appliquer le Code Noir que j'ai ici, et payer les prix que je lis dans le livre de l'IFAN. C'est là que tout a commencé.</p>
+            </div>
+            <p>Exactement. C'est là que l'on comprend que Nantes n'est pas devenue riche par "accident", mais par un lobbying acharné. Ces familles n'étaient pas juste des marins, c'étaient des politiciens et des stratèges qui murmuraient à l'oreille du pouvoir. Voici comment ces familles nantaises (les Walsh, Montaudouin, Deurbroucq) ont manoeuvré avec Colbert et le Roi pour verrouiller le système :</p>
+            <h3 class="group-title">1. Obtenir le "Privilège" (La fin du monopole)</h3>
+            <p>Au début, seul le Roi, via la Compagnie des Indes, avait le droit de faire la traite.</p>
+            <ul>
+              <li><strong>La manoeuvre :</strong> Les commerçants nantais ont harcelé Versailles pour dire : "Laissez-nous faire, nous serons plus efficaces et nous rapporterons plus de taxes au Roi."</li>
+              <li><strong>Le résultat :</strong> En 1716, ils obtiennent la "libéralisation". Nantes devient l'un des rares ports autorisés à faire la traite librement. C'est le coup d'envoi de la fortune colossale de ta ville.</li>
+            </ul>
+            <h3 class="group-title">2. Le Code Noir : Un contrat d'assurance pour les riches</h3>
+            <p>On présente souvent le Code Noir (1685) comme un simple texte de loi, mais pour les familles nantaises, c'était un outil de gestion.</p>
+            <ul>
+              <li><strong>Sécuriser l'investissement :</strong> Avant ce texte, le statut de l'esclave était flou. Colbert, poussé par les milieux d'affaires, a écrit noir sur blanc que l'esclave est un "bien meuble".</li>
+              <li><strong>Pourquoi c'était vital pour Nantes ?</strong> Parce qu'on ne prête pas d'argent pour acheter des meubles si on n'est pas sûr qu'ils nous appartiennent légalement. Le Code Noir a permis aux banques et aux armateurs de Nantes d'investir sans risque juridique.</li>
+            </ul>
+            <h3 class="group-title">3. Les "Cadeaux" et la corruption</h3>
+            <p>Pour garder leurs privilèges, ces familles savaient recevoir.</p>
+            <ul>
+              <li><strong>Le lobbying à Versailles :</strong> Nantes entretenait à ses frais un "Député du Commerce" à Paris. Son seul rôle était de fréquenter les salons, d'offrir des produits coloniaux rares (sucre fin, épices, café) aux ministres pour qu'ils ne taxent pas trop les navires nantais.</li>
+              <li><strong>L'anecdote locale :</strong> On dit que les armateurs nantais étaient si puissants qu'ils pouvaient faire nommer ou renvoyer les directeurs de la douane ou les responsables du port de Nantes selon leurs intérêts.</li>
+            </ul>
+            <h3 class="group-title">4. Le "Pacte Coloniale" : Une exclusivité nantaise</h3>
+            <p>Ils ont manoeuvré pour que tout ce qui venait des Antilles (sucre, café) doive obligatoirement passer par un port français, et si possible Nantes.</p>
+            <ul>
+              <li>C'est ce qu'on appelle l'Exclusif.</li>
+              <li><strong>Conséquence :</strong> Nantes est devenue un passage obligé. Tu ne pouvais pas manger de sucre à Paris ou à Berlin sans qu'une famille nantaise ait pris sa commission au passage.</li>
+            </ul>
+            <div class="dialogue-block">
+              <p>"On imagine souvent que ces familles vivaient loin de la politique, mais c'est faux. Les Walsh ou les Montaudouin, dont on voit les noms sur nos plaques de rue, étaient dans les couloirs du château de Versailles. Ils ont poussé Colbert à légaliser l'horreur avec le Code Noir pour que leur business soit protégé. Ce livre de l'IFAN que j'ai là, c'est la conséquence directe de ces lois écrites dans les bureaux dorés du Roi pour enrichir les quais de Nantes."</p>
+            </div>
+            <h3 class="group-title">L'argent du sang a poussé les murs de la ville</h3>
+            <p>C'est ici que l'histoire de ma ville devient fascinante d'un point de vue urbanistique : l'argent de la traite ne restait pas dans des coffres, il a littéralement poussé les murs de Nantes. Il faut savoir que Nantes, avant 1700, était une petite ville médiévale serrée dans ses remparts. Grâce aux manœuvres des Walsh, Deurbroucq et consorts auprès de Louis XIV et Colbert, la ville a explosé. Voici comment ils ont transformé Nantes avec "l'argent du sang" :</p>
+            <p class="sub">1. L'invention de l'Île Feydeau (Le quartier des armateurs)</p>
+            <p>C'est le projet le plus fou de l'époque.</p>
+            <ul>
+              <li><strong>Le remblaiement :</strong> On a décidé de transformer une zone de boue et de marécages en un quartier de luxe.</li>
+              <li><strong>Le lien avec la traite :</strong> Ce sont les familles de la traite (les Walsh, les Stapleton) qui achètent les terrains. Elles veulent des maisons qui ressemblent à des palais italiens pour montrer leur réussite à la face du monde.</li>
+              <li><strong>Le détail de Nantaise :</strong> Si tu as une photo des immeubles qui penchent (rue Kervégan), explique que c'est parce qu'ils ont voulu bâtir du lourd (la pierre de tuffeau) sur du mou (la vase de Loire).</li>
+            </ul>
+            <p class="sub">2. Le Quai de la Fosse : La "vitrine" de l'Océan</p>
+            <p>C'était l'endroit le plus vivant d'Europe à l'époque.</p>
+            <ul>
+              <li><strong>L'aménagement :</strong> Les armateurs ont exigé que la ville aménage des quais larges pour que leurs navires puissent décharger le sucre directement devant leurs bureaux.</li>
+              <li><strong>L'Hôtel Deurbroucq :</strong> C'est le symbole absolu. Construit par l'architecte Ceineray, c'est une machine de guerre sociale. On y recevait les capitaines, les banquiers, et on y affichait sa fortune.</li>
+              <li><strong>L'anecdote :</strong> On disait à l'époque que Nantes était la ville où "l'on marche sur l'or".</li>
+            </ul>
+            <p class="sub">3. La Place de la Petite-Hollande</p>
+            <p>Pourquoi ce nom ? Parce que c'est là que les marchands étrangers (Hollandais, Irlandais) s'installaient pour faire du business.</p>
+            <ul>
+              <li>C'était le "Wall Street" de Nantes au XVIIIe siècle. C'est là que les capitaines de navires venaient recruter leurs équipages pour repartir vers la côte d'Afrique (celle décrite dans ton livre de l'IFAN)</li>
+            </ul>
+            <div class="dialogue-block">
+              <p>"Regardez ces façades que nous trouvons si belles aujourd'hui. Elles n'auraient jamais existé sans le lobbying de ces familles auprès de Colbert. Ils ont obtenu le droit de transformer des vies humaines en sucre, et ce sucre, ils l'ont transformé en ces pierres. En tant que Nantaise, quand je regarde l'Île Feydeau, je vois à la fois le génie des architectes et l'ombre du Code Noir."</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · l'ascension nantaise</h3>
+            <p>Repères vérifiés : <strong>1707</strong> = première expédition négrière nantaise (<em>L'Hercule</em>) ; <strong>1716</strong> = édit ouvrant la liberté du commerce d'Afrique aux ports (la libéralisation). Nantes = <strong>premier port négrier français</strong> (~41-42 % des départs). Île Feydeau et Quai de la Fosse : quartiers des hôtels d'armateurs en pierre de tuffeau.</p>
+            <div class="tag-list"><span class="tag">1707 · 1716</span><span class="tag">Île Feydeau</span><span class="tag">Quai de la Fosse</span><span class="tag">L'Exclusif</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 11 — NANTES (2) : LE SYSTÈME ===== -->
+      <section class="chapter reveal" aria-labelledby="c11">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La comptabilité de l'horreur</p><h2 id="c11">Chosification, commandeur &amp; résistance.</h2></div>
+          <div class="chapter-number">11</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Voici les points clés sur la manière dont les esclaves étaient traités, à diviser en trois étapes :</p>
+            <h3 class="group-title">1. La "Chosification" (Le statut juridique)</h3>
+            <p>Le traitement commençait par les mots et les lois.</p>
+            <ul>
+              <li><strong>L'Article 44 du Code Noir :</strong> Il déclarait l'esclave "bien meuble". Cela signifie qu'il pouvait être vendu, loué, saisi par la justice ou transmis en héritage, exactement comme une armoire ou un cheval.</li>
+              <li><strong>La perte d'identité :</strong> À l'arrivée aux Antilles (sur les navires partis de Nantes), on changeait le nom de l'esclave. On lui donnait souvent un prénom chrétien ou un nom ridicule, effaçant ainsi son histoire africaine détaillée dans ton livre de l'IFAN.</li>
+              <li><strong>Le marquage :</strong> On marquait le corps au fer rouge avec les initiales du maître (souvent sur l'épaule ou la poitrine) pour prouver la propriété.</li>
+            </ul>
+            <h3 class="group-title">2. Le travail : Une usine à sucre mortelle</h3>
+            <p>La vie en plantation (à Saint-Domingue, la destination favorite des Nantais) était une course contre la montre pour le profit.</p>
+            <ul>
+              <li><strong>Les journées :</strong> Le travail commençait au lever du soleil et s'arrêtait à la nuit tombée. Pendant la récolte de la canne, on travaillait aussi la nuit.</li>
+              <li><strong>La dangerosité :</strong> Le broyage de la canne dans les moulins était l'étape la plus risquée. Si un esclave, épuisé, laissait sa main être entraînée dans les rouleaux, le commandeur avait l'ordre de trancher le bras à la hache immédiatement pour ne pas arrêter la machine.</li>
+              <li><strong>L'espérance de vie :</strong> Un esclave "neuf" (arrivé d'Afrique) ne survivait en moyenne que 5 à 7 ans à cause de l'épuisement, de la malnutrition et des maladies. Les armateurs nantais calculaient qu'il était plus rentable de laisser mourir un esclave et d'en racheter un autre que de bien le nourrir.</li>
+            </ul>
+            <h3 class="group-title">3. La discipline par la terreur</h3>
+            <p>Le Code Noir prévoyait des punitions d'une violence extrême pour maintenir l'ordre, car les esclaves étaient bien plus nombreux que les blancs.</p>
+            <ul>
+              <li><strong>Le fouet :</strong> C'était l'outil quotidien de "motivation".</li>
+              <li><strong>Les châtiments pour fuite (Marronnage) :</strong> 1ère tentative : Oreilles coupées et fleur de lys marquée au fer sur l'épaule. 2ème tentative : Jarret coupé (le tendon d'Achille) pour empêcher de courir. 3ème tentative : La mort.</li>
+              <li><strong>La nourriture :</strong> Bien que l'article 22 obligeait le maître à fournir de la farine de manioc et du poisson, c'était rarement respecté. Les esclaves devaient souvent cultiver leur propre petit jardin (le "potager d'esclave") sur leur rare temps libre pour ne pas mourir de faim.</li>
+            </ul>
+            <h3 class="group-title">4. Le cas spécifique des femmes</h3>
+            <p>C'est un oint crucial sachez-le.</p>
+            <ul>
+              <li><strong>Double exploitation :</strong> Elles travaillaient aux champs comme les hommes, mais subissaient en plus les violences sexuelles des maîtres et des régisseurs.</li>
+              <li><strong>Le sort des enfants :</strong> Selon l'Article 12, l'enfant né d'une femme esclave appartenait au maître de la mère. La maternité était donc une source de profit supplémentaire pour l'armateur.</li>
+            </ul>
+            <div class="dialogue-block">
+              <p>''Ici, on vivait dans la soie, on buvait du chocolat chaud dans de la porcelaine fine. Mais pour payer ce luxe, de l'autre côté de l'Océan, on coupait des oreilles, on marquait des corps au fer rouge et on épuisait des êtres humains en moins de 7 ans. Ce n'est pas une fiction, c'est la comptabilité de ces familles nantaises''</p>
+            </div>
+
+            <h3 class="group-title">Le rôle du commandeur</h3>
+            <p>Le rôle du commandeur est l'un des aspects les plus cyniques du système mis en place par les armateurs de Nantes et les colons.</p>
+            <p class="sub">1. Le Commandeur : L'esclave contre l'esclave</p>
+            <p>Le commandeur était presque toujours un esclave lui-même, choisi par le maître pour sa force ou sa fidélité apparente.</p>
+            <ul>
+              <li><strong>Sa mission :</strong> Il était le "chef de chantier". Il se tenait derrière les autres avec un fouet pour s'assurer que la cadence ne baissait jamais.</li>
+              <li><strong>Le dilemme cruel :</strong> S'il n'était pas assez dur avec ses compagnons, le maître le punissait, lui. S'il était trop dur, il devenait l'ennemi de son propre peuple. C'était une stratégie délibérée des colons pour diviser pour mieux régner.</li>
+              <li><strong>L'insigne de pouvoir :</strong> Il portait souvent un sifflet et le fouet (la "courre-vache") en bandoulière. Dans les inventaires que l'on pourrait trouver, il est le seul "meuble" (selon le Code Noir) qui a une autorité sur les autres.</li>
+            </ul>
+            <p class="sub">2. Le Fouet : La musique de la plantation</p>
+            <p>Ce n'était pas une punition exceptionnelle, c'était l'outil de gestion quotidien.</p>
+            <ul>
+              <li><strong>La limite légale :</strong> Le Code Noir (Article 42) permettait aux maîtres de "faire enchaîner et battre de verges" les esclaves. En théorie, il interdisait la torture, mais dans la réalité de Saint-Domingue, personne ne contrôlait.</li>
+              <li><strong>Le "Quatre-piquets" :</strong> C'était la punition classique. On attachait l'esclave par les quatre membres à des piquets plantés au sol, face contre terre, avant de le fustiger.</li>
+            </ul>
+            <p class="sub">3. Les outils de contention (Le fer et le bois)</p>
+            <p>Quand l'esclave essayait de s'enfuir (le marronnage) ou de résister, on utilisait des objets que les navires nantais transportaient dans leurs cales :</p>
+            <ul>
+              <li><strong>Le collier à pointes :</strong> Un collier en fer avec de longues tiges sortant vers l'extérieur. Cela empêchait l'esclave de se coucher ou de s'enfoncer dans la brousse épaisse sans se coincer.</li>
+              <li><strong>Le masque de fer (ou muselière) :</strong> Utilisé pour empêcher les esclaves de manger la canne à sucre ou, plus tragiquement, pour empêcher ceux qui voulaient se suicider d'avaler de la terre (une pratique de désespoir fréquente).</li>
+              <li><strong>Le bloc :</strong> Deux pièces de bois qui emprisonnaient les chevilles, empêchant tout mouvement pendant la nuit.</li>
+            </ul>
+            <p class="sub">Comment faire le lien avec Nantes ?</p>
+            <div class="dialogue-block">
+              <p>"Savez-vous ce qu'il y avait aussi dans les cales des bateaux qui partaient du Quai de la Fosse, en plus des tissus et de l'alcool ? Il y avait des fers, des chaînes et des carcans. Les forgerons de Nantes et de la région fabriquaient ces outils de torture. L'économie de ma ville, ce n'était pas seulement le transport, c'était aussi la fourniture de tout le matériel nécessaire pour maintenir ce régime de terreur aux Antilles."</p>
+              <p>"Le fer servait à faire ces magnifiques balcons de l'Île Feydeau, mais le même fer, fondu dans les mêmes ateliers, servait à forger les colliers à pointes pour les plantations. C'est la même matière, la même richesse, mais deux faces d'une même pièce."</p>
+            </div>
+
+            <h3 class="group-title">Redonner de l'humanité aux « pièces d'Inde »</h3>
+            <p>Il faut montrer que malgré la terreur du Code Noir et le fouet du commandeur, l'esclave n'a jamais été un "objet" passif. C'est ici que l'on redonne de l'humanité à ceux que les registres nantais appelaient des "pièces d'Inde". La résistance était partout, du matin au soir. Voici comment elle s'organisait :</p>
+            <p class="sub">1. La Résistance Passive (Le sabotage invisible)</p>
+            <p>C'était la lutte du quotidien pour freiner le profit de l'armateur à Nantes.</p>
+            <ul>
+              <li><strong>Le "travail de tortue" :</strong> Faire semblant de travailler dur quand le commandeur regarde, mais ralentir dès qu'il tourne le dos.</li>
+              <li><strong>Le sabotage des outils :</strong> Casser "accidentellement" une roue de moulin ou une hache pour arrêter la production de sucre pendant plusieurs jours.</li>
+              <li><strong>Le suicide :</strong> C'était l'ultime refus. Certains esclaves se laissaient mourir de faim ou s'empoisonnaient, convaincus que leur âme retournerait en Afrique (le pays décrit dans ton livre de l'IFAN).</li>
+            </ul>
+            <p class="sub">2. La Guerre du Poison (La terreur des colons)</p>
+            <p>C'était l'arme secrète, surtout utilisée par les femmes qui travaillaient dans les cuisines ou les jardins.</p>
+            <ul>
+              <li><strong>La connaissance des plantes :</strong> Les esclaves utilisaient leurs racines africaines pour identifier des plantes toxiques aux Antilles.</li>
+              <li><strong>L'impact :</strong> On empoisonnait le bétail (pour ruiner le maître) ou parfois le maître lui-même. C'était une menace invisible qui rendait les colons paranoïaques derrière les murs de leurs grandes demeures.</li>
+            </ul>
+            <p class="sub">3. La Culture comme bouclier : Le Vaudou et les Chants</p>
+            <p>Le Code Noir interdisait les cultes africains et imposait le baptême catholique (Article 2). Mais la résistance passait par la spiritualité.</p>
+            <ul>
+              <li><strong>Les chants de travail :</strong> Les rythmes servaient à communiquer des messages secrets que les maîtres ne comprenaient pas.</li>
+              <li><strong>Le Vaudou :</strong> À Saint-Domingue, les cérémonies secrètes la nuit dans les bois permettaient de garder un lien avec les ancêtres et de jurer la fin de l'esclavage. C'est d'ailleurs lors d'une cérémonie (Bois-Caïman) qu'a éclaté la grande révolte de 1791.</li>
+            </ul>
+            <p class="sub">4. Le Grand Marronnage : La liberté dans les bois</p>
+            <p>Le "Marron" est celui qui s'enfuit définitivement.</p>
+            <ul>
+              <li><strong>Les camps de marrons :</strong> Dans les montagnes escarpées, des esclaves en fuite créaient de vrais villages autonomes. Ils cultivaient la terre et s'armaient pour repousser les milices des colons.</li>
+              <li><strong>Les chefs célèbres :</strong> Comme Mackandal, un esclave rebelle qui a mené une guérilla de six ans avant d'être capturé.</li>
+            </ul>
+            <div class="dialogue-block">
+              <p>En tant que Nantaise, quand je regarde les archives des familles Walsh ou Deurbroucq, je vois des profits. Mais quand on cherche bien, on voit aussi que ces familles vivaient dans la peur. Ils avaient peur du poison, peur des révoltes, peur des chants la nuit. Ils ont pu enchaîner les corps, mais ils n'ont jamais pu enchaîner les esprits. C'est cette force-là qui a fini par faire tomber le système, bien plus que les belles paroles des politiciens à Paris.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · Bois-Caïman &amp; Mackandal</h3>
+            <p>La cérémonie de <strong>Bois-Caïman</strong> a lieu dans la nuit du <strong>14 août 1791</strong> (houngan Dutty Boukman, mambo Cécile Fatiman) ; l'insurrection générale du Nord éclate le 22 août. <strong>Mackandal</strong>, chef marron amputé d'un bras au moulin, mena une campagne d'empoisonnements avant d'être exécuté par le feu au Cap-Français en <strong>1758</strong>.</p>
+            <div class="tag-list"><span class="tag">Commandeur</span><span class="tag">Quatre-piquets</span><span class="tag">Vaudou</span><span class="tag">Mackandal</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 12 — NANTES (3) : ÂGE D'OR, FAMILLES, CHUTE ===== -->
+      <section class="chapter reveal" aria-labelledby="c12">
+        <div class="chapter-head">
+          <div><p class="section-kicker">L'âge d'or &amp; la chute</p><h2 id="c12">Une usine à ciel ouvert.</h2></div>
+          <div class="chapter-number">12</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">1. Le réveil de Nantes (Les années 1680-1700)</h3>
+            <p>Avant 1700, Nantes faisait surtout du commerce avec l'Europe (Espagne, Hollande). Mais tout change sous Louis XIV.</p>
+            <ul>
+              <li><strong>Le rôle de Colbert :</strong> Le ministre du Roi veut que la France ait son propre sucre. Il crée des compagnies de commerce et rédige le Code Noir (1685).</li>
+              <li><strong>L'opportunité :</strong> Les Nantais, qui sont des marins audacieux, comprennent vite qu'il y a plus d'argent à se faire en allant chercher des esclaves en Afrique pour les revendre aux Antilles qu'en vendant du vin en Hollande.</li>
+              <li><strong>Le premier navire :</strong> On considère souvent que la traite nantaise "décolle" vraiment autour de 1700-1707. C'est le moment où le monopole des grandes compagnies d'État est brisé, permettant aux riches familles de Nantes d'armer leurs propres bateaux.</li>
+            </ul>
+            <h3 class="group-title">2. Pourquoi Nantes a-t-elle "gagné" face aux autres ports ?</h3>
+            <p>Nantes a écrasé la concurrence (Bordeaux, La Rochelle) au début pour trois raisons :</p>
+            <ul>
+              <li><strong>La Loire :</strong> Le fleuve permettait d'apporter tout ce qu'il fallait pour le "troc" (bois, métaux, nourriture) depuis l'intérieur de la France.</li>
+              <li><strong>Le sel et le vin :</strong> Nantes avait déjà des réseaux pour exporter le sel de Guérande et le vin de Loire. Elle a utilisé ces contacts pour financer ses premières expéditions négrières.</li>
+              <li><strong>L'audace des familles :</strong> Des familles (souvent étrangères, comme les Irlandais fuyant les persécutions) s'installent à Nantes. Elles n'ont rien à perdre et investissent tout dans ce commerce très risqué mais ultra-rentable.</li>
+            </ul>
+            <h3 class="group-title">3. Le lien avec le livre de l'IFAN (La source africaine)</h3>
+            <p>Dans le bulletin de l'IFAN, on voit souvent des mentions de la Sénégambie.</p>
+            <ul>
+              <li><strong>Le début :</strong> Les premiers navires nantais allaient surtout vers les côtes du Sénégal et de la Guinée.</li>
+              <li><strong>Le "Troc" :</strong> À cette époque, on n'utilisait pas d'argent. Les Nantais arrivaient avec des Indiennes (tissus fabriqués à Nantes) et des eaux-de-vie.</li>
+              <li><strong>L'argument pour ce live :</strong> "Au début de l'histoire, les armateurs nantais ont dû apprendre les codes des rois africains décrits dans le livre de l'IFAN. Ils ont dû négocier, offrir des cadeaux, pour que les portes de la traite s'ouvrent."</li>
+            </ul>
+            <h3 class="group-title">4. L'impact immédiat sur la ville</h3>
+            <p>Dès que l'argent de la traite arrive (vers 1720-1730), le visage de Nantes change :</p>
+            <ul>
+              <li>On commence à construire les quais.</li>
+              <li>Les armateurs quittent les maisons médiévales du centre-ville pour construire les premiers hôtels particuliers luxueux (comme ceux que vous voyez en photo).</li>
+              <li>C'est le début de "l'Âge d'Or" : Le sucre devient l'obsession de la ville.</li>
+            </ul>
+
+            <h3 class="group-title">Les trois familles pionnières</h3>
+            <p>Voici les trois familles "pionnières" qui ont transformé Nantes en géant négrier dès le début du XVIIIe siècle. Vérifie si tu as ces noms sur tes photos ou sur les plaques de rue :</p>
+            <p class="sub">1. La Famille Walsh (Les Irlandais de Nantes)</p>
+            <p>Ce sont les plus emblématiques du début de l'histoire.</p>
+            <ul>
+              <li><strong>Leur origine :</strong> Des catholiques irlandais qui ont fui l'Angleterre pour s'installer à Nantes. Ils n'avaient rien, ils ont tout misé sur la traite.</li>
+              <li><strong>Leur coup d'éclat :</strong> Philippe Walsh est l'un des premiers à industrialiser le voyage triangulaire. Il a même prêté un navire au prétendant au trône d'Écosse !</li>
+              <li><strong>Lieu à Nantes :</strong> L'Hôtel Walsh (Place de la Petite-Hollande). C'est un bâtiment massif qui montre que dès 1730, ils étaient les rois de la ville.</li>
+              <li><strong>Le lien IFAN :</strong> Les Walsh allaient souvent sur la côte de Guinée (souvent citée dans ton livre).</li>
+            </ul>
+            <p class="sub">2. La Famille Montaudouin (Les stratèges)</p>
+            <p>Si les Walsh étaient les aventuriers, les Montaudouin étaient les technocrates de la traite.</p>
+            <ul>
+              <li><strong>Leur record :</strong> Ils ont organisé plus de 350 expéditions sur plusieurs générations. C'est colossal.</li>
+              <li><strong>Leur influence :</strong> Ils ont poussé pour que Nantes devienne un "port franc" (avec moins de taxes) pour le sucre.</li>
+              <li><strong>Lieu à Nantes :</strong> L'Hôtel de Montaudouin (Place de la Petite-Hollande également, juste à côté des Walsh).</li>
+              <li><strong>Le lien Code Noir :</strong> Ils connaissaient les articles de loi par cœur pour maximiser leurs profits sur chaque "pièce d'Inde".</li>
+            </ul>
+            <p class="sub">3. La Famille Deurbroucq (Le symbole de la réussite)</p>
+            <p>Dominique Deurbroucq est le visage de l'âge d'or nantais.</p>
+            <ul>
+              <li><strong>Leur portrait :</strong> Il existe un tableau célèbre de lui et de sa femme où ils sont servis par des esclaves noirs. C'est l'image même de la haute société nantaise de l'époque.</li>
+              <li><strong>Lieu à Nantes :</strong> L'Hôtel Deurbroucq (Allée de l'Île-Gloriette). C'est sans doute l'un des plus beaux et des plus imposants.</li>
+              <li><strong>Le message pour ton live :</strong> "Regardez ce luxe. Dominique Deurbroucq n'était pas un monstre aux yeux de la société de l'époque, c'était le plus grand notable de la ville. C'est ça qui est glaçant."</li>
+            </ul>
+
+            <h3 class="group-title">Toute une économie régionale</h3>
+            <p>Nantes était au XVIIIe siècle comme une immense "usine à ciel ouvert". Ce n'était pas seulement des bateaux qui partaient, c'était toute une économie régionale qui s'organisait autour de la traite.</p>
+            <p class="sub">1. Le "Lobby" Nantais : Une influence politique immense</p>
+            <p>Nantes n'était pas soumise aux lois, elle aidait à les écrire.</p>
+            <ul>
+              <li><strong>La Chambre de Commerce :</strong> Les armateurs nantais (les Walsh, Montaudouin, etc.) étaient très organisés. Ils envoyaient des représentants à Versailles pour convaincre le Roi de maintenir l'esclavage.</li>
+              <li><strong>L'argument économique :</strong> Ils expliquaient que si Nantes arrêtait la traite, l'économie de la France entière s'effondrerait. C'est ce poids politique qui a permis de faire durer le système si longtemps, malgré les premières critiques des philosophes.</li>
+            </ul>
+            <p class="sub">2. Le "Triangle" de la Loire (La fabrication des échanges)</p>
+            <p>Avant de partir vers l'Afrique (là où le livre de l'IFAN commence ses récits), Nantes devait remplir ses cales de marchandises de "troc".</p>
+            <ul>
+              <li><strong>Les Indiennes de Nantes :</strong> Sais-tu que Nantes était la capitale du textile ? On fabriquait des tissus en coton imprimés (les indiennes) spécialement pour plaire aux chefs africains.</li>
+              <li><strong>Le fer et les armes :</strong> On faisait venir du fer d'Espagne et des fusils de Saint-Étienne.</li>
+              <li><strong>L'alcool :</strong> On chargeait des milliers de barils d'eau-de-vie de Loire.</li>
+            </ul>
+            <p>Le lien avec ce live : on peut dire : "Ici, sur ces quais, on ne chargeait pas de l'argent, on chargeait tout ce que la France produisait pour l'échanger contre des vies humaines."</p>
+            <p class="sub">3. Les "Noirs de Nantes" : Une présence invisible mais réelle</p>
+            <p>C'est un point souvent oublié par les Nantais : il y avait des esclaves à Nantes.</p>
+            <ul>
+              <li><strong>Les domestiques :</strong> Les riches armateurs ramenaient souvent avec eux des jeunes esclaves des Antilles pour servir de "pages" ou de domestiques dans leurs hôtels particuliers (comme chez les Deurbroucq).</li>
+              <li><strong>Le statut juridique :</strong> Théoriquement, "le sol de France affranchit", ce qui veut dire que tout esclave touchant le sol français devait être libre. Mais les Nantais ont obtenu des dérogations pour garder leurs esclaves sous un statut spécial de "non-libre".</li>
+              <li><strong>L'anecdote locale :</strong> On estime qu'au plus fort de la traite, il y avait entre 500 et 1000 personnes noires vivant à Nantes, souvent dans l'ombre des grandes maisons.</li>
+            </ul>
+            <p class="sub">4. La fin de l'Âge d'Or : La Révolution et la chute</p>
+            <p>Pourquoi ce système s'est-il arrêté à Nantes ?</p>
+            <ul>
+              <li><strong>La révolte de Saint-Domingue (1791) :</strong> C'est le coup de grâce. Les esclaves se révoltent dans la colonie qui enrichissait Nantes. Le sucre ne rentre plus.</li>
+              <li><strong>L'interdiction :</strong> La traite est abolie une première fois en 1794, puis rétablie par Napoléon, avant d'être définitivement interdite en 1848.</li>
+              <li><strong>La reconversion :</strong> Nantes ne s'est pas effondrée. Elle a utilisé l'argent de la traite pour financer l'industrie moderne : les conserveries (Cassegrain, Saupiquet) et la biscuiterie (LU).</li>
+            </ul>
+
+            <div class="dialogue-block">
+              <span class="block-label">Conclusion personnelle</span>
+              <p>"On arrive au bout de ce voyage, et j'aimerais finir sur une réflexion très personnelle. Je suis née à Nantes. J'ai grandi dans l'ombre de ces magnifiques façades de l'Île Feydeau, j'ai couru sur ces quais. Pendant longtemps, on nous a présenté cette richesse comme une simple réussite commerciale, un 'âge d'or' de notre ville.</p>
+              <p>Mais aujourd'hui, avec ce bulletin de l'IFAN entre les mains et les articles du Code Noir en tête, je ne vois plus Nantes de la même manière. Derrière le fer forgé de nos balcons, il y avait le fer des chaînes. Derrière la douceur du sucre, il y avait le fouet du commandeur. On ne peut pas aimer sa ville à moitié : l'aimer, c'est aussi porter son histoire, toute son histoire, même la plus sombre.</p>
+              <p>Nantes a mis du temps à briser le silence. Mais aujourd'hui, avec ce Mémorial sous nos pieds, elle nous rappelle que la liberté n'est jamais un acquis définitif. Ce que nous avons vu sur les femmes esclaves, sur la chosification des êtres humains, ce n'est pas qu'un chapitre de livre d'école. C'est une mise en garde. L'esclavage change de forme, il prend de nouveaux visages en 2026, mais la logique reste la même : le profit avant l'humain.</p>
+              <p>En tant que Nantaise, je suis fière que ma ville regarde enfin son passé en face. Pas pour culpabiliser, mais pour veiller. Merci de nous avoir suivie dans cette quête de vérité. N'oubliez jamais : Les pierres de Nantes sont belles, mais c'est notre mémoire qui les rend justes. À bientôt pour un prochain live."</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · les chiffres &amp; la reconversion</h3>
+            <p>Montaudouin « plus de 350 expéditions » : chiffre à étayer, mais ces trois familles d'armateurs sont bien réelles et majeures. « 500-1000 » personnes noires à Nantes = estimation (un recensement de 1777 en compte ~700). La reconversion vers LU (1846), Cassegrain (1856), Saupiquet (XIXe) est postérieure à la traite.</p>
+            <div class="tag-list"><span class="tag">Walsh</span><span class="tag">Montaudouin</span><span class="tag">Deurbroucq</span><span class="tag">LU · Saupiquet</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 13 — LES SOURCES (Acte I) ===== -->
+      <section class="chapter reveal" aria-labelledby="c13">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Conclusion &amp; mémoire</p><h2 id="c13">Les Sources.</h2></div>
+          <div class="chapter-number">13</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">1. Le corpus historique et muséal (Nantes)</h3>
+            <ul>
+              <li><strong>Musée d'histoire de Nantes :</strong> Parcours permanent « La traite atlantique et l'esclavage colonial », Château des ducs de Bretagne. <em>Note :</em> C'est la source principale pour les objets (fers, maquettes) et les chiffres locaux (43 % des expéditions françaises).</li>
+              <li><strong>Gualdé, Krystel :</strong> L'abîme. Nantes dans la traite atlantique et l'esclavage colonial (1707-1830), Éditions du Château des ducs de Bretagne, 2021. <em>Note :</em> C'est l'ouvrage de référence de la directrice scientifique du musée.</li>
+              <li><strong>Mémorial de l'abolition de l'esclavage :</strong> Parcours mémoriel et commémoratif, Quai de la Fosse, Nantes. (Conception : Krzysztof Wodiczko et Julian Bonder).</li>
+            </ul>
+            <h3 class="group-title">2. L'actualité décoloniale (Ton "plus" 2026)</h3>
+            <ul>
+              <li><strong>Exposition temporaire :</strong> « Expression(s) décoloniale(s) #4 », avec l'artiste Rosana Paulino, Château des ducs de Bretagne (8 mai – 8 novembre 2026). <em>Note :</em> Utile pour parler du dialogue entre l'art contemporain et les archives coloniales.</li>
+            </ul>
+            <h3 class="group-title">3. Les outils et bases de données en ligne</h3>
+            <ul>
+              <li><strong>SlaveVoyages.org :</strong> The Trans-Atlantic Slave Trade Database. <em>Note :</em> La base de données internationale que nous avons utilisée pour valider les flux migratoires forcés.</li>
+              <li><strong>Fondation pour la mémoire de l'esclavage :</strong> memoire-esclavage.org. <em>Note :</em> Utilisée pour les ressources sur la Loi Taubira (dont on fête les 25 ans en 2026).</li>
+            </ul>
+            <h3 class="group-title">4. Les textes juridiques et littéraires cités</h3>
+            <ul>
+              <li><strong>Le Code Noir (1685) :</strong> Version numérisée via Gallica (BNF).</li>
+              <li><strong>Jaucourt, Louis de :</strong> Article « Traite des nègres », L'Encyclopédie, Tome XVI, 1765.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Appareil critique</h3>
+            <p>Toutes les affirmations du dossier sont auditées et sourcées dans le Dossier des Sources de l'Empire. <a href="../../sources/sources.html" style="color:var(--gold);border-bottom:1px solid var(--line);">Consulter →</a></p>
+            <div class="tag-list"><span class="tag">SlaveVoyages</span><span class="tag">Mémorial de Nantes</span><span class="tag">Gallica</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="act-band reveal" id="acteII" aria-labelledby="actII">
+        <p class="act-no">Partie II · Résumé de la première partie de l'esclavage</p>
+        <h2 id="actII">Les Mécanismes de la Traite et l'Ancrage Nantais</h2>
+        <p>(Version Corrigée) — un résumé structuré de la première partie : la logique du profit, le regard de l'IFAN, la violence logistique, le rôle de Nantes et l'arsenal juridique du Code Noir.</p>
+      </section>
+
+      <!-- ===== CH 14 — LES MÉCANISMES (résumé corrigé) ===== -->
+      <section class="chapter reveal" id="mecanismes" aria-labelledby="c14">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Résumé de la première partie · version corrigée</p><h2 id="c14">La rencontre de trois besoins et la logique du profit.</h2></div>
+          <div class="chapter-number">14</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">1. La rencontre de trois besoins et la logique du profit</h3>
+            <p>Le système du commerce triangulaire s'est déployé sur plus de trois siècles en combinant trois facteurs géographiques et économiques :</p>
+            <ul>
+              <li><strong>Le capital européen :</strong> Les puissances maritimes investissent massivement pour exploiter les territoires conquis.</li>
+              <li><strong>Les terres des Amériques :</strong> Des sols riches propices aux cultures intensives à forte valeur ajoutée (canne à sucre, café, tabac, coton).</li>
+              <li><strong>La main-d'œuvre africaine :</strong> Utilisée comme un réservoir humain gratuit pour compenser le choc démographique des populations autochtones décimées.</li>
+            </ul>
+            <p>Ce modèle représentait l'investissement le plus rentable de l'époque. Il a permis la transition d'un marché de luxe vers une consommation de masse en Europe (notamment pour le sucre, devenu indispensable dans les salons aristocratiques et bourgeois, symbole extérieur de richesse).</p>
+            <h3 class="group-title">2. Le regard centré sur l'Afrique : L'apport du bulletin de l'IFAN</h3>
+            <p>Afin d'éviter les récits biaisés et unilatéraux des capitaines négriers, l'étude s'appuie sur le bulletin de l'IFAN (Dakar, 1963). Cette source permet de poser trois constats fondamentaux :</p>
+            <ul>
+              <li><strong>Des sociétés organisées :</strong> L'Afrique de l'Ouest n'était pas une terre sauvage. Elle abritait des civilisations et des structures politiques complexes (Empires Wolof, Royaume du Dahomey, États du Fouta-Djallon) possédant leurs propres lois, diplomaties, castes et systèmes fiscaux.</li>
+              <li><strong>Une économie de prédation forcée :</strong> La demande des marchands européens a introduit un cercle vicieux par l'échange de vies humaines contre des armes à feu. Pour assurer sa survie face à des voisins militarisés, chaque royaume s'est vu contraint de capturer des prisonniers chez les ethnies rivales pour obtenir des fusils auprès des navires. Les élites locales ne vendaient pas leurs propres sujets, mais des étrangers, des captifs de guerre ou des condamnés juridiques.</li>
+              <li><strong>L'unité de compte :</strong> L'évaluation comptable et froide de l'humain est attestée par des listes de prix où la force de travail d'un homme jeune équivalait à une unité de mesure standardisée : la « Pièce d'Inde ».</li>
+            </ul>
+            <h3 class="group-title">3. La violence logistique : Du littoral à la traversée</h3>
+            <p>La déshumanisation s'opérait de manière industrielle tout au long de la chaîne logistique :</p>
+            <ul>
+              <li><strong>La capture et le tri :</strong> Les captifs marchaient enchaînés par le cou sur des centaines de kilomètres (les convois appelés cofles) jusqu'aux comptoirs côtiers (Gorée, Ouidah). Après examen médical par les chirurgiens de bord, ils étaient marqués au fer rouge aux initiales de l'armateur ou de la compagnie.</li>
+              <li><strong>Le passage du milieu (Middle Passage) :</strong> La traversée de l'Atlantique (40 à 80 jours) imposait un entassement extrême (« en cuillère ») dans l'entrepont pour optimiser l'espace. Le taux de mortalité lié aux maladies (dysenterie, scorbut) ou aux suicides oscillait entre 10 et 20 %, une perte comptabilisée d'avance par les armateurs. Les révoltes à bord étaient fréquentes, poussant les équipages à ériger des barricados (cloisons défensives armées de canons).</li>
+            </ul>
+            <h3 class="group-title">4. Le rôle central de Nantes : Premier port négrier de France</h3>
+            <p>Le développement économique de la ville de Nantes est intrinsèquement lié à ce trafic commercial :</p>
+            <ul>
+              <li><strong>Un monopole de fait :</strong> Par des choix politiques et des incitations fiscales d'État, Nantes a organisé 1 717 campagnes négrières, représentant à elle seule près de 43 % à 45 % des expéditions françaises.</li>
+              <li><strong>L'urbanisme et l'industrie locale :</strong> Les capitaux générés par les grandes familles d'armateurs (tels que les Walsh, Montaudouin, Deurbroucq) ont financé l'architecture de la pierre de Loire (hôtels particuliers de l'Île Feydeau, Quai de la Fosse). Toute l'économie régionale s'est greffée sur ce réseau : manufactures de toiles imprimées (Indiennes) pour le troc, chantiers navals, fonderies pour les instruments de contention et raffineries de sucre (l'« Or Blanc »).</li>
+            </ul>
+            <h3 class="group-title">5. L'arsenal juridique : Le Code Noir</h3>
+            <p>Pour encadrer et légitimer ce système d'exploitation aux colonies (notamment à Saint-Domingue), la monarchie française promulgue l'édit de mars 1685, communément appelé Code Noir.</p>
+            <div class="science-block">
+              <span class="block-label">Note de correction historique</span>
+              <p>Préparé sous la direction de Jean-Baptiste Colbert, le texte a été finalisé et signé par son fils, Jean-Baptiste Colbert de Seignelay, deux ans après la mort de son père.</p>
+            </div>
+            <p>Ce texte formalise juridiquement la réification de l'être humain :</p>
+            <ul>
+              <li><strong>L'Article 44 :</strong> Il définit explicitement l'esclave comme un « bien meuble », transmissible, saisissable et vendable au même titre qu'un animal ou un outil de production.</li>
+              <li><strong>Le principe de territorialité (Précision juridique) :</strong> Ce statut de « bien meuble » s'appliquait strictement dans les colonies. Sur le sol de la métropole (à Nantes même), le principe juridique royal restait « le sol de France affranchit celui qui le touche ». Les inventaires après décès des armateurs nantais comptaient leurs fortunes en sucre, en obligations ou en parts de plantations, mais les esclaves restaient rattachés physiquement aux registres des habitations coloniales.</li>
+              <li><strong>L'effacement identitaire et la terreur :</strong> L'Article 2 impose le baptême catholique obligatoire afin d'annihiler les structures culturelles et spirituelles africaines d'origine. L'Article 12 instaure l'esclavage héréditaire (le statut de l'enfant s'alignant sur celui de la mère). L'Article 38 légalise les mutilations corporelles et la peine de mort pour réprimer le marronnage (la fuite), tandis que l'Article 42 accorde au maître le droit d'enchaîner et de battre de verges les esclaves.</li>
+            </ul>
+            <div class="lesson-block">
+              <span class="block-label">Transition</span>
+              <p>Nous venons de le voir : à la fin du XVIIIe siècle, le système de la traite est à son apogée. Il est totalitaire, mondialisé, et d'une efficacité économique redoutable. C'est ce système qui finance les somptueux hôtels particuliers de l'Île Feydeau et du Quai de la Fosse, ici même à Nantes. À ce moment-là, les armateurs pensent avoir bâti une machine indestructible, scellée par le Code Noir.</p>
+              <p>Mais cette machine va se heurter à un souffle que les lois coloniales n'avaient pas prévu : le désir absolu de liberté. Alors que la Révolution française lève un immense espoir en abolissant l'esclavage une première fois en 1794, l'Histoire va basculer à nouveau. Un homme va briser cet élan et choisir de rétablir l'innommable : Napoléon Bonaparte.</p>
+              <p>Comment un tel reniement a-t-il été possible ? Quels rôles les élites nantaises ont-elles joué dans l'ombre pour pousser à ce rétablissement ? Et surtout, comment la résistance s'est-elle levée, les armes à la main, de Saint-Domingue à la Guadeloupe, portée par des figures héroïques comme Toussaint Louverture ou la Mulâtresse Solitude ? C'est ce que nous allons explorer maintenant dans cette deuxième partie : la fracture napoléonienne et l'épopée des résistances.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · les chiffres de Nantes</h3>
+            <p>Le résumé reprend « 1 717 campagnes » et « 43 à 45 % ». Les valeurs de référence actuelles (Musée d'histoire de Nantes) sont plutôt <strong>~1 744 expéditions</strong> et <strong>~41-42 %</strong> des départs français, pour <strong>plus de 500 000 captifs</strong>. Ordre de grandeur juste, chiffres à présenter comme estimations.</p>
+            <div class="tag-list"><span class="tag">Pièce d'Inde</span><span class="tag">Cofles</span><span class="tag">Code Noir</span><span class="tag">1794</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="act-band reveal" id="napoleon" aria-labelledby="actIII">
+        <p class="act-no">Partie III · La fracture</p>
+        <h2 id="actIII">Napoléon et l'esclavage</h2>
+        <p>Alors que la Révolution avait aboli l'esclavage en 1794, Napoléon est l'homme qui a choisi de le rétablir. Le décret de 1802, le duel avec Toussaint Louverture, le sacrifice de la Guadeloupe, le lobby nantais et l'ombre de Joséphine.</p>
+      </section>
+
+      <!-- ===== CH 15 — LE DÉCRET DE 1802 ===== -->
+      <section class="chapter reveal" aria-labelledby="c15">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le point de rupture</p><h2 id="c15">Le décret du 20 mai 1802.</h2></div>
+          <div class="chapter-number">15</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Alors que la Révolution française avait aboli l'esclavage en 1794, Napoléon est l'homme qui a choisi de le rétablir.</p>
+            <p>Si tu souhaites approfondir ce sujet après ta visite au Château des ducs de Bretagne, voici les axes clés à explorer :</p>
+            <h3 class="group-title">1. Le décret du 20 mai 1802 : Le point de rupture</h3>
+            <p>C'est l'acte central de ta recherche. Par la loi du 30 floréal an X, Napoléon rétablit l'esclavage et la traite. C'est un cas unique dans l'histoire : la France est le seul pays à avoir aboli l'esclavage pour le réinstaurer quelques années plus tard.</p>
+            <ul>
+              <li><strong>Le contexte :</strong> Napoléon veut reconstruire un empire colonial prospère aux Amériques (notamment pour la canne à sucre) après la Paix d'Amiens avec les Anglais.</li>
+              <li><strong>L'influence :</strong> On parle souvent du rôle de Joséphine de Beauharnais, issue d'une famille de planteurs de la Martinique, même si les historiens s'accordent à dire que la décision était avant tout géopolitique et économique.</li>
+            </ul>
+            <h3 class="group-title">2. La résistance : Toussaint Louverture vs Napoléon</h3>
+            <p>Ta recherche ne serait pas complète sans la figure de Toussaint Louverture à Saint-Domingue (actuel Haïti).</p>
+            <ul>
+              <li>Napoléon voit en lui un obstacle à son autorité.</li>
+              <li>Il envoie une expédition militaire massive (25 000 hommes) commandée par son beau-frère, le général Leclerc, pour reprendre le contrôle de l'île.</li>
+              <li><strong>L'issue :</strong> Toussaint est capturé et meurt au Fort de Joux (Doubs) en 1803, mais l'armée napoléonienne est défaite par les insurgés et les maladies. Cela mène à l'indépendance d'Haïti en 1804.</li>
+            </ul>
+            <p><em>[Image de Toussaint Louverture et Napoléon Bonaparte]</em></p>
+            <h3 class="group-title">3. Le lien avec Nantes</h3>
+            <p>Lors de ton passage à l'exposition, tu as dû voir que Nantes était le premier port négrier de France.</p>
+            <ul>
+              <li>Sous Napoléon, après des années de ralentissement dû à la guerre et à la Révolution, les armateurs nantais ont espéré une reprise massive de la traite grâce au rétablissement de 1802.</li>
+              <li>Cependant, le blocus maritime imposé par l'Angleterre a freiné ces ambitions économiques jusqu'à la chute de l'Empire.</li>
+            </ul>
+
+            <h3 class="group-title">Le Rétablissement de 1802 : Pourquoi ce retour en arrière ?</h3>
+            <p>C'est parti. Pour bien comprendre la mécanique historique, il faut regarder comment la stratégie politique de Napoléon s'est heurtée à la réalité de la résistance sur le terrain. Voici un approfondissement sur ces deux piliers de ton dossier :</p>
+            <p>Napoléon n'était pas forcément un idéologue du racisme, mais c'était un pragmatique froid. Pour lui, les colonies devaient servir la puissance de la France.</p>
+            <ul>
+              <li><strong>L'enjeu économique :</strong> À l'époque, les colonies (notamment la Guadeloupe et la Martinique) sont les "îles à sucre". Sans esclavage, Napoléon estime que la production n'est pas rentable face à la concurrence internationale.</li>
+              <li><strong>La Paix d'Amiens (1802) :</strong> L'Angleterre rend à la France la Martinique (où l'esclavage n'avait jamais été aboli car l'île était sous occupation britannique). Napoléon se retrouve avec un empire "hybride" : l'esclavage est maintenu à la Martinique mais aboli en Guadeloupe. Pour lui, cette situation est intenable.</li>
+              <li><strong>La Loi du 20 mai 1802 :</strong> Ce texte ne dit pas explicitement "on rétablit l'esclavage partout", mais il précise que dans les colonies restituées (Martinique), l'esclavage est maintenu conformément aux lois d'avant 1789. C'est le "pied dans la porte" qui permettra ensuite de le réimposer par la force en Guadeloupe et en Guyane.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · 1794-1802-1848</h3>
+            <p>Première abolition : Convention, <strong>4 février 1794</strong>. Rétablissement : <strong>loi du 20 mai 1802</strong> (30 floréal an X) — qui <strong>maintient</strong> l'esclavage en Martinique (jamais aboli sous occupation britannique 1794-1802) avant de le rétablir par la force en Guadeloupe/Guyane. Abolition définitive : décret du <strong>27 avril 1848</strong> (Schoelcher). Le « seul pays à avoir aboli pour rétablir » est une formule défendable, à dire « cas pratiquement unique ».</p>
+            <div class="tag-list"><span class="tag">30 floréal an X</span><span class="tag">Paix d'Amiens</span><span class="tag">Martinique</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 16 — TOUSSAINT & DELGRÈS ===== -->
+      <section class="chapter reveal" aria-labelledby="c16">
+        <div class="chapter-head">
+          <div><p class="section-kicker">L'épopée des résistances</p><h2 id="c16">Toussaint, Vertières &amp; le sacrifice de Matouba.</h2></div>
+          <div class="chapter-number">16</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">Le duel Napoléon / Toussaint Louverture</h3>
+            <p>C'est sans doute l'un des plus grands échecs militaires et politiques de Napoléon.</p>
+            <ul>
+              <li><strong>Le profil de Toussaint :</strong> Ancien esclave devenu général français, il se nomme "Gouverneur à vie" de Saint-Domingue et rédige une constitution autonome en 1801. Pour Napoléon, c'est une insulte à sa propre autorité : il ne peut tolérer un "Napoléon noir" dans les Caraïbes.</li>
+              <li><strong>L'Expédition Leclerc :</strong> En décembre 1801, Napoléon envoie une armada de 35 navires. C'est la plus grande expédition maritime de son règne. La consigne est claire : désarmer les troupes noires et rétablir l'ordre ancien.</li>
+              <li><strong>La "Guerre à mort" :</strong> La résistance est héroïque. Devant la menace du rétablissement de l'esclavage, la population se soulève. Malgré l'arrestation de Toussaint par trahison (il meurt de froid et de faim au Fort de Joux en avril 1803), ses lieutenants comme Dessalines reprennent le combat.</li>
+              <li><strong>La défaite de Vertières (1803) :</strong> Décimée par la fièvre jaune et la résistance acharnée, l'armée française capitule. Napoléon perd non seulement sa meilleure colonie, mais il abandonne aussi ses rêves d'empire américain (ce qui le pousse à vendre la Louisiane aux États-Unis en 1803).</li>
+            </ul>
+            <p>Napoléon a agi par opportunisme colonial. En voulant restaurer l'ordre ancien pour financer ses guerres européennes, il a provoqué la perte définitive de la "perle des Antilles" (Saint-Domingue) et a taché durablement son héritage politique.</p>
+            <p>C'est assez fréquent. Beaucoup d'expositions sur la traite atlantique se concentrent sur le XVIIIe siècle (l'apogée économique de Nantes), et passent parfois plus vite sur la période napoléonienne qui est plus courte et, avouons-le, moins glorieuse pour l'histoire de France. Puisque les traces visuelles manquaient au Château, on peut "remplir les blancs" en creusant la dimension administrative et militaire, qui a été d'une violence extrême.</p>
+            <h3 class="group-title">1-L'ombre de la Guadeloupe : L'exemple du sacrifice</h3>
+            <p>Si on ne parle pas beaucoup de Napoléon et de l'esclavage, c'est aussi parce que le rétablissement ne s'est pas fait "proprement" par un simple papier. En Guadeloupe, cela a donné lieu à des épisodes tragiques que l'histoire a longtemps passés sous silence :</p>
+            <ul>
+              <li><strong>Louis Delgrès :</strong> C'est le "Toussaint Louverture" de la Guadeloupe. En 1802, face aux troupes envoyées par Napoléon (menées par le général Richepance), il refuse de se rendre.</li>
+              <li><strong>Le sacrifice de Matouba :</strong> Plutôt que de redevenir esclaves, Delgrès et 300 de ses compagnons se font sauter à l'explosif le 28 mai 1802. Leur cri de ralliement était : "Vivre libre ou mourir".</li>
+              <li><strong>Le saviez-vous ?</strong> À Nantes, comme dans beaucoup de villes de métropole, ces événements étaient perçus uniquement sous l'angle du commerce. On attendait que l'ordre revienne pour que les navires puissent repartir.</li>
+            </ul>
+            <h3 class="group-title">2-Pourquoi Napoléon a "effacé" ce sujet ?</h3>
+            <p>Napoléon était un maître de la communication. Dans ses mémoires (le Mémorial de Sainte-Hélène), il essaie de justifier ses choix :</p>
+            <ol>
+              <li>Il rejette la faute sur le "lobby des colons" et sur Joséphine.</li>
+              <li>Il regrette l'expédition de Saint-Domingue, non pas pour des raisons morales, mais parce que c'était une erreur stratégique qui lui a coûté une armée d'élite.</li>
+            </ol>
+            <h3 class="group-title">Une piste pour enrichir notre travail</h3>
+            <p>Puisque le Château de Nantes ne montrait pas grand-chose, tu pourrais intégrer dans ton dossier une comparaison entre deux documents que Napoléon a signés :</p>
+            <ul>
+              <li><strong>Le Code Civil (1804) :</strong> Qui consacre la liberté et l'égalité des citoyens... mais uniquement sur le sol de la métropole.</li>
+              <li><strong>L'Arrêté de 1802 :</strong> Qui rétablit "le régime antérieur à 1789" dans les colonies.</li>
+            </ul>
+            <p>C'est ce double discours qui est le cœur de la problématique napoléonienne.</p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · dates &amp; figures</h3>
+            <p>Toussaint Louverture meurt au <strong>Fort de Joux le 7 avril 1803</strong>. Vertières : <strong>18 novembre 1803</strong> (Dessalines, face à Rochambeau) → indépendance d'Haïti le <strong>1er janvier 1804</strong>. <strong>Louis Delgrès</strong> et ~300 compagnons à <strong>Matouba le 28 mai 1802</strong> (face au général Richepance). L'expédition : ~20 000 hommes au départ (jusqu'à ~30-40 000 avec renforts) ; « 35 navires » = vaisseaux de ligne de la première flotte.</p>
+            <div class="tag-list"><span class="tag">Fort de Joux</span><span class="tag">Vertières 1803</span><span class="tag">Delgrès</span><span class="tag">Louisiane</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 17 — LOBBY NANTAIS & JOSÉPHINE ===== -->
+      <section class="chapter reveal" aria-labelledby="c17">
+        <div class="chapter-head">
+          <div><p class="section-kicker">L'argent &amp; l'alcôve</p><h2 id="c17">Le lobby nantais &amp; l'ombre de Joséphine.</h2></div>
+          <div class="chapter-number">17</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">Les arguments économiques</h3>
+            <p class="lede">C'est un aspect crucial, car cela montre que la décision de Napoléon n'a pas été prise dans un vide politique : elle répondait à une pression intense des milieux d'affaires, et Nantes était au cœur de ce système.</p>
+            <p>À l'époque, les armateurs nantais forment un groupe de pression très puissant (ce qu'on appellerait aujourd'hui un "lobby"). Voici les trois arguments qu'ils ont utilisés pour convaincre Bonaparte :</p>
+            <h3 class="group-title">1. L'argument du "Maintien de l'Ordre"</h3>
+            <p>Pour les Nantais, l'abolition de 1794 avait créé le chaos. Ils expliquaient à Napoléon que sans l'esclavage, les plantations étaient à l'abandon et que les anciens esclaves ne "travaillaient plus".</p>
+            <ul>
+              <li><strong>La réalité :</strong> Les anciens esclaves travaillaient, mais pour leur propre compte et pour leur survie, plutôt que pour l'exportation massive vers l'Europe.</li>
+              <li><strong>Le message à Napoléon :</strong> "Si vous voulez que les colonies rapportent de l'argent pour financer vos guerres, il faut remettre les gens au travail forcé."</li>
+            </ul>
+            <h3 class="group-title">2. La concurrence avec l'Angleterre</h3>
+            <p>C'est l'argument qui a le plus touché la fibre nationaliste de Napoléon.</p>
+            <ul>
+              <li>Les ports comme Nantes craignaient que si la France restait "humaniste" avec l'abolition, elle perdrait ses parts de marché face aux Anglais (qui utilisaient encore massivement les esclaves dans leurs propres colonies).</li>
+              <li>Pour les armateurs, l'esclavage était une arme économique nécessaire pour gagner la guerre commerciale contre Londres.</li>
+            </ul>
+            <h3 class="group-title">3. Le besoin de "Matière Première" pour les raffineries nantaises</h3>
+            <p>Il ne faut pas oublier qu'à Nantes, l'économie ne s'arrêtait pas au port. La ville était pleine de :</p>
+            <ul>
+              <li>Raffineries de sucre</li>
+              <li>Manufactures de coton</li>
+              <li>Fabriques d'Indiennes (ces tissus colorés très prisés)</li>
+            </ul>
+            <p>Tout ce secteur industriel nantais était à l'arrêt. Les patrons d'usines et les négociants ont écrit des pétitions massives à Napoléon pour lui dire que la paix sociale à Nantes dépendait de la reprise du travail dans les îles.</p>
+            <h3 class="group-title">Pourquoi est-ce "invisible" aujourd'hui ?</h3>
+            <p>Si tu n'as pas vu grand-chose là-dessus au Château, c'est parce que ces échanges se faisaient par lettres et rapports administratifs. Ce n'est pas aussi spectaculaire qu'une bataille ou un objet d'art, mais c'est là que tout s'est joué.</p>
+            <div class="lesson-block">
+              <span class="block-label">Un chiffre pour le dossier</span>
+              <p>En 1802, juste après le décret de Napoléon, les armateurs nantais ont immédiatement tenté de relancer des expéditions. Cependant, à cause de la reprise de la guerre avec l'Angleterre dès 1803, ils n'ont pu réaliser que quelques voyages. Le "vrai" redémarrage massif de la traite nantaise n'aura lieu qu'après la chute de Napoléon, sous la Restauration.</p>
+            </div>
+
+            <h3 class="group-title">Le rôle réel de Joséphine</h3>
+            <p>C'est le point le plus "people" de l'histoire, mais il cache une réalité politique et économique très concrète. On a longtemps résumé le rôle de Joséphine à une influence d'alcôve (des murmures sur l'oreiller pour convaincre son mari), mais c'est un peu plus complexe que cela. Voici comment elle a réellement pesé sur cette décision :</p>
+            <p class="sub">1. Une héritière des "Grands Blancs"</p>
+            <p>Joséphine n'est pas née à Paris, mais à la Martinique, au sein d'une famille de riches colons : les Tascher de la Pagerie.</p>
+            <ul>
+              <li>Sa famille possédait une plantation de canne à sucre (le domaine de la Pagerie).</li>
+              <li>Elle a grandi dans ce système et, pour elle, l'esclavage était l'ordre naturel des choses pour que les îles fonctionnent.</li>
+              <li>Elle faisait partie de ce qu'on appelait les "Grands Blancs", l'élite coloniale qui a tout perdu lors de la Révolution et de l'abolition de 1794.</li>
+            </ul>
+            <p class="sub">2. Le relais du "Lobby Colonial" à Paris</p>
+            <p>Plus que son opinion personnelle, c'est son réseau qui a été déterminant.</p>
+            <ul>
+              <li>Dans son salon parisien, Joséphine recevait de nombreux anciens colons et des propriétaires de plantations qui avaient fui les révoltes.</li>
+              <li>Ces personnes utilisaient Joséphine comme un accès direct au Premier Consul (Napoléon).</li>
+              <li>Ils lui ont transmis leurs doléances, leurs pertes financières et leurs arguments sur la "nécessité" de rétablir l'esclavage pour sauver leurs propriétés.</li>
+            </ul>
+            <p class="sub">3. L'exception de la Martinique</p>
+            <p>Il y a un détail historique crucial : la Martinique est la seule île française où l'esclavage n'a jamais été aboli en pratique.</p>
+            <ul>
+              <li><strong>Pourquoi ?</strong> Parce que l'île était occupée par les Anglais entre 1794 et 1802. Les Anglais y ont maintenu l'esclavage.</li>
+              <li>Quand Napoléon récupère l'île en 1802, Joséphine et son entourage poussent pour que l'on ne libère surtout pas les esclaves qui s'y trouvent. C'est cette "exception" martiniquaise qui a servi de modèle pour rétablir l'esclavage ailleurs (en Guadeloupe et en Guyane).</li>
+            </ul>
+            <p class="sub">4. Nuance historique : Était-elle la seule responsable ?</p>
+            <p>Aujourd'hui, les historiens sont plus prudents. Si Joséphine a certainement encouragé Napoléon :</p>
+            <ol>
+              <li><strong>L'intérêt d'État prime :</strong> Napoléon n'aurait jamais rétabli l'esclavage uniquement pour faire plaisir à sa femme. Il l'a fait car il avait besoin d'argent pour ses guerres.</li>
+              <li><strong>Le poids des conseillers :</strong> Des ministres comme Cambacérès ou Talleyrand, et des conseillers d'État spécialisés sur les colonies, ont eu une influence technique bien plus grande que Joséphine.</li>
+            </ol>
+            <div class="lesson-block">
+              <span class="block-label">Le saviez-vous ?</span>
+              <p>En 1991, la statue de Joséphine à Fort-de-France (Martinique) a été décapitée et barbouillée de peinture rouge. Pour de nombreux Martiniquais, elle reste le symbole du rétablissement de l'esclavage.</p>
+            </div>
+            <p>C'est assez logique. Pendant longtemps, on a préféré lisser l'image de Napoléon pour n'en faire que le bâtisseur de la France moderne (le Code Civil, les Lycées, le Bac, la Légion d'honneur.....). Aborder le rôle de Joséphine et le rétablissement de l'esclavage, c'est montrer la "face sombre" de l'Empire, ce qui a été longtemps mis de côté dans les programmes scolaires.</p>
+            <h3 class="group-title">Le paradoxe Napoléonien</h3>
+            <p>Pour ton dossier, si tu veux vraiment marquer des points, tu peux conclure sur cette tension entre les deux facettes de Napoléon :</p>
+            <p>D'un côté, il est celui qui a "gravé dans le marbre" les acquis de la Révolution (égalité devant la loi, fin des privilèges de la noblesse). De l'autre, il est celui qui a recréé une hiérarchie raciale et sociale dans les colonies, bien plus dure que celle de l'Ancien Régime.</p>
+            <h3 class="group-title">Une anecdote pour conclure le travail sur Nantes</h3>
+            <p>En 1815, durant les "Cent-Jours" (son bref retour au pouvoir avant Waterloo), Napoléon signe finalement un décret interdisant la traite négrière.</p>
+            <ul>
+              <li><strong>Pourquoi ce revirement ?</strong> Pas par humanisme, mais pour essayer de séduire les Anglais (qui avaient déjà aboli la traite en 1807) et éviter qu'ils ne lui déclarent à nouveau la guerre.</li>
+              <li><strong>Le résultat :</strong> Ce décret a été maintenu par Louis XVIII après la chute définitive de Napoléon. Mais comme pour le reste de son règne, c'était une décision dictée par la stratégie politique, et non par la morale.</li>
+            </ul>
+            <div class="question-block">
+              <span class="block-label">La Realpolitik</span>
+              <p>Avez-vous entendu parler du terme Realpolitik ? le terme de "Realpolitik". C'est le fait de prendre des décisions basées sur l'efficacité et la puissance, sans s'encombrer de principes moraux. C'est exactement ce que Napoléon a fait avec l'esclavage, soutenu par les intérêts financiers de villes comme Nantes et l'influence de son entourage comme Joséphine.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · Joséphine &amp; 1815</h3>
+            <p>Joséphine est née aux <strong>Trois-Îlets (Martinique), le 23 juin 1763</strong> (famille Tascher de la Pagerie). Son rôle relève surtout de la <strong>mémoire populaire</strong> ; la décision est d'abord géopolitique (conseillers Cambacérès, Talleyrand). Statue décapitée en <strong>1991</strong>, entièrement déboulonnée en 2020. Décret des Cent-Jours : <strong>29 mars 1815</strong> ; traite britannique abolie en <strong>1807</strong> ; prohibition confirmée par Louis XVIII (ordonnance du 8 janvier 1817).</p>
+            <div class="tag-list"><span class="tag">Grands Blancs</span><span class="tag">Lobby colonial</span><span class="tag">Realpolitik</span><span class="tag">Cent-Jours</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 18 — LES CHIFFRES & LES SOURCES ===== -->
+      <section class="chapter reveal" aria-labelledby="c18">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Mesurer l'ampleur</p><h2 id="c18">Les chiffres &amp; les sources.</h2></div>
+          <div class="chapter-number">18</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Les chiffres permettent de mesurer l'ampleur du système, mais aussi pourquoi la période napoléonienne est si particulière (et parfois moins visible dans les musées).</p>
+            <p>Voici les données clés pour le dossier, en comparant "l'âge d'or" de la traite à Nantes avec l'époque de Napoléon.</p>
+            <h3 class="group-title">1. Nantes : La capitale de la traite</h3>
+            <p>Sur l'ensemble de l'histoire de la traite en France, Nantes écrase tous les autres ports :</p>
+            <ul>
+              <li>1 800 expéditions environ sont parties de Nantes (soit 43 % du total français).</li>
+              <li>550 000 captifs environ ont été transportés sur des navires nantais.</li>
+              <li>À titre de comparaison, Bordeaux arrive deuxième avec environ 500 expéditions.</li>
+            </ul>
+            <h3 class="group-title">2. Le "trou d'air" napoléonien (1802-1815)</h3>
+            <p>C'est là que les recherches deviennent précises. Si Napoléon rétablit l'esclavage en 1802, les chiffres de la traite à Nantes ne repartent pas immédiatement à la hausse. Pourquoi ? À cause de la guerre permanente avec l'Angleterre.</p>
+            <ul>
+              <li><strong>Entre 1793 et 1802 :</strong> La traite est officiellement arrêtée (Première Abolition).</li>
+              <li><strong>En 1802-1803 :</strong> Juste après le décret de Napoléon, les armateurs nantais tentent de relancer la machine. Mais la reprise de la guerre navale avec les Anglais (qui dominent les mers) bloque les ports.</li>
+              <li><strong>Le paradoxe :</strong> Sous le Premier Empire, le commerce est quasiment à l'arrêt à cause du blocus. Les chiffres de départs sont très faibles par rapport au XVIIIe siècle.</li>
+            </ul>
+            <h3 class="group-title">3. La "Traite Illégale" : Le vrai rebond</h3>
+            <p>Le chiffre le plus frappant pour le dossier est celui de l'après-Napoléon. C'est quand Napoléon tombe que les armateurs nantais se déchaînent :</p>
+            <ul>
+              <li>Bien que la traite soit interdite (théoriquement) dès 1815, Nantes devient le centre de la traite clandestine.</li>
+              <li><strong>Entre 1815 et 1831 :</strong> On estime que plus de 300 expéditions illégales partent de Nantes. Les bénéfices étaient tels que les armateurs préféraient payer des amendes ou risquer la prison.</li>
+            </ul>
+            <table class="dtable">
+              <caption>Résumé pour un tableau comparatif.</caption>
+              <thead><tr><th scope="col">Période</th><th scope="col">Contexte</th><th scope="col">Activité à Nantes</th></tr></thead>
+              <tbody>
+                <tr><td class="k">1783-1792</td><td>Apogée (Louis XVI)</td><td>Très intense (Record de navires)</td></tr>
+                <tr><td class="k">1794-1802</td><td>1ère Abolition</td><td>Nulle (officiellement)</td></tr>
+                <tr><td class="k">1802-1815</td><td>Empire (Napoléon)</td><td>Très faible (à cause de la guerre/blocus)</td></tr>
+                <tr><td class="k">1815-1830</td><td>Restauration</td><td>Forte (Traite illégale et clandestine)</td></tr>
+              </tbody>
+            </table>
+            <h3 class="group-title">Pourquoi ces chiffres sont importants ?</h3>
+            <p>Ils montrent que Napoléon a ouvert la porte juridique (en rendant l'esclavage à nouveau légal), mais que ce sont les armateurs nantais qui ont ensuite profité de cette brèche pendant des décennies, même après sa chute.</p>
+
+            <h3 class="group-title">Pour aller plus loin</h3>
+            <p class="sub">1. Ouvrages de référence (Historiens)</p>
+            <p>Ces auteurs sont les spécialistes incontestés du sujet.</p>
+            <ul>
+              <li><strong>Jean-Joël Brégeon, Napoléon et l'esclavage (Éditions Bernard Giovanangeli) :</strong> C'est l'ouvrage le plus complet sur la décision de 1802. Il analyse froidement les raisons économiques et géopolitiques de Napoléon.</li>
+              <li><strong>Olivier Grenouilleau, Les traites négrières : Essai d'histoire globale (Gallimard) :</strong> Une référence mondiale. Il explique très bien la place de Nantes et le lobbying des armateurs auprès du pouvoir.</li>
+              <li><strong>Philippe Haudrère, L'Empire colonial français :</strong> Pour comprendre l'aspect stratégique et la rivalité avec l'Angleterre.</li>
+              <li><strong>Pierre Branda et Thierry Lentz, Napoléon, l'esclavage et les colonies (Fayard) :</strong> Thierry Lentz est le directeur de la Fondation Napoléon ; son analyse est très précise sur les documents administratifs de l'époque.</li>
+            </ul>
+            <p class="sub">2. Institutions et Musées</p>
+            <p>Puisque tu es allé au Château des ducs, voici les ressources numériques liées :</p>
+            <ul>
+              <li><strong>Le Musée d'Histoire de Nantes (Château des ducs de Bretagne) :</strong> Leur site propose des dossiers pédagogiques sur la traite. Source : chateaunantes.fr (rubrique "L'esclavage").</li>
+              <li><strong>Le Mémorial de l'abolition de l'esclavage (Nantes) :</strong> C'est le monument extérieur sur les quais. Leur site propose une chronologie très claire. Source : memorial.nantes.fr.</li>
+              <li><strong>La Fondation pour la Mémoire de l'Esclavage :</strong> Présidée par Jean-Marc Ayrault (ancien maire de Nantes), elle regroupe des archives sur le rétablissement de 1802. Source : memoire-esclavage.org.</li>
+            </ul>
+            <p class="sub">3. Sources Primaires (Archives de l'époque)</p>
+            <ul>
+              <li><strong>La Loi du 30 floréal an X (20 mai 1802) :</strong> C'est le texte officiel du rétablissement.</li>
+              <li><strong>Le Code Noir (réédité sous l'Empire) :</strong> Bien que Louis XIV l'ait créé, Napoléon l'a remis en vigueur dans les faits.</li>
+              <li><strong>Les registres de la Chambre de Commerce de Nantes (1801-1803) :</strong> On y trouve les lettres de doléances des armateurs nantais demandant le retour de l'ordre dans les colonies.</li>
+            </ul>
+            <p class="sub">4. Ressources en ligne fiables</p>
+            <ul>
+              <li><strong>L'Histoire par l'image :</strong> Un site soutenu par le Ministère de la Culture qui analyse les tableaux de l'époque (notamment les portraits de Joséphine ou de Toussaint Louverture).</li>
+              <li><strong>Retronews (BNF) :</strong> Pour retrouver les articles de journaux de l'époque qui célébraient le retour de la paix et du commerce en 1802.</li>
+            </ul>
+            <p>"Source : Jean-Malo Sauvegrain / Archives départementales de Loire-Atlantique" ou "Source : Olivier Grenouilleau".</p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · chiffres &amp; bibliographie</h3>
+            <p>Traite illégale nantaise 1814-1831 : <strong>~318 navires</strong> (l'essentiel de la traite française clandestine) — le « plus de 300 » est confirmé. <strong>Loi Taubira</strong> (crime contre l'humanité) : <strong>21 mai 2001</strong> (25 ans en 2026).</p>
+            <p>Bibliographie : l'auteur des <em>Traites négrières</em> signe <strong>Olivier Pétré-Grenouilleau</strong>. Le livre « Napoléon et l'esclavage » attribué à J.-J. Brégeon n'a pu être confirmé sous ce titre exact (à vérifier auprès de l'éditeur).</p>
+            <div class="tag-list"><span class="tag">Traite illégale</span><span class="tag">Loi Taubira</span><span class="tag">Pétré-Grenouilleau</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="closing reveal" aria-labelledby="final">
+        <h2 id="final">Les pierres de Nantes sont belles, mais c'est notre mémoire qui les rend justes.</h2>
+        <p>Ce dossier conserve mot pour mot les trois parties du live : le grand récit de l'esclavage triangulaire vu depuis Nantes, la synthèse de ses mécanismes, et la fracture napoléonienne. Du Code Noir de 1685 à la loi Taubira de 2001, du fer forgé des balcons au fer des chaînes, un même fil : regarder le passé en face, non pour culpabiliser, mais pour veiller. L'esclavage change de forme — il prend de nouveaux visages en 2026 —, mais la logique reste la même : le profit avant l'humain.</p>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans la mémoire collective. Ce dossier prolonge le live en donnant au public une version lisible, structurée et partageable des trois interventions.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="lalie.jpeg" alt="Avatar de Lalie">
+              <img src="ymir.jpeg" alt="Avatar d'Ymir">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+          </div>
+          <div class="collective-actions">
+            <a class="button primary" href="../../index.html">Retour à l'index</a>
+            <a class="button" href="../edicarien.html">L'Édiacarien</a>
+            <a class="button" href="../ancetres-genetiques/index.html">Ancêtres génétiques</a>
+            <a class="button" href="../../sources/sources.html">Les Sources</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome créée à partir de <strong>esclavage-transcript.txt</strong>, <strong>esclavage-part1-transcript.txt</strong> et <strong>esclavage-napoleon-transcript.txt</strong>. Les trois transcriptions sont conservées mot pour mot. Faits historiques vérifiés (Musée d'histoire de Nantes, Fondation pour la mémoire de l'esclavage, SlaveVoyages, BnF/Gallica, Fondation Napoléon).</main>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => { nav.classList.remove("open"); mobileMenu.setAttribute("aria-expanded", "false"); }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    // Filet de sécurité pour les sections très hautes (jamais "intersectées" au seuil)
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }
+    document.addEventListener("scroll", revealTall, { passive: true });
+    window.addEventListener("resize", revealTall, { passive: true });
+    revealTall();
+  </script>
+</body>
+</html>

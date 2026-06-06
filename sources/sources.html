@@ -224,14 +224,14 @@
 
     <main>
       <section class="wrap hero">
-        <p class="eyebrow">Dossier IX · Vérification &amp; sources</p>
+        <p class="eyebrow">Dossier XII · Vérification &amp; sources</p>
         <h2>Chaque donnée,<br>vérifiée et <span class="foil">sourcée</span>.</h2>
         <p class="lead">Pour chaque affirmation des dossiers — cosmologie, géologie, vie, exploration lunaire, éléments chimiques, données Terre 3D, ancêtres génétiques —, nous donnons un <b>résumé</b>, un <b>verdict</b> et la <b>source autoritative</b> (NASA, ESA, USGS, IUGS/ICS, Smithsonian, NIST, NHGRI, articles à comité de lecture). La science est déjà vertigineuse : encore faut-il pouvoir la vérifier.</p>
         <div class="stats">
           <div class="stat"><div class="n" id="stFiches">—</div><div class="l">Données vérifiées</div></div>
           <div class="stat"><div class="n" id="stSrc">—</div><div class="l">Sources de référence</div></div>
           <div class="stat"><div class="n" id="stDoi">—</div><div class="l">DOI vérifiés</div></div>
-          <div class="stat"><div class="n">8</div><div class="l">Dossiers audités</div></div>
+          <div class="stat"><div class="n">10</div><div class="l">Dossiers audités</div></div>
           <div class="stat"><div class="n">2</div><div class="l">Formulations à corriger</div></div>
         </div>
         <div class="legend" aria-label="Légende des verdicts">
@@ -254,6 +254,8 @@
       <section class="wrap section" id="terre-app"><div class="sec-head reveal"><p class="kick">Dossier VI · SamLePirate</p><h3>La Vie de la Terre</h3><p>Application interactive : globe paléogéographique, 10 séries temporelles, 201 heightmaps et pipeline reproductible.</p></div><div class="grid" id="g-terre-app"></div></section>
       <section class="wrap section" id="ancetres"><div class="sec-head reveal"><p class="kick">Dossier VIII · Lalie &amp; Ymir</p><h3>Adam &amp; Ève génétiques</h3><p>Ève mitochondriale, Adam chromosome Y, LUCA et code génétique — des points de coalescence, pas un couple fondateur.</p></div><div class="grid" id="g-ancetres"></div></section>
       <section class="wrap section" id="politique"><div class="sec-head reveal"><p class="kick">Dossier IX · Lalie, Ymir &amp; Sam</p><h3>Politique française 2026</h3><p>Institutions de la Ve République, élections, financement, médias et clivage gauche-droite — dossier <b>civique</b> : sources officielles (Légifrance, Conseil constitutionnel, Assemblée, Sénat, CNCCFP, Arcom), pas de DOI.</p></div><div class="grid" id="g-politique"></div></section>
+      <section class="wrap section" id="singe"><div class="sec-head reveal"><p class="kick">Dossier X · Lalie &amp; Ymir</p><h3>Le Singe Aquatique</h3><p>L'hypothèse de l'ancêtre aquatique au crible : pourquoi elle est rejetée (fossiles, sueur, sel, mains palmées) — et ce qui surnage : le régime côtier et les Oméga-3.</p></div><div class="grid" id="g-singe"></div></section>
+      <section class="wrap section" id="esclavage"><div class="sec-head reveal"><p class="kick">Dossier XI · Lalie &amp; Ymir</p><h3>L'Esclavage triangulaire</h3><p>Traite atlantique, Code Noir, bulletin de l'IFAN, Nantes port négrier et fracture napoléonienne — dossier <b>d'histoire</b> : sources muséales et institutionnelles (Musée d'histoire de Nantes, Fondation pour la mémoire de l'esclavage, SlaveVoyages, BnF), pas de DOI.</p></div><div class="grid" id="g-esclavage"></div></section>
 
       <section class="wrap section" id="refs">
         <div class="sec-head reveal"><p class="kick">Appareil critique · niveau le plus strict</p><h3>Références scientifiques</h3><p>La littérature primaire à comité de lecture derrière les données. Chaque <b>DOI a été vérifié</b> (résolution Crossref + page éditeur) — pour chacun : titre, citation et résumé.</p></div>
@@ -281,6 +283,7 @@
             <a href="../jorge-zalex/elements.html">Le Tableau Périodique</a>
             <a href="../la-vie-de-la-terre/index.html">La Vie de la Terre</a>
             <a href="../ymir-lalie/ancetres-genetiques/index.html">Ancêtres génétiques</a>
+            <a href="../ymir-lalie/singe-aquatique/index.html">Le Singe Aquatique</a>
           </div>
           <span class="cmotto">Ad astra per aspera.</span>
         </section>
@@ -566,6 +569,86 @@
         src:[{n:"vie-publique.fr",u:"https://www.vie-publique.fr/"},{n:"Audit Dossier IX",u:"dossier-IX-politique-france-2026.md"}] }
     ];
 
+    const SG = "../ymir-lalie/singe-aquatique/assets/";
+    const SINGE = [
+      { t:"Le « singe marin » de Hardy", d:"rejeté par ~99 % des experts", v:"deb", img:SG+"singe-aquatique-hero.png",
+        s:"L'hypothèse d'un ancêtre semi-aquatique (Hardy 1960, New Scientist) est rejetée par la majorité des paléoanthropologues : aucun fossile d'hominidé à adaptation marine sur des milliers découverts. C'est une « hypothèse parapluie » (Langdon 1997).",
+        src:[{n:"Langdon 1997 (DOI)",u:"https://doi.org/10.1006/jhev.1997.0146"},{n:"Wikipedia · Aquatic ape",u:"https://en.wikipedia.org/wiki/Aquatic_ape_hypothesis"}] },
+      { t:"Peau nue = thermorégulation", d:"sueur &amp; course d'endurance", v:"ok", img:SG+"savane-vs-eau.png",
+        s:"La perte de poils + des millions de glandes sudoripares servent à courir longtemps sous le soleil sans surchauffer (chasse à l'épuisement), pas à nager. Transpirer dans l'eau est inutile.",
+        src:[{n:"Bramble & Lieberman 2004 (DOI)",u:"https://doi.org/10.1038/nature03052"},{n:"Jablonski · peau (PNAS)",u:"https://www.pnas.org/doi/10.1073/pnas.0914628107"}] },
+      { t:"Mammifères « nus » terrestres", d:"éléphant, rhino, cochon, rat-taupe nu", v:"ok", img:SG+"savane-vs-eau.png",
+        s:"Des animaux 100 % terrestres ont perdu leurs poils (thermorégulation). Le cochon a une graisse sous-cutanée comparable à la nôtre — il n'est pas une sirène. La peau nue n'est pas une preuve d'un passé aquatique.",
+        src:[{n:"Porc / peau humaine (ScienceDirect)",u:"https://www.sciencedirect.com/science/article/pii/S0161589014002880"},{n:"Audit Dossier X",u:"dossier-X-singe-aquatique.md"}] },
+      { t:"Les « mains palmées »", d:"embryologie, pas évolution", v:"ok", img:SG+"singe-aquatique-hero.png",
+        s:"Tous les embryons de mammifères ont les doigts palmés ; les cellules interdigitales meurent (mort cellulaire programmée : apoptose + sénescence). Une membrane résiduelle = syndactylie (~1/2000), pas un héritage marin.",
+        src:[{n:"Régression interdigitale (PMC)",u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC7644521/"}] },
+      { t:"L'épreuve du sel (preuve massue)", d:"reins incapables de filtrer l'eau de mer", v:"ok", img:SG+"singe-aquatique-hero.png",
+        s:"Boire de l'eau de mer nous tue par déshydratation : nos reins ne la concentrent pas assez et nous n'avons pas de glandes à sel. Aucun « primate marin » ne meurt de soif dans son propre habitat — un seul fait qui fait tomber toute la théorie.",
+        src:[{n:"Osmorégulation mammifères marins (J. Exp. Biol.)",u:"https://journals.biologists.com/jeb/article/204/11/1831/32941/"}] },
+      { t:"Voûte plantaire &amp; bipédie", d:"forêt mosaïque, pas marécage", v:"ok", img:SG+"singe-aquatique-hero.png",
+        s:"L'arche plantaire est un amortisseur/ressort pour la course sur sol dur. La bipédie apparaît en milieu forestier/mosaïque (Ardipithecus, Orrorin), pas dans l'eau ; les premiers hominines grimpaient encore aux arbres.",
+        src:[{n:"White 2009 · Ardipithecus (DOI)",u:"https://doi.org/10.1126/science.1175802"},{n:"Senut 2001 · Orrorin (DOI)",u:"https://doi.org/10.1016/S1251-8050(01)01529-4"}] },
+      { t:"Sir Alister Hardy (1896–1985)", d:"New Scientist, 1960", v:"ok", img:SG+"singe-aquatique-hero.png",
+        s:"Biologiste marin (inventeur du Continuous Plankton Recorder, expédition Discovery 1925–27, chaire de zoologie à Oxford). Il lance l'« Aquatic Ape Hypothesis » dans New Scientist en 1960, fonde le RERC (1969) et reçoit le Prix Templeton (1985).",
+        src:[{n:"CPR Survey · Hardy",u:"https://www.cprsurvey.org/about-us/sir-alister-hardy-and-the-continuous-plankton-recorder-cpr-survey/"},{n:"Templeton Prize",u:"https://www.templetonprize.org/laureate/alister-hardy/"}] },
+      { t:"Yvette Deloison (CNRS)", d:"position isolée, pas un consensus", v:"deb", img:SG+"singe-aquatique-hero.png",
+        s:"Chercheuse CNRS, vraie spécialiste de l'anatomie du pied, elle défend une origine semi-aquatique de la bipédie. Position très minoritaire : l'autorité d'une personne ne vaut pas confirmation par la communauté et les fossiles.",
+        src:[{n:"Hominidés · Y. Deloison",u:"https://www.hominides.com/specialistes/yvette-deloison/"},{n:"Audit Dossier X",u:"dossier-X-singe-aquatique.md"}] },
+      { t:"Régime côtier &amp; Oméga-3", d:"crédible mais débattu", v:"deb", img:SG+"regime-cotier.png",
+        s:"La version « douce » : nos ancêtres, opportunistes des rivages, ont profité du DHA (Oméga-3) et de l'iode des poissons/coquillages. Cela a pu faciliter la première hausse modérée du cerveau (Joordens 2014) — pas son expansion ultérieure (Langdon 2006 conteste).",
+        src:[{n:"Joordens et al. 2014 (DOI)",u:"https://doi.org/10.1016/j.jhevol.2014.04.004"},{n:"Langdon 2006 (DOI)",u:"https://doi.org/10.1079/bjn20061805"}] },
+      { t:"Pinnacle Point", d:"coquillages il y a ~164 000 ans", v:"ok", img:SG+"regime-cotier.png",
+        s:"En Afrique du Sud, des humains modernes consommaient systématiquement des fruits de mer il y a ~164 ka — preuve archéologique réelle d'une vie au bord de l'eau (le live cite « 160 000 », à harmoniser sur 164 ka).",
+        src:[{n:"Marean et al. 2007 · Nature (DOI)",u:"https://doi.org/10.1038/nature06204"}] },
+      { t:"Cités lacustres &amp; lacs africains", d:"UNESCO 2011 · lac Turkana", v:"ok", img:SG+"regime-cotier.png",
+        s:"« Lacustre » = relatif aux lacs. Les sites palafittiques alpins (pilotis) sont classés UNESCO (2011, 111 sites). Les grands lacs africains (Victoria, Turkana/Koobi Fora) offrent eau douce + poissons : l'argument nutritionnel est solide.",
+        src:[{n:"UNESCO · sites palafittiques",u:"https://whc.unesco.org/en/list/1363/"},{n:"Britannica · Koobi Fora",u:"https://www.britannica.com/place/Koobi-Fora"}] }
+    ];
+
+    const ES = "../ymir-lalie/esclavage/assets/";
+    const ESCLAVAGE = [
+      { t:"Le Code Noir (1685)", d:"édit de mars 1685 · art. 44 « bien meuble »", v:"ok", img:ES+"code-noir.png",
+        s:"Édit voulu par Colbert (†1683), finalisé sous son fils Seignelay, promulgué au nom de Louis XIV. L'article 44 déclare l'esclave « bien meuble » ; articles 2 (baptême), 12 (esclavage héréditaire), 38 (marronnage), 42 (châtiments). Citations exactes (BnF/Gallica).",
+        src:[{n:"FME · l'édit de 1685",u:"https://memoire-esclavage.org/ledit-royal-de-mars-1685-ou-code-noir"},{n:"BnF · Code Noir",u:"https://expositions.bnf.fr/montesquieu/themes/esclavage/anthologie/le-code-noir.htm"}] },
+      { t:"Sources du Code Noir", d:"droit romain : influence débattue", v:"warn", img:ES+"code-noir.png",
+        s:"L'influence directe du droit romain (esclave = res) est débattue par les historiens, pas une filiation établie. Le principe « le sol de France affranchit celui qui le touche » est en réalité opposé au Code Noir (il vaut en métropole), et non une source d'inspiration.",
+        src:[{n:"Cliothemis · droit romain & Code Noir",u:"https://www.cliothemis.com/Droit-romain-et-Code-Noir-Quelques,91"}] },
+      { t:"Nantes, premier port négrier", d:"~1 744 expéditions · ~41-42 %", v:"warn", img:ES+"nantes-memoire.png",
+        s:"Premier port négrier de France : confirmé. Les valeurs de référence du Musée d'histoire de Nantes sont ~1 744 expéditions et ~41-42 % des départs français, pour plus de 500 000 captifs (le live dit 1 717 / 43-45 % / 550 000 — ordres de grandeur justes, à présenter en estimations).",
+        src:[{n:"Château des ducs de Bretagne",u:"https://www.chateaunantes.fr/thematiques/la-traite-atlantique-et-l-esclavage-colonial/"},{n:"Mémorial de Nantes",u:"https://memorial.nantes.fr/"}] },
+      { t:"Familles d'armateurs nantais", d:"Walsh · Montaudouin · Deurbroucq", v:"ok", img:ES+"nantes-memoire.png",
+        s:"Familles réelles et majeures de la traite nantaise ; Île Feydeau et Quai de la Fosse, hôtels en pierre de tuffeau. Libéralisation : 1707 (1re expédition L'Hercule), 1716 (ouverture du commerce d'Afrique). Reconversion ultérieure (XIXe) vers LU, Cassegrain, Saupiquet.",
+        src:[{n:"Traite négrière à Nantes",u:"https://fr.wikipedia.org/wiki/Traite_n%C3%A9gri%C3%A8re_%C3%A0_Nantes"},{n:"Patrimonia Nantes · Indiennes",u:"https://patrimonia.nantes.fr/home/decouvrir/themes-et-quartiers/indiennes.html"}] },
+      { t:"Le bulletin de l'IFAN", d:"Dakar · série B · 1963", v:"ok", img:ES+"esclavage-hero.png",
+        s:"L'Institut français d'Afrique noire (Dakar, 1938 ; « fondamental » depuis 1966) et son Bulletin série B (Sciences humaines) existent bien ; un numéro de 1963 est cohérent. Permet de décentrer le regard : sociétés organisées (Wolof, Dahomey, Fouta-Djallon), économie de prédation.",
+        src:[{n:"IFAN (UCAD)",u:"https://fr.wikipedia.org/wiki/Institut_fondamental_d%27Afrique_noire"},{n:"SlaveVoyages",u:"https://www.slavevoyages.org/"}] },
+      { t:"La « Pièce d'Inde »", d:"unité de compte d'un captif", v:"ok", img:ES+"esclavage-hero.png",
+        s:"Unité de mesure de la traite : un homme d'environ 25-30 ans, robuste, sans défaut = « 1 pièce d'Inde » ; enfants et vieillards comptés en fractions. Le terme vient d'abord d'une pièce de toile indienne servant de troc.",
+        src:[{n:"Pièce d'Inde (Cairn)",u:"https://shs.cairn.info/revue-annales-historiques-de-la-revolution-francaise-2019-1-page-81"}] },
+      { t:"Le passage du milieu", d:"40-80 j · mortalité ~15 %", v:"warn", img:ES+"route-atlantique.png",
+        s:"Traversée de 40 à 80 jours ; mortalité moyenne ≈ 15 % (12-20 % selon route/période ; le « 50 % » du live = cas extrême d'épidémie). L'espace de ~150 cm est sous-estimé : la référence (plan du Brookes, 1788) donne ~183 × 41 cm pour un homme adulte. Barricados, speculum oris, filets : documentés.",
+        src:[{n:"NPS · Middle Passage",u:"https://www.nps.gov/articles/the-middle-passage.htm"},{n:"Plan du Brookes (1788)",u:"https://en.wikipedia.org/wiki/Brooks_(1781_ship)"}] },
+      { t:"Plantation & espérance de vie", d:"5-7 ans (estimation)", v:"warn", img:ES+"route-atlantique.png",
+        s:"À Saint-Domingue, l'espérance de vie d'un esclave « neuf » est estimée à ~5-7 ans (mortalité supérieure aux naissances, population maintenue par l'importation). Moulin, commandeur, quatre-piquets, colliers à pointes : documentés. À présenter comme estimation.",
+        src:[{n:"Slavery in Haiti",u:"https://en.wikipedia.org/wiki/Slavery_in_Haiti"},{n:"Understanding Slavery",u:"https://understandingslavery.com/"}] },
+      { t:"Résistances : Bois-Caïman & Mackandal", d:"14 août 1791 · 1758", v:"ok", img:ES+"esclavage-hero.png",
+        s:"Marronnage, vaudou, sabotages, poison. La cérémonie de Bois-Caïman a lieu dans la nuit du 14 août 1791 (Boukman, Cécile Fatiman) ; l'insurrection éclate le 22 août. Mackandal, chef marron, exécuté en 1758. La révolte de 1791 (que Toussaint rejoint) fonde Haïti.",
+        src:[{n:"Bois Caïman",u:"https://fr.wikipedia.org/wiki/Bois_Ca%C3%AFman"},{n:"Mackandal",u:"https://fr.wikipedia.org/wiki/Fran%C3%A7ois_Mackandal"}] },
+      { t:"Abolition · rétablissement · abolition", d:"1794 → 1802 → 1848", v:"ok", img:ES+"esclavage-hero.png",
+        s:"1re abolition par la Convention le 4 février 1794 ; rétablissement par la loi du 20 mai 1802 (maintien en Martinique, rétablissement par la force en Guadeloupe/Guyane) ; abolition définitive le 27 avril 1848 (Schoelcher). Loi Taubira (crime contre l'humanité) : 21 mai 2001.",
+        src:[{n:"FME · 1794 / 1802 / 1848",u:"https://memoire-esclavage.org/"},{n:"Légifrance · loi Taubira",u:"https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000405369/"}] },
+      { t:"Napoléon, Toussaint & Delgrès", d:"Fort de Joux 1803 · Matouba 1802", v:"ok", img:ES+"esclavage-hero.png",
+        s:"Toussaint Louverture (constitution de 1801) meurt au Fort de Joux le 7 avril 1803 ; Vertières (1803) puis indépendance d'Haïti (1er janvier 1804). Louis Delgrès et ~300 compagnons se sacrifient à Matouba le 28 mai 1802 (« Vivre libre ou mourir »), face au général Richepance.",
+        src:[{n:"Château de Joux",u:"https://chateaudejoux.com/decouvrez-le-chateau/joux-lieu-de-memoire/"},{n:"FME · Louis Delgrès",u:"https://memoire-esclavage.org/biographies/louis-delgres"}] },
+      { t:"Joséphine & la « Mulâtresse Solitude »", d:"mémoire & nuance", v:"warn", img:ES+"esclavage-hero.png",
+        s:"Joséphine, née en Martinique (Tascher de la Pagerie), a pesé surtout via son réseau de colons ; les historiens jugent la décision avant tout géopolitique. Statue de Fort-de-France décapitée en 1991. « Mulete Solitude » est une coquille pour la « Mulâtresse Solitude » (Guadeloupe, exécutée le 29 nov. 1802).",
+        src:[{n:"Statue de Joséphine",u:"https://en.wikipedia.org/wiki/Statue_of_the_Empress_Jos%C3%A9phine"},{n:"FME · Solitude",u:"https://memoire-esclavage.org/biographies/solitude"}] },
+      { t:"Esclavage moderne (2026)", d:"~50 millions (OIT 2022)", v:"ok", img:ES+"esclavage-hero.png",
+        s:"Le « fil rouge » du dossier : ~50 millions de personnes en esclavage moderne selon l'estimation conjointe OIT / Walk Free / OIM de 2022 (~28 M en travail forcé + ~22 M en mariage forcé), femmes et enfants surreprésentés.",
+        src:[{n:"OIT · 50 millions",u:"https://www.ilo.org/resource/news/50-million-people-worldwide-modern-slavery-0"}] }
+    ];
+
     // Sources from sources_audit_scientifique_chronos.csv + app La Vie de la Terre
     const SOURCES = [
       ["🟢","Planck Collaboration 2018 — Cosmological parameters","https://www.aanda.org/articles/aa/pdf/2020/09/aa33880-18.pdf","Âge de l'Univers ≈ 13,787 Ga ± 0,020 Ga (ΛCDM)."],
@@ -633,7 +716,7 @@
     }
     function fill(id,arr){ const el=document.getElementById(id); if(el) el.innerHTML=arr.map(ficheHTML).join(""); }
     fill("g-cosmos",COSMOS); fill("g-terre",TERRE); fill("g-geo",GEO); fill("g-hum",HUM);
-    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES); fill("g-politique",POLITIQUE);
+    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES); fill("g-politique",POLITIQUE); fill("g-singe",SINGE); fill("g-esclavage",ESCLAVAGE);
 
     // ===== Références scientifiques primaires (DOI vérifiés) =====
     const REFS = [
@@ -1066,6 +1149,28 @@
           ab:"Génétique de la couleur des yeux" },
         { a:"Science, évolution et dialogue avec la foi", t:"National Academies (2008), Science, Evolution, and Creationism, National Academies Press", j:"Distinguer méthode scientifique, évolution et questions théologiques", k:"review", doi:"10.17226/11876",
           ab:"Distinguer méthode scientifique, évolution et questions théologiques" }
+      ]},
+      { g:"Dossier X · Le Singe Aquatique (évolution humaine)", items:[
+        { a:"Langdon, J. H. (1997)", t:"Umbrella hypotheses and parsimony in human evolution: a critique of the Aquatic Ape Hypothesis", j:"Journal of Human Evolution 33(4), 479–494", k:"primary", doi:"10.1006/jhev.1997.0146",
+          ab:"La critique académique de référence de l'hypothèse du singe aquatique : une « hypothèse parapluie » qui prétend faussement à la parcimonie, car les traits invoqués sont apparus à des moments et dans des lignées différents. DOI vérifié via Crossref." },
+        { a:"Langdon, J. H. (2006)", t:"Has an aquatic diet been necessary for hominin brain evolution and functional development?", j:"British Journal of Nutrition 96(1), 7–17", k:"review", doi:"10.1079/bjn20061805",
+          ab:"Conteste la nécessité d'un régime aquatique pour l'expansion du cerveau : un régime terrestre fournit assez de DHA et l'organisme tamponne les apports. Tempère l'hypothèse côtière. DOI vérifié via Crossref." },
+        { a:"Bramble, D. M. & Lieberman, D. E. (2004)", t:"Endurance running and the evolution of Homo", j:"Nature 432, 345–352", k:"primary", doi:"10.1038/nature03052",
+          ab:"La course d'endurance comme moteur de l'évolution du genre Homo : explication « savane » de la peau nue et de la sudation, alternative aux traits dits aquatiques. DOI vérifié via Crossref." },
+        { a:"White, T. D. et al. (2009)", t:"Ardipithecus ramidus and the Paleobiology of Early Hominids", j:"Science 326(5949), 64–86", k:"primary", doi:"10.1126/science.1175802",
+          ab:"Ardipithecus combine grimpe arboricole et bipédie terrestre en milieu boisé — la bipédie naît en forêt/mosaïque, pas dans l'eau. DOI vérifié via Crossref." },
+        { a:"Senut, B., Pickford, M. et al. (2001)", t:"First hominid from the Miocene (Lukeino Formation, Kenya) [Orrorin tugenensis]", j:"Comptes Rendus de l'Académie des Sciences IIA 332(2), 137–144", k:"primary", doi:"10.1016/S1251-8050(01)01529-4",
+          ab:"Orrorin, l'un des plus anciens hominines bipèdes. Piège à DOI évité : l'article est dans les Comptes Rendus, PAS dans Science (le DOI science.1064902 est inexistant). DOI vérifié via Crossref." },
+        { a:"Brunet, M. et al. (2002)", t:"A new hominid from the Upper Miocene of Chad [« Toumaï », Sahelanthropus tchadensis]", j:"Nature 418, 145–151", k:"primary", doi:"10.1038/nature00879",
+          ab:"« Toumaï », ~7 Ma, parmi les plus anciens hominines connus, en contexte continental. DOI vérifié via Crossref." },
+        { a:"Johanson, D. C. & Taieb, M. (1976)", t:"Plio–Pleistocene hominid discoveries in Hadar, Ethiopia [découverte de « Lucy »]", j:"Nature 260, 293–297", k:"primary", doi:"10.1038/260293a0",
+          ab:"Découverte de « Lucy » (Australopithecus afarensis, nommé en 1978), adaptée à la marche terrestre et à la vie arboricole. DOI vérifié via Crossref." },
+        { a:"Joordens, J. C. A. et al. (2014)", t:"A fish is not a fish: Patterns in fatty acid composition of aquatic food may have had implications for hominin evolution", j:"Journal of Human Evolution 77, 107–116", k:"primary", doi:"10.1016/j.jhevol.2014.04.004",
+          ab:"Les ressources aquatiques (DHA) ont pu faciliter la PREMIÈRE hausse modérée du cerveau, pas l'expansion exceptionnelle ultérieure. À ne pas confondre avec Joordens 2015 (Trinil). DOI vérifié via Crossref." },
+        { a:"Joordens, J. C. A. et al. (2015)", t:"Homo erectus at Trinil on Java used shells for tool production and engraving", j:"Nature 518, 228–231", k:"primary", doi:"10.1038/nature13962",
+          ab:"Coquilles gravées de Trinil (~540–430 ka) par Homo erectus : exploitation des coquillages comme outils/support, sujet distinct des acides gras. DOI vérifié via Crossref." },
+        { a:"Marean, C. W. et al. (2007)", t:"Early human use of marine resources and pigment in South Africa during the Middle Pleistocene", j:"Nature 449, 905–908", k:"primary", doi:"10.1038/nature06204",
+          ab:"Pinnacle Point : consommation systématique de fruits de mer il y a ~164 000 ans — la preuve archéologique de la vie au bord de l'eau. DOI vérifié via Crossref." }
       ]}
     ];
     function refHTML(r){
@@ -1091,7 +1196,7 @@
       </div>`).join("");
     const stSrc = document.getElementById("stSrc"); if (stSrc) stSrc.textContent = SOURCES.length;
 
-    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length+POLITIQUE.length;
+    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length+POLITIQUE.length+SINGE.length+ESCLAVAGE.length;
     document.getElementById("stFiches").textContent = total;
 
     const bar=document.getElementById("progress");
