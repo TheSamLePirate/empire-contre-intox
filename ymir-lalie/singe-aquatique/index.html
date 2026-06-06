@@ -1,0 +1,1388 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Le Singe Aquatique — Empire contre Intox</title>
+  <meta name="description" content="L'hypothèse du singe aquatique au crible : le mythe, sa réfutation point par point (fossiles, sueur, sel, mains palmées), ses figures (Hardy, Morgan, Deloison) — puis la version crédible : le régime côtier et les Oméga-3. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents : l'eau (mythe) vs la science (terre/savane) */
+      --aqua:#3fa6b5;    /* eau / appel du large */
+      --deep:#2b7e8e;    /* abysse */
+      --kelp:#7bbf8f;    /* science / preuve verte */
+      --sand:#cdb27e;    /* savane */
+      --coral:#d98a6a;   /* alerte / danger */
+
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+
+      --hero:url("assets/singe-aquatique-hero.png");
+    }
+
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(63,166,181,.17), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.14), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(43,126,142,.12), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before {
+      content:""; position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px;
+      mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%);
+    }
+    .atmos::after {
+      content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.65),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(63,166,181,.6),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(123,191,143,.5),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.35),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate;
+    }
+    .grain {
+      position:fixed; inset:-50%; z-index:1; pointer-events:none;
+      opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+
+    .progress-top {
+      position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--deep),var(--gold-bright),var(--kelp));
+      box-shadow:0 0 14px rgba(243,217,138,.55);
+    }
+
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(63,166,181,.3); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    /* Hero */
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02); }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2;
+      background:
+        linear-gradient(86deg,rgba(3,6,13,.94) 0%,rgba(3,6,13,.7) 36%,rgba(3,6,13,.16) 68%,rgba(3,6,13,.5) 100%),
+        linear-gradient(180deg,rgba(3,6,13,.1) 0%,rgba(3,6,13,.26) 54%,var(--void) 100%);
+    }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1; background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh; display:grid; grid-template-columns:minmax(0,760px) minmax(250px,350px); gap:46px; align-items:end; }
+
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:16ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.7rem,7vw,5.8rem); line-height:.96; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil { background:linear-gradient(96deg,var(--deep),var(--aqua) 35%,#cfeff4 50%,var(--aqua) 65%,var(--deep)); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% 0; } }
+
+    .hero-lead { max-width:58ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px; font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px); transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--aqua),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--deep),var(--gold-bright),var(--kelp)); }
+
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    /* Intro band */
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.9rem); line-height:1.04; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:96px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time,.timeline-row span { font-family:var(--roman); font-weight:600; font-size:.78rem; letter-spacing:.05em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    /* Learning / act panels */
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(63,166,181,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .act-band { margin:70px 0 0; padding:clamp(26px,4vw,44px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(130% 130% at 0% 0%,rgba(63,166,181,.14),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.55),rgba(7,12,26,.6)); text-align:center; }
+    .act-band .act-no { font-family:var(--roman); font-weight:700; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--aqua); }
+    .act-band h2 { margin:14px 0 0; font-family:var(--roman); font-weight:800; font-size:clamp(1.9rem,4.4vw,3.2rem); text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .act-band p { max-width:72ch; margin:16px auto 0; color:var(--muted); }
+
+    /* Chapters */
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"❖"; position:absolute; left:0; top:0; color:var(--gold); font-size:.8em; }
+    .prose ol { margin:14px 0 24px; padding-left:24px; }
+    .prose ol li { padding-left:6px; }
+    .prose ol li::before { content:none; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+    .sub { margin:26px 0 10px; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--parch); }
+
+    .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
+    .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); }
+
+    .script-block,.science-block,.question-block,.lesson-block {
+      border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
+    .script-block { border-left-color:var(--aqua); background:rgba(63,166,181,.07); }
+    .science-block { border-left-color:var(--kelp); background:rgba(123,191,143,.08); }
+    .question-block { border-left-color:var(--coral); background:rgba(217,138,106,.09); }
+    .lesson-block { border-left-color:var(--gold-bright); background:rgba(243,217,138,.06); }
+    .script-block p:last-child,.science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,
+    .script-block ul:last-child,.science-block ul:last-child,.lesson-block ul:last-child { margin-bottom:0; }
+    .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .script-block .block-label { color:var(--aqua); }
+    .science-block .block-label { color:var(--kelp); }
+    .question-block .block-label { color:var(--coral); }
+
+    /* Duel : l'argument (eau) vs la réponse (science) */
+    .duel { border:1px solid var(--line-2); border-radius:3px; margin:18px 0; overflow:hidden; background:rgba(244,236,216,.02); }
+    .duel .claim, .duel .answer { padding:18px 22px; }
+    .duel .claim { background:rgba(63,166,181,.08); border-left:3px solid var(--aqua); }
+    .duel .answer { background:rgba(123,191,143,.07); border-left:3px solid var(--kelp); border-top:1px solid var(--line-2); }
+    .duel .lbl { display:block; margin-bottom:7px; font-family:var(--roman); font-size:.58rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; }
+    .duel .claim .lbl { color:var(--aqua); }
+    .duel .answer .lbl { color:var(--kelp); }
+    .duel p { margin:0; color:var(--muted); }
+    .duel p + p { margin-top:10px; }
+
+    .quote-card { border:1px solid var(--line-2); border-left:3px solid var(--aqua); border-radius:3px; padding:18px 22px; margin:14px 0; background:rgba(63,166,181,.05); }
+    .quote-card p { margin:0; font-family:var(--serif); font-style:italic; color:var(--parch); font-size:1.08rem; }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    .refs { display:grid; gap:14px; margin:18px 0 0; }
+    .ref { border:1px solid var(--line-2); border-radius:3px; padding:18px 20px; background:rgba(244,236,216,.03); border-left:3px solid var(--kelp); }
+    .ref h4 { margin:0 0 8px; font-family:var(--serif); font-weight:600; font-size:1.08rem; color:var(--ink); }
+    .ref p { margin:0 0 10px; color:var(--soft); font-size:.96rem; }
+    .ref a { display:inline-flex; align-items:center; gap:7px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); border-bottom:1px solid var(--line); }
+    .ref a:hover { color:var(--gold-bright); }
+    .ref .doi { color:var(--kelp); }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(123,191,143,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    /* Collective footer + credit band */
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(63,166,181,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left:-14px; }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left:-20px; }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    .reveal[data-d="3"] { transition-delay:.24s; }
+
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .signal-board { animation-delay:.45s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid { grid-template-columns:1fr; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+    }
+    /* ============================================================
+       DESIGN+ · « LA LIGNE D'EAU » — atmosphère & signatures
+       ============================================================ */
+    html { scrollbar-color: var(--deep) transparent; }
+    ::-webkit-scrollbar { width: 11px; }
+    ::-webkit-scrollbar-track { background: var(--abyss); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(var(--deep), var(--gold-deep)); border-radius: 20px; border: 2px solid var(--abyss); }
+    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(var(--aqua), var(--gold)); }
+
+    /* Bulles ambiantes qui remontent (générées en JS) */
+    .bubbles { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+    .bubbles i {
+      position: absolute; bottom: -10vh; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%;
+      background: radial-gradient(circle at 34% 28%, rgba(207,239,244,.55), rgba(63,166,181,.14) 58%, transparent 72%);
+      box-shadow: inset 0 0 6px rgba(207,239,244,.3);
+      opacity: 0; animation: rise-bubble var(--d) linear var(--delay) infinite;
+    }
+    @keyframes rise-bubble {
+      0% { transform: translate(0,0) scale(.65); opacity: 0; }
+      8% { opacity: .5; }
+      50% { transform: translate(10px,-58vh) scale(1); }
+      88% { opacity: .32; }
+      100% { transform: translate(-8px,-116vh) scale(1.12); opacity: 0; }
+    }
+
+    /* Hero — parallaxe + caustiques animées + invite à plonger */
+    .hero::before { transform: scale(1.1) translateY(var(--py, 0px)); }
+    .hero-caustic {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 34vh; z-index: -1; pointer-events: none;
+      background:
+        repeating-linear-gradient(98deg, transparent 0 20px, rgba(63,166,181,.045) 20px 24px),
+        repeating-linear-gradient(82deg, transparent 0 26px, rgba(207,239,244,.035) 26px 29px),
+        linear-gradient(180deg, rgba(63,166,181,.12), transparent 72%);
+      mix-blend-mode: screen; animation: caustic 11s ease-in-out infinite alternate;
+    }
+    @keyframes caustic { from { transform: translateX(-14px) skewX(-2.5deg); } to { transform: translateX(14px) skewX(2.5deg); } }
+    .scroll-cue {
+      position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 6;
+      display: grid; justify-items: center; gap: 9px; color: var(--aqua);
+      font-family: var(--roman); font-size: .54rem; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; opacity: .82;
+    }
+    .scroll-cue i { width: 1px; height: 42px; background: linear-gradient(var(--aqua), transparent); position: relative; overflow: hidden; }
+    .scroll-cue i::after { content: ""; position: absolute; top: -55%; left: 0; width: 1px; height: 55%; background: var(--gold-bright); animation: dive 1.9s ease-in-out infinite; }
+    @keyframes dive { 0% { top: -55%; } 60%, 100% { top: 100%; } }
+
+    /* Séparateur « ligne d'eau » en vague sur chaque chapitre */
+    .chapter { border-top: 0; padding-top: 92px; }
+    .chapter::before {
+      content: ""; position: absolute; top: 26px; left: 50%; transform: translateX(-50%);
+      width: min(100% - 40px, var(--max)); height: 14px; z-index: 1; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='14'%3E%3Cpath d='M0 7 Q30 1 60 7 T120 7' fill='none' stroke='%23d6ac55' stroke-opacity='0.5' stroke-width='1.1'/%3E%3C/svg%3E");
+      background-repeat: repeat-x; background-position: center;
+      opacity: .75; filter: drop-shadow(0 0 6px rgba(63,166,181,.3));
+      -webkit-mask: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+              mask: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    @keyframes drift { from { background-position-x: 0; } to { background-position-x: 60px; } }
+
+    /* Numéro de chapitre : reflet aquatique + flottaison */
+    .chapter-number { text-shadow: 0 0 34px rgba(63,166,181,.18); animation: bob 7s ease-in-out infinite; }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+
+    /* Drop-cap éditoriale sur les ouvertures de chapitre */
+    .prose .lede:first-letter {
+      float: left; font-family: var(--roman); font-weight: 700; font-style: normal;
+      font-size: 3.1em; line-height: .72; margin: 8px 14px 0 0; color: var(--gold-bright);
+      text-shadow: 0 3px 22px rgba(63,166,181,.38);
+    }
+
+    /* Le « duel » repensé : confrontation eau ↔ terre */
+    .duel { border: 0; background: transparent; border-radius: 4px; overflow: visible; position: relative; }
+    .duel .claim, .duel .answer { border-radius: 4px; position: relative; }
+    .duel .claim {
+      background: linear-gradient(180deg, rgba(63,166,181,.16), rgba(43,126,142,.07));
+      border: 1px solid rgba(63,166,181,.32); border-left-width: 3px;
+      box-shadow: inset 0 1px 0 rgba(207,239,244,.12);
+    }
+    .duel .answer {
+      margin-top: 10px;
+      background: linear-gradient(180deg, rgba(243,236,216,.05), rgba(123,191,143,.08));
+      border: 1px solid var(--line); border-left: 3px solid var(--kelp); border-top: 1px solid var(--line);
+    }
+    .duel .claim .lbl::before { content: "≈ "; color: var(--aqua); }
+    .duel .answer .lbl::before { content: "✓ "; color: var(--kelp); }
+    .duel .claim + .answer::before {
+      content: ""; position: absolute; top: -10px; left: 26px; width: 2px; height: 10px;
+      background: linear-gradient(var(--aqua), var(--kelp));
+    }
+
+    /* Cartes-citations qui « remontent à la surface » */
+    .quote-card { position: relative; overflow: hidden; }
+    .quote-card::before {
+      content: "\201C"; position: absolute; top: -22px; right: 16px;
+      font-family: var(--serif); font-size: 5.2rem; line-height: 1; color: rgba(63,166,181,.16);
+    }
+
+    /* Encadrés latéraux : épinglés à la surface (bulle-repère) */
+    .side-note { border-top: 2px solid rgba(63,166,181,.5); }
+    .side-note::before {
+      content: ""; position: absolute; top: -7px; left: 22px; width: 12px; height: 12px; border-radius: 50%;
+      background: radial-gradient(circle at 34% 30%, #cfeff4, var(--aqua)); box-shadow: 0 0 12px rgba(63,166,181,.65);
+    }
+
+    /* Figures : zoom doux + reflet caustique au survol */
+    .chapter-figure { position: relative; border-top: 2px solid rgba(63,166,181,.4); }
+    .chapter-figure img { transition: transform 1s var(--ease), filter 1s var(--ease); }
+    .chapter-figure:hover img { transform: scale(1.045); filter: saturate(1.12) brightness(1.05); }
+    .chapter-figure::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(118deg, transparent 42%, rgba(207,239,244,.16) 50%, transparent 58%);
+      transform: translateX(-130%); transition: transform 1.2s var(--ease);
+    }
+    .chapter-figure:hover::after { transform: translateX(130%); }
+
+    /* Bande d'acte « Partie II » : la plongée vers le grand bleu */
+    .act-band { position: relative; overflow: hidden; }
+    .act-band::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(120% 80% at 50% -25%, rgba(63,166,181,.22), transparent 58%),
+        linear-gradient(180deg, transparent 35%, rgba(43,126,142,.14));
+    }
+    .act-band .act-no, .act-band h2, .act-band p { position: relative; z-index: 1; }
+
+    /* Boutons hero : brillance liquide */
+    .button.primary { position: relative; overflow: hidden; }
+    .button.primary::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.35) 50%, transparent 60%);
+      transform: translateX(-130%); transition: transform .9s var(--ease);
+    }
+    .button.primary:hover::after { transform: translateX(130%); }
+
+    @media (max-width: 720px) {
+      .chapter::before { width: min(100% - 24px, var(--max)); }
+      .prose .lede:first-letter { font-size: 2.6em; }
+      .scroll-cue { display: none; }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      .bubbles { display:none; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="bubbles" id="bubbles" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-waterline"></div>
+      <div class="hero-caustic" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier X · Esprit critique &amp; évolution</p>
+          <h1>Le Singe <span class="foil">Aquatique</span></h1>
+          <p class="hero-lead">Génie évolutif ou délire de biologiste en vacances ? On plonge en apnée dans la théorie la plus controversée (et la plus humide) de l'anthropologie — pour démêler le mythe, sa réfutation point par point, et la part de vérité qui surnage : le régime côtier.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#transcription">Lire le dossier</a>
+            <a class="button" href="#cotier">La version crédible</a>
+            <a class="button" href="../../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board" aria-label="Repères">
+          <div class="signal"><span>L'hypothèse</span><strong>Un ancêtre semi-aquatique ?</strong></div>
+          <div class="signal"><span>Le verdict</span><strong>Rejetée par ~99 % des experts</strong></div>
+          <div class="signal"><span>La preuve massue</span><strong>Nos reins ne filtrent pas le sel</strong></div>
+          <div class="signal"><span>Ce qui surnage</span><strong>Le régime côtier &amp; les Oméga-3</strong></div>
+        </aside>
+      </div>
+      <a class="scroll-cue" href="#ouverture" aria-label="Plonger dans le dossier"><span>Plonger</span><i></i></a>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="../assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Singe Aquatique</span>
+        </a>
+        <a class="home-link" href="../../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#ouverture">Ouverture</a>
+          <a href="#hypothese">L'hypothèse</a>
+          <a href="#refuter">Réfuter</a>
+          <a href="#palmees">Mains palmées</a>
+          <a href="#academique">Académique</a>
+          <a href="#contre-exemples">Contre-exemples</a>
+          <a href="#riposte">Fiche riposte</a>
+          <a href="#populaire">Pourquoi ça marche</a>
+          <a href="#deloison">Deloison</a>
+          <a href="#hardy">Hardy</a>
+          <a href="#cotier">Régime côtier</a>
+          <a href="#lacustre">Lacustre</a>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </nav>
+
+    <main id="transcription">
+      <section class="intro-band" id="ouverture">
+        <div class="manifesto reveal">
+          <p class="section-kicker">Ouverture du live</p>
+          <h2>Et si le « chaînon manquant » portait un bonnet de bain ?</h2>
+          <p>Ce dossier reprend le live mot pour mot. On y présente l'hypothèse honnêtement, on la démonte avec les meilleurs arguments scientifiques, puis on garde ce qui résiste : nos ancêtres n'étaient pas des dauphins, mais peut-être des opportunistes des rivages.</p>
+        </div>
+        <div class="timeline reveal" data-d="1" aria-label="Fil conducteur">
+          <div class="timeline-row"><time>1960</time><p>Sir Alister Hardy lance l'« Aquatic Ape Hypothesis » dans <em>New Scientist</em>.</p></div>
+          <div class="timeline-row"><time>~99 %</time><p>des paléoanthropologues rejettent la version « singe marin ».</p></div>
+          <div class="timeline-row"><time>164 ka</time><p>Pinnacle Point : des humains mangeaient déjà des coquillages.</p></div>
+        </div>
+      </section>
+
+      <section class="learning-panel reveal" aria-labelledby="objectifs">
+        <p class="section-kicker">Objectifs pédagogiques</p>
+        <h2 id="objectifs">Apprendre à distinguer une belle histoire d'une preuve.</h2>
+        <div class="learning-grid">
+          <div class="learning-item reveal" data-d="1"><span>Comprendre</span><p>Ce que dit vraiment l'hypothèse du singe aquatique — et pourquoi elle séduit autant.</p></div>
+          <div class="learning-item reveal" data-d="2"><span>Réfuter</span><p>Démonter chaque « indice » (poils, graisse, mains palmées, sel) avec un argument solide et sourcé.</p></div>
+          <div class="learning-item reveal" data-d="3"><span>Nuancer</span><p>Garder la part crédible : le rôle des ressources côtières et des Oméga-3 dans l'essor du cerveau.</p></div>
+        </div>
+      </section>
+
+      <!-- ============ CH 01 — OUVERTURE ============ -->
+      <section class="chapter reveal" aria-labelledby="c1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le script du live</p><h2 id="c1">Préparez vos tubas.</h2></div>
+          <div class="chapter-number">01</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="script-block">
+              <span class="block-label">Au micro</span>
+              <p>Salut à tous ! Aujourd'hui, on va parler de l'évolution. Mais oubliez la savane, les herbes hautes et la course à pied. Et si je vous disais que votre ancêtre le plus stylé ne ressemblait pas à un chasseur de lions, mais plutôt à un touriste en short qui refuse de sortir de l'eau ? On plonge en apnée dans la théorie du Singe Aquatique : préparez vos tubas, on va voir si l'humanité est née dans la mer ou si on boit juste la tasse collectivement.</p>
+              <p>Est-ce que vous vous êtes déjà demandé pourquoi on adore autant traîner dans notre bain jusqu'à ressembler à des pruneaux séchés ? Pourquoi on a de la graisse sous la peau comme les phoques, mais aucun poil pour nous tenir chaud ? Ce soir, on explore la théorie qui prétend que l'homme est devenu debout... pour ne pas avoir de l'eau dans le nez. Bienvenue dans le live « Singe Aquatique » : entre science-fiction et aquagym préhistorique.</p>
+              <p>Oubliez tout ce qu'on vous a appris à l'école. Et si le « chaînon manquant » portait en fait un bonnet de bain ? Ce soir, on s'attaque à la théorie la plus controversée (et la plus humide) de l'anthropologie. Pourquoi sommes-nous les seuls primates à savoir retenir notre respiration et à aimer le surf ? On va décortiquer le mythe du Singe Aquatique. Alors, génie évolutif ou simple délire de biologiste en vacances ?</p>
+            </div>
+            <p class="sub">Les punchlines de l'intro</p>
+            <div class="quote-card"><p>« On nous dit qu'on vient du singe, moi je dis qu'on vient du dauphin qui a raté son virage. »</p></div>
+            <div class="quote-card"><p>« La bipédie, c'est juste le résultat d'un ancêtre qui voulait garder son sandwich au sec en traversant la rivière. »</p></div>
+            <div class="quote-card"><p>« Darwin a trouvé l'origine des espèces, nous on cherche l'origine du slip de bain. »</p></div>
+          </article>
+          <aside class="side-note">
+            <h3>Le ton</h3>
+            <p>Un live d'esprit critique, drôle et rigoureux : il prend une théorie séduisante au sérieux pour mieux la passer au crible des preuves.</p>
+            <div class="tag-list"><span class="tag">Évolution</span><span class="tag">Pseudo-science</span><span class="tag">Anti-intox</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 02 — L'HYPOTHÈSE ============ -->
+      <section class="chapter reveal" id="hypothese" aria-labelledby="c2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">L'Hypothèse de l'Appel de l'Eau</p><h2 id="c2">De quoi parle-t-on, au juste ?</h2></div>
+          <div class="chapter-number">02</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Hypothèse de l'Appel de l'Eau (ou l'Hypothèse du Singe Aquatique). Pour faire simple, c'est l'idée que nos ancêtres auraient passé une période de leur évolution dans un environnement semi-aquatique (rivages, marécages), ce qui expliquerait pourquoi nous sommes si différents des autres primates.</p>
+            <p>Voici les points clés pour comprendre le concept :</p>
+            <p class="sub">1. Les arguments des partisans (Pourquoi on y croit ?)</p>
+            <p>Les défenseurs de cette théorie, comme l'écrivaine Elaine Morgan, s'appuient sur plusieurs caractéristiques humaines uniques :</p>
+            <ul>
+              <li><strong>La bipédie :</strong> Marcher sur deux jambes est plus facile dans l'eau (pour garder la tête hors de l'eau).</li>
+              <li><strong>La perte des poils :</strong> Comme les dauphins ou les hippopotames, nous sommes « nus », ce qui réduit la traînée dans l'eau.</li>
+              <li><strong>La couche de graisse :</strong> Nous avons de la graisse sous-cutanée (le « gras » du corps), contrairement aux autres singes qui stockent leur graisse différemment.</li>
+              <li><strong>Le contrôle de la respiration :</strong> Nous pouvons retenir notre souffle volontairement, une capacité essentielle pour plonger, mais rare chez les mammifères terrestres.</li>
+            </ul>
+            <p class="sub">2. Le point de vue de la science officielle</p>
+            <p>Il faut être honnête : la majorité des paléoanthropologues rejettent cette théorie. Pourquoi ?</p>
+            <ul>
+              <li><strong>Manque de preuves fossiles :</strong> On n'a jamais trouvé de fossiles d'hominidés présentant des adaptations spécifiquement marines.</li>
+              <li><strong>Explications alternatives :</strong> La perte de poils et la bipédie s'expliquent très bien par l'adaptation à la chaleur de la savane (thermorégulation).</li>
+              <li><strong>Le danger :</strong> Les rivages d'Afrique à l'époque étaient remplis de crocodiles et de prédateurs, ce qui rend l'habitat aquatique peu probable pour un petit primate.</li>
+            </ul>
+            <p class="sub">3. Où en est-on aujourd'hui ?</p>
+            <p>Même si l'idée d'un « singe marin » est jugée trop radicale, une version plus douce gagne du terrain : l'hypothèse des ressources côtières.</p>
+            <p>Elle suggère que nos ancêtres n'étaient pas des « dauphins », mais qu'ils vivaient près de l'eau et mangeaient beaucoup de poissons et de coquillages. Les acides gras (Oméga-3) trouvés dans la nourriture aquatique auraient d'ailleurs pu aider notre cerveau à grossir.</p>
+            <p>C'est un excellent exemple de théorie « alternative » qui oblige les scientifiques à se poser de meilleures questions sur nos origines.</p>
+          </article>
+          <aside class="side-note">
+            <h3>Deux idées à ne pas confondre</h3>
+            <p><strong>Singe « marin » de Hardy</strong> (un ancêtre qui nage) → rejeté. <strong>Régime côtier</strong> (des opportunistes des rivages) → crédible et discuté. Tout le dossier tient dans cette nuance.</p>
+            <div class="tag-list"><span class="tag">Semi-aquatique</span><span class="tag">Elaine Morgan</span><span class="tag">Ressources côtières</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 03 — RÉFUTER EN 5 ARGUMENTS ============ -->
+      <section class="chapter reveal" id="refuter" aria-labelledby="c3">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La réfutation</p><h2 id="c3">Cinq arguments qui font couler la théorie.</h2></div>
+          <div class="chapter-number">03</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Pour contredire efficacement la théorie du « Singe Aquatique », la science s'appuie sur plusieurs arguments solides. Voici les points principaux que tu peux utiliser :</p>
+            <p class="sub">1. L'absence totale de preuves fossiles</p>
+            <p>C'est l'argument le plus fort. On a découvert des milliers de fossiles de nos ancêtres (comme Lucy).</p>
+            <ul><li><strong>Le contre-argument :</strong> Aucun de ces fossiles ne présente de caractéristiques purement aquatiques (comme des membres palmés ou des structures osseuses typiques des mammifères marins). Tous les fossiles trouvés montrent des adaptations à la vie terrestre ou arboricole (dans les arbres).</li></ul>
+            <p class="sub">2. La « Théorie de la Savane » (des explications plus simples)</p>
+            <p>La science préfère souvent l'explication la plus simple. Les traits cités par les partisans du singe aquatique s'expliquent très bien par la vie en milieu chaud et sec :</p>
+            <ul>
+              <li><strong>La bipédie :</strong> Elle permet de voir plus loin au-dessus des hautes herbes et de réduire la surface du corps exposée directement au soleil brûlant.</li>
+              <li><strong>La perte de poils :</strong> Elle est essentielle pour permettre à la transpiration de s'évaporer et de refroidir notre corps pendant la course, ce qu'un animal à fourrure ne peut pas faire aussi bien.</li>
+            </ul>
+            <p class="sub">3. Le problème de la graisse de « phoque »</p>
+            <p>Les partisans disent que notre graisse sous-cutanée sert d'isolant thermique, comme chez les baleines.</p>
+            <ul><li><strong>Le contre-argument :</strong> Notre graisse est répartie différemment. Elle sert surtout de réserve d'énergie pour alimenter notre cerveau, qui est extrêmement gourmand en calories. De plus, les humains meurent d'hypothermie très rapidement dans l'eau froide, contrairement aux vrais mammifères marins.</li></ul>
+            <p class="sub">4. Le danger des eaux africaines</p>
+            <p>Il y a des millions d'années, les points d'eau en Afrique (lacs, rivières, côtes) étaient des endroits extrêmement dangereux.</p>
+            <ul><li><strong>Le contre-argument :</strong> S'installer dans l'eau aurait exposé nos ancêtres à des prédateurs redoutables comme les crocodiles géants ou les hippopotames. Il est biologiquement peu probable qu'un petit primate sans défense ait choisi cet habitat pour survivre.</li></ul>
+            <p class="sub">5. La comparaison avec les autres mammifères « nus »</p>
+            <ul><li><strong>Le contre-argument :</strong> Il existe des mammifères terrestres sans poils qui ne sont pas aquatiques, comme le rat-taupe nu ou l'éléphant. La perte de poils n'est donc pas une preuve automatique d'un passé aquatique.</li></ul>
+            <div class="science-block">
+              <span class="block-label">En résumé</span>
+              <p>Pour la majorité des scientifiques, cette théorie est considérée comme une « pseudo-science » car elle interprète des faits de manière isolée sans tenir compte de l'ensemble des preuves archéologiques et environnementales dont nous disposons.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le socle</h3>
+            <p>Point le plus fort : <strong>zéro fossile</strong> d'hominidé à adaptation marine sur des milliers découverts. Perte de poils &amp; bipédie = <strong>thermorégulation / endurance</strong> (Bramble &amp; Lieberman 2004).</p>
+            <p><strong>Sources :</strong> Langdon 1997 (<em>J. Hum. Evol.</em>) ; Jablonski (évolution de la peau).</p>
+            <div class="tag-list"><span class="tag">Fossiles</span><span class="tag">Savane</span><span class="tag">Thermorégulation</span><span class="tag">Crocodiles</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 04 — LES MAINS PALMÉES ============ -->
+      <section class="chapter reveal" id="palmees" aria-labelledby="c4">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le faux indice n°1</p><h2 id="c4">Les « mains palmées » : de l'embryologie, pas de l'évolution.</h2></div>
+          <div class="chapter-number">04</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">C'est un argument classique des partisans de cette théorie, mais il est scientifiquement très facile à démonter. Voici ce que tu peux répondre pour clouer le bec à ton interlocuteur :</p>
+            <p class="sub">1. Ce n'est pas une adaptation, c'est de l'embryologie</p>
+            <p>L'argument des « mains palmées » repose sur une confusion entre l'évolution et le développement du fœtus.</p>
+            <div class="duel">
+              <div class="answer"><span class="lbl">La réponse</span><p>« Tous les mammifères (souris, chiens, humains) ont les mains palmées au début de leur développement dans l'utérus. C'est l'état de base de l'embryon. Chez l'humain, les cellules entre les doigts meurent naturellement avant la naissance (c'est ce qu'on appelle l'apoptose). S'il nous reste parfois une petite peau, c'est juste un "bug" génétique mineur (la syndactylie), pas un reste d'ancêtre marin. »</p></div>
+            </div>
+            <p class="sub">2. Compare avec les vrais animaux aquatiques</p>
+            <p>Si nous avions été semi-aquatiques pendant des millions d'années, nos mains seraient bien différentes.</p>
+            <div class="duel">
+              <div class="answer"><span class="lbl">La réponse</span><p>« Regarde les loutres ou les castors : ils ont de vraies membranes charnues et solides. La petite peau que nous avons entre les doigts est beaucoup trop fine et fragile pour pousser de l'eau efficacement. Si on avait évolué pour nager, nos doigts seraient devenus plus courts et la membrane plus rigide, comme des palettes. »</p></div>
+            </div>
+            <p class="sub">3. Nos mains sont faites pour la précision, pas pour la nage</p>
+            <p>L'évolution de la main humaine est allée exactement à l'opposé d'une palme.</p>
+            <div class="duel">
+              <div class="answer"><span class="lbl">La réponse</span><p>« La caractéristique principale de la main humaine, c'est le pouce opposable et la sensibilité du bout des doigts. C'est fait pour manipuler des outils, tailler des pierres et tenir des objets avec précision. Une main "palmée" serait un immense handicap pour fabriquer les outils qui ont permis à nos ancêtres de survivre. »</p></div>
+            </div>
+            <p class="sub">4. L'argument « et les pieds alors ? »</p>
+            <p>Si l'humain était fait pour l'eau, ses pieds seraient les premiers à être palmés pour la propulsion.</p>
+            <div class="duel">
+              <div class="answer"><span class="lbl">La réponse</span><p>« Pourquoi nos mains seraient-elles "un peu" palmées alors que nos pieds sont devenus totalement rigides et cambrés pour la marche et la course d'endurance sur terre ferme ? C'est contradictoire. »</p></div>
+            </div>
+            <div class="lesson-block">
+              <span class="block-label">En résumé, on peut lui dire</span>
+              <p>« Ce que tu appelles des "palmes" n'est qu'un vestige du développement embryonnaire commun à tous les mammifères terrestres. Si on suit ta logique, les hamsters et les cochons sont aussi des animaux aquatiques car leurs embryons ont les mêmes pattes palmées au début ! »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · embryologie</h3>
+            <p>Exact : la régression des palmures est une <strong>mort cellulaire programmée</strong> (apoptose, et aussi sénescence cellulaire) commune aux tétrapodes ; la <strong>syndactylie</strong> (~1/2000 naissances) en est l'échec, pas un héritage marin.</p>
+            <div class="tag-list"><span class="tag">Apoptose</span><span class="tag">Syndactylie</span><span class="tag">Pouce opposable</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 05 — ARGUMENTS ACADÉMIQUES ============ -->
+      <section class="chapter reveal" id="academique" aria-labelledby="c5">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le niveau au-dessus</p><h2 id="c5">Les arguments académiques.</h2></div>
+          <div class="chapter-number">05</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Pour contredire cette théorie avec des arguments académiques, tu peux t'appuyer sur des travaux de paléoanthropologues reconnus. Voici les sources et les arguments précis :</p>
+            <p class="sub">1. La source de référence : John H. Langdon</p>
+            <p>Le chercheur John H. Langdon a publié une critique majeure dans le Journal of Human Evolution (1997) intitulée « Umbrella hypotheses and parsimony in human evolution ».</p>
+            <ul>
+              <li><strong>L'argument :</strong> Il explique que cette théorie est une « hypothèse parapluie » qui tente d'expliquer trop de choses avec une seule cause.</li>
+              <li><strong>La réplique :</strong> Selon le principe du « Rasoir d'Ockham », l'explication la plus simple est souvent la meilleure. Les traits humains (perte de poils, bipédie) s'expliquent très bien par des adaptations séparées à la savane (thermorégulation) plutôt que par un passage mystérieux par l'eau pour lequel nous n'avons aucun fossile.</li>
+            </ul>
+            <p class="sub">2. Le « Cherry Picking » (Sélection partiale des données)</p>
+            <p>La science critique souvent la méthode d'Elaine Morgan (la figure de proue de cette théorie).</p>
+            <ul>
+              <li><strong>La source :</strong> De nombreux anthropologues comme Alice Roberts soulignent que la théorie ignore les incohérences.</li>
+              <li><strong>La réplique :</strong> Les partisans citent les mains palmées ou la graisse, mais ignorent que nous sommes très mauvais pour filtrer le sel (nos reins ne sont pas adaptés à l'eau de mer, contrairement aux mammifères marins) et que nous avons besoin de boire énormément d'eau douce, ce qui est illogique pour une espèce « marine ».</li>
+            </ul>
+            <p class="sub">3. L'argument de la sudation (Transpiration)</p>
+            <ul>
+              <li><strong>La source :</strong> Les études sur la thermorégulation humaine (par exemple, celles de Nina Jablonski sur l'évolution de la peau humaine).</li>
+              <li><strong>La réplique :</strong> « Si nous étions aquatiques, pourquoi aurions-nous développé le système de transpiration le plus efficace du règne animal ? Transpirer dans l'eau est inutile. La perte de poils combinée à des millions de glandes sudoripares est la preuve ultime que nous avons évolué pour courir de longues distances sous un soleil de plomb (chasse à l'épuisement), pas pour nager. »</li>
+            </ul>
+            <p class="sub">4. La chronologie des fossiles</p>
+            <ul>
+              <li><strong>La source :</strong> Le consensus sur les sites de fouilles (Afar en Éthiopie, etc.).</li>
+              <li><strong>La réplique :</strong> « Les fossiles d'Hominines (comme Australopithecus ou Homo erectus) ont été trouvés dans des contextes de savanes boisées ou de plaines. Si nous avions vécu une période aquatique de plusieurs millions d'années, la probabilité de n'avoir trouvé aucun fossile dans des sédiments marins spécifiques est proche de zéro. »</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">En résumé</span>
+              <p>« La science privilégie les preuves directes (fossiles et génétique) sur les analogies de surface. Comme le dit le paléontologue Ian Tattersall, il est séduisant de voir des coïncidences, mais sans preuves géologiques, le singe aquatique reste un mythe romantique, pas une réalité biologique. »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · la source clé</h3>
+            <p><strong>Langdon, J. H. (1997)</strong>, « Umbrella hypotheses and parsimony in human evolution », <em>J. Hum. Evol.</em> 33(4) : 479–494 — <strong>DOI vérifié</strong> <a href="https://doi.org/10.1006/jhev.1997.0146" target="_blank" rel="noopener" style="color:var(--kelp);border-bottom:1px solid var(--line)">10.1006/jhev.1997.0146</a>.</p>
+            <p>La tribune d'Alice Roberts (avec M. Maslin) contre l'« aquatic ape » date de 2016. La citation d'Ian Tattersall illustre la posture du consensus (attribution non sourcée mot pour mot).</p>
+            <div class="tag-list"><span class="tag">Hypothèse parapluie</span><span class="tag">Rasoir d'Ockham</span><span class="tag">Cherry picking</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 06 — CONTRE-EXEMPLES TERRESTRES ============ -->
+      <section class="chapter reveal" id="contre-exemples" aria-labelledby="c6">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La convergence évolutive</p><h2 id="c6">Nus, gras et debout… sans jamais voir la mer.</h2></div>
+          <div class="chapter-number">06</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Voici une liste d'exemples concrets que tu peux utiliser pour démontrer que les traits dits « aquatiques » de l'humain existent chez des animaux 100 % terrestres. Cela prouve que l'évolution peut choisir ces options pour des raisons qui n'ont rien à voir avec l'eau.</p>
+            <figure class="chapter-figure">
+              <img src="assets/savane-vs-eau.png" alt="Diptyque : à gauche, les traits dits « aquatiques » de l'humain ; à droite, les mêmes traits expliqués chez des animaux terrestres (éléphant, cochon, suricate, coureur en sueur, reins inadaptés au sel)" loading="lazy">
+              <figcaption>Les mêmes traits, expliqués sans la moindre goutte d'océan</figcaption>
+            </figure>
+
+            <p class="sub">1. La peau nue (Perte de poils)</p>
+            <p>L'argument classique du singe aquatique est : « On n'a plus de poils comme les dauphins ».</p>
+            <ul>
+              <li><strong>Le contre-exemple terrestre :</strong> L'Éléphant, le Rhinocéros et le Cochon.</li>
+              <li><strong>Pourquoi ?</strong> Ces animaux ont perdu leurs poils pour évacuer la chaleur plus facilement (thermorégulation) dans des environnements chauds.</li>
+            </ul>
+            <div class="duel"><div class="answer"><span class="lbl">Ta réponse</span><p>« Si perdre ses poils fait de nous des créatures aquatiques, alors l'éléphant est un poisson ! La peau nue est une adaptation thermique pour les grands mammifères actifs sous le soleil. »</p></div></div>
+
+            <p class="sub">2. La couche de graisse sous-cutanée</p>
+            <p>L'argument : « On a du gras sous la peau comme les phoques ».</p>
+            <ul>
+              <li><strong>Le contre-exemple terrestre :</strong> Le Cochon domestique.</li>
+              <li><strong>Pourquoi ?</strong> Le cochon possède une couche de graisse sous-cutanée très similaire à la nôtre, pourtant il n'est pas fait pour vivre dans l'océan.</li>
+            </ul>
+            <div class="duel"><div class="answer"><span class="lbl">Ta réponse</span><p>« Le gras sous-cutané chez l'humain sert de réserve d'énergie pour notre cerveau et de protection métabolique. Le cochon en a aussi, et personne ne prétend qu'il descend d'un ancêtre sirène. »</p></div></div>
+
+            <p class="sub">3. La bipédie (Marcher sur deux pattes)</p>
+            <p>L'argument : « On se tient debout pour garder la tête hors de l'eau ».</p>
+            <ul>
+              <li><strong>Le contre-exemple terrestre :</strong> Le Suricate ou le Gerenuk (gazelle-girafe).</li>
+              <li><strong>Pourquoi ?</strong> Le suricate se tient debout pour surveiller les prédateurs dans la savane. Le gerenuk se tient sur ses pattes arrière pour atteindre les feuilles hautes des arbres.</li>
+            </ul>
+            <div class="duel"><div class="answer"><span class="lbl">Ta réponse</span><p>« Se tenir debout est une stratégie de surveillance et de recherche de nourriture au sol ou en hauteur. Pas besoin d'être dans une piscine pour que la bipédie soit avantageuse. »</p></div></div>
+
+            <p class="sub">4. Le contrôle de la respiration</p>
+            <p>L'argument : « On peut retenir notre souffle, donc on est faits pour plonger ».</p>
+            <ul>
+              <li><strong>Le contre-exemple terrestre :</strong> Les Oiseaux chanteurs et les chiens.</li>
+              <li><strong>Pourquoi ?</strong> Pour produire des sons complexes (le langage pour nous, le chant pour les oiseaux), il faut un contrôle musculaire précis du diaphragme et de l'expiration.</li>
+            </ul>
+            <div class="duel"><div class="answer"><span class="lbl">Ta réponse</span><p>« Notre capacité à retenir notre souffle est liée à l'évolution du langage articulé, pas à la plongée sous-marine. C'est ce contrôle du souffle qui nous permet de parler, tout simplement. »</p></div></div>
+
+            <p class="sub">5. Les larmes et la sueur salée</p>
+            <p>L'argument : « On évacue le sel par les larmes comme les oiseaux de mer ».</p>
+            <ul><li><strong>La réalité scientifique :</strong> Nos larmes et notre sueur sont très peu salées comparées aux sécrétions des animaux marins.</li></ul>
+            <div class="duel"><div class="answer"><span class="lbl">Ta réponse</span><p>« Les animaux marins ont des glandes à sel ultra-puissantes pour survivre à l'ingestion d'eau de mer. Nos reins à nous sont incapables de traiter l'eau salée. Si on boit de l'eau de mer, on meurt de déshydratation en quelques heures. C'est la preuve qu'on n'est pas du tout adaptés à l'océan. »</p></div></div>
+
+            <div class="lesson-block">
+              <span class="block-label">La leçon</span>
+              <p>« L'évolution utilise souvent les mêmes solutions pour des problèmes différents (c'est la convergence évolutive). On peut être nu, gras et debout parce qu'on vit dans une savane chaude, sans jamais avoir mis un pied dans l'océan. »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · vérifié</h3>
+            <p>Tout tient : cochon = modèle dermatologique de la peau humaine (graisse comparable) ; suricate (vigilance) &amp; gérénuk (feuilles hautes) bien bipèdes ; contrôle du souffle <em>probablement</em> lié à la parole (MacLarnon &amp; Hewitt). Le <strong>rat-taupe nu</strong> illustre la nudité, pas la graisse (il en manque).</p>
+            <div class="tag-list"><span class="tag">Convergence</span><span class="tag">Cochon</span><span class="tag">Suricate</span><span class="tag">Glandes à sel</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 07 — FICHE DE RIPOSTE ============ -->
+      <section class="chapter reveal" id="riposte" aria-labelledby="c7">
+        <div class="chapter-head">
+          <div><p class="section-kicker">À garder sous le coude</p><h2 id="c7">Fiche de Riposte : l'Hypothèse du Singe Aquatique.</h2></div>
+          <div class="chapter-number">07</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="sub">1. Le « Nez et les mains » (Les faux indices)</p>
+            <div class="duel">
+              <div class="claim"><span class="lbl">L'adversaire dit</span><p>« On a les mains palmées et le nez vers le bas pour l'eau. »</p></div>
+              <div class="answer"><span class="lbl">Ta réponse</span><p>Les « palmes » sont un stade embryonnaire commun à tous les mammifères terrestres (chiens, rats). Le nez vers le bas est une adaptation pour humidifier l'air sec de la savane et protéger les voies respiratoires de la poussière, pas de la plongée.</p></div>
+            </div>
+            <p class="sub">2. La « Peau nue » (Le thermostat)</p>
+            <div class="duel">
+              <div class="claim"><span class="lbl">L'adversaire dit</span><p>« On n'a pas de poils, comme les dauphins. »</p></div>
+              <div class="answer"><span class="lbl">Ta réponse</span><p>On a perdu nos poils pour transpirer. Nous sommes les champions du monde de la sudation. Or, on ne transpire pas dans l'eau (ça ne sert à rien). La peau nue sert à courir des heures sous le soleil sans surchauffer le cerveau.</p></div>
+            </div>
+            <p class="sub">3. La « Couche de graisse » (L'énergie)</p>
+            <div class="duel">
+              <div class="claim"><span class="lbl">L'adversaire dit</span><p>« On est gras sous la peau pour s'isoler du froid marin. »</p></div>
+              <div class="answer"><span class="lbl">Ta réponse</span><p>Notre graisse est un stock d'énergie vital pour notre cerveau, qui consomme 20 % de nos calories. Le cochon a la même graisse et il est 100 % terrestre. De plus, un humain nu meurt d'hypothermie en 30 minutes dans une eau à 15 °C. Un vrai mammifère marin, non.</p></div>
+            </div>
+            <p class="sub">4. La « Bipédie » (La surveillance)</p>
+            <div class="duel">
+              <div class="claim"><span class="lbl">L'adversaire dit</span><p>« On marche debout pour garder la tête hors de l'eau. »</p></div>
+              <div class="answer"><span class="lbl">Ta réponse</span><p>On marche debout pour libérer nos mains (outils) et voir au-dessus des hautes herbes de la savane. Les fossiles montrent que nos pieds ont évolué pour la course d'endurance, ce qui est l'opposé total d'une adaptation à la nage.</p></div>
+            </div>
+            <p class="sub">5. L'épreuve du Sel (La preuve ultime)</p>
+            <div class="duel">
+              <div class="claim"><span class="lbl">L'argument massue</span><p>« Si on était aquatiques, on aurait des glandes à sel ou des reins capables de filtrer l'eau de mer. On est les seuls "primates marins" supposés qui meurent s'ils boivent de l'eau salée. C'est biologiquement impossible. »</p></div>
+            </div>
+            <div class="lesson-block">
+              <span class="block-label">La citation pour conclure</span>
+              <p>« L'évolution n'est pas une devinette basée sur des ressemblances. Sans fossiles marins, le singe aquatique reste une belle histoire, mais une mauvaise science. »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>La carte maîtresse</h3>
+            <p>Un seul point suffit à faire tomber tout l'édifice : <strong>nos reins ne concentrent pas l'urine</strong> assez pour traiter l'eau de mer. Aucun « primate marin » ne meurt de soif dans son propre habitat — sauf nous.</p>
+            <div class="tag-list"><span class="tag">Nez</span><span class="tag">Sueur</span><span class="tag">Énergie</span><span class="tag">Sel</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 08 — POURQUOI ÇA RESTE POPULAIRE ============ -->
+      <section class="chapter reveal" id="populaire" aria-labelledby="c8">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La psychologie du mythe</p><h2 id="c8">Pourquoi une théorie fausse reste populaire.</h2></div>
+          <div class="chapter-number">08</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Comprendre pourquoi une théorie « fausse » reste populaire aide à mieux débattre. Voici les trois raisons principales :</p>
+            <p class="sub">1. Elle est facile à comprendre (Le « Bon Sens »)</p>
+            <p>La science officielle est souvent complexe (génétique, biomécanique, datation radiométrique). La théorie du singe aquatique, elle, repose sur des observations que tout le monde peut faire : « on aime nager », « on n'a pas de poils », « les bébés flottent ».</p>
+            <ul><li><strong>Le piège :</strong> On confond une ressemblance avec une preuve. C'est ce qu'on appelle une théorie intuitive, mais en science, l'intuition est souvent trompeuse.</li></ul>
+            <p class="sub">2. Le récit de « l'outsider » contre « l'élite »</p>
+            <p>Elaine Morgan, qui a popularisé cette idée, n'était pas une scientifique mais une scénariste. Elle a présenté son combat comme celui d'une femme seule face à un « establishment » scientifique masculin et fermé d'esprit.</p>
+            <ul><li><strong>Pourquoi ça marche :</strong> Les gens adorent l'idée qu'un amateur puisse avoir raison contre tous les experts. Cela donne un côté « rebelle » à ceux qui soutiennent la théorie.</li></ul>
+            <p class="sub">3. Elle comble les « trous » de l'évolution</p>
+            <p>L'évolution humaine a des zones d'ombre (on n'a pas de fossiles pour chaque millier d'années). La théorie du singe aquatique propose une solution « tout-en-un » : une seule cause (l'eau) pour expliquer dix traits différents (nez, graisse, poils, marche, etc.).</p>
+            <ul><li><strong>La réalité :</strong> L'évolution est un bricolage lent et chaotique. Chaque trait est apparu à des moments différents pour des raisons différentes.</li></ul>
+            <div class="lesson-block">
+              <span class="block-label">À retenir</span>
+              <p>« C'est une théorie séduisante mais spéculative. Elle est populaire parce qu'elle raconte une belle histoire, mais en science, une belle histoire ne remplace pas l'absence de preuves physiques. On a des milliers de fossiles dans la savane, et zéro dans les récifs coralliens. »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le réflexe</h3>
+            <p>Une <strong>ressemblance n'est pas une preuve</strong>. La séduction d'un récit « outsider contre élite » et d'une cause unique « tout-en-un » est le moteur de bien des pseudo-sciences.</p>
+            <div class="tag-list"><span class="tag">Intuition</span><span class="tag">Outsider</span><span class="tag">Cause unique</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 09 — YVETTE DELOISON & LES EXPERTS ============ -->
+      <section class="chapter reveal" id="deloison" aria-labelledby="c9">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le « bras scientifique » français</p><h2 id="c9">Yvette Deloison &amp; le débat des experts.</h2></div>
+          <div class="chapter-number">09</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Yvette Deloison (souvent orthographiée Loisson par erreur) est une chercheuse au CNRS, et son cas est particulier car, contrairement à Elaine Morgan qui était une écrivaine, Deloison est une véritable scientifique (paléoanthropologue).</p>
+            <p>Cela donne beaucoup de poids à ses arguments quand on discute avec quelqu'un, mais voici comment tu peux nuancer ses thèses :</p>
+            <p class="sub">1. Sa théorie : Le « Proto-Pline »</p>
+            <p>Yvette Deloison ne dit pas exactement que nous étions des « dauphins ». Elle soutient une théorie appelée l'origine semi-aquatique de la bipédie.</p>
+            <ul>
+              <li><strong>Son argument :</strong> Elle pense que notre ancêtre commun avec les grands singes n'était pas un animal grimpant aux arbres, mais un être qui marchait déjà debout dans l'eau (en milieu marécageux) pour cueillir de la nourriture.</li>
+              <li><strong>Sa preuve favorite :</strong> La structure du pied humain, qu'elle juge incompatible avec une origine arboricole (de singe qui grimpe).</li>
+            </ul>
+            <p class="sub">2. Comment la contredire (avec respect) ?</p>
+            <p>Même si elle est respectée pour ses travaux techniques sur l'anatomie du pied, sa conclusion « aquatique » est très contestée. Voici tes angles de réponse :</p>
+            <ul>
+              <li><strong>Le manque de consensus :</strong> « Yvette Deloison est une spécialiste reconnue du pied, mais sa conclusion sur l'origine aquatique est très minoritaire au sein du CNRS et de la communauté scientifique mondiale. Elle est quasiment la seule experte à interpréter ces données anatomiques de cette façon. »</li>
+              <li><strong>L'évolution « mosaïque » :</strong> Les fossiles comme Ardipithecus ramidus montrent que la bipédie a commencé à apparaître chez des primates qui vivaient encore dans des forêts denses, pas forcément dans des marais. L'évolution s'est faite par étapes (mosaïque) et non par un passage brutal dans l'eau.</li>
+              <li><strong>Le pied n'est pas « primitif » :</strong> Elle affirme que notre pied est très ancien et n'a pas beaucoup évolué. La majorité des chercheurs prouvent au contraire que le pied humain est une structure ultra-spécialisée pour la marche terrestre, avec une cambrure (arche plantaire) qui ne sert à rien pour nager ou marcher dans la vase, mais qui est indispensable pour absorber les chocs lors de la course sur sol dur.</li>
+            </ul>
+            <p class="sub">3. La confusion fréquente</p>
+            <p>Si ton interlocuteur te parle d'elle, il essaie d'utiliser son autorité scientifique pour valider la théorie.</p>
+            <div class="duel"><div class="answer"><span class="lbl">Ta réponse</span><p>« C'est vrai, Yvette Deloison est une chercheuse sérieuse, mais en science, une hypothèse doit être confirmée par d'autres experts et par des preuves fossiles. Pour l'instant, aucun fossile de l'époque qu'elle décrit (il y a 15 millions d'années) ne confirme un habitat semi-aquatique. »</p></div></div>
+            <div class="science-block">
+              <span class="block-label">En résumé</span>
+              <p>Yvette Deloison est le « bras scientifique » de la théorie en France, mais ses travaux sur le pied n'annulent pas les preuves massives (génétique, sueur, besoins en eau douce) qui nous lient à la savane et à la forêt. En science, une idée n'est pas vraie parce qu'une personne la dit, mais parce que la communauté arrive à la reproduire.</p>
+            </div>
+
+            <h3 class="group-title">Les experts qui s'opposent à sa vision</h3>
+            <p>Voici les noms et les arguments des experts qui s'opposent à sa vision :</p>
+            <p class="sub">A. Pascal Picq (Collège de France)</p>
+            <p>C'est sans doute le plus célèbre paléoanthropologue français. Il est très critique envers les théories « aquatiques ».</p>
+            <ul>
+              <li><strong>Son argument :</strong> Il explique que la bipédie n'est pas née dans l'eau, mais qu'elle est une adaptation polyvalente. Pour lui, nos ancêtres étaient des « grimpeurs-marcheurs ».</li>
+              <li><strong>La réplique :</strong> « Comme le souligne Pascal Picq, les fossiles comme Ardipithecus ou Orrorin montrent que la bipédie s'est développée dans des environnements de forêt mosaïque (mélange d'arbres et de savane), pas dans des marécages. L'anatomie de ces fossiles prouve qu'ils grimpaient encore très bien aux arbres. »</li>
+            </ul>
+            <p class="sub">B. Marc Azéma et Laurent Brasier</p>
+            <p>Dans leurs ouvrages sur l'évolution, ils rappellent que l'interprétation d'Yvette Deloison sur le pied « primitif » est contestée.</p>
+            <ul>
+              <li><strong>L'argument :</strong> Le pied humain n'est pas « resté simple » comme elle le dit. C'est une structure extrêmement modifiée : le gros orteil s'est aligné, la plante s'est voûtée pour faire ressort.</li>
+              <li><strong>La réplique :</strong> « Des chercheurs comme Marc Azéma rappellent que notre pied est une pièce d'ingénierie unique au monde pour la marche sur sol ferme. Si nous étions restés dans l'eau, nous n'aurions jamais développé cette voûte plantaire qui sert d'amortisseur pour la course terrestre. »</li>
+            </ul>
+            <p class="sub">3. Le consensus international (William Jungers)</p>
+            <p>William Jungers est l'un des plus grands experts mondiaux de la biomécanique des primates (Stony Brook University).</p>
+            <ul>
+              <li><strong>L'argument :</strong> Ses études sur la densité osseuse et la forme des articulations montrent que les premiers hominidés étaient soumis à des forces de compression typiques de la marche au sol, et non à la poussée d'Archimède (l'eau).</li>
+              <li><strong>La réplique :</strong> « Les analyses biomécaniques de William Jungers sur les fossiles montrent que la structure des os de nos ancêtres répondait à la gravité terrestre. Dans l'eau, le squelette ne se densifie pas de la même manière car le corps est porté par l'eau. »</li>
+            </ul>
+            <div class="lesson-block">
+              <span class="block-label">Comment conclure le débat sur Yvette Deloison</span>
+              <p>« Yvette Deloison fait un travail d'anatomie fascinant, mais elle est très isolée. La majorité des chercheurs (Picq, Jungers, Lovejoy) considèrent que ses conclusions sont des interprétations personnelles qui ne collent pas avec les découvertes de terrain. En science, quand 99 % des experts et 100 % des fossiles disent "Savane/Forêt", une hypothèse sur les "Marais" reste une curiosité théorique, pas une vérité établie. »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · l'autorité ≠ la preuve</h3>
+            <p>Deloison est <strong>réellement chercheuse au CNRS</strong> et spécialiste du pied — mais une position isolée, même savante, n'est pas un consensus. Picq (Collège de France) et Jungers (Stony Brook) sont bien des références ; l'origine forestière/mosaïque de la bipédie (Ardipithecus, Orrorin) est solidement documentée.</p>
+            <div class="tag-list"><span class="tag">Pied humain</span><span class="tag">Voûte plantaire</span><span class="tag">Ardipithecus</span><span class="tag">Consensus</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 10 — VÉRIFIER LES SOURCES ============ -->
+      <section class="chapter reveal" id="methode" aria-labelledby="c10">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La méthode anti-intox</p><h2 id="c10">D'où vient l'information ?</h2></div>
+          <div class="chapter-number">10</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Quand on te parle du « Singe Aquatique » ou des thèses d'Yvette Deloison, regardez bien d'où viennent les informations. C'est le meilleur moyen de clore le débat en montrant que tu maîtrises le sujet.</p>
+            <p class="sub">1. Le test de la « Revue par les pairs »</p>
+            <p>En science, une découverte n'existe que si elle est publiée dans une revue où d'autres experts l'ont vérifiée (comme Nature, Science ou le Journal of Human Evolution).</p>
+            <ul>
+              <li><strong>Le signal d'alarme :</strong> Si ton interlocuteur te cite un blog, un documentaire YouTube type « documentaire choc » ou un livre grand public sans références, c'est de la spéculation.</li>
+              <li><strong>Ta réponse :</strong> « C'est une idée intéressante pour un scénario de film, mais a-t-elle été validée par un comité de lecture scientifique récent ? Pour l'instant, les grandes revues rejettent cette hypothèse faute de preuves. »</li>
+            </ul>
+            <p class="sub">2. Attention au « Mille-feuille argumentatif »</p>
+            <p>Les défenseurs de cette théorie utilisent souvent cette technique : ils balancent 50 petits indices (le nez, les larmes, la graisse, les poils, le hoquet, etc.). Même si chaque indice est faux ou bancal, l'accumulation donne l'impression que « ça fait beaucoup de coïncidences ».</p>
+            <ul><li><strong>Ta technique de défense :</strong> Ne te laisse pas noyer. Prends un seul point (comme les reins incapables de filtrer le sel) et reste dessus. Si l'humain ne peut pas boire d'eau de mer, toute la théorie s'effondre, peu importe la forme de son nez.</li></ul>
+            <p class="sub">3. Les sites à privilégier pour tes sources</p>
+            <p>Si tu veux des arguments en béton armé, cherche sur ces plateformes :</p>
+            <ul>
+              <li><strong>Hominidés.com :</strong> Un site français très complet qui fait le point sur chaque théorie avec l'avis des experts.</li>
+              <li><strong>Le CNRS (Le journal) :</strong> Pour avoir les vrais articles de recherche, même ceux d'Yvette Deloison (vous verras qu'ils sont souvent très prudents et moins catégoriques que ce que les gens racontent sur le web).</li>
+              <li><strong>La chaîne de vulgarisation spécialisée :</strong> Des chaînes comme Passé Sauvage ou Confessions d'Histoire traitent parfois ces sujets avec beaucoup de rigueur.</li>
+            </ul>
+            <div class="lesson-block">
+              <span class="block-label">La règle d'or</span>
+              <p>« La science n'est pas une question d'opinion, mais de preuves. Tant qu'on n'aura pas trouvé un squelette d'ancêtre avec des débuts de nageoires ou des sédiments marins dans ses poumons, le singe aquatique restera une hypothèse romantique, mais sans fondement. »</p>
+            </div>
+
+            <h3 class="group-title">Les punchlines pour clore le débat</h3>
+            <div class="quote-card"><p>« C'est une théorie super séduisante mais elle est rejetée par 99 % des paléoanthropologues. Pourquoi ? Parce qu'on a des milliers de fossiles dans la savane et aucun dans l'eau. Nos traits "aquatiques" (peau nue, graisse) servent en fait à réguler notre température pour courir sous le soleil. On est des champions de la transpiration, ce qui ne sert à rien dans l'eau ! »</p></div>
+            <div class="science-block">
+              <span class="block-label">La synthèse factuelle</span>
+              <p>« L'hypothèse du Singe Aquatique (ou thèses d'Y. Deloison) est ce qu'on appelle une "hypothèse parapluie" : elle tente d'expliquer trop de choses avec une seule cause. Voici les faits :</p>
+              <ul>
+                <li><strong>Biologie :</strong> Nos reins sont incapables de filtrer l'eau de mer. On meurt de déshydratation en mer, contrairement aux vrais mammifères marins.</li>
+                <li><strong>Anatomie :</strong> La voûte plantaire humaine est faite pour absorber les chocs de la course sur sol dur, pas pour nager.</li>
+                <li><strong>Fossiles :</strong> Tous les ancêtres retrouvés (Lucy, Toumaï, etc.) vivaient dans des forêts ou des savanes.</li>
+              </ul>
+              <p>Bref, c'est une belle histoire, mais sans aucune preuve géologique ou biologique solide. La science préfère les faits aux analogies ! »</p>
+            </div>
+            <div class="lesson-block">
+              <span class="block-label">La « Punchline » finale (Pour clore le débat)</span>
+              <p>« Si perdre ses poils et avoir de la graisse sous la peau suffisait à faire de nous des créatures aquatiques, alors l'éléphant et le cochon seraient des sirènes. L'évolution, c'est de l'adaptation au terrain, pas de la poésie ! »</p>
+              <p>Si nous étions aquatiques, pourquoi sommes-nous la seule espèce de ce type à ne pas pouvoir boire l'eau de son propre habitat ?</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · la boussole</h3>
+            <p>Deux réflexes : exiger la <strong>revue par les pairs</strong>, et refuser de se laisser noyer par le <strong>mille-feuille argumentatif</strong> — un seul fait solide (le sel) suffit. Hominidés.com, Le journal du CNRS, Passé Sauvage : des sources fiables.</p>
+            <div class="tag-list"><span class="tag">Peer review</span><span class="tag">Mille-feuille</span><span class="tag">99 %</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ PARTIE II ============ -->
+      <section class="act-band reveal" aria-labelledby="actB">
+        <p class="act-no">Partie II · Ce qui surnage</p>
+        <h2 id="actB">Du père de l'idée à la version crédible</h2>
+        <p>Rendre justice à l'hypothèse : son inventeur était un grand savant, et sa version « douce » — le régime côtier — est aujourd'hui prise au sérieux. Nos ancêtres n'étaient pas des dauphins, mais peut-être des gourmets des rivages.</p>
+      </section>
+
+      <!-- ============ CH 11 — ALISTER HARDY ============ -->
+      <section class="chapter reveal" id="hardy" aria-labelledby="c11">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le père de l'hypothèse</p><h2 id="c11">Sir Alister Hardy (1896–1985).</h2></div>
+          <div class="chapter-number">11</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Sir Alister Hardy (1896–1985), un éminent biologiste marin et zoologiste britannique. C'était un homme aux multiples facettes, dont la carrière a marqué trois domaines très différents :</p>
+            <p class="sub">1. La Biologie Marine et l'Océanographie</p>
+            <p>Alister Hardy est mondialement connu pour avoir inventé le Continuous Plankton Recorder (CPR), un appareil qui permet aux navires de collecter des échantillons de plancton tout en naviguant. Cet outil est toujours utilisé aujourd'hui et a permis de constituer l'une des plus longues et des plus importantes bases de données sur l'écologie marine au monde.</p>
+            <ul>
+              <li>Il a participé à la célèbre expédition du RRS Discovery en Antarctique (1925-1927).</li>
+              <li>Il a occupé des chaires prestigieuses, notamment celle de professeur de zoologie à l'Université d'Oxford.</li>
+            </ul>
+            <p class="sub">2. L'Hypothèse du Primate Aquatique</p>
+            <p>Hardy est l'auteur d'une théorie audacieuse et controversée sur l'évolution humaine. En 1960, il a suggéré que les ancêtres de l'homme auraient traversé une phase d'adaptation aquatique (en vivant au bord de l'eau et en nageant). Selon lui, cela expliquerait certaines caractéristiques humaines uniques par rapport aux autres grands singes, comme notre perte de fourrure, notre couche de graisse sous-cutanée et notre bipédie.</p>
+            <p class="sub">3. La Recherche sur l'Expérience Religieuse</p>
+            <p>Après sa retraite scientifique, il a surpris ses pairs en fondant le Religious Experience Research Centre (RERC) en 1969.</p>
+            <ul>
+              <li><strong>Son but :</strong> Appliquer des méthodes scientifiques et empiriques à l'étude des expériences spirituelles et religieuses.</li>
+              <li><strong>Reconnaissance :</strong> Ce travail lui a valu le prestigieux Prix Templeton en 1985, peu de temps avant sa mort.</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">En résumé</span>
+              <p>C'était un « naturaliste de l'esprit » qui cherchait à réconcilier la théorie de l'évolution de Darwin avec la dimension spirituelle de l'être humain.</p>
+            </div>
+
+            <h3 class="group-title">L'hypothèse de l'ancêtre aquatique (AAH), 1960</h3>
+            <p>L'hypothèse de l'ancêtre aquatique (ou Aquatic Ape Hypothesis - AAH), proposée officiellement par Sir Alister Hardy en 1960, est l'une des théories les plus fascinantes et controversées de l'anthropologie. Voici les points clés pour comprendre cette théorie :</p>
+            <p class="sub">1. Le point de départ : Une énigme évolutive</p>
+            <p>Hardy a remarqué que les humains possèdent plusieurs caractéristiques physiques qui nous distinguent radicalement des autres grands singes (chimpanzés, gorilles), mais que l'on retrouve chez des mammifères marins ou semi-aquatiques. Selon lui, nos ancêtres n'auraient pas évolué uniquement dans la savane, mais auraient passé une période significative (il y a environ 5 à 7 millions d'années) à vivre au bord de l'eau, à nager et à plonger pour trouver de la nourriture.</p>
+            <p class="sub">2. Les principaux arguments morphologiques</p>
+            <p>Hardy et ses successeurs (comme l'écrivaine Elaine Morgan) ont avancé plusieurs « preuves » :</p>
+            <ul>
+              <li><strong>La perte de la fourrure :</strong> Comme les baleines ou les hippopotames, l'humain est « nu ». L'eau retient les poils et rend la fourrure inefficace pour la chaleur ; une peau nue est plus hydrodynamique.</li>
+              <li><strong>La graisse sous-cutanée :</strong> Nous possédons une couche de graisse fixée à la peau (le panicule adipeux), tout comme les phoques ou les dauphins, qui sert d'isolant thermique dans l'eau. Les autres singes stockent leur graisse différemment.</li>
+              <li><strong>La bipédie :</strong> Marcher sur deux jambes est difficile sur terre, mais dans l'eau, le corps est porté par la poussée d'Archimède. L'eau aurait pu aider nos ancêtres à se tenir debout pour garder la tête hors de l'eau.</li>
+              <li><strong>Le contrôle de la respiration :</strong> Les humains peuvent retenir leur respiration volontairement (apnée), une capacité nécessaire pour plonger, mais absente chez les autres primates terrestres.</li>
+              <li><strong>Le nez proéminent :</strong> La forme du nez humain, avec les narines dirigées vers le bas, empêcherait l'eau d'entrer lors de la nage en surface.</li>
+            </ul>
+            <p class="sub">3. Pourquoi cette théorie est-elle critiquée ?</p>
+            <p>Malgré son aspect séduisant, la communauté scientifique majoritaire (les paléoanthropologues) rejette généralement cette hypothèse pour plusieurs raisons :</p>
+            <ol>
+              <li><strong>Le manque de preuves fossiles :</strong> On n'a jamais trouvé de fossiles d'hominidés présentant des adaptations marines spécifiques (comme des débuts de palmes).</li>
+              <li><strong>Explications alternatives :</strong> La bipédie et la perte de poils peuvent s'expliquer par l'adaptation à la chaleur de la savane (thermorégulation) et la course d'endurance.</li>
+              <li><strong>La chronologie :</strong> Les fossiles comme « Lucy » (Australopithèque) montrent des adaptations à la marche terrestre et à la vie arboricole, sans signe évident de vie marine.</li>
+            </ol>
+            <p class="sub">4. L'héritage de l'idée aujourd'hui</p>
+            <p>Bien que l'idée d'un ancêtre « entièrement aquatique » soit écartée, une version plus modérée fait son chemin : l'hypothèse du régime côtier. De nombreux chercheurs s'accordent aujourd'hui sur le fait que l'accès aux ressources aquatiques (poissons, coquillages riches en Omega-3) a joué un rôle crucial dans le développement du cerveau humain. Sans être des « singes marins », nos ancêtres auraient été des opportunistes des rivages.</p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · l'homme &amp; la date</h3>
+            <p>Vérifié : Hardy a lancé l'idée dans <strong><em>New Scientist</em>, 17 mars 1960</strong> (« Was Man more aquatic in the past? », vol. 7, p. 642–645) ; CPR, expédition <em>Discovery</em> 1925–27, chaire de zoologie à Oxford ; RERC 1969 ; Prix Templeton 1985.</p>
+            <p>Le « 5 à 7 millions d'années » est la fourchette généralement associée à la théorie (popularisée par Morgan), pas une borne fixée précisément par Hardy.</p>
+            <div class="tag-list"><span class="tag">New Scientist 1960</span><span class="tag">CPR</span><span class="tag">Templeton</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 12 — LE RÉGIME CÔTIER ============ -->
+      <section class="chapter reveal" id="cotier" aria-labelledby="c12">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La version scientifiquement crédible</p><h2 id="c12">Le Régime Côtier.</h2></div>
+          <div class="chapter-number">12</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">L'hypothèse du régime côtier (souvent appelée Coastal Crawl ou Shore-based Scenario) est considérée comme la version scientifiquement crédible et « modérée » de l'ancienne théorie de l'ancêtre aquatique de Sir Alister Hardy.</p>
+            <p>Plutôt que d'imaginer un ancêtre vivant dans l'eau comme un phoque, cette théorie suggère que la proximité des zones humides (rivages marins, lacs, deltas) a été le catalyseur déterminant de l'évolution du cerveau humain.</p>
+            <figure class="chapter-figure">
+              <img src="assets/regime-cotier.png" alt="Une famille d'humains préhistoriques ramasse des coquillages sur un rivage doré ; des fils de lumière (Oméga-3 / DHA) remontent vers une silhouette de cerveau" loading="lazy">
+              <figcaption>Des opportunistes des rivages : les Oméga-3 comme carburant du cerveau</figcaption>
+            </figure>
+            <p>Voici les piliers de cette hypothèse :</p>
+            <p class="sub">1. Le « Carburant » du cerveau : Les Oméga-3</p>
+            <p>C'est l'argument le plus solide. Le cerveau humain est composé à 60 % de graisses, et il a un besoin critique d'acides gras polyinsaturés, notamment le DHA (un Oméga-3) et l'iode.</p>
+            <ul>
+              <li><strong>Le problème de la savane :</strong> Dans la savane africaine, ces nutriments sont rares. La viande de gibier est pauvre en DHA.</li>
+              <li><strong>La solution côtière :</strong> Les poissons, les coquillages, les œufs de tortues et les algues sont les sources les plus riches et les plus accessibles de DHA et d'iode. L'accès régulier à ces ressources aurait permis l'expansion rapide du volume cérébral chez les premiers Homo.</li>
+            </ul>
+            <p class="sub">2. La cueillette aquatique vs la chasse</p>
+            <p>Contrairement à la chasse aux grands mammifères, qui est risquée et énergivore, la collecte de coquillages (huîtres, moules, crabes) sur le rivage est :</p>
+            <ul>
+              <li><strong>Sûre :</strong> Peu de prédateurs sur l'estran.</li>
+              <li><strong>Accessible :</strong> Elle peut être pratiquée par les femmes enceintes, les enfants et les personnes âgées, assurant une source de protéines stable pour tout le groupe.</li>
+              <li><strong>Technique :</strong> L'utilisation de pierres pour briser les coquilles pourrait avoir été un précurseur à la fabrication d'outils plus complexes.</li>
+            </ul>
+            <p class="sub">3. La bipédie « facilitée »</p>
+            <p>L'hypothèse suggère que nos ancêtres n'ont pas commencé à marcher debout pour voir au-dessus des hautes herbes (théorie de la savane), mais pour pêcher à pied levé.</p>
+            <ul>
+              <li>En marchant dans l'eau peu profonde pour ramasser de la nourriture, la verticalité est un avantage pour garder la tête au-sec.</li>
+              <li>L'eau offre un soutien (poussée d'Archimède) qui facilite l'apprentissage de l'équilibre sur deux jambes, avant que la structure osseuse ne s'adapte totalement à la marche terrestre.</li>
+            </ul>
+            <p class="sub">4. Les preuves archéologiques</p>
+            <p>On trouve de plus en plus de preuves que les premiers humains exploitaient les milieux aquatiques :</p>
+            <ul>
+              <li><strong>Pinnacle Point (Afrique du Sud) :</strong> Des traces d'occupation humaine datant de 160 000 ans montrent une consommation systématique de fruits de mer.</li>
+              <li><strong>Migration côtière :</strong> Il est désormais largement admis que l'expansion de l'homme hors d'Afrique s'est faite en suivant les côtes de l'Océan Indien, car les ressources y étaient prévisibles et abondantes.</li>
+            </ul>
+            <h3 class="group-title">Pourquoi est-elle mieux acceptée que la théorie de Hardy ?</h3>
+            <p>Alors que la théorie de l'ancêtre aquatique de Hardy était jugée trop radicale (elle supposait des modifications génétiques majeures pour la nage), l'hypothèse du régime côtier est complémentaire de la paléontologie classique. Elle ne dit pas que nous étions des animaux marins, mais que nous étions des opportunistes des rivages.</p>
+            <p>Elle explique pourquoi, encore aujourd'hui, les populations humaines se concentrent majoritairement sur les côtes et pourquoi notre cerveau décline rapidement en cas de carence en nutriments d'origine marine.</p>
+
+            <h3 class="group-title">Comment en parler : trois angles d'approche</h3>
+            <p>Voici trois angles d'approche selon la tournure de la discussion :</p>
+            <p class="sub">1. L'approche nuancée (La plus solide scientifiquement)</p>
+            <p>Si votre interlocuteur vous dit que « l'homme descend d'un singe marin », vous pouvez rectifier ainsi :</p>
+            <div class="duel"><div class="answer"><span class="lbl">La réponse</span><p>« Ce n'est pas tout à fait qu'on était des "hommes-poissons", mais de nombreux chercheurs pensent aujourd'hui que notre évolution s'est faite au bord de l'eau plutôt qu'en pleine savane aride. C'est l'hypothèse du littoral. L'accès aux fruits de mer (riches en Oméga-3 et iode) aurait été le "carburant" indispensable pour que notre cerveau devienne aussi gros et complexe. »</p></div></div>
+            <p class="sub">2. L'argument morphologique (Pour intriguer)</p>
+            <p>Si on vous demande des preuves concrètes de ce passage par l'eau, vous pouvez citer les points qui troublent encore les biologistes :</p>
+            <div class="duel"><div class="answer"><span class="lbl">La réponse</span><p>« Regarde nos différences avec les chimpanzés : nous n'avons pas de fourrure, nous avons une couche de graisse sous la peau comme les dauphins, et nous contrôlons notre respiration (apnée), ce que les autres singes ne font pas. Ce sont des traits typiques des mammifères semi-aquatiques. Même si la théorie de "l'ancêtre aquatique" pur est contestée, ces indices montrent qu'on a un lien très ancien et très fort avec le milieu aquatique. »</p></div></div>
+            <p class="sub">3. L'argument de la migration (L'aspect historique)</p>
+            <p>Pour expliquer pourquoi l'humain a réussi à coloniser la planète :</p>
+            <div class="duel"><div class="answer"><span class="lbl">La réponse</span><p>« L'homme n'a pas seulement couru après des gazelles. On sait aujourd'hui que les premières grandes migrations humaines se sont faites en suivant les côtes. C'était plus facile de marcher au bord de l'eau où la nourriture (coquillages, poissons) est toujours abondante et prévisible, contrairement à la chasse qui est aléatoire. Nous sommes une espèce de "rivage". »</p></div></div>
+            <div class="lesson-block">
+              <span class="block-label">En résumé, les 3 mots-clés à retenir</span>
+              <ol>
+                <li><strong>Oméga-3 / DHA :</strong> Le cerveau a eu besoin de la nourriture marine pour grossir.</li>
+                <li><strong>Opportunisme :</strong> On n'était pas des nageurs de combat, mais des cueilleurs de bord de mer.</li>
+                <li><strong>Anomalies physiques :</strong> Notre peau nue et notre graisse nous lient à l'eau plus qu'à la jungle.</li>
+              </ol>
+              <p>Si les fossiles ne montrent pas de « nageoires », le fait que le corps humain soit le seul primate à être naturellement hydrodynamique reste une énigme que la théorie de la savane seule n'explique pas très bien.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · nuances</h3>
+            <p>Hypothèse <strong>crédible mais débattue</strong> (Langdon 2006 la conteste). Précisions : cerveau ≈ 60 % de lipides <strong>en poids sec</strong> ; il consomme bien ~<strong>20 %</strong> de l'énergie. Pinnacle Point est daté <strong>~164 000 ans</strong> (le « 160 000 » du live est un arrondi). Joordens et al. 2014 : les ressources aquatiques ont <em>pu faciliter</em> la <em>première</em> hausse modérée du cerveau, pas l'expansion ultérieure.</p>
+            <div class="tag-list"><span class="tag">DHA / Oméga-3</span><span class="tag">Opportunisme</span><span class="tag">Pinnacle Point</span><span class="tag">Migration côtière</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 13 — SOURCES ============ -->
+      <section class="chapter reveal" id="sources" aria-labelledby="c13">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Pour approfondir</p><h2 id="c13">Les sources de l'hypothèse.</h2></div>
+          <div class="chapter-number">13</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="sub">1. La source historique (Sir Alister Hardy)</p>
+            <p>Pour citer l'origine de l'idée :</p>
+            <ul>
+              <li><strong>Publication originale :</strong> Hardy, A. (1960). « Was Man more aquatic in the past? », revue New Scientist.</li>
+              <li><strong>L'idée clé :</strong> Il y expose pour la première fois que nos caractéristiques (perte de poils, graisse, bipédie) ressemblent à celles des mammifères marins.</li>
+            </ul>
+            <p class="sub">2. La source « Grand Public » (Elaine Morgan)</p>
+            <p>C'est elle qui a popularisé et défendu la théorie face aux scientifiques :</p>
+            <ul>
+              <li><strong>Livre :</strong> The Aquatic Ape (1982) ou The Scars of Evolution (1990).</li>
+              <li><strong>L'idée clé :</strong> Elle a détaillé les « anomalies » du corps humain (comme la descente du larynx ou les larmes) que la théorie de la savane n'expliquait pas.</li>
+            </ul>
+            <p class="sub">3. Les sources sur le « Cerveau et les Oméga-3 » (La science moderne)</p>
+            <p>C'est ici que l'hypothèse devient la plus crédible aujourd'hui (le scénario du littoral) :</p>
+            <ul>
+              <li><strong>Michael Crawford &amp; Stephen Cunnane :</strong> Ce sont les deux chercheurs majeurs sur le sujet.
+                <ul>
+                  <li><strong>Référence :</strong> Cunnane, S. C. (2005). Survival of the Fattest: The Key to Human Brain Evolution.</li>
+                  <li><strong>L'idée clé :</strong> Sans un accès massif au DHA (acide gras présent uniquement dans la chaîne alimentaire marine), le cerveau humain n'aurait jamais pu tripler de volume. La savane est un « désert nutritionnel » pour le cerveau.</li>
+                </ul>
+              </li>
+              <li><strong>L'étude Joordens et al. (2014) :</strong> Publiée dans le Journal of Human Evolution, elle montre que même les poissons d'eau douce d'Afrique apportaient suffisamment de nutriments pour amorcer cette croissance.</li>
+            </ul>
+            <p class="sub">4. Les preuves archéologiques (Pinnacle Point)</p>
+            <p>Pour prouver que nos ancêtres vivaient bien au bord de l'eau :</p>
+            <ul>
+              <li><strong>Curtis Marean (Université d'Arizona) :</strong> Ses fouilles à Pinnacle Point en Afrique du Sud.
+                <ul>
+                  <li><strong>Référence :</strong> Marean, C. W., et al. (2007). « Early human use of marine resources and pigment in South Africa », revue Nature.</li>
+                  <li><strong>L'idée clé :</strong> On a trouvé des preuves de consommation systématique de coquillages datant de 164 000 ans, prouvant que les premiers hommes modernes étaient déjà des « hommes du rivage ».</li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li>Si on vous dit que c'est une « pseudo-science », citez Marean (Nature, 2007) : la preuve par les fossiles de la vie au bord de l'eau est réelle.</li>
+              <li>Si on vous dit que c'est « impossible », citez Cunnane : la biochimie du cerveau impose une source de nourriture marine (ou lacustre).</li>
+            </ul>
+
+            <h3 class="group-title">Références vérifiées (DOI)</h3>
+            <div class="refs">
+              <div class="ref">
+                <h4>Langdon, J. H. (1997) — « Umbrella hypotheses and parsimony in human evolution »</h4>
+                <p><em>Journal of Human Evolution</em>, 33(4), 479–494. La critique académique de référence de l'AAH (« hypothèse parapluie »). <span class="doi">DOI vérifié (Crossref)</span>.</p>
+                <a href="https://doi.org/10.1006/jhev.1997.0146" target="_blank" rel="noopener">doi.org/10.1006/jhev.1997.0146 ↗</a>
+              </div>
+              <div class="ref">
+                <h4>Marean, C. W. et al. (2007) — « Early human use of marine resources and pigment in South Africa »</h4>
+                <p><em>Nature</em>, 449, 905–908. Pinnacle Point : exploitation systématique de coquillages il y a ~164 000 ans. <span class="doi">DOI vérifié (Crossref)</span>.</p>
+                <a href="https://doi.org/10.1038/nature06204" target="_blank" rel="noopener">doi.org/10.1038/nature06204 ↗</a>
+              </div>
+              <div class="ref">
+                <h4>Joordens, J. C. A. et al. (2014) — « A fish is not a fish »</h4>
+                <p><em>Journal of Human Evolution</em>, 77, 107–116. Les ressources aquatiques ont <em>pu faciliter</em> la première hausse modérée du cerveau (pas l'expansion ultérieure). <span class="doi">DOI vérifié (Crossref)</span>.</p>
+                <a href="https://doi.org/10.1016/j.jhevol.2014.04.004" target="_blank" rel="noopener">doi.org/10.1016/j.jhevol.2014.04.004 ↗</a>
+              </div>
+              <div class="ref">
+                <h4>Bramble, D. M. &amp; Lieberman, D. E. (2004) — « Endurance running and the evolution of Homo »</h4>
+                <p><em>Nature</em>, 432, 345–352. La course d'endurance — l'explication « savane » de la peau nue et de la sudation. <span class="doi">DOI vérifié (Crossref)</span>.</p>
+                <a href="https://doi.org/10.1038/nature03052" target="_blank" rel="noopener">doi.org/10.1038/nature03052 ↗</a>
+              </div>
+            </div>
+            <p style="margin-top:26px;">Toutes les affirmations de ce dossier sont auditées et sourcées dans le Dossier des Sources de l'Empire. <a href="../../sources/sources.html" style="color:var(--gold);border-bottom:1px solid var(--line);">Consulter l'appareil critique →</a></p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · les sources du live</h3>
+            <p>Sources réelles : Hardy 1960 (<em>New Scientist</em>), Morgan (<em>The Aquatic Ape</em> 1982, <em>The Scars of Evolution</em> 1990), Cunnane (<em>Survival of the Fattest</em>, 2005). Crawford &amp; Cunnane sont des <strong>promoteurs</strong> de l'hypothèse — à citer comme tels.</p>
+            <p>Petit piège : ne pas confondre Joordens 2014 (<em>JHE</em>, acides gras) et Joordens 2015 (<em>Nature</em>, coquilles gravées de Trinil).</p>
+            <div class="tag-list"><span class="tag">Hardy 1960</span><span class="tag">Morgan</span><span class="tag">Cunnane 2005</span><span class="tag">Marean 2007</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CH 14 — LACUSTRE ============ -->
+      <section class="chapter reveal" id="lacustre" aria-labelledby="c14">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le mot de la fin</p><h2 id="c14">Explication du terme « lacustre ».</h2></div>
+          <div class="chapter-number">14</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Le terme lacustre (du latin lacus, le lac) est un adjectif qui désigne tout ce qui se rapporte aux lacs.</p>
+            <p>Selon le contexte, sa définition varie légèrement :</p>
+            <p class="sub">1. En Biologie et Écologie</p>
+            <p>On parle d'un milieu ou d'une espèce lacustre pour désigner des organismes qui vivent dans les lacs ou sur leurs rives.</p>
+            <ul><li><strong>Exemple :</strong> Une faune lacustre (poissons, mollusques d'eau douce), une végétation lacustre (roseaux, nénuphars).</li></ul>
+            <p class="sub">2. En Géologie et Géographie</p>
+            <p>Se dit de ce qui s'est formé ou déposé au fond d'un lac.</p>
+            <ul><li><strong>Exemple :</strong> Des sédiments lacustres (argile, calcaire formés par l'accumulation de dépôts au fond d'un ancien lac).</li></ul>
+            <p class="sub">3. En Archéologie et Histoire</p>
+            <p>C'est le sens le plus courant quand on parle de l'évolution humaine. Il désigne des populations qui vivaient au bord des lacs, souvent dans des habitations spécifiques.</p>
+            <ul>
+              <li><strong>Cités lacustres :</strong> Villages préhistoriques construits sur des plates-formes soutenues par des pieux (pilotis) au-dessus de l'eau ou sur des rives marécageuses.</li>
+              <li>On en trouve beaucoup de vestiges dans les Alpes (lac de Constance, lac de Genève).</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">L'hypothèse lacustre</span>
+              <p>L'hypothèse lacustre est très robuste car les grands lacs africains (comme le lac Victoria ou le lac Turkana) regorgent de poissons et de coquillages riches en nutriments pour le cerveau, tout en offrant de l'eau douce potable, contrairement à l'océan.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · vérifié</h3>
+            <p>Les <strong>cités lacustres</strong> alpines (sites palafittiques sur pilotis, lacs de Constance et Léman) sont classées à l'<strong>UNESCO depuis 2011</strong> (111 sites, ~5000–500 av. J.-C.). Le <strong>lac Turkana</strong> (Koobi Fora) est l'un des plus riches gisements d'hominines au monde — l'argument « eau douce + nutriments » est solide.</p>
+            <div class="tag-list"><span class="tag">Pilotis</span><span class="tag">Lac Turkana</span><span class="tag">Eau douce</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ CRÉDIT ============ -->
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <span class="credit-avatars">
+          <img src="../lalie.jpeg" alt="Avatar de Lalie">
+          <img src="../ymir.jpeg" alt="Avatar d'Ymir">
+        </span>
+        <div class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>Lalie &amp; Ymir</strong>
+        </div>
+      </section>
+
+      <section class="closing reveal" aria-labelledby="final">
+        <h2 id="final">Une belle histoire ne remplace pas une preuve.</h2>
+        <p>Ce dossier conserve le live mot pour mot. Le « singe marin » de Hardy ne tient pas : zéro fossile, des reins incapables de filtrer le sel, une voûte plantaire faite pour courir. Mais l'eau n'a pas tout à fait quitté notre histoire — par les rivages et les Oméga-3, elle a peut-être nourri notre cerveau. La leçon : l'évolution est de l'adaptation au terrain, pas de la poésie ; et l'esprit critique consiste à garder ce qui se prouve, pas ce qui séduit.</p>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans les récits scientifiques. Ce dossier prolonge le live en donnant au public une version lisible, structurée et partageable de la transcription.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="../lalie.jpeg" alt="Avatar de Lalie">
+              <img src="../ymir.jpeg" alt="Avatar d'Ymir">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+          </div>
+          <div class="collective-actions">
+            <a class="button primary" href="../../index.html">Retour à l'index</a>
+            <a class="button" href="../ancetres-genetiques/index.html">Ancêtres génétiques</a>
+            <a class="button" href="../edicarien.html">L'Édiacarien</a>
+            <a class="button" href="../../sources/sources.html">Les Sources</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome créée à partir de <strong>transcript.txt</strong> (« Le Singe Aquatique »). Transcription conservée mot pour mot. Faits scientifiques vérifiés (DOI Crossref : Langdon 1997, Marean 2007, Joordens 2014, Bramble &amp; Lieberman 2004).</main>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => {
+      nav.classList.remove("open");
+      mobileMenu.setAttribute("aria-expanded", "false");
+    }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // Filet de sécurité : révèle toute section restée masquée (ex. très grande) dont le haut a dépassé le bas de la fenêtre.
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }
+    document.addEventListener("scroll", revealTall, { passive: true });
+    window.addEventListener("resize", revealTall, { passive: true });
+    revealTall();
+
+    // ===== Atmosphère : bulles remontantes + parallaxe du hero =====
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const bubbles = document.getElementById("bubbles");
+    if (bubbles && !reduceMotion) {
+      for (let i = 0; i < 20; i++) {
+        const b = document.createElement("i");
+        const s = 4 + Math.random() * 13;
+        b.style.setProperty("--x", (Math.random() * 100) + "vw");
+        b.style.setProperty("--s", s.toFixed(1) + "px");
+        b.style.setProperty("--d", (10 + Math.random() * 16).toFixed(1) + "s");
+        b.style.setProperty("--delay", (-Math.random() * 20).toFixed(1) + "s");
+        bubbles.appendChild(b);
+      }
+    }
+    const heroEl = document.querySelector(".hero");
+    if (heroEl && !reduceMotion) {
+      let ticking = false;
+      function heroParallax() {
+        const y = window.scrollY;
+        if (y < window.innerHeight) heroEl.style.setProperty("--py", (y * 0.16).toFixed(1) + "px");
+        ticking = false;
+      }
+      document.addEventListener("scroll", () => {
+        if (!ticking) { requestAnimationFrame(heroParallax); ticking = true; }
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>
