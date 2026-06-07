@@ -1,0 +1,1821 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Les Résistants — Empire contre Intox</title>
+  <meta name="description" content="Portraits de courage, entre Histoire et Vérité : Jean Moulin et le CNR, le réseau Alliance, Missak &amp; Mélinée Manouchian et l'Affiche Rouge, Joséphine Baker, Cécile Rol-Tanguy, Kernabat et les frères Jacob — le live d'Ymir &amp; Lalie, mot pour mot et vérifié. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents — le sang de l'Affiche Rouge, l'ombre du renseignement, le maquis */
+      --blood:#b23a48;   /* l'Affiche Rouge, le sacrifice */
+      --steel:#5e7d92;   /* l'ombre, la clandestinité, le bleu nuit */
+      --leaf:#7d955c;    /* le maquis, la Bretagne */
+
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+
+      --hero:url("assets/resistance-hero.png");
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(94,125,146,.16), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.13), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(178,58,72,.10), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px; mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.6),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(94,125,146,.6),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(178,58,72,.45),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.32),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate; }
+    .grain { position:fixed; inset:-50%; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--blood),var(--gold-bright),var(--steel)); box-shadow:0 0 14px rgba(243,217,138,.55); }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(214,172,85,.28); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    /* Hero */
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02); }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2;
+      background:linear-gradient(86deg,rgba(3,6,13,.94) 0%,rgba(3,6,13,.72) 36%,rgba(3,6,13,.18) 68%,rgba(3,6,13,.5) 100%),linear-gradient(180deg,rgba(3,6,13,.1) 0%,rgba(3,6,13,.28) 54%,var(--void) 100%); }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1; background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh; display:grid; grid-template-columns:minmax(0,780px) minmax(250px,340px); gap:46px; align-items:end; }
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:16ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.7rem,7vw,5.8rem); line-height:.96; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil { background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 40%,#fff6dc 50%,var(--gold-bright) 60%,var(--gold-deep)); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% 0; } }
+    .hero-lead { max-width:58ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-quote { max-width:60ch; margin:22px 0 0; padding-left:20px; border-left:2px solid var(--blood); font-family:var(--serif); font-style:italic; color:var(--parch); font-size:clamp(1.05rem,1.5vw,1.26rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px; font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px); transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1 1 auto; min-width:0; -webkit-overflow-scrolling:touch;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent); }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--blood),var(--gold-bright),var(--steel)); }
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    /* Intro band */
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.9rem); line-height:1.04; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:120px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time { font-family:var(--roman); font-weight:600; font-size:.8rem; letter-spacing:.04em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(94,125,146,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .act-band { margin:70px 0 0; padding:clamp(26px,4vw,46px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(130% 130% at 0% 0%,rgba(214,172,85,.12),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.55),rgba(7,12,26,.6)); text-align:center; }
+    .act-band .act-no { font-family:var(--roman); font-weight:700; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+    .act-band h2 { margin:14px 0 0; font-family:var(--roman); font-weight:800; font-size:clamp(1.9rem,4.4vw,3.2rem); text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .act-band p { max-width:72ch; margin:16px auto 0; color:var(--muted); }
+
+    /* Chapters */
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"❖"; position:absolute; left:0; top:0; color:var(--gold); font-size:.8em; }
+    .prose ol { margin:14px 0 24px; padding-left:24px; }
+    .prose ol li { padding-left:6px; }
+    .prose ol li::before { content:none; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .prose em { font-style:italic; font-weight:400; }
+    .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+    .sub { margin:26px 0 10px; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--parch); }
+
+    .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
+    .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); }
+
+    /* Portrait réel (photo d'archive) — carte flottante */
+    .portrait-card { float:right; width:196px; margin:4px 0 18px 28px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(7,12,26,.55); box-shadow:0 16px 44px rgba(0,0,0,.42); }
+    .portrait-card img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center 18%; filter:saturate(.96) contrast(1.03); background:var(--navy); display:block; }
+    .portrait-card figcaption { padding:10px 13px 12px; }
+    .portrait-card .pc-name { font-family:var(--roman); font-size:.66rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--parch); display:block; }
+    .portrait-card .pc-cred { font-family:var(--serif); font-style:italic; font-size:.64rem; color:var(--soft); display:block; margin-top:5px; line-height:1.45; }
+    /* Livre — couverture flottante */
+    .book-figure { float:right; width:168px; margin:4px 0 16px 26px; }
+    .book-figure img { width:100%; border-radius:2px; box-shadow:0 16px 40px rgba(0,0,0,.5),0 0 0 1px var(--line-2); display:block; background:var(--navy); }
+    .book-figure figcaption { margin-top:10px; font-family:var(--serif); font-style:italic; font-size:.66rem; color:var(--soft); line-height:1.5; }
+    /* Le document — Affiche Rouge réelle (portrait, centrée) */
+    .poster-figure { clear:both; margin:10px 0 30px; border:1px solid var(--line); border-radius:3px; padding:24px; display:grid; place-items:center;
+      background:radial-gradient(120% 100% at 50% 0%, rgba(178,58,72,.14), transparent 60%), linear-gradient(180deg, rgba(14,26,46,.5), rgba(7,12,26,.6)); }
+    .poster-figure img { max-height:580px; width:auto; max-width:100%; border-radius:2px; box-shadow:0 22px 60px rgba(0,0,0,.6),0 0 0 1px var(--line-2); }
+    .poster-figure figcaption { margin-top:16px; text-align:center; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); }
+    .poster-figure figcaption em { display:block; margin-top:6px; font-family:var(--serif); font-style:italic; letter-spacing:0; text-transform:none; color:var(--soft); font-size:.82rem; }
+    /* Galerie de portraits (les noms / les compagnons) */
+    .portrait-grid { clear:both; display:grid; grid-template-columns:repeat(auto-fill,minmax(116px,1fr)); gap:14px; margin:20px 0 28px; }
+    .portrait-grid figure { margin:0; border:1px solid var(--line-2); border-radius:3px; overflow:hidden; background:rgba(7,12,26,.5); transition:transform .35s var(--ease),border-color .35s var(--ease); }
+    .portrait-grid figure:hover { transform:translateY(-4px); border-color:rgba(214,172,85,.45); }
+    .portrait-grid img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center 16%; background:var(--navy); display:block; filter:saturate(.95) contrast(1.03); }
+    .portrait-grid figcaption { padding:8px 9px 10px; font-family:var(--roman); font-size:.58rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--parch); }
+    .portrait-grid .pg-sub { display:block; font-family:var(--serif); font-style:italic; font-weight:400; letter-spacing:0; text-transform:none; color:var(--soft); font-size:.62rem; margin-top:3px; }
+    /* Iconographie & crédits */
+    .iono { margin:50px 0 0; border:1px solid var(--line); border-radius:3px; padding:clamp(26px,4vw,42px);
+      background:radial-gradient(120% 120% at 100% 0%,rgba(94,125,146,.1),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .iono h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.5rem,3vw,2.1rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .iono p { color:var(--muted); margin:14px 0 0; font-size:.98rem; }
+    .iono ul { margin:18px 0 0; padding:0; list-style:none; columns:2; column-gap:34px; }
+    .iono li { break-inside:avoid; margin:0 0 10px; padding-left:16px; position:relative; color:var(--soft); font-size:.82rem; line-height:1.5; }
+    .iono li::before { content:"›"; position:absolute; left:0; color:var(--gold); }
+    .iono li b { color:var(--parch); font-weight:600; }
+    .iono a { color:var(--gold); }
+    @media (max-width:560px) {
+      .portrait-card,.book-figure { float:none; width:150px; margin-left:auto; margin-right:auto; }
+      .iono ul { columns:1; }
+    }
+
+    .script-block,.science-block,.question-block,.lesson-block,.dialogue-block {
+      border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
+    .dialogue-block { border-left-color:var(--gold); background:rgba(214,172,85,.06); font-family:var(--serif); }
+    .dialogue-block p { color:var(--parch); font-style:italic; }
+    .science-block { border-left-color:var(--steel); background:rgba(94,125,146,.1); }
+    .question-block { border-left-color:var(--blood); background:rgba(178,58,72,.1); }
+    .lesson-block { border-left-color:var(--gold-bright); background:rgba(243,217,138,.06); }
+    .letter-block { border-left-color:var(--blood); background:rgba(178,58,72,.07); font-family:var(--serif); }
+    .letter-block p { color:var(--parch); font-style:italic; }
+    .script-block p:last-child,.science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,.dialogue-block p:last-child,.letter-block p:last-child,
+    .science-block ul:last-child,.lesson-block ul:last-child { margin-bottom:0; }
+    .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .science-block .block-label { color:var(--steel); }
+    .question-block .block-label { color:var(--blood); }
+    .letter-block .block-label { color:var(--blood); }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .side-note p:last-child { margin-bottom:0; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    .dtable { width:100%; border-collapse:collapse; margin:14px 0 26px; border:1px solid var(--line); border-radius:3px; overflow:hidden; font-size:.98rem; }
+    .dtable caption { text-align:left; padding:0 0 14px; color:var(--muted); font-style:italic; font-family:var(--serif); }
+    .dtable th { text-align:left; padding:13px 15px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); background:rgba(214,172,85,.06); border-bottom:1px solid var(--line); }
+    .dtable td { padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--line-2); color:var(--muted); }
+    .dtable tr:last-child td { border-bottom:0; }
+    .dtable td.k { color:var(--parch); font-weight:600; white-space:nowrap; }
+    .dtable tr:hover td { background:rgba(244,236,216,.03); }
+
+    .sommaire-list { display:grid; gap:14px; margin:18px 0; }
+    .pillar { border:1px solid var(--line-2); border-radius:3px; padding:22px 24px; background:rgba(244,236,216,.035); border-left:3px solid rgba(214,172,85,.5); }
+    .pillar h3 { margin:0 0 10px; font-family:var(--serif); font-weight:600; font-size:1.24rem; color:var(--ink); }
+    .pillar p { margin:0 0 8px; }
+    .pillar ul { margin:8px 0 0; }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(178,58,72,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(94,125,146,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left:-14px; }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left:-20px; }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    .reveal[data-d="3"] { transition-delay:.24s; }
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .hero-inner > div > *:nth-child(5){ animation-delay:.5s; }
+    .js .signal-board { animation-delay:.5s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid { grid-template-columns:1fr; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+      .timeline-row { grid-template-columns:1fr; gap:4px; }
+      .dtable { font-size:.9rem; }
+      .dtable th,.dtable td { padding:10px 11px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-waterline"></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier XV · Mémoire &amp; Résistance</p>
+          <h1>Les <span class="foil">Résistants</span></h1>
+          <p class="hero-lead">Portraits de courage, entre Histoire et Vérité. De Jean Moulin et du CNR au réseau Alliance, de Joséphine Baker à Missak &amp; Mélinée Manouchian, de Cécile Rol-Tanguy aux frères Jacob de Coray : le live d'Ymir &amp; Lalie, mot pour mot et vérifié.</p>
+          <p class="hero-quote">« Au moment de mourir, je proclame que je n'ai aucune haine contre le peuple allemand et contre qui que ce soit. » — Missak Manouchian, 21 février 1944</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#transcription">Lire le dossier</a>
+            <a class="button" href="#affiche">L'Affiche Rouge</a>
+            <a class="button" href="../../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board" aria-label="Repères">
+          <div class="signal"><span>Les figures</span><strong>Femmes &amp; hommes de l'ombre</strong></div>
+          <div class="signal"><span>L'unificateur</span><strong>Jean Moulin &amp; le CNR (1943)</strong></div>
+          <div class="signal"><span>Le renseignement</span><strong>Le réseau Alliance — « L'Arche de Noé »</strong></div>
+          <div class="signal"><span>Le fil rouge</span><strong>Résister, hier comme en 2026</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="../assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Les Résistants</span>
+        </a>
+        <a class="home-link" href="../../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#fil">Fil</a>
+          <a href="#plan">Sommaire</a>
+          <a href="#gisele">Gisèle</a>
+          <a href="#cecile">Cécile</a>
+          <a href="#baker">Baker</a>
+          <a href="#genevieve">Geneviève</a>
+          <a href="#manouchian">Manouchian</a>
+          <a href="#melinee">Mélinée</a>
+          <a href="#affiche">Affiche Rouge</a>
+          <a href="#kernabat">Kernabat</a>
+          <a href="#moulin">Jean Moulin</a>
+          <a href="#auffray">Auffray</a>
+          <a href="#duchez">Duchez</a>
+          <a href="#douin">Douin</a>
+          <a href="#michel">Michel</a>
+          <a href="#alliance">Alliance</a>
+          <a href="#autres">Autres</a>
+          <a href="#compagnons">Compagnons</a>
+          <a href="#conclusion">Conclusion</a>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </nav>
+
+    <main id="transcription">
+      <section class="intro-band" id="fil">
+        <div class="manifesto reveal">
+          <p class="section-kicker">Le fil conducteur</p>
+          <h2>La Résistance n'est pas un bloc : c'est une mosaïque de courages.</h2>
+          <p>Ce dossier reprend mot pour mot le live d'Ymir &amp; Lalie consacré aux Résistants : des figures nationales aux anonymes des stèles, du renseignement à l'engagement artistique. On y rend hommage, on y vérifie les faits, et on y rappelle pourquoi rester debout — contre le mensonge, contre l'indifférence, contre la désinformation — reste un exercice qui nous concerne en 2026.</p>
+        </div>
+        <div class="timeline reveal" data-d="1" aria-label="Fil conducteur">
+          <div class="timeline-row"><time>1940</time><p>Les premiers « non » à la tyrannie ; de Gaulle crée l'ordre de la Libération.</p></div>
+          <div class="timeline-row"><time>1942 · 1943</time><p>Jean Moulin unifie la Résistance ; première réunion du CNR, le 27 mai 1943.</p></div>
+          <div class="timeline-row"><time>Février 1944</time><p>L'Affiche Rouge ; Missak Manouchian et ses camarades fusillés au Mont-Valérien.</p></div>
+          <div class="timeline-row"><time>Juillet · Août 1944</time><p>Le drame de Kernabat (Coray), la Libération de Scaër : la Bretagne se soulève.</p></div>
+        </div>
+      </section>
+
+      <section class="learning-panel reveal" aria-labelledby="objectifs">
+        <p class="section-kicker">Objectifs pédagogiques</p>
+        <h2 id="objectifs">Comprendre, honorer, vérifier : redonner un visage et une preuve à chaque destin.</h2>
+        <div class="learning-grid">
+          <div class="learning-item reveal" data-d="1"><span>Comprendre</span><p>L'architecture de la Résistance : l'unification par Jean Moulin et le CNR, le renseignement du réseau Alliance, l'action armée des FTP-MOI, le maquis breton.</p></div>
+          <div class="learning-item reveal" data-d="2"><span>Honorer</span><p>Des femmes et des hommes, célèbres ou anonymes, qui ont dit « non » — et qui ont prouvé que la bravoure n'avait ni genre ni frontière.</p></div>
+          <div class="learning-item reveal" data-d="3"><span>Vérifier</span><p>Distinguer la mémoire des faits, sourcer chaque récit : résister à la désinformation, c'est aussi recouper et citer. L'Histoire n'est pas une opinion.</p></div>
+        </div>
+      </section>
+
+      <section class="act-band reveal" id="ouverture" aria-labelledby="actO">
+        <p class="act-no">Le live · Empire Contre-Intox</p>
+        <h2 id="actO">Les Résistants</h2>
+        <p>« On a souvent tendance à imaginer la Résistance comme un bloc monolithique… Pourtant, quand on gratte le vernis, on découvre une mosaïque de destins. » Le déroulé complet du live, dans l'ordre, conservé intégralement.</p>
+      </section>
+
+      <!-- ===== CH 01 — OUVERTURE ===== -->
+      <section class="chapter reveal" aria-labelledby="c1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Ouverture du live</p><h2 id="c1">« Aujourd'hui, on rend hommage à ceux qui ont dit non. »</h2></div>
+          <div class="chapter-number">01</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">« Résistance : Portraits de courage, entre Histoire et Vérité »</p>
+            <p>On a souvent tendance à imaginer la Résistance comme un bloc monolithique, une ligne droite tracée dans les manuels d'histoire. Pourtant, quand on gratte le vernis, on découvre une mosaïque de destins. Des hommes et des femmes ordinaires qui, un matin, ont décidé que leur conscience pesait plus lourd que leur sécurité.</p>
+            <p>Aujourd'hui, avec le collectif L'Empire Contre-Intox, on a voulu vous parler de ceux qui ont dit "non". Pas un "non" de parade, pas un "non" facile, mais un engagement qui condamnait à la clandestinité, à la traque, et parfois à l'oubli.</p>
+            <p>Je veux rendre hommage à celles, comme Cécile Rol-Tanguy, Geneviève de Gaulle-Anthonioz ou Joséphine Baker, qui ont prouvé que la bravoure n'avait pas de genre. Je veux aussi honorer les anonymes, ceux dont le nom est gravé sur les stèles de nos communes, comme à Coray, ou ceux qui, dans l'ombre des réseaux comme Kernabat ou aux côtés des frères Jacob, ont fait du sacrifice un acte quotidien. Il y a aussi ces parcours universels, comme celui de Missak Manouchian, qui rappellent que la liberté est un combat qui dépasse les frontières.</p>
+            <p>Mais la Résistance, ce n'est pas seulement un hommage au passé. C'est une boussole. Pourquoi en parler en 2026, dans un live ? Parce que la résistance — contre le mensonge, contre l'indifférence, contre la désinformation — est un exercice qui nous concerne toujours.</p>
+            <p>Ymir et moi allons vous emmener dans les coulisses de cette lutte, des réseaux de renseignement à l'engagement artistique. On ne va pas juste réciter des dates : on va essayer de ressentir, un instant, ce qu'était le poids de ces choix.</p>
+            <p>Alors, installez-vous. Aujourd'hui, on rend hommage, on vérifie les faits, et on rappelle pourquoi, hier comme aujourd'hui, rester debout est le plus beau des actes. »</p>
+          </article>
+          <aside class="side-note">
+            <h3>Au micro</h3>
+            <p>Le live est porté par <strong>Ymir &amp; Lalie</strong> pour le collectif <strong>L'Empire Contre-Intox</strong> : un dialogue à deux voix, des figures nationales aux destins bretons.</p>
+            <p>Chaque portrait se clôt sur <strong>ses sources</strong> — la marque de fabrique du collectif : ne rien affirmer sans preuve traçable.</p>
+            <div class="tag-list"><span class="tag">Mosaïque de destins</span><span class="tag">Mémoire 2026</span><span class="tag">Dire « non »</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 02 — LE PLAN DU LIVE ===== -->
+      <section class="chapter reveal" id="plan" aria-labelledby="c2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La structure du live</p><h2 id="c2">Le déroulé : quatre blocs, un dialogue.</h2></div>
+          <div class="chapter-number">02</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="sommaire-list">
+              <div class="pillar reveal" data-d="1"><h3>1. Introduction</h3>
+                <p>(L'intro que nous avons finalisée précédemment sur la mosaïque de destins, le "non" à la tyrannie, et l'importance de la mémoire en 2026).</p>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>2. Bloc I : L'Unification (La structure)</h3>
+                <ul>
+                  <li><strong>Ymir :</strong> Présente Jean Moulin, le génie de l'unification, l'homme qui a su fédérer les courants disparates pour créer le Conseil National de la Résistance.</li>
+                  <li><strong>Transition (Lalie) :</strong> "C'est fascinant d'entendre parler de cet homme de l'ombre, Jean Moulin, qui a réussi le tour de force d'unifier la Résistance. Mais derrière cette organisation nationale, il y avait aussi des femmes dont le rôle, trop longtemps passé sous silence, a été le ciment de ces réseaux. Je pense notamment à Cécile Rol-Tanguy..."</li>
+                  <li><strong>Lalie :</strong> Récit sur Cécile Rol-Tanguy et son rôle crucial dans la coordination de la Libération de Paris.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>3. Bloc II : L'Art comme arme (L'engagement)</h3>
+                <ul>
+                  <li><strong>Ymir :</strong> Présente Marie-Thérèse Auffray, l'artiste qui a fait de sa peinture et de son regard un outil de résistance et de témoignage.</li>
+                  <li><strong>Transition (Lalie) :</strong> "Tu soulignes bien, Ymir, comment l'art a servi de refuge et d'arme pour Auffray. C'est un engagement total qui me fait penser à une autre femme d'exception, Joséphine Baker, qui a utilisé sa célébrité comme un paravent pour ses activités d'espionnage."</li>
+                  <li><strong>Lalie :</strong> Récit sur Joséphine Baker, sa double vie entre les projecteurs et les services de renseignement.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>4. Bloc III : L'Audace et le Terrain (Le renseignement et le local)</h3>
+                <ul>
+                  <li><strong>Ymir :</strong> Présente René Duchez (le vol des plans du Mur) et Robert Douin/André Michel (la dimension tragique et l'engagement jusqu'au bout).</li>
+                  <li><strong>Transition (Lalie) :</strong> "Bravo pour cette précision historique sur Duchez, ce genre de coup d'éclat est vital pour comprendre la logistique. Mais pour nous, en Bretagne, ce renseignement prenait une forme plus intime, plus locale, avec des réseaux comme celui de Kernabat ou l'engagement des frères Jacob."</li>
+                  <li><strong>Lalie :</strong> Focus sur les frères Jacob, le réseau Kernabat, et l'impact concret de ces actions en terre bretonne.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>5. Bloc IV : L'Universel et la Dignité</h3>
+                <ul>
+                  <li><strong>Ymir :</strong> Présente Gisèle Guillemot (le courage de l'ombre et la logistique).</li>
+                  <li><strong>Transition (Lalie) :</strong> "Gisèle était une voix essentielle, tout comme ces figures qui ont prouvé que la Résistance n'avait pas de genre. Ymir, on ne peut pas parler de ces destins sans évoquer ceux qui ont porté la lutte jusqu'à son paroxysme, au péril total de leur humanité..."</li>
+                  <li><strong>Lalie :</strong> Récit sur Missak Manouchian (le symbole universel) et Geneviève de Gaulle-Anthonioz (la lutte pour la dignité après la déportation).</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Note de lecture</h3>
+            <p>Le live a été pensé en <strong>quatre blocs thématiques</strong>. Le dossier en conserve la matière intégrale, mais déroule ensuite chaque portrait dans l'ordre du script — d'où une lecture en galerie plutôt qu'en blocs stricts.</p>
+            <div class="tag-list"><span class="tag">Unification</span><span class="tag">Art</span><span class="tag">Terrain</span><span class="tag">Dignité</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CRÉDIT ===== -->
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <span class="credit-avatars">
+          <img src="lalie.jpeg" alt="Avatar de Lalie">
+          <img src="ymir.jpeg" alt="Avatar d'Ymir">
+        </span>
+        <div class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>Lalie &amp; Ymir</strong>
+        </div>
+      </section>
+
+      <!-- ===== CH 03 — GISÈLE GUILLEMOT ===== -->
+      <section class="chapter reveal" id="gisele" aria-labelledby="c3">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Bloc IV · La résistance de proximité</p><h2 id="c3">Gisèle Guillemot</h2></div>
+          <div class="chapter-number">03</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="portrait-card">
+              <img src="assets/portraits/gisele-guillemot.png" alt="Portrait photographique de Gisèle Guillemot, résistante du Calvados">
+              <figcaption><span class="pc-name">Gisèle Guillemot</span><span class="pc-cred">Photo d'archive — domaine public, Wikimedia Commons</span></figcaption>
+            </figure>
+            <p>Gisèle Guillemot représente la "résistance de proximité". Contrairement aux chefs de réseaux qui centralisaient l'information, elle était celle qui assurait la continuité physique du réseau sur le terrain. Son courage était celui de l'endurance, celui de traverser les lignes ennemies jour après jour sans jamais faillir.</p>
+            <p class="sub">Pourquoi l'intégrer à ce live ?</p>
+            <p>Pour notre projet, Gisèle Guillemot est un excellent contrepoint aux figures masculines plus célèbres :</p>
+            <ol>
+              <li><strong>La place des femmes :</strong> Elle permet de rappeler que la Résistance reposait aussi sur une multitude de femmes dont le rôle logistique était crucial.</li>
+              <li><strong>L'épreuve de la déportation :</strong> Son récit permet d'aborder avec rigueur, sans pathos inutile, la réalité du système concentrationnaire nazi, un sujet fondamental pour votre démarche de "débunkage" et de vérité historique.</li>
+              <li><strong>Le témoignage :</strong> Son engagement d'après-guerre pour la mémoire montre que la lutte contre l'oubli et le mensonge historique est une forme de résistance qui continue bien après la Libération.</li>
+            </ol>
+            <table class="dtable">
+              <caption>Fiche d'Identité : Gisèle Guillemot</caption>
+              <thead><tr><th>Rubrique</th><th>Détails</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Nom complet</td><td>Gisèle Guillemot</td></tr>
+                <tr><td class="k">Date de naissance</td><td>22 mai 1922</td></tr>
+                <tr><td class="k">Date de décès</td><td>10 février 1993</td></tr>
+                <tr><td class="k">Engagement</td><td>Résistance (réseau Action)</td></tr>
+                <tr><td class="k">Zone d'action</td><td>Basse-Normandie (Calvados)</td></tr>
+                <tr><td class="k">Rôle</td><td>Agent de liaison, transport de documents et d'armes</td></tr>
+              </tbody>
+            </table>
+            <h3 class="group-title">Faits Marquants</h3>
+            <ul>
+              <li><strong>Engagement précoce :</strong> Très jeune, elle refuse l'Occupation. Elle rejoint rapidement la Résistance dans le Calvados, devenant un maillon essentiel pour la circulation des informations entre les maquis et les centres urbains.</li>
+              <li><strong>Mission de liaison :</strong> Elle parcourait des kilomètres à vélo, transportant des messages codés, des faux papiers et parfois des armes, bravant les contrôles allemands au péril de sa vie. Son apparence de jeune fille sans histoire était son meilleur camouflage.</li>
+              <li><strong>Arrestation et Déportation :</strong> Arrêtée en 1944, elle subit la brutalité de la répression avant d'être déportée. Elle a survécu à l'horreur des camps de concentration, une épreuve qui a marqué sa vie mais n'a jamais entamé sa volonté de témoigner après la guerre.</li>
+              <li><strong>Héroïne du quotidien :</strong> Elle incarne ces milliers de femmes dont l'action, bien que moins médiatisée que celle des chefs de réseaux, a rendu la Résistance possible. Après le conflit, elle a été une militante active pour la mémoire de la Résistance et la paix.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · dates &amp; réseau</h3>
+            <p>Les <strong>dates de la fiche sont erronées</strong> : Gisèle Guillemot est née le <strong>24 février 1922 à Mondeville</strong> (Calvados) et morte le <strong>31 janvier 2013</strong> — et non « 22 mai 1922 » / « 10 février 1993 ».</p>
+            <p>Son réseau était le <strong>Front national</strong> (résistance communiste, FN-FTP), pas un réseau « Action ». Arrêtée le <strong>9 avril 1943</strong> (et non en 1944), classée « Nacht und Nebel », elle survit à Ravensbrück et Mauthausen. Pseudonyme attesté : <strong>« Annick »</strong>.</p>
+            <div class="tag-list"><span class="tag">Calvados</span><span class="tag">Agent de liaison</span><span class="tag">Déportée</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 04 — CÉCILE ROL-TANGUY ===== -->
+      <section class="chapter reveal" id="cecile" aria-labelledby="c4">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Bloc I · Le cerveau logistique de la Libération de Paris</p><h2 id="c4">Cécile Rol-Tanguy</h2></div>
+          <div class="chapter-number">04</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/femmes-resistance.png" alt="Hommage aux femmes de la Résistance : silhouettes dorées à un poste de transmission, tenant une partition, debout dans la lumière, sur nuit profonde" loading="lazy">
+              <figcaption>Les femmes de l'ombre — du poste de transmission à l'espionnage</figcaption>
+            </figure>
+            <figure class="portrait-card">
+              <img src="assets/portraits/cecile-rol-tanguy.jpg" alt="Portrait de Cécile Rol-Tanguy">
+              <figcaption><span class="pc-name">Cécile Rol-Tanguy (1919-2020)</span><span class="pc-cred">© Siren-Com, CC BY-SA 3.0, Wikimedia Commons</span></figcaption>
+            </figure>
+            <p>Je veux commencer par un nom qui porte en lui tout le poids et toute la lumière de notre histoire : Cécile Rol-Tanguy.</p>
+            <p>Elle est née en 1920, elle nous a quittés en 2020, à 100 ans. Un siècle d'engagement. Quand on regarde sa vie, on ne voit pas seulement une femme de l'ombre, on voit une architecte de la liberté.</p>
+            <p>Cécile, c'est l'histoire d'une jeune femme qui a tout sacrifié : sa jeunesse, sa sécurité, le confort d'une vie normale, pour entrer dans la clandestinité dès 1940. Mais son rôle est crucial, et c'est ce que je veux que vous reteniez : en août 1944, dans le sous-sol de la place Denfert-Rochereau, alors que Paris est à feu et à sang, elle devient le cerveau logistique de l'insurrection. Elle recevait les rapports de toute la ville et transmettait les ordres vitaux.</p>
+            <p>C'est elle qui, avec une rigueur absolue, s'assurait que chaque instruction arrivait au bon maquisard, au bon moment. Sans sa rigueur, sans cette organisation millimétrée, la Libération de Paris aurait pu sombrer dans le chaos. Elle ne cherchait pas la gloire, elle cherchait l'efficacité. Et c'est cette efficacité, ce refus de l'à-peu-près, qui fait d'elle, encore aujourd'hui, une source d'inspiration fondamentale pour nous, dans notre combat pour la vérité."</p>
+            <h3 class="group-title">Fiche : Cécile Rol-Tanguy (1920–2020)</h3>
+            <p class="sub">1. Dates et Repères</p>
+            <ul>
+              <li><strong>Naissance :</strong> 10 avril 1920 (à Royan).</li>
+              <li><strong>Décès :</strong> 8 mai 2020 (à Monteaux, à l'âge de 100 ans).</li>
+              <li><strong>Statut :</strong> Compagnon de la Libération (distinction reçue en 2021 à titre posthume, reconnaissant son rôle majeur).</li>
+            </ul>
+            <p class="sub">2. Sa vie : D'une jeunesse engagée à la clandestinité</p>
+            <ul>
+              <li><strong>Engagement précoce :</strong> Elle grandit dans un milieu ouvrier et rejoint les Jeunesses communistes dès 1936. C'est là qu'elle forge sa conscience politique et son sens de l'organisation.</li>
+              <li><strong>La rencontre :</strong> Elle rencontre Henri Rol-Tanguy en 1937. Leur mariage et leur engagement commun deviennent le moteur de leur vie.</li>
+              <li><strong>La vie clandestine :</strong> Dès le début de l'Occupation, le couple plonge dans la clandestinité. Cécile vit sous de multiples pseudonymes, changeant sans cesse de domicile pour échapper à la Gestapo, tout en élevant ses enfants dans des conditions de survie extrême. Elle n'était pas seulement "l'épouse du chef", elle était une cadre active de la Résistance.</li>
+            </ul>
+            <p class="sub">3. Son rôle : La voix et les mains de l'insurrection</p>
+            <ul>
+              <li><strong>Le poste de commandement (1944) :</strong> En août 1944, alors que Paris s'apprête à se soulever, elle devient l'agent de liaison principale du poste de commandement des Forces Françaises de l'Intérieur (FFI), situé sous la place Denfert-Rochereau.</li>
+              <li><strong>Le cœur de l'action :</strong> Elle est la seule à connaître l'emplacement exact du PC. Elle traite les rapports, transmet les ordres, gère les courriers, et s'assure que les messages parviennent aux chefs de barricades dans Paris.</li>
+              <li><strong>La précision :</strong> Sans elle, l'ordre d'insurrection signé par son mari aurait pu rester lettre morte. Elle était le filtre, la sécurité et la messagère infatigable de la libération de la capitale.</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">Vérifier les faits</span>
+              <p>Pour celles et ceux qui veulent vérifier ces faits, je me suis appuyée sur les archives du Musée de la Libération de Paris et sur les entretiens qu'elle a laissés à l'INA. C'est une documentation accessible, passionnante, qui prouve que l'histoire, quand elle est sourcée, est bien plus puissante que n'importe quel récit inventé."</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">Transition vers Jean Moulin</span>
+              <p>Cécile Rol-Tanguy tenait la ligne de front depuis son poste de transmission, assurant la logistique vitale de l'insurrection. Mais pour que cette insurrection soit possible, il fallait aussi une vision globale, une stratégie pour unifier toutes les forces éparpillées en France.</p>
+              <p>C'est là qu'interviennent des figures dont le rôle a été de bâtir cette ossature de la résistance. Ymir, si tu veux nous éclairer sur cet aspect crucial : comment Jean Moulin et son équipe ont-ils réussi à transformer ces volontés isolées en une véritable armée de l'ombre ?</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · l'état civil &amp; les titres</h3>
+            <p>Cécile Rol-Tanguy est née le <strong>10 avril 1919</strong> (à Royan), pas 1920 : elle avait donc <strong>101 ans</strong> à sa mort, le 8 mai 2020 à Monteaux.</p>
+            <p>Elle n'a <strong>jamais été Compagnon de la Libération</strong> : l'Ordre ne compte que <strong>6 femmes</strong> Compagnons et il est <strong>clos depuis le 12 octobre 2021</strong> — aucune nomination posthume n'était possible. Ses distinctions réelles : Grand officier de la Légion d'honneur, Grand-croix de l'Ordre national du Mérite, Médaille de la Résistance.</p>
+            <p>Elle rencontre Henri Rol-Tanguy au bureau syndical CGT des Métaux en <strong>1936</strong> (et non 1937) ; adhésion au PCF en 1938.</p>
+            <div class="tag-list"><span class="tag">Denfert-Rochereau</span><span class="tag">FFI · août 1944</span><span class="tag">Musée de la Libération</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 05 — JOSÉPHINE BAKER ===== -->
+      <section class="chapter reveal" id="baker" aria-labelledby="c5">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Bloc II · L'espionne sous les projecteurs</p><h2 id="c5">Joséphine Baker</h2></div>
+          <div class="chapter-number">05</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="portrait-card">
+              <img src="assets/portraits/josephine-baker.jpg" alt="Portrait de Joséphine Baker par le Studio Harcourt, 1940">
+              <figcaption><span class="pc-name">Joséphine Baker (1906-1975)</span><span class="pc-cred">Studio Harcourt, 1940 — domaine public</span></figcaption>
+            </figure>
+            <div class="dialogue-block">
+              <span class="block-label">Transition (Lalie)</span>
+              <p>Tu soulignes bien, Ymir, comment l'art a servi de refuge et d'arme pour Auffray. C'est un engagement total qui me fait penser à une autre femme d'exception, Joséphine Baker, qui a utilisé sa célébrité comme un paravent pour ses activités d'espionnage.</p>
+            </div>
+            <p class="lede">Joséphine Baker – L'espionne sous les projecteurs</p>
+            <div class="dialogue-block">
+              <span class="block-label">Au micro</span>
+              <p>"Imaginez : les années 40. Vous êtes la plus grande star du monde, les projecteurs vous suivent partout, les foules vous acclament... et pourtant, vous jouez votre vie à chaque seconde.</p>
+              <p>Joséphine Baker, c'est ce paradoxe absolu. Elle n'était pas juste une artiste, c'était une espionne de génie. Elle a compris très tôt que sa célébrité était son meilleur atout. Alors que les espions classiques étaient surveillés, on ne se méfiait jamais de la 'star'. Elle a transporté des renseignements vitaux sous le nez de la Gestapo, dissimulés dans ses partitions ou dans ses robes.</p>
+              <p>Elle aurait pu rester en sécurité aux États-Unis, loin du conflit. Elle a choisi la France. Elle a mis son énergie, son argent et sa vie au service de notre liberté. Pourquoi est-ce important de le rappeler en 2026 ? Parce que Joséphine nous montre que l'image publique ne définit pas la profondeur d'une femme. Elle a prouvé que la Résistance n'avait pas d'uniforme, et surtout, qu'elle n'avait pas de limites."</p>
+            </div>
+            <p class="sub">1. Fiche d'identité</p>
+            <ul>
+              <li><strong>Nom complet :</strong> Freda Josephine McDonald (devenue Joséphine Baker par mariage).</li>
+              <li><strong>Naissance :</strong> 3 juin 1906 (à Saint-Louis, États-Unis).</li>
+              <li><strong>Décès :</strong> 12 avril 1975 (à Paris).</li>
+              <li><strong>Distinctions majeures :</strong> Croix de guerre 1939-1945, Médaille de la Résistance, Chevalier de la Légion d'honneur. Entrée au Panthéon en 2021.</li>
+            </ul>
+            <p class="sub">2. Son rôle : La diva de l'espionnage</p>
+            <ul>
+              <li><strong>L'entrée en résistance :</strong> Dès 1939, elle est recrutée par le contre-espionnage français (le Deuxième Bureau). Elle ne cherche pas la gloire, elle veut défendre sa patrie d'adoption, la France, qui l'a accueillie et célébrée.</li>
+              <li><strong>Sa méthode (Le génie du camouflage) :</strong>
+                <ul>
+                  <li><strong>Les partitions :</strong> Elle écrivait des messages secrets à l'encre sympathique sur ses partitions de musique, qu'elle transportait partout en Europe.</li>
+                  <li><strong>L'accès privilégié :</strong> Grâce à sa notoriété, elle pouvait circuler librement, assister à des réceptions diplomatiques, voyager en Italie ou au Portugal. Personne ne se doutait qu'elle écoutait, observait et notait les mouvements des troupes allemandes.</li>
+                </ul>
+              </li>
+              <li><strong>L'engagement au-delà de l'espionnage :</strong> Elle met son château des Milandes à la disposition de la Résistance, servant de cache pour des agents et des matériels. Elle s'engage également dans les Forces Aériennes Françaises Libres (FAFL).</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">Vérifier les faits</span>
+              <p>Pour celles et ceux qui veulent creuser ce parcours incroyable, je vous renvoie aux archives des services de renseignement français (SR) consultées lors de son dossier d'entrée au Panthéon. C'est une mine d'or sur la manière dont elle a berné l'occupant pendant des années."</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · précisions</h3>
+            <p>Recrutée dès <strong>septembre 1939</strong> par le commandant <strong>Jacques Abtey</strong> (2ᵉ Bureau), encre sympathique sur les partitions, château des Milandes comme refuge : tout est confirmé.</p>
+            <p>Son entrée au Panthéon date du <strong>30 novembre 2021</strong> (6ᵉ femme à y entrer). En 1944, son engagement militaire se fait dans les <strong>Formations féminines de l'armée de l'Air</strong> (sous-lieutenant) — formulation plus exacte que « FAFL ».</p>
+            <div class="tag-list"><span class="tag">2ᵉ Bureau</span><span class="tag">Encre sympathique</span><span class="tag">Panthéon 2021</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 06 — GENEVIÈVE DE GAULLE-ANTHONIOZ ===== -->
+      <section class="chapter reveal" id="genevieve" aria-labelledby="c6">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Bloc IV · La dignité comme ultime front</p><h2 id="c6">Geneviève de Gaulle-Anthonioz</h2></div>
+          <div class="chapter-number">06</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="book-figure">
+              <img src="assets/livres/traversee-nuit.jpg" alt="Couverture de La Traversée de la nuit de Geneviève de Gaulle-Anthonioz, éditions du Seuil">
+              <figcaption><em>La Traversée de la nuit</em><br>Geneviève de Gaulle-Anthonioz (Seuil, 1998) — couverture éditeur.</figcaption>
+            </figure>
+            <div class="dialogue-block">
+              <span class="block-label">Transition (Lalie)</span>
+              <p>Gisèle était le dernier maillon d'une chaîne logistique cruciale. Mais pour que ces destins nationaux ne restent pas isolés, il faut comprendre ce qui habitait ces femmes quand tout basculait. Ymir, si tu veux nous parler de l'organisation que ces femmes ont su bâtir, je prendrai le relais pour évoquer le parcours de Geneviève de Gaulle-Anthonioz, afin d'explorer ce que signifiait 'rester soi-même' quand tout est fait pour vous briser.</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">Au micro</span>
+              <p>"Geneviève de Gaulle-Anthonioz, c'est l'histoire de la victoire de l'esprit sur la machine à broyer les corps. Lorsqu'elle est arrêtée en 1943, puis envoyée à Ravensbrück, elle a 23 ans. Là-bas, l'objectif n'est pas seulement de tuer, c'est de réduire l'être humain à rien.</p>
+              <p>Mais Geneviève a résisté. Comment ? Par la culture, par la solidarité, par cette exigence de dignité qu'elle n'a jamais lâchée. Elle disait souvent que la déportation lui avait appris à quel point chaque vie humaine est irremplaçable. Elle a transformé cette horreur vécue en un combat de toute une vie contre la misère, auprès des plus pauvres.</p>
+              <p>En 2026, quand on voit à quel point on cherche parfois à nous diviser ou à déshumaniser certains discours, Geneviève est notre boussole. Elle nous rappelle que le plus grand acte de résistance, c'est d'être capable de voir en l'autre un semblable, quelles que soient les circonstances."</p>
+            </div>
+            <p class="sub">1. Fiche d'identité</p>
+            <ul>
+              <li><strong>Naissance :</strong> 25 octobre 1920 (à Saint-Jean-de-Valériscle).</li>
+              <li><strong>Décès :</strong> 14 février 2002 (à Paris).</li>
+              <li><strong>Parcours :</strong> Nièce du Général de Gaulle, engagée très tôt dans la Résistance. Arrêtée en 1943, déportée au camp de Ravensbrück.</li>
+              <li><strong>Distinctions :</strong> Grand-croix de la Légion d'honneur, Médaille de la Résistance.</li>
+            </ul>
+            <p class="sub">2. Son rôle : La dignité comme ultime front</p>
+            <ul>
+              <li><strong>Résistance spirituelle :</strong> À Ravensbrück, dans l'enfer concentrationnaire, elle refuse de céder à la déshumanisation. Elle organise avec d'autres déportées des cercles de lecture, des chants, tout ce qui permet de maintenir l'esprit vivant.</li>
+              <li><strong>Le courage de témoigner :</strong> Après la guerre, elle ne s'est pas contentée de survivre. Elle est devenue la voix de ceux qui ne sont pas revenus, témoignant au procès de Nuremberg et consacrant sa vie à la lutte contre la grande pauvreté avec l'association ATD Quart Monde.</li>
+              <li><strong>Le lien avec notre combat :</strong> Elle a prouvé que la dignité humaine est le socle de toute liberté. Elle a refusé que la souffrance soit une excuse pour oublier l'autre.</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">Pour aller plus loin</span>
+              <p>"Pour comprendre la force de son engagement, je vous conseille vivement de lire ses écrits, notamment 'La Traversée de la nuit'. C'est un document indispensable. Vous y verrez que la vérité de la Résistance n'est pas qu'une question de chiffres ou de batailles, c'est une question de conscience humaine."</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le bon procès</h3>
+            <p>Geneviève de Gaulle-Anthonioz <strong>n'a pas témoigné au procès de Nuremberg</strong> (1945-46). Son témoignage le mieux établi est celui du <strong>procès de Klaus Barbie</strong> à Lyon en <strong>1987</strong> ; sa participation au <strong>procès de Ravensbrück</strong> (Hambourg, 1946-47) est, elle, débattue (déposition écrite plutôt que comparution attestée).</p>
+            <p>Arrêtée le <strong>20 juillet 1943</strong>. Entrée au <strong>Panthéon le 27 mai 2015</strong> (avec Germaine Tillion, Jean Zay et Pierre Brossolette), par un cénotaphe symbolique.</p>
+            <div class="tag-list"><span class="tag">Ravensbrück</span><span class="tag">ATD Quart Monde</span><span class="tag">Panthéon 2015</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 07 — MISSAK MANOUCHIAN ===== -->
+      <section class="chapter reveal" id="manouchian" aria-labelledby="c7">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Bloc IV · Le symbole universel</p><h2 id="c7">Missak Manouchian</h2></div>
+          <div class="chapter-number">07</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="portrait-card">
+              <img src="assets/portraits/missak-manouchian.jpg" alt="Portrait de Missak Manouchian">
+              <figcaption><span class="pc-name">Missak Manouchian (1906-1944)</span><span class="pc-cred">Photo d'archive — domaine public, Wikimedia Commons</span></figcaption>
+            </figure>
+            <div class="dialogue-block">
+              <span class="block-label">Au micro</span>
+              <p>On entend souvent dire qu'il n'était pas 'français'. Et c'est un fait : Missak Manouchian était un apatride, un immigré arménien qui avait fui le génocide. Mais je veux vous poser une question : qu'est-ce qui définit le plus la citoyenneté ? Est-ce un tampon sur un passeport, ou est-ce le combat que l'on mène pour les valeurs d'un pays ?</p>
+              <p>Missak n'est pas devenu résistant par naissance, il l'est devenu par choix. Il est arrivé en France dans les années 20, il a appris notre langue, il a lu nos poètes, il a épousé une Française, Mélinée. Il a aimé la France pour ce qu'elle promettait : la liberté, l'égalité, la fraternité.</p>
+              <p>Quand l'Occupation a commencé, il n'avait aucune obligation légale de se battre. Il aurait pu rester dans l'ombre. Pourtant, il a pris la tête des FTP-MOI. Il a mené des actions concrètes, courageuses, risquées, contre un occupant qui voulait détruire tout ce qu'il aimait dans ce pays.</p>
+              <p>Alors, quand je vois cette Affiche Rouge, je ne vois pas un 'étranger' qui s'immisce dans une guerre qui n'est pas la sienne. Je vois un homme qui a fait de la France sa patrie de cœur, et qui a payé ce choix du prix le plus fort. Il nous rappelle, à nous en 2026, que la France n'est pas une terre fermée, mais une idée, une promesse, que l'on peut défendre avec plus de ferveur que ceux qui l'ont reçue en héritage sans jamais la questionner."</p>
+            </div>
+            <p class="sub">1. Fiche d'identité</p>
+            <ul>
+              <li><strong>Missak Manouchian :</strong> Né en 1906, rescapé du génocide arménien, arrivé en France en 1925. Poète et militant.</li>
+              <li><strong>Le groupe :</strong> Membre des FTP-MOI (Francs-Tireurs et Partisans - Main-d'œuvre Immigrée).</li>
+              <li><strong>Le symbole :</strong> L'Affiche Rouge, placardée par les nazis en février 1944 pour discréditer la Résistance.</li>
+            </ul>
+            <p class="sub">2. Ton récit</p>
+            <div class="dialogue-block">
+              <p>"Si l'on veut parler de la Résistance sans artifice, il faut parler de Missak Manouchian.</p>
+              <p>Missak n'était pas un 'Français de souche'. C'était un rescapé du génocide arménien. Il avait choisi la France non pas par héritage, mais par adhésion totale à ses idéaux. C'était un poète, un homme de lettres, qui a dû troquer son stylo pour le combat clandestin au sein des FTP-MOI.</p>
+              <p>Mais ce que l'occupant a fait de lui est encore plus marquant. En février 1944, les nazis ont placardé partout dans Paris cette tristement célèbre Affiche Rouge. Leur but ? Utiliser les visages de ces résistants immigrés pour terroriser la population et crier au 'complot de l'étranger'. Ils voulaient nous dire : 'Regardez, ce ne sont pas de vrais Français, ce sont des terroristes venus d'ailleurs'.</p>
+              <p>C'est là que l'Histoire a pris une tournure inattendue. En voulant les stigmatiser, ils ont, en réalité, gravé leurs visages dans notre conscience nationale. Cette affiche est devenue l'emblème même de notre liberté. Missak Manouchian, fusillé au Mont-Valérien, n'est pas mort en étranger : il est mort pour la France, avec une dignité qui, 80 ans plus tard, continue de nous faire face."</p>
+            </div>
+            <p>Il faut oublier l'image romantique du résistant solitaire. Ce qu'ils ont fait, c'était une guérilla urbaine organisée, chirurgicale et extrêmement risquée.</p>
+            <p>Voici les points clés à mettre en avant pour montrer leur efficacité sur le terrain :</p>
+            <h3 class="group-title">1. Le passage à l'action armée (1943)</h3>
+            <p>Contrairement à d'autres réseaux qui faisaient surtout du renseignement ou du sabotage de voies ferrées, le groupe Manouchian s'est spécialisé dans les attaques directes contre l'occupant en plein cœur de Paris.</p>
+            <ul>
+              <li><strong>Les sabotages :</strong> Ils ont mené des dizaines d'opérations contre des convois allemands, des dépôts de matériel et des installations militaires.</li>
+              <li><strong>La spécificité :</strong> Ils agissaient par petits groupes très mobiles, ce qui rendait leur traque extrêmement difficile pour la police française (les Brigades spéciales) et la Gestapo.</li>
+            </ul>
+            <h3 class="group-title">2. L'attentat contre le général von Ritter</h3>
+            <p>C'est sans doute leur action la plus marquante. Le 28 septembre 1943, le groupe Manouchian abat le général Julius Ritter.</p>
+            <ul>
+              <li><strong>Pourquoi lui ?</strong> C'était l'adjoint de Fritz Sauckel, responsable du Service du Travail Obligatoire (STO) en France. Ritter était celui qui organisait la déportation massive des travailleurs français vers les usines allemandes.</li>
+              <li><strong>L'impact :</strong> En abattant un officier de ce rang, ils ont frappé la machine de guerre nazie là où elle était la plus vulnérable : sa capacité à recruter de la main-d'œuvre forcée. C'était un coup de tonnerre dans le Paris occupé.</li>
+            </ul>
+            <h3 class="group-title">3. La logistique de la survie</h3>
+            <p>Au-delà du combat armé, leurs actions étaient aussi logistiques :</p>
+            <ul>
+              <li><strong>Le camouflage :</strong> Manouchian et ses hommes vivaient dans la clandestinité totale, changeant sans cesse d'adresse, utilisant des faux papiers, cachés par des réseaux de solidarité.</li>
+              <li><strong>La gestion des ressources :</strong> Ils devaient trouver de l'argent pour vivre, des armes pour combattre, et assurer la liaison entre les différents groupes de la MOI (Arméniens, Hongrois, Polonais, Italiens). C'était une véritable "armée des ombres" cosmopolite.</li>
+            </ul>
+            <p>On s'imagine souvent la Résistance comme des gens qui attendent. Pour Manouchian, c'était l'inverse. Ses actions, c'était du 'commando' pur et dur. Quand ils décident d'abattre le général Ritter en 1943, ils ne font pas qu'éliminer un officier, ils stoppent net un rouage de la déportation du STO.</p>
+            <p>Imaginez la scène : en plein Paris, au milieu des patrouilles allemandes, des hommes sans grade, des immigrés qui n'avaient souvent même pas le droit de circuler librement, parviennent à frapper un haut dignitaire nazi. C'était une audace folle, une maîtrise technique parfaite. Ils ne se battaient pas avec des rêves, ils se battaient avec une précision militaire. C'est cette dimension 'technicien du sabotage' qui les rendait si terrifiants pour l'occupant."</p>
+            <p>La lettre de Missak Manouchian à Mélinée est sans doute l'un des textes les plus poignants de notre histoire. Ce n'est pas seulement un adieu, c'est une déclaration d'amour à la vie, à la liberté et à la France, écrite quelques heures avant son exécution au Mont-Valérien, le 21 février 1944.</p>
+            <div class="letter-block">
+              <span class="block-label">La lettre de Missak Manouchian à Mélinée — 21 février 1944</span>
+              <p>Ma chère Mélinée, ma petite orpheline bien-aimée,</p>
+              <p>Dans quelques heures, je ne serai plus de ce monde. Nous allons être fusillés cet après-midi à 15 heures. Cela m'arrive comme un accident dans ma vie, je n'y crois pas mais pourtant je sais que je ne te verrai plus jamais.</p>
+              <p>Que puis-je t'écrire ? Tout est confus en moi et bien clair dehors.</p>
+              <p>Je m'étais engagé dans l'Armée de Libération en soldat volontaire et je meurs à deux doigts de la Victoire et du but. Bonheur à ceux qui vont nous survivre et goûter la douceur de la liberté et de la paix de demain. Je suis sûr que le peuple français et tous les combattants de la Libération sauront honorer notre mémoire dignement. Au moment de mourir, je proclame que je n'ai aucune haine contre le peuple allemand et contre qui que ce soit, chacun aura ce qu'il méritera comme châtiment et comme récompense. Le peuple allemand et tous les autres peuples vivront en paix et en fraternité après la guerre qui ne durera plus longtemps. Bonheur à tous !</p>
+              <p>J'ai un regret profond de ne t'avoir pas rendue heureuse, j'aurais bien voulu avoir un enfant de toi comme tu le voulais toujours. Je te prie donc de te marier après la guerre, sans faute, et d'avoir un enfant pour mon bonheur et, pour accomplir ma dernière volonté, marie-toi avec quelqu'un qui puisse te rendre heureuse. Tous mes biens et toutes mes affaires, je veux qu'après la guerre ils soient légués à tes parents ou à tes sœurs.</p>
+              <p>Toi, tu iras en Arménie si tu le peux après la guerre. Je meurs sans haine en moi pour le peuple allemand. Le bonheur à tous ceux qui vont nous survivre et goûter la douceur de la liberté et de la paix de demain.</p>
+              <p>Adieu ma chère, ma petite bien-aimée, ma petite orpheline. Adieu, mes amis, mes camarades, je vous pardonne à tous ceux qui m'ont fait du mal et ceux qui ont voulu me faire du mal.</p>
+              <p>Un grand baiser à toi, et à tous les tiens.</p>
+              <p>Ton Manouchian. »</p>
+            </div>
+            <p>Il est important de souligner :</p>
+            <ul>
+              <li><strong>L'absence de haine :</strong> C'est le point le plus fort. Un homme qui va être exécuté, qui a vécu le génocide arménien, refuse la haine. C'est une leçon de morale et de hauteur d'esprit qui détonne avec la violence de son engagement armé.</li>
+              <li><strong>L'humanité absolue :</strong> Il ne parle pas en "héros de légende", il parle en homme qui regrette de ne pas avoir eu d'enfant, qui veut que sa femme soit heureuse après lui. C'est là que ton public va se connecter émotionnellement avec lui.</li>
+              <li><strong>Le message pour 2026 :</strong> Cette lettre est un puissant antidote au cynisme. Elle montre que, même face à la mort, on peut choisir de croire en la fraternité entre les peuples.</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">Vérifier les faits</span>
+              <p>"Pour celles et ceux qui veulent aller au-delà des discours, je vous conseille de consulter les rapports de police de la Brigade Spéciale n°2 qui a traqué le groupe Manouchian. Ces documents, accessibles aux Archives de la Préfecture de Police de Paris, montrent précisément comment ces résistants ont été surveillés. C'est froid, c'est documenté, et c'est une preuve irréfutable de leur héroïsme."</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le grade de Ritter</h3>
+            <p>Julius Ritter n'était <strong>pas « général »</strong> : il était <strong>colonel SS (SS-Standartenführer)</strong>, adjoint de Fritz Sauckel pour le STO en France. La date (28 septembre 1943) et sa fonction sont exactes.</p>
+            <p>Manouchian (né le 1ᵉʳ septembre 1906) était <strong>commissaire militaire des FTP-MOI de la région parisienne</strong> à partir d'août 1943 — pas chef national. Il entre au <strong>Panthéon le 21 février 2024</strong>, avec Mélinée.</p>
+            <div class="tag-list"><span class="tag">FTP-MOI</span><span class="tag">Mont-Valérien</span><span class="tag">Panthéon 2024</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 08 — MÉLINÉE MANOUCHIAN ===== -->
+      <section class="chapter reveal" id="melinee" aria-labelledby="c8">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La gardienne de la mémoire</p><h2 id="c8">Mélinée Manouchian</h2></div>
+          <div class="chapter-number">08</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="portrait-card">
+              <img src="assets/portraits/melinee-manouchian.jpg" alt="Portrait de Mélinée Manouchian">
+              <figcaption><span class="pc-name">Mélinée Manouchian (1913-1989)</span><span class="pc-cred">Photo d'archive — domaine public, Wikimedia Commons</span></figcaption>
+            </figure>
+            <div class="dialogue-block">
+              <span class="block-label">Au micro</span>
+              <p>"On ne peut pas parler de Missak sans parler de Mélinée. Ils se sont rencontrés, ils se sont aimés, et ils ont résisté ensemble. Mélinée, c'était le lien. Quand Missak était sur le front de la guérilla urbaine, Mélinée assurait la survie du groupe dans l'ombre.</p>
+              <p>Ce qui me touche le plus chez elle, c'est sa résilience après la mort de Missak. Elle a perdu l'homme de sa vie, elle a vécu traquée, mais elle n'a jamais cédé à l'amertume. Elle a passé sa vie à dire : 'Ils ne sont pas morts pour rien, ils sont morts pour une idée de la France'. Elle a été la voix de ceux qui n'en avaient plus, et sans elle, la mémoire de l'Affiche Rouge aurait sans doute été effacée par la propagande. Mélinée nous enseigne que résister, c'est aussi, après le fracas des armes, porter la vérité à bout de bras."</p>
+            </div>
+            <p>Mélinée Manouchian (née Soukémian) est une figure aussi indissociable de Missak que le sont leurs destins. Si elle est souvent restée dans l'ombre du "chef" des FTP-MOI, elle était une résistante active et le pilier central de sa vie.</p>
+            <p>Voici les éléments clés pour présenter Mélinée, une femme qui a survécu à l'horreur pour devenir la gardienne de la mémoire de son mari et de ses camarades.</p>
+            <p class="sub">1. Fiche d'identité</p>
+            <ul>
+              <li><strong>Nom :</strong> Mélinée Soukémian.</li>
+              <li><strong>Naissance :</strong> 1913 (en Turquie).</li>
+              <li><strong>Parcours :</strong> Orpheline du génocide arménien, elle grandit dans des orphelinats avant d'arriver en France.</li>
+              <li><strong>Son rôle :</strong> Résistante, agent de liaison au sein des FTP-MOI. Elle a survécu à la guerre et a consacré sa vie à réhabiliter la mémoire du groupe Manouchian.</li>
+            </ul>
+            <p class="sub">2. Une résistante de l'ombre</p>
+            <p>Mélinée n'était pas seulement "l'épouse de". Au sein des FTP-MOI, elle occupait des fonctions stratégiques :</p>
+            <ul>
+              <li><strong>Agent de liaison :</strong> Elle transportait des messages, des armes et des informations vitales. Dans la clandestinité, c'était le rôle le plus dangereux car c'est celui qui permettait aux réseaux de rester connectés malgré la surveillance constante.</li>
+              <li><strong>Le soutien logistique :</strong> Elle gérait les caches, le ravitaillement et les conditions de vie précaires de ces combattants qui vivaient traqués.</li>
+            </ul>
+            <p class="sub">3. La gardienne de la mémoire</p>
+            <p>Après l'arrestation de Missak en novembre 1943, Mélinée échappe de justesse à la Gestapo grâce à l'aide de réseaux de soutien. Elle vit dans la clandestinité jusqu'à la Libération.</p>
+            <p>À partir de 1944, elle entame un combat de plusieurs décennies :</p>
+            <ul>
+              <li><strong>Combattre l'oubli :</strong> Elle a lutté pour que le sacrifice des étrangers (les "métèques" selon la propagande de l'époque) soit reconnu par la France. Elle a porté la mémoire de Missak non pas comme une légende figée, mais comme un engagement politique vivant.</li>
+              <li><strong>Le témoignage :</strong> Elle a écrit son propre récit, Manouchian, où elle livre son regard sur ces années de plomb, rétablissant la vérité sur le groupe contre les versions officielles parfois partiales.</li>
+            </ul>
+            <p>Mélinée est l'archétype de la "fact-checkeuse" historique. Face aux mensonges de la propagande nazie (l'Affiche Rouge), elle a passé sa vie à rétablir les faits, à donner des noms, des visages, et à rappeler que la Résistance était une affaire de convictions partagées.</p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · l'identité de Mélinée</h3>
+            <p>Mélinée est née <strong>Mélinée Soukémian</strong> en 1913 à <strong>Constantinople</strong> (Istanbul) ; son nom d'état civil devint <strong>Assadourian</strong> en France (à la suite d'une erreur d'enregistrement). Elle aussi était <strong>arménienne, rescapée du génocide</strong> — non « une Française » de naissance, comme le dit le récit sur Missak.</p>
+            <p>Décédée en 1989, elle entre au <strong>Panthéon le 21 février 2024</strong>, aux côtés de Missak.</p>
+            <div class="tag-list"><span class="tag">Agent de liaison</span><span class="tag">Mémoire</span><span class="tag">Panthéon 2024</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 09 — L'AFFICHE ROUGE ===== -->
+      <section class="chapter reveal" id="affiche" aria-labelledby="c9">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le piège de la propagande</p><h2 id="c9">L'Affiche Rouge</h2></div>
+          <div class="chapter-number">09</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">L'Affiche Rouge – Le piège de la propagande</p>
+            <figure class="chapter-figure">
+              <img src="assets/affiche-rouge.png" alt="Évocation digne de l'Affiche Rouge : un mur rouge sang aux médaillons dorés, fleuri au pied par des anonymes, la lumière montant du sol" loading="lazy">
+              <figcaption>« Le peuple a commencé à fleurir l'affiche » — la honte muée en hommage</figcaption>
+            </figure>
+            <div class="dialogue-block">
+              <span class="block-label">Au micro</span>
+              <p>"Avant de comprendre le sacrifice final de Manouchian, il faut que l'on parle de cette affiche. Vous l'avez sûrement déjà vue, placardée sur les murs de Paris en février 1944. C'est l'Affiche Rouge.</p>
+              <p>L'occupant nazi a eu une idée 'géniale' selon ses critères de propagande : imprimer les visages de Manouchian et de ses camarades des FTP-MOI, avec en dessous, cette mention : 'Des libérateurs ? La libération par l'armée du crime !'. Ils ont mis en évidence leurs noms à consonance étrangère, leurs traits, pour jouer sur la peur, sur le racisme, sur le rejet de 'l'autre'.</p>
+              <p>C'était une manipulation totale. Ils voulaient nous faire croire que la Résistance n'était pas une affaire de Français, mais une conspiration d'étrangers, de Juifs, de communistes, venus déstabiliser le pays.</p>
+              <p>Mais, et c'est là que leur stratégie s'effondre : ils se sont trompés d'époque et de peuple.</p>
+              <p>En voulant les stigmatiser, ils ont, en réalité, créé un immense mouvement de compassion. Les Parisiens, en voyant ces visages sur les murs, ne voyaient pas des 'criminels'. Ils voyaient des hommes et des femmes qui étaient morts pour eux. Le peuple a commencé à fleurir l'affiche. Elle est devenue un symbole d'héroïsme au lieu d'être un symbole de honte.</p>
+              <p>C'est la preuve ultime que la propagande, aussi massive soit-elle, finit toujours par se heurter à la réalité des faits quand les gens décident de regarder au-delà des étiquettes."</p>
+            </div>
+            <figure class="poster-figure">
+              <img src="assets/portraits/affiche-rouge-document.jpg" alt="L'Affiche Rouge originale de février 1944 : « Des libérateurs ? La libération par l'armée du crime ! », montrant dix résistants des FTP-MOI dont Manouchian">
+              <figcaption>L'Affiche Rouge — placardée en février 1944<em>Le document de propagande original (domaine public). Dix des vingt-trois condamnés y sont montrés, Manouchian au centre.</em></figcaption>
+            </figure>
+            <p class="sub">Le rebond vers Missak et Mélinée</p>
+            <div class="dialogue-block">
+              <p>"Cette affiche, c'est le masque que l'occupant a voulu leur coller. Mais derrière ce masque, il y avait Missak Manouchian et Mélinée. Derrière l'affiche, il y avait une histoire d'amour, de poésie et d'engagement. Et c'est cette vérité-là que je veux vous raconter maintenant..."</p>
+            </div>
+            <div class="dialogue-block">
+              <p>"On parle souvent de Missak, mais l'Affiche Rouge, c'était le visage de 23 combattants fusillés au Mont-Valérien. Des hommes qui venaient de Pologne, de Hongrie, d'Italie, d'Espagne, d'Arménie. Ils n'étaient pas 'juste' des soldats, c'étaient des ouvriers, des étudiants, des poètes, des pères de famille.</p>
+              <p>Je veux que l'on se souvienne de quelques-uns d'entre eux :</p>
+            </div>
+            <ul>
+              <li><strong>Joseph Epstein,</strong> le chef militaire, un intellectuel communiste polonais qui a coordonné l'action de ces groupes avec une efficacité redoutable.</li>
+              <li><strong>Marcel Rajman,</strong> un jeune juif polonais d'une audace folle, responsable de plusieurs attentats majeurs contre les officiers nazis.</li>
+              <li><strong>Thomas Elek,</strong> un étudiant hongrois qui, à 18 ans seulement, a fait le choix de rejoindre la lutte armée.</li>
+              <li><strong>Olga Bancic,</strong> la seule femme du groupe fusillée, une roumaine qui, elle aussi, a tout sacrifié.</li>
+            </ul>
+            <p>Ces noms, ce ne sont pas juste des lignes sur un monument. Ce sont des vies, des trajectoires brisées. Quand les nazis ont imprimé cette affiche, ils pensaient nous effrayer en montrant ces noms à consonance étrangère. Aujourd'hui, ces noms sont gravés dans notre mémoire nationale. Ils nous rappellent que la France, ce jour-là, a été sauvée par ceux qui n'étaient pas nés sur son sol, mais qui en partageaient l'âme."</p>
+            <figure class="portrait-card">
+              <img src="assets/portraits/thomas-elek.jpg" alt="Portrait de Thomas Elek, extrait de l'Affiche Rouge">
+              <figcaption><span class="pc-name">Thomas Elek (1924-1944)</span><span class="pc-cred">Extrait de l'Affiche Rouge — CC BY-SA 4.0, Wikimedia Commons</span></figcaption>
+            </figure>
+            <p>Voici des précisions sur Marcel Rajman et Olga Bancic, deux figures du groupe qui suscitent souvent beaucoup d'intérêt</p>
+            <h3 class="group-title">1. Marcel Rajman : Le "tireur" audacieux</h3>
+            <ul>
+              <li><strong>Pourquoi il est marquant :</strong> Il était l'un des membres les plus jeunes et les plus actifs des "détachements de choc" des FTP-MOI. Il était connu pour son sang-froid impressionnant lors des opérations.</li>
+              <li><strong>Le détail qui "accroche" :</strong> Il était chargé de diriger des équipes pour des attentats extrêmement risqués en plein Paris, notamment contre des officiers de haut rang.</li>
+              <li><strong>Comment en parler :</strong> "Marcel Rajman, c'est l'audace incarnée. À peine vingt ans, juif polonais, il a mené des opérations de harcèlement contre l'occupant en plein jour. Pour la Gestapo, il était devenu une obsession : ils ont déployé des moyens immenses juste pour réussir à l'intercepter."</li>
+            </ul>
+            <h3 class="group-title">2. Olga Bancic : La seule femme fusillée</h3>
+            <ul>
+              <li><strong>Pourquoi elle est marquante :</strong> Elle était la seule femme du groupe à avoir été condamnée à mort et fusillée au Mont-Valérien. Elle était roumaine, juive, et communiste.</li>
+              <li><strong>Le détail qui "accroche" :</strong> Avant d'être fusillée, elle a réussi à faire sortir clandestinement du secret de sa cellule une lettre pour sa petite fille, Dolores, qu'elle ne reverrait jamais. C'est une lettre déchirante qui humanise tout le groupe.</li>
+              <li><strong>Comment en parler :</strong> "Olga Bancic est le cœur battant de ce groupe. Elle était chargée de la logistique, du transport des explosifs, une fonction incroyablement risquée. Mais c'est son dernier message, une lettre à sa petite fille, Dolores, qui nous rappelle l'humanité derrière le combat. Elle ne se battait pas par haine, mais par amour pour que son enfant puisse grandir dans un monde libéré."</li>
+            </ul>
+            <div class="question-block">
+              <span class="block-label">Questions au public</span>
+              <p>Si vous vous demandez :</p>
+              <p><strong>"Pourquoi ils étaient communistes ?"</strong></p>
+              <p>Nous pouvons répondre: "À l'époque, les FTP-MOI étaient effectivement très largement composés de militants communistes, car le PCF était l'un des premiers partis à organiser la lutte armée clandestine dès 1941. Mais ce qui est fascinant, c'est que ces hommes et femmes ont dépassé les clivages idéologiques pour se retrouver sur un seul point : la libération de la France."</p>
+              <p><strong>"Est-ce qu'ils étaient des terroristes ?"</strong></p>
+              <p>Nous vous dirons "C'est exactement ce que la propagande nazie voulait que l'on pense. Pour l'occupant, oui, ils étaient des 'terroristes' car ils remettaient en cause leur pouvoir. Mais pour nous, aujourd'hui, ce sont des combattants de la liberté. La différence, c'est la légitimité de la cause. Et l'Histoire a tranché : ils sont au Panthéon."</p>
+            </div>
+            <p>"Chaque nom que je viens de citer, c'est une vie qui a basculé. Ce ne sont pas des statistiques, ce sont nos racines. Et c'est cette force collective qui permet de passer le relais à la suite du récit..."</p>
+            <h3 class="group-title">1. La source "fondamentale" (Le document d'époque)</h3>
+            <p>Pour le groupe Manouchian, la référence absolue qui fait autorité est :</p>
+            <ul>
+              <li><strong>Source :</strong> Le rapport du procès de février 1944 (tenu par la cour martiale allemande).</li>
+              <li><strong>Pourquoi la citer :</strong> Parce que c'est une preuve directe de la manière dont les nazis ont cherché à déshumaniser le groupe.</li>
+              <li><strong>Ce que l'on peut dire :</strong> "Si vous voulez vérifier ce que je vous dis, je vous renvoie au rapport du procès du 21 février 1944. C'est un document historique glaçant. C'est là qu'on voit noir sur blanc comment ils ont été jugés."</li>
+            </ul>
+            <h3 class="group-title">2. Le témoignage direct (La voix de l'intérieur)</h3>
+            <p>Pour Mélinée Manouchian, il n'y a pas de meilleure source qu'elle-même.</p>
+            <ul>
+              <li><strong>Source :</strong> Manouchian par Mélinée Manouchian (Éditions Bourgois).</li>
+              <li><strong>Pourquoi la citer :</strong> C'est un récit de vie. C'est le témoignage d'une femme qui était au cœur de l'organisation.</li>
+              <li><strong>Ce que l'on peut dire :</strong> "Tout ce que je vous raconte sur le quotidien du groupe, je le tire du livre de Mélinée Manouchian elle-même. Elle a tout écrit, elle a été la mémoire vivante de Missak. C'est un témoignage irremplaçable."</li>
+            </ul>
+            <h3 class="group-title">3. La rigueur historique</h3>
+            <p>Pour le travail sur le groupe des FTP-MOI, on peut vous citer des historiens reconnus qui ont dépouillé les archives de la Préfecture de Police.</p>
+            <ul>
+              <li><strong>Source :</strong> L'Affiche Rouge de Stéphane Courtois ou les travaux d'Adam Rayski.</li>
+              <li><strong>Pourquoi les citer :</strong> Ce sont eux qui ont travaillé sur la fameuse "Brigade Spéciale n°2" qui a traqué le groupe.</li>
+              <li><strong>Ce que l'on peut dire :</strong> "Pour la partie plus 'enquête' sur comment ils ont été traqués, je me suis basée sur les travaux de Stéphane Courtois et d'Adam Rayski. Ils ont croisé les archives de la police française de l'époque avec les dossiers de la Gestapo. C'est du factuel, du 100% sourcé."</li>
+            </ul>
+            <p>On entend souvent une remarque : 'Beaucoup de résistants étaient communistes'. C'est un fait historique, particulièrement au sein des FTP-MOI. Mais pourquoi cet engagement massif ?</p>
+            <p>Il faut comprendre que dès 1941, le Parti communiste français a fait un choix radical : celui de la lutte armée clandestine immédiate, alors que d'autres organisations hésitaient encore sur la marche à suivre. Le PCF a su transformer sa structure militante, très habituée à la clandestinité, en une véritable armée de l'ombre.</p>
+            <p>Mais ce qui rend le PCF différent de ses homologues dans d'autres pays, c'est sa capacité à avoir fusionné la lutte des classes avec une forme de patriotisme français. Ils se sont appropriés le destin de la France, devenant ce qu'on a appelé le 'parti des fusillés'. Ce n'était pas l'importation d'une idéologie étrangère, mais une adaptation très concrète face à l'urgence de l'Occupation.</p>
+            <p>Cependant, sur le terrain — que ce soit dans les réseaux comme Kernabat ou dans les actions locales comme celles que nous étudions à Coray — l'étiquette politique s'effaçait bien souvent devant l'urgence de la survie. La Résistance, ce n'était pas un parti, c'était un front : quand vous êtes traqué par la Gestapo, ce qui compte, c'est la confiance et le courage de celui qui est à vos côtés, pas sa carte d'adhérent."</p>
+            <div class="lesson-block">
+              <span class="block-label">La devise du collectif</span>
+              <p>"L'Histoire n'est pas une opinion, c'est une étude des faits. Ces sources sont là pour que chacun puisse vérifier par soi-même."</p>
+              <p>— L'Empire Contre-Intox</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · 23 noms, deux destins d'exécution</h3>
+            <p>L'Affiche Rouge portait <strong>23 condamnés</strong> : <strong>22 hommes fusillés au Mont-Valérien</strong> le 21 février 1944, et <strong>Olga Bancic décapitée</strong> à Stuttgart le 10 mai 1944 (la loi allemande interdisait le peloton pour les femmes). Écrire « 23 fusillés au Mont-Valérien » est donc inexact.</p>
+            <p><strong>Joseph Epstein</strong> ne figure pas sur l'Affiche Rouge : arrêté le même jour que Manouchian, il fut jugé et fusillé séparément (Mont-Valérien, 11 avril 1944).</p>
+            <p>L'expression <strong>« parti des fusillés »</strong> est réelle, mais le chiffre des « 75 000 fusillés » est un mythe : les Allemands ont fusillé environ <strong>4 500 personnes</strong> en France (le total approche ~25–30 000 seulement si l'on y inclut les morts en déportation, toutes tendances confondues).</p>
+            <div class="tag-list"><span class="tag">Mont-Valérien</span><span class="tag">FTP-MOI</span><span class="tag">Propagande</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 10 — CHANSON L'AFFICHE ROUGE ===== -->
+      <section class="chapter reveal" id="chanson" aria-labelledby="c10">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Intermède</p><h2 id="c10">Chanson — « L'Affiche Rouge »</h2></div>
+          <div class="chapter-number">10</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">L'Affiche Rouge — Feu! Chatterton, paroles d'Aragon</p>
+            <div class="dialogue-block">
+              <p>"Ces paroles nous rappellent que ces hommes n'étaient pas des machines de guerre, mais des êtres de chair et d'esprit. (Pause).</p>
+              <p>Cette histoire de courage et d'engagement ne s'est pas arrêtée aux portes de Paris. Elle a résonné partout en France, dans chaque ferme, dans chaque maquis, jusque dans nos terres bretonnes. C'est d'ailleurs ce qui m'amène à vous parler du réseau Kernabat, parce que, comme pour Missak, ce sont des anonymes qui ont décidé de dire 'non'."</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>La chanson</h3>
+            <p>Le poème <strong>« Strophes pour se souvenir »</strong> de <strong>Louis Aragon</strong> (1955), inspiré de la lettre de Manouchian, a été mis en musique par Léo Ferré — puis repris par le groupe <strong>Feu! Chatterton</strong>.</p>
+            <div class="tag-list"><span class="tag">Aragon</span><span class="tag">Mémoire</span><span class="tag">Bretagne</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 11 — KERNABAT ===== -->
+      <section class="chapter reveal" id="kernabat" aria-labelledby="c11">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Bloc III · La Bretagne, le terrain, l'héritage familial</p><h2 id="c11">Kernabat</h2></div>
+          <div class="chapter-number">11</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/kernabat-stele.png" alt="Une stèle de granit dressée à l'aube dans le bocage du Finistère, des parachutes descendant dans le ciel de nuit finissante, filets d'or et brume bleutée" loading="lazy">
+              <figcaption>Kernabat (Scaër) — la stèle des martyrs, et le parachutage du 14-15 juillet 1944</figcaption>
+            </figure>
+            <p>Nous avons parlé de la grande Histoire avec Manouchian et l'Affiche Rouge, ce combat qui a marqué tout un pays. Mais cette volonté de dire 'non' ne se trouvait pas seulement dans les dossiers des tribunaux nazis à Paris ; elle a aussi battu le rappel dans nos campagnes, jusque sur nos terres bretonnes. C'est là que le réseau Kernabat prend tout son sens."</p>
+            <div class="dialogue-block">
+              <span class="block-label">Au micro</span>
+              <p>« On vous a parlé de la Résistance comme d'une mosaïque de destins. Pour comprendre ce que cela signifie vraiment, il faut sortir des grands récits et regarder de plus près ce qui se passait ici, en Bretagne, entre 1943 et 1944. C'est là qu'intervient le réseau Kernabat.</p>
+              <p>Ce réseau, c'est l'illustration parfaite de ce que nous défendons avec L'Empire Contre-Intox : la Résistance, ce n'est pas une légende, c'est une affaire de rigueur et de précision opérationnelle. Dans le Finistère, autour de Coray, les membres de Kernabat ne faisaient pas de grands discours. Ils faisaient du renseignement : ils cartographiaient les mouvements de troupes, sécurisaient des zones, et protégeaient des vies dans une clandestinité absolue.</p>
+              <p>Quand on plonge dans leurs archives — dans ces rapports de transmission qui ont traversé le temps — on ne voit pas seulement des noms sur des stèles. On voit une organisation structurée qui, face à la Gestapo, savait que chaque détail comptait. C'est exactement cette discipline-là dont nous avons besoin en 2026.</p>
+              <p>Aujourd'hui, quand on lutte contre la désinformation, on est face aux mêmes exigences qu'eux : vérifier ses sources, recouper les faits, et comprendre que, comme pour le réseau Kernabat, le combat le plus efficace est souvent celui que l'on mène avec méthode, loin des projecteurs, pour que la vérité continue d'exister. »</p>
+            </div>
+            <div class="question-block">
+              <span class="block-label">Un instant de silence</span>
+              <p>"Avant d'aller plus loin, nous devons un instant de silence à ceux qui n'ont pas vu la Libération. La Résistance, ce n'est pas seulement l'action, c'est aussi le risque ultime : l'arrestation, la torture et l'exécution. À Coray et ailleurs, de nombreux membres des réseaux comme Kernabat ont payé de leur vie ce choix de la liberté. Leurs noms gravés sur les stèles que nous croisons ne sont pas que des monuments, ce sont des rappels de ce que la tyrannie coûte lorsqu'on décide de s'y opposer."</p>
+            </div>
+            <p>"Parfois, l'Histoire nous semble lointaine, enfermée dans les archives. Mais elle vit aussi à travers nos familles. Pour comprendre ce poids du choix dont nous parlions avec Ymir, je voulais partager avec vous un témoignage qui m'est très personnel. C'est celui de ma tante, qui porte en elle la mémoire de ceux qui ont vécu cette époque, de ceux qui ont été traqués, et de ceux qui, comme ses proches, ont dû naviguer dans cette clandestinité périlleuse. C'est un récit qui replace ces visages derrière les dates que nous étudions."</p>
+            <h3 class="group-title">Synthèse : L'épopée de Kernabat et la Libération de Scaër</h3>
+            <p class="sub">1. Le drame de Kernabat (15 juillet 1944)</p>
+            <ul>
+              <li><strong>Le contexte :</strong> Dans la nuit du 14 au 15 juillet, un parachutage massif (16 tonnes d'armes et vivres) est organisé à Kervir, près de Kernabat (Coray). Le transfert du matériel vers les dépôts est assuré par des paysans.</li>
+              <li><strong>L'accrochage :</strong> Dès l'aube, les Allemands, renseignés, encerclent la zone. Une bataille inégale s'engage entre environ 150 maquisards peu aguerris et un commando allemand supérieur en nombre et en armement.</li>
+              <li><strong>Les pertes :</strong> Les combats sont d'une extrême violence. Le bilan humain est lourd : 18 résistants sont tombés, dont les frères François et Jean Jacob ainsi que Grégoire Le Cam. Certains prisonniers ont subi d'atroces souffrances avant d'être exécutés.</li>
+              <li><strong>Le sacrifice :</strong> Des actes héroïques ont marqué cette journée, comme celui du quartier-maître Pierre Salomon qui a tenu tête à l'ennemi pour protéger des civils. Kernabat et Quillien furent incendiés par les Allemands en représailles.</li>
+            </ul>
+            <p class="sub">2. La Libération de Scaër (Août 1944)</p>
+            <ul>
+              <li><strong>La mobilisation :</strong> Après une période de renforcement des groupes, l'ordre de mobilisation générale est donné le 3 août. Le plan prévoit l'encerclement de Scaër, chaque groupe occupant une position stratégique.</li>
+              <li><strong>Les combats :</strong> Après une manœuvre de feinte des troupes allemandes vers Gourin, des affrontements éclatent à leur retour. Les F.T.P. et les F.F.I. livrent des combats acharnés à Rouzigou, à la Boissière et sur la route de Gourin.</li>
+              <li><strong>La libération :</strong> Le 4 août, Scaër est libérée par les résistants unis. Les combats se poursuivent toutefois dans les jours suivants à Créis-Obet et aux alentours de Quimperlé pour détruire des convois de munitions ennemis.</li>
+            </ul>
+            <p class="sub">3. L'engagement continu</p>
+            <ul>
+              <li><strong>Après la libération :</strong> Les résistants scaërois ne déposent pas les armes. Ils se relaient pendant plusieurs mois avec les groupes de Quimperlé et Bannalec pour tenir le siège autour de la poche de Lorient, subissant encore des pertes, notamment parmi les hommes du Capitaine Charles Fur.</li>
+            </ul>
+            <div class="dialogue-block">
+              <span class="block-label">Témoignage — un héritage familial</span>
+              <p>« Si je vous parle de Kernabat aujourd'hui, ce n'est pas par hasard. Ce n'est pas seulement un dossier d'archive pour moi, c'est une partie de mon héritage familial.</p>
+              <p>Mon grand-oncle était là, sur le terrain, aux côtés de Grégoire Le Cam et des frères François, Jean et Abel Jacob. Ils avaient à peine vingt ans quand ils ont décidé de prendre les armes contre l'occupant. Ils n'étaient pas des soldats, c'étaient des jeunes gens qui ont fait le choix, au péril de leur vie, de ne pas se soumettre.</p>
+              <p>La tragédie a frappé cruellement : la famille Jacob a perdu trois fils. Les survivants, dont mon grand-oncle, ont porté en eux le traumatisme de ce qu'ils ont vu, un silence qu'ils ont gardé toute leur vie. Quant à mon grand-père, il n'a même pas pu assister aux obsèques de ses amis : il était traqué par l'occupant et devait rester dans l'ombre.</p>
+              <p>Mais la Résistance, ce sont aussi ceux qui restent. J'ai recueilli le témoignage de ma tante, qui n'avait que cinq ans ce jour-là. Ses souvenirs sont intacts. Elle jouait au bord d'une rivière quand le père de son amie, un médecin, est arrivé en urgence. Il avait entendu les tirs de Kernabat. Il les a mises dans sa voiture, les a mises à l'abri chez lui, avant de repartir immédiatement vers le danger pour soigner les blessés.</p>
+              <p>Ma tante, elle, se souvient du bruit des tirs. Elle se souvient de cette bascule brutale entre l'enfance et la tragédie.</p>
+              <p>C'est cet héritage-là, fait de courage, de pertes irréparables et de silences traumatiques, qui alimente mon engagement au sein de L'Empire Contre-Intox. Quand on se bat pour la vérité et contre la désinformation, on se bat pour que ces destins-là, ceux de ces jeunes de vingt ans, ne soient jamais effacés. »</p>
+            </div>
+            <h3 class="group-title">Les Sources</h3>
+            <p>Les informations que nous avons utilisées pour construire ton récit proviennent du document historique que tu m'as transmis, écrit par E. GUEGUEN, traitant des événements de KERNABAT - QUILLIEN en juillet 1944.</p>
+            <p>Voici le détail de la provenance des faits cités :</p>
+            <ul>
+              <li><strong>L'implication des frères Jacob et de Grégoire Le Cam :</strong> Ces noms figurent explicitement dans la liste des "martyrs" et des résistants ayant participé à ces combats.</li>
+              <li><strong>La jeunesse des résistants :</strong> Le texte souligne que ces hommes étaient des "jeunes gens" qui se sont battus avec bravoure, beaucoup recevant leur baptême du feu à cette occasion.</li>
+              <li><strong>La perte des trois fils de la famille Jacob :</strong> Le document confirme que les noms de François Jacob et Jean Jacob figurent parmi ceux gravés sur la stèle des martyrs de Coray, témoignant de leur sacrifice aux côtés de leurs camarades.</li>
+              <li><strong>Le contexte des combats et l'incendie des lieux :</strong> Le texte décrit les combats inégaux contre un commando allemand aguerri, ainsi que l'incendie des sites de Kernabat et Quillien en représailles.</li>
+              <li><strong>Le sacrifice des résistants :</strong> Le récit mentionne que certains prisonniers ont été achevés après un "long martyre" et que les corps étaient parfois méconnaissables, n'étant identifiés que par leurs vêtements ou papiers.</li>
+            </ul>
+            <p>Si vous passez un jour à Kernabat, vous pouvez aller vous recueillir près de la stèle.</p>
+            <div class="dialogue-block">
+              <span class="block-label">Hommage</span>
+              <p>« En pensant à eux, à Grégoire, aux frères Jacob, à mon grand-oncle, et à tous ces héros dont les noms sont gravés sur nos monuments, je ne peux m'empêcher de penser aussi à tous leurs compagnons de lutte. À ces anonymes, aux cultivateurs, aux messagers, aux femmes et aux hommes de l'ombre qui, sans jamais chercher la gloire, ont fait de la Résistance un acte collectif.</p>
+              <p>Car au-delà des noms que l'on cite, c'est toute une chaîne de solidarité qui a fait front. Ils étaient jeunes, ils avaient des rêves, et pourtant, ils ont tout sacrifié pour que nous puissions, aujourd'hui, parler librement et vivre en paix. Sans cet engagement courageux, sans ce refus obstiné de la soumission de la part de ces milliers de combattants, connus ou oubliés, la France aurait sans doute un autre visage, un visage que nous ne voudrions probablement pas connaître.</p>
+              <p>C'est là que réside le véritable espoir : cette liberté dont nous jouissons n'est pas un dû, c'est un héritage vivant qui nous rappelle que, même face à l'injustice, la solidarité et le courage peuvent changer le cours de l'Histoire. Honorons-les tous, nommés ou inconnus, et leurs compagnons de la première heure, en restant fidèles à cet idéal, en cultivant la vérité, et en veillant les uns sur les autres. »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · la géographie &amp; le rapport de forces</h3>
+            <p>Le lieu-dit <strong>Kernabat est sur la commune de Scaër</strong> (Quillien sur Tourc'h) ; le parachutage de <strong>Kervir</strong> relève du secteur de Coray. Le « réseau Kernabat » désigne surtout le <strong>combat et le lieu</strong>, plus qu'un réseau de renseignement nommé.</p>
+            <p>Face à <strong>environ 160 maquisards</strong> (≈50 FTP de Scaër + ≈100 FFI de Rosporden), les Allemands alignaient <strong>près d'un millier de soldats</strong> — pas « un commando » (le commando, lui, était allié : 3 agents Jedburgh parachutés).</p>
+            <p>Le <strong>bilan de 18 morts</strong> (9 de Scaër + 9 de Rosporden, dont <strong>François et Jean Jacob</strong> et Grégoire Le Cam) et le rôle du quartier-maître <strong>Pierre Salomon</strong> sont confirmés ; la <strong>libération de Scaër le 4 août 1944</strong> aussi. En revanche, seuls <strong>deux frères Jacob</strong> figurent parmi les tués (un troisième, Abel, n'est pas attesté comme victime). L'<strong>incendie de Kernabat et Quillien</strong>, le document d'E. Guéguen et plusieurs détails micro-locaux (Rouzigou, Créis-Obet, capitaine Charles Fur, mobilisation du 3 août) relèvent de la <strong>mémoire locale</strong> et ne sont pas vérifiables en ligne — fidèlement repris du récit familial.</p>
+            <div class="tag-list"><span class="tag">Coray · Scaër</span><span class="tag">Frères Jacob</span><span class="tag">Stèle des martyrs</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 12 — JEAN MOULIN ===== -->
+      <section class="chapter reveal" id="moulin" aria-labelledby="c12">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Bloc I · L'unificateur de la Résistance</p><h2 id="c12">Jean Moulin</h2></div>
+          <div class="chapter-number">12</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/jean-moulin.png" alt="Silhouette symbolique de Jean Moulin à l'écharpe, au chapeau et aux lunettes, de multiples fils convergeant en un seul faisceau derrière lui : l'unification de la Résistance" loading="lazy">
+              <figcaption>L'unificateur — quand les courants dispersés convergent en le CNR</figcaption>
+            </figure>
+            <figure class="portrait-card">
+              <img src="assets/portraits/jean-moulin.jpg" alt="Portrait de Jean Moulin par le Studio Harcourt, 1937, avec écharpe et chapeau">
+              <figcaption><span class="pc-name">Jean Moulin (1899-1943)</span><span class="pc-cred">Studio Harcourt, 1937 — domaine public</span></figcaption>
+            </figure>
+            <p>Jean Moulin est une figure emblématique de l'histoire de France, symbole de la Résistance française durant la Seconde Guerre mondiale. Son parcours, sa détermination et son destin tragique ont fait de lui un héros national dont l'héritage demeure essentiel.</p>
+            <p>Toujours muni d'une écharpe, d'un chapeau et souvent de lunettes, il utilisait ces attributs pour dissimuler les cicatrices de sa tentative de suicide en 1940. Homme de culture et artiste peintre à ses heures perdues (sous le nom de Romanin), il a su utiliser sa finesse psychologique pour manœuvrer entre les diverses factions de la Résistance avec une autorité naturelle.</p>
+            <table class="dtable">
+              <caption>Fiche d'Identité : Jean Moulin</caption>
+              <thead><tr><th>Rubrique</th><th>Détails</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Nom complet</td><td>Jean Pierre Moulin</td></tr>
+                <tr><td class="k">Pseudonymes</td><td>Rex, Max, Joseph Mercier (noms de clandestinité)</td></tr>
+                <tr><td class="k">Date de naissance</td><td>20 juin 1899</td></tr>
+                <tr><td class="k">Lieu de naissance</td><td>Béziers, France</td></tr>
+                <tr><td class="k">Date de décès</td><td>8 juillet 1943 (à 44 ans)</td></tr>
+                <tr><td class="k">Profession initiale</td><td>Préfet de la République</td></tr>
+                <tr><td class="k">Fonction historique</td><td>Unificateur de la Résistance française</td></tr>
+                <tr><td class="k">Engagement</td><td>Chef du Conseil National de la Résistance (CNR)</td></tr>
+                <tr><td class="k">Distinctions</td><td>Compagnon de la Libération, Grand-Croix de la Légion d'honneur (à titre posthume)</td></tr>
+              </tbody>
+            </table>
+            <h3 class="group-title">Faits Marquants</h3>
+            <ul>
+              <li><strong>1937 :</strong> Devient le plus jeune préfet de France (à Aveyron).</li>
+              <li><strong>1940 :</strong> Premier acte de résistance en refusant de cautionner un crime de guerre nazi contre des tirailleurs sénégalais.</li>
+              <li><strong>1942 :</strong> Parachuté en France par le général de Gaulle pour organiser la Résistance intérieure.</li>
+              <li><strong>1943 :</strong> Préside la première réunion du CNR le 27 mai, unissant les mouvements, partis et syndicats.</li>
+              <li><strong>1943 :</strong> Arrêté à Caluire le 21 juin, torturé par Klaus Barbie, il meurt en déportation sans avoir parlé.</li>
+              <li><strong>1964 :</strong> Transfert de ses cendres au Panthéon.</li>
+            </ul>
+            <h3 class="group-title">Un Préfet Républicain</h3>
+            <p>Avant de devenir le visage de la Résistance, Jean Moulin mène une brillante carrière dans l'administration préfectorale. À 37 ans, il devient le plus jeune préfet de France. Homme de conviction profondément républicain et attaché à l'État de droit, il se montre dès le début de sa carrière intègre et efficace.</p>
+            <p>En juin 1940, alors qu'il est préfet d'Eure-et-Loir, il refuse de signer un protocole imposé par les autorités d'occupation nazies accusant à tort des tirailleurs sénégalais d'exactions. Il préfère tenter de mettre fin à ses jours, marquant ainsi son premier acte de résistance physique et morale contre le régime nazi.</p>
+            <h3 class="group-title">L'Unificateur de la Résistance</h3>
+            <p>Révoqué par le régime de Vichy, Jean Moulin rejoint Londres en 1941. Il rencontre le général de Gaulle, qui lui confie une mission capitale : unifier les mouvements de Résistance français, alors très divisés et souvent concurrents.</p>
+            <ul>
+              <li><strong>Le parachutage :</strong> En janvier 1942, il est parachuté en France sous le nom de "Rex" (puis "Max").</li>
+              <li><strong>La création du CNR :</strong> Au prix d'un travail de diplomatie clandestine épuisant, il parvient à fédérer les réseaux, les syndicats et les partis politiques. Le 27 mai 1943, il préside la première réunion du Conseil National de la Résistance (CNR) à Paris, unissant ainsi les forces intérieures sous l'autorité du général de Gaulle.</li>
+            </ul>
+            <h3 class="group-title">L'Arrestation et le Sacrifice</h3>
+            <p>Le 21 juin 1943, à Caluire, près de Lyon, Jean Moulin est arrêté par la Gestapo, suite à une trahison au sein des réseaux. Emmené au siège de la Gestapo à Lyon, il est torturé par Klaus Barbie.</p>
+            <p>Malgré les souffrances extrêmes, il ne parle pas. Il meurt dans le train qui le conduit vers l'Allemagne, le 8 juillet 1943, sans jamais avoir révélé l'organisation complexe qu'il avait patiemment bâtie.</p>
+            <h3 class="group-title">Un Héritage Immortel</h3>
+            <p>Le nom de Jean Moulin est indissociable du programme du CNR, qui a jeté les bases de la sécurité sociale, du droit du travail et des grandes réformes de la Libération, fondant ainsi une partie de notre modèle social actuel.</p>
+            <p>En 1964, à l'occasion du transfert de ses cendres au Panthéon, André Malraux a prononcé un hommage célèbre qui définit encore aujourd'hui sa place dans la mémoire nationale :</p>
+            <div class="dialogue-block">
+              <span class="block-label">André Malraux — Panthéon, 1964</span>
+              <p>"Entre ici, Jean Moulin, avec ton terrible cortège. Avec ceux qui sont morts dans les caves sans avoir parlé, comme toi ; et même, ce qui est peut-être le plus atroce, sans avoir été reconnus."</p>
+            </div>
+            <p>Jean Moulin demeure la figure de proue de ceux qui, au péril de leur vie, ont choisi de refuser l'oppression au nom des valeurs de la République.</p>
+            <h3 class="group-title">1. Jean Moulin et les réseaux de Résistance en Bretagne</h3>
+            <p>La Bretagne a été une terre de résistance précoce et intense, marquée par une topographie propice à la clandestinité (le bocage, les côtes) et une forte tradition maritime. Jean Moulin, dans sa volonté d'unification, a dû composer avec des mouvements aux structures très variées.</p>
+            <ul>
+              <li><strong>L'importance des réseaux locaux :</strong> En Bretagne, la Résistance reposait sur des réseaux très soudés, souvent familiaux ou professionnels (comme ceux dont votre famille a été proche, impliquant des figures comme Grégoire Le Cam ou les frères Jacob). Jean Moulin savait que pour réussir, il fallait que les ordres de Londres se synchronisent avec ces initiatives locales.</li>
+              <li><strong>La coordination des maquis :</strong> La Bretagne était stratégique pour le débarquement futur. Moulin a œuvré à structurer les mouvements (tels que Libération-Nord ou Défense de la France qui y étaient actifs) pour qu'ils ne soient pas des unités isolées, mais des forces prêtes à agir de concert avec les Alliés.</li>
+              <li><strong>La jonction entre renseignement et action :</strong> Moulin insistait pour que les réseaux bretons, qui excellaient dans le renseignement (le "Bureau des opérations aériennes" - BOA, pour préparer les parachutages) et le sabotage, soient intégrés dans une stratégie d'ensemble portée par le CNR. Il a aidé à transformer ces résistances éparses en une "Armée de l'ombre" coordonnée.</li>
+            </ul>
+            <h3 class="group-title">2. Le CNR : La vision pour la France d'après-guerre</h3>
+            <p>Si le CNR est surtout connu comme l'organe politique de la Résistance, il est surtout resté dans l'histoire pour son programme, intitulé "Les Jours Heureux". Jean Moulin, en réunissant ces courants politiques opposés (communistes, socialistes, gaullistes, radicaux, démocrates-chrétiens), a réussi un tour de force politique : s'accorder sur le modèle de société à construire après la Libération.</p>
+            <p>Ce programme prévoyait des réformes structurelles majeures :</p>
+            <ul>
+              <li><strong>La Sécurité Sociale :</strong> La création d'un système complet visant à libérer les travailleurs de l'angoisse du lendemain (maladie, vieillesse, accidents du travail).</li>
+              <li><strong>La Nationalisation des secteurs clés :</strong> Pour redonner à la nation le contrôle de ses ressources énergétiques (EDF, GDF) et de son système bancaire et assurantiel.</li>
+              <li><strong>La gestion paritaire :</strong> Un principe cher à Moulin : les travailleurs devaient avoir leur mot à dire dans la gestion des entreprises et des caisses de protection sociale.</li>
+              <li><strong>Le rétablissement du suffrage universel :</strong> Et, acte majeur de justice sociale, l'octroi du droit de vote aux femmes, préparé par ce même élan réformateur.</li>
+            </ul>
+            <p class="sub">En résumé :</p>
+            <p>La grandeur de Jean Moulin réside dans cette dualité. D'un côté, il était l'homme de l'ombre qui savait que sans l'action des réseaux locaux (comme les résistants bretons qui risquaient leur vie chaque jour), la libération était impossible. De l'autre, il était l'architecte visionnaire qui a compris que pour éviter de replonger dans les dérives de l'avant-guerre, il fallait offrir au peuple français un horizon social solide et ambitieux.</p>
+            <p>Il n'a pas seulement uni la Résistance pour gagner la guerre ; il l'a unie pour construire une paix sociale durable.</p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le programme du CNR</h3>
+            <p>Le parcours est confirmé : préfet de l'Aveyron en 1937, refus du 17 juin 1940 (tirailleurs sénégalais) et tentative de suicide, Londres fin 1941, parachutage <strong>dans la nuit du 1ᵉʳ au 2 janvier 1942</strong>, CNR le 27 mai 1943 (48 rue du Four), Caluire le 21 juin 1943, Panthéon le 19 décembre 1964. La citation de Malraux est exacte.</p>
+            <p>Deux précisions sur le programme <strong>« Les Jours heureux »</strong> (15 mars 1944) : <strong>EDF et GDF n'existaient pas encore</strong> (créés en 1946) — le texte parlait de nationalisation de l'énergie. Et le <strong>droit de vote des femmes</strong> découle de l'<strong>ordonnance du 21 avril 1944</strong> (de Gaulle, Alger), pas directement du programme.</p>
+            <div class="tag-list"><span class="tag">CNR · 27 mai 1943</span><span class="tag">Caluire</span><span class="tag">Panthéon 1964</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 13 — MARIE-THÉRÈSE AUFFRAY ===== -->
+      <section class="chapter reveal" id="auffray" aria-labelledby="c13">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Bloc II · L'art comme arme</p><h2 id="c13">Marie-Thérèse Auffray</h2></div>
+          <div class="chapter-number">13</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="portrait-card">
+              <img src="assets/portraits/marie-therese-auffray.jpg" alt="Portrait de Marie-Thérèse Auffray, artiste peintre et résistante">
+              <figcaption><span class="pc-name">Marie-Thérèse Auffray (1912-1990)</span><span class="pc-cred">© Cahtls, CC BY-SA 4.0, Wikimedia Commons</span></figcaption>
+            </figure>
+            <p>Artiste engagée et entière, elle a toujours refusé de se soumettre aux attentes du marché de l'art, préférant préserver son intégrité créative. Son art, qualifié d'expressionniste, était pour elle un moyen de traduire des émotions brutes — qu'elles soient joyeuses ou tragiques — tout en restant profondément ancrée dans l'actualité de son temps, comme en témoigne sa toile Le temps des cerises.</p>
+            <p>Cette figure est particulièrement intéressante pour vos projets, notamment par la manière dont elle a su allier, comme Jean Moulin, l'engagement clandestin et une vie culturelle intense, tout en restant une femme de terrain.</p>
+            <table class="dtable">
+              <caption>Fiche d'Identité : Marie-Thérèse Auffray</caption>
+              <thead><tr><th>Rubrique</th><th>Détails</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Nom complet</td><td>Marie-Thérèse Auffray</td></tr>
+                <tr><td class="k">Date de naissance</td><td>11 octobre 1912</td></tr>
+                <tr><td class="k">Lieu de naissance</td><td>Saint-Quay-Portrieux, Bretagne, France</td></tr>
+                <tr><td class="k">Date de décès</td><td>27 septembre 1990 (à 77 ans)</td></tr>
+                <tr><td class="k">Lieu de décès</td><td>Échauffour, Orne, France</td></tr>
+                <tr><td class="k">Profession</td><td>Artiste peintre expressionniste</td></tr>
+                <tr><td class="k">Engagement</td><td>Résistante durant la Seconde Guerre mondiale</td></tr>
+                <tr><td class="k">Réseau</td><td>Ceux de la Libération (CDL)</td></tr>
+                <tr><td class="k">Distinctions</td><td>Hommage officiel du président Dwight D. Eisenhower</td></tr>
+              </tbody>
+            </table>
+            <h3 class="group-title">Faits Marquants</h3>
+            <ul>
+              <li><strong>1920 :</strong> Devient "Pupille de la Nation" après le décès de son père, militaire dans la Marine. S'installe à Paris avec sa famille.</li>
+              <li><strong>Années 1930/40 :</strong> Fréquente le milieu artistique de Montparnasse et installe son atelier dans le 14e arrondissement.</li>
+              <li><strong>1940-1944 :</strong> Entre en résistance au sein du réseau Ceux de la Libération. Elle utilise son statut de peintre comme couverture pour mener des activités clandestines, notamment en Normandie.</li>
+              <li><strong>L'exploit d'Échauffour :</strong> Avec sa compagne Noëlle Guillou, elle héberge et exfiltre des aviateurs alliés. Elle sauve notamment l'aviateur américain Arnold Pederson, dont l'avion s'était écrasé en février 1944.</li>
+              <li><strong>Après-guerre :</strong> Poursuit une carrière d'artiste indépendante, rejetant les codes mercantiles du marché de l'art. Elle expose aux côtés de grands noms (Picasso, Léger) et s'engage dans la vie politique locale à Échauffour.</li>
+            </ul>
+            <p>Marie-Thérèse Auffray a évolué dans des réseaux où l'engagement artistique, les convictions personnelles et l'action clandestine s'entremêlaient étroitement. Ses liens, qu'ils soient amicaux, professionnels ou militants, illustrent la complexité de son parcours.</p>
+            <h3 class="group-title">Les réseaux de Résistance</h3>
+            <ul>
+              <li><strong>Ceux de la Libération (CDL) :</strong> C'est au sein de ce réseau important que Marie-Thérèse Auffray s'est engagée. CDL était particulièrement actif dans la collecte de renseignements et l'aide à l'évasion des aviateurs alliés. Elle y a mis en œuvre ses capacités logistiques, utilisant notamment son atelier et ses déplacements pour des missions de liaison.</li>
+              <li><strong>La filière d'évasion en Normandie :</strong> En s'installant à Échauffour, dans l'Orne, elle a créé un maillon crucial pour cacher et protéger les aviateurs dont les avions étaient abattus au-dessus du territoire français. Son lien avec Noëlle Guillou, sa compagne, fut le pivot de cet engagement : ensemble, elles ont risqué leur vie pour assurer la sécurité de ces hommes avant leur exfiltration vers l'Espagne ou l'Angleterre.</li>
+              <li><strong>Le lien avec les Alliés :</strong> Son action a été reconnue officiellement par le général Dwight D. Eisenhower, commandant suprême des forces alliées, qui lui a adressé un certificat de remerciement pour ses services éminents. Ce lien témoigne de l'importance de son aide concrète à l'effort de guerre allié.</li>
+            </ul>
+            <h3 class="group-title">L'entourage artistique et intellectuel</h3>
+            <p>Marie-Thérèse Auffray ne séparait pas son art de sa vie. Ses liens dans le milieu artistique étaient autant des soutiens moraux que des espaces de réflexion :</p>
+            <ul>
+              <li><strong>Montparnasse et les avant-gardes :</strong> En fréquentant les milieux artistiques parisiens, elle a tissé des liens avec des figures influentes comme Fernand Léger ou Pablo Picasso. Ces fréquentations l'ont inscrite dans une modernité artistique qui rejetait le conformisme, une posture qu'elle a conservée toute sa vie, tant dans sa peinture que dans sa manière de vivre en dehors des conventions sociales.</li>
+              <li><strong>L'amitié comme moteur :</strong> Ses amitiés, souvent indéfectibles, étaient marquées par un refus du compromis. Sa vie à Échauffour, loin du tumulte parisien mais riche d'une intense vie intérieure, lui permettait de maintenir des liens avec des intellectuels et des artistes qui partageaient ses idéaux de liberté et d'intégrité, loin des pressions du marché de l'art.</li>
+            </ul>
+            <h3 class="group-title">Un lien singulier : L'aviateur Arnold Pederson</h3>
+            <p>Parmi les liens nés de la guerre, celui avec l'aviateur américain Arnold Pederson reste le plus emblématique. Son sauvetage en février 1944 n'était pas seulement une mission de résistance, c'est devenu un lien humain durable. Cette rencontre illustre la dimension profondément humaniste de son engagement : pour elle, la Résistance était une nécessité morale qui transcendait les frontières et les nationalités.</p>
+            <h3 class="group-title">"La Peinture et le Réseau"</h3>
+            <p class="sub">1. L'Accroche : L'atelier comme camouflage</p>
+            <ul>
+              <li><strong>Visuel :</strong> Travail sur le contraste entre la toile (couleurs vives, expressionnisme) et le silence tendu d'une maison à Échauffour en 1944.</li>
+              <li><strong>Idée :</strong> Expliquer comment son atelier n'était pas seulement un lieu de création, mais un espace où chaque mouvement était mesuré. Son pinceau était son arme de paix, tandis que son réseau était son arme de guerre.</li>
+              <li><strong>Leçon :</strong> Comment une artiste habituée à l'expression de soi a-t-elle réussi à devenir "invisible" pour les autorités d'occupation ?</li>
+            </ul>
+            <p class="sub">2. Le Pivot : L'acte de courage (L'épisode Pederson)</p>
+            <ul>
+              <li><strong>Visuel :</strong> Focus sur la rencontre. Une nuit d'hiver, un aviateur tombe du ciel. La transition entre le monde des arts parisiens et la réalité crue du maquis.</li>
+              <li><strong>L'analyse :</strong> Pourquoi risquer sa vie pour un inconnu ? Ici, on peut explorer sa vision humaniste. Pour elle, la liberté n'est pas seulement un concept politique, c'est une valeur qu'on défend au quotidien, à sa porte.</li>
+            </ul>
+            <p class="sub">3. La Tension : Art vs Engagement</p>
+            <ul>
+              <li><strong>La problématique :</strong> Après la guerre, beaucoup d'artistes ont dû choisir entre leur carrière et leur engagement. Marie-Thérèse a choisi de rester entière, quitte à être marginalisée par le marché de l'art.</li>
+              <li><strong>Le lien avec le présent :</strong> C'est un excellent point pour un live avec "L'Empire Contre-Intox". On peut poser la question : Peut-on être un artiste "pur" quand le monde autour de nous demande de prendre position ?</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · précisions</h3>
+            <p>État civil, réseau <strong>Ceux de la Libération</strong>, sauvetage d'<strong>Arnold Pederson</strong> (février 1944, retrouvé vivant à 95 ans en 2016), certificat d'Eisenhower et lien avec <strong>Noëlle Guillou</strong> : tout est confirmé.</p>
+            <p>Deux nuances : la qualification « <strong>expressionniste</strong> » n'est pas celle de sa biographie officielle (peintre coloriste/figurative) ; et elle a surtout <strong>exposé aux côtés</strong> de Picasso (Salon d'Automne 1944) sans qu'une fréquentation personnelle de Picasso/Léger soit documentée. <em>Le temps des cerises</em> est son dernier tableau connu (Salon des Indépendants, 1971).</p>
+            <div class="tag-list"><span class="tag">Ceux de la Libération</span><span class="tag">Échauffour</span><span class="tag">Aviateurs alliés</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 14 — RENÉ DUCHEZ ===== -->
+      <section class="chapter reveal" id="duchez" aria-labelledby="c14">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Bloc III · L'espionnage artisanal</p><h2 id="c14">René Duchez</h2></div>
+          <div class="chapter-number">14</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>René Duchez incarne l'archétype du résistant civil anonyme. Contrairement à des figures militaires, il a utilisé son expertise artisanale pour devenir l'un des espions les plus efficaces de la guerre. Il illustre parfaitement la manière dont des citoyens ordinaires, utilisant leur quotidien comme outil de lutte, ont pu renverser l'équilibre des forces grâce à une audace froide et calculée.</p>
+            <p>Ce qui est particulièrement puissant avec René Duchez pour notre collectif "L'Empire Contre-Intox", c'est la véracité factuelle de son exploit. Il ne s'agit pas de légende, mais d'une donnée pure : un simple artisan a changé le cours de la guerre en dérobant un document.</p>
+            <table class="dtable">
+              <caption>Fiche d'Identité : René Duchez</caption>
+              <thead><tr><th>Rubrique</th><th>Détails</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Nom complet</td><td>René Duchez</td></tr>
+                <tr><td class="k">Date de naissance</td><td>1903</td></tr>
+                <tr><td class="k">Date de décès</td><td>1976</td></tr>
+                <tr><td class="k">Profession</td><td>Tapissier-décorateur</td></tr>
+                <tr><td class="k">Réseau</td><td>Alliance (sous-réseau « Jade-Fitzroy »)</td></tr>
+                <tr><td class="k">Rôle historique</td><td>Espion et informateur crucial pour le "Jour J"</td></tr>
+              </tbody>
+            </table>
+            <h3 class="group-title">Faits Marquants</h3>
+            <ul>
+              <li><strong>Artisan de l'ombre :</strong> Tapissier à Caen, il utilise son métier pour accéder aux locaux de l'Organisation Todt (l'organisation de génie civil nazie). Sa profession est sa meilleure couverture : il circule librement, pose des tapisseries et déplace ses échelles sans éveiller les soupçons des officiers allemands.</li>
+              <li><strong>Le vol du "Mur" :</strong> En 1942, alors qu'il travaille dans le bureau d'un officier allemand à Caen, il dérobe un document hautement confidentiel : la carte précise des défenses côtières allemandes en Normandie, connue sous le nom de "Mur de l'Atlantique".</li>
+              <li><strong>L'acheminement :</strong> Au péril de sa vie, il fait parvenir ce document à Londres par le biais de son réseau. Ce plan détaillé a été une pièce maîtresse pour les Alliés lors de la planification de l'opération Overlord.</li>
+              <li><strong>Action continue :</strong> Après ce coup d'éclat, il continue de fournir des informations cruciales sur les mouvements de troupes et les installations militaires jusqu'à la Libération.</li>
+            </ul>
+            <p>L'opération menée par René Duchez est l'un des exemples les plus impressionnants d'espionnage "artisanal" de la Seconde Guerre mondiale. Voici les détails cruciaux de cette action, qui allie audace, sang-froid et une bonne dose de chance.</p>
+            <h3 class="group-title">1. L'opportunité : Un bureau sans surveillance</h3>
+            <p>En mai 1942, René Duchez, qui travaille pour le réseau de résistance Centurie (rattaché au réseau OCM - Organisation Civile et Militaire), se fait embaucher comme peintre en bâtiment dans les bureaux de l'Organisation Todt à Caen. Son objectif est simple : observer et collecter des renseignements sur la construction du Mur de l'Atlantique.</p>
+            <h3 class="group-title">2. Le "vol" : Un tour de passe-passe audacieux</h3>
+            <p>Alors qu'il travaille dans le bureau du responsable allemand, le Bauleiter Schnedderer, un officier entre et dépose un gros paquet de cartes sur le bureau.</p>
+            <ul>
+              <li><strong>L'instant décisif :</strong> Schnedderer déplie une carte immense sur son bureau. Duchez, qui fait semblant de préparer ses échantillons de papier peint, comprend immédiatement par transparence et par la précision du tracé qu'il s'agit des plans détaillés des fortifications côtières normandes.</li>
+              <li><strong>La diversion :</strong> Un sergent vient soudainement interrompre l'officier pour lui demander des instructions. Schnedderer se lève, s'éloigne de son bureau et se place devant une porte située derrière lui pour dicter ses ordres.</li>
+              <li><strong>L'action :</strong> Profitant de ces quelques secondes d'inattention, Duchez s'approche du bureau, glisse la première carte (la plus stratégique) sous son bras, puis, dans un geste de panique totale, la dissimule derrière un miroir mural.</li>
+            </ul>
+            <h3 class="group-title">3. La récupération et la sortie</h3>
+            <p>Après avoir terminé son travail, Duchez récupère le document caché derrière le miroir, le glisse dans ses rouleaux de papier peint et quitte les lieux en gardant un calme olympien, malgré une terreur intérieure intense. Il savait que s'il était découvert, la torture et la mort étaient les seules issues immédiates.</p>
+            <h3 class="group-title">4. La transmission vers Londres</h3>
+            <p>Une fois le précieux document en sa possession, la logistique de la transmission devient une affaire de réseau :</p>
+            <ul>
+              <li><strong>Le passage à l'action :</strong> Il transmet la carte à ses contacts au sein du réseau de résistance.</li>
+              <li><strong>Le canal :</strong> La carte est acheminée à travers la France occupée pour atteindre le colonel Rémy (Gilbert Renault), une figure centrale du renseignement français à Londres.</li>
+              <li><strong>L'impact stratégique :</strong> Rémy fait passer le document par une liaison clandestine vers le Royaume-Uni. Selon les historiens et les témoignages de l'époque, cette carte fut déterminante : elle a offert aux Alliés une vision précise des points faibles du Mur de l'Atlantique, confirmant que la Normandie était un site viable et stratégique pour le débarquement du 6 juin 1944.</li>
+            </ul>
+            <p>Ce récit est parfait pour "L'Empire Contre-Intox" car il souligne trois points essentiels :</p>
+            <ol>
+              <li><strong>L'intelligence de terrain vs la théorie :</strong> Une seule action d'un citoyen ordinaire a pesé plus lourd que des mois d'analyses aériennes.</li>
+              <li><strong>La preuve matérielle :</strong> Contrairement aux rumeurs ou aux fausses informations, le vol de Duchez est documenté par un objet physique (la carte) qui a changé le cours de l'Histoire.</li>
+              <li><strong>L'invisibilité :</strong> Duchez n'était pas un espion de cinéma ; il était un artisan dont la "force" était de devenir invisible au regard des occupants.</li>
+            </ol>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le bon réseau</h3>
+            <p>René Duchez appartenait à l'<strong>OCM et à son réseau Centurie</strong> (pseudonyme « François »), <strong>pas au réseau Alliance / Jade-Fitzroy</strong> comme l'indique la fiche — le récit du live le rectifie d'ailleurs lui-même plus bas. Il est mort le <strong>18 août 1948</strong>, pas en 1976.</p>
+            <p>Le vol d'un plan des défenses (mai 1942) et sa transmission vers Londres via le <strong>colonel Rémy</strong> sont historiques. Les détails romanesques (le miroir, le « Bauleiter Schnedderer ») viennent du récit popularisé et ne sont pas confirmés par les sources institutionnelles — à lire « selon le récit ».</p>
+            <div class="tag-list"><span class="tag">OCM · Centurie</span><span class="tag">Mur de l'Atlantique</span><span class="tag">Colonel Rémy</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 15 — ROBERT DOUIN ===== -->
+      <section class="chapter reveal" id="douin" aria-labelledby="c15">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Bloc III · L'intellectuel engagé</p><h2 id="c15">Robert Douin</h2></div>
+          <div class="chapter-number">15</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="portrait-card">
+              <img src="assets/portraits/robert-douin.jpg" alt="Portrait de Robert Douin, 1940">
+              <figcaption><span class="pc-name">Robert Douin (1891-1944)</span><span class="pc-cred">Photo de 1940 — domaine public, Wikimedia Commons</span></figcaption>
+            </figure>
+            <p>Robert Douin est une figure incontournable de la Résistance normande, particulièrement à Caen. Si René Duchez est l'artisan de l'espionnage, Robert Douin est celui qui a su structurer et coordonner la collecte d'informations dans une ville devenue un verrou stratégique pour les Allemands.</p>
+            <p>Robert Douin est le symbole de l'intellectuel engagé. Il n'a pas utilisé la force des armes, mais la puissance de l'observation et de l'organisation. Pour lui, la conservation du patrimoine français allait de pair avec la défense de la liberté de la nation : sauver les œuvres et sauver le pays étaient les deux faces d'une même pièce.</p>
+            <table class="dtable">
+              <caption>Fiche d'Identité : Robert Douin</caption>
+              <thead><tr><th>Rubrique</th><th>Détails</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Nom complet</td><td>Robert Douin</td></tr>
+                <tr><td class="k">Date de naissance</td><td>1900</td></tr>
+                <tr><td class="k">Date de décès</td><td>1944 (fusillé)</td></tr>
+                <tr><td class="k">Profession</td><td>Sculpteur et conservateur de musée</td></tr>
+                <tr><td class="k">Réseau</td><td>Alliance (sous-réseau « Jade-Fitzroy »)</td></tr>
+                <tr><td class="k">Rôle historique</td><td>Chef du réseau Alliance pour la Basse-Normandie</td></tr>
+              </tbody>
+            </table>
+            <h3 class="group-title">Faits Marquants</h3>
+            <ul>
+              <li><strong>La culture comme couverture :</strong> En tant que conservateur du musée des Beaux-Arts de Caen, il bénéficie d'une autorité intellectuelle qui lui permet d'agir avec une relative liberté. Il utilise le musée comme lieu de réunion clandestin et comme centre de stockage pour des documents sensibles.</li>
+              <li><strong>Un maître du renseignement :</strong> Il devient le responsable du secteur Basse-Normandie pour le réseau Alliance. Son travail est titanesque : il organise la surveillance systématique des installations militaires, des mouvements de troupes et des centres névralgiques de la Todt dans la région caennaise.</li>
+              <li><strong>L'œil sur le Mur :</strong> Il est l'homme qui centralise les informations récoltées par d'autres résistants (dont René Duchez, avec qui il collabore étroitement). Il supervise la transmission de ces renseignements cruciaux vers Londres par radio ou par courriers clandestins.</li>
+              <li><strong>La tragique fin :</strong> Arrêté par la Gestapo en mars 1944, il est soumis à des interrogatoires brutaux. Il est fusillé le 6 juin 1944 (le jour même du Débarquement) à la prison de Caen, avec d'autres résistants.</li>
+            </ul>
+            <p>Pour nos projets au sein de "L'Empire Contre-Intox", Robert Douin offre un angle d'analyse différent :</p>
+            <ol>
+              <li><strong>La rigueur scientifique :</strong> Douin n'était pas un aventurier. Il était un scientifique (conservateur). Son travail de résistance était méthodique, presque académique dans son souci du détail. C'est un excellent exemple à opposer aux récits romancés ou fantaisistes de la Résistance.</li>
+              <li><strong>Le sacrifice ultime :</strong> Le fait qu'il soit fusillé le 6 juin, alors que le Débarquement commençait, ajoute une dimension tragique et historique très forte. Cela montre que la victoire a été rendue possible par des hommes qui savaient qu'ils ne verraient probablement pas la Libération.</li>
+              <li><strong>La collaboration entre acteurs locaux :</strong> Son lien avec René Duchez est un modèle de travail en réseau. Vous avez là un cas d'école sur la manière dont des compétences différentes (l'artisan et l'intellectuel) se complètent pour accomplir une mission commune.</li>
+            </ol>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · état civil &amp; fonction</h3>
+            <p>Robert Douin est né le <strong>4 juillet 1891</strong> (pas en 1900), et son pseudonyme dans Alliance était <strong>« Civette »</strong> (et non « Singe », nom que lui prête une autre partie du live). Il était <strong>directeur de l'École des Beaux-Arts de Caen</strong>, pas conservateur du musée.</p>
+            <p>Chef du secteur de Caen pour le réseau Alliance, auteur d'une <strong>carte de 17 m</strong> des fortifications côtières, il est <strong>fusillé le 6 juin 1944</strong> à la prison de Caen lors du massacre des prisonniers — tout cela est confirmé.</p>
+            <div class="tag-list"><span class="tag">Alliance</span><span class="tag">Caen · 6 juin 1944</span><span class="tag">Carte des défenses</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 16 — ANDRÉ MICHEL ===== -->
+      <section class="chapter reveal" id="michel" aria-labelledby="c16">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Bloc III · L'agent de l'ombre</p><h2 id="c16">André Michel</h2></div>
+          <div class="chapter-number">16</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>André Michel, une figure marquante de la Résistance, particulièrement lié au réseau Alliance (l'Arche de Noé) que nous venons d'évoquer. Il était un collaborateur direct de Robert Douin à Caen.</p>
+            <p>Son nom de code, "Corbeau", contraste avec la figure de "l'intellectuel" Douin. Dans la symbolique de l'Arche de Noé, le corbeau est l'oiseau de l'ombre, celui qui observe de haut et se déplace discrètement. C'est une illustration parfaite de la hiérarchie du renseignement : chaque "animal" avait une fonction précise pour que la structure globale reste invisible.</p>
+            <table class="dtable">
+              <caption>Fiche d'Identité : André Michel</caption>
+              <thead><tr><th>Rubrique</th><th>Détails</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Nom complet</td><td>André Michel</td></tr>
+                <tr><td class="k">Pseudonyme</td><td>"Corbeau" (au sein du réseau Alliance)</td></tr>
+                <tr><td class="k">Réseau</td><td>Alliance (sous-réseau « Jade-Fitzroy »)</td></tr>
+                <tr><td class="k">Rôle historique</td><td>Agent de renseignement et opérateur radio/liaison</td></tr>
+                <tr><td class="k">Zone d'action</td><td>Basse-Normandie (secteur de Caen)</td></tr>
+              </tbody>
+            </table>
+            <h3 class="group-title">Faits Marquants</h3>
+            <ul>
+              <li><strong>Bras droit de Robert Douin :</strong> André Michel travaillait en étroite collaboration avec Robert Douin. Ils formaient un duo complémentaire : Douin utilisait sa position de conservateur pour centraliser, tandis que Michel assurait la diffusion et les liaisons risquées sur le terrain.</li>
+              <li><strong>La collecte d'informations :</strong> Il était chargé de repérer les installations militaires allemandes, notamment les casernements et les dépôts de munitions. Son rôle était d'aller là où les autres ne pouvaient pas aller, en se fondant dans la population civile caennaise.</li>
+              <li><strong>La chute du secteur Caen :</strong> Lors de la vague d'arrestations qui a frappé le réseau Alliance au printemps 1944, André Michel a été traqué par la Gestapo en même temps que Douin et d'autres membres du réseau.</li>
+            </ul>
+            <p>En ajoutant André Michel à notre série de portraits, on construit une "cartographie humaine" de la Résistance à Caen.</p>
+            <ul>
+              <li><strong>Le duo Douin/Michel :</strong> C'est un exemple parfait de la structure hiérarchique du réseau Alliance. Vous avez ici la démonstration concrète du cloisonnement : si Douin (le chef de secteur) tombait, l'agent comme Michel devait être capable de continuer, ou vice-versa.</li>
+              <li><strong>La réalité des réseaux :</strong> En listant ces noms, vous montrez que la Résistance n'était pas une entité monolithique, mais un assemblage de vies humaines qui se croisent, collaborent, et finissent souvent par partager le même destin tragique.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · figure peu documentée</h3>
+            <p>Ce portrait est le plus fragile du dossier : aucune source en ligne ne confirme un <strong>« André Michel, alias Corbeau, opérateur radio de Douin »</strong> au sein d'Alliance. L'André Michel résistant attesté à Caen relevait d'un autre réseau (Hector) et fut fusillé dès <strong>mai 1942</strong>, et le pseudonyme « Corbeau » dans Alliance désigne une autre personne.</p>
+            <p>À considérer comme un récit à vérifier en archives plutôt qu'un fait établi — fidèlement repris du déroulé, mais signalé.</p>
+            <div class="tag-list"><span class="tag">Alliance</span><span class="tag">Caen</span><span class="tag">À vérifier</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 17 — LE RÉSEAU ALLIANCE / L'ARCHE DE NOÉ ===== -->
+      <section class="chapter reveal" id="alliance" aria-labelledby="c17">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le cerveau du renseignement</p><h2 id="c17">Le réseau Alliance — « L'Arche de Noé »</h2></div>
+          <div class="chapter-number">17</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/reseau-alliance.png" alt="Carte gravée de la Normandie de 1944, Caen relié à Londres par une ligne pointillée dorée, silhouettes d'animaux (hérisson, corbeau, civette) et ondes radio : le réseau Alliance" loading="lazy">
+              <figcaption>« L'Arche de Noé » — le renseignement de Caen à Londres, par noms d'animaux</figcaption>
+            </figure>
+            <figure class="portrait-card">
+              <img src="assets/portraits/marie-madeleine-fourcade.jpg" alt="Portrait de Marie-Madeleine Fourcade, chef du réseau Alliance">
+              <figcaption><span class="pc-name">MM. Fourcade (1909-1989)</span><span class="pc-cred">Photo d'archive — domaine public, Wikimedia Commons</span></figcaption>
+            </figure>
+            <p>En ajoutant André Michel à notre série de portraits, vous construisez une "cartographie humaine" de la Résistance à Caen.</p>
+            <ul>
+              <li><strong>Le duo Douin/Michel :</strong> C'est un exemple parfait de la structure hiérarchique du réseau Alliance. Vous avez ici la démonstration concrète du cloisonnement : si Douin (le chef de secteur) tombait, l'agent comme Michel devait être capable de continuer, ou vice-versa.</li>
+              <li><strong>La réalité des réseaux :</strong> En listant ces noms, vous montrez que la Résistance n'était pas une entité monolithique, mais un assemblage de vies humaines qui se croisent, collaborent, et finissent souvent par partager le même destin tragique.</li>
+            </ul>
+            <div class="dialogue-block">
+              <span class="block-label">Au micro</span>
+              <p>"Imaginez un réseau d'espionnage capable de fournir aux Alliés la cartographie exacte des défenses nazies. Un réseau si bien structuré que la Gestapo l'a surnommé 'L'Arche de Noé'. Non, ce n'est pas un film. C'est l'histoire vraie du réseau Alliance."</p>
+            </div>
+            <h3 class="group-title">1. Pourquoi "L'Arche de Noé" ?</h3>
+            <p>"Chaque agent, de Paris à Caen, portait un nom d'animal. Robert Douin était 'Singe', André Michel était 'Corbeau', Marie-Madeleine Fourcade, la chef du réseau, était 'Hérisson'. Pourquoi ? Pour une raison simple et brutale : si l'un tombe, il ne peut pas dénoncer ses camarades, car il ne connaît que leur pseudo. C'est le cloisonnement total."</p>
+            <h3 class="group-title">2. Le renseignement, pas le sabotage</h3>
+            <p>"Beaucoup pensent 'Résistance = Sabotage'. Pour Alliance, c'est différent. Leur arme, c'est l'information pure. Ils comptent les chars, ils localisent les batteries de DCA, ils copient les plans de l'Organisation Todt — comme René Duchez, le tapissier qui a volé la carte du Mur de l'Atlantique. C'est ce flux d'infos qui a permis le succès du Débarquement."</p>
+            <h3 class="group-title">3. Le prix de l'invisibilité</h3>
+            <p>"Être un animal dans cette Arche, c'était accepter d'être une proie. La Gestapo a traqué ce réseau avec une obsession totale, infiltrant des agents, multipliant les arrestations. Pourtant, malgré les tortures et les exécutions, comme celles de Douin et Michel à Caen, le réseau n'a jamais cessé d'émettre."</p>
+            <div class="question-block">
+              <span class="block-label">Conclusion (Appel à l'action)</span>
+              <p>"L'Histoire ne retient pas toujours les noms de ceux qui ont tout sacrifié pour que nous soyons libres aujourd'hui. Cette 'Arche', c'était le cerveau de la Résistance. Vous voulez savoir comment une femme, Marie-Madeleine Fourcade, a pu diriger ce réseau sous le nez de Barbie et de la Gestapo ? Dites-le moi en commentaire."</p>
+            </div>
+            <p><em>Utilisons une carte de la Normandie de 1944. Reliez Caen à Londres avec une ligne pointillée pour montrer la circulation de l'information.</em></p>
+            <p class="sub">Pourquoi ça marche pour "L'Empire Contre-Intox" :</p>
+            <ul>
+              <li>Vous déconstruisez le mythe du résistant solitaire.</li>
+              <li>Vous insistez sur la méthode (cloisonnement, transmission radio, renseignement humain) plutôt que sur la légende.</li>
+              <li>C'est une base historique solide qui permet d'introduire des sujets plus complexes comme le rôle des femmes (Marie-Madeleine Fourcade) ou les mécanismes de la trahison.</li>
+            </ul>
+            <table class="dtable">
+              <caption>Portrait : Marie-Madeleine Fourcade ("Hérisson")</caption>
+              <thead><tr><th>Rubrique</th><th>Détails</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Nom complet</td><td>Marie-Madeleine Fourcade (née Bridou)</td></tr>
+                <tr><td class="k">Pseudonyme</td><td>"Hérisson"</td></tr>
+                <tr><td class="k">Fonction</td><td>Chef du réseau Alliance (plus de 3 000 agents)</td></tr>
+                <tr><td class="k">Particularité</td><td>Seule femme à avoir dirigé un réseau de cette ampleur</td></tr>
+                <tr><td class="k">Héritage</td><td>Symbole de la résilience intellectuelle et tactique</td></tr>
+              </tbody>
+            </table>
+            <p class="sub">Pourquoi elle est indispensable à notre récit :</p>
+            <p>Elle n'était pas seulement une coordinatrice ; elle était le cerveau stratégique. Elle a réussi à imposer son autorité dans un milieu masculin, souvent machiste, tout en gérant une logistique complexe entre Londres et la France occupée. Elle a survécu à plusieurs arrestations et a toujours "reconstruit" son réseau, prouvant que le renseignement est une discipline de continuité, pas d'éclat éphémère.</p>
+            <h3 class="group-title">2. Structure pour Live : "L'Arche de Noé face aux mythes"</h3>
+            <p class="lede">Résistance : Mythes vs Réalité – Comment le réseau "Alliance" a fait tomber le Mur.</p>
+            <p class="sub">Introduction :</p>
+            <ul>
+              <li>Présentation du réseau Alliance par les noms d'animaux.</li>
+              <li>L'idée choc : "La Résistance, ce n'est pas juste des gens qui courent dans les bois avec des fusils. C'est surtout des gens comme vous et moi qui ont volé des cartes et fait de la radio sous le nez de la Gestapo."</li>
+            </ul>
+            <p class="sub">Phase 1 : Le "Débunkage" :</p>
+            <ul>
+              <li>Mythe : "Tous les résistants étaient des militaires."</li>
+              <li>Réalité : Présentation du tapissier (Duchez), du conservateur (Douin), et de l'agent radio (Michel).</li>
+              <li>Intervention : Expliquer pourquoi leur métier était leur meilleure couverture (l'invisibilité par le banal).</li>
+            </ul>
+            <p class="sub">Phase 2 : La tactique "Hérisson" :</p>
+            <ul>
+              <li>Focus sur le cloisonnement : Comment, techniquement, on empêche une information de fuiter vers l'ennemi.</li>
+              <li>Question au chat : "Si vous étiez un agent, quel animal choisiriez-vous et pourquoi ?" (Engagement facile et ludique).</li>
+            </ul>
+            <p class="sub">Phase 3 : Analyse des documents :</p>
+            <ul>
+              <li>Affichage de la carte de René Duchez</li>
+              <li>Débat : "Pourquoi ce morceau de papier vaut plus que 1000 fusils ?" (Démonstration de la puissance du renseignement).</li>
+            </ul>
+            <p class="sub">Conclusion :</p>
+            <ul>
+              <li>Hommage rapide : Mentionner que si nous parlons d'eux aujourd'hui, c'est pour refuser l'oubli.</li>
+              <li>Lien avec "L'Empire Contre-Intox" : "Défendre l'histoire contre les approximations, c'est aussi un acte de résistance."</li>
+            </ul>
+            <p>(Pour le live<br>
+            À gauche : Les visages et les "noms d'animaux".</p>
+            <ul>
+              <li>Au centre : La carte de Normandie avec des points rouges pour les actions (Caen, Échauffour).</li>
+              <li>À droite : Le portrait de Marie-Madeleine Fourcade.)</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · Fourcade &amp; les pseudonymes</h3>
+            <p><strong>Marie-Madeleine Fourcade</strong> (née Bridou, Marseille 1909 – Paris 1989) a bien dirigé Alliance (~3 000 agents) et fut <strong>la seule femme à diriger un réseau de cette ampleur</strong>. En revanche, contrairement à ce qu'affirme le live plus loin, elle n'a <strong>jamais été faite Compagnon de la Libération</strong> (c'est son mari Édouard Méric qui le fut).</p>
+            <p>Le pseudonyme de Douin dans Alliance était <strong>« Civette »</strong> ; « Singe » n'est pas attesté. Le surnom « L'Arche de Noé », les noms d'animaux et la spécialisation dans le renseignement pur sont confirmés.</p>
+            <div class="tag-list"><span class="tag">Alliance</span><span class="tag">Hérisson</span><span class="tag">Renseignement</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 18 — DES NOMS PARMI TANT D'AUTRES ===== -->
+      <section class="chapter reveal" id="autres" aria-labelledby="c18">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Les figures de l'ombre</p><h2 id="c18">Des noms parmi tant d'autres</h2></div>
+          <div class="chapter-number">18</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="portrait-grid">
+              <figure><img src="assets/portraits/daniel-cordier.png" alt="Portrait de Daniel Cordier"><figcaption>Daniel Cordier<span class="pg-sub">Secrétaire de Jean Moulin · CC BY 3.0</span></figcaption></figure>
+              <figure><img src="assets/portraits/laure-diebold.jpg" alt="Portrait de Laure Diebold"><figcaption>Laure Diebold<span class="pg-sub">Compagnon de la Libération · domaine public</span></figcaption></figure>
+            </div>
+            <p>Daniel Cordier, Laure Diebold, Suzette Boullier et Laure Moulin — dépasse largement le cadre d'un simple exercice mémoriel. Nous n'avons pas fait que seulement l'inventaire de noms ou de dates ; on a essayé de tisser, fil après fil, la tapisserie d'un engagement qui a rendu possible notre liberté d'aujourd'hui.</p>
+            <p>En croisant ces récits, on démontre que la Résistance ne fut pas un bloc monolithique, mais une mosaïque de courages individuels. Chacun, à son échelle — de la dactylographe qui risquait sa vie dans l'ombre au secrétaire qui gérait les arcanes du pouvoir clandestin — a été une pierre angulaire de l'édifice.</p>
+            <h3 class="group-title">Une lueur pour l'avenir</h3>
+            <p>Notre travail sur ces destins est porteur d'un message d'espoir puissant pour votre audience :</p>
+            <ul>
+              <li><strong>Le pouvoir de l'individu :</strong> Ces hommes et ces femmes nous rappellent que dans les moments les plus sombres, l'action d'une seule personne, aussi discrète soit-elle, peut infléchir le cours de l'Histoire.</li>
+              <li><strong>La force du lien :</strong> À travers ces figures, vous démontrez que c'est la solidarité, la confiance mutuelle et le refus collectif de l'indifférence qui finissent toujours par triompher des idéologies de division.</li>
+              <li><strong>La transmission comme acte de résistance :</strong> En remettant ces parcours dans la lumière lors de notre live, nous avons transformé leur mémoire en un moteur. On a essayé de prouvez que le passé, loin d'être un livre fermé, est un terreau fertile qui nous aide à mieux appréhender les défis contemporains.</li>
+            </ul>
+            <p class="sub">Notre live ne sera pas qu'une conférence :</p>
+            <p>Ce sera un pont....</p>
+            <p>Un pont entre la rigueur de l'historien et l'émotion de l'humain, entre les sacrifices d'hier et les aspirations de demain. En redonnant une voix à ceux qui ont tant œuvré dans le silence, vous participez à cette nécessité vitale de ne jamais oublier, non pas pour vivre dans le regret, mais pour nourrir, chaque jour, notre propre engagement envers les valeurs qui nous rassemblent.</p>
+            <h3 class="group-title">Daniel Cordier (1920–2020)</h3>
+            <ul>
+              <li><strong>Rôle :</strong> Secrétaire particulier de Jean Moulin (1942–1943).</li>
+              <li><strong>Contribution :</strong> Organisateur logistique, cryptographe et "bras droit" de la centralisation de la Résistance.</li>
+              <li><strong>Signe distinctif :</strong> A vécu 100 ans, devenant le passeur de mémoire indispensable de l'œuvre de Jean Moulin.</li>
+              <li><strong>Après-guerre :</strong> Galeriste influent, collectionneur d'art contemporain et auteur de mémoires cruciaux sur la Résistance.</li>
+            </ul>
+            <h3 class="group-title">Laure Diebold (1915–1965)</h3>
+            <ul>
+              <li><strong>Rôle :</strong> Secrétaire administrative et agent de liaison de Jean Moulin, puis de Georges Bidault.</li>
+              <li><strong>Contribution :</strong> Travail périlleux de dactylographie et de transmission des ordres au sein du Conseil National de la Résistance.</li>
+              <li><strong>Signe distinctif :</strong> Arrêtée, déportée à Ravensbrück, elle a survécu à l'horreur des camps malgré une santé brisée.</li>
+              <li><strong>Distinction :</strong> Compagnon de la Libération.</li>
+            </ul>
+            <h3 class="group-title">Suzette Boullier (1913–2003)</h3>
+            <ul>
+              <li><strong>Rôle :</strong> Agent de liaison et "boîte aux lettres" du réseau Alliance.</li>
+              <li><strong>Contribution :</strong> Rôle logistique vital pour la transmission des renseignements vers Londres dans l'ouest de la France (Bretagne).</li>
+              <li><strong>Signe distinctif :</strong> Figure de l'ombre exemplaire, incarnant le risque quotidien et l'abnégation des femmes dans les réseaux de renseignement maritime.</li>
+            </ul>
+            <h3 class="group-title">Laure Moulin (1892–1974)</h3>
+            <ul>
+              <li><strong>Rôle :</strong> Soutien indéfectible, complice et archiviste de son frère Jean Moulin.</li>
+              <li><strong>Contribution :</strong> Aide à la clandestinité, codage de messages, protection de la mémoire familiale et de la vérité historique.</li>
+              <li><strong>Signe distinctif :</strong> Figure de résilience qui a porté le poids du secret (mort de son frère) tout en menant sa propre carrière d'engagement social et politique.</li>
+              <li><strong>Héritage :</strong> L'architecte principale de la panthéonisation de Jean Moulin.</li>
+            </ul>
+            <table class="dtable">
+              <caption>Résumé en un coup d'œil</caption>
+              <thead><tr><th>Nom</th><th>Rôle principal</th><th>Qualité marquante</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Daniel Cordier</td><td>Secrétaire / Stratège</td><td>Gardien de la vérité historique</td></tr>
+                <tr><td class="k">Laure Diebold</td><td>Adjointe / Liaison</td><td>Force de caractère exceptionnelle</td></tr>
+                <tr><td class="k">Suzette Boullier</td><td>Boîte aux lettres</td><td>Courage dans l'action de terrain</td></tr>
+                <tr><td class="k">Laure Moulin</td><td>Soutien / Archiviste</td><td>Fidélité et résilience</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · sourçage</h3>
+            <p><strong>Daniel Cordier</strong> (1920-2020, 100 ans), <strong>Laure Diebold</strong> (1915-1965, déportée à Ravensbrück, l'une des seules <strong>6 femmes Compagnon de la Libération</strong>) et <strong>Laure Moulin</strong> (1892-1974, sœur de Jean Moulin) sont solidement documentés.</p>
+            <p><strong>Suzette Boullier</strong>, en revanche, n'a pu être confirmée par aucune source en ligne : figure très peu documentée, à vérifier en archives. Reprise fidèlement du déroulé, mais signalée.</p>
+            <div class="tag-list"><span class="tag">Daniel Cordier</span><span class="tag">Laure Diebold</span><span class="tag">Laure Moulin</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 19 — LES COMPAGNONS DE LA LIBÉRATION ===== -->
+      <section class="chapter reveal" id="compagnons" aria-labelledby="c19">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Une distinction, pas un réseau</p><h2 id="c19">Les Compagnons de la Libération</h2></div>
+          <div class="chapter-number">19</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Le terme "Compagnons de la Libération" désigne une distinction prestigieuse créée par le général de Gaulle en 1940, et non un réseau unique. Ce titre est décerné à des personnes, des unités militaires ou des communes ayant accompli des faits exceptionnels dans la libération de la France.</p>
+            <p>Dans le contexte de notre préparation sur le réseau Alliance et la Résistance, il est crucial de faire la distinction :</p>
+            <h3 class="group-title">1. La distinction : "Compagnon de la Libération"</h3>
+            <ul>
+              <li>Il s'agit d'un ordre national très restreint : il n'y a eu que 1 038 compagnons en tout, pour toute la durée de la guerre.</li>
+              <li>Ce titre récompense des actions d'un courage héroïque, souvent accomplies au péril de la vie, en France ou dans les rangs des Forces Françaises Libres (FFL).</li>
+              <li>Jean Moulin, figure centrale de votre carte, en est l'un des exemples les plus illustres, symbolisant l'unification de la Résistance sous l'égide du Conseil National de la Résistance (CNR).</li>
+            </ul>
+            <h3 class="group-title">2. Les membres de votre carte : "Résistants" vs "Compagnons"</h3>
+            <p>Il est important d'être précis dans vos futurs lives avec "L'Empire Contre-Intox" pour ne pas nourrir de confusions historiques :</p>
+            <ul>
+              <li><strong>Marie-Madeleine Fourcade :</strong> Elle est une figure majeure de la Résistance, chef du réseau Alliance. Elle a été faite Compagnon de la Libération, reconnaissant ainsi son rôle exceptionnel à la tête du renseignement allié.</li>
+              <li><strong>Jean Moulin :</strong> Il est le symbole même de l'unification, Compagnon de la Libération, ayant réussi à rassembler les mouvements sous l'autorité du général de Gaulle.</li>
+              <li><strong>Autres résistants (René Duchez, Robert Douin, André Michel, Gisèle Guillemot) :</strong> Ce sont des héros de la Résistance dont l'action a été fondamentale localement, notamment en Normandie. Si tous n'ont pas été nommés "Compagnons de la Libération", leur engagement au sein du réseau Alliance a été tout aussi vital pour la réussite du Débarquement.</li>
+            </ul>
+            <h3 class="group-title">3. Pourquoi c'est important pour notre projet</h3>
+            <ul>
+              <li><strong>Rigueur historique :</strong> En expliquant la différence entre un membre d'un réseau (comme Alliance) et le titre de "Compagnon de la Libération".</li>
+              <li><strong>Valorisation :</strong> On montre que la Résistance est une mosaïque : il y a les figures nationales très connues (Jean Moulin, Fourcade) et ceux dont l'action, plus "silencieuse" ou locale (comme Gisèle Guillemot ou Robert Douin), a été tout aussi déterminante pour la victoire finale.</li>
+            </ul>
+            <h3 class="group-title">Les noms</h3>
+            <div class="portrait-grid">
+              <figure><img src="assets/portraits/pierre-brossolette.jpg" alt="Portrait de Pierre Brossolette"><figcaption>Pierre Brossolette<span class="pg-sub">Compagnon de la Libération</span></figcaption></figure>
+              <figure><img src="assets/portraits/henri-frenay.jpg" alt="Portrait d'Henri Frenay"><figcaption>Henri Frenay<span class="pg-sub">Fondateur de Combat</span></figcaption></figure>
+              <figure><img src="assets/portraits/berty-albrecht.png" alt="Portrait de Berty Albrecht"><figcaption>Berty Albrecht<span class="pg-sub">Combat · Compagnon</span></figcaption></figure>
+              <figure><img src="assets/portraits/lucie-aubrac.jpg" alt="Portrait de Lucie Aubrac"><figcaption>Lucie Aubrac<span class="pg-sub">Libération-Sud</span></figcaption></figure>
+              <figure><img src="assets/portraits/jacques-chaban-delmas.jpg" alt="Portrait de Jacques Chaban-Delmas en général, 1944"><figcaption>J. Chaban-Delmas<span class="pg-sub">Délégué militaire, 1944</span></figcaption></figure>
+            </div>
+            <ul>
+              <li>Marie-Madeleine Fourcade (nom de code "Hérisson"), la chef du réseau Alliance.</li>
+              <li>Jean Moulin, figure unificatrice de la Résistance et du CNR.</li>
+              <li>René Duchez (nom de code "Le Tapissier"), connu pour avoir récupéré des plans stratégiques.</li>
+              <li>Robert Douin (nom de code "Singe"), conservateur du musée de Caen et chef de secteur.</li>
+              <li>André Michel (nom de code "Corbeau"), opérateur radio et agent de liaison.</li>
+              <li>Gisèle Guillemot (nom de code "Bicyclette"), agent de liaison dans le Calvados.</li>
+              <li>Arnold Pederson, dont le parcours est lié à l'action dans le secteur d'Échauffour.</li>
+              <li>Pierre Brossolette : Journaliste et homme politique, il est l'un des piliers de la Résistance aux côtés de Jean Moulin, travaillant sans relâche à l'unification des mouvements et aux liaisons avec Londres.</li>
+              <li>Henri Frenay : Fondateur du mouvement Combat, l'un des plus grands réseaux de la Résistance française, il a joué un rôle déterminant dans l'organisation de la lutte armée et du renseignement.</li>
+              <li>Berty Albrecht : Co-fondatrice du mouvement Combat avec Henri Frenay, elle a été une figure majeure de la lutte clandestine, organisant notamment le service social pour aider les familles de résistants arrêtés.</li>
+              <li>Emmanuel d'Astier de La Vigerie : Créateur du réseau Libération-Sud, il a été un acteur clé du renseignement et a contribué à la structuration du Conseil National de la Résistance (CNR).</li>
+              <li>Jacques Chaban-Delmas : Très jeune général de brigade dans la Résistance, il a coordonné les actions militaires des FFI (Forces Françaises de l'Intérieur) et a été un acteur central de la libération de Paris.</li>
+              <li>Lucie Aubrac : Figure emblématique de la Résistance, célèbre pour son courage indomptable, notamment lors de l'organisation d'opérations spectaculaires pour libérer ses compagnons d'armes des griffes de la Gestapo.</li>
+            </ul>
+            <p>N'oublions pas les autres que nous n'avons pas cité......</p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · qui fut Compagnon ?</h3>
+            <p>L'Ordre de la Libération (créé le 16 novembre 1940) compte <strong>1 038 Compagnons</strong> — plus 5 communes et 18 unités — dont <strong>seulement 6 femmes</strong> (Berty Albrecht et Laure Diebold en font partie).</p>
+            <p>Attention : <strong>Marie-Madeleine Fourcade n'a pas été Compagnon de la Libération</strong> (contrairement à ce qu'affirme cette liste). <strong>Gisèle Guillemot</strong> non plus. Jean Moulin, Brossolette, Frenay, Berty Albrecht, d'Astier, Chaban-Delmas et Lucie Aubrac, oui. Chaban-Delmas fut <strong>délégué militaire national</strong>, général de brigade à 29 ans (15 juin 1944).</p>
+            <div class="tag-list"><span class="tag">Ordre de la Libération</span><span class="tag">1 038 Compagnons</span><span class="tag">6 femmes</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 20 — CONCLUSION ===== -->
+      <section class="chapter reveal" id="conclusion" aria-labelledby="c20">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Clôture du live</p><h2 id="c20">Conclusion</h2></div>
+          <div class="chapter-number">20</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="dialogue-block">
+              <span class="block-label">Au micro</span>
+              <p>« En refermant ce chapitre sur les figures de l'ombre et les réseaux de la Résistance, on réalise que leur héritage ne réside pas seulement dans les manuels d'histoire. Ces hommes et ces femmes, du maquis aux réseaux de renseignements comme celui de L'Arche de Noé, ne se battaient pas pour la postérité ; ils se battaient pour la survie de la dignité humaine.</p>
+              <p>Ce que nous avons exploré aujourd'hui — cette soif de vérité, ce courage de s'opposer au mensonge institutionnalisé — est étrangement actuel. Aujourd'hui, notre résistance à nous, elle est informationnelle. Elle se joue dans notre capacité à vérifier, à confronter les sources, à ne pas céder à la facilité de l'approximation ou de la manipulation.</p>
+              <p>Alors, en hommage à ceux qui ont risqué leur vie pour que nous puissions aujourd'hui parler, penser et douter librement, je vous invite à rester exigeants. La transmission, c'est aussi savoir questionner le présent. Merci de m'avoir suivie dans ce voyage entre Kernabat et les grands courants de l'histoire. On se retrouve très vite pour décortiquer de nouveaux faits, car, comme toujours, le savoir reste notre meilleure ligne de défense. »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Le fil rouge</h3>
+            <p>« Notre résistance à nous, elle est informationnelle. » C'est exactement la démarche du collectif : vérifier, confronter les sources, refuser l'approximation — pour que la mémoire de ceux qui ont dit « non » reste juste.</p>
+            <div class="tag-list"><span class="tag">Mémoire</span><span class="tag">Esprit critique</span><span class="tag">Transmission</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 21 — LES SOURCES DU LIVE ===== -->
+      <section class="chapter reveal" id="sources-live" aria-labelledby="c21">
+        <div class="chapter-head">
+          <div><p class="section-kicker">L'appareil critique</p><h2 id="c21">Les Sources</h2></div>
+          <div class="chapter-number">21</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Voici les sources précises que nous avons identifiées dans notre dossier "Les Résistants.odt" pour étayer nos arguments lors de notre live :</p>
+            <ul>
+              <li><strong>Pour le groupe Manouchian et le réseau FTP-MOI :</strong> Vous pouvez vous appuyer sur le rapport du procès de février 1944 tenu par la cour martiale allemande, qui documente la tentative nazie de déshumanisation du groupe.</li>
+              <li><strong>Pour le parcours de Mélinée Manouchian :</strong> La source fondamentale est son propre ouvrage, Manouchian (éditions Bourgois), qui constitue un témoignage direct et irremplaçable de son engagement et de son rôle.</li>
+              <li><strong>Pour les méthodes de traque du groupe Manouchian :</strong> Vous pouvez citer les travaux des historiens Stéphane Courtois et Adam Rayski, qui ont croisé les archives de la Préfecture de Police avec les dossiers de la Gestapo.</li>
+              <li><strong>Pour les événements de Kernabat et Quillien (juillet 1944) :</strong> La source utilisée est le document historique rédigé par E. Gueguen, qui détaille les faits, les pertes et le contexte des combats en Bretagne.</li>
+              <li><strong>Pour le récit biographique et la vie de Cécile Rol-Tanguy :</strong> Vous pouvez mentionner les archives du Musée de la Libération de Paris ainsi que les entretiens qu'elle a accordés à l'INA.</li>
+            </ul>
+            <h3 class="group-title">Pour Jean Moulin :</h3>
+            <ul>
+              <li>Le programme du Conseil National de la Résistance (CNR), intitulé "Les Jours Heureux", est la source fondamentale pour comprendre sa vision politique et sociale pour la France d'après-guerre.</li>
+              <li>L'hommage solennel prononcé par André Malraux lors du transfert des cendres de Jean Moulin au Panthéon en 1964 est une référence incontournable pour saisir sa stature historique.</li>
+            </ul>
+            <h3 class="group-title">Pour Marie-Madeleine Fourcade et le réseau Alliance :</h3>
+            <ul>
+              <li>Le surnom de "L'Arche de Noé" donné par la Gestapo au réseau est un fait historique documenté qui illustre leur organisation par des noms de code animaliers pour assurer le cloisonnement.</li>
+              <li>Les archives liées au fonctionnement du réseau Alliance, qui était spécialisé dans le renseignement pur (comptage de chars, localisation de batteries de défense) plutôt que dans le sabotage direct, constituent la base de votre analyse sur leur efficacité stratégique.</li>
+            </ul>
+            <h3 class="group-title">Pour Marie-Thérèse Auffray :</h3>
+            <ul>
+              <li>Le certificat de remerciement officiel adressé par le général Dwight D. Eisenhower, commandant suprême des forces alliées, atteste de la reconnaissance de son aide éminente dans l'exfiltration d'aviateurs.</li>
+            </ul>
+            <h3 class="group-title">Pour René Duchez :</h3>
+            <ul>
+              <li>Le vol du plan du "Mur de l'Atlantique" dans les bureaux de l'Organisation Todt à Caen est un fait documenté qui a servi de pièce maîtresse pour la planification de l'opération Overlord par les Alliés.</li>
+            </ul>
+            <h3 class="group-title">Pour Robert Douin :</h3>
+            <ul>
+              <li>Son rôle de chef de secteur pour le réseau Alliance en Basse-Normandie et sa tragique exécution à la prison de Caen le 6 juin 1944 sont des éléments établis par les archives sur la résistance normande.</li>
+            </ul>
+            <p>Le réseau Alliance, surnommé "L'Arche de Noé" par la Gestapo, est une structure de renseignement majeure de la Seconde Guerre mondiale. Voici les points essentiels pour notre live :</p>
+            <ul>
+              <li><strong>Organisation et Sécurité :</strong> Pour garantir un cloisonnement total, chaque agent utilisait un nom de code d'animal. Si un membre était arrêté, il ne pouvait pas dénoncer ses camarades puisqu'il ne connaissait que leurs pseudonymes.</li>
+              <li><strong>Spécialisation :</strong> Contrairement aux réseaux axés sur le sabotage, Alliance se distinguait par sa spécialisation dans le renseignement pur. Ils collectaient des données stratégiques cruciales, telles que le comptage des chars ou la localisation précise des batteries de défense.</li>
+              <li><strong>Faits d'armes stratégiques :</strong> Le réseau a permis de fournir aux Alliés des documents décisifs, notamment la carte détaillée des défenses côtières du "Mur de l'Atlantique" volée par René Duchez. Ce flux d'informations a été déterminant pour le succès opérationnel du Débarquement du 6 juin 1944.</li>
+              <li><strong>Figures clés :</strong>
+                <ul>
+                  <li><strong>Marie-Madeleine Fourcade ("Hérisson") :</strong> Elle était la chef du réseau et la seule femme à avoir dirigé une organisation de cette envergure.</li>
+                  <li><strong>Robert Douin ("Singe") :</strong> Chef de secteur en Basse-Normandie, il centralisait les informations et a été fusillé le 6 juin 1944.</li>
+                  <li><strong>André Michel ("Corbeau") :</strong> Agent de renseignement et opérateur radio, il travaillait en duo étroit avec Robert Douin pour assurer les liaisons risquées sur le terrain.</li>
+                </ul>
+              </li>
+              <li><strong>Persévérance :</strong> Malgré une traque acharnée de la Gestapo, des infiltrations et de nombreuses arrestations, le réseau n'a jamais cessé d'émettre jusqu'à la Libération.</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">L'appareil critique du collectif</span>
+              <p>Chaque affirmation de ce dossier a été recoupée par l'Empire contre Intox : dates, grades, réseaux, lieux. Les corrections et nuances sont signalées au fil des chapitres (encadrés « anti-intox ») et centralisées dans le <a href="../../sources/sources.html">dossier Les Sources →</a>, avec les références autoritatives (Ordre de la Libération, Musée de la Libération de Paris, Mémorial de Caen, Panthéon, archives du Finistère).</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · une référence à confirmer</h3>
+            <p>L'ouvrage <em>Manouchian</em> de Mélinée Manouchian a paru en <strong>1974</strong> ; son éditeur d'origine est <strong>Les Éditeurs Français Réunis</strong> — le rattachement aux « éditions Bourgois » reste à confirmer.</p>
+            <p>Le document d'<strong>E. Guéguen</strong> sur Kernabat-Quillien est une source locale (non disponible en ligne) : à ne pas confondre avec André Guégan, « Bob », chef de groupe du maquis.</p>
+            <div class="tag-list"><span class="tag">Sources</span><span class="tag">Vérification</span><span class="tag">DOI &amp; archives</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="closing reveal" aria-labelledby="final">
+        <h2 id="final">Aujourd'hui, notre résistance à nous, elle est informationnelle.</h2>
+        <p>Ce dossier conserve mot pour mot le live d'Ymir &amp; Lalie sur les Résistants. Des figures de l'ombre aux réseaux de renseignement comme L'Arche de Noé, ces femmes et ces hommes ne se battaient pas pour la postérité ; ils se battaient pour la survie de la dignité humaine. Leur soif de vérité, leur courage de s'opposer au mensonge institutionnalisé, sont étrangement actuels — elle se joue, pour nous, dans notre capacité à vérifier, à confronter les sources, à ne pas céder à la facilité de l'approximation ou de la manipulation. La transmission, c'est aussi savoir questionner le présent.</p>
+      </section>
+
+      <section class="iono reveal" aria-labelledby="iono">
+        <p class="section-kicker">Iconographie</p>
+        <h2 id="iono">Portraits &amp; documents — crédits</h2>
+        <p>Les portraits photographiques sont des documents d'archive issus de <b>Wikimedia Commons</b>, sous licence libre ou dans le domaine public, cités avec leur source. Les illustrations d'ambiance (héro et figures de chapitre) ont été générées pour le dossier. Pour plusieurs résistant·e·s, <b>aucun portrait libre de droits n'a été trouvé</b> : nous avons préféré ne rien publier plutôt qu'une image incertaine, sous droits, ou indigne.</p>
+        <ul>
+          <li><b>Jean Moulin</b> &amp; <b>Joséphine Baker</b> — Studio Harcourt (1937 / 1940), domaine public.</li>
+          <li><b>Missak Manouchian</b>, <b>Mélinée Manouchian</b>, <b>Robert Douin</b>, <b>Marie-Madeleine Fourcade</b>, <b>Gisèle Guillemot</b>, <b>Laure Diebold</b>, <b>Pierre Brossolette</b>, <b>Henri Frenay</b>, <b>Berty Albrecht</b>, <b>Jacques Chaban-Delmas</b> — photos d'archive, domaine public (Wikimedia Commons).</li>
+          <li><b>Cécile Rol-Tanguy</b> — © Siren-Com, CC BY-SA 3.0.</li>
+          <li><b>Marie-Thérèse Auffray</b> — © Cahtls, CC BY-SA 4.0.</li>
+          <li><b>Thomas Elek</b> — extrait de l'Affiche Rouge, CC BY-SA 4.0.</li>
+          <li><b>Daniel Cordier</b> (2012) &amp; <b>Lucie Aubrac</b> — CC BY 3.0.</li>
+          <li><b>L'Affiche Rouge</b> (document de propagande, février 1944) — domaine public.</li>
+          <li><b><em>La Traversée de la nuit</em></b> (Geneviève de Gaulle-Anthonioz, Seuil 1998) — couverture éditeur, reproduite à titre documentaire.</li>
+          <li>Autres ouvrages cités sans couverture libre disponible : <b><em>Manouchian</em></b> (Mélinée Manouchian, 1974) et <b><em>L'Affiche rouge</em></b> (Stéphane Courtois &amp; Adam Rayski) — référencés dans le chapitre « Les Sources ».</li>
+          <li>Sans portrait libre : <b>Geneviève de Gaulle-Anthonioz</b>, <b>René Duchez</b>, <b>André Michel</b>, <b>Joseph Epstein</b>, <b>Marcel Rajman</b>, <b>Olga Bancic</b>, <b>Laure Moulin</b>, <b>Suzette Boullier</b> — figures non illustrées (toute image trouvée était sous droits, non identifiable ou indigne).</li>
+        </ul>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans la mémoire collective. Ce dossier prolonge le live en donnant au public une version lisible, structurée et partageable — chaque récit ramené à ses sources.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="lalie.jpeg" alt="Avatar de Lalie">
+              <img src="ymir.jpeg" alt="Avatar d'Ymir">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+          </div>
+          <div class="collective-actions">
+            <a class="button primary" href="../../index.html">Retour à l'index</a>
+            <a class="button" href="../esclavage/index.html">L'Esclavage triangulaire</a>
+            <a class="button" href="../ancetres-genetiques/index.html">Ancêtres génétiques</a>
+            <a class="button" href="../../sources/sources.html">Les Sources</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome créée à partir de <strong>la-resistance-transcript.txt</strong>. La transcription est conservée mot pour mot. Faits historiques vérifiés (Ordre de la Libération, Musée de la Libération de Paris, Mémorial de Caen, Panthéon, Musée de la Résistance nationale, archives locales du Finistère).</main>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => { nav.classList.remove("open"); mobileMenu.setAttribute("aria-expanded", "false"); }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    // Filet de sécurité pour les sections très hautes (jamais "intersectées" au seuil)
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }
+    document.addEventListener("scroll", revealTall, { passive: true });
+    window.addEventListener("resize", revealTall, { passive: true });
+    revealTall();
+  </script>
+</body>
+</html>

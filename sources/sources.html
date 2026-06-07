@@ -224,14 +224,14 @@
 
     <main>
       <section class="wrap hero">
-        <p class="eyebrow">Dossier XII · Vérification &amp; sources</p>
+        <p class="eyebrow">Dossier XVI · Vérification &amp; sources</p>
         <h2>Chaque donnée,<br>vérifiée et <span class="foil">sourcée</span>.</h2>
         <p class="lead">Pour chaque affirmation des dossiers — cosmologie, géologie, vie, exploration lunaire, éléments chimiques, données Terre 3D, ancêtres génétiques —, nous donnons un <b>résumé</b>, un <b>verdict</b> et la <b>source autoritative</b> (NASA, ESA, USGS, IUGS/ICS, Smithsonian, NIST, NHGRI, articles à comité de lecture). La science est déjà vertigineuse : encore faut-il pouvoir la vérifier.</p>
         <div class="stats">
           <div class="stat"><div class="n" id="stFiches">—</div><div class="l">Données vérifiées</div></div>
           <div class="stat"><div class="n" id="stSrc">—</div><div class="l">Sources de référence</div></div>
           <div class="stat"><div class="n" id="stDoi">—</div><div class="l">DOI vérifiés</div></div>
-          <div class="stat"><div class="n">12</div><div class="l">Dossiers audités</div></div>
+          <div class="stat"><div class="n">13</div><div class="l">Dossiers audités</div></div>
           <div class="stat"><div class="n">2</div><div class="l">Formulations à corriger</div></div>
         </div>
         <div class="legend" aria-label="Légende des verdicts">
@@ -258,6 +258,8 @@
       <section class="wrap section" id="esclavage"><div class="sec-head reveal"><p class="kick">Dossier XI · Lalie &amp; Ymir</p><h3>L'Esclavage triangulaire</h3><p>Traite atlantique, Code Noir, bulletin de l'IFAN, Nantes port négrier et fracture napoléonienne — dossier <b>d'histoire</b> : sources muséales et institutionnelles (Musée d'histoire de Nantes, Fondation pour la mémoire de l'esclavage, SlaveVoyages, BnF), pas de DOI.</p></div><div class="grid" id="g-esclavage"></div></section>
       <section class="wrap section" id="tornades-cyclones"><div class="sec-head reveal"><p class="kick">Dossier XII · Provoxys</p><h3>Tornades, Typhons &amp; Ouragans</h3><p>Le live de Provoxys : physique des vortex, simulation Navier–Stokes 3D, et un grand tour des tempêtes — sources autoritatives (NOAA, NSSL, NWS, SPC, JMA, JTWC, HKO, NHC, IPCC) et <b>19 DOI vérifiés</b> via Crossref.</p></div><div class="grid" id="g-tornades-cyclones"></div></section>
       <section class="wrap section" id="abeilles"><div class="sec-head reveal"><p class="kick">Dossier XIII · PhantomBlast</p><h3>L'Abeille — Apis mellifera</h3><p>De la biologie moléculaire à l'écologie globale : classification, géométrie de l'alvéole, société, miel, pollinisation, danse, menaces et apithérapie — sources autoritatives (INRAE, MNHN, USDA, IPBES, FAO, OMS/BMJ) et <b>12 DOI vérifiés</b> via Crossref.</p></div><div class="grid" id="g-abeilles"></div></section>
+      <section class="wrap section" id="resistance"><div class="sec-head reveal"><p class="kick">Dossier XV · Lalie &amp; Ymir</p><h3>Les Résistants</h3><p>Portraits de courage : Jean Moulin &amp; le CNR, le réseau Alliance (« L'Arche de Noé »), Manouchian &amp; l'Affiche Rouge, Joséphine Baker, Cécile Rol-Tanguy, Geneviève de Gaulle-Anthonioz, Kernabat &amp; les frères Jacob — dossier <b>d'histoire</b> : sources institutionnelles et mémorielles (Ordre de la Libération, Musée de la Libération de Paris, Mémorial de Caen, Panthéon, Musée de la Résistance, archives du Finistère), pas de DOI.</p></div><div class="grid" id="g-resistance"></div></section>
+      <section class="wrap section" id="formules"><div class="sec-head reveal"><p class="kick">Dossier XIV · Provoxys, Jorge &amp; Zalex, Samlepirate</p><h3>Les Formules de l'Empire</h3><p>Dossier <b>transversal</b> : il rassemble, rend en LaTeX et met en application interactive les formules <b>déjà sourcées</b> des autres dossiers. Il n'introduit aucune affirmation nouvelle ; on rappelle ici l'origine et une référence canonique par famille de formules.</p></div><div class="grid" id="g-formules"></div></section>
 
       <section class="wrap section" id="refs">
         <div class="sec-head reveal"><p class="kick">Appareil critique · niveau le plus strict</p><h3>Références scientifiques</h3><p>La littérature primaire à comité de lecture derrière les données. Chaque <b>DOI a été vérifié</b> (résolution Crossref + page éditeur) — pour chacun : titre, citation et résumé.</p></div>
@@ -739,6 +741,15 @@
 
     // Sources from sources_audit_scientifique_chronos.csv + app La Vie de la Terre
     const SOURCES = [
+      ["🔵","Ordre de la Libération","https://www.ordredelaliberation.fr/","Dossier XV — 1 038 Compagnons (dont 6 femmes) ; fiches Jean Moulin, Laure Diebold, Berty Albrecht, Brossolette, Frenay, Chaban-Delmas."],
+      ["🔵","Musée de la Libération de Paris – Leclerc – Jean Moulin","https://www.museeliberation-leclerc-moulin.paris.fr/","Dossier XV — Cécile Rol-Tanguy (1919-2020), Daniel Cordier ; PC de Denfert-Rochereau, Libération de Paris."],
+      ["🔵","Mémorial de Caen / Calvados.gouv.fr","https://www.calvados.gouv.fr/","Dossier XV — résistants normands (Gisèle Guillemot, René Duchez), massacre de la prison de Caen le 6 juin 1944."],
+      ["🔵","Réseau Alliance (AASSDN / reseaualliance.org)","https://reseaualliance.org/","Dossier XV — « L'Arche de Noé » : Fourcade « Hérisson », Douin « Civette », organisation par noms d'animaux."],
+      ["🔵","Musée de la Résistance en ligne","https://museedelaresistanceenligne.org/","Dossier XV — groupe Manouchian / Affiche Rouge, stèle de Kernabat (Scaër)."],
+      ["🔵","Ministère des Armées — Mission Libération","https://www.defense.gouv.fr/memoire","Dossier XV — Missak Manouchian, Affiche Rouge, droit de vote des femmes (ordonnance du 21 avril 1944)."],
+      ["🟢","Programme du Conseil national de la Résistance — « Les Jours heureux » (15 mars 1944)","https://fr.wikipedia.org/wiki/Programme_du_Conseil_national_de_la_R%C3%A9sistance","Dossier XV — Sécurité sociale, nationalisations (EDF/GDF en 1946), gestion paritaire."],
+      ["🔵","ANACR Finistère — combats de Kernabat & Quillien","https://www.lesamisdelaresistancedufinistere.com/","Dossier XV — parachutage et drame du 15 juillet 1944, 18 morts, frères Jacob, Grégoire Le Cam, Pierre Salomon."],
+      ["🟢","Dossier XV — audit markdown","dossier-XV-resistance.md","Audit complet de ymir-lalie/la-resistance/index.html : 11 thèmes vérifiés, corrections en anti-intox."],
       ["🟢","Planck Collaboration 2018 — Cosmological parameters","https://www.aanda.org/articles/aa/pdf/2020/09/aa33880-18.pdf","Âge de l'Univers ≈ 13,787 Ga ± 0,020 Ga (ΛCDM)."],
       ["🟢","Planck 2018 — version arXiv","https://arxiv.org/abs/1807.06209","Âge, H₀, Ωm et cohérence du modèle ΛCDM."],
       ["🔵","NASA WMAP — Overview","https://science.nasa.gov/mission/wmap/wmap-overview/","CMB ≈ 2,725 K ; recombinaison vers 375 000 ans."],
@@ -804,7 +815,67 @@
     }
     function fill(id,arr){ const el=document.getElementById(id); if(el) el.innerHTML=arr.map(ficheHTML).join(""); }
     fill("g-cosmos",COSMOS); fill("g-terre",TERRE); fill("g-geo",GEO); fill("g-hum",HUM);
-    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES); fill("g-politique",POLITIQUE); fill("g-singe",SINGE); fill("g-esclavage",ESCLAVAGE); fill("g-tornades-cyclones",TORNADES); fill("g-abeilles",ABEILLES);
+    const FO = "../formules/assets/";
+    const FORMULES = [
+      { t:"Mécanique & espace", d:"vis-viva · Tsiolkovsky · Hohmann", v:"ok", img:FO+"formules-espace.png",
+        s:"Astrodynamique classique mise en atelier (orbite, delta-v, transfert). Constantes standard : μ⊕ = 398 600 km³/s², R⊕ = 6 371 km. Valeurs par défaut reprises du dossier Artemis II. Modèles schématiques (visualisation), pas des simulations de précision.",
+        src:[{n:"Artemis II (Provoxys)",u:"../provoxys/Artemis2.html"},{n:"NASA Glenn · rocket equation",u:"https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/ideal-rocket-equation/"}] },
+      { t:"Atome & quantique", d:"E=mc² · Bohr · Rydberg · décroissance", v:"ok", img:FO+"formules-atome.png",
+        s:"Constantes NIST/CODATA : c = 299 792 458 m/s, énergie de Rydberg 13,6 eV, R_H = 1,097×10⁷ m⁻¹. La couleur des raies (Rydberg/Bohr) est calculée depuis la longueur d'onde réelle — la Balmer-α tombe bien à 656 nm (rouge). Reprend le dossier du Tableau périodique.",
+        src:[{n:"Le Tableau Périodique (Jorge & Zalex)",u:"../jorge-zalex/elements.html"},{n:"NIST · Atomic Spectra",u:"https://physics.nist.gov/PhysRefData/ASD/lines_form.html"}] },
+      { t:"Champs & lumière", d:"Maxwell · divergence/rotationnel · Lotka-Volterra", v:"ok", img:FO+"formules-champs.png",
+        s:"Analyse vectorielle et électromagnétisme (forme moderne de Heaviside des équations de Maxwell). La brindille du rotationnel tourne dans le sens du fluide (convention mathématique, antihoraire positif). Reprend le dossier Le langage des champs.",
+        src:[{n:"Les Champs de vecteurs (Samlepirate)",u:"../samlepirate/champs-vecteurs.html"},{n:"3Blue1Brown · div & curl",u:"https://www.3blue1brown.com/"}] },
+      { t:"Atmosphère & vortex", d:"Coriolis · CAPE · hélicité", v:"ok", img:FO+"formules-atmosphere.png",
+        s:"Coriolis f = 2Ω sinφ (Ω = 7,292×10⁻⁵ s⁻¹) : nul à l'équateur, signe opposé entre hémisphères. CAPE → ascendance w≈√(2·CAPE) ; hélicité ~150 m²/s² comme seuil tornadique (SPC). Reprend le dossier Tornades & cyclones.",
+        src:[{n:"Tornades, Typhons & Ouragans (Provoxys)",u:"../provoxys/tornades/index.html"},{n:"NOAA SPC · paramètres",u:"https://www.spc.noaa.gov/exper/mesoanalysis/"}] },
+      { t:"Nature du dossier", d:"transversal · aucune affirmation nouvelle", v:"ok", img:FO+"formules-hero.png",
+        s:"« Les Formules de l'Empire » ne crée pas de science : il rend en LaTeX (KaTeX) et rend interactives des formules déjà vérifiées ailleurs. Chaque atelier renvoie à son dossier d'origine. Audit complet : sources/dossier-XIV-formules.md.",
+        src:[{n:"Le dossier",u:"../formules/index.html"},{n:"Audit (dossier-XIV)",u:"https://github.com/TheSamLePirate/empire-contre-intox/blob/main/sources/dossier-XIV-formules.md"}] }
+    ];
+    const RES = "../ymir-lalie/la-resistance/assets/";
+    const RESISTANCE = [
+      { t:"Jean Moulin & le CNR", d:"unification · 27 mai 1943 · Panthéon 1964", v:"ok", img:RES+"jean-moulin.png",
+        s:"Préfet de l'Aveyron (1937) puis d'Eure-et-Loir, refus du 17 juin 1940 (tirailleurs sénégalais) et tentative de suicide ; parachuté la nuit du 1ᵉʳ au 2 janvier 1942 ; préside la 1ʳᵉ réunion du CNR le 27 mai 1943 (48 rue du Four) ; arrêté à Caluire le 21 juin 1943, torturé par Barbie ; cendres au Panthéon le 19 décembre 1964 (discours de Malraux, cité fidèlement).",
+        src:[{n:"Ordre de la Libération — Jean Moulin",u:"https://www.ordredelaliberation.fr/fr/compagnons/jean-moulin"},{n:"Assemblée nat. — discours de Malraux",u:"https://www.assemblee-nationale.fr/histoire/Andre-Malraux/discours_politique_culture/jean_moulin_pantheon.asp"}] },
+      { t:"Programme du CNR « Les Jours heureux »", d:"15 mars 1944 · EDF/GDF · vote des femmes", v:"warn", img:RES+"jean-moulin.png",
+        s:"Le programme (15 mars 1944) prévoit la Sécurité sociale et la nationalisation de l'énergie — mais EDF et GDF n'existaient pas (créés en 1946). Le droit de vote des femmes découle de l'ordonnance du 21 avril 1944 (de Gaulle, Alger), pas directement du programme du CNR.",
+        src:[{n:"Programme du CNR",u:"https://fr.wikipedia.org/wiki/Programme_du_Conseil_national_de_la_R%C3%A9sistance"},{n:"Min. Armées — vote des femmes 1944",u:"https://www.defense.gouv.fr/memoire"}] },
+      { t:"L'Affiche Rouge — 22 fusillés, et Olga Bancic décapitée", d:"23 condamnés ≠ 23 fusillés au Mont-Valérien", v:"fresh", img:RES+"affiche-rouge.png",
+        s:"Correction : sur les 23 condamnés de l'Affiche Rouge, 22 hommes furent fusillés au Mont-Valérien le 21 février 1944 et Olga Bancic fut décapitée à Stuttgart le 10 mai 1944 (la loi allemande interdisait le peloton pour les femmes). Joseph Epstein ne figure pas sur l'affiche : arrêté le même jour que Manouchian, il fut fusillé séparément le 11 avril 1944.",
+        src:[{n:"Musée de la Résistance — les 23",u:"https://museedelaresistanceenligne.org/media5072"},{n:"Olga Bancic (Wikipedia)",u:"https://en.wikipedia.org/wiki/Olga_Bancic"}] },
+      { t:"L'attentat contre Julius Ritter (28 sept. 1943)", d:"colonel SS, pas « général »", v:"fresh", img:RES+"affiche-rouge.png",
+        s:"Correction de grade : le groupe Manouchian abat Julius Ritter le 28 septembre 1943 à Paris. Ritter était colonel SS (SS-Standartenführer), adjoint de Fritz Sauckel pour le STO en France — et non « général » comme le dit le live.",
+        src:[{n:"fr.wikipedia — Julius Ritter",u:"https://fr.wikipedia.org/wiki/Julius_Ritter"},{n:"Mémoire Vive — « colonel SS Julius Ritter »",u:"https://mvr.asso.fr/lassassinat-du-colonel-ss-julius-ritter/"}] },
+      { t:"Missak & Mélinée Manouchian", d:"FTP-MOI · Panthéon 21 fév. 2024", v:"ok", img:RES+"affiche-rouge.png",
+        s:"Missak (né le 1ᵉʳ sept. 1906, rescapé du génocide arménien) était commissaire militaire des FTP-MOI de la région parisienne ; fusillé au Mont-Valérien le 21 février 1944. Sa lettre à Mélinée est authentique. Mélinée (née Soukémian, 1913, Constantinople) était elle aussi arménienne. Tous deux entrés au Panthéon le 21 février 2024.",
+        src:[{n:"Min. Armées — Manouchian",u:"https://www.defense.gouv.fr/mission-liberation/vivre-liberation/liberation-via-ses-historiens/regards-dhistoriens-liberation/missak-manouchian"},{n:"éduscol — Panthéon 2024",u:"https://eduscol.education.gouv.fr/6393/missak-manouchian-entre-au-pantheon"}] },
+      { t:"Réseau Alliance & Marie-Madeleine Fourcade", d:"« L'Arche de Noé » · >3 000 agents", v:"fresh", img:RES+"reseau-alliance.png",
+        s:"Le réseau Alliance, surnommé « L'Arche de Noé » (noms de code animaliers, renseignement pur), comptait plus de 3 000 agents. Fourcade (« Hérisson », née Bridou, 1909-1989) fut la seule femme à diriger un tel réseau — mais, contrairement à ce qu'affirme le live, elle n'a jamais été Compagnon de la Libération (c'est son mari Édouard Méric qui le fut).",
+        src:[{n:"reseaualliance.org — Fourcade",u:"https://reseaualliance.org/2022/06/08/marie-madeleine-meric-fourcade-herisson/"},{n:"Marie-Madeleine Fourcade (Wikipedia)",u:"https://en.wikipedia.org/wiki/Marie-Madeleine_Fourcade"}] },
+      { t:"René Duchez & le vol du Mur de l'Atlantique", d:"réseau OCM/Centurie, pas Alliance", v:"fresh", img:RES+"reseau-alliance.png",
+        s:"Le tapissier René Duchez dérobe un plan des défenses côtières à l'Organisation Todt de Caen (mai 1942), transmis à Londres via le colonel Rémy. Corrections : il appartenait à l'OCM / réseau Centurie (pas Alliance / Jade-Fitzroy) et il est mort en 1948 (pas 1976). Les détails romanesques (miroir, « Bauleiter Schnedderer ») relèvent du récit popularisé.",
+        src:[{n:"memoresist — René Duchez",u:"https://www.memoresist.org/resistant/rene-duchez/"},{n:"Calvados.gouv.fr — René Duchez",u:"https://www.calvados.gouv.fr/"}] },
+      { t:"Robert Douin (« Civette »)", d:"né 1891 · fusillé le 6 juin 1944", v:"fresh", img:RES+"reseau-alliance.png",
+        s:"Chef du secteur de Caen pour Alliance, auteur d'une carte de 17 m des fortifications, fusillé le 6 juin 1944 à la prison de Caen. Corrections : son pseudonyme était « Civette » (pas « Singe »), il est né en 1891 (pas 1900) et était directeur de l'École des Beaux-Arts de Caen (pas conservateur du musée).",
+        src:[{n:"reseaualliance.org — Douin « Civette »",u:"https://reseaualliance.org/2022/05/31/robert-remy-douin-civette-secteur-ferme/"},{n:"Maitron — Robert Douin",u:"https://fusilles-40-44.maitron.fr/?article185798"}] },
+      { t:"Joséphine Baker, l'espionne", d:"2ᵉ Bureau 1939 · Panthéon 30 nov. 2021", v:"ok", img:RES+"femmes-resistance.png",
+        s:"Recrutée dès septembre 1939 par le 2ᵉ Bureau (cmdt Jacques Abtey), renseignements à l'encre sympathique sur ses partitions, château des Milandes comme refuge. Entrée au Panthéon le 30 novembre 2021. Précision : son engagement de 1944 relève des Formations féminines de l'armée de l'Air (sous-lieutenant), plus exactement que « FAFL ».",
+        src:[{n:"Élysée — Panthéon",u:"https://www.elysee.fr/emmanuel-macron/2021/11/30/josephine-baker-entre-au-pantheon"},{n:"Service historique de la Défense",u:"https://www.servicehistorique.sga.defense.gouv.fr/liste-dossiers-individuels/josephine-baker-1906-1975"}] },
+      { t:"Cécile Rol-Tanguy", d:"née 1919 · jamais Compagnon de la Libération", v:"fresh", img:RES+"femmes-resistance.png",
+        s:"Agent de liaison du PC des FFI sous Denfert-Rochereau lors de la Libération de Paris (août 1944). Corrections : née le 10 avril 1919 (pas 1920 — donc 101 ans à sa mort) et jamais Compagnon de la Libération (l'Ordre ne compte que 6 femmes et il est clos depuis le 12 oct. 2021). Distinctions réelles : Grand officier de la Légion d'honneur, Grand-croix de l'ONM, Médaille de la Résistance.",
+        src:[{n:"Musée de la Libération de Paris",u:"https://www.museeliberation-leclerc-moulin.paris.fr/expositions/cecile-rol-tanguy-une-vie-dengagement-1919-2020"},{n:"Ordre de la Libération — 6 femmes",u:"https://www.ordredelaliberation.fr/fr/les-six-compagnons-femmes"}] },
+      { t:"Geneviève de Gaulle-Anthonioz", d:"Barbie (1987), pas Nuremberg", v:"fresh", img:RES+"femmes-resistance.png",
+        s:"Nièce de De Gaulle, déportée à Ravensbrück à 23 ans, présidente d'ATD Quart Monde, autrice de « La Traversée de la nuit ». Entrée au Panthéon le 27 mai 2015. Correction : elle n'a pas témoigné à Nuremberg ; son témoignage attesté est celui du procès de Klaus Barbie (Lyon, 1987), sa participation au procès de Ravensbrück (Hambourg, 1946-47) étant débattue.",
+        src:[{n:"Chemins de mémoire",u:"https://www.cheminsdememoire.gouv.fr/fr/genevieve-de-gaulle-anthonioz"},{n:"ATD Quart Monde",u:"https://www.atd-quartmonde.org/genevieve-de-gaulle-anthonioz-une/"}] },
+      { t:"Le drame de Kernabat (15 juillet 1944)", d:"Scaër · ~1 000 soldats allemands · 18 morts", v:"fresh", img:RES+"kernabat-stele.png",
+        s:"Après le parachutage de ~16 t à Kervir (nuit du 14-15 juillet 1944), ~160 maquisards (FTP de Scaër + FFI de Rosporden) affrontent près de 1 000 soldats allemands : 18 résistants tombent (9 de Scaër + 9 de Rosporden), dont les frères François et Jean Jacob et Grégoire Le Cam ; Scaër est libérée le 4 août 1944. Précisions : Kernabat est sur la commune de Scaër (le largage de Kervir relève du secteur de Coray) et l'adversaire n'était pas « un commando » (le commando, allié, était l'équipe Jedburgh de 3 agents). L'incendie de Kernabat et Quillien, lui, relève de la mémoire locale (non vérifiable en ligne).",
+        src:[{n:"ANACR Finistère — Kernabat/Quillien",u:"https://www.lesamisdelaresistancedufinistere.com/page221/styled-25/page-177/"},{n:"Musée de la Résistance — stèle de Kernabat (Scaër)",u:"https://museedelaresistanceenligne.org/media10275-Stle-de-Kernabat-Scar-Finistre"}] },
+      { t:"Les Compagnons de la Libération", d:"ordre créé en 1940 · 1 038 Compagnons", v:"ok", img:RES+"resistance-hero.png",
+        s:"L'Ordre de la Libération, créé par de Gaulle le 16 novembre 1940, compte 1 038 Compagnons (+ 5 communes et 18 unités), dont 6 femmes seulement (Berty Albrecht et Laure Diebold en font partie). Une distinction, pas un réseau — d'où l'importance, soulignée par le live, de ne pas confondre « résistant » et « Compagnon ».",
+        src:[{n:"Ordre de la Libération",u:"https://www.ordredelaliberation.fr/"},{n:"Compagnon de la Libération (Wikipedia)",u:"https://fr.wikipedia.org/wiki/Compagnon_de_la_Lib%C3%A9ration"}] }
+    ];
+    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES); fill("g-politique",POLITIQUE); fill("g-singe",SINGE); fill("g-esclavage",ESCLAVAGE); fill("g-tornades-cyclones",TORNADES); fill("g-abeilles",ABEILLES); fill("g-resistance",RESISTANCE); fill("g-formules",FORMULES);
 
     // ===== Références scientifiques primaires (DOI vérifiés) =====
     const REFS = [
@@ -1350,7 +1421,7 @@
       </div>`).join("");
     const stSrc = document.getElementById("stSrc"); if (stSrc) stSrc.textContent = SOURCES.length;
 
-    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length+POLITIQUE.length+SINGE.length+ESCLAVAGE.length+TORNADES.length+ABEILLES.length;
+    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length+POLITIQUE.length+SINGE.length+ESCLAVAGE.length+TORNADES.length+ABEILLES.length+RESISTANCE.length;
     document.getElementById("stFiches").textContent = total;
 
     const bar=document.getElementById("progress");
