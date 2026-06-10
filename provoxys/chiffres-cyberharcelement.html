@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briser le Silence — Les chiffres des cyberviolences faites aux femmes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,400..700&family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:        #0c0910;
+    --ink-2:      #14101c;
+    --ink-3:      #1c1726;
+    --paper:      #f3ece2;
+    --paper-dim:  #b9b0bf;
+    --paper-mute: #6f6678;
+    --violet:     #b69bff;
+    --violet-2:   #8a6bf0;
+    --violet-deep:#5a3fc0;
+    --coral:      #ff5e6e;
+    --coral-2:    #ff8a78;
+    --gold:       #ecc14a;
+    --line:       rgba(182,155,255,.16);
+    --grid:       rgba(243,236,226,.07);
+    --maxw:       1180px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Archivo',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* grain + atmosphere overlays */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(900px 600px at 82% -8%, rgba(138,107,240,.20), transparent 60%),
+      radial-gradient(700px 700px at -10% 22%, rgba(255,94,110,.10), transparent 55%),
+      radial-gradient(800px 800px at 110% 92%, rgba(90,63,192,.16), transparent 60%);
+  }
+  .wrap{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* ============ HERO ============ */
+  header.hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    position:relative;padding:120px 0 80px;
+  }
+  .ribbon{
+    width:34px;height:54px;position:relative;margin-bottom:42px;
+    filter:drop-shadow(0 8px 22px rgba(138,107,240,.5));
+  }
+  .ribbon span{
+    position:absolute;top:0;left:50%;width:11px;height:44px;border-radius:6px;
+    background:linear-gradient(var(--violet),var(--violet-deep));
+  }
+  .ribbon span:first-child{transform:translateX(-50%) rotate(28deg);transform-origin:bottom}
+  .ribbon span:last-child{transform:translateX(-50%) rotate(-28deg);transform-origin:bottom}
+
+  .kicker{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--violet);margin-bottom:30px;
+    display:flex;align-items:center;gap:16px;
+  }
+  .kicker::before{content:"";width:46px;height:1px;background:var(--violet)}
+
+  h1.title{
+    font-family:'Fraunces',serif;font-weight:300;font-optical-sizing:auto;
+    font-size:clamp(46px,9vw,118px);line-height:.92;letter-spacing:-.025em;
+    max-width:14ch;
+  }
+  h1.title em{font-style:italic;color:var(--violet);font-weight:400}
+  h1.title b{font-weight:600;display:block}
+
+  .hero-sub{
+    margin-top:42px;max-width:62ch;font-size:clamp(16px,1.7vw,20px);
+    color:var(--paper-dim);font-weight:300;line-height:1.55;
+  }
+  .hero-meta{
+    margin-top:56px;display:flex;flex-wrap:wrap;gap:38px;align-items:flex-end;
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;
+    color:var(--paper-mute);text-transform:uppercase;
+  }
+  .hero-meta b{display:block;font-size:30px;color:var(--paper);letter-spacing:0;margin-bottom:4px;font-family:'Fraunces',serif;font-weight:500}
+  .scrollcue{
+    position:absolute;bottom:34px;left:28px;font-family:'JetBrains Mono',monospace;
+    font-size:11px;letter-spacing:.3em;color:var(--paper-mute);text-transform:uppercase;
+    display:flex;align-items:center;gap:12px;
+  }
+  .scrollcue .bar{width:1px;height:40px;background:linear-gradient(var(--violet),transparent);animation:drop 2.2s infinite}
+  @keyframes drop{0%{opacity:0;transform:translateY(-12px)}40%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
+
+  /* ============ SECTION SCAFFOLD ============ */
+  section{padding:96px 0;position:relative}
+  .sec-head{display:flex;align-items:baseline;gap:22px;margin-bottom:54px;flex-wrap:wrap}
+  .sec-num{
+    font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--violet);
+    letter-spacing:.2em;border:1px solid var(--line);border-radius:30px;padding:7px 16px;
+    white-space:nowrap;
+  }
+  .sec-title{
+    font-family:'Fraunces',serif;font-weight:400;font-size:clamp(28px,4.4vw,52px);
+    line-height:1.04;letter-spacing:-.02em;max-width:20ch;
+  }
+  .sec-title em{font-style:italic;color:var(--violet)}
+  .sec-intro{color:var(--paper-dim);max-width:60ch;font-weight:300;font-size:17px;margin-top:6px;flex-basis:100%}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ============ CARDS / GRID ============ */
+  .grid{display:grid;gap:22px}
+  .g-2{grid-template-columns:repeat(2,1fr)}
+  .g-3{grid-template-columns:repeat(3,1fr)}
+  .g-4{grid-template-columns:repeat(4,1fr)}
+  .card{
+    background:linear-gradient(160deg,var(--ink-2),var(--ink));
+    border:1px solid var(--line);border-radius:18px;padding:30px 28px 28px;position:relative;
+    overflow:hidden;
+  }
+  .card::after{content:"";position:absolute;inset:0;border-radius:18px;pointer-events:none;
+    background:radial-gradient(120% 90% at 100% 0%,rgba(182,155,255,.08),transparent 50%)}
+  .card .src{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;
+    color:var(--paper-mute);text-transform:uppercase;margin-top:18px;display:block;
+  }
+  .card .lab{font-size:15px;color:var(--paper-dim);font-weight:300;line-height:1.45;margin-top:8px;max-width:34ch}
+
+  .bignum{
+    font-family:'Fraunces',serif;font-weight:300;letter-spacing:-.03em;line-height:.9;
+    font-size:clamp(54px,8vw,84px);display:flex;align-items:baseline;gap:2px;
+  }
+  .bignum .u{font-size:.42em;font-weight:400;color:var(--violet);margin-left:4px}
+  .bignum.coral{color:var(--coral)}
+  .bignum.violet{color:var(--violet)}
+  .bignum.gold{color:var(--gold)}
+
+  /* ============ COMPARISON BARS ============ */
+  .cbar{margin:14px 0}
+  .cbar .row{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+  .cbar .name{width:128px;flex:none;font-size:14px;font-weight:500;display:flex;align-items:center;gap:9px}
+  .dot{width:10px;height:10px;border-radius:50%;flex:none}
+  .cbar .track{flex:1;height:34px;background:var(--ink-3);border-radius:8px;position:relative;overflow:hidden}
+  .cbar .fill{height:100%;width:0;border-radius:8px;transition:width 1.4s cubic-bezier(.2,.8,.2,1);position:relative}
+  .cbar .fill.f-women{background:linear-gradient(90deg,var(--violet-deep),var(--violet))}
+  .cbar .fill.f-men{background:linear-gradient(90deg,#3a3447,#564f63)}
+  .cbar .fill.f-girls{background:linear-gradient(90deg,var(--coral),var(--coral-2))}
+  .cbar .val{
+    position:absolute;right:12px;top:50%;transform:translateY(-50%);
+    font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;color:#fff;
+  }
+
+  /* ============ PICTOGRAM ============ */
+  .picto{display:flex;gap:9px;flex-wrap:wrap;margin:6px 0 4px}
+  .picto svg{width:38px;height:42px;flex:none}
+  .fig-off{fill:var(--ink-3);stroke:rgba(243,236,226,.14);stroke-width:1.2}
+  .fig-on{fill:url(#vg);}
+  .picto .ph{opacity:0;transform:translateY(8px) scale(.7);transition:all .5s cubic-bezier(.2,.8,.2,1)}
+  .picto.in .ph{opacity:1;transform:none}
+
+  /* ============ VERTICAL / GROWTH ============ */
+  .multiplier{display:flex;align-items:flex-end;gap:14px;height:200px;margin-top:10px}
+  .multiplier .col{flex:1;background:var(--ink-3);border-radius:8px 8px 0 0;position:relative;height:0;
+    transition:height 1.3s cubic-bezier(.2,.8,.2,1)}
+  .multiplier .col.now{background:linear-gradient(var(--coral),var(--coral-2))}
+  .multiplier .col span{position:absolute;top:-26px;left:0;right:0;text-align:center;
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--paper-dim)}
+  .multiplier .col small{position:absolute;bottom:-26px;left:0;right:0;text-align:center;
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--paper-mute)}
+
+  /* feature stat block */
+  .feature{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:1px solid var(--line);
+    border-radius:22px;overflow:hidden;background:linear-gradient(150deg,var(--ink-2),var(--ink));
+  }
+  .feature .left{padding:48px 44px;border-right:1px solid var(--line);position:relative}
+  .feature .right{padding:48px 44px;display:flex;flex-direction:column;justify-content:center;gap:22px}
+  .feature .huge{
+    font-family:'Fraunces',serif;font-weight:300;font-size:clamp(80px,13vw,150px);
+    line-height:.82;letter-spacing:-.04em;color:var(--coral);
+  }
+  .feature .huge .u{font-size:.32em;color:var(--paper);display:inline-block;margin-left:6px}
+  .feature p{color:var(--paper-dim);font-weight:300;font-size:17px;line-height:1.55;max-width:40ch}
+  .ministat{display:flex;gap:18px;align-items:baseline;padding-bottom:18px;border-bottom:1px solid var(--line)}
+  .ministat:last-child{border:0;padding-bottom:0}
+  .ministat b{font-family:'Fraunces',serif;font-weight:400;font-size:40px;color:var(--violet);line-height:1;min-width:120px}
+  .ministat b.coral{color:var(--coral)}
+  .ministat span{font-size:15px;color:var(--paper-dim);font-weight:300}
+
+  /* timeline / grooming explosion */
+  .donut-wrap{display:flex;align-items:center;gap:34px;flex-wrap:wrap}
+  .donut{--p:0;width:190px;height:190px;border-radius:50%;flex:none;position:relative;
+    background:conic-gradient(var(--violet) calc(var(--p)*1%), var(--ink-3) 0);
+    transition:--p 1.4s cubic-bezier(.2,.8,.2,1);
+  }
+  @property --p{syntax:'<number>';inherits:false;initial-value:0}
+  .donut::before{content:"";position:absolute;inset:20px;border-radius:50%;background:var(--ink-2);
+    box-shadow:inset 0 0 30px rgba(0,0,0,.5)}
+  .donut .ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .donut .ctr b{font-family:'Fraunces',serif;font-weight:400;font-size:42px;color:var(--violet);line-height:1}
+  .donut .ctr small{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--paper-mute);text-transform:uppercase;margin-top:4px}
+
+  blockquote.pull{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:clamp(24px,3.6vw,40px);line-height:1.28;letter-spacing:-.015em;
+    max-width:24ch;color:var(--paper);position:relative;padding-left:30px;
+  }
+  blockquote.pull::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;
+    background:linear-gradient(var(--violet),var(--coral));border-radius:3px}
+  blockquote.pull .q-src{display:block;font-family:'Archivo';font-style:normal;font-size:13px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--paper-mute);margin-top:22px}
+
+  .band{background:linear-gradient(180deg,transparent,rgba(90,63,192,.07),transparent)}
+
+  /* ============ SCROLL PROGRESS + DOT NAV ============ */
+  .progress-top{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
+    background:linear-gradient(90deg,var(--violet),var(--coral));
+    box-shadow:0 0 14px rgba(182,155,255,.5);transition:width .12s linear}
+  .dotnav{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:50;
+    display:flex;flex-direction:column;gap:15px}
+  .dotnav a{width:9px;height:9px;border-radius:50%;border:1px solid var(--paper-mute);
+    display:block;transition:all .35s cubic-bezier(.2,.8,.2,1);position:relative;opacity:.55}
+  .dotnav a.active{background:var(--violet);border-color:var(--violet);opacity:1;
+    box-shadow:0 0 12px rgba(182,155,255,.7);transform:scale(1.35)}
+  .dotnav a::after{content:attr(data-label);position:absolute;right:22px;top:50%;
+    transform:translateY(-50%) translateX(6px);white-space:nowrap;
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--paper-dim);opacity:0;pointer-events:none;
+    transition:all .3s}
+  .dotnav a:hover::after{opacity:1;transform:translateY(-50%) translateX(0)}
+
+  /* ============ LINE / AREA CHART ============ */
+  .linechart{width:100%;height:auto;overflow:visible;margin-top:6px}
+  .linechart .lc-grid{stroke:var(--grid);stroke-width:1}
+  .linechart .lc-axis{stroke:var(--line);stroke-width:1}
+  .linechart .lc-area{fill:url(#area-grad);opacity:0;transition:opacity 1.7s ease .3s}
+  .linechart .lc-line{fill:none;stroke:url(#cg);stroke-width:3;stroke-linecap:round;
+    stroke-linejoin:round;stroke-dasharray:460;stroke-dashoffset:460;
+    transition:stroke-dashoffset 1.9s cubic-bezier(.2,.8,.2,1);
+    filter:drop-shadow(0 4px 14px rgba(255,94,110,.4))}
+  .linechart .lc-pt{fill:var(--coral);stroke:var(--ink-2);stroke-width:2;opacity:0;
+    transition:opacity .5s ease}
+  .linechart .lc-pt.delay{transition-delay:1.5s}
+  .linechart .lc-yr{font-family:'JetBrains Mono',monospace;font-size:11px;
+    fill:var(--paper-mute);text-anchor:middle}
+  .linechart .lc-val{font-family:'Fraunces',serif;font-size:17px;font-weight:500;
+    fill:var(--paper);text-anchor:middle;opacity:0;transition:opacity .6s ease 1.3s}
+  .linechart .lc-tick{font-family:'JetBrains Mono',monospace;font-size:9.5px;
+    fill:var(--paper-mute);text-anchor:end;opacity:.7}
+  .linechart.in .lc-area{opacity:1}
+  .linechart.in .lc-line{stroke-dashoffset:0}
+  .linechart.in .lc-pt,.linechart.in .lc-val{opacity:1}
+
+  /* ============ COMPARISON BAR — scale + gap badge ============ */
+  .cbar .track::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:repeating-linear-gradient(90deg,transparent 0,transparent calc(25% - 1px),
+      var(--grid) calc(25% - 1px),var(--grid) 25%)}
+  .cbar .fill{z-index:1}
+  .cbar-foot{display:flex;justify-content:space-between;align-items:center;
+    margin-top:4px;gap:12px;flex-wrap:wrap}
+  .cbar-scale{display:flex;justify-content:space-between;flex:1;min-width:140px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;
+    color:var(--paper-mute)}
+  .gap-tag{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+    letter-spacing:.04em;color:var(--coral);border:1px solid rgba(255,94,110,.35);
+    border-radius:30px;padding:4px 12px;white-space:nowrap;
+    background:rgba(255,94,110,.08)}
+
+  /* footer */
+  footer{padding:90px 0 70px;border-top:1px solid var(--line);position:relative;z-index:2}
+  .help{
+    border:1px solid var(--coral);border-radius:20px;padding:38px 40px;
+    background:linear-gradient(150deg,rgba(255,94,110,.10),transparent);
+    display:flex;gap:40px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:56px;
+  }
+  .help .num{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(50px,8vw,82px);color:var(--coral);line-height:.9}
+  .help .txt{max-width:42ch}
+  .help .txt h3{font-family:'Fraunces',serif;font-weight:500;font-size:24px;margin-bottom:8px}
+  .help .txt p{color:var(--paper-dim);font-weight:300;font-size:15px}
+  .help .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .help .chips span{font-family:'JetBrains Mono',monospace;font-size:12px;border:1px solid var(--line);
+    border-radius:30px;padding:6px 14px;color:var(--paper-dim)}
+  .sources{columns:2;column-gap:48px;font-size:13px;color:var(--paper-mute);line-height:1.7;font-weight:300}
+  .sources b{color:var(--paper-dim);font-weight:500}
+  .colophon{margin-top:54px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.1em;color:var(--paper-mute);text-transform:uppercase}
+
+  @media(max-width:880px){
+    .g-4,.g-3,.g-2{grid-template-columns:1fr}
+    .feature{grid-template-columns:1fr}
+    .feature .left{border-right:0;border-bottom:1px solid var(--line)}
+    .sources{columns:1}
+    .scrollcue{display:none}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+      transition-duration:.001ms!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <linearGradient id="vg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#b69bff"/><stop offset="1" stop-color="#5a3fc0"/>
+  </linearGradient>
+  <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#ff8a78"/><stop offset="1" stop-color="#ff5e6e"/>
+  </linearGradient>
+  <linearGradient id="area-grad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#ff5e6e" stop-opacity=".42"/>
+    <stop offset="1" stop-color="#ff5e6e" stop-opacity="0"/>
+  </linearGradient>
+</defs></svg>
+
+<!-- scroll progress + section nav -->
+<div class="progress-top" id="progressTop" aria-hidden="true"></div>
+<nav class="dotnav" id="dotnav" aria-label="Navigation par section">
+  <a href="#top" data-label="Intro" class="active"></a>
+  <a href="#sec-01" data-label="01 · Prévalence"></a>
+  <a href="#sec-02" data-label="02 · Trajectoire"></a>
+  <a href="#sec-03" data-label="03 · Emprise"></a>
+  <a href="#sec-04" data-label="04 · Grooming"></a>
+  <a href="#sec-05" data-label="05 · Dégâts psy"></a>
+  <a href="#sec-06" data-label="06 · Auteurs"></a>
+  <a href="#sec-help" data-label="Agir"></a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="ribbon"><span></span><span></span></div>
+    <div class="kicker">Briser le silence — Édition data 2025</div>
+    <h1 class="title">Les chiffres des <em>cyberviolences</em> <b>faites aux femmes.</b></h1>
+    <p class="hero-sub">Harcèlement, cyber-harcèlement, emprise, doxing et grooming&nbsp;: une lecture froide et documentée de l'ampleur du phénomène en France et en Europe. Chaque donnée est sourcée. Derrière chaque pourcentage, des vies.</p>
+    <div class="hero-meta">
+      <div><b>17</b>indicateurs clés</div>
+      <div><b>×6</b>en moins de 10 ans</div>
+      <div><b>13 ans</b>âge moyen des victimes de grooming</div>
+      <div><b>2025</b>sources INSEE · SSMSI · ONU Femmes</div>
+    </div>
+  </div>
+  <div class="scrollcue"><span class="bar"></span>défiler pour explorer</div>
+</header>
+
+<!-- ============ 01 — L'AMPLEUR ============ -->
+<section id="sec-01">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">01 — Prévalence</div>
+      <h2 class="sec-title">Une violence <em>genrée</em>, et massive.</h2>
+      <p class="sec-intro">Les femmes et les filles restent très majoritairement les victimes des cyberviolences. L'écart se lit dès les premières statistiques nationales.</p>
+    </div>
+
+    <div class="grid g-2">
+      <div class="card reveal">
+        <div class="lab" style="margin-top:0;margin-bottom:20px;color:var(--paper)">Adultes déclarant des cyberviolences subies</div>
+        <div class="cbar" data-cbar>
+          <div class="row">
+            <div class="name"><span class="dot" style="background:var(--violet)"></span>Femmes</div>
+            <div class="track"><div class="fill f-women" data-w="3.8" style="--max:5"><span class="val">3,8&nbsp;%</span></div></div>
+          </div>
+          <div class="row">
+            <div class="name"><span class="dot" style="background:#564f63"></span>Hommes</div>
+            <div class="track"><div class="fill f-men" data-w="2.6" style="--max:5"><span class="val">2,6&nbsp;%</span></div></div>
+          </div>
+        </div>
+        <div class="cbar-foot">
+          <div class="cbar-scale" style="margin-left:144px"><span>0</span><span>5&nbsp;%</span></div>
+          <span class="gap-tag">↑ 1,5× plus de femmes</span>
+        </div>
+        <span class="src">Source — INSEE, édition 2025</span>
+      </div>
+
+      <div class="card reveal">
+        <div class="lab" style="margin-top:0;margin-bottom:20px;color:var(--paper)">Au collège — cyberviolences déclarées</div>
+        <div class="cbar" data-cbar>
+          <div class="row">
+            <div class="name"><span class="dot" style="background:var(--coral)"></span>Filles</div>
+            <div class="track"><div class="fill f-girls" data-w="31" style="--max:35"><span class="val">31&nbsp;%</span></div></div>
+          </div>
+          <div class="row">
+            <div class="name"><span class="dot" style="background:#564f63"></span>Garçons</div>
+            <div class="track"><div class="fill f-men" data-w="26" style="--max:35"><span class="val">26&nbsp;%</span></div></div>
+          </div>
+        </div>
+        <div class="cbar-foot">
+          <div class="cbar-scale" style="margin-left:144px"><span>0</span><span>35&nbsp;%</span></div>
+          <span class="gap-tag">↑ +5 pts chez les filles</span>
+        </div>
+        <span class="src">Source — INSEE 2025 · milieu scolaire</span>
+      </div>
+    </div>
+
+    <div class="grid g-3" style="margin-top:22px">
+      <div class="card reveal">
+        <div class="bignum violet"><span data-count="58" data-suffix="">0</span><span class="u">%</span></div>
+        <div class="lab">des filles et jeunes femmes ont été confrontées à une forme de harcèlement en ligne.</div>
+        <span class="src">Plan International · ONU Femmes</span>
+      </div>
+      <div class="card reveal">
+        <div class="bignum coral">×<span data-count="6">0</span></div>
+        <div class="lab">le nombre de victimes de harcèlement sexuel numérique a été multiplié par six depuis 2016.</div>
+        <span class="src">SSMSI · INSEE</span>
+      </div>
+      <div class="card reveal">
+        <div class="bignum gold"><span data-count="1000" data-plus="1">0</span></div>
+        <div class="lab">victimes de harcèlement sexuel numérique enregistrées sur la seule année 2024.</div>
+        <span class="src">SSMSI · 2024</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 — LA CROISSANCE ============ -->
+<section class="band" id="sec-02">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">02 — Trajectoire</div>
+      <h2 class="sec-title">Le harcèlement sexuel numérique <em>explose</em>.</h2>
+      <p class="sec-intro">En moins d'une décennie, le nombre de victimes a été multiplié par six. Le harcèlement en ligne pèse désormais lourd dans l'ensemble des délits de harcèlement.</p>
+    </div>
+
+    <div class="grid g-2" style="align-items:stretch">
+      <div class="card reveal">
+        <div class="lab" style="margin-top:0;margin-bottom:8px;color:var(--paper)">Victimes de harcèlement sexuel numérique — indice base 100 en 2016</div>
+        <svg class="linechart" data-line viewBox="0 0 440 230" role="img"
+             aria-label="Courbe de croissance des victimes : indice multiplié par six entre 2016 et 2024">
+          <!-- horizontal gridlines -->
+          <line class="lc-grid" x1="44" y1="20"  x2="430" y2="20"/>
+          <line class="lc-grid" x1="44" y1="60"  x2="430" y2="60"/>
+          <line class="lc-grid" x1="44" y1="100" x2="430" y2="100"/>
+          <line class="lc-grid" x1="44" y1="140" x2="430" y2="140"/>
+          <line class="lc-axis" x1="44" y1="180" x2="430" y2="180"/>
+          <!-- y ticks (×) -->
+          <text class="lc-tick" x="38" y="24">×6</text>
+          <text class="lc-tick" x="38" y="104">×3</text>
+          <text class="lc-tick" x="38" y="184">×1</text>
+          <!-- area + line : 4 points 2016/2019/2022/2024 -->
+          <path class="lc-area" d="M60,164 L183,124 L307,80 L420,20 L420,180 L60,180 Z"/>
+          <path class="lc-line" d="M60,164 L183,124 L307,80 L420,20"/>
+          <!-- points -->
+          <circle class="lc-pt" cx="60"  cy="164" r="4.5"/>
+          <circle class="lc-pt" cx="183" cy="124" r="4.5"/>
+          <circle class="lc-pt" cx="307" cy="80"  r="4.5"/>
+          <circle class="lc-pt delay" cx="420" cy="20" r="6"/>
+          <!-- value callouts -->
+          <text class="lc-val" x="60"  y="152">×1</text>
+          <text class="lc-val" x="410" y="14" style="text-anchor:end">×6</text>
+          <!-- year labels -->
+          <text class="lc-yr" x="60"  y="200">2016</text>
+          <text class="lc-yr" x="183" y="200">2019</text>
+          <text class="lc-yr" x="307" y="200">2022</text>
+          <text class="lc-yr" x="420" y="200">2024</text>
+        </svg>
+        <span class="src" style="margin-top:14px">Source — SSMSI · plus de 1&nbsp;000 victimes en 2024 · interpolation indicative entre points</span>
+      </div>
+
+      <div class="card reveal" style="display:flex;flex-direction:column;justify-content:center">
+        <div class="donut-wrap">
+          <div class="donut" data-donut data-p="35">
+            <div class="ctr"><b>35&nbsp;%</b><small>en ligne</small></div>
+          </div>
+          <div style="flex:1;min-width:200px">
+            <div class="lab" style="margin-top:0;font-size:18px;color:var(--paper)">Plus d'un tiers des délits de harcèlement enregistrés sont désormais commis <strong style="color:var(--violet)">en ligne</strong>.</div>
+            <span class="src">Source — délits de harcèlement enregistrés, France 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — EMPRISE ============ -->
+<section id="sec-03">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">03 — Emprise & contrôle coercitif</div>
+      <h2 class="sec-title">Quand la violence conjugale <em>passe par l'écran</em>.</h2>
+      <p class="sec-intro">L'emprise numérique prolonge le contrôle&nbsp;: surveillance permanente, exigence d'être joignable, menace de diffuser l'intime. Elle accompagne presque systématiquement les violences au sein du couple.</p>
+    </div>
+
+    <div class="feature reveal">
+      <div class="left">
+        <div class="huge"><span data-count="90">0</span><span class="u">%</span></div>
+        <p style="margin-top:22px">des femmes ayant subi des violences conjugales déclarent avoir <strong style="color:var(--paper)">également subi des violences en ligne</strong> de la part de leur partenaire.</p>
+        <span class="src" style="margin-top:24px">Source — rapports MIPROF · études francophones</span>
+      </div>
+      <div class="right">
+        <div class="ministat">
+          <b class="coral">8/10</b>
+          <span>femmes victimes de violences dans le couple déclarent que leur partenaire <strong style="color:var(--paper)">exigeait d'être joignable en permanence</strong>.</span>
+        </div>
+        <div class="picto in" data-picto data-on="8" data-total="10" style="margin-top:4px"></div>
+        <span class="src">Source — MIPROF · Centre Hubertine Auclert</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — GROOMING ============ -->
+<section class="band" id="sec-04">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">04 — Grooming des mineures</div>
+      <h2 class="sec-title">Le prétexte de <em>« protéger »</em>, l'arme du prédateur.</h2>
+      <p class="sec-intro">Le grooming en ligne est un processus graduel et manipulatoire. En 2025, les cas explosent — et les victimes sont de plus en plus jeunes.</p>
+    </div>
+
+    <div class="grid g-2" style="margin-bottom:22px">
+      <div class="card reveal" style="display:flex;flex-direction:column;justify-content:center">
+        <div class="lab" style="margin-top:0;margin-bottom:16px;color:var(--paper);font-size:17px">En Europe occidentale, <strong style="color:var(--violet)">1 enfant sur 5</strong> déclare avoir subi une sollicitation ou un grooming en ligne avant 18 ans.</div>
+        <div class="picto in" data-picto data-on="1" data-total="5" data-coral="0"></div>
+        <div class="bignum violet" style="font-size:48px;margin-top:14px"><span data-count="19.6" data-dec="1">0</span><span class="u">%</span></div>
+        <span class="src">Missing Children Europe · ChildLight, 2025-2026</span>
+      </div>
+
+      <div class="card reveal" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start">
+        <div class="bignum coral" style="font-size:clamp(64px,11vw,108px)">+<span data-count="151">0</span><span class="u">%</span></div>
+        <div class="lab" style="font-size:17px">d'explosion des cas de grooming recensés en 2025 dans certains pays européens.</div>
+        <span class="src">Child Focus · rapport annuel 2025</span>
+      </div>
+    </div>
+
+    <div class="grid g-3">
+      <div class="card reveal">
+        <div class="bignum violet"><span data-count="13">0</span><span class="u">ans</span></div>
+        <div class="lab">âge moyen des victimes — un record absolu de jeunesse.</div>
+        <span class="src">Child Focus 2025</span>
+      </div>
+      <div class="card reveal">
+        <div class="bignum coral"><span data-count="108">0</span></div>
+        <div class="lab">cas recensés en une seule année dans un pays européen — un record.</div>
+        <span class="src">Child Focus · rapport annuel 2025</span>
+      </div>
+      <div class="card reveal">
+        <div class="bignum gold"><span data-count="92">0</span></div>
+        <div class="lab">disparitions d'enfants en Europe liées au grooming sur la même année.</div>
+        <span class="src">Missing Children Europe</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — DÉGÂTS PSY ============ -->
+<section id="sec-05">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">05 — Dégâts psychologiques</div>
+      <h2 class="sec-title">Des blessures <em>invisibles</em>, et profondes.</h2>
+      <p class="sec-intro">Permanence, portée illimitée, anonymat des auteurs&nbsp;: les cyberviolences produisent des dommages souvent plus sévères que les violences physiques traditionnelles.</p>
+    </div>
+
+    <div class="grid g-4">
+      <div class="card reveal">
+        <div class="bignum coral" style="font-size:clamp(48px,7vw,72px)"><span data-count="50" data-approx="1">0</span><span class="u">%</span></div>
+        <div class="lab">près de la moitié des victimes de cyber-harcèlement rapportent avoir pensé au suicide.</div>
+        <span class="src">e-Enfance 2025 · Politis</span>
+      </div>
+      <div class="card reveal">
+        <div class="bignum coral" style="font-size:clamp(48px,7vw,72px)"><span data-count="14">0</span><span class="u">%</span></div>
+        <div class="lab">ont fait une tentative de suicide, selon certaines études.</div>
+        <span class="src">e-Enfance 2025</span>
+      </div>
+      <div class="card reveal">
+        <div class="bignum violet" style="font-size:clamp(48px,7vw,72px)"><span data-count="43">0</span><span class="u">%</span></div>
+        <div class="lab">des survivantes de cyberviolences de genre rapportent des effets graves sur leur santé mentale.</div>
+        <span class="src">études européennes</span>
+      </div>
+      <div class="card reveal">
+        <div class="bignum gold" style="font-size:clamp(48px,7vw,72px)">×<span data-count="2">0</span></div>
+        <div class="lab">les jeunes et les personnes marginalisées sont deux fois plus à risque d'idées suicidaires.</div>
+        <span class="src">Fondation canadienne des femmes</span>
+      </div>
+    </div>
+
+    <div style="margin-top:60px" class="reveal">
+      <blockquote class="pull">Plus permanentes, plus illimitées, plus anonymes&nbsp;: les violences numériques laissent des traces que l'on n'efface pas.
+        <span class="q-src">Synthèse — ONU Femmes · Plan International · CN2R</span>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — LES AUTEURS ============ -->
+<section class="band" id="sec-06">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-num">06 — Les auteurs & la manosphère</div>
+      <h2 class="sec-title">Une radicalisation qui <em>commence à 12 ans</em>.</h2>
+      <p class="sec-intro">De plus en plus de jeunes garçons sont exposés très tôt à des contenus masculinistes toxiques qui transforment les fragilités en haine des femmes et légitiment le harcèlement.</p>
+    </div>
+
+    <div class="feature reveal">
+      <div class="left">
+        <div class="huge" style="color:var(--violet)"><span data-count="69">0</span><span class="u">%</span></div>
+        <p style="margin-top:22px">des jeunes garçons régulièrement en ligne sont exposés à des <strong style="color:var(--paper)">contenus problématiques sur la masculinité</strong> (type Andrew Tate, forums incels, redpill).</p>
+        <span class="src" style="margin-top:24px">Source — Common Sense Media · analyses 2025</span>
+      </div>
+      <div class="right">
+        <div class="ministat">
+          <b>12-13<span style="font-size:18px;color:var(--paper-mute)"> ans</span></b>
+          <span>l'âge dès lequel l'exposition aux contenus de la manosphère est désormais observée.</span>
+        </div>
+        <div class="ministat">
+          <b class="coral">Escalade</b>
+          <span>flirt → persistance → frustration → rage. Le « non » est perçu non comme un droit, mais comme une injustice à punir.</span>
+        </div>
+        <span class="src">Sources — Common Sense Media · Fondation Jean-Jaurès · ONU Femmes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="help reveal" id="sec-help">
+      <div class="num">3018</div>
+      <div class="txt">
+        <h3>Vous, ou une personne que vous connaissez&nbsp;?</h3>
+        <p>Le 3018 est le numéro national pour les jeunes victimes de violences numériques&nbsp;: gratuit, anonyme, confidentiel. Conservez les preuves, signalez sur Pharos, parlez-en.</p>
+        <div class="chips"><span>3018 — jeunes</span><span>3919 — violences femmes</span><span>Pharos — signalement</span><span>17 — police</span></div>
+      </div>
+    </div>
+
+    <div class="sources">
+      <p><b>Méthodologie.</b> Tous les chiffres présentés sur cette page sont issus du script documentaire « Briser le Silence ». Les indicateurs sont des déclarations / données enregistrées agrégées par les organismes cités&nbsp;; les périmètres (France, Europe, milieu scolaire) varient selon la source et sont précisés sous chaque graphique.</p>
+      <p><b>Sources principales —</b> INSEE (éd. 2025) · SSMSI · ONU Femmes · Plan International · MIPROF · Centre Hubertine Auclert · Missing Children Europe · ChildLight (2025-2026) · Child Focus · e-Enfance / 3018 · CN2R · Common Sense Media · Fondation Jean-Jaurès · Arcom · DSA européen · Fondation canadienne des femmes.</p>
+    </div>
+
+    <div class="colophon">
+      <span>Briser le Silence — Édition data</span>
+      <span>Expliquer · Analyser · Témoigner · Agir</span>
+      <span>2025-2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---- people pictogram builder ---- */
+const personPath = "M19 4 a5 5 0 1 1 -0.01 0 Z M19 11 c-6 0 -10 4 -10 11 v16 h6 l1.5 0 h5 l1.5 0 h6 v-16 c0 -7 -4 -11 -10 -11 Z";
+function buildPicto(el){
+  const on = +el.dataset.on, total = +el.dataset.total;
+  const coral = el.dataset.coral === '0' ? false : (el.dataset.on==='8'?false:true);
+  // women's emprise -> violet; child grooming -> coral highlight
+  const useCoral = el.dataset.coral === '0';
+  for(let i=0;i<total;i++){
+    const fillClass = i < on ? 'fig-on' : 'fig-off';
+    const grad = i < on ? (useCoral ? 'url(#cg)' : 'url(#vg)') : '';
+    el.insertAdjacentHTML('beforeend',
+      `<svg viewBox="0 0 38 42" class="ph" style="transition-delay:${i*70}ms">
+        <path d="${personPath}" class="${fillClass}" ${grad?`style="fill:${grad}"`:''}/>
+      </svg>`);
+  }
+}
+document.querySelectorAll('[data-picto]').forEach(buildPicto);
+
+/* ---- count up ---- */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function animateCount(el){
+  const target = parseFloat(el.dataset.count);
+  const dec = +el.dataset.dec || 0;
+  const plus = el.dataset.plus ? '+' : '';
+  const approx = el.dataset.approx ? '~' : '';
+  if(reduceMotion){
+    let t = dec ? target.toFixed(dec).replace('.',',')
+                : (target>=1000 ? Math.round(target).toLocaleString('fr-FR') : Math.round(target).toString());
+    el.textContent = approx + t + plus;
+    return;
+  }
+  const dur = 1500; let start=null;
+  function step(ts){
+    if(!start) start=ts;
+    const p = Math.min((ts-start)/dur,1);
+    const eased = 1-Math.pow(1-p,3);
+    let v = target*eased;
+    let txt = dec ? v.toFixed(dec).replace('.',',') : Math.round(v).toString();
+    if(target>=1000) txt = Math.round(v).toLocaleString('fr-FR');
+    el.textContent = approx + txt + (p===1?plus:'');
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ---- intersection observer ---- */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el = e.target;
+    el.classList.add('in');
+    // reveal children counters/bars
+    el.querySelectorAll?.('[data-count]').forEach(c=>{ if(!c.dataset.done){c.dataset.done=1;animateCount(c);} });
+    if(el.matches('[data-count]') && !el.dataset.done){el.dataset.done=1;animateCount(el);}
+    if(el.matches('[data-cbar]')||el.querySelector?.('[data-cbar]')){
+      el.querySelectorAll('.fill').forEach(f=>{
+        const w=+f.dataset.w, max=+f.getAttribute('style').match(/--max:([\d.]+)/)[1];
+        f.style.width = (w/max*100)+'%';
+      });
+    }
+    if(el.matches('[data-donut]')) el.style.setProperty('--p', el.dataset.p);
+    if(el.matches('[data-line]')) el.classList.add('in');
+    io.unobserve(el);
+  });
+},{threshold:.25});
+
+document.querySelectorAll('.reveal,[data-cbar],[data-donut],[data-count],[data-line]').forEach(el=>io.observe(el));
+
+/* ---- scroll progress bar + active section dot ---- */
+const progressTop = document.getElementById('progressTop');
+const navLinks = [...document.querySelectorAll('.dotnav a')];
+const sections = navLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progressTop.style.width = (max>0 ? (h.scrollTop/max*100) : 0) + '%';
+  const mid = h.scrollTop + window.innerHeight*0.38;
+  let idx = 0;
+  sections.forEach((s,i)=>{ if(s.offsetTop <= mid) idx = i; });
+  navLinks.forEach((a,i)=>a.classList.toggle('active', i===idx));
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+window.addEventListener('resize', onScroll);
+onScroll();
+</script>
+</body>
+</html>

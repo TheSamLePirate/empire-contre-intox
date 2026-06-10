@@ -11,13 +11,45 @@
     <description>Archives publiques d'Empire contre Intox : dossiers scientifiques sur le temps profond, transcriptions structurées et esprit critique. Veritas omnia vincit.</description>
     <language>fr-FR</language>
     <copyright>Empire contre Intox — Veritas omnia vincit</copyright>
-    <lastBuildDate>Sat, 06 Jun 2026 21:12:50 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jun 2026 16:34:59 +0000</lastBuildDate>
     <generator>generate-rss.py</generator>
     <image>
       <url>https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/assets/logo-eci.jpg</url>
       <title>Empire contre Intox — Dossiers</title>
       <link>https://thesamlepirate.github.io/empire-contre-intox/</link>
     </image>
+    <item>
+      <title>Dossier XIV — Les Formules de l'Empire</title>
+      <link>https://thesamlepirate.github.io/empire-contre-intox/formules/index.html</link>
+      <guid isPermaLink="true">https://thesamlepirate.github.io/empire-contre-intox/formules/index.html</guid>
+      <pubDate>Sun, 07 Jun 2026 16:34:59 +0000</pubDate>
+      <dc:creator>SamLePirate</dc:creator>
+      <category>Interactif</category>
+      <category>LaTeX · KaTeX</category>
+      <category>Dataviz</category>
+      <category>Atlas interactif</category>
+      <description>Toutes les équations des dossiers — vis-viva, Tsiolkovsky, Maxwell, Bohr, Rydberg, décroissance radioactive, Lotka-Volterra, Coriolis, CAPE… — rendues en LaTeX, expliquées et surtout mises en application : un atelier interactif par formule, avec curseurs et visualisation qui réagit en direct.</description>
+      <content:encoded><![CDATA[<p><img src="https://thesamlepirate.github.io/empire-contre-intox/formules/assets/formules-hero.png" alt="Planche codex des formules de l'Empire : orbites, onde électromagnétique, atome et champ de vecteurs en filets d'or" style="max-width:100%;height:auto;border-radius:4px" /></p><p><strong>Atlas interactif</strong></p><p>Toutes les équations des dossiers — vis-viva, Tsiolkovsky, Maxwell, Bohr, Rydberg, décroissance radioactive, Lotka-Volterra, Coriolis, CAPE… — rendues en LaTeX, expliquées et surtout mises en application : un atelier interactif par formule, avec curseurs et visualisation qui réagit en direct.</p><p><em>Réalisé par SamLePirate.</em></p><p>Interactif · LaTeX · KaTeX · Dataviz</p><p><a href="https://thesamlepirate.github.io/empire-contre-intox/formules/index.html">Consulter le dossier →</a></p>]]></content:encoded>
+      <enclosure url="https://thesamlepirate.github.io/empire-contre-intox/formules/assets/formules-hero.png" type="image/png" length="647564" />
+      <media:content url="https://thesamlepirate.github.io/empire-contre-intox/formules/assets/formules-hero.png" medium="image" type="image/png" fileSize="647564" />
+      <media:thumbnail url="https://thesamlepirate.github.io/empire-contre-intox/formules/assets/formules-hero.png" />
+    </item>
+    <item>
+      <title>Dossier XV — Les Résistants</title>
+      <link>https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/index.html</link>
+      <guid isPermaLink="true">https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/index.html</guid>
+      <pubDate>Sun, 07 Jun 2026 16:34:59 +0000</pubDate>
+      <dc:creator>Lalie &amp; Ymir</dc:creator>
+      <category>Seconde Guerre mondiale</category>
+      <category>Mémoire</category>
+      <category>Anti-intox</category>
+      <category>Mémoire &amp; Résistance</category>
+      <description>Portraits de courage, mot pour mot : Jean Moulin et le CNR, le réseau Alliance (« L'Arche de Noé »), Manouchian et l'Affiche Rouge, Joséphine Baker, Cécile Rol-Tanguy, Geneviève de Gaulle-Anthonioz, Kernabat et les frères Jacob. Chaque récit vérifié, chaque date recoupée.</description>
+      <content:encoded><![CDATA[<p><img src="https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/assets/resistance-hero.png" alt="Silhouettes de résistants à l'aube, croix de Lorraine dorée et affiche rougie : Les Résistants, portraits de courage entre Histoire et Vérité" style="max-width:100%;height:auto;border-radius:4px" /></p><p><strong>Mémoire &amp; Résistance</strong></p><p>Portraits de courage, mot pour mot : Jean Moulin et le CNR, le réseau Alliance (« L'Arche de Noé »), Manouchian et l'Affiche Rouge, Joséphine Baker, Cécile Rol-Tanguy, Geneviève de Gaulle-Anthonioz, Kernabat et les frères Jacob. Chaque récit vérifié, chaque date recoupée.</p><p><em>Réalisé par Lalie &amp; Ymir.</em></p><p>Seconde Guerre mondiale · Mémoire · Anti-intox</p><p><a href="https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/index.html">Consulter le dossier →</a></p>]]></content:encoded>
+      <enclosure url="https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/assets/resistance-hero.png" type="image/png" length="1187338" />
+      <media:content url="https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/assets/resistance-hero.png" medium="image" type="image/png" fileSize="1187338" />
+      <media:thumbnail url="https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/assets/resistance-hero.png" />
+    </item>
     <item>
       <title>Dossier XII — Tornades, Typhons &amp; Ouragans</title>
       <link>https://thesamlepirate.github.io/empire-contre-intox/provoxys/tornades/index.html</link>
@@ -163,7 +195,7 @@
       <media:thumbnail url="https://thesamlepirate.github.io/empire-contre-intox/jorge-zalex/assets/elements-hero.png" />
     </item>
     <item>
-      <title>Dossier XVI — Les Sources</title>
+      <title>Dossier XVII — Les Sources</title>
       <link>https://thesamlepirate.github.io/empire-contre-intox/sources/sources.html</link>
       <guid isPermaLink="true">https://thesamlepirate.github.io/empire-contre-intox/sources/sources.html</guid>
       <pubDate>Mon, 01 Jun 2026 01:26:24 +0000</pubDate>
@@ -243,36 +275,20 @@
       <media:thumbnail url="https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/assets/ediacaran-hero.png" />
     </item>
     <item>
-      <title>Dossier XIV — Les Formules de l'Empire</title>
-      <link>https://thesamlepirate.github.io/empire-contre-intox/formules/index.html</link>
-      <guid isPermaLink="true">https://thesamlepirate.github.io/empire-contre-intox/formules/index.html</guid>
+      <title>Dossier XVI — Briser le Silence — les chiffres des cyberviolences</title>
+      <link>https://thesamlepirate.github.io/empire-contre-intox/provoxys/chiffres-cyberharcelement.html</link>
+      <guid isPermaLink="true">https://thesamlepirate.github.io/empire-contre-intox/provoxys/chiffres-cyberharcelement.html</guid>
       <pubDate>Fri, 29 May 2026 22:00:00 +0000</pubDate>
-      <dc:creator>SamLePirate</dc:creator>
-      <category>Interactif</category>
-      <category>LaTeX · KaTeX</category>
-      <category>Dataviz</category>
-      <category>Atlas interactif</category>
-      <description>Toutes les équations des dossiers — vis-viva, Tsiolkovsky, Maxwell, Bohr, Rydberg, décroissance radioactive, Lotka-Volterra, Coriolis, CAPE… — rendues en LaTeX, expliquées et surtout mises en application : un atelier interactif par formule, avec curseurs et visualisation qui réagit en direct.</description>
-      <content:encoded><![CDATA[<p><img src="https://thesamlepirate.github.io/empire-contre-intox/formules/assets/formules-hero.png" alt="Planche codex des formules de l'Empire : orbites, onde électromagnétique, atome et champ de vecteurs en filets d'or" style="max-width:100%;height:auto;border-radius:4px" /></p><p><strong>Atlas interactif</strong></p><p>Toutes les équations des dossiers — vis-viva, Tsiolkovsky, Maxwell, Bohr, Rydberg, décroissance radioactive, Lotka-Volterra, Coriolis, CAPE… — rendues en LaTeX, expliquées et surtout mises en application : un atelier interactif par formule, avec curseurs et visualisation qui réagit en direct.</p><p><em>Réalisé par SamLePirate.</em></p><p>Interactif · LaTeX · KaTeX · Dataviz</p><p><a href="https://thesamlepirate.github.io/empire-contre-intox/formules/index.html">Consulter le dossier →</a></p>]]></content:encoded>
-      <enclosure url="https://thesamlepirate.github.io/empire-contre-intox/formules/assets/formules-hero.png" type="image/png" length="647564" />
-      <media:content url="https://thesamlepirate.github.io/empire-contre-intox/formules/assets/formules-hero.png" medium="image" type="image/png" fileSize="647564" />
-      <media:thumbnail url="https://thesamlepirate.github.io/empire-contre-intox/formules/assets/formules-hero.png" />
-    </item>
-    <item>
-      <title>Dossier XV — Les Résistants</title>
-      <link>https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/index.html</link>
-      <guid isPermaLink="true">https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/index.html</guid>
-      <pubDate>Fri, 29 May 2026 22:00:00 +0000</pubDate>
-      <dc:creator>Lalie &amp; Ymir</dc:creator>
-      <category>Seconde Guerre mondiale</category>
-      <category>Mémoire</category>
-      <category>Anti-intox</category>
-      <category>Mémoire &amp; Résistance</category>
-      <description>Portraits de courage, mot pour mot : Jean Moulin et le CNR, le réseau Alliance (« L'Arche de Noé »), Manouchian et l'Affiche Rouge, Joséphine Baker, Cécile Rol-Tanguy, Geneviève de Gaulle-Anthonioz, Kernabat et les frères Jacob. Chaque récit vérifié, chaque date recoupée.</description>
-      <content:encoded><![CDATA[<p><img src="https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/assets/resistance-hero.png" alt="Silhouettes de résistants à l'aube, croix de Lorraine dorée et affiche rougie : Les Résistants, portraits de courage entre Histoire et Vérité" style="max-width:100%;height:auto;border-radius:4px" /></p><p><strong>Mémoire &amp; Résistance</strong></p><p>Portraits de courage, mot pour mot : Jean Moulin et le CNR, le réseau Alliance (« L'Arche de Noé »), Manouchian et l'Affiche Rouge, Joséphine Baker, Cécile Rol-Tanguy, Geneviève de Gaulle-Anthonioz, Kernabat et les frères Jacob. Chaque récit vérifié, chaque date recoupée.</p><p><em>Réalisé par Lalie &amp; Ymir.</em></p><p>Seconde Guerre mondiale · Mémoire · Anti-intox</p><p><a href="https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/index.html">Consulter le dossier →</a></p>]]></content:encoded>
-      <enclosure url="https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/assets/resistance-hero.png" type="image/png" length="1187338" />
-      <media:content url="https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/assets/resistance-hero.png" medium="image" type="image/png" fileSize="1187338" />
-      <media:thumbnail url="https://thesamlepirate.github.io/empire-contre-intox/ymir-lalie/la-resistance/assets/resistance-hero.png" />
+      <dc:creator>Provoxys</dc:creator>
+      <category>Cyberviolences</category>
+      <category>Données sourcées</category>
+      <category>Protection des mineurs</category>
+      <category>Édition data</category>
+      <description>Une lecture froide et documentée des cyberviolences faites aux femmes : prévalence, harcèlement sexuel numérique multiplié par six depuis 2016, emprise conjugale par l'écran, grooming des mineures, dégâts psychologiques et manosphère. Chaque donnée est sourcée — et le 3018 pour agir.</description>
+      <content:encoded><![CDATA[<p><img src="https://thesamlepirate.github.io/empire-contre-intox/provoxys/assets/cyberviolences-hero.svg" alt="Briser le Silence : ruban violet et courbe ×6 — les chiffres des cyberviolences faites aux femmes" style="max-width:100%;height:auto;border-radius:4px" /></p><p><strong>Édition data</strong></p><p>Une lecture froide et documentée des cyberviolences faites aux femmes : prévalence, harcèlement sexuel numérique multiplié par six depuis 2016, emprise conjugale par l'écran, grooming des mineures, dégâts psychologiques et manosphère. Chaque donnée est sourcée — et le 3018 pour agir.</p><p><em>Réalisé par Provoxys.</em></p><p>Cyberviolences · Données sourcées · Protection des mineurs</p><p><a href="https://thesamlepirate.github.io/empire-contre-intox/provoxys/chiffres-cyberharcelement.html">Consulter le dossier →</a></p>]]></content:encoded>
+      <enclosure url="https://thesamlepirate.github.io/empire-contre-intox/provoxys/assets/cyberviolences-hero.svg" type="image/svg+xml" length="3134" />
+      <media:content url="https://thesamlepirate.github.io/empire-contre-intox/provoxys/assets/cyberviolences-hero.svg" medium="image" type="image/svg+xml" fileSize="3134" />
+      <media:thumbnail url="https://thesamlepirate.github.io/empire-contre-intox/provoxys/assets/cyberviolences-hero.svg" />
     </item>
     <item>
       <title>Agenda — Le Calendrier des Lives</title>

@@ -2820,11 +2820,12 @@ LABS.rwalk={
 
 /* ====================== ACTE XII — PROBABILITÉS ====================== */
 LABS.galton={
-  buttons:[{t:"↺ Vider",act:(st,api)=>{st.bins=null;st.balls=[];st.cnt=0;}}],
+  buttons:[{t:"↺ Vider",act:(st,api)=>{st.bins=new Array(13).fill(0);st.balls=[];st.cnt=0;}}],
   out:[{k:"n",label:"Billes tombées"}],
   canvas:{h:250,animate:true},note:"chaque bille rebondit au hasard → la cloche de Gauss émerge",
   compute(v,st){if(!st.bins){st.bins=new Array(13).fill(0);st.balls=[];st.cnt=0;}return{n:0};},
   draw(ctx,v,o,en){clear(ctx,en.w,en.h);const st=en.state,rows=8,cx=en.w/2,top=16,sp=Math.min(en.w/16,15),landY=top+rows*sp;
+    if(!st.bins){st.bins=new Array(13).fill(0);st.balls=[];st.cnt=0;}if(!st.balls)st.balls=[];
     for(let r=0;r<rows;r++)for(let c=0;c<=r;c++)dot(ctx,cx+(c-r/2)*sp,top+r*sp,1.6,"rgba(95,191,143,.5)");
     if(st.balls.length<4&&Math.random()<0.5)st.balls.push({x:cx,y:top,row:0});
     st.balls=st.balls.filter(b=>{b.y+=3.4;

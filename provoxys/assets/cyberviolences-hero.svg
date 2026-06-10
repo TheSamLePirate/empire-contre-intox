@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Briser le Silence — les chiffres des cyberviolences faites aux femmes">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#14101c"/>
+      <stop offset="1" stop-color="#0c0910"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0.82" cy="0.05" r="0.7">
+      <stop offset="0" stop-color="#8a6bf0" stop-opacity=".30"/>
+      <stop offset="1" stop-color="#8a6bf0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.05" cy="0.85" r="0.7">
+      <stop offset="0" stop-color="#ff5e6e" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#ff5e6e" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b69bff"/>
+      <stop offset="1" stop-color="#5a3fc0"/>
+    </linearGradient>
+    <linearGradient id="coral" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff8a78"/>
+      <stop offset="1" stop-color="#ff5e6e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#glow1)"/>
+  <rect width="1600" height="1000" fill="url(#glow2)"/>
+
+  <!-- faint grid -->
+  <g stroke="#f3ece2" stroke-opacity=".05">
+    <line x1="0" y1="250" x2="1600" y2="250"/>
+    <line x1="0" y1="500" x2="1600" y2="500"/>
+    <line x1="0" y1="750" x2="1600" y2="750"/>
+  </g>
+
+  <!-- rising curve ×1 → ×6 (trajectoire du harcèlement numérique) -->
+  <path d="M880,820 L1110,690 L1330,520 L1520,300" fill="none" stroke="url(#coral)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+  <path d="M880,820 L1110,690 L1330,520 L1520,300 L1520,860 L880,860 Z" fill="#ff5e6e" opacity=".10"/>
+  <circle cx="880" cy="820" r="13" fill="#ff5e6e" stroke="#14101c" stroke-width="5"/>
+  <circle cx="1110" cy="690" r="13" fill="#ff5e6e" stroke="#14101c" stroke-width="5"/>
+  <circle cx="1330" cy="520" r="13" fill="#ff5e6e" stroke="#14101c" stroke-width="5"/>
+  <circle cx="1520" cy="300" r="18" fill="#ff8a78" stroke="#14101c" stroke-width="5"/>
+  <text x="1505" y="248" font-family="Georgia, serif" font-size="84" fill="#ff8a78" text-anchor="end" font-style="italic">×6</text>
+
+  <!-- awareness ribbon -->
+  <g transform="translate(250,360)">
+    <path d="M0,-190 C-70,-95 -78,-12 -38,76 L52,256 L128,256 L-4,-6 C-22,-66 -16,-128 26,-190 Z" fill="url(#violet)"/>
+    <path d="M52,-190 C122,-95 130,-12 90,76 L0,256 L-76,256 L56,-6 C74,-66 68,-128 26,-190 Z" fill="url(#violet)" opacity=".82"/>
+  </g>
+
+  <!-- titles -->
+  <text x="120" y="760" font-family="Georgia, serif" font-size="96" font-weight="400" fill="#f3ece2">Briser le <tspan font-style="italic" fill="#b69bff">Silence</tspan></text>
+  <text x="120" y="830" font-family="monospace" font-size="32" letter-spacing="10" fill="#b69bff">LES CHIFFRES DES CYBERVIOLENCES</text>
+  <text x="120" y="885" font-family="monospace" font-size="28" letter-spacing="8" fill="#6f6678">FAITES AUX FEMMES · ÉDITION DATA 2025</text>
+</svg>
