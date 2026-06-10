@@ -280,6 +280,28 @@
     border-radius:30px;padding:4px 12px;white-space:nowrap;
     background:rgba(255,94,110,.08)}
 
+  /* ============ INTÉGRATION ECI ============ */
+  .eci-home{position:absolute;top:26px;left:0;right:0;z-index:5}
+  .eci-home .wrap{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+  .eci-home a{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--paper-dim);border:1px solid var(--line);border-radius:30px;
+    padding:9px 16px;transition:all .3s;background:rgba(20,16,28,.5);backdrop-filter:blur(8px)}
+  .eci-home a:hover{color:var(--paper);border-color:var(--violet)}
+  .eci-collective{border:1px solid var(--line);border-radius:20px;padding:38px 40px;margin-bottom:56px;
+    background:linear-gradient(150deg,rgba(138,107,240,.10),transparent);
+    display:flex;gap:34px;flex-wrap:wrap;align-items:center}
+  .eci-collective img{width:84px;height:84px;border-radius:50%;object-fit:cover;flex:none;
+    padding:3px;background:conic-gradient(from 210deg,#5a3fc0,#b69bff,#8a6bf0,#5a3fc0)}
+  .eci-collective .ec-txt{flex:1;min-width:260px}
+  .eci-collective h3{font-family:'Fraunces',serif;font-weight:500;font-size:24px;margin:0 0 8px}
+  .eci-collective p{color:var(--paper-dim);font-weight:300;font-size:15px;margin:0}
+  .eci-collective .ec-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .eci-btn{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;border:1px solid var(--line);
+    border-radius:30px;padding:8px 16px;color:var(--paper-dim);transition:all .3s}
+  .eci-btn:hover{color:var(--paper);border-color:var(--violet)}
+  .eci-btn.gold{border-color:rgba(182,155,255,.5);color:var(--lilas,#b69bff);color:#b69bff}
+  .eci-motto{font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:#b69bff;margin-top:14px;display:block}
+
   /* footer */
   footer{padding:90px 0 70px;border-top:1px solid var(--line);position:relative;z-index:2}
   .help{
@@ -343,6 +365,12 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
+  <nav class="eci-home" aria-label="Retour Empire contre Intox">
+    <div class="wrap">
+      <a href="index.html">← Le dossier Briser le Silence</a>
+      <a href="../../index.html">Accueil Empire contre Intox</a>
+    </div>
+  </nav>
   <div class="wrap">
     <div class="ribbon"><span></span><span></span></div>
     <div class="kicker">Briser le silence — Édition data 2025</div>
@@ -384,7 +412,7 @@
           <div class="cbar-scale" style="margin-left:144px"><span>0</span><span>5&nbsp;%</span></div>
           <span class="gap-tag">↑ 1,5× plus de femmes</span>
         </div>
-        <span class="src">Source — INSEE, édition 2025</span>
+        <span class="src">Source — INSEE éd. 2025 · enquête VRS 2022 (SSMSI)</span>
       </div>
 
       <div class="card reveal">
@@ -403,7 +431,7 @@
           <div class="cbar-scale" style="margin-left:144px"><span>0</span><span>35&nbsp;%</span></div>
           <span class="gap-tag">↑ +5 pts chez les filles</span>
         </div>
-        <span class="src">Source — INSEE 2025 · milieu scolaire</span>
+        <span class="src">Source — DEPP 2022 · via INSEE éd. 2025</span>
       </div>
     </div>
 
@@ -478,7 +506,7 @@
           </div>
           <div style="flex:1;min-width:200px">
             <div class="lab" style="margin-top:0;font-size:18px;color:var(--paper)">Plus d'un tiers des délits de harcèlement enregistrés sont désormais commis <strong style="color:var(--violet)">en ligne</strong>.</div>
-            <span class="src">Source — délits de harcèlement enregistrés, France 2025</span>
+            <span class="src">Source — délits de harcèlement enregistrés, France 2024 (SSMSI)</span>
           </div>
         </div>
       </div>
@@ -532,7 +560,7 @@
 
       <div class="card reveal" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start">
         <div class="bignum coral" style="font-size:clamp(64px,11vw,108px)">+<span data-count="151">0</span><span class="u">%</span></div>
-        <div class="lab" style="font-size:17px">d'explosion des cas de grooming recensés en 2025 dans certains pays européens.</div>
+        <div class="lab" style="font-size:17px">d'explosion des cas de grooming recensés en Belgique en 2025 (43 → 108 cas).</div>
         <span class="src">Child Focus · rapport annuel 2025</span>
       </div>
     </div>
@@ -540,17 +568,17 @@
     <div class="grid g-3">
       <div class="card reveal">
         <div class="bignum violet"><span data-count="13">0</span><span class="u">ans</span></div>
-        <div class="lab">âge moyen des victimes — un record absolu de jeunesse.</div>
+        <div class="lab">âge moyen des victimes de grooming recensées en 2025.</div>
         <span class="src">Child Focus 2025</span>
       </div>
       <div class="card reveal">
         <div class="bignum coral"><span data-count="108">0</span></div>
-        <div class="lab">cas recensés en une seule année dans un pays européen — un record.</div>
+        <div class="lab">cas de grooming recensés en un an en Belgique — un record absolu.</div>
         <span class="src">Child Focus · rapport annuel 2025</span>
       </div>
       <div class="card reveal">
         <div class="bignum gold"><span data-count="92">0</span></div>
-        <div class="lab">disparitions d'enfants en Europe liées au grooming sur la même année.</div>
+        <div class="lab">disparitions d'enfants liées au grooming, identifiées par les hotlines européennes 116 000 en 2025.</div>
         <span class="src">Missing Children Europe</span>
       </div>
     </div>
@@ -569,23 +597,23 @@
     <div class="grid g-4">
       <div class="card reveal">
         <div class="bignum coral" style="font-size:clamp(48px,7vw,72px)"><span data-count="50" data-approx="1">0</span><span class="u">%</span></div>
-        <div class="lab">près de la moitié des victimes de cyber-harcèlement rapportent avoir pensé au suicide.</div>
-        <span class="src">e-Enfance 2025 · Politis</span>
+        <div class="lab">près de la moitié des 18-25 ans victimes de cyber-harcèlement rapportent avoir pensé au suicide.</div>
+        <span class="src">e-Enfance / Caisse d'Épargne · 2022</span>
       </div>
       <div class="card reveal">
         <div class="bignum coral" style="font-size:clamp(48px,7vw,72px)"><span data-count="14">0</span><span class="u">%</span></div>
-        <div class="lab">ont fait une tentative de suicide, selon certaines études.</div>
-        <span class="src">e-Enfance 2025</span>
+        <div class="lab">des victimes de cyberviolences déclarent avoir tenté de se suicider.</div>
+        <span class="src">Ipsos · Féministes contre le cyberharcèlement, 2022</span>
       </div>
       <div class="card reveal">
-        <div class="bignum violet" style="font-size:clamp(48px,7vw,72px)"><span data-count="43">0</span><span class="u">%</span></div>
-        <div class="lab">des survivantes de cyberviolences de genre rapportent des effets graves sur leur santé mentale.</div>
-        <span class="src">études européennes</span>
+        <div class="bignum violet" style="font-size:clamp(48px,7vw,72px)"><span data-count="35">0</span><span class="u">%</span></div>
+        <div class="lab">des femmes ayant subi des violences en ligne rapportent des atteintes à leur santé mentale.</div>
+        <span class="src">Economist Intelligence Unit · 2021 · 51 pays</span>
       </div>
       <div class="card reveal">
         <div class="bignum gold" style="font-size:clamp(48px,7vw,72px)">×<span data-count="2">0</span></div>
-        <div class="lab">les jeunes et les personnes marginalisées sont deux fois plus à risque d'idées suicidaires.</div>
-        <span class="src">Fondation canadienne des femmes</span>
+        <div class="lab">les jeunes victimes de cyberharcèlement sont plus de deux fois plus à risque de comportements suicidaires.</div>
+        <span class="src">John et al. 2018 · JMIR · méta-analyse</span>
       </div>
     </div>
 
@@ -609,8 +637,8 @@
     <div class="feature reveal">
       <div class="left">
         <div class="huge" style="color:var(--violet)"><span data-count="69">0</span><span class="u">%</span></div>
-        <p style="margin-top:22px">des jeunes garçons régulièrement en ligne sont exposés à des <strong style="color:var(--paper)">contenus problématiques sur la masculinité</strong> (type Andrew Tate, forums incels, redpill).</p>
-        <span class="src" style="margin-top:24px">Source — Common Sense Media · analyses 2025</span>
+        <p style="margin-top:22px">des garçons de 11 à 17 ans régulièrement en ligne voient des <strong style="color:var(--paper)">contenus véhiculant des stéréotypes de genre problématiques</strong> (type Andrew Tate, forums incels, redpill) — deux tiers sans les avoir cherchés.</p>
+        <span class="src" style="margin-top:24px">Source — Common Sense Media 2025 · garçons américains 11-17 ans</span>
       </div>
       <div class="right">
         <div class="ministat">
@@ -642,6 +670,20 @@
     <div class="sources">
       <p><b>Méthodologie.</b> Tous les chiffres présentés sur cette page sont issus du script documentaire « Briser le Silence ». Les indicateurs sont des déclarations / données enregistrées agrégées par les organismes cités&nbsp;; les périmètres (France, Europe, milieu scolaire) varient selon la source et sont précisés sous chaque graphique.</p>
       <p><b>Sources principales —</b> INSEE (éd. 2025) · SSMSI · ONU Femmes · Plan International · MIPROF · Centre Hubertine Auclert · Missing Children Europe · ChildLight (2025-2026) · Child Focus · e-Enfance / 3018 · CN2R · Common Sense Media · Fondation Jean-Jaurès · Arcom · DSA européen · Fondation canadienne des femmes.</p>
+    </div>
+
+    <div class="eci-collective">
+      <img src="../../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+      <div class="ec-txt">
+        <h3>Empire contre Intox</h3>
+        <p>Cette page est l'annexe data du dossier « Briser le Silence » (Provoxys &amp; Lalie) — un collectif qui remet du contexte, de la méthode et du sens critique dans le débat public. Chaque chiffre de cette page a été vérifié et tracé jusqu'à sa source.</p>
+        <div class="ec-btns">
+          <a class="eci-btn gold" href="index.html">Le dossier complet →</a>
+          <a class="eci-btn" href="../../index.html">Tous les dossiers</a>
+          <a class="eci-btn" href="../../sources/sources.html">Les Sources</a>
+        </div>
+        <span class="eci-motto">Veritas omnia vincit</span>
+      </div>
     </div>
 
     <div class="colophon">
@@ -709,7 +751,9 @@ const io = new IntersectionObserver((entries)=>{
     if(el.matches('[data-count]') && !el.dataset.done){el.dataset.done=1;animateCount(el);}
     if(el.matches('[data-cbar]')||el.querySelector?.('[data-cbar]')){
       el.querySelectorAll('.fill').forEach(f=>{
-        const w=+f.dataset.w, max=+f.getAttribute('style').match(/--max:([\d.]+)/)[1];
+        const m=(f.getAttribute('style')||'').match(/--max:([\d.]+)/);
+        if(!m) return;
+        const w=+f.dataset.w, max=+m[1];
         f.style.width = (w/max*100)+'%';
       });
     }

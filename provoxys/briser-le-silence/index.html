@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Briser le Silence — Empire contre Intox</title>
+  <meta name="description" content="Harcèlement, cyber-harcèlement, emprise, doxing, grooming et violences faites aux femmes : expliquer, analyser, témoigner, agir. Le live de Provoxys &amp; Lalie, mot pour mot et vérifié, avec son annexe data. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents — le violet du ruban, le corail de l'alerte */
+      --violet:#8a6bf0;   /* l'emprise numérique, le ruban */
+      --lilas:#b69bff;    /* la lueur du ruban */
+      --coral:#ff5e6e;    /* l'alerte, la ligne qui monte */
+
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+
+      --hero:url("assets/briser-le-silence-hero.png");
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(138,107,240,.15), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.13), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(255,94,110,.09), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px; mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.6),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(182,155,255,.6),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(255,94,110,.4),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.32),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate; }
+    .grain { position:fixed; inset:-50%; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--violet),var(--gold-bright),var(--coral)); box-shadow:0 0 14px rgba(243,217,138,.55); }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(214,172,85,.28); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    /* Hero */
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02); background-color:var(--abyss); }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2;
+      background:linear-gradient(86deg,rgba(3,6,13,.94) 0%,rgba(3,6,13,.72) 36%,rgba(3,6,13,.18) 68%,rgba(3,6,13,.5) 100%),linear-gradient(180deg,rgba(3,6,13,.1) 0%,rgba(3,6,13,.28) 54%,var(--void) 100%); }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1; background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh; display:grid; grid-template-columns:minmax(0,780px) minmax(250px,340px); gap:46px; align-items:end; }
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:16ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.7rem,7vw,5.8rem); line-height:.96; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil { background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 40%,#fff6dc 50%,var(--gold-bright) 60%,var(--gold-deep)); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% 0; } }
+    .hero-lead { max-width:58ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-quote { max-width:60ch; margin:22px 0 0; padding-left:20px; border-left:2px solid var(--violet); font-family:var(--serif); font-style:italic; color:var(--parch); font-size:clamp(1.05rem,1.5vw,1.26rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px; font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px); transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1 1 auto; min-width:0; -webkit-overflow-scrolling:touch;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent); }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--violet),var(--gold-bright),var(--coral)); }
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    /* Intro band */
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.9rem); line-height:1.04; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:120px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time { font-family:var(--roman); font-weight:600; font-size:.8rem; letter-spacing:.04em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(138,107,240,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .act-band { margin:70px 0 0; padding:clamp(26px,4vw,46px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(130% 130% at 0% 0%,rgba(214,172,85,.12),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.55),rgba(7,12,26,.6)); text-align:center; }
+    .act-band .act-no { font-family:var(--roman); font-weight:700; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+    .act-band h2 { margin:14px 0 0; font-family:var(--roman); font-weight:800; font-size:clamp(1.9rem,4.4vw,3.2rem); text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .act-band p { max-width:72ch; margin:16px auto 0; color:var(--muted); }
+
+    /* Chapters */
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"❖"; position:absolute; left:0; top:0; color:var(--gold); font-size:.8em; }
+    .prose ol { margin:14px 0 24px; padding-left:24px; }
+    .prose ol li { padding-left:6px; }
+    .prose ol li::before { content:none; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .prose em { font-style:italic; font-weight:400; }
+    .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+    .sub { margin:26px 0 10px; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--parch); }
+
+    .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
+    .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); }
+
+    .script-block,.science-block,.question-block,.lesson-block,.dialogue-block {
+      border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
+    .dialogue-block { border-left-color:var(--gold); background:rgba(214,172,85,.06); font-family:var(--serif); }
+    .dialogue-block p { color:var(--parch); font-style:italic; }
+    .science-block { border-left-color:var(--violet); background:rgba(138,107,240,.1); }
+    .question-block { border-left-color:var(--coral); background:rgba(255,94,110,.09); }
+    .lesson-block { border-left-color:var(--gold-bright); background:rgba(243,217,138,.06); }
+    .script-block p:last-child,.science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,.dialogue-block p:last-child,
+    .science-block ul:last-child,.lesson-block ul:last-child { margin-bottom:0; }
+    .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .science-block .block-label { color:var(--lilas); }
+    .question-block .block-label { color:var(--coral); }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .side-note p:last-child { margin-bottom:0; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    .dtable { width:100%; border-collapse:collapse; margin:14px 0 26px; border:1px solid var(--line); border-radius:3px; overflow:hidden; font-size:.98rem; }
+    .dtable caption { text-align:left; padding:0 0 14px; color:var(--muted); font-style:italic; font-family:var(--serif); }
+    .dtable th { text-align:left; padding:13px 15px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); background:rgba(214,172,85,.06); border-bottom:1px solid var(--line); }
+    .dtable td { padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--line-2); color:var(--muted); }
+    .dtable tr:last-child td { border-bottom:0; }
+    .dtable td.k { color:var(--parch); font-weight:600; white-space:nowrap; }
+    .dtable tr:hover td { background:rgba(244,236,216,.03); }
+
+    .sommaire-list { display:grid; gap:14px; margin:18px 0; }
+    .pillar { border:1px solid var(--line-2); border-radius:3px; padding:22px 24px; background:rgba(244,236,216,.035); border-left:3px solid rgba(214,172,85,.5); }
+    .pillar h3 { margin:0 0 10px; font-family:var(--serif); font-weight:600; font-size:1.24rem; color:var(--ink); }
+    .pillar p { margin:0 0 8px; }
+    .pillar ul { margin:8px 0 0; }
+
+    /* Lignes d'aide — 3018, 3919, Pharos, 17 */
+    .helpline { clear:both; margin:26px 0; border:1px solid rgba(255,94,110,.45); border-radius:3px; padding:clamp(22px,3.4vw,34px);
+      background:radial-gradient(120% 140% at 0% 0%,rgba(255,94,110,.12),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.5),rgba(7,12,26,.6));
+      display:flex; gap:30px; flex-wrap:wrap; align-items:center; }
+    .helpline .hl-num { font-family:var(--roman); font-weight:800; font-size:clamp(2.6rem,6vw,4rem); line-height:1; color:var(--coral); text-shadow:0 0 30px rgba(255,94,110,.35); }
+    .helpline .hl-txt { flex:1; min-width:240px; }
+    .helpline .hl-txt h3 { font-family:var(--serif); font-weight:600; font-size:1.2rem; color:var(--ink); margin:0 0 8px; }
+    .helpline .hl-txt p { margin:0; color:var(--muted); font-size:.98rem; }
+    .helpline .hl-chips { display:flex; flex-wrap:wrap; gap:9px; margin-top:14px; }
+    .helpline .hl-chips span { display:inline-flex; align-items:center; min-height:30px; padding:0 13px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--parch); border:1px solid var(--line); border-radius:2px; background:rgba(5,8,17,.5); }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(138,107,240,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(138,107,240,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left:-14px; }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left:-20px; }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    .reveal[data-d="3"] { transition-delay:.24s; }
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .hero-inner > div > *:nth-child(5){ animation-delay:.5s; }
+    .js .signal-board { animation-delay:.5s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid { grid-template-columns:1fr; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+      .timeline-row { grid-template-columns:1fr; gap:4px; }
+      .dtable { font-size:.9rem; }
+      .dtable th,.dtable td { padding:10px 11px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-waterline"></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier XVI · Violences &amp; numérique</p>
+          <h1>Briser le <span class="foil">Silence</span></h1>
+          <p class="hero-lead">Harcèlement, cyber-harcèlement, emprise, doxing, grooming et violences faites aux femmes : expliquer, analyser, témoigner, agir. Le live de Provoxys &amp; Lalie, mot pour mot — chaque chiffre vérifié, chaque source traçable.</p>
+          <p class="hero-quote">« Ce live n'est pas un procès des hommes en général. C'est une analyse rigoureuse des comportements de certains hommes — et surtout un espace pour les femmes qui ont vécu ces violences. »</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#transcription">Lire le dossier</a>
+            <a class="button" href="chiffres.html">L'annexe data — les chiffres</a>
+            <a class="button" href="../../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board" aria-label="Repères">
+          <div class="signal"><span>La trajectoire</span><strong>Harcèlement sexuel numérique : ×6 depuis 2016</strong></div>
+          <div class="signal"><span>Les mineures</span><strong>1 enfant sur 5 sollicité en ligne avant 18 ans</strong></div>
+          <div class="signal"><span>Les filles</span><strong>58 % confrontées au harcèlement en ligne</strong></div>
+          <div class="signal"><span>Le réflexe</span><strong>3018 — gratuit, anonyme, confidentiel</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="../../ymir-lalie/assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Briser le Silence</span>
+        </a>
+        <a class="home-link" href="../../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#fil">Fil</a>
+          <a href="#intro">Intro</a>
+          <a href="#formes">Formes</a>
+          <a href="#emprise">Emprise</a>
+          <a href="#doxing">Doxing</a>
+          <a href="#forcing">Forcing</a>
+          <a href="#grooming">Grooming</a>
+          <a href="#degats">Dégâts psy</a>
+          <a href="#plateformes">Plateformes</a>
+          <a href="#comportements">Comportements</a>
+          <a href="#auteurs">Auteurs</a>
+          <a href="#mineures">Mineures</a>
+          <a href="#agir">Agir</a>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </nav>
+
+    <main id="transcription">
+      <section class="intro-band" id="fil">
+        <div class="manifesto reveal">
+          <p class="section-kicker">Le fil conducteur</p>
+          <h2>Nommer, expliquer, analyser — sans complaisance.</h2>
+          <p>Ce dossier reprend mot pour mot le script du live « Briser le Silence » de Provoxys &amp; Lalie : quatre chapitres pour expliquer chaque forme de violence, analyser les comportements et la psychologie des auteurs, donner la parole aux victimes et proposer des actions concrètes. Tous les chiffres du script ont été vérifiés par l'Empire contre Intox, et l'<a href="chiffres.html" style="color:var(--lilas)">annexe data</a> les met en graphiques, source par source.</p>
+        </div>
+        <div class="timeline reveal" data-d="1" aria-label="Fil conducteur">
+          <div class="timeline-row"><time>Expliquer</time><p>Sept formes de violence, du cyber-harcèlement au grooming, définies avec précision.</p></div>
+          <div class="timeline-row"><time>Analyser</time><p>Trajectoires d'escalade, désinhibition en ligne, psychologie des auteurs, manosphère.</p></div>
+          <div class="timeline-row"><time>Témoigner</time><p>Des coupures témoignages tout au long du live : la parole aux survivantes.</p></div>
+          <div class="timeline-row"><time>Agir</time><p>Droit français, signalement, 3018, éducation au consentement, responsabilité des plateformes.</p></div>
+        </div>
+      </section>
+
+      <section class="learning-panel reveal" aria-labelledby="objectifs">
+        <p class="section-kicker">Objectifs pédagogiques</p>
+        <h2 id="objectifs">Comprendre les mécanismes, reconnaître les signaux, savoir agir.</h2>
+        <div class="learning-grid">
+          <div class="learning-item reveal" data-d="1"><span>Comprendre</span><p>Les sept formes de violence numérique — harcèlement, emprise, doxing, forcing, grooming — et les mécanismes qui les rendent possibles : algorithmes, anonymat, modération défaillante.</p></div>
+          <div class="learning-item reveal" data-d="2"><span>Reconnaître</span><p>Les trajectoires d'escalade (flirt → persistance → rage), les cinq phases du grooming, les signaux de l'emprise — pour les nommer avant qu'ils ne s'installent.</p></div>
+          <div class="learning-item reveal" data-d="3"><span>Agir</span><p>Conserver les preuves, signaler (Pharos, 3018, 3919, 17), connaître ses droits (articles 222-33-2-2 et 226-2-1 du Code pénal, DSA) — et soutenir sans juger.</p></div>
+        </div>
+      </section>
+
+      <section class="act-band reveal" id="ouverture" aria-labelledby="actO">
+        <p class="act-no">Le live · Empire Contre-Intox</p>
+        <h2 id="actO">Briser le Silence</h2>
+        <p>« Harcèlement, Cyber-harcèlement, Emprise et Violences faites aux Femmes : Expliquer, Analyser, Témoigner, Agir ». Le script complet du live, dans l'ordre, conservé intégralement — coupures témoignages et emplacements d'infographies compris.</p>
+      </section>
+
+      <!-- ===== CH 01 — INTRODUCTION GÉNÉRALE ===== -->
+      <section class="chapter reveal" id="intro" aria-labelledby="c1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le script du live</p><h2 id="c1">Introduction générale</h2></div>
+          <div class="chapter-number">01</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="script-block">
+              <span class="block-label">Note de production du script</span>
+              <p>Script complet mis à jour et intégralement intégré pour le Live</p>
+              <p>Titre : « Briser le Silence – Harcèlement, Cyber-harcèlement, Emprise et Violences faites aux Femmes : Expliquer, Analyser, Témoigner, Agir »</p>
+              <p>Les infographies sont incrustées directement dans le script aux emplacements exacts (générées en full HD 4K ultra-réaliste, style professionnel et data-focused, tout le texte en français).</p>
+            </div>
+            <p class="lede">INTRODUCTION GÉNÉRALE</p>
+            <p>Mesdames et Messieurs, bonjour et bienvenue dans ce live.</p>
+            <p>Nous sommes ici pour nommer, expliquer et analyser sans complaisance les violences faites aux femmes et aux filles, qu'elles soient verbales, psychologiques, numériques ou physiques. Les données récentes sont implacables : les femmes et les filles restent très majoritairement les victimes de cyberviolences en France et en Europe. Selon l'INSEE (édition 2025), 3,8 % des femmes majeures déclarent des cyberviolences contre 2,6 % des hommes, avec un pic à 31 % chez les collégiennes. Le nombre de femmes victimes de harcèlement sexuel numérique a été multiplié par six depuis 2016 (SSMSI et INSEE). Des études européennes et d'ONU Femmes confirment que jusqu'à 58 % des filles et jeunes femmes ont été confrontées à des formes de harcèlement en ligne.</p>
+            <p>Ce live n'est pas un procès des hommes en général. C'est une analyse rigoureuse des comportements de certains hommes et jeunes hommes, des mécanismes culturels et numériques qui les rendent possibles, et surtout un espace pour les femmes qui ont vécu ces violences. Nous allons expliquer chaque forme de violence avec précision, analyser en profondeur les comportements et la psychologie des auteurs, donner massivement la parole aux victimes et proposer des pistes d'action concrètes et fondées sur des sources vérifiées.</p>
+            <div class="dialogue-block">
+              <span class="block-label">Première coupure témoignage</span>
+              <p>Lecture d'un témoignage public ou anonymisé.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Au micro</h3>
+            <p>Le live est porté par <strong>Provoxys &amp; Lalie</strong> pour le collectif <strong>L'Empire Contre-Intox</strong> : un dossier de société, traité avec la même méthode que les dossiers scientifiques — définir, mesurer, sourcer.</p>
+            <p>Les chiffres de cette introduction sont repris un à un, en graphiques, dans l'<strong><a href="chiffres.html" style="color:var(--lilas)">annexe data du dossier</a></strong>.</p>
+            <div class="tag-list"><span class="tag">Édition data 2025</span><span class="tag">Sources vérifiées</span><span class="tag">Témoignages</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CRÉDIT ===== -->
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <span class="credit-avatars">
+          <img src="provoxys.jpeg" alt="Avatar de Provoxys">
+          <img src="lalie.jpeg" alt="Avatar de Lalie">
+        </span>
+        <div class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>Provoxys &amp; Lalie</strong>
+        </div>
+      </section>
+
+      <!-- ===== CH 02 — 1.1 HARCÈLEMENT ET CYBER-HARCÈLEMENT ===== -->
+      <section class="chapter reveal" id="formes" aria-labelledby="c2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 1 : explications détaillées de chaque forme de violence</p><h2 id="c2">1.1 Harcèlement et cyber-harcèlement</h2></div>
+          <div class="chapter-number">02</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">CHAPITRE 1 : EXPLICATIONS DÉTAILLÉES DE CHAQUE FORME DE VIOLENCE</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/formes-violences.png" alt="Un smartphone dressé comme une stèle, entouré d'orbites de fragments lumineux : les formes de la violence numérique" loading="lazy">
+              <figcaption>Les formes de la violence numérique — illustration du dossier</figcaption>
+            </figure>
+            <p>Le harcèlement, traditionnel ou numérique, se définit comme des agissements répétés portant atteinte à la dignité ou créant un environnement hostile (article 222-33-2 du Code pénal). Le cyber-harcèlement ajoute la dimension des outils numériques : messages répétés d'insultes ou de menaces, moqueries publiques, exclusion de groupes, surveillance via réseaux sociaux ou applications de géolocalisation, diffusion de rumeurs ou de contenus dégradants.</p>
+            <p>Les statistiques récentes confirment l'ampleur du phénomène. Les femmes majeures déclarent davantage être victimes de cyberviolence (INSEE 2025). Au collège, 31 % des filles déclarent des cyberviolences contre 26 % des garçons. Le harcèlement en ligne représente 35 % des délits de harcèlement enregistrés. Le nombre de victimes de harcèlement sexuel numérique a été multiplié par six depuis 2016, avec plus de 1 000 victimes enregistrées en 2024 (SSMSI). Les jeunes femmes et les filles sont particulièrement touchées, avec des conséquences graves sur leur santé mentale, leur confiance en elles et leur vie sociale (e-Enfance / 3018, baromètre 2025). Des études de Plan International et d'ONU Femmes indiquent que 58 % des filles et jeunes femmes ont été victimes d'une forme ou d'une autre de harcèlement en ligne.</p>
+            <div class="script-block">
+              <span class="block-label">Emplacement infographie</span>
+              <p>Afficher ici l'infographie sur les statistiques générales de cyberviolences et harcèlement en France/Europe 2025 (style professionnel, data-focused, full HD 4K ultra-réaliste).</p>
+              <p><a class="button" href="chiffres.html#sec-01" style="margin-top:6px">Voir l'infographie — annexe data · Prévalence</a></p>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">Coupure témoignage</span>
+              <p>Lecture d'un témoignage de victime de cyber-harcèlement via messageries ou réseaux sociaux.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le bon article de loi</h3>
+            <p>Le script cite l'article <strong>222-33-2</strong> : cet article ne vise que le harcèlement moral <strong>au travail</strong>. Le cyberharcèlement relève de l'article <strong>222-33-2-2</strong> (propos ou comportements répétés dégradant les conditions de vie) : l'usage d'un service <strong>en ligne</strong> y est une circonstance aggravante (jusqu'à 2 ans et 30 000 €, 3 ans et 45 000 € en cas de cumul — ex. victime mineure). La formule « environnement hostile » appartient, elle, au harcèlement <strong>sexuel</strong> (art. 222-33). Détail sur Légifrance, via le dossier Sources.</p>
+            <p>Côté chiffres : tous confirmés (INSEE Références éd. 2025). Nuances : le <strong>×6</strong> compte <strong>toutes</strong> les victimes enregistrées de harcèlement sexuel numérique — très majoritairement des femmes (≈ 85 %) — et les 3,8 % / 31 % viennent d'enquêtes <strong>2022</strong> (VRS, DEPP) publiées en 2025.</p>
+            <div class="tag-list"><span class="tag">Code pénal</span><span class="tag">INSEE 2025</span><span class="tag">SSMSI</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 03 — 1.2 EMPRISE PSYCHOLOGIQUE ===== -->
+      <section class="chapter reveal" id="emprise" aria-labelledby="c3">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 1 · suite</p><h2 id="c3">1.2 Emprise psychologique et mentale</h2></div>
+          <div class="chapter-number">03</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure reveal">
+              <img src="assets/emprise-numerique.png" alt="Une silhouette dans une cage tissée de fils de messages lumineux émanant d'un téléphone : l'emprise numérique" loading="lazy">
+              <figcaption>L'emprise numérique : le contrôle coercitif passe par l'écran</figcaption>
+            </figure>
+            <p>L'emprise psychologique, aussi appelée contrôle coercitif, désigne un ensemble de comportements visant à contrôler, isoler et dominer une personne. Elle inclut le gaslighting, la dévalorisation constante, l'isolement des proches, la surveillance permanente des communications et des déplacements, ainsi que le chantage affectif ou émotionnel. Dans le contexte numérique, cette emprise se traduit par l'exigence d'être joignable en permanence, le contrôle des réseaux sociaux, la lecture des messages privés ou la menace de diffuser des contenus intimes.</p>
+            <p>Environ 90 % des femmes ayant subi des violences conjugales déclarent avoir également subi ce type de violences en ligne (rapports MIPROF et études francophones). L'emprise crée une dépendance psychologique profonde et rend la sortie de la situation particulièrement difficile. Des guides officiels (MIPROF, Centre Hubertine Auclert) soulignent que 8 femmes sur 10 victimes de violences au sein du couple déclarent que leur partenaire exigeait d'être joignable en permanence.</p>
+            <div class="dialogue-block">
+              <span class="block-label">Coupure témoignage</span>
+              <p>Lecture d'un témoignage de femme ayant vécu une emprise psychologique et numérique.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · l'étude fondatrice</h3>
+            <p>Les deux chiffres (<strong>9 sur 10</strong> et <strong>8 sur 10</strong>) viennent de la recherche-action du <strong>Centre Hubertine Auclert</strong> sur les cyberviolences conjugales (<strong>2018</strong>, 302 femmes accompagnées par des associations en Île-de-France) — l'étude de référence francophone, relayée par la MIPROF. C'est une enquête auprès de femmes <strong>déjà accompagnées</strong> pour violences conjugales, pas une prévalence nationale.</p>
+            <p>L'annexe data visualise ces deux chiffres : <a href="chiffres.html#sec-03" style="color:var(--lilas)">section Emprise →</a></p>
+            <div class="tag-list"><span class="tag">Contrôle coercitif</span><span class="tag">MIPROF</span><span class="tag">Hubertine Auclert</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 04 — 1.3 DOXING ===== -->
+      <section class="chapter reveal" id="doxing" aria-labelledby="c4">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 1 · suite</p><h2 id="c4">1.3 Doxing</h2></div>
+          <div class="chapter-number">04</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Le doxing consiste à publier sans consentement des informations personnelles et privées (adresse, téléphone, photos de famille, lieu de travail, etc.) dans le but de nuire, d'intimider ou d'exposer la victime à des dangers réels. Il s'agit d'une violence facilitée par la technologie (TFGBV) reconnue par l'ONU Femmes. Les femmes sont particulièrement visées. Le doxing s'accompagne souvent de campagnes de haine et oblige parfois les victimes à déménager ou à abandonner des activités publiques. Il constitue une atteinte grave à la vie privée et à la sécurité, pouvant mener à du stalking ou des menaces physiques (rapports ONU Femmes et études européennes sur les violences basées sur le genre facilitées par la technologie).</p>
+            <div class="dialogue-block">
+              <span class="block-label">Coupure témoignage</span>
+              <p>Lecture d'un témoignage de victime de doxing.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Lexique · TFGBV</h3>
+            <p><strong>TFGBV</strong> : <em>technology-facilitated gender-based violence</em> — les violences basées sur le genre facilitées par la technologie. La catégorie, employée par ONU Femmes, regroupe doxing, cyber-harcèlement, sextorsion, partage non consenti d'images intimes et surveillance.</p>
+            <div class="tag-list"><span class="tag">Vie privée</span><span class="tag">ONU Femmes</span><span class="tag">Sécurité</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 05 — 1.4 FORCING DE DRAGUE ===== -->
+      <section class="chapter reveal" id="forcing" aria-labelledby="c5">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 1 · suite</p><h2 id="c5">1.4 Forcing de drague en privé + insultes et violences verbales au « non »</h2></div>
+          <div class="chapter-number">05</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Le forcing de drague désigne l'envoi répété de messages romantiques ou sexuels malgré l'absence de réponse ou un refus clair. Lorsque la femme dit non ou ignore, la réponse est souvent une explosion d'insultes genrées (« salope », « frigide », « lesbienne », « t'es moche de toute façon ») et de menaces (viol, diffusion de rumeurs, doxing). Ce comportement révèle un sentiment d'entitlement : l'auteur se sent « dû » une réponse positive et perçoit le refus comme une attaque personnelle à sa virilité ou à son statut. La persistance est souvent présentée comme du romantisme alors qu'il s'agit d'un non-respect des limites et d'une forme de violence verbale et psychologique. Des analyses linguistiques et sociologiques (Laurence Rosier et travaux sur la violence verbale genrée) montrent que les insultes adressées aux femmes sont hyper-sexualisées et visent à rappeler leur place supposée de soumission ou de pureté.</p>
+            <div class="dialogue-block">
+              <span class="block-label">Coupure témoignage</span>
+              <p>Lecture d'un témoignage de femme ayant subi forcing de drague et insultes après un refus.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Repère · la chercheuse citée</h3>
+            <p><strong>Laurence Rosier</strong>, linguiste à l'Université libre de Bruxelles, travaille sur l'insulte et la violence verbale — notamment l'insulte sexiste, hyper-sexualisée, qui assigne les femmes à une « place ».</p>
+            <p>Le mot <strong>entitlement</strong> désigne ce sentiment d'être « en droit » d'obtenir une réponse, un corps, une attention.</p>
+            <div class="tag-list"><span class="tag">Consentement</span><span class="tag">Violence verbale</span><span class="tag">Entitlement</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 06 — 1.5 GROOMING ===== -->
+      <section class="chapter reveal" id="grooming" aria-labelledby="c6">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 1 · suite</p><h2 id="c6">1.5 Emprise sur filles mineures sous prétexte de « les défendre/protéger » + analyse approfondie du grooming en ligne</h2></div>
+          <div class="chapter-number">06</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure reveal">
+              <img src="assets/grooming-phases.png" alt="Allégorie : cinq pierres de gué traversent une eau sombre vers un masque souriant dont l'ombre révèle un loup — les cinq phases du grooming" loading="lazy">
+              <figcaption>Le grooming : un processus graduel, en cinq phases — allégorie</figcaption>
+            </figure>
+            <p>Le grooming en ligne est un processus intentionnel, graduel et manipulatoire par lequel un adulte (majoritairement un homme) établit une relation de confiance avec un·e mineur·e dans le but d'une exploitation sexuelle ou d'un contrôle abusif. Il ne commence presque jamais par des propositions sexuelles explicites. Il s'appuie précisément sur le prétexte de « défense » ou de « protection ».</p>
+            <p class="sub">Phases détaillées du processus :</p>
+            <ol>
+              <li>Approche et ciblage via réseaux sociaux, jeux en ligne ou applications de messagerie. Le prédateur repère les mineures vulnérables (problèmes familiaux, harcèlement scolaire, isolement, quête de reconnaissance).</li>
+              <li>Construction de confiance (« je te protège », écoute empathique, positionnement en « seul adulte qui comprend vraiment »).</li>
+              <li>Isolation progressive (« tes parents ne te comprennent pas », « tes amies sont jalouses », « je suis le seul à qui tu peux tout dire »).</li>
+              <li>Sexualisation graduelle (demandes de photos « innocentes » → sexting → chantage implicite ou explicite – sextorsion).</li>
+              <li>Emprise totale et contrôle (menaces de tout révéler aux parents ou amis, contrôle des horaires, exigences de disponibilité permanente).</li>
+            </ol>
+            <p class="sub">Données actualisées et sources :</p>
+            <p>En Europe occidentale, 1 enfant sur 5 (19,6 %) déclare avoir subi une sollicitation ou un grooming en ligne avant 18 ans (Missing Children Europe et ChildLight, 2025-2026). En 2025, le nombre de cas de grooming a explosé (+151 % dans certains pays), avec un âge moyen des victimes de 13 ans (record absolu de 108 cas recensés dans un pays européen – Child Focus rapport annuel 2025). Le grooming a été lié à 92 disparitions d'enfants en Europe la même année (Missing Children Europe). Les plateformes de jeux et de messagerie instantanée sont les vecteurs principaux. Des études suisses et européennes (JAMES 2024, HBSC) confirment l'augmentation des contacts risqués en ligne.</p>
+            <p>Ce prétexte de « défense » est particulièrement perfide car il désarme les défenses naturelles de l'adolescente et contourne les adultes protecteurs. Les dégâts sont amplifiés chez les mineures en raison du stade de développement cérébral.</p>
+            <div class="script-block">
+              <span class="block-label">Emplacement infographie</span>
+              <p><a class="button" href="chiffres.html#sec-04" style="margin-top:0">Voir l'infographie — annexe data · Grooming</a></p>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">Coupure témoignage</span>
+              <p>Lecture d'un témoignage type de victime de grooming via prétexte de protection.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · lire les chiffres</h3>
+            <p>Tous ces chiffres existent et sont sourcés, mais leurs périmètres diffèrent : le <strong>1 sur 5 (19,6 %)</strong> est une prévalence vie entière en Europe occidentale (ChildLight, oct. 2025 ; repris par Missing Children Europe, 2026) ; <strong>+151 %</strong> et <strong>108 cas</strong> sont les données <strong>belges</strong> de Child Focus pour l'année 2025 — et le « record absolu » porte sur le <strong>nombre de cas</strong>, pas sur l'âge moyen (13 ans). Les <strong>92 disparitions</strong> sont les cas identifiés par les hotlines européennes 116 000 en 2025 — un plancher.</p>
+            <p>Deux nuances : les vecteurs principaux incluent aussi les <strong>réseaux sociaux</strong> (Snapchat arrive en tête des cas identifiés au Royaume-Uni), et les 5 phases décrivent un schéma <strong>typique, pas toujours linéaire</strong> — certains prédateurs sexualisent en quelques heures.</p>
+            <div class="tag-list"><span class="tag">Protection de l'enfance</span><span class="tag">Sextorsion</span><span class="tag">Child Focus</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 07 — 1.6 DÉGÂTS PSYCHOLOGIQUES ===== -->
+      <section class="chapter reveal" id="degats" aria-labelledby="c7">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 1 · suite</p><h2 id="c7">1.6 Dégâts psychologiques chez les femmes et jeunes femmes</h2></div>
+          <div class="chapter-number">07</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">1.6 DÉGÂTS PSYCHOLOGIQUES CHEZ LES FEMMES ET JEUNES FEMMES</p>
+            <p>Les violences analysées produisent des dommages psychologiques profonds, souvent plus sévères que les violences physiques traditionnelles en raison de leur permanence, de leur portée illimitée et de l'anonymat des auteurs (rapports ONU Femmes, Plan International, études sur les cyberviolences).</p>
+            <p class="sub">Impacts documentés et sources :</p>
+            <ul>
+              <li><strong>Santé mentale immédiate et à moyen terme :</strong> anxiété généralisée, dépression, symptômes de stress post-traumatique, troubles du sommeil et de l'appétit, idées suicidaires. Près de la moitié des victimes de cyber-harcèlement rapportent avoir pensé au suicide ; 14 % ont fait une tentative dans certaines études (e-Enfance 2025, Politis).</li>
+              <li><strong>Conséquences spécifiques au genre et à l'âge :</strong> chez les filles et jeunes femmes, augmentation marquée des troubles alimentaires, de l'automutilation, de la perte d'estime de soi et d'image corporelle. Le doxing génère une peur permanente pour sa sécurité physique.</li>
+              <li><strong>Impacts relationnels et existentiels :</strong> difficultés à faire confiance (surtout aux hommes), retrait des espaces publics et numériques, sentiment d'insécurité chronique.</li>
+              <li><strong>Effets à long terme :</strong> risque accru de revictimisation, troubles de l'attachement, difficultés dans les relations intimes futures, impact sur les études et la carrière.</li>
+            </ul>
+            <p>Chez les victimes de grooming, les dommages sont particulièrement graves : trahison profonde, honte intense, dissociation et troubles complexes du stress post-traumatique (CN2R et études sur la cyberpédocriminalité). 43 % des survivantes de cyberviolences de genre rapportent des effets graves sur leur santé mentale. Les jeunes et les personnes issues de groupes marginalisés sont deux fois plus à risque d'idées ou de comportements suicidaires (Fondation canadienne des femmes et études européennes).</p>
+            <div class="science-block">
+              <span class="block-label">Anti-intox · remettre chaque chiffre sur sa source</span>
+              <p>Les chiffres de ce passage existent, mais trois attributions sont à corriger. Le <strong>49 %</strong> (« près de la moitié ont pensé au suicide ») vient de l'étude e-Enfance / Caisse d'Épargne (Audirep, <strong>2022</strong>, jeunes de 18-25 ans) et le <strong>14 %</strong> de tentatives de l'enquête Ipsos / Féministes contre le cyberharcèlement (<strong>2022</strong>) — pas du baromètre e-Enfance 2025, qui donne 25 % chez les 6-18 ans. Le <strong>« 43 % d'effets graves sur la santé mentale »</strong> est introuvable tel quel : le 43 % documenté (BWSS 2014, via la Fondation canadienne des femmes) concerne la dégradation de l'<strong>image de soi</strong> ; pour la santé mentale, l'Economist Intelligence Unit (2021, 51 pays) mesure <strong>35 %</strong>. Le « deux fois plus à risque » est établi pour les <strong>jeunes</strong> victimes de cyberharcèlement (John et al., 2018, <em>JMIR</em> — ×2,35 automutilation, ×2,10 comportements suicidaires) ; pour les groupes marginalisés, la littérature parle d'effets « démultipliés » sans ce ratio précis.</p>
+              <p>Enfin, « plus sévères que les violences physiques » est une surinterprétation : la comparaison validée (van Geel et al., 2014, <em>JAMA Pediatrics</em>) montre que le cyberharcèlement est plus fortement associé aux idées suicidaires que le harcèlement <strong>traditionnel entre pairs</strong> — cyber et hors-ligne forment un continuum et se cumulent.</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">Coupure témoignage + temps de réflexion</span>
+              <p>Lectures croisées sur les impacts psychologiques.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Si ces mots résonnent</h3>
+            <p>Si vous, ou quelqu'un que vous connaissez, traversez une de ces situations : le <strong>3018</strong> (jeunes victimes de violences numériques) et le <strong>3114</strong> (souffrance et prévention du suicide) sont gratuits et confidentiels, 7 j/7.</p>
+            <p>Les chiffres de ce chapitre, en graphiques : <a href="chiffres.html#sec-05" style="color:var(--lilas)">annexe data · Dégâts psy →</a></p>
+            <div class="tag-list"><span class="tag">Santé mentale</span><span class="tag">CN2R</span><span class="tag">e-Enfance</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 08 — 1.7 PLATEFORMES ===== -->
+      <section class="chapter reveal" id="plateformes" aria-labelledby="c8">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 1 · fin</p><h2 id="c8">1.7 Rôles des plateformes numériques dans l'amplification et la persistance des violences</h2></div>
+          <div class="chapter-number">08</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">1.7 RÔLES DES PLATEFORMES NUMÉRIQUES DANS L'AMPLIFICATION ET LA PERSISTANCE DES VIOLENCES</p>
+            <p>Les plateformes numériques ne sont pas neutres. Leur architecture, leurs algorithmes et leurs politiques de modération jouent un rôle central (rapports Arcom 2025, DSA européen, analyses du Sénat et d'Expertise France).</p>
+            <p class="sub">Mécanismes identifiés :</p>
+            <ul>
+              <li>Algorithmes de recommandation conçus pour maximiser l'engagement, qui poussent souvent les contenus les plus polarisants et toxiques (manosphère, discours misogynes).</li>
+              <li>Anonymat et pseudonymat qui facilitent la désinhibition.</li>
+              <li>Faiblesses de modération : signalements de doxing, menaces ou grooming souvent traités trop lentement.</li>
+              <li>Modèle économique : l'engagement toxique génère plus de revenus que les contenus sains.</li>
+              <li>Protection des mineurs insuffisante (vérification d'âge, design addictif).</li>
+            </ul>
+            <p>Le DSA européen oblige les très grandes plateformes à évaluer et atténuer les risques systémiques, dont les cyberviolences de genre, et à garantir la transparence des algorithmes. Pourtant, en 2025-2026, de nombreuses décisions restent basées sur les conditions générales plutôt que sur l'illégalité (transparence DSA). L'Arcom a fait de la protection des mineurs une priorité absolue pour 2025-2026.</p>
+            <div class="dialogue-block">
+              <span class="block-label">Coupure témoignage + analyse</span>
+              <p>Témoignage d'une victime dont le harceleur a utilisé plusieurs plateformes successivement, avec discussion sur la responsabilité des entreprises.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Repère · le DSA, vérifié</h3>
+            <p>Le <strong>règlement européen sur les services numériques</strong> (DSA, 2022) impose aux très grandes plateformes (45 M+ d'utilisateurs dans l'UE) d'évaluer leurs <strong>risques systémiques</strong> — l'article 34(1)(d) cite explicitement les <strong>violences sexistes et sexuelles</strong> — et d'en atténuer les effets (article 35). La « transparence des algorithmes » = explication des paramètres de recommandation (art. 27), option sans profilage (art. 38), accès des chercheurs aux données (art. 40).</p>
+            <p>Et le script est même en dessous de la réalité : selon les analyses de la base de transparence du DSA, <strong>plus de 99 %</strong> des décisions de modération déclarées invoquent les conditions générales, pas l'illégalité. L'Arcom a bien présenté ses priorités protection des mineurs le 25 septembre 2025.</p>
+            <div class="tag-list"><span class="tag">DSA</span><span class="tag">Arcom</span><span class="tag">Algorithmes</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 09 — CHAPITRE 2 : COMPORTEMENTS ===== -->
+      <section class="chapter reveal" id="comportements" aria-labelledby="c9">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le script du live</p><h2 id="c9">Chapitre 2 : analyse détaillée des comportements</h2></div>
+          <div class="chapter-number">09</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">CHAPITRE 2 : ANALYSE DÉTAILLÉE DES COMPORTEMENTS</p>
+            <p>Les violences analysées suivent souvent des trajectoires d'escalade prévisibles. Ce qui commence comme du « flirt » ou une tentative de contact peut rapidement se transformer en persistance, puis en frustration, et enfin en rage et en attaques (insultes, menaces, doxing). L'effet de désinhibition en ligne joue un rôle majeur : l'anonymat ou le pseudo, combiné à la distance physique, facilite la déshumanisation de la victime et le passage à des comportements que l'auteur n'oserait peut-être pas en face à face (études en cyberpsychologie).</p>
+            <p>Ces violences s'additionnent fréquemment (cyber + hors ligne, harcèlement + emprise). La culture de la minimisation (« c'est juste internet », « elle exagère ») contribue à l'isolement des victimes. L'analyse montre que le « non » est souvent perçu non comme un droit mais comme un échec personnel ou une injustice, déclenchant une réponse punitive. Des travaux sur la manosphère et les violences sexistes en ligne (Jean Jaurès, UN Women) confirment ces mécanismes d'escalade et de légitimation.</p>
+            <div class="dialogue-block">
+              <span class="block-label">Coupures témoignages régulières</span>
+              <p>Lectures espacées tout au long du chapitre.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Repère · la désinhibition en ligne</h3>
+            <p>L'<strong>effet de désinhibition en ligne</strong> a été théorisé par le psychologue <strong>John Suler</strong> (2004) : anonymat, invisibilité, asynchronie et distance réduisent les freins sociaux — dans le meilleur (confidences) comme dans le pire (agressions).</p>
+            <div class="tag-list"><span class="tag">Cyberpsychologie</span><span class="tag">Escalade</span><span class="tag">Minimisation</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 10 — CHAPITRE 3 : PSYCHOLOGIE DES AUTEURS ===== -->
+      <section class="chapter reveal" id="auteurs" aria-labelledby="c10">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le script du live</p><h2 id="c10">Chapitre 3 : psychologie des hommes auteurs – besoin de supériorité et idéaux</h2></div>
+          <div class="chapter-number">10</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">CHAPITRE 3 : PSYCHOLOGIE DES HOMMES AUTEURS – BESOIN DE SUPÉRIORITÉ ET IDÉAUX</p>
+            <p class="sub">3.1 Profil général des auteurs adultes</p>
+            <p>Chez les auteurs adultes, on observe fréquemment un besoin de contrôle et de supériorité, un sentiment d'entitlement, une faible empathie ou une déshumanisation de la victime, ainsi que des traits narcissiques ou sadiques dans les cas les plus graves (travaux psychiatriques et psychologiques sur le harcèlement sexuel). Le rejet est vécu comme une blessure narcissique majeure, déclenchant une réponse agressive pour restaurer le sentiment de puissance.</p>
+            <p class="sub">3.2 Spécificité des jeunes hommes et radicalisation via la manosphère</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/manosphere.png" alt="Une jeune silhouette face à un entonnoir spiralé d'écrans de plus en plus rouges : l'aspiration algorithmique de la manosphère" loading="lazy">
+              <figcaption>La manosphère : un entonnoir algorithmique — illustration du dossier</figcaption>
+            </figure>
+            <p>De plus en plus de jeunes adolescents et jeunes adultes (dès 12-13 ans) sont exposés à des contenus masculinistes toxiques (influenceurs de type Andrew Tate, forums incels, redpill). 69 % des jeunes garçons régulièrement en ligne sont exposés à des contenus problématiques sur la masculinité (Common Sense Media et analyses 2025). Ces discours exploitent les fragilités (solitude, rejet, quête d'identité) et les transforment en haine des femmes, sentiment d'injustice et légitimation du harcèlement ou de la violence (BBC Afrique, UFAPEC, études sur la radicalisation en ligne).</p>
+            <p>Le passage à l'acte devient une « revanche » ou une affirmation de virilité. Les communautés incels blâment explicitement les femmes et encouragent parfois des stratégies de harcèlement. Ce phénomène est en forte augmentation (rapports sur le masculinisme et la radicalisation des jeunes).</p>
+            <div class="script-block">
+              <span class="block-label">Emplacement infographie</span>
+              <p><a class="button" href="chiffres.html#sec-06" style="margin-top:0">Voir l'infographie — annexe data · Les auteurs</a></p>
+            </div>
+            <p class="sub">3.3 Profil spécifique des groomers en ligne</p>
+            <p>Ils utilisent souvent le masque du « protecteur » ou du « confident ». Certains ont des antécédents d'infractions sexuelles ; d'autres sont des opportunistes qui exploitent la vulnérabilité en ligne. Le pouvoir absolu sur une mineure constitue le moteur principal. La désinhibition numérique facilite le passage à l'acte (études sur la cyberpédocriminalité, CN2R).</p>
+            <p class="sub">3.4 Facteurs contributifs</p>
+            <p>L'exposition précoce à la pornographie objectivante, le manque d'éducation au consentement et aux émotions, les modèles familiaux ou culturels toxiques, et surtout l'écosystème numérique qui valide et amplifie ces croyances constituent des facteurs importants (analyses de la manosphère et études sociologiques).</p>
+            <p>Ces profils ne concernent pas la majorité des hommes, mais ils sont alimentés par des idéologies et des algorithmes qui les rendent plus visibles et attractifs pour les jeunes en quête de repères.</p>
+            <div class="dialogue-block">
+              <span class="block-label">Coupures témoignages et interventions experts</span>
+              <p>Plusieurs heures possibles avec psychologues spécialisés en radicalisation ou en violences sexuelles.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · des profils, pas un procès</h3>
+            <p>Le script le dit explicitement : <strong>ces profils ne concernent pas la majorité des hommes</strong>. L'analyse porte sur des mécanismes — entitlement, blessure narcissique, radicalisation algorithmique — documentés par la littérature, pas sur un genre entier.</p>
+            <p>Le <strong>69 %</strong> est exact mais à préciser : enquête Common Sense Media 2025, <strong>garçons américains de 11 à 17 ans</strong> — 69 % voient régulièrement des contenus véhiculant des <strong>stéréotypes de genre problématiques</strong> (73 % des contenus « masculinité » en général), et deux tiers <strong>sans les avoir cherchés</strong>. L'aspiration algorithmique est mesurée : sur des comptes neufs, TikTok et YouTube Shorts servent du contenu masculiniste en moins de 23 minutes (Dublin City University, 2024).</p>
+            <div class="tag-list"><span class="tag">Manosphère</span><span class="tag">Incels</span><span class="tag">Radicalisation</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 11 — CHAPITRE 4 : FOCUS MINEURES ===== -->
+      <section class="chapter reveal" id="mineures" aria-labelledby="c11">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le script du live</p><h2 id="c11">Chapitre 4 : focus spécifique sur l'emprise des filles mineures + grooming</h2></div>
+          <div class="chapter-number">11</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">CHAPITRE 4 : FOCUS SPÉCIFIQUE SUR L'EMPRISE DES FILLES MINEURES + GROOMING</p>
+            <p>Le focus sur l'emprise des filles mineures sous prétexte de défense ou de protection s'inscrit directement dans l'analyse du grooming en ligne détaillée au chapitre 1.5. Les phases du processus, les données d'explosion des cas en 2025 (+151 %, âge moyen 13 ans), les conséquences développementales chez les mineures (troubles anxieux, dissociation, risque de revictimisation) et les aspects légaux aggravés (peines renforcées pour faits sur mineurs, article 222-33-2 et protections spécifiques) sont à approfondir ici avec des témoignages spécifiques et des interventions d'experts en protection de l'enfance et en cyberpédocriminalité (CN2R, associations spécialisées).</p>
+            <div class="dialogue-block">
+              <span class="block-label">Coupures témoignages spécifiques</span>
+              <p>Plusieurs lectures espacées.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le droit protège plus les mineurs</h3>
+            <p>Le script renvoie ici encore à l'article 222-33-2 (travail) : pour les mineurs, le harcèlement en ligne est aggravé par l'article <strong>222-33-2-2</strong>, et le grooming est réprimé en propre par l'article <strong>227-22-1</strong> — propositions sexuelles d'un majeur à un mineur de 15 ans par voie électronique : <strong>2 ans et 30 000 €</strong>, portés à <strong>5 ans et 75 000 €</strong> si elles sont suivies d'une rencontre. La sextorsion relève du chantage (art. 312-10) et de la corruption de mineur (art. 227-22).</p>
+            <div class="tag-list"><span class="tag">Protection de l'enfance</span><span class="tag">Code pénal</span><span class="tag">CN2R</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 12 — TRANSVERSAUX & CLÔTURE ===== -->
+      <section class="chapter reveal" id="agir" aria-labelledby="c12">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le script du live · fin</p><h2 id="c12">Chapitres transversaux &amp; clôture</h2></div>
+          <div class="chapter-number">12</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">CHAPITRES TRANSVERSAUX &amp; CLÔTURE</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/agir-espoir.png" alt="Des silhouettes côte à côte élèvent de petites lumières formant un ruban protecteur dans le ciel, une aube dorée se lève" loading="lazy">
+              <figcaption>Agir : signaler, protéger, éduquer — l'espoir collectif</figcaption>
+            </figure>
+            <ul>
+              <li>Droit français détaillé (harcèlement, revenge porn article 226-2-1, doxing, protections renforcées pour les mineurs, obligations des plateformes via le DSA – sources : Legifrance, Arcom, rapports parlementaires).</li>
+              <li>Comment signaler efficacement (preuves, Pharos, police, associations, 3018 pour les jeunes).</li>
+              <li>Témoignages massifs de survivantes (plusieurs heures dédiées, lectures respectueuses).</li>
+              <li>Invité·es experts (psychologues, juristes, associations, spécialistes de la radicalisation en ligne et de la santé mentale des victimes).</li>
+              <li>Actions concrètes : éducation au consentement dès le plus jeune âge, déconstruction des stéréotypes masculins toxiques, responsabilité des plateformes, soutien aux victimes, prévention de la radicalisation.</li>
+              <li>Clôture : Message d'espoir, d'engagement collectif et d'appel à l'action.</li>
+            </ul>
+            <div class="helpline reveal" role="note" aria-label="Numéros d'aide">
+              <div class="hl-num">3018</div>
+              <div class="hl-txt">
+                <h3>Vous, ou une personne que vous connaissez ?</h3>
+                <p>Le 3018 est le numéro national pour les jeunes victimes de violences numériques : gratuit, anonyme, confidentiel. Conservez les preuves, signalez sur Pharos, parlez-en.</p>
+                <div class="hl-chips"><span>3018 — jeunes</span><span>3919 — violences femmes</span><span>Pharos — signalement</span><span>17 — police</span><span>3114 — prévention suicide</span></div>
+              </div>
+            </div>
+            <div class="script-block">
+              <span class="block-label">Note de fin du script</span>
+              <p>Note : Les infographies en français sont incrustées directement dans le document Word aux emplacements correspondants. Le fichier est prêt pour votre live.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>L'annexe data du dossier</h3>
+            <p>Les infographies du live existent : c'est la page <strong><a href="chiffres.html" style="color:var(--lilas)">« Briser le Silence — Édition data »</a></strong>, qui met chaque chiffre du script en graphique, avec sa source sous chaque visuel.</p>
+            <p>Et chaque vérification est centralisée dans <a href="../../sources/sources.html" style="color:var(--lilas)">le dossier Les Sources →</a></p>
+            <div class="tag-list"><span class="tag">Annexe data</span><span class="tag">Pharos</span><span class="tag">3018</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="closing reveal" aria-labelledby="final">
+        <h2 id="final">Briser le silence, c'est déjà briser le mécanisme.</h2>
+        <p>Ce dossier conserve mot pour mot le script du live de Provoxys &amp; Lalie. Toutes les violences décrites ici prospèrent sur le même terreau : le silence des victimes, la minimisation de l'entourage, l'inertie des plateformes. À l'inverse, chaque témoignage lu, chaque preuve conservée, chaque signalement déposé, chaque chiffre vérifié et sourcé fait reculer l'impunité. C'est exactement le travail de l'Empire contre Intox : remettre des faits là où l'intox — « c'est juste internet », « elle exagère » — voudrait clore le débat.</p>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../../ymir-lalie/assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans le débat public. Ce dossier prolonge le live en donnant au public une version lisible, structurée et partageable — chaque chiffre ramené à sa source, chaque mécanisme expliqué.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="provoxys.jpeg" alt="Avatar de Provoxys">
+              <img src="lalie.jpeg" alt="Avatar de Lalie">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Provoxys &amp; Lalie</strong></span>
+          </div>
+          <div class="collective-actions">
+            <a class="button primary" href="../../index.html">Retour à l'index</a>
+            <a class="button" href="chiffres.html">L'annexe data</a>
+            <a class="button" href="../Artemis2.html">Artemis II</a>
+            <a class="button" href="../tornades/index.html">Tornades &amp; Ouragans</a>
+            <a class="button" href="../../sources/sources.html">Les Sources</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome créée à partir de <strong>transcript-cyberharcelement.txt</strong>. La transcription est conservée mot pour mot (deux coquilles corrigées et signalées : « décla rent » → « déclarent », « persistence » → « persistance »). Chiffres et affirmations vérifiés — INSEE, SSMSI, ONU Femmes, Plan International, MIPROF, Centre Hubertine Auclert, Missing Children Europe, Child Focus, e-Enfance / 3018, Arcom, DSA. Annexe data : <strong>chiffres.html</strong>.</main>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => { nav.classList.remove("open"); mobileMenu.setAttribute("aria-expanded", "false"); }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    // Filet de sécurité pour les sections très hautes (jamais "intersectées" au seuil)
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }
+    document.addEventListener("scroll", revealTall, { passive: true });
+    window.addEventListener("resize", revealTall, { passive: true });
+    revealTall();
+  </script>
+</body>
+</html>
