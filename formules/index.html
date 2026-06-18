@@ -33,6 +33,7 @@
     --proba:#5fbf8f;  /* Acte XII — probabilités */
     --rel:#9aa7c0;    /* Acte XIII — relativité */
     --algo:#a6d85f;   /* Acte XIV — informatique & algorithmes */
+    --exoatmo:#5fb9d4; /* Acte XV — atmosphères & exoplanètes */
     --line:rgba(214,172,85,.20); --line-2:rgba(244,236,216,.085); --ring:rgba(214,172,85,.34);
     --glass:rgba(7,12,26,.72); --shadow:0 40px 120px rgba(0,0,0,.55);
     --serif:"Fraunces",Georgia,"Times New Roman",serif;
@@ -296,7 +297,7 @@
     <div class="signal-board">
       <div class="s"><b id="sb-n">—</b><span>Formules vivantes</span></div>
       <div class="s"><b>XV</b><span>Domaines</span></div>
-      <div class="s"><b>4</b><span>Dossiers sources</span></div>
+      <div class="s"><b>5</b><span>Dossiers sources</span></div>
       <div class="s"><b>∞</b><span>Réglages possibles</span></div>
     </div>
   </div>
@@ -313,6 +314,7 @@
       <a href="#champs">Champs</a>
       <a href="#atmosphere">Atmosphère</a>
       <a href="#mecanique">Mécanique</a>
+      <a href="#exoatmo">Exoplanètes</a>
       <a href="#gravitation">Gravité</a>
       <a href="#electricite">Électricité</a>
       <a href="#electromag">Magnétisme</a>
@@ -1311,6 +1313,71 @@
     </div>
   </section>
 
+  <!-- ===== ACTE XV — ATMOSPHÈRES & EXOPLANÈTES ===== -->
+  <section class="section act" id="exoatmo" style="--ac:var(--exoatmo)">
+    <div class="wrap">
+      <div class="act-hero">
+        <div class="sec-head reveal">
+          <span class="act-num" aria-hidden="true">XV</span>
+          <p class="kick">Acte XV · d'après Atmosphères &amp; Mondes Lointains — Provoxys</p>
+          <h2>Atmosphères &amp; exoplanètes</h2>
+          <p>Ce qui retient l'air d'un monde, et comment on lit une planète à des années-lumière : la physique des atmosphères et les deux grandes méthodes de détection, réglables au curseur.</p>
+        </div>
+        <figure class="act-fig reveal" data-d="1"><img src="../provoxys/exoplanetes/assets/exoplanetes-hero.png" alt="Une géante gazeuse en transit devant son étoile et un monde rocheux à atmosphère ténue" loading="lazy" onerror="this.closest('.act-fig').style.display='none'"></figure>
+      </div>
+      <div class="labs">
+        <article class="flab reveal" id="lab-hydro" style="--ac:var(--exoatmo)">
+          <div class="flab-top"><h3>Équilibre hydrostatique</h3><span class="flab-tag">Atmosphères</span></div>
+          <div class="formula" data-tex="\dfrac{dP}{dz} = -\rho\,g"></div>
+          <p class="flab-explain">La règle de base de toute atmosphère : la pression à une altitude, c'est simplement le <b>poids de tout l'air au-dessus</b>. Plus on monte, moins il reste d'air à porter — donc la pression baisse. Réglez la gravité et la densité.</p>
+          <div class="flab-ui" data-lab="hydro"></div>
+        </article>
+        <article class="flab reveal" id="lab-gazrho" style="--ac:var(--exoatmo)">
+          <div class="flab-top"><h3>Loi des gaz parfaits</h3><span class="flab-tag">Atmosphères</span></div>
+          <div class="formula" data-tex="P = \dfrac{\rho R T}{M}"></div>
+          <p class="flab-explain">La pression d'un gaz, c'est la grêle de ses molécules sur les parois. Chauffez (T) et elles cognent plus fort et plus souvent ; densifiez et elles sont plus nombreuses. Regardez la pression monter avec la température. Ici <span class="imath" data-tex="\rho"></span> est la densité et <span class="imath" data-tex="M"></span> la masse molaire.</p>
+          <div class="flab-ui" data-lab="gazrho"></div>
+        </article>
+        <article class="flab wide reveal" id="lab-barometric" style="--ac:var(--exoatmo)">
+          <div class="flab-top"><h3>Le profil barométrique</h3><span class="flab-tag">Atmosphères</span></div>
+          <div class="formula" data-tex="P(z) = P_0\,e^{-z/H},\qquad H=\dfrac{RT}{Mg}"></div>
+          <p class="flab-explain">En combinant l'hydrostatique et les gaz parfaits, la pression décroît <b>exponentiellement</b> avec l'altitude. La hauteur d'échelle <span class="imath" data-tex="H"></span> est l'altitude où elle chute d'un facteur <span class="imath" data-tex="e\approx 2{,}72"></span> : un gaz chaud et léger s'étire, une forte gravité tasse. Changez de monde.</p>
+          <div class="flab-ui" data-lab="barometric"></div>
+        </article>
+        <article class="flab reveal" id="lab-radtrans" style="--ac:var(--exoatmo)">
+          <div class="flab-top"><h3>Le transfert radiatif</h3><span class="flab-tag">Spectroscopie</span></div>
+          <div class="formula" data-tex="\dfrac{dI_\nu}{d\tau_\nu} = I_\nu - S_\nu"></div>
+          <p class="flab-explain">Le long d'un rayon, l'intensité <span class="imath" data-tex="I_\nu"></span> tend vers la fonction source <span class="imath" data-tex="S_\nu"></span> du milieu : un gaz plus chaud que le fond <b>émet</b>, plus froid il <b>absorbe</b>. C'est ce bilan qui dessine les raies d'un spectre. Réglez l'épaisseur optique.</p>
+          <div class="flab-ui" data-lab="radtrans"></div>
+        </article>
+        <article class="flab wide reveal" id="lab-transit" style="--ac:var(--exoatmo)">
+          <div class="flab-top"><h3>La profondeur de transit</h3><span class="flab-tag">Détection</span></div>
+          <div class="formula" data-tex="\delta = \left(\dfrac{R_p}{R_\star}\right)^{2}"></div>
+          <p class="flab-explain">Quand une planète passe devant son étoile, elle en masque une fraction : la baisse de luminosité est le <b>carré</b> du rapport des rayons. Une géante devant une petite étoile creuse un transit profond ; une Terre devant le Soleil ne masque que 0,008 %.</p>
+          <div class="flab-ui" data-lab="transit"></div>
+        </article>
+        <article class="flab wide reveal" id="lab-redshift" style="--ac:var(--exoatmo)">
+          <div class="flab-top"><h3>L'effet Doppler &amp; le décalage spectral</h3><span class="flab-tag">Détection</span></div>
+          <div class="formula" data-tex="\dfrac{\Delta\lambda}{\lambda} = \dfrac{v}{c} = z"></div>
+          <p class="flab-explain">Une source qui s'approche tasse ses ondes — sa lumière vire au <b>bleu</b> ; qui s'éloigne, elle les étire vers le <b>rouge</b>. Dans le spectre d'une étoile, ses raies d'absorption (Hα, Na, Ca… — un véritable code-barres) glissent <b>toutes</b> du même décalage <span class="imath" data-tex="\Delta\lambda"></span>. Le mesurer donne la vitesse de l'étoile : c'est le principe des vitesses radiales. Choisissez une étoile réelle (<span class="imath" data-tex="c"></span> = vitesse de la lumière).</p>
+          <div class="flab-ui" data-lab="redshift"></div>
+        </article>
+        <article class="flab wide reveal" id="lab-radvel" style="--ac:var(--exoatmo)">
+          <div class="flab-top"><h3>Les vitesses radiales</h3><span class="flab-tag">Détection</span></div>
+          <div class="formula" data-tex="K = \left(\dfrac{2\pi G}{P}\right)^{\!1/3}\dfrac{M_p\sin i}{M_\star^{2/3}}"></div>
+          <p class="flab-explain">La planète et l'étoile tournent autour de leur centre de masse commun : l'étoile « tangue », et sa lumière oscille entre le bleu et le rouge (effet Doppler). L'amplitude <span class="imath" data-tex="K"></span> grandit avec la masse de la planète et la proximité de l'orbite.</p>
+          <div class="flab-ui" data-lab="radvel"></div>
+        </article>
+        <article class="flab wide reveal" id="lab-teq" style="--ac:var(--exoatmo)">
+          <div class="flab-top"><h3>Température d'équilibre</h3><span class="flab-tag">Zone habitable</span></div>
+          <div class="formula" data-tex="T_{eq} = T_\star\sqrt{\dfrac{R_\star}{2a}}\,(1-A)^{1/4}"></div>
+          <p class="flab-explain">La température qu'aurait une planète chauffée par sa seule étoile : elle baisse avec la distance <span class="imath" data-tex="a"></span> et avec l'albédo <span class="imath" data-tex="A"></span> (la part de lumière renvoyée). La zone où l'eau reste liquide définit la <b>zone habitable</b>. Déplacez la planète.</p>
+          <div class="flab-ui" data-lab="teq"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== TABLE GÉNÉRALE ===== -->
   <section class="section" id="table" style="--ac:var(--gold)">
     <div class="wrap">
@@ -1485,7 +1552,7 @@ let _last=0;
 function loop(now){const dt=Math.min(.05,(now-_last)/1000)||0;_last=now;for(const r of REG){if(r.frame&&r.visible)r.frame(dt);}requestAnimationFrame(loop);}
 
 /* ============ canvas primitives (boîte à outils enrichie) ============ */
-const C={orbit:"#6aa4d8",quanta:"#5fd2e6",flow:"#43d6c4",storm:"#f5b14a",gold:"#d6ac55",goldB:"#f3d98a",goldD:"#9c7228",sink:"#ff6a4d",plasma:"#cf5fa8",mech:"#7fc69a",grav:"#9b8cff",elec:"#f2c14e",em:"#e8729c",wave:"#4fb6e6",thermo:"#ff8f57",chaos:"#bd6bff",proba:"#5fbf8f",rel:"#9aa7c0",algo:"#a6d85f",ink:"#f4ecd8",parch:"#e7dcc1",muted:"#c0b59a",soft:"#8f8c78",grid:"rgba(214,172,85,.10)"};
+const C={orbit:"#6aa4d8",quanta:"#5fd2e6",flow:"#43d6c4",storm:"#f5b14a",gold:"#d6ac55",goldB:"#f3d98a",goldD:"#9c7228",sink:"#ff6a4d",plasma:"#cf5fa8",mech:"#7fc69a",grav:"#9b8cff",elec:"#f2c14e",em:"#e8729c",wave:"#4fb6e6",thermo:"#ff8f57",chaos:"#bd6bff",proba:"#5fbf8f",rel:"#9aa7c0",algo:"#a6d85f",exoatmo:"#5fb9d4",ink:"#f4ecd8",parch:"#e7dcc1",muted:"#c0b59a",soft:"#8f8c78",grid:"rgba(214,172,85,.10)"};
 function clear(ctx,w,h){ctx.clearRect(0,0,w,h);const g=ctx.createRadialGradient(w*0.5,h*0.34,2,w*0.5,h*0.5,Math.max(w,h)*0.75);g.addColorStop(0,"#0a1020");g.addColorStop(1,"#04060d");ctx.fillStyle=g;ctx.fillRect(0,0,w,h);}
 function grid(ctx,w,h,step,col){ctx.save();ctx.strokeStyle=col||C.grid;ctx.lineWidth=1;ctx.beginPath();for(let x=step;x<w;x+=step){ctx.moveTo(x,0);ctx.lineTo(x,h);}for(let y=step;y<h;y+=step){ctx.moveTo(0,y);ctx.lineTo(w,y);}ctx.stroke();ctx.restore();}
 function axes(ctx,ox,oy,w,h,col){ctx.save();ctx.strokeStyle=col||"rgba(214,172,85,.35)";ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(8,oy);ctx.lineTo(w-6,oy);ctx.moveTo(ox,h-6);ctx.lineTo(ox,8);ctx.stroke();
@@ -1508,6 +1575,290 @@ const MU=398600, RE=6371; // km — Terre
 const Gn=6.674e-11, KE=8.99e9, G0=9.81, MU0=1.2566e-6, EPS0=8.854e-12; // constantes physiques
 const HP=6.626e-34, HBAR=1.055e-34, ME=9.109e-31, EVJ=1.602e-19, CL=2.998e8; // quantique
 const LABS={};
+
+/* ====== ACTE XV — ATMOSPHÈRES & EXOPLANÈTES ====== */
+const RGP=8.314; // J/mol/K
+/* XV.1 hydrostatique : la pression = poids de l'air au-dessus */
+LABS.hydro={
+  controls:[
+    {k:"g",label:"Gravité g",min:1,max:25,step:.1,val:9.8,unit:"m/s²"},
+    {k:"rho",label:"Densité de l'air",min:.2,max:3,step:.1,val:1,unit:"× Terre"}
+  ],
+  out:[{k:"grad",label:"Gradient dP/dz"},{k:"sol",label:"Pression au sol"}],
+  canvas:{h:240,animate:true},note:"chaque parcelle d'air pèse sur celle du dessous · la pression s'accumule vers le bas",
+  compute(v){ const grad=1.225*v.rho*v.g; return{grad:"−"+num(grad,1)+" <small>Pa/m</small>",sol:num(grad*84,0)+" <small>hPa (col. ~8,4 km)</small>"}; },
+  draw(ctx,v,o,en){ clear(ctx,en.w,en.h); const W=en.w,H=en.h,top=22,bot=H-26,cH=bot-top;
+    const colX=W*0.16,colW=W*0.24;
+    const N=Math.round(26*v.rho); if(!en.state.p)en.state.p=[];
+    while(en.state.p.length<N)en.state.p.push({x:Math.random(),y:Math.random()});
+    en.state.p.length=N;
+    en.state.p.forEach(p=>{ p.y+=0.0028*v.g/9.8; if(p.y>1)p.y-=1; dot(ctx,colX+p.x*colW,top+p.y*cH,1.7,"rgba(95,185,212,.6)"); });
+    ctx.strokeStyle="rgba(95,185,212,.4)";ctx.lineWidth=1.2;ctx.strokeRect(colX,top,colW,cH);
+    lbl(ctx,"colonne d'air",colX+colW/2,top-7,C.muted,9,"center");
+    // weight arrow
+    arrow(ctx,colX+colW+14,top+18,colX+colW+14,bot-18,"rgba(214,172,85,.5)",2);
+    lbl(ctx,"poids",colX+colW+20,(top+bot)/2,C.gold,9,"left");
+    // pressure profile (linear, const rho): P increases downward
+    const gx0=W*0.62,gx1=W*0.93,gy0=top,gy1=bot,P0=v.rho*v.g/9.8;
+    axes(ctx,gx0,gy1,W,H,"rgba(214,172,85,.3)");
+    const pts=[]; for(let i=0;i<=40;i++){ const z=i/40,Pz=P0*(1-z); pts.push([gx0+(gx1-gx0)*Math.max(0,Pz/Math.max(P0,1)),gy1-(gy1-gy0)*z]); }
+    ctx.fillStyle="rgba(95,185,212,.16)";ctx.beginPath();ctx.moveTo(gx0,gy1);pts.forEach(p=>ctx.lineTo(p[0],p[1]));ctx.lineTo(gx0,gy0);ctx.closePath();ctx.fill();
+    poly(ctx,pts,C.exoatmo,2.4);
+    lbl(ctx,"Pression →",gx0+2,gy1+15,C.muted,9,"left");
+    ctx.save();ctx.translate(gx0-9,(gy0+gy1)/2);ctx.rotate(-Math.PI/2);lbl(ctx,"Altitude",0,0,C.muted,9,"center");ctx.restore();
+  }
+};
+/* XV.2 gaz parfaits (forme densité P=ρRT/M) : molécules dans une boîte */
+LABS.gazrho={
+  controls:[
+    {k:"T",label:"Température T",min:100,max:900,step:10,val:300,unit:"K"},
+    {k:"M",label:"Masse molaire M",min:2,max:48,step:1,val:29,unit:"g/mol"},
+    {k:"rho",label:"Densité (nb de molécules)",min:.4,max:2,step:.1,val:1,unit:"×"}
+  ],
+  out:[{k:"P",label:"Pression P"},{k:"vit",label:"Vitesse moyenne"}],
+  canvas:{h:250,animate:true},note:"chaque impact sur une paroi = un peu de pression · chauffez et regardez-les s'emballer",
+  compute(v){ const P=v.rho*1.2*RGP*v.T/(v.M/1000)/1000; const vit=Math.sqrt(3*RGP*v.T/(v.M/1000));
+    return{P:num(P,0)+" <small>kPa</small>",vit:num(vit,0)+" <small>m/s</small>"}; },
+  draw(ctx,v,o,en){ clear(ctx,en.w,en.h); const W=en.w,H=en.h,pad=18,bx=pad,by=pad,bw=W*0.66-pad,bh=H-2*pad;
+    const N=Math.round(26*v.rho), spd=0.6*Math.sqrt(v.T/300)*Math.sqrt(29/v.M);
+    if(!en.state.m)en.state.m=[];
+    while(en.state.m.length<N){ const a=Math.random()*TAU; en.state.m.push({x:bx+Math.random()*bw,y:by+Math.random()*bh,vx:Math.cos(a),vy:Math.sin(a),f:0}); }
+    en.state.m.length=N; en.state.flash=(en.state.flash||0)*0.9;
+    ctx.strokeStyle="rgba(95,185,212,.45)";ctx.lineWidth=1.4;ctx.strokeRect(bx,by,bw,bh);
+    en.state.m.forEach(p=>{ p.x+=p.vx*spd*2.4; p.y+=p.vy*spd*2.4;
+      if(p.x<bx+3){p.x=bx+3;p.vx*=-1;en.state.flash=1;} if(p.x>bx+bw-3){p.x=bx+bw-3;p.vx*=-1;en.state.flash=1;}
+      if(p.y<by+3){p.y=by+3;p.vy*=-1;en.state.flash=1;} if(p.y>by+bh-3){p.y=by+bh-3;p.vy*=-1;en.state.flash=1;}
+      const c=lerpC("#7fd4e8","#ff8a78",Math.min(1,(v.T-100)/800));
+      dot(ctx,p.x,p.y,3.2*Math.cbrt(v.M/29),c,4); });
+    if(en.state.flash>.2){ ctx.strokeStyle="rgba(243,217,138,"+(en.state.flash*.5)+")";ctx.lineWidth=2.4;ctx.strokeRect(bx,by,bw,bh); }
+    // pressure gauge
+    const gx=W*0.83,gy=H*0.5,gr=Math.min(W*0.13,H*0.32);
+    ctx.strokeStyle="rgba(214,172,85,.3)";ctx.lineWidth=8;arcAngle(ctx,gx,gy,gr,Math.PI*0.8,Math.PI*2.2,"rgba(214,172,85,.18)",8);
+    const P=v.rho*1.2*RGP*v.T/(v.M/1000)/1000, frac=Math.min(1,P/400);
+    arcAngle(ctx,gx,gy,gr,Math.PI*0.8,Math.PI*0.8+frac*Math.PI*1.4,C.exoatmo,8);
+    const na=Math.PI*0.8+frac*Math.PI*1.4; arrow(ctx,gx,gy,gx+Math.cos(na)*gr*0.8,gy+Math.sin(na)*gr*0.8,C.goldB,2.4);
+    dot(ctx,gx,gy,4,C.gold); lbl(ctx,"P",gx,gy+gr+16,C.muted,11,"center");
+  }
+};
+/* XV.3 profil barométrique */
+LABS.barometric={
+  segs:[{k:"monde",label:"Monde",opts:[{t:"Terre",v:"terre"},{t:"Mars",v:"mars"},{t:"Vénus",v:"venus"},{t:"Titan",v:"titan"}],val:"terre"}],
+  controls:[
+    {k:"T",label:"Température T",min:80,max:740,step:5,val:288,unit:"K"},
+    {k:"M",label:"Masse molaire M",min:2,max:48,step:1,val:29,unit:"g/mol"},
+    {k:"g",label:"Gravité g",min:1,max:25,step:.1,val:9.8,unit:"m/s²"}
+  ],
+  out:[{k:"H",label:"Hauteur d'échelle H"}],
+  canvas:{h:250},note:"la pression chute d'un facteur e (≈2,72) tous les H · ligne dorée = la hauteur d'échelle",
+  compute(v,st){ const P={terre:[288,29,9.8],mars:[210,43.3,3.71],venus:[737,43.4,8.87],titan:[94,28,1.35]}[v.monde];
+    if(P && st._m!==v.monde){ st._m=v.monde; v.T=P[0];v.M=P[1];v.g=P[2];
+      const root=document.querySelector('[data-lab="barometric"]');
+      if(root){ const sl=root.querySelectorAll('input[type=range]'), units=[" K"," g/mol"," m/s²"];
+        [P[0],P[1],P[2]].forEach((val,i)=>{ if(sl[i]){ sl[i].value=val; const cvv=sl[i].parentElement.querySelector('.cv'); if(cvv) cvv.textContent=num(val)+units[i]; } }); } }
+    const H=RGP*v.T/((v.M/1000)*v.g)/1000; st.H=H; return{H:num(H,1)+" <small>km</small>"}; },
+  draw(ctx,v,o,en){ clear(ctx,en.w,en.h); const W=en.w,H=en.h,pl=46,pr=14,pt=16,pb=34,pw=W-pl-pr,ph=H-pt-pb;
+    const Hk=en.state.H||8, zmax=Math.max(40,Math.min(260,Hk*5));
+    axes(ctx,pl,pt+ph,W,H,"rgba(214,172,85,.3)");
+    grid(ctx,W,H,40,"rgba(214,172,85,.06)");
+    const pts=[]; for(let i=0;i<=120;i++){ const z=zmax*i/120,p=Math.exp(-z/Hk); pts.push([pl+pw*p,pt+ph*(1-z/zmax)]); }
+    ctx.fillStyle="rgba(95,185,212,.16)";ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);pts.forEach(p=>ctx.lineTo(p[0],p[1]));ctx.lineTo(pl,pt+ph);ctx.closePath();ctx.fill();
+    poly(ctx,pts,C.exoatmo,2.6);
+    if(Hk<zmax){ const yH=pt+ph*(1-Hk/zmax),xH=pl+pw*Math.exp(-1);
+      ctx.strokeStyle="rgba(243,217,138,.6)";ctx.setLineDash([4,4]);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pl,yH);ctx.lineTo(xH,yH);ctx.lineTo(xH,pt+ph);ctx.stroke();ctx.setLineDash([]);
+      dot(ctx,xH,yH,3.5,C.goldB); lbl(ctx,"H = "+Math.round(Hk)+" km",Math.min(xH+7,pl+pw-70),yH-6,C.goldB,10,"left"); }
+    lbl(ctx,"P / P₀",pl+pw/2,pt+ph+16,C.muted,9,"center");
+    ctx.save();ctx.translate(pl-10,pt+ph/2);ctx.rotate(-Math.PI/2);lbl(ctx,"Altitude (km)",0,0,C.muted,9,"center");ctx.restore();
+  }
+};
+/* XV.4 transfert radiatif : I tend vers S */
+LABS.radtrans={
+  controls:[
+    {k:"tau",label:"Épaisseur optique τ",min:0,max:5,step:.05,val:1.2},
+    {k:"I0",label:"Intensité entrante I₀",min:0,max:1,step:.02,val:.85},
+    {k:"S",label:"Fonction source Sν",min:0,max:1,step:.02,val:.35}
+  ],
+  out:[{k:"I",label:"Intensité sortante"},{k:"reg",label:"Régime"}],
+  canvas:{h:230,animate:true},note:"I plus grand que S → le gaz absorbe · I plus petit que S → le gaz émet · à grand τ, I rejoint S",
+  compute(v){ const I=v.S+(v.I0-v.S)*Math.exp(-v.tau);
+    return{I:num(I,2),reg:v.I0>v.S?'<b style="color:#7fd4e8">absorption</b>':v.I0<v.S?'<b style="color:#ff8a78">émission</b>':"équilibre"}; },
+  draw(ctx,v,o,en){ clear(ctx,en.w,en.h); const W=en.w,H=en.h; en.state.t=(en.state.t||0)+0.03;
+    const slabX=W*0.30,slabW=W*0.34,sy=H*0.30,sh=H*0.26;
+    // incoming beam
+    const bcol=i=>"rgba("+Math.round(120+135*i)+","+Math.round(150+105*i)+","+Math.round(120+135*i)+",1)";
+    ctx.fillStyle=bcol(v.I0); ctx.fillRect(8,sy+sh*0.5-6,slabX-8,12);
+    lbl(ctx,"I₀",18,sy+sh*0.5-12,C.muted,10,"left");
+    // slab
+    ctx.fillStyle="rgba(95,185,212,"+(0.10+0.5*Math.min(1,v.tau/5))+")"; ctx.fillRect(slabX,sy,slabW,sh);
+    ctx.strokeStyle="rgba(95,185,212,.5)";ctx.lineWidth=1.2;ctx.strokeRect(slabX,sy,slabW,sh);
+    lbl(ctx,"gaz · τ = "+num(v.tau,2),slabX+slabW/2,sy-7,C.exoatmo,10,"center");
+    // outgoing
+    const I=v.S+(v.I0-v.S)*Math.exp(-v.tau);
+    ctx.fillStyle=bcol(I); ctx.fillRect(slabX+slabW,sy+sh*0.5-6,W-12-(slabX+slabW),12);
+    lbl(ctx,"I(τ)",W-16,sy+sh*0.5-12,C.muted,10,"right");
+    // curve I vs tau
+    const gx0=W*0.10,gx1=W*0.92,gy0=H*0.66,gy1=H-20;
+    axes(ctx,gx0,gy1,W,H,"rgba(214,172,85,.3)");
+    // S line
+    const yS=gy1-(gy1-gy0)*v.S; ctx.strokeStyle="rgba(243,217,138,.5)";ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo(gx0,yS);ctx.lineTo(gx1,yS);ctx.stroke();ctx.setLineDash([]);
+    lbl(ctx,"Sν",gx1-4,yS-4,C.goldB,9,"right");
+    const cv=[]; for(let i=0;i<=80;i++){ const tt=5*i/80,Ii=v.S+(v.I0-v.S)*Math.exp(-tt); cv.push([gx0+(gx1-gx0)*tt/5,gy1-(gy1-gy0)*Ii]); }
+    poly(ctx,cv,C.exoatmo,2.4);
+    const mx=gx0+(gx1-gx0)*v.tau/5,my=gy1-(gy1-gy0)*I; dot(ctx,mx,my,4,C.goldB,8);
+    lbl(ctx,"τ →",gx1-4,gy1+15,C.muted,9,"right");
+  }
+};
+/* XV.5 profondeur de transit */
+LABS.transit={
+  controls:[
+    {k:"rp",label:"Rayon planète",min:.5,max:15,step:.1,val:11.2,unit:"R⊕"},
+    {k:"rs",label:"Rayon étoile",min:.1,max:2,step:.05,val:1,unit:"R☉"}
+  ],
+  out:[{k:"d",label:"Profondeur δ"}],
+  canvas:{h:250,animate:true},note:"la planète traverse · la courbe de lumière plonge de (Rp/R★)²",
+  compute(v){ const RsE=v.rs*109.1,d=Math.pow(v.rp/RsE,2)*100; return{d:num(d,d<.1?3:2)+" <small>%</small>"}; },
+  draw(ctx,v,o,en){ clear(ctx,en.w,en.h); const W=en.w,H=en.h; const phase=((en.t||0)*0.15)%1;
+    const topH=H*0.52,cx=W/2,cy=topH*0.5,Rs=Math.min(topH*0.34,W*0.15),RsE=v.rs*109.1,rp=Math.max(Rs*(v.rp/RsE),1.2);
+    const span=Rs*3.4,px=cx-span/2+phase*span;
+    const gl=ctx.createRadialGradient(cx,cy,Rs*0.1,cx,cy,Rs); gl.addColorStop(0,"#fff8e2");gl.addColorStop(.62,"#f4dd92");gl.addColorStop(.88,"#e7b34e");gl.addColorStop(1,"#bd7d28");
+    ctx.fillStyle=gl;ctx.beginPath();ctx.arc(cx,cy,Rs,0,TAU);ctx.fill();
+    const overlap=X=>{const dx=Math.abs(X-cx);if(dx>=Rs+rp)return 0;if(dx<=Rs-rp)return 1;return (Rs+rp-dx)/(2*rp);};
+    ctx.fillStyle="#0a0e18";ctx.strokeStyle="rgba(95,185,212,.6)";ctx.lineWidth=1;ctx.beginPath();ctx.arc(px,cy,rp,0,TAU);ctx.fill();ctx.stroke();
+    const depth=Math.pow(v.rp/RsE,2)*100,maxD=Math.max(depth,0.4),padL=46,baseY=topH+18,botB=H-22,plotW=W-padL-14,dip=(botB-baseY)*0.74;
+    axes(ctx,padL,botB,W,H,"rgba(214,172,85,.3)");
+    const fy=baseY+(depth/maxD)*dip; ctx.strokeStyle="rgba(95,185,212,.3)";ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(padL,fy);ctx.lineTo(padL+plotW,fy);ctx.stroke();ctx.setLineDash([]);
+    ctx.beginPath();for(let i=0;i<=plotW;i++){const X=cx-span/2+(i/plotW)*span,b=overlap(X)*depth,y=baseY+(b/maxD)*dip;i?ctx.lineTo(padL+i,y):ctx.moveTo(padL+i,y);}
+    ctx.strokeStyle=C.exoatmo;ctx.lineWidth=2;ctx.stroke();
+    const mx=padL+((px-(cx-span/2))/span)*plotW,mb=overlap(px)*depth,my=baseY+(mb/maxD)*dip; dot(ctx,mx,my,4,C.goldB,6);
+    lbl(ctx,"Luminosité",padL,baseY-6,C.muted,9,"left"); lbl(ctx,"− "+num(depth,depth<.1?3:2)+" %",padL+6,fy-5,"#7fd4e8",9,"left");
+    lbl(ctx,"temps →",padL+plotW,botB+14,C.muted,9,"right");
+  }
+};
+/* XV.6 vitesses radiales */
+LABS.radvel={
+  controls:[
+    {k:"mp",label:"Masse planète",min:.05,max:13,step:.05,val:1,unit:"M♃"},
+    {k:"P",label:"Période",min:10,max:600,step:1,val:90,unit:"j",fmt:x=>num(x,0)},
+    {k:"ms",label:"Masse étoile",min:.2,max:2,step:.05,val:1,unit:"M☉"}
+  ],
+  out:[{k:"K",label:"Amplitude K"}],
+  canvas:{h:240,animate:true},note:"l'étoile tangue · la courbe à droite grandit avec la masse, se resserre quand la période raccourcit",
+  compute(v){ const K=28.4*v.mp*Math.pow(v.ms,-2/3)*Math.pow(v.P/365.25,-1/3); return{K:num(K,K<10?1:0)+" <small>m/s</small>"}; },
+  draw(ctx,v,o,en){ clear(ctx,en.w,en.h); const W=en.w,H=en.h; en.state.tc=((en.state.tc||0)+0.6)%365;
+    const K=28.4*v.mp*Math.pow(v.ms,-2/3)*Math.pow(v.P/365.25,-1/3);
+    const leftW=Math.min(W*0.42,H*1.2),cx=leftW*0.5,cy=H*0.5,oR=Math.min(leftW,H)*0.3,wob=Math.min(oR*0.34,3+K*0.16);
+    const ang=2*Math.PI*en.state.tc/v.P,vlos=Math.sin(ang);
+    ctx.strokeStyle="rgba(95,185,212,.22)";ctx.beginPath();ctx.ellipse(cx,cy,oR,oR*0.5,0,0,TAU);ctx.stroke();
+    const sx=cx-wob*Math.cos(ang),sy=cy-wob*0.5*Math.sin(ang),px=cx+oR*Math.cos(ang),py=cy+oR*0.5*Math.sin(ang);
+    const sg=ctx.createRadialGradient(sx,sy,2,sx,sy,16);sg.addColorStop(0,"#fff6dc");sg.addColorStop(1,"rgba(243,217,138,0)");ctx.fillStyle=sg;ctx.beginPath();ctx.arc(sx,sy,15,0,TAU);ctx.fill();
+    ctx.fillStyle="#f3d98a";ctx.beginPath();ctx.arc(sx,sy,9,0,TAU);ctx.fill();
+    ctx.save();ctx.globalAlpha=Math.min(.6,Math.abs(vlos)*.6);ctx.fillStyle=vlos>0?"#7aa6ff":"#ff7a66";ctx.beginPath();ctx.arc(sx,sy,9,0,TAU);ctx.fill();ctx.restore();
+    dot(ctx,px,py,Math.max(3,3.5+v.mp*0.3),C.exoatmo);
+    lbl(ctx,vlos>0?"décalage bleu":"décalage rouge",sx,sy+26,vlos>0?"#8fb6ff":"#ff8a78",9,"center");
+    const padL=leftW+20,padR=12,pt=26,pb=22,pw=W-padL-padR,ph=H-pt-pb,midY=pt+ph/2,amp=(ph/2-6)*Math.min(1,Math.max(.03,K/140));
+    axes(ctx,padL,pt+ph,W,H,"rgba(214,172,85,.3)");
+    ctx.strokeStyle="rgba(244,236,216,.12)";ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(padL,midY);ctx.lineTo(padL+pw,midY);ctx.stroke();ctx.setLineDash([]);
+    const Tw=365,cvp=[];for(let i=0;i<=400;i++){const t=Tw*i/400;cvp.push([padL+pw*i/400,midY-amp*Math.sin(2*Math.PI*t/v.P)]);}
+    poly(ctx,cvp,C.exoatmo,2);
+    const mt=en.state.tc%Tw,mx=padL+pw*mt/Tw,my=midY-amp*Math.sin(2*Math.PI*mt/v.P); dot(ctx,mx,my,4,vlos>0?"#8fb6ff":"#ff8a78",6);
+    lbl(ctx,"vitesse radiale",padL,pt-9,C.muted,9,"left"); lbl(ctx,"sur 1 an →",padL+pw,pt+ph+13,C.muted,9,"right");
+  }
+};
+/* XV.7 température d'équilibre & zone habitable */
+LABS.teq={
+  controls:[
+    {k:"a",label:"Distance à l'étoile",min:.02,max:3,step:.01,val:1,unit:"UA"},
+    {k:"A",label:"Albédo A",min:0,max:.8,step:.02,val:.3},
+    {k:"Ts",label:"Température de l'étoile",min:2600,max:8000,step:100,val:5772,unit:"K"}
+  ],
+  out:[{k:"T",label:"T d'équilibre"},{k:"hz",label:"Habitable ?"}],
+  canvas:{h:250,animate:true},note:"anneau vert = zone habitable (eau liquide) · la planète se teinte selon sa température",
+  compute(v,st){ const F=0.04823; const Teq=v.Ts*F*Math.sqrt(1/v.a)*Math.pow(1-v.A,0.25); st.Teq=Teq;
+    const ok=Teq>=255&&Teq<=320; return{T:num(Teq,0)+" K <small>("+num(Teq-273.15,0)+" °C)</small>",hz:ok?'<b style="color:#6ee08a">oui</b>':(Teq>320?'<b style="color:#ff8a78">trop chaud</b>':'<b style="color:#7fd4e8">trop froid</b>')}; },
+  draw(ctx,v,o,en){ clear(ctx,en.w,en.h); const W=en.w,H=en.h,cx=W*0.5,cy=H*0.54; en.state.ph=(en.state.ph||0)+0.01;
+    const F=0.04823, aIn=Math.pow(v.Ts*F*Math.pow(1-v.A,0.25)/320,2), aOut=Math.pow(v.Ts*F*Math.pow(1-v.A,0.25)/255,2);
+    const amax=Math.max(aOut*1.25,v.a*1.1,1.6), sc=Math.min(W,H)*0.42/amax;
+    // habitable ring
+    ctx.fillStyle="rgba(110,224,138,.12)";ctx.beginPath();ctx.arc(cx,cy,aOut*sc,0,TAU);ctx.arc(cx,cy,aIn*sc,0,TAU,true);ctx.fill();
+    ctx.strokeStyle="rgba(110,224,138,.35)";ctx.lineWidth=1;[aIn,aOut].forEach(r=>{ctx.beginPath();ctx.arc(cx,cy,r*sc,0,TAU);ctx.stroke();});
+    lbl(ctx,"zone habitable",cx,cy-aOut*sc-6,"#6ee08a",9,"center");
+    // star
+    const Tn=Math.min(1,(v.Ts-2600)/5400),scol=lerpC("#ff7a4d","#bfd0ff",Tn);
+    const sg=ctx.createRadialGradient(cx,cy,2,cx,cy,18);sg.addColorStop(0,"#fff6dc");sg.addColorStop(.5,scol);sg.addColorStop(1,"rgba(243,217,138,0)");ctx.fillStyle=sg;ctx.beginPath();ctx.arc(cx,cy,18,0,TAU);ctx.fill();
+    dot(ctx,cx,cy,9,scol,10);
+    // orbit + planet
+    ctx.strokeStyle="rgba(214,172,85,.25)";ctx.beginPath();ctx.arc(cx,cy,v.a*sc,0,TAU);ctx.stroke();
+    const px=cx+v.a*sc*Math.cos(en.state.ph),py=cy+v.a*sc*Math.sin(en.state.ph);
+    const Teq=en.state.Teq||255,pc=Teq>320?"#ff7a4d":Teq<255?"#7fd4e8":"#6ee08a";
+    dot(ctx,px,py,5.5,pc,8);
+    lbl(ctx,num(Teq,0)+" K",px,py-11,pc,10,"center");
+  }
+};
+
+/* XV.4b effet Doppler & décalage spectral des raies */
+function wl2rgb(wl){ let r=0,g=0,b=0;
+  if(wl<440){r=-(wl-440)/60;b=1;} else if(wl<490){g=(wl-440)/50;b=1;}
+  else if(wl<510){g=1;b=-(wl-510)/20;} else if(wl<580){r=(wl-510)/70;g=1;}
+  else if(wl<645){r=1;g=-(wl-645)/65;} else {r=1;}
+  let f=1; if(wl<420)f=0.3+0.7*(wl-380)/40; else if(wl>680)f=0.3+0.7*(720-wl)/40; f=Math.max(0.25,Math.min(1,f));
+  const ch=x=>Math.max(0,Math.min(255,Math.round(255*Math.pow(Math.max(0,x)*f,0.8))));
+  return "rgb("+ch(r)+","+ch(g)+","+ch(b)+")"; }
+LABS.redshift={
+  segs:[
+    {k:"star",label:"Étoile réelle (vitesse radiale héliocentrique mesurée)",opts:[{t:"Manuel",v:"manuel"},{t:"Barnard −110",v:-110},{t:"Véga −14",v:-14},{t:"Sirius −5",v:-5},{t:"Bételgeuse +21",v:21},{t:"Aldébaran +54",v:54}],val:-110},
+    {k:"amp",label:"Grossissement du décalage (pour la lisibilité)",opts:[{t:"×1 réel",v:1},{t:"×40",v:40},{t:"×100",v:100}],val:40}
+  ],
+  controls:[{k:"v",label:"Vitesse radiale de l'étoile",min:-400,max:400,step:5,val:-110,unit:"km/s",fmt:x=>num(x,0)}],
+  out:[{k:"sens",label:"Décalage"},{k:"dl",label:"Δλ (raie Hα)"},{k:"z",label:"z = v/c"}],
+  canvas:{h:330,animate:true},
+  note:"vitesses radiales réelles · Barnard −110, Véga −14, Sirius −5, Bételgeuse +21, Aldébaran +54 km/s · les fronts d'onde se tassent (bleu) ou s'étirent (rouge), et les raies glissent d'autant",
+  compute(v,st){ const c=299792.458;
+    if(v.star!=="manuel" && st._star!==v.star){ st._star=v.star; v.v=+v.star;
+      const root=document.querySelector('[data-lab="redshift"]'); if(root){ const sl=root.querySelector('input[type=range]'); if(sl){ sl.value=v.v; const cvv=sl.parentElement.querySelector('.cv'); if(cvv) cvv.textContent=num(v.v,0)+" km/s"; } } }
+    const z=v.v/c,dl=656.28*z;
+    const sens=v.v<-3?'<b style="color:#8fb6ff">vers le BLEU · se rapproche</b>':v.v>3?'<b style="color:#ff8a78">vers le ROUGE · s\'éloigne</b>':'<b>au repos</b>';
+    return{sens, dl:(dl>=0?"+":"")+num(dl,3)+" <small>nm</small>", z:(z>=0?"+":"−")+num(Math.abs(z)*1000,3)+" <small>×10⁻³</small>"}; },
+  draw(ctx,v,o,en){ clear(ctx,en.w,en.h); const W=en.w,H=en.h,c=299792.458,z=v.v/c; en.state.wt=((en.state.wt||0)+0.016);
+    const blue="#8fb6ff",red="#ff8a78",dirCol=v.v<0?blue:v.v>0?red:C.gold;
+    /* Zone A — fronts d'onde */
+    const ax0=8,ax1=W*0.37,aMid=H*0.42,obsX=ax1-16,sx=ax0+(ax1-ax0)*0.46;
+    ctx.save(); rrect(ctx,ax0,12,ax1-ax0,H-24,8); ctx.clip();
+    const cWave=42,vDisp=(v.v/400)*cWave*0.62,Tem=0.55,nW=9;
+    for(let k=nW;k>=1;k--){ const a=((en.state.wt/Tem)%1+k)*Tem,r=cWave*a; if(r<2)continue;
+      const cxk=sx+vDisp*a,al=Math.max(0,0.55-r/300); if(al<=0)continue;
+      ctx.strokeStyle=(v.v<0?"rgba(143,182,255,":v.v>0?"rgba(255,138,120,":"rgba(214,172,85,")+al+")";
+      ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(cxk,aMid,r,0,TAU);ctx.stroke(); }
+    ctx.restore();
+    const scol=v.v<0?"#cfe0ff":v.v>0?"#ffdcc4":"#fff2cf";
+    const sg=ctx.createRadialGradient(sx,aMid,1,sx,aMid,14);sg.addColorStop(0,"#fff8e6");sg.addColorStop(.55,scol);sg.addColorStop(1,"rgba(255,240,200,0)");
+    ctx.fillStyle=sg;ctx.beginPath();ctx.arc(sx,aMid,14,0,TAU);ctx.fill();dot(ctx,sx,aMid,6,scol,6);
+    if(Math.abs(v.v)>3){ const dir=v.v>0?-1:1; arrow(ctx,sx,aMid,sx+dir*Math.min(36,14+Math.abs(v.v)*0.06),aMid,dirCol,2.4); }
+    ctx.fillStyle="rgba(244,236,216,.85)";ctx.beginPath();ctx.moveTo(obsX,aMid-9);ctx.lineTo(obsX+13,aMid);ctx.lineTo(obsX,aMid+9);ctx.closePath();ctx.fill();
+    lbl(ctx,"étoile",sx,aMid-22,C.soft,9,"center"); lbl(ctx,"observateur",obsX-2,aMid+24,C.muted,9,"center");
+    lbl(ctx,"FRONTS D'ONDE",(ax0+ax1)/2,H-10,C.soft,8,"center");
+    /* Zone B — spectres */
+    const bx0=W*0.42,bx1=W-14,bw=bx1-bx0,L0=380,L1=700,xWl=wl=>bx0+bw*(wl-L0)/(L1-L0);
+    const hb=30,restY=30,obsY=H-78,amp=v.amp||1,gapY=(restY+hb+obsY)/2;
+    const LINES=[{wl:393.4,n:"Ca K"},{wl:486.1,n:"Hβ"},{wl:518.4,n:"Mg"},{wl:589.3,n:"Na D"},{wl:656.3,n:"Hα"}];
+    function bar(y){ const g=ctx.createLinearGradient(bx0,0,bx1,0); for(let i=0;i<=44;i++){const t=i/44;g.addColorStop(t,wl2rgb(L0+(L1-L0)*t));}
+      ctx.save();rrect(ctx,bx0,y,bw,hb,3);ctx.clip();ctx.fillStyle=g;ctx.fillRect(bx0,y,bw,hb);ctx.restore();
+      ctx.strokeStyle="rgba(0,0,0,.45)";ctx.lineWidth=1;rrect(ctx,bx0,y,bw,hb,3);ctx.stroke(); }
+    bar(restY); bar(obsY);
+    lbl(ctx,"SPECTRE AU REPOS (laboratoire)",bx0,restY-9,C.muted,9,"left");
+    lbl(ctx,"SPECTRE DE L'ÉTOILE",bx0,obsY-9,C.muted,9,"left");
+    LINES.forEach(Ln=>{ const xr=xWl(Ln.wl);
+      ctx.strokeStyle="rgba(6,8,16,.92)";ctx.lineWidth=2.2;ctx.beginPath();ctx.moveTo(xr,restY);ctx.lineTo(xr,restY+hb);ctx.stroke();
+      lbl(ctx,Ln.n,xr,restY-19,C.soft,8,"center");
+      const obsWl=Ln.wl*(1+z*amp); let xo=xWl(obsWl),clamp=xo<bx0+1||xo>bx1-1; xo=Math.max(bx0+1,Math.min(bx1-1,xo));
+      ctx.strokeStyle="rgba(255,255,255,.28)";ctx.lineWidth=1;ctx.setLineDash([2,2]);ctx.beginPath();ctx.moveTo(xr,obsY);ctx.lineTo(xr,obsY+hb);ctx.stroke();ctx.setLineDash([]);
+      ctx.strokeStyle=clamp?"rgba(6,8,16,.45)":"rgba(6,8,16,.92)";ctx.lineWidth=2.2;ctx.beginPath();ctx.moveTo(xo,obsY);ctx.lineTo(xo,obsY+hb);ctx.stroke();
+      ctx.strokeStyle=dirCol;ctx.globalAlpha=.45;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(xr,restY+hb);ctx.lineTo(xo,obsY);ctx.stroke();ctx.globalAlpha=1;
+      if(Math.abs(xo-xr)>4) arrow(ctx,xr,obsY+hb+9,xo,obsY+hb+9,dirCol,1.5);
+    });
+    if(Math.abs(v.v)>3) lbl(ctx, v.v<0?"◄ décalage vers le bleu":"décalage vers le rouge ►", (bx0+bx1)/2, gapY+3, dirCol, 10, "center");
+    [400,500,600,700].forEach(wl=>lbl(ctx,wl+"",xWl(wl),obsY+hb+24,C.soft,8,"center"));
+    lbl(ctx,"longueur d'onde (nm)",(bx0+bx1)/2,H-6,C.soft,8,"center");
+  }
+};
 
 /* ---- I.1 vis-viva : orbite animée ---- */
 LABS.visviva={
@@ -3302,7 +3653,15 @@ const REF=[
   ["","veladd","Addition des vitesses","w=\\tfrac{u+v}{1+uv/c^2}","Relativité"],
   ["Informatique & algorithmes","bigO","Complexité (grand O)","O(1)<O(\\log n)<O(n)<O(n^2)<O(2^n)","Algorithmique"],
   ["","sieve","Crible d'Ératosthène","\\text{barrer }2k,3k,5k\\dots","Nombres"],
-  ["","sortviz","Algorithmes de tri","\\text{bulles, insertion, sélection : }O(n^2)","Tri"]
+  ["","sortviz","Algorithmes de tri","\\text{bulles, insertion, sélection : }O(n^2)","Tri"],
+  ["Atmosphères & exoplanètes","hydro","Équilibre hydrostatique","\\tfrac{dP}{dz}=-\\rho g","Exoplanètes"],
+  ["","gazrho","Loi des gaz parfaits","P=\\tfrac{\\rho RT}{M}","Exoplanètes"],
+  ["","barometric","Profil barométrique","P(z)=P_0\\,e^{-z/H}","Exoplanètes"],
+  ["","radtrans","Transfert radiatif","\\tfrac{dI_\\nu}{d\\tau_\\nu}=I_\\nu-S_\\nu","Exoplanètes"],
+  ["","transit","Profondeur de transit","\\delta=(R_p/R_\\star)^2","Exoplanètes"],
+  ["","redshift","Effet Doppler & décalage spectral","\\tfrac{\\Delta\\lambda}{\\lambda}=\\tfrac{v}{c}=z","Exoplanètes"],
+  ["","radvel","Vitesses radiales","K=\\left(\\tfrac{2\\pi G}{P}\\right)^{1/3}\\tfrac{M_p\\sin i}{M_\\star^{2/3}}","Exoplanètes"],
+  ["","teq","Température d'équilibre","T_{eq}=T_\\star\\sqrt{\\tfrac{R_\\star}{2a}}(1-A)^{1/4}","Exoplanètes"]
 ];
 function buildTable(){const t=document.getElementById("reftbl");if(!t)return;let html="";
   REF.forEach(([dom,id,name,tex,dos])=>{if(dom){html+=`<div class="rrow"><span class="rh">${dom}</span><span class="rh">Formule</span><span class="rh">Atelier · dossier</span></div>`;}
