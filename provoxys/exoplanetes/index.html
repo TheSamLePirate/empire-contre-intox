@@ -251,6 +251,16 @@
     .glossary dt { font-family:var(--roman); font-weight:600; font-size:.76rem; letter-spacing:.06em; text-transform:uppercase; color:var(--azur-bright); margin-bottom:5px; }
     .glossary dd { margin:0; color:var(--muted); font-size:.92rem; line-height:1.55; }
     .glossary dd b { color:var(--parch); font-weight:600; }
+    /* Appel vers l'atlas interactif */
+    .atlas-cta { display:flex; gap:20px; align-items:center; flex-wrap:wrap; margin:24px 0; padding:22px 24px; border:1px solid var(--line); border-radius:4px;
+      background:radial-gradient(120% 130% at 0% 0%, rgba(95,185,212,.13), transparent 58%), linear-gradient(180deg, rgba(14,26,46,.55), rgba(7,12,26,.62)); box-shadow:var(--shadow); }
+    .atlas-cta .ac-kick { display:block; font-family:var(--roman); font-size:.56rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--azur); margin-bottom:8px; }
+    .atlas-cta h3 { font-family:var(--roman); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); font-size:1.18rem; margin:0 0 8px; }
+    .atlas-cta p { margin:0; color:var(--muted); font-size:.98rem; }
+    .atlas-cta .ac-txt { flex:1 1 320px; }
+    .atlas-cta .ac-btn { flex:none; font-family:var(--roman); font-size:.66rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; padding:14px 24px; border-radius:3px;
+      background:linear-gradient(120deg, var(--azur), var(--azur-bright)); color:var(--void); transition:all .3s var(--ease); white-space:nowrap; }
+    .atlas-cta .ac-btn:hover { filter:brightness(1.1); transform:translateY(-2px); }
 
     .science-block,.question-block,.lesson-block,.dialogue-block {
       border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
@@ -447,6 +457,7 @@
           <p class="hero-quote">« Plus de 6 000 exoplanètes confirmées en 2026 — et derrière chaque point de lumière qui vacille, un monde entier à décrire. »</p>
           <div class="hero-actions">
             <a class="button primary" href="#transcription">Lire le dossier</a>
+            <a class="button" href="atlas.html">Atlas interactif ✦</a>
             <a class="button" href="#statistiques">Statistiques 2026</a>
             <a class="button" href="../../index.html">Accueil ECI</a>
           </div>
@@ -694,6 +705,13 @@
               <div class="sc-body"><p>Hubble a ouvert l'ère de la caractérisation des atmosphères : en analysant la lumière stellaire qui filtre à travers l'atmosphère d'une planète en transit, il y identifie les molécules. Ses instruments STIS puis WFC3 y ont lu du sodium, de la vapeur d'eau, du CO₂ et du méthane — et même dressé la carte de température d'un monde entier. Il a posé les méthodes que le JWST pousse aujourd'hui plus loin.</p></div>
               <div class="sc-line"><span class="sc-tag">Le fait marquant</span>Première atmosphère d'exoplanète jamais détectée : le <strong>sodium de HD 209458 b</strong>, un Jupiter chaud, en 2002 (Charbonneau et al.).</div>
             </div>
+
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="Hubble Space Telescope — modèle 3D interactif" loading="lazy" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/6546d1989bcd4e8aa135f0d659c53c9c/embed?ui_theme=dark"></iframe>
+              </div>
+              <figcaption>Le télescope spatial Hubble, en 3D <span class="m3d-hint">— faites-le pivoter et zoomer : miroir de 2,4 m, lancé en 1990, en orbite basse à ~540 km ; c'est lui qui a lu la toute première atmosphère d'exoplanète</span> <a href="https://sketchfab.com/3d-models/hubble-space-telescope-6546d1989bcd4e8aa135f0d659c53c9c" target="_blank" rel="noopener">Modèle Sketchfab · ESO ↗</a></figcaption>
+            </figure>
 
             <div class="scope-card reveal">
               <div class="sc-head"><span class="sc-name">Spitzer</span><span class="sc-full">Spitzer Space Telescope · NASA (infrarouge)</span><span class="sc-chip off">Retiré en 2020</span></div>
@@ -1046,6 +1064,15 @@
                 <button class="viz-btn" data-view="radius">Par rayon · le « creux »</button>
               </div>
               <div class="viz-readout" id="statsReadout">Le <b>transit</b> domine — environ <b>74 %</b> (4 653 planètes) repérées à la baisse de lumière qu'elles causent en passant devant leur étoile, loin devant les <b>vitesses radiales</b> (~19 %). C'est l'héritage direct de Kepler et TESS.</div>
+            </div>
+
+            <div class="atlas-cta reveal">
+              <div class="ac-txt">
+                <span class="ac-kick">Page compagnon · données réelles</span>
+                <h3>Explorez l'atlas des 6 298 exoplanètes</h3>
+                <p>Tout le catalogue confirmé du NASA Exoplanet Archive, visualisé et manipulable : découvertes par méthode, carte de tout le ciel, vallée des rayons, diagramme masse-rayon avec courbes de composition, zone habitable… huit vues interactives sur des données brutes.</p>
+              </div>
+              <a class="ac-btn" href="atlas.html">Ouvrir l'atlas →</a>
             </div>
             <h3 class="group-title">9.1 — Architectures des systèmes</h3>
             <p>La diversité architecturale des systèmes planétaires <strong>dépasse largement ce que notre propre Système solaire laissait imaginer</strong>. Les systèmes compacts, comme TRAPPIST-1, illustrent des configurations extrêmes avec sept planètes telluriques dans un rayon très restreint. On observe fréquemment des <strong>chaînes de résonance orbitale</strong> — par exemple une planète qui boucle deux orbites quand sa voisine en boucle une (une résonance « 2 pour 1 ») —, signe d'une migration planétaire stable. Enfin, les systèmes avec géantes extérieures défient souvent les modèles de formation classiques.</p>

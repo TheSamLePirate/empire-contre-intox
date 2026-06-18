@@ -15,3 +15,10 @@ a_traiter/
 
 # Dépôt git imbriqué (projet séparé, publié sur ses propres Pages) — ne pas embarquer
 empire-calendrier/
+
+# Catalogues bruts téléchargés pour l'atlas exoplanètes (NASA/PHL/exoplanet.eu) :
+# données de travail volumineuses, NON servies par le site. La page charge uniquement
+# data/atlas-data.js (consolidé). Régénérables via les API NASA Exoplanet Archive / PHL.
+provoxys/exoplanetes/data/*.csv
+# Notes de travail de rédaction (non publiées)
+provoxys/exoplanetes/script.md
