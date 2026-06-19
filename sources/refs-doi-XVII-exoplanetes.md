@@ -33,6 +33,27 @@ WASP-39 b par Faedi 2011), la donnée est sourcée par une URL institutionnelle.
 | SPHERE | Beuzit, J.-L. et al. (2019). *SPHERE: the exoplanet imager for the VLT*. A&A 631, A155. | [10.1051/0004-6361/201935251](https://doi.org/10.1051/0004-6361/201935251) | L'imageur d'exoplanètes du VLT. |
 | TauREx 3 (retrieval) | Al-Refaie, A. F. et al. (2021). *TauREx 3: A Fast, Dynamic, and Extendable Framework for Retrievals*. ApJ 917, 37. | [10.3847/1538-4357/ac0252](https://doi.org/10.3847/1538-4357/ac0252) | Un des codes de retrieval atmosphérique de référence. |
 
+## Outils au sol — Chapitre 3 enrichi (DOI vérifiés, juin 2026)
+
+Compléments ajoutés au chapitre « télescopes au sol » et aux fiches d'annexe
+(NIRPS, ESPRESSO 16 m, GRAVITY/HR 8799 e, HIRES/GJ 436 b, SPHERE/PDS 70, L 98-59).
+DOI vérifiés via Crossref (titre, auteurs, revue, volume).
+
+| Donnée | Citation | DOI | Établit |
+|---|---|---|---|
+| NIRPS (jumeau IR de HARPS, 3,6 m) | Bouchy, F. et al. (2025). *NIRPS joining HARPS at ESO 3.6 m*. A&A 700, A10. | [10.1051/0004-6361/202453341](https://doi.org/10.1051/0004-6361/202453341) | Spectro NIR (YJH 0,98–1,8 µm, R≈75–88k), opéré simultanément avec HARPS. |
+| NIRPS — Proxima (~77 cm/s) | Suárez Mascareño, A. et al. (2025). *Diving into the planetary system of Proxima with NIRPS*. A&A 700, A11. | [10.1051/0004-6361/202553728](https://doi.org/10.1051/0004-6361/202553728) | Précision RV ≈ 77 cm/s dans le proche IR sur Proxima. |
+| GRAVITY — HR 8799 e (2019) | GRAVITY Collaboration / Lacour, S. et al. (2019). *First direct detection of an exoplanet by optical interferometry*. A&A 623, L11. | [10.1051/0004-6361/201935253](https://doi.org/10.1051/0004-6361/201935253) | 1ʳᵉ exoplanète vue par interférométrie optique ; nuages de fer et de silicates. |
+| GJ 436 b (HIRES, premier Neptune) | Butler, R. P. et al. (2004). *A Neptune-Mass Planet Orbiting the Nearby M Dwarf GJ 436*. ApJ 617, 580. | [10.1086/425173](https://doi.org/10.1086/425173) | Premier Neptune de faible masse détecté par vitesses radiales (HIRES). |
+| PDS 70 b (SPHERE) | Keppler, M. et al. (2018). *Discovery of a planetary-mass companion within the gap of the transition disk around PDS 70*. A&A 617, A44. | [10.1051/0004-6361/201832957](https://doi.org/10.1051/0004-6361/201832957) | Planète en formation imagée dans le disque de PDS 70 (SPHERE). |
+| L 98-59 b/c/d (HARPS+ESPRESSO) | Demangeon, O. D. S. et al. (2021). *A warm terrestrial planet with half the mass of Venus transiting a nearby star*. A&A 653, A41. | [10.1051/0004-6361/202140728](https://doi.org/10.1051/0004-6361/202140728) | Masses précises → planètes rocheuses (dont une à ½ masse de Vénus). |
+
+> Sans nouveau DOI : ESPRESSO « 4-UT = miroir de 16 m », 380–686 nm, < 25 cm/s/nuit,
+> ~2 mag de gain (ESO ESPRESSO + Pepe et al. 2021, DOI 10.1051/0004-6361/202038306) ;
+> HARPS 0,01 K, ThAr + peigne laser, > 130 planètes, campagne 2011 (ESO, communiqué
+> eso1134) ; HIRES cellule à iode (Keck) ; GRAVITY+ en déploiement 2024-2025 (ESO) ;
+> NIRC2 1–5 µm + coronographe vortex (Keck).
+
 ## DOI complémentaires (re-vérification indépendante, juin 2026)
 
 Cinq articles primaires qui transforment des affirmations clés (sourcées d'abord

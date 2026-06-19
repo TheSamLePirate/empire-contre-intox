@@ -50,6 +50,22 @@ Verdicts : ✅ confirmé · ⚠️ approximatif / à nuancer · 🔶 débattu ·
 | TESS : lancé 18 avril 2018, 4 caméras (pupille 10,5 cm), orbite 2:1 lunaire ; π Mensae c (2018) | ✅ | Ricker 2015 ; Huang 2018 | [DOI 10.1117/1.JATIS.1.1.014003](https://doi.org/10.1117/1.JATIS.1.1.014003) · [DOI 10.3847/2041-8213/aaef91](https://doi.org/10.3847/2041-8213/aaef91) |
 | TESS : « 733 confirmées » | ❌→corrigé | Compteur officiel MIT : **897 confirmées** (juin 2026) et **> 8 000 TOI**. Page : « ~900 confirmées · > 8 000 TOI » | [MIT — TESS](https://tess.mit.edu/publications/) |
 
+## B-ter. Outils au sol — Chapitre 3 enrichi (juin 2026)
+
+Compléments intégrés au chapitre « télescopes au sol » et aux fiches d'annexe (DOI vérifiés via Crossref — voir `refs-doi-XVII-exoplanetes.md`).
+
+| Affirmation | Verdict | Valeur de référence | Source |
+|---|---|---|---|
+| NIRPS : jumeau infrarouge de HARPS sur le 3,6 m, YJH 0,98–1,8 µm, R≈75–88k, observé simultanément, ~77 cm/s sur Proxima, opérations depuis 2023 | ✅ | Bouchy 2025 ; Proxima : Suárez Mascareño 2025 | [DOI 202453341](https://doi.org/10.1051/0004-6361/202453341) · [DOI 202553728](https://doi.org/10.1051/0004-6361/202553728) |
+| ESPRESSO : mode 4-UT = lumière d'un miroir de ~16 m ; 380–686 nm ; < 25 cm/s/nuit ; ~2 mag plus sensible que HARPS | ✅ | Combinaison incohérente des 4 UT ; Pepe et al. 2021 | [ESO ESPRESSO](https://www.eso.org/sci/facilities/paranal/instruments/espresso.html) · [DOI](https://doi.org/10.1051/0004-6361/202038306) |
+| GRAVITY : 1ʳᵉ détection d'exoplanète par interférométrie optique (HR 8799 e, 2019), nuages de fer/silicates ; GRAVITY+ en déploiement | ✅ (GRAVITY+ : en cours) | GRAVITY Collaboration 2019 | [DOI 201935253](https://doi.org/10.1051/0004-6361/201935253) |
+| HIRES : cellule à iode, 0,3–1,0 µm, ~3 m/s (1996) → ~1,5 m/s (2004) ; GJ 436 b = premier Neptune (2004) | ✅ | Butler et al. 2004 | [DOI 425173](https://doi.org/10.1086/425173) |
+| SPHERE : 0,5–2,32 µm ; PDS 70 b et c (planètes en formation) | ✅ | Keppler 2018 (b), Haffert 2019 (c) | [DOI 201832957](https://doi.org/10.1051/0004-6361/201832957) |
+| NIRC2 : 1–5 µm, coronographe vortex ; imagerie de HR 8799 | ✅ | Keck NIRC2 | [Keck](https://www2.keck.hawaii.edu/inst/nirc2/) |
+| HARPS : > 130 exoplanètes, campagne 2011 (50 planètes / 16 super-Terres), stabilité ~0,01 K, calibration ThAr + peigne laser | ✅ | Communiqué ESO 2011 ; page HARPS | [ESO eso1134](https://www.eso.org/public/news/eso1134/) |
+| Proxima b (HARPS, 2016) & Ross 128 b (HARPS, 2018) ; masse de Proxima b affinée par ESPRESSO (~26 cm/s) | ✅ | Anglada-Escudé 2016 ; Bonfils 2018 ; Suárez Mascareño 2020 | [DOI 19106](https://doi.org/10.1038/nature19106) |
+| L 98-59 b/c/d rocheuses (HARPS + ESPRESSO) | ✅ | Demangeon et al. 2021 | [DOI 202140728](https://doi.org/10.1051/0004-6361/202140728) |
+
 ## C. Statistiques (NASA Exoplanet Archive — valeurs vérifiées au chiffre près)
 
 | Affirmation | Verdict | Référence | Source(s) |
@@ -98,7 +114,7 @@ Verdicts : ✅ confirmé · ⚠️ approximatif / à nuancer · 🔶 débattu ·
 
 ## Annexe « Fiches techniques » (recherche multi-agents)
 
-Le dossier comporte une **annexe de 53 fiches techniques sourcées** (instruments au sol, télescopes/missions spatiales, sondes, planètes du Système solaire, exoplanètes), produites par recherche multi-agents puis vérification adversariale. Chaque fiche porte sa propre source institutionnelle (NASA, ESA, ESO, NASA Exoplanet Archive) et, le cas échéant, un DOI vérifié. Corrections appliquées après vérification : Keck I (1ʳᵉ lumière **1990**, pas 1992) ; HIRES (mise en service **1995**) ; PLATO (lancement **fin 2026**) ; Voyager (vitesses distinctes, V1 ~17 km/s) ; Neptune (période **164,8 ans**) ; Uranus (**84,0 ans**) ; Tau Boötis b (5,95 M_Jup = **masse vraie**, pas minimale) ; 51 Peg b (rayon **~1,07 R_Jup**, estimé). Le reste des valeurs (planètes NSSDC, exoplanètes NASA Exoplanet Archive) a été confirmé au chiffre près.
+Le dossier comporte une **annexe de 54 fiches techniques sourcées** (11 instruments au sol — dont **NIRPS**, ajouté en juin 2026 —, 10 télescopes/missions spatiales, 7 sondes, 11 planètes du Système solaire, 15 exoplanètes), produites par recherche multi-agents puis vérification adversariale. Chaque fiche porte sa propre source institutionnelle (NASA, ESA, ESO, NASA Exoplanet Archive) et, le cas échéant, un DOI vérifié. Corrections appliquées après vérification : Keck I (1ʳᵉ lumière **1990**, pas 1992) ; HIRES (mise en service **1995**) ; PLATO (lancement **fin 2026**) ; Voyager (vitesses distinctes, V1 ~17 km/s) ; Neptune (période **164,8 ans**) ; Uranus (**84,0 ans**) ; Tau Boötis b (5,95 M_Jup = **masse vraie**, pas minimale) ; 51 Peg b (rayon **~1,07 R_Jup**, estimé). Le reste des valeurs (planètes NSSDC, exoplanètes NASA Exoplanet Archive) a été confirmé au chiffre près.
 
 ## Synthèse
 
