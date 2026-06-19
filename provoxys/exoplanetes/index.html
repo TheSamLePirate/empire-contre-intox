@@ -103,6 +103,11 @@
     .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
     .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
     .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+    /* Atlas — bouton vedette azur (couleur signature exoplanètes) */
+    .button.atlas { color:var(--void); border-color:transparent; background:linear-gradient(140deg,var(--azur-bright),var(--azur) 58%,#3f93ad); box-shadow:0 0 0 1px rgba(127,212,232,.4),0 14px 38px rgba(95,185,212,.30),inset 0 1px 0 rgba(255,255,255,.45); animation:atlasPulse 3.4s var(--ease) infinite; }
+    .button.atlas:hover { animation:none; transform:translateY(-3px); box-shadow:0 0 0 1px rgba(127,212,232,.6),0 22px 54px rgba(95,185,212,.5),inset 0 1px 0 rgba(255,255,255,.55); }
+    .button.atlas .star,.atlas-link .star { filter:drop-shadow(0 0 5px rgba(255,255,255,.7)); }
+    @keyframes atlasPulse { 0%,100% { box-shadow:0 0 0 1px rgba(127,212,232,.4),0 14px 34px rgba(95,185,212,.26),inset 0 1px 0 rgba(255,255,255,.45); } 50% { box-shadow:0 0 0 1px rgba(127,212,232,.72),0 16px 48px rgba(95,185,212,.52),inset 0 1px 0 rgba(255,255,255,.5); } }
     .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
     .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
     .signal:last-child { border-bottom:0; }
@@ -125,6 +130,8 @@
     .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
     .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
     .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+    .atlas-link { flex:0 0 auto; display:inline-flex; align-items:center; gap:7px; min-height:40px; padding:0 16px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--void); border:1px solid transparent; border-radius:2px; background:linear-gradient(140deg,var(--azur-bright),var(--azur) 60%,#3f93ad); white-space:nowrap; box-shadow:0 6px 18px rgba(95,185,212,.30); transition:transform .3s var(--ease),box-shadow .3s var(--ease); }
+    .atlas-link:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(95,185,212,.46); }
     .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
     .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--azur),var(--gold-bright),var(--ember)); }
     main { width:min(100% - 40px,var(--max)); margin:0 auto; }
@@ -457,7 +464,7 @@
           <p class="hero-quote">« Plus de 6 000 exoplanètes confirmées en 2026 — et derrière chaque point de lumière qui vacille, un monde entier à décrire. »</p>
           <div class="hero-actions">
             <a class="button primary" href="#transcription">Lire le dossier</a>
-            <a class="button" href="atlas.html">Atlas interactif ✦</a>
+            <a class="button atlas" href="atlas.html">Atlas interactif <span class="star">✦</span></a>
             <a class="button" href="#statistiques">Statistiques 2026</a>
             <a class="button" href="../../index.html">Accueil ECI</a>
           </div>
@@ -477,6 +484,7 @@
           <img class="brand-mark" src="../../ymir-lalie/assets/logo-eci.jpg" alt="" aria-hidden="true">
           <span>Mondes Lointains</span>
         </a>
+        <a class="atlas-link" href="atlas.html">Atlas <span class="star">✦</span></a>
         <a class="home-link" href="../../index.html">Accueil ECI</a>
         <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
         <div class="nav" id="navLinks">
@@ -1623,6 +1631,7 @@
           </div>
           <div class="collective-actions">
             <a class="button primary" href="../../index.html">Retour à l'index</a>
+            <a class="button atlas" href="atlas.html">Atlas interactif <span class="star">✦</span></a>
             <a class="button" href="../Artemis2.html">Artemis II</a>
             <a class="button" href="../tornades/index.html">Tornades &amp; Ouragans</a>
             <a class="button" href="../../sources/sources.html">Les Sources</a>
