@@ -224,14 +224,14 @@
 
     <main>
       <section class="wrap hero">
-        <p class="eyebrow">Dossier XVIII · Vérification &amp; sources</p>
+        <p class="eyebrow">Dossier XIX · Vérification &amp; sources</p>
         <h2>Chaque donnée,<br>vérifiée et <span class="foil">sourcée</span>.</h2>
         <p class="lead">Pour chaque affirmation des dossiers — cosmologie, géologie, vie, exploration lunaire, éléments chimiques, données Terre 3D, ancêtres génétiques —, nous donnons un <b>résumé</b>, un <b>verdict</b> et la <b>source autoritative</b> (NASA, ESA, USGS, IUGS/ICS, Smithsonian, NIST, NHGRI, articles à comité de lecture). La science est déjà vertigineuse : encore faut-il pouvoir la vérifier.</p>
         <div class="stats">
           <div class="stat"><div class="n" id="stFiches">—</div><div class="l">Données vérifiées</div></div>
           <div class="stat"><div class="n" id="stSrc">—</div><div class="l">Sources de référence</div></div>
           <div class="stat"><div class="n" id="stDoi">—</div><div class="l">DOI vérifiés</div></div>
-          <div class="stat"><div class="n">15</div><div class="l">Dossiers audités</div></div>
+          <div class="stat"><div class="n">16</div><div class="l">Dossiers audités</div></div>
           <div class="stat"><div class="n">2</div><div class="l">Formulations à corriger</div></div>
         </div>
         <div class="legend" aria-label="Légende des verdicts">
@@ -262,6 +262,8 @@
       <section class="wrap section" id="formules"><div class="sec-head reveal"><p class="kick">Dossier XIV · Provoxys, Jorge &amp; Zalex, Samlepirate</p><h3>Les Formules de l'Empire</h3><p>Dossier <b>transversal</b> : il rassemble, rend en LaTeX et met en application interactive les formules <b>déjà sourcées</b> des autres dossiers. Il n'introduit aucune affirmation nouvelle ; on rappelle ici l'origine et une référence canonique par famille de formules.</p></div><div class="grid" id="g-formules"></div></section>
       <section class="wrap section" id="cyberviolences"><div class="sec-head reveal"><p class="kick">Dossier XVI · Provoxys &amp; Lalie</p><h3>Briser le Silence</h3><p>Harcèlement, cyber-harcèlement, emprise, doxing, grooming et violences faites aux femmes — dossier de <b>société, droit et santé publique</b> : statistiques publiques (INSEE, SSMSI, DEPP), textes de loi (Légifrance), rapports institutionnels (ONU Femmes, Arcom, DSA, HCE) et associatifs de référence (Centre Hubertine Auclert, e-Enfance, Child Focus, Missing Children Europe), plus <b>3 DOI vérifiés</b> via Crossref.</p></div><div class="grid" id="g-cyberviolences"></div></section>
       <section class="wrap section" id="exoplanetes"><div class="sec-head reveal"><p class="kick">Dossier XVII · Provoxys</p><h3>Atmosphères &amp; Mondes Lointains</h3><p>Des atmosphères planétaires aux statistiques 2026 : physique des atmosphères, télescopes au sol et spatiaux, spectroscopie, géantes de glace, Jupiters chauds, super-Terres et zone habitable — sources autoritatives (NASA, ESA, ESO, JPL, NASA Exoplanet Archive, NIST/CODATA) et <b>37 DOI vérifiés</b> via Crossref.</p></div><div class="grid" id="g-exoplanetes"></div></section>
+
+      <section class="wrap section" id="premieres-cites"><div class="sec-head reveal"><p class="kick">Dossier XVIII · Lalie &amp; Ymir</p><h3>Les Premières Cités</h3><p>Uruk, Ur, Mohenjo-Daro, Jéricho, Gilgamesh et l'invention de l'écriture — dossier d'<b>archéologie</b> : sources autoritatives (British Museum, Penn Museum, Met Museum, Louvre, UNESCO, CNRS, ETCSL/Oxford, World History Encyclopedia) et <b>2 DOI vérifiés</b> via Crossref.</p></div><div class="grid" id="g-premieres-cites"></div></section>
 
       <section class="wrap section" id="refs">
         <div class="sec-head reveal"><p class="kick">Appareil critique · niveau le plus strict</p><h3>Références scientifiques</h3><p>La littérature primaire à comité de lecture derrière les données. Chaque <b>DOI a été vérifié</b> (résolution Crossref + page éditeur) — pour chacun : titre, citation et résumé.</p></div>
@@ -743,6 +745,10 @@
 
     // Sources from sources_audit_scientifique_chronos.csv + app La Vie de la Terre
     const SOURCES = [
+      ["🔵","British Museum — Mésopotamie / bibliothèque d'Assurbanipal","https://www.britishmuseum.org/blog/library-fit-king","Dossier XVIII — Tombes royales d'Ur, Étendard d'Ur, tablettes de l'Épopée de Gilgamesh (Ninive)."],
+      ["🔵","Penn Museum — Ur (fouilles Woolley)","https://www.penn.museum/sites/iraq/","Dossier XVIII — fouilles de Leonard Woolley à Ur (1922-1934), Tombes royales, lyres."],
+      ["🟢","ETCSL — Sumerian Literature (Oxford)","https://etcsl.orinst.ox.ac.uk/","Dossier XVIII — Liste royale sumérienne, mythes (Inanna et Enki), textes sumériens en traduction."],
+      ["🔵","Met Museum — origines de l'écriture / Uruk","https://www.metmuseum.org/essays/the-origins-of-writing","Dossier XVIII — Uruk première métropole, proto-cunéiforme, tablettes de comptabilité."],
       ["🔵","Ordre de la Libération","https://www.ordredelaliberation.fr/","Dossier XV — 1 038 Compagnons (dont 6 femmes) ; fiches Jean Moulin, Laure Diebold, Berty Albrecht, Brossolette, Frenay, Chaban-Delmas."],
       ["🔵","Musée de la Libération de Paris – Leclerc – Jean Moulin","https://www.museeliberation-leclerc-moulin.paris.fr/","Dossier XV — Cécile Rol-Tanguy (1919-2020), Daniel Cordier ; PC de Denfert-Rochereau, Libération de Paris."],
       ["🔵","Mémorial de Caen / Calvados.gouv.fr","https://www.calvados.gouv.fr/","Dossier XV — résistants normands (Gisèle Guillemot, René Duchez), massacre de la prison de Caen le 6 juin 1944."],
@@ -979,7 +985,44 @@
         s:"Le NASA Exoplanet Archive fournit un catalogue statistique complet (valeurs vérifiées au chiffre près). Par méthode : transit 4 653 (~74 %), vitesses radiales 1 186, microlentille 278, imagerie 97. Par année : deux moissons record dues à Kepler (2014 : 1 225 ; 2016 : 1 671). Par rayon : distribution bimodale des petites planètes avec un creux à 1,5–2,0 R⊕ (le « radius valley », Fulton et al. 2017). Données rendues en graphe interactif dans le dossier.",
         src:[{n:"NASA Exoplanet Archive — comptes par méthode",u:"https://exoplanetarchive.ipac.caltech.edu/docs/counts_detail.html"},{n:"Fulton et al. 2017 (DOI)",u:"https://doi.org/10.3847/1538-3881/aa80eb"}] }
     ];
-    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES); fill("g-politique",POLITIQUE); fill("g-singe",SINGE); fill("g-esclavage",ESCLAVAGE); fill("g-tornades-cyclones",TORNADES); fill("g-abeilles",ABEILLES); fill("g-resistance",RESISTANCE); fill("g-formules",FORMULES); fill("g-cyberviolences",CYBERVIOLENCES); fill("g-exoplanetes",EXOPLANETES);
+    // ===== Dossier XVIII — Les Premières Cités (Lalie & Ymir) =====
+    const PC = "../ymir-lalie/premieres-cites/assets/";
+    const PREMIERES = [
+      { t:"Uruk, la première métropole", d:"~250 ha · 40 000–80 000 hab.", v:"ok", img:PC+"uruk-eanna.png",
+        s:"À son apogée, Uruk couvre environ 250 hectares pour 40 000 à 80 000 habitants — confirmé (Metropolitan Museum, DAI). Précision : la surface maximale est datée de la fin de l'Uruk récent (~3100 av. J.-C.) plutôt que de 3000 pile. Le secteur de l'Eanna a livré près de 4 000 tablettes archaïques.",
+        src:[{n:"Met Museum — Uruk",u:"https://www.metmuseum.org/essays/uruk-the-first-city"},{n:"World History — Uruk",u:"https://www.worldhistory.org/uruk/"}] },
+      { t:"L'écriture, née pour compter", d:"proto-cunéiforme ~3300 av. J.-C.", v:"ok", img:PC+"ecriture-jetons.png",
+        s:"L'écriture apparaît à Uruk vers 3300 av. J.-C. pour la comptabilité, pas la littérature : environ 85 % des plus anciennes tablettes sont des registres de stocks (orge, bétail, rations). Le calame de roseau imprime des pictogrammes qui évolueront vers le cunéiforme.",
+        src:[{n:"Met — Origins of writing",u:"https://www.metmuseum.org/essays/the-origins-of-writing"},{n:"Louvre — tablette proto-cunéiforme",u:"https://collections.louvre.fr/en/ark:/53355/cl010153954"}] },
+      { t:"La théorie des jetons (calculi)", d:"jetons · bulle · empreinte · tablette", v:"warn", img:PC+"ecriture-jetons.png",
+        s:"Denise Schmandt-Besserat a reconstitué, sur des milliers d'objets réels, le passage des jetons d'argile à l'écriture. Selon sa propre chronologie : jetons 8000–3000, bulle-enveloppe ET empreintes ~3500, tablettes à empreintes ~3200, pictogrammes ~3100. Les dates du live (empreinte 3300, tablette 3200) sont à ~200 ans près ; l'ordre, lui, est exact.",
+        src:[{n:"D. Schmandt-Besserat (UT Austin)",u:"https://sites.utexas.edu/dsb/tokens/the-evolution-of-writing/"}] },
+      { t:"Jéricho : la muraille néolithique", d:"tour et mur ~8000 av. J.-C.", v:"fresh", img:PC+"premieres-cites-hero.png",
+        s:"Jéricho (Tell es-Sultan) est occupée dès ~9600 av. J.-C. Correction : la fameuse tour et le mur datent de ~8000 av. J.-C. (PPNA, radiocarbone tour ~8300–7800), et non de 6800 comme indiqué dans le live. Kathleen Kenyon l'a établi par la stratigraphie (1952–1958), brisant la lecture biblique.",
+        src:[{n:"UNESCO — Ancient Jericho",u:"https://whc.unesco.org/en/list/1687/"},{n:"Tower of Jericho",u:"https://en.wikipedia.org/wiki/Tower_of_Jericho"}] },
+      { t:"Ur : Tombes Royales et commerce-monde", d:"Woolley 1922–34 · lapis · cornaline", v:"ok", img:PC+"ur-tombes.png",
+        s:"Les Tombes Royales d'Ur (fouilles de Leonard Woolley, 1922–1934) ont livré or, lyres incrustées, l'Étendard d'Ur et des serviteurs sacrifiés. Le lapis-lazuli (Afghanistan) et la cornaline (vallée de l'Indus) y attestent un réseau d'échanges à l'échelle du Proche-Orient.",
+        src:[{n:"Britannica — Leonard Woolley",u:"https://www.britannica.com/biography/Leonard-Woolley"},{n:"Penn Museum — Ur",u:"https://www.penn.museum/sites/iraq/"}] },
+      { t:"L'or d'Ur : provenance débattue", d:"Anatolie ? Iran ? Égypte ?", v:"deb", img:PC+"ur-tombes.png",
+        s:"Le live attribue l'or d'Ur à l'Anatolie. En réalité, la provenance de l'or des Tombes royales est multiple et débattue (Anatolie, mais aussi Iran, Égypte/Nubie…) : « or importé » est plus sûr. Le lapis (Afghanistan) et la cornaline (Indus), eux, sont bien établis.",
+        src:[{n:"Penn Museum — lapis-lazuli trade",u:"https://www.penn.museum/sites/expedition/lithic-technology-behind-the-ancient-lapis-lazuli-trade/"}] },
+      { t:"Mohenjo-Daro : la cité en damier", d:"plan orthogonal · drains couverts", v:"warn", img:PC+"mohenjo-daro.png",
+        s:"Mohenjo-Daro (vallée de l'Indus, fouillée dès 1922 par R. D. Banerji) est planifiée en damier, avec briques cuites standardisées et drains couverts. Nuances : « fosses septiques » est anachronique (parler de puisards / bassins de décantation), et le « grenier monumental » est en réalité un grand bâtiment public à fonction débattue.",
+        src:[{n:"Harappa.com — le « grenier »",u:"https://www.harappa.com/slide/mohenjo-daro-granary-177b"},{n:"UNESCO — Mohenjo-Daro",u:"https://whc.unesco.org/en/list/138/"}] },
+      { t:"La conque de Marsoulas rejoue", d:"~18 000 ans · do, do♯, ré", v:"ok", img:PC+"musique-cite.png",
+        s:"Une conque magdalénienne (~18 000 ans, niveau daté 18 261–18 011 cal BP), volontairement modifiée par l'humain, a de nouveau résonné en 2021 (do, do dièse, ré). Correction de nom : le chercheur du Muséum de Toulouse est Guillaume Fleury (et non « Guillem Flury »), aux côtés de Carole Fritz et Gilles Tosello.",
+        src:[{n:"Science Advances (2021) — DOI",u:"https://doi.org/10.1126/sciadv.abe9510"},{n:"CNRS — communiqué",u:"https://www.cnrs.fr/en/press/ancient-seashell-resonates-after-18000-years"}] },
+      { t:"La Liste royale et Eridu", d:"« la royauté descendit du ciel »", v:"ok", img:PC+"premieres-cites-hero.png",
+        s:"La Liste royale sumérienne (ETCSL) commence : « Après que la royauté fut descendue du ciel, la royauté était à Eridu » (premier roi : Alulim). C'est de la propagande, pas de l'histoire — lecture confirmée par l'assyriologue Jean-Jacques Glassner (CNRS). Eridu est fondée dès ~5400 av. J.-C.",
+        src:[{n:"ETCSL — Sumerian King List",u:"https://etcsl.orinst.ox.ac.uk/section2/tr211.htm"},{n:"World History — Eridu",u:"https://www.worldhistory.org/eridu/"}] },
+      { t:"Gilgamesh : sources et tablettes", d:"Assurbanipal · 12 tablettes", v:"warn", img:PC+"gilgamesh-enkidu.png",
+        s:"La version standard provient de la bibliothèque d'Assurbanipal (668–627 av. J.-C.) à Ninive, découverte par Hormuzd Rassam (British Museum). Nuances : Gilgamesh est historique mais largement légendaire (règne estimé ~2700–2600) ; dire « l'une des » plus anciennes œuvres ; des douze tablettes, la XIIᵉ est un appendice tardif.",
+        src:[{n:"Britannica — Epic of Gilgamesh",u:"https://www.britannica.com/topic/Epic-of-Gilgamesh"},{n:"British Museum — Ashurbanipal",u:"https://www.britishmuseum.org/blog/library-fit-king"}] },
+      { t:"Caral et la convergence mondiale", d:"Pérou ~2600 av. J.-C. · sans poterie", v:"ok", img:PC+"premieres-cites-hero.png",
+        s:"La cité de Caral (Pérou, ~2600 av. J.-C.) est contemporaine des pyramides égyptiennes : pyramides, amphithéâtre, sans poterie, sacs de fibres (shicra) servant surtout au remblai. Avec Longshan (Chine) et Mohenjo-Daro, c'est l'argument contre le « mythe du centre » : la cité est une convergence, pas une invention diffusée.",
+        src:[{n:"UNESCO — Caral-Supe",u:"https://whc.unesco.org/en/list/1269/"},{n:"Shady et al. 2001 — DOI",u:"https://doi.org/10.1126/science.1059519"}] }
+    ];
+    fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES); fill("g-politique",POLITIQUE); fill("g-singe",SINGE); fill("g-esclavage",ESCLAVAGE); fill("g-tornades-cyclones",TORNADES); fill("g-abeilles",ABEILLES); fill("g-resistance",RESISTANCE); fill("g-formules",FORMULES); fill("g-cyberviolences",CYBERVIOLENCES); fill("g-exoplanetes",EXOPLANETES); fill("g-premieres-cites",PREMIERES);
 
     // ===== Références scientifiques primaires (DOI vérifiés) =====
     const REFS = [
@@ -1586,6 +1629,12 @@
           ab:"π Mensae c : la toute première exoplanète découverte par TESS (étoile visible à l'œil nu). DOI vérifié via Crossref." },
         { a:"Rodriguez, J. E. et al. (2020)", t:"The First Habitable-zone Earth-sized Planet from TESS. II. Spitzer Confirms TOI-700 d", j:"AJ 160, 117", k:"primary", doi:"10.3847/1538-3881/aba4b3",
           ab:"TOI-700 d : confirmation (avec Spitzer) du premier monde tellurique tempéré découvert par TESS. DOI vérifié via Crossref." }
+      ]},
+      { g:"Archéologie et premières cités", items:[
+        { a:"Fritz, C., Tosello, G., Fleury, G. et al. (2021)", t:"First record of the sound produced by the oldest Upper Paleolithic seashell horn", j:"Science Advances 7(7), eabe9510", k:"primary", doi:"10.1126/sciadv.abe9510",
+          ab:"Analyse 3D et acoustique d'une conque (Charonia lampas) magdalénienne de Marsoulas (~18 000 ans) : volontairement modifiée par l'humain (apex sectionné, embouchure, spire percée), elle produit do, do dièse et ré. DOI vérifié via Crossref (auteur n°3 : G. Fleury)." },
+        { a:"Shady, R., Haas, J. & Creamer, W. (2001)", t:"Dating Caral, a Preceramic Site in the Supe Valley on the Central Coast of Peru", j:"Science 292, 723–726", k:"primary", doi:"10.1126/science.1059519",
+          ab:"Datation radiocarbone (sur fibres de sacs « shicra ») de la cité de Caral : architecture monumentale dès ~2600 av. J.-C., faisant de Caral-Supe la plus ancienne civilisation connue des Amériques. DOI vérifié via Crossref." }
       ]}
     ];
     function refHTML(r){
@@ -1611,7 +1660,7 @@
       </div>`).join("");
     const stSrc = document.getElementById("stSrc"); if (stSrc) stSrc.textContent = SOURCES.length;
 
-    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length+POLITIQUE.length+SINGE.length+ESCLAVAGE.length+TORNADES.length+ABEILLES.length+RESISTANCE.length+CYBERVIOLENCES.length+EXOPLANETES.length;
+    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length+POLITIQUE.length+SINGE.length+ESCLAVAGE.length+TORNADES.length+ABEILLES.length+RESISTANCE.length+CYBERVIOLENCES.length+EXOPLANETES.length+PREMIERES.length;
     document.getElementById("stFiches").textContent = total;
 
     const bar=document.getElementById("progress");
