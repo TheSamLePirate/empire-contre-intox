@@ -389,6 +389,25 @@
       .tri-legs g.leg path.flow { opacity:0 !important; }
       html { scroll-behavior:auto; }
     }
+    /* — Frise des cités : panneau de détail — */
+    .frise-detail { margin:8px 24px 6px; border-top:1px solid var(--line-2); padding-top:14px; min-height:118px; }
+    .frise-detail .yr { font-family:var(--roman); font-weight:800; font-size:1.04rem; color:var(--lc,var(--gold-bright)); letter-spacing:.02em; }
+    .frise-detail h4 { margin:3px 0 7px; font-family:var(--serif); font-weight:600; font-size:1.16rem; color:var(--ink); }
+    .frise-detail .besoin { display:inline-block; font-family:var(--roman); font-size:.58rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#14110a; background:var(--lc,var(--gold)); border-radius:2px; padding:3px 8px; }
+    .frise-detail p { margin:8px 0 0; color:var(--muted); font-size:.96rem; }
+    .frise-detail .meta { margin:8px 0 0; font-size:.85rem; color:var(--soft); }
+    .frise-detail .meta b { color:var(--parch); font-weight:600; }
+    /* — Stepper jetons → tablette — */
+    .stepper { display:flex; flex-wrap:wrap; gap:8px; padding:6px 24px 2px; }
+    .stepper button { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:3px; padding:9px 13px; cursor:pointer; transition:background .25s,color .25s,border-color .25s; }
+    .stepper button.on { background:linear-gradient(140deg,var(--gold-bright),var(--gold-deep)); color:#14110a; border-color:transparent; }
+    .stepper button:hover { border-color:rgba(214,172,85,.5); }
+    .step-illus { padding:8px 24px 0; }
+    .step-illus svg { display:block; max-width:440px; margin:0 auto; }
+    .step-detail { margin:8px 24px 6px; border-top:1px solid var(--line-2); padding-top:14px; min-height:104px; }
+    .step-detail .yr { font-family:var(--roman); font-weight:800; font-size:1.02rem; color:var(--gold-bright); letter-spacing:.02em; }
+    .step-detail h4 { margin:4px 0 7px; font-family:var(--serif); font-weight:600; font-size:1.14rem; color:var(--ink); }
+    .step-detail p { margin:0; color:var(--muted); font-size:.96rem; }
   </style>
 </head>
 <body>
@@ -1151,6 +1170,22 @@
             </div>
           </aside>
         </div>
+        <div class="viz reveal" id="frise-cites">
+          <div class="viz-head">
+            <p class="viz-eyebrow">Dataviz · interactive</p>
+            <h3 class="viz-title">Quatre cités sur 8 000 ans</h3>
+            <p class="viz-sub">Sur l'axe du temps réel : Jéricho précède de loin les cités-États. Cliquez une cité.</p>
+          </div>
+          <div class="viz-legend" aria-hidden="true">
+            <span><i style="background:var(--clay)"></i>Sécurité</span>
+            <span><i style="background:var(--gold)"></i>Gestion</span>
+            <span><i style="background:var(--reed)"></i>Efficacité</span>
+            <span><i style="background:var(--lapis)"></i>Régulation</span>
+          </div>
+          <div class="viz-body viz-svg"></div>
+          <div class="frise-detail" id="friseDetail"></div>
+          <p class="viz-foot">Dates : occupation et phase d'innovation (points pâles = occupation antérieure). Jéricho fortifiée ~8000 av. J.-C. ; Uruk écriture ~3300 ; Mohenjo-Daro ~2600 ; Ur III ~2100. Sources : British Museum, Penn Museum, UNESCO.</p>
+        </div>
       </section>
 
       <section class="chapter" id="fiches">
@@ -1468,6 +1503,22 @@
             </div>
           </aside>
         </div>
+        <div class="viz reveal" id="stepper-ecriture">
+          <div class="viz-head">
+            <p class="viz-eyebrow">Dataviz · interactive</p>
+            <h3 class="viz-title">Des jetons à la tablette, pas à pas</h3>
+            <p class="viz-sub">La « déportation de la mémoire » en quatre étapes — cliquez pour avancer.</p>
+          </div>
+          <div class="stepper" role="tablist" aria-label="Étapes de l'invention de l'écriture">
+            <button type="button" role="tab">1 · Jetons</button>
+            <button type="button" role="tab">2 · Bulle-enveloppe</button>
+            <button type="button" role="tab">3 · Empreinte</button>
+            <button type="button" role="tab">4 · Tablette</button>
+          </div>
+          <div class="step-illus" aria-hidden="true"></div>
+          <div class="step-detail" id="stepDetail" aria-live="polite"></div>
+          <p class="viz-foot">Chronologie d'après Denise Schmandt-Besserat (University of Texas) : jetons 8000–3000, bulle &amp; empreinte ~3500, tablettes à empreintes ~3200, pictogrammes ~3100 av. J.-C.</p>
+        </div>
       </section>
 
       <section class="chapter" id="conclusion">
@@ -1666,6 +1717,113 @@
     /* ===================== Visualisations interactives ===================== */
     const NS = "http://www.w3.org/2000/svg";
     const el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+    const fmt = (n) => String(n).replace(/(\d)(?=(\d{3})+$)/g, "$1 ");
+
+    /* — 1. Frise interactive des quatre cités (axe du temps réel) — */
+    (function(){
+      const root = document.getElementById("frise-cites"); if (!root) return;
+      const mount = root.querySelector(".viz-svg");
+      const detail = root.querySelector("#friseDetail");
+      const CITES = [
+        { city:"Jéricho", at:8000, occ:9600, col:"var(--clay)", besoin:"Sécurité", inno:"L'enceinte fortifiée",
+          d:"Occupée dès ~9600 av. J.-C., Jéricho dresse sa tour et son mur vers ~8000 av. J.-C. (PPNA) : la sécurité, bien avant l'écriture.",
+          who:"Kathleen Kenyon (1952-1958)", note:"source d'Aïn es-Sultan, aucune écriture" },
+        { city:"Uruk", at:3300, occ:4000, col:"var(--gold)", besoin:"Gestion", inno:"L'écriture comptable",
+          d:"Vers 3300 av. J.-C., Uruk invente l'écriture pour compter les stocks. ~250 ha, 40 000 à 80 000 habitants.",
+          who:"W. Loftus (1849), J. Jordan (1912)", note:"Inanna, temple Eanna" },
+        { city:"Mohenjo-Daro", at:2600, col:"var(--reed)", besoin:"Efficacité", inno:"L'urbanisme orthogonal",
+          d:"Vers 2600 av. J.-C., dans la vallée de l'Indus : plan en damier, briques cuites standardisées, drains couverts. Pas de palais identifié.",
+          who:"R. D. Banerji (1922)", note:"écriture de l'Indus, indéchiffrée" },
+        { city:"Ur", at:2100, occ:3800, col:"var(--lapis)", besoin:"Régulation des échanges", inno:"Le Droit (loi écrite)",
+          d:"Apogée vers 2100 av. J.-C. (Ur III) : code d'Ur-Nammu, commerce-monde (lapis, cornaline), Tombes Royales.",
+          who:"Leonard Woolley (1922-1934)", note:"Nanna, dieu-lune" }
+      ];
+      const X0=10000, X1=1800, W=940, H=210, padL=48, padR=48, ax=125, x0=padL, x1=W-padR;
+      const sx = (bc) => x0 + (x1-x0)*(X0-bc)/(X0-X1);
+      const svg = el("svg", { viewBox:"0 0 "+W+" "+H, role:"img", "aria-label":"Frise des quatre premières cités, de 10000 à 2000 avant notre ère" });
+      svg.appendChild(el("line", { x1:x0, y1:ax, x2:x1, y2:ax, stroke:"var(--line)", "stroke-width":2 }));
+      for (let bc=10000; bc>=2000; bc-=2000){
+        const x=sx(bc);
+        svg.appendChild(el("line", { x1:x, y1:ax-5, x2:x, y2:ax+5, stroke:"var(--line)" }));
+        const t=el("text", { x:x, y:ax+24, "text-anchor":"middle", "font-size":"10", fill:"var(--soft)" }); t.textContent=fmt(bc); svg.appendChild(t);
+      }
+      const detailHTML = (c) => '<span class="besoin">'+c.besoin+'</span> <span class="yr">'+fmt(c.at)+' av. J.-C.</span>'+
+        '<h4>'+c.city+' · '+c.inno+'</h4><p>'+c.d+'</p>'+
+        '<p class="meta"><b>Fouilles :</b> '+c.who+' · '+c.note+(c.occ?' · occupation dès ~'+fmt(c.occ)+' av. J.-C.':'')+'</p>';
+      const nodes=[];
+      CITES.forEach((c,i)=>{
+        const x=sx(c.at);
+        if (c.occ){ const ox=sx(c.occ);
+          svg.appendChild(el("line", { x1:ox, y1:ax, x2:x, y2:ax, stroke:c.col, "stroke-width":4, opacity:.28, "stroke-linecap":"round" }));
+          svg.appendChild(el("circle", { cx:ox, cy:ax, r:3.4, fill:"var(--void)", stroke:c.col, "stroke-width":1.4, opacity:.55 }));
+        }
+        const up = (i%2===0);
+        const g=el("g", { class:"tl-node", tabindex:0, role:"button", "aria-label":c.city+" — "+c.inno });
+        g.appendChild(el("circle", { class:"dot", cx:x, cy:ax, r:7, fill:"var(--void)", stroke:c.col, "stroke-width":2.6 }));
+        const lbl=el("text", { x:x, y:(up?ax-20:ax+36), "text-anchor":"middle", "font-size":"12.5", "font-weight":"700" }); lbl.textContent=c.city; g.appendChild(lbl);
+        const yl=el("text", { x:x, y:(up?ax-34:ax+50), "text-anchor":"middle", "font-size":"9.5", fill:"var(--soft)" }); yl.textContent=fmt(c.at); g.appendChild(yl);
+        const pick=()=>{ nodes.forEach((n,j)=>n.classList.toggle("active", j===i)); detail.style.setProperty("--lc", c.col); detail.innerHTML=detailHTML(c); };
+        g.addEventListener("click", pick); g.addEventListener("mouseenter", pick); g.addEventListener("focus", pick);
+        svg.appendChild(g); nodes.push(g);
+      });
+      mount.appendChild(svg);
+      nodes[0].classList.add("active");
+      detail.style.setProperty("--lc", CITES[0].col); detail.innerHTML=detailHTML(CITES[0]);
+    })();
+
+    /* — 2. Stepper : des jetons à la tablette — */
+    (function(){
+      const root = document.getElementById("stepper-ecriture"); if (!root) return;
+      const illus = root.querySelector(".step-illus");
+      const detail = root.querySelector("#stepDetail");
+      const btns = [...root.querySelectorAll(".stepper button")];
+      const CLAY="var(--clay)", EDGE="var(--gold-deep)", MARK="var(--gold-bright)";
+      const STEPS = [
+        { yr:"8000 – 3000 av. J.-C.", h:"Étape 1 · Les jetons (calculi)",
+          d:"De petits jetons d'argile — cônes, sphères, disques — forment un code comptable physique : un jeton = une unité (un cône = une mesure de grain).", draw:"tokens" },
+        { yr:"~3500 av. J.-C.", h:"Étape 2 · La bulle-enveloppe",
+          d:"Pour éviter la fraude pendant le transport, on enferme les jetons dans une boule d'argile creuse et scellée. Problème : il faut la casser pour vérifier le contenu.", draw:"bulla" },
+        { yr:"~3500 av. J.-C.", h:"Étape 3 · L'empreinte",
+          d:"On presse les jetons sur la surface de la bulle avant de la fermer : l'information devient lisible à l'extérieur, sans la casser. C'est le premier signe écrit.", draw:"impress" },
+        { yr:"~3200 → 3100 av. J.-C.", h:"Étape 4 · La tablette",
+          d:"La bulle devient inutile : il suffit de dessiner la forme du jeton sur une plaque d'argile plate. Naissent les pictogrammes, puis l'écriture cunéiforme « en forme de clous ».", draw:"tablet" }
+      ];
+      function newSvg(){ const s=el("svg", { viewBox:"0 0 380 170", role:"img", "aria-hidden":"true" }); s.appendChild(el("line", { x1:40, y1:140, x2:340, y2:140, stroke:"var(--line)", "stroke-width":1.5 })); return s; }
+      const cone = (x,y,s) => el("path", { d:"M "+x+" "+(y-s)+" L "+(x+s*0.7)+" "+y+" L "+(x-s*0.7)+" "+y+" Z", fill:CLAY, stroke:EDGE, "stroke-width":1 });
+      const sphere = (x,y,r) => el("circle", { cx:x, cy:y, r:r, fill:CLAY, stroke:EDGE, "stroke-width":1 });
+      const disk = (x,y,r) => el("ellipse", { cx:x, cy:y, rx:r, ry:r*0.5, fill:CLAY, stroke:EDGE, "stroke-width":1 });
+      function draw(kind){
+        while (illus.firstChild) illus.removeChild(illus.firstChild);
+        const s=newSvg();
+        if (kind==="tokens"){
+          s.appendChild(cone(118,140,26)); s.appendChild(sphere(180,128,13)); s.appendChild(disk(240,134,17)); s.appendChild(cone(290,140,18));
+        } else if (kind==="bulla"){
+          s.appendChild(el("circle", { cx:190, cy:94, r:48, fill:CLAY, stroke:EDGE, "stroke-width":1.6 }));
+          const inner=el("g", { opacity:.55 });
+          inner.appendChild(el("path", { d:"M 176 88 L 183 100 L 169 100 Z", fill:"var(--void)", stroke:MARK, "stroke-width":1, "stroke-dasharray":"2 2" }));
+          inner.appendChild(el("circle", { cx:202, cy:86, r:7, fill:"var(--void)", stroke:MARK, "stroke-width":1, "stroke-dasharray":"2 2" }));
+          inner.appendChild(el("ellipse", { cx:194, cy:108, rx:9, ry:5, fill:"var(--void)", stroke:MARK, "stroke-width":1, "stroke-dasharray":"2 2" }));
+          s.appendChild(inner);
+        } else if (kind==="impress"){
+          s.appendChild(el("circle", { cx:190, cy:94, r:48, fill:CLAY, stroke:EDGE, "stroke-width":1.6 }));
+          const m=el("g", { stroke:EDGE, "stroke-width":1.2 });
+          m.appendChild(el("path", { d:"M 174 78 L 181 89 L 167 89 Z", fill:"rgba(5,8,17,.32)" }));
+          m.appendChild(el("circle", { cx:206, cy:82, r:6, fill:"rgba(5,8,17,.32)" }));
+          m.appendChild(el("ellipse", { cx:188, cy:110, rx:8, ry:4, fill:"rgba(5,8,17,.32)" }));
+          m.appendChild(el("circle", { cx:166, cy:104, r:4, fill:"rgba(5,8,17,.32)" }));
+          s.appendChild(m);
+        } else if (kind==="tablet"){
+          s.appendChild(el("rect", { x:118, y:50, width:154, height:90, rx:9, fill:CLAY, stroke:EDGE, "stroke-width":1.6 }));
+          const g=el("g", { fill:MARK, opacity:.85 });
+          for (let r=0;r<3;r++) for (let c=0;c<4;c++){ g.appendChild(el("path", { d:"M "+(136+c*27)+" "+(70+r*22)+" l 9 3.5 l -9 3.5 z" })); }
+          s.appendChild(g);
+        }
+        illus.appendChild(s);
+      }
+      function show(i){ btns.forEach((b,j)=>{ b.classList.toggle("on", j===i); b.setAttribute("aria-selected", String(j===i)); }); const st=STEPS[i]; draw(st.draw); detail.innerHTML='<span class="yr">'+st.yr+'</span><h4>'+st.h+'</h4><p>'+st.d+'</p>'; }
+      btns.forEach((b,i)=>b.addEventListener("click", ()=>show(i)));
+      show(0);
+    })();
   </script>
 </body>
 </html>
