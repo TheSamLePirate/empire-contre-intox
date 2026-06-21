@@ -408,6 +408,21 @@
     .step-detail .yr { font-family:var(--roman); font-weight:800; font-size:1.02rem; color:var(--gold-bright); letter-spacing:.02em; }
     .step-detail h4 { margin:4px 0 7px; font-family:var(--serif); font-weight:600; font-size:1.14rem; color:var(--ink); }
     .step-detail p { margin:0; color:var(--muted); font-size:.96rem; }
+    /* — Dataviz : nœuds de frise, glyphes & transitions — */
+    .frise-node { cursor:pointer; }
+    .frise-node text { font-family:var(--roman); fill:var(--soft); transition:fill .25s var(--ease); }
+    .frise-node .glyph { transition:opacity .25s var(--ease); opacity:.85; }
+    .frise-node .core { transition:r .25s var(--ease); }
+    .frise-node:hover text, .frise-node.active text { fill:var(--parch); }
+    .frise-node:hover .glyph, .frise-node.active .glyph { opacity:1; }
+    .frise-node:focus-visible { outline:none; }
+    .frise-node:focus-visible .ring { stroke-width:3.4; }
+    .frise-node .pulse { opacity:0; }
+    .frise-node.active .pulse { animation:frisePulse 2.1s var(--ease) infinite; }
+    @keyframes frisePulse { 0%{ r:11px; opacity:.42; } 100%{ r:27px; opacity:0; } }
+    .frise-era { font-family:var(--roman); letter-spacing:.16em; text-transform:uppercase; }
+    .step-illus svg .stage { transition:opacity .32s var(--ease); }
+    @media (prefers-reduced-motion:reduce){ .frise-node.active .pulse { animation:none; } .step-illus svg .stage { transition:none; } }
   </style>
 </head>
 <body>
@@ -1725,45 +1740,93 @@
       const mount = root.querySelector(".viz-svg");
       const detail = root.querySelector("#friseDetail");
       const CITES = [
-        { city:"Jéricho", at:8000, occ:9600, col:"var(--clay)", besoin:"Sécurité", inno:"L'enceinte fortifiée",
+        { city:"Jéricho", at:8000, occ:9600, col:"#c07f44", besoin:"Sécurité", inno:"L'enceinte fortifiée", glyph:"wall",
           d:"Occupée dès ~9600 av. J.-C., Jéricho dresse sa tour et son mur vers ~8000 av. J.-C. (PPNA) : la sécurité, bien avant l'écriture.",
           who:"Kathleen Kenyon (1952-1958)", note:"source d'Aïn es-Sultan, aucune écriture" },
-        { city:"Uruk", at:3300, occ:4000, col:"var(--gold)", besoin:"Gestion", inno:"L'écriture comptable",
+        { city:"Uruk", at:3300, occ:4000, col:"#e0b75e", besoin:"Gestion", inno:"L'écriture comptable", glyph:"tablet",
           d:"Vers 3300 av. J.-C., Uruk invente l'écriture pour compter les stocks. ~250 ha, 40 000 à 80 000 habitants.",
           who:"W. Loftus (1849), J. Jordan (1912)", note:"Inanna, temple Eanna" },
-        { city:"Mohenjo-Daro", at:2600, col:"var(--reed)", besoin:"Efficacité", inno:"L'urbanisme orthogonal",
+        { city:"Mohenjo-Daro", at:2600, col:"#8fa066", besoin:"Efficacité", inno:"L'urbanisme orthogonal", glyph:"grid",
           d:"Vers 2600 av. J.-C., dans la vallée de l'Indus : plan en damier, briques cuites standardisées, drains couverts. Pas de palais identifié.",
           who:"R. D. Banerji (1922)", note:"écriture de l'Indus, indéchiffrée" },
-        { city:"Ur", at:2100, occ:3800, col:"var(--lapis)", besoin:"Régulation des échanges", inno:"Le Droit (loi écrite)",
+        { city:"Ur", at:2100, occ:3800, col:"#6f8fd6", besoin:"Régulation des échanges", inno:"Le Droit (loi écrite)", glyph:"scale",
           d:"Apogée vers 2100 av. J.-C. (Ur III) : code d'Ur-Nammu, commerce-monde (lapis, cornaline), Tombes Royales.",
           who:"Leonard Woolley (1922-1934)", note:"Nanna, dieu-lune" }
       ];
-      const X0=10000, X1=1800, W=940, H=210, padL=48, padR=48, ax=125, x0=padL, x1=W-padR;
+      const X0=10000, X1=1800, W=960, H=252, padL=56, padR=56, ax=152, x0=padL, x1=W-padR;
       const sx = (bc) => x0 + (x1-x0)*(X0-bc)/(X0-X1);
       const svg = el("svg", { viewBox:"0 0 "+W+" "+H, role:"img", "aria-label":"Frise des quatre premières cités, de 10000 à 2000 avant notre ère" });
-      svg.appendChild(el("line", { x1:x0, y1:ax, x2:x1, y2:ax, stroke:"var(--line)", "stroke-width":2 }));
-      for (let bc=10000; bc>=2000; bc-=2000){
-        const x=sx(bc);
-        svg.appendChild(el("line", { x1:x, y1:ax-5, x2:x, y2:ax+5, stroke:"var(--line)" }));
-        const t=el("text", { x:x, y:ax+24, "text-anchor":"middle", "font-size":"10", fill:"var(--soft)" }); t.textContent=fmt(bc); svg.appendChild(t);
+      const defs = el("defs");
+      defs.innerHTML =
+        '<linearGradient id="frAxis" x1="0" y1="0" x2="1" y2="0">'+
+          '<stop offset="0%" stop-color="#c07f44"/><stop offset="42%" stop-color="#e0b75e"/>'+
+          '<stop offset="74%" stop-color="#8fa066"/><stop offset="100%" stop-color="#6f8fd6"/></linearGradient>'+
+        '<filter id="frGlow" x="-60%" y="-60%" width="220%" height="220%">'+
+          '<feGaussianBlur stdDeviation="3.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'+
+        '<linearGradient id="frFade" x1="0" y1="0" x2="1" y2="0">'+
+          '<stop offset="0%" stop-color="#ffffff" stop-opacity="0"/><stop offset="100%" stop-color="#ffffff" stop-opacity=".5"/></linearGradient>';
+      svg.appendChild(defs);
+      // bandes d'ère
+      const bx = sx(3600);
+      svg.appendChild(el("rect", { x:x0-6, y:44, width:(bx-x0+6), height:176, fill:"rgba(192,127,68,.06)" }));
+      svg.appendChild(el("rect", { x:bx, y:44, width:(x1-bx+6), height:176, fill:"rgba(214,172,85,.07)" }));
+      svg.appendChild(el("line", { x1:bx, y1:48, x2:bx, y2:216, stroke:"var(--line)", "stroke-dasharray":"2 5" }));
+      const era1 = el("text", { class:"frise-era", x:(x0+bx)/2, y:62, "text-anchor":"middle", "font-size":"10", "font-weight":"700", fill:"#a98a5e" }); era1.textContent="Villages & forteresses"; svg.appendChild(era1);
+      const era2 = el("text", { class:"frise-era", x:(bx+x1)/2, y:62, "text-anchor":"middle", "font-size":"10", "font-weight":"700", fill:"var(--gold)" }); era2.textContent="Les cités-États"; svg.appendChild(era2);
+      // axe (lueur + ligne dégradée)
+      svg.appendChild(el("line", { x1:x0, y1:ax, x2:x1, y2:ax, stroke:"url(#frAxis)", "stroke-width":5, opacity:.28, filter:"url(#frGlow)", "stroke-linecap":"round" }));
+      svg.appendChild(el("line", { x1:x0, y1:ax, x2:x1, y2:ax, stroke:"url(#frAxis)", "stroke-width":2.4, "stroke-linecap":"round" }));
+      // graduations (mineures /1000, majeures /2000)
+      for (let bc=10000; bc>=2000; bc-=1000){
+        const x=sx(bc), major=(bc%2000===0);
+        svg.appendChild(el("line", { x1:x, y1:ax-(major?6:3), x2:x, y2:ax+(major?6:3), stroke:"var(--line)", "stroke-width":major?1.4:1, opacity:major?1:.6 }));
+        if (major){ const t=el("text", { x:x, y:ax+22, "text-anchor":"middle", "font-size":"10", fill:"var(--soft)", "font-family":"var(--roman)" }); t.textContent=fmt(bc); svg.appendChild(t); }
       }
+      const glyph = (kind, cx, cy, c) => {
+        const g = el("g", { class:"glyph", fill:"none", stroke:c, "stroke-width":1.7, "stroke-linejoin":"round", "stroke-linecap":"round" });
+        if (kind==="wall"){
+          g.appendChild(el("line", { x1:cx-11, y1:cy+8, x2:cx+11, y2:cy+8 }));
+          g.appendChild(el("rect", { x:cx-11, y:cy-1, width:6, height:9 }));
+          g.appendChild(el("rect", { x:cx-3, y:cy-1, width:6, height:9 }));
+          g.appendChild(el("rect", { x:cx+5, y:cy-1, width:6, height:9 }));
+        } else if (kind==="tablet"){
+          g.appendChild(el("rect", { x:cx-8, y:cy-10, width:16, height:20, rx:2.5 }));
+          for (let k=0;k<3;k++) g.appendChild(el("line", { x1:cx-4.5, y1:cy-4.5+k*4.5, x2:cx+4.5, y2:cy-4.5+k*4.5 }));
+        } else if (kind==="grid"){
+          g.appendChild(el("rect", { x:cx-10, y:cy-10, width:20, height:20, rx:1.5 }));
+          g.appendChild(el("line", { x1:cx-3.3, y1:cy-10, x2:cx-3.3, y2:cy+10 }));
+          g.appendChild(el("line", { x1:cx+3.3, y1:cy-10, x2:cx+3.3, y2:cy+10 }));
+          g.appendChild(el("line", { x1:cx-10, y1:cy-3.3, x2:cx+10, y2:cy-3.3 }));
+          g.appendChild(el("line", { x1:cx-10, y1:cy+3.3, x2:cx+10, y2:cy+3.3 }));
+        } else if (kind==="scale"){
+          g.appendChild(el("line", { x1:cx, y1:cy-10, x2:cx, y2:cy+9 }));
+          g.appendChild(el("line", { x1:cx-10, y1:cy-6, x2:cx+10, y2:cy-6 }));
+          g.appendChild(el("path", { d:"M "+(cx-10)+" "+(cy-6)+" l -3.5 7 h 7 z" }));
+          g.appendChild(el("path", { d:"M "+(cx+10)+" "+(cy-6)+" l -3.5 7 h 7 z" }));
+          g.appendChild(el("line", { x1:cx-4, y1:cy+9, x2:cx+4, y2:cy+9 }));
+        }
+        return g;
+      };
       const detailHTML = (c) => '<span class="besoin">'+c.besoin+'</span> <span class="yr">'+fmt(c.at)+' av. J.-C.</span>'+
         '<h4>'+c.city+' · '+c.inno+'</h4><p>'+c.d+'</p>'+
         '<p class="meta"><b>Fouilles :</b> '+c.who+' · '+c.note+(c.occ?' · occupation dès ~'+fmt(c.occ)+' av. J.-C.':'')+'</p>';
       const nodes=[];
       CITES.forEach((c,i)=>{
-        const x=sx(c.at);
+        const x=sx(c.at), up=(i%2===0);
         if (c.occ){ const ox=sx(c.occ);
-          svg.appendChild(el("line", { x1:ox, y1:ax, x2:x, y2:ax, stroke:c.col, "stroke-width":4, opacity:.28, "stroke-linecap":"round" }));
-          svg.appendChild(el("circle", { cx:ox, cy:ax, r:3.4, fill:"var(--void)", stroke:c.col, "stroke-width":1.4, opacity:.55 }));
+          svg.appendChild(el("line", { x1:ox, y1:ax, x2:x, y2:ax, stroke:c.col, "stroke-width":4.5, opacity:.22, "stroke-linecap":"round" }));
+          svg.appendChild(el("circle", { cx:ox, cy:ax, r:3.2, fill:"var(--abyss)", stroke:c.col, "stroke-width":1.4, opacity:.5 }));
         }
-        const up = (i%2===0);
-        const g=el("g", { class:"tl-node", tabindex:0, role:"button", "aria-label":c.city+" — "+c.inno });
-        g.appendChild(el("circle", { class:"dot", cx:x, cy:ax, r:7, fill:"var(--void)", stroke:c.col, "stroke-width":2.6 }));
-        const lbl=el("text", { x:x, y:(up?ax-20:ax+36), "text-anchor":"middle", "font-size":"12.5", "font-weight":"700" }); lbl.textContent=c.city; g.appendChild(lbl);
-        const yl=el("text", { x:x, y:(up?ax-34:ax+50), "text-anchor":"middle", "font-size":"9.5", fill:"var(--soft)" }); yl.textContent=fmt(c.at); g.appendChild(yl);
+        const g=el("g", { class:"frise-node", tabindex:0, role:"button", "aria-label":c.city+" — "+c.inno+", "+fmt(c.at)+" av. J.-C." });
+        g.appendChild(el("circle", { class:"pulse", cx:x, cy:ax, r:11, fill:"none", stroke:c.col, "stroke-width":1.6 }));
+        g.appendChild(el("circle", { class:"halo", cx:x, cy:ax, r:15, fill:c.col, "fill-opacity":".15" }));
+        g.appendChild(el("circle", { class:"ring", cx:x, cy:ax, r:10, fill:"var(--abyss)", stroke:c.col, "stroke-width":2.4 }));
+        g.appendChild(el("circle", { class:"core", cx:x, cy:ax, r:4.6, fill:c.col }));
+        g.appendChild(glyph(c.glyph, x, up?ax-46:ax+46, c.col));
+        const nm=el("text", { x:x, y:up?ax-26:ax+32, "text-anchor":"middle", "font-size":"13", "font-weight":"700", "letter-spacing":".02em" }); nm.textContent=c.city; g.appendChild(nm);
         const pick=()=>{ nodes.forEach((n,j)=>n.classList.toggle("active", j===i)); detail.style.setProperty("--lc", c.col); detail.innerHTML=detailHTML(c); };
         g.addEventListener("click", pick); g.addEventListener("mouseenter", pick); g.addEventListener("focus", pick);
+        g.addEventListener("keydown", (e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); pick(); } });
         svg.appendChild(g); nodes.push(g);
       });
       mount.appendChild(svg);
@@ -1771,13 +1834,12 @@
       detail.style.setProperty("--lc", CITES[0].col); detail.innerHTML=detailHTML(CITES[0]);
     })();
 
-    /* — 2. Stepper : des jetons à la tablette — */
+    /* — 2. Stepper : des jetons à la tablette (illustrations détaillées) — */
     (function(){
       const root = document.getElementById("stepper-ecriture"); if (!root) return;
       const illus = root.querySelector(".step-illus");
       const detail = root.querySelector("#stepDetail");
       const btns = [...root.querySelectorAll(".stepper button")];
-      const CLAY="var(--clay)", EDGE="var(--gold-deep)", MARK="var(--gold-bright)";
       const STEPS = [
         { yr:"8000 – 3000 av. J.-C.", h:"Étape 1 · Les jetons (calculi)",
           d:"De petits jetons d'argile — cônes, sphères, disques — forment un code comptable physique : un jeton = une unité (un cône = une mesure de grain).", draw:"tokens" },
@@ -1788,37 +1850,88 @@
         { yr:"~3200 → 3100 av. J.-C.", h:"Étape 4 · La tablette",
           d:"La bulle devient inutile : il suffit de dessiner la forme du jeton sur une plaque d'argile plate. Naissent les pictogrammes, puis l'écriture cunéiforme « en forme de clous ».", draw:"tablet" }
       ];
-      function newSvg(){ const s=el("svg", { viewBox:"0 0 380 170", role:"img", "aria-hidden":"true" }); s.appendChild(el("line", { x1:40, y1:140, x2:340, y2:140, stroke:"var(--line)", "stroke-width":1.5 })); return s; }
-      const cone = (x,y,s) => el("path", { d:"M "+x+" "+(y-s)+" L "+(x+s*0.7)+" "+y+" L "+(x-s*0.7)+" "+y+" Z", fill:CLAY, stroke:EDGE, "stroke-width":1 });
-      const sphere = (x,y,r) => el("circle", { cx:x, cy:y, r:r, fill:CLAY, stroke:EDGE, "stroke-width":1 });
-      const disk = (x,y,r) => el("ellipse", { cx:x, cy:y, rx:r, ry:r*0.5, fill:CLAY, stroke:EDGE, "stroke-width":1 });
+      const GROUND=158;
+      const svg = el("svg", { viewBox:"0 0 460 196", role:"img", "aria-hidden":"true" });
+      const defs = el("defs");
+      defs.innerHTML =
+        '<radialGradient id="clayG" cx="38%" cy="30%" r="78%">'+
+          '<stop offset="0%" stop-color="#edc196"/><stop offset="42%" stop-color="#c2884f"/><stop offset="100%" stop-color="#6e4524"/></radialGradient>'+
+        '<linearGradient id="tabG" x1="0" y1="0" x2="0" y2="1">'+
+          '<stop offset="0%" stop-color="#d8a86e"/><stop offset="100%" stop-color="#8a5c30"/></linearGradient>'+
+        '<filter id="clShadow" x="-40%" y="-30%" width="180%" height="170%">'+
+          '<feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#000" flood-opacity=".5"/></filter>';
+      svg.appendChild(defs);
+      svg.appendChild(el("line", { x1:48, y1:GROUND, x2:412, y2:GROUND, stroke:"var(--line)", "stroke-width":1.5 }));
+      const stage = el("g", { class:"stage" });
+      svg.appendChild(stage);
+      illus.appendChild(svg);
+      const add = (n,a) => stage.appendChild(el(n,a));
+      const shadow = (cx,cy,rx) => add("ellipse", { cx:cx, cy:GROUND-2, rx:rx, ry:rx*0.26, fill:"#000", opacity:.28 });
+      const hi = (cx,cy,rx,ry) => add("ellipse", { cx:cx, cy:cy, rx:rx, ry:ry, fill:"#fff", opacity:.28 });
+      function token(kind,x){
+        if (kind==="cone"){ shadow(x,0,20);
+          add("path", { d:"M "+x+" "+(GROUND-50)+" L "+(x+17)+" "+(GROUND-2)+" L "+(x-17)+" "+(GROUND-2)+" Z", fill:"url(#clayG)", stroke:"#5e3c1f", "stroke-width":1 });
+          add("path", { d:"M "+x+" "+(GROUND-50)+" L "+(x-9)+" "+(GROUND-8)+" L "+(x-2)+" "+(GROUND-8)+" Z", fill:"#fff", opacity:.18 }); }
+        else if (kind==="sphere"){ const cy=GROUND-19; shadow(x,0,18);
+          add("circle", { cx:x, cy:cy, r:19, fill:"url(#clayG)", stroke:"#5e3c1f", "stroke-width":1 }); hi(x-6,cy-6,6,4.5); }
+        else if (kind==="disk"){ const cy=GROUND-10; shadow(x,0,22);
+          add("ellipse", { cx:x, cy:cy, rx:23, ry:11, fill:"url(#clayG)", stroke:"#5e3c1f", "stroke-width":1 }); hi(x-7,cy-3,8,2.6); }
+        else if (kind==="ovoid"){ const cy=GROUND-15; shadow(x,0,12);
+          add("ellipse", { cx:x, cy:cy, rx:11, ry:15, fill:"url(#clayG)", stroke:"#5e3c1f", "stroke-width":1 }); hi(x-4,cy-6,3.5,5); }
+      }
+      function ball(cx,cy,r){ add("ellipse", { cx:cx, cy:GROUND-2, rx:r*0.92, ry:r*0.24, fill:"#000", opacity:.3 });
+        add("circle", { cx:cx, cy:cy, r:r, fill:"url(#clayG)", stroke:"#5e3c1f", "stroke-width":1.5 }); hi(cx-r*0.32,cy-r*0.34,r*0.3,r*0.2); }
       function draw(kind){
-        while (illus.firstChild) illus.removeChild(illus.firstChild);
-        const s=newSvg();
-        if (kind==="tokens"){
-          s.appendChild(cone(118,140,26)); s.appendChild(sphere(180,128,13)); s.appendChild(disk(240,134,17)); s.appendChild(cone(290,140,18));
-        } else if (kind==="bulla"){
-          s.appendChild(el("circle", { cx:190, cy:94, r:48, fill:CLAY, stroke:EDGE, "stroke-width":1.6 }));
-          const inner=el("g", { opacity:.55 });
-          inner.appendChild(el("path", { d:"M 176 88 L 183 100 L 169 100 Z", fill:"var(--void)", stroke:MARK, "stroke-width":1, "stroke-dasharray":"2 2" }));
-          inner.appendChild(el("circle", { cx:202, cy:86, r:7, fill:"var(--void)", stroke:MARK, "stroke-width":1, "stroke-dasharray":"2 2" }));
-          inner.appendChild(el("ellipse", { cx:194, cy:108, rx:9, ry:5, fill:"var(--void)", stroke:MARK, "stroke-width":1, "stroke-dasharray":"2 2" }));
-          s.appendChild(inner);
-        } else if (kind==="impress"){
-          s.appendChild(el("circle", { cx:190, cy:94, r:48, fill:CLAY, stroke:EDGE, "stroke-width":1.6 }));
-          const m=el("g", { stroke:EDGE, "stroke-width":1.2 });
-          m.appendChild(el("path", { d:"M 174 78 L 181 89 L 167 89 Z", fill:"rgba(5,8,17,.32)" }));
-          m.appendChild(el("circle", { cx:206, cy:82, r:6, fill:"rgba(5,8,17,.32)" }));
-          m.appendChild(el("ellipse", { cx:188, cy:110, rx:8, ry:4, fill:"rgba(5,8,17,.32)" }));
-          m.appendChild(el("circle", { cx:166, cy:104, r:4, fill:"rgba(5,8,17,.32)" }));
-          s.appendChild(m);
-        } else if (kind==="tablet"){
-          s.appendChild(el("rect", { x:118, y:50, width:154, height:90, rx:9, fill:CLAY, stroke:EDGE, "stroke-width":1.6 }));
-          const g=el("g", { fill:MARK, opacity:.85 });
-          for (let r=0;r<3;r++) for (let c=0;c<4;c++){ g.appendChild(el("path", { d:"M "+(136+c*27)+" "+(70+r*22)+" l 9 3.5 l -9 3.5 z" })); }
-          s.appendChild(g);
+        while (stage.firstChild) stage.removeChild(stage.firstChild);
+        if (kind==="tokens"){ token("cone",150); token("sphere",212); token("disk",272); token("ovoid",324); }
+        else if (kind==="bulla"){ const cx=230, cy=GROUND-58; ball(cx,cy,56);
+          // jetons enfermés (fantômes)
+          const inn = el("g", { opacity:.5 }); 
+          inn.appendChild(el("path", { d:"M 214 "+(cy-6)+" l 7 13 l -14 0 z", fill:"#2a1a0c", stroke:"#f3d98a", "stroke-width":1, "stroke-dasharray":"2.5 2.5" }));
+          inn.appendChild(el("circle", { cx:244, cy:cy-9, r:8, fill:"#2a1a0c", stroke:"#f3d98a", "stroke-width":1, "stroke-dasharray":"2.5 2.5" }));
+          inn.appendChild(el("ellipse", { cx:233, cy:cy+13, rx:11, ry:6, fill:"#2a1a0c", stroke:"#f3d98a", "stroke-width":1, "stroke-dasharray":"2.5 2.5" }));
+          stage.appendChild(inn);
+          // bande de sceau roulé (haut)
+          const seal = el("g", { stroke:"#5e3c1f", "stroke-width":1, opacity:.6, fill:"none" });
+          for (let k=0;k<5;k++){ const sxk=cx-28+k*14; seal.appendChild(el("path", { d:"M "+sxk+" "+(cy-40)+" q 3 5 0 10 q -3 5 0 10" })); }
+          stage.appendChild(seal); }
+        else if (kind==="impress"){ const cx=230, cy=GROUND-58; ball(cx,cy,56);
+          const im = el("g", {});
+          // rangée d'empreintes (cône, sphère, disque, cône)
+          im.appendChild(el("path", { d:"M 204 "+(cy-8)+" l 8 15 l -16 0 z", fill:"#3a2410" }));
+          im.appendChild(el("circle", { cx:234, cy:cy-12, r:8.5, fill:"#3a2410" }));
+          im.appendChild(el("ellipse", { cx:222, cy:cy+12, rx:12, ry:6, fill:"#3a2410" }));
+          im.appendChild(el("path", { d:"M 252 "+(cy+6)+" l 7 13 l -14 0 z", fill:"#3a2410" }));
+          // liserés clairs (bord pressé)
+          im.appendChild(el("circle", { cx:234, cy:cy-12, r:8.5, fill:"none", stroke:"#edc196", "stroke-width":1, opacity:.5 }));
+          stage.appendChild(im); }
+        else if (kind==="tablet"){ const x=124, y=46, w=212, h=104;
+          add("ellipse", { cx:x+w/2, cy:GROUND-2, rx:w*0.46, ry:11, fill:"#000", opacity:.3 });
+          add("rect", { x:x, y:y, width:w, height:h, rx:10, fill:"url(#tabG)", stroke:"#5e3c1f", "stroke-width":1.5 });
+          add("path", { d:"M "+(x+6)+" "+(y+10)+" q 0 -4 6 -4 h "+(w-22)+"", fill:"none", stroke:"#fff", opacity:.22, "stroke-width":1.4 });
+          // réglure : 2 colonnes x 3 lignes
+          const cols=[x+w/3, x+2*w/3], rows=[y+h/3, y+2*h/3];
+          const rule = el("g", { stroke:"#5e3c1f", opacity:.32, "stroke-width":1 });
+          cols.forEach(cxv=>rule.appendChild(el("line", { x1:cxv, y1:y+8, x2:cxv, y2:y+h-8 })));
+          rows.forEach(ryv=>rule.appendChild(el("line", { x1:x+8, y1:ryv, x2:x+w-8, y2:ryv })));
+          stage.appendChild(rule);
+          // signes cunéiformes par cellule
+          const cellX=[x+w/6, x+w/2, x+5*w/6], cellY=[y+h/6, y+h/2, y+5*h/6];
+          const marks = el("g", {});
+          const vw=(cx,cy)=>marks.appendChild(el("path", { d:"M "+cx+" "+cy+" l -3 -8 l 6 0 z", fill:"#4a2f15" }));
+          const hw=(cx,cy)=>marks.appendChild(el("path", { d:"M "+cx+" "+cy+" l -8 -3 l 0 6 z", fill:"#4a2f15" }));
+          const wk=(cx,cy)=>marks.appendChild(el("path", { d:"M "+cx+" "+cy+" l 7 0 l 0 7 z", fill:"#4a2f15" }));
+          const clusters=[[ [vw,-6,2],[vw,0,2],[hw,6,0] ],[ [hw,-4,0],[vw,4,-2],[vw,8,-2] ],[ [wk,-6,-3],[vw,2,2] ],
+                          [ [vw,-4,0],[vw,1,0],[vw,6,0] ],[ [hw,-3,-2],[wk,3,2] ],[ [vw,-5,0],[hw,4,2],[vw,9,0] ]];
+          let ci=0;
+          for (let r=0;r<3;r++) for (let cc=0;cc<2;cc++){
+            const bx=(cc===0?cellX[0]:cellX[2]), by=cellY[r];
+            clusters[ci].forEach(m=>{ m[0](bx+m[1], by+m[2]); }); ci++;
+          }
+          // léger reflet sur les signes
+          stage.appendChild(marks);
         }
-        illus.appendChild(s);
+        const st = illus.querySelector(".stage"); if (st){ st.style.opacity="0"; requestAnimationFrame(()=>{ st.style.opacity="1"; }); }
       }
       function show(i){ btns.forEach((b,j)=>{ b.classList.toggle("on", j===i); b.setAttribute("aria-selected", String(j===i)); }); const st=STEPS[i]; draw(st.draw); detail.innerHTML='<span class="yr">'+st.yr+'</span><h4>'+st.h+'</h4><p>'+st.d+'</p>'; }
       btns.forEach((b,i)=>b.addEventListener("click", ()=>show(i)));
