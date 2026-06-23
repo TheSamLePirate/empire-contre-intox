@@ -19,7 +19,13 @@
       ]
     },
     {
-      "name": "Script narratif (colonne vertébrale)",
+      "name": "Script consolidé (travail en cours)",
+      "docs": [
+        { "title": "★ Script total v1 — tout fusionné, sans doublon", "file": "script_total_v1.md", "badge": "SCRIPT", "desc": "Consolidation des 7 fichiers suivant le plan (6 actes), une fiche unique par engin, écarts chiffrés réconciliés. Brouillon à vérifier." }
+      ]
+    },
+    {
+      "name": "Script narratif source (colonne vertébrale)",
       "docs": [
         { "title": "L'Odyssée de l'humanité vers l'Univers — 1957→2030", "file": "sources/script_complet_odyssee_univers_1957_2030.txt", "badge": "SCRIPT", "desc": "Le déroulé maître en 6 actes — texte à conserver verbatim." }
       ]
