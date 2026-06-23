@@ -26,7 +26,7 @@ Un fil unique du premier bip de Sputnik (4 octobre 1957) jusqu'aux rotors de Dra
 > **Conventions.** *Légende en italique* = visuel / **modèle 3D Sketchfab** (voir
 > `apercu-modeles-3d.html`) · 📋 **Fiche technique** (sous-rubriques : *Identité · Masse &
 > structure · Énergie & propulsion · Parties & fonctions · Matériaux · Instruments · Défis ·
-> Données*) · `> **Explication —**` = encadré grand public · **Repère ·** = mini-explicateur
+> Données* · 📍 **Où aujourd'hui ?** = localisation / fin de vie / orbite / distance, mi-2026) · `> **Explication —**` = encadré grand public · **Repère ·** = mini-explicateur
 > chiffré · **Anti-intox ·** = idée reçue corrigée · *Le fait marquant —* = le clou de l'engin.
 >
 > **Statut :** brouillon à vérifier intégralement avant publication (Dossier V). Dates futures
@@ -97,6 +97,7 @@ Il a suffi de quatre ans. Quatre ans entre une sphère qui ne fait que biper et 
 Le 4 octobre 1957, à 19 h 28 UTC, une fusée R-7 s'arrache du désert de Baïkonour. À son sommet, une boule de métal poli grande comme un ballon de plage. Quelques minutes plus tard, les radioamateurs du monde entier captent un son qui n'existait pas la veille : un *bip… bip… bip…* régulier, tombé du ciel. **Sputnik 1**, le premier objet que l'humanité ait jamais placé en orbite, ne transporte presque rien — et change tout. En Occident, c'est l'effroi : si l'URSS peut mettre une sphère sur orbite, elle peut y mettre une ogive. De cette panique naîtra, dix mois plus tard, la NASA.
 
 📋 **Fiche — Sputnik 1**
+📍 *Où aujourd'hui ? — N'existe plus : rentrée et désintégration dans l'atmosphère le 4 janvier 1958, après ~3 semaines d'émission et près de 1 400 orbites.*
 - **Identité —** Constructeur : OKB-1 (Sergueï Korolev). Lancement : 4 oct. 1957, 19 h 28 UTC, fusée R-7, Baïkonour. Orbite : LEO elliptique, période ~98 min.
 - **Masse & structure —** 83,6 kg ; sphère de **58 cm** formée de deux hémisphères de 2 mm assemblés par **36 boulons** et joints toriques, **pressurisée à 1,3 atm d'azote sec**. Quatre antennes fouet externes : deux de 2,4 m, deux de 2,9 m.
 - **Énergie —** **batteries argent-zinc** (~51 kg — l'essentiel de la masse !), pour ~3 semaines d'émission.
@@ -121,6 +122,7 @@ Le 4 octobre 1957, à 19 h 28 UTC, une fusée R-7 s'arrache du désert de Baïko
 La riposte américaine met du temps (l'humiliant échec de Vanguard, qui explose au sol en décembre 1957, est retransmis en direct). Mais quand **Explorer 1** s'envole le 31 janvier 1958 au sommet d'une fusée Juno I, il fait mieux que rattraper : il **découvre**. Son compteur Geiger se met par moments à saturer, comme aveuglé. L'explication viendra de James Van Allen : la Terre est ceinte de **vastes anneaux de particules chargées**, piégées par son champ magnétique. La physique spatiale moderne vient de naître.
 
 📋 **Fiche — Explorer 1**
+📍 *Où aujourd'hui ? — N'existe plus : rentrée atmosphérique le 31 mars 1970, après plus de 58 000 orbites.*
 - **Identité —** Army Ballistic Missile Agency (von Braun) + JPL (Caltech). Lancement : 1ᵉʳ février 1958 (UTC), fusée **Juno I** (dérivée du missile Redstone), Cap Canaveral. Cadre de l'**Année géophysique internationale**.
 - **Masse & structure —** 13,97 kg, dont ~8,3 kg de charge utile ; corps cylindrique allongé, **stabilisé par rotation**, formant le dernier étage en vol.
 - **Énergie —** piles chimiques (émission ~4 mois).
@@ -135,6 +137,7 @@ La riposte américaine met du temps (l'humiliant échec de Vanguard, qui explose
 Cinq ans après Sputnik, l'espace devient utile. Le 10 juillet 1962, **Telstar 1** — financé par AT&T, lancé par la NASA — inaugure le premier satellite de **communications actif**. Le 23 juillet, des deux côtés de l'Atlantique, des téléspectateurs voient la même image **en direct** : un drapeau américain, puis une allocution de Kennedy, traversent l'océan à la vitesse de la lumière. Le monde vient de rétrécir.
 
 📋 **Fiche — Telstar 1**
+📍 *Où aujourd'hui ? — Inerte depuis février 1963, mais toujours en orbite terrestre elliptique (~950 × 5 600 km) — il y restera des siècles.*
 - **Identité —** Constructeur : AT&T / Bell Labs. Lancement : 10 juil. 1962, fusée **Thor-Delta**, Cap Canaveral. Orbite elliptique (non géostationnaire — il fallait le suivre).
 - **Masse & structure —** 77 kg ; sphère de **~87-88 cm** hérissée de cellules solaires et d'antennes.
 - **Parties & fonctions —** *transpondeur micro-ondes* (réception montante, amplification, réémission) · *antennes en couronne* · *~3 600 cellules solaires* (alimentation) · *batteries nickel-cadmium* (stockage).
@@ -174,6 +177,7 @@ Au-dessus de nous, à chaque instant, des milliers de machines tournent. Elles t
 Le 24 avril 1990, la navette Discovery dépose en orbite un télescope que l'on présente déjà comme une révolution. Les premières images tombent : floues. Le miroir de 2,4 m, pourtant poli à la perfection… selon une mauvaise mesure — une erreur de quelques microns, fatale. Pendant trois ans, Hubble est la risée de l'Amérique. Puis, en 1993, des astronautes lui posent **des lunettes** (l'optique correctrice COSTAR), et l'aveugle devient visionnaire. Piliers de la Création, champs profonds grouillant de galaxies, mesure de l'expansion accélérée de l'Univers : Hubble n'a pas seulement fait de la science, il a changé notre regard sur le cosmos.
 
 📋 **Fiche — Hubble Space Telescope** *(télescope spatial, toujours actif juin 2026)*
+📍 *Où aujourd'hui ? — Actif, en orbite terrestre basse à ~515-540 km, en lente décroissance ; rentrée atmosphérique estimée vers 2034-2038 (selon l'activité solaire), sans réhausse possible depuis la fin des navettes.*
 - **Identité —** NASA / ESA / Lockheed Martin & Perkin-Elmer (optique). Lancement : 24 avr. 1990 (navette **Discovery**, STS-31). Orbite basse ~540 km.
 - **Masse & structure —** 11 110 kg ; télescope de type **Cassegrain** (miroir primaire + secondaire), ~13 m de long.
 - **Optique —** miroir primaire de **2,4 m** en **béryllium** allégé ; revêtement aluminium + couche de fluorure de magnésium.
@@ -193,6 +197,7 @@ Le 24 avril 1990, la navette Discovery dépose en orbite un télescope que l'on 
 Là où Hubble voit surtout en lumière visible, **Webb** voit dans l'**infrarouge** — donc plus loin, et plus tôt. Plus loin dans l'Univers, c'est plus loin dans le temps : Webb capte la lueur des **premières galaxies**, étirée vers le rouge par 13 milliards d'années d'expansion. Pour cela, il lui faut un froid extrême et une obscurité parfaite : il vit à 1,5 million de km de la Terre, au point de Lagrange **L2**, derrière un pare-soleil de cinq voiles de Kapton.
 
 📋 **Fiche — James Webb Space Telescope** *(pleinement opérationnel)*
+📍 *Où aujourd'hui ? — Actif, en orbite de halo autour du point de Lagrange L2, à ~1,5 million de km de la Terre (côté opposé au Soleil) ; ergols pour ~20 ans de maintien.*
 - **Identité —** NASA / ESA / CSA ; maître d'œuvre Northrop Grumman. Lancement : 25 déc. 2021 (**Ariane 5**, Kourou). Orbite : point de Lagrange **L2** (~1,5 M km).
 - **Optique —** miroir primaire de **6,5 m** en **18 segments hexagonaux** de béryllium **plaqués or** (l'or réfléchit l'infrarouge), dépliés et phasés en vol au nanomètre.
 - **Refroidissement —** pare-soleil de **5 couches de Kapton** (grand comme un court de tennis) abaissant la température côté instruments à **~40 K** ; MIRI descend encore via un cryoréfrigérateur.
@@ -232,6 +237,7 @@ Avant les méga-constellations, trois grands métiers ont structuré le ciel. *(
 En 2019, SpaceX commence à déployer **Starlink** par grappes de soixante. Le résultat, quelques années plus tard, n'a pas de précédent : la plus grande flotte de machines jamais placée en orbite, fournissant un accès Internet à faible latence aux endroits que la fibre n'atteindra jamais. Le prix de cette prouesse est un ciel transformé — traînées lumineuses pour les astronomes, et une question vertigineuse de gestion du trafic orbital.
 
 📋 **Fiche — satellite Starlink V2 mini**
+📍 *Où aujourd'hui ? — Flotte en orbite terrestre basse (~550 km), en renouvellement permanent : chaque exemplaire est désorbité et consumé dans l'atmosphère après ~5 ans.*
 - **Identité —** Constructeur : SpaceX. Déploiement par grappes via **Falcon 9** réutilisable (et à terme Starship). Orbite : LEO ~550 km, latence ~20-40 ms.
 - **Masse & structure —** ~260-500 kg *(les V2 mini ≈ 740 kg selon les spécifications récentes ⚠️)* ; **bus plat** optimisé pour empiler des dizaines d'exemplaires sous une coiffe.
 - **Énergie & propulsion —** un panneau solaire déployable ; **propulseurs ioniques** à effet Hall, au **krypton** puis à l'**argon** sur les versions récentes ⚠️ (maintien d'orbite + désorbitation).
@@ -251,6 +257,7 @@ En 2019, SpaceX commence à déployer **Starlink** par grappes de soixante. Le r
 *Visuel — concept ESA/CAS en orbite très elliptique, l'imageur X pointé vers la magnétopause (modèle 3D non encore disponible).*
 
 📋 **Fiche — SMILE (Solar wind Magnetosphere Ionosphere Link Explorer)** *(en mise en service juin 2026 — ⚠️ date à recouper)*
+📍 *Où aujourd'hui ? — En mise en service, sur une orbite terrestre très elliptique (~5 000 × 121 000 km) inclinée à 73°.*
 - **Identité —** ESA + Académie chinoise des sciences (CAS) — première mission **entièrement conjointe**. Lancement : 19 mai 2026 (Vega-C, Kourou). Orbite : très elliptique, inclinée 73° (~5 000 × 121 182 km, pour reculer assez loin et embrasser toute la magnétosphère d'un coup d'œil).
 - **Masse & énergie —** ~2 250 kg au lancement (à vide 708 kg) ; 850 W.
 - **Constructeurs —** module de charge utile (Airbus) + instrument SXI côté ESA ; plateforme + instruments LIA/MAG/UVI côté CAS.
@@ -276,6 +283,7 @@ L'Union soviétique ouvre, là encore, toutes les portes. **Luna 1** est le prem
 Deux ans jour pour jour après Sputnik, **Luna 3** réussit l'impensable : photographier la **face cachée de la Lune**. Le défi est double. D'abord, y aller — en exploitant la première **assistance gravitationnelle** de l'histoire. Ensuite, ramener les images : pas de capteur numérique en 1959, mais un **laboratoire photographique automatique** embarqué, qui développe le film à bord, dans le vide et l'apesanteur, puis le scanne ligne à ligne pour le transmettre par radio.
 
 📋 **Fiche — Luna 3 (Lunik 3)**
+📍 *Fin de vie — N'existe plus : rentrée dans l'atmosphère terrestre vers avril 1960, sur son orbite très allongée Terre-Lune (contact perdu le 22 oct. 1959).*
 - **Identité —** OKB-1 (Korolev). Lanceur : R-7 (Luna 8K72), Baïkonour. Photos les 6-7 oct. 1959 entre ~6 200 et 66 700 km ; dernier contact le 22 oct. 1959.
 - **Masse & structure —** 278,5 kg ; cylindre de 1,32 × 1,19 m. Stabilisation par rotation, puis basculement 3 axes pour viser la Lune.
 - **Énergie —** cellules solaires + batteries. Propulsion : jets de gaz d'attitude seulement.
@@ -300,6 +308,7 @@ Deux ans jour pour jour après Sputnik, **Luna 3** réussit l'impensable : photo
 Jusqu'en 1966, une terreur hante les ingénieurs : et si la surface lunaire n'était qu'un **océan de poussière** où tout engin s'enfoncerait sans laisser de trace ? **Luna 9** y répond, à la douzième tentative soviétique. Une capsule sphérique, lâchée juste avant l'impact, rebondit sur ses amortisseurs, s'immobilise, ouvre quatre pétales métalliques — et transmet les **premières images jamais prises depuis le sol d'un autre monde**. Le sol est ferme. La voie est ouverte aux hommes.
 
 📋 **Fiche — Luna 9**
+📍 *Fin de vie — Posée pour toujours sur la Lune (Océan des Tempêtes, Oceanus Procellarum), silencieuse depuis le 6 février 1966.*
 - **Identité —** Constructeur : GSMZ **Lavochkin** (type Ye-6) — première grande réussite interplanétaire du bureau. Lanceur : Molniya. **Premier atterrissage en douceur sur la Lune** (3 février 1966).
 - **Masse & structure —** lancement ~1 584 kg ; **atterrisseur sphérique ~99-100 kg**.
 - **Parties & fonctions —** *module de propulsion et de correction de trajectoire* · *atterrisseur encapsulé* à amortisseurs (forme « œuf ») · *pétales métalliques* s'ouvrant après l'arrêt pour stabiliser et déployer les antennes · *caméra panoramique* · *batteries* · *antennes*.
@@ -313,6 +322,7 @@ Jusqu'en 1966, une terreur hante les ingénieurs : et si la surface lunaire n'é
 Cinq ans après Luna 9, l'URSS pose sur la Lune les **premiers véhicules mobiles** d'un autre monde. Pilotés depuis la Terre malgré un délai-lumière de 2,5 secondes, ces engins à huit roues, semblables à des baignoires sur châssis, roulent des kilomètres au pas, photographiant et analysant le sol. La nuit lunaire venue (quatorze jours de froid à −150 °C), un petit cœur de **polonium-210** les garde au chaud jusqu'à l'aube.
 
 📋 **Fiche — Lunokhod 1 & 2** *(bureau Lavochkin, OKB-301)*
+📍 *Où aujourd'hui ? — Immobiles sur la Lune (Lunokhod 1 : mer des Pluies ; Lunokhod 2 : cratère Le Monnier) ; leurs rétroréflecteurs laser sont toujours visés depuis la Terre.*
 - **Identité & jalons —** *Lunokhod 1* : déployé par **Luna 17**, 17 nov. 1970 ; **~756 kg** ; **premier rover extraterrestre** ; mer des Pluies, **10,5 km**, **>20 000 images TV** ; arrêt le 4 oct. 1971. *Lunokhod 2* : déployé par **Luna 21**, 15 jan. 1973 ; **~39 km** (record de roulage hors Terre jusqu'en 2014, battu par Opportunity) ; cratère Le Monnier.
 - **Parties & fonctions —** *châssis à 8 roues motrices indépendantes* à suspension (mobilité, franchissement) · *couvercle articulé* abritant le panneau solaire le jour, refermé la nuit · *caméras TV stéréo* (navigation + science) · *antennes* (liaison via les orbiteurs Luna) · *rétroréflecteur laser* (expérience française).
 - **Énergie —** panneau solaire (jour) + source de **polonium-210** pour le **chauffage** (nuit lunaire), pas pour la puissance électrique.
@@ -329,6 +339,7 @@ Cinq ans après Luna 9, l'URSS pose sur la Lune les **premiers véhicules mobile
 Mars a longtemps été le cimetière des sondes. **Mars 3** y inscrit pourtant une première : le 2 décembre 1971, son atterrisseur se pose **en douceur** sur le sol martien. La victoire dure **moins de deux minutes** : après ~110-120 secondes de transmission — le temps d'amorcer une image grise et brouillée —, le silence se fait. La cause ? Une **tempête de poussière globale**, phénomène alors inconnu, qui ensevelissait la planète entière au pire moment.
 
 📋 **Fiche — Mars 3**
+📍 *Fin de vie — Atterrisseur posé sur Mars (région de Ptolemaeus, hémisphère sud), muet depuis décembre 1971 ; orbiteur inerte en orbite martienne.*
 - **Identité —** OKB-1 + Lavochkin (programme M-71), jumelle de Mars 2. **Premier atterrissage mou réussi sur Mars** (2 déc. 1971, région de Ptolémée).
 - **Masse & structure —** totale **4 650 kg** (orbiteur ~3 440 kg ; module d'atterrissage ~1 210 kg ; masse posée 358 kg). Capsule sphérique Ø 1,2 m + bouclier conique 2,9 m. Orbiteur ~4,1 m de haut × 2 m (5,9 m panneaux déployés).
 - **Parties & fonctions (atterrisseur) —** *bouclier aérodynamique* · *parachutes* · *rétrofusées* · *capsule à pétales* · *caméras TV* · *spectromètre de masse* · *capteurs température/pression/vent* · *pelle mécanique* · *mini-rover PrOP-M* (pénétromètre + densitomètre de radiation, relié par câble — jamais déployé avec succès).
@@ -350,6 +361,7 @@ Mars a longtemps été le cimetière des sondes. **Mars 3** y inscrit pourtant u
 Avant d'envoyer les précieuses Voyager, la NASA dépêche deux éclaireurs. **Pioneer 10** est le premier à franchir la **ceinture d'astéroïdes** — que certains craignaient infranchissable — puis à survoler **Jupiter**. **Pioneer 11** pousse jusqu'à **Saturne**, qu'aucun engin n'avait approchée. Tous deux portent la fameuse **plaque de Pioneer** : un message gravé — silhouettes humaines, position du Soleil — destiné à d'éventuels regards extraterrestres dans des millions d'années.
 
 📋 **Fiche — Pioneer 10 & 11**
+📍 *Où aujourd'hui ? — Silencieuses (Pioneer 10 depuis 2003, Pioneer 11 depuis 1995), elles dérivent toujours : Pioneer 10 vers Aldebaran (~68 années-lumière, frôlée dans ~2 millions d'années), Pioneer 11 vers la constellation de l'Aigle (Aquila).*
 - **Identité —** Constructeur : TRW pour NASA Ames. *Pioneer 10* : lancée 2 mars 1972, **258 kg** ; survol de **Jupiter** déc. 1973 ; dernier signal **janvier 2003**. *Pioneer 11* : lancée 5 avr. 1973 ; **premier survol de Saturne** (1ᵉʳ sept. 1979, découverte d'un anneau et de deux lunes) ; dernier contact **30 sept. 1995**.
 - **Architecture —** **spin-stabilisée** (rotation pour la stabilité) ; grande antenne parabolique ; **4 RTG** au plutonium au bout d'un bras ; longue perche de magnétomètre, éloignée pour fuir les perturbations du corps.
 - **Instruments —** *photopolarimètre imageur* (images spin-scan) · *magnétomètre à vapeur d'hélium* · *radiomètre infrarouge* · *analyseur de plasma* · *photomètre UV* · *détecteurs de particules / rayons cosmiques / météoroïdes*.
@@ -363,6 +375,7 @@ Avant d'envoyer les précieuses Voyager, la NASA dépêche deux éclaireurs. **P
 Une fois par siècle environ, les quatre planètes géantes s'alignent de telle sorte qu'une seule sonde peut les visiter toutes, de l'une à l'autre, en « rebondissant » sur leur gravité. La NASA saisit l'occasion à l'été 1977. **Voyager 2** part la première (20 août), **Voyager 1** ensuite (5 septembre) mais sur une route plus rapide. Le **Grand Tour** livrera des merveilles : les volcans d'Io, les anneaux tressés de Saturne, les geysers glacés de Triton. Puis les Voyager ne s'arrêtent pas. En 2012, Voyager 1 franchit l'**héliopause** et devient le **premier objet humain dans l'espace interstellaire**.
 
 📋 **Fiche — Voyager 1 & 2** *(NASA/JPL ; ex-programme Mariner Jupiter-Saturn ; bus dérivé Mariner Mark II)*
+📍 *Où aujourd'hui ? — Actives, dans l'espace interstellaire : Voyager 1 à ≈ 173 UA (~25,9 milliards de km, en direction d'Ophiuchus, mi-2026), Voyager 2 à ≈ 143 UA. Le signal de Voyager 1 met plus de 23 heures à nous parvenir.*
 - **Identité —** Lancements : Voyager 2 le 20 août 1977, Voyager 1 le 5 sept. 1977 (Titan IIIE-Centaur). Voyager 1 à ~172,6 UA en 2026 ; vitesse ~17 km/s.
 - **Masse & structure —** ≈ **825 kg** au lancement (à vide ~721,9 kg) ⚠️ *(un fichier indiquait 815 kg)* ; **bus décagonal** ; antenne **Cassegrain de 3,7 m** ; magnétomètre porté par une **perche de 13 m**.
 - **Énergie —** **3 RTG MHW** au plutonium-238 (~470 W au lancement ; déclin continu, assez pour l'ingénierie jusqu'à ~2036). Propulsion : 16 propulseurs hydrazine + sous-système **AACS** (gyroscopes + roues redondantes).
@@ -388,6 +401,7 @@ Une fois par siècle environ, les quatre planètes géantes s'alignent de telle 
 En 1976, deux atterrisseurs américains se posent là où tant d'autres ont échoué, et accomplissent ce dont l'humanité rêvait : chercher la **vie** sur Mars. Leurs trois expériences de biologie analysent le sol martien. Le verdict, encore discuté aujourd'hui, est troublant : pas de preuve convaincante de vie, mais un sol d'une **réactivité chimique** inattendue. Les perchlorates, découverts bien plus tard, expliqueront en partie le mystère.
 
 📋 **Fiche — Viking 1 & 2**
+📍 *Fin de vie — Les deux atterrisseurs reposent sur Mars (Viking 1 à Chryse Planitia, Viking 2 à Utopia Planitia), muets depuis 1982 (V1) et 1980 (V2) ; orbiteurs inertes en orbite martienne.*
 - **Identité —** NASA / JPL (orbiteurs) + Martin Marietta (atterrisseurs). Deux paires **orbiteur + atterrisseur**. *Viking 1* lancée le 20 août 1975, **atterrissage le 20 juillet 1976** (Chryse Planitia) : **premier atterrissage américain réussi sur Mars**.
 - **Masse & énergie —** atterrisseur ~600 kg, alimenté par **deux RTG** au plutonium-238 (indépendance vis-à-vis du Soleil et des poussières).
 - **Parties & fonctions —** *bouclier + parachute + rétrofusées* (entrée-descente-atterrissage) · *deux caméras panoramiques* · *bras robotique + pelle* (prélèvement du sol) · *sismomètre* · *station météo* · *laboratoire de biologie* (trois expériences).
@@ -401,6 +415,7 @@ En 1976, deux atterrisseurs américains se posent là où tant d'autres ont éch
 Première sonde de l'Europe vers une autre planète, **Mars Express** devait durer un an martien. Vingt-trois ans plus tard, elle veille encore. Son radar **MARSIS** a sondé sous la calotte polaire sud des signaux interprétés comme de possibles **lacs d'eau liquide** ; sa caméra stéréo **HRSC** a dressé un relief martien en trois dimensions d'une beauté saisissante.
 
 📋 **Fiche — Mars Express**
+📍 *Où aujourd'hui ? — Active, en orbite elliptique autour de Mars depuis décembre 2003 (mission prolongée plusieurs fois).*
 - **Identité —** Maître d'œuvre Astrium + consortium européen. **Première mission planétaire de l'ESA.** Lancement : 2 juin 2003 (Soyouz-FG, Baïkonour) ; insertion martienne le 25 déc. 2003.
 - **Masse & énergie —** ~1 120 kg ; panneaux solaires.
 - **Instruments —** *HRSC* (caméra stéréo haute résolution, relief 3D) · *OMEGA* (spectromètre de minéralogie visible/proche IR) · *MARSIS* (radar de sondage de subsurface) · *PFS* (spectromètre IR atmosphérique) · *SPICAM* (UV/IR de l'atmosphère) · *ASPERA* (interactions plasma/atmosphère).
@@ -414,6 +429,7 @@ Première sonde de l'Europe vers une autre planète, **Mars Express** devait dur
 Atteindre une comète n'est pas viser une cible : c'est rattraper un boulet de glace lancé à des dizaines de milliers de km/h, après dix ans de course et trois passages par la gravité de la Terre et de Mars. En 2014, l'européenne **Rosetta** y parvient — elle se met en **orbite autour d'une comète**, une première absolue — puis largue **Philae**, qui réalise le **premier atterrissage de l'histoire sur un noyau cométaire**.
 
 📋 **Fiche — Rosetta + Philae**
+📍 *Fin de vie — Tous deux posés sur la comète 67P/Churyumov-Gerasimenko, qu'ils accompagnent dans sa course autour du Soleil depuis le 30 septembre 2016.*
 - **Identité —** Maître d'œuvre Airbus Defence & Space (consortium européen). Lancement : 2 mars 2004 (Ariane 5). Cible : comète **67P/Churyumov-Gerasimenko** (arrivée 2014).
 - **Masse & énergie —** ~3 000 kg (Philae ~100 kg) ; immenses panneaux solaires (pour fonctionner loin du Soleil) ; **hibernation de 31 mois** pendant la croisière pour économiser l'énergie.
 - **Instruments —** **11** sur l'orbiteur (dont la caméra **OSIRIS**, spectromètres, analyseurs de poussière et de gaz) + **10** sur **Philae** (caméras, foreuse, analyseurs de surface).
@@ -429,6 +445,7 @@ Atteindre une comète n'est pas viser une cible : c'est rattraper un boulet de g
 Treize ans dans le système de Saturne, des centaines de milliers d'images, et deux découvertes qui ont rebattu les cartes de l'astrobiologie. **Cassini** révèle que **Titan** possède des **lacs et des mers de méthane liquide** ; et qu'**Encelade** crache par ses fissures des **geysers d'eau** issus d'un **océan souterrain**. Le 14 janvier 2005, l'atterrisseur européen **Huygens** se pose sur Titan : **l'atterrissage le plus lointain jamais réalisé**. En 2017, à court de carburant, Cassini plonge volontairement dans Saturne pour ne jamais risquer de contaminer Encelade.
 
 📋 **Fiche — Cassini-Huygens**
+📍 *Fin de vie — Cassini a été vaporisée dans l'atmosphère de Saturne le 15 septembre 2017 ; la sonde Huygens repose sur Titan depuis le 14 janvier 2005.*
 - **Identité —** NASA/JPL (orbiteur Cassini), ESA (sonde Huygens), ASI (radar) ; bus Lockheed Martin. Lancement : 15 oct. 1997 (Titan IVB-Centaur). Fin : 15 sept. 2017.
 - **Masse & structure —** au lancement ⚠️ **~5 600-5 712 kg** *(sources divergentes)* ; Cassini ~2 150 kg ; Huygens ~318-350 kg. ~6,8 m de haut × 4 m.
 - **Énergie & propulsion —** 3 **GPHS-RTG** au plutonium-238 (~885 W) ; moteur principal bipropergol **R-4D (490 N)** + propulseurs monopropergol ; Δv total ~2 352 m/s.
@@ -444,6 +461,7 @@ Treize ans dans le système de Saturne, des centaines de milliers d'images, et d
 Pluton n'était, pendant 85 ans, qu'un point flou et froid au bord du connu. **New Horizons** est partie le 19 janvier 2006, plus vite qu'aucun engin n'avait jamais quitté la Terre, pour un rendez-vous fixé **neuf ans et demi** plus tard. Le 14 juillet 2015, après cinq milliards de kilomètres, elle frôle Pluton — et révèle un monde **vivant** : un immense glacier d'azote en forme de cœur (**Sputnik Planitia**), des montagnes de glace d'eau, une atmosphère bleutée.
 
 📋 **Fiche — New Horizons**
+📍 *Où aujourd'hui ? — Active, dans la ceinture de Kuiper à ≈ 64 UA du Soleil (~9,6 milliards de km, mi-2026) ; elle quittera la ceinture vers 2028-2029.*
 - **Identité —** NASA / Johns Hopkins APL + Southwest Research Institute. PI : Alan Stern. Première mission du programme **New Frontiers**. Lancement : 19 jan. 2006 (Atlas V 551) — **le plus rapide jamais lancé depuis la Terre** (vitesse de libération ~58 500 km/h).
 - **Masse & structure —** 478 kg (dont ~77 kg d'hydrazine, ~30 kg d'instruments) ; corps compact ~0,7 × 2,1 × 2,7 m ; **HGA de 2,1 m**.
 - **Énergie & propulsion —** **RTG** au plutonium-238 (récupéré de Cassini : ~250 W au lancement, ~200 W à Pluton) ; étage solide **Star 48B** (injection) + 16 propulseurs hydrazine.
@@ -466,6 +484,7 @@ Pluton n'était, pendant 85 ans, qu'un point flou et froid au bord du connu. **N
 Jupiter cache son cœur sous mille kilomètres de nuages. **Juno** a été conçue pour le sonder — non pas en plongeant, mais en mesurant avec une précision extrême la **gravité** et le **champ magnétique** de la géante, depuis une orbite polaire qui la fait plonger périlleusement près des nuages. Première sonde à **énergie solaire** à s'aventurer aussi loin du Soleil, elle a révélé un noyau « dilué », des vents profonds, et des cyclones polaires en figures géométriques.
 
 📋 **Fiche — Juno**
+📍 *Où aujourd'hui ? — Active, en orbite polaire autour de Jupiter (mission étendue « EM2 » depuis octobre 2025).*
 - **Identité —** NASA/JPL ; constructeur Lockheed Martin. Lancement : 5 août 2011 (Atlas V 551). Insertion en orbite polaire de Jupiter : 5 juillet 2016.
 - **Masse & énergie —** ~3 625 kg au lancement ; **panneaux solaires** géants (3 ailes ~9 m) — premier engin à énergie solaire aussi loin du Soleil. Électronique abritée dans un **caisson en titane** contre les radiations de Jupiter.
 - **Instruments —** *MWR* (radiomètre micro-ondes : sonde sous les nuages) · *magnétomètre* · *JADE / JEDI* (particules aurorales) · *JIRAM* (imageur infrarouge) · *gravity science* (oscillations radio) · *JunoCam* (caméra visible, images traitées par le **public**).
@@ -478,6 +497,7 @@ Jupiter cache son cœur sous mille kilomètres de nuages. **Juno** a été conç
 Depuis trente ans, un veilleur fixe le Soleil sans jamais cligner. Posté au point de Lagrange **L1**, à 1,5 million de km vers le Soleil, **SOHO** ne le quitte pas des yeux. Il en sonde l'intérieur par héliosismologie, en photographie la couronne en continu, et **détecte les éruptions** des heures avant qu'elles ne frappent la Terre. Conçu pour deux ou trois ans, il fonctionne encore, plus de **trente ans** plus tard.
 
 📋 **Fiche — SOHO (Solar and Heliospheric Observatory)**
+📍 *Où aujourd'hui ? — Actif, en orbite de halo autour du point de Lagrange L1, à 1,5 million de km de la Terre en direction du Soleil.*
 - **Identité —** ESA (lead) + NASA, programme ISTP ; construction par un consortium dirigé par Matra Marconi Space (Airbus). Lancement : 2 déc. 1995 (Atlas II-AS). Position : orbite halo en **L1**.
 - **Masse & structure —** ~1 850 kg (charge utile ~640 kg) ; deux modules — *plateforme (SVM)* en **nid d'abeille aluminium** (propulsion, contrôle d'attitude, communication, alimentation) et *module de charge utile (PLM)* portant les **12 instruments**.
 - **Matériaux —** structure en aluminium nid d'abeille, isolation multicouche, optiques et détecteurs UV/EUV de haute précision, refroidissement passif des instruments sensibles. Instruments fournis par **12 consortia** (9 européens, 3 américains).
@@ -494,6 +514,7 @@ Depuis trente ans, un veilleur fixe le Soleil sans jamais cligner. Posté au poi
 Pour la première fois, une machine humaine est entrée **dans l'atmosphère d'une étoile**. Derrière un bouclier de carbone qui encaisse plus de 1 300 °C, **Parker Solar Probe** plonge périodiquement dans la **couronne** du Soleil. Le 24 décembre 2024, elle est passée à seulement **6,1 millions de km** de la surface — sept fois plus près que Mercure — en devenant, à ~690 000 km/h, **l'objet le plus rapide jamais construit**.
 
 📋 **Fiche — Parker Solar Probe**
+📍 *Où aujourd'hui ? — Active, sur une orbite héliocentrique très elliptique (périhélie ~6,1 millions de km, soit ~0,04 UA) ; 28ᵉ passage au plus près du Soleil le 8 juin 2026.*
 - **Identité —** NASA ; conçue et construite par le **Johns Hopkins APL**. Lancement : 12 août 2018 (Delta IV Heavy + étage supplémentaire).
 - **Masse & protection —** ~685 kg ; **bouclier thermique** (TPS) en **composite carbone-carbone** de ~11 cm, face avant à >1 300 °C tandis que les instruments restent près de l'ambiante. Assistances gravitationnelles répétées de **Vénus** pour resserrer l'orbite.
 - **Instruments —** *FIELDS* (champs électriques et magnétiques) · *WISPR* (imageur grand angle de la couronne) · *SWEAP* (électrons, protons, ions du vent solaire) · *IS☉IS* (particules énergétiques).
@@ -512,6 +533,7 @@ Pour la première fois, une machine humaine est entrée **dans l'atmosphère d'u
 Le rover le plus avancé jamais posé sur Mars a un objectif limpide : chercher des **traces de vie ancienne** dans le cratère **Jezero**, un ancien delta de rivière, et **mettre en cache** des échantillons de roche qu'une future mission viendra chercher. Mais c'est son passager clandestin qui est entré dans l'histoire le 19 avril 2021 : **Ingenuity**, un hélicoptère de 1,8 kg, a réalisé le **premier vol motorisé contrôlé sur une autre planète**.
 
 📋 **Fiche — Perseverance + Ingenuity** *(mission Mars 2020)*
+📍 *Où aujourd'hui ? — Perseverance roule toujours dans le cratère Jezero (Mars) ; Ingenuity, cloué au sol depuis janvier 2024, repose près de son dernier site de vol.*
 - **Identité —** NASA/JPL. Lancement : 30 juillet 2020 ; **atterrissage le 18 février 2021** (cratère Jezero), par grue volante (sky crane) guidée par **Terrain Relative Navigation**.
 - **Masse & énergie (rover) —** masse sèche **1 025 kg** ; **MMRTG** au plutonium-238 (indépendance vis-à-vis du Soleil et des tempêtes de poussière).
 - **Instruments (rover) —** *Mastcam-Z* (caméras stéréo à zoom) · *SuperCam* (laser : composition à distance) · *PIXL* (fluorescence X : chimie élémentaire à l'échelle du grain) · *SHERLOC* (Raman/UV : matière organique et minéraux) · *RIMFAX* (radar de sous-sol) · *MEDA* (station météo) · *MOXIE* (production d'**oxygène** à partir du CO₂ — une première) · *microphones*.
@@ -532,6 +554,7 @@ Le rover le plus avancé jamais posé sur Mars a un objectif limpide : chercher 
 Sous la croûte de glace d'**Europe**, lune de Jupiter, se cache probablement **plus d'eau liquide que dans tous les océans de la Terre réunis**. Lancée en octobre 2024, **Europa Clipper** — le plus grand vaisseau interplanétaire jamais construit par la NASA — va l'étudier non pas en s'y mettant en orbite (les radiations de Jupiter la tueraient), mais en la **survolant 49 fois**.
 
 📋 **Fiche — Europa Clipper**
+📍 *Où aujourd'hui ? — En croisière vers Jupiter (survol de Mars effectué en mars 2025, survol de la Terre en décembre 2026) ; insertion en orbite jovienne prévue en avril 2030.*
 - **Identité —** NASA/JPL. Lancement : 14 oct. 2024 (Falcon Heavy). Insertion autour de Jupiter : avril 2030.
 - **Masse & structure —** 6 065 kg au lancement (à vide 3 241 kg ; propergol 2 750 kg) ; **envergure 30,5 m** (panneaux solaires géants, pour capter le peu de lumière près de Jupiter) ; ~600 W ; 24 propulseurs.
 - **Protection —** un **« vault »** en titane/aluminium/zinc abrite l'électronique d'une dose cumulée de **2,8 Mrad**.
@@ -656,6 +679,72 @@ Chacune de ces machines est une question rendue concrète, lancée dans le vide.
 
 ---
 
+## Où sont-elles aujourd'hui ? — synthèse (mi-2026)
+
+> Tableau récapitulatif de la **localisation** de chaque objet : en service et où, ou bien
+> fin de vie et lieu de repos. ⚠️ Les distances des sondes lointaines **dérivent de quelques
+> UA par an** — à rafraîchir via les traqueurs officiels (NASA *Eyes on the Solar System*,
+> *theskylive*, JHU-APL pour New Horizons). Statuts : 🟢 actif · ⚪ inerte/terminé · 🔵 futur.
+
+| Objet | Statut | Où / fin de vie | Distance · orbite (mi-2026) |
+|---|---|---|---|
+| Sputnik 1 | ⚪ | détruit — rentrée atmosphérique 4 jan. 1958 | — |
+| Explorer 1 | ⚪ | détruit — rentrée 31 mars 1970 | — |
+| Telstar 1 | ⚪ | en orbite terrestre, inerte depuis 1963 | ~950 × 5 600 km |
+| Hubble | 🟢 | orbite terrestre basse, en décroissance | ~515-540 km · rentrée ~2034-2038 |
+| JWST | 🟢 | halo autour de **L2** | ~1,5 M km de la Terre |
+| Starlink | 🟢 | orbite basse (flotte renouvelée) | ~550 km · désorbité à ~5 ans |
+| SMILE | 🟢 | orbite terrestre très elliptique | ~5 000 × 121 000 km, 73° |
+| Luna 3 | ⚪ | détruit — rentrée terrestre ~avril 1960 | — |
+| Luna 9 | ⚪ | sur la Lune (Océan des Tempêtes) | surface lunaire |
+| Lunokhod 1 | ⚪ | sur la Lune (mer des Pluies) | surface lunaire |
+| Lunokhod 2 | ⚪ | sur la Lune (cratère Le Monnier) | surface lunaire |
+| Mars 3 | ⚪ | atterrisseur sur Mars (Ptolemaeus) | surface martienne |
+| Pioneer 10 | ⚪ | dérive vers Aldebaran, muette depuis 2003 | héliocentrique, sortante |
+| Pioneer 11 | ⚪ | dérive vers l'Aigle, muette depuis 1995 | héliocentrique, sortante |
+| Voyager 1 | 🟢 | espace interstellaire (vers Ophiuchus) | **≈ 173 UA** |
+| Voyager 2 | 🟢 | espace interstellaire | **≈ 143 UA** |
+| Viking 1 / 2 | ⚪ | sur Mars (Chryse / Utopia Planitia) | surface martienne |
+| Mars Express | 🟢 | orbite de Mars | elliptique martienne |
+| Rosetta / Philae | ⚪ | sur la comète 67P | avec 67P autour du Soleil |
+| Cassini | ⚪ | vaporisée dans Saturne (15 sept. 2017) | — |
+| Huygens | ⚪ | posée sur Titan (14 jan. 2005) | surface de Titan |
+| New Horizons | 🟢 | ceinture de Kuiper | **≈ 64 UA** |
+| Juno | 🟢 | orbite polaire de Jupiter | mission étendue EM2 |
+| SOHO | 🟢 | halo autour de **L1** | 1,5 M km vers le Soleil |
+| Parker Solar Probe | 🟢 | orbite héliocentrique elliptique | périhélie ~0,04 UA (6,1 M km) |
+| Perseverance | 🟢 | cratère Jezero (Mars) | surface · >42 km parcourus |
+| Ingenuity | ⚪ | au sol près de Jezero (depuis jan. 2024) | surface martienne |
+| Europa Clipper | 🔵 | en croisière vers Jupiter | arrivée avril 2030 |
+| Hale | 🟢 | Mont Palomar (Californie) | au sol |
+| Keck I / II | 🟢 | Mauna Kea (Hawaï) | au sol |
+| VLT | 🟢 | Cerro Paranal (Chili) | au sol |
+| GTC | 🟢 | La Palma (Canaries) | au sol |
+| ELT | 🔵 | en construction, Cerro Armazones (Chili) | 1ʳᵉ lumière ~2028-2030 |
+| GMT | 🔵 | en construction, Las Campanas (Chili) | années 2030 |
+| TMT | 🔵 | site incertain (Hawaï / Canaries en débat) | — |
+| Arecibo | ⚪ | effondré sur site (Porto Rico), 1ᵉʳ déc. 2020 | — |
+| FAST | 🟢 | Guizhou (Chine) | au sol |
+| VLA | 🟢 | Nouveau-Mexique (USA) | au sol |
+| SKA | 🔵 | en construction (Afrique du Sud + Australie) | au sol |
+| Artemis II / Orion / SLS | 🔵 | au sol (Kennedy Space Center) | lancement 2026 |
+| Nancy Grace Roman | 🔵 | intégration (Goddard) → L2 | lancement fin 2026/2027 |
+| PLATO | 🔵 | préparation → L2 | lancement déc. 2026 |
+| Xuntian | 🔵 | préparation (co-orbital station chinoise) | lancement fin 2026 |
+| MMX | 🔵 | préparation (Tanegashima) → Phobos | lancement fin 2026, retour ~2031 |
+| Dragonfly | 🔵 | construction (JHUAPL) → Titan | lancement 2028, arrivée 2034 |
+| Rosalind Franklin | 🔵 | tests → Mars | lancement ~2028, arrivée ~2030 |
+| Tianwen-3 | 🔵 | développement → Mars (retour) | lancement ~2028, retour ~2031 |
+| DESTINY+ | 🔵 | développement → Phaethon | lancement ~2028, survol ~2030 |
+| NEO Surveyor | 🔵 | développement (JPL) → L1 | lancement NET sept. 2027 |
+| Comet Interceptor | 🔵 | construction → attente en L2 | lancement ~2029 |
+| DAVINCI / EnVision / VERITAS | 🔵 | développement → Vénus | 2029-2031 |
+| Chang'e-7 / 8 | 🔵 | développement → pôle sud lunaire | 2026 / 2028 |
+| Chandrayaan-4 | 🔵 | développement → Lune (retour) | ~2027 |
+| Mars Sample Return | 🔵 | **en pause** — échantillons sur Mars (Jezero) | gelé / refonte |
+
+---
+
 ## Appareil critique — sources
 
 > Sources officielles et croisées (état des fichiers source : 23 juin 2026). À reverser dans
@@ -667,6 +756,7 @@ Chacune de ces machines est une question rendue concrète, lancée dans le vide.
 - **Satellites d'application** — usgs.gov/landsat-missions · esa.int (Copernicus/Sentinel) · gps.gov · eoportal.org (Starlink — chiffres à dater)
 - **Télescopes au sol** — eso.org (VLT, ELT) · keckobservatory.org · NSF/Arecibo · english.nao.cas.cn (FAST)
 - **Sondes futures** — mmx.jaxa.jp · science.nasa.gov/mission/dragonfly · /neo-surveyor · /davinci · /veritas · esa.int (ExoMars, Comet Interceptor, EnVision) · planetary.org (Tianwen-3) · isas.jaxa.jp (DESTINY+) · sites CNSA/ISRO (Chang'e, Chandrayaan)
+- **Positions actuelles (mi-2026)** — NASA *Eyes on the Solar System* (eyes.nasa.gov) · NASA « Where are Voyager 1 and 2 now? » (science.nasa.gov/mission/voyager) · JHU-APL « Where is New Horizons? » (pluto.jhuapl.edu) · *theskylive.com* · *hubblereentry.com* (altitude/rentrée Hubble). **Valeurs datées et dérivantes — à rafraîchir avant publication.**
 - **Modèles 3D** — `apercu-modeles-3d.html` (UID Sketchfab vérifiés ; privilégier les modèles **NASA-officiels** et **CC**)
 - **Général** — NASA Science · JPL · ESA · JAXA · CNSA · ISRO · Planetary Society · UCS Satellite Database · Wikipédia (recoupement uniquement)
 
