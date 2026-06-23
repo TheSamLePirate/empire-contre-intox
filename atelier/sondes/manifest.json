@@ -1,0 +1,44 @@
+{
+  "title": "Sondes, satellites & télescopes",
+  "subtitle": "Provoxys · Dossier VI (proposé) · en préparation",
+  "intro": "Espace de travail partagé pour préparer le dossier. Le **plan** est la proposition de structure ; les **transcripts** sont les sources brutes à conserver mot pour mot ; l'**aperçu 3D** sert à choisir les modèles Sketchfab. Rien ici n'est lié aux menus du site.",
+  "tools": [
+    {
+      "label": "Aperçu des modèles 3D",
+      "file": "apercu-modeles-3d.html",
+      "type": "iframe",
+      "desc": "67 engins · ~90 modèles Sketchfab (UID vérifiés) · données sourcées. Filtre, prévisualise, choisis et exporte.",
+      "icon": "🛰"
+    }
+  ],
+  "groups": [
+    {
+      "name": "Plan & méthode",
+      "docs": [
+        { "title": "Plan structuré du dossier", "file": "plan.md", "badge": "PLAN", "desc": "Proposition de structure (6 actes), inventaire des ~60 engins, dataviz, vérif & sources, questions ouvertes." }
+      ]
+    },
+    {
+      "name": "Script narratif (colonne vertébrale)",
+      "docs": [
+        { "title": "L'Odyssée de l'humanité vers l'Univers — 1957→2030", "file": "sources/script_complet_odyssee_univers_1957_2030.txt", "badge": "SCRIPT", "desc": "Le déroulé maître en 6 actes — texte à conserver verbatim." }
+      ]
+    },
+    {
+      "name": "Dossiers de recherche (fiches techniques)",
+      "docs": [
+        { "title": "Dossier Sondes pionnières", "file": "sources/Dossier_Sondes.txt", "badge": "FICHES", "desc": "New Horizons, Luna 3/9, Mars 3, Pioneer, Voyager 1, Mars Express, Rosetta." },
+        { "title": "Compilation Satellites & Sondes 2026", "file": "sources/Dossier_Satellites_Complet_2026.md", "badge": "FICHES", "desc": "Lunokhod, Cassini, Hubble, Juno, Perseverance, Parker, JWST, SMILE, Europa Clipper, MSR." },
+        { "title": "Sondes futures — MMX, Dragonfly, Rosalind, Tianwen-3, DESTINY+", "file": "sources/Dossier_Sondes_Futures_Principales_MMX_Dragonfly_Rosalind_Tianwen_DESTINY.txt", "badge": "FUTUR", "desc": "5 sondes futures phares (2026-2028)." },
+        { "title": "Sondes futures — visuels 4K (NEO Surveyor, Comet Interceptor, Vénus, Lune)", "file": "sources/Dossier_Complet_Sondes_Futures_Avec_Visuels_4K_Ultra_Realistes.txt", "badge": "FUTUR", "desc": "NEO Surveyor, Comet Interceptor, EnVision, DAVINCI, VERITAS, Chang'e-7/8, Chandrayaan-4." },
+        { "title": "Dossier SOHO", "file": "sources/Dossier_SOHO_Complet_Avec_Visuel_4K_Ultra_Realiste.txt", "badge": "FICHE", "desc": "Observatoire solaire ESA/NASA à L1." }
+      ]
+    },
+    {
+      "name": "Appareil critique",
+      "docs": [
+        { "title": "Sources complètes — toutes les sondes", "file": "sources/Sources_Completes_Toutes_Sondes_Originales_et_Futures.txt", "badge": "SOURCES", "desc": "Liste des URLs officielles (NASA/ESA/JAXA/CNSA/ISRO) pour le Dossier V." }
+      ]
+    }
+  ]
+}

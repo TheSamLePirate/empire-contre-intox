@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Atelier — préparation de dossier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+<style>
+  :root{
+    --bg:#0a0e14;--bg2:#0e141d;--panel:#121a26;--panel2:#16202e;
+    --ink:#e9eef4;--soft:#aeb9c7;--muted:#7c8a9b;--line:rgba(255,255,255,.09);
+    --orange:#ff8a4c;--orange-d:#e9692a;--teal:#3fd0c9;--gold:#e9c46a;--blue:#6aa8ff;--green:#5fd38a;
+    --mono:'JetBrains Mono',monospace;--disp:'Bricolage Grotesque',sans-serif;--serif:'Newsreader',serif;
+    --sb:330px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);display:flex;flex-direction:column;height:100vh;overflow:hidden}
+  a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
+
+  /* top bar */
+  .topbar{display:flex;align-items:center;gap:14px;padding:11px 18px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#0e141d,#0b1018);flex:none}
+  .topbar .back{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);border:1px solid var(--line);padding:7px 11px;border-radius:9px;white-space:nowrap}
+  .topbar .back:hover{border-color:var(--teal);text-decoration:none}
+  .brand{min-width:0}
+  .brand .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--orange)}
+  .brand h1{font-family:var(--disp);font-weight:700;font-size:18px;margin:1px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.01em}
+  .topbar .sp{flex:1}
+  .priv{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--gold);border:1px solid rgba(233,196,106,.35);background:rgba(233,196,106,.07);padding:6px 10px;border-radius:999px;white-space:nowrap}
+
+  .shell{flex:1;display:flex;min-height:0}
+  /* sidebar */
+  aside{width:var(--sb);flex:none;border-right:1px solid var(--line);background:var(--bg2);overflow:auto;padding:14px}
+  .search{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 11px;margin-bottom:12px}
+  .search input{flex:1;background:none;border:0;color:var(--ink);font-family:var(--serif);font-size:14.5px;outline:none}
+  .search svg{opacity:.6;flex:none}
+  .intro{font-size:13.5px;color:var(--soft);background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:11px 12px;margin-bottom:14px}
+  .intro p{margin:0}
+  .grp{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:16px 0 7px;padding-left:2px}
+  .item{display:block;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:11px 12px;margin-bottom:8px;cursor:pointer;transition:.14s;color:inherit}
+  .item:hover{border-color:var(--teal);text-decoration:none;transform:translateX(2px)}
+  .item.active{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange) inset;background:var(--panel2)}
+  .item .it-top{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+  .item h3{font-family:var(--disp);font-weight:600;font-size:14.5px;margin:0;line-height:1.2}
+  .badge{font-family:var(--mono);font-size:9px;letter-spacing:.06em;padding:3px 6px;border-radius:5px;border:1px solid var(--line);color:var(--soft);flex:none;white-space:nowrap}
+  .badge.PLAN{color:var(--gold);border-color:rgba(233,196,106,.4);background:rgba(233,196,106,.08)}
+  .badge.SCRIPT{color:var(--orange);border-color:rgba(255,138,76,.4);background:rgba(255,138,76,.08)}
+  .badge.FUTUR{color:var(--blue);border-color:rgba(106,168,255,.4);background:rgba(106,168,255,.08)}
+  .badge.SOURCES,.badge.FICHES,.badge.FICHE{color:var(--teal);border-color:rgba(63,208,201,.35);background:rgba(63,208,201,.07)}
+  .item p{margin:2px 0 0;font-size:12.5px;color:var(--muted);line-height:1.35}
+  .tool{display:block;background:linear-gradient(135deg,rgba(255,138,76,.14),rgba(63,208,201,.1));border:1px solid rgba(255,138,76,.4);border-radius:12px;padding:12px;margin-bottom:8px;cursor:pointer;color:inherit;transition:.14s}
+  .tool:hover{transform:translateY(-2px);text-decoration:none;border-color:var(--orange)}
+  .tool .it-top{display:flex;align-items:center;gap:9px}
+  .tool .ico{font-size:20px}
+  .tool h3{font-family:var(--disp);font-weight:700;font-size:15px;margin:0}
+  .tool p{margin:5px 0 0;font-size:12.5px;color:var(--soft)}
+
+  /* main */
+  main{flex:1;min-width:0;overflow:auto;position:relative;background:var(--bg)}
+  .docbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:10px 22px;background:rgba(10,14,20,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .docbar .dt{font-family:var(--mono);font-size:12px;color:var(--soft);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+  .docbar .dt b{color:var(--ink);font-weight:600}
+  .docbar button,.docbar a.btn{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:7px 11px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--soft);cursor:pointer;white-space:nowrap}
+  .docbar button:hover,.docbar a.btn:hover{border-color:var(--teal);color:var(--teal);text-decoration:none}
+
+  .content{max-width:860px;margin:0 auto;padding:30px 28px 90px}
+  .iframewrap{position:absolute;inset:46px 0 0;border:0}
+  .iframewrap iframe{width:100%;height:100%;border:0;display:block}
+
+  /* markdown */
+  .md{font-size:16px;line-height:1.62;color:var(--soft)}
+  .md h1,.md h2,.md h3,.md h4{font-family:var(--disp);color:var(--ink);line-height:1.18;margin:1.5em 0 .5em;letter-spacing:-.01em}
+  .md h1{font-size:30px;border-bottom:1px solid var(--line);padding-bottom:.3em}
+  .md h2{font-size:23px;color:var(--orange)}
+  .md h3{font-size:18.5px;color:var(--teal)}
+  .md h4{font-size:16px;color:var(--gold)}
+  .md p{margin:.7em 0}
+  .md a{color:var(--teal);word-break:break-word}
+  .md strong{color:var(--ink)}
+  .md em{color:var(--soft)}
+  .md ul,.md ol{padding-left:1.4em;margin:.6em 0}
+  .md li{margin:.3em 0}
+  .md code{font-family:var(--mono);font-size:.86em;background:var(--panel2);padding:.12em .4em;border-radius:5px;color:var(--gold)}
+  .md pre{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow:auto}
+  .md pre code{background:none;color:var(--soft);padding:0}
+  .md blockquote{border-left:3px solid var(--orange);margin:.8em 0;padding:.2em 0 .2em 16px;color:var(--muted);background:rgba(255,138,76,.05)}
+  .md table{border-collapse:collapse;width:100%;margin:1em 0;font-size:14px;display:block;overflow:auto}
+  .md th,.md td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+  .md th{background:var(--panel2);color:var(--ink);font-family:var(--disp);font-weight:600}
+  .md hr{border:0;border-top:1px solid var(--line);margin:1.6em 0}
+  .md img{max-width:100%;border-radius:8px}
+
+  .placeholder{max-width:680px;margin:8vh auto;text-align:center;color:var(--muted);padding:0 24px}
+  .placeholder .big{font-family:var(--disp);font-size:26px;color:var(--ink);margin-bottom:10px}
+  .placeholder p{font-size:15px;line-height:1.6}
+  .err{max-width:640px;margin:6vh auto;background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.35);border-left:3px solid #ff6b6b;border-radius:12px;padding:18px 20px;color:var(--soft);font-size:14.5px}
+  .err code{font-family:var(--mono);background:var(--panel2);padding:.15em .45em;border-radius:5px;color:var(--gold)}
+
+  .menutoggle{display:none}
+  @media(max-width:820px){
+    :root{--sb:84vw}
+    aside{position:fixed;z-index:30;top:0;bottom:0;left:0;transform:translateX(-102%);transition:.2s;box-shadow:0 0 40px rgba(0,0,0,.5)}
+    body.nav aside{transform:none}
+    .menutoggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <button class="menutoggle" id="menutoggle" aria-label="menu">☰</button>
+  <a class="back" href="../index.html">← Atelier</a>
+  <div class="brand"><div class="k" id="kicker">Empire contre Intox · atelier</div><h1 id="ptitle">Préparation de dossier</h1></div>
+  <div class="sp"></div>
+  <span class="priv">🔒 non listé · ne pas diffuser</span>
+</div>
+
+<div class="shell">
+  <aside id="sidebar"></aside>
+  <main id="main">
+    <div class="placeholder">
+      <div class="big">Chargement de l'atelier…</div>
+      <p>Sélectionne un document à gauche.</p>
+    </div>
+  </main>
+</div>
+
+<script>
+const main = document.getElementById('main');
+const sidebar = document.getElementById('sidebar');
+let MAN = null;
+
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+function renderMarkdown(text){
+  if(window.marked){
+    try{
+      marked.setOptions({gfm:true,breaks:false,headerIds:false,mangle:false});
+      let html = marked.parse(text);
+      if(window.DOMPurify) html = DOMPurify.sanitize(html,{ADD_ATTR:['target']});
+      return `<div class="md">${html}</div>`;
+    }catch(e){/* fall through */}
+  }
+  return `<div class="md"><pre>${esc(text)}</pre></div>`;
+}
+
+function setActive(file){
+  document.querySelectorAll('.item,.tool').forEach(el=>el.classList.toggle('active',el.dataset.file===file));
+}
+
+async function openDoc(file){
+  setActive(file);
+  location.hash = 'doc='+encodeURIComponent(file);
+  document.body.classList.remove('nav');
+  main.scrollTop=0;
+  main.innerHTML = `<div class="docbar"><span class="dt">Chargement de <b>${esc(file)}</b>…</span></div>`;
+  try{
+    const res = await fetch(file,{cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const text = await res.text();
+    const lines = text.split('\n').length, kb=(new Blob([text]).size/1024).toFixed(1);
+    main.innerHTML =
+      `<div class="docbar">
+         <span class="dt"><b>${esc(file.split('/').pop())}</b> · ${lines} lignes · ${kb} Ko</span>
+         <button onclick="refreshDoc('${esc(file)}')" title="Recharger">↻ recharger</button>
+         <a class="btn" href="${encodeURI(file)}" target="_blank" rel="noopener">brut ↗</a>
+         <a class="btn" href="${encodeURI(file)}" download>télécharger</a>
+       </div>
+       <div class="content">${renderMarkdown(text)}</div>`;
+  }catch(err){
+    const isFile = location.protocol==='file:';
+    main.innerHTML = `<div class="docbar"><span class="dt"><b>${esc(file.split('/').pop())}</b></span></div>
+      <div class="err"><b>Impossible de charger le document.</b><br><br>
+      ${isFile
+        ? `Tu as ouvert cette page en <code>file://</code> (double-clic). Le mode « chargement en direct » a besoin d'un serveur web.<br><br>
+           ▸ <b>En ligne</b> : ouvre la version publiée (GitHub Pages).<br>
+           ▸ <b>En local</b> : dans ce dossier, lance <code>python3 -m http.server</code> puis ouvre <code>http://localhost:8000/atelier/sondes/</code>.`
+        : `Erreur : <code>${esc(String(err.message||err))}</code>. Vérifie que le fichier existe bien à <code>${esc(file)}</code>.`}
+      </div>`;
+  }
+}
+function refreshDoc(f){openDoc(f);}
+
+function openTool(file){
+  setActive(file);
+  location.hash='tool='+encodeURIComponent(file);
+  document.body.classList.remove('nav');
+  main.innerHTML =
+    `<div class="docbar">
+       <span class="dt"><b>${esc(file.split('/').pop())}</b> · outil interactif</span>
+       <a class="btn" href="${encodeURI(file)}" target="_blank" rel="noopener">plein écran ↗</a>
+     </div>
+     <div class="iframewrap"><iframe src="${encodeURI(file)}" allow="autoplay; fullscreen; xr-spatial-tracking"></iframe></div>`;
+}
+
+function buildSidebar(){
+  let html = '';
+  if(MAN.intro) html += `<div class="intro"><p>${renderInline(MAN.intro)}</p></div>`;
+  html += `<div class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="filter" type="search" placeholder="Filtrer les documents…" autocomplete="off"></div>`;
+  (MAN.tools||[]).forEach(t=>{
+    html += `<a class="tool" data-file="${t.file}" data-name="${(t.label+' '+(t.desc||'')).toLowerCase()}" onclick="openTool('${t.file}');return false" href="${t.file}">
+      <div class="it-top"><span class="ico">${t.icon||'🧰'}</span><h3>${t.label}</h3></div>
+      ${t.desc?`<p>${t.desc}</p>`:''}</a>`;
+  });
+  (MAN.groups||[]).forEach(g=>{
+    html += `<div class="grp" data-grp>${g.name}</div>`;
+    g.docs.forEach(d=>{
+      html += `<a class="item" data-file="${d.file}" data-name="${(d.title+' '+(d.desc||'')).toLowerCase()}" onclick="openDoc('${d.file}');return false" href="${d.file}">
+        <div class="it-top"><h3>${d.title}</h3>${d.badge?`<span class="badge ${d.badge}">${d.badge}</span>`:''}</div>
+        ${d.desc?`<p>${d.desc}</p>`:''}</a>`;
+    });
+  });
+  sidebar.innerHTML = html;
+  const filter = document.getElementById('filter');
+  filter.addEventListener('input',()=>{
+    const q=filter.value.toLowerCase().trim();
+    document.querySelectorAll('.item,.tool').forEach(el=>{
+      el.style.display = (!q || el.dataset.name.includes(q)) ? '' : 'none';
+    });
+    document.querySelectorAll('[data-grp]').forEach(g=>{ // hide empty group headers
+      let n=g.nextElementSibling, any=false;
+      while(n && !n.hasAttribute('data-grp')){ if(n.classList.contains('item') && n.style.display!=='none') any=true; n=n.nextElementSibling; }
+      g.style.display = any||!q ? '' : 'none';
+    });
+  });
+}
+// tiny inline markdown for the intro (**bold**, `code`)
+function renderInline(s){return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong style="color:var(--ink)">$1</strong>').replace(/`(.+?)`/g,'<code>$1</code>');}
+
+function route(){
+  const h=location.hash.replace(/^#/,'');
+  const m=h.match(/^(doc|tool)=(.+)$/);
+  if(m){ const file=decodeURIComponent(m[2]); m[1]==='tool'?openTool(file):openDoc(file); return true; }
+  return false;
+}
+
+async function init(){
+  try{
+    const res = await fetch('manifest.json',{cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    MAN = await res.json();
+  }catch(err){
+    main.innerHTML = `<div class="err"><b>manifest.json introuvable.</b><br><br>
+      ${location.protocol==='file:'
+        ? `Ouvre via un serveur web : <code>python3 -m http.server</code> dans la racine du dépôt, puis <code>http://localhost:8000/atelier/sondes/</code>.`
+        : `Erreur : <code>${esc(String(err.message||err))}</code>`}</div>`;
+    return;
+  }
+  document.title = 'Atelier — '+(MAN.title||'dossier');
+  document.getElementById('ptitle').textContent = MAN.title||'Préparation de dossier';
+  if(MAN.subtitle) document.getElementById('kicker').textContent = MAN.subtitle;
+  buildSidebar();
+  if(!route()){
+    main.innerHTML = `<div class="placeholder">
+      <div class="big">${MAN.title||'Atelier'}</div>
+      <p>${MAN.subtitle||''}<br><br>Choisis un document ou un outil dans le panneau de gauche pour l'afficher ici. Les liens sont partageables (l'URL retient le document ouvert).</p>
+    </div>`;
+  }
+}
+window.addEventListener('hashchange',route);
+document.getElementById('menutoggle').addEventListener('click',()=>document.body.classList.toggle('nav'));
+init();
+</script>
+</body>
+</html>

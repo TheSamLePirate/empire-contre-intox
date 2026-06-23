@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier sondes — modèles 3D & données (aperçu de sélection)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e14; --bg2:#0e141d; --panel:#121a26; --panel2:#16202e;
+    --ink:#e9eef4; --soft:#aeb9c7; --muted:#7c8a9b; --line:rgba(255,255,255,.09);
+    --orange:#ff8a4c; --orange-d:#e9692a; --teal:#3fd0c9; --teal-d:#1f9a93;
+    --gold:#e9c46a; --red:#ff6b6b; --green:#5fd38a; --blue:#6aa8ff;
+    --r:14px; --mono:'JetBrains Mono',monospace; --disp:'Bricolage Grotesque',sans-serif; --serif:'Newsreader',serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:radial-gradient(1200px 700px at 80% -10%,rgba(63,208,201,.08),transparent 60%),radial-gradient(1000px 600px at -10% 10%,rgba(255,138,76,.08),transparent 55%),var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--teal);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+
+  header.top{position:relative;padding:46px 0 26px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--orange)}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(28px,5vw,46px);line-height:1.02;margin:.25em 0 .15em;letter-spacing:-.01em}
+  h1 .hl{color:var(--teal)}
+  .sub{color:var(--soft);max-width:760px;font-size:18px}
+  .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px;min-width:96px}
+  .stat b{font-family:var(--disp);font-size:24px;display:block;line-height:1}
+  .stat span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .note{margin-top:16px;background:rgba(233,196,106,.07);border:1px solid rgba(233,196,106,.3);border-left:3px solid var(--gold);border-radius:10px;padding:12px 14px;font-size:14.5px;color:var(--soft)}
+  .note b{color:var(--gold)}
+
+  /* toolbar */
+  .toolbar{position:sticky;top:0;z-index:40;background:rgba(10,14,20,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 0}
+  .toolbar .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .search{flex:1 1 240px;display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+  .search input{flex:1;background:none;border:0;color:var(--ink);font-family:var(--serif);font-size:15px;outline:none}
+  .search svg{flex:none;opacity:.6}
+  select.sel{background:var(--panel);border:1px solid var(--line);color:var(--ink);font-family:var(--mono);font-size:12.5px;border-radius:10px;padding:9px 10px;outline:none}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--soft);cursor:pointer;user-select:none;transition:.15s}
+  .chip:hover{border-color:var(--teal)}
+  .chip.on{background:var(--teal);border-color:var(--teal);color:#06231f;font-weight:600}
+  .chip.cat.on{background:var(--orange);border-color:var(--orange);color:#26100a}
+  .toggle{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;color:var(--soft);cursor:pointer;padding:7px 10px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+  .toggle input{accent-color:var(--teal)}
+
+  .countline{font-family:var(--mono);font-size:12px;color:var(--muted);padding:10px 0 4px}
+
+  /* grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:18px;padding:8px 0 80px}
+  .card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:.18s}
+  .card.kept{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange) inset, 0 10px 30px -12px rgba(255,138,76,.5)}
+  .card .head{padding:15px 16px 12px;border-bottom:1px solid var(--line)}
+  .card .toprow{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .card h2{font-family:var(--disp);font-weight:700;font-size:21px;margin:0;letter-spacing:-.01em}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px;border:1px solid var(--line);color:var(--soft)}
+  .tag.cat{color:var(--orange);border-color:rgba(255,138,76,.4);background:rgba(255,138,76,.08)}
+  .tag.year{color:var(--ink);font-weight:600}
+  .tag.st-actif{color:var(--green);border-color:rgba(95,211,138,.4);background:rgba(95,211,138,.08)}
+  .tag.st-termine{color:var(--muted)}
+  .tag.st-futur{color:var(--blue);border-color:rgba(106,168,255,.4);background:rgba(106,168,255,.08)}
+  .keepbtn{flex:none;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--soft);cursor:pointer;transition:.15s;white-space:nowrap}
+  .keepbtn:hover{border-color:var(--orange);color:var(--orange)}
+  .card.kept .keepbtn{background:var(--orange);border-color:var(--orange);color:#26100a;font-weight:600}
+
+  .facts{padding:13px 16px;margin:0;list-style:none;font-size:14.5px;color:var(--soft)}
+  .facts li{position:relative;padding-left:16px;margin-bottom:6px}
+  .facts li:before{content:"▸";position:absolute;left:0;color:var(--teal);font-size:11px;top:3px}
+  .srcs{padding:0 16px 12px;font-family:var(--mono);font-size:11.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 12px}
+
+  .models{padding:4px 16px 16px;display:flex;flex-direction:column;gap:12px}
+  .mhead{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-top:1px dashed var(--line);padding-top:12px}
+  .nomodel{font-family:var(--mono);font-size:12.5px;color:var(--muted);background:var(--panel2);border:1px dashed var(--line);border-radius:10px;padding:12px;text-align:center}
+  .model{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--bg)}
+  .model.chosen{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal) inset}
+  .viewer{position:relative;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,#0d141e,#0d141e 12px,#0f1622 12px,#0f1622 24px)}
+  .viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .playbtn{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;color:var(--ink);background:none;border:0;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  .playbtn .disc{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--orange),var(--orange-d));box-shadow:0 8px 24px -6px rgba(255,138,76,.6);transition:.15s}
+  .playbtn:hover .disc{transform:scale(1.07)}
+  .playbtn .disc svg{margin-left:3px}
+  .mbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 11px}
+  .mbar .mt{min-width:0}
+  .mbar .mt b{font-family:var(--serif);font-weight:600;font-size:14px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mbar .mt span{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+  .lic{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;padding:3px 6px;border-radius:5px;white-space:nowrap}
+  .lic.cc{color:var(--green);background:rgba(95,211,138,.1);border:1px solid rgba(95,211,138,.35)}
+  .lic.arr{color:var(--muted);background:var(--panel2);border:1px solid var(--line)}
+  .mactions{display:flex;gap:6px;flex:none}
+  .mbtn{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;padding:6px 9px;border-radius:7px;border:1px solid var(--line);background:var(--panel2);color:var(--soft);cursor:pointer;white-space:nowrap}
+  .mbtn:hover{border-color:var(--teal);color:var(--teal)}
+  .mbtn.choose.chosen{background:var(--teal);border-color:var(--teal);color:#06231f;font-weight:600}
+  .mnote{font-family:var(--mono);font-size:10.5px;color:var(--gold);padding:0 11px 9px}
+
+  /* selection dock */
+  .dock{position:fixed;right:18px;bottom:18px;z-index:60;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+  .dockbtn{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:13px 18px;border-radius:999px;border:1px solid var(--orange);background:linear-gradient(135deg,var(--orange),var(--orange-d));color:#26100a;font-weight:700;cursor:pointer;box-shadow:0 12px 30px -10px rgba(255,138,76,.7)}
+  .dockbtn.ghost{background:var(--panel);color:var(--soft);border-color:var(--line);font-weight:500}
+  .dockbtn .n{background:#26100a;color:var(--orange);border-radius:999px;padding:1px 7px;margin-left:6px}
+
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(4,7,11,.75);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modalbox{background:var(--panel);border:1px solid var(--line);border-radius:16px;max-width:760px;width:100%;max-height:84vh;overflow:auto;padding:22px}
+  .modalbox h3{font-family:var(--disp);margin:0 0 4px;font-size:22px}
+  .modalbox p{color:var(--soft);font-size:14px;margin:0 0 14px}
+  .modalbox textarea{width:100%;height:300px;background:var(--bg);border:1px solid var(--line);border-radius:10px;color:var(--ink);font-family:var(--mono);font-size:12px;padding:12px;resize:vertical}
+  .mrow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .mrow button{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.05em;padding:10px 14px;border-radius:9px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);cursor:pointer}
+  .mrow button.primary{background:var(--teal);border-color:var(--teal);color:#06231f;font-weight:700}
+  .tabs{display:flex;gap:6px;margin-bottom:12px}
+  .tabs button{font-family:var(--mono);font-size:12px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--soft);cursor:pointer}
+  .tabs button.on{background:var(--orange);border-color:var(--orange);color:#26100a;font-weight:600}
+  footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--muted);font-family:var(--mono);font-size:12px}
+  .empty{padding:60px 0;text-align:center;color:var(--muted);font-family:var(--mono)}
+  @media(max-width:520px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">Empire contre Intox · atelier Provoxys · aperçu — pas le dossier final</div>
+    <h1>Sondes & satellites — <span class="hl">modèles 3D</span> & données à choisir</h1>
+    <p class="sub">Résultats de 7 agents de recherche en parallèle : pour chaque engin, des <b>modèles 3D Sketchfab</b> embarquables (UID vérifiés) et des <b>fiches de données</b> sourcées. Filtre, prévisualise en 3D, et marque ce que tu veux garder — puis exporte ta sélection.</p>
+    <div class="stats" id="stats"></div>
+    <div class="note"><b>À savoir :</b> les modèles se chargent <b>à la demande</b> (clic sur ▶) — un visualiseur 3D = un contexte WebGL, donc max ~6 ouverts à la fois (les plus anciens se referment seuls). Modèles <span style="color:var(--green)">CC</span> = réutilisables avec crédit ; <span style="color:var(--muted)">ARR/Standard</span> = visibles en embed mais droits réservés. Données IA-générées <b>vérifiées par agents</b> mais à recouper avant publication (ex. date de lancement SMILE, statuts « futur »).</div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap">
+    <label class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="q" type="search" placeholder="Rechercher un engin, une agence, une donnée…" autocomplete="off">
+    </label>
+    <select class="sel" id="agency"><option value="">Toutes agences</option></select>
+    <select class="sel" id="sort">
+      <option value="year">Tri : chronologique</option>
+      <option value="year-desc">Tri : récent → ancien</option>
+      <option value="name">Tri : A → Z</option>
+      <option value="models">Tri : + de modèles</option>
+    </select>
+    <label class="toggle"><input type="checkbox" id="onlymodels"> avec modèle 3D</label>
+    <label class="toggle"><input type="checkbox" id="onlycc"> CC seulement</label>
+    <label class="toggle"><input type="checkbox" id="onlykept"> retenus</label>
+  </div>
+  <div class="wrap" style="margin-top:10px">
+    <div class="chips" id="cats"></div>
+    <span style="flex:1"></span>
+    <div class="chips" id="stats-chips"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="countline" id="count"></div>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none">Aucun engin ne correspond à ces filtres.</div>
+</div>
+
+<div class="dock">
+  <button class="dockbtn ghost" id="clearSel" style="display:none">Vider</button>
+  <button class="dockbtn" id="exportBtn">Ma sélection <span class="n" id="selN">0</span></button>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modalbox">
+    <h3>Ta sélection</h3>
+    <p>Engins « retenus » et modèles 3D « choisis ». Copie ce bloc et renvoie-le moi pour construire le dossier avec exactement ces choix.</p>
+    <div class="tabs">
+      <button class="on" data-fmt="md">Markdown</button>
+      <button data-fmt="json">JSON</button>
+    </div>
+    <textarea id="exportText" readonly></textarea>
+    <div class="mrow">
+      <button class="primary" id="copyBtn">Copier</button>
+      <button id="closeModal">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<footer><div class="wrap">Aperçu local — généré pour Provoxys / Empire contre Intox. Les iframes pointent vers Sketchfab (connexion requise). Aucun dossier n'a été créé.</div></footer>
+
+<script>
+const CATS = {
+  'satellite':'Satellite', 'sonde':'Sonde', 'rover':'Rover', 'lander':'Atterrisseur',
+  'telescope-spatial':'Télescope spatial', 'telescope-sol':'Télescope au sol', 'habite':'Vol habité / lanceur'
+};
+const ST = {'actif':'st-actif','terminé':'st-termine','futur':'st-futur'};
+const STLAB = {'actif':'actif','terminé':'terminé','futur':'futur'};
+
+// ---- DATA (67 engins, modèles Sketchfab à UID vérifié) ----
+const DATA = [
+{name:"Sputnik 1",category:"satellite",agency:"URSS (OKB-1)",year:1957,status:"terminé",
+ facts:["Lancé le 4 octobre 1957 depuis Baïkonour (fusée R-7) — premier satellite artificiel de l'Histoire.","Sphère d'aluminium poli de 58 cm, masse 83,6 kg.","Deux émetteurs radio (20,005 et 40,002 MHz) : les « bip-bip » captés dans le monde entier.","But : tester la propagation radio dans l'ionosphère et mesurer la haute atmosphère.","A déclenché la course à l'espace et la création de la NASA (1958).","Pile épuisée le 26 oct. 1957 ; rentrée atmosphérique le 4 janvier 1958."],
+ sources:["https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1957-001B"],
+ models:[
+  {t:"Sputnik 1",uid:"a9ae7f57c7cf4c0ca9119cf3b6ef4c2f",page:"https://sketchfab.com/3d-models/sputnik-1-a9ae7f57c7cf4c0ca9119cf3b6ef4c2f",author:"uperesito",license:"CC Attribution",dl:true},
+  {t:"Sputnik Satellite",uid:"f45af655a619432da625875e8163745f",page:"https://sketchfab.com/3d-models/sputnik-satellite-f45af655a619432da625875e8163745f",author:"Atlasmodels",license:"CC Attribution",dl:true},
+  {t:"Sputnik 1",uid:"35f81881ca404ecf98f2a39220c2d506",page:"https://sketchfab.com/3d-models/sputnik-1-35f81881ca404ecf98f2a39220c2d506",author:"tashtego",license:"CC BY-NC",dl:true}
+ ]},
+{name:"Explorer 1",category:"satellite",agency:"USA (ABMA/JPL)",year:1958,status:"terminé",
+ facts:["Lancé le 1er février 1958 (fusée Juno I) — premier satellite américain.","Masse 13,97 kg ; charge utile scientifique 8,3 kg.","Compteur Geiger-Müller : a permis la découverte des ceintures de radiation de Van Allen.","Cadre de l'Année géophysique internationale.","Dernier signal le 23 mai 1958 ; rentrée le 31 mars 1970."],
+ sources:["https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1958-001A"],
+ models:[{t:"Explorer 1",uid:"af6375620aaa43cb8ccf088c2f02ee1a",page:"https://sketchfab.com/3d-models/explorer-1-af6375620aaa43cb8ccf088c2f02ee1a",author:"uperesito",license:"CC Attribution",dl:true}]},
+{name:"Telstar 1",category:"satellite",agency:"USA (Bell Labs/AT&T, NASA)",year:1962,status:"terminé",
+ facts:["Lancé le 10 juillet 1962 (Thor-Delta) — premier satellite de télécommunications actif.","Sphère de 88 cm, masse 77 kg ; 3 600 cellules solaires, plus de 1 000 transistors.","Première transmission TV transatlantique en direct le 23 juillet 1962.","En panne le 21 février 1963 (radiations de l'essai nucléaire Starfish Prime) ; toujours en orbite."],
+ sources:["https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1962-029A"],
+ models:[]},
+{name:"Vanguard 1",category:"satellite",agency:"USA (Naval Research Lab)",year:1958,status:"terminé",
+ facts:["Lancé le 17 mars 1958 — deuxième satellite américain.","Minuscule sphère de 16,5 cm, 1,46 kg ; premier satellite à cellules solaires.","L'analyse de son orbite a révélé que la Terre est légèrement en forme de poire.","Inactif depuis 1964 mais toujours en orbite : plus ancien objet humain dans l'espace."],
+ sources:["https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1958-002B"],
+ models:[]},
+{name:"Vostok 1",category:"habite",agency:"URSS",year:1961,status:"terminé",
+ facts:["Lancé le 12 avril 1961 depuis Baïkonour — premier vol spatial habité de l'Histoire.","Youri Gagarine devient le premier humain dans l'espace ; une orbite en ~108 minutes.","Masse au lancement ~4 725 kg ; apogée ~327 km.","Gagarine éjecté de la capsule, atterrit en parachute dans la région de Saratov."],
+ sources:["https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1961-012A"],
+ models:[{t:"Vostok 1",uid:"6dfff011b8df4b0891366aab8b6b0349",page:"https://sketchfab.com/3d-models/vostok-1-6dfff011b8df4b0891366aab8b6b0349",author:"tashtego",license:"CC BY-NC",dl:true}]},
+{name:"Luna 3",category:"sonde",agency:"URSS",year:1959,status:"terminé",
+ facts:["Lancée le 4 octobre 1959 (Lunik 3) — premières photos de la face cachée de la Lune.","Masse ~278,5 kg ; stabilisée par rotation, pilotée par radio depuis la Terre.","Système Ienisseï-2 : caméra double objectif + développement photo automatique à bord.","29 clichés pris, ~17 images exploitables transmises (env. 70 % de la face cachée).","Contact perdu le 22 octobre 1959."],
+ sources:["https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1959-008A"],
+ models:[{t:"Draft practice: Luna-3",uid:"fdc3da9ff72c40d5bb46543ccec363f1",page:"https://sketchfab.com/3d-models/draft-practice-luna-3-fdc3da9ff72c40d5bb46543ccec363f1",author:"gals",license:"Aucune licence",dl:false}]},
+{name:"Luna 9",category:"lander",agency:"URSS",year:1966,status:"terminé",
+ facts:["Lancée le 31 janvier 1966 — premier atterrissage en douceur sur la Lune (3 février 1966).","Atterrisseur sphérique de 58 cm, 99 kg ; masse au lancement ~1 580 kg.","Premières photos depuis le sol lunaire : 9 images dont 5 panoramas.","A prouvé que le sol lunaire pouvait supporter un engin.","Dernier contact le 6 février 1966 (batteries épuisées)."],
+ sources:["https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1966-006A"],
+ models:[
+  {t:"Luna 9 lander",uid:"9144a8c00e684052a5749f71a73e1bbc",page:"https://sketchfab.com/3d-models/luna-9-lander-9144a8c00e684052a5749f71a73e1bbc",author:"engine9",license:"CC Attribution",dl:true},
+  {t:"Luna 9",uid:"ba03f46f5a6f4187842d041706850518",page:"https://sketchfab.com/3d-models/luna-9-ba03f46f5a6f4187842d041706850518",author:"tashtego",license:"CC BY-NC",dl:true}
+ ]},
+{name:"Lunokhod 1",category:"rover",agency:"URSS",year:1970,status:"terminé",
+ facts:["Déployé par Luna 17 le 17 novembre 1970 — premier rover automatique mobile sur un autre astre.","Masse ~756 kg ; 8 roues motrices, panneau solaire, chauffage au polonium-210 la nuit.","Piloté à distance dans la mer des Pluies : ~10,5 km, plus de 20 000 images TV.","Opérations arrêtées le 4 octobre 1971."],
+ sources:["https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1970-095D"],
+ models:[
+  {t:"Lunokhod 1",uid:"3f5a5f02ad53447b9dff335e42d2469c",page:"https://sketchfab.com/3d-models/lunokhod-1-3f5a5f02ad53447b9dff335e42d2469c",author:"sheffrator",license:"CC Attribution",dl:true},
+  {t:"Lunar Rover / Lunokhod (low poly)",uid:"74cec71e4bb54973a9d599ce1d4af8de",page:"https://sketchfab.com/3d-models/lunar-rover-lunokhod-low-poly-74cec71e4bb54973a9d599ce1d4af8de",author:"Akimkhan",license:"CC Attribution",dl:true,note:"Générique, peu fidèle"}
+ ]},
+{name:"Lunokhod 2",category:"rover",agency:"URSS",year:1973,status:"terminé",
+ facts:["Déployé par Luna 21 le 15 janvier 1973 — deuxième rover lunaire soviétique.","Masse ~840 kg ; exploration du cratère Le Monnier.","~39 km parcourus : record de roulage hors de la Terre jusqu'en 2014 (Opportunity).","Dernier contact le 11 mai 1973 (surchauffe)."],
+ sources:["https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1973-001A"],
+ models:[{t:"Lunokhod-2",uid:"d7419015501640998bc5d00ca4c0f9f4",page:"https://sketchfab.com/3d-models/lunokhod-2-d7419015501640998bc5d00ca4c0f9f4",author:"tashtego",license:"CC BY-NC",dl:true}]},
+{name:"Mars 3",category:"sonde",agency:"URSS",year:1971,status:"terminé",
+ facts:["Lancée le 28 mai 1971 — premier atterrissage en douceur sur Mars (2 décembre 1971).","Orbiteur ~3 440 kg + atterrisseur ~1 210 kg ; petit rover PrOP-M (4,5 kg) à bord.","L'atterrisseur n'a émis qu'~20 s (une image grise) avant de se taire (tempête de poussière globale).","Orbiteur fonctionnel jusqu'en août 1972."],
+ sources:["https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-049F"],
+ models:[
+  {t:"Mars 3 spacecraft",uid:"5b7853d53cd84b6ca6c16fe68a92c98a",page:"https://sketchfab.com/3d-models/mars-3-spacecraft-5b7853d53cd84b6ca6c16fe68a92c98a",author:"Wieslaw_Kruczala",license:"CC Attribution",dl:true},
+  {t:"Mars-3",uid:"3fc7ff6b7b894cc99201d96c0aa03213",page:"https://sketchfab.com/3d-models/mars-3-3fc7ff6b7b894cc99201d96c0aa03213",author:"tashtego",license:"CC BY-NC",dl:true}
+ ]},
+{name:"Pioneer 10",category:"sonde",agency:"NASA (Ames)",year:1972,status:"terminé",
+ facts:["Lancée le 2 mars 1972 — première sonde à traverser la ceinture d'astéroïdes et à atteindre Jupiter.","Masse ~258 kg ; alimentée par RTG ; emportait la plaque de Pioneer.","Survol de Jupiter au plus près les 3-4 décembre 1973 (~130 000 km).","Dernier signal le 23 janvier 2003."],
+ sources:["https://science.nasa.gov/mission/pioneer-10/"],
+ models:[{t:"Pioneer (3D printable)",uid:"22a3f655baeb42d8b7a3efd38d7bb09c",page:"https://sketchfab.com/3d-models/pioneer-3d-printable-22a3f655baeb42d8b7a3efd38d7bb09c",author:"NASA",license:"CC BY-NC",dl:true}]},
+{name:"Pioneer 11",category:"sonde",agency:"NASA (Ames)",year:1973,status:"terminé",
+ facts:["Lancée le 5 avril 1973 — première sonde à survoler Saturne (1er septembre 1979).","Masse ~259 kg ; survol de Jupiter en 1974 (assistance gravitationnelle).","Découverte d'un anneau et de deux lunes de Saturne ; éclaireuse des Voyager.","Dernier contact le 30 septembre 1995."],
+ sources:["https://science.nasa.gov/mission/pioneer-11/"],
+ models:[
+  {t:"Pioneer (3D printable)",uid:"22a3f655baeb42d8b7a3efd38d7bb09c",page:"https://sketchfab.com/3d-models/pioneer-3d-printable-22a3f655baeb42d8b7a3efd38d7bb09c",author:"NASA",license:"CC BY-NC",dl:true},
+  {t:"Pioneer 11",uid:"ea9b95beafa648f18f09191132d5a8a3",page:"https://sketchfab.com/3d-models/pioneer-11-ea9b95beafa648f18f09191132d5a8a3",author:"Danny.Gallegos",license:"CC Attribution",dl:true}
+ ]},
+{name:"Voyager 1",category:"sonde",agency:"NASA/JPL",year:1977,status:"actif",
+ facts:["Lancée le 5 septembre 1977 — objet humain le plus éloigné de la Terre.","Masse au lancement ~722 kg ; 3 RTG plutonium-238 ; antenne 3,7 m.","Survols de Jupiter (1979) et Saturne/Titan (1980).","Premier objet humain dans l'espace interstellaire (août 2012).","Emporte le Disque d'or ; toujours active en 2026."],
+ sources:["https://voyager.jpl.nasa.gov/mission/","https://science.nasa.gov/mission/voyager/voyager-1/"],
+ models:[
+  {t:"Voyager (3D printable)",uid:"81b6fa85964e4261b661aea487cc0fa8",page:"https://sketchfab.com/3d-models/voyager-3d-printable-81b6fa85964e4261b661aea487cc0fa8",author:"NASA",license:"CC BY-NC",dl:true},
+  {t:"NASA Voyager 1 Space Probe",uid:"b958092268c843f28d117b2f6347eb9e",page:"https://sketchfab.com/3d-models/nasa-voyager-1-space-probe-b958092268c843f28d117b2f6347eb9e",author:"Space Explorers Academy",license:"CC BY-NC",dl:true}
+ ]},
+{name:"Voyager 2",category:"sonde",agency:"NASA/JPL",year:1977,status:"actif",
+ facts:["Lancée le 20 août 1977 — seule sonde à avoir visité les 4 planètes géantes.","Jupiter, Saturne, Uranus (1986) et Neptune (1989) : seules données rapprochées d'Uranus/Neptune.","Espace interstellaire depuis le 5 novembre 2018 ; Disque d'or à bord.","Toujours active en 2026."],
+ sources:["https://science.nasa.gov/mission/voyager/voyager-2/"],
+ models:[{t:"Voyager (3D printable)",uid:"81b6fa85964e4261b661aea487cc0fa8",page:"https://sketchfab.com/3d-models/voyager-3d-printable-81b6fa85964e4261b661aea487cc0fa8",author:"NASA",license:"CC BY-NC",dl:true}]},
+{name:"Galileo",category:"sonde",agency:"NASA/JPL",year:1989,status:"terminé",
+ facts:["Lancée le 18 octobre 1989 depuis la navette Atlantis — premier orbiteur de Jupiter (1995).","Orbiteur ~2 380 kg + sonde atmosphérique 337 kg larguée dans Jupiter (déc. 1995).","Fortes preuves d'un océan d'eau liquide sous la glace d'Europe.","Plongée volontaire dans Jupiter le 21 septembre 2003."],
+ sources:["https://science.nasa.gov/mission/galileo/"],
+ models:[{t:"Galileo Orbiter",uid:"19c3c6e0c1b548919d11681065fcf65a",page:"https://sketchfab.com/3d-models/galileo-orbiter-19c3c6e0c1b548919d11681065fcf65a",author:"Planetshine Creations",license:"CC BY-NC",dl:true}]},
+{name:"Cassini-Huygens",category:"sonde",agency:"NASA/ESA/ASI",year:1997,status:"terminé",
+ facts:["Lancée le 15 octobre 1997 — premier orbiteur de Saturne (1er juillet 2004).","Masse totale au lancement ~5 600 kg (Cassini ~3 130 kg, Huygens ~318 kg).","Huygens (ESA) s'est posée sur Titan le 14 janvier 2005 : atterrissage le plus lointain réalisé.","Découverte de geysers et d'un océan souterrain sur Encelade.","« Grande Finale » : plongée dans Saturne le 15 septembre 2017."],
+ sources:["https://science.nasa.gov/mission/cassini-huygens/"],
+ models:[
+  {t:"Cassini spacecraft (3D printable)",uid:"bdd5161f099c4767bc061df181e9b37c",page:"https://sketchfab.com/3d-models/cassini-spacecraft-3d-printable-bdd5161f099c4767bc061df181e9b37c",author:"NASA",license:"CC BY-NC",dl:true},
+  {t:"Cassini–Huygens Space Probe",uid:"fbd518c1938e41389922b81bab23ec86",page:"https://sketchfab.com/3d-models/cassinihuygens-space-probe-fbd518c1938e41389922b81bab23ec86",author:"Danny.Gallegos",license:"CC Attribution",dl:true},
+  {t:"Cassini Huygens",uid:"ff630177040744a2b9e685003c1093ae",page:"https://sketchfab.com/3d-models/cassini-huygens-ff630177040744a2b9e685003c1093ae",author:"uperesito",license:"CC Attribution",dl:true}
+ ]},
+{name:"New Horizons",category:"sonde",agency:"NASA/JHU-APL",year:2006,status:"actif",
+ facts:["Lancée le 19 janvier 2006 (Atlas V 551) — le lancement le plus rapide depuis la Terre.","Masse ~478 kg ; alimentée par RTG ; caméra LORRI, spectromètres Ralph et Alice.","Premier survol de Pluton le 14 juillet 2015 (~12 500 km).","Survol d'Arrokoth (ceinture de Kuiper) le 1er janvier 2019 : objet le plus lointain exploré de près.","Toujours active en 2026."],
+ sources:["https://science.nasa.gov/mission/new-horizons/"],
+ models:[
+  {t:"New Horizons (3D printable)",uid:"d7f79077cc874a60a080c5a3cc0f7550",page:"https://sketchfab.com/3d-models/new-horizons-3d-printable-d7f79077cc874a60a080c5a3cc0f7550",author:"NASA",license:"CC BY-NC",dl:true},
+  {t:"New Horizons",uid:"c17a0986e3fc48dfa468f66a37ea9558",page:"https://sketchfab.com/3d-models/new-horizons-c17a0986e3fc48dfa468f66a37ea9558",author:"tashtego",license:"Tous droits réservés",dl:false}
+ ]},
+{name:"Juno",category:"sonde",agency:"NASA/JPL",year:2011,status:"actif",
+ facts:["Lancée le 5 août 2011 — premier engin à énergie solaire autour de Jupiter (orbite le 5 juillet 2016).","Masse au lancement ~3 625 kg ; radiomètre MWR, magnétomètre, JunoCam publique.","A cartographié l'atmosphère profonde et révélé des cyclones aux pôles de Jupiter.","Toujours active en 2026 (mission étendue, lunes de Jupiter)."],
+ sources:["https://science.nasa.gov/mission/juno/"],
+ models:[
+  {t:"Juno (3D printable)",uid:"ba7321aecf6d46c9822aa7a4ae7f5966",page:"https://sketchfab.com/3d-models/juno-3d-printable-ba7321aecf6d46c9822aa7a4ae7f5966",author:"NASA",license:"CC BY-NC",dl:true},
+  {t:"Juno Mission - SpaceCraft",uid:"5ca2230b7b6c45c988af58854c740c30",page:"https://sketchfab.com/3d-models/juno-mission-spacecraft-5ca2230b7b6c45c988af58854c740c30",author:"onebillionth",license:"Tous droits réservés",dl:false}
+ ]},
+{name:"Viking (lander)",category:"lander",agency:"NASA/JPL",year:1975,status:"terminé",
+ facts:["Viking 1 lancée le 20 août 1975, atterrissage le 20 juillet 1976 : premier atterrissage US réussi sur Mars.","Deux paires orbiteur + atterrisseur ; chaque lander ~600 kg, alimenté par RTG.","Trois expériences de biologie pour rechercher la vie microbienne.","Résultat : aucune preuve concluante de vie ; sol martien très réactif chimiquement.","Viking 1 a cessé d'émettre en novembre 1982."],
+ sources:["https://science.nasa.gov/mission/viking-1/"],
+ models:[
+  {t:"Viking I Lander",uid:"eabeb7e3ed8f437c9022a9ccd0214760",page:"https://sketchfab.com/3d-models/viking-i-lander-eabeb7e3ed8f437c9022a9ccd0214760",author:"someaurelius",license:"CC Attribution",dl:true},
+  {t:"Viking lander",uid:"709ac359e6444e68a3adec676d06633b",page:"https://sketchfab.com/3d-models/viking-lander-709ac359e6444e68a3adec676d06633b",author:"tashtego",license:"Inconnue",dl:false}
+ ]},
+{name:"Curiosity",category:"rover",agency:"NASA/JPL",year:2011,status:"actif",
+ facts:["Lancé le 26 novembre 2011, atterrissage le 6 août 2012 dans le cratère Gale (grue volante).","Rover Mars Science Laboratory, ~899 kg, alimenté par RTG.","Laboratoire SAM, ChemCam, MastCam, foreuse et bras robotique.","A prouvé un ancien environnement habitable (lac d'eau douce, molécules organiques).","Toujours actif en 2026 : gravit le mont Sharp."],
+ sources:["https://science.nasa.gov/mission/msl-curiosity/"],
+ models:[
+  {t:"NASA Curiosity (Clean)",uid:"0696a383f3e841d2b5c7636ee8a58aba",page:"https://sketchfab.com/3d-models/nasa-curiosity-clean-0696a383f3e841d2b5c7636ee8a58aba",author:"Thomas Flynn (nebulousflynn)",license:"CC Attribution",dl:true},
+  {t:"NASA Curiosity Mars Rover",uid:"a2c028b8479e4b2f87088eaa12baa093",page:"https://sketchfab.com/3d-models/nasa-curiosity-mars-rover-a2c028b8479e4b2f87088eaa12baa093",author:"Fig Fogg (figfogg)",license:"CC Attribution",dl:true}
+ ]},
+{name:"Perseverance",category:"rover",agency:"NASA/JPL",year:2020,status:"actif",
+ facts:["Lancé le 30 juillet 2020, posé le 18 février 2021 dans le cratère Jezero.","Masse ~1 025 kg ; cherche des traces de vie ancienne et collecte des échantillons.","Mastcam-Z, SHERLOC, PIXL, MOXIE (a produit de l'O₂ à partir du CO₂ martien, une première).","Plus de 24 échantillons collectés ; indices possibles de biosignatures (« Cheyava Falls », 2025).","Toujours actif en 2026."],
+ sources:["https://science.nasa.gov/mission/mars-2020-perseverance/"],
+ models:[
+  {t:"Perseverance Rover - NASA Mars 2020",uid:"5f59240fb0bb4d19aadf1a4cda503add",page:"https://sketchfab.com/3d-models/perseverance-rover-nasa-mars-2020-mission-5f59240fb0bb4d19aadf1a4cda503add",author:"zaddazed",license:"CC Attribution",dl:true},
+  {t:"Perseverance - NASA Mars Landing 2021",uid:"c1c94e1f69df45eeae4a0a1d0d27e85b",page:"https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df45eeae4a0a1d0d27e85b",author:"Thomas Flynn (nebulousflynn)",license:"CC0 Public Domain",dl:true}
+ ]},
+{name:"Ingenuity",category:"sonde",agency:"NASA/JPL",year:2020,status:"terminé",
+ facts:["Premier vol motorisé et contrôlé sur une autre planète le 19 avril 2021 (« moment Wright »).","Masse ~1,8 kg ; hélicoptère-éclaireur arrivé sous Perseverance.","72 vols en près de 3 ans, ~17 km au total.","Emportait un morceau de toile du Wright Flyer.","Mission terminée en janvier 2024 (pale endommagée)."],
+ sources:["https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/"],
+ models:[
+  {t:"Mars Ingenuity Helicopter",uid:"201020c6e7e04440a7a956abeda32040",page:"https://sketchfab.com/3d-models/mars-ingenuity-helicopter-201020c6e7e04440a7a956abeda32040",author:"Marco_Romero",license:"CC Attribution",dl:true},
+  {t:"Ingenuity Mars helicopter",uid:"0d5bdd6b28bb469ea99cc9a74e06169a",page:"https://sketchfab.com/3d-models/ingenuity-mars-helicopter-0d5bdd6b28bb469ea99cc9a74e06169a",author:"robo-reboot",license:"CC Attribution",dl:true}
+ ]},
+{name:"Mars Express",category:"satellite",agency:"ESA",year:2003,status:"actif",
+ facts:["Première mission planétaire de l'ESA : lancée le 2 juin 2003, en orbite le 25 décembre 2003.","Transportait l'atterrisseur Beagle 2 (perdu, retrouvé intact en 2015 par HiRISE).","Caméra HRSC, radar MARSIS, spectromètre OMEGA.","MARSIS : indices d'eau souterraine et de possibles lacs sous la calotte polaire sud.","Toujours active en 2026, plus de 20 ans en orbite."],
+ sources:["https://www.esa.int/Science_Exploration/Space_Science/Mars_Express_overview"],
+ models:[{t:"Mars Express",uid:"5461ecbfcc7c4ff098aa7acb3ee40a89",page:"https://sketchfab.com/3d-models/mars-express-5461ecbfcc7c4ff098aa7acb3ee40a89",author:"tashtego",license:"Non spécifiée",dl:false}]},
+{name:"Mars Reconnaissance Orbiter",category:"satellite",agency:"NASA/JPL",year:2005,status:"actif",
+ facts:["Lancé le 12 août 2005, en orbite le 10-11 mars 2006 ; masse au lancement ~2 180 kg.","Caméra HiRISE (objets ~1 m), spectromètre CRISM, radar SHARAD.","Images les plus haute résolution de Mars ; choix de sites d'atterrissage, a retrouvé Beagle 2.","Relais télécom essentiel pour les rovers ; toujours actif en 2026."],
+ sources:["https://www.jpl.nasa.gov/missions/mars-reconnaissance-orbiter-mro/"],
+ models:[
+  {t:"Mars Reconnaissance Orbiter",uid:"b009747c32604d1783dc934317a02d40",page:"https://sketchfab.com/3d-models/mars-reconnaissance-orbiter-b009747c32604d1783dc934317a02d40",author:"tashtego",license:"Non spécifiée",dl:false},
+  {t:"MRO satellite image",uid:"0a3d4750526d4bc5a966c2b6e2a3bcee",page:"https://sketchfab.com/3d-models/mars-reconnaissance-orbiter-satellite-image-0a3d4750526d4bc5a966c2b6e2a3bcee",author:"belkessam.amine",license:"CC Attribution",dl:true}
+ ]},
+{name:"Rosalind Franklin (ExoMars)",category:"rover",agency:"ESA",year:2028,status:"futur",
+ facts:["Rover martien ESA (ExoMars) cherchant des traces de vie passée ou présente.","Masse ~310 kg ; site visé Oxia Planum ; foreuse jusqu'à 2 m de profondeur.","Instruments MOMA, Raman, MicrOmega, PanCam, WISDOM.","Lancement annulé en 2022 (fin de la coopération Roscosmos), relancé en 2024 avec la NASA.","Lancement attendu vers 2028, atterrissage vers 2030."],
+ sources:["https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Exploration/ExoMars"],
+ models:[{t:"ESA ExoMars Rover",uid:"4148a592193549c59c778a69fd45df5a",page:"https://sketchfab.com/3d-models/esa-exomars-rover-4148a592193549c59c778a69fd45df5a",author:"marian42",license:"CC Attribution",dl:true}]},
+{name:"Tianwen-1 / Zhurong",category:"rover",agency:"CNSA",year:2020,status:"terminé",
+ facts:["Première mission martienne indépendante de la Chine : orbiteur + atterrisseur + rover en un lancement.","Lancée le 23 juillet 2020 ; rover Zhurong (~240 kg, solaire) posé le 14 mai 2021 dans Utopia Planitia.","Radar de sol, LIBS, caméras, magnétomètre, station météo.","Zhurong en hibernation depuis mai 2022 (jamais réveillé) ; l'orbiteur reste opérationnel."],
+ sources:["https://en.wikipedia.org/wiki/Tianwen-1"],
+ models:[{t:"Zhurong (rover)",uid:"e7640a3973274c4da5224e69a9f58222",page:"https://sketchfab.com/3d-models/zhurong-rover-e7640a3973274c4da5224e69a9f58222",author:"thaweverything",license:"Non spécifiée",dl:false}]},
+{name:"Tianwen-3",category:"sonde",agency:"CNSA",year:2028,status:"futur",
+ facts:["Première mission chinoise de retour d'échantillons martiens (Mars Sample Return).","Deux lancements prévus vers 2028 (Longue Marche 5) ; architecture en 5 éléments.","Objectif : rapporter ≥500 g d'échantillons vers 2031 — premier retour d'échantillons de Mars.","Trois méthodes de prélèvement (pelle, forage ~2 m, drone). 15 kg réservés à des partenaires."],
+ sources:["https://www.planetary.org/articles/tianwen-3-china-mars-sample-return-mission"],
+ models:[]},
+{name:"Mars Sample Return",category:"sonde",agency:"NASA/ESA",year:2028,status:"futur",
+ facts:["Programme NASA/ESA pour rapporter les échantillons mis en cache par Perseverance.","Sample Retrieval Lander (NASA) + Mars Ascent Vehicle + Earth Return Orbiter (ESA).","Le MAV serait la première fusée à décoller d'une autre planète.","Jugé trop coûteux : pausé fin 2023 ; budget FY2026 prévoyait l'annulation côté NASA.","Statut 2026 : futur / incertain."],
+ sources:["https://science.nasa.gov/mission/mars-sample-return/"],
+ models:[]},
+{name:"Hubble Space Telescope",category:"telescope-spatial",agency:"NASA/ESA",year:1990,status:"actif",
+ facts:["Lancé le 24 avril 1990 (navette Discovery, STS-31) en orbite basse.","Miroir primaire de 2,4 m ; masse ~11 100 kg ; visible, UV et proche infrarouge.","Défaut du miroir corrigé par les astronautes en 1993.","A transformé notre compréhension de l'âge et de l'expansion de l'Univers.","Toujours en activité en 2026 (plus de 30 ans)."],
+ sources:["https://science.nasa.gov/mission/hubble/"],
+ models:[{t:"Hubble Space Telescope",uid:"640764e1a20a4c7ea9718a83a05bcb7f",page:"https://sketchfab.com/3d-models/hubble-space-telescope-640764e1a20a4c7ea9718a83a05bcb7f",author:"NASA",license:"CC BY-NC",dl:true}]},
+{name:"James Webb (JWST)",category:"telescope-spatial",agency:"NASA/ESA/CSA",year:2021,status:"actif",
+ facts:["Lancé le 25 décembre 2021 (Ariane 5, Kourou) ; observe dans l'infrarouge depuis L2.","Miroir segmenté de 6,5 m déployé en vol ; masse ~6 200 kg.","Observe les premières galaxies de l'Univers et sonde l'atmosphère des exoplanètes.","Images les plus profondes jamais obtenues de l'Univers primitif. En pleine activité en 2026."],
+ sources:["https://science.nasa.gov/mission/webb/"],
+ models:[
+  {t:"JWST (james webb space telescope)",uid:"6c92c08a672640afb58ee44d248fd0fe",page:"https://sketchfab.com/3d-models/jwst-james-webb-space-telescope-6c92c08a672640afb58ee44d248fd0fe",author:"Paul (Sketchfab)",license:"CC Attribution",dl:true},
+  {t:"The James Webb Space Telescope",uid:"dcb95b3193be49e7a60192055df2315d",page:"https://sketchfab.com/3d-models/the-james-webb-space-telescope-dcb95b3193be49e7a60192055df2315d",author:"Ignazio Pillitteri",license:"CC Attribution",dl:true},
+  {t:"NASA James Webb Space Telescope",uid:"6716737c022144d982a43eb4ebfac2fb",page:"https://sketchfab.com/3d-models/nasa-james-webb-space-telescope-6716737c022144d982a43eb4ebfac2fb",author:"Space Explorers Academy",license:"CC BY-NC",dl:true}
+ ]},
+{name:"Spitzer Space Telescope",category:"telescope-spatial",agency:"NASA",year:2003,status:"terminé",
+ facts:["Lancé le 25 août 2003 ; télescope infrarouge, miroir de 0,85 m refroidi cryogéniquement.","Quatrième « Grand Observatoire » de la NASA ; masse ~950 kg.","A révélé sept planètes de la taille de la Terre autour de TRAPPIST-1.","Désactivé le 30 janvier 2020 (plus de 16 ans de service)."],
+ sources:["https://science.nasa.gov/mission/spitzer/"],
+ models:[
+  {t:"Spitzer Space Telescope",uid:"cf7859160b3e485db98eb1964331d663",page:"https://sketchfab.com/3d-models/spitzer-space-telescope-cf7859160b3e485db98eb1964331d663",author:"uperesito",license:"CC Attribution",dl:true},
+  {t:"NASA Spitzer Space Telescope",uid:"dc8f6cd6e2194257bd08a881505c3821",page:"https://sketchfab.com/3d-models/nasa-spitzer-space-telescope-dc8f6cd6e2194257bd08a881505c3821",author:"Space Explorers Academy",license:"CC BY-NC",dl:true}
+ ]},
+{name:"Kepler",category:"telescope-spatial",agency:"NASA",year:2009,status:"terminé",
+ facts:["Lancé le 7 mars 2009 ; masse ~1 039 kg ; photomètre de très haute précision.","Surveillait ~150 000 étoiles pour détecter les transits planétaires.","A confirmé plus de 2 600 exoplanètes.","À court de carburant, mis en retraite le 30 octobre 2018."],
+ sources:["https://science.nasa.gov/mission/kepler/"],
+ models:[{t:"Kepler (3D printable)",uid:"943c1f4cb3224623ab6696f1f3407c4b",page:"https://sketchfab.com/3d-models/kepler-3d-printable-943c1f4cb3224623ab6696f1f3407c4b",author:"NASA",license:"CC BY-NC",dl:true}]},
+{name:"SOHO",category:"telescope-spatial",agency:"ESA/NASA",year:1995,status:"actif",
+ facts:["Lancé le 2 décembre 1995 ; posté au point de Lagrange L1 pour observer le Soleil en continu.","Masse ~1 850 kg ; 12 instruments (LASCO, EIT, MDI…).","Étudie l'intérieur du Soleil, sa couronne et le vent solaire.","Plus prolifique découvreur de comètes de l'Histoire (des milliers).","Conçu pour 2 ans, fonctionne toujours après plus de 30 ans."],
+ sources:["https://science.nasa.gov/mission/soho/"],
+ models:[{t:"SOHO",uid:"8a5e8b79665a40e7a579b8961f58ab2a",page:"https://sketchfab.com/3d-models/soho-8a5e8b79665a40e7a579b8961f58ab2a",author:"tashtego",license:"Non spécifiée",dl:false}]},
+{name:"Parker Solar Probe",category:"sonde",agency:"NASA/JHUAPL",year:2018,status:"actif",
+ facts:["Lancée le 12 août 2018 ; bouclier thermique carbone résistant à ~1 370 °C.","Masse au lancement ~685 kg ; « touche » le Soleil en traversant sa couronne.","Passage au plus près le 24 décembre 2024 : à 6,1 millions de km de la surface.","Objet humain le plus rapide : ~690 000 km/h. Toujours active en 2026."],
+ sources:["https://science.nasa.gov/mission/parker-solar-probe/"],
+ models:[
+  {t:"NASA Parker Solar Probe",uid:"ce8b5da577104a11a1f76c3d81e46fdd",page:"https://sketchfab.com/3d-models/nasa-parker-solar-probe-ce8b5da577104a11a1f76c3d81e46fdd",author:"Space Explorers Academy",license:"CC BY-NC",dl:true},
+  {t:"Parker Solar Probe",uid:"665bf4ab9de8400e9486bcb337f98e2c",page:"https://sketchfab.com/3d-models/parker-solar-probe-665bf4ab9de8400e9486bcb337f98e2c",author:"salvey",license:"CC Attribution",dl:true},
+  {t:"Parker Solar Probe",uid:"d722a3423423442bb9bec45283f74768",page:"https://sketchfab.com/3d-models/parker-solar-probe-d722a3423423442bb9bec45283f74768",author:"Sithuka_Bihan",license:"CC Attribution",dl:true}
+ ]},
+{name:"Solar Orbiter",category:"sonde",agency:"ESA/NASA",year:2020,status:"actif",
+ facts:["Lancé le 10 février 2020 ; s'approche jusqu'à ~0,28 UA du Soleil (~42 millions de km).","Masse au lancement ~1 720 kg.","Première mission à photographier les pôles du Soleil (images livrées en 2025).","Toujours active en 2026."],
+ sources:["https://www.esa.int/Science_Exploration/Space_Science/Solar_Orbiter"],
+ models:[
+  {t:"Solar Orbiter",uid:"30650fe7bf624c8ca070efe9bd7d7a14",page:"https://sketchfab.com/3d-models/solar-orbiter-30650fe7bf624c8ca070efe9bd7d7a14",author:"STIK-Visualisation",license:"CC Attribution",dl:true},
+  {t:"Solar Orbiter ESA",uid:"646dd66295524c6f820260520057dcec",page:"https://sketchfab.com/3d-models/solar-orbiter-esa-646dd66295524c6f820260520057dcec",author:"erickgm2103",license:"CC Attribution",dl:true},
+  {t:"SolarOrbiterESA",uid:"203050ebeada40f28e6d6c7e8727915c",page:"https://sketchfab.com/3d-models/solarorbiteresa-203050ebeada40f28e6d6c7e8727915c",author:"quetspace",license:"CC Attribution",dl:true}
+ ]},
+{name:"Nancy Grace Roman",category:"telescope-spatial",agency:"NASA",year:2026,status:"futur",
+ facts:["Futur grand observatoire NASA ; lancement visé fin 2026 (cible 30 août 2026), au plus tard mai 2027.","Miroir de 2,4 m (comme Hubble) ; champ ~100× plus vaste (Wide Field Instrument).","Sonde l'énergie noire, recense les exoplanètes par microlentille.","Coronographe pour imager directement des exoplanètes ; placé en L2."],
+ sources:["https://science.nasa.gov/mission/roman-space-telescope/"],
+ models:[{t:"NASA WFIRST (ancien nom de Roman)",uid:"6c133e5588a54a50beb51598e4211a99",page:"https://sketchfab.com/3d-models/nasa-wfirstwide-field-infrared-survey-telescope-6c133e5588a54a50beb51598e4211a99",author:"Space Explorers Academy",license:"CC BY-NC",dl:true,note:"Modèle « WFIRST » = ancien nom du même télescope"}]},
+{name:"SMILE",category:"satellite",agency:"ESA/CAS",year:2026,status:"actif",
+ facts:["Première mission entièrement conjointe ESA / Académie chinoise des sciences (CAS).","Lancée le 19 mai 2026 (Vega-C, Kourou) — à recouper.","Première imagerie de la magnétosphère terrestre en rayons X mous (imageur SXI).","Étudie l'interaction vent solaire / bouclier magnétique (météo spatiale, aurores).","Orbite très elliptique (~121 000 km) ; mission d'~3 ans, en mise en service en 2026."],
+ sources:["https://www.esa.int/Science_Exploration/Space_Science/Smile"],
+ models:[]},
+{name:"Rosetta",category:"sonde",agency:"ESA",year:2004,status:"terminé",
+ facts:["Lancée le 2 mars 2004 (Ariane 5) ; cible : comète 67P/Churyumov-Gerasimenko (2014).","Masse au lancement ~3 000 kg ; 11 instruments orbiteur (dont caméra OSIRIS).","Atterrisseur Philae (~100 kg) posé le 12 novembre 2014 : premier atterrissage sur un noyau cométaire.","A montré les comètes comme capsules temporelles (gaz, poussière, organiques).","Mission terminée le 30 septembre 2016 (impact contrôlé sur 67P)."],
+ sources:["https://www.esa.int/Science_Exploration/Space_Science/Rosetta"],
+ models:[
+  {t:"Rosetta (3D printable)",uid:"c2a2108ecc3d4e28ade6625b5a7d640f",page:"https://sketchfab.com/3d-models/rosetta-3d-printable-c2a2108ecc3d4e28ade6625b5a7d640f",author:"NASA",license:"CC BY-NC",dl:true},
+  {t:"ESA Rosetta : comète + site de Philae",uid:"464c6be099f046bc9716a587c06a81b6",page:"https://sketchfab.com/3d-models/esa-rosetta-comet-and-philaes-landing-site-464c6be099f046bc9716a587c06a81b6",author:"Steren",license:"CC Attribution",dl:true,note:"Comète 67P + site d'atterrissage"},
+  {t:"Rosetta / Philae",uid:"a3ceaad24786436a88fd3d18595a6c0e",page:"https://sketchfab.com/3d-models/rosetta-philae-a3ceaad24786436a88fd3d18595a6c0e",author:"tashtego",license:"Tous droits réservés",dl:false}
+ ]},
+{name:"OSIRIS-REx / APEX",category:"sonde",agency:"NASA",year:2016,status:"actif",
+ facts:["Lancée le 8 septembre 2016 ; cible : astéroïde géocroiseur Bennu.","Échantillon collecté le 20 octobre 2020, rapporté sur Terre le 24 septembre 2023 : 70,3 g.","Première mission US de retour d'échantillon d'astéroïde ; composés organiques détectés.","Renommée OSIRIS-APEX pour rejoindre l'astéroïde Apophis en 2029."],
+ sources:["https://science.nasa.gov/mission/osiris-rex/","https://science.nasa.gov/mission/osiris-apex/"],
+ models:[
+  {t:"OSIRIS-REx",uid:"4502d7705147439eab474902fa283c89",page:"https://sketchfab.com/3d-models/osiris-rex-4502d7705147439eab474902fa283c89",author:"tashtego",license:"Tous droits réservés",dl:false},
+  {t:"NASA Osiris Rex",uid:"623b420b0b0343e5a37775a39b9d1c16",page:"https://sketchfab.com/3d-models/nasa-osiris-rex-623b420b0b0343e5a37775a39b9d1c16",author:"William J. Haney",license:"Tous droits réservés",dl:false}
+ ]},
+{name:"Hayabusa2",category:"sonde",agency:"JAXA",year:2014,status:"actif",
+ facts:["Lancée le 3 décembre 2014 (H-IIA), ~600 kg ; cible : astéroïde carboné Ryugu (2018).","Caméras ONC, NIRS3, TIR, LIDAR, impacteur SCI, rovers MINERVA-II et MASCOT.","Échantillons de surface et de sous-sol ; capsule retournée en Australie le 6 décembre 2020.","Mission étendue : survol de 2001 CC21 (2026) puis 1998 KY26 (~2031). Active en 2026."],
+ sources:["https://global.jaxa.jp/projects/sas/hayabusa2/"],
+ models:[
+  {t:"Haya2 enhanced",uid:"a8e3cee4ea9444a384fe1a4f2eef58ed",page:"https://sketchfab.com/3d-models/haya2-enhanced-a8e3cee4ea9444a384fe1a4f2eef58ed",author:"mcgyver2018",license:"CC Attribution",dl:true},
+  {t:"Hayabusa2 / はやぶさ2",uid:"01fc108faf24417f92edf496876e25e8",page:"https://sketchfab.com/3d-models/hayabusa2-2-01fc108faf24417f92edf496876e25e8",author:"TAIGA-ZOE",license:"Standard",dl:false},
+  {t:"Astéroïde Ryugu (11 juil. 2018)",uid:"44876e2f0d314b05ba32b0472a1eddc6",page:"https://sketchfab.com/3d-models/asteroid-ryugu-july-11th-2018-44876e2f0d314b05ba32b0472a1eddc6",author:"djellison",license:"CC Attribution",dl:true,note:"Corps cible (astéroïde), pas la sonde"}
+ ]},
+{name:"DART",category:"sonde",agency:"NASA/JHUAPL",year:2021,status:"terminé",
+ facts:["Lancée le 24 novembre 2021 (Falcon 9), ~610 kg ; première mission de défense planétaire (impacteur cinétique).","Cible : Dimorphos, lune de l'astéroïde binaire Didymos (sans danger pour la Terre).","Impact le 26 septembre 2022 à ~22 000 km/h.","A raccourci l'orbite de Dimorphos d'~32 minutes (objectif : 73 s).","Suivi assuré par la mission Hera de l'ESA."],
+ sources:["https://science.nasa.gov/planetary-defense-dart/"],
+ models:[{t:"NASA DART - Double Asteroid Redirection Test",uid:"076d822556334467aa358882cdc47899",page:"https://sketchfab.com/3d-models/nasa-dart-double-asteroid-redirection-test-076d822556334467aa358882cdc47899",author:"brianpeiris",license:"CC Attribution",dl:true}]},
+{name:"Lucy",category:"sonde",agency:"NASA",year:2021,status:"actif",
+ facts:["Lancée le 16 octobre 2021 (Atlas V 401) ; première mission vers les astéroïdes troyens de Jupiter.","Masse à sec ~771 kg ; envergure ~16 m (deux panneaux solaires de ~7 m).","Instruments L'LORRI, L'Ralph, L'TES.","Survols de Dinkinesh (2023, lune Selam) et Donaldjohanson (2025).","Première cible troyenne Eurybates en août 2027 ; survols jusqu'en 2033."],
+ sources:["https://science.nasa.gov/mission/lucy/"],
+ models:[
+  {t:"LUCY | NASA Space Probe",uid:"bc3dc59eceb74b43a02cc2d51b5a0be5",page:"https://sketchfab.com/3d-models/lucy-nasa-space-probe-free-download-bc3dc59eceb74b43a02cc2d51b5a0be5",author:"murilo.kleine",license:"CC Attribution",dl:true,note:"Auteur précise : pas scientifiquement exact"},
+  {t:"(52246) Donaldjohanson — vu par Lucy",uid:"00e87877346b4556ad6b80c03d7d4ab2",page:"https://sketchfab.com/3d-models/52246-donaldjohanson-from-lucy-spacecraft-00e87877346b4556ad6b80c03d7d4ab2",author:"arkeomapia",license:"CC Attribution",dl:true,note:"Corps cible (astéroïde), pas la sonde"}
+ ]},
+{name:"NEO Surveyor",category:"telescope-spatial",agency:"NASA",year:2027,status:"futur",
+ facts:["Télescope spatial infrarouge de défense planétaire ; lancement au plus tôt en septembre 2027.","Premier télescope conçu pour détecter les astéroïdes/comètes géocroiseurs dangereux.","Opèrera depuis L1 ; télescope IR de ~50 cm (bandes ~4 à 10 microns).","Objectif : détecter en 5 ans les 2/3 des géocroiseurs > 140 m. Ex-NEOCam, dirigé par le JPL."],
+ sources:["https://science.nasa.gov/mission/neo-surveyor/"],
+ models:[]},
+{name:"Comet Interceptor",category:"sonde",agency:"ESA/JAXA",year:2029,status:"futur",
+ facts:["Mission F-class (rapide) de l'ESA avec la JAXA ; lancement prévu fin 2028 / début 2029.","Première mission vers une comète à longue période (nuage d'Oort) ou un objet interstellaire.","3 modules : un vaisseau principal + deux sous-sondes (l'une fournie par la JAXA).","Attendra en L2 jusqu'à 3 ans qu'une cible atteignable soit détectée.","Observation simultanée multi-angles → profil 3D inédit du noyau."],
+ sources:["https://www.esa.int/Science_Exploration/Space_Science/Comet_Interceptor"],
+ models:[]},
+{name:"DESTINY+",category:"sonde",agency:"JAXA",year:2028,status:"futur",
+ facts:["Mission JAXA/ISAS de survol de l'astéroïde (3200) Phaethon (corps parent des Géminides).","Propulsion électrique solaire (moteurs ioniques μ10) ; masse ~480-500 kg.","Instruments : analyseur de poussières DDA, caméras TCAP et MCAP.","Lancement prévu vers 2028 (H3), survol de Phaethon vers 2030."],
+ sources:["https://www.isas.jaxa.jp/en/missions/spacecraft/developing/destiny_plus.html"],
+ models:[{t:"Phaethon (forme)",uid:"dd95b1337af94eb795e2d98a16f6ad2b",page:"https://sketchfab.com/3d-models/phaethon-shape-dd95b1337af94eb795e2d98a16f6ad2b",author:"kshhhv",license:"Non spécifiée",dl:false,note:"Corps cible (astéroïde), pas la sonde"}]},
+{name:"Europa Clipper",category:"sonde",agency:"NASA/JPL",year:2024,status:"actif",
+ facts:["Lancée le 14 octobre 2024 (Falcon Heavy) — plus grand vaisseau interplanétaire NASA (~6 000 kg).","Étudie Europe (lune de Jupiter) et son océan souterrain pour évaluer son habitabilité.","9 instruments (caméras, spectromètres, radar de glace, magnétomètre).","Insertion autour de Jupiter en avril 2030, puis 49 survols d'Europe.","En croisière en 2026 (survol de Mars en mars 2025)."],
+ sources:["https://science.nasa.gov/mission/europa-clipper/"],
+ models:[
+  {t:"Europa clipper",uid:"5e88f1eb8db446a8a22577624ae4af03",page:"https://sketchfab.com/3d-models/europa-clipper-5e88f1eb8db446a8a22577624ae4af03",author:"robo-reboot",license:"CC Attribution",dl:true},
+  {t:"Europa Clipper",uid:"4de9099010454f64af99d52a1f5c3701",page:"https://sketchfab.com/3d-models/europa-clipper-4de9099010454f64af99d52a1f5c3701",author:"allanromanreyes",license:"Free Standard",dl:true}
+ ]},
+{name:"Dragonfly",category:"sonde",agency:"NASA/JHUAPL",year:2028,status:"futur",
+ facts:["Lancement prévu en juillet 2028, arrivée sur Titan vers 2034.","Astromobile volant octocoptère (8 rotors) ~875 kg, alimenté par MMRTG.","Étudie la chimie prébiotique et l'habitabilité de Titan en volant de site en site.","Instruments DraMS, DraGNS, DrACO, DragonCam.","Mission confirmée (2024), revue critique passée (2025) : phase de construction."],
+ sources:["https://science.nasa.gov/mission/dragonfly/"],
+ models:[
+  {t:"NASA Dragonfly Quadcopter",uid:"fa2d23cbce6642598f5e6e6f65b8b312",page:"https://sketchfab.com/3d-models/nasa-dragonfly-quadcopter-fa2d23cbce6642598f5e6e6f65b8b312",author:"Emil van Dam",license:"CC Attribution",dl:true},
+  {t:"NASA Dragon Fly",uid:"72e2316b558a4152b10e56906c4054b0",page:"https://sketchfab.com/3d-models/nasa-dragon-fly-72e2316b558a4152b10e56906c4054b0",author:"William J. Haney",license:"Non spécifiée",dl:false}
+ ]},
+{name:"MMX (Martian Moons eXploration)",category:"sonde",agency:"JAXA",year:2026,status:"futur",
+ facts:["Mission JAXA (avec NASA, CNES, DLR, ESA) ; lancement prévu fin 2026 depuis Tanegashima.","Étudie Phobos et Deimos et rapporte un échantillon de Phobos (≥10 g).","Vaisseau ~4 200 kg en 3 modules ; rover franco-allemand IDEFIX (~25 kg).","Instruments TENGOO, OROCHI, LIDAR, MIRS. Retour de l'échantillon vers 2031."],
+ sources:["https://www.mmx.jaxa.jp/en/"],
+ models:[]},
+{name:"Chang'e-6",category:"lander",agency:"CNSA",year:2024,status:"terminé",
+ facts:["Lancée le 3 mai 2024 (Longue Marche 5) — premiers échantillons de la face cachée de la Lune.","Atterrissage le 1er juin 2024 dans le cratère Apollo (bassin Pôle Sud-Aitken).","1 935,3 g de régolithe collectés (foreuse + pelle).","Capsule de retour atterrie en Mongolie-Intérieure le 25 juin 2024."],
+ sources:["https://www.planetary.org/space-missions/change-6"],
+ models:[{t:"Chang'e 6",uid:"adb040629d854f8dbec71d297d627c6f",page:"https://sketchfab.com/3d-models/change-6-adb040629d854f8dbec71d297d627c6f",author:"thaweverything",license:"Non précisée",dl:false}]},
+{name:"Chang'e-7",category:"lander",agency:"CNSA",year:2026,status:"futur",
+ facts:["Mission robotique prévue vers mi-2026 visant le pôle sud lunaire.","Recherche de glace d'eau et étude des volatils.","Orbiteur + atterrisseur + rover + sonde sauteuse (« hopper »).","Atterrissage visé au bord du cratère Shackleton ; ~15 instruments dont coopération internationale."],
+ sources:["https://en.wikipedia.org/wiki/Chang%27e_7"],
+ models:[]},
+{name:"Chandrayaan-3",category:"lander",agency:"ISRO",year:2023,status:"terminé",
+ facts:["Lancée le 14 juillet 2023 (LVM-3) ; atterrissage en douceur le 23 août 2023 près du pôle sud lunaire.","L'Inde : 4e pays à réussir un alunissage, 1er près du pôle sud.","Atterrisseur Vikram + rover Pragyan (~27 kg).","ChaSTE, RAMBHA-LP, ILSA, APXS, LIBS.","Mission terminée après la nuit lunaire (pas de réveil en septembre 2023)."],
+ sources:["https://www.eoportal.org/satellite-missions/chandrayaan-3"],
+ models:[
+  {t:"ISRO Chandrayaan-3 Vikram (lander)",uid:"27e8d9b94f324e6b9a25b58e64317213",page:"https://sketchfab.com/3d-models/isro-chandrayyan-3-mission-lander-module-vikram-27e8d9b94f324e6b9a25b58e64317213",author:"Kulibin Space",license:"CC Attribution",dl:true},
+  {t:"Pragyan Rover",uid:"2a84cfca3dc54359a3bd834fb279e9fd",page:"https://sketchfab.com/3d-models/pragyan-rover-2a84cfca3dc54359a3bd834fb279e9fd",author:"sohamr.sr",license:"CC Attribution",dl:true},
+  {t:"Chandrayaan-3 Vikram Lander",uid:"52f548f401584fd9abe0fa5336e45e74",page:"https://sketchfab.com/3d-models/chandrayaan-3-vikram-lander-52f548f401584fd9abe0fa5336e45e74",author:"vfxcook",license:"Non précisée",dl:false}
+ ]},
+{name:"Chandrayaan-4",category:"lander",agency:"ISRO",year:2027,status:"futur",
+ facts:["Première mission indienne de retour d'échantillons lunaires ; lancement visé en 2027.","Approuvée le 18 septembre 2024 (~2 104 crores de roupies).","Objectif : rapporter jusqu'à 3 kg de régolithe près du pôle sud.","Architecture en 5 modules ; deux lancements LVM-3 + amarrage en orbite."],
+ sources:["https://en.wikipedia.org/wiki/Chandrayaan-4"],
+ models:[{t:"LUPEX Rover (chandrayaan4)",uid:"6e3dc5e5772e449e91dc34a47cd4a69b",page:"https://sketchfab.com/3d-models/lupex-rover-chandrayaan4-6e3dc5e5772e449e91dc34a47cd4a69b",author:"AnishRoyalinc",license:"Payant (Standard)",dl:false}]},
+{name:"Orion",category:"habite",agency:"NASA/ESA",year:2022,status:"actif",
+ facts:["Capsule habitée NASA (Module de Service européen ESA) pour ramener des humains vers la Lune (Artemis).","Module d'équipage ~5 m de diamètre, ~8,5 t ; jusqu'à 4 astronautes.","Premier vol non habité réussi : Artemis I, lancée le 16 novembre 2022.","Artemis II : premier vol habité d'Orion au-delà de l'orbite basse depuis Apollo 17.","Lancée au sommet de la fusée SLS."],
+ sources:["https://www.nasa.gov/humans-in-space/orion-spacecraft/"],
+ models:[
+  {t:"Orion Spacecraft",uid:"fb89e865dcd446b89eaf78deaf213974",page:"https://sketchfab.com/3d-models/orion-spacecraft-fb89e865dcd446b89eaf78deaf213974",author:"WISEMANmods",license:"CC Attribution",dl:true},
+  {t:"NASA Orion Spacecraft",uid:"1b783d2e242b4021a9ccdce44a051dc3",page:"https://sketchfab.com/3d-models/nasa-orion-spacecraft-1b783d2e242b4021a9ccdce44a051dc3",author:"MechLab3D",license:"Non spécifiée",dl:false}
+ ]},
+{name:"SLS (Space Launch System)",category:"habite",agency:"NASA",year:2022,status:"actif",
+ facts:["Lanceur lourd NASA pour propulser Orion vers la Lune et au-delà.","Block 1 : ~98 m de haut, poussée max ~39 100 kN — plus que la Saturn V.","~27 t en injection translunaire (TLI).","Premier (et unique) vol : Artemis I, le 16 novembre 2022.","Dérivé de la navette (boosters à poudre + étage central RS-25)."],
+ sources:["https://www.nasa.gov/reference/space-launch-system/"],
+ models:[
+  {t:"NASA SLS Rocket Block 1",uid:"81bb895c07d04e788eb001abd4890c46",page:"https://sketchfab.com/3d-models/nasa-sls-rocket-block-1-81bb895c07d04e788eb001abd4890c46",author:"AllThingsSpace",license:"CC Attribution",dl:true},
+  {t:"Space Launch System (SLS)",uid:"8f4714d8ea4f44f983efa8ae2a53e0de",page:"https://sketchfab.com/3d-models/space-launch-system-sls-8f4714d8ea4f44f983efa8ae2a53e0de",author:"Clarence365",license:"CC Attribution",dl:true},
+  {t:"NASA Artemis II SLS",uid:"02618f5934704da88fe8513501269cb1",page:"https://sketchfab.com/3d-models/nasa-artemis-ii-space-launch-system-sls-02618f5934704da88fe8513501269cb1",author:"3D_Hero",license:"CC Attribution",dl:true}
+ ]},
+{name:"EnVision",category:"satellite",agency:"ESA/NASA",year:2031,status:"futur",
+ facts:["Mission orbitale ESA vers Vénus (Cosmic Vision M5), adoptée le 25 janvier 2024.","Lancement au plus tôt en novembre 2031 (Ariane 6) ; aérofreinage de plusieurs années.","Étudie Vénus « du noyau à la haute atmosphère ».","Radar VenSAR (NASA), radar sondeur SRS (~1 km de profondeur), spectromètres VenSpec."],
+ sources:["https://www.esa.int/Science_Exploration/Space_Science/Envision/Envision_factsheet"],
+ models:[]},
+{name:"DAVINCI",category:"sonde",agency:"NASA",year:2030,status:"futur",
+ facts:["Mission NASA Discovery (Goddard) vers Vénus ; lancement au plus tôt vers 2030.","Sonde de descente mesurant composition, T, pression et vents jusqu'à la surface.","Vise la région montagneuse d'Alpha Regio (tessera), photographiée en haute résolution.","Instruments VMS, VTLS, VASI, VenDI ; orbiteur VISOR + CUVIS.","But : Vénus a-t-elle pu être humide et habitable ?"],
+ sources:["https://science.nasa.gov/mission/davinci/"],
+ models:[]},
+{name:"VERITAS",category:"satellite",agency:"NASA",year:2031,status:"futur",
+ facts:["Mission NASA Discovery (JPL) vers Vénus ; lancement au plus tôt en 2031.","Orbiteur solaire en orbite quasi polaire (~400 km) après aérofreinage.","Radar interférométrique VISAR : cartes et topographie globales bien plus fines que Magellan.","VEM : composition des roches et signatures du volcanisme (IR).","Contributions ASI, DLR, CNES."],
+ sources:["https://science.nasa.gov/mission/veritas/"],
+ models:[]},
+{name:"Starlink",category:"satellite",agency:"SpaceX",year:2019,status:"actif",
+ facts:["Méga-constellation Internet de SpaceX ; premier lot opérationnel le 24 mai 2019.","Plus grande constellation au monde : plus de 7 000 satellites actifs en LEO (2025).","Orbite basse ~540-570 km : faible latence. V2 Mini ~740 kg, propulsion à l'argon.","~5 ans de vie puis désorbitation. Déployés par Falcon 9 (et à terme Starship)."],
+ sources:["https://www.eoportal.org/satellite-missions/starlink"],
+ models:[
+  {t:"Starlink Spacex Satellite",uid:"0a60f6720c5141c9a1c6d71aac108b31",page:"https://sketchfab.com/3d-models/starlink-spacex-satellite-0a60f6720c5141c9a1c6d71aac108b31",author:"Malacodart",license:"CC Attribution",dl:true},
+  {t:"Starlink satellite",uid:"3a622880dc2145ae8aee36cbf4a3e051",page:"https://sketchfab.com/3d-models/starlink-satellite-3a622880dc2145ae8aee36cbf4a3e051",author:"tashtego",license:"Standard",dl:false}
+ ]},
+{name:"Landsat 9",category:"satellite",agency:"NASA / USGS",year:2021,status:"actif",
+ facts:["Lancé le 27 septembre 2021 (Atlas V 401) ; mission conjointe NASA/USGS.","Poursuit la plus longue archive d'imagerie de la Terre, depuis Landsat 1 (1972).","Orbite héliosynchrone 705 km, revisite 16 jours. Imageur OLI-2 + capteur thermique TIRS-2.","Masse ~2 700 kg ; données gratuites et ouvertes (agriculture, déforestation, climat)."],
+ sources:["https://www.usgs.gov/landsat-missions/landsat-9"],
+ models:[
+  {t:"Satellite Landsat 8 (clean topo)",uid:"4cf892ee33b94978a3b70309bbc2a76f",page:"https://sketchfab.com/3d-models/eoes-satellite-landsat-8-clean-topo-4cf892ee33b94978a3b70309bbc2a76f",author:"wireframe (elliottebbs)",license:"CC Attribution",dl:true,note:"Landsat 8 (quasi identique au 9)"},
+  {t:"Landsat 7 Satellite",uid:"683add279e1e4b29919d137fc099e767",page:"https://sketchfab.com/3d-models/landsat-7-satellite-683add279e1e4b29919d137fc099e767",author:"Ch4rlie",license:"Standard",dl:false}
+ ]},
+{name:"Sentinel-2 (Copernicus)",category:"satellite",agency:"ESA (Copernicus)",year:2015,status:"actif",
+ facts:["Mission optique du programme Copernicus (ESA) ; Sentinel-2A lancé le 23 juin 2015, 2C en sept. 2024.","Constellation à revisite de 5 jours à l'équateur ; imageur multispectral 13 bandes (10/20/60 m).","Fauchée de 290 km : suivi des terres, forêts, agriculture, eaux côtières.","Orbite 786 km ; ~1 200 kg/satellite ; données gratuites et ouvertes."],
+ sources:["https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2"],
+ models:[{t:"Sentinel2",uid:"36d8328a3c98447eadf0de08c277ede9",page:"https://sketchfab.com/3d-models/sentinel2-36d8328a3c98447eadf0de08c277ede9",author:"bernardo.bello",license:"CC Attribution",dl:true}]},
+{name:"GPS (Block III)",category:"satellite",agency:"US Space Force / Lockheed Martin",year:2018,status:"actif",
+ facts:["Constellation de navigation (US Space Force) ; GPS III par Lockheed Martin.","Premier GPS III lancé le 23 décembre 2018 (Falcon 9).","Orbite moyenne ~20 200 km ; ~3 900 kg ; ~15 ans de vie.","Précision 3× meilleure, anti-brouillage jusqu'à 8× ; nouveau signal civil L1C (interopérable Galileo).","≥24 satellites opérationnels (souvent ~31) sur 6 plans ; GPS IIIF à partir de ~2027."],
+ sources:["https://www.gps.gov/space-segment"],
+ models:[
+  {t:"Space GPS III",uid:"06ae91c2d22c4a69a43d9a655a31de42",page:"https://sketchfab.com/3d-models/space-gps-iii-06ae91c2d22c4a69a43d9a655a31de42",author:"Frontgrade",license:"Tous droits réservés",dl:false},
+  {t:"Navstar GPS",uid:"11b7fb1771af4ab69089d44ca2a7bdf3",page:"https://sketchfab.com/3d-models/navstar-gps-11b7fb1771af4ab69089d44ca2a7bdf3",author:"tashtego",license:"Tous droits réservés",dl:false}
+ ]},
+{name:"Station spatiale internationale (ISS)",category:"habite",agency:"NASA/Roscosmos/ESA/JAXA/CSA",year:1998,status:"actif",
+ facts:["Laboratoire orbital habité ; partenariat de 5 agences. Premier module (Zarya) le 20 novembre 1998.","Présence humaine continue depuis novembre 2000 (plus de 25 ans en 2026).","Orbite ~400 km à ~28 000 km/h : un tour de la Terre toutes les ~90 min.","Masse ~420 t, envergure ~109 m ; équipage permanent de ~7.","Désorbitation contrôlée prévue vers 2030-2031."],
+ sources:["https://www.nasa.gov/international-space-station/"],
+ models:[
+  {t:"International Space Station",uid:"f6e4f7ba571f4b33948ba1da23280ee0",page:"https://sketchfab.com/3d-models/international-space-station-f6e4f7ba571f4b33948ba1da23280ee0",author:"Paul (Sketchfab)",license:"CC Attribution",dl:true},
+  {t:"International Space Station",uid:"6e289a99dfaa4de3852637696ddaea54",page:"https://sketchfab.com/3d-models/international-space-station-6e289a99dfaa4de3852637696ddaea54",author:"BlendRuN",license:"CC Attribution",dl:true},
+  {t:"International Space Station - NASA",uid:"848073763d454d4caba2fcd88fb5869b",page:"https://sketchfab.com/3d-models/international-space-station-nasa-848073763d454d4caba2fcd88fb5869b",author:"GILDEPAULO",license:"CC Attribution",dl:true}
+ ]},
+{name:"ELT (Extremely Large Telescope)",category:"telescope-sol",agency:"ESO",year:2028,status:"futur",
+ facts:["En construction sur le Cerro Armazones (Atacama, Chili, ~3 046 m).","Miroir primaire segmenté de 39,3 m (798 segments) : plus grand télescope optique/IR au monde.","Conception à 5 miroirs, optique adaptative intégrée (M4).","~100 millions de fois plus de lumière que l'œil ; images jusqu'à 15× plus nettes que Hubble.","Première lumière attendue vers 2028-2029 ; dôme de ~80 m."],
+ sources:["https://elt.eso.org/about/"],
+ models:[]},
+{name:"VLT (Very Large Telescope)",category:"telescope-sol",agency:"ESO",year:1998,status:"actif",
+ facts:["ESO, Cerro Paranal (Chili, 2 635 m) ; première lumière le 25 mai 1998.","Quatre télescopes de 8,2 m (Antu, Kueyen, Melipal, Yepun) + 4 auxiliaires de 1,8 m (interféromètre VLTI).","Observatoire au sol le plus productif (>1 article évalué par jour).","Première image directe d'une exoplanète ; suivi des étoiles autour du trou noir central.","Pleinement opérationnel en 2026."],
+ sources:["https://www.eso.org/public/teles-instr/paranal-observatory/vlt/"],
+ models:[
+  {t:"ESO VLT — dôme d'un télescope",uid:"9695be2ec99c4cea8963f777f264a6a5",page:"https://sketchfab.com/3d-models/eso-vlt-unit-telescope-dome-9695be2ec99c4cea8963f777f264a6a5",author:"europeansouthernobservatory",license:"CC Attribution",dl:true},
+  {t:"VLT de l'ESO au coucher du soleil",uid:"39e8c7903a214bb9a5c49bbe10d10587",page:"https://sketchfab.com/3d-models/esos-very-large-telescope-at-sunset-39e8c7903a214bb9a5c49bbe10d10587",author:"Quanta Magazine",license:"Tous droits réservés",dl:false}
+ ]},
+{name:"Keck Observatory",category:"telescope-sol",agency:"CARA",year:1993,status:"actif",
+ facts:["Mauna Kea, Hawaii (~4 145 m) ; deux télescopes jumeaux Keck I (1993) et Keck II (1996).","Miroirs primaires de 10 m, 36 segments hexagonaux alignés au nanomètre.","Optique adaptative à étoile-guide laser (images jusqu'à 10× plus nettes).","Longtemps les plus grands télescopes optiques/IR du monde. Opérationnel en 2026."],
+ sources:["https://keckobservatory.org/about/telescopes-instrumentation/"],
+ models:[]},
+{name:"FAST (radiotélescope)",category:"telescope-sol",agency:"NAOC (Chine)",year:2016,status:"actif",
+ facts:["« Tianyan » (l'Œil du Ciel) : plus grand radiotélescope à antenne unique au monde.","Réflecteur sphérique fixe de 500 m (4 450 panneaux), dépression karstique de Dawodang (Guizhou).","Première lumière le 25 septembre 2016 ; pleinement opérationnel le 11 janvier 2020.","A surpassé Arecibo ; spécialisé pulsars et sursauts radio rapides (>500 pulsars dès 2021).","Ouvert à l'international depuis 2021."],
+ sources:["https://en.wikipedia.org/wiki/Five-hundred-meter_Aperture_Spherical_Telescope"],
+ models:[]},
+{name:"Arecibo (radiotélescope)",category:"telescope-sol",agency:"NSF / Cornell (USA)",year:1963,status:"terminé",
+ facts:["Réflecteur sphérique de 305 m ; plus grand radiotélescope à antenne unique pendant 53 ans (1963-2016).","Inauguré le 1er novembre 1963. Message d'Arecibo (1974), premier pulsar binaire, premières exoplanètes.","Effondrement le 1er décembre 2020 (plateforme de 900 t tombée de ~140 m).","Cause : rupture par fluage du zinc après 57 ans. Non reconstruit (centre éducatif Arecibo C3)."],
+ sources:["https://en.wikipedia.org/wiki/Arecibo_Observatory"],
+ models:[
+  {t:"Arecibo Telescope - Collapsed",uid:"a6a84919914c4cb194ef43b614308036",page:"https://sketchfab.com/3d-models/arecibo-telescope-collapsed-a6a84919914c4cb194ef43b614308036",author:"Gabo Gatchava",license:"CC Attribution",dl:true,note:"État effondré (2020)"},
+  {t:"Arecibo",uid:"91041b64313d48c79958de96a5d43ad4",page:"https://sketchfab.com/3d-models/arecibo-91041b64313d48c79958de96a5d43ad4",author:"Jan Bláha",license:"Standard",dl:false},
+  {t:"Arecibo Map, telescope, terrain",uid:"88202082553740f9b476f064c0e6fd46",page:"https://sketchfab.com/3d-models/arecibo-map-telescope-terrain-88202082553740f9b476f064c0e6fd46",author:"SENSIET",license:"Editorial",dl:false}
+ ]}
+];
+
+// ---------- rendering ----------
+const EMBED = uid => `https://sketchfab.com/models/${uid}/embed?autostart=0&ui_theme=dark&ui_infos=0&ui_watermark=0&ui_stop=0&dnt=1`;
+const isCC = l => /cc|attribution|public domain|cc0/i.test(l||'') && !/non-?commercial.*payant/i.test(l||'');
+const norm = s => (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+DATA.forEach((d,i)=>{d._id=i; d._search=norm([d.name,d.agency,CATS[d.category],d.facts.join(' '),d.models.map(m=>m.t+' '+m.author).join(' ')].join(' '));});
+
+const KEPT = new Set(JSON.parse(localStorage.getItem('eci_kept')||'[]'));
+const CHOSEN = new Set(JSON.parse(localStorage.getItem('eci_chosen')||'[]')); // "id::uid"
+function persist(){localStorage.setItem('eci_kept',JSON.stringify([...KEPT]));localStorage.setItem('eci_chosen',JSON.stringify([...CHOSEN]));updateDock();}
+
+const state={q:'',cats:new Set(),agency:'',sort:'year',onlymodels:false,onlycc:false,onlykept:false};
+
+// build stats
+const totalModels = DATA.reduce((a,d)=>a+d.models.length,0);
+const withModels = DATA.filter(d=>d.models.length).length;
+const ccModels = DATA.reduce((a,d)=>a+d.models.filter(m=>isCC(m.license)).length,0);
+document.getElementById('stats').innerHTML = [
+ [DATA.length,'engins'],[withModels,'avec modèle 3D'],[totalModels,'modèles Sketchfab'],[ccModels,'modèles CC'],[DATA.length-withModels,'sans modèle']
+].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+
+// category chips
+const catCounts={};DATA.forEach(d=>catCounts[d.category]=(catCounts[d.category]||0)+1);
+document.getElementById('cats').innerHTML = Object.entries(CATS).map(([k,v])=>
+ `<span class="chip cat" data-cat="${k}">${v} <span style="opacity:.6">${catCounts[k]||0}</span></span>`).join('');
+// status chips
+document.getElementById('stats-chips').innerHTML = Object.keys(ST).map(s=>
+ `<span class="chip st" data-st="${s}">${STLAB[s]}</span>`).join('');
+
+// agency select
+[...new Set(DATA.map(d=>d.agency))].sort().forEach(a=>{
+ const o=document.createElement('option');o.value=a;o.textContent=a;document.getElementById('agency').appendChild(o);});
+
+// ---- active WebGL viewer LRU (max 6) ----
+const ACTIVE=[];
+function loadViewer(box,uid){
+ if(box.querySelector('iframe'))return;
+ box.innerHTML=`<iframe src="${EMBED(uid)}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>`;
+ ACTIVE.push({box,uid});
+ if(ACTIVE.length>6){const old=ACTIVE.shift();renderPlaceholder(old.box,old.uid);}
+}
+function renderPlaceholder(box,uid){
+ box.innerHTML=`<button class="playbtn" data-uid="${uid}"><span class="disc"><svg width="22" height="22" viewBox="0 0 24 24" fill="#26100a"><path d="M8 5v14l11-7z"/></svg></span>Charger en 3D</button>`;
+}
+
+const STq=v=>{const m={'st-actif':'actif','st-termine':'terminé','st-futur':'futur'};return m[v];};
+
+function matches(d){
+ if(state.q && !d._search.includes(norm(state.q)))return false;
+ if(state.cats.size && !state.cats.has(d.category))return false;
+ if(state.sts && state.sts.size && !state.sts.has(d.status))return false;
+ if(state.agency && d.agency!==state.agency)return false;
+ if(state.onlymodels && !d.models.length)return false;
+ if(state.onlycc && !d.models.some(m=>isCC(m.license)))return false;
+ if(state.onlykept && !KEPT.has(d._id))return false;
+ return true;
+}
+function sortFn(a,b){
+ if(state.sort==='year')return a.year-b.year||a.name.localeCompare(b.name);
+ if(state.sort==='year-desc')return b.year-a.year;
+ if(state.sort==='name')return a.name.localeCompare(b.name);
+ if(state.sort==='models')return b.models.length-a.models.length;
+ return 0;
+}
+
+function cardHTML(d){
+ const kept=KEPT.has(d._id);
+ const models = d.models.length ? d.models.map(m=>{
+   const cc=isCC(m.license);const chosen=CHOSEN.has(d._id+'::'+m.uid);
+   return `<div class="model${chosen?' chosen':''}" data-uid="${m.uid}">
+     <div class="viewer"><button class="playbtn" data-uid="${m.uid}"><span class="disc"><svg width="22" height="22" viewBox="0 0 24 24" fill="#26100a"><path d="M8 5v14l11-7z"/></svg></span>Charger en 3D</button></div>
+     ${m.note?`<div class="mnote">⚑ ${m.note}</div>`:''}
+     <div class="mbar">
+       <div class="mt"><b title="${m.t}">${m.t}</b><span>par ${m.author}</span></div>
+       <span class="lic ${cc?'cc':'arr'}" title="${m.license}">${cc?'CC':(m.dl?'DL':'ARR')}</span>
+       <div class="mactions">
+         <button class="mbtn choose${chosen?' chosen':''}" data-choose="${d._id}::${m.uid}">${chosen?'✓ choisi':'choisir'}</button>
+         <a class="mbtn" href="${m.page}" target="_blank" rel="noopener">↗</a>
+       </div>
+     </div>
+   </div>`;}).join('') : `<div class="nomodel">Aucun modèle 3D Sketchfab trouvé pour cet engin.</div>`;
+ return `<article class="card${kept?' kept':''}" data-id="${d._id}">
+   <div class="head">
+     <div class="toprow">
+       <h2>${d.name}</h2>
+       <button class="keepbtn" data-keep="${d._id}">${kept?'★ retenu':'☆ retenir'}</button>
+     </div>
+     <div class="meta">
+       <span class="tag cat">${CATS[d.category]}</span>
+       <span class="tag year">${d.year}</span>
+       <span class="tag ${ST[d.status]}">${STLAB[d.status]}</span>
+       <span class="tag">${d.agency}</span>
+     </div>
+   </div>
+   <ul class="facts">${d.facts.map(f=>`<li>${f}</li>`).join('')}</ul>
+   <div class="srcs">${d.sources.map(s=>`<a href="${s}" target="_blank" rel="noopener">source ↗</a>`).join('')}</div>
+   <div class="models"><div class="mhead">Modèles 3D · ${d.models.length}</div>${models}</div>
+ </article>`;
+}
+
+function render(){
+ const list=DATA.filter(matches).sort(sortFn);
+ const grid=document.getElementById('grid');
+ grid.innerHTML=list.map(cardHTML).join('');
+ document.getElementById('empty').style.display=list.length?'none':'block';
+ document.getElementById('count').textContent=`${list.length} engin${list.length>1?'s':''} affiché${list.length>1?'s':''} · ${list.reduce((a,d)=>a+d.models.length,0)} modèles`;
+ ACTIVE.length=0;
+}
+
+// events (delegated)
+document.getElementById('grid').addEventListener('click',e=>{
+ const play=e.target.closest('.playbtn');
+ if(play){loadViewer(play.closest('.viewer'),play.dataset.uid);return;}
+ const keep=e.target.closest('[data-keep]');
+ if(keep){const id=+keep.dataset.keep;KEPT.has(id)?KEPT.delete(id):KEPT.add(id);persist();
+   const card=keep.closest('.card');card.classList.toggle('kept');keep.textContent=KEPT.has(id)?'★ retenu':'☆ retenir';return;}
+ const ch=e.target.closest('[data-choose]');
+ if(ch){const k=ch.dataset.choose;CHOSEN.has(k)?CHOSEN.delete(k):CHOSEN.add(k);persist();
+   const on=CHOSEN.has(k);ch.classList.toggle('chosen',on);ch.textContent=on?'✓ choisi':'choisir';
+   ch.closest('.model').classList.toggle('chosen',on);return;}
+});
+
+document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;render();});
+document.getElementById('agency').addEventListener('change',e=>{state.agency=e.target.value;render();});
+document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;render();});
+document.getElementById('onlymodels').addEventListener('change',e=>{state.onlymodels=e.target.checked;render();});
+document.getElementById('onlycc').addEventListener('change',e=>{state.onlycc=e.target.checked;render();});
+document.getElementById('onlykept').addEventListener('change',e=>{state.onlykept=e.target.checked;render();});
+state.sts=new Set();
+document.getElementById('cats').addEventListener('click',e=>{const c=e.target.closest('[data-cat]');if(!c)return;
+ const k=c.dataset.cat;state.cats.has(k)?state.cats.delete(k):state.cats.add(k);c.classList.toggle('on');render();});
+document.getElementById('stats-chips').addEventListener('click',e=>{const c=e.target.closest('[data-st]');if(!c)return;
+ const k=c.dataset.st;state.sts.has(k)?state.sts.delete(k):state.sts.add(k);c.classList.toggle('on');render();});
+
+// dock + export
+function updateDock(){
+ const n=KEPT.size+CHOSEN.size;document.getElementById('selN').textContent=n;
+ document.getElementById('clearSel').style.display=n?'block':'none';
+}
+let fmt='md';
+function buildExport(){
+ const keptList=[...KEPT].map(i=>DATA[i]).sort((a,b)=>a.year-b.year);
+ const chosenByCraft={};[...CHOSEN].forEach(k=>{const[i,uid]=k.split('::');(chosenByCraft[i]=chosenByCraft[i]||[]).push(uid);});
+ if(fmt==='json'){
+   return JSON.stringify({
+     retenus:keptList.map(d=>({name:d.name,category:d.category,year:d.year,agency:d.agency,status:d.status})),
+     modeles_choisis:Object.entries(chosenByCraft).map(([i,uids])=>{const d=DATA[i];
+       return {engin:d.name,models:uids.map(u=>{const m=d.models.find(x=>x.uid===u);return{title:m.t,uid:u,embed:EMBED(u),author:m.author,license:m.license,page:m.page};})};})
+   },null,2);
+ }
+ let out='# Sélection — dossier sondes\n\n## Engins retenus\n';
+ out+= keptList.length?keptList.map(d=>`- **${d.name}** (${d.year}, ${CATS[d.category]}, ${d.agency})`).join('\n'):'_aucun_';
+ out+='\n\n## Modèles 3D choisis\n';
+ const entries=Object.entries(chosenByCraft);
+ out+= entries.length?entries.map(([i,uids])=>{const d=DATA[i];
+   return `\n### ${d.name}\n`+uids.map(u=>{const m=d.models.find(x=>x.uid===u);
+     return `- ${m.t} — ${m.author} (${m.license})\n  - embed: \`${EMBED(u)}\`\n  - page: ${m.page}`;}).join('\n');}).join('\n'):'_aucun_';
+ return out;
+}
+function openModal(){document.getElementById('exportText').value=buildExport();document.getElementById('modal').classList.add('open');}
+document.getElementById('exportBtn').addEventListener('click',openModal);
+document.getElementById('closeModal').addEventListener('click',()=>document.getElementById('modal').classList.remove('open'));
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')e.target.classList.remove('open');});
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');fmt=b.dataset.fmt;document.getElementById('exportText').value=buildExport();}));
+document.getElementById('copyBtn').addEventListener('click',()=>{const t=document.getElementById('exportText');t.select();
+ navigator.clipboard.writeText(t.value).then(()=>{document.getElementById('copyBtn').textContent='Copié ✓';setTimeout(()=>document.getElementById('copyBtn').textContent='Copier',1500);});});
+document.getElementById('clearSel').addEventListener('click',()=>{if(confirm('Vider la sélection (retenus + modèles choisis) ?')){KEPT.clear();CHOSEN.clear();persist();render();}});
+
+updateDock();render();
+</script>
+</body>
+</html>

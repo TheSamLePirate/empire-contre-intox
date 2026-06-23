@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Atelier — Préparer les dossiers · Empire contre Intox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e14;--bg2:#0e141d;--panel:#121a26;--panel2:#16202e;
+    --ink:#e9eef4;--soft:#aeb9c7;--muted:#7c8a9b;--line:rgba(255,255,255,.09);
+    --orange:#ff8a4c;--orange-d:#e9692a;--teal:#3fd0c9;--gold:#e9c46a;--blue:#6aa8ff;--green:#5fd38a;
+    --mono:'JetBrains Mono',monospace;--disp:'Bricolage Grotesque',sans-serif;--serif:'Newsreader',serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1100px 600px at 82% -8%,rgba(63,208,201,.09),transparent 60%),radial-gradient(900px 560px at -8% 8%,rgba(255,138,76,.09),transparent 55%),var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.55}
+  a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  header{padding:54px 0 22px;border-bottom:1px solid var(--line)}
+  .topline{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--orange)}
+  .priv{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--gold);border:1px solid rgba(233,196,106,.35);background:rgba(233,196,106,.07);padding:6px 11px;border-radius:999px}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(30px,5.5vw,50px);line-height:1.02;margin:.22em 0 .12em;letter-spacing:-.015em}
+  h1 .hl{color:var(--teal)}
+  .lead{color:var(--soft);max-width:720px;font-size:18px}
+  .home{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--soft);border:1px solid var(--line);padding:7px 12px;border-radius:9px}
+  .home:hover{border-color:var(--teal);text-decoration:none}
+
+  .sec{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:40px 0 14px;display:flex;align-items:center;gap:12px}
+  .sec::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+  .proj{display:flex;flex-direction:column;background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:16px;padding:20px;transition:.16s;color:inherit;position:relative;overflow:hidden}
+  .proj::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--orange),var(--teal))}
+  .proj:hover{transform:translateY(-4px);border-color:var(--teal);text-decoration:none;box-shadow:0 18px 40px -20px rgba(63,208,201,.5)}
+  .proj .st{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+  .proj .st .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+  .proj h2{font-family:var(--disp);font-weight:700;font-size:22px;margin:0 0 3px;letter-spacing:-.01em}
+  .proj .by{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-bottom:10px}
+  .proj p{color:var(--soft);font-size:14.5px;margin:0 0 14px;flex:1}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .chips span{font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--soft);border:1px solid var(--line);background:var(--panel2);padding:4px 8px;border-radius:6px}
+  .proj .open{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--orange);font-weight:600}
+  .proj .meta{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px}
+
+  .howto{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;color:var(--soft);font-size:14.5px}
+  .howto h3{font-family:var(--disp);font-size:18px;color:var(--ink);margin:0 0 8px}
+  .howto code{font-family:var(--mono);font-size:.86em;background:var(--panel2);padding:.14em .45em;border-radius:5px;color:var(--gold)}
+  .howto ol{margin:.4em 0;padding-left:1.3em}.howto li{margin:.4em 0}
+  .tree{font-family:var(--mono);font-size:12.5px;color:var(--muted);background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;white-space:pre;overflow:auto;margin-top:12px}
+  footer{border-top:1px solid var(--line);margin-top:50px;padding:26px 0 60px;color:var(--muted);font-family:var(--mono);font-size:12px}
+  .err{background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.35);border-radius:12px;padding:16px;color:var(--soft);font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="topline">
+      <span class="eyebrow">Empire contre Intox · espace de travail</span>
+      <span class="priv">🔒 non listé · ne pas diffuser le lien</span>
+    </div>
+    <h1>Atelier — <span class="hl">préparer les dossiers</span></h1>
+    <p class="lead">Espace partagé pour construire les dossiers à plusieurs <b>avant</b> publication : plan, transcripts bruts, recherche, aperçus 3D — tout au même endroit. Non relié aux menus du site.</p>
+    <div style="margin-top:16px"><a class="home" href="../index.html">← Retour au site public</a></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="sec">Dossiers en préparation</div>
+  <div class="grid" id="grid"><p style="color:var(--muted);font-family:var(--mono)">Chargement…</p></div>
+
+  <div class="sec">Architecture &amp; mode d'emploi</div>
+  <div class="howto">
+    <h3>Comment ça marche</h3>
+    <p>Chaque dossier-en-préparation est un sous-dossier de <code>atelier/</code> avec son propre <code>index.html</code> (visionneuse réutilisable) et un <code>manifest.json</code> qui liste ses documents et outils. La visionneuse charge les fichiers <b>en direct</b> (fetch) : éditez un <code>.md</code>, rechargez, c'est à jour.</p>
+    <h3 style="margin-top:16px">Ajouter un nouveau dossier</h3>
+    <ol>
+      <li>Créer <code>atelier/&lt;slug&gt;/</code> et y copier la visionneuse <code>index.html</code> (depuis <code>sondes/</code>).</li>
+      <li>Y déposer les documents (<code>plan.md</code>, <code>sources/*.txt</code>, outils HTML…).</li>
+      <li>Écrire <code>atelier/&lt;slug&gt;/manifest.json</code> (titre, intro, <code>tools</code>, <code>groups → docs</code>).</li>
+      <li>Ajouter une entrée dans <code>atelier/projects.json</code> pour qu'il apparaisse sur cette page.</li>
+    </ol>
+    <div class="tree">atelier/
+├─ index.html          ← cette page (hub)
+├─ projects.json       ← liste des dossiers en prépa
+└─ sondes/
+   ├─ index.html       ← visionneuse (réutilisable)
+   ├─ manifest.json    ← docs + outils du projet
+   ├─ plan.md
+   ├─ apercu-modeles-3d.html
+   └─ sources/*.txt|.md</div>
+    <p style="margin-top:14px;color:var(--muted)">⚠️ Visible en ligne par toute personne connaissant l'URL (GitHub Pages n'a pas d'authentification). Ne pas y mettre de secrets, et ne pas partager le lien publiquement.</p>
+  </div>
+</div>
+
+<footer><div class="wrap">Atelier interne — Empire contre Intox. Pages non listées (noindex). Le contenu reste du travail préparatoire : rien n'est un dossier publié tant qu'il n'est pas intégré à l'index et à l'appareil critique.</div></footer>
+
+<script>
+fetch('projects.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()})
+ .then(list=>{
+   document.getElementById('grid').innerHTML = list.map(p=>`
+     <a class="proj" href="${p.slug}/index.html">
+       <span class="st"><span class="dot"></span>${p.status||'en préparation'}</span>
+       <h2>${p.title}</h2>
+       <div class="by">${[p.author,p.dossier].filter(Boolean).join(' · ')}</div>
+       <p>${p.summary||''}</p>
+       <div class="chips">${(p.highlights||[]).map(h=>`<span>${h}</span>`).join('')}</div>
+       <div class="open">Ouvrir l'atelier →</div>
+       ${p.updated?`<div class="meta">maj ${p.updated}</div>`:''}
+     </a>`).join('');
+ })
+ .catch(err=>{
+   const isFile = location.protocol==='file:';
+   document.getElementById('grid').innerHTML = `<div class="err"><b>projects.json non chargé.</b><br>${isFile
+     ? 'Ouvre cette page via un serveur web (GitHub Pages, ou <code>python3 -m http.server</code>) — le double-clic <code>file://</code> bloque le fetch.'
+     : 'Erreur : <code>'+(err.message||err)+'</code>'}</div>`;
+ });
+</script>
+</body>
+</html>
