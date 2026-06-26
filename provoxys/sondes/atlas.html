@@ -112,6 +112,12 @@
   .c-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .c-stage.fb{padding:0}
   .c-fbimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+  /* aperçu du modèle 3D avant chargement du visualiseur */
+  .c-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;transition:transform .55s var(--ease),filter .4s var(--ease)}
+  .card:hover .c-poster{transform:scale(1.045);filter:brightness(1.08)}
+  .c-stage.has-poster::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 50% 45%,rgba(5,8,17,.34),rgba(5,8,17,.66))}
+  .c-stage.has-poster .c-play{position:relative;z-index:2}
+  .c-stage.has-poster .c-play{text-shadow:0 1px 6px rgba(0,0,0,.8)}
   .c-fbcr{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:14px 9px 4px;font-family:var(--mono);font-size:.5rem;line-height:1.3;color:var(--parch);text-align:right;background:linear-gradient(0deg,rgba(5,8,17,.92),transparent)}
   .c-dedic{font-family:var(--serif);font-style:italic;font-size:.78rem;color:var(--viol)}
   .c-play{display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer;background:none;border:0;font-family:var(--roman);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--parch)}
@@ -587,7 +593,11 @@
     const p3d = e.uid ? `<button class="c-play" data-load><span class="disc"><svg width="20" height="20" viewBox="0 0 24 24" fill="#04121a"><path d="M8 5v14l11-7z"/></svg></span>Charger en 3D</button>` : "";
     const peyes = e.eyes ? `<button class="c-play c-eyes" data-eyes><span class="disc">${eyeSvg}</span>NASA Eyes 3D</button>` : "";
     const pvid = e.vid ? `<button class="c-play c-vid" data-vid><span class="disc"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>Vidéo de l'impact</button>` : "";
-    if(p3d||peyes||pvid){ stage.className="c-stage"; stage.innerHTML=p3d+peyes+pvid; }
+    if(p3d||peyes||pvid){
+      const poster = e.uid ? `<img class="c-poster" src="assets/models/${e.id}.jpeg" alt="" loading="lazy" aria-hidden="true">` : "";
+      stage.className = e.uid ? "c-stage has-poster" : "c-stage";
+      stage.innerHTML = poster + p3d + peyes + pvid;
+    }
     else if(e.fb){ stage.className="c-stage fb"; stage.innerHTML=`<img class="c-fbimg" src="assets/fallback/${e.fb}" alt="${e.n}" loading="lazy"><span class="c-fbcr">${e.fbart?"Vue d'artiste · ":""}${e.fbc||""}</span>`; }
     else { stage.className="c-stage"; stage.innerHTML=`<span class="c-nomodel">pas de modèle 3D</span>`; }
   }
