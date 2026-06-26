@@ -431,7 +431,7 @@
       ? `<a class="c-link" href="https://sketchfab.com/models/${e.uid}" target="_blank" rel="noopener">Modèle 3D : ${e.mt||""} · ${e.ma||""} ↗</a>` : "";
     const video = e.vid
       ? `<a class="c-link" href="https://www.youtube.com/watch?v=${e.vid}" target="_blank" rel="noopener" style="color:#ff8a8a">▶ ${e.vidcap||"Vidéo de l'impact"} (YouTube) ↗</a>` : "";
-    const lalie = e.lalie ? `<div class="c-lalie"><span class="lk">✦ L'apport de Lalie</span>${e.lalie}</div>` : "";
+    const lalie = e.lalie ? `<div class="c-lalie"><span class="lk">✦ Les Femmes de l'Espace</span>${e.lalie}</div>` : "";
     const who = e.who ? `<div class="c-who"><b>👥</b> ${e.who}</div>` : "";
     const mirRow = e.mir ? `<dt>Miroir</dt><dd><b>${String(e.mir).replace(".",",")} m</b></dd>` : "";
     const rows = SPEC.filter(([k])=>e[k]).map(([k,lab])=>`<dt>${lab}</dt><dd>${e[k]}</dd>`).join("");
