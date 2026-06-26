@@ -73,6 +73,22 @@ priorité au compte officiel **NASA** (CC BY-NC, ex. Voyager, Cassini, New Horiz
 Pioneer, Rosetta, Kepler, Hubble) et à des auteurs **Creative Commons** (ESO pour le VLT,
 Thomas Flynn pour Perseverance CC0, etc.). Auteur et licence crédités sur **chaque** fiche.
 
+## 7. Atlas — objets lancés & ateliers de physique (✅ vérifiés)
+
+- **Graphe cumulatif des objets lancés (1957→2024)** — cumul + nombre annuel.
+  ✅ Source : **UNOOSA**, *Online Index of Objects Launched into Outer Space*, via **Our World in Data**.
+  Cumul ≈ **20 355 objets fin 2024** (≈ la moitié depuis 2020 — méga-constellations, surtout Starlink).
+  « Objets » = charges utiles + étages + débris de mission enregistrés au lancement (hors fragments de
+  collision/explosion). Valeurs cumulées ≥ 2000 réelles ; années antérieures reconstruites à partir des
+  taux annuels (~125/an, 1957-2000).
+- **Ateliers interactifs** — calculs en temps réel, constantes vérifiées :
+  - *Orbite* : μ⊕ = 398 600,4 km³/s² (NASA JPL, DE440), R⊕ = 6 371 km (IUGG), v = √(μ/r), T = 2π√(r³/μ).
+    ISS (400 km) → 7,67 km/s, 92 min ; GPS (20 200 km) → 3,87 km/s, ~12 h ; géostationnaire (35 786 km) → 3,07 km/s, ~24 h. ✅
+  - *Fusée* (Tsiolkovsky) : Δv = ve·ln(m₀/mf), ve = Isp·g₀, g₀ = 9,80665 m/s² (SI). Isp : solide ~260 s,
+    kérosène/LOX ~330 s, hydrogène/LOX ~450 s, ionique ~3 000 s (ScienceDirect/Wikipédia). Seuils : orbite ≈ 9,4 km/s, évasion 11,2 km/s. ✅
+  - *Temps-lumière* : t = d/c, c = 299 792,458 km/s (SI, exacte). Lune ≈ 1,28 s ; Mars ≈ 12,5 min (aller, distance moyenne) ;
+    Voyager 1 ≈ 23 h. ✅
+
 ---
 
 ## Synthèse

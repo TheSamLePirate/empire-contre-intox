@@ -165,6 +165,51 @@
   #tip .tr{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-top:3px;line-height:1.5}
   #tip .tr b{color:var(--azur-bright);font-weight:500}
 
+  /* ateliers interactifs */
+  .lab{margin-bottom:18px}
+  .lab-body{display:grid;grid-template-columns:minmax(0,290px) 1fr}
+  .lab-viz{display:grid;place-items:center;padding:22px;border-right:1px solid var(--line-2);background:radial-gradient(circle at 50% 42%,rgba(95,185,212,.06),transparent 72%)}
+  .lab-ctrl{padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+  .lab-presets{display:flex;gap:7px;flex-wrap:wrap}
+  .lab-preset{font-family:var(--roman);font-size:.53rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);background:rgba(5,8,17,.5);border:1px solid var(--line);border-radius:20px;padding:6px 11px;cursor:pointer;transition:all .2s}
+  .lab-preset:hover{color:var(--parch)}
+  .lab-preset.on{color:var(--void);background:linear-gradient(120deg,var(--azur),var(--azur-bright));border-color:transparent}
+  .lab-slider{display:block;font-family:var(--roman);font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--azur)}
+  .lab-slider output{float:right;font-family:var(--mono);font-size:.8rem;color:var(--gold-bright);letter-spacing:0;text-transform:none}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--azur),var(--gold));margin-top:10px;cursor:pointer}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--gold-bright),var(--gold-deep));border:1px solid var(--void);box-shadow:0 2px 8px rgba(0,0,0,.5),0 0 0 4px rgba(214,172,85,.12)}
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--gold-bright);border:1px solid var(--void);box-shadow:0 0 0 4px rgba(214,172,85,.12)}
+  .lab-readout{display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);padding:13px 0}
+  .lr{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .lr-k{font-family:var(--roman);font-size:.53rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+  .lr-v{font-family:var(--mono);font-size:1.5rem;font-weight:500;color:var(--azur-bright);font-variant-numeric:tabular-nums;line-height:1;text-align:right}
+  .lr-v.sm{font-size:.98rem;color:var(--parch)}
+  .lab-say{font-family:var(--serif);font-style:italic;font-size:.92rem;color:var(--muted);line-height:1.5;min-height:2.4em}
+  .lab-say b{color:var(--gold-bright);font-style:normal;font-weight:600}
+  .lab-foot{display:flex;gap:10px 18px;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:10px 18px;border-top:1px solid var(--line);background:rgba(5,8,17,.4)}
+  .formula{font-family:var(--mono);font-size:.74rem;color:var(--gold-bright)}
+  .lab-src{font-family:var(--roman);font-size:.5rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+  /* viz : orbite */
+  #orbitSvg{width:100%;max-width:270px;height:auto}
+  /* viz : jauge Δv + réservoir */
+  .dv-gauge{position:relative;height:30px;border-radius:5px;background:rgba(244,236,216,.05);overflow:hidden;border:1px solid var(--line-2);margin-top:2px}
+  .dv-fill{position:absolute;inset:0 auto 0 0;border-radius:5px;background:linear-gradient(90deg,var(--azur),var(--azur-bright));transition:width .22s var(--ease)}
+  .dv-mark{position:absolute;top:0;bottom:0;width:2px;background:var(--ember);z-index:2}
+  .dv-mark span{position:absolute;top:50%;transform:translateY(-50%);left:5px;font-family:var(--mono);font-size:.54rem;color:var(--ember);white-space:nowrap}
+  .fuel-vis{width:78px;height:206px;border-radius:11px;border:1px solid var(--line);overflow:hidden;position:relative;background:linear-gradient(180deg,rgba(14,26,46,.5),rgba(7,12,26,.7));box-shadow:inset 0 0 24px rgba(0,0,0,.5)}
+  .fuel-fill{position:absolute;left:0;right:0;bottom:0;height:50%;background:linear-gradient(180deg,var(--gold),var(--ember));transition:height .25s var(--ease)}
+  .fuel-lab{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;text-align:center}
+  .fuel-lab b{font-family:var(--mono);font-size:1.15rem;color:var(--ink);text-shadow:0 1px 4px rgba(0,0,0,.8)}
+  .fuel-lab span{font-family:var(--roman);font-size:.46rem;font-weight:700;letter-spacing:.16em;color:var(--parch);margin-top:3px}
+  /* viz : temps-lumière */
+  .light-track{position:relative;width:100%;max-width:250px;height:150px}
+  .lt-line{position:absolute;left:14%;right:14%;top:50%;height:2px;background:linear-gradient(90deg,var(--azur),var(--gold));opacity:.5}
+  .lt-node{position:absolute;top:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--roman);font-size:.5rem;font-weight:700;text-transform:uppercase}
+  .lt-earth{left:14%;background:radial-gradient(circle at 38% 32%,#5fb9d4,#1c4a5e);color:var(--ink);box-shadow:0 0 14px rgba(95,185,212,.5)}
+  .lt-target{right:14%;left:auto;transform:translate(50%,-50%);background:radial-gradient(circle at 38% 32%,var(--gold-bright),var(--gold-deep));color:var(--void)}
+  .lt-pulse{position:absolute;top:50%;width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 12px 3px rgba(255,255,255,.8);transform:translate(-50%,-50%)}
+  .lt-cap{position:absolute;left:0;right:0;bottom:2px;text-align:center;font-family:var(--mono);font-size:.62rem;color:var(--soft)}
+
   /* frise */
   .panel{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:linear-gradient(180deg,rgba(14,26,46,.42),rgba(7,12,26,.6));box-shadow:var(--shadow)}
   .panel .phead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 18px;border-bottom:1px solid var(--line);background:rgba(5,8,17,.4);font-family:var(--roman);font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--azur-bright)}
@@ -225,6 +270,7 @@
     <nav class="nav" aria-label="Sections de l'atlas">
       <a href="#catalogue">Catalogue</a>
       <a href="#stats">Statistiques</a>
+      <a href="#ateliers">Ateliers</a>
       <a href="#frise">Frise</a>
       <a href="#miroirs">Miroirs</a>
     </nav>
@@ -286,7 +332,13 @@
   <!-- STATISTIQUES -->
   <section class="view" id="stats">
     <div class="vhead"><span class="vnum">02</span><div><p class="vkick">La donnée brute</p><h2>L'espace en chiffres</h2></div></div>
-    <p class="vlead">Deux histoires que racontent les données : <b>combien d'objets</b> tournent au-dessus de nos têtes — et l'explosion récente des constellations —, et <b>jusqu'où</b> l'humanité a poussé ses machines depuis 1957. Puis la composition même de ce catalogue.</p>
+    <p class="vlead">Trois histoires que racontent les données : <b>combien d'objets</b> l'humanité a lancés en tout depuis 1957, combien <b>tournent encore</b> au-dessus de nos têtes, et <b>jusqu'où</b> nous avons poussé nos machines. Puis la composition même de ce catalogue.</p>
+    <div class="panel" style="margin-bottom:16px">
+      <div class="phead">Objets lancés dans l'espace · 1957 → 2024 <span class="ph-r" id="lcR">survolez la courbe</span></div>
+      <div class="cv-wrap"><canvas class="acv" id="cvLaunch" style="height:384px"></canvas></div>
+      <div class="leg"><span><i style="background:#f3d98a"></i> cumul depuis 1957</span><span><i style="width:9px;height:9px;border-radius:2px;background:#5fb9d4"></i> lancés dans l'année</span><span style="margin-left:auto;color:var(--ember)">▮ ère des constellations (2019+)</span></div>
+      <div class="readout" id="lcNote"></div>
+    </div>
     <div class="stat-grid">
       <div class="panel">
         <div class="phead">Objets en orbite, 1957 → 2026 <span class="ph-r" id="objR">survolez la courbe</span></div>
@@ -307,9 +359,98 @@
     <p class="note-intox"><span class="nt">Honnêteté des données</span>Les courbes « objets en orbite » sont des <b>ordres de grandeur</b> (UCS, ESA, UNOOSA) : la forme — un demi-siècle de croissance lente puis l'explosion des méga-constellations depuis 2019 — compte plus que la décimale. Les répartitions « par famille / agence » décrivent <b>ce catalogue</b> de 77 engins marquants, pas l'ensemble des objets jamais lancés.</p>
   </section>
 
+  <!-- ATELIERS -->
+  <section class="view" id="ateliers">
+    <div class="vhead"><span class="vnum">03</span><div><p class="vkick">Mettez les mains dans le cambouis</p><h2>Trois ateliers de physique</h2></div></div>
+    <p class="vlead">La mécanique spatiale tient en quelques équations. Manipulez-les vous-même : <b>pourquoi un satellite ne tombe pas</b>, pourquoi <b>une fusée est surtout du carburant</b>, et pourquoi <b>on ne pilote pas un rover martien en direct</b>. Chaque atelier calcule en temps réel à partir de constantes vérifiées.</p>
+
+    <!-- Atelier 1 : l'orbite -->
+    <div class="lab panel">
+      <div class="phead">Atelier 01 · L'orbite — pourquoi ça ne tombe pas ? <span class="ph-r">v = √(μ / r)</span></div>
+      <div class="lab-body">
+        <div class="lab-viz">
+          <svg id="orbitSvg" viewBox="0 0 340 340" aria-label="Schéma d'orbite">
+            <defs>
+              <radialGradient id="earthG" cx="38%" cy="32%" r="75%">
+                <stop offset="0%" stop-color="#7fd4e8"/><stop offset="45%" stop-color="#2f6f86"/><stop offset="100%" stop-color="#0c2530"/>
+              </radialGradient>
+              <radialGradient id="satG" cx="40%" cy="35%" r="70%">
+                <stop offset="0%" stop-color="#f8e6b0"/><stop offset="100%" stop-color="#9c7228"/>
+              </radialGradient>
+            </defs>
+            <circle id="orbitPath" cx="170" cy="170" r="120" fill="none" stroke="rgba(95,185,212,.4)" stroke-width="1" stroke-dasharray="3 5"/>
+            <circle cx="170" cy="170" r="26" fill="url(#earthG)" stroke="rgba(127,212,232,.35)"/>
+            <circle id="orbitSat" r="6" fill="url(#satG)" cx="290" cy="170"/>
+          </svg>
+        </div>
+        <div class="lab-ctrl">
+          <div class="lab-presets" id="orbitPresets"></div>
+          <label class="lab-slider">Altitude <output id="altOut">400 km</output>
+            <input type="range" id="altSlider" min="160" max="40000" value="400" step="10" aria-label="Altitude orbitale en km"></label>
+          <div class="lab-readout">
+            <div class="lr"><span class="lr-k">Vitesse orbitale</span><span class="lr-v" id="orbV">—</span></div>
+            <div class="lr"><span class="lr-k">soit, en vitesse de tous les jours</span><span class="lr-v sm" id="orbVk">—</span></div>
+            <div class="lr"><span class="lr-k">Période (un tour)</span><span class="lr-v" id="orbT">—</span></div>
+          </div>
+          <p class="lab-say" id="orbSay"></p>
+        </div>
+      </div>
+      <div class="lab-foot"><span class="formula">v = √(μ/r) · T = 2π√(r³/μ) · μ⊕ = 398 600 km³/s²</span><span class="lab-src">μ⊕ : NASA&nbsp;JPL</span></div>
+    </div>
+
+    <!-- Atelier 2 : la fusée -->
+    <div class="lab panel">
+      <div class="phead">Atelier 02 · L'équation de la fusée <span class="ph-r">Δv = ve · ln(m₀/mf)</span></div>
+      <div class="lab-body">
+        <div class="lab-viz">
+          <div class="fuel-vis"><div class="fuel-fill" id="fuelFill"></div><div class="fuel-lab"><b id="fuelPct">—</b><span>de carburant</span></div></div>
+        </div>
+        <div class="lab-ctrl">
+          <div class="lab-presets" id="ergPresets"></div>
+          <label class="lab-slider">Rapport de masse m₀ / mf <output id="mrOut">10,0</output>
+            <input type="range" id="mrSlider" min="1.1" max="20" value="10" step="0.1" aria-label="Rapport de masse"></label>
+          <div class="lab-readout">
+            <div class="lr"><span class="lr-k">Vitesse d'éjection ve</span><span class="lr-v sm" id="veV">—</span></div>
+            <div class="lr"><span class="lr-k">Δv atteignable</span><span class="lr-v" id="dvV">—</span></div>
+          </div>
+          <div class="dv-gauge"><div class="dv-fill" id="dvFill"></div><div class="dv-mark" style="left:67.1%"><span>orbite 9,4</span></div><div class="dv-mark" style="left:80%"><span>évasion 11,2</span></div></div>
+          <p class="lab-say" id="rkSay"></p>
+        </div>
+      </div>
+      <div class="lab-foot"><span class="formula">Δv = ve · ln(m₀/mf) · ve = Isp · g₀ · g₀ = 9,80665 m/s²</span><span class="lab-src">Isp : ScienceDirect / Wikipédia</span></div>
+    </div>
+
+    <!-- Atelier 3 : le temps-lumière -->
+    <div class="lab panel">
+      <div class="phead">Atelier 03 · Le temps-lumière — piloter à distance ? <span class="ph-r">t = d / c</span></div>
+      <div class="lab-body">
+        <div class="lab-viz">
+          <div class="light-track">
+            <div class="lt-line"></div>
+            <div class="lt-node lt-earth">Terre</div>
+            <div class="lt-pulse" id="ltPulse"></div>
+            <div class="lt-node lt-target" id="ltTarget">Lune</div>
+            <div class="lt-cap" id="ltCap">le signal voyage à 299 792 km/s</div>
+          </div>
+        </div>
+        <div class="lab-ctrl">
+          <div class="lab-presets" id="lightPresets"></div>
+          <label class="lab-slider">Distance <output id="distOut">—</output>
+            <input type="range" id="distSlider" min="0" max="1000" value="0" step="1" aria-label="Distance"></label>
+          <div class="lab-readout">
+            <div class="lr"><span class="lr-k">Délai du signal (aller)</span><span class="lr-v" id="lOne">—</span></div>
+            <div class="lr"><span class="lr-k">Aller-retour (une commande)</span><span class="lr-v sm" id="lTwo">—</span></div>
+          </div>
+          <p class="lab-say" id="ltSay"></p>
+        </div>
+      </div>
+      <div class="lab-foot"><span class="formula">t = d / c · c = 299 792 km/s · 1 UA = 149,6 M km</span><span class="lab-src">c : SI (exacte)</span></div>
+    </div>
+  </section>
+
   <!-- FRISE -->
   <section class="view" id="frise">
-    <div class="vhead"><span class="vnum">03</span><div><p class="vkick">Soixante-dix ans</p><h2>La frise de l'exploration</h2></div></div>
+    <div class="vhead"><span class="vnum">04</span><div><p class="vkick">Soixante-dix ans</p><h2>La frise de l'exploration</h2></div></div>
     <p class="vlead">Chaque engin placé à son année de lancement (ou de première lumière), coloré par famille. Survolez un point pour le lire ; cliquez pour le retrouver dans le catalogue.</p>
     <div class="panel">
       <div class="phead">1957 → 2031 · un point par engin <span class="ph-r" id="friseR">survolez un point</span></div>
@@ -320,7 +461,7 @@
 
   <!-- MIROIRS -->
   <section class="view" id="miroirs">
-    <div class="vhead"><span class="vnum">04</span><div><p class="vkick">Toujours plus grand</p><h2>La taille des miroirs</h2></div></div>
+    <div class="vhead"><span class="vnum">05</span><div><p class="vkick">Toujours plus grand</p><h2>La taille des miroirs</h2></div></div>
     <p class="vlead">Diamètre des miroirs primaires des télescopes optiques &amp; infrarouges (spatiaux et au sol). De Hubble (2,4 m) au futur ELT (39,3 m) : on gagne en lumière comme le carré du diamètre.</p>
     <div class="panel">
       <div class="phead">Diamètre du miroir primaire (m) <span class="ph-r">optique / infrarouge</span></div>
@@ -347,6 +488,7 @@
       <p class="devise">« Veritas omnia vincit »</p>
       <p class="sources-foot">
         Données : NASA · ESA · ESO · JAXA · CNSA · ISRO · JPL · NSSDCA. Positions (mi-2026) : NASA <em>Eyes on the Solar System</em>, JHU-APL, <em>theskylive</em>.<br>
+        Objets lancés (cumul &amp; annuel) : <b>UNOOSA</b> (registre des objets lancés) via <b>Our World in Data</b>. Constantes des ateliers : μ⊕ NASA JPL · g₀ &amp; c SI · rayon IUGG ; Isp ScienceDirect/Wikipédia.<br>
         Modèles 3D : Sketchfab (NASA officiel &amp; auteurs Creative Commons, crédités par fiche). Réalisé par <b>Provoxys, Lalie &amp; Samlepirate</b> — Empire contre Intox, juin 2026.
       </p>
     </div>
@@ -557,6 +699,38 @@
       addEventListener("resize",()=>requestAnimationFrame(draw),{passive:true}); draw();
     }
 
+    /* Objets lancés — cumul (ligne or, axe gauche) + annuel (barres azur, axe droit) */
+    const L=mk("cvLaunch");
+    if(L && S.launches){
+      const D=S.launches, M=S.launchesMarks||[], Y0=1957,Y1=2024,cMax=21000,aMax=3000,pad={l:54,r:48,t:16,b:40};
+      const X=y=>pad.l+(y-Y0)/(Y1-Y0)*(L.W-pad.l-pad.r);
+      const Yc=v=>pad.t+(1-v/cMax)*(L.H-pad.t-pad.b);
+      const Ya=v=>pad.t+(1-v/aMax)*(L.H-pad.t-pad.b);
+      const base=()=>L.H-pad.b;
+      let hov=null;
+      function draw(){ L.fit(); const x=L.ctx; x.clearRect(0,0,L.W,L.H);
+        x.fillStyle="rgba(224,136,63,.07)"; x.fillRect(X(2019),pad.t,X(Y1)-X(2019),base()-pad.t);
+        x.font='10px "JetBrains Mono",monospace';
+        x.textAlign="right"; [0,5000,10000,15000,20000].forEach(v=>{ const y=Yc(v); x.strokeStyle=C.grid; x.beginPath();x.moveTo(pad.l,y);x.lineTo(L.W-pad.r,y);x.stroke(); x.globalAlpha=.7; x.fillStyle=C.goldB; x.fillText(fr(v),pad.l-6,y+3); x.globalAlpha=1; });
+        x.textAlign="left"; [0,1000,2000,3000].forEach(v=>{ x.fillStyle="rgba(95,185,212,.75)"; x.fillText(fr(v),L.W-pad.r+6,Ya(v)+3); });
+        x.textAlign="center"; [1960,1970,1980,1990,2000,2010,2020].forEach(y=>{ x.fillStyle=C.soft; x.fillText(y,X(y),L.H-22); });
+        const bw=Math.max(3,(L.W-pad.l-pad.r)/(Y1-Y0)*0.66);
+        D.forEach(d=>{ const xx=X(d.y); x.fillStyle=(hov&&hov.y===d.y)?C.azurB:"rgba(95,185,212,.5)"; x.fillRect(xx-bw/2,Ya(d.a),bw,base()-Ya(d.a)); });
+        const g=x.createLinearGradient(0,pad.t,0,base()); g.addColorStop(0,"rgba(243,217,138,.22)"); g.addColorStop(1,"rgba(243,217,138,0)");
+        x.beginPath(); D.forEach((d,i)=>{const xx=X(d.y),yy=Yc(d.c);i?x.lineTo(xx,yy):x.moveTo(xx,yy);}); x.lineTo(X(Y1),Yc(0)); x.lineTo(X(Y0),Yc(0)); x.closePath(); x.fillStyle=g; x.fill();
+        x.strokeStyle=C.goldB; x.lineWidth=2.6; x.beginPath(); D.forEach((d,i)=>{const xx=X(d.y),yy=Yc(d.c);i?x.lineTo(xx,yy):x.moveTo(xx,yy);}); x.stroke();
+        M.forEach(m=>{ const xx=X(m.y); x.strokeStyle="rgba(244,236,216,.16)"; x.setLineDash([2,3]); x.beginPath();x.moveTo(xx,pad.t+2);x.lineTo(xx,base());x.stroke(); x.setLineDash([]);
+          x.save(); x.translate(xx,base()-6); x.rotate(-Math.PI/2); x.fillStyle="rgba(244,236,216,.5)"; x.font='9px "JetBrains Mono",monospace'; x.textAlign="left"; x.fillText(m.t,4,3); x.restore(); });
+        if(hov){ const xx=X(hov.y); x.fillStyle=C.goldB; x.beginPath();x.arc(xx,Yc(hov.c),4,0,7);x.fill(); }
+      }
+      L.cv.addEventListener("mousemove",ev=>{ const r=L.cv.getBoundingClientRect(),mx=ev.clientX-r.left; let b=null,bd=1e9; D.forEach(d=>{const dd=Math.abs(X(d.y)-mx); if(dd<bd){bd=dd;b=d;}}); hov=b; draw();
+        if(b){ tip.classList.add("on"); const m2=M.find(m=>m.y===b.y); tip.innerHTML=`<div class="tn">${b.y}</div><div class="tr"><b>${fr(b.c)}</b> objets au total<br><b>${fr(b.a)}</b> lancés cette année${m2?`<br><span style="color:#f3d98a">◆ ${m2.t}</span>`:""}</div>`; place(ev); document.getElementById("lcR").textContent=b.y; } });
+      L.cv.addEventListener("mouseleave",()=>{ hov=null; draw(); tip.classList.remove("on"); });
+      document.getElementById("lcNote").innerHTML=S.launchesNote;
+      new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)draw();}),{threshold:.1}).observe(L.cv);
+      addEventListener("resize",()=>requestAnimationFrame(draw),{passive:true}); draw();
+    }
+
     /* Répartitions */
     function bars(id,arr){ const el=document.getElementById(id); if(!el||!arr.length) return; const max=Math.max(...arr.map(c=>c[1]));
       el.innerHTML=arr.map(([lab,n])=>`<div class="bar-row"><span class="bar-lab" title="${lab}">${lab}</span><div class="bar-track"><div class="bar-fill" style="width:${(n/max*100).toFixed(1)}%"></div></div><span class="bar-val">${n}</span></div>`).join(""); }
@@ -566,6 +740,76 @@
     document.getElementById("catN").textContent=E.length+" engins";
     const ac={}; E.forEach(e=>{ const a=e.ag.split(/[\/(]/)[0].trim(); ac[a]=(ac[a]||0)+1; });
     bars("byAg",Object.entries(ac).sort((a,b)=>b[1]-a[1]).slice(0,8));
+  })();
+
+  /* ---------- Ateliers interactifs ---------- */
+  (function(){
+    const P=(window.STATS&&window.STATS.phys)||{muEarth:398600.436,rEarth:6371,g0:9.80665,c:299792.458,au:149597870.7};
+    const $=id=>document.getElementById(id);
+    const nf=(n,d)=>n.toLocaleString("fr-FR",{minimumFractionDigits:d,maximumFractionDigits:d});
+
+    /* 1 · Orbite — v = √(μ/r) */
+    (function(){
+      const alt=$("altSlider"); if(!alt) return;
+      const RE=P.rEarth, MU=P.muEarth, cx=170, cy=170, earthPx=26;
+      const sat=$("orbitSat"), path=$("orbitPath"), pBox=$("orbitPresets");
+      [["ISS",400],["Hubble",540],["GPS",20200],["Géostat.",35786]].forEach(([lab,a])=>{ const b=document.createElement("button"); b.className="lab-preset"; b.textContent=lab; b.dataset.a=a; b.onclick=()=>{alt.value=a; upd();}; pBox.appendChild(b); });
+      const fmtKm=a=>(a>=1000?Math.round(a).toLocaleString("fr-FR"):a)+" km";
+      const fmtT=s=>s<7200?Math.round(s/60)+" min":Math.floor(s/3600)+" h "+String(Math.round(s%3600/60)).padStart(2,"0");
+      let rpx=120;
+      function upd(){
+        const a=+alt.value, r=RE+a, v=Math.sqrt(MU/r), T=2*Math.PI*Math.sqrt(r*r*r/MU);
+        $("altOut").textContent=fmtKm(a); $("orbV").textContent=nf(v,2)+" km/s";
+        $("orbVk").textContent=Math.round(v*3600).toLocaleString("fr-FR")+" km/h"; $("orbT").textContent=fmtT(T);
+        rpx=Math.min(158, earthPx*(r/RE)); path.setAttribute("r",rpx.toFixed(1));
+        const extra=a>=35000?" À 35 786 km, un tour dure exactement 24 h : le satellite semble <b>immobile</b> (géostationnaire).":(a<=600?" En orbite basse, un tour en <b>~90 min</b> : 16 levers de Soleil par jour.":"");
+        $("orbSay").innerHTML=`Il faut filer à <b>${nf(v,2)} km/s</b> en travers — sinon, on retombe.${extra}`;
+        pBox.querySelectorAll(".lab-preset").forEach(b=>b.classList.toggle("on",+b.dataset.a===a));
+      }
+      let last=0, ang=0;
+      function loop(t){ if(!last)last=t; const dt=Math.min(.05,(t-last)/1000); last=t; const a=+alt.value,r=RE+a,v=Math.sqrt(MU/r); ang+=(v/r)*900*dt; sat.setAttribute("cx",(cx+rpx*Math.cos(ang)).toFixed(1)); sat.setAttribute("cy",(cy+rpx*Math.sin(ang)).toFixed(1)); requestAnimationFrame(loop); }
+      alt.addEventListener("input",upd); upd(); requestAnimationFrame(loop);
+    })();
+
+    /* 2 · Fusée — Δv = ve·ln(m₀/mf) */
+    (function(){
+      const mr=$("mrSlider"); if(!mr) return;
+      const g0=P.g0; let isp=330;
+      const eBox=$("ergPresets");
+      [["Solide",260],["Kérosène/LOX",330],["Hydrogène/LOX",450],["Ionique",3000]].forEach(([lab,v],i)=>{ const b=document.createElement("button"); b.className="lab-preset"+(i===1?" on":""); b.textContent=lab; b.onclick=()=>{isp=v; eBox.querySelectorAll(".lab-preset").forEach(x=>x.classList.remove("on")); b.classList.add("on"); upd();}; eBox.appendChild(b); });
+      function upd(){
+        const R=+mr.value, ve=isp*g0, dv=ve*Math.log(R), fuel=(1-1/R)*100, dvk=dv/1000;
+        $("mrOut").textContent=nf(R,1); $("veV").textContent=nf(ve/1000,2)+" km/s · Isp "+isp+" s";
+        $("dvV").textContent=nf(dvk,2)+" km/s";
+        $("fuelPct").textContent=Math.round(fuel)+"%"; $("fuelFill").style.height=fuel.toFixed(1)+"%";
+        $("dvFill").style.width=Math.min(100,dvk/14*100).toFixed(1)+"%";
+        const verdict=dvk>=11.2?"De quoi <b>quitter la Terre</b> (évasion : 11,2 km/s).":dvk>=9.4?"De quoi <b>atteindre l'orbite</b> (~9,4 km/s requis).":"<b>Insuffisant</b> pour l'orbite (~9,4 km/s) — d'où les fusées à plusieurs étages.";
+        $("rkSay").innerHTML=`Avec ce moteur, <b>${Math.round(fuel)}%</b> de la fusée doit être du carburant. ${verdict}`;
+      }
+      mr.addEventListener("input",upd); upd();
+    })();
+
+    /* 3 · Temps-lumière — t = d/c */
+    (function(){
+      const sl=$("distSlider"); if(!sl) return;
+      const c=P.c, AU=P.au, dMin=Math.log10(384400), dMax=Math.log10(167*AU);
+      const pBox=$("lightPresets");
+      [["Lune",384400],["Mars",225e6],["Soleil",AU],["Jupiter",628e6],["Voyager 1",167*AU]].forEach(([lab,d])=>{ const b=document.createElement("button"); b.className="lab-preset"; b.textContent=lab; b.onclick=()=>{ sl.value=Math.round((Math.log10(d)-dMin)/(dMax-dMin)*1000); upd(lab); }; pBox.appendChild(b); });
+      const fmtDur=s=>s<90?nf(s,s<10?2:1)+" s":s<5400?nf(s/60,1)+" min":s<172800?nf(s/3600,1)+" h":nf(s/86400,1)+" jours";
+      const fmtDist=km=>{ if(km<1e6)return Math.round(km).toLocaleString("fr-FR")+" km"; const au=km/AU; const big=(km/1e6>=1000)?nf(km/1e9,2)+" Md km":Math.round(km/1e6).toLocaleString("fr-FR")+" M km"; return big+" · "+nf(au,au<10?2:0)+" UA"; };
+      let pulseDur=2;
+      function upd(name){
+        const f=+sl.value/1000, d=Math.pow(10,dMin+f*(dMax-dMin)), one=d/c, two=2*one;
+        $("distOut").textContent=fmtDist(d); $("lOne").textContent=fmtDur(one); $("lTwo").textContent=fmtDur(two);
+        if(name){ $("ltTarget").textContent=name; $("ltCap").textContent="vers "+name; pBox.querySelectorAll(".lab-preset").forEach(x=>x.classList.toggle("on",x.textContent===name)); }
+        else pBox.querySelectorAll(".lab-preset").forEach(x=>x.classList.remove("on"));
+        $("ltSay").innerHTML = two<3?`Quasi instantané — on pourrait <b>presque</b> piloter en direct.`:two<600?`Piloter en direct ? Impossible : une commande met <b>${fmtDur(two)}</b> à faire l'aller-retour. Le vaisseau doit décider <b>seul</b>.`:`Le moindre échange dure <b>${fmtDur(two)}</b> : on n'envoie que des programmes, jamais des ordres en temps réel.`;
+        pulseDur=Math.max(1.1,Math.min(5,1+Math.log10(one+1)));
+      }
+      const pulse=$("ltPulse"); let t0=0;
+      function loop(t){ if(!t0)t0=t; const p=(((t-t0)/1000)/pulseDur)%1; pulse.style.left=(14+p*72)+"%"; pulse.style.opacity=p<.95?0.95:0; requestAnimationFrame(loop); }
+      sl.addEventListener("input",()=>upd()); upd("Lune"); requestAnimationFrame(loop);
+    })();
   })();
 
   /* progress bar */

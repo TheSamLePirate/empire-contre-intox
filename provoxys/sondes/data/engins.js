@@ -202,5 +202,51 @@ window.STATS = {
     {y:2022, au:158,  who:"Voyager 1",  ev:""},
     {y:2026, au:173,  who:"Voyager 1",  ev:"≈ 173 UA (mi-2026) — son signal met > 23 h"}
   ],
-  frontierNote: "Distance héliocentrique de l'objet le plus lointain. Pioneer 10 a tenu le record jusqu'au 17 février 1998, date à laquelle la plus rapide Voyager 1 l'a dépassé. 1 UA = distance Terre-Soleil ≈ 150 millions de km. (NASA/JPL · JHU-APL)"
+  frontierNote: "Distance héliocentrique de l'objet le plus lointain. Pioneer 10 a tenu le record jusqu'au 17 février 1998, date à laquelle la plus rapide Voyager 1 l'a dépassé. 1 UA = distance Terre-Soleil ≈ 150 millions de km. (NASA/JPL · JHU-APL)",
+
+  /* Objets lancés dans l'espace — cumul (c) et nombre annuel (a), par année.
+     Source : UNOOSA, Online Index of Objects Launched into Outer Space, via Our World in Data.
+     « Objets » = charges utiles + étages de fusée + débris de mission enregistrés au lancement
+     (hors fragments de collisions/explosions). Cumul réel ≥ 2000 ; années antérieures reconstruites
+     à partir des taux annuels (moyenne ~125/an, 1957-2000). */
+  launches: [
+    {y:1957, a:2,    c:3},
+    {y:1960, a:20,   c:60},
+    {y:1965, a:161,  c:560},
+    {y:1970, a:130,  c:1300},
+    {y:1975, a:158,  c:2050},
+    {y:1980, a:130,  c:2750},
+    {y:1985, a:165,  c:3550},
+    {y:1990, a:170,  c:4350},
+    {y:1995, a:105,  c:4950},
+    {y:2000, a:121,  c:5408},
+    {y:2005, a:72,   c:5900},
+    {y:2010, a:121,  c:6385},
+    {y:2015, a:222,  c:7321},
+    {y:2018, a:452,  c:8300},
+    {y:2019, a:586,  c:9036},
+    {y:2020, a:1274, c:10310},
+    {y:2021, a:1814, c:12124},
+    {y:2022, a:2479, c:14603},
+    {y:2023, a:2903, c:17506},
+    {y:2024, a:2849, c:20355}
+  ],
+  launchesMarks: [
+    {y:1957, t:"Spoutnik 1", d:"le tout premier objet en orbite"},
+    {y:1969, t:"Apollo 11", d:"premiers pas humains sur la Lune"},
+    {y:1981, t:"Navette spatiale", d:"l'ère des vols réutilisables s'ouvre"},
+    {y:1998, t:"Station ISS", d:"début de l'assemblage en orbite"},
+    {y:2019, t:"Starlink", d:"l'ère des méga-constellations"}
+  ],
+  launchesNote: "Nombre cumulé d'objets lancés depuis Spoutnik (1957) : <b>environ 20 400 fin 2024</b>, dont près de la moitié depuis 2020 — l'envolée des méga-constellations (surtout Starlink). Barres : objets lancés chaque année ; courbe : cumul. Source : UNOOSA (registre des objets lancés) via Our World in Data. « Objets » = charges utiles + étages + débris de mission enregistrés.",
+
+  /* Constantes physiques vérifiées pour les ateliers interactifs.
+     μ⊕ : NASA JPL (DE440) · g0 : SI (exacte) · c : SI (exacte depuis 1983). */
+  phys: {
+    muEarth: 398600.436,   // km^3/s^2  (JPL SSD)
+    rEarth: 6371.0,        // km        (IUGG)
+    g0: 9.80665,           // m/s^2     (SI, exacte)
+    c: 299792.458,         // km/s      (SI, exacte)
+    au: 149597870.7        // km        (UA, définition)
+  }
 };
