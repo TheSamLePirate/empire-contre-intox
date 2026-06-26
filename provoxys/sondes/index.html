@@ -225,6 +225,35 @@
     .women-credits .wc-list a { color:var(--soft); text-decoration:underline; text-decoration-color:var(--line-2); }
     .women-credits .wc-list a:hover { color:var(--viol); }
     @media (max-width:560px){ .women-credits .wc-list{ columns:1; } }
+    .woman { cursor:pointer; }
+    .woman:focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; }
+    /* Lightbox — agrandir au clic */
+    .wlb { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:5vh 5vw;
+      background:rgba(3,5,11,.93); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
+    .wlb.open { display:flex; animation:wlbIn .3s var(--ease); }
+    @keyframes wlbIn { from{opacity:0} to{opacity:1} }
+    .wlb-fig { margin:0; display:flex; flex-direction:column; align-items:center; max-width:860px; }
+    .wlb-imgwrap { border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--navy);
+      box-shadow:0 34px 90px -24px rgba(0,0,0,.95), 0 0 0 1px rgba(185,140,255,.18); animation:wlbZoom .35s var(--ease); }
+    @keyframes wlbZoom { from{opacity:0; transform:scale(.94)} to{opacity:1; transform:none} }
+    .wlb-imgwrap img { display:block; max-width:100%; max-height:72vh; }
+    .wlb-ph { width:min(58vw,380px); aspect-ratio:3/4; display:grid; place-items:center;
+      background:radial-gradient(circle at 50% 34%, rgba(185,140,255,.3), rgba(7,12,26,.85)); font-family:var(--roman); font-weight:700; font-size:4.6rem; color:var(--viol); }
+    .wlb-cap { margin-top:18px; text-align:center; max-width:620px; }
+    .wlb-name { font-family:var(--roman); font-weight:700; font-size:1.12rem; letter-spacing:.05em; text-transform:uppercase; color:var(--gold-bright); }
+    .wlb-role { margin-top:8px; font-family:var(--serif); font-style:italic; font-size:1.02rem; color:var(--parch); line-height:1.42; }
+    .wlb-cr { margin-top:11px; font-family:var(--mono); font-size:.66rem; color:var(--soft); }
+    .wlb-cr a { color:var(--soft); text-decoration:underline; text-decoration-color:var(--line-2); } .wlb-cr a:hover{ color:var(--viol); }
+    .wlb-btn { position:absolute; z-index:2; width:46px; height:46px; border-radius:50%; border:1px solid var(--line);
+      background:rgba(7,12,26,.65); color:var(--parch); font-family:var(--serif); font-size:1.5rem; line-height:1; cursor:pointer;
+      display:grid; place-items:center; transition:transform .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease); backdrop-filter:blur(4px); }
+    .wlb-btn:hover { border-color:var(--viol); color:var(--gold-bright); background:rgba(20,16,40,.85); transform:scale(1.07); }
+    .wlb-close { top:3vh; right:3vw; font-size:1.7rem; }
+    .wlb-prev { left:3vw; top:50%; margin-top:-23px; }
+    .wlb-next { right:3vw; top:50%; margin-top:-23px; }
+    .wlb-count { position:absolute; bottom:3.2vh; left:50%; transform:translateX(-50%); font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; color:var(--soft); }
+    @media (max-width:560px){ .wlb-prev{left:1vw} .wlb-next{right:1vw} .wlb-btn{width:40px;height:40px} .wlb-imgwrap img{max-height:62vh} }
+    @media (prefers-reduced-motion:reduce){ .wlb.open,.wlb-imgwrap{animation:none} }
 
     .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
     .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
@@ -1065,11 +1094,11 @@
       ];
       const g = document.getElementById("womenGrid"); if(!g) return;
       const initials = n => n.split(/\s+/).map(s=>s[0]).slice(0,2).join("");
-      g.innerHTML = W.map(w=>{
+      g.innerHTML = W.map((w,i)=>{
         const media = w.noimg
           ? `<div class="w-ph" aria-hidden="true">${initials(w.n)}</div>`
           : `<img src="assets/femmes/${w.f}" alt="Portrait de ${w.n}" loading="lazy">`;
-        return `<figure class="woman" title="${w.n} — ${w.role}">${media}<span class="w-accent"></span><div class="w-grad"></div>`
+        return `<figure class="woman" data-i="${i}" role="button" tabindex="0" aria-label="Agrandir le portrait de ${w.n}" title="${w.n} — ${w.role}">${media}<span class="w-accent"></span><div class="w-grad"></div>`
           + `<figcaption class="w-cap"><div class="w-name">${w.n}</div><div class="w-role">${w.role}</div></figcaption></figure>`;
       }).join("");
       const cd = document.getElementById("womenCredits");
@@ -1080,6 +1109,35 @@
         }).join("");
         cd.innerHTML = `<summary>Crédits photographiques &amp; licences</summary><div class="wc-list">${items}</div>`;
       }
+      /* Lightbox — agrandir au clic */
+      const lb = document.createElement("div");
+      lb.className = "wlb"; lb.setAttribute("role","dialog"); lb.setAttribute("aria-modal","true"); lb.setAttribute("aria-label","Portrait agrandi");
+      lb.innerHTML = `<button class="wlb-btn wlb-close" type="button" aria-label="Fermer">×</button>`
+        + `<button class="wlb-btn wlb-prev" type="button" aria-label="Portrait précédent">‹</button>`
+        + `<button class="wlb-btn wlb-next" type="button" aria-label="Portrait suivant">›</button>`
+        + `<figure class="wlb-fig"><div class="wlb-imgwrap"></div><figcaption class="wlb-cap"><div class="wlb-name"></div><div class="wlb-role"></div><div class="wlb-cr"></div></figcaption></figure>`
+        + `<div class="wlb-count"></div>`;
+      document.body.appendChild(lb);
+      const imgwrap=lb.querySelector(".wlb-imgwrap"), nm=lb.querySelector(".wlb-name"), rl=lb.querySelector(".wlb-role"), crEl=lb.querySelector(".wlb-cr"), cnt=lb.querySelector(".wlb-count");
+      let cur=0;
+      const paint = () => {
+        const w=W[cur];
+        imgwrap.innerHTML = w.noimg ? `<div class="wlb-ph">${initials(w.n)}</div>` : `<img src="assets/femmes/${w.f}" alt="Portrait de ${w.n}">`;
+        nm.textContent=w.n; rl.textContent=w.role;
+        const lab = w.lic ? `${w.cr} · ${w.lic}` : w.cr;
+        crEl.innerHTML = w.noimg ? "Aucun portrait libre disponible" : (w.src?`<a href="${w.src}" target="_blank" rel="noopener">${lab}</a>`:lab);
+        cnt.textContent=`${cur+1} / ${W.length}`;
+      };
+      const open = i => { cur=i; paint(); lb.classList.add("open"); document.body.style.overflow="hidden"; lb.querySelector(".wlb-close").focus(); };
+      const close = () => { lb.classList.remove("open"); document.body.style.overflow=""; };
+      const nav = d => { cur=(cur+d+W.length)%W.length; paint(); };
+      g.addEventListener("click", e=>{ const c=e.target.closest(".woman"); if(c) open(+c.dataset.i); });
+      g.addEventListener("keydown", e=>{ const c=e.target.closest(".woman"); if(c && (e.key==="Enter"||e.key===" ")){ e.preventDefault(); open(+c.dataset.i); } });
+      lb.querySelector(".wlb-close").addEventListener("click",close);
+      lb.querySelector(".wlb-prev").addEventListener("click",e=>{e.stopPropagation();nav(-1);});
+      lb.querySelector(".wlb-next").addEventListener("click",e=>{e.stopPropagation();nav(1);});
+      lb.addEventListener("click", e=>{ if(e.target===lb) close(); });
+      document.addEventListener("keydown", e=>{ if(!lb.classList.contains("open")) return; if(e.key==="Escape")close(); else if(e.key==="ArrowLeft")nav(-1); else if(e.key==="ArrowRight")nav(1); });
     })();
   </script>
 </body>
