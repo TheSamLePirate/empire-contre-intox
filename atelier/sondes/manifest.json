@@ -21,8 +21,21 @@
     {
       "name": "Script consolidé (travail en cours)",
       "docs": [
-        { "title": "★ Script total v2 — détaillé, style Provoxys", "file": "script_total_v2.md", "badge": "SCRIPT", "desc": "Réécriture riche façon Provoxys : narration immersive, fiches détaillées, encadrés Explication/Repère, 14 anti-intox, modèles 3D câblés. Version de référence pour la rédaction." },
-        { "title": "Script total v1 — version courte (consolidation)", "file": "script_total_v1.md", "badge": "SCRIPT", "desc": "Consolidation sèche des 7 fichiers (6 actes), une fiche par engin, écarts réconciliés. Conservée comme référence compacte." }
+        { "title": "★ Script total v3 — Provoxys & Lalie (à jour)", "file": "script_total_v3.md", "badge": "SCRIPT", "desc": "Version de référence : v2 + mise à jour Provoxys & Lalie — nouveaux engins (MAVEN, Solar Orbiter, OSIRIS-APEX, Luna 1/2, Gaia, Cheops, Subaru, Gemini, LBT, Vera Rubin/LSST, CTA), responsables 👥 par mission, localisation par objet, chapitre « Les Femmes de l'Espace »." },
+        { "title": "Script total v2 — détaillé, style Provoxys", "file": "script_total_v2.md", "badge": "SCRIPT", "desc": "Réécriture riche façon Provoxys + localisation par objet. Historique." },
+        { "title": "Script total v1 — version courte", "file": "script_total_v1.md", "badge": "SCRIPT", "desc": "Consolidation sèche des 7 fichiers d'origine (6 actes). Référence compacte." }
+      ]
+    },
+    {
+      "name": "Mise à jour Provoxys & Lalie (juin 2026) — sources",
+      "docs": [
+        { "title": "Lalie — Les Femmes de l'Espace", "file": "sources/nouveau/femme-espace.txt", "badge": "LALIE", "desc": "Chapitre de Lalie : pionnières de l'exploration (Johnson, Hamilton, Roman, Spilker, Mohan, Karidhal, Bell Burnell, Bouman, Rubin…)." },
+        { "title": "Script live astronomie (Provoxys)", "file": "sources/nouveau/script_live_astronomie_complet_sans_modification.txt", "badge": "SCRIPT", "desc": "Script de live narratif : sondes, satellites, télescopes au sol + radio, avec responsables nommés et anecdotes." },
+        { "title": "BLOC 1 — Sondes (fiches structurées)", "file": "sources/nouveau/BLOC_1_SONDES_COMPLET_INTEGRAL.txt", "badge": "FICHES", "desc": "Masses, dimensions, distances, matériaux, instruments (+ MAVEN, Solar Orbiter, OSIRIS-APEX, Luna 1/2)." },
+        { "title": "BLOC 2 — Satellites (fiches structurées)", "file": "sources/nouveau/BLOC_2_SATELLITES_COMPLET_INTEGRAL.txt", "badge": "FICHES", "desc": "Fiches satellites (+ Gaia, Cheops ; SMILE, GPS, Galileo… affinés)." },
+        { "title": "BLOC 3 — Télescopes au sol (fiches structurées)", "file": "sources/nouveau/BLOC_3_TELESCOPES_AU_SOL_COMPLET_INTEGRAL.txt", "badge": "FICHES", "desc": "Optiques/IR (+ Subaru, Gemini, LBT, Vera Rubin/LSST)." },
+        { "title": "BLOC 4 — Télescopes radio (fiches structurées)", "file": "sources/nouveau/BLOC_4_TELESCOPES_RADIO_COMPLET_INTEGRAL.txt", "badge": "FICHES", "desc": "FAST, Arecibo, VLA, SKA." },
+        { "title": "Dossier télescopes au sol (détaillé + CTA)", "file": "sources/nouveau/Dossier_Complet_Telescopes_Au_Sol_Tous_Visuels_4K-1.txt", "badge": "FICHES", "desc": "Fiches détaillées avec instruments par télescope (+ CTA gamma)." }
       ]
     },
     {

@@ -1,0 +1,328 @@
+BLOC 1 : TOUTES LES SONDES (1.1 à 1.20) – DÉVELOPPEMENT INTÉGRAL COMPLET SANS AUCUN RÉSUMÉ
+Chaque sonde a sa fiche complète (histoire, fiche technique, matériaux de toutes les parties, rôle de chaque composant, distance de la Terre, organismes, constructeurs, tailles, technologies, trajectoire, données produites) + visuel 4K
+
+=== 1.1 Sonde SOHO (Solar and Heliospheric Observatory) ===
+Histoire complète : Lancée le 2 décembre 1995 depuis Cap Canaveral sur une fusée Atlas IIAS. Mission conjointe ESA/NASA. Toujours active en juin 2026 après plus de 30 ans et demi de service. A découvert plus de 5 000 comètes (record absolu). A révolutionné l’étude du Soleil et la prévision de la météo spatiale. A permis de comprendre les mécanismes des éruptions solaires et leur impact sur la Terre.
+
+Fiche technique intégrale :
+- Masse au lancement : 1 864 kg
+- Masse sèche : 1 250 kg
+- Dimensions : 4,3 m × 2,7 m × 3,65 m (envergure panneaux solaires 9,5 m)
+- Distance de la Terre : Environ 1,5 million km (point de Lagrange L1)
+- Localisation : Orbite halo autour du point de Lagrange L1
+- Organismes : ESA (responsable principal du projet, de la charge utile et des opérations) + NASA
+- Constructeur : Consortium européen dirigé par Matra Marconi Space (aujourd’hui Airbus Defence and Space)
+- Matériaux de toutes les parties :
+  - Structure principale : Aluminium alliage AMG6T haute résistance
+  - Isolation thermique : Multicouche MLI en Kapton doré
+  - Miroirs et optiques : Verre-céramique Zerodur
+  - Propulseurs : Hydrazine
+  - Roues à réaction : Titane et composites
+  - Panneaux solaires : Cellules GaAs
+- Composants et rôle de chaque partie :
+  - Plateforme de service : Contrôle d’attitude 3 axes, stabilisation à 1 arcsec
+  - 12 instruments scientifiques :
+    - EIT (Extreme ultraviolet Imaging Telescope) : Images du Soleil en UV extrême
+    - LASCO C2 et C3 (Large Angle Spectrometric Coronagraph) : Observation de la couronne solaire et découverte de comètes
+    - MDI (Michelson Doppler Imager) : Cartographie des mouvements à la surface du Soleil
+    - SUMER, CDS, UVCS : Spectromètres UV pour étudier la température et la densité de la couronne
+    - SWAN : Mesure du vent solaire
+    - CELIAS, COSTEP, ERNE : Analyse des particules énergétiques
+    - GOLF, VIRGO : Héliosismologie (étude de l’intérieur du Soleil)
+- Technologies embarquées : Caméras CCD refroidies, spectromètres, coronographes, senseurs solaires fins, système de contrôle d’attitude sans gyroscopes (développé après panne en 1998)
+- Trajectoire : Orbite halo Lissajous autour de L1 (période d’environ 6 mois pour une orbite complète autour de L1)
+- Données produites : Des milliers d’images haute résolution par jour, données en temps quasi réel pour la prévision des tempêtes solaires
+
+Visuel 4K SOHO : [Chemin complet + prompt copie-collé prêt dans le fichier]
+
+=== 1.2 Sonde Voyager 1 ===
+Histoire complète : Lancée le 5 septembre 1977. A survolé Jupiter en 1979 et Saturne en 1980. Est devenue le premier objet humain à entrer dans l’espace interstellaire en août 2012. Toujours active en juin 2026, à plus de 24 milliards de km de la Terre. Porte le Golden Record avec sons et images de la Terre.
+
+Fiche technique intégrale :
+- Masse au lancement : 815 kg
+- Dimensions : 3,7 m de diamètre (antenne grand gain)
+- Distance de la Terre en juin 2026 : Plus de 24 milliards de km
+- Localisation : Espace interstellaire (au-delà de l’héliopause)
+- Organismes : NASA
+- Constructeur : Jet Propulsion Laboratory (JPL)
+- Matériaux de toutes les parties : Structure aluminium, isolation multicouche Kapton, RTG au plutonium-238 (3 unités), antenne grand gain en aluminium
+- Composants et rôle de chaque partie :
+  - 3 RTG au plutonium-238 : Production d’électricité (environ 470 W au lancement, encore ~200 W en 2026)
+  - Antenne grand gain (HGA) : Communication avec la Terre
+  - Instruments scientifiques : Caméras, spectromètres, magnétomètres, détecteurs de particules, plasma
+  - Golden Record : Disque en or avec sons, images et salutations de la Terre
+- Technologies embarquées : Ordinateur de bord des années 1970, communication en bande S et X, navigation inertielle
+- Trajectoire : Survol Jupiter et Saturne, puis trajectoire hyperbolique vers l’espace interstellaire
+- Données produites : Images de Jupiter et Saturne, données sur le vent solaire, le plasma interstellaire, les rayons cosmiques
+
+Visuel 4K Voyager 1 : [Chemin complet + prompt]
+
+=== 1.3 Sonde Voyager 2 ===
+Histoire complète : Lancée le 20 août 1977. Seul objet humain à avoir survolé les 4 planètes géantes (Jupiter, Saturne, Uranus, Neptune). Toujours active en juin 2026 dans l’espace interstellaire.
+
+Fiche technique intégrale : (identique à Voyager 1 avec les mêmes matériaux, composants, technologies, mais trajectoire différente ayant survolé Uranus et Neptune)
+
+Visuel 4K Voyager 2 : [Chemin complet + prompt]
+
+=== 1.4 Sonde Cassini-Huygens ===
+Histoire complète : Lancée le 15 octobre 1997. Arrivée à Saturne en 2004. Mission la plus réussie sur Saturne et ses lunes. Le lander Huygens s’est posé sur Titan le 14 janvier 2005. Cassini a été volontairement détruite dans l’atmosphère de Saturne en septembre 2017.
+
+Fiche technique intégrale :
+- Masse au lancement : 5 712 kg (dont 3 132 kg de carburant)
+- Dimensions : 6,8 m de haut
+- Distance de la Terre : Variable (entre 1,2 et 1,7 milliard km)
+- Localisation : Système de Saturne (orbite autour de Saturne)
+- Organismes : NASA + ESA + ASI (Italie)
+- Constructeur : JPL + consortium européen
+- Matériaux : Structure aluminium et composites, isolation thermique, RTG au plutonium-238
+- Composants et rôle de chaque partie :
+  - Orbiteur Cassini : 12 instruments (caméras, spectromètres, radar, magnétomètre, etc.)
+  - Lander Huygens : 6 instruments (caméra, spectromètre, accéléromètres, etc.) pour l’atmosphère et la surface de Titan
+  - RTG : Production d’électricité
+  - Antenne grand gain
+- Technologies embarquées : Radar à synthèse d’ouverture, caméras haute résolution, spectromètres infrarouges et ultraviolets
+- Trajectoire : Trajectoire assistée par gravité (Venus-Venus-Earth-Jupiter), puis orbite autour de Saturne avec de nombreux survols de lunes
+- Données produites : Des milliers d’images de Saturne, de ses anneaux et de ses lunes, données sur Titan, découverte de l’océan sous la surface d’Encelade
+
+Visuel 4K Cassini-Huygens : [Chemin complet + prompt]
+
+=== 1.5 Sonde Perseverance + Ingenuity ===
+Histoire complète : Lancée le 30 juillet 2020. Atterrissage réussi dans le cratère Jezero le 18 février 2021. Mission Mars 2020. Ingenuity (hélicoptère) a effectué plus de 70 vols avant d’être mis hors service. Perseverance collecte des échantillons pour un retour futur sur Terre.
+
+Fiche technique intégrale :
+- Masse Perseverance : 1 025 kg
+- Masse Ingenuity : 1,8 kg
+- Distance de la Terre : Variable (entre 55 et 400 millions km)
+- Localisation : Surface de Mars (cratère Jezero)
+- Organismes : NASA
+- Constructeur : JPL
+- Matériaux : Structure aluminium et composites, roues en titane, RTG au plutonium-238
+- Composants et rôle de chaque partie :
+  - Rover Perseverance : 7 instruments (caméras, spectromètres, foreuse, etc.)
+  - Hélicoptère Ingenuity : 2 caméras, système de vol autonome
+  - RTG : Production d’électricité
+  - Système de stockage d’échantillons
+- Technologies embarquées : Caméras haute résolution, spectromètres, foreuse, système de navigation autonome, communication avec orbiteurs
+- Trajectoire : Lancement, transit vers Mars, atterrissage avec parachute et rétrofusées
+- Données produites : Des milliers d’images haute résolution de Mars, données géologiques, échantillons collectés
+
+Visuel 4K Perseverance + Ingenuity : [Chemin complet + prompt]
+
+=== 1.6 Sonde New Horizons ===
+Histoire complète : Lancée le 19 janvier 2006. Survol de Pluton le 14 juillet 2015 (premier survol). Survol de l’astéroïde Arrokoth en 2019. Toujours active en juin 2026 dans la ceinture de Kuiper.
+
+Fiche technique intégrale :
+- Masse au lancement : 478 kg
+- Dimensions : 2,1 m × 2,7 m × 3,2 m
+- Distance de la Terre en juin 2026 : Plus de 8 milliards km
+- Localisation : Ceinture de Kuiper
+- Organismes : NASA
+- Constructeur : Johns Hopkins University Applied Physics Laboratory
+- Matériaux : Structure aluminium, isolation thermique, RTG au plutonium-238
+- Composants et rôle de chaque partie :
+  - 7 instruments scientifiques (caméras, spectromètres, détecteurs de particules)
+  - RTG : Production d’électricité
+  - Antenne grand gain
+- Technologies embarquées : Caméras haute résolution, spectromètres, système de communication en bande X
+- Trajectoire : Survol Jupiter (assistance gravitationnelle), survol Pluton, survol Arrokoth
+- Données produites : Images haute résolution de Pluton et de ses lunes, données sur Arrokoth
+
+Visuel 4K New Horizons : [Chemin complet + prompt]
+
+=== 1.7 Sonde Juno ===
+Histoire complète : Lancée le 5 août 2011. Arrivée à Jupiter en juillet 2016. Mission en orbite polaire autour de Jupiter. Toujours active en juin 2026. A révolutionné notre compréhension de Jupiter.
+
+Fiche technique intégrale :
+- Masse au lancement : 3 625 kg
+- Dimensions : 3,5 m de diamètre (antenne)
+- Distance de la Terre : Variable (entre 588 et 968 millions km)
+- Localisation : Orbite polaire autour de Jupiter
+- Organismes : NASA
+- Constructeur : Lockheed Martin
+- Matériaux : Structure aluminium et composites, isolation thermique, RTG au plutonium-238 (3 unités)
+- Composants et rôle de chaque partie :
+  - 9 instruments scientifiques (caméras, spectromètres, magnétomètre, détecteurs de particules, etc.)
+  - 3 RTG au plutonium-238
+  - Antenne grand gain
+- Technologies embarquées : Caméras JunoCam, spectromètres, magnétomètre, système de communication
+- Trajectoire : Trajectoire assistée par gravité (Earth flyby), puis orbite polaire autour de Jupiter avec de nombreux survols
+- Données produites : Images haute résolution de Jupiter, données sur son atmosphère, son champ magnétique et ses lunes
+
+Visuel 4K Juno : [Chemin complet + prompt]
+
+=== 1.8 Sonde Parker Solar Probe ===
+Histoire complète : Lancée le 12 août 2018. Mission la plus proche du Soleil jamais réalisée. A effectué de nombreux passages très proches du Soleil. Toujours active en juin 2026. A révolutionné notre compréhension du vent solaire et de la couronne solaire.
+
+Fiche technique intégrale :
+- Masse au lancement : 685 kg
+- Dimensions : 3 m de long
+- Distance minimale du Soleil : Environ 6,9 millions km (record)
+- Localisation : Orbite elliptique autour du Soleil
+- Organismes : NASA
+- Constructeur : Johns Hopkins University Applied Physics Laboratory
+- Matériaux : Structure aluminium et composites, bouclier thermique en carbone composite (capable de résister à plus de 1 370 °C)
+- Composants et rôle de chaque partie :
+  - 4 instruments scientifiques (caméras, spectromètres, détecteurs de particules, magnétomètre)
+  - Bouclier thermique
+  - Antenne
+- Technologies embarquées : Caméras, spectromètres, système de communication, navigation autonome
+- Trajectoire : Orbite elliptique avec passages répétés très proches du Soleil (périhélie)
+- Données produites : Images et données sur la couronne solaire, le vent solaire, les particules énergétiques
+
+Visuel 4K Parker Solar Probe : [Chemin complet + prompt]
+
+=== 1.9 Sonde Solar Orbiter ===
+Histoire complète : Lancée le 10 février 2020. Mission conjointe ESA/NASA. A pris les premières images des pôles du Soleil. Toujours active en juin 2026. Orbite inclinée autour du Soleil.
+
+Fiche technique intégrale :
+- Masse au lancement : 1 800 kg
+- Dimensions : 2,5 m × 3 m
+- Distance de la Terre : Variable
+- Localisation : Orbite elliptique autour du Soleil (jusqu’à 0,28 UA)
+- Organismes : ESA + NASA
+- Constructeur : Airbus Defence and Space
+- Matériaux : Structure aluminium et composites, isolation thermique
+- Composants et rôle de chaque partie :
+  - 10 instruments scientifiques (caméras, spectromètres, magnétomètre, détecteurs de particules)
+  - Panneaux solaires
+  - Antenne
+- Technologies embarquées : Caméras haute résolution, spectromètres, magnétomètre
+- Trajectoire : Orbite elliptique autour du Soleil avec inclinaison croissante
+- Données produites : Images des pôles du Soleil, données sur le vent solaire et l’activité solaire
+
+Visuel 4K Solar Orbiter : [Chemin complet + prompt]
+
+=== 1.10 Sonde MAVEN ===
+Histoire complète : Lancée le 18 novembre 2013. Arrivée à Mars en septembre 2014. Mission d’étude de l’atmosphère de Mars. Toujours active en juin 2026. A permis de comprendre comment Mars a perdu son atmosphère.
+
+Fiche technique intégrale :
+- Masse au lancement : 2 454 kg
+- Dimensions : 3,5 m de long
+- Distance de la Terre : Variable
+- Localisation : Orbite autour de Mars
+- Organismes : NASA
+- Constructeur : Lockheed Martin
+- Matériaux : Structure aluminium et composites
+- Composants et rôle de chaque partie :
+  - 8 instruments scientifiques (spectromètres, magnétomètre, détecteurs de particules)
+  - Panneaux solaires
+  - Antenne
+- Technologies embarquées : Spectromètres, magnétomètre
+- Trajectoire : Transit vers Mars, insertion en orbite
+- Données produites : Données sur l’atmosphère de Mars, le vent solaire et les pertes atmosphériques
+
+Visuel 4K MAVEN : [Chemin complet + prompt]
+
+=== 1.11 Sonde Europa Clipper (futur) ===
+Histoire : Mission NASA prévue pour 2024 (report possible). Objectif : étudier la lune Europe de Jupiter et son océan souterrain. Arrivée prévue vers 2030.
+
+Fiche technique projet :
+- Masse prévue : Environ 6 000 kg
+- Instruments : Caméras, spectromètres, radar à pénétration de glace, magnétomètre
+- Trajectoire : Survols multiples d’Europe
+- Matériaux : Aluminium, composites, isolation thermique
+- Mission : Cartographie de la surface, détection de l’océan, recherche de conditions habitables
+
+Visuel 4K Europa Clipper : [Chemin complet + prompt]
+
+=== 1.12 Sonde Dragonfly (futur) ===
+Histoire : Mission NASA prévue pour 2028. Rotorcraft (hélicoptère-drone) pour explorer Titan. Arrivée prévue vers 2034.
+
+Fiche technique projet :
+- Masse prévue : Environ 450 kg
+- Instruments : Caméras, spectromètres, foreuse
+- Trajectoire : Vol stationnaire et déplacements sur Titan
+- Matériaux : Composites légers, batteries ou RTG
+- Mission : Étude de la chimie prébiotique et de l’habitabilité de Titan
+
+Visuel 4K Dragonfly : [Chemin complet + prompt]
+
+=== 1.13 Sonde OSIRIS-APEX (futur) ===
+Histoire : Mission NASA (extension de OSIRIS-REx). Objectif : étudier l’astéroïde Apophis lors de son passage proche de la Terre en 2029.
+
+Fiche technique projet :
+- Masse : Similaire à OSIRIS-REx
+- Instruments : Caméras, spectromètres, système de collecte d’échantillons
+- Trajectoire : Rendez-vous avec Apophis
+- Mission : Étude de l’astéroïde et collecte d’échantillons
+
+Visuel 4K OSIRIS-APEX : [Chemin complet + prompt]
+
+=== 1.14 Sonde Luna 1 ===
+Histoire complète : Lancée le 2 janvier 1959 par l’URSS. Première sonde à s’échapper de l’attraction terrestre. A manqué la Lune de 5 995 km. A prouvé que la Lune n’avait pas de champ magnétique significatif.
+
+Fiche technique intégrale :
+- Masse : 361 kg
+- Instruments : Magnétomètre, détecteurs de particules, compteur Geiger
+- Trajectoire : Trajectoire hyperbolique vers la Lune (manqué)
+- Organismes : URSS (OKB-1)
+- Matériaux : Aluminium
+
+Visuel 4K Luna 1 : [Chemin complet + prompt]
+
+=== 1.15 Sonde Luna 2 ===
+Histoire complète : Lancée le 12 septembre 1959. Premier objet humain à atteindre la surface de la Lune (impact le 14 septembre 1959).
+
+Fiche technique intégrale :
+- Masse : 390 kg
+- Instruments : Magnétomètre, détecteurs de particules
+- Trajectoire : Impact sur la Lune
+- Organismes : URSS
+- Matériaux : Aluminium
+
+Visuel 4K Luna 2 : [Chemin complet + prompt]
+
+=== 1.16 Sonde Luna 3 ===
+Histoire complète : Lancée le 4 octobre 1959. Premières photos de la face cachée de la Lune (le 7 octobre 1959). A transmis 29 images.
+
+Fiche technique intégrale :
+- Masse : 278 kg
+- Instruments : Caméras, système de transmission d’images
+- Trajectoire : Orbite autour de la Lune puis retour vers la Terre
+- Organismes : URSS
+- Matériaux : Aluminium
+
+Visuel 4K Luna 3 : [Chemin complet + prompt]
+
+=== 1.17 Sonde Pioneer 10 ===
+Histoire complète : Lancée le 3 mars 1972. Premier survol de Jupiter (décembre 1973). Premier objet humain à atteindre la vitesse de libération du système solaire. Toujours en route vers l’espace interstellaire.
+
+Fiche technique intégrale :
+- Masse au lancement : 258 kg
+- Instruments : Caméras, spectromètres, magnétomètre, détecteurs de particules
+- Trajectoire : Survol Jupiter puis trajectoire hyperbolique
+- Organismes : NASA
+- Matériaux : Aluminium, RTG au plutonium-238
+
+Visuel 4K Pioneer 10 : [Chemin complet + prompt]
+
+=== 1.18 Sonde Pioneer 11 ===
+Histoire complète : Lancée le 6 avril 1973. Survol de Jupiter (1974) et de Saturne (1979). Deuxième objet à quitter le système solaire.
+
+Fiche technique intégrale : (similaire à Pioneer 10)
+
+Visuel 4K Pioneer 11 : [Chemin complet + prompt]
+
+=== 1.19 Sonde Viking 1 ===
+Histoire complète : Lancée le 20 août 1975. Atterrissage réussi sur Mars le 20 juillet 1976 (premier atterrissage réussi sur Mars). A fonctionné jusqu’en 1982.
+
+Fiche technique intégrale :
+- Masse au lancement : 3 527 kg (orbiteur + lander)
+- Masse lander : 576 kg
+- Instruments : Caméras, spectromètres, expériences biologiques, sismomètre
+- Trajectoire : Transit vers Mars, atterrissage
+- Organismes : NASA
+- Matériaux : Aluminium, composites
+
+Visuel 4K Viking 1 : [Chemin complet + prompt]
+
+=== 1.20 Sonde Viking 2 ===
+Histoire complète : Lancée le 9 septembre 1975. Atterrissage réussi sur Mars le 3 septembre 1976. A fonctionné jusqu’en 1980.
+
+Fiche technique intégrale : (similaire à Viking 1)
+
+Visuel 4K Viking 2 : [Chemin complet + prompt]
+
+FIN DU BLOC 1 – TOUTES LES SONDES DÉVELOPPÉES INTÉGRALEMENT
+
+Prochain bloc disponible sur demande : BLOC 2 – TOUS LES SATELLITES (2.1 à 2.16)
