@@ -232,16 +232,17 @@
       background:rgba(3,5,11,.93); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
     .wlb.open { display:flex; animation:wlbIn .3s var(--ease); }
     @keyframes wlbIn { from{opacity:0} to{opacity:1} }
-    .wlb-fig { margin:0; display:flex; flex-direction:column; align-items:center; max-width:860px; }
-    .wlb-imgwrap { border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--navy);
+    .wlb-fig { margin:0; display:flex; gap:34px; align-items:center; justify-content:center; max-width:1040px; width:100%; }
+    .wlb-imgwrap { flex:0 0 auto; border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--navy);
       box-shadow:0 34px 90px -24px rgba(0,0,0,.95), 0 0 0 1px rgba(185,140,255,.18); animation:wlbZoom .35s var(--ease); }
     @keyframes wlbZoom { from{opacity:0; transform:scale(.94)} to{opacity:1; transform:none} }
-    .wlb-imgwrap img { display:block; max-width:100%; max-height:72vh; }
-    .wlb-ph { width:min(58vw,380px); aspect-ratio:3/4; display:grid; place-items:center;
-      background:radial-gradient(circle at 50% 34%, rgba(185,140,255,.3), rgba(7,12,26,.85)); font-family:var(--roman); font-weight:700; font-size:4.6rem; color:var(--viol); }
-    .wlb-cap { margin-top:18px; text-align:center; max-width:620px; }
-    .wlb-name { font-family:var(--roman); font-weight:700; font-size:1.12rem; letter-spacing:.05em; text-transform:uppercase; color:var(--gold-bright); }
-    .wlb-role { margin-top:8px; font-family:var(--serif); font-style:italic; font-size:1.02rem; color:var(--parch); line-height:1.42; }
+    .wlb-imgwrap img { display:block; max-width:48vw; max-height:80vh; }
+    .wlb-ph { width:min(34vw,300px); aspect-ratio:3/4; display:grid; place-items:center;
+      background:radial-gradient(circle at 50% 34%, rgba(185,140,255,.3), rgba(7,12,26,.85)); font-family:var(--roman); font-weight:700; font-size:4.2rem; color:var(--viol); }
+    .wlb-cap { text-align:left; max-width:410px; }
+    .wlb-name { font-family:var(--roman); font-weight:700; font-size:1.2rem; letter-spacing:.05em; text-transform:uppercase; color:var(--gold-bright); line-height:1.18; }
+    .wlb-role { margin-top:9px; font-family:var(--serif); font-style:italic; font-size:1.04rem; color:var(--parch); line-height:1.4; }
+    .wlb-ach { margin-top:16px; padding-top:15px; border-top:1px solid var(--line); font-family:var(--serif); font-size:.97rem; line-height:1.62; color:var(--muted); }
     .wlb-cr { margin-top:11px; font-family:var(--mono); font-size:.66rem; color:var(--soft); }
     .wlb-cr a { color:var(--soft); text-decoration:underline; text-decoration-color:var(--line-2); } .wlb-cr a:hover{ color:var(--viol); }
     .wlb-btn { position:absolute; z-index:2; width:46px; height:46px; border-radius:50%; border:1px solid var(--line);
@@ -252,7 +253,14 @@
     .wlb-prev { left:3vw; top:50%; margin-top:-23px; }
     .wlb-next { right:3vw; top:50%; margin-top:-23px; }
     .wlb-count { position:absolute; bottom:3.2vh; left:50%; transform:translateX(-50%); font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; color:var(--soft); }
-    @media (max-width:560px){ .wlb-prev{left:1vw} .wlb-next{right:1vw} .wlb-btn{width:40px;height:40px} .wlb-imgwrap img{max-height:62vh} }
+    @media (max-width:760px){
+      .wlb-fig { flex-direction:column; gap:15px; overflow-y:auto; max-height:90vh; padding:2px; }
+      .wlb-cap { text-align:center; max-width:92vw; }
+      .wlb-ach { text-align:left; }
+      .wlb-imgwrap img { max-width:86vw; max-height:46vh; }
+      .wlb-ph { width:min(62vw,240px); }
+      .wlb-prev{left:1vw} .wlb-next{right:1vw} .wlb-btn{width:40px;height:40px}
+    }
     @media (prefers-reduced-motion:reduce){ .wlb.open,.wlb-imgwrap{animation:none} }
 
     .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
@@ -1073,24 +1081,24 @@
     /* ---------- Les Femmes de l'Espace — galerie de portraits ---------- */
     (function(){
       const W = [
-        {f:"katherine-johnson.jpg", n:"Katherine Johnson", role:"Mathématicienne (NASA) — trajectoires orbitales", cr:"NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Katherine_Johnson_1983.jpg"},
-        {f:"dorothy-vaughan.jpg", n:"Dorothy Vaughan", role:"Mathématicienne (NACA/NASA) — Fortran", cr:"NASA on The Commons", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Dorothy_Vaughan_2.jpg"},
-        {f:"mary-jackson.jpg", n:"Mary Jackson", role:"Ingénieure aérospatiale (NASA) — souffleries", cr:"NASA Langley / Bob Nye", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Mary_Jackson_1979_Portrait_(LRC-1979-B701_P_F002-07086).jpg"},
-        {f:"margaret-hamilton.jpg", n:"Margaret Hamilton", role:"Génie logiciel d'Apollo (MIT)", cr:"Daphne Weld Nichols", lic:"CC BY-SA 3.0", src:"https://commons.wikimedia.org/wiki/File:Margaret_Hamilton_1995.jpg"},
-        {f:"nancy-grace-roman.jpg", n:"Nancy Grace Roman", role:"« Mère de Hubble » (NASA)", cr:"NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Nancy_Grace_Roman_1969_NASA_Portrait_(41124536895).jpg"},
-        {f:"linda-spilker.jpg", n:"Linda Spilker", role:"Responsable scientifique de Cassini (JPL)", cr:"NASA/Joel Kowsky", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:NHQ201709150016~orig.jpg"},
-        {f:"swati-mohan.jpg", n:"Swati Mohan", role:"GNC de la descente de Perseverance (JPL)", cr:"NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Swati_Mohan.jpg"},
-        {f:"ritu-karidhal.jpg", n:"Ritu Karidhal", role:"« Rocket Woman » — Mangalyaan (ISRO)", cr:"Press Information Bureau (India)", lic:"GODL-India", src:"https://commons.wikimedia.org/wiki/File:Ritu_Karidal_at_ISRO.jpg"},
-        {n:"Muthayya Vanitha", role:"Directrice de projet de Chandrayaan-2 (ISRO)", noimg:true, cr:"aucun portrait libre disponible", lic:""},
-        {f:"sarah-al-amiri.jpg", n:"Sarah Al-Amiri", role:"Cheffe de projet de la sonde Hope (EAU)", cr:"Sintegrity", lic:"CC BY-SA 4.0", src:"https://commons.wikimedia.org/wiki/File:Sarah_Amiri_-_Sustaining_the_Space_Economy_-_2019_(48177030097)_(cropped_again).jpg"},
-        {f:"jocelyn-bell-burnell.jpg", n:"Jocelyn Bell Burnell", role:"Découverte des pulsars", cr:"Astron. Institute ASCR / Anrie", lic:"CC BY-SA 3.0", src:"https://commons.wikimedia.org/wiki/File:Launch_of_IYA_2009,_Paris_-_Grygar,_Bell_Burnell_cropped.jpg"},
-        {f:"katie-bouman.jpg", n:"Katie Bouman", role:"Algorithme de la 1ʳᵉ image d'un trou noir (EHT)", cr:"NSF", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Katie_Bouman_answers_questions_about_the_Event_Horizon_Telescope_project.jpg"},
-        {f:"vera-rubin.jpg", n:"Vera Rubin", role:"Preuves de la matière noire (→ LSST)", cr:"Mark Godfrey / AIP Emilio Segrè Visual Archives", lic:"Attribution", src:"https://commons.wikimedia.org/wiki/File:Vera_Rubin_with_antique_globes.jpg"},
-        {f:"eileen-collins.jpg", n:"Eileen Collins", role:"1ʳᵉ femme à commander une navette (NASA)", cr:"Robert Markowitz / NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Commander_Eileen_Collins_-_GPN-2000-001177.jpg"},
-        {f:"valentina-tereshkova.jpg", n:"Valentina Tereshkova", role:"1ʳᵉ femme dans l'espace (URSS)", cr:"kremlin.ru", lic:"CC BY 4.0", src:"https://commons.wikimedia.org/wiki/File:Valentina_Tereshkova_(2024-02-29)_crop.jpg"},
-        {f:"chiaki-mukai.jpg", n:"Chiaki Mukai", role:"Médecin-astronaute, microgravité (JAXA)", cr:"NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Chiaki_Mukai.jpg"},
-        {f:"fabiola-gianotti.jpg", n:"Fabiola Gianotti", role:"Détecteurs de précision (CERN)", cr:"Maximilien Brice / CERN", lic:"CC BY 4.0", src:"https://commons.wikimedia.org/wiki/File:Dr_Fabiola_Gianotti.jpg"},
-        {f:"helen-sharman.jpg", n:"Helen Sharman", role:"1ʳᵉ britannique dans l'espace (Mir)", cr:"Anne-Katrin Purkiss", lic:"CC BY-SA 4.0", src:"https://commons.wikimedia.org/wiki/File:Dr._Helen_Sharman_(cropped).jpg"}
+        {f:"katherine-johnson.jpg", n:"Katherine Johnson", role:"Mathématicienne (NASA) — trajectoires orbitales", cr:"NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Katherine_Johnson_1983.jpg", ach:"Elle calcula les trajectoires du premier vol spatial américain (Alan Shepard, 1961) puis de la mise en orbite de John Glenn (1962) — qui exigea qu'elle revérifie à la main les calculs de l'ordinateur avant de décoller. Elle travailla aussi sur Apollo 11 et la navette. Médaille présidentielle de la Liberté (2015)."},
+        {f:"dorothy-vaughan.jpg", n:"Dorothy Vaughan", role:"Mathématicienne (NACA/NASA) — Fortran", cr:"NASA on The Commons", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Dorothy_Vaughan_2.jpg", ach:"Première superviseure afro-américaine de la NACA, elle dirigea la section de calcul « West Area ». À l'arrivée des ordinateurs IBM, elle apprit seule le langage Fortran et y forma son équipe, leur assurant une place dans l'ère informatique naissante."},
+        {f:"mary-jackson.jpg", n:"Mary Jackson", role:"Ingénieure aérospatiale (NASA) — souffleries", cr:"NASA Langley / Bob Nye", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Mary_Jackson_1979_Portrait_(LRC-1979-B701_P_F002-07086).jpg", ach:"Première femme ingénieure noire de la NASA (1958), spécialiste des essais en soufflerie supersonique. Elle consacra la fin de sa carrière à promouvoir l'embauche et la promotion des femmes et des minorités. Le siège de la NASA porte son nom depuis 2021."},
+        {f:"margaret-hamilton.jpg", n:"Margaret Hamilton", role:"Génie logiciel d'Apollo (MIT)", cr:"Daphne Weld Nichols", lic:"CC BY-SA 3.0", src:"https://commons.wikimedia.org/wiki/File:Margaret_Hamilton_1995.jpg", ach:"Au MIT, elle dirigea l'équipe qui écrivit le logiciel de vol embarqué d'Apollo. Son système de priorité des tâches sauva l'alunissage d'Apollo 11 lors des alarmes « 1202 ». Elle popularisa l'expression « génie logiciel ». Médaille présidentielle de la Liberté (2016)."},
+        {f:"nancy-grace-roman.jpg", n:"Nancy Grace Roman", role:"« Mère de Hubble » (NASA)", cr:"NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Nancy_Grace_Roman_1969_NASA_Portrait_(41124536895).jpg", ach:"Première femme à occuper un poste de direction à la NASA (cheffe de l'astronomie), elle défendit et organisa le programme du télescope spatial — d'où son surnom de « mère de Hubble ». Le futur télescope Nancy Grace Roman porte son nom."},
+        {f:"linda-spilker.jpg", n:"Linda Spilker", role:"Responsable scientifique de Cassini (JPL)", cr:"NASA/Joel Kowsky", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:NHQ201709150016~orig.jpg", ach:"Planétologue au JPL, elle fut responsable scientifique de la mission Cassini pendant ses treize années autour de Saturne (2004-2017), des geysers d'Encelade aux lacs de Titan. Elle est aujourd'hui responsable scientifique des sondes Voyager."},
+        {f:"swati-mohan.jpg", n:"Swati Mohan", role:"GNC de la descente de Perseverance (JPL)", cr:"NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Swati_Mohan.jpg", ach:"Responsable du guidage, de la navigation et du contrôle de la mission Mars 2020, elle coordonna l'atterrissage du rover Perseverance et prononça le célèbre « Touchdown confirmed! » le 18 février 2021. Elle avait aussi travaillé sur Cassini et GRACE."},
+        {f:"ritu-karidhal.jpg", n:"Ritu Karidhal", role:"« Rocket Woman » — Mangalyaan (ISRO)", cr:"Press Information Bureau (India)", lic:"GODL-India", src:"https://commons.wikimedia.org/wiki/File:Ritu_Karidal_at_ISRO.jpg", ach:"Surnommée la « Rocket Woman » indienne, elle fut directrice adjointe des opérations de Mars Orbiter Mission (Mangalyaan, 2014) — qui plaça l'Inde en orbite martienne au premier essai — puis directrice de la mission Chandrayaan-3 (2023)."},
+        {n:"Muthayya Vanitha", role:"Directrice de projet de Chandrayaan-2 (ISRO)", noimg:true, cr:"aucun portrait libre disponible", lic:"", ach:"Ingénieure en électronique de l'ISRO, elle fut la première femme à diriger un projet de mission interplanétaire indienne : Chandrayaan-2 (2019), associant orbiteur, atterrisseur et rover lunaires."},
+        {f:"sarah-al-amiri.jpg", n:"Sarah Al-Amiri", role:"Cheffe de projet de la sonde Hope (EAU)", cr:"Sintegrity", lic:"CC BY-SA 4.0", src:"https://commons.wikimedia.org/wiki/File:Sarah_Amiri_-_Sustaining_the_Space_Economy_-_2019_(48177030097)_(cropped_again).jpg", ach:"Présidente de l'Agence spatiale des Émirats arabes unis, elle dirigea l'équipe scientifique de la sonde Hope (Emirates Mars Mission), entrée en orbite autour de Mars en 2021 — faisant des EAU la cinquième puissance à atteindre la planète rouge."},
+        {f:"jocelyn-bell-burnell.jpg", n:"Jocelyn Bell Burnell", role:"Découverte des pulsars", cr:"Astron. Institute ASCR / Anrie", lic:"CC BY-SA 3.0", src:"https://commons.wikimedia.org/wiki/File:Launch_of_IYA_2009,_Paris_-_Grygar,_Bell_Burnell_cropped.jpg", ach:"Doctorante en 1967, elle repéra le signal régulier qui révéla l'existence des pulsars (étoiles à neutrons). Le prix Nobel de 1974 récompensa son directeur de thèse, une omission longtemps débattue. Lauréate du Breakthrough Prize 2018, elle en reversa les 3 millions de dollars à des bourses pour les groupes sous-représentés."},
+        {f:"katie-bouman.jpg", n:"Katie Bouman", role:"Algorithme de la 1ʳᵉ image d'un trou noir (EHT)", cr:"NSF", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Katie_Bouman_answers_questions_about_the_Event_Horizon_Telescope_project.jpg", ach:"Informaticienne, elle contribua de façon décisive aux algorithmes (dont CHIRP) qui permirent de reconstituer, à partir des données de l'Event Horizon Telescope, la toute première image d'un trou noir — celui de la galaxie M87, dévoilée en 2019."},
+        {f:"vera-rubin.jpg", n:"Vera Rubin", role:"Preuves de la matière noire (→ LSST)", cr:"Mark Godfrey / AIP Emilio Segrè Visual Archives", lic:"Attribution", src:"https://commons.wikimedia.org/wiki/File:Vera_Rubin_with_antique_globes.jpg", ach:"Ses mesures des vitesses de rotation des galaxies, dans les années 1970, montrèrent qu'elles tournent trop vite pour leur seule masse visible : la première preuve observationnelle solide de la matière noire. L'observatoire Vera C. Rubin, au Chili, porte son nom."},
+        {f:"eileen-collins.jpg", n:"Eileen Collins", role:"1ʳᵉ femme à commander une navette (NASA)", cr:"Robert Markowitz / NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Commander_Eileen_Collins_-_GPN-2000-001177.jpg", ach:"Pilote d'essai de l'US Air Force, elle devint la première femme à piloter une navette spatiale (1995) puis la première à en commander une (1999). Elle commanda STS-114, le vol du retour en vol après l'accident de Columbia (2005)."},
+        {f:"valentina-tereshkova.jpg", n:"Valentina Tereshkova", role:"1ʳᵉ femme dans l'espace (URSS)", cr:"kremlin.ru", lic:"CC BY 4.0", src:"https://commons.wikimedia.org/wiki/File:Valentina_Tereshkova_(2024-02-29)_crop.jpg", ach:"Le 16 juin 1963, à bord de Vostok 6, elle devint la première femme dans l'espace. En près de trois jours, elle effectua 48 orbites — plus que tous les astronautes américains réunis à l'époque — et reste la seule femme à avoir volé en solitaire."},
+        {f:"chiaki-mukai.jpg", n:"Chiaki Mukai", role:"Médecin-astronaute, microgravité (JAXA)", cr:"NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Chiaki_Mukai.jpg", ach:"Cardiologue, elle fut la première femme japonaise dans l'espace (navette Columbia, 1994) et la première Asiatique à voler deux fois (1998). Ses recherches portèrent sur les effets de la microgravité sur le vivant."},
+        {f:"fabiola-gianotti.jpg", n:"Fabiola Gianotti", role:"Détecteurs de précision (CERN)", cr:"Maximilien Brice / CERN", lic:"CC BY 4.0", src:"https://commons.wikimedia.org/wiki/File:Dr_Fabiola_Gianotti.jpg", ach:"Physicienne des particules, elle était porte-parole de l'expérience ATLAS au LHC lors de l'annonce de la découverte du boson de Higgs, le 4 juillet 2012. Depuis 2016, elle est la première femme directrice générale du CERN."},
+        {f:"helen-sharman.jpg", n:"Helen Sharman", role:"1ʳᵉ britannique dans l'espace (Mir)", cr:"Anne-Katrin Purkiss", lic:"CC BY-SA 4.0", src:"https://commons.wikimedia.org/wiki/File:Dr._Helen_Sharman_(cropped).jpg", ach:"Chimiste, elle fut sélectionnée parmi près de 13 000 candidats pour devenir, en 1991, la première Britannique dans l'espace, à bord de la station Mir (projet Juno). Elle y mena des expériences de chimie et de croissance cristalline en microgravité."}
       ];
       const g = document.getElementById("womenGrid"); if(!g) return;
       const initials = n => n.split(/\s+/).map(s=>s[0]).slice(0,2).join("");
@@ -1115,15 +1123,15 @@
       lb.innerHTML = `<button class="wlb-btn wlb-close" type="button" aria-label="Fermer">×</button>`
         + `<button class="wlb-btn wlb-prev" type="button" aria-label="Portrait précédent">‹</button>`
         + `<button class="wlb-btn wlb-next" type="button" aria-label="Portrait suivant">›</button>`
-        + `<figure class="wlb-fig"><div class="wlb-imgwrap"></div><figcaption class="wlb-cap"><div class="wlb-name"></div><div class="wlb-role"></div><div class="wlb-cr"></div></figcaption></figure>`
+        + `<figure class="wlb-fig"><div class="wlb-imgwrap"></div><figcaption class="wlb-cap"><div class="wlb-name"></div><div class="wlb-role"></div><div class="wlb-ach"></div><div class="wlb-cr"></div></figcaption></figure>`
         + `<div class="wlb-count"></div>`;
       document.body.appendChild(lb);
-      const imgwrap=lb.querySelector(".wlb-imgwrap"), nm=lb.querySelector(".wlb-name"), rl=lb.querySelector(".wlb-role"), crEl=lb.querySelector(".wlb-cr"), cnt=lb.querySelector(".wlb-count");
+      const imgwrap=lb.querySelector(".wlb-imgwrap"), nm=lb.querySelector(".wlb-name"), rl=lb.querySelector(".wlb-role"), achEl=lb.querySelector(".wlb-ach"), crEl=lb.querySelector(".wlb-cr"), cnt=lb.querySelector(".wlb-count");
       let cur=0;
       const paint = () => {
         const w=W[cur];
         imgwrap.innerHTML = w.noimg ? `<div class="wlb-ph">${initials(w.n)}</div>` : `<img src="assets/femmes/${w.f}" alt="Portrait de ${w.n}">`;
-        nm.textContent=w.n; rl.textContent=w.role;
+        nm.textContent=w.n; rl.textContent=w.role; achEl.textContent=w.ach||"";
         const lab = w.lic ? `${w.cr} · ${w.lic}` : w.cr;
         crEl.innerHTML = w.noimg ? "Aucun portrait libre disponible" : (w.src?`<a href="${w.src}" target="_blank" rel="noopener">${lab}</a>`:lab);
         cnt.textContent=`${cur+1} / ${W.length}`;
