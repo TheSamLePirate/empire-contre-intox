@@ -811,7 +811,7 @@
           <div><p class="section-kicker">Annexe · l'appareil technique</p><h2 id="c8">Fiches techniques</h2></div>
           <div class="chapter-number">✦</div>
         </div>
-        <p class="prose" style="max-width:760px;color:var(--muted)">Un noyau de fiches, filtrables. Le <strong>catalogue complet</strong> des 70+ engins — avec modèle 3D, localisation actuelle et responsables — vit dans l'<a href="atlas.html" style="color:var(--azur-bright)">Atlas interactif ✦</a>.</p>
+        <p class="prose" style="max-width:760px;color:var(--muted)">La <strong>fiche technique complète</strong> de chaque engin — dimensions, énergie, propulsion, lanceur, constructeur, instruments, matériaux, données et défis —, filtrable. L'<a href="atlas.html" style="color:var(--azur-bright)">Atlas interactif ✦</a> y ajoute les modèles 3D, la localisation et les statistiques.</p>
         <input class="fiches-search" type="search" placeholder="Filtrer les fiches — ex. « Voyager », « Mars », « ESA », « radio »…" data-fiches-search aria-label="Filtrer les fiches techniques">
         <div data-fiches-root>
           <details class="fiche-cat" open>
@@ -898,6 +898,7 @@
     </footer>
   </div>
 
+  <script src="data/engins.js"></script>
   <script>
     const progressBar = document.querySelector(".progress span");
     const progressTop = document.getElementById("progressTop");
@@ -970,6 +971,43 @@
 
     /* ---------- Filtre des fiches ---------- */
     (function(){
+      /* Fiches techniques complètes, générées depuis data/engins.js */
+      const root = document.querySelector("[data-fiches-root]");
+      if(root && window.ENGINS){
+        const STL={actif:"actif",futur:"à venir",termine:"terminé",inerte:"inerte"};
+        const fiche = e => {
+          const sp=[];
+          if(e.mass&&e.mass!=="—") sp.push(["Masse",e.mass]);
+          if(e.dim) sp.push(["Dimensions",e.dim]);
+          if(e.mir) sp.push(["Miroir",String(e.mir).replace(".",",")+" m"]);
+          if(e.pow) sp.push(["Énergie",e.pow]);
+          if(e.prop) sp.push(["Propulsion",e.prop]);
+          if(e.lv) sp.push(["Lanceur",e.lv]);
+          if(e.build) sp.push(["Constructeur",e.build]);
+          if(e.instr) sp.push(["Instruments",e.instr]);
+          if(e.mat) sp.push(["Matériaux",e.mat]);
+          if(e.loc) sp.push(["Où aujourd'hui",e.loc+(e.dist&&e.dist!=="—"?" · "+e.dist:"")]);
+          const dl = sp.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join("");
+          const notes=[e.fact];
+          if(e.res) notes.push("<strong>Données :</strong> "+e.res);
+          if(e.defis) notes.push("<strong>Défis :</strong> "+e.defis);
+          if(e.who) notes.push("👥 "+e.who);
+          if(e.lalie) notes.push("✦ <em>Lalie :</em> "+e.lalie);
+          return `<article class="fiche-tech"><div class="ft-name">${e.n}</div><div class="ft-sub">${e.ag} · ${e.yr} · ${STL[e.st]||e.st}</div><dl class="ft-specs">${dl}</dl><p class="ft-note">${notes.join(" ")}</p></article>`;
+        };
+        const GROUPS=[
+          {t:"Sondes interplanétaires & d'exploration",c:["sonde"]},
+          {t:"Rovers & atterrisseurs",c:["rover","lander"]},
+          {t:"Satellites & télescopes spatiaux",c:["satellite","telspatial"]},
+          {t:"Télescopes au sol & radio",c:["telsol"]},
+          {t:"Vols habités",c:["habite"]}
+        ];
+        root.innerHTML = GROUPS.map((g,i)=>{
+          const list=window.ENGINS.filter(e=>g.c.includes(e.cat)).sort((a,b)=>a.yr-b.yr);
+          if(!list.length) return "";
+          return `<details class="fiche-cat"${i===0?" open":""}><summary>${g.t} <span class="fc-count"></span></summary><div class="fiche-grid">${list.map(fiche).join("")}</div></details>`;
+        }).join("");
+      }
       const input = document.querySelector("[data-fiches-search]"); if(!input) return;
       const cats = [...document.querySelectorAll("[data-fiches-root] .fiche-cat")];
       cats.forEach(c=>{ const n=c.querySelectorAll(".fiche-tech").length; const s=c.querySelector(".fc-count"); if(s)s.textContent=n+" fiches"; });
