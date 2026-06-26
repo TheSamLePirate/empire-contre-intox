@@ -170,6 +170,20 @@
     .prose-list { margin:10px 0 16px; padding-left:20px; }
     .prose-list li { margin:0 0 9px; color:var(--muted); line-height:1.6; }
     .prose-list li strong { color:var(--parch); }
+    /* Encadrés « Dans l'Atlas » — interventions liées à l'atlas */
+    .atlas-box { display:flex; align-items:center; gap:15px; margin:22px 0; padding:14px 18px; border:1px solid var(--line); border-left:3px solid var(--azur); border-radius:3px; text-decoration:none;
+      background:radial-gradient(150% 180% at 100% 0%, rgba(95,185,212,.11), transparent 58%), rgba(7,12,26,.5); transition:border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease); }
+    .atlas-box:hover { border-left-color:var(--gold); transform:translateX(3px); box-shadow:0 12px 30px -18px rgba(95,185,212,.5); }
+    .atlas-box .al-ic { flex:0 0 auto; width:34px; height:34px; border-radius:50%; display:grid; place-items:center; font-family:var(--roman); color:var(--void); font-size:1rem; background:linear-gradient(135deg,var(--azur),var(--azur-bright)); }
+    .atlas-box .al-txt { flex:1; min-width:0; color:var(--muted); font-size:.92rem; line-height:1.45; }
+    .atlas-box .al-txt b { display:block; margin-bottom:3px; color:var(--ink); font-family:var(--roman); font-weight:700; font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; }
+    .atlas-box .al-txt strong { color:var(--parch); font-weight:600; }
+    .atlas-box .al-go { flex:0 0 auto; font-family:var(--roman); font-size:.56rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--azur-bright); border:1px solid var(--line); border-radius:20px; padding:8px 14px; white-space:nowrap; transition:all .3s var(--ease); }
+    .atlas-box:hover .al-go { background:rgba(95,185,212,.14); border-color:var(--azur); color:var(--ink); }
+    @media (max-width:540px){ .atlas-box { flex-wrap:wrap; } .atlas-box .al-go { width:100%; text-align:center; } }
+    .atlas-jump { display:inline-flex; align-items:baseline; gap:6px; margin:0 0 12px; font-family:var(--mono); font-size:.74rem; color:var(--azur-bright); text-decoration:none; border-bottom:1px solid transparent; }
+    .atlas-jump::before { content:"▸"; color:var(--gold); }
+    .atlas-jump:hover { color:var(--gold-bright); border-bottom-color:var(--line); }
     .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
 
     .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
@@ -582,6 +596,12 @@
               <p>Et pour commencer ce voyage, je vous invite à imaginer avec moi le frisson de ces premiers pas dans l'espace. C'est parti !</p>
             </div>
 
+            <a class="atlas-box" href="atlas.html?cat=sonde">
+              <span class="al-ic">✦</span>
+              <span class="al-txt"><b>Intervention · Atlas</b>Suivez ce chapitre dans l'Atlas : chaque sonde y a sa fiche, son <strong>modèle 3D</strong> à faire pivoter et sa <strong>localisation actuelle</strong>. Ce lien ouvre déjà le catalogue filtré sur les sondes.</span>
+              <span class="al-go">Ouvrir →</span>
+            </a>
+
             <h3 class="group-title">Les pionnières soviétiques — toutes les portes ouvertes en premier</h3>
 
             <h4 class="mission-title">Sonde Luna 1</h4>
@@ -612,6 +632,7 @@
             <h4 class="mission-title">Sonde Perseverance + Ingenuity</h4>
             <p>Lancée le 30 juillet 2020, Perseverance s'est posée dans le cratère Jezero sur Mars le 18 février 2021. Elle collecte des échantillons de roche et de sol qui seront ramenés sur Terre par une future mission. Son bras robotique fore des carottes et les stocke dans des tubes hermétiques, sous la direction du project scientist Ken Farley et de la project manager Jennifer Trosper. L'hélicoptère Ingenuity, déployé le 3 avril 2021, a réalisé le premier vol motorisé sur une autre planète le 19 avril 2021 et a effectué plus de soixante-dix vols de reconnaissance, prouvant la faisabilité des aéronefs sur Mars, grâce au travail visionnaire de Bob Balaram comme chief engineer et de l'équipe du Jet Propulsion Laboratory. Perseverance étudie la géologie ancienne du cratère, recherche des biosignatures passées et prépare le terrain pour l'exploration humaine. Une anecdote inspirante est que Ingenuity a été conçu comme une démonstration technologique risquée, et que son premier vol a été suivi en direct par des millions de personnes dans le monde, prouvant que l'innovation audacieuse peut transformer l'exploration planétaire.</p>
             <div class="live-aside"><span class="lv">Au live</span>Perseverance et son petit hélicoptère Ingenuity… Le premier vol sur Mars, c'est tout simplement magique ! Et vous, aimeriez-vous piloter un drone sur la planète rouge un jour ? Dites-moi vos rêves d'exploration dans le chat !</div>
+            <a class="atlas-jump" href="atlas.html#e-persever">Perseverance dans l'Atlas — fiche, localisation &amp; modèle 3D</a>
             <figure class="model3d reveal">
               <div class="m3d-frame">
                 <iframe title="Perseverance — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/c1c94e1f69df45eeae4a0a1d0d27e85b/embed?ui_theme=dark&dnt=1"></iframe>
@@ -635,6 +656,7 @@
             <h4 class="mission-title">Sonde Voyager 2</h4>
             <p>Lancée le 20 août 1977, Voyager 2 a suivi une trajectoire qui lui a permis de survoler Jupiter en 1979, Saturne en 1981, Uranus en 1986 et Neptune en 1989. À Uranus, elle a découvert les anneaux fins et les dix nouvelles lunes grâce aux instruments et à l'analyse de l'équipe dirigée par Edward C. Stone. À Neptune, elle a révélé les vents les plus rapides du système solaire et les geysers de glace d'azote sur Triton. Comme sa sœur, elle reste active en 2026 et explore l'héliopause depuis une direction différente, fournissant des données complémentaires sur le milieu interstellaire. Une anecdote remarquable est que Voyager 2 a été la seule sonde à visiter Uranus et Neptune, et que l'équipe a dû reprogrammer les instruments à distance pendant des années pour maximiser les découvertes malgré la distance croissante et les signaux de plus en plus faibles.</p>
             <div class="live-aside"><span class="lv">Au live</span>Voyager 2, la grande voyageuse qui a tout vu… Uranus, Neptune, et maintenant l'espace interstellaire. Quelle leçon de persévérance ! Et vous, quelle planète du système solaire aimeriez-vous visiter en priorité si vous pouviez choisir ? Dites-le-moi tout de suite dans le chat !</div>
+            <a class="atlas-jump" href="atlas.html#e-voyager">Voyager dans l'Atlas — fiche, modèle 3D &amp; vue NASA Eyes en direct</a>
             <figure class="model3d reveal">
               <div class="m3d-frame">
                 <iframe title="Voyager — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/81b6fa85964e4261b661aea487cc0fa8/embed?ui_theme=dark&dnt=1"></iframe>
@@ -646,6 +668,7 @@
             <h4 class="mission-title">Sonde Cassini-Huygens</h4>
             <p>Lancée le 15 octobre 1997, Cassini-Huygens est arrivée en orbite autour de Saturne le 1er juillet 2004 après un voyage de près de sept ans utilisant des assistances gravitationnelles. La sonde orbiteur a cartographié les anneaux avec une précision sans précédent, découvert de nouveaux satellites et analysé la magnétosphère de Saturne, sous la direction de la project scientist Linda Spilker de la NASA et avec les contributions majeures de Carolyn Porco pour l'équipe d'imagerie. Le 14 janvier 2005, la sonde Huygens s'est posée sur Titan, révélant un monde avec des lacs et des rivières de méthane liquide, des dunes de sable organique et une chimie prébiotique complexe, grâce au travail acharné de Jean-Pierre Lebreton et de l'équipe ESA qui a conçu et suivi l'atterrissage historique. La mission s'est terminée le 15 septembre 2017 par une descente contrôlée dans l'atmosphère de Saturne pour éviter toute contamination future des lunes. Une anecdote intense est que l'équipe de Huygens a attendu avec anxiété pendant plus d'une heure après l'atterrissage, le signal arrivant avec un retard de plus de deux heures, avant de célébrer la première image depuis la surface de Titan, un moment gravé dans l'histoire de l'exploration spatiale.</p>
             <div class="live-aside"><span class="lv">Au live</span>Cassini et son atterrissage sur Titan… Un moment historique qui nous a ouvert les portes d'un monde liquide et organique. Si vous pouviez poser une question à l'équipe de Cassini aujourd'hui, quelle serait-elle ? Écrivez-la dans le chat, je suis curieux de lire vos réflexions !</div>
+            <a class="atlas-jump" href="atlas.html#e-cassini">Cassini-Huygens dans l'Atlas — fiche complète &amp; modèle 3D</a>
 
             <h4 class="mission-title">Sonde New Horizons</h4>
             <p>Lancée le 19 janvier 2006, New Horizons a survolé Pluton et sa lune Charon le 14 juillet 2015 à une distance de seulement 12 500 kilomètres. Elle a révélé des plaines de glace d'azote en forme de cœur, des montagnes de glace d'eau et une atmosphère ténue s'échappant dans l'espace, grâce au project scientist Alan Stern et à l'équipe du Southwest Research Institute. Après Pluton, elle a survolé l'objet de la ceinture de Kuiper Arrokoth en 2019, montrant un monde binaire primitif. Elle continue d'explorer la ceinture de Kuiper en 2026 et envoie des données sur la composition des objets transneptuniens. Une anecdote fascinante est que l'équipe a dû attendre des mois après le survol de Pluton pour recevoir toutes les données haute résolution, et que la découverte du « cœur » de Pluton a ému des millions de personnes à travers le monde, symbolisant la beauté inattendue des mondes lointains.</p>
@@ -671,10 +694,12 @@
             <h4 class="mission-title">Sonde SOHO</h4>
             <p>La sonde SOHO, lancée le 2 décembre 1995 par une collaboration entre l'ESA et la NASA, est positionnée au point de Lagrange L1 entre la Terre et le Soleil. Le projet scientifique a été dirigé par le project scientist Richard Harrison de l'ESA, avec des contributions majeures de Guenter Brueckner et son équipe du Naval Research Laboratory pour l'instrument LASCO qui a capturé des milliers d'images spectaculaires des éjections de masse coronale, permettant de comprendre comment ces événements gigantesques affectent notre planète et nos technologies. L'instrument EIT a été développé sous la direction de Jean-Pierre Delaboudinière, offrant des vues détaillées de la chromosphère et de la couronne dans l'extrême ultraviolet avec une précision révolutionnaire. Le MDI, dirigé par Philip Scherrer de l'université de Stanford, a révolutionné l'héliosismologie en analysant les vibrations du Soleil comme un immense instrument de musique cosmique. Une anecdote passionnante est que SOHO a permis à des milliers d'astronomes amateurs du monde entier de découvrir plus de 5 000 comètes en analysant les données publiques en ligne, transformant des citoyens ordinaires en découvreurs d'espace et créant une véritable communauté scientifique citoyenne. Les données de SOHO ont montré comment les éruptions solaires accélèrent les particules à des vitesses relativistes et comment le champ magnétique solaire s'inverse tous les onze ans, grâce au travail acharné de l'équipe internationale qui a maintenu la mission pendant presque trente ans malgré des défis techniques majeurs comme la perte temporaire de contact en 1998, résolue par une opération de sauvetage ingénieuse. Elle a permis de prédire des tempêtes solaires qui menacent les satellites, les réseaux électriques et les astronautes, sauvant potentiellement des milliards en infrastructure et protégeant des vies humaines dans l'espace.</p>
             <div class="live-aside"><span class="lv">Au live</span>Incroyable, n'est-ce pas ? Imaginez un instant ce satellite qui veille sur notre étoile jour et nuit depuis presque trente ans. Et vous, dans le chat, avez-vous déjà vu des images des éruptions solaires capturées par SOHO ? Dites-moi ce que vous en pensez !</div>
+            <a class="atlas-jump" href="atlas.html#e-soho">SOHO dans l'Atlas — suivez-la en direct dans NASA Eyes</a>
 
             <h4 class="mission-title">Sonde Parker Solar Probe</h4>
             <p>Lancée le 12 août 2018, Parker Solar Probe s'approche du Soleil à moins de dix rayons solaires grâce à sept assistances gravitationnelles de Vénus. Elle mesure directement la couronne solaire, les éruptions et les vents solaires avec des instruments comme FIELDS pour les champs électriques et magnétiques et SWEAP pour les particules, sous la direction du project scientist Nour Raouafi. Elle a révélé que le vent solaire s'accélère de manière inattendue près du Soleil et que la couronne contient des structures magnétiques complexes. Une anecdote extraordinaire est que Parker Solar Probe a survécu à des températures de plus de 1 300 degrés Celsius grâce à son bouclier thermique innovant, et que chaque survol rapproché a fourni des données que les scientifiques attendaient depuis des décennies, transformant notre compréhension du Soleil.</p>
             <div class="live-aside"><span class="lv">Au live</span>Parker Solar Probe qui frôle littéralement le Soleil… Du courage et de la technologie de pointe ! Avez-vous déjà vu des images de ces approches rapprochées ? Dites-moi vos impressions dans le chat !</div>
+            <a class="atlas-jump" href="atlas.html#e-parker">Parker Solar Probe dans l'Atlas — trajectoire en direct (NASA Eyes)</a>
 
             <h4 class="mission-title">Sonde Solar Orbiter</h4>
             <p>Lancée le 10 février 2020 par l'ESA, Solar Orbiter étudie le Soleil depuis une orbite inclinée qui lui permet d'observer les pôles solaires. Ses instruments comme EUI pour l'imagerie ultraviolette et Metis pour la couronne observent les éruptions, le vent solaire et les champs magnétiques, sous la direction du project scientist Daniel Müller. Elle a déjà fourni des images des pôles solaires et des données sur les éjections de masse coronale. Une anecdote inspirante est que Solar Orbiter a capturé les premières images des pôles du Soleil, un exploit technique rendu possible par des années de planification et de collaboration internationale, ouvrant une nouvelle fenêtre sur le cycle solaire.</p>
@@ -754,6 +779,7 @@
             <h4 class="mission-title">Hubble Space Telescope</h4>
             <p>Déployé le 24 avril 1990 par la navette spatiale Discovery, Hubble a révolutionné l'astronomie avec des images d'une netteté inégalée. Il a permis de déterminer l'âge de l'Univers, d'observer les premières galaxies et de confirmer l'accélération de l'expansion cosmique, grâce au travail de milliers de scientifiques dont le project scientist Robert Williams et plus tard Jennifer Wiseman. Il continue d'opérer en 2026 après plusieurs missions de maintenance. Une anecdote légendaire est que la première image de Hubble, après la correction de son miroir défectueux lors de la mission STS-61 en 1993, a révélé des détails stupéfiants de l'Univers et a restauré la confiance dans le télescope le plus cher jamais construit.</p>
             <div class="live-aside"><span class="lv">Au live</span>Hubble, l'œil qui a changé notre vision de l'Univers… Des images qui restent gravées dans nos mémoires ! Quelle photo de Hubble vous a le plus ému ? Partagez-la dans le chat !</div>
+            <a class="atlas-jump" href="atlas.html#e-hubble">Hubble dans l'Atlas — fiche, modèle 3D &amp; vue NASA Eyes en direct</a>
             <figure class="model3d reveal">
               <div class="m3d-frame">
                 <iframe title="Hubble — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/640764e1a20a4c7ea9718a83a05bcb7f/embed?ui_theme=dark&dnt=1"></iframe>
@@ -811,6 +837,11 @@
             <h3 class="group-title">Starlink — la plus grande constellation de l'histoire</h3>
             <p>Starlink est la méga-constellation de SpaceX comptant des milliers de satellites en orbite basse. Les versions V2 mini sont plus compactes, plus performantes, équipées de liaisons laser inter-satellites et de panneaux solaires améliorés. Elles fournissent un internet haut débit à bas coût dans les régions isolées du globe et ont déjà transformé les communications en zones de conflit et en zones rurales, sous la vision d'Elon Musk et de l'équipe d'ingénieurs de SpaceX. Une anecdote moderne est que Starlink a été déployé en urgence en Ukraine en 2022, permettant aux civils et aux forces de rester connectés malgré les destructions, démontrant le pouvoir humanitaire des constellations en orbite basse.</p>
             <div class="live-aside"><span class="lv">Au live</span>Starlink et ses milliers de satellites qui connectent la planète… Une révolution en cours ! Avez-vous déjà utilisé ou testé Starlink ? Dites-moi vos retours d'expérience dans le chat !</div>
+            <a class="atlas-box" href="atlas.html#stats">
+              <span class="al-ic">✦</span>
+              <span class="al-txt"><b>Intervention · Atlas → Statistiques</b>Combien d'objets l'humanité a-t-elle lancés depuis 1957 ? Le <strong>graphe cumulatif</strong> (UNOOSA, 1957→2025, ≈ 24 900 objets) montre l'explosion des constellations — avec la frontière de l'exploration.</span>
+              <span class="al-go">Voir le graphe →</span>
+            </a>
 
             <h3 class="group-title">SMILE — voir le bouclier de la Terre en rayons X</h3>
             <p>Lancé en mai 2026, SMILE est une mission conjointe ESA-Chine qui étudie l'interaction entre le vent solaire et la magnétosphère terrestre. Ses instruments d'imagerie X et UV capturent les aurores et les reconnexions magnétiques en temps réel, sous la direction d'équipes scientifiques internationales. Une anecdote récente est que SMILE a été lancée avec succès en mai 2026 et a déjà commencé à envoyer des données préliminaires, marquant une nouvelle ère de coopération spatiale sino-européenne dans l'étude de notre environnement spatial.</p>
@@ -903,6 +934,11 @@
             <h4 class="mission-title">TMT (Thirty Meter Telescope)</h4>
             <p>Le TMT de 30 mètres, en projet à Hawaï, utilisera une optique adaptative avancée pour des découvertes révolutionnaires en exoplanètes, cosmologie et astrophysique stellaire, sous la direction de scientifiques comme Jerry Nelson qui a aussi contribué aux Keck. Une anecdote d'avenir est que le TMT a été conçu pour être l'un des plus grands télescopes du monde, et que ses capacités d'imagerie directe d'exoplanètes telluriques pourraient nous permettre de détecter des signes de vie sur d'autres mondes dans les décennies à venir.</p>
             <div class="live-aside"><span class="lv">Au live</span>Le TMT qui s'annonce comme un monstre de précision… J'ai hâte de voir ce qu'il nous réserve ! Quelle découverte espérez-vous du TMT ?</div>
+            <a class="atlas-box" href="atlas.html#miroirs">
+              <span class="al-ic">✦</span>
+              <span class="al-txt"><b>Intervention · Atlas → Miroirs</b>De Hubble (2,4 m) à l'ELT (39,3 m) : le <strong>comparateur visuel</strong> de tous les miroirs primaires, spatiaux et au sol, à l'échelle.</span>
+              <span class="al-go">Comparer →</span>
+            </a>
             <div class="lalie-note">
               <div class="ln-head">Les Femmes de l'Espace</div>
               <div class="ln-body">
@@ -948,6 +984,11 @@
             <h4 class="mission-title">SKA (Square Kilometre Array)</h4>
             <p>Le SKA, en construction en Afrique du Sud et en Australie, sera le plus grand radiotélescope du monde. Le SKA-Low en Australie utilisera des milliers d'antennes dipôles couvrant des fréquences basses pour étudier l'époque de la réionisation et les premières étoiles. Le SKA-Mid en Afrique du Sud utilisera des paraboles pour des fréquences plus élevées et étudiera les pulsars, la matière noire et les molécules dans l'espace. Le système de corrélation traitera des pétaoctets de données par jour, nécessitant des supercalculateurs parmi les plus puissants du monde, sous la direction du directeur général Philip Diamond et d'une équipe internationale de milliers de scientifiques. Une anecdote visionnaire est que le SKA produira plus de données en une journée que l'internet mondial actuel et pourrait détecter des signaux technologiques extraterrestres à des distances de dizaines d'années-lumière. Il permettra de tester la relativité générale avec des pulsars en orbite autour de trous noirs et de cartographier l'hydrogène neutre dans l'Univers primitif, promettant des découvertes qui redéfiniront notre place dans le cosmos.</p>
             <div class="live-aside"><span class="lv">Au live</span>Le SKA qui s'annonce comme le plus grand projet radio de l'histoire… Des données qui vont révolutionner notre compréhension de l'Univers ! Quelle découverte du SKA vous excite le plus ? Dites-le dans le chat !</div>
+            <a class="atlas-box" href="atlas.html?cat=telsol">
+              <span class="al-ic">✦</span>
+              <span class="al-txt"><b>Intervention · Atlas</b>FAST, Arecibo, VLA, SKA — et tous les télescopes au sol — dans le catalogue : fiche, photo et localisation. Lien déjà filtré sur les télescopes au sol.</span>
+              <span class="al-go">Ouvrir →</span>
+            </a>
             <div class="lalie-note">
               <div class="ln-head">Les Femmes de l'Espace</div>
               <div class="ln-body">
@@ -1009,6 +1050,13 @@
             <p>Le programme Artemis ramènera des humains sur la Lune avec des atterrissages au pôle Sud, la station Gateway en orbite lunaire et des tests de ressources in-situ pour préparer les missions vers Mars, sous la direction de scientifiques et ingénieurs de la NASA comme ceux du programme Artemis. Dragonfly explorera Titan comme un drone autonome, analysant sa chimie organique complexe et son potentiel d'habitabilité, dirigé par la principal investigator Elizabeth Turtle. Une anecdote d'avenir est que les missions Artemis et Dragonfly représentent les prochaines étapes audacieuses de l'humanité dans l'exploration du système solaire, combinant présence humaine et exploration robotique avancée pour repousser les limites de notre connaissance.</p>
             <div class="live-aside"><span class="lv">Au live</span>Artemis qui nous ramène sur la Lune et Dragonfly qui vole sur Titan… L'avenir s'annonce passionnant ! Et vous, quelle mission future vous donne le plus envie de rêver ? Partagez vos espoirs dans le chat !</div>
             <p>L'avenir jusqu'en 2030 et au-delà promet des avancées majeures grâce à l'intégration de toutes ces technologies interconnectées, portées par des générations de scientifiques passionnés.</p>
+
+            <a class="atlas-box" href="atlas.html#ateliers">
+              <span class="al-ic">✦</span>
+              <span class="al-txt"><b>Intervention · Atlas → Ateliers</b>Mettez les mains dans le cambouis : trois <strong>ateliers de physique interactifs</strong> — pourquoi un satellite ne tombe pas (vitesse orbitale), pourquoi une fusée est surtout du carburant (Tsiolkovsky), et pourquoi on ne pilote pas un rover en direct (temps-lumière). La frise 1957→2031 complète le tableau.</span>
+              <span class="al-go">Expérimenter →</span>
+            </a>
+
             <div class="live-close">
               <span class="live-tag">Clôture du live</span>
               <p>Merci infiniment d'avoir suivi ce live jusqu'au bout. Vos échanges dans le chat ont été formidables, continuez à poser vos questions, je reste un moment pour y répondre. Likez, commentez, partagez ce contenu si vous l'avez aimé. Et surtout, n'oubliez jamais : l'Univers nous appelle, et ensemble, nous continuons à l'explorer avec rigueur, précision et émerveillement. À très bientôt pour un nouveau live !</p>

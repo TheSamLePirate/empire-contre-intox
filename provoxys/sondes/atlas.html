@@ -674,6 +674,21 @@
   }
   render();
 
+  /* ---------- Deep-links depuis le dossier : ?q=&cat=&st=&ag=&era=&model=1  +  #e-<id> ---------- */
+  (function(){
+    const sp = new URLSearchParams(location.search); let ch=false;
+    const q = sp.get("q"); if(q){ state.q=q; const el=document.getElementById("q"); if(el)el.value=q; ch=true; }
+    (sp.get("cat")||"").split(",").filter(Boolean).forEach(c=>{ state.cat.add(c); const bt=document.querySelector('#catChips .chip[data-cat="'+c+'"]'); if(bt)bt.classList.add("on"); ch=true; });
+    (sp.get("st")||"").split(",").filter(Boolean).forEach(s=>{ state.st.add(s); const bt=document.querySelector('#stChips .chip[data-st="'+s+'"]'); if(bt)bt.classList.add("on"); ch=true; });
+    const ag=sp.get("ag"); if(ag){ state.ag=ag; const el=document.getElementById("agSel"); if(el)el.value=ag; ch=true; }
+    const era=sp.get("era"); if(era){ state.era=era; const el=document.getElementById("eraSel"); if(el)el.value=era; ch=true; }
+    if(sp.get("model")==="1"){ state.model=true; const el=document.getElementById("onlyModel"); if(el)el.checked=true; ch=true; }
+    if(ch){ render(); const f=document.getElementById("filters"); if(f) f.scrollIntoView({block:"start"}); }
+    function jump(){ const h=location.hash; if(!/^#e-/.test(h)) return; const node=document.getElementById(h.slice(1)); if(node){ node.scrollIntoView({behavior:"smooth",block:"center"}); node.style.transition="box-shadow .3s"; node.style.boxShadow="0 0 0 2px var(--azur-bright)"; setTimeout(()=>{node.style.boxShadow="";},2600); } }
+    if(/^#e-/.test(location.hash)) setTimeout(jump,80);
+    addEventListener("hashchange",jump);
+  })();
+
   /* ---------- Frise ---------- */
   (function(){
     const axis=document.getElementById("tlAxis"), years=document.getElementById("tlYears"), read=document.getElementById("friseRead");
