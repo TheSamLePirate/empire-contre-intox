@@ -105,9 +105,15 @@
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
   .card{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:linear-gradient(180deg,rgba(14,26,46,.5),rgba(7,12,26,.62));display:flex;flex-direction:column;transition:border-color .3s var(--ease),transform .3s var(--ease)}
   .card:hover{border-color:rgba(95,185,212,.42);transform:translateY(-3px)}
-  .c-viewer{position:relative;aspect-ratio:16/10;background:repeating-linear-gradient(45deg,#0b1119,#0b1119 13px,#0d1622 13px,#0d1622 26px);display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;padding:8px}
+  .c-viewer{position:relative;aspect-ratio:16/10;background:repeating-linear-gradient(45deg,#0b1119,#0b1119 13px,#0d1622 13px,#0d1622 26px);overflow:hidden}
+  .c-stage{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:8px}
   .c-vid .disc{background:linear-gradient(135deg,#ff4d4d,#c0392b);box-shadow:0 8px 24px -6px rgba(255,77,77,.55)}
-  .c-viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .c-eyes .disc{background:linear-gradient(135deg,#4a90d9,#1d4e87);box-shadow:0 8px 24px -6px rgba(74,144,217,.55)}
+  .c-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .c-stage.fb{padding:0}
+  .c-fbimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+  .c-fbcr{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:14px 9px 4px;font-family:var(--mono);font-size:.5rem;line-height:1.3;color:var(--parch);text-align:right;background:linear-gradient(0deg,rgba(5,8,17,.92),transparent)}
+  .c-dedic{font-family:var(--serif);font-style:italic;font-size:.78rem;color:var(--viol)}
   .c-play{display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer;background:none;border:0;font-family:var(--roman);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--parch)}
   .c-play .disc{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--azur),#3f93ad);box-shadow:0 8px 24px -6px rgba(95,185,212,.6);transition:transform .2s}
   .c-play:hover .disc{transform:scale(1.08)}
@@ -511,7 +517,8 @@
       <p class="sources-foot">
         Données : NASA · ESA · ESO · JAXA · CNSA · ISRO · JPL · NSSDCA. Positions (mi-2026) : NASA <em>Eyes on the Solar System</em>, JHU-APL, <em>theskylive</em>.<br>
         Objets lancés (cumul &amp; annuel) : <b>UNOOSA</b> (registre des objets lancés) via <b>Our World in Data</b>. Constantes des ateliers : μ⊕ NASA JPL · g₀ &amp; c SI · rayon IUGG ; Isp ScienceDirect/Wikipédia.<br>
-        Modèles 3D : Sketchfab (NASA officiel &amp; auteurs Creative Commons, crédités par fiche). Réalisé par <b>Provoxys, Lalie &amp; Samlepirate</b> — Empire contre Intox, juin 2026.
+        Modèles 3D : Sketchfab (NASA officiel &amp; auteurs Creative Commons, crédités par fiche). Vues 3D temps réel : NASA <em>Eyes on the Solar System</em> (NASA/JPL). Photos de repli (engins sans modèle 3D) : <b>Wikimedia Commons</b> — auteur &amp; licence crédités sur chaque vignette.<br>
+        Réalisé par <b>Provoxys, Lalie &amp; Samlepirate</b> — Empire contre Intox, juin 2026.
       </p>
     </div>
   </footer>
@@ -528,6 +535,8 @@
   const norm = s => (s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
   const embed = uid => `https://sketchfab.com/models/${uid}/embed?autostart=0&ui_theme=dark&ui_infos=0&ui_watermark=0&dnt=1`;
   E.forEach((e,i)=>{ e._i=i; e._s = norm([e.n,e.ag,CATL[e.cat],e.fact,e.loc,e.who].join(" ")); });
+  const FB=window.FALLBACK||{}, EY=window.EYES||{};
+  E.forEach(e=>{ const f=FB[e.id]; if(f){e.fb=f.f;e.fbc=f.c;e.fbart=f.art;} const ey=EY[e.id]; if(ey)e.eyes=ey; });
 
   // hero stats
   const setT = (id,v)=>{ const el=document.getElementById(id); if(el) el.textContent=v; };
@@ -573,19 +582,27 @@
 
   // 3D LRU (max 6 visualiseurs actifs)
   const ACTIVE=[];
-  function placeholder(box,e){
+  const eyeSvg=`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg>`;
+  function placeholder(stage,e){
     const p3d = e.uid ? `<button class="c-play" data-load><span class="disc"><svg width="20" height="20" viewBox="0 0 24 24" fill="#04121a"><path d="M8 5v14l11-7z"/></svg></span>Charger en 3D</button>` : "";
+    const peyes = e.eyes ? `<button class="c-play c-eyes" data-eyes><span class="disc">${eyeSvg}</span>NASA Eyes 3D</button>` : "";
     const pvid = e.vid ? `<button class="c-play c-vid" data-vid><span class="disc"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>Vidéo de l'impact</button>` : "";
-    box.innerHTML = (p3d+pvid) || `<span class="c-nomodel">pas de modèle 3D</span>`;
+    if(p3d||peyes||pvid){ stage.className="c-stage"; stage.innerHTML=p3d+peyes+pvid; }
+    else if(e.fb){ stage.className="c-stage fb"; stage.innerHTML=`<img class="c-fbimg" src="assets/fallback/${e.fb}" alt="${e.n}" loading="lazy"><span class="c-fbcr">${e.fbart?"Vue d'artiste · ":""}${e.fbc||""}</span>`; }
+    else { stage.className="c-stage"; stage.innerHTML=`<span class="c-nomodel">pas de modèle 3D</span>`; }
   }
-  function loadViewer(box,e){
-    if(box.querySelector("iframe")) return;
-    box.innerHTML = `<iframe title="${e.n} — modèle 3D" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="${embed(e.uid)}"></iframe>`;
-    ACTIVE.push({box,e});
-    if(ACTIVE.length>6){ const old=ACTIVE.shift(); placeholder(old.box,old.e); }
+  function loadViewer(stage,e){
+    if(stage.querySelector("iframe")) return;
+    stage.className="c-stage"; stage.innerHTML=`<iframe title="${e.n} — modèle 3D" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="${embed(e.uid)}"></iframe>`;
+    ACTIVE.push({stage,e}); if(ACTIVE.length>6){ const old=ACTIVE.shift(); placeholder(old.stage,old.e); }
   }
-  function loadVideo(box,e){
-    box.innerHTML = `<iframe title="${e.n} — vidéo de l'impact" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" src="https://www.youtube.com/embed/${e.vid}?rel=0&modestbranding=1"></iframe>`;
+  function loadEyes(stage,e){
+    if(stage.querySelector("iframe")) return;
+    stage.className="c-stage"; stage.innerHTML=`<iframe title="${e.n} — NASA Eyes on the Solar System" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen" src="${e.eyes.u}"></iframe>`;
+    ACTIVE.push({stage,e}); if(ACTIVE.length>6){ const old=ACTIVE.shift(); placeholder(old.stage,old.e); }
+  }
+  function loadVideo(stage,e){
+    stage.className="c-stage"; stage.innerHTML=`<iframe title="${e.n} — vidéo de l'impact" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" src="https://www.youtube.com/embed/${e.vid}?rel=0&modestbranding=1"></iframe>`;
   }
 
   const grid=document.getElementById("grid"), empty=document.getElementById("empty"), count=document.getElementById("count");
@@ -605,6 +622,9 @@
       ? `<a class="c-link" href="https://sketchfab.com/models/${e.uid}" target="_blank" rel="noopener">Modèle 3D : ${e.mt||""} · ${e.ma||""} ↗</a>` : "";
     const video = e.vid
       ? `<a class="c-link" href="https://www.youtube.com/watch?v=${e.vid}" target="_blank" rel="noopener" style="color:#ff8a8a">▶ ${e.vidcap||"Vidéo de l'impact"} (YouTube) ↗</a>` : "";
+    const eyesLink = e.eyes
+      ? `<a class="c-link" href="${e.eyes.u}" target="_blank" rel="noopener" style="color:#7fb3ec">◉ Suivre en direct — NASA Eyes ↗</a>` : "";
+    const dedic = (e.eyes&&e.eyes.note) ? `<div class="c-dedic">✦ ${e.eyes.note}</div>` : "";
     const lalie = e.lalie ? `<div class="c-lalie"><span class="lk">✦ Les Femmes de l'Espace</span>${e.lalie}</div>` : "";
     const who = e.who ? `<div class="c-who"><b>👥</b> ${e.who}</div>` : "";
     const nrg = nrgType(e);
@@ -621,20 +641,23 @@
       <div class="c-viewer">
         <span class="c-cat" style="background:${cc}">${CATL[e.cat]}</span>
         <span class="c-st ${e.st}">${STL[e.st]}</span>
+        <div class="c-stage"></div>
       </div>
       <div class="c-body">
         <div class="c-head"><div class="c-name">${e.n}</div><div class="c-tags">${tags}</div></div>
         <div class="c-meta"><span>${e.ag}</span><span><b>${e.yr}</b></span>${e.mass&&e.mass!=="—"?`<span>${e.mass}</span>`:""}</div>
         <p class="c-fact">${e.fact}</p>
-        ${vitalsHtml}
+        ${dedic}${vitalsHtml}
         ${who}${lalie}
         <div class="c-loc"><span class="k">◷ Où :</span> ${e.loc}${e.dist&&e.dist!=="—"?` · <b>${e.dist}</b>`:""}</div>
-        ${model}${video}${detail}
+        ${model}${eyesLink}${video}${detail}
       </div>`;
-    placeholder(el.querySelector(".c-viewer"),e);
+    const stage=el.querySelector(".c-stage");
+    placeholder(stage,e);
     el.querySelector(".c-viewer").addEventListener("click",ev=>{
-      if(ev.target.closest("[data-load]")) loadViewer(el.querySelector(".c-viewer"),e);
-      else if(ev.target.closest("[data-vid]")) loadVideo(el.querySelector(".c-viewer"),e);
+      if(ev.target.closest("[data-load]")) loadViewer(stage,e);
+      else if(ev.target.closest("[data-eyes]")) loadEyes(stage,e);
+      else if(ev.target.closest("[data-vid]")) loadVideo(stage,e);
     });
     const more=el.querySelector(".c-more");
     if(more) more.addEventListener("click",()=>{ more.classList.toggle("open"); el.querySelector(".c-detail").classList.toggle("open"); });

@@ -250,3 +250,54 @@ window.STATS = {
     au: 149597870.7        // km        (UA, définition)
   }
 };
+
+/* Vues NASA Eyes on the Solar System (iframe live 3D) pour quelques engins phares.
+   Source : https://eyes.nasa.gov/apps/solar-system/ (NASA/JPL). */
+window.EYES = {
+  jwst:    {u:"https://eyes.nasa.gov/apps/solar-system/#/sc_jwst"},
+  voyager: {u:"https://eyes.nasa.gov/apps/solar-system/#/story/voyager_grand_tour"},
+  hubble:  {u:"https://eyes.nasa.gov/apps/solar-system/#/sc_hubble_space_telescope"},
+  soho:    {u:"https://eyes.nasa.gov/apps/solar-system/#/sc_soho", note:"Dédicace à Jorge"},
+  parker:  {u:"https://eyes.nasa.gov/apps/solar-system/#/story/psp_perihelion"}
+};
+
+/* Photos de repli (fallback) pour les engins SANS modèle 3D Sketchfab.
+   Fichiers dans assets/fallback/ (= id de l'objet). Source : Wikimedia Commons ;
+   crédit « auteur · licence » affiché sur la vignette (CC BY/BY-SA imposent l'attribution).
+   art:1 = vue d'artiste / rendu (missions futures ou en construction). Détail : atlas-fallback-photos.md */
+window.FALLBACK = {
+  vanguard1:{f:"vanguard1.jpg",c:"NASA · domaine public"},
+  telstar1:{f:"telstar1.jpg",c:"Rama · CC BY-SA 3.0"},
+  luna1:{f:"luna1.jpg",c:"RIA Novosti / A. Mokletsov · CC BY-SA 3.0"},
+  luna2:{f:"luna2.png",c:"NASA / NSSDCA · domaine public"},
+  luna3:{f:"luna3.jpg",c:"Musée de la Cosmonautique · CC0"},
+  maven:{f:"maven.png",c:"NASA · domaine public"},
+  gaia:{f:"gaia.jpeg",c:"ESA · CC BY-SA 3.0 IGO"},
+  cheops:{f:"cheops.png",c:"ESA · CC BY-SA 3.0 IGO"},
+  roman:{f:"roman.png",c:"NASA · domaine public",art:1},
+  smile:{f:"smile.png",c:"ESA · CC BY-SA 3.0 IGO",art:1},
+  gps:{f:"gps.jpg",c:"U.S. Air Force · domaine public"},
+  hale:{f:"hale.jpg",c:"Mike Peel · CC BY-SA 4.0"},
+  keck:{f:"keck.png",c:"T. Wynne / JPL · domaine public"},
+  gtc:{f:"gtc.jpg",c:"H. Raab · CC BY-SA 3.0"},
+  subaru:{f:"subaru.jpg",c:"Denys · CC BY 3.0"},
+  gemini:{f:"gemini.jpg",c:"Mailseth · CC BY-SA 3.0"},
+  lbt:{f:"lbt.jpg",c:"M. O. AlNagdy · usage libre"},
+  rubin:{f:"rubin.png",c:"LSST Project Office · CC BY-SA 4.0",art:1},
+  elt:{f:"elt.jpg",c:"Swinburne / ESO · CC BY 4.0",art:1},
+  gmt:{f:"gmt.jpg",c:"GMTO Corporation · CC BY-SA 4.0",art:1},
+  tmt:{f:"tmt.jpg",c:"TMT Observatory Corp. · attribution",art:1},
+  fast:{f:"fast.jpg",c:"SCJiang · CC BY-SA 4.0"},
+  vla:{f:"vla.jpg",c:"Hajor · CC BY-SA 3.0"},
+  ska:{f:"ska.jpg",c:"SKAO / Swinburne · CC BY 3.0",art:1},
+  mmx:{f:"mmx.jpg",c:"JAXA · CC BY 4.0",art:1},
+  tianwen3:{f:"tianwen3.png",c:"China News Service · CC BY 4.0",art:1},
+  destinyplus:{f:"destinyplus.png",c:"JAXA · CC BY 4.0",art:1},
+  neosurveyor:{f:"neosurveyor.jpg",c:"NASA/JPL-Caltech · attribution",art:1},
+  cometinterceptor:{f:"cometinterceptor.jpg",c:"ESA · CC BY-SA 3.0 IGO",art:1},
+  venus:{f:"venus.jpg",c:"NASA/GSFC · domaine public",art:1},
+  change78:{f:"change78.png",c:"China News Service · CC BY 3.0",art:1},
+  chandrayaan4:{f:"chandrayaan4.jpg",c:"ISRO · GODL-India",art:1},
+  msr:{f:"msr.jpg",c:"NASA/JPL · domaine public",art:1},
+  cta:{f:"cta.jpg",c:"H. Zell · CC BY-SA 3.0"}
+};
