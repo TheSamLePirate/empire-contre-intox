@@ -157,6 +157,19 @@
     .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
     .prose em { font-style:italic; font-weight:400; }
     .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    /* Voix « live » du script — transcription du déroulé */
+    .mission-title { margin:34px 0 11px; font-family:var(--roman); font-weight:700; font-size:.98rem; letter-spacing:.05em; text-transform:uppercase; color:var(--gold-bright); display:flex; align-items:center; gap:11px; }
+    .mission-title::before { content:""; width:22px; height:1px; background:linear-gradient(90deg,var(--gold),transparent); flex:0 0 auto; }
+    .live-aside { margin:13px 0 8px; padding:12px 17px; border:1px solid var(--line-2); border-left:2px solid var(--azur); border-radius:3px; background:rgba(95,185,212,.05); font-family:var(--serif); font-style:italic; font-size:1rem; color:var(--parch); line-height:1.6; }
+    .live-aside .lv { display:block; font-style:normal; font-family:var(--roman); font-size:.5rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--azur); margin-bottom:5px; }
+    .live-aside .lv::before { content:"● "; color:var(--ember); }
+    .live-open, .live-close { margin:20px 0; padding:18px 22px; border:1px solid var(--line); border-radius:3px; background:radial-gradient(120% 140% at 0% 0%, rgba(95,185,212,.09), transparent 60%), rgba(7,12,26,.45); }
+    .live-open p, .live-close p { margin:0 0 11px; color:var(--parch); } .live-open p:last-child, .live-close p:last-child { margin:0; }
+    .live-tag { display:inline-block; font-family:var(--roman); font-size:.52rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--azur); border:1px solid var(--line); border-radius:20px; padding:4px 12px; margin-bottom:12px; }
+    .live-tag::before { content:"● "; color:var(--ember); }
+    .prose-list { margin:10px 0 16px; padding-left:20px; }
+    .prose-list li { margin:0 0 9px; color:var(--muted); line-height:1.6; }
+    .prose-list li strong { color:var(--parch); }
     .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
 
     .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
@@ -457,10 +470,10 @@
         <button class="mobile-menu" aria-expanded="false" aria-controls="nav">Sommaire</button>
         <div class="nav" id="nav">
           <a href="#familles">Familles</a>
-          <a href="#aube">L'aube</a>
-          <a href="#satellites">Satellites</a>
           <a href="#sondes">Sondes</a>
+          <a href="#satellites">Satellites</a>
           <a href="#telescopes">Télescopes</a>
+          <a href="#radio">Radio</a>
           <a href="#demain">Demain</a>
           <a href="#femmes">Les Femmes</a>
           <a href="#fiches">Fiches</a>
@@ -512,7 +525,7 @@
               <div class="xb-head">Explication <span class="xb-tag">les quatre familles</span></div>
               <div class="xb-body">
                 <p>Un <strong>satellite</strong> tourne en rond. Il reste prisonnier de la gravité d'un corps — presque toujours la Terre — et y accomplit une mission <strong>continue ou répétée</strong> : téléphoner, guider, photographier, surveiller. On peut parfois le réparer ou le remplacer.</p>
-                <p>Une <strong>sonde</strong>, elle, fait ses adieux. Elle s'arrache à l'attraction terrestre pour un voyage vers une autre planète, une comète, ou le vide entre les étoiles. Autonomie totale, radiations dures, ordres reçus à des <strong>heures-lumière</strong> de distance, et, le plus souvent, <strong>aucun retour</strong>.</p>
+                <p>Une <strong>sonde</strong>, elle, fait ses adieux. Elle s'arrache à l'attraction terrestre pour un voyage vers une autre planète, une comète, ou le vide entre les étoiles. Autonomie totale, radiations dures, ordres reçus à des <strong>heures-lumière</strong> de distance via le <strong>Deep Space Network</strong>, et, le plus souvent, <strong>aucun retour</strong>. On la décline en <em>flyby</em> (survol), <em>orbiter</em>, <em>lander</em> (atterrisseur), <em>rover</em> (véhicule) ou <em>sample return</em> (retour d'échantillons).</p>
                 <p>Un <strong>télescope</strong> regarde loin. <strong>Dans l'espace</strong> (Hubble, Webb), il jouit d'une vision parfaite, sans le voile de l'air — mais son miroir est limité par la coiffe de la fusée. <strong>Au sol</strong>, il s'offre des miroirs colossaux, au prix d'une atmosphère turbulente qu'il corrige en temps réel.</p>
               </div>
             </div>
@@ -547,44 +560,153 @@
         </div>
       </section>
 
-      <!-- CH 2 — L'AUBE -->
-      <section class="chapter reveal" id="aube" aria-labelledby="c2">
+      <!-- CH 2 — LES SONDES -->
+      <section class="chapter reveal" id="sondes" aria-labelledby="c2">
         <div class="chapter-head">
-          <div><p class="section-kicker">Chapitre 2 · 1957-1962</p><h2 id="c2">L'aube de l'ère spatiale</h2></div>
+          <div><p class="section-kicker">Chapitre 2 · L'exil volontaire</p><h2 id="c2">Les sondes</h2></div>
           <div class="chapter-number">02</div>
         </div>
         <div class="transcript">
           <article class="prose">
-            <p>Il a suffi de quatre ans. Quatre ans entre une sphère qui ne fait que biper et un satellite qui relaie la télévision à travers un océan. L'ère spatiale ne s'ouvre pas en douceur : elle s'ouvre dans la peur, l'orgueil et la vitesse.</p>
+            <p class="lede">Une sonde ne revient pas. Elle quitte la Terre comme on quitte un port sans billet de retour, emportant juste assez d'énergie, d'instruments et d'intelligence pour survivre seule, des années durant, là où nul humain ne tiendrait une seconde.</p>
             <figure class="chapter-figure reveal">
-              <img src="assets/aube-spatiale.png" alt="Sputnik 1 en orbite basse au-dessus de la courbure de la Terre, 1957" loading="lazy">
-              <figcaption>Sputnik 1 au terminateur — la sphère qui a réveillé le monde, 4 octobre 1957</figcaption>
+              <img src="assets/sondes-lointaines.png" alt="Une sonde survolant une lune glacée aux geysers, planète géante annelée en fond" loading="lazy">
+              <figcaption>Survol d'une lune glacée — geysers d'eau, anneaux et silence cosmique</figcaption>
             </figure>
-            <h3 class="group-title">Sputnik 1 — la sphère qui a réveillé le monde</h3>
-            <p>Le 4 octobre 1957, une fusée R-7 s'arrache de Baïkonour. À son sommet, une boule de métal poli de 58 cm. Quelques minutes plus tard, les radioamateurs du monde entier captent un <em>bip… bip… bip…</em> tombé du ciel. <strong>Sputnik 1</strong>, le premier objet jamais placé en orbite, ne transporte presque rien — et change tout. En Occident, c'est l'effroi : qui met une sphère en orbite peut y mettre une ogive. De cette panique naîtra, dix mois plus tard, la NASA.</p>
+
+            <div class="live-open">
+              <span class="live-tag">Ouverture du live</span>
+              <p>Mesdames et Messieurs, chers passionnés d'astronomie et de sciences spatiales, bonsoir et bienvenue dans ce live exceptionnel et enrichi.</p>
+              <p>Bonsoir à tous et à toutes ! Merci d'être aussi nombreux ce soir à nous rejoindre pour cette exploration passionnante. Avant de commencer, laissez-moi vous poser une petite question pour briser la glace : quelle est la première image ou la première mission spatiale qui vous a vraiment marqué dans votre vie ? Écrivez-la dans le chat, j'adorerais lire vos réponses en direct pendant que nous avançons ! Et n'oubliez pas, ce live est fait pour échanger, alors posez vos questions à tout moment, je ferai de mon mieux pour y répondre en direct. Prêts ? Allons-y ensemble !</p>
+              <p>Aujourd'hui, nous plongeons dans l'histoire complète des premières sondes lancées depuis la fin des années 1950 jusqu'en 2026, ainsi que les missions futures de 2026 à 2030 et au-delà. Nous ferons exactement la même chose pour les satellites artificiels, les télescopes optiques au sol et les télescopes radio. Nous explorerons en profondeur le fonctionnement de l'optique adaptative avec tous ses détails techniques, les contributions décisives de chercheuses et chercheurs emblématiques, des anecdotes passionnantes, et les synergies entre toutes ces technologies. Nous ajouterons également l'histoire détaillée des télescopes spatiaux infrarouges et des sections approfondies sur les missions Artemis et Dragonfly. Chaque élément sera développé en détail sans aucun résumé.</p>
+              <p>Et pour commencer ce voyage, je vous invite à imaginer avec moi le frisson de ces premiers pas dans l'espace. C'est parti !</p>
+            </div>
+
+            <h3 class="group-title">Les pionnières soviétiques — toutes les portes ouvertes en premier</h3>
+
+            <h4 class="mission-title">Sonde Luna 1</h4>
+            <p>Lancée le 2 janvier 1959 par l'Union soviétique, Luna 1 est la première sonde à quitter l'orbite terrestre. Elle a survolé la Lune à 5 995 kilomètres et est entrée en orbite héliocentrique. Elle transportait des instruments pour mesurer le vent solaire et le champ magnétique, sous la direction des ingénieurs et scientifiques du bureau de conception OKB-1 dirigé par Sergueï Korolev. Une anecdote historique est que Luna 1 a manqué la Lune de quelques milliers de kilomètres à cause d'une erreur de calcul, mais a tout de même fourni des données précieuses sur le vent solaire, marquant le début de l'exploration interplanétaire.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Luna 1, le tout premier pas hors de l'orbite terrestre… Le début de tout ! Et vous, quelle est la mission lunaire qui vous passionne le plus aujourd'hui ?</div>
+
+            <h4 class="mission-title">Sonde Luna 2</h4>
+            <p>Lancée le 12 septembre 1959, Luna 2 est devenue le premier objet fabriqué par l'homme à atteindre la surface de la Lune le 14 septembre 1959. Elle transportait des sphères avec des fanions soviétiques qui se sont dispersés à l'impact, sous la direction de l'équipe de Korolev. Une anecdote symbolique est que les fanions dispersés sur la Lune ont marqué la première « empreinte » humaine sur un autre corps céleste, un geste chargé de fierté nationale et de vision scientifique.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Luna 2, le premier impact contrôlé sur la Lune… Un moment symbolique ! Avez-vous déjà vu des images de ces premiers fanions lunaires ?</div>
+
+            <h4 class="mission-title">Sonde Luna 3</h4>
+            <p>Lancée le 4 octobre 1959, Luna 3 a photographié pour la première fois la face cachée de la Lune le 7 octobre 1959. Les images, développées à bord et transmises par radio, ont révélé un paysage très différent de la face visible, avec moins de mers et plus de cratères, grâce au travail des scientifiques et ingénieurs soviétiques. Une anecdote révolutionnaire est que ces premières photos de la face cachée ont choqué la communauté scientifique mondiale et ont ouvert la voie à des décennies d'exploration lunaire détaillée.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Luna 3 et la première photo de la face cachée… Une révélation qui a changé notre vision de la Lune ! Quelle image lunaire vous a le plus surpris dans votre vie ?</div>
+
+            <h3 class="group-title">Mars, longtemps le cimetière des sondes</h3>
+            <h4 class="mission-title">Sonde Viking 1</h4>
+            <p>Lancée le 20 août 1975, Viking 1 s'est posée dans la plaine de Chryse Planitia sur Mars le 20 juillet 1976. Elle a transmis les premières images en couleur de la surface martienne et a réalisé des expériences de biologie avec son bras robotique et son laboratoire miniaturisé, sous la direction du project scientist Gerald Soffen. Une anecdote fondatrice est que les premières images en couleur de Mars ont été reçues avec une émotion immense par l'équipe, et que les expériences de biologie, bien que controversées, ont ouvert le débat sur la possible vie microbienne sur Mars.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Viking 1, le premier atterrissage réussi sur Mars… Un moment qui a ouvert la porte à tout ce qui a suivi. Avez-vous déjà vu ces premières photos en couleur de Mars ? Partagez vos souvenirs !</div>
+
+            <h4 class="mission-title">Sonde Viking 2</h4>
+            <p>Lancée le 9 septembre 1975, Viking 2 s'est posée dans la plaine d'Utopia Planitia le 3 septembre 1976. Elle a poursuivi les études géologiques et biologiques et a fourni des images stéréo de la surface, sous la même direction scientifique que Viking 1. Une anecdote complémentaire est que les deux atterrissages ont fonctionné en parallèle pendant des années, fournissant des données comparatives précieuses sur deux sites martiens différents et posant les bases de l'exploration robotique moderne.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Viking 2 qui a complété le duo historique… Deux atterrissages, deux mondes explorés. Quelle mission martienne vous inspire le plus aujourd'hui ?</div>
+
+            <h4 class="mission-title">Sonde MAVEN</h4>
+            <p>Lancée le 18 novembre 2013, MAVEN est entrée en orbite autour de Mars le 22 septembre 2014. Elle étudie l'atmosphère martienne et son interaction avec le vent solaire. Ses instruments ont mesuré la perte continue d'atmosphère au fil des milliards d'années, expliquant pourquoi Mars est passée d'un monde potentiellement habitable à un désert froid, sous la direction de la project scientist Shannon Curry. MAVEN continue ses observations en 2026. Une anecdote marquante est que MAVEN a détecté des aurores martiennes invisibles à l'œil nu et a cartographié l'évasion de l'atmosphère, fournissant des indices cruciaux pour comprendre l'évolution climatique de Mars et les conditions nécessaires à la vie ailleurs.</p>
+            <div class="live-aside"><span class="lv">Au live</span>MAVEN qui nous raconte l'histoire de l'atmosphère perdue de Mars… Une leçon pour notre propre planète. Avez-vous déjà réfléchi à ce que cela signifie pour la recherche de vie ailleurs ? Dites-le dans le chat !</div>
+
+            <h4 class="mission-title">Sonde Perseverance + Ingenuity</h4>
+            <p>Lancée le 30 juillet 2020, Perseverance s'est posée dans le cratère Jezero sur Mars le 18 février 2021. Elle collecte des échantillons de roche et de sol qui seront ramenés sur Terre par une future mission. Son bras robotique fore des carottes et les stocke dans des tubes hermétiques, sous la direction du project scientist Ken Farley et de la project manager Jennifer Trosper. L'hélicoptère Ingenuity, déployé le 3 avril 2021, a réalisé le premier vol motorisé sur une autre planète le 19 avril 2021 et a effectué plus de soixante-dix vols de reconnaissance, prouvant la faisabilité des aéronefs sur Mars, grâce au travail visionnaire de Bob Balaram comme chief engineer et de l'équipe du Jet Propulsion Laboratory. Perseverance étudie la géologie ancienne du cratère, recherche des biosignatures passées et prépare le terrain pour l'exploration humaine. Une anecdote inspirante est que Ingenuity a été conçu comme une démonstration technologique risquée, et que son premier vol a été suivi en direct par des millions de personnes dans le monde, prouvant que l'innovation audacieuse peut transformer l'exploration planétaire.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Perseverance et son petit hélicoptère Ingenuity… Le premier vol sur Mars, c'est tout simplement magique ! Et vous, aimeriez-vous piloter un drone sur la planète rouge un jour ? Dites-moi vos rêves d'exploration dans le chat !</div>
             <figure class="model3d reveal">
               <div class="m3d-frame">
-                <iframe title="Sputnik 1 — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/a9ae7f57c7cf4c0ca9119cf3b6ef4c2f/embed?ui_theme=dark&dnt=1"></iframe>
+                <iframe title="Perseverance — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/c1c94e1f69df45eeae4a0a1d0d27e85b/embed?ui_theme=dark&dnt=1"></iframe>
               </div>
-              <figcaption>Sputnik 1, en 3D <span class="m3d-hint">— faites-le pivoter : la sphère polie de 58 cm et ses quatre antennes-fouet ; à l'intérieur, un simple émetteur radio et 51 kg de batteries</span> <a href="https://sketchfab.com/3d-models/sputnik-1-a9ae7f57c7cf4c0ca9119cf3b6ef4c2f" target="_blank" rel="noopener">Modèle Sketchfab ↗</a></figcaption>
+              <figcaption>Perseverance, en 3D <span class="m3d-hint">— le rover six-roues, son mât et son bras ; alimenté par RTG, il roule toujours dans le cratère Jezero ; Ingenuity, cloué au sol depuis janvier 2024</span> <a href="https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df45eeae4a0a1d0d27e85b" target="_blank" rel="noopener">Modèle Sketchfab · CC0 ↗</a></figcaption>
             </figure>
-            <h3 class="group-title">Explorer 1 — la première vraie découverte</h3>
-            <p>La riposte américaine met du temps (l'échec de Vanguard, qui explose au sol, est retransmis en direct). Mais quand <strong>Explorer 1</strong> s'envole le 31 janvier 1958, il fait mieux que rattraper : il <em>découvre</em>. Son compteur Geiger sature par moments, comme aveuglé. L'explication viendra de James Van Allen : la Terre est ceinte de <strong>vastes anneaux de particules chargées</strong>, piégées par son champ magnétique. La physique spatiale moderne vient de naître.</p>
-            <h3 class="group-title">Telstar 1 — l'Atlantique aboli</h3>
-            <p>Cinq ans après Sputnik, l'espace devient utile. Le 10 juillet 1962, <strong>Telstar 1</strong> inaugure le premier satellite de <strong>communications actif</strong> : le 23 juillet, un drapeau et une allocution de Kennedy traversent l'Atlantique <em>en direct</em>. Le monde vient de rétrécir.</p>
+
+            <h3 class="group-title">Les éclaireurs et le Grand Tour</h3>
+            <h4 class="mission-title">Sonde Pioneer 10</h4>
+            <p>Lancée le 3 mars 1972, Pioneer 10 a été la première sonde à survoler Jupiter en décembre 1973. Elle a fourni les premières images rapprochées de la planète et de ses lunes et a continué vers l'espace interstellaire, portant une plaque avec des dessins représentant l'humanité, conçue par Carl Sagan et Frank Drake. Une anecdote émouvante est que la plaque Pioneer, avec ses dessins de l'homme et de la femme, a été critiquée à l'époque pour son anthropocentrisme, mais reste un symbole puissant de notre désir de communiquer avec l'inconnu.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Pioneer 10, la première à toucher Jupiter de près… Et cette plaque qui voyage encore aujourd'hui. Si vous pouviez ajouter un dessin à cette plaque, que serait-ce ? Dites-le dans le chat !</div>
+
+            <h4 class="mission-title">Sonde Pioneer 11</h4>
+            <p>Lancée le 6 avril 1973, Pioneer 11 a survolé Jupiter en 1974 puis Saturne en 1979. Elle a fourni des données sur les champs magnétiques et les anneaux de Saturne avant de quitter le système solaire, sous la direction de l'équipe Pioneer dirigée par Charles Hall. Une anecdote historique est que Pioneer 11 a été la première à visiter Saturne de près, et que ses données ont préparé le terrain pour les missions Voyager qui ont suivi peu après.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Pioneer 11 qui a complété le tableau avec Saturne… Une belle paire de pionnières ! Quelle découverte de Pioneer vous a le plus marqué ?</div>
+
+            <h4 class="mission-title">Sonde Voyager 1</h4>
+            <p>Lancée le 5 septembre 1977, Voyager 1 a survolé Jupiter en mars 1979 et Saturne en novembre 1980. À Jupiter, elle a découvert les volcans actifs d'Io, les premiers observés hors de la Terre, les anneaux fins de Jupiter et les détails complexes des ceintures de radiation, grâce au travail du project scientist Edward C. Stone qui a dirigé la mission pendant plus de quarante ans. À Saturne, elle a révélé la structure des anneaux et la géologie de Titan. En août 2012, Voyager 1 est devenue le premier objet fabriqué par l'homme à entrer dans l'espace interstellaire en traversant l'héliopause. Elle continue d'émettre des données en juin 2026 à plus de cent soixante unités astronomiques du Soleil, mesurant le plasma interstellaire et les rayons cosmiques galactiques. La Golden Record qu'elle transporte, conçue par Carl Sagan et son équipe internationale incluant Ann Druyan, Timothy Ferris et Frank Drake, contient les sons de la Terre, des salutations en cinquante-cinq langues, de la musique classique et des images encodées représentant la vie sur notre planète. Une anecdote émouvante est que Carl Sagan a insisté pour inclure des sons de la Terre comme le chant des baleines et le rire d'un enfant, créant un message poétique et humain destiné aux étoiles, et que l'équipe a travaillé des années pour sélectionner les meilleurs contenus malgré les contraintes techniques de l'époque.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Et là, chers amis, on touche à quelque chose d'extraordinaire. Voyager 1 qui continue de parler à la Terre après presque cinquante ans… Quelle aventure ! Si vous étiez à bord, quel message auriez-vous glissé sur la Golden Record ? Partagez vos idées dans le chat, j'adore lire vos propositions créatives !</div>
+
+            <h4 class="mission-title">Sonde Voyager 2</h4>
+            <p>Lancée le 20 août 1977, Voyager 2 a suivi une trajectoire qui lui a permis de survoler Jupiter en 1979, Saturne en 1981, Uranus en 1986 et Neptune en 1989. À Uranus, elle a découvert les anneaux fins et les dix nouvelles lunes grâce aux instruments et à l'analyse de l'équipe dirigée par Edward C. Stone. À Neptune, elle a révélé les vents les plus rapides du système solaire et les geysers de glace d'azote sur Triton. Comme sa sœur, elle reste active en 2026 et explore l'héliopause depuis une direction différente, fournissant des données complémentaires sur le milieu interstellaire. Une anecdote remarquable est que Voyager 2 a été la seule sonde à visiter Uranus et Neptune, et que l'équipe a dû reprogrammer les instruments à distance pendant des années pour maximiser les découvertes malgré la distance croissante et les signaux de plus en plus faibles.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Voyager 2, la grande voyageuse qui a tout vu… Uranus, Neptune, et maintenant l'espace interstellaire. Quelle leçon de persévérance ! Et vous, quelle planète du système solaire aimeriez-vous visiter en priorité si vous pouviez choisir ? Dites-le-moi tout de suite dans le chat !</div>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="Voyager — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/81b6fa85964e4261b661aea487cc0fa8/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>Voyager, en 3D <span class="m3d-hint">— la parabole de 3,7 m, les trois RTG, la perche du magnétomètre de 13 m, et le Disque d'or ; à ≈ 173 UA, son signal met plus de 23 h à nous parvenir</span> <a href="https://sketchfab.com/3d-models/voyager-3d-printable-81b6fa85964e4261b661aea487cc0fa8" target="_blank" rel="noopener">Modèle Sketchfab · NASA ↗</a></figcaption>
+            </figure>
+
+            <h3 class="group-title">Les maîtres des géantes et les mondes lointains</h3>
+            <h4 class="mission-title">Sonde Cassini-Huygens</h4>
+            <p>Lancée le 15 octobre 1997, Cassini-Huygens est arrivée en orbite autour de Saturne le 1er juillet 2004 après un voyage de près de sept ans utilisant des assistances gravitationnelles. La sonde orbiteur a cartographié les anneaux avec une précision sans précédent, découvert de nouveaux satellites et analysé la magnétosphère de Saturne, sous la direction de la project scientist Linda Spilker de la NASA et avec les contributions majeures de Carolyn Porco pour l'équipe d'imagerie. Le 14 janvier 2005, la sonde Huygens s'est posée sur Titan, révélant un monde avec des lacs et des rivières de méthane liquide, des dunes de sable organique et une chimie prébiotique complexe, grâce au travail acharné de Jean-Pierre Lebreton et de l'équipe ESA qui a conçu et suivi l'atterrissage historique. La mission s'est terminée le 15 septembre 2017 par une descente contrôlée dans l'atmosphère de Saturne pour éviter toute contamination future des lunes. Une anecdote intense est que l'équipe de Huygens a attendu avec anxiété pendant plus d'une heure après l'atterrissage, le signal arrivant avec un retard de plus de deux heures, avant de célébrer la première image depuis la surface de Titan, un moment gravé dans l'histoire de l'exploration spatiale.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Cassini et son atterrissage sur Titan… Un moment historique qui nous a ouvert les portes d'un monde liquide et organique. Si vous pouviez poser une question à l'équipe de Cassini aujourd'hui, quelle serait-elle ? Écrivez-la dans le chat, je suis curieux de lire vos réflexions !</div>
+
+            <h4 class="mission-title">Sonde New Horizons</h4>
+            <p>Lancée le 19 janvier 2006, New Horizons a survolé Pluton et sa lune Charon le 14 juillet 2015 à une distance de seulement 12 500 kilomètres. Elle a révélé des plaines de glace d'azote en forme de cœur, des montagnes de glace d'eau et une atmosphère ténue s'échappant dans l'espace, grâce au project scientist Alan Stern et à l'équipe du Southwest Research Institute. Après Pluton, elle a survolé l'objet de la ceinture de Kuiper Arrokoth en 2019, montrant un monde binaire primitif. Elle continue d'explorer la ceinture de Kuiper en 2026 et envoie des données sur la composition des objets transneptuniens. Une anecdote fascinante est que l'équipe a dû attendre des mois après le survol de Pluton pour recevoir toutes les données haute résolution, et que la découverte du « cœur » de Pluton a ému des millions de personnes à travers le monde, symbolisant la beauté inattendue des mondes lointains.</p>
+            <div class="live-aside"><span class="lv">Au live</span>New Horizons qui nous a offert le cœur de Pluton… Une découverte qui a changé notre vision des mondes lointains. Quelle image de Pluton vous a le plus touché ? Partagez-la dans le chat !</div>
+
+            <h4 class="mission-title">Sonde Juno</h4>
+            <p>Lancée le 5 août 2011, Juno est entrée en orbite polaire autour de Jupiter le 4 juillet 2016. Elle étudie la structure interne de Jupiter, sa magnétosphère et ses aurores polaires avec des instruments comme le radiomètre micro-ondes MWR qui sonde sous les nuages et le magnétomètre, sous la direction de la project scientist Scott Bolton. Juno a révélé que le champ magnétique de Jupiter est irrégulier et que la planète possède un noyau dilué. Elle continue ses survols rapprochés en 2026. Une anecdote captivante est que Juno a été la première sonde à voler au-dessus des pôles de Jupiter, et que ses images des aurores polaires ont révélé des structures magnétiques complexes que personne n'avait imaginées, grâce à l'analyse minutieuse de l'équipe scientifique internationale.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Juno qui danse autour de Jupiter et nous révèle ses secrets cachés… Magnifique ! Et vous, quelle planète gazeuse aimeriez-vous explorer en priorité ? Jupiter ou Saturne ? Votez dans le chat !</div>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="Cassini — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/bdd5161f099c4767bc061df181e9b37c/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>Cassini, en 3D <span class="m3d-hint">— la haute antenne de 4 m, les RTG, et la sonde Huygens accrochée au flanc ; vaporisée volontairement dans Saturne le 15 sept. 2017</span> <a href="https://sketchfab.com/3d-models/cassini-spacecraft-3d-printable-bdd5161f099c4767bc061df181e9b37c" target="_blank" rel="noopener">Modèle Sketchfab · NASA ↗</a></figcaption>
+            </figure>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="New Horizons — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/d7f79077cc874a60a080c5a3cc0f7550/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>New Horizons, en 3D <span class="m3d-hint">— la parabole triangulaire, le RTG sur le flanc, la silhouette de piano à queue ; aujourd'hui dans la ceinture de Kuiper, à ≈ 64 UA</span> <a href="https://sketchfab.com/models/d7f79077cc874a60a080c5a3cc0f7550" target="_blank" rel="noopener">Modèle Sketchfab · NASA ↗</a></figcaption>
+            </figure>
+
+            <h3 class="group-title">Les sentinelles du Soleil</h3>
+            <h4 class="mission-title">Sonde SOHO</h4>
+            <p>La sonde SOHO, lancée le 2 décembre 1995 par une collaboration entre l'ESA et la NASA, est positionnée au point de Lagrange L1 entre la Terre et le Soleil. Le projet scientifique a été dirigé par le project scientist Richard Harrison de l'ESA, avec des contributions majeures de Guenter Brueckner et son équipe du Naval Research Laboratory pour l'instrument LASCO qui a capturé des milliers d'images spectaculaires des éjections de masse coronale, permettant de comprendre comment ces événements gigantesques affectent notre planète et nos technologies. L'instrument EIT a été développé sous la direction de Jean-Pierre Delaboudinière, offrant des vues détaillées de la chromosphère et de la couronne dans l'extrême ultraviolet avec une précision révolutionnaire. Le MDI, dirigé par Philip Scherrer de l'université de Stanford, a révolutionné l'héliosismologie en analysant les vibrations du Soleil comme un immense instrument de musique cosmique. Une anecdote passionnante est que SOHO a permis à des milliers d'astronomes amateurs du monde entier de découvrir plus de 5 000 comètes en analysant les données publiques en ligne, transformant des citoyens ordinaires en découvreurs d'espace et créant une véritable communauté scientifique citoyenne. Les données de SOHO ont montré comment les éruptions solaires accélèrent les particules à des vitesses relativistes et comment le champ magnétique solaire s'inverse tous les onze ans, grâce au travail acharné de l'équipe internationale qui a maintenu la mission pendant presque trente ans malgré des défis techniques majeurs comme la perte temporaire de contact en 1998, résolue par une opération de sauvetage ingénieuse. Elle a permis de prédire des tempêtes solaires qui menacent les satellites, les réseaux électriques et les astronautes, sauvant potentiellement des milliards en infrastructure et protégeant des vies humaines dans l'espace.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Incroyable, n'est-ce pas ? Imaginez un instant ce satellite qui veille sur notre étoile jour et nuit depuis presque trente ans. Et vous, dans le chat, avez-vous déjà vu des images des éruptions solaires capturées par SOHO ? Dites-moi ce que vous en pensez !</div>
+
+            <h4 class="mission-title">Sonde Parker Solar Probe</h4>
+            <p>Lancée le 12 août 2018, Parker Solar Probe s'approche du Soleil à moins de dix rayons solaires grâce à sept assistances gravitationnelles de Vénus. Elle mesure directement la couronne solaire, les éruptions et les vents solaires avec des instruments comme FIELDS pour les champs électriques et magnétiques et SWEAP pour les particules, sous la direction du project scientist Nour Raouafi. Elle a révélé que le vent solaire s'accélère de manière inattendue près du Soleil et que la couronne contient des structures magnétiques complexes. Une anecdote extraordinaire est que Parker Solar Probe a survécu à des températures de plus de 1 300 degrés Celsius grâce à son bouclier thermique innovant, et que chaque survol rapproché a fourni des données que les scientifiques attendaient depuis des décennies, transformant notre compréhension du Soleil.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Parker Solar Probe qui frôle littéralement le Soleil… Du courage et de la technologie de pointe ! Avez-vous déjà vu des images de ces approches rapprochées ? Dites-moi vos impressions dans le chat !</div>
+
+            <h4 class="mission-title">Sonde Solar Orbiter</h4>
+            <p>Lancée le 10 février 2020 par l'ESA, Solar Orbiter étudie le Soleil depuis une orbite inclinée qui lui permet d'observer les pôles solaires. Ses instruments comme EUI pour l'imagerie ultraviolette et Metis pour la couronne observent les éruptions, le vent solaire et les champs magnétiques, sous la direction du project scientist Daniel Müller. Elle a déjà fourni des images des pôles solaires et des données sur les éjections de masse coronale. Une anecdote inspirante est que Solar Orbiter a capturé les premières images des pôles du Soleil, un exploit technique rendu possible par des années de planification et de collaboration internationale, ouvrant une nouvelle fenêtre sur le cycle solaire.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Solar Orbiter qui nous offre une vue inédite sur les pôles du Soleil… Une première historique ! Et vous, qu'est-ce qui vous fascine le plus dans l'étude du Soleil ? Partagez vos pensées !</div>
+
+            <h3 class="group-title">Les sondes de demain — déjà en route</h3>
+
+            <h4 class="mission-title">Sonde Europa Clipper</h4>
+            <p>Lancée en octobre 2024, Europa Clipper arrivera dans le système de Jupiter en avril 2030. Elle effectuera une quarantaine de survols rapprochés d'Europe avec un radar pénétrant la glace jusqu'à trente kilomètres de profondeur, des spectromètres pour analyser la composition de la surface et des caméras haute résolution, sous la direction du project scientist Robert Pappalardo. L'objectif est de confirmer l'existence d'un océan sous-glaciaire global et d'évaluer son potentiel d'habitabilité. Une anecdote excitante est que l'équipe a conçu des instruments capables de résister aux radiations intenses de Jupiter, et que la mission pourrait révolutionner notre compréhension des mondes océaniques dans l'Univers.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Europa Clipper, la prochaine grande aventure vers l'océan caché d'Europe… J'ai hâte ! Et vous, croyez-vous que nous trouverons des traces de vie sous les glaces ? Partagez votre avis dans le chat !</div>
+
+            <h4 class="mission-title">Sonde Dragonfly</h4>
+            <p>Lancée vers 2028, Dragonfly est un rotorcraft à huit rotors propulsé par un générateur thermoélectrique à radioisotopes. Il arrivera sur Titan vers 2034 et explorera les dunes de sable organique, les plaines et les bords des lacs de méthane. Ses instruments incluent un spectromètre de masse pour analyser la chimie du sol et de l'atmosphère et des caméras pour la navigation et la science, sous la direction de la principal investigator Elizabeth Turtle du Johns Hopkins Applied Physics Laboratory. Dragonfly étudiera la chimie prébiotique de Titan et son potentiel d'habitabilité passée ou présente. Une anecdote visionnaire est que Dragonfly a été choisie parmi des centaines de propositions, et que son concept de drone autonome sur une lune lointaine a captivé l'imagination du public, prouvant que les idées les plus audacieuses peuvent devenir réalité.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Dragonfly, ce drone qui volera sur Titan… Une mission de science-fiction devenue réalité ! Si vous pouviez choisir une destination dans le système solaire pour un drone, ce serait Titan ou ailleurs ? Dites-le-moi !</div>
+
+            <h4 class="mission-title">Sonde OSIRIS-APEX</h4>
+            <p>Mission de suivi d'OSIRIS-REx, OSIRIS-APEX étudiera l'astéroïde Apophis lors de son proche passage à la Terre en avril 2029. Elle analysera les changements de surface causés par la rencontre gravitationnelle et cartographiera la composition de l'astéroïde avec des instruments similaires à ceux d'OSIRIS-REx, sous la direction d'une équipe dirigée par Dante Lauretta. Une anecdote captivante est que la mission a été rapidement réaffectée après le succès d'OSIRIS-REx, démontrant l'agilité de la NASA et l'importance de suivre les astéroïdes potentiellement dangereux de près.</p>
+            <div class="live-aside"><span class="lv">Au live</span>OSIRIS-APEX qui ira à la rencontre d'Apophis… Une mission qui nous rappelle que les astéroïdes peuvent être nos amis ou nos défis. Avez-vous déjà suivi l'actualité des astéroïdes ? Partagez vos réflexions !</div>
+
             <div class="lalie-note">
               <div class="ln-head">Les Femmes de l'Espace</div>
               <div class="ln-body">
-                <p>Derrière ces premières trajectoires, des <strong>calculatrices humaines</strong>. <strong>Katherine Johnson</strong> (NASA) calcule à la main, avec une précision absolue, les orbites des premières missions. <strong>Dorothy Vaughan</strong> apprend seule le <strong>Fortran</strong> pour automatiser ces calculs, et <strong>Mary Jackson</strong> teste en soufflerie la résistance des structures au lancement. Sans elles, ces sphères ne seraient jamais montées droit.</p>
+                <p>Pendant treize ans, <strong>Linda Spilker</strong> a dirigé la science de Cassini autour de Saturne, arbitrant chaque décision d'instrument — elle veille aujourd'hui sur les Voyager. Et le 18 février 2021, c'est la voix de <strong>Swati Mohan</strong> qui annonça « <em>touchdown confirmed</em> » : elle pilotait le guidage de la descente de Perseverance. Plus loin, <strong>Ritu Karidhal</strong> et <strong>Muthayya Vanitha</strong> (ISRO) ont mené les missions martienne et lunaire de l'Inde.</p>
               </div>
             </div>
           </article>
           <aside class="side-note intox">
-            <h3>Anti-intox · Sputnik n'a rien « espionné »</h3>
-            <p>On lui prête parfois des caméras. En réalité, Sputnik 1 ne portait <strong>qu'un émetteur radio</strong> : sa seule arme était symbolique, et scientifique (sonder l'ionosphère).</p>
-            <p>Telstar, lui, n'a pas été « usé » par l'espace : il a été tué par une <strong>explosion nucléaire</strong> — l'essai américain <em>Starfish Prime</em> (1962) qui gonfla les ceintures de radiations.</p>
-            <p class="loc">◷ Sputnik &amp; Explorer 1 : détruits (rentrée). Telstar 1 : inerte, toujours en orbite (~950 × 5 600 km).</p>
-            <div class="tag-list"><span class="tag">1957-1962</span><span class="tag">Van Allen</span><span class="tag">Starfish Prime</span></div>
+            <h3>Anti-intox · les Voyager n'ont pas quitté le Système solaire</h3>
+            <p>Voyager 1 a quitté l'<strong>héliosphère</strong> (la bulle de vent solaire) — pas le Système solaire au sens <strong>gravitationnel</strong>. Au-delà s'étend encore le <strong>nuage d'Oort</strong>, qui appartient bien au Soleil : la sonde mettra ~300 ans à seulement l'atteindre.</p>
+            <p>La <strong>face « cachée »</strong> de la Lune n'est pas « obscure » : elle reçoit autant de soleil que la face visible. Parker ne « touche » pas la <em>surface</em> du Soleil — qui n'en a pas : elle traverse sa <strong>couronne</strong>. Et si <strong>Pluton</strong> est « planète naine » depuis 2006, c'est qu'elle partage son orbite avec une nuée d'objets de Kuiper — rien ne lui retire sa richesse.</p>
+            <p class="loc">◷ Voyager 1 ≈ 173 UA · Voyager 2 ≈ 143 UA · New Horizons ≈ 64 UA · Juno : Jupiter · Cassini : dans Saturne · Huygens : sur Titan · Perseverance : Jezero.</p>
+            <div class="tag-list"><span class="tag">Interstellaire</span><span class="tag">Golden Record</span><span class="tag">RTG</span></div>
           </aside>
         </div>
       </section>
@@ -602,14 +724,36 @@
               <img src="assets/satellites-terre.png" alt="La Terre ceinte de satellites, vue de l'orbite" loading="lazy">
               <figcaption>L'infrastructure invisible — observation, communications, navigation, en orbite autour de la Terre</figcaption>
             </figure>
+
+            <h3 class="group-title">L'aube de l'ère spatiale (1957-1962)</h3>
+            <h4 class="mission-title">Satellite Spoutnik 1</h4>
+            <p>Lancé le 4 octobre 1957 par l'Union soviétique, Spoutnik 1 est le premier satellite artificiel de l'histoire. Cette sphère de 58 centimètres de diamètre émettait des bips radio sur deux fréquences et a orbité pendant trois mois avant de retomber dans l'atmosphère. Son lancement a déclenché la course à l'espace et la crise de Spoutnik aux États-Unis, sous la direction de Sergueï Korolev et de l'équipe OKB-1. Une anecdote fondatrice est que les bips de Spoutnik ont été entendus par des millions de personnes dans le monde, et que ce petit satellite a changé à jamais la perception de l'espace comme un domaine accessible à l'humanité.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Spoutnik 1, le tout premier satellite… Le début de l'ère spatiale moderne ! Et vous, quel impact pensez-vous que ce petit bip a eu sur le monde à l'époque ? Dites-le dans le chat !</div>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="Sputnik 1 — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/a9ae7f57c7cf4c0ca9119cf3b6ef4c2f/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>Sputnik 1, en 3D <span class="m3d-hint">— faites-le pivoter : la sphère polie de 58 cm et ses quatre antennes-fouet ; à l'intérieur, un simple émetteur radio et 51 kg de batteries</span> <a href="https://sketchfab.com/3d-models/sputnik-1-a9ae7f57c7cf4c0ca9119cf3b6ef4c2f" target="_blank" rel="noopener">Modèle Sketchfab ↗</a></figcaption>
+            </figure>
+            <h4 class="mission-title">Satellite Explorer 1</h4>
+            <p>Lancé le 31 janvier 1958 par les États-Unis, Explorer 1 est le premier satellite américain. Il a découvert les ceintures de Van Allen grâce à son compteur Geiger embarqué, révélant des zones de particules chargées piégées par le champ magnétique terrestre, sous la direction de James Van Allen et de l'équipe de l'université de l'Iowa. Une anecdote scientifique majeure est que les données inattendues du compteur Geiger ont conduit à la découverte des ceintures de radiation qui portent aujourd'hui le nom de Van Allen, un tournant dans notre compréhension de l'environnement spatial proche de la Terre.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Explorer 1 et la découverte des ceintures de Van Allen… Une surprise scientifique qui a changé notre compréhension de l'espace proche ! Avez-vous déjà entendu parler de ces ceintures avant ce live ?</div>
+
+            <h4 class="mission-title">Satellite Telstar 1</h4>
+            <p>Lancé le 10 juillet 1962, Telstar 1 est le premier satellite de communications actives transatlantiques. Il a retransmis des images de télévision et des appels téléphoniques entre l'Europe et l'Amérique du Nord, marquant le début de l'ère des communications par satellite, sous la direction de John Robinson Pierce des Bell Labs. Une anecdote historique est que la première retransmission télévisée transatlantique a montré des images de la Tour Eiffel et de la Statue de la Liberté, symbolisant la connexion entre les continents et l'espoir d'un monde plus uni grâce à la technologie.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Telstar 1 qui a rendu possible la première retransmission TV transatlantique… Un moment qui a connecté le monde ! Et vous, quelle communication par satellite vous semble la plus importante aujourd'hui ?</div>
+
             <div class="explain-block">
               <div class="xb-head">Explication <span class="xb-tag">LEO, MEO, GEO : l'altitude fait le métier</span></div>
               <div class="xb-body">
                 <p><strong>LEO</strong> (~160-2 000 km) : un tour en ~90 min, faible latence — l'observation fine, l'ISS, Starlink. <strong>MEO</strong> (~20 000 km) : le domaine de la <strong>navigation</strong> (GPS, Galileo). <strong>GEO</strong> (~35 786 km) : à cette altitude précise, le satellite tourne <em>exactement</em> à la vitesse de la Terre — il semble <strong>immobile</strong> dans le ciel. Parfait pour la télévision et la météo.</p>
               </div>
             </div>
+
             <h3 class="group-title">Hubble &amp; Webb — les yeux au-dessus de l'air</h3>
-            <p>Lancé en 1990, <strong>Hubble</strong> a d'abord été la risée de l'Amérique : son miroir de 2,4 m, poli selon une mauvaise mesure, rendait des images floues. En 1993, des astronautes lui posent <em>des lunettes</em> (COSTAR), et l'aveugle devient visionnaire — Piliers de la Création, expansion accélérée de l'Univers, premières atmosphères d'exoplanètes.</p>
+            <h4 class="mission-title">Hubble Space Telescope</h4>
+            <p>Déployé le 24 avril 1990 par la navette spatiale Discovery, Hubble a révolutionné l'astronomie avec des images d'une netteté inégalée. Il a permis de déterminer l'âge de l'Univers, d'observer les premières galaxies et de confirmer l'accélération de l'expansion cosmique, grâce au travail de milliers de scientifiques dont le project scientist Robert Williams et plus tard Jennifer Wiseman. Il continue d'opérer en 2026 après plusieurs missions de maintenance. Une anecdote légendaire est que la première image de Hubble, après la correction de son miroir défectueux lors de la mission STS-61 en 1993, a révélé des détails stupéfiants de l'Univers et a restauré la confiance dans le télescope le plus cher jamais construit.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Hubble, l'œil qui a changé notre vision de l'Univers… Des images qui restent gravées dans nos mémoires ! Quelle photo de Hubble vous a le plus ému ? Partagez-la dans le chat !</div>
             <figure class="model3d reveal">
               <div class="m3d-frame">
                 <iframe title="Hubble — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/640764e1a20a4c7ea9718a83a05bcb7f/embed?ui_theme=dark&dnt=1"></iframe>
@@ -623,91 +767,82 @@
               </div>
               <figcaption>James Webb, en 3D <span class="m3d-hint">— le miroir doré de 6,5 m en 18 segments, et le bouclier solaire à cinq couches qui le maintient à ~40 K</span> <a href="https://sketchfab.com/3d-models/jwst-james-webb-space-telescope-6c92c08a672640afb58ee44d248fd0fe" target="_blank" rel="noopener">Modèle Sketchfab ↗</a></figcaption>
             </figure>
-            <p>D'autres satellites scrutent le ciel : <strong>Gaia</strong> a cartographié en 3D plus d'un milliard d'étoiles depuis L2 ; <strong>Cheops</strong> pèse la densité des exoplanètes par leurs transits. Et au sol comme en mer, quatre constellations de <strong>navigation</strong> (GPS, Galileo, GLONASS, BeiDou) nous situent au mètre près grâce à des horloges atomiques.</p>
+            <h4 class="mission-title">Satellite Gaia</h4>
+            <p>Lancé en 2013 par l'ESA, Gaia cartographie avec une précision sans précédent la position, la distance et le mouvement de plus d'un milliard d'étoiles. Ses données ont permis de créer la carte 3D la plus précise de la Voie Lactée et de découvrir des milliers d'exoplanètes et d'objets transneptuniens, sous la direction du project scientist Timo Prusti. Une anecdote scientifique majeure est que les données de Gaia ont révélé des structures inattendues dans la Voie Lactée, comme des courants d'étoiles et des indices sur l'histoire de notre galaxie, transformant notre compréhension de la formation des étoiles et des planètes.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Gaia qui cartographie un milliard d'étoiles… Une carte de l'Univers qui change tout ! Quelle découverte de Gaia vous a le plus impressionné ?</div>
+
+            <h4 class="mission-title">Satellite Cheops</h4>
+            <p>Lancé en 2019 par l'ESA, Cheops caractérise les exoplanètes connues par la méthode des transits avec une précision photométrique exceptionnelle. Il mesure les variations de luminosité des étoiles hôtes pour déterminer la taille et la densité des planètes, sous la direction du principal investigator Willy Benz. Une anecdote excitante est que Cheops a déjà caractérisé des exoplanètes avec une précision inégalée, révélant des mondes aux densités inattendues et ouvrant la voie à une nouvelle ère de caractérisation détaillée des planètes extrasolaires.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Cheops qui mesure les exoplanètes avec une précision incroyable… Une machine à caractériser les mondes lointains ! Quelle exoplanète aimeriez-vous voir caractérisée en priorité ?</div>
+
+            <h3 class="group-title">Les satellites de service — communiquer, observer, naviguer</h3>
+            <h4 class="mission-title">Série Intelsat</h4>
+            <p>La série Intelsat, commencée avec Intelsat I en 1965, fournit des communications par satellite géostationnaire pour la télévision, la radio et les données à travers le monde. Les satellites Intelsat ont permis la première retransmission télévisée mondiale en direct lors des Jeux olympiques de 1964, sous la direction d'équipes internationales d'ingénieurs et de scientifiques des télécommunications. Une anecdote marquante est que les premiers satellites Intelsat ont littéralement « rétréci » le monde, permettant à des milliards de personnes de voir les mêmes événements en temps réel et posant les bases de la globalisation médiatique.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Intelsat qui a connecté les continents par la télévision… Un géant des communications ! Quelle retransmission satellite vous a le plus marqué dans votre vie ?</div>
+
+            <h4 class="mission-title">Série Iridium</h4>
+            <p>La constellation Iridium, déployée à la fin des années 1990, fournit des communications vocales et de données par satellite depuis l'orbite basse. Elle permet des appels depuis n'importe quel point de la planète, y compris les pôles et les océans, grâce au travail de l'équipe d'Iridium Communications et de Motorola. Une anecdote de survie est que les téléphones Iridium ont sauvé des vies d'explorateurs, de marins et de scientifiques isolés dans les régions les plus reculées, prouvant que la connectivité satellite peut être littéralement vitale.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Iridium et ses appels depuis n'importe où sur Terre… Une bouée de sauvetage pour les explorateurs ! Avez-vous déjà utilisé un téléphone satellite ? Partagez votre histoire !</div>
+
+            <h4 class="mission-title">Série Landsat</h4>
+            <p>La série Landsat, commencée en 1972 avec Landsat 1, fournit des images multispectrales de la Terre pour l'agriculture, la foresterie, la géologie et le suivi des changements environnementaux. Landsat 9, lancé en 2021, continue cette mission de plus de cinquante ans, sous la direction de scientifiques de la NASA et de l'USGS comme Thomas Loveland. Une anecdote environnementale est que les données Landsat ont permis de documenter la déforestation de l'Amazonie et la fonte des glaciers, fournissant des preuves visuelles irréfutables du changement climatique et guidant les politiques de conservation mondiales.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Landsat qui surveille notre planète depuis plus de cinquante ans… Un trésor de données pour la science ! Quelle application de Landsat vous semble la plus utile aujourd'hui ?</div>
+
+            <h4 class="mission-title">Constellation Sentinel (Copernicus)</h4>
+            <p>La constellation Sentinel du programme Copernicus de l'ESA fournit des données radar avec Sentinel-1, optiques avec Sentinel-2, altimétriques avec Sentinel-6 et d'autres pour le suivi du climat, des océans et des terres. Ces données sont utilisées gratuitement par des milliers de scientifiques et d'agences dans le monde, sous la direction d'équipes scientifiques de l'ESA comme Josef Aschbacher. Une anecdote collaborative est que les données Sentinel ont été utilisées pour cartographier les inondations, les feux de forêt et les déplacements de population en temps quasi réel, aidant les secours humanitaires et les gouvernements à prendre des décisions éclairées.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Sentinel et ses données ouvertes pour tous… Une vraie révolution collaborative ! Utilisez-vous déjà les données Sentinel dans vos projets ? Dites-le dans le chat !</div>
+
+            <h4 class="mission-title">GPS (tous les blocs)</h4>
+            <p>Le système GPS utilise des satellites en orbite moyenne équipés d'horloges atomiques. Les blocs I à III ont progressivement amélioré la précision, la résistance au brouillage et les signaux. Le bloc III offre une précision de l'ordre du mètre et des signaux plus robustes pour les applications militaires et civiles, grâce au travail de scientifiques comme Bradford Parkinson, souvent appelé le « père du GPS ». Une anecdote technologique est que le GPS a été initialement développé pour des applications militaires, mais que sa désactivation du brouillage sélectif en 2000 a ouvert ses capacités à des milliards d'utilisateurs civils dans le monde entier.</p>
+            <div class="live-aside"><span class="lv">Au live</span>GPS qui guide nos vies au quotidien… Mais saviez-vous que tout a commencé avec des horloges atomiques dans l'espace ? Quelle utilisation du GPS vous semble la plus surprenante ?</div>
+
+            <h4 class="mission-title">Galileo</h4>
+            <p>Le système Galileo de l'Union européenne fournit un positionnement de haute précision indépendant du GPS. Ses satellites en orbite moyenne émettent des signaux plus précis et incluent des services d'authentification et de recherche et sauvetage, sous la direction d'équipes de l'ESA et de la Commission européenne. Une anecdote stratégique est que Galileo a été développé pour garantir l'indépendance européenne en matière de navigation, et que ses signaux de haute précision ont déjà amélioré la sécurité des transports aériens et maritimes à travers le continent.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Galileo, le GPS européen de haute précision… Une fierté technologique ! Et vous, préférez-vous Galileo ou le GPS traditionnel pour vos trajets ?</div>
+
+            <h4 class="mission-title">GLONASS</h4>
+            <p>Le système GLONASS russe fournit un positionnement global avec des satellites en orbite moyenne. Il complète le GPS et est particulièrement utilisé dans les régions polaires, grâce au travail des scientifiques et ingénieurs de Roscosmos. Une anecdote de résilience est que GLONASS a été modernisé après une période de déclin dans les années 1990, redevenant un pilier de la navigation russe et un partenaire important dans les systèmes mondiaux de positionnement.</p>
+            <div class="live-aside"><span class="lv">Au live</span>GLONASS qui complète le réseau mondial… Une coopération invisible mais essentielle ! Avez-vous déjà utilisé un système de navigation russe ?</div>
+
+            <h4 class="mission-title">BeiDou</h4>
+            <p>Le système BeiDou chinois fournit un positionnement global avec des satellites en orbite géostationnaire et moyenne. Il offre des services de navigation, de communication par messages courts et de recherche et sauvetage, sous la direction de l'équipe de la China National Space Administration. Une anecdote d'innovation est que BeiDou a intégré des capacités de communication par messages courts directement dans ses satellites, permettant des alertes d'urgence dans des zones sans couverture cellulaire, une fonctionnalité unique qui a déjà sauvé des vies lors de catastrophes.</p>
+            <div class="live-aside"><span class="lv">Au live</span>BeiDou qui s'impose comme un acteur majeur mondial… Quelle avancée dans le positionnement vous semble la plus impressionnante ?</div>
+
             <h3 class="group-title">Starlink — la plus grande constellation de l'histoire</h3>
-            <p>Depuis 2019, SpaceX déploie <strong>Starlink</strong> par grappes de soixante : la plus grande flotte jamais placée en orbite, un Internet à faible latence là où la fibre n'ira jamais — au prix d'un ciel strié de traînées, et d'une question vertigineuse de trafic orbital.</p>
+            <p>Starlink est la méga-constellation de SpaceX comptant des milliers de satellites en orbite basse. Les versions V2 mini sont plus compactes, plus performantes, équipées de liaisons laser inter-satellites et de panneaux solaires améliorés. Elles fournissent un internet haut débit à bas coût dans les régions isolées du globe et ont déjà transformé les communications en zones de conflit et en zones rurales, sous la vision d'Elon Musk et de l'équipe d'ingénieurs de SpaceX. Une anecdote moderne est que Starlink a été déployé en urgence en Ukraine en 2022, permettant aux civils et aux forces de rester connectés malgré les destructions, démontrant le pouvoir humanitaire des constellations en orbite basse.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Starlink et ses milliers de satellites qui connectent la planète… Une révolution en cours ! Avez-vous déjà utilisé ou testé Starlink ? Dites-moi vos retours d'expérience dans le chat !</div>
+
+            <h3 class="group-title">SMILE — voir le bouclier de la Terre en rayons X</h3>
+            <p>Lancé en mai 2026, SMILE est une mission conjointe ESA-Chine qui étudie l'interaction entre le vent solaire et la magnétosphère terrestre. Ses instruments d'imagerie X et UV capturent les aurores et les reconnexions magnétiques en temps réel, sous la direction d'équipes scientifiques internationales. Une anecdote récente est que SMILE a été lancée avec succès en mai 2026 et a déjà commencé à envoyer des données préliminaires, marquant une nouvelle ère de coopération spatiale sino-européenne dans l'étude de notre environnement spatial.</p>
+            <div class="live-aside"><span class="lv">Au live</span>SMILE, tout juste lancé en mai 2026… Une nouvelle sentinelle pour notre magnétosphère ! Avez-vous suivi son lancement ? Dites-moi ce que vous en savez !</div>
+
             <div class="lalie-note">
               <div class="ln-head">Les Femmes de l'Espace</div>
               <div class="ln-body">
-                <p>Hubble doit son existence à <strong>Nancy Grace Roman</strong> — « la mère de Hubble », première femme cadre de la NASA, dont le plaidoyer obstiné a imposé l'idée d'un grand télescope spatial. Sans elle, l'astronomie moderne ne serait pas la même. Le futur observatoire <strong>Nancy Grace Roman</strong> (chapitre 6) porte son nom.</p>
+                <p>Derrière les premières trajectoires, des <strong>calculatrices humaines</strong> : <strong>Katherine Johnson</strong> calcule à la main les orbites des premières missions, <strong>Dorothy Vaughan</strong> apprend seule le <strong>Fortran</strong> pour les automatiser, <strong>Mary Jackson</strong> teste les structures en soufflerie. Et Hubble doit son existence à <strong>Nancy Grace Roman</strong> — « la mère de Hubble », première femme cadre de la NASA, dont le plaidoyer obstiné imposa l'idée d'un grand télescope spatial. Le futur observatoire <strong>Nancy Grace Roman</strong> (chapitre 6) porte son nom.</p>
               </div>
             </div>
           </article>
           <aside class="side-note intox">
-            <h3>Anti-intox · Webb n'a pas « remplacé » Hubble</h3>
-            <p>Les deux travaillent dans des <strong>lumières différentes</strong> (visible/UV pour Hubble, infrarouge pour Webb) et sont <strong>complémentaires</strong>. Webb ne « voit » pas le passé par magie : il capte une lumière que Hubble ne pouvait saisir.</p>
-            <p><strong>« 12 000 satellites Starlink »</strong> : un chiffre à dater. Lancés, opérationnels, déjà désorbités — trois nombres différents. Chaque satellite ne vit qu'~5 ans, puis brûle volontairement. Sans date, l'affirmation est déjà fausse.</p>
-            <p class="loc">◷ Hubble : ~515-540 km (actif). JWST &amp; Gaia : point L2. Starlink : ~550 km.</p>
-            <div class="tag-list"><span class="tag">Hubble · JWST</span><span class="tag">L2</span><span class="tag">Constellations</span></div>
+            <h3>Anti-intox · Sputnik n'a rien « espionné »</h3>
+            <p>On lui prête parfois des caméras : en réalité, Sputnik 1 ne portait <strong>qu'un émetteur radio</strong>, son arme était symbolique et scientifique. <strong>Telstar</strong>, lui, n'a pas été « usé » par l'espace : il a été tué par une <strong>explosion nucléaire</strong> — l'essai américain <em>Starfish Prime</em> (1962), qui gonfla les ceintures de radiations.</p>
+            <p><strong>Webb n'a pas « remplacé » Hubble</strong> : ils travaillent dans des <strong>lumières différentes</strong> (visible/UV vs infrarouge) et sont complémentaires. Et le <strong>GPS ne sait pas où vous êtes</strong> : chaque satellite ne fait qu'émettre l'heure de son horloge atomique ; c'est <em>votre</em> récepteur qui en déduit sa position.</p>
+            <p><strong>« 12 000 satellites Starlink »</strong> : un chiffre à dater. Lancés, opérationnels, déjà désorbités — trois nombres différents. Sans date, l'affirmation est déjà fausse.</p>
+            <p class="loc">◷ Sputnik &amp; Explorer 1 : détruits (rentrée). Telstar 1 : inerte (~950 × 5 600 km). Hubble : ~515-540 km (actif). JWST &amp; Gaia : point L2. Starlink : ~550 km. SMILE : ~5 000 × 121 000 km.</p>
+            <div class="tag-list"><span class="tag">Van Allen</span><span class="tag">L2</span><span class="tag">Constellations</span></div>
           </aside>
         </div>
       </section>
 
-      <!-- CH 4 — SONDES -->
-      <section class="chapter reveal" id="sondes" aria-labelledby="c4">
+      <!-- CH 4 — TÉLESCOPES AU SOL -->
+      <section class="chapter reveal" id="telescopes" aria-labelledby="c4">
         <div class="chapter-head">
-          <div><p class="section-kicker">Chapitre 4 · L'exil volontaire</p><h2 id="c4">Les sondes</h2></div>
+          <div><p class="section-kicker">Chapitre 4 · Les plus grands yeux</p><h2 id="c4">Les télescopes au sol</h2></div>
           <div class="chapter-number">04</div>
         </div>
         <div class="transcript">
           <article class="prose">
-            <p class="lede">Une sonde ne revient pas. Elle quitte la Terre comme on quitte un port sans billet de retour.</p>
-            <figure class="chapter-figure reveal">
-              <img src="assets/sondes-lointaines.png" alt="Une sonde survolant une lune glacée aux geysers, planète géante annelée en fond" loading="lazy">
-              <figcaption>Survol d'une lune glacée — geysers d'eau, anneaux et silence cosmique</figcaption>
-            </figure>
-            <h3 class="group-title">Les pionnières soviétiques</h3>
-            <p><strong>Luna 1</strong> (1959) est le premier objet à s'arracher à l'attraction terrestre ; <strong>Luna 2</strong>, le premier à toucher un autre monde ; <strong>Luna 3</strong>, le premier à photographier la <strong>face cachée de la Lune</strong> — grâce à un laboratoire photographique automatique qui développe le film à bord, dans le vide. Puis <strong>Luna 9</strong> (1966) réussit le premier <strong>atterrissage en douceur</strong>, prouvant que le sol lunaire est ferme, et les <strong>Lunokhod</strong> y posent les premiers rovers, dont les rétroréflecteurs servent encore aujourd'hui à mesurer la distance Terre-Lune au laser.</p>
-            <h3 class="group-title">Voyager — le Grand Tour et l'au-delà</h3>
-            <p>Une fois par siècle, les quatre planètes géantes s'alignent pour qu'une seule sonde les visite toutes. La NASA saisit l'occasion en 1977. Les <strong>Voyager</strong> livrent les volcans d'Io, les anneaux tressés de Saturne, les geysers de Triton. Puis elles ne s'arrêtent pas : en 2012, Voyager 1 franchit l'<strong>héliopause</strong> et devient le premier objet humain dans l'espace interstellaire. Elle porte le <strong>Disque d'or</strong> — un message dans une bouteille, gravé pour d'éventuels regards dans des millions d'années.</p>
-            <figure class="model3d reveal">
-              <div class="m3d-frame">
-                <iframe title="Voyager — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/81b6fa85964e4261b661aea487cc0fa8/embed?ui_theme=dark&dnt=1"></iframe>
-              </div>
-              <figcaption>Voyager, en 3D <span class="m3d-hint">— la parabole de 3,7 m, les trois RTG, la perche du magnétomètre de 13 m, et le Disque d'or ; à ≈ 173 UA, son signal met plus de 23 h à nous parvenir</span> <a href="https://sketchfab.com/3d-models/voyager-3d-printable-81b6fa85964e4261b661aea487cc0fa8" target="_blank" rel="noopener">Modèle Sketchfab · NASA ↗</a></figcaption>
-            </figure>
-            <h3 class="group-title">Cassini, New Horizons, Juno — les maîtres des géantes</h3>
-            <p><strong>Cassini-Huygens</strong> a passé treize ans autour de Saturne : lacs de méthane sur Titan, geysers et océan caché sur Encelade. Le 14 janvier 2005, l'atterrisseur européen Huygens s'est posé sur Titan — l'atterrissage le plus lointain jamais réalisé.</p>
-            <figure class="model3d reveal">
-              <div class="m3d-frame">
-                <iframe title="Cassini — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/bdd5161f099c4767bc061df181e9b37c/embed?ui_theme=dark&dnt=1"></iframe>
-              </div>
-              <figcaption>Cassini, en 3D <span class="m3d-hint">— la haute antenne de 4 m, les RTG, et la sonde Huygens accrochée au flanc ; vaporisée volontairement dans Saturne le 15 sept. 2017</span> <a href="https://sketchfab.com/3d-models/cassini-spacecraft-3d-printable-bdd5161f099c4767bc061df181e9b37c" target="_blank" rel="noopener">Modèle Sketchfab · NASA ↗</a></figcaption>
-            </figure>
-            <p><strong>New Horizons</strong> a frôlé Pluton en 2015 après neuf ans et demi de voyage, révélant un monde vivant : un glacier d'azote en forme de cœur, des montagnes de glace, une atmosphère bleutée. <strong>Juno</strong>, première sonde à énergie solaire autour de Jupiter, en sonde le cœur depuis 2016. Et plus près de nous, <strong>Perseverance</strong> cherche des traces de vie ancienne dans le cratère Jezero, tandis que son hélicoptère <strong>Ingenuity</strong> a réalisé le premier vol motorisé sur une autre planète.</p>
-            <figure class="model3d reveal">
-              <div class="m3d-frame">
-                <iframe title="Perseverance — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/c1c94e1f69df45eeae4a0a1d0d27e85b/embed?ui_theme=dark&dnt=1"></iframe>
-              </div>
-              <figcaption>Perseverance, en 3D <span class="m3d-hint">— le rover six-roues, son mât et son bras ; alimenté par RTG, il roule toujours dans le cratère Jezero</span> <a href="https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df45eeae4a0a1d0d27e85b" target="_blank" rel="noopener">Modèle Sketchfab · CC0 ↗</a></figcaption>
-            </figure>
-            <p>D'autres veillent au plus près du Soleil : <strong>SOHO</strong>, sentinelle solaire postée en L1 depuis 30 ans ; <strong>Parker Solar Probe</strong>, qui est entrée dans l'atmosphère d'une étoile, à 6,1 millions de km de sa surface, devenant l'objet le plus rapide jamais construit ; et <strong>Solar Orbiter</strong>, qui a livré les premières images des pôles du Soleil.</p>
-            <div class="lalie-note">
-              <div class="ln-head">Les Femmes de l'Espace</div>
-              <div class="ln-body">
-                <p>Pendant treize ans, <strong>Linda Spilker</strong> a dirigé la science de Cassini autour de Saturne, arbitrant chaque décision d'instrument. Et le 18 février 2021, c'est la voix de <strong>Swati Mohan</strong> qui annonça « <em>touchdown confirmed</em> » : elle pilotait le guidage de la descente de Perseverance. Plus loin, <strong>Ritu Karidhal</strong> et <strong>Muthayya Vanitha</strong> (ISRO) ont mené les missions martienne et lunaire de l'Inde.</p>
-              </div>
-            </div>
-          </article>
-          <aside class="side-note intox">
-            <h3>Anti-intox · les Voyager n'ont pas quitté le Système solaire</h3>
-            <p>Voyager 1 a quitté l'<strong>héliosphère</strong> (la bulle de vent solaire) — pas le Système solaire au sens <strong>gravitationnel</strong>. Au-delà s'étend encore le <strong>nuage d'Oort</strong>, qui appartient bien au Soleil : la sonde mettra ~300 ans à seulement l'atteindre.</p>
-            <p>La <strong>face « cachée »</strong> de la Lune n'est pas « obscure » : elle reçoit autant de soleil que la face visible. Et Parker ne « touche » pas la <em>surface</em> du Soleil — qui n'en a pas : elle traverse sa <strong>couronne</strong>.</p>
-            <p class="loc">◷ Voyager 1 ≈ 173 UA · New Horizons ≈ 64 UA · Juno : Jupiter · Cassini : dans Saturne · Huygens : sur Titan.</p>
-            <div class="tag-list"><span class="tag">Interstellaire</span><span class="tag">Golden Record</span><span class="tag">RTG</span></div>
-          </aside>
-        </div>
-      </section>
-
-      <!-- CH 5 — TÉLESCOPES AU SOL -->
-      <section class="chapter reveal" id="telescopes" aria-labelledby="c5">
-        <div class="chapter-head">
-          <div><p class="section-kicker">Chapitre 5 · Les plus grands yeux</p><h2 id="c5">Les télescopes au sol</h2></div>
-          <div class="chapter-number">05</div>
-        </div>
-        <div class="transcript">
-          <article class="prose">
-            <p>Si Hubble et Webb voient net, ils voient <strong>petit</strong> : leur miroir doit tenir dans une fusée. Au sol, on s'affranchit de cette limite — on bâtit des miroirs de dix, vingt, bientôt <strong>quarante mètres</strong>. Le prix à payer est l'atmosphère, qui brouille les images comme le fond d'une piscine agitée.</p>
+            <p>Si Hubble et Webb voient net, ils voient <strong>petit</strong> : leur miroir doit tenir dans une fusée. Au sol, on s'affranchit de cette limite — on bâtit des miroirs de dix, vingt, bientôt <strong>quarante mètres</strong>. Le prix à payer est l'atmosphère, qui brouille les images comme le fond d'une piscine agitée. La parade est l'une des plus belles inventions de l'astronomie : l'<strong>optique adaptative</strong>.</p>
             <figure class="chapter-figure reveal">
               <img src="assets/telescopes-sol.png" alt="Grand télescope au sol dans l'Atacama, lasers d'optique adaptative vers la Voie lactée" loading="lazy">
               <figcaption>Atacama, la nuit — les lasers d'optique adaptative « dégèlent » le ciel sous la Voie lactée</figcaption>
@@ -718,62 +853,179 @@
                 <p>Les étoiles scintillent parce que l'air déforme leur lumière. Pour l'annuler, les grands télescopes projettent un <strong>laser</strong> dans le ciel : il crée une fausse étoile artificielle, dont on connaît la forme exacte. En mesurant <strong>mille fois par seconde</strong> combien l'atmosphère la déforme, un miroir souple se tord en temps réel pour appliquer la correction inverse. Résultat : depuis le sol, des images aussi nettes que depuis l'espace — parfois plus.</p>
               </div>
             </div>
-            <p>La lignée est prestigieuse : le <strong>Hale</strong> (Palomar, 1948, 5 m) régna un demi-siècle ; les <strong>Keck</strong> (10 m, 1993) inventèrent le miroir segmenté ; le <strong>VLT</strong> de l'ESO aligne quatre télescopes de 8,2 m, l'observatoire au sol le plus productif du monde.</p>
+            <h3 class="group-title">La lignée des géants</h3>
+            <h4 class="mission-title">Télescope Hale (Palomar)</h4>
+            <p>Le télescope Hale de 5 mètres au Mont Palomar, mis en service en 1948, a été le plus grand télescope du monde pendant trois décennies. Il a permis la découverte des quasars, l'étude des galaxies lointaines et les premières mesures de la vitesse d'expansion de l'Univers, grâce à George Ellery Hale qui a conçu le projet et à Edwin Hubble qui l'a utilisé pour ses découvertes révolutionnaires. Une anecdote légendaire est qu'Edwin Hubble a utilisé le Hale pour prouver que l'Univers est en expansion, une découverte qui a changé à jamais notre place dans le cosmos et qui a valu à Hubble d'avoir le télescope spatial le plus célèbre à son nom.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Le télescope Hale qui a ouvert l'ère des grands miroirs… Un monument de l'astronomie ! Quelle découverte historique du Hale vous connaissez le mieux ?</div>
+
+            <h4 class="mission-title">VLT (Very Large Telescope)</h4>
+            <p>Le VLT de l'ESO au Chili comprend quatre télescopes de 8,2 mètres qui peuvent fonctionner individuellement ou en interféromètre. Il a produit des images directes d'exoplanètes, cartographié la matière noire et observé les premières galaxies de l'Univers, grâce au travail d'équipes scientifiques de l'ESO dirigées par des chercheurs comme Norbert Hubin pour l'optique adaptative. Une anecdote technique est que le système d'optique adaptative du VLT a permis de corriger les turbulences atmosphériques en temps réel, transformant des images floues en images d'une netteté extraordinaire et ouvrant de nouvelles fenêtres sur l'Univers.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Le VLT et ses quatre géants qui voient l'Univers en détail… Une puissance incroyable ! Avez-vous déjà vu des images du VLT dans vos documentaires préférés ?</div>
+
+            <h4 class="mission-title">Keck Observatory (Keck I &amp; II)</h4>
+            <p>Les télescopes Keck de 10 mètres chacun à Hawaï, mis en service dans les années 1990, ont été les premiers grands télescopes segmentés. Ils ont révolutionné l'astronomie avec l'optique adaptative et l'interférométrie, permettant des découvertes sur les exoplanètes et les trous noirs supermassifs, grâce à Jerry Nelson qui a inventé le concept des miroirs segmentés. Une anecdote d'innovation est que le design segmenté des Keck a été une révolution technique, permettant de construire des télescopes bien plus grands que ce qui était possible avec des miroirs monolithiques, et a ouvert la voie à tous les grands télescopes modernes.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Les Keck qui ont ouvert la voie des miroirs segmentés… Des pionniers absolus ! Quelle image des Keck vous a le plus marqué ?</div>
+
+            <h4 class="mission-title">GTC (Gran Telescopio Canarias)</h4>
+            <p>Le GTC de 10,4 mètres aux Canaries, mis en service en 2009, est le plus grand télescope optique unique au monde. Il a produit des découvertes sur les exoplanètes, les supernovae et les galaxies lointaines, sous la direction d'équipes scientifiques espagnoles et internationales. Une anecdote de fierté est que le GTC a été construit grâce à une collaboration internationale et a rapidement prouvé sa valeur en produisant des images et des données de classe mondiale, confirmant que les Canaries sont l'un des meilleurs sites astronomiques de la planète.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Le GTC qui brille aux Canaries… Un géant qui voit loin ! Avez-vous déjà visité ou vu des images de ce télescope ?</div>
+
+            <h4 class="mission-title">Subaru Telescope</h4>
+            <p>Le télescope Subaru de 8,2 mètres à Hawaï, mis en service en 1999, est réputé pour son optique de haute qualité et son système d'optique adaptative. Il a permis des découvertes majeures sur les galaxies lointaines et les amas de galaxies, sous la direction d'équipes japonaises de l'Observatoire astronomique national du Japon. Une anecdote culturelle est que le nom « Subaru » signifie « réunir » en japonais, symbolisant l'union des sept étoiles des Pléiades, et que le télescope a été conçu pour réunir les meilleures technologies et les meilleurs esprits pour explorer l'Univers.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Subaru qui brille sur Mauna Kea… Un nom qui évoque la beauté des étoiles ! Quelle découverte de Subaru vous connaissez ?</div>
+
+            <h4 class="mission-title">Gemini Observatory</h4>
+            <p>Les télescopes Gemini de 8,1 mètres, l'un à Hawaï et l'autre au Chili, permettent une couverture des deux hémisphères avec une optique adaptative performante. Ils ont contribué à l'étude des exoplanètes et des phénomènes transitoires, sous la direction d'équipes internationales du consortium Gemini. Une anecdote de collaboration est que Gemini a été conçu comme un partenariat international entre plusieurs pays, permettant à des scientifiques du monde entier d'accéder à des télescopes de classe mondiale dans les deux hémisphères.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Gemini qui observe les deux hémisphères… Une couverture parfaite du ciel ! Quelle observation des Gemini vous a le plus impressionné ?</div>
+
+            <h4 class="mission-title">LBT (Large Binocular Telescope)</h4>
+            <p>Le LBT en Arizona combine deux miroirs de 8,4 mètres pour une ouverture équivalente de 11,9 mètres. Il offre une résolution exceptionnelle et a permis des découvertes sur les disques protoplanétaires et les galaxies, grâce au travail d'équipes italiennes, allemandes et américaines. Une anecdote technique est que le design binoculaire du LBT permet une vision stéréoscopique de l'Univers, offrant une profondeur et une précision que les télescopes monoculaires ne peuvent égaler.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Le LBT avec ses deux yeux géants… Une vision stéréo de l'Univers ! Avez-vous déjà vu des images en 3D issues du LBT ?</div>
+
+            <h4 class="mission-title">Vera C. Rubin Observatory / LSST</h4>
+            <p>L'observatoire Vera C. Rubin au Chili, avec son télescope de 8,4 mètres et la caméra LSST de 3,2 milliards de pixels, réalisera un relevé complet du ciel visible toutes les quelques nuits pendant dix ans. Il découvrira des millions de supernovae, des astéroïdes potentiellement dangereux et cartographiera la matière noire grâce aux distorsions gravitationnelles, sous la direction du project scientist Željko Ivezić. Une anecdote historique est que l'observatoire porte le nom de Vera Rubin, la scientifique qui a fourni les premières preuves solides de l'existence de la matière noire, et que le relevé LSST continuera son héritage en cartographiant l'Univers invisible à une échelle sans précédent.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Vera C. Rubin et son relevé du ciel toutes les nuits… Une révolution en temps réel ! Avez-vous déjà entendu parler du LSST ? Qu'en pensez-vous ?</div>
             <figure class="model3d reveal">
               <div class="m3d-frame">
                 <iframe title="VLT (ESO) — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/9695be2ec99c4cea8963f777f264a6a5/embed?ui_theme=dark&dnt=1"></iframe>
               </div>
               <figcaption>Le dôme d'un télescope du VLT, en 3D <span class="m3d-hint">— modèle officiel de l'Observatoire européen austral (ESO), au Cerro Paranal (Chili)</span> <a href="https://sketchfab.com/3d-models/eso-vlt-unit-telescope-dome-9695be2ec99c4cea8963f777f264a6a5" target="_blank" rel="noopener">Modèle Sketchfab · ESO ↗</a></figcaption>
             </figure>
-            <p>Demain, l'<strong>ELT</strong> de l'ESO portera un miroir de <strong>39,3 m</strong> en 798 segments — cent millions de fois plus de lumière que l'œil nu, des images quinze fois plus nettes que Hubble (première lumière ~2028-2030). À ses côtés se dressent le <strong>GMT</strong> (25 m), le <strong>TMT</strong> (30 m, statut incertain), les 8 m de <strong>Subaru, Gemini</strong> et <strong>LBT</strong>, le grand recenseur <strong>Vera C. Rubin / LSST</strong> et le réseau gamma <strong>CTA</strong>. Côté radio, le <strong>FAST</strong> chinois (500 m) a succédé à l'<strong>Arecibo</strong>, et le futur <strong>SKA</strong> sera le plus grand projet radio de l'histoire.</p>
+            <h3 class="group-title">Les géants en devenir</h3>
+            <h4 class="mission-title">ELT (Extremely Large Telescope)</h4>
+            <p>L'ELT de 39,3 mètres en construction au Chili, avec première lumière prévue en 2029, sera le plus grand télescope optique au monde. Son système d'optique adaptative de pointe permettra d'imager directement des exoplanètes telluriques et d'étudier les premières étoiles et galaxies, sous la direction du project scientist Roberto Gilmozzi. Une anecdote d'avenir est que l'ELT a été conçu pour être le plus grand œil jamais tourné vers le ciel, et que ses premières images attendues en 2029 promettent de révolutionner notre compréhension de l'Univers primitif et des mondes potentiellement habitables.</p>
+            <div class="live-aside"><span class="lv">Au live</span>L'ELT qui s'annonce comme le roi des télescopes… J'ai hâte de voir ses premières images ! Et vous, quelle découverte espérez-vous de l'ELT ?</div>
+
+            <h4 class="mission-title">GMT (Giant Magellan Telescope)</h4>
+            <p>Le GMT au Chili, avec sept miroirs de 8,4 mètres, offrira une ouverture équivalente de 25 mètres. Il permettra l'imagerie directe d'exoplanètes telluriques et l'étude détaillée des premières galaxies de l'Univers, sous la direction d'équipes dirigées par des scientifiques comme Wendy Freedman. Une anecdote inspirante est que le GMT a été conçu pour combiner la puissance de sept miroirs en un seul télescope géant, et que ses premières observations attendues dans les années 2030 promettent de transformer notre compréhension de l'Univers primitif.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Le GMT avec ses sept miroirs… Un géant en devenir ! Quelle image d'exoplanète espérez-vous voir grâce au GMT ?</div>
+
+            <h4 class="mission-title">TMT (Thirty Meter Telescope)</h4>
+            <p>Le TMT de 30 mètres, en projet à Hawaï, utilisera une optique adaptative avancée pour des découvertes révolutionnaires en exoplanètes, cosmologie et astrophysique stellaire, sous la direction de scientifiques comme Jerry Nelson qui a aussi contribué aux Keck. Une anecdote d'avenir est que le TMT a été conçu pour être l'un des plus grands télescopes du monde, et que ses capacités d'imagerie directe d'exoplanètes telluriques pourraient nous permettre de détecter des signes de vie sur d'autres mondes dans les décennies à venir.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Le TMT qui s'annonce comme un monstre de précision… J'ai hâte de voir ce qu'il nous réserve ! Quelle découverte espérez-vous du TMT ?</div>
             <div class="lalie-note">
               <div class="ln-head">Les Femmes de l'Espace</div>
               <div class="ln-body">
-                <p>Le grand recenseur du ciel, le <strong>LSST</strong>, porte le nom de <strong>Vera Rubin</strong> — l'astronome dont les mesures de rotation des galaxies fournirent les premières preuves solides de la <strong>matière noire</strong>. Et c'est <strong>Jocelyn Bell Burnell</strong> qui, en scrutant des signaux radio, découvrit les <strong>pulsars</strong> ; <strong>Katie Bouman</strong> qui conçut l'algorithme de la première image d'un trou noir.</p>
+                <p>Le grand recenseur du ciel porte le nom de <strong>Vera Rubin</strong> — l'astronome dont les mesures de rotation des galaxies fournirent les premières preuves solides de la <strong>matière noire</strong>. Et c'est <strong>Katie Bouman</strong> qui conçut l'algorithme assemblant les pétaoctets de l'Event Horizon Telescope en la première image d'un <strong>trou noir</strong> (2019).</p>
+              </div>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Repère · spatial contre terrestre</h3>
+            <p>Hubble et Webb voient sans atmosphère, mais restent <strong>petits</strong> ; l'ELT verra à travers l'air, mais avec un miroir <strong>seize fois</strong> plus large que Webb. Les deux approches ne se concurrencent pas — elles se complètent.</p>
+            <p class="loc">◷ Hale, Keck, VLT, GTC, Subaru, Gemini, LBT, Rubin : en service. ELT, GMT, CTA : en construction. TMT : site incertain.</p>
+            <div class="tag-list"><span class="tag">Optique adaptative</span><span class="tag">ELT 39 m</span><span class="tag">Miroir segmenté</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- CH 5 — TÉLESCOPES RADIO -->
+      <section class="chapter reveal" id="radio" aria-labelledby="c5">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 5 · Écouter l'invisible</p><h2 id="c5">Les télescopes radio</h2></div>
+          <div class="chapter-number">05</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Toute la lumière de l'Univers n'est pas visible. Les <strong>ondes radio</strong> traversent la poussière qui masque le cœur des galaxies, et s'observent <strong>de jour comme de nuit</strong>. Pour les capter, on ne polit pas des miroirs : on tend d'immenses paraboles, ou des champs entiers d'antennes, vers le ciel.</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/radio-univers.png" alt="Immense radiotélescope la nuit, parabole tournée vers la Voie lactée" loading="lazy" onerror="this.onerror=null;this.src='assets/fallback/fast.jpg'">
+              <figcaption>Une oreille géante à l'écoute du cosmos — pulsars, sursauts radio rapides, hydrogène primitif</figcaption>
+            </figure>
+            <h3 class="group-title">FAST &amp; Arecibo — les paraboles géantes</h3>
+            <h4 class="mission-title">FAST (Five-hundred-meter Aperture Spherical Telescope)</h4>
+            <p>Le FAST en Chine, mis en service en 2016, est le plus grand radiotélescope monocoupole du monde avec un diamètre de 500 mètres. Son réflecteur sphérique de 4 450 panneaux mobiles peut être déformé pour pointer vers différentes directions. Il étudie les pulsars, les sursauts radio rapides, les galaxies lointaines et recherche des signaux extraterrestres, sous la direction du chief scientist et designer Nan Rendong, souvent appelé le « père de FAST ». Une anecdote émouvante est que Nan Rendong a consacré sa vie entière à la construction de FAST, qu'il est décédé en 2017 avant l'achèvement complet, mais que le télescope porte son héritage et a déjà détecté des centaines de nouveaux pulsars et des sursauts radio rapides qui défient les modèles actuels, rendant hommage à sa vision et à son dévouement.</p>
+            <div class="live-aside"><span class="lv">Au live</span>FAST, ce géant chinois qui écoute l'Univers… Une oreille géante pour capter les secrets du cosmos ! Avez-vous déjà entendu parler des découvertes de FAST ? Partagez vos connaissances dans le chat !</div>
+
+            <h4 class="mission-title">Arecibo</h4>
+            <p>Le radiotélescope d'Arecibo à Porto Rico, d'un diamètre de 305 mètres, a été le plus grand du monde de 1963 à 2020. Il a envoyé le célèbre message d'Arecibo vers l'amas M13 en 1974, contenant des informations sur l'humanité et la position de la Terre, conçu par Frank Drake et Carl Sagan. Il a découvert le premier pulsar binaire, confirmant la relativité générale par la perte d'énergie gravitationnelle, et a étudié les astéroïdes et les ionosphères planétaires, sous la direction de scientifiques comme William Gordon qui a conçu le télescope. Une anecdote historique est que le message d'Arecibo, envoyé en 1974, est toujours en route vers M13 et ne sera reçu que dans environ 25 000 ans, un geste symbolique de notre désir de communiquer avec d'autres civilisations à travers le temps et l'espace.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Arecibo et son message envoyé aux étoiles… Un geste symbolique qui continue de fasciner ! Quelle partie du message d'Arecibo vous a le plus marqué ?</div>
+            <h3 class="group-title">VLA &amp; SKA — la force du nombre</h3>
+            <h4 class="mission-title">VLA (Very Large Array)</h4>
+            <p>Le VLA au Nouveau-Mexique comprend 27 antennes de 25 mètres montées sur des rails qui peuvent être reconfigurées. En interférométrie, il atteint une résolution équivalente à celle d'une antenne de 36 kilomètres de diamètre. Il a produit des images révolutionnaires de quasars, de supernovae, de la structure de la Voie Lactée et des jets des trous noirs, grâce au travail de scientifiques comme Dave Heeschen et l'équipe du National Radio Astronomy Observatory. Une anecdote technique est que les 27 antennes du VLA peuvent être déplacées sur des rails pour changer la configuration de l'interféromètre, permettant aux scientifiques d'adapter la résolution et la sensibilité selon les besoins de chaque observation, une flexibilité unique qui a fait du VLA un outil indispensable pendant des décennies.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Le VLA avec ses 27 antennes qui dansent sur les rails… Une symphonie d'ondes radio ! Avez-vous déjà vu des images du VLA dans des documentaires ?</div>
+
+            <h4 class="mission-title">SKA (Square Kilometre Array)</h4>
+            <p>Le SKA, en construction en Afrique du Sud et en Australie, sera le plus grand radiotélescope du monde. Le SKA-Low en Australie utilisera des milliers d'antennes dipôles couvrant des fréquences basses pour étudier l'époque de la réionisation et les premières étoiles. Le SKA-Mid en Afrique du Sud utilisera des paraboles pour des fréquences plus élevées et étudiera les pulsars, la matière noire et les molécules dans l'espace. Le système de corrélation traitera des pétaoctets de données par jour, nécessitant des supercalculateurs parmi les plus puissants du monde, sous la direction du directeur général Philip Diamond et d'une équipe internationale de milliers de scientifiques. Une anecdote visionnaire est que le SKA produira plus de données en une journée que l'internet mondial actuel et pourrait détecter des signaux technologiques extraterrestres à des distances de dizaines d'années-lumière. Il permettra de tester la relativité générale avec des pulsars en orbite autour de trous noirs et de cartographier l'hydrogène neutre dans l'Univers primitif, promettant des découvertes qui redéfiniront notre place dans le cosmos.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Le SKA qui s'annonce comme le plus grand projet radio de l'histoire… Des données qui vont révolutionner notre compréhension de l'Univers ! Quelle découverte du SKA vous excite le plus ? Dites-le dans le chat !</div>
+            <div class="lalie-note">
+              <div class="ln-head">Les Femmes de l'Espace</div>
+              <div class="ln-body">
+                <p>C'est en scrutant patiemment des signaux radio que <strong>Jocelyn Bell Burnell</strong> repéra, en 1967, le battement régulier qui révéla l'existence des <strong>pulsars</strong> — ces étoiles à neutrons tournant sur elles-mêmes. Le Nobel de 1974 récompensa son directeur de thèse, une omission longtemps débattue ; elle reversa, plus tard, les 3 millions de dollars de son Breakthrough Prize à des bourses pour les groupes sous-représentés.</p>
               </div>
             </div>
           </article>
           <aside class="side-note intox">
             <h3>Anti-intox · la fin d'Arecibo n'est pas un mystère</h3>
-            <p>L'effondrement d'Arecibo (2020) a nourri bien des théories. La réalité est documentée : après <strong>57 ans</strong>, les câbles d'acier qui suspendaient la plateforme de 900 tonnes ont cédé, par <strong>fluage du zinc</strong> dans leurs ancrages. Pas de complot : de la métallurgie, et l'usure du temps.</p>
-            <p class="loc">◷ Hale, Keck, VLT, FAST : en service. ELT, GMT, SKA, CTA : en construction. Arecibo : effondré (Porto Rico).</p>
-            <div class="tag-list"><span class="tag">Optique adaptative</span><span class="tag">ELT 39 m</span><span class="tag">FAST · SKA</span></div>
+            <p>L'effondrement spectaculaire d'Arecibo (1ᵉʳ décembre 2020) a nourri bien des théories. La réalité est documentée : après <strong>57 ans</strong>, les <strong>câbles d'acier</strong> qui suspendaient la plateforme de 900 tonnes ont cédé, par <strong>fluage du zinc</strong> dans leurs ancrages — une fatigue lente des matériaux, aggravée par les ouragans. Pas de sabotage : de la métallurgie, et l'usure du temps.</p>
+            <p class="loc">◷ FAST &amp; VLA : en service. SKA : en construction (Afrique du Sud + Australie). Arecibo : effondré (Porto Rico).</p>
+            <div class="tag-list"><span class="tag">FAST 500 m</span><span class="tag">Pulsars · FRB</span><span class="tag">SKA</span></div>
           </aside>
         </div>
       </section>
 
-      <!-- CH 6 — DEMAIN -->
+      <!-- CH 6 — 2026 ET AU-DELÀ / SYNTHÈSE -->
       <section class="chapter reveal" id="demain" aria-labelledby="c6">
         <div class="chapter-head">
-          <div><p class="section-kicker">Chapitre 6 · 2026 et au-delà</p><h2 id="c6">Ce qui s'apprête à partir</h2></div>
+          <div><p class="section-kicker">Chapitre 6 · Comparaisons, synergies &amp; perspectives</p><h2 id="c6">2026 et au-delà</h2></div>
           <div class="chapter-number">06</div>
         </div>
         <div class="transcript">
           <article class="prose">
-            <p>L'odyssée ne ralentit pas. Au moment où ce dossier s'écrit, des dizaines de machines s'achèvent en salle blanche, prêtes à reprendre le flambeau — vers la Lune, Mars, Vénus, Titan et les confins.</p>
+            <p class="lede">Quatre familles, une seule quête. Les <strong>sondes</strong> touchent in situ ce que nous ne toucherons jamais ; les <strong>satellites</strong> observent la Terre, relaient nos signaux et scrutent le ciel ; les <strong>télescopes au sol</strong>, dopés à l'optique adaptative, s'offrent des miroirs géants ; les <strong>télescopes radio</strong> écoutent l'Univers à travers la poussière, jour et nuit. Aucune ne suffit seule — c'est leur complémentarité qui dresse l'image complète du cosmos.</p>
             <figure class="chapter-figure reveal">
               <img src="assets/futur-2030.png" alt="Le rotorcraft Dragonfly en vol au-dessus des dunes de Titan" loading="lazy">
               <figcaption>Dragonfly sur Titan (~2034) — un octocoptère nucléaire volant de dune en dune</figcaption>
             </figure>
-            <p>Un demi-siècle après Apollo, <strong>Artemis</strong> ramène des humains vers la Lune ; les télescopes <strong>Nancy Grace Roman</strong>, <strong>PLATO</strong> et <strong>Xuntian</strong> s'apprêtent à recenser énergie noire et exoplanètes. Côté sondes, <strong>MMX</strong> (JAXA) ira chercher un échantillon de Phobos, <strong>Dragonfly</strong> volera sur Titan, <strong>Rosalind Franklin</strong> forera Mars à 2 m, et <strong>Tianwen-3</strong> tentera le premier <strong>retour d'échantillons martiens</strong>. Plus loin, <strong>NEO Surveyor</strong> traquera les astéroïdes dangereux, <strong>Comet Interceptor</strong> attendra en embuscade une comète vierge, et trois sondes (<strong>DAVINCI, EnVision, VERITAS</strong>) retourneront enfin vers Vénus.</p>
+            <p>Et l'odyssée ne ralentit pas. Au moment où ce dossier s'écrit, des dizaines de machines s'achèvent en salle blanche, prêtes à reprendre le flambeau — vers la Lune, Mars, Vénus, Titan et les confins.</p>
+
+            <h3 class="group-title">Le retour des humains — Artemis</h3>
+            <p>Un demi-siècle après Apollo, l'humanité repart vers la Lune. <strong>Artemis II</strong> (2026) emmènera quatre astronautes en survol lunaire — le premier vol habité au-delà de l'orbite basse depuis 1972 ; <strong>Artemis III</strong> (~2027-28) doit reposer des humains près du <strong>pôle sud</strong> et de ses glaces. En orbite, la station <strong>Lunar Gateway</strong> servira de relais ; le tout est porté par la fusée <strong>SLS</strong> et la capsule <strong>Orion</strong> (à module de service européen).</p>
+
+            <h3 class="group-title">Les nouveaux yeux de l'espace</h3>
+            <p>Trois télescopes s'apprêtent à recenser l'invisible : <strong>Nancy Grace Roman</strong> (fin 2026/2027), un miroir de 2,4 m comme Hubble mais au champ 100 à 200 fois plus large, pour cartographier l'<strong>énergie noire</strong> et imager des exoplanètes ; <strong>PLATO</strong> (ESA, déc. 2026), une mosaïque de 26 caméras à la chasse aux planètes <strong>habitables</strong> ; et <strong>Xuntian</strong> (Chine), un 2 m au champ ~300× Hubble, volant en formation avec la station chinoise.</p>
+
+            <h3 class="group-title">Les voyageuses de demain</h3>
+            <p>Côté sondes, l'embarras du choix. <strong>MMX</strong> (JAXA) ira rapporter un échantillon de <strong>Phobos</strong> avec son rover franco-allemand Idefix ; <strong>Dragonfly</strong>, octocoptère nucléaire, <em>volera</em> de dune en dune sur Titan (~2034) ; <strong>Rosalind Franklin</strong>, premier rover européen, forera Mars à 2 m de profondeur ; <strong>Tianwen-3</strong> (Chine) vise le premier <strong>retour d'échantillons martiens</strong> (~2031). Plus loin, <strong>OSIRIS-APEX</strong> ira étudier l'astéroïde <strong>Apophis</strong> lors de son passage rasant du 13 avril 2029 ; <strong>NEO Surveyor</strong> traquera dans l'infrarouge les géocroiseurs dangereux ; <strong>Comet Interceptor</strong> attendra en embuscade, en L2, une <strong>comète vierge</strong> du nuage d'Oort ; <strong>DESTINY+</strong> survolera l'astéroïde Phaethon ; et trois sondes (<strong>DAVINCI, EnVision, VERITAS</strong>) retourneront enfin vers <strong>Vénus</strong>. L'Asie, elle, vise la Lune : <strong>Chang'e-7 et 8</strong> (pôle sud, glace d'eau, technologies de base) et <strong>Chandrayaan-4</strong> (retour d'échantillons lunaires).</p>
             <figure class="model3d reveal">
               <div class="m3d-frame">
                 <iframe title="Dragonfly — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/fa2d23cbce6642598f5e6e6f65b8b312/embed?ui_theme=dark&dnt=1"></iframe>
               </div>
               <figcaption>Dragonfly, en 3D <span class="m3d-hint">— l'octocoptère à huit rotors qui étudiera la chimie prébiotique de Titan (lancement 2028, arrivée ~2034)</span> <a href="https://sketchfab.com/3d-models/nasa-dragonfly-quadcopter-fa2d23cbce6642598f5e6e6f65b8b312" target="_blank" rel="noopener">Modèle Sketchfab ↗</a></figcaption>
             </figure>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="Europa Clipper — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/5e88f1eb8db446a8a22577624ae4af03/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>Europa Clipper, en 3D <span class="m3d-hint">— ses ailes solaires de 30 m, déployées pour capter le peu de lumière près de Jupiter ; 49 survols d'Europe à partir de 2030</span> <a href="https://sketchfab.com/models/5e88f1eb8db446a8a22577624ae4af03" target="_blank" rel="noopener">Modèle Sketchfab ↗</a></figcaption>
+            </figure>
+
+            <h3 class="group-title">Mars Sample Return — l'ambition en suspens</h3>
+            <p>Le projet le plus convoité de la décennie est aussi le plus fragile. Ramener sur Terre les tubes mis en cache par Perseverance suppose un atterrisseur, un <strong>Mars Ascent Vehicle</strong> (première fusée à décoller d'une autre planète) et un orbiteur de retour européen. Mais l'architecture est <strong>en pause</strong> depuis 2023, sa facture (&gt; 11 milliards $) ayant provoqué des propositions d'annulation. Les échantillons attendent toujours, scellés, sur le sol de Jezero.</p>
+
+            <h3 class="group-title">Comparaisons, synergies &amp; conclusion du live</h3>
+            <p>Les sondes spatiales fournissent l'exploration in-situ et les données directes des corps célestes, grâce au travail de scientifiques comme ceux mentionnés dans chaque section. Les satellites offrent l'observation globale de la Terre, les communications et l'astronomie depuis l'espace, portés par des équipes internationales d'ingénieurs et de chercheurs. Les télescopes au sol, boostés par l'optique adaptative, permettent des ouvertures gigantesques et des instruments évolutifs, grâce à des visionnaires comme George Ellery Hale, Jerry Nelson et Vera Rubin. Les télescopes radio complètent le spectre en pénétrant la poussière et en observant 24 heures sur 24, sous la direction de scientifiques comme Nan Rendong, Frank Drake et Philip Diamond. Toutes ces technologies se complètent pour dresser une image complète de l'Univers, de notre système solaire aux premières galaxies, grâce à des collaborations internationales sans précédent.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Et voilà, chers amis, nous arrivons au bout de cette grande exploration. Mais avant de conclure, laissez-moi vous poser une dernière question : quelle mission ou quel télescope vous a le plus marqué ce soir ? Écrivez-le dans le chat, j'adorerais faire un petit récapitulatif de vos favoris en direct !</div>
+            <p>Le programme Artemis ramènera des humains sur la Lune avec des atterrissages au pôle Sud, la station Gateway en orbite lunaire et des tests de ressources in-situ pour préparer les missions vers Mars, sous la direction de scientifiques et ingénieurs de la NASA comme ceux du programme Artemis. Dragonfly explorera Titan comme un drone autonome, analysant sa chimie organique complexe et son potentiel d'habitabilité, dirigé par la principal investigator Elizabeth Turtle. Une anecdote d'avenir est que les missions Artemis et Dragonfly représentent les prochaines étapes audacieuses de l'humanité dans l'exploration du système solaire, combinant présence humaine et exploration robotique avancée pour repousser les limites de notre connaissance.</p>
+            <div class="live-aside"><span class="lv">Au live</span>Artemis qui nous ramène sur la Lune et Dragonfly qui vole sur Titan… L'avenir s'annonce passionnant ! Et vous, quelle mission future vous donne le plus envie de rêver ? Partagez vos espoirs dans le chat !</div>
+            <p>L'avenir jusqu'en 2030 et au-delà promet des avancées majeures grâce à l'intégration de toutes ces technologies interconnectées, portées par des générations de scientifiques passionnés.</p>
+            <div class="live-close">
+              <span class="live-tag">Clôture du live</span>
+              <p>Merci infiniment d'avoir suivi ce live jusqu'au bout. Vos échanges dans le chat ont été formidables, continuez à poser vos questions, je reste un moment pour y répondre. Likez, commentez, partagez ce contenu si vous l'avez aimé. Et surtout, n'oubliez jamais : l'Univers nous appelle, et ensemble, nous continuons à l'explorer avec rigueur, précision et émerveillement. À très bientôt pour un nouveau live !</p>
+            </div>
+
             <div class="lalie-note">
               <div class="ln-head">Les Femmes de l'Espace</div>
               <div class="ln-body">
-                <p><strong>Sarah Al-Amiri</strong>, ministre émiratie des Sciences, a dirigé la stratégie de la sonde <strong>Hope</strong> vers Mars — une première historique pour son agence. Les missions de demain se conçoivent partout sur la planète, et de plus en plus, ce sont des femmes qui les dirigent.</p>
+                <p><strong>Sarah Al-Amiri</strong>, présidente de l'agence spatiale émiratie, a dirigé la stratégie scientifique de la sonde <strong>Hope</strong> vers Mars — une première historique pour son agence. Les missions de demain se conçoivent partout sur la planète, et de plus en plus, ce sont des femmes qui les dirigent.</p>
               </div>
             </div>
           </article>
           <aside class="side-note intox">
             <h3>Anti-intox · deux précisions sur le futur</h3>
             <p><strong>Dragonfly</strong> ne va pas « chercher des extraterrestres » : elle étudie la <strong>chimie prébiotique</strong> — les briques qui <em>précèdent</em> la vie — et l'habitabilité de Titan. Ce n'est pas une mission de détection de vie.</p>
-            <p>Le <strong>retour d'échantillons martiens</strong> (NASA/ESA) n'est <em>pas</em> « pour bientôt » : il est <strong>gelé</strong> depuis 2023 (coûts &gt; 11 Md$). Les tubes de Perseverance attendent toujours sur Mars ; la Chine pourrait rapporter les siens avant.</p>
-            <p class="loc">◷ Artemis II, MMX : ~2026 · Dragonfly : 2028 → 2034 · ELT : ~2028-2030 · Vénus : 2029-2031.</p>
+            <p>Le <strong>retour d'échantillons martiens</strong> n'est <em>pas</em> « pour bientôt » : il est <strong>gelé</strong> depuis 2023 (coûts &gt; 11 Md$). Les tubes de Perseverance attendent toujours sur Mars ; la Chine (Tianwen-3) pourrait rapporter les siens avant.</p>
+            <p class="loc">◷ Artemis II, MMX, Roman, PLATO, Xuntian : ~2026 · OSIRIS-APEX → Apophis : 2029 · Dragonfly : 2028 → 2034 · Vénus : 2029-2031.</p>
             <div class="tag-list"><span class="tag">Artemis</span><span class="tag">Dragonfly</span><span class="tag">Mars Sample Return</span></div>
           </aside>
         </div>
@@ -785,6 +1037,47 @@
           <div class="ms-head">Soixante-dix ans d'odyssée <span class="ms-tag">cliquez un jalon</span></div>
           <div class="ms-rail" id="msRail" role="tablist" aria-label="Jalons de l'exploration spatiale"></div>
           <div class="ms-detail" id="msDetail" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- OÙ SONT-ELLES AUJOURD'HUI -->
+      <section class="reveal" aria-labelledby="loc-title" style="padding-top:8px">
+        <p class="section-kicker">Synthèse · mi-2026</p>
+        <h2 id="loc-title" class="group-title" style="font-size:1.5rem;margin:0 0 10px">Où sont-elles aujourd'hui ?</h2>
+        <p class="prose" style="max-width:780px;color:var(--muted);margin:0 0 8px">De la sphère détruite de Sputnik aux Voyager perdues entre les étoiles : un état des lieux des grandes machines — en service et où, ou bien fin de vie et lieu de repos. <span style="color:var(--soft)">🟢 actif · ⚪ inerte / terminé · 🔵 futur. Distances dérivantes — voir l'<a href="atlas.html" style="color:var(--azur-bright)">Atlas ✦</a> pour la localisation des 77 engins.</span></p>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <caption>Localisation de quelques objets marquants (mi-2026)</caption>
+            <thead><tr><th>Objet</th><th>Statut</th><th>Où / fin de vie</th><th>Distance · orbite</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Sputnik 1</td><td>⚪</td><td>détruit — rentrée le 4 jan. 1958</td><td class="mono">—</td></tr>
+              <tr><td class="k">Telstar 1</td><td>⚪</td><td>inerte, en orbite terrestre depuis 1963</td><td class="mono">~950 × 5 600 km</td></tr>
+              <tr><td class="k">Hubble</td><td>🟢</td><td>orbite terrestre basse, en décroissance</td><td class="mono">~515-540 km</td></tr>
+              <tr><td class="k">JWST</td><td>🟢</td><td>halo autour de L2</td><td class="mono">~1,5 M km</td></tr>
+              <tr><td class="k">Gaia</td><td>⚪</td><td>a opéré à L2 (2013-2025)</td><td class="mono">observations achevées</td></tr>
+              <tr><td class="k">Starlink</td><td>🟢</td><td>orbite basse (flotte renouvelée)</td><td class="mono">~550 km · désorbité à ~5 ans</td></tr>
+              <tr><td class="k">SMILE</td><td>🟢</td><td>orbite terrestre très elliptique</td><td class="mono">~5 000 × 121 000 km</td></tr>
+              <tr><td class="k">Luna 1</td><td>⚪</td><td>orbite héliocentrique (« Mechta »)</td><td class="mono">autour du Soleil</td></tr>
+              <tr><td class="k">Luna 2 · Lunokhod 1-2</td><td>⚪</td><td>posés sur la Lune</td><td class="mono">surface lunaire</td></tr>
+              <tr><td class="k">Pioneer 10 &amp; 11</td><td>⚪</td><td>dérivent (muettes depuis 2003 / 1995)</td><td class="mono">héliocentrique, sortantes</td></tr>
+              <tr><td class="k">Voyager 1</td><td>🟢</td><td>espace interstellaire (vers Ophiuchus)</td><td class="mono">≈ 173 UA</td></tr>
+              <tr><td class="k">Voyager 2</td><td>🟢</td><td>espace interstellaire</td><td class="mono">≈ 143 UA</td></tr>
+              <tr><td class="k">Viking 1 &amp; 2</td><td>⚪</td><td>sur Mars (Chryse / Utopia Planitia)</td><td class="mono">surface martienne</td></tr>
+              <tr><td class="k">Mars Express · MAVEN</td><td>🟢</td><td>orbite de Mars</td><td class="mono">elliptique martienne</td></tr>
+              <tr><td class="k">Cassini</td><td>⚪</td><td>vaporisée dans Saturne (15 sept. 2017)</td><td class="mono">—</td></tr>
+              <tr><td class="k">Huygens</td><td>⚪</td><td>posée sur Titan (14 jan. 2005)</td><td class="mono">surface de Titan</td></tr>
+              <tr><td class="k">Rosetta / Philae</td><td>⚪</td><td>sur la comète 67P</td><td class="mono">avec 67P autour du Soleil</td></tr>
+              <tr><td class="k">New Horizons</td><td>🟢</td><td>ceinture de Kuiper</td><td class="mono">≈ 64 UA</td></tr>
+              <tr><td class="k">Juno</td><td>🟢</td><td>orbite polaire de Jupiter</td><td class="mono">mission étendue</td></tr>
+              <tr><td class="k">SOHO</td><td>🟢</td><td>halo autour de L1</td><td class="mono">1,5 M km vers le Soleil</td></tr>
+              <tr><td class="k">Parker Solar Probe</td><td>🟢</td><td>orbite héliocentrique elliptique</td><td class="mono">périhélie ~6,1 M km</td></tr>
+              <tr><td class="k">Perseverance</td><td>🟢</td><td>cratère Jezero (Mars)</td><td class="mono">&gt; 42 km parcourus</td></tr>
+              <tr><td class="k">Europa Clipper</td><td>🔵</td><td>en croisière vers Jupiter</td><td class="mono">arrivée avril 2030</td></tr>
+              <tr><td class="k">ELT</td><td>🔵</td><td>en construction (Cerro Armazones)</td><td class="mono">1ʳᵉ lumière ~2028-2030</td></tr>
+              <tr><td class="k">Dragonfly</td><td>🔵</td><td>construction → Titan</td><td class="mono">lancement 2028, arrivée 2034</td></tr>
+              <tr><td class="k">Mars Sample Return</td><td>🔵</td><td>en pause — échantillons sur Mars (Jezero)</td><td class="mono">gelé / refonte</td></tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -817,18 +1110,82 @@
             <div class="women-grid reveal" id="womenGrid" aria-label="Portraits des femmes de l'espace"></div>
             <p class="women-credit">Portraits : <strong>Wikimedia Commons</strong> — domaine public &amp; Creative Commons. Muthayya Vanitha (Chandrayaan-2) ne dispose d'aucun portrait libre.</p>
             <details class="women-credits" id="womenCredits"></details>
-            <h3 class="group-title">Calculatrices humaines &amp; aube du logiciel</h3>
-            <p><strong>Katherine Johnson</strong> calcule les orbites des premières missions avec une précision absolue. <strong>Dorothy Vaughan</strong> apprend le Fortran en autodidacte ; <strong>Mary Jackson</strong> teste les structures en soufflerie. Et <strong>Margaret Hamilton</strong>, au MIT, invente des concepts de <strong>fiabilité logicielle</strong> qui sauvent l'alunissage d'Apollo 11 — on lui doit, en partie, l'expression « génie logiciel ».</p>
-            <h3 class="group-title">Stratèges, pilotes, directrices de mission</h3>
-            <p><strong>Nancy Grace Roman</strong>, « mère de Hubble » ; <strong>Linda Spilker</strong>, responsable scientifique de Cassini ; <strong>Swati Mohan</strong>, qui pilota la descente de Perseverance ; <strong>Ritu Karidhal</strong> et <strong>Muthayya Vanitha</strong> (ISRO) ; <strong>Sarah Al-Amiri</strong> (sonde Hope). Des directrices de mission, sur tous les continents.</p>
-            <h3 class="group-title">Analyser, découvrir</h3>
-            <p><strong>Jocelyn Bell Burnell</strong> découvre les pulsars ; <strong>Katie Bouman</strong> conçoit l'algorithme de la première image d'un trou noir ; <strong>Vera Rubin</strong> apporte les preuves de la matière noire — l'observatoire LSST porte aujourd'hui son nom.</p>
-            <div class="explain-block">
-              <div class="xb-head">Repère <span class="xb-tag">« chirurgiennes de l'espace »</span></div>
-              <div class="xb-body">
-                <p>Quand une sonde tombe en panne à des millions de km, les équipes au sol sont son seul recours : diagnostiquer par la seule <strong>télémétrie</strong>, réécrire le logiciel embarqué, l'envoyer à travers l'espace. C'est ce travail invisible, souvent porté par des ingénieures, qui maintient les missions en vie sur des décennies.</p>
-              </div>
-            </div>
+            <p class="live-tag" style="margin-top:14px">Le texte de Lalie, intégral</p>
+            <p>L'exploration spatiale repose sur des calculs rigoureux, du génie logiciel complexe et une analyse scientifique profonde. Depuis les débuts de la NASA et des agences mondiales, les femmes ont joué des rôles fondamentaux, souvent méconnus.</p>
+            <ul class="prose-list">
+              <li><strong>Mathématiciennes :</strong> Calcul de trajectoires de lancement et d'orbite.</li>
+              <li><strong>Ingénieures :</strong> Conception des logiciels de pilotage et structures.</li>
+              <li><strong>Scientifiques :</strong> Analyse des données de télescopes et sondes lointaines.</li>
+            </ul>
+
+            <h3 class="group-title">Les Calculatrices Humaines</h3>
+            <h4 class="mission-title">Katherine Johnson</h4>
+            <p>Spécialiste de la mécanique orbitale, ses calculs étaient vitaux pour le succès des premières missions. Son travail rigoureux a permis la précision absolue nécessaire à l'exploration spatiale.</p>
+
+            <h3 class="group-title">L'Art du Génie Logiciel</h3>
+            <h4 class="mission-title">Margaret Hamilton</h4>
+            <p>Directrice du génie logiciel au MIT pour le programme Apollo. Elle a introduit des concepts de fiabilité logicielle qui empêchèrent des échecs critiques lors de l'alunissage.</p>
+
+            <h3 class="group-title">La Mère de Hubble</h3>
+            <h4 class="mission-title">Nancy Grace Roman</h4>
+            <p>Première femme cadre à la NASA, elle a défini la stratégie du Télescope Spatial Hubble. Sans son plaidoyer, l'astronomie moderne ne serait pas ce qu'elle est aujourd'hui.</p>
+            <h4 class="mission-title">Naviguer vers Mars — Swati Mohan</h4>
+            <p>Responsable des opérations de guidage et contrôle (GNC) pour la mission Perseverance. Elle a piloté la descente complexe du rover sur la surface martienne en 2021.</p>
+
+            <h3 class="group-title">Vision Mondiale : Leadership et Missions Interplanétaires</h3>
+            <p>L'exploration spatiale robotique est devenue une collaboration globale où des ingénieures du monde entier dirigent des missions complexes vers Mars ou la Lune.</p>
+            <ul class="prose-list">
+              <li><strong>Ritu Karidhal (Inde - ISRO) :</strong> Surnommée la « Rocket Woman » de l'Inde, elle a occupé le rôle de directrice adjointe des opérations pour la mission Mangalyaan (Mars Orbiter Mission). Elle a supervisé le système d'autonomie logicielle qui a permis à la sonde de naviguer et de s'insérer en orbite martienne sans aide terrestre.</li>
+              <li><strong>Muthayya Vanitha (Inde - ISRO) :</strong> En tant que directrice de projet pour la mission lunaire Chandrayaan-2, elle est devenue la première femme à diriger un projet interplanétaire de cette envergure en Inde, gérant l'intégration complexe entre l'orbiteur, l'atterrisseur et le rover.</li>
+              <li><strong>Sarah Al-Amiri (Émirats arabes unis) :</strong> Ministre des Sciences et cheffe de projet de la sonde Hope (Emirates Mars Mission). Elle a dirigé la stratégie scientifique globale de la mission visant à étudier l'atmosphère martienne, marquant une étape historique pour l'agence spatiale émiratie.</li>
+            </ul>
+
+            <h3 class="group-title">Analyse et Découvertes Fondamentales</h3>
+            <p>Ces femmes ont transformé les données brutes des sondes et télescopes en découvertes scientifiques majeures.</p>
+            <ul class="prose-list">
+              <li><strong>Jocelyn Bell Burnell (Royaume-Uni) :</strong> En analysant les signaux radio complexes captés par ses radiotélescopes, elle a découvert les pulsars. Ses travaux ont ouvert un pan entier de l'astrophysique, permettant de mieux comprendre la nature des étoiles en fin de vie.</li>
+              <li><strong>Katie Bouman (États-Unis/International) :</strong> Informaticienne ayant dirigé le développement de l'algorithme qui a permis de traiter les pétaoctets de données collectées par un réseau mondial de télescopes. Son travail a rendu possible la toute première image d'un trou noir, prouvant que la coopération internationale dans le traitement de données est la clé de l'astronomie moderne.</li>
+            </ul>
+
+            <h3 class="group-title">Ingénierie des missions de longue durée et complexité orbitale</h3>
+            <ul class="prose-list">
+              <li><strong>Linda Spilker (États-Unis - JPL/NASA) :</strong> Planétologue et responsable scientifique de la mission Cassini-Huygens vers Saturne pendant des années. Elle a supervisé les objectifs scientifiques et la gestion complexe des instruments de la sonde pendant tout son séjour dans le système saturnien, garantissant le succès de l'exploration des lunes comme Titan et Encelade.</li>
+              <li><strong>Dorothy Vaughan (États-Unis - NACA/NASA) :</strong> Mathématicienne et responsable de la programmation. Bien qu'historiquement classée parmi les « calculatrices », elle a été l'une des premières à anticiper la révolution informatique. Elle a appris le langage Fortran en autodidacte pour programmer les ordinateurs centraux, rendant possible le calcul automatisé des trajectoires de lancement et le contrôle des satellites orbitaux.</li>
+              <li><strong>Mary Jackson (États-Unis - NACA/NASA) :</strong> Ingénieure en aérospatiale. Elle a travaillé sur les souffleries pour étudier les forces aérodynamiques exercées sur les fusées et les sondes. Ses analyses étaient indispensables pour s'assurer que les structures des sondes résisteraient aux conditions extrêmes du lancement et de la rentrée dans les atmosphères planétaires.</li>
+              <li><strong>Eileen Collins (États-Unis - NASA) :</strong> Bien qu'astronaute, son rôle a été déterminant dans le déploiement et la maintenance de télescopes et de satellites. Elle a été la première femme à piloter une navette spatiale et a commandé des missions clés dédiées au déploiement de télescopes et à la recherche scientifique, illustrant le rôle vital des équipages dans la mise en service des outils d'observation spatiale.</li>
+            </ul>
+
+            <h3 class="group-title">La dimension médicale et technologique : au-delà de la trajectoire</h3>
+            <p>Voici comment ces femmes ont utilisé leurs compétences (médecine, physique, chimie) pour concevoir non seulement la trajectoire des sondes, mais aussi la nature des instruments embarqués. Il est important de souligner que l'exploration spatiale est une science multidisciplinaire où chaque spécialité apporte une brique nécessaire à la réussite globale. Voici des profils complémentaires qui illustrent la diversité de l'expertise féminine mondiale :</p>
+            <ul class="prose-list">
+              <li><strong>Valentina Tereshkova (Russie - URSS) :</strong> Bien qu'elle soit la première femme dans l'espace, son rôle scientifique a été majeur. Elle a réalisé des relevés de données sur la haute atmosphère et a effectué des tests de comportement humain en apesanteur, des données qui ont permis d'améliorer la conception des habitacles des futures sondes habitées et des stations spatiales.</li>
+              <li><strong>Chiaki Mukai (Japon - JAXA) :</strong> Médecin et astronaute, elle a été essentielle pour la recherche en biotechnologie spatiale. Ses travaux sur les effets de la microgravité ont permis d'optimiser les instruments biologiques envoyés sur des satellites et sondes pour tester la croissance de cellules dans l'espace, une avancée cruciale pour la recherche spatiale.</li>
+              <li><strong>Fabiola Gianotti (Italie - CERN/Expertise technique) :</strong> Bien qu'elle soit physicienne des particules, son expertise dans la gestion de détecteurs massifs (comme ceux du LHC) a fortement influencé la conception des capteurs ultra-précis utilisés sur les télescopes spatiaux et les sondes d'exploration. Elle représente le pont entre la physique fondamentale et l'instrumentation de pointe.</li>
+              <li><strong>Helen Sharman (Royaume-Uni) :</strong> Première britannique dans l'espace, son implication dans la mission sur la station Mir a été axée sur la chimie et l'agriculture spatiale. Ses analyses sur la cristallisation des métaux en microgravité ont fourni des bases théoriques pour les nouveaux alliages utilisés dans la structure des sondes modernes.</li>
+            </ul>
+            <p>Ces exemples, en complément de Les Femmes de l'Espace, démontrent que le succès des sondes et télescopes dépend d'une collaboration mondiale entre ingénieures, mathématiciennes et scientifiques de tous horizons.</p>
+
+            <h3 class="group-title">Le centre névralgique : L'ingénierie au sol</h3>
+            <p>Expliquons que le travail au sol ne se limite pas à la réception de données, mais inclut le pilotage en temps réel, la maintenance logicielle à distance et la traduction des données brutes en découvertes scientifiques. On insiste aussi sur le fait que la réussite d'une mission est le résultat d'une symbiose parfaite entre le matériel dans l'espace et les équipes de contrôle sur Terre. Cela valorise le travail quotidien et moins visible des ingénieures qui assurent la pérennité des missions sur le long terme.</p>
+
+            <h3 class="group-title">Gestion de Crises et « Maintenance à Distance » : le rôle vital du sol</h3>
+            <p>Lorsque des sondes ou des satellites rencontrent des problèmes à des millions de kilomètres, les équipes au sol sont le seul recours pour assurer la survie de la mission.</p>
+            <ul class="prose-list">
+              <li><strong>Le diagnostic à distance :</strong> Contrairement à une réparation physique, les ingénieures au sol doivent diagnostiquer des pannes complexes en analysant uniquement la télémétrie (les signaux de santé) reçue avec un délai de transmission pouvant atteindre plusieurs minutes, voire des heures.</li>
+              <li><strong>Réécriture du logiciel embarqué :</strong> En cas d'anomalie critique, des ingénieures comme Margaret Hamilton (pour Apollo) ou les équipes actuelles du JPL ont dû concevoir des correctifs logiciels envoyés à travers l'espace pour « reprogrammer » le comportement des sondes sans accès physique.</li>
+              <li><strong>La résilience opérationnelle :</strong> Lors de la mission Mangalyaan, l'équipe menée par Ritu Karidhal a dû programmer des systèmes d'autonomie capables de prendre des décisions de survie immédiates, car la distance rendait toute intervention humaine en temps réel impossible.</li>
+              <li><strong>L'arbitrage scientifique :</strong> Dans des missions comme Cassini, gérées par des planétologues comme Linda Spilker, la gestion de crise consiste souvent à arbitrer entre la sauvegarde des instruments et la poursuite des objectifs scientifiques lorsque l'énergie ou les ressources deviennent limitées.</li>
+            </ul>
+            <p>On peut souligner que ces femmes au sol ne sont pas seulement des observatrices, mais de véritables « chirurgiennes de l'espace » qui utilisent l'informatique et la physique pour maintenir en vie des engins dans des environnements où l'erreur n'est pas permise.</p>
+
+            <h3 class="group-title">Des pionnières aux architectes de l'exploration spatiale</h3>
+            <p>L'histoire de l'exploration spatiale, souvent perçue à travers le prisme des missions habitées, est fondamentalement celle d'une collaboration intellectuelle et technique portée par des femmes d'exception. Des premières « calculatrices humaines » aux directrices de missions internationales actuelles, leur contribution a été le moteur indispensable du progrès technologique.</p>
+            <ul class="prose-list">
+              <li><strong>Une expertise transversale :</strong> Ces femmes ont démontré que la réussite d'une mission ne repose pas seulement sur le matériel, mais sur une maîtrise rigoureuse du génie logiciel, de la mécanique orbitale et de l'analyse scientifique.</li>
+              <li><strong>Un héritage de résilience :</strong> Qu'il s'agisse de concevoir les systèmes d'alunissage d'Apollo, de diriger des missions vers Mars, ou de résoudre des crises techniques à des millions de kilomètres de distance, elles ont fait preuve d'une capacité unique à transformer des données complexes en découvertes fondamentales.</li>
+              <li><strong>Une portée mondiale :</strong> En dépassant les frontières nationales et disciplinaires, ces chercheuses et ingénieures ont bâti les infrastructures qui permettent aujourd'hui à l'humanité de mieux comprendre l'Univers.</li>
+            </ul>
+            <p>En somme, si les sondes et les télescopes sont nos « yeux » dans l'espace, ces femmes en ont été le « cerveau » et l'architecte. Leur travail ne s'est pas limité à des calculs ou à des trajectoires ; elles ont posé les fondations de notre capacité à explorer, comprendre et finalement habiter notre système solaire.</p>
             <div class="dtable-wrap">
               <table class="dtable">
                 <caption>Quelques pionnières — institution, rôle, contribution</caption>
@@ -845,7 +1202,8 @@
                 </tbody>
               </table>
             </div>
-            <p>Des premières « calculatrices » aux directrices de missions interplanétaires, leur contribution a été le moteur indispensable du progrès. En dépassant les frontières nationales et disciplinaires, elles ont bâti les infrastructures qui permettent à l'humanité de comprendre l'Univers.</p>
+            <p><strong>Signification des sigles :</strong> NASA — National Aeronautics and Space Administration ; ISRO — Indian Space Research Organisation ; ESA — European Space Agency.</p>
+            <p class="women-credit">Sources (Lalie) : NASA &amp; National Women's History Museum · ESA · ISRO · JPL (Jet Propulsion Laboratory) · EHT (Event Horizon Telescope) Collaboration · Chandra X-ray Observatory · Challenger Center.</p>
             <p class="section-kicker" style="margin-top:30px">Chapitre réalisé par Lalie</p>
           </article>
           <aside class="side-note">
