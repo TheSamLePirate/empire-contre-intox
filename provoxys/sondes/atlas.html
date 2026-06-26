@@ -362,7 +362,7 @@
     <div class="vhead"><span class="vnum">02</span><div><p class="vkick">La donnée brute</p><h2>L'espace en chiffres</h2></div></div>
     <p class="vlead">Trois histoires que racontent les données : <b>combien d'objets</b> l'humanité a lancés en tout depuis 1957, combien <b>tournent encore</b> au-dessus de nos têtes, et <b>jusqu'où</b> nous avons poussé nos machines. Puis la composition même de ce catalogue.</p>
     <div class="panel" style="margin-bottom:16px">
-      <div class="phead">Objets lancés dans l'espace · 1957 → 2024 <span class="ph-r" id="lcR">survolez la courbe</span></div>
+      <div class="phead">Objets lancés dans l'espace · 1957 → 2025 <span class="ph-r" id="lcR">survolez la courbe</span></div>
       <div class="cv-wrap"><canvas class="acv" id="cvLaunch" style="height:384px"></canvas></div>
       <div class="leg"><span><i style="background:#f3d98a"></i> cumul depuis 1957</span><span><i style="width:9px;height:9px;border-radius:2px;background:#5fb9d4"></i> lancés dans l'année</span><span style="margin-left:auto;color:var(--ember)">▮ ère des constellations (2019+)</span></div>
       <div class="readout" id="lcNote"></div>
@@ -384,7 +384,7 @@
       <div class="panel"><div class="phead">Le catalogue par famille <span class="ph-r" id="catN"></span></div><div class="bars" id="byCat"></div></div>
       <div class="panel"><div class="phead">Le catalogue par agence <span class="ph-r">top 8</span></div><div class="bars" id="byAg"></div></div>
     </div>
-    <p class="note-intox"><span class="nt">Honnêteté des données</span>Les courbes « objets en orbite » sont des <b>ordres de grandeur</b> (UCS, ESA, UNOOSA) : la forme — un demi-siècle de croissance lente puis l'explosion des méga-constellations depuis 2019 — compte plus que la décimale. Les répartitions « par famille / agence » décrivent <b>ce catalogue</b> de 77 engins marquants, pas l'ensemble des objets jamais lancés.</p>
+    <p class="note-intox"><span class="nt">Honnêteté des données</span>Le graphe « <b>objets lancés</b> » suit le registre <b>UNOOSA</b> année par année (via Our World in Data) — données réelles, 1957→2025. En revanche, les courbes « <b>objets en orbite</b> » (satellites actifs / objets tracés) restent des <b>ordres de grandeur</b> (UCS, ESA) : la forme compte plus que la décimale. Les répartitions « par famille / agence » décrivent <b>ce catalogue</b> de 77 engins marquants, pas l'ensemble des objets jamais lancés.</p>
   </section>
 
   <!-- ATELIERS -->
@@ -764,7 +764,7 @@
     /* Objets lancés — cumul (ligne or, axe gauche) + annuel (barres azur, axe droit) */
     const L=mk("cvLaunch");
     if(L && S.launches){
-      const D=S.launches, M=S.launchesMarks||[], Y0=1957,Y1=2024,cMax=21000,aMax=3000,pad={l:54,r:48,t:16,b:40};
+      const D=S.launches, M=S.launchesMarks||[], Y0=1957,Y1=2025,cMax=26000,aMax=5000,pad={l:54,r:52,t:16,b:40};
       const X=y=>pad.l+(y-Y0)/(Y1-Y0)*(L.W-pad.l-pad.r);
       const Yc=v=>pad.t+(1-v/cMax)*(L.H-pad.t-pad.b);
       const Ya=v=>pad.t+(1-v/aMax)*(L.H-pad.t-pad.b);
@@ -773,8 +773,8 @@
       function draw(){ L.fit(); const x=L.ctx; x.clearRect(0,0,L.W,L.H);
         x.fillStyle="rgba(224,136,63,.07)"; x.fillRect(X(2019),pad.t,X(Y1)-X(2019),base()-pad.t);
         x.font='10px "JetBrains Mono",monospace';
-        x.textAlign="right"; [0,5000,10000,15000,20000].forEach(v=>{ const y=Yc(v); x.strokeStyle=C.grid; x.beginPath();x.moveTo(pad.l,y);x.lineTo(L.W-pad.r,y);x.stroke(); x.globalAlpha=.7; x.fillStyle=C.goldB; x.fillText(fr(v),pad.l-6,y+3); x.globalAlpha=1; });
-        x.textAlign="left"; [0,1000,2000,3000].forEach(v=>{ x.fillStyle="rgba(95,185,212,.75)"; x.fillText(fr(v),L.W-pad.r+6,Ya(v)+3); });
+        x.textAlign="right"; [0,5000,10000,15000,20000,25000].forEach(v=>{ const y=Yc(v); x.strokeStyle=C.grid; x.beginPath();x.moveTo(pad.l,y);x.lineTo(L.W-pad.r,y);x.stroke(); x.globalAlpha=.7; x.fillStyle=C.goldB; x.fillText(fr(v),pad.l-6,y+3); x.globalAlpha=1; });
+        x.textAlign="left"; [0,1000,2000,3000,4000,5000].forEach(v=>{ x.fillStyle="rgba(95,185,212,.75)"; x.fillText(fr(v),L.W-pad.r+6,Ya(v)+3); });
         x.textAlign="center"; [1960,1970,1980,1990,2000,2010,2020].forEach(y=>{ x.fillStyle=C.soft; x.fillText(y,X(y),L.H-22); });
         const bw=Math.max(3,(L.W-pad.l-pad.r)/(Y1-Y0)*0.66);
         D.forEach(d=>{ const xx=X(d.y); x.fillStyle=(hov&&hov.y===d.y)?C.azurB:"rgba(95,185,212,.5)"; x.fillRect(xx-bw/2,Ya(d.a),bw,base()-Ya(d.a)); });

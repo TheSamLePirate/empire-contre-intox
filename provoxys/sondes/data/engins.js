@@ -210,26 +210,20 @@ window.STATS = {
      (hors fragments de collisions/explosions). Cumul réel ≥ 2000 ; années antérieures reconstruites
      à partir des taux annuels (moyenne ~125/an, 1957-2000). */
   launches: [
-    {y:1957, a:2,    c:3},
-    {y:1960, a:20,   c:60},
-    {y:1965, a:161,  c:560},
-    {y:1970, a:130,  c:1300},
-    {y:1975, a:158,  c:2050},
-    {y:1980, a:130,  c:2750},
-    {y:1985, a:165,  c:3550},
-    {y:1990, a:170,  c:4350},
-    {y:1995, a:105,  c:4950},
-    {y:2000, a:121,  c:5408},
-    {y:2005, a:72,   c:5900},
-    {y:2010, a:121,  c:6385},
-    {y:2015, a:222,  c:7321},
-    {y:2018, a:452,  c:8300},
-    {y:2019, a:586,  c:9036},
-    {y:2020, a:1274, c:10310},
-    {y:2021, a:1814, c:12124},
-    {y:2022, a:2479, c:14603},
-    {y:2023, a:2903, c:17506},
-    {y:2024, a:2849, c:20355}
+    {y:1957,a:2,c:2},{y:1958,a:8,c:10},{y:1959,a:14,c:24},{y:1960,a:20,c:44},{y:1961,a:38,c:82},
+    {y:1962,a:77,c:159},{y:1963,a:71,c:230},{y:1964,a:107,c:337},{y:1965,a:161,c:498},{y:1966,a:145,c:643},
+    {y:1967,a:159,c:802},{y:1968,a:140,c:942},{y:1969,a:138,c:1080},{y:1970,a:130,c:1210},{y:1971,a:156,c:1366},
+    {y:1972,a:134,c:1500},{y:1973,a:138,c:1638},{y:1974,a:128,c:1766},{y:1975,a:158,c:1924},{y:1976,a:158,c:2082},
+    {y:1977,a:137,c:2219},{y:1978,a:165,c:2384},{y:1979,a:124,c:2508},{y:1980,a:130,c:2638},{y:1981,a:158,c:2796},
+    {y:1982,a:145,c:2941},{y:1983,a:154,c:3095},{y:1984,a:163,c:3258},{y:1985,a:165,c:3423},{y:1986,a:134,c:3557},
+    {y:1987,a:135,c:3692},{y:1988,a:145,c:3837},{y:1989,a:139,c:3976},{y:1990,a:170,c:4146},{y:1991,a:137,c:4283},
+    {y:1992,a:130,c:4413},{y:1993,a:108,c:4521},{y:1994,a:123,c:4644},{y:1995,a:105,c:4749},{y:1996,a:100,c:4849},
+    {y:1997,a:152,c:5001},{y:1998,a:157,c:5158},{y:1999,a:129,c:5287},{y:2000,a:121,c:5408},{y:2001,a:86,c:5494},
+    {y:2002,a:96,c:5590},{y:2003,a:88,c:5678},{y:2004,a:74,c:5752},{y:2005,a:72,c:5824},{y:2006,a:95,c:5919},
+    {y:2007,a:111,c:6030},{y:2008,a:109,c:6139},{y:2009,a:125,c:6264},{y:2010,a:121,c:6385},{y:2011,a:129,c:6514},
+    {y:2012,a:134,c:6648},{y:2013,a:210,c:6858},{y:2014,a:241,c:7099},{y:2015,a:222,c:7321},{y:2016,a:221,c:7542},
+    {y:2017,a:456,c:7998},{y:2018,a:452,c:8450},{y:2019,a:586,c:9036},{y:2020,a:1274,c:10310},{y:2021,a:1814,c:12124},
+    {y:2022,a:2479,c:14603},{y:2023,a:2903,c:17506},{y:2024,a:2849,c:20355},{y:2025,a:4510,c:24865}
   ],
   launchesMarks: [
     {y:1957, t:"Spoutnik 1", d:"le tout premier objet en orbite"},
@@ -238,7 +232,7 @@ window.STATS = {
     {y:1998, t:"Station ISS", d:"début de l'assemblage en orbite"},
     {y:2019, t:"Starlink", d:"l'ère des méga-constellations"}
   ],
-  launchesNote: "Nombre cumulé d'objets lancés depuis Spoutnik (1957) : <b>environ 20 400 fin 2024</b>, dont près de la moitié depuis 2020 — l'envolée des méga-constellations (surtout Starlink). Barres : objets lancés chaque année ; courbe : cumul. Source : UNOOSA (registre des objets lancés) via Our World in Data. « Objets » = charges utiles + étages + débris de mission enregistrés.",
+  launchesNote: "Année par année depuis Spoutnik (1957). Barres : objets lancés chaque année (axe droit) ; courbe : cumul (axe gauche). <b>Près de 24 900 objets fin 2025</b> — dont plus de la moitié depuis 2020, l'envolée des méga-constellations (surtout Starlink). Source : <b>UNOOSA</b> (registre des objets lancés) via Our World in Data ; « objets » = charges utiles + étages + débris de mission enregistrés (hors fragments de collision). Les années récentes peuvent être revues à la hausse, l'enregistrement à l'ONU pouvant prendre du temps.",
 
   /* Constantes physiques vérifiées pour les ateliers interactifs.
      μ⊕ : NASA JPL (DE440) · g0 : SI (exacte) · c : SI (exacte depuis 1983). */

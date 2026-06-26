@@ -75,12 +75,14 @@ Thomas Flynn pour Perseverance CC0, etc.). Auteur et licence crédités sur **ch
 
 ## 7. Atlas — objets lancés & ateliers de physique (✅ vérifiés)
 
-- **Graphe cumulatif des objets lancés (1957→2024)** — cumul + nombre annuel.
-  ✅ Source : **UNOOSA**, *Online Index of Objects Launched into Outer Space*, via **Our World in Data**.
-  Cumul ≈ **20 355 objets fin 2024** (≈ la moitié depuis 2020 — méga-constellations, surtout Starlink).
-  « Objets » = charges utiles + étages + débris de mission enregistrés au lancement (hors fragments de
-  collision/explosion). Valeurs cumulées ≥ 2000 réelles ; années antérieures reconstruites à partir des
-  taux annuels (~125/an, 1957-2000).
+- **Graphe des objets lancés (1957→2025)** — série **complète année par année** (cumul + nombre annuel),
+  données réelles téléchargées (plus aucune reconstruction).
+  ✅ Source : **UNOOSA**, *Online Index of Objects Launched into Outer Space*, via **Our World in Data**
+  (CSV complet, entité « World »). Cumul ≈ **24 865 objets fin 2025** (≈ 20 355 fin 2024 ; plus de la moitié
+  du total depuis 2020 — méga-constellations, surtout Starlink). Annuel : de ~2/an (1957) et un plateau
+  ~150/an pendant la Guerre froide, à **4 510 en 2025**. « Objets » = charges utiles + étages + débris de
+  mission enregistrés (hors fragments de collision). Cohérence vérifiée (cumulₙ = cumulₙ₋₁ + annuelₙ pour
+  chaque année). Caveat : l'enregistrement à l'ONU peut tarder → années récentes éventuellement revues à la hausse.
 - **Ateliers interactifs** — calculs en temps réel, constantes vérifiées :
   - *Orbite* : μ⊕ = 398 600,4 km³/s² (NASA JPL, DE440), R⊕ = 6 371 km (IUGG), v = √(μ/r), T = 2π√(r³/μ).
     ISS (400 km) → 7,67 km/s, 92 min ; GPS (20 200 km) → 3,87 km/s, ~12 h ; géostationnaire (35 786 km) → 3,07 km/s, ~24 h. ✅
