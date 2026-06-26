@@ -196,6 +196,22 @@
     .lalie-note .ln-body p:last-child { margin-bottom:0; }
     .lalie-note .ln-body strong { color:#d9c2ff; font-weight:600; }
 
+    /* Galerie de portraits — Les Femmes de l'Espace */
+    .women-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(134px,1fr)); gap:14px; margin:18px 0 22px; }
+    .woman { border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(7,12,26,.5); transition:transform .35s var(--ease),border-color .35s var(--ease); }
+    .woman:hover { transform:translateY(-4px); border-color:var(--viol); }
+    .woman .w-img { aspect-ratio:1; overflow:hidden; background:var(--navy); }
+    .woman .w-img img { width:100%; height:100%; object-fit:cover; object-position:center top; filter:grayscale(.18) contrast(1.02); transition:filter .5s var(--ease); }
+    .woman:hover .w-img img { filter:none; }
+    .woman .w-ph { width:100%; height:100%; display:grid; place-items:center; background:radial-gradient(circle at 50% 30%,rgba(185,140,255,.18),rgba(7,12,26,.6)); font-family:var(--roman); font-weight:700; font-size:1.7rem; letter-spacing:.04em; color:var(--viol); }
+    .woman .w-body { padding:9px 11px 11px; }
+    .woman .w-name { font-family:var(--roman); font-weight:700; font-size:.72rem; letter-spacing:.03em; text-transform:uppercase; color:var(--ink); line-height:1.15; }
+    .woman .w-role { margin-top:4px; font-size:.76rem; color:var(--muted); line-height:1.35; }
+    .woman .w-cr { margin-top:7px; font-family:var(--mono); font-size:.55rem; color:var(--soft); line-height:1.3; }
+    .woman .w-cr a { color:var(--soft); text-decoration:underline; text-decoration-color:var(--line-2); }
+    .woman .w-cr a:hover { color:var(--viol); }
+    .women-credit { font-family:var(--mono); font-size:.74rem; color:var(--soft); line-height:1.6; margin:0 0 8px; }
+
     .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
     .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
     .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
@@ -746,7 +762,9 @@
               <img src="assets/femmes-espace.png" alt="Ingénieure en salle de contrôle de mission, face aux écrans de trajectoire" loading="lazy">
               <figcaption>Le centre névralgique — l'ingénierie au sol, qui maintient les missions en vie sur des décennies</figcaption>
             </figure>
-            <p>L'exploration spatiale se raconte d'ordinaire à travers ses machines. Mais derrière chaque trajectoire, chaque ligne de code, chaque donnée transformée en découverte, il y a des femmes — longtemps restées dans l'ombre.</p>
+            <p>L'exploration spatiale se raconte d'ordinaire à travers ses machines. Mais derrière chaque trajectoire, chaque ligne de code, chaque donnée transformée en découverte, il y a des femmes — longtemps restées dans l'ombre. Voici leurs visages.</p>
+            <div class="women-grid reveal" id="womenGrid" aria-label="Portraits des femmes de l'espace"></div>
+            <p class="women-credit">Portraits : <strong>Wikimedia Commons</strong> — auteur et licence indiqués sous chaque visage (les licences CC BY / BY-SA imposent le crédit de l'auteur). Muthayya Vanitha (Chandrayaan-2) ne dispose d'aucun portrait libre.</p>
             <h3 class="group-title">Calculatrices humaines &amp; aube du logiciel</h3>
             <p><strong>Katherine Johnson</strong> calcule les orbites des premières missions avec une précision absolue. <strong>Dorothy Vaughan</strong> apprend le Fortran en autodidacte ; <strong>Mary Jackson</strong> teste les structures en soufflerie. Et <strong>Margaret Hamilton</strong>, au MIT, invente des concepts de <strong>fiabilité logicielle</strong> qui sauvent l'alunissage d'Apollo 11 — on lui doit, en partie, l'expression « génie logiciel ».</p>
             <h3 class="group-title">Stratèges, pilotes, directrices de mission</h3>
@@ -968,6 +986,41 @@
           if(q && any) cat.open = true;
         });
       });
+    })();
+
+    /* ---------- Les Femmes de l'Espace — galerie de portraits ---------- */
+    (function(){
+      const W = [
+        {f:"katherine-johnson.jpg", n:"Katherine Johnson", role:"Mathématicienne (NASA) — trajectoires orbitales", cr:"NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Katherine_Johnson_1983.jpg"},
+        {f:"dorothy-vaughan.jpg", n:"Dorothy Vaughan", role:"Mathématicienne (NACA/NASA) — Fortran", cr:"NASA on The Commons", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Dorothy_Vaughan_2.jpg"},
+        {f:"mary-jackson.jpg", n:"Mary Jackson", role:"Ingénieure aérospatiale (NASA) — souffleries", cr:"NASA Langley / Bob Nye", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Mary_Jackson_1979_Portrait_(LRC-1979-B701_P_F002-07086).jpg"},
+        {f:"margaret-hamilton.jpg", n:"Margaret Hamilton", role:"Génie logiciel d'Apollo (MIT)", cr:"Daphne Weld Nichols", lic:"CC BY-SA 3.0", src:"https://commons.wikimedia.org/wiki/File:Margaret_Hamilton_1995.jpg"},
+        {f:"nancy-grace-roman.jpg", n:"Nancy Grace Roman", role:"« Mère de Hubble » (NASA)", cr:"NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Nancy_Grace_Roman_1969_NASA_Portrait_(41124536895).jpg"},
+        {f:"linda-spilker.jpg", n:"Linda Spilker", role:"Responsable scientifique de Cassini (JPL)", cr:"NASA/Joel Kowsky", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:NHQ201709150016~orig.jpg"},
+        {f:"swati-mohan.jpg", n:"Swati Mohan", role:"GNC de la descente de Perseverance (JPL)", cr:"NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Swati_Mohan.jpg"},
+        {f:"ritu-karidhal.jpg", n:"Ritu Karidhal", role:"« Rocket Woman » — Mangalyaan (ISRO)", cr:"Press Information Bureau (India)", lic:"GODL-India", src:"https://commons.wikimedia.org/wiki/File:Ritu_Karidal_at_ISRO.jpg"},
+        {n:"Muthayya Vanitha", role:"Directrice de projet de Chandrayaan-2 (ISRO)", noimg:true, cr:"aucun portrait libre disponible", lic:""},
+        {f:"sarah-al-amiri.jpg", n:"Sarah Al-Amiri", role:"Cheffe de projet de la sonde Hope (EAU)", cr:"Sintegrity", lic:"CC BY-SA 4.0", src:"https://commons.wikimedia.org/wiki/File:Sarah_Amiri_-_Sustaining_the_Space_Economy_-_2019_(48177030097)_(cropped_again).jpg"},
+        {f:"jocelyn-bell-burnell.jpg", n:"Jocelyn Bell Burnell", role:"Découverte des pulsars", cr:"Astron. Institute ASCR / Anrie", lic:"CC BY-SA 3.0", src:"https://commons.wikimedia.org/wiki/File:Launch_of_IYA_2009,_Paris_-_Grygar,_Bell_Burnell_cropped.jpg"},
+        {f:"katie-bouman.jpg", n:"Katie Bouman", role:"Algorithme de la 1ʳᵉ image d'un trou noir (EHT)", cr:"NSF", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Katie_Bouman_answers_questions_about_the_Event_Horizon_Telescope_project.jpg"},
+        {f:"vera-rubin.jpg", n:"Vera Rubin", role:"Preuves de la matière noire (→ LSST)", cr:"Mark Godfrey / AIP Emilio Segrè Visual Archives", lic:"Attribution", src:"https://commons.wikimedia.org/wiki/File:Vera_Rubin_with_antique_globes.jpg"},
+        {f:"eileen-collins.jpg", n:"Eileen Collins", role:"1ʳᵉ femme à commander une navette (NASA)", cr:"Robert Markowitz / NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Commander_Eileen_Collins_-_GPN-2000-001177.jpg"},
+        {f:"valentina-tereshkova.jpg", n:"Valentina Tereshkova", role:"1ʳᵉ femme dans l'espace (URSS)", cr:"kremlin.ru", lic:"CC BY 4.0", src:"https://commons.wikimedia.org/wiki/File:Valentina_Tereshkova_(2024-02-29)_crop.jpg"},
+        {f:"chiaki-mukai.jpg", n:"Chiaki Mukai", role:"Médecin-astronaute, microgravité (JAXA)", cr:"NASA", lic:"domaine public", src:"https://commons.wikimedia.org/wiki/File:Chiaki_Mukai.jpg"},
+        {f:"fabiola-gianotti.jpg", n:"Fabiola Gianotti", role:"Détecteurs de précision (CERN)", cr:"Maximilien Brice / CERN", lic:"CC BY 4.0", src:"https://commons.wikimedia.org/wiki/File:Dr_Fabiola_Gianotti.jpg"},
+        {f:"helen-sharman.jpg", n:"Helen Sharman", role:"1ʳᵉ britannique dans l'espace (Mir)", cr:"Anne-Katrin Purkiss", lic:"CC BY-SA 4.0", src:"https://commons.wikimedia.org/wiki/File:Dr._Helen_Sharman_(cropped).jpg"}
+      ];
+      const g = document.getElementById("womenGrid"); if(!g) return;
+      const initials = n => n.split(/\s+/).map(s=>s[0]).slice(0,2).join("");
+      g.innerHTML = W.map(w=>{
+        const media = w.noimg
+          ? `<div class="w-ph" aria-hidden="true">${initials(w.n)}</div>`
+          : `<img src="assets/femmes/${w.f}" alt="Portrait de ${w.n}" loading="lazy">`;
+        const credit = (w.lic ? `${w.cr} · ${w.lic}` : w.cr);
+        const crHTML = w.src ? `<a href="${w.src}" target="_blank" rel="noopener">${credit}</a>` : credit;
+        return `<figure class="woman"><div class="w-img">${media}</div>`
+          + `<figcaption class="w-body"><div class="w-name">${w.n}</div><div class="w-role">${w.role}</div><div class="w-cr">${crHTML}</div></figcaption></figure>`;
+      }).join("");
     })();
   </script>
 </body>

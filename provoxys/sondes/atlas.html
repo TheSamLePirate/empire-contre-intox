@@ -105,7 +105,8 @@
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
   .card{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:linear-gradient(180deg,rgba(14,26,46,.5),rgba(7,12,26,.62));display:flex;flex-direction:column;transition:border-color .3s var(--ease),transform .3s var(--ease)}
   .card:hover{border-color:rgba(95,185,212,.42);transform:translateY(-3px)}
-  .c-viewer{position:relative;aspect-ratio:16/10;background:repeating-linear-gradient(45deg,#0b1119,#0b1119 13px,#0d1622 13px,#0d1622 26px);display:flex;align-items:center;justify-content:center}
+  .c-viewer{position:relative;aspect-ratio:16/10;background:repeating-linear-gradient(45deg,#0b1119,#0b1119 13px,#0d1622 13px,#0d1622 26px);display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;padding:8px}
+  .c-vid .disc{background:linear-gradient(135deg,#ff4d4d,#c0392b);box-shadow:0 8px 24px -6px rgba(255,77,77,.55)}
   .c-viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   .c-play{display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer;background:none;border:0;font-family:var(--roman);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--parch)}
   .c-play .disc{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--azur),#3f93ad);box-shadow:0 8px 24px -6px rgba(95,185,212,.6);transition:transform .2s}
@@ -130,6 +131,39 @@
   .c-link{align-self:flex-start;font-family:var(--mono);font-size:.62rem;color:var(--soft)}
   .c-link:hover{color:var(--azur-bright)}
   .empty{padding:60px 0;text-align:center;color:var(--soft);font-family:var(--mono)}
+  /* fiche technique dépliable */
+  .c-more{align-self:flex-start;margin-top:2px;font-family:var(--roman);font-size:.56rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--azur-bright);background:rgba(95,185,212,.08);border:1px solid rgba(95,185,212,.3);border-radius:30px;padding:7px 13px;cursor:pointer;transition:all .22s}
+  .c-more:hover{background:rgba(95,185,212,.16)}
+  .c-more::after{content:" ▾";color:var(--soft)}
+  .c-more.open::after{content:" ▴"}
+  .c-detail{display:none;border-top:1px solid var(--line-2);margin-top:4px;padding-top:11px}
+  .c-detail.open{display:block;animation:fadein .35s var(--ease)}
+  @keyframes fadein{from{opacity:0}to{opacity:1}}
+  .c-detail dl{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin:0;font-size:.8rem}
+  .c-detail dt{font-family:var(--roman);font-size:.54rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--azur);white-space:nowrap;padding-top:2px}
+  .c-detail dd{margin:0;color:var(--muted);line-height:1.45}
+  .c-detail dd b{color:var(--parch);font-weight:600}
+  .c-detail .defis{margin-top:9px;border-left:2px solid var(--ember);background:rgba(224,136,63,.07);border-radius:2px;padding:6px 10px;font-size:.78rem;color:var(--muted)}
+  .c-detail .defis .dk{display:block;font-family:var(--roman);font-size:.5rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ember);margin-bottom:3px}
+  /* statistiques — graphes canvas + barres */
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px;margin-top:6px}
+  .cv-wrap{position:relative;background:rgba(3,6,13,.5)}
+  canvas.acv{width:100%;display:block;cursor:crosshair}
+  .readout{padding:12px 18px;border-top:1px solid var(--line-2);color:var(--muted);font-size:.86rem;line-height:1.5}
+  .readout b{color:var(--parch)} .readout .hl{color:var(--azur-bright)} .readout .hg{color:var(--gold-bright)}
+  .leg{display:flex;gap:8px 16px;flex-wrap:wrap;padding:11px 18px;border-top:1px solid var(--line-2);font-family:var(--mono);font-size:.66rem;color:var(--muted)}
+  .leg span{display:inline-flex;align-items:center;gap:6px} .leg i{width:14px;height:3px;border-radius:2px;display:inline-block}
+  .bars{padding:14px 18px;display:flex;flex-direction:column;gap:9px}
+  .bar-row{display:grid;grid-template-columns:128px 1fr auto;gap:11px;align-items:center}
+  .bar-lab{font-family:var(--roman);font-size:.6rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--parch);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bar-track{height:13px;border-radius:7px;background:rgba(244,236,216,.06);overflow:hidden}
+  .bar-fill{height:100%;border-radius:7px;background:linear-gradient(90deg,var(--azur),var(--azur-bright))}
+  .bar-val{font-family:var(--mono);font-size:.72rem;color:var(--azur-bright)}
+  #tip{position:fixed;z-index:80;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .12s;background:rgba(5,8,17,.96);border:1px solid var(--azur);border-radius:4px;padding:8px 11px;max-width:260px;box-shadow:var(--shadow)}
+  #tip.on{opacity:1;transform:none}
+  #tip .tn{font-family:var(--roman);font-weight:700;font-size:.74rem;letter-spacing:.04em;color:var(--ink);text-transform:uppercase}
+  #tip .tr{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-top:3px;line-height:1.5}
+  #tip .tr b{color:var(--azur-bright);font-weight:500}
 
   /* frise */
   .panel{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:linear-gradient(180deg,rgba(14,26,46,.42),rgba(7,12,26,.6));box-shadow:var(--shadow)}
@@ -180,6 +214,7 @@
 <div class="atmos"></div><div class="grain"></div>
 <div class="frame"><i></i><i></i><i></i><i></i></div>
 <div class="progress-top" id="prog"></div>
+<div id="tip"></div>
 
 <header class="topbar">
   <div class="topbar-inner">
@@ -189,7 +224,8 @@
     </a>
     <nav class="nav" aria-label="Sections de l'atlas">
       <a href="#catalogue">Catalogue</a>
-      <a href="#frise">Frise 1957→2030</a>
+      <a href="#stats">Statistiques</a>
+      <a href="#frise">Frise</a>
       <a href="#miroirs">Miroirs</a>
     </nav>
     <a class="home-link" href="index.html">← Dossier</a>
@@ -247,9 +283,33 @@
     <div class="empty" id="empty" style="display:none">Aucun engin ne correspond à ces filtres.</div>
   </section>
 
+  <!-- STATISTIQUES -->
+  <section class="view" id="stats">
+    <div class="vhead"><span class="vnum">02</span><div><p class="vkick">La donnée brute</p><h2>L'espace en chiffres</h2></div></div>
+    <p class="vlead">Deux histoires que racontent les données : <b>combien d'objets</b> tournent au-dessus de nos têtes — et l'explosion récente des constellations —, et <b>jusqu'où</b> l'humanité a poussé ses machines depuis 1957. Puis la composition même de ce catalogue.</p>
+    <div class="stat-grid">
+      <div class="panel">
+        <div class="phead">Objets en orbite, 1957 → 2026 <span class="ph-r" id="objR">survolez la courbe</span></div>
+        <div class="cv-wrap"><canvas class="acv" id="cvObjects" style="height:340px"></canvas></div>
+        <div class="leg"><span><i style="background:#7fd4e8"></i> satellites actifs</span><span><i style="background:#8f8c78"></i> objets tracés (débris compris)</span><span style="margin-left:auto;color:var(--ember)">▮ ère Starlink (2019+)</span></div>
+        <div class="readout" id="objNote"></div>
+      </div>
+      <div class="panel">
+        <div class="phead">La frontière de l'exploration <span class="ph-r" id="frR">distance au Soleil de l'objet le plus lointain</span></div>
+        <div class="cv-wrap"><canvas class="acv" id="cvFrontier" style="height:340px"></canvas></div>
+        <div class="readout" id="frNote"></div>
+      </div>
+    </div>
+    <div class="stat-grid" style="margin-top:16px">
+      <div class="panel"><div class="phead">Le catalogue par famille <span class="ph-r" id="catN"></span></div><div class="bars" id="byCat"></div></div>
+      <div class="panel"><div class="phead">Le catalogue par agence <span class="ph-r">top 8</span></div><div class="bars" id="byAg"></div></div>
+    </div>
+    <p class="note-intox"><span class="nt">Honnêteté des données</span>Les courbes « objets en orbite » sont des <b>ordres de grandeur</b> (UCS, ESA, UNOOSA) : la forme — un demi-siècle de croissance lente puis l'explosion des méga-constellations depuis 2019 — compte plus que la décimale. Les répartitions « par famille / agence » décrivent <b>ce catalogue</b> de 77 engins marquants, pas l'ensemble des objets jamais lancés.</p>
+  </section>
+
   <!-- FRISE -->
   <section class="view" id="frise">
-    <div class="vhead"><span class="vnum">02</span><div><p class="vkick">Soixante-dix ans</p><h2>La frise de l'exploration</h2></div></div>
+    <div class="vhead"><span class="vnum">03</span><div><p class="vkick">Soixante-dix ans</p><h2>La frise de l'exploration</h2></div></div>
     <p class="vlead">Chaque engin placé à son année de lancement (ou de première lumière), coloré par famille. Survolez un point pour le lire ; cliquez pour le retrouver dans le catalogue.</p>
     <div class="panel">
       <div class="phead">1957 → 2031 · un point par engin <span class="ph-r" id="friseR">survolez un point</span></div>
@@ -260,7 +320,7 @@
 
   <!-- MIROIRS -->
   <section class="view" id="miroirs">
-    <div class="vhead"><span class="vnum">03</span><div><p class="vkick">Toujours plus grand</p><h2>La taille des miroirs</h2></div></div>
+    <div class="vhead"><span class="vnum">04</span><div><p class="vkick">Toujours plus grand</p><h2>La taille des miroirs</h2></div></div>
     <p class="vlead">Diamètre des miroirs primaires des télescopes optiques &amp; infrarouges (spatiaux et au sol). De Hubble (2,4 m) au futur ELT (39,3 m) : on gagne en lumière comme le carré du diamètre.</p>
     <div class="panel">
       <div class="phead">Diamètre du miroir primaire (m) <span class="ph-r">optique / infrarouge</span></div>
@@ -349,9 +409,9 @@
   // 3D LRU (max 6 visualiseurs actifs)
   const ACTIVE=[];
   function placeholder(box,e){
-    box.innerHTML = e.uid
-      ? `<button class="c-play" data-load><span class="disc"><svg width="20" height="20" viewBox="0 0 24 24" fill="#04121a"><path d="M8 5v14l11-7z"/></svg></span>Charger en 3D</button>`
-      : `<span class="c-nomodel">pas de modèle 3D</span>`;
+    const p3d = e.uid ? `<button class="c-play" data-load><span class="disc"><svg width="20" height="20" viewBox="0 0 24 24" fill="#04121a"><path d="M8 5v14l11-7z"/></svg></span>Charger en 3D</button>` : "";
+    const pvid = e.vid ? `<button class="c-play c-vid" data-vid><span class="disc"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span>Vidéo de l'impact</button>` : "";
+    box.innerHTML = (p3d+pvid) || `<span class="c-nomodel">pas de modèle 3D</span>`;
   }
   function loadViewer(box,e){
     if(box.querySelector("iframe")) return;
@@ -359,14 +419,25 @@
     ACTIVE.push({box,e});
     if(ACTIVE.length>6){ const old=ACTIVE.shift(); placeholder(old.box,old.e); }
   }
+  function loadVideo(box,e){
+    box.innerHTML = `<iframe title="${e.n} — vidéo de l'impact" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" src="https://www.youtube.com/embed/${e.vid}?rel=0&modestbranding=1"></iframe>`;
+  }
 
   const grid=document.getElementById("grid"), empty=document.getElementById("empty"), count=document.getElementById("count");
+  const SPEC=[["dim","Dimensions"],["pow","Énergie"],["prop","Propulsion"],["lv","Lanceur"],["build","Constructeur"],["instr","Instruments"],["mat","Matériaux"],["res","Données / résultats"]];
   function card(e){
     const cc = CATC[e.cat]||"#d6ac55";
     const model = e.uid
       ? `<a class="c-link" href="https://sketchfab.com/models/${e.uid}" target="_blank" rel="noopener">Modèle 3D : ${e.mt||""} · ${e.ma||""} ↗</a>` : "";
+    const video = e.vid
+      ? `<a class="c-link" href="https://www.youtube.com/watch?v=${e.vid}" target="_blank" rel="noopener" style="color:#ff8a8a">▶ ${e.vidcap||"Vidéo de l'impact"} (YouTube) ↗</a>` : "";
     const lalie = e.lalie ? `<div class="c-lalie"><span class="lk">✦ L'apport de Lalie</span>${e.lalie}</div>` : "";
     const who = e.who ? `<div class="c-who"><b>👥</b> ${e.who}</div>` : "";
+    const mirRow = e.mir ? `<dt>Miroir</dt><dd><b>${String(e.mir).replace(".",",")} m</b></dd>` : "";
+    const rows = SPEC.filter(([k])=>e[k]).map(([k,lab])=>`<dt>${lab}</dt><dd>${e[k]}</dd>`).join("");
+    const defis = e.defis ? `<div class="defis"><span class="dk">Défis</span>${e.defis}</div>` : "";
+    const hasDetail = mirRow||rows||defis;
+    const detail = hasDetail ? `<button class="c-more" type="button">Fiche technique</button><div class="c-detail"><dl>${mirRow}${rows}</dl>${defis}</div>` : "";
     const el=document.createElement("article"); el.className="card"; el.id="e-"+e.id;
     el.innerHTML = `
       <div class="c-viewer">
@@ -375,14 +446,19 @@
       </div>
       <div class="c-body">
         <div class="c-name">${e.n}</div>
-        <div class="c-meta"><span>${e.ag}</span><span><b>${e.yr}</b></span>${e.mass?`<span>${e.mass}</span>`:""}</div>
+        <div class="c-meta"><span>${e.ag}</span><span><b>${e.yr}</b></span>${e.mass&&e.mass!=="—"?`<span>${e.mass}</span>`:""}</div>
         <p class="c-fact">${e.fact}</p>
         ${who}${lalie}
         <div class="c-loc"><span class="k">◷ Où :</span> ${e.loc}${e.dist&&e.dist!=="—"?` · <b>${e.dist}</b>`:""}</div>
-        ${model}
+        ${model}${video}${detail}
       </div>`;
     placeholder(el.querySelector(".c-viewer"),e);
-    el.querySelector(".c-viewer").addEventListener("click",ev=>{ if(ev.target.closest("[data-load]")) loadViewer(el.querySelector(".c-viewer"),e); });
+    el.querySelector(".c-viewer").addEventListener("click",ev=>{
+      if(ev.target.closest("[data-load]")) loadViewer(el.querySelector(".c-viewer"),e);
+      else if(ev.target.closest("[data-vid]")) loadVideo(el.querySelector(".c-viewer"),e);
+    });
+    const more=el.querySelector(".c-more");
+    if(more) more.addEventListener("click",()=>{ more.classList.toggle("open"); el.querySelector(".c-detail").classList.toggle("open"); });
     return el;
   }
   function render(){
@@ -419,6 +495,77 @@
       row.innerHTML=`<div class="mir-name" title="${e.n}">${e.n}</div><div class="mir-bar ${cls}" style="width:${(e.mir/max*100).toFixed(1)}%"></div><div class="mir-val">${String(e.mir).replace(".",",")} m</div>`;
       box.appendChild(row);
     });
+  })();
+
+  /* ---------- Statistiques ---------- */
+  (function(){
+    const S = window.STATS; if(!S) return;
+    const tip = document.getElementById("tip");
+    const C = {azur:"#5fb9d4",azurB:"#7fd4e8",goldB:"#f3d98a",ember:"#e0883f",viol:"#b98cff",soft:"#8f8c78",grid:"rgba(214,172,85,.10)"};
+    const fr = n => Math.round(n).toLocaleString("fr-FR");
+    function mk(id){ const cv=document.getElementById(id); if(!cv) return null; const ctx=cv.getContext("2d"); let W=0,H=0;
+      function fit(){ const r=cv.getBoundingClientRect(); const dpr=Math.min(2,devicePixelRatio||1); W=r.width; H=r.height; cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
+      return {cv,ctx,fit,get W(){return W},get H(){return H}}; }
+    function place(ev){ tip.style.left=Math.min(ev.clientX+14,innerWidth-220)+"px"; tip.style.top=(ev.clientY+14)+"px"; }
+
+    /* Objets en orbite (Y log) */
+    const O=mk("cvObjects");
+    if(O){
+      const D=S.objects,Y0=1957,Y1=2026,ymin=1,ymax=50000,pad={l:50,r:14,t:16,b:26};
+      const ly=v=>Math.log10(Math.max(ymin,v));
+      const X=y=>pad.l+(y-Y0)/(Y1-Y0)*(O.W-pad.l-pad.r);
+      const Yv=v=>pad.t+(1-(ly(v)-ly(ymin))/(ly(ymax)-ly(ymin)))*(O.H-pad.t-pad.b);
+      let hov=null;
+      function draw(){ O.fit(); const x=O.ctx; x.clearRect(0,0,O.W,O.H);
+        x.fillStyle="rgba(224,136,63,.07)"; x.fillRect(X(2019),pad.t,X(Y1)-X(2019),O.H-pad.t-pad.b);
+        x.font='10px "JetBrains Mono",monospace'; x.textAlign="right";
+        [1,10,100,1000,10000].forEach(v=>{ const y=Yv(v); x.strokeStyle=C.grid; x.beginPath();x.moveTo(pad.l,y);x.lineTo(O.W-pad.r,y);x.stroke(); x.fillStyle=C.soft; x.fillText(fr(v),pad.l-6,y+3); });
+        x.textAlign="center"; [1960,1980,2000,2020].forEach(y=>{ x.fillStyle=C.soft; x.fillText(y,X(y),O.H-8); });
+        const ln=(k,col,w)=>{ x.strokeStyle=col; x.lineWidth=w; x.beginPath(); D.forEach((d,i)=>{const xx=X(d.y),yy=Yv(d[k]); i?x.lineTo(xx,yy):x.moveTo(xx,yy);}); x.stroke(); };
+        ln("trk",C.soft,1.4); ln("act",C.azurB,2.4);
+        D.forEach(d=>{ x.fillStyle=C.azurB; x.beginPath();x.arc(X(d.y),Yv(d.act),2.4,0,7);x.fill(); });
+        if(hov){ x.strokeStyle="rgba(127,212,232,.4)"; x.beginPath();x.moveTo(X(hov.y),pad.t);x.lineTo(X(hov.y),O.H-pad.b);x.stroke(); x.fillStyle=C.goldB; x.beginPath();x.arc(X(hov.y),Yv(hov.act),4,0,7);x.fill(); } }
+      O.cv.addEventListener("mousemove",ev=>{ const r=O.cv.getBoundingClientRect(),mx=ev.clientX-r.left; let b=null,bd=1e9; D.forEach(d=>{const dd=Math.abs(X(d.y)-mx); if(dd<bd){bd=dd;b=d;}}); hov=b; draw();
+        if(b){ tip.classList.add("on"); tip.innerHTML=`<div class="tn">${b.y}</div><div class="tr"><b>${fr(b.act)}</b> satellites actifs<br><b>${fr(b.trk)}</b> objets tracés</div>`; place(ev); document.getElementById("objR").textContent=b.y; } });
+      O.cv.addEventListener("mouseleave",()=>{ hov=null; draw(); tip.classList.remove("on"); });
+      document.getElementById("objNote").innerHTML=S.objectsNote;
+      new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)draw();}),{threshold:.1}).observe(O.cv);
+      addEventListener("resize",()=>requestAnimationFrame(draw),{passive:true}); draw();
+    }
+
+    /* Frontière (Y linéaire, UA) */
+    const F=mk("cvFrontier");
+    if(F){
+      const D=S.frontier,Y0=1959,Y1=2027,vmax=180,pad={l:46,r:14,t:18,b:26};
+      const X=y=>pad.l+(y-Y0)/(Y1-Y0)*(F.W-pad.l-pad.r);
+      const Yv=v=>pad.t+(1-v/vmax)*(F.H-pad.t-pad.b);
+      let hov=null;
+      function ro(d){ document.getElementById("frNote").innerHTML = d?`<span class="hg">${d.y}</span> · <b>${d.who}</b> à <span class="hl">${d.au} UA</span>${d.ev?` — ${d.ev}`:""}`:S.frontierNote; }
+      function draw(){ F.fit(); const x=F.ctx; x.clearRect(0,0,F.W,F.H); x.font='10px "JetBrains Mono",monospace';
+        x.textAlign="right"; [0,50,100,150].forEach(v=>{ const y=Yv(v); x.strokeStyle=C.grid; x.beginPath();x.moveTo(pad.l,y);x.lineTo(F.W-pad.r,y);x.stroke(); x.fillStyle=C.soft; x.fillText(v+" UA",pad.l-4,y+3); });
+        x.textAlign="center"; [1960,1980,2000,2020].forEach(y=>{ x.fillStyle=C.soft; x.fillText(y,X(y),F.H-8); });
+        const yh=Yv(121); x.strokeStyle="rgba(185,140,255,.4)"; x.setLineDash([4,4]); x.beginPath();x.moveTo(pad.l,yh);x.lineTo(F.W-pad.r,yh);x.stroke(); x.setLineDash([]); x.fillStyle=C.viol; x.textAlign="left"; x.fillText("héliopause (121 UA)",pad.l+4,yh-4);
+        const g=x.createLinearGradient(0,pad.t,0,F.H-pad.b); g.addColorStop(0,"rgba(95,185,212,.25)"); g.addColorStop(1,"rgba(95,185,212,0)");
+        x.beginPath(); D.forEach((d,i)=>{const xx=X(d.y),yy=Yv(d.au); i?x.lineTo(xx,yy):x.moveTo(xx,yy);}); x.lineTo(X(D[D.length-1].y),Yv(0)); x.lineTo(X(D[0].y),Yv(0)); x.closePath(); x.fillStyle=g; x.fill();
+        x.strokeStyle=C.azurB; x.lineWidth=2.4; x.beginPath(); D.forEach((d,i)=>{const xx=X(d.y),yy=Yv(d.au); i?x.lineTo(xx,yy):x.moveTo(xx,yy);}); x.stroke();
+        D.forEach(d=>{ const big=!!d.ev; x.fillStyle=big?C.goldB:C.azurB; x.beginPath();x.arc(X(d.y),Yv(d.au),big?3.6:2.4,0,7);x.fill(); });
+        if(hov){ x.fillStyle=C.goldB; x.beginPath();x.arc(X(hov.y),Yv(hov.au),4.6,0,7);x.fill(); } }
+      ro(null);
+      F.cv.addEventListener("mousemove",ev=>{ const r=F.cv.getBoundingClientRect(),mx=ev.clientX-r.left; let b=null,bd=1e9; D.forEach(d=>{const dd=Math.abs(X(d.y)-mx); if(dd<bd){bd=dd;b=d;}}); hov=b; draw(); ro(b); if(b){ tip.classList.add("on"); tip.innerHTML=`<div class="tn">${b.who} · ${b.y}</div><div class="tr"><b>${b.au} UA</b> du Soleil</div>`; place(ev);} });
+      F.cv.addEventListener("mouseleave",()=>{ hov=null; draw(); ro(null); tip.classList.remove("on"); });
+      new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)draw();}),{threshold:.1}).observe(F.cv);
+      addEventListener("resize",()=>requestAnimationFrame(draw),{passive:true}); draw();
+    }
+
+    /* Répartitions */
+    function bars(id,arr){ const el=document.getElementById(id); if(!el||!arr.length) return; const max=Math.max(...arr.map(c=>c[1]));
+      el.innerHTML=arr.map(([lab,n])=>`<div class="bar-row"><span class="bar-lab" title="${lab}">${lab}</span><div class="bar-track"><div class="bar-fill" style="width:${(n/max*100).toFixed(1)}%"></div></div><span class="bar-val">${n}</span></div>`).join(""); }
+    const L2={sonde:"Sondes",satellite:"Satellites",rover:"Rovers",lander:"Atterrisseurs",telspatial:"Tél. spatiaux",telsol:"Tél. au sol",habite:"Vols habités"};
+    const cc={}; E.forEach(e=>cc[e.cat]=(cc[e.cat]||0)+1);
+    bars("byCat",Object.entries(cc).map(([k,n])=>[L2[k]||k,n]).sort((a,b)=>b[1]-a[1]));
+    document.getElementById("catN").textContent=E.length+" engins";
+    const ac={}; E.forEach(e=>{ const a=e.ag.split(/[\/(]/)[0].trim(); ac[a]=(ac[a]||0)+1; });
+    bars("byAg",Object.entries(ac).sort((a,b)=>b[1]-a[1]).slice(0,8));
   })();
 
   /* progress bar */
