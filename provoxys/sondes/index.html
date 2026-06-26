@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>L'Odyssée des Machines — Sondes, satellites &amp; télescopes — Empire contre Intox</title>
+  <meta name="description" content="Soixante-dix ans d'exploration : satellites, sondes interplanétaires et télescopes, de Sputnik (1957) aux missions 2030+. Modèles 3D interactifs, fiches détaillées, données vérifiées et sourcées. Avec « Les Femmes de l'Espace » de Lalie. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+      --azur:#5fb9d4; --azur-bright:#7fd4e8; --ember:#e0883f; --viol:#b98cff; --verd:#6ee08a;
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --mono:"JetBrains Mono",ui-monospace,monospace;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+      --hero:url("assets/sondes-hero.png");
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(95,185,212,.15), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.13), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(224,136,63,.08), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px; mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.6),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(95,185,212,.6),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(224,136,63,.4),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.32),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate; }
+    .grain { position:fixed; inset:-50%; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--azur),var(--gold-bright),var(--ember)); box-shadow:0 0 14px rgba(243,217,138,.55); }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(95,185,212,.28); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02); background-color:var(--abyss); }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2;
+      background:linear-gradient(86deg,rgba(3,6,13,.94) 0%,rgba(3,6,13,.72) 36%,rgba(3,6,13,.18) 68%,rgba(3,6,13,.5) 100%),linear-gradient(180deg,rgba(3,6,13,.1) 0%,rgba(3,6,13,.28) 54%,var(--void) 100%); }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1; background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh; display:grid; grid-template-columns:minmax(0,780px) minmax(250px,340px); gap:46px; align-items:end; }
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:18ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.5rem,6.6vw,5.4rem); line-height:.96; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil { background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 40%,#fff6dc 50%,var(--gold-bright) 60%,var(--gold-deep)); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% 0; } }
+    .hero-lead { max-width:60ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-quote { max-width:60ch; margin:22px 0 0; padding-left:20px; border-left:2px solid var(--azur); font-family:var(--serif); font-style:italic; color:var(--parch); font-size:clamp(1.05rem,1.5vw,1.26rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px; font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px); transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+    .button.atlas { color:var(--void); border-color:transparent; background:linear-gradient(140deg,var(--azur-bright),var(--azur) 58%,#3f93ad); box-shadow:0 0 0 1px rgba(127,212,232,.4),0 14px 38px rgba(95,185,212,.30),inset 0 1px 0 rgba(255,255,255,.45); animation:atlasPulse 3.4s var(--ease) infinite; }
+    .button.atlas:hover { animation:none; transform:translateY(-3px); box-shadow:0 0 0 1px rgba(127,212,232,.6),0 22px 54px rgba(95,185,212,.5),inset 0 1px 0 rgba(255,255,255,.55); }
+    .button.atlas .star,.atlas-link .star { filter:drop-shadow(0 0 5px rgba(255,255,255,.7)); }
+    @keyframes atlasPulse { 0%,100% { box-shadow:0 0 0 1px rgba(127,212,232,.4),0 14px 34px rgba(95,185,212,.26),inset 0 1px 0 rgba(255,255,255,.45); } 50% { box-shadow:0 0 0 1px rgba(127,212,232,.72),0 16px 48px rgba(95,185,212,.52),inset 0 1px 0 rgba(255,255,255,.5); } }
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1 1 auto; min-width:0; -webkit-overflow-scrolling:touch;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent); }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+    .atlas-link { flex:0 0 auto; display:inline-flex; align-items:center; gap:7px; min-height:40px; padding:0 16px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--void); border:1px solid transparent; border-radius:2px; background:linear-gradient(140deg,var(--azur-bright),var(--azur) 60%,#3f93ad); white-space:nowrap; box-shadow:0 6px 18px rgba(95,185,212,.30); transition:transform .3s var(--ease),box-shadow .3s var(--ease); }
+    .atlas-link:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(95,185,212,.46); }
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--azur),var(--gold-bright),var(--ember)); }
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.7rem,3.4vw,2.7rem); line-height:1.06; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:128px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time { font-family:var(--roman); font-weight:600; font-size:.8rem; letter-spacing:.04em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(95,185,212,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"✦"; position:absolute; left:0; top:0; color:var(--azur); font-size:.8em; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .prose em { font-style:italic; font-weight:400; }
+    .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+
+    .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
+    .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); }
+    .model3d { margin:6px 0 36px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.55); box-shadow:var(--shadow); }
+    .model3d .m3d-frame { position:relative; width:100%; aspect-ratio:16/9; background:radial-gradient(120% 130% at 50% 35%, rgba(95,185,212,.10), transparent 62%); }
+    .model3d iframe { position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+    .model3d figcaption { display:flex; align-items:center; gap:10px; padding:13px 20px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); flex-wrap:wrap; }
+    .model3d figcaption::before { content:"◈"; color:var(--azur); }
+    .model3d figcaption .m3d-hint { color:var(--muted); font-family:var(--serif); font-style:italic; font-weight:400; letter-spacing:0; text-transform:none; font-size:.92rem; }
+    .model3d figcaption a { margin-left:auto; font-family:var(--serif); font-style:italic; font-weight:400; letter-spacing:0; text-transform:none; color:var(--soft); white-space:nowrap; }
+    .model3d figcaption a:hover { color:var(--azur-bright); }
+    @media (max-width:640px){ .model3d .m3d-frame { aspect-ratio:4/3; } .model3d figcaption .m3d-hint { display:none; } }
+
+    .explain-block { margin:28px 0; border:1px solid var(--line); border-radius:3px; overflow:hidden;
+      background:radial-gradient(120% 140% at 0% 0%, rgba(214,172,85,.11), transparent 55%), linear-gradient(180deg, rgba(14,26,46,.52), rgba(7,12,26,.64)); box-shadow:0 18px 50px rgba(0,0,0,.28); }
+    .explain-block .xb-head { display:flex; align-items:center; gap:11px; padding:11px 22px; border-bottom:1px solid var(--line);
+      background:rgba(5,8,17,.42); font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); }
+    .explain-block .xb-head::before { content:"?"; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; flex:none;
+      border:1px solid var(--gold); border-radius:50%; font-family:var(--serif); font-style:italic; font-size:13px; color:var(--gold-bright); background:rgba(214,172,85,.08); }
+    .explain-block .xb-head .xb-tag { margin-left:auto; font-family:var(--serif); font-style:italic; font-weight:400; letter-spacing:.02em; text-transform:none; color:var(--soft); font-size:.78rem; }
+    .explain-block .xb-body { padding:18px 22px; }
+    .explain-block .xb-body p { margin:0 0 14px; color:var(--muted); font-size:1.02rem; line-height:1.66; }
+    .explain-block .xb-body p:last-child { margin-bottom:0; }
+    .explain-block .xb-body strong { color:var(--parch); font-weight:600; }
+
+    /* L'apport de Lalie — encart violet (Les Femmes de l'Espace) */
+    .lalie-note { margin:26px 0; border:1px solid var(--line); border-left:3px solid var(--viol); border-radius:3px; overflow:hidden;
+      background:radial-gradient(120% 140% at 0% 0%, rgba(185,140,255,.12), transparent 55%), linear-gradient(180deg, rgba(20,16,40,.5), rgba(7,12,26,.6)); }
+    .lalie-note .ln-head { display:flex; align-items:center; gap:11px; padding:11px 20px; border-bottom:1px solid var(--line-2);
+      font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--viol); }
+    .lalie-note .ln-head::before { content:"✦"; color:var(--viol); }
+    .lalie-note .ln-head .ln-tag { margin-left:auto; font-family:var(--serif); font-style:italic; font-weight:400; letter-spacing:.02em; text-transform:none; color:var(--soft); font-size:.78rem; }
+    .lalie-note .ln-body { padding:16px 20px; }
+    .lalie-note .ln-body p { margin:0 0 12px; color:var(--muted); font-size:1rem; line-height:1.62; }
+    .lalie-note .ln-body p:last-child { margin-bottom:0; }
+    .lalie-note .ln-body strong { color:#d9c2ff; font-weight:600; }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .side-note p:last-child { margin-bottom:0; }
+    .side-note.intox h3 { color:var(--ember); }
+    .side-note .loc { font-family:var(--mono); font-size:.78rem; color:var(--azur-bright); }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    .dtable-wrap { overflow-x:auto; margin:14px 0 26px; }
+    .dtable { width:100%; border-collapse:collapse; border:1px solid var(--line); border-radius:3px; overflow:hidden; font-size:.96rem; min-width:520px; }
+    .dtable caption { text-align:left; padding:0 0 14px; color:var(--muted); font-style:italic; font-family:var(--serif); }
+    .dtable th { text-align:left; padding:13px 15px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); background:rgba(214,172,85,.06); border-bottom:1px solid var(--line); }
+    .dtable td { padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--line-2); color:var(--muted); }
+    .dtable tr:last-child td { border-bottom:0; }
+    .dtable td.k { color:var(--parch); font-weight:600; white-space:nowrap; }
+    .dtable tr:hover td { background:rgba(244,236,216,.03); }
+    .dtable .mono { font-family:var(--mono); font-size:.86rem; color:var(--azur-bright); }
+
+    /* Frise interactive des jalons */
+    .milestones { margin:6px 0 22px; border:1px solid var(--line); border-radius:3px; overflow:hidden; box-shadow:var(--shadow);
+      background:radial-gradient(130% 130% at 50% 0%, rgba(95,185,212,.08), transparent 60%), linear-gradient(180deg, rgba(14,26,46,.5), rgba(7,12,26,.62)); }
+    .milestones .ms-head { display:flex; align-items:center; gap:12px; padding:12px 20px; border-bottom:1px solid var(--line); background:rgba(5,8,17,.42); font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--azur-bright); }
+    .milestones .ms-head::before { content:"◆"; color:var(--azur); font-size:10px; }
+    .milestones .ms-head .ms-tag { margin-left:auto; font-family:var(--mono); letter-spacing:.04em; text-transform:none; color:var(--soft); font-weight:400; font-size:.66rem; }
+    .ms-rail { display:flex; gap:0; overflow-x:auto; padding:30px 18px 16px; position:relative; scrollbar-width:thin;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent); mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent); }
+    .ms-rail::before { content:""; position:absolute; left:18px; right:18px; top:37px; height:2px; background:linear-gradient(90deg, var(--azur), var(--gold), var(--ember)); opacity:.45; }
+    .ms-node { flex:0 0 auto; min-width:92px; display:flex; flex-direction:column; align-items:center; gap:9px; cursor:pointer; position:relative; border:0; background:none; padding:0 6px; }
+    .ms-node .ms-dot { width:13px; height:13px; border-radius:50%; border:2px solid var(--azur); background:var(--void); transition:all .3s var(--ease); position:relative; z-index:1; }
+    .ms-node .ms-year { font-family:var(--roman); font-weight:700; font-size:.74rem; letter-spacing:.05em; color:var(--soft); transition:color .3s var(--ease); }
+    .ms-node .ms-cap { font-family:var(--serif); font-size:.68rem; color:var(--muted); text-align:center; max-width:96px; line-height:1.3; }
+    .ms-node:hover .ms-dot { border-color:var(--gold); transform:scale(1.15); }
+    .ms-node.active .ms-dot { background:var(--gold-bright); border-color:var(--gold); box-shadow:0 0 12px rgba(243,217,138,.6); transform:scale(1.35); }
+    .ms-node.active .ms-year { color:var(--gold-bright); }
+    .ms-node:focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+    .ms-detail { padding:16px 22px; border-top:1px solid var(--line-2); }
+    .ms-detail h4 { margin:0 0 6px; font-family:var(--roman); font-weight:600; font-size:.82rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); }
+    .ms-detail h4 b { color:var(--gold-bright); }
+    .ms-detail p { margin:0; color:var(--muted); font-size:1rem; line-height:1.6; }
+
+    /* Appel vers l'atlas interactif */
+    .atlas-cta { display:flex; gap:20px; align-items:center; flex-wrap:wrap; margin:24px 0; padding:22px 24px; border:1px solid var(--line); border-radius:4px;
+      background:radial-gradient(120% 130% at 0% 0%, rgba(95,185,212,.13), transparent 58%), linear-gradient(180deg, rgba(14,26,46,.55), rgba(7,12,26,.62)); box-shadow:var(--shadow); }
+    .atlas-cta .ac-kick { display:block; font-family:var(--roman); font-size:.56rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--azur); margin-bottom:8px; }
+    .atlas-cta h3 { font-family:var(--roman); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); font-size:1.18rem; margin:0 0 8px; }
+    .atlas-cta p { margin:0; color:var(--muted); font-size:.98rem; }
+    .atlas-cta .ac-txt { flex:1 1 320px; }
+    .atlas-cta .ac-btn { flex:none; font-family:var(--roman); font-size:.66rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; padding:14px 24px; border-radius:3px;
+      background:linear-gradient(120deg, var(--azur), var(--azur-bright)); color:var(--void); transition:all .3s var(--ease); white-space:nowrap; }
+    .atlas-cta .ac-btn:hover { filter:brightness(1.1); transform:translateY(-2px); }
+
+    /* Annexe — fiches techniques */
+    .fiches-search { width:100%; margin:6px 0 18px; padding:12px 16px; border:1px solid var(--line); border-radius:3px; background:rgba(5,8,17,.5); color:var(--ink); font-family:var(--mono); font-size:.86rem; letter-spacing:.02em; }
+    .fiches-search::placeholder { color:var(--soft); } .fiches-search:focus { outline:none; border-color:rgba(95,185,212,.5); }
+    .fiche-cat { border:1px solid var(--line); border-radius:3px; margin:12px 0; background:rgba(5,8,17,.28); overflow:hidden; }
+    .fiche-cat > summary { cursor:pointer; padding:15px 20px; font-family:var(--roman); font-weight:700; font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); list-style:none; display:flex; align-items:center; gap:13px; transition:background .3s var(--ease); }
+    .fiche-cat > summary:hover { background:rgba(214,172,85,.05); }
+    .fiche-cat > summary::-webkit-details-marker { display:none; }
+    .fiche-cat > summary::before { content:"+"; display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; flex:none; border:1px solid var(--gold); border-radius:50%; font-family:var(--mono); font-size:.9rem; color:var(--gold-bright); }
+    .fiche-cat[open] > summary::before { content:"–"; }
+    .fiche-cat > summary .fc-count { margin-left:auto; font-family:var(--mono); font-size:.7rem; letter-spacing:.04em; color:var(--soft); }
+    .fiche-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(286px,1fr)); gap:14px; padding:2px 16px 18px; }
+    .fiche-tech { border:1px solid var(--line-2); border-radius:3px; background:linear-gradient(165deg, rgba(14,26,46,.5), rgba(7,12,26,.6)); padding:15px 17px; display:flex; flex-direction:column; gap:9px; transition:border-color .35s var(--ease), transform .35s var(--ease); }
+    .fiche-tech:hover { border-color:rgba(95,185,212,.4); transform:translateY(-3px); }
+    .fiche-tech .ft-name { font-family:var(--roman); font-weight:700; font-size:.92rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink); }
+    .fiche-tech .ft-sub { font-family:var(--serif); font-style:italic; color:var(--soft); font-size:.82rem; margin-top:-5px; }
+    .fiche-tech .ft-specs { display:grid; grid-template-columns:auto 1fr; gap:4px 12px; margin:2px 0; font-family:var(--mono); font-size:.71rem; line-height:1.3; }
+    .fiche-tech .ft-specs dt { color:var(--soft); white-space:nowrap; } .fiche-tech .ft-specs dd { color:var(--azur-bright); margin:0; }
+    .fiche-tech .ft-note { color:var(--muted); font-size:.85rem; line-height:1.5; border-top:1px solid var(--line-2); padding-top:9px; }
+    .fiche-tech.hidden, .fiche-cat.hidden { display:none; }
+    @media (max-width:560px){ .fiche-grid { grid-template-columns:1fr; } }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(95,185,212,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(95,185,212,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left:-14px; }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+    .byline .who .note { font-family:var(--serif); font-style:italic; font-size:.74rem; letter-spacing:0; text-transform:none; color:var(--soft); margin-top:2px; }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left:-22px; }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .credit-band .note { font-family:var(--serif); font-style:italic; font-size:.92rem; color:var(--muted); margin-top:1px; }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .hero-inner > div > *:nth-child(5){ animation-delay:.5s; }
+    .js .signal-board { animation-delay:.5s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid { grid-template-columns:1fr; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+      .timeline-row { grid-template-columns:1fr; gap:4px; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-waterline"></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier XIX · Exploration spatiale</p>
+          <h1>L'Odyssée des <span class="foil">Machines</span></h1>
+          <p class="hero-lead">Soixante-dix ans d'yeux et de voyageuses : satellites qui veillent, sondes qui s'exilent, télescopes qui scrutent. De Sputnik (1957) aux rotors de Dragonfly sur Titan — chaque masse, chaque date, chaque distance, mesurée, vérifiée, sourcée.</p>
+          <p class="hero-quote">« En 1957, l'humanité ne possédait pas un seul objet hors de l'atmosphère. En 2026, elle en compte des dizaines de milliers — et deux d'entre eux, lancés il y a près d'un demi-siècle, murmurent encore depuis l'espace entre les étoiles. »</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#familles">Lire le dossier</a>
+            <a class="button atlas" href="atlas.html">Atlas des sondes <span class="star">✦</span></a>
+            <a class="button" href="../../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board" aria-label="Repères">
+          <div class="signal"><span>Le premier</span><strong>Sputnik 1 — une sphère de 58 cm, un « bip-bip » qui réveille le monde (1957).</strong></div>
+          <div class="signal"><span>La voyageuse</span><strong>Voyager 1 — objet humain le plus lointain, à ≈ 173 UA, dans l'espace interstellaire.</strong></div>
+          <div class="signal"><span>Le plus grand œil</span><strong>L'ELT de l'ESO — un miroir de 39 m en 798 éclats de verre.</strong></div>
+          <div class="signal"><span>Le cerveau</span><strong>« Les Femmes de l'Espace » — par Lalie : celles sans qui rien ne vole.</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation du dossier">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Haut de page">
+          <img class="brand-mark" src="../../ymir-lalie/assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Sondes &amp; Satellites</span>
+        </a>
+        <button class="mobile-menu" aria-expanded="false" aria-controls="nav">Sommaire</button>
+        <div class="nav" id="nav">
+          <a href="#familles">Familles</a>
+          <a href="#aube">L'aube</a>
+          <a href="#satellites">Satellites</a>
+          <a href="#sondes">Sondes</a>
+          <a href="#telescopes">Télescopes</a>
+          <a href="#demain">Demain</a>
+          <a href="#femmes">Les Femmes</a>
+          <a href="#fiches">Fiches</a>
+        </div>
+        <a class="atlas-link" href="atlas.html">Atlas <span class="star">✦</span></a>
+        <a class="home-link" href="../../index.html">Accueil</a>
+      </div>
+      <div class="progress"><span></span></div>
+    </nav>
+
+    <main>
+      <!-- INTRO -->
+      <section class="intro-band reveal" aria-label="Introduction">
+        <div class="manifesto">
+          <p class="section-kicker">Le fil conducteur</p>
+          <h2>Trois familles, une seule quête</h2>
+          <p>Tout ce qui vole au-dessus de nos têtes appartient à l'une de quatre familles — les confondre, c'est s'interdire de comprendre l'aventure spatiale. Ce dossier les distingue d'emblée, puis déroule soixante-dix ans d'ingénierie, du premier bip de Sputnik aux miroirs de quarante mètres.</p>
+          <p>Le contenu est de <strong>Provoxys</strong> ; la vérification des chiffres et la traçabilité, de l'<strong>Empire contre Intox</strong> ; et à chaque étape, <strong>Lalie</strong> nomme celles qu'on oublie — « Les Femmes de l'Espace », le cerveau et l'architecte de ces machines.</p>
+        </div>
+        <div class="timeline" aria-label="Repères chronologiques">
+          <div class="timeline-row"><time>1957</time><p>Sputnik 1 — premier satellite ; l'ère spatiale s'ouvre dans la peur et la vitesse.</p></div>
+          <div class="timeline-row"><time>1977</time><p>Voyager 1 &amp; 2 — le Grand Tour des géantes, puis l'espace interstellaire.</p></div>
+          <div class="timeline-row"><time>1990</time><p>Hubble — l'œil parfait au-dessus de l'atmosphère.</p></div>
+          <div class="timeline-row"><time>2015</time><p>New Horizons révèle le cœur de glace de Pluton.</p></div>
+          <div class="timeline-row"><time>2030+</time><p>ELT, Dragonfly, retours d'échantillons : l'odyssée continue.</p></div>
+        </div>
+      </section>
+
+      <section class="learning-panel reveal" aria-label="Objectifs">
+        <p class="section-kicker">Ce que ce dossier vous apprend</p>
+        <h2>Du bip de Sputnik aux biosignatures de Titan : la chaîne complète.</h2>
+        <div class="learning-grid">
+          <div class="learning-item"><span>L'ingénierie</span><p>Matériaux, énergie (chimique, solaire, <strong>nucléaire/RTG</strong>), propulsion, télécommunications : survivre là où l'humain ne peut pas.</p></div>
+          <div class="learning-item"><span>Les familles</span><p>Orbites (LEO, MEO, GEO), types de sondes, télescopes spatiaux et terrestres : une taxonomie pour ne plus jamais confondre.</p></div>
+          <div class="learning-item"><span>Les premières</span><p>Premier satellite, première face cachée, premier alunissage en douceur, premier objet interstellaire : la chaîne des records.</p></div>
+        </div>
+      </section>
+
+      <!-- CH 1 — FAMILLES -->
+      <section class="chapter reveal" id="familles" aria-labelledby="c1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 1 · La taxonomie</p><h2 id="c1">Satellite, sonde, télescope : qui fait quoi</h2></div>
+          <div class="chapter-number">01</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Quatre familles de machines, une seule quête : voir, comprendre, et ne pas se laisser raconter d'histoires.</p>
+            <div class="explain-block">
+              <div class="xb-head">Explication <span class="xb-tag">les quatre familles</span></div>
+              <div class="xb-body">
+                <p>Un <strong>satellite</strong> tourne en rond. Il reste prisonnier de la gravité d'un corps — presque toujours la Terre — et y accomplit une mission <strong>continue ou répétée</strong> : téléphoner, guider, photographier, surveiller. On peut parfois le réparer ou le remplacer.</p>
+                <p>Une <strong>sonde</strong>, elle, fait ses adieux. Elle s'arrache à l'attraction terrestre pour un voyage vers une autre planète, une comète, ou le vide entre les étoiles. Autonomie totale, radiations dures, ordres reçus à des <strong>heures-lumière</strong> de distance, et, le plus souvent, <strong>aucun retour</strong>.</p>
+                <p>Un <strong>télescope</strong> regarde loin. <strong>Dans l'espace</strong> (Hubble, Webb), il jouit d'une vision parfaite, sans le voile de l'air — mais son miroir est limité par la coiffe de la fusée. <strong>Au sol</strong>, il s'offre des miroirs colossaux, au prix d'une atmosphère turbulente qu'il corrige en temps réel.</p>
+              </div>
+            </div>
+            <p>Les distinguer, ce n'est pas pédanterie : c'est la condition pour lire correctement chaque exploit. Tout le reste du dossier en découle — l'aube de l'ère spatiale, puis les trois familles tour à tour.</p>
+            <div class="explain-block">
+              <div class="xb-head">Explication <span class="xb-tag">le RTG : alimenter une sonde sans Soleil</span></div>
+              <div class="xb-body">
+                <p>Au-delà de Jupiter, la lumière solaire devient trop faible pour des panneaux. La parade : le <strong>générateur thermoélectrique à radioisotope (RTG)</strong>. Un bloc de <strong>plutonium-238</strong>, en se désintégrant, dégage une chaleur constante ; des centaines de thermocouples convertissent l'écart de température entre ce bloc brûlant et l'espace glacé en électricité — sans aucune pièce mobile, pendant des <strong>décennies</strong>. C'est le cœur nucléaire des Voyager, de Cassini, de New Horizons et de Perseverance.</p>
+              </div>
+            </div>
+          </article>
+          <aside class="side-note intox">
+            <h3>Anti-intox · un satellite ne « flotte » pas, il tombe</h3>
+            <p>On imagine les satellites « suspendus » dans le vide. Faux : un satellite <strong>tombe en permanence</strong> vers la Terre — mais il file si vite de côté (~7,8 km/s en orbite basse) que le sol se dérobe sous lui à la même cadence qu'il chute. Cette chute libre éternelle, c'est l'<strong>orbite</strong>.</p>
+            <p>L'apesanteur à bord de l'ISS n'a rien à voir avec une absence de gravité (elle vaut encore ~90 % de celle au sol) : tout y tombe ensemble, station et occupants. Voilà pourquoi on flotte.</p>
+            <div class="tag-list"><span class="tag">LEO · MEO · GEO</span><span class="tag">Chute libre</span><span class="tag">RTG</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- CRÉDIT -->
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <span class="credit-avatars">
+          <img src="provoxys.jpeg" alt="Avatar de Provoxys">
+          <img src="lalie.jpeg" alt="Avatar de Lalie">
+          <img src="samlepirate.jpeg" alt="Avatar de Samlepirate">
+        </span>
+        <div class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>Provoxys &amp; Lalie</strong>
+          <span class="note">avec le soutien de Samlepirate (Atlas &amp; intégration)</span>
+        </div>
+      </section>
+
+      <!-- CH 2 — L'AUBE -->
+      <section class="chapter reveal" id="aube" aria-labelledby="c2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 2 · 1957-1962</p><h2 id="c2">L'aube de l'ère spatiale</h2></div>
+          <div class="chapter-number">02</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Il a suffi de quatre ans. Quatre ans entre une sphère qui ne fait que biper et un satellite qui relaie la télévision à travers un océan. L'ère spatiale ne s'ouvre pas en douceur : elle s'ouvre dans la peur, l'orgueil et la vitesse.</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/aube-spatiale.png" alt="Sputnik 1 en orbite basse au-dessus de la courbure de la Terre, 1957" loading="lazy">
+              <figcaption>Sputnik 1 au terminateur — la sphère qui a réveillé le monde, 4 octobre 1957</figcaption>
+            </figure>
+            <h3 class="group-title">Sputnik 1 — la sphère qui a réveillé le monde</h3>
+            <p>Le 4 octobre 1957, une fusée R-7 s'arrache de Baïkonour. À son sommet, une boule de métal poli de 58 cm. Quelques minutes plus tard, les radioamateurs du monde entier captent un <em>bip… bip… bip…</em> tombé du ciel. <strong>Sputnik 1</strong>, le premier objet jamais placé en orbite, ne transporte presque rien — et change tout. En Occident, c'est l'effroi : qui met une sphère en orbite peut y mettre une ogive. De cette panique naîtra, dix mois plus tard, la NASA.</p>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="Sputnik 1 — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/a9ae7f57c7cf4c0ca9119cf3b6ef4c2f/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>Sputnik 1, en 3D <span class="m3d-hint">— faites-le pivoter : la sphère polie de 58 cm et ses quatre antennes-fouet ; à l'intérieur, un simple émetteur radio et 51 kg de batteries</span> <a href="https://sketchfab.com/3d-models/sputnik-1-a9ae7f57c7cf4c0ca9119cf3b6ef4c2f" target="_blank" rel="noopener">Modèle Sketchfab ↗</a></figcaption>
+            </figure>
+            <h3 class="group-title">Explorer 1 — la première vraie découverte</h3>
+            <p>La riposte américaine met du temps (l'échec de Vanguard, qui explose au sol, est retransmis en direct). Mais quand <strong>Explorer 1</strong> s'envole le 31 janvier 1958, il fait mieux que rattraper : il <em>découvre</em>. Son compteur Geiger sature par moments, comme aveuglé. L'explication viendra de James Van Allen : la Terre est ceinte de <strong>vastes anneaux de particules chargées</strong>, piégées par son champ magnétique. La physique spatiale moderne vient de naître.</p>
+            <h3 class="group-title">Telstar 1 — l'Atlantique aboli</h3>
+            <p>Cinq ans après Sputnik, l'espace devient utile. Le 10 juillet 1962, <strong>Telstar 1</strong> inaugure le premier satellite de <strong>communications actif</strong> : le 23 juillet, un drapeau et une allocution de Kennedy traversent l'Atlantique <em>en direct</em>. Le monde vient de rétrécir.</p>
+            <div class="lalie-note">
+              <div class="ln-head">L'apport de Lalie <span class="ln-tag">Les Femmes de l'Espace</span></div>
+              <div class="ln-body">
+                <p>Derrière ces premières trajectoires, des <strong>calculatrices humaines</strong>. <strong>Katherine Johnson</strong> (NASA) calcule à la main, avec une précision absolue, les orbites des premières missions. <strong>Dorothy Vaughan</strong> apprend seule le <strong>Fortran</strong> pour automatiser ces calculs, et <strong>Mary Jackson</strong> teste en soufflerie la résistance des structures au lancement. Sans elles, ces sphères ne seraient jamais montées droit.</p>
+              </div>
+            </div>
+          </article>
+          <aside class="side-note intox">
+            <h3>Anti-intox · Sputnik n'a rien « espionné »</h3>
+            <p>On lui prête parfois des caméras. En réalité, Sputnik 1 ne portait <strong>qu'un émetteur radio</strong> : sa seule arme était symbolique, et scientifique (sonder l'ionosphère).</p>
+            <p>Telstar, lui, n'a pas été « usé » par l'espace : il a été tué par une <strong>explosion nucléaire</strong> — l'essai américain <em>Starfish Prime</em> (1962) qui gonfla les ceintures de radiations.</p>
+            <p class="loc">◷ Sputnik &amp; Explorer 1 : détruits (rentrée). Telstar 1 : inerte, toujours en orbite (~950 × 5 600 km).</p>
+            <div class="tag-list"><span class="tag">1957-1962</span><span class="tag">Van Allen</span><span class="tag">Starfish Prime</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- CH 3 — SATELLITES -->
+      <section class="chapter reveal" id="satellites" aria-labelledby="c3">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 3 · L'infrastructure invisible</p><h2 id="c3">Les satellites</h2></div>
+          <div class="chapter-number">03</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Au-dessus de nous, à chaque instant, des milliers de machines tournent. Elles téléphonent, guident, photographient, préviennent. On ne les voit jamais ; on dépendrait pourtant à peine moins d'elles que de l'électricité. Ce qui les distingue d'une sonde tient en un mot : elles <strong>restent</strong>.</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/satellites-terre.png" alt="La Terre ceinte de satellites, vue de l'orbite" loading="lazy">
+              <figcaption>L'infrastructure invisible — observation, communications, navigation, en orbite autour de la Terre</figcaption>
+            </figure>
+            <div class="explain-block">
+              <div class="xb-head">Explication <span class="xb-tag">LEO, MEO, GEO : l'altitude fait le métier</span></div>
+              <div class="xb-body">
+                <p><strong>LEO</strong> (~160-2 000 km) : un tour en ~90 min, faible latence — l'observation fine, l'ISS, Starlink. <strong>MEO</strong> (~20 000 km) : le domaine de la <strong>navigation</strong> (GPS, Galileo). <strong>GEO</strong> (~35 786 km) : à cette altitude précise, le satellite tourne <em>exactement</em> à la vitesse de la Terre — il semble <strong>immobile</strong> dans le ciel. Parfait pour la télévision et la météo.</p>
+              </div>
+            </div>
+            <h3 class="group-title">Hubble &amp; Webb — les yeux au-dessus de l'air</h3>
+            <p>Lancé en 1990, <strong>Hubble</strong> a d'abord été la risée de l'Amérique : son miroir de 2,4 m, poli selon une mauvaise mesure, rendait des images floues. En 1993, des astronautes lui posent <em>des lunettes</em> (COSTAR), et l'aveugle devient visionnaire — Piliers de la Création, expansion accélérée de l'Univers, premières atmosphères d'exoplanètes.</p>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="Hubble — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/640764e1a20a4c7ea9718a83a05bcb7f/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>Hubble, en 3D <span class="m3d-hint">— le tube de 13 m, ses deux ailes solaires, la trappe ouverte sur le miroir de 2,4 m ; en orbite basse, en lente décroissance vers 2034-2038</span> <a href="https://sketchfab.com/3d-models/hubble-space-telescope-640764e1a20a4c7ea9718a83a05bcb7f" target="_blank" rel="noopener">Modèle Sketchfab · NASA ↗</a></figcaption>
+            </figure>
+            <p>Son successeur, le <strong>James Webb</strong> (2021), voit dans l'<strong>infrarouge</strong> — donc plus loin, et plus tôt : la lueur des premières galaxies, étirée vers le rouge par 13 milliards d'années d'expansion. Il vit à 1,5 million de km, au point <strong>L2</strong>, derrière un pare-soleil de cinq voiles grand comme un court de tennis.</p>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="James Webb — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/6c92c08a672640afb58ee44d248fd0fe/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>James Webb, en 3D <span class="m3d-hint">— le miroir doré de 6,5 m en 18 segments, et le bouclier solaire à cinq couches qui le maintient à ~40 K</span> <a href="https://sketchfab.com/3d-models/jwst-james-webb-space-telescope-6c92c08a672640afb58ee44d248fd0fe" target="_blank" rel="noopener">Modèle Sketchfab ↗</a></figcaption>
+            </figure>
+            <p>D'autres satellites scrutent le ciel : <strong>Gaia</strong> a cartographié en 3D plus d'un milliard d'étoiles depuis L2 ; <strong>Cheops</strong> pèse la densité des exoplanètes par leurs transits. Et au sol comme en mer, quatre constellations de <strong>navigation</strong> (GPS, Galileo, GLONASS, BeiDou) nous situent au mètre près grâce à des horloges atomiques.</p>
+            <h3 class="group-title">Starlink — la plus grande constellation de l'histoire</h3>
+            <p>Depuis 2019, SpaceX déploie <strong>Starlink</strong> par grappes de soixante : la plus grande flotte jamais placée en orbite, un Internet à faible latence là où la fibre n'ira jamais — au prix d'un ciel strié de traînées, et d'une question vertigineuse de trafic orbital.</p>
+            <div class="lalie-note">
+              <div class="ln-head">L'apport de Lalie <span class="ln-tag">Les Femmes de l'Espace</span></div>
+              <div class="ln-body">
+                <p>Hubble doit son existence à <strong>Nancy Grace Roman</strong> — « la mère de Hubble », première femme cadre de la NASA, dont le plaidoyer obstiné a imposé l'idée d'un grand télescope spatial. Sans elle, l'astronomie moderne ne serait pas la même. Le futur observatoire <strong>Nancy Grace Roman</strong> (chapitre 6) porte son nom.</p>
+              </div>
+            </div>
+          </article>
+          <aside class="side-note intox">
+            <h3>Anti-intox · Webb n'a pas « remplacé » Hubble</h3>
+            <p>Les deux travaillent dans des <strong>lumières différentes</strong> (visible/UV pour Hubble, infrarouge pour Webb) et sont <strong>complémentaires</strong>. Webb ne « voit » pas le passé par magie : il capte une lumière que Hubble ne pouvait saisir.</p>
+            <p><strong>« 12 000 satellites Starlink »</strong> : un chiffre à dater. Lancés, opérationnels, déjà désorbités — trois nombres différents. Chaque satellite ne vit qu'~5 ans, puis brûle volontairement. Sans date, l'affirmation est déjà fausse.</p>
+            <p class="loc">◷ Hubble : ~515-540 km (actif). JWST &amp; Gaia : point L2. Starlink : ~550 km.</p>
+            <div class="tag-list"><span class="tag">Hubble · JWST</span><span class="tag">L2</span><span class="tag">Constellations</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- CH 4 — SONDES -->
+      <section class="chapter reveal" id="sondes" aria-labelledby="c4">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 4 · L'exil volontaire</p><h2 id="c4">Les sondes</h2></div>
+          <div class="chapter-number">04</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">Une sonde ne revient pas. Elle quitte la Terre comme on quitte un port sans billet de retour.</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/sondes-lointaines.png" alt="Une sonde survolant une lune glacée aux geysers, planète géante annelée en fond" loading="lazy">
+              <figcaption>Survol d'une lune glacée — geysers d'eau, anneaux et silence cosmique</figcaption>
+            </figure>
+            <h3 class="group-title">Les pionnières soviétiques</h3>
+            <p><strong>Luna 1</strong> (1959) est le premier objet à s'arracher à l'attraction terrestre ; <strong>Luna 2</strong>, le premier à toucher un autre monde ; <strong>Luna 3</strong>, le premier à photographier la <strong>face cachée de la Lune</strong> — grâce à un laboratoire photographique automatique qui développe le film à bord, dans le vide. Puis <strong>Luna 9</strong> (1966) réussit le premier <strong>atterrissage en douceur</strong>, prouvant que le sol lunaire est ferme, et les <strong>Lunokhod</strong> y posent les premiers rovers, dont les rétroréflecteurs servent encore aujourd'hui à mesurer la distance Terre-Lune au laser.</p>
+            <h3 class="group-title">Voyager — le Grand Tour et l'au-delà</h3>
+            <p>Une fois par siècle, les quatre planètes géantes s'alignent pour qu'une seule sonde les visite toutes. La NASA saisit l'occasion en 1977. Les <strong>Voyager</strong> livrent les volcans d'Io, les anneaux tressés de Saturne, les geysers de Triton. Puis elles ne s'arrêtent pas : en 2012, Voyager 1 franchit l'<strong>héliopause</strong> et devient le premier objet humain dans l'espace interstellaire. Elle porte le <strong>Disque d'or</strong> — un message dans une bouteille, gravé pour d'éventuels regards dans des millions d'années.</p>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="Voyager — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/81b6fa85964e4261b661aea487cc0fa8/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>Voyager, en 3D <span class="m3d-hint">— la parabole de 3,7 m, les trois RTG, la perche du magnétomètre de 13 m, et le Disque d'or ; à ≈ 173 UA, son signal met plus de 23 h à nous parvenir</span> <a href="https://sketchfab.com/3d-models/voyager-3d-printable-81b6fa85964e4261b661aea487cc0fa8" target="_blank" rel="noopener">Modèle Sketchfab · NASA ↗</a></figcaption>
+            </figure>
+            <h3 class="group-title">Cassini, New Horizons, Juno — les maîtres des géantes</h3>
+            <p><strong>Cassini-Huygens</strong> a passé treize ans autour de Saturne : lacs de méthane sur Titan, geysers et océan caché sur Encelade. Le 14 janvier 2005, l'atterrisseur européen Huygens s'est posé sur Titan — l'atterrissage le plus lointain jamais réalisé.</p>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="Cassini — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/bdd5161f099c4767bc061df181e9b37c/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>Cassini, en 3D <span class="m3d-hint">— la haute antenne de 4 m, les RTG, et la sonde Huygens accrochée au flanc ; vaporisée volontairement dans Saturne le 15 sept. 2017</span> <a href="https://sketchfab.com/3d-models/cassini-spacecraft-3d-printable-bdd5161f099c4767bc061df181e9b37c" target="_blank" rel="noopener">Modèle Sketchfab · NASA ↗</a></figcaption>
+            </figure>
+            <p><strong>New Horizons</strong> a frôlé Pluton en 2015 après neuf ans et demi de voyage, révélant un monde vivant : un glacier d'azote en forme de cœur, des montagnes de glace, une atmosphère bleutée. <strong>Juno</strong>, première sonde à énergie solaire autour de Jupiter, en sonde le cœur depuis 2016. Et plus près de nous, <strong>Perseverance</strong> cherche des traces de vie ancienne dans le cratère Jezero, tandis que son hélicoptère <strong>Ingenuity</strong> a réalisé le premier vol motorisé sur une autre planète.</p>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="Perseverance — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/c1c94e1f69df45eeae4a0a1d0d27e85b/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>Perseverance, en 3D <span class="m3d-hint">— le rover six-roues, son mât et son bras ; alimenté par RTG, il roule toujours dans le cratère Jezero</span> <a href="https://sketchfab.com/3d-models/perseverance-nasa-mars-landing-2021-c1c94e1f69df45eeae4a0a1d0d27e85b" target="_blank" rel="noopener">Modèle Sketchfab · CC0 ↗</a></figcaption>
+            </figure>
+            <p>D'autres veillent au plus près du Soleil : <strong>SOHO</strong>, sentinelle solaire postée en L1 depuis 30 ans ; <strong>Parker Solar Probe</strong>, qui est entrée dans l'atmosphère d'une étoile, à 6,1 millions de km de sa surface, devenant l'objet le plus rapide jamais construit ; et <strong>Solar Orbiter</strong>, qui a livré les premières images des pôles du Soleil.</p>
+            <div class="lalie-note">
+              <div class="ln-head">L'apport de Lalie <span class="ln-tag">Les Femmes de l'Espace</span></div>
+              <div class="ln-body">
+                <p>Pendant treize ans, <strong>Linda Spilker</strong> a dirigé la science de Cassini autour de Saturne, arbitrant chaque décision d'instrument. Et le 18 février 2021, c'est la voix de <strong>Swati Mohan</strong> qui annonça « <em>touchdown confirmed</em> » : elle pilotait le guidage de la descente de Perseverance. Plus loin, <strong>Ritu Karidhal</strong> et <strong>Muthayya Vanitha</strong> (ISRO) ont mené les missions martienne et lunaire de l'Inde.</p>
+              </div>
+            </div>
+          </article>
+          <aside class="side-note intox">
+            <h3>Anti-intox · les Voyager n'ont pas quitté le Système solaire</h3>
+            <p>Voyager 1 a quitté l'<strong>héliosphère</strong> (la bulle de vent solaire) — pas le Système solaire au sens <strong>gravitationnel</strong>. Au-delà s'étend encore le <strong>nuage d'Oort</strong>, qui appartient bien au Soleil : la sonde mettra ~300 ans à seulement l'atteindre.</p>
+            <p>La <strong>face « cachée »</strong> de la Lune n'est pas « obscure » : elle reçoit autant de soleil que la face visible. Et Parker ne « touche » pas la <em>surface</em> du Soleil — qui n'en a pas : elle traverse sa <strong>couronne</strong>.</p>
+            <p class="loc">◷ Voyager 1 ≈ 173 UA · New Horizons ≈ 64 UA · Juno : Jupiter · Cassini : dans Saturne · Huygens : sur Titan.</p>
+            <div class="tag-list"><span class="tag">Interstellaire</span><span class="tag">Golden Record</span><span class="tag">RTG</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- CH 5 — TÉLESCOPES AU SOL -->
+      <section class="chapter reveal" id="telescopes" aria-labelledby="c5">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 5 · Les plus grands yeux</p><h2 id="c5">Les télescopes au sol</h2></div>
+          <div class="chapter-number">05</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Si Hubble et Webb voient net, ils voient <strong>petit</strong> : leur miroir doit tenir dans une fusée. Au sol, on s'affranchit de cette limite — on bâtit des miroirs de dix, vingt, bientôt <strong>quarante mètres</strong>. Le prix à payer est l'atmosphère, qui brouille les images comme le fond d'une piscine agitée.</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/telescopes-sol.png" alt="Grand télescope au sol dans l'Atacama, lasers d'optique adaptative vers la Voie lactée" loading="lazy">
+              <figcaption>Atacama, la nuit — les lasers d'optique adaptative « dégèlent » le ciel sous la Voie lactée</figcaption>
+            </figure>
+            <div class="explain-block">
+              <div class="xb-head">Explication <span class="xb-tag">l'optique adaptative</span></div>
+              <div class="xb-body">
+                <p>Les étoiles scintillent parce que l'air déforme leur lumière. Pour l'annuler, les grands télescopes projettent un <strong>laser</strong> dans le ciel : il crée une fausse étoile artificielle, dont on connaît la forme exacte. En mesurant <strong>mille fois par seconde</strong> combien l'atmosphère la déforme, un miroir souple se tord en temps réel pour appliquer la correction inverse. Résultat : depuis le sol, des images aussi nettes que depuis l'espace — parfois plus.</p>
+              </div>
+            </div>
+            <p>La lignée est prestigieuse : le <strong>Hale</strong> (Palomar, 1948, 5 m) régna un demi-siècle ; les <strong>Keck</strong> (10 m, 1993) inventèrent le miroir segmenté ; le <strong>VLT</strong> de l'ESO aligne quatre télescopes de 8,2 m, l'observatoire au sol le plus productif du monde.</p>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="VLT (ESO) — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/9695be2ec99c4cea8963f777f264a6a5/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>Le dôme d'un télescope du VLT, en 3D <span class="m3d-hint">— modèle officiel de l'Observatoire européen austral (ESO), au Cerro Paranal (Chili)</span> <a href="https://sketchfab.com/3d-models/eso-vlt-unit-telescope-dome-9695be2ec99c4cea8963f777f264a6a5" target="_blank" rel="noopener">Modèle Sketchfab · ESO ↗</a></figcaption>
+            </figure>
+            <p>Demain, l'<strong>ELT</strong> de l'ESO portera un miroir de <strong>39,3 m</strong> en 798 segments — cent millions de fois plus de lumière que l'œil nu, des images quinze fois plus nettes que Hubble (première lumière ~2028-2030). À ses côtés se dressent le <strong>GMT</strong> (25 m), le <strong>TMT</strong> (30 m, statut incertain), les 8 m de <strong>Subaru, Gemini</strong> et <strong>LBT</strong>, le grand recenseur <strong>Vera C. Rubin / LSST</strong> et le réseau gamma <strong>CTA</strong>. Côté radio, le <strong>FAST</strong> chinois (500 m) a succédé à l'<strong>Arecibo</strong>, et le futur <strong>SKA</strong> sera le plus grand projet radio de l'histoire.</p>
+            <div class="lalie-note">
+              <div class="ln-head">L'apport de Lalie <span class="ln-tag">Les Femmes de l'Espace</span></div>
+              <div class="ln-body">
+                <p>Le grand recenseur du ciel, le <strong>LSST</strong>, porte le nom de <strong>Vera Rubin</strong> — l'astronome dont les mesures de rotation des galaxies fournirent les premières preuves solides de la <strong>matière noire</strong>. Et c'est <strong>Jocelyn Bell Burnell</strong> qui, en scrutant des signaux radio, découvrit les <strong>pulsars</strong> ; <strong>Katie Bouman</strong> qui conçut l'algorithme de la première image d'un trou noir.</p>
+              </div>
+            </div>
+          </article>
+          <aside class="side-note intox">
+            <h3>Anti-intox · la fin d'Arecibo n'est pas un mystère</h3>
+            <p>L'effondrement d'Arecibo (2020) a nourri bien des théories. La réalité est documentée : après <strong>57 ans</strong>, les câbles d'acier qui suspendaient la plateforme de 900 tonnes ont cédé, par <strong>fluage du zinc</strong> dans leurs ancrages. Pas de complot : de la métallurgie, et l'usure du temps.</p>
+            <p class="loc">◷ Hale, Keck, VLT, FAST : en service. ELT, GMT, SKA, CTA : en construction. Arecibo : effondré (Porto Rico).</p>
+            <div class="tag-list"><span class="tag">Optique adaptative</span><span class="tag">ELT 39 m</span><span class="tag">FAST · SKA</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- CH 6 — DEMAIN -->
+      <section class="chapter reveal" id="demain" aria-labelledby="c6">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 6 · 2026 et au-delà</p><h2 id="c6">Ce qui s'apprête à partir</h2></div>
+          <div class="chapter-number">06</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>L'odyssée ne ralentit pas. Au moment où ce dossier s'écrit, des dizaines de machines s'achèvent en salle blanche, prêtes à reprendre le flambeau — vers la Lune, Mars, Vénus, Titan et les confins.</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/futur-2030.png" alt="Le rotorcraft Dragonfly en vol au-dessus des dunes de Titan" loading="lazy">
+              <figcaption>Dragonfly sur Titan (~2034) — un octocoptère nucléaire volant de dune en dune</figcaption>
+            </figure>
+            <p>Un demi-siècle après Apollo, <strong>Artemis</strong> ramène des humains vers la Lune ; les télescopes <strong>Nancy Grace Roman</strong>, <strong>PLATO</strong> et <strong>Xuntian</strong> s'apprêtent à recenser énergie noire et exoplanètes. Côté sondes, <strong>MMX</strong> (JAXA) ira chercher un échantillon de Phobos, <strong>Dragonfly</strong> volera sur Titan, <strong>Rosalind Franklin</strong> forera Mars à 2 m, et <strong>Tianwen-3</strong> tentera le premier <strong>retour d'échantillons martiens</strong>. Plus loin, <strong>NEO Surveyor</strong> traquera les astéroïdes dangereux, <strong>Comet Interceptor</strong> attendra en embuscade une comète vierge, et trois sondes (<strong>DAVINCI, EnVision, VERITAS</strong>) retourneront enfin vers Vénus.</p>
+            <figure class="model3d reveal">
+              <div class="m3d-frame">
+                <iframe title="Dragonfly — modèle 3D interactif" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/fa2d23cbce6642598f5e6e6f65b8b312/embed?ui_theme=dark&dnt=1"></iframe>
+              </div>
+              <figcaption>Dragonfly, en 3D <span class="m3d-hint">— l'octocoptère à huit rotors qui étudiera la chimie prébiotique de Titan (lancement 2028, arrivée ~2034)</span> <a href="https://sketchfab.com/3d-models/nasa-dragonfly-quadcopter-fa2d23cbce6642598f5e6e6f65b8b312" target="_blank" rel="noopener">Modèle Sketchfab ↗</a></figcaption>
+            </figure>
+            <div class="lalie-note">
+              <div class="ln-head">L'apport de Lalie <span class="ln-tag">Les Femmes de l'Espace</span></div>
+              <div class="ln-body">
+                <p><strong>Sarah Al-Amiri</strong>, ministre émiratie des Sciences, a dirigé la stratégie de la sonde <strong>Hope</strong> vers Mars — une première historique pour son agence. Les missions de demain se conçoivent partout sur la planète, et de plus en plus, ce sont des femmes qui les dirigent.</p>
+              </div>
+            </div>
+          </article>
+          <aside class="side-note intox">
+            <h3>Anti-intox · deux précisions sur le futur</h3>
+            <p><strong>Dragonfly</strong> ne va pas « chercher des extraterrestres » : elle étudie la <strong>chimie prébiotique</strong> — les briques qui <em>précèdent</em> la vie — et l'habitabilité de Titan. Ce n'est pas une mission de détection de vie.</p>
+            <p>Le <strong>retour d'échantillons martiens</strong> (NASA/ESA) n'est <em>pas</em> « pour bientôt » : il est <strong>gelé</strong> depuis 2023 (coûts &gt; 11 Md$). Les tubes de Perseverance attendent toujours sur Mars ; la Chine pourrait rapporter les siens avant.</p>
+            <p class="loc">◷ Artemis II, MMX : ~2026 · Dragonfly : 2028 → 2034 · ELT : ~2028-2030 · Vénus : 2029-2031.</p>
+            <div class="tag-list"><span class="tag">Artemis</span><span class="tag">Dragonfly</span><span class="tag">Mars Sample Return</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- FRISE -->
+      <section class="reveal" aria-label="Frise des jalons" style="padding-top:20px">
+        <div class="milestones">
+          <div class="ms-head">Soixante-dix ans d'odyssée <span class="ms-tag">cliquez un jalon</span></div>
+          <div class="ms-rail" id="msRail" role="tablist" aria-label="Jalons de l'exploration spatiale"></div>
+          <div class="ms-detail" id="msDetail" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- ATLAS CTA -->
+      <section class="reveal" aria-label="Atlas interactif">
+        <div class="atlas-cta">
+          <div class="ac-txt">
+            <span class="ac-kick">Explorer en 3D</span>
+            <h3>L'Atlas des sondes &amp; satellites</h3>
+            <p>Plus de 70 engins — sondes, satellites, télescopes au sol et spatiaux — filtrables par famille, agence, époque et statut, chacun avec sa <strong>fiche détaillée</strong>, son <strong>modèle 3D interactif</strong>, sa localisation actuelle et les responsables de mission. Une frise temporelle 1957→2030 et une comparaison des miroirs en bonus.</p>
+          </div>
+          <a class="ac-btn" href="atlas.html">Ouvrir l'Atlas ✦</a>
+        </div>
+      </section>
+
+      <!-- CH 7 — LES FEMMES DE L'ESPACE (LALIE) -->
+      <section class="chapter reveal" id="femmes" aria-labelledby="c7">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Chapitre 7 · par Lalie</p><h2 id="c7">Les Femmes de l'Espace</h2></div>
+          <div class="chapter-number">07</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">« Si les sondes et les télescopes sont nos <em>yeux</em> dans l'espace, ces femmes en ont été le <em>cerveau</em> et l'architecte. »</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/femmes-espace.png" alt="Ingénieure en salle de contrôle de mission, face aux écrans de trajectoire" loading="lazy">
+              <figcaption>Le centre névralgique — l'ingénierie au sol, qui maintient les missions en vie sur des décennies</figcaption>
+            </figure>
+            <p>L'exploration spatiale se raconte d'ordinaire à travers ses machines. Mais derrière chaque trajectoire, chaque ligne de code, chaque donnée transformée en découverte, il y a des femmes — longtemps restées dans l'ombre.</p>
+            <h3 class="group-title">Calculatrices humaines &amp; aube du logiciel</h3>
+            <p><strong>Katherine Johnson</strong> calcule les orbites des premières missions avec une précision absolue. <strong>Dorothy Vaughan</strong> apprend le Fortran en autodidacte ; <strong>Mary Jackson</strong> teste les structures en soufflerie. Et <strong>Margaret Hamilton</strong>, au MIT, invente des concepts de <strong>fiabilité logicielle</strong> qui sauvent l'alunissage d'Apollo 11 — on lui doit, en partie, l'expression « génie logiciel ».</p>
+            <h3 class="group-title">Stratèges, pilotes, directrices de mission</h3>
+            <p><strong>Nancy Grace Roman</strong>, « mère de Hubble » ; <strong>Linda Spilker</strong>, responsable scientifique de Cassini ; <strong>Swati Mohan</strong>, qui pilota la descente de Perseverance ; <strong>Ritu Karidhal</strong> et <strong>Muthayya Vanitha</strong> (ISRO) ; <strong>Sarah Al-Amiri</strong> (sonde Hope). Des directrices de mission, sur tous les continents.</p>
+            <h3 class="group-title">Analyser, découvrir</h3>
+            <p><strong>Jocelyn Bell Burnell</strong> découvre les pulsars ; <strong>Katie Bouman</strong> conçoit l'algorithme de la première image d'un trou noir ; <strong>Vera Rubin</strong> apporte les preuves de la matière noire — l'observatoire LSST porte aujourd'hui son nom.</p>
+            <div class="explain-block">
+              <div class="xb-head">Repère <span class="xb-tag">« chirurgiennes de l'espace »</span></div>
+              <div class="xb-body">
+                <p>Quand une sonde tombe en panne à des millions de km, les équipes au sol sont son seul recours : diagnostiquer par la seule <strong>télémétrie</strong>, réécrire le logiciel embarqué, l'envoyer à travers l'espace. C'est ce travail invisible, souvent porté par des ingénieures, qui maintient les missions en vie sur des décennies.</p>
+              </div>
+            </div>
+            <div class="dtable-wrap">
+              <table class="dtable">
+                <caption>Quelques pionnières — institution, rôle, contribution</caption>
+                <thead><tr><th>Nom</th><th>Institution</th><th>Contribution clé</th></tr></thead>
+                <tbody>
+                  <tr><td class="k">Katherine Johnson</td><td>NASA</td><td>Trajectoires orbitales et lunaires</td></tr>
+                  <tr><td class="k">Margaret Hamilton</td><td>MIT · Apollo</td><td>Logiciel de vol, fiabilité d'Apollo</td></tr>
+                  <tr><td class="k">Nancy Grace Roman</td><td>NASA</td><td>Stratégie du télescope Hubble</td></tr>
+                  <tr><td class="k">Linda Spilker</td><td>NASA · JPL</td><td>Responsable scientifique de Cassini</td></tr>
+                  <tr><td class="k">Swati Mohan</td><td>NASA · JPL</td><td>Descente de Perseverance (2021)</td></tr>
+                  <tr><td class="k">Jocelyn Bell Burnell</td><td>Royaume-Uni</td><td>Découverte des pulsars</td></tr>
+                  <tr><td class="k">Katie Bouman</td><td>EHT</td><td>1ʳᵉ image d'un trou noir</td></tr>
+                  <tr><td class="k">Vera Rubin</td><td>États-Unis</td><td>Preuves de la matière noire</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Des premières « calculatrices » aux directrices de missions interplanétaires, leur contribution a été le moteur indispensable du progrès. En dépassant les frontières nationales et disciplinaires, elles ont bâti les infrastructures qui permettent à l'humanité de comprendre l'Univers.</p>
+            <p class="section-kicker" style="margin-top:30px">Chapitre réalisé par Lalie</p>
+          </article>
+          <aside class="side-note">
+            <h3>Sources · Les Femmes de l'Espace</h3>
+            <p>NASA &amp; National Women's History Museum (archives « Human Computers », programme Apollo) ; ESA ; ISRO (Chandrayaan, Mangalyaan) ; JPL (GNC martien, mission Cassini) ; Event Horizon Telescope ; Chandra X-ray Observatory.</p>
+            <p>Profils complémentaires (Tereshkova, Mukai, Gianotti, Sharman, Collins) détaillés dans le dossier <a href="../../sources/sources.html">Les Sources</a>.</p>
+            <div class="tag-list"><span class="tag">Le cerveau</span><span class="tag">L'architecte</span><span class="tag">Par Lalie</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- FICHES ANNEXE -->
+      <section class="chapter reveal" id="fiches" aria-labelledby="c8">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Annexe · l'appareil technique</p><h2 id="c8">Fiches techniques</h2></div>
+          <div class="chapter-number">✦</div>
+        </div>
+        <p class="prose" style="max-width:760px;color:var(--muted)">Un noyau de fiches, filtrables. Le <strong>catalogue complet</strong> des 70+ engins — avec modèle 3D, localisation actuelle et responsables — vit dans l'<a href="atlas.html" style="color:var(--azur-bright)">Atlas interactif ✦</a>.</p>
+        <input class="fiches-search" type="search" placeholder="Filtrer les fiches — ex. « Voyager », « Mars », « ESA », « radio »…" data-fiches-search aria-label="Filtrer les fiches techniques">
+        <div data-fiches-root>
+          <details class="fiche-cat" open>
+            <summary>Sondes interplanétaires <span class="fc-count"></span></summary>
+            <div class="fiche-grid">
+              <article class="fiche-tech"><div class="ft-name">Voyager 1 &amp; 2</div><div class="ft-sub">NASA/JPL · 1977 · actives</div><dl class="ft-specs"><dt>Masse</dt><dd>≈ 825 kg</dd><dt>Énergie</dt><dd>3 RTG Pu-238</dd><dt>Où</dt><dd>interstellaire, ≈173/143 UA</dd></dl><p class="ft-note">Grand Tour des géantes, puis premier objet humain dans l'espace interstellaire. Porte le Disque d'or. 👥 Edward C. Stone.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Cassini-Huygens</div><div class="ft-sub">NASA/ESA/ASI · 1997-2017</div><dl class="ft-specs"><dt>Masse</dt><dd>~5 712 kg</dd><dt>Instr.</dt><dd>12 + sonde Huygens</dd><dt>Fin</dt><dd>plongée dans Saturne</dd></dl><p class="ft-note">Lacs de méthane sur Titan, océan d'Encelade. Huygens : atterrissage le plus lointain. 👥 Linda Spilker.</p></article>
+              <article class="fiche-tech"><div class="ft-name">New Horizons</div><div class="ft-sub">NASA/JHU-APL · 2006 · active</div><dl class="ft-specs"><dt>Masse</dt><dd>478 kg</dd><dt>Énergie</dt><dd>RTG Pu-238</dd><dt>Où</dt><dd>ceinture de Kuiper, ≈64 UA</dd></dl><p class="ft-note">Premier survol de Pluton (2015) et d'Arrokoth (2019). 👥 Alan Stern.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Juno</div><div class="ft-sub">NASA · 2011 · active</div><dl class="ft-specs"><dt>Masse</dt><dd>~3 625 kg</dd><dt>Énergie</dt><dd>solaire</dd><dt>Où</dt><dd>orbite polaire de Jupiter</dd></dl><p class="ft-note">Première sonde solaire à Jupiter ; noyau dilué, cyclones polaires. 👥 Scott Bolton.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Parker Solar Probe</div><div class="ft-sub">NASA/JHUAPL · 2018 · active</div><dl class="ft-specs"><dt>Masse</dt><dd>~685 kg</dd><dt>Bouclier</dt><dd>carbone &gt; 1 300 °C</dd><dt>Record</dt><dd>~0,04 UA du Soleil</dd></dl><p class="ft-note">Entrée dans la couronne solaire ; objet humain le plus rapide. 👥 Nour Raouafi.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Rosetta + Philae</div><div class="ft-sub">ESA · 2004-2016</div><dl class="ft-specs"><dt>Masse</dt><dd>~3 000 kg</dd><dt>Cible</dt><dd>comète 67P</dd><dt>Fin</dt><dd>posées sur 67P</dd></dl><p class="ft-note">Première orbite et premier atterrissage sur un noyau cométaire.</p></article>
+            </div>
+          </details>
+          <details class="fiche-cat">
+            <summary>Sondes pionnières &amp; Mars <span class="fc-count"></span></summary>
+            <div class="fiche-grid">
+              <article class="fiche-tech"><div class="ft-name">Luna 1 / 2 / 3</div><div class="ft-sub">URSS · 1959</div><dl class="ft-specs"><dt>Premières</dt><dd>évasion · impact · face cachée</dd></dl><p class="ft-note">Luna 3 photographie la face cachée de la Lune et développe le film à bord.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Pioneer 10 &amp; 11</div><div class="ft-sub">NASA · 1972-1973</div><dl class="ft-specs"><dt>Masse</dt><dd>~258 kg</dd><dt>Où</dt><dd>dérivent (Aldebaran / Aigle)</dd></dl><p class="ft-note">Éclaireurs des géantes ; portent la plaque de Pioneer.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Viking 1 &amp; 2</div><div class="ft-sub">NASA · 1976</div><dl class="ft-specs"><dt>Énergie</dt><dd>2 RTG</dd><dt>Où</dt><dd>sur Mars (Chryse/Utopia)</dd></dl><p class="ft-note">Premiers laboratoires de biologie sur Mars.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Perseverance + Ingenuity</div><div class="ft-sub">NASA · 2020 · actif</div><dl class="ft-specs"><dt>Masse</dt><dd>1 025 kg</dd><dt>Où</dt><dd>cratère Jezero</dd></dl><p class="ft-note">Cache d'échantillons ; Ingenuity, premier vol motorisé hors Terre. 👥 Swati Mohan.</p></article>
+              <article class="fiche-tech"><div class="ft-name">MAVEN</div><div class="ft-sub">NASA · 2013 · active</div><dl class="ft-specs"><dt>Masse</dt><dd>2 454 kg</dd><dt>Où</dt><dd>orbite de Mars</dd></dl><p class="ft-note">Comment Mars a perdu son atmosphère sous le vent solaire. 👥 Shannon Curry.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Europa Clipper</div><div class="ft-sub">NASA · 2024 · en route</div><dl class="ft-specs"><dt>Masse</dt><dd>6 065 kg</dd><dt>Arrivée</dt><dd>Jupiter 2030</dd></dl><p class="ft-note">49 survols d'Europe pour sonder son océan caché.</p></article>
+            </div>
+          </details>
+          <details class="fiche-cat">
+            <summary>Satellites &amp; télescopes spatiaux <span class="fc-count"></span></summary>
+            <div class="fiche-grid">
+              <article class="fiche-tech"><div class="ft-name">Hubble</div><div class="ft-sub">NASA/ESA · 1990 · actif</div><dl class="ft-specs"><dt>Miroir</dt><dd>2,4 m</dd><dt>Où</dt><dd>~515-540 km</dd></dl><p class="ft-note">Aberration corrigée en 1993 ; expansion de l'Univers. 👥 Nancy Grace Roman.</p></article>
+              <article class="fiche-tech"><div class="ft-name">James Webb (JWST)</div><div class="ft-sub">NASA/ESA/CSA · 2021</div><dl class="ft-specs"><dt>Miroir</dt><dd>6,5 m doré</dd><dt>Où</dt><dd>point L2</dd></dl><p class="ft-note">Univers primitif et atmosphères d'exoplanètes en infrarouge.</p></article>
+              <article class="fiche-tech"><div class="ft-name">SOHO</div><div class="ft-sub">ESA/NASA · 1995 · actif</div><dl class="ft-specs"><dt>Où</dt><dd>point L1</dd><dt>Comètes</dt><dd>&gt; 5 000</dd></dl><p class="ft-note">Sentinelle solaire ; alerte les tempêtes en temps réel.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Gaia</div><div class="ft-sub">ESA · 2013-2025</div><dl class="ft-specs"><dt>Étoiles</dt><dd>&gt; 1 milliard</dd><dt>Où</dt><dd>L2 (retraité)</dd></dl><p class="ft-note">Carte 3D la plus précise de la Voie lactée.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Starlink (V2 mini)</div><div class="ft-sub">SpaceX · depuis 2019</div><dl class="ft-specs"><dt>Orbite</dt><dd>~550 km</dd><dt>Vie</dt><dd>~5 ans</dd></dl><p class="ft-note">Plus grande constellation de l'histoire (chiffres à dater).</p></article>
+              <article class="fiche-tech"><div class="ft-name">SMILE</div><div class="ft-sub">ESA/CAS · 2026</div><dl class="ft-specs"><dt>Orbite</dt><dd>~5 000 × 121 000 km</dd></dl><p class="ft-note">Première imagerie X de la magnétosphère terrestre.</p></article>
+            </div>
+          </details>
+          <details class="fiche-cat">
+            <summary>Télescopes au sol &amp; radio <span class="fc-count"></span></summary>
+            <div class="fiche-grid">
+              <article class="fiche-tech"><div class="ft-name">VLT</div><div class="ft-sub">ESO · Paranal · 1998</div><dl class="ft-specs"><dt>Miroirs</dt><dd>4 × 8,2 m</dd></dl><p class="ft-note">Observatoire au sol le plus productif ; 1ʳᵉ image d'exoplanète.</p></article>
+              <article class="fiche-tech"><div class="ft-name">ELT</div><div class="ft-sub">ESO · Atacama · ~2028-2030</div><dl class="ft-specs"><dt>Miroir</dt><dd>39,3 m (798 seg.)</dd></dl><p class="ft-note">Le plus grand œil de l'humanité. 👥 Roberto Gilmozzi.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Keck I &amp; II</div><div class="ft-sub">Mauna Kea · 1993/96</div><dl class="ft-specs"><dt>Miroirs</dt><dd>2 × 10 m segmentés</dd></dl><p class="ft-note">Révolution du miroir segmenté. 👥 Jerry Nelson.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Vera C. Rubin / LSST</div><div class="ft-sub">Cerro Pachón · ~2025</div><dl class="ft-specs"><dt>Caméra</dt><dd>3,2 Gpixels</dd></dl><p class="ft-note">Relève tout le ciel toutes les nuits, 10 ans. 👥 Vera Rubin.</p></article>
+              <article class="fiche-tech"><div class="ft-name">FAST</div><div class="ft-sub">NAOC · Guizhou · 2016</div><dl class="ft-specs"><dt>Diam.</dt><dd>500 m</dd></dl><p class="ft-note">Plus grand radiotélescope à antenne unique. 👥 Nan Rendong.</p></article>
+              <article class="fiche-tech"><div class="ft-name">Arecibo</div><div class="ft-sub">NSF · Porto Rico · 1963-2020</div><dl class="ft-specs"><dt>Diam.</dt><dd>305 m</dd></dl><p class="ft-note">Message d'Arecibo (1974) ; effondré en 2020.</p></article>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="closing reveal" aria-labelledby="final">
+        <h2 id="final">De la sphère bipante de Sputnik aux 798 éclats de verre de l'ELT, chaque machine est une question rendue concrète, lancée dans le vide.</h2>
+        <p>Et chaque réponse — un sol ferme sur la Lune, un océan sous la glace d'Europe, une atmosphère bleutée sur Pluton — déplace un peu la frontière entre ce que l'on croit et ce que l'on sait. Les satellites restent et veillent, les sondes s'exilent et explorent, les télescopes fouillent l'abîme. Et derrière chacune, des femmes et des hommes — le cerveau et l'architecte. C'est, au fond, exactement le combat de l'Empire contre Intox : préférer, toujours, la donnée vérifiée à la légende commode.</p>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../../ymir-lalie/assets/logo-eci.jpg" alt="Logo du collectif Empire contre Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans la vulgarisation scientifique. Ce dossier réunit le travail de Provoxys (le contenu et les fiches), de Lalie (« Les Femmes de l'Espace ») et de Samlepirate (l'Atlas et l'intégration) — chaque donnée ramenée à sa source.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="provoxys.jpeg" alt="Avatar de Provoxys">
+              <img src="lalie.jpeg" alt="Avatar de Lalie">
+              <img src="samlepirate.jpeg" alt="Avatar de Samlepirate">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Provoxys, Lalie &amp; Samlepirate</strong><span class="note">contenu &amp; fiches · Les Femmes de l'Espace · Atlas &amp; intégration</span></span>
+          </div>
+          <div class="collective-actions">
+            <a class="button primary" href="../../index.html">Retour à l'index</a>
+            <a class="button atlas" href="atlas.html">Atlas interactif <span class="star">✦</span></a>
+            <a class="button" href="../exoplanetes/index.html">Exoplanètes</a>
+            <a class="button" href="../../sources/sources.html">Les Sources</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome du dossier « L'Odyssée des Machines » — sondes, satellites et télescopes de 1957 à 2030+, avec modèles 3D interactifs (Sketchfab), fiches détaillées et localisation par objet. Contenu Provoxys ; « Les Femmes de l'Espace » par Lalie ; chiffres vérifiés et sourcés (NASA, ESA, ESO, JAXA, CNSA, ISRO, JPL). Sources des modèles 3D créditées sur chaque visualiseur.</main>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    if (mobileMenu) mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => { nav.classList.remove("open"); mobileMenu && mobileMenu.setAttribute("aria-expanded", "false"); }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }
+    document.addEventListener("scroll", revealTall, { passive: true });
+    window.addEventListener("resize", revealTall, { passive: true });
+    revealTall();
+
+    /* ---------- Frise des jalons ---------- */
+    (function(){
+      const MS = [
+        {y:"1957", t:"Sputnik 1", d:"Premier satellite artificiel : une sphère de 58 cm et un bip qui ouvre l'ère spatiale."},
+        {y:"1959", t:"Programme Luna", d:"Première évasion de l'attraction terrestre, premier impact lunaire, premières photos de la face cachée."},
+        {y:"1962", t:"Telstar 1", d:"Premier satellite de communications actif : la télévision traverse l'Atlantique en direct."},
+        {y:"1966", t:"Luna 9", d:"Premier alunissage en douceur : le sol lunaire est ferme, la voie est ouverte aux humains."},
+        {y:"1976", t:"Viking", d:"Premiers laboratoires de biologie posés sur Mars (Chryse &amp; Utopia Planitia)."},
+        {y:"1977", t:"Voyager 1 &amp; 2", d:"Le Grand Tour des planètes géantes, puis l'espace interstellaire et le Disque d'or."},
+        {y:"1990", t:"Hubble", d:"L'œil parfait au-dessus de l'atmosphère ; aberration corrigée par les astronautes en 1993."},
+        {y:"1997", t:"Cassini-Huygens", d:"13 ans autour de Saturne ; Huygens se pose sur Titan (2005), l'atterrissage le plus lointain."},
+        {y:"2015", t:"New Horizons", d:"Premier survol de Pluton : un glacier d'azote en forme de cœur et une atmosphère bleutée."},
+        {y:"2021", t:"Ingenuity", d:"Premier vol motorisé et contrôlé sur une autre planète, sur Mars."},
+        {y:"2024", t:"Parker Solar Probe", d:"Entrée dans la couronne du Soleil ; objet humain le plus rapide jamais construit."},
+        {y:"2030+", t:"ELT &amp; Dragonfly", d:"Le plus grand œil au sol (39 m) ; un octocoptère nucléaire vole sur Titan ; retours d'échantillons."}
+      ];
+      const rail = document.getElementById("msRail"), det = document.getElementById("msDetail"); if(!rail) return;
+      function show(i){
+        [...rail.children].forEach((n,k)=>{ n.classList.toggle("active",k===i); n.setAttribute("aria-selected",k===i); });
+        det.innerHTML = `<h4><b>${MS[i].y}</b> · ${MS[i].t}</h4><p>${MS[i].d}</p>`;
+      }
+      MS.forEach((m,i)=>{
+        const b=document.createElement("button"); b.className="ms-node"; b.setAttribute("role","tab");
+        b.innerHTML = `<span class="ms-year">${m.y}</span><span class="ms-dot"></span><span class="ms-cap">${m.t}</span>`;
+        b.addEventListener("click",()=>show(i)); rail.appendChild(b);
+      });
+      show(5);
+    })();
+
+    /* ---------- Filtre des fiches ---------- */
+    (function(){
+      const input = document.querySelector("[data-fiches-search]"); if(!input) return;
+      const cats = [...document.querySelectorAll("[data-fiches-root] .fiche-cat")];
+      cats.forEach(c=>{ const n=c.querySelectorAll(".fiche-tech").length; const s=c.querySelector(".fc-count"); if(s)s.textContent=n+" fiches"; });
+      const norm = s => (s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+      input.addEventListener("input", ()=>{
+        const q = norm(input.value.trim());
+        cats.forEach(cat=>{
+          let any=false;
+          cat.querySelectorAll(".fiche-tech").forEach(f=>{
+            const hit = !q || norm(f.textContent).includes(q);
+            f.classList.toggle("hidden", !hit); if(hit) any=true;
+          });
+          cat.classList.toggle("hidden", !any);
+          if(q && any) cat.open = true;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

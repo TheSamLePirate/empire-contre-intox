@@ -243,6 +243,7 @@
         <p class="motto">Veritas omnia vincit.</p>
       </section>
 
+      <section class="wrap section" id="sondes"><div class="sec-head reveal"><p class="kick">Dossier XIX · L'Odyssée des Machines</p><h3>Sondes, satellites &amp; télescopes</h3><p>Soixante-dix ans d'exploration — positions datées, idées reçues corrigées et « Les Femmes de l'Espace » de Lalie.</p></div><div class="grid" id="g-sondes"></div></section>
       <section class="wrap section" id="cosmos"><div class="sec-head reveal"><p class="kick">Dossier IV · Horloge de l'Univers</p><h3>Cosmologie</h3><p>Du Big Bang aux premières galaxies — les repères mesurés par Planck, WMAP et le télescope Webb.</p></div><div class="grid" id="g-cosmos"></div></section>
       <section class="wrap section" id="terre"><div class="sec-head reveal"><p class="kick">Dossier IV · Horloge de l'Univers</p><h3>Système solaire, Terre &amp; vie</h3><p>Naissance du Soleil, formation de la Terre, premières traces de vie et grande oxydation.</p></div><div class="grid" id="g-terre"></div></section>
       <section class="wrap section" id="geo"><div class="sec-head reveal"><p class="kick">Dossier IV · Horloge de l'Univers</p><h3>Échelle des temps &amp; extinctions</h3><p>Les bornes officielles ICS 2024/12 et les cinq grandes crises de la vie.</p></div><div class="grid" id="g-geo"></div></section>
@@ -820,7 +821,13 @@
       ["🔵","Stanford Medicine — Genetic Adam & Eve (2013)","https://med.stanford.edu/news/all-news/2013/08/common-genetic-ancestors-lived-during-roughly-same-time-period-scientists-find.html","Poznik et al. : Adam-Y et Ève mito. ne formaient pas un couple ; leurs fourchettes d'âge se chevauchent."],
       ["🟢","Dossier VIII — audit scientifique markdown","dossier-VIII-ancetres-genetiques.md","Audit complet de ymir-lalie/ancetres-genetiques/index.html : 28 groupes d'affirmations vérifiés."],
       ["🟢","Dossier VIII — bibliographie DOI markdown","refs-doi-VIII-ancetres-genetiques.md","Bibliographie étendue : 48 DOI uniques vérifiés via Crossref."],
-      ["⚪","BioLogos — Mitochondrial Eve & Y-Chromosome Adam","https://biologos.org/series/evolution-basics/articles/mitochondrial-eve-and-y-chromosome-adam","Explication accessible : des points de coalescence, pas un premier couple ni les seuls humains de leur temps."]
+      ["⚪","BioLogos — Mitochondrial Eve & Y-Chromosome Adam","https://biologos.org/series/evolution-basics/articles/mitochondrial-eve-and-y-chromosome-adam","Explication accessible : des points de coalescence, pas un premier couple ni les seuls humains de leur temps."],
+      ["🟢","Dossier XIX — audit markdown","dossier-XIX-sondes.md","Audit de provoxys/sondes/ (« L'Odyssée des Machines ») : faits historiques ✅, positions datées (Voyager 1 ≈ 173 UA, New Horizons ≈ 64 UA, mi-2026), 7 écarts réconciliés, 9 anti-intox, 43 modèles 3D tracés, « Les Femmes de l'Espace » (Lalie)."],
+      ["🔵","NASA — Where are Voyager 1 & 2 now?","https://science.nasa.gov/mission/voyager/where-are-voyager-1-and-voyager-2-now/","Dossier XIX — positions interstellaires ; Voyager 1, objet humain le plus lointain (≈ 173 UA, mi-2026)."],
+      ["🔵","JHU-APL — Where is New Horizons?","https://pluto.jhuapl.edu/Mission/Where-is-New-Horizons.php","Dossier XIX — distance et trajectoire de New Horizons dans la ceinture de Kuiper (≈ 64 UA, 2026)."],
+      ["🔵","ESO — Extremely Large Telescope (ELT)","https://elt.eso.org/about/","Dossier XIX — miroir de 39,3 m en 798 segments ; 1ʳᵉ lumière ~2028-2030 ; le plus grand œil optique au monde."],
+      ["🔵","NASA NSSDCA — Master Catalog","https://nssdc.gsfc.nasa.gov/nmc/","Dossier XIX — fiches maîtresses (masses, dates, orbites) de Sputnik, Explorer, Luna, Pioneer, Viking…"],
+      ["🔵","NASA — Women in Space / Human Computers","https://www.nasa.gov/learning-resources/for-kids-and-students/women-in-space/","Dossier XIX — « Les Femmes de l'Espace » (Lalie) : Johnson, Vaughan, Hamilton, Roman, Spilker, Mohan, Rubin…"]
     ];
     const TIER = { "🟢":"Primaire", "🔵":"Institution", "🟡":"Presse sci.", "⚪":"Encyclopédie" };
     const TIERC = { "🟢":"var(--ok)", "🔵":"var(--gold)", "🟡":"var(--warn)", "⚪":"var(--soft)" };
@@ -841,6 +848,31 @@
         </div></article>`;
     }
     function fill(id,arr){ const el=document.getElementById(id); if(el) el.innerHTML=arr.map(ficheHTML).join(""); }
+    const SD = "../provoxys/sondes/assets/";
+    const SONDES = [
+      { t:"Voyager dans l'interstellaire", d:"≈ 173 UA (mi-2026)", v:"ok", img:SD+"sondes-lointaines.png",
+        s:"Voyager 1 est l'objet humain le plus lointain. Il a franchi l'héliopause (2012) — il a donc quitté l'héliosphère, mais PAS le Système solaire gravitationnel (le nuage d'Oort, ~300 ans pour l'atteindre).",
+        src:[{n:"NASA · Where are Voyager now?",u:"https://science.nasa.gov/mission/voyager/where-are-voyager-1-and-voyager-2-now/"}] },
+      { t:"Sputnik 1", d:"83,6 kg · Ø 58 cm · 1957", v:"ok", img:SD+"aube-spatiale.png",
+        s:"Premier satellite artificiel. Il ne portait qu'un émetteur radio : ni caméra ni capteur d'espionnage, contrairement à la légende.",
+        src:[{n:"NASA NSSDCA",u:"https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1957-001B"}] },
+      { t:"Parker « touche » le Soleil", d:"~6,1 M km (~0,04 UA)", v:"warn", img:SD+"telescopes-sol.png",
+        s:"Métaphore à nuancer : le Soleil n'a pas de surface solide. Parker traverse sa couronne (atmosphère extérieure) et devient l'objet humain le plus rapide.",
+        src:[{n:"NASA · Parker Solar Probe",u:"https://science.nasa.gov/mission/parker-solar-probe/"}] },
+      { t:"ELT — le plus grand œil", d:"miroir 39,3 m · 798 segments", v:"ok", img:SD+"telescopes-sol.png",
+        s:"Le plus grand télescope optique au monde, en construction au Chili. Première lumière attendue ~2028-2030 (date NET).",
+        src:[{n:"ESO · ELT",u:"https://elt.eso.org/about/"}] },
+      { t:"Starlink — « 12 000 satellites »", d:"chiffre à dater", v:"warn", img:SD+"satellites-terre.png",
+        s:"Lancés, opérationnels et déjà désorbités sont trois nombres différents ; chaque satellite ne vit qu'~5 ans puis brûle. Toute affirmation chiffrée doit porter une date.",
+        src:[{n:"eoportal · Starlink",u:"https://www.eoportal.org/satellite-missions/starlink"}] },
+      { t:"Mars Sample Return", d:"en pause depuis 2023", v:"warn", img:SD+"futur-2030.png",
+        s:"Pas « pour bientôt » : gelé côté NASA (coûts >11 Md$). Les tubes de Perseverance attendent toujours sur Mars ; la Chine (Tianwen-3) pourrait rapporter les siens avant.",
+        src:[{n:"NASA · Mars Sample Return",u:"https://science.nasa.gov/mission/mars-sample-return/"}] },
+      { t:"Les Femmes de l'Espace", d:"Roman · Spilker · Mohan · Rubin…", v:"ok", img:SD+"femmes-espace.png",
+        s:"Chapitre de Lalie : Nancy Grace Roman (« mère de Hubble »), Linda Spilker (Cassini), Swati Mohan (descente de Perseverance), Vera Rubin (matière noire), Katie Bouman (image du trou noir)…",
+        src:[{n:"NASA & National Women's History Museum",u:"https://www.nasa.gov/learning-resources/for-kids-and-students/women-in-space/"}] }
+    ];
+    fill("g-sondes",SONDES);
     fill("g-cosmos",COSMOS); fill("g-terre",TERRE); fill("g-geo",GEO); fill("g-hum",HUM);
     const FO = "../formules/assets/";
     const FORMULES = [
@@ -1660,7 +1692,7 @@
       </div>`).join("");
     const stSrc = document.getElementById("stSrc"); if (stSrc) stSrc.textContent = SOURCES.length;
 
-    const total = COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length+POLITIQUE.length+SINGE.length+ESCLAVAGE.length+TORNADES.length+ABEILLES.length+RESISTANCE.length+CYBERVIOLENCES.length+EXOPLANETES.length+PREMIERES.length;
+    const total = SONDES.length+COSMOS.length+TERRE.length+GEO.length+HUM.length+ERES.length+EDIA.length+ARTEMIS.length+ELEMENTS.length+TERREAPP.length+ANCETRES.length+POLITIQUE.length+SINGE.length+ESCLAVAGE.length+TORNADES.length+ABEILLES.length+RESISTANCE.length+CYBERVIOLENCES.length+EXOPLANETES.length+PREMIERES.length;
     document.getElementById("stFiches").textContent = total;
 
     const bar=document.getElementById("progress");
