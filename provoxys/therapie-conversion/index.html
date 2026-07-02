@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Le Danger des Thérapies de Conversion — Empire contre Intox</title>
+  <meta name="description" content="Emprise pseudo-médicale, spirituelle et familiale, effraction psychique, dossier clinique, témoignages, droit et reconstruction : le dossier complet sur les pratiques visant à modifier de force l'orientation sexuelle ou l'identité de genre. Le live de Provoxys, Ymir &amp; Lalie, mot pour mot et vérifié. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents — l'indigo de l'emprise, la sauge de la reconstruction, le corail de l'alerte */
+      --indigo:#6f5bc9;   /* la mécanique de l'emprise, le contrôle */
+      --iris:#9a8ae0;     /* la lueur indigo */
+      --verdine:#4f9e88;  /* la reconstruction, la résilience, le soin */
+      --coral:#ff5e6e;    /* l'alerte, l'urgence, le risque */
+
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+
+      --hero:url("assets/therapie-conversion-hero.png");
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(111,91,201,.15), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.13), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(79,158,136,.1), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px; mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.6),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(154,138,224,.6),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(79,158,136,.5),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.32),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate; }
+    .grain { position:fixed; inset:-50%; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--indigo),var(--gold-bright),var(--verdine)); box-shadow:0 0 14px rgba(243,217,138,.55); }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(214,172,85,.28); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    /* Hero */
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02); background-color:var(--abyss); }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2;
+      background:linear-gradient(86deg,rgba(3,6,13,.94) 0%,rgba(3,6,13,.72) 36%,rgba(3,6,13,.18) 68%,rgba(3,6,13,.5) 100%),linear-gradient(180deg,rgba(3,6,13,.1) 0%,rgba(3,6,13,.28) 54%,var(--void) 100%); }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1; background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh; display:grid; grid-template-columns:minmax(0,780px) minmax(250px,340px); gap:46px; align-items:end; }
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:16ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.5rem,6.6vw,5.2rem); line-height:.98; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil { background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 40%,#fff6dc 50%,var(--gold-bright) 60%,var(--gold-deep)); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% 0; } }
+    .hero-lead { max-width:58ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-quote { max-width:60ch; margin:22px 0 0; padding-left:20px; border-left:2px solid var(--indigo); font-family:var(--serif); font-style:italic; color:var(--parch); font-size:clamp(1.05rem,1.5vw,1.26rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px; font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px); transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1 1 auto; min-width:0; -webkit-overflow-scrolling:touch;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent); }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--indigo),var(--gold-bright),var(--verdine)); }
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    /* Intro band */
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.9rem); line-height:1.04; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:120px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time { font-family:var(--roman); font-weight:600; font-size:.8rem; letter-spacing:.04em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(111,91,201,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .act-band { margin:70px 0 0; padding:clamp(26px,4vw,46px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(130% 130% at 0% 0%,rgba(214,172,85,.12),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.55),rgba(7,12,26,.6)); text-align:center; }
+    .act-band .act-no { font-family:var(--roman); font-weight:700; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+    .act-band h2 { margin:14px 0 0; font-family:var(--roman); font-weight:800; font-size:clamp(1.9rem,4.4vw,3.2rem); text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .act-band p { max-width:72ch; margin:16px auto 0; color:var(--muted); }
+
+    /* Chapters */
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"❖"; position:absolute; left:0; top:0; color:var(--gold); font-size:.8em; }
+    .prose ol { margin:14px 0 24px; padding-left:24px; }
+    .prose ol li { padding-left:6px; }
+    .prose ol li::before { content:none; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .prose em { font-style:italic; font-weight:400; }
+    .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+    .sub { margin:26px 0 10px; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--parch); }
+
+    .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
+    .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); }
+
+    .script-block,.science-block,.question-block,.lesson-block,.dialogue-block {
+      border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
+    .dialogue-block { border-left-color:var(--gold); background:rgba(214,172,85,.06); font-family:var(--serif); }
+    .dialogue-block p { color:var(--parch); font-style:italic; }
+    .science-block { border-left-color:var(--indigo); background:rgba(111,91,201,.1); }
+    .question-block { border-left-color:var(--coral); background:rgba(255,94,110,.09); }
+    .lesson-block { border-left-color:var(--verdine); background:rgba(79,158,136,.09); }
+    .script-block p:last-child,.science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,.dialogue-block p:last-child,
+    .science-block ul:last-child,.lesson-block ul:last-child { margin-bottom:0; }
+    .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .science-block .block-label { color:var(--iris); }
+    .question-block .block-label { color:var(--coral); }
+    .lesson-block .block-label { color:var(--verdine); }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .side-note p:last-child { margin-bottom:0; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    .dtable { width:100%; border-collapse:collapse; margin:14px 0 26px; border:1px solid var(--line); border-radius:3px; overflow:hidden; font-size:.98rem; }
+    .dtable caption { text-align:left; padding:0 0 14px; color:var(--muted); font-style:italic; font-family:var(--serif); }
+    .dtable th { text-align:left; padding:13px 15px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); background:rgba(214,172,85,.06); border-bottom:1px solid var(--line); }
+    .dtable td { padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--line-2); color:var(--muted); }
+    .dtable tr:last-child td { border-bottom:0; }
+    .dtable td.k { color:var(--parch); font-weight:600; white-space:nowrap; }
+    .dtable tr:hover td { background:rgba(244,236,216,.03); }
+
+    .sommaire-list { display:grid; gap:14px; margin:18px 0; }
+    .pillar { border:1px solid var(--line-2); border-radius:3px; padding:22px 24px; background:rgba(244,236,216,.035); border-left:3px solid rgba(214,172,85,.5); }
+    .pillar h3 { margin:0 0 10px; font-family:var(--serif); font-weight:600; font-size:1.24rem; color:var(--ink); }
+    .pillar p { margin:0 0 8px; }
+    .pillar ul { margin:8px 0 0; }
+
+    /* Ligne d'aide — Le Refuge / SOS Homophobie */
+    .helpline { clear:both; margin:26px 0; border:1px solid rgba(255,94,110,.45); border-radius:3px; padding:clamp(22px,3.4vw,34px);
+      background:radial-gradient(120% 140% at 0% 0%,rgba(255,94,110,.12),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.5),rgba(7,12,26,.6));
+      display:flex; gap:30px; flex-wrap:wrap; align-items:center; }
+    .helpline .hl-num { font-family:var(--roman); font-weight:800; font-size:clamp(2rem,4.6vw,3.1rem); line-height:1; color:var(--coral); text-shadow:0 0 30px rgba(255,94,110,.35); white-space:nowrap; }
+    .helpline .hl-txt { flex:1; min-width:240px; }
+    .helpline .hl-txt h3 { font-family:var(--serif); font-weight:600; font-size:1.2rem; color:var(--ink); margin:0 0 8px; }
+    .helpline .hl-txt p { margin:0; color:var(--muted); font-size:.98rem; }
+    .helpline .hl-chips { display:flex; flex-wrap:wrap; gap:9px; margin-top:14px; }
+    .helpline .hl-chips span { display:inline-flex; align-items:center; min-height:30px; padding:0 13px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--parch); border:1px solid var(--line); border-radius:2px; background:rgba(5,8,17,.5); }
+
+    /* Cartes de statistique — chapitre Statut mondial */
+    .stat-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin:14px 0 30px; }
+    .stat-card { border:1px solid var(--line-2); border-radius:3px; padding:20px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); }
+    .stat-card b { display:block; font-family:var(--roman); font-weight:800; font-size:2.2rem; color:var(--gold-bright); line-height:1; }
+    .stat-card span { display:block; margin-top:8px; color:var(--muted); font-size:.88rem; }
+    .ribbon { display:flex; height:34px; border-radius:3px; overflow:hidden; margin:18px 0 10px; border:1px solid var(--line); }
+    .ribbon i { display:block; height:100%; background:var(--c); }
+    .ribbon-legend { display:flex; flex-wrap:wrap; gap:14px; margin:0 0 26px; }
+    .ribbon-legend span { display:inline-flex; align-items:center; gap:7px; font-size:.86rem; color:var(--muted); }
+    .ribbon-legend i { width:11px; height:11px; border-radius:2px; background:var(--c); }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(111,91,201,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(111,91,201,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left:-14px; }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left:-20px; }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    .reveal[data-d="3"] { transition-delay:.24s; }
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .hero-inner > div > *:nth-child(5){ animation-delay:.5s; }
+    .js .signal-board { animation-delay:.5s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid { grid-template-columns:1fr; }
+      .stat-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+      .timeline-row { grid-template-columns:1fr; gap:4px; }
+      .dtable { font-size:.9rem; }
+      .dtable th,.dtable td { padding:10px 11px; }
+      .stat-grid { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-waterline"></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier XXI · Société &amp; santé mentale</p>
+          <h1>Le Danger des <span class="foil">Thérapies</span> de Conversion</h1>
+          <p class="hero-lead">Emprise pseudo-médicale, spirituelle et familiale, effraction psychique, dossier clinique, témoignages, droit et reconstruction : le dossier complet sur les pratiques visant à modifier de force l'orientation sexuelle ou l'identité de genre d'une personne. Le live de Provoxys, Ymir &amp; Lalie, mot pour mot — chaque donnée vérifiée, chaque source traçable.</p>
+          <p class="hero-quote">« Elles cherchent à détruire la personnalité profonde d'un individu pour y substituer une façade conforme aux attentes du groupe. »</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#transcription">Lire le dossier</a>
+            <a class="button" href="#reconstruction">Lignes d'écoute &amp; ressources</a>
+            <a class="button" href="../../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board" aria-label="Repères">
+          <div class="signal"><span>Le cadre légal</span><strong>France : délit pénal depuis le 31 janvier 2022</strong></div>
+          <div class="signal"><span>Le monde</span><strong>Une minorité de pays protègent — la majorité n'a aucune loi</strong></div>
+          <div class="signal"><span>Le risque</span><strong>Tentative de suicide multipliée par 2 à 4 — pas « par 9 »</strong></div>
+          <div class="signal"><span>L'urgence</span><strong>Le Refuge : 09 39 03 63 03, 7j/7</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="../../ymir-lalie/assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Thérapies de conversion</span>
+        </a>
+        <a class="home-link" href="../../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#fil">Fil</a>
+          <a href="#intro">Intro</a>
+          <a href="#mecanique">Emprise</a>
+          <a href="#clinique">Clinique</a>
+          <a href="#temoignages">Témoignages</a>
+          <a href="#culture">Culture</a>
+          <a href="#droit">Droit</a>
+          <a href="#monde">Monde</a>
+          <a href="#reconstruction">Reconstruction</a>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </nav>
+
+    <main id="transcription">
+      <section class="intro-band" id="fil">
+        <div class="manifesto reveal">
+          <p class="section-kicker">Le fil conducteur</p>
+          <h2>Nommer l'emprise, jamais la banaliser.</h2>
+          <p>Ce dossier reprend mot pour mot le script du live « Le Danger des Thérapies de Conversion » de Provoxys, Ymir &amp; Lalie : la mécanique de l'emprise, le dossier clinique, cinq témoignages croisés, ce qu'en disent la pop culture et le droit, et le chemin de la reconstruction. Toutes les données du script ont été vérifiées par l'Empire contre Intox — y compris deux corrections importantes, signalées en encadré : un chiffre clinique inexact et un numéro d'urgence obsolète.</p>
+        </div>
+        <div class="timeline reveal" data-d="1" aria-label="Fil conducteur">
+          <div class="timeline-row"><time>Comprendre</time><p>La mécanique de l'emprise : acteurs du mirage, effraction psychique, violence rituelle, ostracisme.</p></div>
+          <div class="timeline-row"><time>Mesurer</time><p>Le dossier clinique — SSPT-C, dissociation, risque suicidaire — et ce que les études disent vraiment.</p></div>
+          <div class="timeline-row"><time>Écouter &amp; situer</time><p>Cinq témoignages croisés, la pop culture qui en parle, le droit qui la sanctionne, le monde qui (ne) la protège (pas).</p></div>
+          <div class="timeline-row"><time>Agir</time><p>La reconstruction, la résilience, et les lignes d'écoute — vérifiées une à une.</p></div>
+        </div>
+      </section>
+
+      <section class="learning-panel reveal" aria-labelledby="objectifs">
+        <p class="section-kicker">Objectifs pédagogiques</p>
+        <h2 id="objectifs">Comprendre les mécanismes, distinguer le vérifié de l'approximatif, savoir où s'adresser.</h2>
+        <div class="learning-grid">
+          <div class="learning-item reveal" data-d="1"><span>Comprendre</span><p>Les acteurs et les mécanismes de l'emprise — pseudo-médicale, spirituelle, familiale — qui rendent ces pratiques possibles.</p></div>
+          <div class="learning-item reveal" data-d="2"><span>Distinguer</span><p>Les signaux cliniques réellement documentés (SSPT-C reconnu par la CIM-11, dissociation) des statistiques inventées ou mal attribuées.</p></div>
+          <div class="learning-item reveal" data-d="3"><span>Agir</span><p>Le cadre légal français, le statut mondial, et des lignes d'écoute vérifiées une à une — pas recopiées d'un annuaire périmé.</p></div>
+        </div>
+      </section>
+
+      <section class="act-band reveal" id="ouverture" aria-labelledby="actO">
+        <p class="act-no">Le live · Empire Contre-Intox</p>
+        <h2 id="actO">Le Danger des Thérapies de Conversion</h2>
+        <p>« Décortiquer l'arsenal méthodologique des agresseurs et poser un cadre d'analyse implacable. » Le script complet du live, dans l'ordre, conservé mot pour mot.</p>
+      </section>
+
+      <!-- ===== CH 01 — INTRODUCTION ===== -->
+      <section class="chapter reveal" id="intro" aria-labelledby="c1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le script du live</p><h2 id="c1">Qu'est-ce que les pratiques de conversion ?</h2></div>
+          <div class="chapter-number">01</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">INTRODUCTION : QU'EST-CE QUE LES PRATIQUES DE CONVERSION ?</p>
+            <p>Les pratiques de conversion — historiquement et abusivement appelées "thérapies de conversion" — désignent un ensemble de manœuvres, de pressions et de traitements répétés visant à modifier ou à réprimer l'orientation sexuelle ou l'identité de genre d'une personne. Ces interventions reposent sur le postulat scientifiquement faux et obsolète selon lequel les personnes LGBTQIA+ souffriraient d'une anomalie, d'une maladie ou d'une déviance spirituelle qu'il conviendrait de "guérir" ou de "corriger".</p>
+            <p>Ces pratiques ne disposent d'aucun fondement médical ou scientifique. Elles sont unanimement condamnées par les grandes institutions de santé mondiales (comme l'Organisation Mondiale de la Santé) qui les qualifient de violations des droits humains fondamentaux. Loin d'être de simples conseils ou des espaces de discussion, elles s'apparentent à des systèmes d'endoctrinement et de harcèlement psychologique.</p>
+            <p>Elles se manifestent principalement à travers trois sphères :</p>
+            <ul>
+              <li><strong>La sphère pseudo-médicale</strong> : Où des praticiens autoproclamés ou des professionnels déviants utilisent des théories psychologiques obsolètes ou détournent des outils comme l'hypnose pour susciter le dégoût de soi.</li>
+              <li><strong>La sphère spirituelle et religieuse</strong> : Où la foi de l'individu est instrumentalisée à travers des rituels de purification, des séances d'exorcisme ou des prières d'injonction au changement, instillant la terreur de la damnation.</li>
+              <li><strong>La sphère familiale et sociale</strong> : Où l'entourage exerce un chantage affectif, un isolement forcé ou des pressions quotidiennes pour contraindre la victime à se soumettre à ces protocoles.</li>
+            </ul>
+            <p>Le véritable danger de ces pratiques réside dans leur nature intrinsèquement violente : elles cherchent à détruire la personnalité profonde d'un individu pour y substituer une façade conforme aux attentes du groupe. L'impact de cette effraction psychique est dévastateur, entraînant des traumatismes profonds, des ruptures identitaires et des taux de détresse psychologique extrêmement élevés.</p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · la position de l'OMS</h3>
+            <p>Il n'existe pas une déclaration unique de l'OMS-siège dédiée aux « thérapies de conversion » : la condamnation est répartie entre plusieurs organes. Le bureau régional Amériques de l'OMS (<strong>PAHO, 2012</strong>) les qualifie de pratiques sans justification médicale et de violation des droits protégés. L'OMS est <strong>signataire</strong> d'une déclaration conjointe de <strong>12 agences onusiennes</strong> (2015) qui cite ces « thérapies » non éthiques et nuisibles comme violence à faire cesser. Un expert indépendant de l'ONU (Madrigal-Borloz, 2020) les qualifie de traitement cruel et dégradant, « pouvant selon la gravité constituer de la torture ». L'OMS a par ailleurs déclassifié l'homosexualité des troubles mentaux dès 1990 (CIM-10).</p>
+            <div class="tag-list"><span class="tag">PAHO 2012</span><span class="tag">ONU 2015, 12 agences</span><span class="tag">Rapport ONU 2020</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CRÉDIT ===== -->
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <span class="credit-avatars">
+          <img src="provoxys.jpeg" alt="Avatar de Provoxys">
+          <img src="ymir.jpeg" alt="Avatar d'Ymir">
+          <img src="lalie.jpeg" alt="Avatar de Lalie">
+        </span>
+        <div class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>Provoxys, Ymir &amp; Lalie</strong>
+        </div>
+      </section>
+
+      <!-- ===== CH 02 — PARTIE 1 : LA MÉCANIQUE DE L'EMPRISE ===== -->
+      <section class="chapter reveal" id="mecanique" aria-labelledby="c2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie I</p><h2 id="c2">La mécanique de l'emprise</h2></div>
+          <div class="chapter-number">02</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">PARTIE 1 : LA MÉCANIQUE DE L'EMPRISE (Théorie, Acteurs &amp; Outils)</p>
+            <p>Objectif : Décortiquer l'arsenal méthodologique des agresseurs et poser un cadre d'analyse implacable.</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/emprise-mecanique.png" alt="Une silhouette assise au centre d'une salle sombre, entourée de fils dorés et indigo tendus depuis l'ombre : la mécanique de l'emprise" loading="lazy">
+              <figcaption>La mécanique de l'emprise — illustration du dossier</figcaption>
+            </figure>
+            <p class="group-title">1. Les Acteurs du mirage</p>
+            <ul>
+              <li><strong>Les Prétendus Psychologues et Thérapeutes</strong> : Utilisation abusive de théories psychanalytiques obsolètes (le "père absent", la "mère fusionnelle") pour pathologiser une orientation sexuelle ou une identité de genre saine. Ils inversent la déontologie en créant de la souffrance là où il n'y en a pas, sous couvert d'une neutralité scientifique totalement factice.</li>
+              <li><strong>Les Hypnothérapeutes Dérivants</strong> : Instrumentalisation de l'état de transe pour forcer des suggestions d'aversion. L'hypnose est ici détournée de sa visée thérapeutique pour devenir une arme d'effraction psychique, visant à associer le désir ou l'identité de la victime à des stimuli de dégoût, de nausée ou de terreur.</li>
+              <li><strong>Les Structures Religieuses (Clergés, Pasteurs, Anciens, Starets)</strong> : Utilisation de l'autorité spirituelle pour imposer un chantage au salut. La foi de la victime est retournée contre elle-même : son identité est qualifiée d'« infestation », de « péché structurel » ou de « possession ».</li>
+            </ul>
+            <p class="group-title">2. Les Mécanismes d'Abus</p>
+            <ul>
+              <li><strong>L'Effraction Psychique</strong> : Viol des barrières inconscientes par des suggestions forcées sous transe ou par des interrogatoires répétés.</li>
+              <li><strong>La Violence Rituelle</strong> : Protocoles d'épuisement sensoriel. L'affaiblissement physique par des jeûnes prolongés, des privations de sommeil et des séances de prières intrusives ou d'exorcismes collectifs.</li>
+              <li><strong>L'Ostracisme et la Mort Sociale</strong> : Isolement programmé de la victime. Rupture forcée avec ses cercles amicaux, ses lectures, ses accès Internet, et menace d'exclusion définitive du groupe ou de la famille.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · l'hypnose détournée</h3>
+            <p>L'hypnose est un <strong>outil thérapeutique légitime</strong> dans de nombreux contextes cliniques (gestion de la douleur, anxiété) — à ne pas confondre avec le « trouble de conversion » du DSM-5, une entité neurologique sans rapport. Son détournement pour tenter de modifier l'orientation sexuelle est documenté depuis le XIX<sup>e</sup> siècle et fait écho à l'histoire réelle des <strong>« aversion therapies »</strong> (électrochocs, nausée provoquée par apomorphine) pratiquées au Royaume-Uni jusque dans les années 1970, documentées par deux études à comité de lecture (<em>BMJ</em>, 2004).</p>
+            <p><strong>« Effraction psychique »</strong> est une formulation forte et assumée, pas un terme clinique reconnu par le DSM-5 ou la CIM-11 : elle décrit des phénomènes réels (coercition, perte d'intégrité psychique) sans être elle-même une catégorie diagnostique.</p>
+            <div class="tag-list"><span class="tag">King, Smith &amp; Bartlett, BMJ 2004</span><span class="tag">Histoire de la psychiatrie</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 03 — PARTIE 2 : LE DOSSIER CLINIQUE ===== -->
+      <section class="chapter reveal" id="clinique" aria-labelledby="c3">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie II</p><h2 id="c3">Le dossier clinique — l'impact des violences</h2></div>
+          <div class="chapter-number">03</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">PARTIE 2 : LE DOSSIER CLINIQUE – L'IMPACT DES VIOLENCES</p>
+            <p>Objectif : Démontrer scientifiquement et cliniquement ce que ces pratiques détruisent chez l'être humain.</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/impact-clinique.png" alt="Une silhouette dont se détachent des échos translucides d'elle-même, dérivant dans l'obscurité : métaphore de la dissociation" loading="lazy">
+              <figcaption>La dissociation — illustration du dossier</figcaption>
+            </figure>
+            <p class="group-title">1. Le Syndrome de Stress Post-Traumatique Complexe (SSPT-C)</p>
+            <p>Contrairement à un choc unique, les violences des pratiques de conversion s'étalent sur le temps, provoquant un trauma complexe :</p>
+            <ul>
+              <li><strong>L'Hypervigilance constante</strong> : La victime vit dans la peur permanente que ses pensées, ses regards ou ses micro-expressions trahissent son identité réelle.</li>
+              <li><strong>Les Flashbacks et Intrusions</strong> : Réactivation involontaire des scènes d'exorcisme, des suggestions d'aversion ou des interrogatoires humiliants, déclenchée par des mots, des odeurs ou des contextes religieux/médicaux.</li>
+            </ul>
+            <p class="group-title">2. La Dissociation et la Dépersonnalisation</p>
+            <p>Pour survivre à l'effraction psychique (notamment sous hypnose détournée), l'esprit de la victime se fragmente :</p>
+            <ul>
+              <li><strong>La Dissociation</strong> : Coupure nette entre le corps, les émotions et la conscience. La victime subit les événements en spectatrice d'elle-même, déconnectée de ses propres sens.</li>
+              <li><strong>L'Auto-Héautoscopie et l'Anesthésie Affective</strong> : Incapacité à ressentir la joie, l'amour ou le désir, même après l'arrêt des pratiques. L'esprit a éteint le système émotionnel pour ne plus souffrir.</li>
+            </ul>
+            <p class="group-title">3. La Destruction de l'Attachement et l'Idéation Suicidaire</p>
+            <ul>
+              <li><strong>La Trahison des Figures d'Attachement</strong> : Quand la violence vient des parents (figures de protection) ou des thérapeutes/prêtres (figures d'autorité et de soin), la capacité de la victime à faire confiance est totalement anéantie.</li>
+              <li><strong>Le Risque Suicidaire</strong> : Statistique clinique majeure : le risque de tentative de suicide est multiplié par 9 chez les jeunes ayant subi ces dérives. La haine de soi internalisée pousse à concevoir la mort comme unique espace de liberté.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le vrai chiffre n'est pas « ×9 »</h3>
+            <p>Aucune étude sur les thérapies de conversion ne rapporte un risque multiplié par 9. Les données publiées les plus solides parlent d'un risque <strong>environ 2 à 2,5 fois plus élevé</strong> : OR ajusté <strong>2,23</strong> (tentative de suicide) et <strong>2,54</strong> (tentatives multiples) chez les jeunes LGBTQ ayant subi ces pratiques (Green et al., 2020, <em>American Journal of Public Health</em>). Chez les adultes trans exposés <strong>avant 10 ans</strong>, le risque grimpe à <strong>×4,15</strong> (Turban et al., 2020, <em>JAMA Psychiatry</em>).</p>
+            <p>Le « ×9 » vient probablement d'un autre chiffre, réel mais mal attribué : <strong>41 %</strong> des adultes trans ont tenté de se suicider au moins une fois dans leur vie, contre <strong>4,6 %</strong> en population générale (Haas, Rodgers &amp; Herman, 2014) — soit ≈9 fois plus, mais cette statistique décrit le fait d'être trans en général, <strong>pas</strong> l'exposition aux thérapies de conversion.</p>
+            <p>Le <strong>SSPT-C</strong> est bien un diagnostic reconnu (CIM-11, code 6B41, OMS), et une étude publiée dans <em>The Lancet Psychiatry</em> (Tran et al., 2024) mesure des scores de stress post-traumatique significativement plus élevés chez les adultes LGBTQ+ ayant subi des pratiques de conversion. La <strong>dissociation</strong> prolongée est, elle, bien documentée face à un trauma chronique en général ; son application spécifique aux thérapies de conversion reste une extrapolation clinique raisonnable, appuyée par des données qualitatives plutôt que par des études quantitatives dédiées.</p>
+            <div class="tag-list"><span class="tag">Tran et al. 2024, Lancet Psychiatry</span><span class="tag">Green et al. 2020, AJPH</span><span class="tag">Turban et al. 2020, JAMA Psychiatry</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 04 — PARTIE 3 : LES TÉMOIGNAGES CROISÉS ===== -->
+      <section class="chapter reveal" id="temoignages" aria-labelledby="c4">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie III</p><h2 id="c4">Les témoignages croisés</h2></div>
+          <div class="chapter-number">04</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">PARTIE 3 : LES TÉMOIGNAGES CROISÉS (Analyse des Parcours)</p>
+            <p>Objectif : Donner la parole aux survivants en utilisant des termes cliniquement irréprochables.</p>
+            <p class="group-title">1. Le Volet Pseudo-Médical et Hypnose</p>
+            <div class="dialogue-block">
+              <span class="block-label">Témoignage A — Le Prétendu Psychologue</span>
+              <p>« Cet intervenant utilisait son titre pour me persuader que mon homosexualité était le résultat d'une "faille narcissique" liée à mon enfance. Il a détourné des concepts pour me faire douter de ma propre santé mentale, me poussant à chercher des traumatismes imaginaires. Cette pathologisation forcée a engendré une confusion identitaire profonde qui a brisé mon estime de moi. »</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">Témoignage B — L'Effraction par l'Hypnose</span>
+              <p>« Les séances d'hypnose ont été détournées comme un outil de manipulation pour créer des réflexes de dégoût physique. On m'imposait des suggestions de nausée et d'angoisse viscérale à la simple vue d'un homme. Ces pratiques n'ont évidemment pas modifié mon orientation sexuelle, elles ont provoqué une effraction psychique grave, détruisant mes repères sensoriels et mon rapport à l'intimité pendant des années. »</p>
+            </div>
+            <p class="group-title">2. Le Volet Religieux et Institutionnel</p>
+            <div class="dialogue-block">
+              <span class="block-label">Témoignage C — Le Milieu Évangélique · La « Restauration »</span>
+              <p>« Dans mon église, on enrobait la violence de mots doux comme "restauration identitaire" ou "guérison des blessures". On nous imposait des groupes de parole qui étaient en réalité des cellules de surveillance mutuelle. Chaque pensée "déviante" devait être confessée sous peine d'exclusion. Cette manipulation cognitive m'a poussé à une haine de moi-même totale, m'obligeant à jouer un rôle pour éviter le bannissement. »</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">Témoignage D — Le Milieu Orthodoxe · La Purification Forcée</span>
+              <p>« Ma famille m'a conduit auprès d'un ancien qui a décrété que mon identité de genre était une "infestation spirituelle". J'ai subi des rituels d'exorcisme, des onctions forcées et des prostrations physiques jusqu'à l'épuisement complet. Cette violence rituelle, vécue sous la contrainte, a laissé des séquelles traumatiques sévères. Ce n'était pas de la religion, c'était une agression caractérisée contre mon intégrité physique et mentale. »</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">Témoignage E — Le Milieu Catholique Charismatique · La Délivrance</span>
+              <p>« On m'a enfermé durant une "retraite de délivrance". Privé de sommeil, soumis à des prières de groupe intrusives où des dizaines de personnes hurlaient sur moi pour chasser mes "démons". Ce protocole d'épuisement sensoriel visait à briser ma volonté pour que j'accepte leurs suggestions. J'en suis sorti vivant, mais psychiquement fragmenté. »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Note méthodologique</h3>
+            <p>Ces cinq témoignages sont présentés comme des <strong>parcours composites</strong>, représentatifs de récits documentés par des associations de survivants et des enquêtes journalistiques (voir chapitre suivant), et non comme des citations nominatives d'une personne identifiée.</p>
+            <div class="tag-list"><span class="tag">Récits composites</span><span class="tag">Termes cliniques</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 05 — PARTIE 4 : LA POP CULTURE ET LES MÉDIAS ===== -->
+      <section class="chapter reveal" id="culture" aria-labelledby="c5">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie IV</p><h2 id="c5">La pop culture et les médias en parlent</h2></div>
+          <div class="chapter-number">05</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">PARTIE 4 : LA POP CULTURE ET LES MÉDIAS EN PARLENT</p>
+            <p>Objectif : S'appuyer sur des œuvres culturelles et des enquêtes majeures pour illustrer concrètement la réalité de ces dérives.</p>
+            <p class="group-title">1. Documentaires de Référence (À analyser en live)</p>
+            <ul>
+              <li>"Homothérapies, conversion forcée" (Arte, 2019) par Bernard Nicolas : Enquête internationale indispensable qui infiltre des mouvements charismatiques et évangéliques en France, en Allemagne et aux États-Unis. Ce documentaire montre à quel point les structures agissent de façon souterraine en Europe et déconstruit le double discours de ces organisations qui affirment agir "par amour" tout en détruisant psychologiquement les participants.</li>
+              <li>"Boy Erased : Truth Revealed" / Enquêtes sur le mouvement Ex-Gay (Netflix) : Ces formats documentaires mettent en lumière la faillite systémique des grands centres américains (comme Exodus International) et exposent les témoignages des dirigeants repentis qui admettent l'inefficacité totale et la toxicité de leurs méthodes.</li>
+            </ul>
+            <p class="group-title">2. Films et Séries (Pour décrypter les représentations visuelles)</p>
+            <ul>
+              <li>"Boy Erased" (Film de Joel Edgerton, 2018) : Adapté des mémoires de Garrard Conley. Idéal pour illustrer l'emprise familiale (parents paniqués par leur foi institutionnelle) et les techniques pseudo-psychologiques des centres évangéliques (évaluation des "failles" familiales, exercices de virilisation forcée).</li>
+              <li>"Come as You Are" (The Miseducation of Cameron Post, Film de Desiree Akhavan, 2018) : Grand Prix au Festival de Sundance. Ce film montre la version insidieuse des centres pour adolescents : l'utilisation d'activités de plein air et d'une ambiance "colonie de vacances" pour masquer un harcèlement moral continu et une culpabilisation permanente basée sur la haine de soi internalisée.</li>
+              <li>"Sex Education" (Série Netflix - Saison 2) : À travers certains arcs narratifs, la série aborde subtilement le poids des injonctions de conformité religieuse et les traumatismes liés aux tentatives de répression de l'orientation sexuelle au sein de la communauté.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · trois corrections</h3>
+            <p><strong>« Boy Erased: Truth Revealed »</strong> n'existe pas sur Netflix : le documentaire qui correspond à cette description (faillite d'Exodus International, dirigeants repentis) est <strong>« Pray Away »</strong> (Netflix, 2021, réal. Kristine Stolakis).</p>
+            <p>Le prix remporté par <em>The Miseducation of Cameron Post</em> à Sundance 2018 est le <strong>Grand Jury Prize</strong> (catégorie US Dramatic) — pas un « Grand Prix ».</p>
+            <p>L'arc narratif de <em>Sex Education</em> sur la foi et l'orientation sexuelle (le personnage d'Eric) se situe en <strong>saison 4</strong>, pas en saison 2.</p>
+            <div class="tag-list"><span class="tag">Pray Away, 2021</span><span class="tag">Sundance 2018</span><span class="tag">Sex Education S4</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 06 — PARTIE 5 : L'ARSENAL JURIDIQUE ET DÉBATS ===== -->
+      <section class="chapter reveal" id="droit" aria-labelledby="c6">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie V</p><h2 id="c6">L'arsenal juridique et débats</h2></div>
+          <div class="chapter-number">06</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">PARTIE 5 : L'ARSENAL JURIDIQUE ET DÉBATS (Réponses Implacables)</p>
+            <p>Objectif : Désarmer les justifications des agresseurs par le droit et la science.</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/arsenal-juridique.png" alt="Une balance de justice dorée dont le socle, enchaîné, se brise en éclats de lumière" loading="lazy">
+              <figcaption>L'arsenal juridique — illustration du dossier</figcaption>
+            </figure>
+            <div class="article-noir" style="border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04);">
+              <p style="margin:0"><strong>Loi du 31 janvier 2022 (France)</strong> : Ces pratiques constitute un délit spécifique. Les peines vont de 2 ans de prison et 30 000 € d'amende à 3 ans de prison et 45 000 € d'amende si la victime est mineure ou en situation de vulnérabilité. Les professionnels de santé risquent une radiation définitive en plus des peines pénales.</p>
+            </div>
+            <p><strong>Le Sophisme du Consentement</strong> : Le droit pénal rappelle qu'on ne peut pas consentir à sa propre destruction ou à des traitements dégradants. Sous l'effet du chantage familial, de l'isolement ou de la terreur spirituelle, le consentement n'existe pas. C'est le principe même de l'emprise.</p>
+            <p><strong>Le Bouclier de la Liberté Religieuse</strong> : La liberté de conscience et de culte est absolue dans la sphère privée des croyances, mais elle s'arrête net dès lors qu'elle sert de prétexte à des violences psychologiques, des abus de faiblesse ou des actes de torture mentale. La loi de la République protège l'intégrité des citoyens contre l'obscurantisme.</p>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le texte exact de la loi</h3>
+            <p>Intitulé officiel exact : loi n° 2022-92 du 31 janvier 2022 « <strong>interdisant</strong> » (et non « visant à interdire ») les pratiques de conversion. Les peines de l'article <strong>225-4-13</strong> du Code pénal sont exactes (2 ans/30 000 € ; 3 ans/45 000 €), mais déclenchées par <strong>cinq</strong> circonstances aggravantes (mineur, autorité de fait, vulnérabilité, pluralité d'auteurs, usage d'un service en ligne) — pas seulement mineur/vulnérabilité. Depuis la loi du 10 mai 2024 (dérives sectaires), un troisième palier existe : <strong>5 ans et 75 000 €</strong> en bande organisée.</p>
+            <p>Sur les professionnels de santé : ce n'est <strong>pas une « radiation définitive »</strong>. L'article <strong>L. 4163-11</strong> du Code de la santé publique prévoit une <strong>interdiction d'exercer la médecine, facultative et plafonnée à 10 ans</strong>, prononcée par le juge pénal. Une radiation par l'Ordre reste possible, mais via une procédure disciplinaire distincte et préexistante, non créée par cette loi.</p>
+            <p>Le vote final (20 et 25 janvier 2022) a bien été unanime dans les deux chambres — mais la première lecture au Sénat (7 décembre 2021) avait connu une opposition réelle, une partie du groupe LR contestant le périmètre « identité de genre ».</p>
+            <div class="tag-list"><span class="tag">Légifrance</span><span class="tag">Art. 225-4-13 CP</span><span class="tag">Art. L. 4163-11 CSP</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 07 — STATUT MONDIAL (RECHERCHE ECI) ===== -->
+      <section class="chapter reveal" id="monde" aria-labelledby="c7">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Enquête complémentaire · Empire contre Intox</p><h2 id="c7">Statut mondial des pratiques de conversion</h2></div>
+          <div class="chapter-number">07</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">CE CHAPITRE N'EST PAS DU SCRIPT DU LIVE : C'EST UNE SYNTHÈSE VÉRIFIÉE PAR L'EMPIRE CONTRE INTOX (JUILLET 2026)</p>
+            <p>Trois bases de données internationales suivent l'interdiction des pratiques de conversion dans le monde. Leurs chiffres divergent car elles ne comptent pas la même chose — et c'est précisément ce qu'il faut comprendre avant de citer un total.</p>
+            <div class="stat-grid">
+              <div class="stat-card"><b>17</b><span>États membres de l'ONU avec un <strong>ban national</strong> (ILGA World, base continue, juin 2026)</span></div>
+              <div class="stat-card"><b>26</b><span>Pays ou régions avec <strong>une forme de régulation</strong>, y compris subnationale (Equaldex, base collaborative, consultée juillet 2026)</span></div>
+              <div class="stat-card"><b>150+</b><span>Pays <strong>sans aucune protection légale</strong> spécifique (Global Equality Caucus, mai 2025)</span></div>
+            </div>
+            <p>Le chiffre « ~28 pays » parfois cité (Wikipédia) date en réalité de <strong>décembre 2023</strong> et n'a pas été refondu depuis, malgré des modifications cosmétiques de la page en 2026 — à utiliser avec cette réserve.</p>
+            <p class="group-title">Europe — la région la plus avancée</p>
+            <table class="dtable">
+              <thead><tr><th>Pays</th><th>Statut</th><th>Date</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Malte</td><td>Ban nationale complet — premier pays européen</td><td>2016</td></tr>
+                <tr><td class="k">Allemagne</td><td>Ban national</td><td>2020</td></tr>
+                <tr><td class="k">France</td><td>Ban national (loi n° 2022-92)</td><td>31 janvier 2022</td></tr>
+                <tr><td class="k">Grèce</td><td>Ban national</td><td>2022</td></tr>
+                <tr><td class="k">Espagne</td><td>Régulation administrative (2023) + criminalisation votée au Congrès le 25 juin 2026 (178 pour, 32 contre — Vox, 138 abstentions PP) ; passage au Sénat encore requis</td><td>2023 / 2026</td></tr>
+                <tr><td class="k">Belgique</td><td>Ban national</td><td>2023</td></tr>
+                <tr><td class="k">Chypre</td><td>Ban national</td><td>2023</td></tr>
+                <tr><td class="k">Portugal</td><td>Ban national</td><td>2024</td></tr>
+                <tr><td class="k">Pays-Bas</td><td>Adopté par le Sénat (57 voix pour, 15 contre) le 16 juin 2026 — sanction royale restant à formaliser</td><td>2026</td></tr>
+                <tr><td class="k">Autriche</td><td>Simple initiative parlementaire écologiste, bloquée par l'ÖVP — pas de projet de loi gouvernemental formel</td><td>—</td></tr>
+              </tbody>
+            </table>
+            <p>Au total, <strong>8 États membres de l'Union européenne</strong> ont un ban national. L'Initiative Citoyenne Européenne dédiée a recueilli <strong>1 128 063 signatures vérifiées</strong> (soumise le 17 novembre 2025) ; la Commission européenne y a répondu le 13 mai 2026 par une recommandation non contraignante, prévue pour 2027 — pas (encore) une loi européenne.</p>
+            <p class="group-title">Amériques</p>
+            <table class="dtable">
+              <thead><tr><th>Pays</th><th>Statut</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Canada</td><td>Ban criminel national complet (projet de loi C-4, sanction royale le 8 décembre 2021)</td></tr>
+                <tr><td class="k">Brésil</td><td>Interdiction via résolutions du Conseil fédéral de psychologie, validées par la Cour suprême (STF) en 2020 — pas une loi votée</td></tr>
+                <tr><td class="k">Équateur</td><td>Loi réelle depuis 2012/2014, mais application très défaillante — des « cliniques de déshomosexualisation » clandestines persistent</td></tr>
+                <tr><td class="k">Mexique</td><td>Loi fédérale en vigueur depuis le 8 juin 2024, complétée par ~18-19 des 32 États</td></tr>
+                <tr><td class="k">Chili, Argentine, Uruguay, Paraguay</td><td>Bans indirects, via l'interdiction de diagnostiquer l'homosexualité/la transidentité comme trouble dans leurs lois de santé mentale</td></tr>
+                <tr><td class="k">États-Unis</td><td>23 États + Washington D.C. interdisent pour les mineurs (Movement Advancement Project, au 2 juillet 2026) ; aucune loi fédérale</td></tr>
+              </tbody>
+            </table>
+            <p class="group-title">Asie &amp; Océanie</p>
+            <table class="dtable">
+              <thead><tr><th>Pays</th><th>Statut</th><th>Date</th></tr></thead>
+              <tbody>
+                <tr><td class="k">Israël</td><td>Directive administrative du ministère de la Santé (le projet de loi pénale n'a jamais abouti)</td><td>2022</td></tr>
+                <tr><td class="k">Taïwan</td><td>Lettre administrative du ministère de la Santé (pas un règlement formel)</td><td>2018</td></tr>
+                <tr><td class="k">Vietnam</td><td>Dépêche administrative sans force de loi contraignante ni sanctions précisées (HRW)</td><td>2022</td></tr>
+                <tr><td class="k">Nouvelle-Zélande</td><td><em>Conversion Practices Prohibition Legislation Act</em> — dispositions pénales en vigueur</td><td>19 février 2022</td></tr>
+              </tbody>
+            </table>
+            <p><strong>Afrique, Moyen-Orient et une grande partie de l'Asie</strong> : généralement aucune interdiction spécifique. L'ILGA World recense <strong>65 pays</strong> qui criminalisent encore les relations homosexuelles en juin 2026 (en légère hausse pour la première fois en presque dix ans, avec le Burkina Faso et Trinité-et-Tobago) — un chiffre à distinguer des « ~70 pays » parfois cités, qui provient d'un rapport ILGA non réédité depuis 2020. Dans ces pays, les pratiques de conversion s'inscrivent le plus souvent dans un cadre plus large de répression de l'identité LGBTQIA+ elle-même, sans loi dédiée les encadrant ni protection pour les victimes.</p>
+          </article>
+          <aside class="side-note" id="monde-aside">
+            <h3>Anti-intox · la Cour suprême a déjà tranché</h3>
+            <p>Contrairement à une affirmation selon laquelle « la Cour suprême examine des recours en 2026 », l'affaire <strong><em>Chiles v. Salazar</em></strong> (contestant la loi du Colorado) a été <strong>tranchée le 31 mars 2026</strong>, par 8 voix contre 1 (opinion majoritaire du juge Gorsuch, seule dissidente : la juge Jackson). La Cour n'a <strong>pas invalidé</strong> frontalement la loi : elle a jugé insuffisant le contrôle juridictionnel appliqué en instances inférieures et renvoyé l'affaire pour réexamen sous un contrôle strict (« strict scrutiny »). Le Colorado a reformulé sa loi en mai 2026 ; la loi du Michigan avait, elle, déjà été invalidée par une cour d'appel fédérale en décembre 2025.</p>
+            <p>Méthode : chiffres vérifiés auprès d'ILGA World, Equaldex, Global Equality Caucus, Movement Advancement Project, Légifrance et la presse spécialisée (juillet 2026) — détail complet dans <a href="../../sources/sources.html" style="color:var(--iris)">Les Sources →</a></p>
+            <div class="tag-list"><span class="tag">ILGA World, juin 2026</span><span class="tag">Chiles v. Salazar, 31 mars 2026</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 08 — PARTIE 6 : LA RECONSTRUCTION, LA RÉSILIENCE & LES RESSOURCES ===== -->
+      <section class="chapter reveal" id="reconstruction" aria-labelledby="c8">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Partie VI</p><h2 id="c8">La reconstruction, la résilience &amp; les ressources</h2></div>
+          <div class="chapter-number">08</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">PARTIE 6 : LA RECONSTRUCTION, LA RÉSILIENCE &amp; LES RESSOURCES</p>
+            <p>Objectif : Tracer le chemin clinique et social pour sortir des décombres de l'emprise et fournir les contacts d'urgence.</p>
+            <figure class="chapter-figure reveal">
+              <img src="assets/reconstruction-lumiere.png" alt="Des mains ouvertes libèrent une lumière dorée vers un ciel nocturne qui vire au vert sauge à l'horizon : la reconstruction" loading="lazy">
+              <figcaption>La reconstruction — illustration du dossier</figcaption>
+            </figure>
+            <p class="group-title">1. Les Étapes de la Guérison</p>
+            <ul>
+              <li><strong>La Déprogrammation Cognitive</strong> : Identifier les schémas de pensée imposés sous emprise. Réapprendre à nommer les faits : ce n'était pas un accompagnement, c'était une agression. Se détacher de la culpabilité et de la honte instillées par les bourreaux.</li>
+              <li><strong>La Prise en Charge du Psychotraumatisme</strong> : S'orienter exclusivement vers des psychologues ou psychiatres spécialisés en psychotraumatologie, formés aux outils de désensibilisation (comme l'EMDR ou les thérapies cognitives adaptées) et impérativement inclusifs. L'espace thérapeutique doit être un lieu de sécurité absolue, dénué de tout jugement.</li>
+              <li><strong>La Restauration des Liens et la Famille de Cœur</strong> : Reconstruire sa structure sociale en choisissant des personnes bienveillantes. Remplacer l'amour conditionnel des cercles abuseurs par un soutien inconditionnel. Réapprivoiser son corps, ses désirs et son intégrité, en affirmant sa légitimité pleine et entière à exister.</li>
+            </ul>
+            <p class="group-title">2. Liens et Contacts des Associations de Référence (À afficher à l'écran)</p>
+            <ul>
+              <li><strong>Rien à Guérir</strong> : rienaguerir.fr — Collectif français spécifiquement créé pour lutter contre les thérapies de conversion, accompagner les survivants, recueillir les témoignages et porter les dossiers devant la justice.</li>
+              <li><strong>Le Refuge</strong> : le-refuge.org — Ligne d'urgence 24h/24 : 06 31 59 69 50. Association qui propose un hébergement d'urgence et un accompagnement social/psychologique pour les jeunes LGBTQIA+ rejetés par leur famille ou victimes d'ostracisme.</li>
+              <li><strong>SOS Homophobie</strong> : sos-homophobie.org — Ligne d'écoute : 01 48 06 42 41. Écoute anonyme, soutien juridique et rapports annuels sur les discriminations. Un point d'entrée essentiel pour signaler un abus ou obtenir une orientation légale.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le numéro du Refuge a changé</h3>
+            <p><strong>Le numéro « 06 31 59 69 50 » n'est plus le bon.</strong> La ligne d'écoute nationale actuelle du Refuge est le <strong>09 39 03 63 03</strong>, joignable par appel ou SMS <strong>7j/7 de 8h à minuit</strong> (et non 24h/24). Vérifié sur le-refuge.org.</p>
+            <p>« Rien à Guérir » n'a plus de site à l'adresse rienaguerir.fr : le collectif communique via <strong>X/@RienAGuerir</strong>.</p>
+            <div class="tag-list"><span class="tag">le-refuge.org</span><span class="tag">Numéro vérifié 2026</span></div>
+          </aside>
+        </div>
+        <div class="helpline reveal" aria-label="Lignes d'écoute vérifiées">
+          <div class="hl-num">09 39 03 63 03</div>
+          <div class="hl-txt">
+            <h3>Le Refuge — ligne d'écoute nationale</h3>
+            <p>Appel ou SMS, 7j/7 de 8h à minuit. Hébergement d'urgence et accompagnement pour les jeunes LGBTQIA+ rejetés par leur famille.</p>
+            <div class="hl-chips"><span>SOS Homophobie · 01 48 06 42 41</span><span>Rien à Guérir · X/@RienAGuerir</span><span>3114 · Numéro national de prévention du suicide</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing reveal" aria-labelledby="final">
+        <h2 id="final">Nommer l'emprise, c'est déjà commencer à s'en défaire.</h2>
+        <p>Ce dossier conserve mot pour mot le script du live de Provoxys, Ymir &amp; Lalie. Chaque sphère décrite ici — pseudo-médicale, spirituelle, familiale — prospère sur le même terreau : l'isolement de la victime, le silence de l'entourage, l'absence d'information vérifiée. À l'inverse, chaque donnée sourcée, chaque loi correctement citée, chaque numéro d'urgence vérifié fait reculer l'emprise. C'est le travail de l'Empire contre Intox : remettre des faits là où l'intox — un chiffre gonflé, un numéro périmé, une confusion de bonne foi — affaiblirait, sans le vouloir, la cause qu'elle prétend défendre.</p>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../../ymir-lalie/assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans le débat public. Ce dossier prolonge le live en donnant au public une version lisible, structurée et partageable — chaque donnée ramenée à sa source, chaque mécanisme expliqué.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="provoxys.jpeg" alt="Avatar de Provoxys">
+              <img src="ymir.jpeg" alt="Avatar d'Ymir">
+              <img src="lalie.jpeg" alt="Avatar de Lalie">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Provoxys, Ymir &amp; Lalie</strong></span>
+          </div>
+          <div class="collective-actions">
+            <a class="button primary" href="../../index.html">Retour à l'index</a>
+            <a class="button" href="../briser-le-silence/index.html">Briser le Silence</a>
+            <a class="button" href="../Artemis2.html">Artemis II</a>
+            <a class="button" href="../../sources/sources.html">Les Sources</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome créée à partir de <strong>script-therapies-conversion.txt</strong>. La transcription est conservée mot pour mot. Chiffres et affirmations vérifiés — OMS/PAHO, ONU (déclaration interagences 2015, rapport 2020), CIM-11, Légifrance, ILGA World, Equaldex, Green et al. 2020 (<em>AJPH</em>), Turban et al. 2020 (<em>JAMA Psychiatry</em>), Tran et al. 2024 (<em>Lancet Psychiatry</em>), Le Refuge, SOS Homophobie. Deux corrections importantes signalées : le risque suicidaire (pas « ×9 ») et le numéro d'urgence du Refuge (pas « 06 31 59 69 50 »).</main>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => { nav.classList.remove("open"); mobileMenu.setAttribute("aria-expanded", "false"); }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    // Filet de sécurité pour les sections très hautes (jamais "intersectées" au seuil)
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }
+    document.addEventListener("scroll", revealTall, { passive: true });
+    window.addEventListener("resize", revealTall, { passive: true });
+    revealTall();
+  </script>
+</body>
+</html>
