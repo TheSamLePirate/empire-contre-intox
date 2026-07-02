@@ -1,4 +1,4 @@
-# Audit — Dossier XXI · « Le Danger des Thérapies de Conversion » (Provoxys, Ymir & Lalie)
+# Audit — Dossier XXI · « Le Danger des Thérapies de Conversion » (Provoxys)
 
 Vérification de chaque affirmation factuelle du transcript
 (`provoxys/therapie-conversion/script-therapies-conversion.txt`) rendu dans
