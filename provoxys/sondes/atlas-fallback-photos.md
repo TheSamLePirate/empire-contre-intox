@@ -11,7 +11,10 @@
 > Source : **Wikimedia Commons** (lead image de l’article, ou recherche Commons). Pour les
 > **missions futures**, il s’agit le plus souvent d’une **vue d’artiste** (concept), pas d’une photo réelle.
 
-**34 / 34 objets sans modèle 3D** illustrés par une image de repli.
+**35 / 36 objets sans modèle 3D** illustrés par une image de repli. Manquant :
+`solarc` (Solar-C/EUVST) — image candidate trouvée sur isas.jaxa.jp mais licence de
+réutilisation non vérifiable (pas de page CC BY explicite comme pour mmx/destinyplus,
+contrairement à isas-gallery.jp) ; la fiche affiche « pas de modèle 3D » en attendant.
 
 ⚠️ **Licences** — beaucoup sont en CC BY / CC BY-SA / GODL-India : elles **imposent le crédit**
 de l’auteur à la publication. Le domaine public (NASA, etc.) est libre. Tout est indiqué ci-dessous.
@@ -32,6 +35,7 @@ de l’auteur à la publication. Le domaine public (NASA, etc.) est libre. Tout 
 | cheops | Cheops | Télescope spatial | `assets/fallback/cheops.png` | CC BY-SA 3.0 igo | European Space Agency |
 | roman | Nancy Grace Roman | Télescope spatial | `assets/fallback/roman.png` | Public domain | NASA |
 | smile | SMILE | Satellite | `assets/fallback/smile.png` | CC BY-SA 3.0 igo | ESA |
+| sunrise | SunRISE | Satellite | `assets/fallback/sunrise.jpg` | Public domain | NASA/JPL-Caltech (Space Dynamics Laboratory/Allison Bills) — photo réelle, PIA25789 |
 | gps | GPS (Block III) | Satellite | `assets/fallback/gps.jpg` | Public domain | U.S. Air Force |
 | hale | Hale (Palomar) | Télescope au sol | `assets/fallback/hale.jpg` | CC BY-SA 4.0 | Photograph by Mike Peel ( www.mikepeel.net ). |
 | keck | Keck I & II | Télescope au sol | `assets/fallback/keck.png` | Public domain | T. Wynne / JPL |
