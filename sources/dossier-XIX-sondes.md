@@ -73,6 +73,15 @@ priorité au compte officiel **NASA** (CC BY-NC, ex. Voyager, Cassini, New Horiz
 Pioneer, Rosetta, Kepler, Hubble) et à des auteurs **Creative Commons** (ESO pour le VLT,
 Thomas Flynn pour Perseverance CC0, etc.). Auteur et licence crédités sur **chaque** fiche.
 
+## 7bis. SunRISE — orbite supersynchrone (✅ vérifié, ajout mi-2026)
+
+- **Configuration** — six CubeSats identiques au format **6U**, achevés (construction terminée) fin 2023 par le Space Dynamics Laboratory. ✅ (Gunter's Space Page ; NASA JPL).
+- **Orbite** — **géosynchrone supersynchrone** (au-dessus de la ceinture GEO, ~35 786 km), formation libre maintenue à **moins de 10 km** entre satellites, précision de position au **mètre** près. ✅ (sunrise.umich.edu ; science.nasa.gov/mission/sunrise ; JPL).
+- **Instrument** — 4 antennes télescopiques de **2,5 m** par satellite (formant une croix), bande radio observée **0,1-25 MHz** (sursauts décamétriques-hectométriques de type II/III), inobservable au sol car réfléchie par l'**ionosphère**. ✅ (Gunter's Space Page ; JPL).
+- **Objectif scientifique** — cartographier en 3D l'origine des sursauts radio liés aux éjections de masse coronale (CME) et aux tempêtes de particules solaires, par synthèse d'ouverture (interférométrie). ✅ (science.nasa.gov/mission/sunrise ; JPL).
+- **Équipe** — géré par le **JPL** (NASA) ; chercheuse principale **Susan Lepri** (Univ. du Michigan) depuis **janvier 2025** (succède à Justin Kasper) ; partenaire Univ. du Colorado Boulder ; construction par Space Dynamics Laboratory (Utah State Univ.). ✅ (science.nasa.gov/blogs/sunrise, juin 2025).
+- **Lancement** — reporté à plusieurs reprises (visé 2023, puis 2024) ; **2026** au moment de la rédaction, en covoiturage sur un lanceur **Vulcan Centaur** (ULA) depuis Cape Canaveral, parrainé par la Space Systems Command de l'US Space Force. Mission scientifique de base d'environ **12 mois**. ⚠️ (date de lancement encore révisée courant 2025-2026 — à vérifier avant tout affichage d'une date précise).
+
 ## 7. Atlas — objets lancés & ateliers de physique (✅ vérifiés)
 
 - **Graphe des objets lancés (1957→2025)** — série **complète année par année** (cumul + nombre annuel),
@@ -97,13 +106,14 @@ Thomas Flynn pour Perseverance CC0, etc.). Auteur et licence crédités sur **ch
 
 Contenu **globalement très solide**. Aucun ❌ factuel non corrigé : les corrections portent
 sur des **idées reçues** (anti-intox) et des **valeurs à dater** (positions, comptes
-Starlink), traitées par fourchettes et marqueurs de prudence. Les dates de missions futures
-(Artemis, Dragonfly, ELT, MMX, Vénus, retours d'échantillons) sont des **cibles NET**, pas
-des certitudes. Mars Sample Return signalé **en pause**.
+Starlink, lancement de SunRISE), traitées par fourchettes et marqueurs de prudence. Les
+dates de missions futures (Artemis, Dragonfly, ELT, MMX, Vénus, retours d'échantillons,
+SunRISE) sont des **cibles NET**, pas des certitudes. Mars Sample Return signalé **en pause**.
 
 ## Références institutionnelles
 
 - NASA Science — science.nasa.gov (missions) · voyager.jpl.nasa.gov · pluto.jhuapl.edu
+- NASA JPL — jpl.nasa.gov/missions/sun-radio-interferometer-space-experiment · Univ. du Michigan — sunrise.umich.edu (SunRISE)
 - ESA — esa.int (SOHO, Solar Orbiter, Rosetta, Mars Express, Gaia, Cheops, SMILE, ExoMars, Comet Interceptor, EnVision)
 - ESO — eso.org / elt.eso.org (VLT, ELT) · keckobservatory.org · NAOC (FAST) · NSF (Arecibo)
 - JAXA — global.jaxa.jp · isas.jaxa.jp (Hayabusa2, MMX, DESTINY+) · CNSA · ISRO
