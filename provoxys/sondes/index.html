@@ -700,6 +700,50 @@
             <div class="live-aside"><span class="lv">Au live</span>Incroyable, n'est-ce pas ? Imaginez un instant ce satellite qui veille sur notre étoile jour et nuit depuis presque trente ans. Et vous, dans le chat, avez-vous déjà vu des images des éruptions solaires capturées par SOHO ? Dites-moi ce que vous en pensez !</div>
             <a class="atlas-jump" href="atlas.html#e-soho">SOHO dans l'Atlas — suivez-la en direct dans NASA Eyes</a>
 
+            <div class="explain-block">
+              <div class="xb-head">Zoom instrument <span class="xb-tag">SWAN — le seul œil de SOHO qui ne regarde jamais le Soleil</span></div>
+              <div class="xb-body">
+                <p>Sur les douze instruments de SOHO, onze fixent le Soleil. Le douzième, <strong>SWAN</strong> (<em>Solar Wind Anisotropies</em>), fait l'inverse : piloté par le Service d'aéronomie du CNRS et l'institut météorologique finlandais, sous la responsabilité scientifique de Jean-Loup Bertaux, il balaie tout le reste du ciel pour traquer l'<strong>hydrogène neutre</strong> qui « souffle » dans le Système solaire depuis l'espace interstellaire. En observant comment ce gaz est repoussé et façonné par le vent solaire, SWAN en déduit indirectement comment le vent solaire lui-même se répartit dans toutes les directions — d'où son nom.</p>
+                <p>Deux capteurs identiques (<strong>+Z</strong> et <strong>-Z</strong>), montés de part et d'autre de la plateforme et protégés chacun par un pare-soleil, couvrent à eux deux la quasi-totalité du ciel. Dans chaque capteur, un premier miroir toroïdal oriente la lumière captée vers un second miroir qui la focalise à travers une <strong>cellule à hydrogène</strong> avant qu'elle n'atteigne le détecteur — un montage compact qui permet de scruter le ciel sans jamais pointer directement le Soleil.</p>
+              </div>
+            </div>
+            <div class="live-aside"><span class="lv">Au live</span>Le seul instrument de SOHO qui ne regarde jamais le Soleil… et qui a quand même fini par traquer des comètes et cartographier notre propre planète ! Auriez-vous deviné qu'on pouvait « voir » un nuage de gaz interstellaire depuis la Terre ?</div>
+
+            <div class="dtable-wrap">
+              <table class="dtable">
+                <caption>Fiche technique — SWAN (Solar Wind Anisotropies)</caption>
+                <thead><tr><th>Caractéristique</th><th>Valeur</th></tr></thead>
+                <tbody>
+                  <tr><td class="k">Masse totale</td><td class="mono">13,25 kg</td></tr>
+                  <tr><td class="k">Puissance moyenne</td><td class="mono">11 W</td></tr>
+                  <tr><td class="k">Télémétrie</td><td class="mono">200 bit/s</td></tr>
+                  <tr><td class="k">Champ de vue</td><td>&gt; 2π sr par capteur (2 capteurs, +Z et -Z)</td></tr>
+                  <tr><td class="k">Résolution instantanée</td><td class="mono">25 pixels de 1° × 1°</td></tr>
+                  <tr><td class="k">Bande observée</td><td class="mono">115 – 180 nm (UV lointain)</td></tr>
+                  <tr><td class="k">Détecteur</td><td>Cathode MgF₂/CsI « solar blind », galette de microcanaux multianode</td></tr>
+                  <tr><td class="k">Résolution spectrale (cellule H)</td><td class="mono">&lt; 0,01 Å (pouvoir ≈ 10⁵)</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <figure class="chapter-figure reveal">
+              <img src="assets/soho-swan-hero.png" alt="L'instrument SWAN de SOHO cartographiant le halo d'hydrogène du Système solaire" loading="lazy">
+              <figcaption>SWAN — cartographier le vent solaire par la lumière ultraviolette qu'un gaz d'hydrogène venu des étoiles renvoie vers l'instrument</figcaption>
+            </figure>
+
+            <p>Le signal que traque SWAN est une raie spectrale précise : la <strong>raie Lyman-alpha</strong> de l'hydrogène, à 121,6 nanomètres, dans l'ultraviolet lointain. C'est la raie que l'hydrogène atomique réémet le plus efficacement lorsqu'il est excité par le rayonnement solaire — un vrai phare, repérable à travers tout le Système solaire, aussi bien dans le gaz interstellaire diffus qu'autour d'une comète ou dans la haute atmosphère terrestre. Pour interpréter ce signal, l'équipe s'appuie sur un modèle physique, le <em>« modèle chaud »</em>, qui simule comment l'hydrogène interstellaire entrant dans l'héliosphère est progressivement filtré et réchauffé par le vent solaire et le rayonnement ultraviolet — prédisant un maximum de luminosité Lyman-alpha dans la direction d'où souffle le gaz interstellaire, et un minimum dans la direction opposée.</p>
+
+            <p>Une fois calibré sur ce fond diffus, SWAN s'est révélé capable de traquer des sources plus vives et plus locales. Début 1997, il a suivi jour après jour l'immense nuage d'hydrogène de la comète <strong>Hale-Bopp</strong> — un halo largement invisible en lumière ordinaire mais éclatant en Lyman-alpha, produit par la photodissociation de la vapeur d'eau libérée par le noyau cométaire. Plus près de la Terre, SWAN observe aussi la <strong>géocouronne</strong>, l'enveloppe ténue d'hydrogène atomique qui entoure notre planète bien au-delà de l'atmosphère proprement dite : depuis son poste d'observation au point L1, à plusieurs centaines de rayons terrestres, SWAN a pu en dresser une carte complète.</p>
+
+            <div class="explain-block">
+              <div class="xb-head">Explication <span class="xb-tag">Une cellule à hydrogène en guise de spectromètre</span></div>
+              <div class="xb-body">
+                <p>Comment SWAN mesure-t-il une <strong>vitesse</strong> plutôt qu'une simple luminosité ? Grâce à sa cellule à hydrogène : une petite enceinte scellée où un filament de tungstène dissocie de l'hydrogène moléculaire en hydrogène atomique. Ce gaz absorbe très précisément la lumière Lyman-alpha à sa fréquence de résonance ; en mesurant combien de lumière la cellule absorbe, on reconstitue la forme fine de la raie observée — une spectroscopie à très haute résolution, sans spectromètre encombrant. Comme cette forme se déforme selon l'effet Doppler de la source, la cellule permet à SWAN de sonder aussi les <strong>vitesses</strong> du gaz qu'il détecte, pas seulement sa densité.</p>
+              </div>
+            </div>
+
+            <p>La toute première carte du ciel en Lyman-alpha produite par SWAN date du 22 janvier 1996, à peine quelques semaines après l'arrivée de SOHO au point L1 — une carte qui, mise bout à bout avec celles des décennies suivantes, a aidé à situer notre étoile et son cortège de planètes dans un repère bien plus vaste : l'héliosphère, son choc terminal, son héliopause et le <em>mur d'hydrogène</em> qui marque la frontière avec le milieu interstellaire local — le même terrain que continuent d'explorer, plus loin encore, les sondes Voyager.</p>
+
             <h4 class="mission-title">Sonde Parker Solar Probe</h4>
             <p>Lancée le 12 août 2018, Parker Solar Probe s'approche du Soleil à moins de dix rayons solaires grâce à sept assistances gravitationnelles de Vénus. Elle mesure directement la couronne solaire, les éruptions et les vents solaires avec des instruments comme FIELDS pour les champs électriques et magnétiques et SWEAP pour les particules, sous la direction du project scientist Nour Raouafi. Elle a révélé que le vent solaire s'accélère de manière inattendue près du Soleil et que la couronne contient des structures magnétiques complexes. Une anecdote extraordinaire est que Parker Solar Probe a survécu à des températures de plus de 1 300 degrés Celsius grâce à son bouclier thermique innovant, et que chaque survol rapproché a fourni des données que les scientifiques attendaient depuis des décennies, transformant notre compréhension du Soleil.</p>
             <div class="live-aside"><span class="lv">Au live</span>Parker Solar Probe qui frôle littéralement le Soleil… Du courage et de la technologie de pointe ! Avez-vous déjà vu des images de ces approches rapprochées ? Dites-moi vos impressions dans le chat !</div>
@@ -777,6 +821,28 @@
               <div class="xb-body">
                 <p><strong>LEO</strong> (~160-2 000 km) : un tour en ~90 min, faible latence — l'observation fine, l'ISS, Starlink. <strong>MEO</strong> (~20 000 km) : le domaine de la <strong>navigation</strong> (GPS, Galileo). <strong>GEO</strong> (~35 786 km) : à cette altitude précise, le satellite tourne <em>exactement</em> à la vitesse de la Terre — il semble <strong>immobile</strong> dans le ciel. Parfait pour la télévision et la météo.</p>
               </div>
+            </div>
+
+            <div class="explain-block">
+              <div class="xb-head">Explication <span class="xb-tag">Géosynchrone, héliosynchrone, héliocentrique, elliptique — la suite du bestiaire</span></div>
+              <div class="xb-body">
+                <p>L'altitude ne dit pas tout : la <strong>forme</strong> et l'<strong>orientation</strong> de l'orbite comptent tout autant. Une orbite <strong>géosynchrone</strong> partage la période de rotation de la Terre (~24 h) comme la GEO, mais sans être forcément équatoriale ni circulaire — inclinée ou elliptique, elle trace alors un « 8 » dans le ciel au lieu de rester immobile ; la GEO n'en est que le cas particulier le plus utile. Une orbite <strong>héliocentrique</strong> abandonne carrément la Terre : c'est le domaine des vraies sondes interplanétaires (Parker Solar Probe, Solar Orbiter), qui tournent directement autour du Soleil.</p>
+                <p>Une orbite <strong>héliosynchrone</strong> (« sun-synchronous »), elle, reste polaire et basse mais précesse exactement au rythme de la course annuelle de la Terre autour du Soleil, pour toujours croiser un point donné du globe à la même heure solaire. Sa variante <strong>« dawn-dusk »</strong> pousse le principe à l'extrême : le satellite longe en permanence le <strong>terminateur</strong> (la ligne jour/nuit), ce qui le maintient quasiment tout le temps en pleine lumière, sans jamais plonger dans l'ombre de la Terre. C'est l'orbite retenue pour <strong>Solar-C</strong> (JAXA, avec la NASA et l'ESA), un observatoire solaire à ultraviolet extrême (instrument EUVST) prévu à l'horizon 2028 : rester baigné de lumière solaire en continu est précisément ce qu'exige une veille ininterrompue du Soleil.</p>
+                <p>À l'opposé, une orbite <strong>elliptique très excentrique</strong> (HEO) joue sur un écart énorme entre périgée et apogée pour offrir de longues fenêtres d'observation ininterrompue près de l'apogée, tout en limitant le temps passé dans les ceintures de radiation. C'est le choix fait pour <strong>SMILE</strong> (voir plus loin dans ce chapitre) : périgée à ~5 000 km sous le pôle Sud, apogée à ~121 000 km au-dessus du pôle Nord — la sonde passe environ 80 % de son orbite de dix-neuf heures loin de la Terre, à observer sans interruption.</p>
+              </div>
+            </div>
+
+            <div class="dtable-wrap">
+              <table class="dtable">
+                <caption>Le bestiaire complet des orbites — au-delà de LEO/MEO/GEO</caption>
+                <thead><tr><th>Famille</th><th>Ce qui la distingue</th><th>Exemple dans ce dossier</th></tr></thead>
+                <tbody>
+                  <tr><td class="k">Géosynchrone</td><td>Période ≈ 24 h, mais inclinée/elliptique possible — trace un « 8 » au sol</td><td class="mono">GEO = son cas particulier circulaire équatorial</td></tr>
+                  <tr><td class="k">Héliosynchrone (dawn-dusk)</td><td>Polaire, précession calée sur le Soleil ; longe en permanence le terminateur</td><td class="mono">Solar-C — JAXA/NASA/ESA, EUVST, ~2028</td></tr>
+                  <tr><td class="k">Héliocentrique</td><td>Orbite directement le Soleil, pas la Terre</td><td class="mono">Parker Solar Probe · Solar Orbiter</td></tr>
+                  <tr><td class="k">Elliptique très excentrique (HEO)</td><td>Écart périgée/apogée considérable ; ~80 % du temps loin de la Terre</td><td class="mono">SMILE — 5 000 × 121 000 km</td></tr>
+                </tbody>
+              </table>
             </div>
 
             <h3 class="group-title">Hubble &amp; Webb — les yeux au-dessus de l'air</h3>

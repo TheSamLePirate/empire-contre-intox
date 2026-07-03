@@ -46,6 +46,22 @@ stationnaire au-dessus de dunes de sable organique sombres, brume orangée épai
 lumière diffuse et tamisée, lacs de méthane miroitants au loin. Futur proche crédible,
 ingénierie audacieuse, ambiance feutrée et étrange.
 
+## 6b. `assets/radio-univers.png` — Chapitre « Les télescopes radio »
+Un immense radiotélescope la nuit : une parabole monumentale (type FAST/Arecibo) nichée dans
+un cirque naturel, ou une parabole géante de 25 m d'un réseau type VLA, antenne tournée vers
+une Voie lactée éclatante et le centre galactique. Structure d'acier finement détaillée,
+plateforme suspendue par câbles, paysage karstique/désertique d'altitude. Sensation d'une
+oreille géante à l'écoute du cosmos, silence radio, grandeur. Accents azur froid + or discret.
+
+## 6c. `assets/soho-swan-hero.png` — Sonde SOHO, zoom instrument « SWAN »
+Le satellite SOHO de profil, à contre-jour, capteurs de l'instrument SWAN (deux petits
+périscopes latéraux) visibles de part et d'autre de la plateforme ; en arrière-plan, un
+halo diffus d'hydrogène ultraviolet (teinte violette-azur, invisible à l'œil nu) enveloppant
+tout le Système solaire, traversé par la traînée fantomatique d'une comète (Hale-Bopp).
+Le Soleil reste hors-champ ou très en périphérie, pour souligner que cet instrument regarde
+ailleurs. Ambiance scientifique feutrée, cartographie invisible rendue visible. Accents
+violet-azur profond + or discret sur la structure du satellite.
+
 ## 7. `assets/femmes-espace.png` — Chapitre « Les Femmes de l'Espace » (Lalie)
 Salle de contrôle de mission, dans une lumière chaude et solennelle : une ingénieure de dos
 ou de profil, concentrée, face à de grands écrans montrant trajectoires orbitales et

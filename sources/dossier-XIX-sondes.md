@@ -73,6 +73,14 @@ priorité au compte officiel **NASA** (CC BY-NC, ex. Voyager, Cassini, New Horiz
 Pioneer, Rosetta, Kepler, Hubble) et à des auteurs **Creative Commons** (ESO pour le VLT,
 Thomas Flynn pour Perseverance CC0, etc.). Auteur et licence crédités sur **chaque** fiche.
 
+## 7quater. Bestiaire des orbites — géosynchrone, héliosynchrone, héliocentrique, elliptique (✅ vérifié, ajout mi-2026)
+
+- **Géosynchrone vs géostationnaire** — une orbite géosynchrone partage la période de rotation terrestre (~24h) mais peut être inclinée ou elliptique (trace un « 8 » au sol) ; la géostationnaire (GEO, ~35 786 km, équatoriale, circulaire) en est le cas particulier. ✅ (mécanique orbitale standard).
+- **Héliosynchrone « dawn-dusk »** — orbite polaire dont le plan précesse au rythme de la révolution terrestre autour du Soleil, gardant un satellite en permanence au-dessus du terminateur (limite jour/nuit), donc quasiment jamais dans l'ombre de la Terre. ✅ (mécanique orbitale standard ; ESA SOLAR-C SWG AO).
+- **Solar-C (EUVST)** — mission JAXA avec participation NASA/ESA, observatoire solaire ultraviolet extrême, orbite héliosynchrone en configuration dawn-dusk pour une veille solaire ininterrompue. Lancement visé JFY2028 (lanceur Epsilon S) — ⚠️ date-cible NET, des sources secondaires citent aussi 2026. ✅ orbite (ESA SOLAR-C SWG AO, cosmos.esa.int) ; ⚠️ date (JAXA/ISAS annonce JFY2028 ; Gunter's Space Page indique 2026 — divergence non résolue, à corriger si annonce officielle ultérieure).
+- **Héliocentrique** — orbite directement le Soleil et non la Terre ; exemples déjà présents dans ce dossier : Parker Solar Probe, Solar Orbiter. ✅
+- **SMILE — orbite très elliptique (HEO)** — périgée ≈ 5 000-5 027 km (sous le pôle Sud), apogée ≈ 120 920-121 182 km (≈ 19 rayons terrestres, au-dessus du pôle Nord) ; la sonde passe ≈ 80 % de son orbite (≈ 19h de période) loin de la Terre, limitant aussi le temps passé dans les ceintures de Van Allen. Lancée mai 2026 (Vega-C, Kourou), orbite scientifique atteinte le 20 juin 2026. ✅ (ESA/eoPortal, NASASpaceFlight).
+
 ## 7bis. SunRISE — orbite supersynchrone (✅ vérifié, ajout mi-2026)
 
 - **Configuration** — six CubeSats identiques au format **6U**, achevés (construction terminée) fin 2023 par le Space Dynamics Laboratory. ✅ (Gunter's Space Page ; NASA JPL).
@@ -81,6 +89,15 @@ Thomas Flynn pour Perseverance CC0, etc.). Auteur et licence crédités sur **ch
 - **Objectif scientifique** — cartographier en 3D l'origine des sursauts radio liés aux éjections de masse coronale (CME) et aux tempêtes de particules solaires, par synthèse d'ouverture (interférométrie). ✅ (science.nasa.gov/mission/sunrise ; JPL).
 - **Équipe** — géré par le **JPL** (NASA) ; chercheuse principale **Susan Lepri** (Univ. du Michigan) depuis **janvier 2025** (succède à Justin Kasper) ; partenaire Univ. du Colorado Boulder ; construction par Space Dynamics Laboratory (Utah State Univ.). ✅ (science.nasa.gov/blogs/sunrise, juin 2025).
 - **Lancement** — reporté à plusieurs reprises (visé 2023, puis 2024) ; **2026** au moment de la rédaction, en covoiturage sur un lanceur **Vulcan Centaur** (ULA) depuis Cape Canaveral, parrainé par la Space Systems Command de l'US Space Force. Mission scientifique de base d'environ **12 mois**. ⚠️ (date de lancement encore révisée courant 2025-2026 — à vérifier avant tout affichage d'une date précise).
+
+## 7ter. SWAN — instrument SOHO (✅ vérifié, ajout mi-2026)
+
+- **Rôle** — seul instrument de SOHO qui ne regarde pas le Soleil : il cartographie l'hydrogène neutre interstellaire par sa raie Lyman-alpha (121,6 nm), pour en déduire indirectement la distribution du vent solaire. ✅ (Bertaux et al. 1995 ; NSSDCA).
+- **Équipe** — Service d'Aéronomie du CNRS (France) et Finnish Meteorological Institute (Finlande), PI J.-L. Bertaux. ✅ (Bertaux et al. 1995, *Solar Physics* 162, 403).
+- **Conception** — une unité électronique commandant deux capteurs identiques (+Z/-Z, périscope à 2 miroirs toroïdaux), chacun cartographiant un hémisphère avec une résolution de 1°. ✅ (NSSDCA experiment 1995-065A-06 ; Bertaux et al. 1995).
+- **Caractéristiques (Table I, Bertaux et al. 1995, p. 404)** — masse totale 13,25 kg (unité électronique 2,82 kg + 2 unités de détection à 4,815 kg) ; puissance moyenne 11 W ; télémétrie 200 bit/s ; bande 115-180 nm ; détecteur cathode MgF₂/CsI *solar blind*, galette de microcanaux multianode ; résolution spectrale de la cellule à hydrogène < 0,01 Å (pouvoir ≈ 10⁵). ✅ (source primaire : figure scannée de l'article, lue directement dans le support de présentation audité).
+- **Cellule à hydrogène** — technique de spectroscopie à cellule d'absorption (hydrogène atomique produit par dissociation sur filament de tungstène) permettant de mesurer la forme fine de la raie Lyman-alpha et donc des vitesses radiales (effet Doppler), sans spectromètre classique. ✅ (Bertaux et al. 1995, §III et figures 14-16).
+- **Découvertes attribuées** — cartographie du nuage d'hydrogène de la comète Hale-Bopp (fév.-mars 1997) ; cartographie de la géocouronne terrestre depuis L1 ; découverte de comètes propres à SWAN (dont la comète C/2006 M4 « SWAN », nommée d'après l'instrument). ✅ (ESA, « The discovery of Comet SWAN by solar-watcher SOHO »).
 
 ## 7. Atlas — objets lancés & ateliers de physique (✅ vérifiés)
 
@@ -110,11 +127,21 @@ Starlink, lancement de SunRISE), traitées par fourchettes et marqueurs de prude
 dates de missions futures (Artemis, Dragonfly, ELT, MMX, Vénus, retours d'échantillons,
 SunRISE) sont des **cibles NET**, pas des certitudes. Mars Sample Return signalé **en pause**.
 
+### Référence DOI vérifiée (SWAN)
+
+- **Bertaux, J.-L. et al. (1995)**, « SWAN: A study of Solar Wind Anisotropies on SOHO
+  with Lyman alpha sky mapping », *Solar Physics*, 162, 403-439.
+  DOI : **10.1007/BF00733435** (vérifié via Crossref — titre, auteur et revue concordants).
+  Établit la conception de l'instrument SWAN, ses caractéristiques techniques (Table I,
+  p. 404) et le principe de la cellule à hydrogène (§ III, fig. 14-16, p. 420+).
+
 ## Références institutionnelles
 
 - NASA Science — science.nasa.gov (missions) · voyager.jpl.nasa.gov · pluto.jhuapl.edu
 - NASA JPL — jpl.nasa.gov/missions/sun-radio-interferometer-space-experiment · Univ. du Michigan — sunrise.umich.edu (SunRISE)
 - ESA — esa.int (SOHO, Solar Orbiter, Rosetta, Mars Express, Gaia, Cheops, SMILE, ExoMars, Comet Interceptor, EnVision)
+- ESA Cosmos — cosmos.esa.int/documents/9112150/9112169/SOLAR-C+SWG+AO.pdf (orbite héliosynchrone dawn-dusk de Solar-C) · JAXA/ISAS — isas.jaxa.jp (Solar-C/EUVST)
+- eoPortal — eoportal.org/satellite-missions/smile (orbite HEO de SMILE, périgée/apogée)
 - ESO — eso.org / elt.eso.org (VLT, ELT) · keckobservatory.org · NAOC (FAST) · NSF (Arecibo)
 - JAXA — global.jaxa.jp · isas.jaxa.jp (Hayabusa2, MMX, DESTINY+) · CNSA · ISRO
 - NSSDCA — nssdc.gsfc.nasa.gov (catalogue maître) · USGS (Landsat) · eoportal.org (Starlink)
