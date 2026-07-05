@@ -1,0 +1,1831 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ordre Divin ou Démocratie ? Égypte vs Grèce — Empire contre Intox</title>
+  <meta name="description" content="Duel des modèles : l'Égypte de la Maât face à la Grèce du Logos. Deux visions du pouvoir, du sacré et de la pierre — du Nil à l'Agora, de la pyramide au Parthénon. Transcription mot pour mot, faits vérifiés, mythes démontés. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <!-- KaTeX — rendu des vraies formules mathématiques/chimiques -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents — le duel Égypte (ocre du Nil) vs Grèce (azur égéen) */
+      --lapis:#4f93b8;   /* Grèce : l'azur égéen, le marbre, le Logos */
+      --clay:#c98a3c;   /* Égypte : l'ocre, le grès, le sable du Nil */
+      --reed:#9c3f3a;    /* la porphyre, le sacré */
+      --sand:#e6dcc4;   /* le sable, la pierre */
+      --egypte:var(--clay);  /* alias sémantique : l'Égypte */
+      --grece:var(--lapis);  /* alias sémantique : la Grèce */
+      --marble:#cfd6de;  /* le marbre pentélique */
+
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+
+      --hero:url("assets/egypte-grece-hero.png");
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(63,111,158,.16), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.14), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(184,118,58,.11), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px; mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.6),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(74,107,176,.6),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(185,118,63,.45),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.32),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate; }
+    .grain { position:fixed; inset:-50%; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--clay),var(--gold-bright),var(--lapis)); box-shadow:0 0 14px rgba(243,217,138,.55); }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(214,172,85,.28); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    /* Hero */
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02); }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2;
+      background:linear-gradient(86deg,rgba(3,6,13,.94) 0%,rgba(3,6,13,.72) 36%,rgba(3,6,13,.18) 68%,rgba(3,6,13,.5) 100%),linear-gradient(180deg,rgba(3,6,13,.1) 0%,rgba(3,6,13,.28) 54%,var(--void) 100%); }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1; background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh; display:grid; grid-template-columns:minmax(0,780px) minmax(250px,340px); gap:46px; align-items:end; }
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:16ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.7rem,7vw,5.8rem); line-height:.96; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil { background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 40%,#fff6dc 50%,var(--gold-bright) 60%,var(--gold-deep)); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% 0; } }
+    .hero-lead { max-width:58ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-quote { max-width:60ch; margin:22px 0 0; padding-left:20px; border-left:2px solid var(--clay); font-family:var(--serif); font-style:italic; color:var(--parch); font-size:clamp(1.05rem,1.5vw,1.26rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px; font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px); transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1 1 auto; min-width:0; -webkit-overflow-scrolling:touch;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent); }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--clay),var(--gold-bright),var(--lapis)); }
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    /* Intro band */
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.9rem); line-height:1.04; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:96px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time { font-family:var(--roman); font-weight:600; font-size:.8rem; letter-spacing:.04em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(74,107,176,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .act-band { margin:70px 0 0; padding:clamp(26px,4vw,46px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(130% 130% at 0% 0%,rgba(214,172,85,.12),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.55),rgba(7,12,26,.6)); text-align:center; }
+    .act-band .act-no { font-family:var(--roman); font-weight:700; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+    .act-band h2 { margin:14px 0 0; font-family:var(--roman); font-weight:800; font-size:clamp(1.9rem,4.4vw,3.2rem); text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .act-band p { max-width:72ch; margin:16px auto 0; color:var(--muted); }
+
+    /* Chapters */
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"❖"; position:absolute; left:0; top:0; color:var(--gold); font-size:.8em; }
+    .prose ol { margin:14px 0 24px; padding-left:24px; }
+    .prose ol li { padding-left:6px; }
+    .prose ol li::before { content:none; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+    .sub { margin:26px 0 10px; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--parch); }
+
+    .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
+    .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); }
+    /* doc-figure — présentation d'un document d'archive (couverture portrait + provenance) */
+    .doc-figure { display:grid; grid-template-columns:minmax(0,210px) 1fr; margin:8px 0 32px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:linear-gradient(180deg,rgba(12,9,7,.55),rgba(3,6,13,.55)); }
+    .doc-figure .doc-img { display:grid; place-items:center; padding:22px; background:radial-gradient(120% 90% at 50% 0%, rgba(185,118,63,.12), transparent 62%); }
+    .doc-figure .doc-img img { width:100%; max-width:186px; height:auto; border-radius:2px; box-shadow:0 16px 42px rgba(0,0,0,.6), 0 0 0 1px var(--line-2); }
+    .doc-figure figcaption { padding:22px 24px; border-left:1px solid var(--line-2); align-self:center; }
+    .doc-figure .doc-k { font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .doc-figure .doc-t { font-family:var(--serif); font-size:1.04rem; color:var(--parch); margin:9px 0 0; line-height:1.5; }
+    .doc-figure .doc-t b { color:var(--gold-bright); font-weight:600; }
+    .doc-figure .doc-m { font-size:.84rem; color:var(--muted); margin:11px 0 0; line-height:1.58; }
+    .doc-figure .doc-m a { color:var(--gold); }
+    @media (max-width:640px){ .doc-figure { grid-template-columns:1fr; } .doc-figure figcaption { border-left:0; border-top:1px solid var(--line-2); } .doc-figure .doc-img img { max-width:150px; } }
+
+    .script-block,.science-block,.question-block,.lesson-block,.dialogue-block {
+      border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
+    .dialogue-block { border-left-color:var(--gold); background:rgba(214,172,85,.06); font-family:var(--serif); }
+    .dialogue-block p { color:var(--parch); font-style:italic; }
+    .science-block { border-left-color:var(--lapis); background:rgba(74,107,176,.09); }
+    .question-block { border-left-color:var(--clay); background:rgba(185,118,63,.1); }
+    .lesson-block { border-left-color:var(--gold-bright); background:rgba(243,217,138,.06); }
+    .script-block p:last-child,.science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,.dialogue-block p:last-child,
+    .science-block ul:last-child,.lesson-block ul:last-child { margin-bottom:0; }
+    .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .science-block .block-label { color:var(--lapis); }
+    .question-block .block-label { color:var(--clay); }
+
+    /* Code Noir articles */
+    .articles { display:grid; gap:14px; margin:18px 0; }
+    .article-noir { border:1px solid var(--line-2); border-left:3px solid var(--clay); border-radius:3px; padding:20px 22px; background:rgba(185,118,63,.07); }
+    .article-noir h4 { font-family:var(--roman); font-size:.82rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--clay); margin:0 0 8px; }
+    .article-noir .cite { display:block; font-family:var(--serif); font-style:italic; color:var(--parch); margin:0 0 10px; padding-left:14px; border-left:1px solid var(--line); }
+    .article-noir p { margin:0; color:var(--muted); font-size:.98rem; }
+    .article-noir p strong { color:var(--parch); }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    .dtable { width:100%; border-collapse:collapse; margin:14px 0; border:1px solid var(--line); border-radius:3px; overflow:hidden; font-size:.98rem; }
+    .dtable caption { text-align:left; padding:0 0 14px; color:var(--muted); font-style:italic; font-family:var(--serif); }
+    .dtable th { text-align:left; padding:13px 15px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); background:rgba(214,172,85,.06); border-bottom:1px solid var(--line); }
+    .dtable td { padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--line-2); color:var(--muted); }
+    .dtable tr:last-child td { border-bottom:0; }
+    .dtable td.k { color:var(--parch); font-weight:600; }
+    .dtable tr:hover td { background:rgba(244,236,216,.03); }
+
+    .sommaire-list { display:grid; gap:14px; margin:18px 0; }
+    .pillar { border:1px solid var(--line-2); border-radius:3px; padding:22px 24px; background:rgba(244,236,216,.035); border-left:3px solid rgba(214,172,85,.5); }
+    .pillar h3 { margin:0 0 10px; font-family:var(--serif); font-weight:600; font-size:1.24rem; color:var(--ink); }
+    .pillar p { margin:0 0 8px; }
+    .pillar ul { margin:8px 0 0; }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(185,118,63,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(74,107,176,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left:-14px; }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left:-20px; }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    .reveal[data-d="3"] { transition-delay:.24s; }
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .hero-inner > div > *:nth-child(5){ animation-delay:.5s; }
+    .js .signal-board { animation-delay:.5s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid { grid-template-columns:1fr; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+      .dtable { font-size:.9rem; }
+      .dtable th,.dtable td { padding:10px 11px; }
+    }
+    /* ============ Visualisations interactives ============ */
+    .viz { margin:30px 0; border:1px solid var(--line); border-radius:4px; overflow:hidden;
+      background:radial-gradient(140% 120% at 100% 0%,rgba(74,107,176,.1),transparent 55%),linear-gradient(180deg,rgba(7,12,26,.66),rgba(5,8,17,.74));
+      box-shadow:0 22px 64px rgba(0,0,0,.36); }
+    .viz-head { padding:20px 24px 0; }
+    .viz-eyebrow { display:inline-flex; align-items:center; gap:10px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
+    .viz-eyebrow::before { content:""; width:22px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    .viz-title { margin:10px 0 5px; font-family:var(--serif); font-weight:600; font-size:1.28rem; color:var(--ink); line-height:1.15; }
+    .viz-sub { margin:0; color:var(--soft); font-size:.92rem; }
+    .viz-body { padding:14px 24px 8px; }
+    .viz svg { display:block; width:100%; height:auto; overflow:visible; }
+    .viz-foot { padding:6px 24px 18px; font-family:var(--serif); font-style:italic; color:var(--soft); font-size:.84rem; }
+    .viz-foot a { color:var(--gold); border-bottom:1px solid var(--line); }
+    .viz text { font-family:var(--roman); fill:var(--muted); }
+    .viz-legend { display:flex; flex-wrap:wrap; gap:8px 16px; padding:0 24px 14px; }
+    .viz-legend span { display:inline-flex; align-items:center; gap:7px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .viz-legend i { width:11px; height:11px; border-radius:2px; display:inline-block; }
+
+    /* ===== Duel comparateur Égypte ⇄ Grèce ===== */
+    .duel-chips { display:flex; flex-wrap:wrap; gap:8px; padding:16px 24px 4px; }
+    .duel-chip { cursor:pointer; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted);
+      border:1px solid var(--line); border-radius:2px; background:rgba(244,236,216,.03); padding:9px 14px; transition:all .3s var(--ease); }
+    .duel-chip:hover { color:var(--parch); border-color:rgba(214,172,85,.5); }
+    .duel-chip.active { color:#14110a; background:linear-gradient(140deg,var(--gold-bright),var(--gold)); border-color:transparent; box-shadow:0 8px 22px rgba(214,172,85,.24); }
+    .duel-chip:focus-visible { outline:2px solid var(--gold-bright); outline-offset:2px; }
+    .duel-grid { display:grid; grid-template-columns:1fr auto 1fr; gap:0; align-items:stretch; padding:14px 24px 6px; }
+    .duel-side { border:1px solid var(--line-2); border-radius:3px; padding:20px 22px; background:linear-gradient(180deg,rgba(14,26,46,.42),rgba(7,12,26,.5)); }
+    .duel-side.eg { border-top:3px solid var(--egypte); }
+    .duel-side.gr { border-top:3px solid var(--grece); }
+    .duel-side .ds-name { font-family:var(--roman); font-size:.66rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; }
+    .duel-side.eg .ds-name { color:var(--egypte); }
+    .duel-side.gr .ds-name { color:var(--grece); }
+    .duel-side .ds-head { margin:8px 0 12px; font-family:var(--serif); font-weight:600; font-size:1.22rem; color:var(--ink); line-height:1.18; }
+    .duel-side .ds-body { margin:0; color:var(--muted); font-size:.98rem; line-height:1.6; }
+    .duel-vs { display:flex; align-items:center; justify-content:center; padding:0 18px; font-family:var(--roman); font-weight:800; font-size:1.1rem; letter-spacing:.08em; color:var(--gold); }
+    .duel-vs span { writing-mode:vertical-rl; opacity:.7; }
+    @media (max-width:640px){ .duel-grid { grid-template-columns:1fr; gap:12px; } .duel-vs { padding:2px 0; } .duel-vs span { writing-mode:horizontal-tb; } }
+
+    /* — Carte triangulaire — */
+    .tri-legs path.hit { stroke:transparent; stroke-width:34; fill:none; cursor:pointer; }
+    .tri-legs path.route { fill:none; stroke-width:2.4; stroke-linecap:round; transition:stroke-width .35s,opacity .35s; }
+    .tri-legs g.leg path.route { opacity:.4; }
+    .tri-legs g.leg.active path.route { opacity:1; stroke-width:3.4; }
+    .tri-legs path.flow { fill:none; stroke-width:3.2; stroke-linecap:round; stroke-dasharray:2 16; opacity:0; }
+    .tri-legs g.leg.active path.flow { opacity:1; animation:triflow 2.4s linear infinite; }
+    @keyframes triflow { to { stroke-dashoffset:-180; } }
+    .tri-node circle { fill:rgba(5,8,17,.9); stroke:var(--gold); stroke-width:1.4; }
+    .tri-node text { fill:var(--parch); font-weight:600; font-size:13px; letter-spacing:.04em; }
+    .tri-node .sub { fill:var(--soft); font-size:10px; font-weight:600; }
+    .leg-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:4px 24px; }
+    .leg-card { border:1px solid var(--line-2); border-left:3px solid var(--lc,var(--gold)); border-radius:3px; padding:13px 15px; background:rgba(244,236,216,.03); cursor:pointer; transition:transform .3s var(--ease),background .3s; text-align:left; }
+    .leg-card:hover { transform:translateY(-3px); background:rgba(244,236,216,.06); }
+    .leg-card.active { background:rgba(244,236,216,.08); box-shadow:0 0 0 1px var(--lc,var(--gold)) inset; }
+    .leg-card h5 { margin:0 0 3px; font-family:var(--roman); font-size:.64rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lc,var(--gold)); }
+    .leg-card p { margin:0; color:var(--muted); font-size:.85rem; }
+    .leg-detail { margin:14px 24px 4px; border-top:1px solid var(--line-2); padding-top:16px; min-height:104px; }
+    .leg-detail .lab { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--lc,var(--gold)); }
+    .leg-detail h4 { margin:7px 0 8px; font-family:var(--serif); font-weight:600; font-size:1.18rem; color:var(--ink); }
+    .leg-detail p { margin:0 0 10px; color:var(--muted); font-size:.96rem; }
+    .leg-detail ul { margin:0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+    .leg-detail li { font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--parch); border:1px solid var(--line); border-radius:2px; padding:5px 10px; background:rgba(214,172,85,.05); }
+    .leg-detail li::before { content:none; }
+
+    /* — Frise chronologique — */
+    .tl-node { cursor:pointer; }
+    .tl-node circle.dot { fill:var(--void); stroke-width:2; transition:r .25s; }
+    .tl-node:hover circle.dot,.tl-node.active circle.dot { r:8.5; }
+    .tl-node text { fill:var(--soft); font-size:10.5px; font-weight:600; letter-spacing:.02em; transition:fill .25s; }
+    .tl-node:hover text,.tl-node.active text { fill:var(--parch); }
+    .tl-detail { margin:6px 24px 4px; border-top:1px solid var(--line-2); padding-top:14px; min-height:74px; }
+    .tl-detail .yr { font-family:var(--roman); font-weight:800; font-size:1.15rem; color:var(--gold-bright); letter-spacing:.02em; }
+    .tl-detail h4 { margin:3px 0 6px; font-family:var(--serif); font-weight:600; font-size:1.1rem; color:var(--ink); }
+    .tl-detail p { margin:0; color:var(--muted); font-size:.95rem; }
+
+    /* — Bar chart Nantes — */
+    .bars-row { cursor:pointer; }
+    .bars-row rect.bar { transition:filter .3s; }
+    .bars-row:hover rect.bar,.bars-row.active rect.bar { filter:brightness(1.3); }
+    .bars-row text.cap { fill:var(--parch); font-size:11px; font-weight:700; }
+    .bars-row text.yr { fill:var(--soft); font-size:10px; font-weight:600; }
+    .bars-detail { margin:10px 24px 4px; border-top:1px solid var(--line-2); padding-top:14px; min-height:58px; color:var(--muted); font-size:.95rem; }
+    .bars-detail b { color:var(--parch); }
+
+    /* — Plan du navire — */
+    .ship-controls { display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; padding:4px 24px 12px; }
+    .ship-toggle { display:inline-flex; border:1px solid var(--line); border-radius:3px; overflow:hidden; }
+    .ship-toggle button { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); background:transparent; border:0; padding:9px 14px; cursor:pointer; transition:background .25s,color .25s; }
+    .ship-toggle button.on { background:linear-gradient(140deg,var(--gold-bright),var(--gold-deep)); color:#14110a; }
+    .ship-readout { font-family:var(--serif); color:var(--muted); font-size:.94rem; }
+    .ship-readout b { font-family:var(--roman); font-weight:800; font-size:1.18rem; color:var(--gold-bright); letter-spacing:.02em; }
+    .ship svg .hull { fill:rgba(125,138,90,.07); stroke:var(--reed); stroke-width:1.4; }
+    .ship svg .deckline { stroke:var(--line); stroke-width:1; stroke-dasharray:3 4; }
+    .ship svg .fig { fill:var(--gold); opacity:.6; }
+    .ship svg .barricado { stroke:var(--clay); stroke-width:2.4; stroke-dasharray:5 4; }
+    .ship svg text.lbl { fill:var(--soft); font-size:10px; font-weight:600; }
+
+    @media (max-width:720px) {
+      .leg-cards { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      .tri-legs g.leg path.flow { opacity:0 !important; }
+      html { scroll-behavior:auto; }
+    }
+    /* — Frise des cités : panneau de détail — */
+    .frise-detail { margin:8px 24px 6px; border-top:1px solid var(--line-2); padding-top:14px; min-height:118px; }
+    .frise-detail .yr { font-family:var(--roman); font-weight:800; font-size:1.04rem; color:var(--lc,var(--gold-bright)); letter-spacing:.02em; }
+    .frise-detail h4 { margin:3px 0 7px; font-family:var(--serif); font-weight:600; font-size:1.16rem; color:var(--ink); }
+    .frise-detail .besoin { display:inline-block; font-family:var(--roman); font-size:.58rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#14110a; background:var(--lc,var(--gold)); border-radius:2px; padding:3px 8px; }
+    .frise-detail p { margin:8px 0 0; color:var(--muted); font-size:.96rem; }
+    .frise-detail .meta { margin:8px 0 0; font-size:.85rem; color:var(--soft); }
+    .frise-detail .meta b { color:var(--parch); font-weight:600; }
+    /* — Stepper jetons → tablette — */
+    .stepper { display:flex; flex-wrap:wrap; gap:8px; padding:6px 24px 2px; }
+    .stepper button { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:3px; padding:9px 13px; cursor:pointer; transition:background .25s,color .25s,border-color .25s; }
+    .stepper button.on { background:linear-gradient(140deg,var(--gold-bright),var(--gold-deep)); color:#14110a; border-color:transparent; }
+    .stepper button:hover { border-color:rgba(214,172,85,.5); }
+    .step-illus { padding:8px 24px 0; }
+    .step-illus svg { display:block; max-width:440px; margin:0 auto; }
+    .step-detail { margin:8px 24px 6px; border-top:1px solid var(--line-2); padding-top:14px; min-height:104px; }
+    .step-detail .yr { font-family:var(--roman); font-weight:800; font-size:1.02rem; color:var(--gold-bright); letter-spacing:.02em; }
+    .step-detail h4 { margin:4px 0 7px; font-family:var(--serif); font-weight:600; font-size:1.14rem; color:var(--ink); }
+    .step-detail p { margin:0; color:var(--muted); font-size:.96rem; }
+    /* — Dataviz : nœuds de frise, glyphes & transitions — */
+    .frise-node { cursor:pointer; }
+    .frise-node text { font-family:var(--roman); fill:var(--soft); transition:fill .25s var(--ease); }
+    .frise-node .glyph { transition:opacity .25s var(--ease); opacity:.85; }
+    .frise-node .core { transition:r .25s var(--ease); }
+    .frise-node:hover text, .frise-node.active text { fill:var(--parch); }
+    .frise-node:hover .glyph, .frise-node.active .glyph { opacity:1; }
+    .frise-node:focus-visible { outline:none; }
+    .frise-node:focus-visible .ring { stroke-width:3.4; }
+    .frise-node .pulse { opacity:0; }
+    .frise-node.active .pulse { animation:frisePulse 2.1s var(--ease) infinite; }
+    @keyframes frisePulse { 0%{ r:11px; opacity:.42; } 100%{ r:27px; opacity:0; } }
+    .frise-era { font-family:var(--roman); letter-spacing:.16em; text-transform:uppercase; }
+    .step-illus svg .stage { transition:opacity .32s var(--ease); }
+    @media (prefers-reduced-motion:reduce){ .frise-node.active .pulse { animation:none; } .step-illus svg .stage { transition:none; } }
+    /* ===== Crédits : ligne de participation ===== */
+    .credit-band .note, .who .note { font-family:var(--serif); font-style:italic; font-size:.9rem; color:var(--muted); }
+    .credit-band .credit-text .note { margin-top:2px; }
+    .collective-credit { margin:14px 0 0; font-family:var(--serif); font-style:italic; color:var(--gold-bright); font-size:1.02rem; }
+    .prose ol.numbered { padding-left:1.3em; }
+    .prose ol.numbered > li { margin:.5em 0; }
+
+    /* ===== KaTeX : formules inline & stèles ===== */
+    .imath { display:inline-block; line-height:1; vertical-align:-.16em; }
+    .imath .katex { font-size:1.02em; color:var(--gold-bright); }
+    .imath:empty { display:none; }
+    .formula-block { margin:26px 0; position:relative; border:1px solid var(--line); border-radius:3px; overflow:hidden;
+      background:
+        radial-gradient(120% 140% at 0% 0%, rgba(214,172,85,.12), transparent 55%),
+        radial-gradient(120% 140% at 100% 100%, rgba(184,118,58,.10), transparent 55%),
+        linear-gradient(180deg, rgba(14,26,46,.58), rgba(7,12,26,.66));
+      box-shadow:var(--shadow); }
+    .formula-block::before { content:""; position:absolute; inset:0; pointer-events:none;
+      background-image:linear-gradient(rgba(214,172,85,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(214,172,85,.05) 1px, transparent 1px);
+      background-size:38px 38px; opacity:.5; }
+    .formula-block > * { position:relative; z-index:1; }
+    .formula-block .fb-head { display:flex; align-items:center; gap:12px; padding:11px 22px; border-bottom:1px solid var(--line);
+      background:rgba(5,8,17,.42); font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); }
+    .formula-block .fb-head::before { content:"ƒ"; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; flex:none;
+      border:1px solid var(--gold); border-radius:50%; font-family:var(--serif); font-style:italic; font-size:13px; letter-spacing:0; color:var(--gold-bright); background:rgba(214,172,85,.08); }
+    .formula-block .fb-head .fb-tag { margin-left:auto; color:var(--soft); letter-spacing:.14em; }
+    .formula { display:block; margin:0; padding:24px 22px; text-align:center; overflow-x:auto; }
+    .formula .katex { font-size:1.6rem; color:var(--gold-bright); }
+    .formula:empty { display:none; }
+    .formula-block .fb-note { padding:2px 22px 18px; margin:0; font-family:var(--serif); font-size:.96rem; line-height:1.62; color:var(--muted); }
+    .formula-block .fb-note b { color:var(--ink); font-weight:600; }
+    @media (max-width:640px){ .formula .katex{ font-size:1.2rem; } .formula-block .fb-head{ padding:10px 16px; } .formula,.formula-block .fb-note{ padding-left:16px; padding-right:16px; } }
+
+    /* ===== Frise interactive des empires ===== */
+    .viz-section { width:min(100% - 40px, var(--max)); margin:48px auto; }
+    .viz-head { max-width:760px; margin-bottom:24px; }
+    .viz-eyebrow { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--clay); margin:0 0 10px; }
+    .viz-title { font-family:var(--roman); font-weight:700; text-transform:uppercase; letter-spacing:.02em; font-size:clamp(1.5rem,3.2vw,2.2rem); color:var(--ink); margin:0 0 10px; }
+    .viz-sub { color:var(--muted); margin:0; max-width:64ch; }
+    .frise { position:relative; border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(12px); }
+    .frise-track { position:relative; height:210px; margin:0 30px; }
+    .frise-track::before { content:""; position:absolute; left:0; right:0; top:50%; height:2px; transform:translateY(-50%);
+      background:linear-gradient(90deg, var(--lapis), var(--clay) 42%, var(--reed) 70%, var(--gold-bright)); opacity:.6; }
+    .frise-node { position:absolute; top:50%; transform:translate(-50%,-50%); width:24px; height:24px; background:none; border:0; cursor:pointer; padding:0; }
+    .fn-dot { display:block; width:15px; height:15px; border-radius:50%; margin:4px auto; background:var(--void); border:2px solid var(--c); box-shadow:0 0 0 4px rgba(5,8,17,.6); transition:transform .25s var(--ease), box-shadow .25s var(--ease); }
+    .frise-node.active .fn-dot, .frise-node:hover .fn-dot { transform:scale(1.4); box-shadow:0 0 0 4px rgba(5,8,17,.6), 0 0 20px var(--c); }
+    .fn-label { position:absolute; left:50%; transform:translateX(-50%); width:138px; text-align:center; pointer-events:none; }
+    .fn-label b { display:block; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--parch); line-height:1.22; }
+    .fn-label i { display:block; font-style:normal; font-size:.6rem; color:var(--soft); margin-top:3px; }
+    .frise-node.above .fn-label { bottom:22px; }
+    .frise-node.below .fn-label { top:22px; }
+    .frise-node.active .fn-label b { color:var(--gold-bright); }
+    .frise-detail { border-top:1px solid var(--line); padding:18px 30px 22px; border-left:3px solid var(--fd, var(--gold)); }
+    .fd-date { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--fd, var(--gold)); }
+    .fd-title { font-family:var(--roman); font-size:clamp(1.05rem,2vw,1.35rem); text-transform:uppercase; letter-spacing:.03em; color:var(--ink); margin:6px 0 8px; }
+    .fd-desc { color:var(--muted); margin:0; max-width:72ch; }
+    .viz-foot { margin:14px 6px 0; font-size:.82rem; color:var(--soft); }
+    @media (max-width:640px){ .frise-track{ height:280px; margin:0 14px; } .fn-label{ width:100px; } .viz-foot{ margin-left:0; } }
+
+  </style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-waterline"></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier XXII · Antiquité comparée</p>
+          <h1>Ordre Divin ou <span class="foil">Démocratie</span> ?</h1>
+          <p class="hero-lead">L'affrontement des géants. D'un côté l'<strong>Égypte</strong> : la Maât, l'ordre cosmique, la pérennité du Pharaon. De l'autre la <strong>Grèce</strong> : le Logos, l'Agôn, la démocratie de l'Agora. « <em>Le duel des modèles : deux visions du monde que tout oppose, et qui pourtant ont façonné les fondations de notre pensée moderne.</em> »</p>
+          <p class="hero-quote">« Là où le scribe égyptien fige la vérité sur le papyrus pour assurer la pérennité de l'État, le citoyen grec monte sur l'Agora pour réinventer l'État par la force de sa parole. »</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#introduction">Lire le dossier</a>
+            <a class="button" href="#duel">Le comparateur</a>
+            <a class="button" href="../../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board" aria-label="Repères">
+          <div class="signal"><span>L'Égypte</span><strong>La Maât : l'ordre cosmique, la pérennité, l'État sacré</strong></div>
+          <div class="signal"><span>La Grèce</span><strong>Le Logos &amp; l'Agôn : la raison, la compétition, le débat</strong></div>
+          <div class="signal"><span>La pierre</span><strong>La pyramide qui fige · le Parthénon qui accueille</strong></div>
+          <div class="signal"><span>La méthode</span><strong>Démonter les mythes : le génie humain, pas la magie</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="../assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Égypte vs Grèce</span>
+        </a>
+        <a class="home-link" href="../../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#sommaire">Sommaire</a>
+          <a href="#duel">Comparateur</a>
+          <a href="#egypte-modele">Égypte</a>
+          <a href="#grece-modele">Grèce</a>
+          <a href="#geographie">Géographie</a>
+          <a href="#pouvoir">Pouvoir</a>
+          <a href="#femmes">Femmes</a>
+          <a href="#spiritualite">Dieux</a>
+          <a href="#materialite">Pierre</a>
+          <a href="#astronomie">Astronomie</a>
+          <a href="#pyramides">Pyramides</a>
+          <a href="#parthenon">Parthénon</a>
+          <a href="#mathematiques">Maths</a>
+          <a href="#conclusion">Conclusion</a>
+          <a href="#sources-dossier">Sources</a>
+          <a href="#lexique">Lexique</a>
+        </div>
+        <div class="progress" aria-hidden="true"><span></span></div>
+      </div>
+    </nav>
+
+    <main id="transcription">
+      <section class="intro-band" id="fil" aria-label="Fil conducteur">
+        <div class="manifesto reveal">
+          <p class="section-kicker">Le fil conducteur</p>
+          <h2>« Le duel des modèles : deux visions du monde que tout oppose »</h2>
+          <p>Deux géants nés au 4ᵉ millénaire, deux choix de société radicalement opposés : la <strong>centralisation absolue</strong> pour durer face au chaos (l'Égypte de la Maât) contre la <strong>fragmentation en cités-États</strong>, terreau de la rivalité et de l'innovation (la Grèce du Logos). Ce dossier confronte le Nil et l'Égée, le Pharaon et le Citoyen, la pyramide et le Parthénon — puis démonte les mythes qui entourent leurs pierres. La transcription du live est conservée <strong>mot pour mot</strong>, et chaque fait a été vérifié.</p>
+        </div>
+        <div class="timeline reveal" data-d="1" aria-label="Repères chronologiques">
+          <div class="timeline-row"><time>≈ 3100 av. J.-C.</time><p><strong>Égypte unifiée</strong> — la plus ancienne structure étatique unifiée (Narmer / Ménès).</p></div>
+          <div class="timeline-row"><time>≈ 2650 av. J.-C.</time><p><strong>Imhotep</strong> — la pyramide à degrés de Djoser : l'État qui bâtit l'éternité.</p></div>
+          <div class="timeline-row"><time>VIᵉ s. av. J.-C.</time><p><strong>Solon</strong> réforme Athènes — la loi débattue contre l'arbitraire.</p></div>
+          <div class="timeline-row"><time>447–432 av. J.-C.</time><p><strong>Le Parthénon</strong> — sous Périclès : le manifeste de la cité et de la raison.</p></div>
+          <div class="timeline-row"><time>30 av. J.-C.</time><p><strong>Mort de Cléopâtre VII</strong> — la fin de l'Égypte antique comme État souverain.</p></div>
+        </div>
+      </section>
+
+      <section class="learning-panel reveal" aria-label="Objectifs de lecture">
+        <h2>Trois clés pour lire le duel des géants — l'ordre qui dure, la liberté qui invente, et le génie humain derrière la pierre.</h2>
+        <div class="learning-grid">
+          <div class="learning-item reveal" data-d="1"><span>Comprendre</span><p>Pourquoi ces civilisations ne sont pas une <strong>suite chronologique</strong> mais deux trajectoires : la certitude du Nil contre la fragmentation de l'Égée.</p></div>
+          <div class="learning-item reveal" data-d="2"><span>Distinguer</span><p>Deux « logiciels » de pouvoir : la <strong>Maât</strong> (l'ordre cosmique, la pérennité administrative) et le <strong>Logos / l'Agôn</strong> (la raison, le débat, la citoyenneté).</p></div>
+          <div class="learning-item reveal" data-d="3"><span>Décoder</span><p>Démonter l'intox — pyramides « extraterrestres », esclaves bâtisseurs, « perfection » du Parthénon : partout, chercher <strong>la méthode, pas la magie</strong>.</p></div>
+        </div>
+      </section>
+
+      <section class="wrap viz-section reveal" id="duel" aria-label="Comparateur interactif Égypte contre Grèce">
+        <div class="viz-head">
+          <p class="viz-eyebrow">Visualisation · Le duel des modèles</p>
+          <h2 class="viz-title">Comparateur Égypte ⇄ Grèce</h2>
+          <p class="viz-sub">Touchez un thème pour confronter les deux modèles, face à face. Une grille de lecture du live — la formule de chaque civilisation, pas une réduction académique.</p>
+        </div>
+        <div class="duel-chips" id="duel-chips" role="tablist" aria-label="Thèmes du duel"></div>
+        <div class="duel-grid">
+          <div class="duel-side eg"><div class="ds-name">Égypte · La Machine</div><h3 class="ds-head" id="eg-head"></h3><p class="ds-body" id="eg-body"></p></div>
+          <div class="duel-vs" aria-hidden="true"><span>VS</span></div>
+          <div class="duel-side gr"><div class="ds-name">Grèce · Le Miroir</div><h3 class="ds-head" id="gr-head"></h3><p class="ds-body" id="gr-body"></p></div>
+        </div>
+        <p class="viz-foot">Synthèse fidèle au déroulé : « <em>l'Égypte est l'art de la stabilité, la Grèce est l'art de la friction</em> ». Les nuances vérifiées sont dans les encadrés « Anti-intox » des chapitres.</p>
+      </section>
+
+      <section class="chapter" id="sommaire">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">Introduction &amp; sommaire</p>
+            <h2>Ordre Divin ou Démocratie ? L'affrontement des géants</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">00</div>
+        </div>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <p class="sub">Duel des Modèles – Égypte vs Grèce</p>
+            <p class="group-title">Introduction</p>
+            <p class="lede">Bienvenue à toutes et à tous. Aujourd'hui, nous ne nous contentons pas de comparer deux cartes ou deux chronologies ; nous allons confronter deux visions du monde que tout oppose, et qui pourtant ont façonné les fondations de notre pensée moderne.</p>
+            <p>D'un côté, l'Égypte : le royaume de la Maât, où la stabilité, l'ordre cosmique et la pérennité du Pharaon assurent l'équilibre de l'univers depuis des millénaires. Une société où la loi est transcendante, immuable, héritée du divin.</p>
+            <p>De l'autre, la Grèce : le laboratoire de la cité, où naissent le Logos, la démocratie et l'Agôn — cette soif de compétition et de débat qui pousse l'humain à questionner, critiquer et réinventer sans cesse les règles du vivre-ensemble.</p>
+            <p>Mais avant de plonger dans ce duel, il est crucial de dissiper une confusion classique : contrairement aux idées reçues, ces civilisations ne sont pas une simple suite chronologique. Ce sont des trajectoires distinctes, nées au 4e millénaire, ayant fait des choix sociétaux radicalement opposés : le choix de la centralisation absolue et de l'unité pour durer face au chaos, contre celui de la fragmentation en cités-États, terreau fertile de la rivalité et de l'innovation.</p>
+            <p>Comment ces deux géants se sont-ils regardés ? Qu'est-ce qui, dans leur rencontre, a nourri la fascination des uns et l'incompréhension des autres ? En évitant les clichés sur le "choc des civilisations", nous allons analyser, de manière sourcée et rigoureuse, ce que cet affrontement nous révèle sur l'humanité, l'État et le pouvoir.</p>
+            <p>C'est le duel des modèles : Égypte contre Grèce.</p>
+            <p>Bienvenue dans L'Empire Contre-Intox.</p>
+
+            <p class="sub">Sommaire</p>
+            <div class="sommaire-list">
+              <article class="pillar">
+                <h3>I. Le socle : Géographie et naissance de l'État</h3>
+                <ul>
+                  <li>La Géographie comme destin : L'unité du Nil face à la fragmentation de l'Égée.</li>
+                  <li>Structure géo-politique : L'État-Nation centralisé (Égypte) contre le réseau des cités-États (Grèce).</li>
+                </ul>
+              </article>
+              <article class="pillar">
+                <h3>II. Le pouvoir : Des figures incarnées à la citoyenneté active</h3>
+                <ul>
+                  <li>La pyramide égyptienne : Le Pharaon (garant de la Maât), le Vizir (stratège) et le Scribe (mémoire de l'État).</li>
+                  <li>Le laboratoire grec : L'Agora comme cœur du politique et le passage du sujet au citoyen.</li>
+                </ul>
+              </article>
+              <article class="pillar">
+                <h3>III. L'influence au féminin : Régence, exception et pouvoir</h3>
+                <ul>
+                  <li>Égypte (La souveraineté incarnée) : Hatchepsout et Cléopâtre VII.</li>
+                  <li>Grèce (L'exception et l'influence) : Aspasie de Milet et Gorgo de Sparte.</li>
+                  <li>Transition : Si le pouvoir politique restait majoritairement masculin, la sphère religieuse offrait aux femmes un espace d'expression crucial.</li>
+                </ul>
+              </article>
+              <article class="pillar">
+                <h3>IV. Spiritualité et ordre cosmique</h3>
+                <ul>
+                  <li>Égypte : La religion au service de la Maât et de l'éternité (prêtresses, Épouse du Dieu).</li>
+                  <li>Grèce : Le culte comme ciment civique et public (femmes actrices des rites).</li>
+                </ul>
+              </article>
+              <article class="pillar">
+                <h3>V. La matérialité : L'architecture comme message politique</h3>
+                <ul>
+                  <li>Égypte : Pyramides et Temples (le gigantisme pour l'éternité).</li>
+                  <li>Grèce : La colonne et l'espace public (l'humain au centre de la structure).</li>
+                </ul>
+              </article>
+              <article class="pillar">
+                <h3>VI. Conclusion : Synthèse et état de la recherche</h3>
+                <ul>
+                  <li>Ce qui est acté : Les différences de droits juridiques et l'exception spartiate.</li>
+                  <li>Ce qui est débattu : L'ampleur réelle de l'influence féminine dans les sources antiques.</li>
+                </ul>
+              </article>
+            </div>
+            <p>Lexique de travail (À intégrer en fin de script ou en incrustation)</p>
+          </div>
+          <aside class="side-note">
+            <h3>Deux trajectoires, pas une échelle</h3>
+            <p>Le piège à éviter : croire que la Grèce « succède » à l'Égypte comme un progrès. Ce sont deux <strong>réponses parallèles</strong> à la même question — dompter le chaos — nées au même 4ᵉ millénaire.</p>
+            <div class="tag-list">
+              <span class="tag">Maât</span>
+              <span class="tag">Logos</span>
+              <span class="tag">Agôn</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <div class="credit-avatars">
+          <img src="ymir.jpeg" alt="Avatar d'Ymir">
+          <img src="lalie.jpeg" alt="Avatar de Lalie">
+        </div>
+        <div class="credit-text">
+          <span class="lbl">Dossier réalisé par</span>
+          <strong>Ymir &amp; Lalie</strong>
+        </div>
+      </section>
+
+      <section class="chapter" id="egypte-modele">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">Le premier modèle</p>
+            <h2>L'Égypte — La force de l'institution</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">01</div>
+        </div>
+        <figure class="chapter-figure reveal" data-d="1">
+          <img src="assets/egypte-maat.png" alt="La Maât, l'ordre cosmique égyptien : le scribe, le temple et le Nil" loading="lazy">
+          <figcaption>La Maât — l'ordre cosmique que le scribe entretient et que le roi garantit : « une ingénierie du temps ».</figcaption>
+        </figure>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <div class="dialogue-block">
+              <p class="block-label">Au live</p>
+              <p>Commençons par l'Égypte. Pour bien comprendre ce royaume, il faut oublier le terme "Pharaon" tel qu'on le voit dans les films. À l'origine, Per-aâ, la "Grande Maison", désigne l'institution, le siège du pouvoir, pas l'homme.</p>
+              <p>L'Égypte, ce n'est pas une aventure politique, c'est une ingénierie du temps. Le Nil est leur métronome : prévisible, bienfaisant, il impose une certitude. Le scribe, avec ses Medou Netjer (paroles divines), n'est pas un simple comptable, c'est le technicien qui maintient l'ordre. Ici, l'administration est une prière : on mesure, on stocke, on prévoit, pour que la Maât — cet équilibre cosmique — ne soit jamais rompue. Le roi, ce gardien de la Maât, n'est pas là pour légiférer, il est là pour garantir que le soleil se lève demain. C'est un modèle fondé sur la pérennité absolue. »</p>
+            </div>
+
+            <p class="group-title">Le Modèle Égyptien – La force de l'institution</p>
+            <p class="sub">1. L'illusion du "Pharaon" : Une métonymie historique</p>
+            <ul>
+              <li><strong>Correction sémantique :</strong> Le terme Per-aâ (« Grande Maison ») ne désigne pas une personne, mais une institution. Utiliser "Pharaon" pour tout l'Ancien Empire est un anachronisme que nous devons dissiper.</li>
+              <li><strong>La Titulature :</strong> Le roi n'est pas un homme seul, il est une « constellation » de fonctions sacrées (Horus, les Deux Maîtresses, fils de Rê). Il est le maillon d'une chaîne ininterrompue de 3 000 ans.</li>
+            </ul>
+            <p class="sub">2. La Maât : La "technologie" de la stabilité</p>
+            <ul>
+              <li><strong>Au-delà de la religion :</strong> La Maât n'est pas une croyance, c'est un système de gestion. Elle est l'ordre cosmique qui rend le Nil prévisible et la société résiliente.</li>
+              <li><strong>La "Maintenance" divine :</strong> Le temple n'est pas un lieu de prière, c'est une infrastructure de maintenance. Les rituels servent à garantir que les forces naturelles restent alignées sur les besoins de l'État.</li>
+            </ul>
+            <p class="sub">3. Le Scribe : Le système nerveux de l'État</p>
+            <ul>
+              <li><strong>La bureaucratie comme prière :</strong> Le scribe est le technicien de la Maât. En comptant les stocks et en mesurant les champs, il ne fait pas que de la gestion administrative, il maintient l'ordre du monde.</li>
+              <li><strong>Contraste :</strong> Alors que la cité grecque repose sur le débat public (agora), l'État égyptien repose sur la précision de l'enregistrement (scribe).</li>
+            </ul>
+            <p class="sub">4. Synthèse: La longévité comme preuve</p>
+            <div class="dialogue-block">
+              <p>"On demande souvent : 'Qui était le Pharaon ?'. C'est une question qui contient un piège. En réalité, ce qui est fascinant, ce n'est pas le nom de l'homme sur le trône, mais la force de l'institution. Alors que la Grèce invente la rupture politique et le débat, l'Égypte a inventé la pérennité administrative. Ils ne cherchaient pas à innover, ils cherchaient à durer."</p>
+            </div>
+            <p class="group-title">Ce qui est acté vs Ce qui est débattu (Pour une rigueur scientifique)</p>
+            <ul>
+              <li><strong>Ce qui est acté :</strong> L'existence d'une structure étatique unifiée très précoce (3100 av. J.-C.) et l'importance centrale de la bureaucratie dans la gestion des crues du Nil.</li>
+              <li><strong>Ce qui est débattu :</strong> La mesure exacte du pouvoir « réel » des prêtres vis-à-vis du roi lors des périodes de crises dynastiques. Certains chercheurs débattent encore du degré de centralisation réelle dans les provinces les plus éloignées (le système était-il aussi monolithique qu'il le prétendait sur les murs des temples ?).</li>
+            </ul>
+
+            <div class="science-block">
+              <p class="block-label">Anti-intox · vérifié</p>
+              <p><strong>« Per-aâ » désigne bien l'institution</strong> avant de désigner l'homme : l'emploi du mot pour la <em>personne</em> du roi n'apparaît qu'au <strong>Nouvel Empire (XVIIIᵉ dynastie, ~XVᵉ s. av. J.-C.)</strong>. Parler de « Pharaon » pour l'Ancien Empire est donc bien anachronique. L'unification vers <strong>~3100 av. J.-C.</strong> (± 150 ans) est la valeur standard, attribuée à Narmer / Ménès — mieux vue comme un <strong>processus</strong> que comme un événement unique. <span class="src">Sources : Britannica « Pharaoh » ; World History Encyclopedia.</span></p>
+            </div>
+          </div>
+          <aside class="side-note">
+            <h3>La formule égyptienne</h3>
+            <p>Une « <strong>machine à durer</strong> » : le Nil pour métronome, le scribe pour système nerveux, la Maât pour système d'exploitation. On ne cherche pas à innover — on cherche à <strong>ne jamais s'arrêter</strong>.</p>
+            <p class="loc">◷ 3 000 ans de continuité institutionnelle : le record absolu de longévité d'un État.</p>
+            <div class="tag-list">
+              <span class="tag">Per-aâ</span>
+              <span class="tag">Maât</span>
+              <span class="tag">Scribe</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="grece-modele">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">Le second modèle</p>
+            <h2>La Grèce — Le laboratoire de l'humain</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">02</div>
+        </div>
+        <figure class="chapter-figure reveal" data-d="1">
+          <img src="assets/grece-agora.png" alt="L'Agora d'Athènes : citoyens en débat sous les colonnades" loading="lazy">
+          <figcaption>L'Agora — non un palais inaccessible, mais l'espace bruyant du débat : le Logos et l'Agôn au cœur de la cité.</figcaption>
+        </figure>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <div class="dialogue-block">
+              <p class="block-label">Transition</p>
+              <p>Mais face à cette "machine à durer" égyptienne, une autre civilisation choisit une voie radicalement différente. Là où l'Égypte cherche la certitude dans l'unité et la répétition, la Grèce va chercher l'innovation dans la fragmentation et le conflit. Là où le scribe égyptien fige le monde sur le papyrus pour ne pas qu'il bouge, le citoyen grec monte sur l'Agora pour le transformer par la parole. C'est là que le duel commence.</p>
+            </div>
+
+            <p class="group-title">Le Modèle Grec : Le laboratoire de l'humain (Le Modèle Expérimental)</p>
+            <p class="sub">1. Les débuts : La rupture par la géographie</p>
+            <ul>
+              <li><strong>La fragmentation comme moteur :</strong> Contrairement au Nil qui unit, le relief grec (montagnes, îles, vallées isolées) empêche la centralisation. La cité (Polis) devient l'unité de base.</li>
+              <li><strong>Le passage à la Cité :</strong> La Grèce ne naît pas d'une unification divine, mais d'une nécessité : celle de gérer l'espace restreint et la rivalité entre voisins. La cité est un espace restreint où tout le monde se connaît.</li>
+            </ul>
+            <p class="sub">2. Le socle du modèle : Le Logos et l'Agôn</p>
+            <ul>
+              <li><strong>Le Logos (La raison) :</strong> Le divin n'est plus la seule explication du monde. Le citoyen grec cherche des causes naturelles et logiques. On ne demande plus au dieu pourquoi le soleil se lève, on cherche à comprendre le mécanisme.</li>
+              <li><strong>L'Agôn (La compétition) :</strong> C'est le concept clé. La société grecque est une société de compétition permanente (sport, politique, théâtre). L'idée est qu'en confrontant les points de vue, on arrive à une meilleure décision.</li>
+              <li><strong>Le Citoyen vs Le Sujet :</strong> En Égypte, on obéit à la Maât. En Grèce, on débat sur la loi (Nomos). La loi n'est pas "transcendante", elle est le fruit d'un consensus humain.</li>
+            </ul>
+            <p class="sub">3. La structure : L'Agora comme centre nerveux</p>
+            <ul>
+              <li><strong>L'Agora :</strong> Ce n'est pas juste un marché, c'est l'espace de la confrontation. C'est là que le citoyen s'exerce à la politique. C'est un lieu bruyant, chaotique, où le conflit est institutionnalisé.</li>
+              <li><strong>La bureaucratie minimale :</strong> Contrairement à l'Égypte, la Grèce (notamment Athènes) se méfie de la centralisation. Ils privilégient le tirage au sort et la rotation des charges pour éviter qu'une "Grande Maison" ne prenne trop de pouvoir.</li>
+            </ul>
+            <p class="sub">4. Pourquoi ce modèle fascine ?</p>
+            <ul>
+              <li><strong>L'innovation permanente :</strong> Pour un Grec, le changement n'est pas un danger (contrairement à l'Égypte), c'est une opportunité. La Grèce invente la "crise" comme outil de progrès.</li>
+              <li><strong>L'Architecture comme échelle humaine :</strong> Le temple grec n'est pas fait pour écraser le fidèle sous le gigantisme, mais pour créer un espace harmonieux à l'échelle de l'homme. La colonne est une mesure, pas un monument.</li>
+            </ul>
+
+            <div class="science-block">
+              <p class="block-label">Anti-intox · vérifié</p>
+              <p>Nuance décisive sur le « tirage au sort » : à Athènes, la plupart des magistratures et le Conseil des Cinq-Cents étaient bien <strong>tirés au sort</strong>, mais les <strong>dix stratèges (généraux) étaient élus au vote — et rééligibles</strong>. C'est précisément par cette charge que Périclès a gouverné (une quinzaine de mandats consécutifs, 443–429 av. J.-C.) : l'exception qui explique son ascendant. <span class="src">Sources : Britannica « sortition » ; Livius « strategos ».</span></p>
+            </div>
+
+            <p>Pour comprendre comment ces systèmes tournent, il faut regarder les hommes qui les ont incarnés. En Égypte, Ramsès II et Imhotep nous montrent que la force d'un État repose sur l'union parfaite entre l'autorité sacrée et la précision administrative. En Grèce, avec Périclès et Solon, on découvre un tout autre moteur : la conviction que la justice n'est pas un ordre divin, mais une règle que des citoyens libres doivent inventer et débattre chaque jour. Attardons-nous quelques minutes sur des hommes.</p>
+
+            <p class="group-title">I. Égypte : Les piliers de la "Grande Maison"</p>
+            <p class="sub">Ramsès II (XIXe dynastie, v. 1279-1213 av. J.-C.)</p>
+            <ul>
+              <li><strong>Identité :</strong> Le Pharaon de l'apogée, souvent appelé "Ramsès le Grand".</li>
+              <li><strong>Son rôle dans le modèle :</strong> Il incarne l'institution pharaonique au sommet de sa puissance. Par son règne exceptionnellement long (66 ans) et sa politique de construction massive, il a cristallisé l'idée que le Pharaon est le garant inamovible de l'ordre face au chaos.</li>
+              <li><strong>Pourquoi l'inclure :</strong> Pour montrer comment l'institution dépasse l'individu : Ramsès est devenu, par sa titulature et ses monuments, le symbole même du système égyptien qui perdure.</li>
+            </ul>
+            <p class="sub">Imhotep (IIIe dynastie, v. 2650 av. J.-C.)</p>
+            <ul>
+              <li><strong>Identité :</strong> Vizir, médecin et architecte du roi Djoser.</li>
+              <li><strong>Son rôle dans le modèle :</strong> Il est le génie administratif et technique. En concevant la pyramide à degrés, il a "fixé" dans la pierre le rôle de l'État : organiser les ressources pour bâtir l'éternité.</li>
+              <li><strong>Pourquoi l'inclure :</strong> Il illustre parfaitement la fusion entre le pouvoir royal et la bureaucratie compétente (le scribe/technicien) qui permet à la civilisation égyptienne de fonctionner comme une machine bien huilée.</li>
+            </ul>
+            <p class="group-title">II. Grèce : Les architectes de la Cité</p>
+            <p class="sub">Périclès (Ve siècle av. J.-C.)</p>
+            <ul>
+              <li><strong>Identité :</strong> Stratège et homme d'État emblématique d'Athènes.</li>
+              <li><strong>Son rôle dans le modèle :</strong> Il incarne l'esprit de l'Agora et de l'Agôn. Sous son influence, Athènes a porté la démocratie et le débat politique à un niveau inégalé. Il a fait de la parole le principal outil de gouvernement de la cité.</li>
+              <li><strong>Pourquoi l'inclure :</strong> Il représente le citoyen qui s'exerce au pouvoir non par droit divin, mais par la force de ses arguments et son engagement dans la vie publique.</li>
+            </ul>
+            <p class="sub">Solon (VIe siècle av. J.-C.)</p>
+            <ul>
+              <li><strong>Identité :</strong> Poète, voyageur et surtout législateur d'Athènes.</li>
+              <li><strong>Son rôle dans le modèle :</strong> Il a posé les bases de la citoyenneté en réformant les lois. Il est celui qui a substitué le Nomos (la loi humaine débattue) à l'arbitraire des puissants ou aux diktats religieux.</li>
+              <li><strong>Pourquoi l'inclure :</strong> Il est le père de l'idée que la loi est un contrat social que les hommes créent ensemble pour vivre en harmonie, marquant la rupture fondamentale avec le modèle égyptien.</li>
+            </ul>
+
+            <p class="group-title">Synthèse (Le "Pitch" du modèle Grec)</p>
+            <div class="dialogue-block">
+              <p>"Si l'Égypte est l'art de la stabilité, la Grèce est l'art de la friction. Là où le Pharaon garantit l'ordre pour éviter le chaos, le citoyen grec provoque le chaos pour tester l'ordre. Ils ne cherchent pas à figer le monde dans l'éternité, ils cherchent à comprendre les mécanismes de la cité pour mieux les réinventer chaque matin. La Grèce, c'est l'invention du 'Et si on faisait autrement ?'."</p>
+            </div>
+            <p class="group-title">Ce qui est acté vs Ce qui est débattu (Rigueur historique)</p>
+            <ul>
+              <li><strong>Ce qui est acté :</strong> L'existence de la démocratie directe (à Athènes) comme une expérience politique inédite et le rôle de l'écriture alphabétique dans la diffusion du savoir (la démocratisation de l'écrit contrairement au hiéroglyphe, réservé aux scribes).</li>
+              <li><strong>Ce qui est débattu :</strong> Le caractère "démocratique" réel de la Grèce. On débat énormément sur le fait que cette liberté reposait sur une base massive d'esclavage. Est-ce une démocratie ou une "oligarchie des citoyens" ? Les historiens réévaluent aujourd'hui le rôle des non-citoyens (femmes, métèques, esclaves) dans la stabilité du modèle.</li>
+            </ul>
+            <div class="dialogue-block">
+              <p>"L'Égypte nous a légué l'État et l'idée que le pouvoir doit être garant d'une harmonie durable. La Grèce nous a légué le doute, le débat et l'idée que le pouvoir est une responsabilité que nous devons exercer ensemble. Aujourd'hui, nos démocraties modernes sont nées de ce duel permanent entre le besoin d'ordre égyptien et le besoin de liberté grecque.</p>
+            </div>
+          </div>
+          <aside class="side-note">
+            <h3>La formule grecque</h3>
+            <p>Un « <strong>laboratoire de l'humain</strong> » : la fragmentation pour moteur, l'Agora pour réacteur, le Logos et l'Agôn pour carburant. Le changement n'est pas un danger — c'est <strong>l'outil du progrès</strong>.</p>
+            <p class="loc">◷ La démocratie athénienne : directe, mais réservée aux citoyens mâles (~10 à 20 % de la population).</p>
+            <div class="tag-list">
+              <span class="tag">Logos</span>
+              <span class="tag">Nomos</span>
+              <span class="tag">Agora</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="geographie">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">I — Le socle</p>
+            <h2>Géographie et naissance de l'État</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">03</div>
+        </div>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <p class="sub">A. La Géographie comme destin : Le contraste originel</p>
+            <div class="dialogue-block">
+              <p>"Tout commence par une question de topographie. Pour comprendre pourquoi ces deux civilisations ont divergé, il faut regarder la carte.</p>
+              <p>En Égypte, la géographie est un cadeau. Le Nil n'est pas qu'un fleuve, c'est un métronome. Ses crues sont annuelles, prévisibles, presque disciplinées. Cette régularité a créé un état d'esprit unique : la certitude. Le désert, tout autour, agit comme une enceinte protectrice. Le résultat ? Une unité territoriale naturelle, un ruban fertile où tout le monde dépend du même cycle. L'Égypte ne s'est pas construite dans le chaos, elle s'est organisée pour maintenir cette abondance.</p>
+              <p>En Grèce, c'est tout l'inverse. Le relief est un puzzle : des montagnes arides qui morcellent le territoire, des îles isolées, et une mer omniprésente qui pousse à la navigation. Ici, la nature ne dicte pas une unité, elle impose la fragmentation. Chaque vallée, chaque île devient un monde à part. Ce morcellement géographique, c'est le berceau de l'indépendance."</p>
+            </div>
+            <p class="sub">B. Structure géo-politique : État-Nation contre Cités-États</p>
+            <p>Cette contrainte géographique a forgé deux systèmes politiques diamétralement opposés.</p>
+            <p>D'un côté, l'Égypte s'impose comme un État-Nation unifié dès le 4e millénaire. Une centralisation absolue, pyramidale. Pourquoi ? Parce que gérer le Nil demande une logistique qui dépasse le village. Il fallait une autorité capable de coordonner l'irrigation sur des centaines de kilomètres. Le pouvoir est ici un garant de la cohésion : si la tête de l'État faiblit, c'est tout le système hydraulique qui menace de s'effondrer.</p>
+            <p>De l'autre, la Grèce invente le réseau de cités-États. Ici, pas d'autorité centrale écrasante. Chaque cité est un laboratoire politique autonome. La survie ne dépend pas de l'obéissance à un souverain lointain, mais de la capacité de la cité à se défendre, à négocier, ou à rivaliser avec sa voisine. C'est ce terreau de fragmentation qui rend l'innovation politique non seulement possible, mais nécessaire."</p>
+            <div class="lesson-block">
+              <p class="block-label">Point de rigueur (pour éviter les clichés)</p>
+              <ul>
+                <li><strong>À noter :</strong> Quand on vous présente cela, nous précisons bien que la Grèce n'est pas "désorganisée" parce qu'elle est fragmentée. C'est précisément cette fragmentation qui force les citoyens à être politiquement actifs</li>
+                <li>"Cette base géographique va dicter le reste : d'un côté une administration de contrôle pour gérer l'unité, de l'autre une agora de débat pour gérer la diversité des cités. C'est ce passage de la géographie à la politique que nous allons voir maintenant avec les figures du pouvoir."</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="side-note">
+            <h3>La carte, ce destin</h3>
+            <p>Le Nil <strong>unit</strong> ; l'Égée <strong>morcelle</strong>. D'un fleuve prévisible naît la certitude et la centralisation ; d'un relief en puzzle naît l'indépendance et la rivalité.</p>
+            <div class="tag-list">
+              <span class="tag">Le Nil</span>
+              <span class="tag">L'Égée</span>
+              <span class="tag">Polis</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="pouvoir">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">II — Le pouvoir</p>
+            <h2>Verticalité contre Horizontalité</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">04</div>
+        </div>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <p class="sub">A. La pyramide égyptienne : L'ordre par l'institution</p>
+            <p>Une fois le cadre géographique posé, regardons comment on gouverne. En Égypte, le pouvoir est une affaire de verticalité absolue. Mais attention au piège des mots : quand nous disons 'Pharaon', nous commettons un anachronisme pour l'Ancien Empire. Les Égyptiens parlaient de Per-aâ, la 'Grande Maison'. Le souverain n'est pas juste un homme fort, il est le garant en chef de la Maât, cet équilibre cosmique universel. Si le roi faiblit, c'est le chaos (Isfet) qui reprend ses droits.</p>
+            <p>Pour faire tourner cette immense machine, le roi s'appuie sur deux piliers :</p>
+            <p>D'abord, le Vizir. C'est le chef d'orchestre, le bras droit exécutif qui traduit la volonté sacrée en chantiers concrets, en justice et en décrets.</p>
+            <p>Ensuite, le Scribe. Ne le voyez pas comme un simple gratte-papier. Le scribe est le détenteur des Medou Netjer, les paroles divines (les hiéroglyphes). En mesurant les champs après la crue et en comptant les grains dans les silos, le scribe fait un acte religieux : il administre la mesure pour éviter le chaos. En Égypte, une bureaucratie efficace est la preuve tangible que la Maât est respectée."</p>
+            <p class="sub">B. Le laboratoire grec : La liberté par le débat</p>
+            <p>Traversons la Méditerranée et changeons radicalement d'axe. En Grèce, on quitte la verticalité pour inventer l'horizontalité politique. L'épicentre du pouvoir n'est plus un palais inaccessible, c'est l'Agora. Cette place publique, d'abord dédiée au commerce, devient le cœur battant de la cité (Polis). C'est là que le sujet égyptien s'efface pour laisser la place au Citoyen.</p>
+            <p>Le pouvoir n'est plus hérité du divin, il est conquis par le Logos (la parole rationnelle) et affûté par l'Agôn (la compétition). Pour le Grec, la loi n'est pas immuable, elle s'appelle le Nomos : une règle humaine, débattue, votée et modifiable. Pour éviter qu'une minorité ne confisque le pouvoir, des cités comme Athènes vont jusqu'à institutionnaliser le tirage au sort et la rotation des charges. Le conflit d'idées n'est pas perçu comme un danger de mort pour la société, mais comme le moteur même de sa survie."</p>
+            <p>Quand on parle de 'démocratie' à Athènes, il faut être précis : c'était une démocratie directe, certes, mais exclusive. Elle ne concernait que les citoyens de sexe masculin, représentant environ 10 à 15 % de la population totale. Ce système de liberté politique reposait sur le travail des femmes, des métèques (étrangers) et d'une main-d'œuvre servile nombreuse. En somme, c'était une démocratie pour les uns, rendue possible par le travail des autres.</p>
+            <p class="group-title">La phrase de contraste (Charnière du chapitre)</p>
+            <div class="dialogue-block">
+              <p>"Alors que le scribe égyptien fige la vérité sur le papyrus pour assurer la pérennité de l'État, le citoyen grec monte sur l'Agora pour réinventer l'État par la force de sa parole."</p>
+            </div>
+            <p class="group-title">Le point de rigueur historique (Acté vs Débattu)</p>
+            <ul>
+              <li><strong>Ce qui est acté :</strong> L'Égypte a mis en place la plus ancienne et la plus résiliente structure bureaucratique de l'histoire humaine, tandis que la Grèce a théorisé et appliqué le concept de citoyenneté participative.</li>
+              <li><strong>Ce qui est débattu :</strong> La réalité de cette "horizontalité" grecque. Les historiens modernes rappellent qu'à Athènes, cette démocratie restait exclusive : elle reposait sur l'exploitation</li>
+            </ul>
+            <div class="science-block">
+              <p class="block-label">Anti-intox · vérifié</p>
+              <p>La part des citoyens (mâles adultes) est estimée entre <strong>~10 % et ~20 %</strong> de la population selon les périodes et les sources — « 10 à 15 % » est dans la fourchette basse mais recevable. Précision de vocabulaire : les lois de Solon étaient nommées <em>thesmoi</em> ; le mot <strong>Nomos</strong> comme terme standard de « loi » ne s'impose qu'à la fin du Vᵉ siècle — « substituer le Nomos à l'arbitraire » est un raccourci pédagogique juste sur le fond. <span class="src">Sources : World History Encyclopedia « Athenian Democracy » ; Britannica « Solon ».</span></p>
+            </div>
+          </div>
+          <aside class="side-note intox">
+            <h3>Anti-intox · « la démocratie grecque »</h3>
+            <p>Directe, oui — mais <strong>exclusive</strong>. Femmes, métèques et esclaves (l'immense majorité) en étaient écartés. « Une démocratie pour les uns, rendue possible par le travail des autres. »</p>
+            <div class="tag-list">
+              <span class="tag">Vizir</span>
+              <span class="tag">Isfet</span>
+              <span class="tag">Citoyen</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="femmes">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">III — L'influence au féminin</p>
+            <h2>Régence, Exception et Pouvoir</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">05</div>
+        </div>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <p class="sub">A. Égypte : La souveraineté incarnée</p>
+            <p>En Égypte, la royauté est un socle divin. La femme, lorsqu'elle accède au pouvoir, ne "déroge" pas aux règles, elle devient le réceptacle de la légitimité.</p>
+            <p class="group-title">Hatchepsout (XVIIIe dynastie, v. 1479-1458 av. J.-C.)</p>
+            <ul>
+              <li><strong>L'histoire :</strong> Veuve de Thoutmosis II, elle devient régente pour son jeune beau-fils, Thoutmosis III. Mais elle ne s'arrête pas là. Elle orchestre une révolution symbolique : elle se fait représenter avec les attributs masculins (la barbe postiche, le pagne royal) et se fait couronner Pharaon.</li>
+              <li><strong>Pourquoi ça marche :</strong> Elle ne s'est pas opposée à l'institution, elle s'est fondue dans le divin. Elle a justifié son règne par une filiation directe avec le dieu Amon. Sous son règne, l'Égypte connaît une prospérité immense et des expéditions commerciales légendaires (au pays de Pount). Elle a prouvé que l'institution de la "Grande Maison" pouvait être tenue par une femme sans que l'ordre cosmique (la Maât) ne s'effondre.</li>
+            </ul>
+            <p class="group-title">Cléopâtre VII (Dynastie lagide, 69-30 av. J.-C.)</p>
+            <ul>
+              <li><strong>L'histoire :</strong> Dernière reine d'une Égypte sous influence romaine. Elle n'est pas seulement une "séductrice", c'est une stratège politique de génie. Elle parle l'égyptien (fait rare pour sa dynastie grecque), elle maîtrise les arcanes de la diplomatie, et elle utilise ses alliances avec César puis Marc Antoine comme un levier pour maintenir l'indépendance de son trône.</li>
+              <li><strong>Pourquoi ça marche :</strong> Elle utilise le prestige de l'institution pharaonique comme une arme de négociation. Elle incarne la transition : elle est le pont entre le modèle égyptien millénaire et le monde romain en pleine expansion. Sa mort marque la fin de l'Égypte antique en tant qu'État souverain.</li>
+            </ul>
+            <p class="sub">B. Grèce : Le pouvoir par l'exception</p>
+            <p>En Grèce, la femme est assignée au foyer (l'Oikos). Son influence est donc souterraine, intellectuelle ou liée à des statuts d'exception.</p>
+            <p class="group-title">Aspasie de Milet (Ve siècle av. J.-C.)</p>
+            <ul>
+              <li><strong>L'histoire :</strong> Arrivée à Athènes, elle devient la compagne de Périclès, le plus grand stratège de la cité. Son salon devient le centre intellectuel de la ville : Socrate, Phidias, les plus grands esprits y débattent. On l'accuse d'influencer Périclès dans ses décisions politiques, notamment dans le déclenchement de la guerre contre Samos.</li>
+              <li><strong>Pourquoi c'est fascinant :</strong> Elle est la preuve que, même dans une société qui "clôture" les femmes dans le gynécée, l'intelligence et la culture sont des vecteurs de pouvoir redoutables. Elle n'avait aucun titre officiel, mais elle a façonné la politique d'Athènes par la seule force de sa parole.</li>
+            </ul>
+            <p class="group-title">Gorgo de Sparte (Ve siècle av. J.-C.)</p>
+            <ul>
+              <li><strong>L'histoire :</strong> Reine de Sparte, fille du roi Cléomène Ier. À Sparte, les femmes jouissent d'une liberté inédite : elles sont éduquées, pratiquent le sport et gèrent les terres. Lors d'une visite d'un Athénien, celui-ci demande : "Pourquoi les femmes spartiates sont-elles les seules à pouvoir commander aux hommes ?". Gorgo répond avec une lucidité glaciale : "Parce que nous sommes les seules à mettre au monde de vrais hommes."</li>
+              <li><strong>Pourquoi c'est fascinant :</strong> Elle représente le modèle opposé à Athènes. Chez les Spartiates, la femme est le pilier de la cité guerrière. Gorgo participe activement au conseil, décrypte les messages secrets d'État et est respectée comme une égale par son mari, le roi Léonidas.</li>
+            </ul>
+            <div class="dialogue-block">
+              <p class="block-label">Transition vers le religieux (Ce qui fait le pont)</p>
+              <p>"Alors que ces femmes ont dû briser des plafonds de verre — qu'il s'agisse de devenir Pharaon en Égypte ou d'influencer l'agora en Grèce — elles ont toutes trouvé dans le sacré un espace de légitimité. En Égypte, la femme est l'épouse du Dieu ; en Grèce, elle est la prêtresse indispensable aux rituels. C'est dans cette sphère qu'elles pouvaient enfin s'exprimer publiquement."</p>
+            </div>
+            <p class="group-title">Ce qu'il faut retenir</p>
+            <ul>
+              <li><strong>Égypte = Visibilité institutionnelle :</strong> La reine est une composante du trône.</li>
+              <li><strong>Grèce = Influence subversive :</strong> La femme doit contourner le système pour exercer son pouvoir.</li>
+            </ul>
+            <div class="science-block">
+              <p class="block-label">Anti-intox · vérifié</p>
+              <p>Thoutmosis III est bien le <strong>beau-fils</strong> de Hatchepsout (et son neveu). L'influence d'Aspasie sur la <strong>guerre de Samos</strong> est une <strong>accusation antique</strong> (Plutarque, comédie ancienne), traitée par les historiens comme un procédé de dénigrement — pas un fait établi ; la présence de Socrate à son cercle est solide, celle de Phidias plausible. La « tablette » déchiffrée par Gorgo (Hérodote, VII, 239) était une tablette de <strong>bois recouverte de cire</strong>. <span class="src">Sources : World History Encyclopedia (Aspasia, Gorgo) ; Hérodote, <em>Histoires</em>.</span></p>
+            </div>
+          </div>
+          <aside class="side-note">
+            <h3>Deux voies vers le pouvoir</h3>
+            <p><strong>Égypte</strong> — la reine <em>incarne</em> le trône (Hatchepsout devient roi). <strong>Grèce</strong> — la femme <em>contourne</em> le système (Aspasie par le salon, Gorgo par l'exception spartiate).</p>
+            <div class="tag-list">
+              <span class="tag">Hatchepsout</span>
+              <span class="tag">Aspasie</span>
+              <span class="tag">Gorgo</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="spiritualite">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">IV — Spiritualité</p>
+            <h2>La « Machine » égyptienne contre le « Miroir » grec</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">06</div>
+        </div>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <p>En Égypte comme en Grèce, les divinités ne sont pas de simples listes de noms ; elles sont le miroir de ce que chaque civilisation attend de la réalité.</p>
+            <p class="sub">A. L'Égypte : La religion comme "Maintenance Cosmique"</p>
+            <p>En Égypte, le divin est une "mécanique". Le monde est une horloge, et les dieux en sont les rouages essentiels.</p>
+            <ul>
+              <li><strong>La fonction plutôt que la personnalité :</strong> Les dieux égyptiens ne sont pas des entités abstraites ou lointaines, ce sont des forces qui maintiennent la structure du cosmos.
+                <ul>
+                  <li><strong>Rê (Le Soleil) :</strong> Il incarne le cycle et le recommencement perpétuel ; son lever quotidien prouve que la Maât fonctionne.</li>
+                  <li><strong>Hapi (Le Nil) :</strong> Force naturelle de la crue que l'on « aide » par le rituel à rester régulière.</li>
+                </ul>
+              </li>
+              <li><strong>La "Maintenance" divine :</strong> Le temple n'est pas un lieu de prière, c'est une infrastructure de maintenance. Les rituels quotidiens (laver, habiller, nourrir la statue du dieu) servent à garantir que les forces naturelles restent alignées sur les besoins de l'État.</li>
+              <li><strong>Le rôle des femmes :</strong> Les prêtresses, comme les « Épouses du Dieu » (notamment à Thèbes), occupaient des fonctions de pouvoir économique et symbolique immense, gérant des domaines et des trésors colossaux.</li>
+            </ul>
+            <p class="sub">B. La Grèce : La religion comme "Miroir de l'humain"</p>
+            <p>En Grèce, le divin est un "miroir" où se reflètent les passions humaines.</p>
+            <ul>
+              <li><strong>Des dieux humains :</strong> Les dieux grecs (Athéna, Zeus, Dionysos) ont des défauts, des désirs et des jalousies.
+                <ul>
+                  <li><strong>Athéna :</strong> Elle incarne la stratégie et la raison tactique ; elle "réfléchit" contrairement aux dieux égyptiens.</li>
+                  <li><strong>Zeus :</strong> Il règne par la force et la négociation au sein d'un Panthéon qui ressemble à une cour royale pleine d'intrigues.</li>
+                </ul>
+              </li>
+              <li><strong>Le culte comme ciment civique :</strong> La religion grecque sert à définir les limites de l'humain et à renforcer l'appartenance à la Polis (la cité) à travers des fêtes et sacrifices collectifs.</li>
+              <li><strong>Le rôle des femmes :</strong> Indispensables au sacré, les femmes sont les gardiennes des rites. Qu'il s'agisse de la Pythie de Delphes, consultée pour les décisions politiques, ou des rites domestiques (le pont entre l'Oikos et le sacré), elles détiennent le pouvoir rituel qui rend la cité pure.</li>
+            </ul>
+            <p class="sub">C. Synthèse : Le tableau comparatif</p>
+            <div class="dtable-wrap">
+              <table class="dtable">
+                <caption>Deux manières de traduire le besoin d'ordre et de sens.</caption>
+                <thead>
+                  <tr><th>Point de comparaison</th><th>Égypte (La Machine)</th><th>Grèce (Le Miroir)</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td class="k">Nature des dieux</td><td>Forces naturelles / Fonctions</td><td>Personnalités / Passions</td></tr>
+                  <tr><td class="k">Objectif du culte</td><td>Maintenir l'ordre (Maât)</td><td>Négocier avec le destin</td></tr>
+                  <tr><td class="k">Rôle dans la cité</td><td>Garantie de survie</td><td>Modèle de comportement</td></tr>
+                  <tr><td class="k">Évolution</td><td>Éternellement identiques</td><td>Subjectifs et changeants</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="dialogue-block">
+              <p>"Alors que l'Égypte regarde ses dieux pour comprendre comment maintenir l'équilibre du monde, la Grèce regarde les siens pour comprendre les limites de l'ambition humaine. En Égypte, on prie pour que rien ne change ; en Grèce, on prie pour trouver la force de faire face aux changements. C'est ce besoin d'ordre ou de mouvement que l'on retrouve jusque dans leur architecture."</p>
+            </div>
+            <p>Pour notre projet L'Empire Contre-Intox, il est crucial de ne pas présenter les divinités comme une simple liste de noms, mais comme des outils de compréhension du monde. Les dieux sont le miroir de ce que chaque civilisation attend de la réalité.</p>
+            <p>Voici comment, on a essayé de structurer cette partie pour maintenir la tension entre le "Modèle Égyptien" (pérennité) et le "Modèle Grec" (agitation).</p>
+
+            <p class="group-title">I. Égypte : Les Dieux comme forces de la Nature</p>
+            <p>En Égypte, le divin est une "mécanique". Le monde est une horloge, et les dieux en sont les rouages.</p>
+            <ul>
+              <li><strong>Rê (Le Soleil) :</strong> Il n'est pas qu'un dieu, c'est le cycle. Son lever quotidien est la preuve que la Maât fonctionne. L'idée est celle d'un recommencement perpétuel.</li>
+              <li><strong>Hapi (Le Nil) :</strong> C'est le dieu de la crue. Pour un Égyptien, Hapi n'est pas une divinité capricieuse, c'est une force naturelle qu'on « aide » par le rituel à rester régulière.</li>
+              <li><strong>Osiris et Isis :</strong> Le couple qui donne du sens à la mort. Ils transforment la fin de la vie en une transition vers l'éternité. C'est ce qui crée la cohésion sociale : tout le monde travaille pour sa place dans l'au-delà.</li>
+              <li><strong>Le message :</strong> Les dieux égyptiens sont immuables. Ils ne doutent pas, ils ne changent pas. Ils sont là pour que rien ne bouge.</li>
+            </ul>
+            <p class="group-title">II. Grèce : Les Dieux comme forces humaines</p>
+            <p>En Grèce, le divin est un "miroir". Les dieux ont des défauts, des désirs, des jalousies. Ils sont une projection de l'humanité sur le ciel.</p>
+            <ul>
+              <li><strong>Athéna (La Sagesse/Stratégie) :</strong> Elle est née de la tête de Zeus. Elle représente la raison, la pensée tactique. C'est la déesse de la cité, de la stratégie humaine. Contrairement aux dieux égyptiens, elle "réfléchit".</li>
+              <li><strong>Zeus (Le chef de clan) :</strong> Il ne règne pas par un ordre cosmique établi, il règne par la force et la négociation. C'est un politique, il doit gérer ses frères, ses sœurs, ses enfants. Le Panthéon grec est une cour royale pleine d'intrigues.</li>
+              <li><strong>Dionysos (L'Excès) :</strong> Il représente tout ce que la cité ne peut pas totalement contrôler : la folie, le vin, la transe. Il est l'opposé d'Athéna. Les Grecs ont besoin de ce dieu pour tester les limites de leur raison.</li>
+              <li><strong>Le message :</strong> Les dieux grecs sont changeants. Ils incarnent la vie, le conflit et la passion. Ils sont là pour rappeler à l'homme qu'il est limité, mais qu'il peut, par le Logos, rivaliser avec le destin.</li>
+            </ul>
+            <div class="dialogue-block">
+              <p class="block-label">La phrase de transition</p>
+              <p>"Alors que l'Égypte regarde ses dieux pour comprendre comment maintenir l'équilibre du monde, la Grèce regarde ses dieux pour comprendre les limites de l'ambition humaine. En Égypte, on prie pour que rien ne change ; en Grèce, on prie pour trouver la force de faire face aux changements."</p>
+            </div>
+            <p class="group-title">Ce qui est acté vs Débattu (Pour la rigueur)</p>
+            <ul>
+              <li><strong>Ce qui est acté :</strong> Le passage vers une religion plus "abstraite" et philosophique s'est fait naturellement en Grèce, tandis que l'Égypte a maintenu une approche ritualiste quasi-identique pendant trois millénaires.</li>
+              <li><strong>Ce qui est débattu :</strong> La porosité entre les deux. L'influence égyptienne sur certains cultes grecs (comme le culte d'Isis qui deviendra immense dans le monde hellénistique) est encore un sujet d'étude majeur : comment ces modèles, pourtant opposés, ont fini par fusionner à la fin de l'Antiquité.</li>
+            </ul>
+
+            <p class="group-title">La mise en relation : Fonctions et Correspondances</p>
+            <p class="sub">1. Le garant de l'ordre : Maât (Égypte) vs Zeus (Grèce)</p>
+            <ul>
+              <li><strong>Égypte (Maât) :</strong> Elle est la loi immuable. Elle n'est pas "décidée", elle est le socle sur lequel repose l'existence.</li>
+              <li><strong>Grèce (Zeus) :</strong> Il est le garant de la justice (Dike) et de l'ordre, mais un ordre qui doit être négocié, débattu et imposé au milieu des intrigues des autres dieux.</li>
+              <li><strong>Le lien :</strong> Tous deux sont les garants ultimes du maintien de la structure face au chaos. La différence, c'est que chez les Égyptiens, cet ordre est cosmique (naturel), alors que chez les Grecs, il est politique (humain).</li>
+            </ul>
+            <p class="sub">2. La sagesse et la stratégie : Thot (Égypte) vs Athéna (Grèce)</p>
+            <ul>
+              <li><strong>Égypte (Thot) :</strong> Dieu des scribes, de l'écriture et du temps. Il est celui qui note le destin et administre la connaissance pour maintenir la Maât. C'est une sagesse comptable et archivistique.</li>
+              <li><strong>Grèce (Athéna) :</strong> Déesse de la stratégie, de la pensée tactique et de l'intelligence pratique (Mètis). Sa sagesse est une sagesse d'action utilisée pour gagner des batailles, politiques ou militaires.</li>
+              <li><strong>Le lien :</strong> Tous deux sont les protecteurs des intellectuels et de la gestion de l'État. Thot garde la mémoire, Athéna crée la stratégie.</li>
+            </ul>
+            <p class="sub">3. Le cycle et la vie : Isis/Osiris (Égypte) vs Déméter/Perséphone (Grèce)</p>
+            <ul>
+              <li><strong>Égypte (Isis/Osiris) :</strong> Le cycle de la mort et de la renaissance est une promesse d'éternité individuelle. On travaille toute sa vie pour son passage dans l'au-delà.</li>
+              <li><strong>Grèce (Déméter/Perséphone) :</strong> Le cycle des saisons (les mystères d'Éleusis) est une promesse de renouveau de la nature. Il est moins tourné vers l'au-delà individuel que vers le cycle de la fertilité de la terre.</li>
+              <li><strong>Le lien :</strong> Les deux couples divins utilisent le cycle de la nature pour expliquer le passage entre la vie et la mort, ancrant la société dans la confiance que "la fin n'est pas la fin".</li>
+            </ul>
+            <p class="group-title">La synthèse : "La connexion des modèles"</p>
+            <p>On pourrait croire que ces mondes sont opposés, mais en réalité, ils cherchent à résoudre les mêmes angoisses fondamentales : comment dompter le chaos ? comment assurer la pérennité ?</p>
+            <p>Les Égyptiens ont répondu par la stabilité rituelle : leurs dieux sont des forces de la nature qu'on stabilise. Les Grecs ont répondu par la gestion humaine : leurs dieux sont des partenaires complexes avec lesquels on négocie. Les divinités égyptiennes et grecques ne sont pas opposées, elles sont deux manières différentes de traduire, dans la pierre et le rite, le besoin universel d'ordre et de sens."</p>
+
+            <div class="science-block">
+              <p class="block-label">Anti-intox · vérifié</p>
+              <p>Le <strong>pouvoir</strong> des « Épouses du Dieu » d'Amon est réel, mais son <strong>apogée</strong> se situe à la fin de la Troisième Période intermédiaire / Basse Époque (XXVᵉ–XXVIᵉ dynasties), même si le titre est plus ancien. La <strong>porosité Égypte-Grèce</strong> évoquée (culte d'Isis) est bien documentée pour l'époque hellénistique. <span class="src">Sources : Wikipedia « God's Wife of Amun » ; B. Bryan (Johns Hopkins).</span></p>
+            </div>
+          </div>
+          <aside class="side-note">
+            <h3>Machine ou Miroir ?</h3>
+            <p>Des dieux-<strong>rouages</strong> qu'on entretient pour que rien ne change (Égypte) ; des dieux-<strong>passions</strong> avec qui l'on négocie et qui disent les limites de l'homme (Grèce).</p>
+            <div class="tag-list">
+              <span class="tag">Rê · Hapi</span>
+              <span class="tag">Athéna · Zeus</span>
+              <span class="tag">Éleusis</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="materialite">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">V — La matérialité</p>
+            <h2>L'architecture comme message politique</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">07</div>
+        </div>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <p class="sub">A. L'Architecture égyptienne : Le gigantisme pour l'éternité</p>
+            <ul>
+              <li><strong>La Pyramide et le Temple :</strong> Ce ne sont pas des caprices de rois, mais des ancres temporelles. Ils sont conçus pour défier le temps et l'érosion, ancrant l'Égypte dans le temps long.</li>
+              <li><strong>Le message politique :</strong> Le gigantisme égyptien a pour but d'écraser l'individu pour mieux magnifier l'ordre immuable et cosmique. La pierre, ici, sert à figer le monde pour qu'il ne change jamais.</li>
+              <li><strong>La fonction :</strong> Le temple est une "machine" de maintien spirituel, conçue pour durer aussi longtemps que la civilisation elle-même.</li>
+            </ul>
+            <p class="sub">B. L'Architecture grecque : L'humain au centre</p>
+            <ul>
+              <li><strong>La Colonne et l'Espace public :</strong> Contrairement aux pyramides, l'architecture grecque est pensée à l'échelle de l'homme. La colonne devient un élément de mesure, créant des espaces harmonieux où l'individu n'est pas écrasé par le monument.</li>
+              <li><strong>Le message politique :</strong> La pierre est utilisée pour structurer la vie civique : le théâtre pour la réflexion collective, l'Agora pour le débat, le temple pour célébrer la cité. L'architecture sert ici à faciliter l'exercice de la démocratie et la vie publique.</li>
+              <li><strong>La fonction :</strong> Elle n'est pas faite pour glorifier une éternité statique, mais pour abriter les échanges, la parole et les décisions des citoyens.</li>
+            </ul>
+            <p class="group-title">Synthèse: "La pierre qui fige vs La pierre qui accueille"</p>
+            <div class="dialogue-block">
+              <p>"Si l'on regarde les ruines, on comprend tout : les temples égyptiens étaient construits pour que les dieux y habitent éternellement, écrasant le visiteur sous la puissance du sacré. Les espaces grecs, eux, ont été construits pour que les hommes s'y rencontrent, y débattent et y décident de leur propre destin. D'un côté, le monument qui immortalise ; de l'autre, l'espace qui libère."</p>
+            </div>
+            <p class="group-title">Ce qui est acté vs Débattu (Pour la rigueur)</p>
+            <ul>
+              <li><strong>Ce qui est acté :</strong> Les techniques de construction égyptiennes ont permis une conservation exceptionnelle des monuments sur des millénaires, tandis que les structures grecques, bien que conçues pour être esthétiquement parfaites, ont été plus vulnérables au temps.</li>
+              <li><strong>Ce qui est débattu :</strong> La perception des couleurs. On a longtemps imaginé ces monuments en pierre blanche ou brute (surtout pour la Grèce), alors que les recherches récentes prouvent qu'ils étaient entièrement peints avec des couleurs vives, transformant radicalement notre compréhension de l'impact visuel qu'ils avaient sur les populations de l'époque.</li>
+            </ul>
+            <div class="science-block">
+              <p class="block-label">Anti-intox · la « blancheur classique » est un mythe</p>
+              <p>Vérifié : les temples grecs (et le Parthénon) étaient <strong>peints de couleurs vives</strong> — bleu égyptien, rouge (hématite/ocre), vert — décelées par analyses de pigments in situ. La « blancheur » est un état d'usure, pas l'état d'origine. <span class="src">Source : <em>Heritage</em> (MDPI, 2022), DOI 10.3390/heritage5020042.</span></p>
+            </div>
+          </div>
+          <aside class="side-note">
+            <h3>La pierre parle</h3>
+            <p>La pyramide <strong>immortalise</strong> et écrase ; la colonne <strong>libère</strong> et accueille. Un même matériau, deux messages politiques inverses.</p>
+            <div class="tag-list">
+              <span class="tag">Pyramide</span>
+              <span class="tag">Colonne</span>
+              <span class="tag">Polychromie</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="astronomie">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">L'intervention de Zalex</p>
+            <h2>Fixer le ciel sur la Terre</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">08</div>
+        </div>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <p class="sub">1. Les Pyramides et l'alignement stellaire (Le point de départ)</p>
+            <ul>
+              <li><strong>Ce qui est acté :</strong> Il est établi que les pyramides de Gizeh présentent des alignements astronomiques remarquables. Elles sont orientées avec une précision extrême selon les points cardinaux, ce qui témoigne d'une maîtrise avancée de l'observation des étoiles (notamment autour de l'étoile polaire de l'époque).</li>
+              <li><strong>La théorie débattue :</strong> La célèbre "théorie de corrélation d'Orion" (suggérant que les trois pyramides reproduisent la ceinture d'Orion) est une hypothèse très populaire, mais elle reste vivement débattue et n'est pas acceptée comme une preuve historique par la majorité des égyptologues.</li>
+            </ul>
+            <div class="question-block">
+              <p class="block-label">Question au public</p>
+              <p>Nous avons cette fascination pour l'Égypte qui aligne ses pierres sur les étoiles. Est-ce que tu peux nous expliquer pourquoi, pour un Égyptien, bâtir un temple ou une pyramide, ce n'est pas seulement construire un bâtiment, mais c'est littéralement 'fixer' le ciel sur la Terre ?</p>
+              <p>Et pour nous expliquer, nous avons notre ami Zalex avec nous.</p>
+              <p>Zalex, peux-tu nous expliquer comment les Égyptiens observaient le ciel sans instruments optiques, simplement par le suivi des transits stellaires ?</p>
+            </div>
+            <p>Mais avant, il est essentiel de souligner que les Égyptiens pratiquaient une astronomie de position basée sur l'observation à l'œil nu, sans instruments d'optique (lunettes ou télescopes). Voici les détails techniques et les instruments simples qu'il peut évoquer pour illustrer leur précision remarquable :</p>
+            <p>Zalex, pour ton intervention sur l'astronomie, n'hésite pas à préciser qu'ils n'avaient pas de télescopes. Ils utilisaient simplement la Merchet et le Bay pour traquer le passage des étoiles au méridien. C'est cette patience d'observation, répétée sur des décennies, qui leur a permis d'aligner leurs pyramides avec une précision que nous avons encore du mal à reproduire aujourd'hui, prouvant que, pour eux, le ciel était le plan de construction de la Terre."</p>
+            <p class="sub">1. Les instruments d'observation (La "technologie" de précision)</p>
+            <ul>
+              <li><strong>La Merchet :</strong> C'est l'instrument de base, un outil de visée composé d'une tige verticale (fil à plomb) et d'une branche horizontale avec une fente pour regarder. En alignant deux merchets sur une étoile, les observateurs pouvaient définir un méridien (le nord géographique) avec une précision étonnante.</li>
+              <li><strong>Le Bay :</strong> Une tige fendue en forme de V, utilisée comme instrument de visée pour observer le passage des étoiles au méridien.</li>
+              <li><strong>La Gnomon :</strong> Une simple tige verticale plantée dans le sol dont on mesure l'ombre portée pour déterminer la hauteur du soleil, les solstices et les équinoxes.</li>
+            </ul>
+            <p class="sub">2. La méthode : Une astronomie de "transits"</p>
+            <ul>
+              <li><strong>Observation des transits :</strong> Les Égyptiens ne "suivaient" pas les étoiles en continu ; ils observaient leur moment de passage exact au-dessus d'un point de repère fixe (comme le méridien défini par leurs merchets).</li>
+              <li><strong>Zénith et Circumpolaires :</strong> Ils se concentraient sur les étoiles "indestructibles" (les circumpolaires) qui ne se couchent jamais, symbolisant l'éternité, et sur les étoiles qui marquent le lever héliaque (comme Sirius, dont le retour marquait la crue du Nil).</li>
+            </ul>
+            <p class="sub">3. Pourquoi c'est important pour le live</p>
+            <p>Cette précision n'était pas "scientifique" au sens moderne, mais rituelle et architecturale :</p>
+            <ul>
+              <li><strong>Orientation des pyramides :</strong> L'incroyable précision de l'orientation des pyramides de Gizeh sur les points cardinaux (à quelques minutes d'arc près) a été obtenue grâce à ces observations patientes des étoiles circumpolaires.</li>
+              <li><strong>Synchronisation Terre-Ciel :</strong> Pour l'Égyptien, si le bâtiment était parfaitement aligné sur ces étoiles "éternelles", alors le Pharaon qui y reposait était lui-même ancré dans l'éternité.</li>
+            </ul>
+            <p class="group-title">Pourquoi cet alignement était crucial pour relier le Pharaon au cycle éternel des astres ?</p>
+            <p>L'alignement astronomique n'était pas une simple prouesse technique ; il était crucial pour la survie spirituelle et politique de l'Égypte antique pour les raisons suivantes :</p>
+            <ul>
+              <li><strong>L'ancrage dans l'éternité :</strong> Les Égyptiens considéraient les étoiles circumpolaires (celles qui ne se couchent jamais) comme les "indestructibles". En alignant parfaitement les pyramides et les temples sur ces étoiles, ils cherchaient à "ancrer" le Pharaon dans un temps immuable, lui assurant ainsi une vie éternelle aux côtés des dieux.</li>
+              <li><strong>La garantie de la Maât :</strong> L'alignement servait à prouver que le Pharaon, en bâtissant en harmonie avec le cosmos, maintenait l'équilibre universel, la Maât. Si le monument était en phase avec l'ordre céleste, cela garantissait que le Nil continuerait de monter, que le soleil se lèverait et que le chaos resterait à distance.</li>
+              <li><strong>La légitimité du pouvoir :</strong> Un monument parfaitement orienté démontrait la maîtrise du Pharaon sur le temps et l'espace. C'était une preuve tangible de sa divinité et de son rôle de seul interface entre le peuple et les forces célestes.</li>
+              <li><strong>La "mise en scène" du divin :</strong> Pour les temples, l'alignement permettait de faire pénétrer la lumière d'un astre spécifique ou du soleil, à des moments précis (solstices, équinoxes), directement dans le sanctuaire. Cela "actualisait" littéralement la présence du dieu sur Terre chaque année, transformant l'édifice en un instrument de synchronisation entre le monde divin et le monde humain.</li>
+            </ul>
+            <p>En résumé, pour les Égyptiens, construire en alignement avec les étoiles, ce n'était pas décorer, c'était faire fonctionner le monde. C'était la garantie physique que l'État, le Pharaon et la nature restaient alignés sur le plan divin.</p>
+            <p class="sub">2. Est-ce valable pour les temples ?</p>
+            <p>Oui, c'est tout à fait valable, mais avec une nuance importante sur la fonction :</p>
+            <ul>
+              <li><strong>L'alignement solaire :</strong> Beaucoup de temples égyptiens étaient conçus pour que la lumière du soleil (ou d'une étoile spécifique, comme Sirius) pénètre au cœur du sanctuaire lors de dates clés, comme le solstice ou l'équinoxe.</li>
+              <li><strong>Le message politique et religieux :</strong> Alors que la pyramide ancre le roi dans l'éternité céleste, le temple aligné sur un astre "actualise" la présence du dieu sur Terre. C'est une "mise en scène" de la création du monde chaque année.</li>
+              <li><strong>Le contraste avec la Grèce :</strong> Les temples grecs, bien que souvent orientés vers l'Est (le lever du soleil), ne cherchent pas la même "synchronisation cosmique" que les Égyptiens. Pour les Grecs, le temple est davantage un espace civique et esthétique qu'un instrument de mesure céleste.</li>
+            </ul>
+            <p class="group-title">Cela avait-il autant d'importance pour les grecs ?</p>
+            <p>Pour les Grecs, la réponse est non, ce n'était pas pareil, et c'est justement ce qui révèle la différence fondamentale entre les deux modèles que nous étudions.</p>
+            <p>Voici pourquoi l'utilisation des colonnes en Grèce est radicalement différente de l'alignement stellaire égyptien :</p>
+            <ul>
+              <li><strong>Une fonction esthétique et humaine :</strong> Contrairement aux pyramides égyptiennes qui sont des "instruments" de synchronisation avec le cosmos, la colonne grecque est avant tout une unité de mesure à l'échelle de l'homme. Elle sert à définir des espaces harmonieux, comme l'Agora ou le théâtre, où la priorité est donnée aux échanges entre citoyens plutôt qu'à la connexion avec les astres.</li>
+              <li><strong>La recherche de l'harmonie géométrique :</strong> Les Grecs utilisaient les colonnes pour créer un équilibre visuel basé sur des proportions mathématiques (comme le nombre d'or), cherchant une beauté rationnelle et "parfaite" qui reflète la logique du Logos plutôt qu'une fonction magique ou rituelle liée au mouvement des étoiles.</li>
+              <li><strong>L'architecture comme lieu de débat :</strong> Alors que le temple égyptien est conçu pour que la lumière "active" la divinité lors de moments stellaires précis, le temple grec est le sanctuaire d'une divinité intégrée à la vie de la cité, et l'architecture des espaces publics (colonnes, portiques) est faite pour accueillir le flux des hommes, les discussions et la politique.</li>
+              <li><strong>La rupture avec le gigantisme :</strong> Là où l'Égypte cherche à écraser l'individu sous la puissance du sacré par des édifices immenses, la Grèce utilise la colonne comme un élément de structure qui cadre l'espace humain sans le dominer.</li>
+            </ul>
+            <p>L'espace public en Grèce, contrairement à l'espace sacré égyptien, est la traduction physique du Logos (la raison) et de la citoyenneté. Voici comment le présenter dans ton déroulé pour marquer la différence :</p>
+            <p class="group-title">L'Espace Public grec : Le théâtre du politique</p>
+            <ul>
+              <li><strong>L'Agora, cœur battant :</strong> Ce n'est pas un lieu de passage sacré, mais un lieu de confrontation verbale. Les colonnades (les stoas) qui entourent l'Agora servent à créer un espace d'ombre et de protection pour permettre aux citoyens de discuter des heures durant, à l'abri du soleil, sans que cela ne soit une "célébration" divine.</li>
+              <li><strong>L'architecture au service du citoyen :</strong> Contrairement aux temples égyptiens fermés et réservés aux prêtres pour la "maintenance" du monde, les espaces publics grecs sont ouverts. Ils sont conçus pour que le flux des citoyens puisse circuler, débattre et voter.</li>
+              <li><strong>La recherche de l'harmonie rationnelle :</strong> Les Grecs utilisent la géométrie et les colonnes pour rendre cet espace public "lisible" et organisé selon des règles mathématiques, reflétant l'idée que la cité est une organisation humaine pensée, structurée et rationnelle.</li>
+            </ul>
+            <p>L'Égypte bâtit pour le ciel : L'espace public égyptien (les cours des temples) est un espace de soumission à l'ordre divin, où l'individu se sent petit face à la pérennité du cosmos.</p>
+            <ul>
+              <li><strong>La Grèce bâtit pour l'homme :</strong> L'espace public grec est un espace de liberté, où l'architecture cadre le débat et souligne que l'homme est devenu le maître de ses propres lois, loin de la nécessité de se synchroniser avec les étoiles.</li>
+            </ul>
+            <p><strong>Ce qui est acté :</strong> L'Agora grecque a inventé le concept moderne d'espace public comme lieu de délibération politique, une rupture totale avec les modèles de pouvoirs centralisés du Proche-Orient.</p>
+            <p><strong>Ce qui est débattu :</strong> Certains historiens discutent de la place réelle des femmes dans ces espaces publics : bien qu'exclues officiellement, les récentes études montrent qu'elles participaient indirectement à la vie de la cité par le biais de réseaux religieux ou de mécénats, bien que l'architecture elle-même semble avoir été pensée par et pour les hommes citoyens.</p>
+            <p>Si l'Égypte a utilisé l'architecture comme un instrument de mesure du ciel pour garantir l'éternité, la Grèce a utilisé l'architecture comme un instrument de mesure de l'homme pour garantir la liberté et le débat</p>
+            <p>La pierre égyptienne fige l'éternité, la pierre grecque libère la parole.</p>
+            <div class="science-block">
+              <p class="block-label">Anti-intox · vérifié</p>
+              <p>La précision d'orientation de Khéops est réelle : <strong>moins de ~4 minutes d'arc</strong> par rapport au nord vrai. En revanche, la <strong>méthode exacte</strong> reste une hypothèse : visée d'<strong>étoiles circumpolaires</strong> (Spence, <em>Nature</em> 2000) <em>ou</em> visée <strong>solaire à l'équinoxe</strong> (gnomon). Nuance d'instrument : c'est le <strong>Bay</strong> qui porte la fente en V ; le <strong>Merchet</strong> porte le fil à plomb — et les exemplaires conservés sont <em>postérieurs</em> aux pyramides (usage inféré). <span class="src">Sources : Magli &amp; Belmonte (arXiv) ; Science Museum Group.</span></p>
+            </div>
+          </div>
+          <aside class="side-note">
+            <h3>Le ciel pour plan</h3>
+            <p>Pas de télescope — de la <strong>patience</strong>. Merchet, Bay et Gnomon suffisent, à l'œil nu, à viser les étoiles « indestructibles » et à ancrer le roi dans l'éternité.</p>
+            <div class="tag-list">
+              <span class="tag">Circumpolaires</span>
+              <span class="tag">Sirius</span>
+              <span class="tag">Transits</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="pyramides">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">Anti-intox — le grand chantier</p>
+            <h2>Qui a vraiment bâti les pyramides ?</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">09</div>
+        </div>
+        <figure class="chapter-figure reveal" data-d="1">
+          <img src="assets/pyramides-chantier.png" alt="Le chantier de la Grande Pyramide : ouvriers, rampes et traîneaux" loading="lazy">
+          <figcaption>Le chantier de Gizeh — pas des esclaves ni des extraterrestres : des paysans mobilisés, des rampes, des traîneaux sur sable humidifié. Le génie de l'organisation.</figcaption>
+        </figure>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <p>Pour L'Empire Contre-Intox, démonter les mythes sur la construction des pyramides est une nécessité. Pour rester rigoureuse, il faut distinguer ce qui est documenté archéologiquement (les preuves) de ce qui est spéculatif (les théories de "conspiration" ou de "technologie perdue").</p>
+            <p>Voici une structure factuelle pour aborder ce sujet pour ce live, on a mis en avant la maîtrise humaine plutôt que le mystère :</p>
+            <p class="sub">1. La réalité archéologique : Une gestion de projet colossale</p>
+            <ul>
+              <li><strong>Le chantier n'est pas un mystère, c'est une logistique :</strong> Les preuves archéologiques (notamment le Journal de Merer, un papyrus écrit par un inspecteur de chantier) montrent que la construction reposait sur une organisation administrative ultra-performante.</li>
+              <li><strong>La force du collectif :</strong> On a retrouvé les cités des ouvriers, les traces de leur alimentation (beaucoup de viande, signe d'une main-d'œuvre bien nourrie) et les inscriptions des équipes de bâtisseurs. Ce n'était pas des esclaves, mais des paysans mobilisés durant les périodes de crue du Nil.</li>
+              <li><strong>La maîtrise des matériaux :</strong> Ils utilisaient des outils en cuivre, des maillets en pierre et, surtout, une compréhension parfaite de la géométrie et de la topographie pour acheminer les blocs depuis les carrières.</li>
+            </ul>
+            <p class="sub">2. Comment contrer l'intox (Les points de rigueur)</p>
+            <p>Pour contrer les récits sensationnalistes, on va utiliser ces trois axes de réponse :</p>
+            <ul>
+              <li><strong>Le mythe des "outils impossibles" :</strong> Les pseudo-théories avancent souvent que les Égyptiens ne pouvaient pas tailler le granit avec du cuivre. C'est faux : ils utilisaient du sable abrasif (quartz) comme un "ciseau" naturel pour couper la pierre, une technique lente mais extrêmement efficace.</li>
+              <li><strong>Le mythe du "mystère de la levée des blocs" :</strong> Les théories de levage complexe sont inutiles si l'on regarde la simplicité des rampes (rectilignes, en zigzag ou hélicoïdales). L'archéologie expérimentale a prouvé que la force humaine, combinée à une gestion rigoureuse des leviers et des traîneaux sur des sols humidifiés (pour réduire la friction), permettait de déplacer ces blocs.</li>
+              <li><strong>Le mythe de "l'alignement extraterrestre" :</strong> Comme on l'a vu avec Zalex, l'alignement précis des pyramides est le résultat d'une astronomie de position patiente et répétée sur des générations, utilisant la Merchet et le Bay pour viser les étoiles circumpolaires, pas une technologie externe.</li>
+            </ul>
+            <p class="sub">3. Synthèse : La "Victoire de l'Intelligence humaine"</p>
+            <div class="dialogue-block">
+              <p>"Pourquoi l'idée que les Égyptiens auraient eu de l'aide extérieure est-elle si tenace ? Parce qu'on refuse d'admettre qu'une civilisation sans moteur thermique ait pu, par la seule force de l'organisation sociale, de la patience et de la maîtrise géométrique, bâtir l'éternité. Prétendre qu'ils n'en étaient pas capables, ce n'est pas protéger le mystère, c'est effacer leur génie."</p>
+            </div>
+            <p class="group-title">Pourquoi c'est important ?</p>
+            <ul>
+              <li>Cela lie tout le projet : on rappelles que l'Égypte, c'est l'État-Nation et la centralisation administrative (le scribe, la bureaucratie). La pyramide n'est pas une anomalie, c'est le résultat de cette gestion étatique parfaite.</li>
+              <li>On explique les faits et non des pseudos hypothèses en s'appuyant sur des sources vérifiables</li>
+              <li>Le contraste avec la Grèce : si la pyramide est le sommet de la "gestion étatique" égyptienne, le Parthénon est le sommet de la "réflexion civique" grecque : deux génies différents, deux manières d'utiliser la pierre pour marquer l'Histoire.</li>
+            </ul>
+            <p class="group-title">GRANDE MISE AU POINT !</p>
+            <p>Concernant le mythe de la participation des esclaves à la construction des pyramides, voici les éléments factuels pour contrer cette "intox" :</p>
+            <ul>
+              <li>L'idée que les pyramides ont été bâties par des esclaves est une "intox" historique.</li>
+              <li>Les preuves archéologiques démontrent qu'il s'agissait d'une main-d'œuvre organisée et salariée.</li>
+              <li>Les ouvriers étaient des paysans mobilisés durant la période des crues du Nil. À ce moment-là, les champs étant inondés, ils ne pouvaient pas cultiver et fournissaient un service de corvée à l'État, ce qui était une manière de payer leurs impôts.</li>
+              <li>Les découvertes sur le site des ouvriers à Gizeh révèlent qu'ils étaient bien nourris. Les analyses de restes alimentaires montrent une consommation importante de viande de qualité (bœuf, mouton), un régime alimentaire bien supérieur à celui d'un esclave.</li>
+              <li>Ils étaient logés dans des cités organisées à proximité du chantier et bénéficiaient de soins médicaux. Des sépultures retrouvées sur place montrent également que les ouvriers blessés recevaient des soins, comme des amputations réussies ou des fractures traitées, ce qui témoigne d'une considération pour cette main-d'œuvre.</li>
+              <li>Le mythe provient souvent de récits grecs anciens (comme Hérodote) écrits bien plus tard. Ces historiens grecs ont projeté leur propre vision du monde, où l'esclavage était une base économique, sur une société égyptienne dont le fonctionnement était radicalement différent.</li>
+            </ul>
+            <p>En résumé, on peut affirmer que la construction des pyramides est le résultat d'une adhésion nationale à un projet étatique et non le fruit d'une exploitation servile. C'est la preuve de la puissance de l'administration égyptienne capable de nourrir, loger et coordonner des milliers de personnes sur une longue période.</p>
+            <div class="science-block">
+              <p class="block-label">Anti-intox · vérifié &amp; précisé</p>
+              <p>Solide : le <strong>Journal de Merer</strong> (papyrus de la Mer Rouge, Wadi el-Jarf, découvert par <strong>Pierre Tallet</strong>) est le plus ancien papyrus inscrit et documente le transport du calcaire de Toura vers Gizeh ; les fouilles de <strong>Mark Lehner</strong> (village de Heit el-Ghurab) prouvent une main-d'œuvre nourrie et soignée. Nuances : la « corvée pendant la crue » est le <strong>modèle interprétatif dominant</strong> (mélange d'équipes permanentes qualifiées et de rotations), pas une certitude ; le <strong>type de rampe reste débattu</strong> ; Hérodote parle de <strong>travail forcé par rotation</strong> — pas d'« esclaves » au sens moderne, glissement amplifié ensuite par la tradition biblique et le cinéma. <span class="src">Sources : Tallet 2017 (IFAO) ; Lehner &amp; Hawass 2017 ; PRL 2014 (sable humidifié).</span></p>
+            </div>
+            <div class="science-block">
+              <p class="block-label">Le saviez-vous · résilience sismique</p>
+              <p>Une étude de 2026 (<em>Scientific Reports</em>) mesure les fréquences fondamentales de la Grande Pyramide entre <strong>2,0 et 2,6 Hz</strong> : très différentes de celles du sol (~0,6 Hz), elles lui évitent l'amplification par résonance et lui confèrent une <strong>résilience sismique</strong>. Prudence : les auteurs y voient une propriété <em>structurelle émergente</em>, pas une conception antisismique intentionnelle. <span class="src">Source : ELGabry et al. (2026), <em>Sci. Rep.</em> 16, DOI 10.1038/s41598-026-49962-6.</span></p>
+            </div>
+          </div>
+          <aside class="side-note intox">
+            <h3>Anti-intox · pas d'esclaves, pas d'extraterrestres</h3>
+            <p>Des <strong>paysans mobilisés</strong>, bien nourris et soignés ; du <strong>sable de quartz</strong> pour scier le granit ; des <strong>rampes</strong> et des traîneaux sur sol humidifié. Le mystère, c'est le génie de l'organisation.</p>
+            <div class="tag-list">
+              <span class="tag">Journal de Merer</span>
+              <span class="tag">Mark Lehner</span>
+              <span class="tag">Gizeh</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="parthenon">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">Visite guidée</p>
+            <h2>Le Parthénon — la pierre qui accueille</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">10</div>
+        </div>
+        <figure class="chapter-figure reveal" data-d="1">
+          <img src="assets/parthenon-couleurs.png" alt="Le Parthénon à l'origine, peint de couleurs vives" loading="lazy">
+          <figcaption>Le Parthénon — non le marbre blanc du mythe, mais un temple peint de bleu, de rouge et d'or : la pierre à l'échelle de l'homme.</figcaption>
+        </figure>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <div class="question-block">
+              <p class="block-label">Au live</p>
+              <p>Et si nous vous emmenions visiter le Parthéon ? Vous nous suivez ?</p>
+            </div>
+            <p>Après avoir exploré le gigantisme égyptien, tournons-nous vers le Parthénon. C'est l'incarnation même du modèle grec : une architecture qui ne cherche pas à écraser l'individu sous le poids de l'éternité, mais à sublimer la citoyenneté et la raison humaine.</p>
+            <p class="sub">1. La construction : Une prouesse de précision et d'innovation</p>
+            <p>Le Parthénon, construit entre 447 et 432 av. J.-C. sous l'impulsion de Périclès, n'est pas seulement un temple, c'est le manifeste architectural de la cité d'Athènes.</p>
+            <ul>
+              <li><strong>La maîtrise technique :</strong> Il a été construit par les architectes Ictinos et Callicrate, et supervisé par le sculpteur Phidias.</li>
+              <li><strong>L'illusion de la perfection :</strong> Ce qui fascine, c'est ce qu'on appelle les "corrections optiques". Pour compenser les distorsions de l'œil humain, les colonnes ne sont pas parfaitement droites, le sol est légèrement bombé et les angles sont ajustés. Mais restons prudents,sur le terme "correction optique". Comme nous l'avons vu, c'est une interprétation souvent débattue par la science actuelle. On peut dire : "Ces courbes étaient-elles des corrections pour nos yeux, ou des choix esthétiques pour donner vie au bâtiment ? La science débat encore, mais une chose est sûre : rien n'est laissé au hasard."</li>
+              <li><strong>Contrer l'intox :</strong> Contrairement à l'idée d'une structure "simple" ou "statique", c'est une œuvre pensée avec une rigueur mathématique absolue pour paraître parfaite à l'œil humain. Ce n'est pas une "improvisation", c'est la victoire du Logos (la raison) sur la matière.</li>
+            </ul>
+            <p class="sub">2. Les colonnes : Une architecture à "l'échelle de l'homme"</p>
+            <p>Contrairement aux temples égyptiens qui séparent le sacré du profane par des murs épais et des salles obscures, le temple grec s'ouvre sur la cité.</p>
+            <ul>
+              <li><strong>La colonne comme unité de mesure :</strong> La colonne dorique, simple et robuste, ne sert pas à soutenir un monument écrasant, mais à créer un rythme harmonieux, un espace accueillant et ordonné.</li>
+              <li><strong>L'espace public :</strong> Les colonnades (le péristyle) permettent de créer une transition entre l'extérieur et l'intérieur, faisant du temple un lieu qui fait partie du paysage urbain, un lieu accessible aux citoyens.</li>
+              <li><strong>Signification :</strong> La colonne symbolise ici l'équilibre et la modération, deux valeurs cardinales de la pensée grecque. Elle dit : "Ici, l'architecture est pensée par l'homme, pour l'homme".</li>
+            </ul>
+            <p class="sub">3. La signification politique et citoyenne</p>
+            <p>Le Parthénon est dédié à Athéna, déesse de la stratégie et de la sagesse,</p>
+            <p>La construction du Parthénon, tout comme celle des pyramides, est le résultat d'une organisation humaine remarquable, bien que reposant sur des bases sociétales très différentes de celles de l'Égypte.</p>
+            <p>Voici les éléments clés sur sa construction et sa main-d'œuvre</p>
+            <p class="sub">1. La construction : Une prouesse de précision et d'innovation</p>
+            <ul>
+              <li><strong>Conception mathématique :</strong> Le Parthénon a été construit entre 447 et 432 av. J.-C. sous la supervision de l'homme d'État Périclès, avec les architectes Ictinos et Callicrate.</li>
+              <li><strong>Corrections optiques :</strong> Pour contrer les distorsions de l'œil humain, les colonnes ne sont pas droites et le sol est légèrement bombé. Ces ajustements mathématiques visent à donner une impression de perfection visuelle et de légèreté.</li>
+              <li><strong>Usage de la couleur :</strong> À l'origine, le temple n'était pas blanc immaculé comme on le voit aujourd'hui, mais peint de couleurs vives (bleu, rouge, or). Cet aspect le rendait beaucoup plus vivant et intégré à la vie quotidienne de la cité.</li>
+            </ul>
+            <p class="sub">2. La main-d'œuvre : Des citoyens et des artisans libres</p>
+            <p>Contrairement au modèle égyptien qui mobilisait une main-d'œuvre paysanne lors des crues du Nil, la construction du Parthénon repose sur une organisation différente.</p>
+            <ul>
+              <li><strong>Artisans spécialisés :</strong> Le chantier a mobilisé des architectes, des sculpteurs (comme Phidias) et des artisans hautement qualifiés. Ces travailleurs étaient des hommes libres, souvent des citoyens athéniens ou des métèques (étrangers résidents), rémunérés pour leur travail.</li>
+              <li><strong>Financement citoyen :</strong> Le projet était financé par la cité d'Athènes elle-même, ce qui en faisait une œuvre collective et publique.</li>
+              <li><strong>Une vision politique :</strong> Cette construction était un manifeste de la puissance et de la vitalité démocratique de la cité : le bâtiment est le résultat d'un choix politique délibéré et d'un investissement consenti par les citoyens.</li>
+            </ul>
+            <p class="group-title">Synthèse</p>
+            <p>Pour contrer l'intox, insistons sur ce point :</p>
+            <div class="dialogue-block">
+              <p>"Si les pyramides égyptiennes sont le produit d'une administration étatique qui mobilise la force collective, le Parthénon est le produit d'une cité qui investit dans l'excellence de ses citoyens et de ses artisans. Dans les deux cas, ce n'est pas la magie ou des aides extérieures qui ont construit ces merveilles, mais une organisation humaine méthodique, pensée et rigoureuse."</p>
+            </div>
+            <p>Pour enrichir la partie sur l'architecture grecque et expliquer visuellement les colonnes, voici des éléments de rigueur à intégrer. Les colonnes ne sont pas juste des supports, elles sont le "langage" de l'ordre grec.</p>
+            <p class="sub">1. L'Ordre Dorique : La robustesse et la sobriété</p>
+            <p>C'est l'ordre le plus ancien, le plus simple et le plus puissant, celui que l'on retrouve sur le Parthénon.</p>
+            <ul>
+              <li><strong>Caractéristiques :</strong> La colonne est trapue, elle ne possède pas de base (elle repose directement sur le sol). Son chapiteau (la partie haute) est très simple, composé d'une forme circulaire surmontée d'un carré.</li>
+              <li><strong>Signification :</strong> Il incarne la force, la virilité et la rigueur de la cité. C'est l'ordre qui exprime la stabilité et l'équilibre, sans fioritures.</li>
+            </ul>
+            <p class="sub">2. Les autres ordres pour compléter le panorama</p>
+            <p>Pour bien montrer la diversité du "laboratoire grec", on peut brièvement mentionner les deux autres :</p>
+            <ul>
+              <li><strong>L'Ordre Ionique :</strong> Plus élégant et plus élancé, il est reconnaissable à son chapiteau en forme de volutes (comme des rouleaux de parchemin ou des cornes de bélier). Il représente une recherche de grâce et de finesse, souvent associé à une influence plus orientale.</li>
+              <li><strong>L'Ordre Corinthien :</strong> Le plus complexe et le plus tardif, avec un chapiteau très décoré orné de feuilles d'acanthe. C'est l'apogée de l'ornementation, marquant une volonté d'exubérance et de luxe.</li>
+            </ul>
+            <p class="group-title">Synthèse : "Le langage de la pierre"</p>
+            <div class="dialogue-block">
+              <p>"En Grèce, la colonne est un langage. Le Dorique du Parthénon, c'est la force tranquille de la cité. L'Ionique et le Corinthien, qui suivront, témoignent d'une évolution vers plus de raffinement et de complexité. Alors que le gigantisme égyptien cherchait à nous écraser, la colonne grecque, quel que soit son style, cherche à nous parler de mesure, de rythme et d'harmonie humaine."</p>
+            </div>
+            <p>Nous savons tout cela grâce à une combinaison de trois sources complémentaires qui permettent aux historiens et aux archéologues de reconstituer la vérité historique loin des mythes.</p>
+            <p>Voici comment nous obtenons ces connaissances :</p>
+            <ul>
+              <li><strong>Les textes antiques (La source littéraire) :</strong>
+                <ul>
+                  <li>Des auteurs comme Vitruve (architecte romain) ont laissé des traités détaillés sur les ordres architecturaux, expliquant les règles de proportion et de construction des colonnes.</li>
+                  <li>Les comptes de construction gravés sur des stèles en pierre par les Athéniens de l'époque nous renseignent précisément sur les coûts, les matériaux utilisés, le temps de travail et la nature des ouvriers payés sur le chantier.</li>
+                </ul>
+              </li>
+              <li><strong>L'archéologie de terrain (La source matérielle) :</strong>
+                <ul>
+                  <li>L'étude minutieuse des vestiges permet d'analyser les techniques d'assemblage des blocs de marbre, qui étaient maintenus par des agrafes en métal, et de découvrir les outils utilisés par les artisans.</li>
+                  <li>Les analyses au laser et les relevés topographiques modernes ont révélé les célèbres "corrections optiques" (les légères courbes qui corrigent la vision humaine), prouvant qu'il s'agissait d'une construction pensée avec une rigueur mathématique et non d'une simple exécution improvisée.</li>
+                </ul>
+              </li>
+              <li><strong>L'archéologie expérimentale et les analyses chimiques :</strong>
+                <ul>
+                  <li>Des analyses de traces de pigments, invisibles à l'œil nu, ont permis de prouver que les temples étaient peints de couleurs vives, brisant le mythe de la "blancheur classique".</li>
+                  <li>Des expériences de restitution ont permis de valider que la force humaine, combinée à des outils simples (leviers, plans inclinés) et une logistique organisée, suffisait largement à ériger ces structures sans besoin de technologies mystérieuses ou d'aides extérieures.</li>
+                </ul>
+              </li>
+            </ul>
+            <p>En résumé, ce n'est pas par conjecture que nous connaissons ces détails, mais par le croisement des archives administratives de l'époque, des traités théoriques antiques et de l'analyse scientifique moderne des matériaux. C'est cette méthode rigoureuse que L'Empire Contre-Intox utilise pour déconstruire les théories conspirationnistes et redonner tout le crédit au génie des bâtisseurs grecs.</p>
+            <div class="science-block">
+              <p class="block-label">Anti-intox · vérifié</p>
+              <p>Datation précise : gros œuvre <strong>447–438</strong>, décor sculpté jusqu'en <strong>432 av. J.-C.</strong> Le Parthénon est <strong>majoritairement dorique</strong> mais intègre des éléments ioniques (la frise continue des Panathénées, quatre colonnes ioniques à l'arrière). Sur la main-d'œuvre : en <strong>grande partie des travailleurs libres</strong> (citoyens et métèques) rémunérés — mais des <strong>esclaves y ont aussi travaillé</strong> (parfois au même salaire journalier, d'après les comptes de l'Érechthéion). <span class="src">Sources : World History Encyclopedia « Parthenon » ; Haselberger (Ed.), <em>Appearance and Essence</em>, University of Pennsylvania Museum, 1999.</span></p>
+            </div>
+          </div>
+          <aside class="side-note">
+            <h3>La pierre qui accueille</h3>
+            <p>447–432 av. J.-C. — Ictinos, Callicrate, Phidias. Non pour écraser, mais pour <strong>abriter la cité</strong> : « la victoire du Logos sur la matière ».</p>
+            <div class="tag-list">
+              <span class="tag">Dorique</span>
+              <span class="tag">Péristyle</span>
+              <span class="tag">Athéna</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="mathematiques">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">Point Info</p>
+            <h2>Les mathématiques, victoire du Logos</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">11</div>
+        </div>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <p>Pour L'Empire Contre-Intox, ce point mathématique est crucial : il permet de transformer ce qu'on appelle souvent "mystère" en démonstration de génie rationnel.</p>
+            <ul>
+              <li><strong>La proportion comme fondement (Le nombre d'or et le ratio) :</strong> Les architectes grecs utilisaient des ratios mathématiques précis (comme le rapport 4:9 pour le Parthénon) pour définir les dimensions des colonnes, l'espace entre elles et la hauteur du bâtiment. Ces proportions ne sont pas esthétiques par hasard : elles découlent d'une volonté de traduire la logique et la raison (Logos) dans la matière.</li>
+              <li><strong>La géométrie appliquée (Les corrections optiques) :</strong> Les constructeurs maîtrisaient une géométrie complexe pour appliquer des corrections optiques destinées à tromper l'œil humain. Ils savaient que, pour qu'un temple paraisse droit et parfait, il fallait en réalité courber très légèrement les lignes horizontales du soubassement et incliner les colonnes vers l'intérieur. C'est une application concrète de la trigonométrie et de la géométrie plane.</li>
+              <li><strong>La mesure comme outil citoyen :</strong> Contrairement aux modèles de pouvoir centralisé où la mesure était réservée à l'État pour le contrôle (comme le scribe égyptien), la géométrie grecque était un outil d'organisation de l'espace public. Elle servait à créer un environnement harmonieux où le citoyen peut circuler, discuter et voter en toute sérénité.</li>
+            </ul>
+
+            <div class="formula-block">
+              <div class="fb-head">Le ratio directeur du Parthénon <span class="fb-tag">Proportion 4:9</span></div>
+              <div class="formula" data-tex="\dfrac{\text{largeur}}{\text{longueur}} \;=\; \dfrac{\varnothing\ \text{colonne}}{\text{entraxe}} \;=\; \dfrac{4}{9}"></div>
+              <p class="fb-note">Un même rapport <span class="imath" data-tex="4:9"></span> régit la façade (~30,8 m sur ~69,5 m) <b>et</b> le rapport entre le diamètre d'une colonne et l'espacement des colonnes (entraxe). Des rapports <b>commensurables</b> (nombres entiers simples) : la beauté grecque comme équation rationnelle, non comme magie.</p>
+            </div>
+            <div class="formula-block">
+              <div class="fb-head">Le nombre d'or <span class="fb-tag">φ — souvent invoqué, ici débattu</span></div>
+              <div class="formula" data-tex="\varphi \;=\; \dfrac{1+\sqrt{5}}{2} \;\approx\; 1{,}618"></div>
+              <p class="fb-note">Le fameux <span class="imath" data-tex="\varphi"></span> (« phi ») : aucune source antique ne prouve son emploi <b>délibéré</b> au Parthénon. La position académique dominante : proportion <b>rétroprojetée</b> a posteriori, les Grecs raisonnant en rapports entiers (4:9). À ne pas confondre avec le ratio directeur, réel et documenté.</p>
+            </div>
+
+            <p class="group-title">Synthèse</p>
+            <div class="dialogue-block">
+              <p>"On se demande souvent comment ils ont pu construire une telle perfection sans calculatrice. La réponse est simple : ils avaient une compréhension mathématique aiguë du monde. Le Parthénon est une équation de pierre. Chaque courbe, chaque inclinaison, chaque colonne a été calculée pour que l'œil humain perçoive l'harmonie parfaite. Ce n'est pas de la magie, c'est la victoire de la géométrie sur le chaos."</p>
+            </div>
+            <p class="group-title">Pourquoi c'est important de le dire :</p>
+            <ul>
+              <li><strong>Contrer l'intox :</strong> Cela réfute les théories qui suggèrent des technologies "inconnues". La maîtrise mathématique suffit à expliquer la perfection des édifices grecs.</li>
+              <li><strong>Revaloriser le génie humain :</strong> on montre que la "perfection" n'est pas le résultat d'une aide mystérieuse, mais d'une application patiente et rigoureuse des mathématiques par des artisans humains.</li>
+            </ul>
+            <p>C'est cette rigueur mathématique qui, couplée à la logistique de construction, fait du Parthénon le chef-d'œuvre du modèle grec.</p>
+            <p class="group-title">Les Mathématiques : Outils de la Perfection Architecturale</p>
+            <ul>
+              <li><strong>Le Ratio 4:9 (Milieu du Ve siècle av. J.-C.) :</strong> Le Parthénon repose sur une proportion fondamentale : le rapport entre la largeur et la longueur est de 4:9, tout comme le rapport entre le diamètre des colonnes et l'espace qui les sépare. Ce ratio mathématique fixe est ce qui donne au temple son équilibre visuel unique.</li>
+              <li><strong>Le Mythe du Nombre d'Or :</strong> Bien que souvent cité, l'usage délibéré et systématique du nombre d'or (phi \approx 1,618) dans le Parthénon reste débattu par les historiens. Si certaines proportions s'en approchent, il n'existe aucune preuve archéologique ou textuelle antique affirmant que les architectes grecs utilisaient cette valeur spécifique comme règle de conception.</li>
+              <li><strong>Corrections Optiques (v. 447–432 av. J.-C.) :</strong> Les architectes grecs utilisaient la trigonométrie et la géométrie plane pour appliquer des courbes imperceptibles aux lignes horizontales et une inclinaison aux colonnes. Ces calculs complexes visaient à corriger les distorsions naturelles de l'œil humain pour que le temple paraisse "parfaitement droit" au spectateur.</li>
+            </ul>
+            <p class="group-title">Les mathématiques sont-elles une science ?</p>
+            <p>Il est important de clarifier ce point :</p>
+            <ul>
+              <li><strong>Oui, les mathématiques sont une science,</strong> mais leur définition a évolué depuis l'Antiquité. Pour les Grecs, elles étaient intégrées au Logos (la raison) et servaient de langage pour décrire l'ordre du monde.</li>
+              <li><strong>Une science de la preuve :</strong> Aujourd'hui, les mathématiques sont considérées comme une science formelle. Contrairement aux sciences expérimentales qui reposent sur l'observation (comme l'astronomie de position égyptienne), les mathématiques reposent sur la démonstration logique.</li>
+              <li><strong>Fondement de toute science :</strong> Elles sont la science qui permet de modéliser la réalité. En architecture, elles ont permis de transformer des concepts abstraits (harmonie, ratio) en structures tangibles et pérennes.</li>
+            </ul>
+            <div class="dialogue-block">
+              <p>"Quand on parle de mathématiques chez les Grecs, on ne parle pas de magie, on parle de Logos. Ils n'avaient pas de calculatrices, mais ils avaient la géométrie et la rigueur de la preuve. Les maths, ce n'est pas une opinion, c'est une science de la vérité qui a permis au Parthénon de traverser les siècles avec cette harmonie qui nous fascine encore aujourd'hui."</p>
+            </div>
+            <div class="science-block">
+              <p class="block-label">Anti-intox · les « corrections optiques » en débat</p>
+              <p>Les raffinements (colonnes inclinées, stylobate bombé, <em>entasis</em>) sont bien <strong>réels et mesurés</strong>. Mais l'idée qu'ils servent à « corriger des illusions d'optique » est <strong>débattue</strong> : un article récent (Goriely, <em>arXiv:2510.16831</em>, 2025) soutient que ces illusions supposées sont « inexistantes ou imperceptibles » ; une approche moderne insiste sur l'expérience d'un <em>visiteur en mouvement</em>. Sur le nombre d'or (<span class="imath" data-tex="\varphi"></span>) : usage délibéré <strong>non prouvé</strong>, probablement rétroprojeté. <span class="src">Sources : Goriely 2025 (arXiv) ; plus.maths.org « golden ratio ».</span></p>
+            </div>
+          </div>
+          <aside class="side-note">
+            <h3>L'équation de pierre</h3>
+            <p>« Le Parthénon est une équation de pierre. » Le ratio <strong>4:9</strong> est documenté ; le <strong>nombre d'or</strong>, lui, est un mythe rétroprojeté. Du Logos, pas de la magie.</p>
+            <div class="tag-list">
+              <span class="tag">Ratio 4:9</span>
+              <span class="tag">φ débattu</span>
+              <span class="tag">Science formelle</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="conclusion">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">VI — Conclusion</p>
+            <h2>Le Duel des Modèles — Héritage et Persistance</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">12</div>
+        </div>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <div class="dialogue-block">
+              <p>"En comparant l'Égypte et la Grèce, nous avons fait plus qu'un simple voyage historique ; nous avons confronté deux manières de penser notre place dans le monde.</p>
+            </div>
+            <ul>
+              <li><strong>L'Égypte nous a légué l'État et l'idée de stabilité.</strong> Ce modèle nous enseigne que pour durer, une société doit s'organiser avec précision, anticiper les crises et garantir une harmonie collective qui dépasse l'individu. La pyramide n'est pas qu'un tombeau, c'est le symbole d'une intelligence administrative capable de fédérer un peuple autour d'un projet commun pour défier le temps.</li>
+              <li><strong>La Grèce nous a légué le doute et l'idée de liberté.</strong> Elle nous rappelle que le progrès naît de la friction, du débat sur l'Agora et de la capacité à remettre en question nos propres règles pour les améliorer. Le Parthénon n'est pas qu'un temple, c'est l'incarnation de la raison humaine qui, armée de mathématiques et de logique, choisit de construire une cité pour l'homme, et non pour l'éternité.</li>
+            </ul>
+            <p>Ce que nous retiendrons pour L'Empire Contre-Intox : L'histoire n'est jamais une succession de mystères insolubles, mais le récit d'une inventivité humaine constante. Lorsque nous voyons des structures colossales, des alignements stellaires ou des architectures parfaites, ne cherchons pas de magie ou d'aides extérieures ; cherchons la méthode, la patience et le génie de ceux qui, sans nos outils modernes, ont façonné notre héritage.</p>
+            <p>Aujourd'hui, nos démocraties modernes sont nées de ce duel permanent entre le besoin d'ordre égyptien et le besoin de liberté grecque. Comprendre ce passé, c'est mieux comprendre les équilibres précaires que nous devons maintenir chaque jour pour que notre propre cité continue de fonctionner et de progresser."</p>
+          </div>
+          <aside class="side-note">
+            <h3>L'héritage du duel</h3>
+            <p>Nos démocraties sont nées de la <strong>tension</strong> entre l'ordre égyptien et la liberté grecque. Le doute et la méthode contre la magie : c'est tout le programme de l'Empire Contre-Intox.</p>
+            <div class="tag-list">
+              <span class="tag">Ordre</span>
+              <span class="tag">Liberté</span>
+              <span class="tag">Méthode</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="sources-dossier">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">L'appareil critique</p>
+            <h2>Sources &amp; méthode</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">13</div>
+        </div>
+        <div class="transcript reveal" data-d="1">
+          <div class="prose">
+            <p class="lede">Ce dossier conserve la transcription du live <strong>mot pour mot</strong>. En parallèle, chaque affirmation et chaque chiffre ont été recoupés par des agents de recherche, puis consignés dans le Dossier « Les Sources » de l'Empire — avec verdict (confirmé, à nuancer, débattu) et source autoritative. Voici les références citées dans le live.</p>
+            <p class="group-title">SOURCES</p>
+            <p class="sub">1. Sur la construction des pyramides (Égypte)</p>
+            <ul>
+              <li><strong>Main-d'œuvre :</strong> La preuve que les pyramides n'ont pas été construites par des esclaves repose sur la découverte archéologique du « village des ouvriers » à Gizeh. Les restes de consommation (os d'animaux de qualité) et les preuves bureaucratiques (sceaux, papyrus) attestent d'une main-d'œuvre organisée et nourrie, loin du mythe de l'esclavage [1.1.2, 1.4.1, 1.4.2].</li>
+              <li><strong>Journal de Merer (Les Papyri de la Mer Rouge) :</strong> C'est une source primaire exceptionnelle [1.1.1]. Découvert à Wadi el-Jarf, ce logbook d'un inspecteur nommé Merer détaille la logistique de transport du calcaire, prouvant une gestion de projet complexe, militaire et hautement coordonnée [1.1.1].</li>
+              <li><strong>Résilience sismique :</strong> Des études récentes publiées dans Scientific Reports montrent que la structure interne de la Grande Pyramide (fréquences fondamentales mesurées entre 2,0 et 2,6 Hz) lui confère une résilience naturelle face aux séismes, un résultat de choix d'ingénierie (peut-être empiriques plutôt qu'intentionnels) qui aident à dissiper l'énergie [1.3.1, 1.3.2].</li>
+            </ul>
+            <p class="sub">2. Sur le Parthénon (Grèce) et les "corrections optiques"</p>
+            <p>Il est important de noter une évolution majeure dans la recherche scientifique sur ce sujet :</p>
+            <ul>
+              <li><strong>Remise en question du mythe :</strong> Une étude publiée sur arXiv en 2025 soutient qu'il n'existe aucune preuve historique ou scientifique solide pour affirmer que les raffinements du Parthénon (courbures, inclinaisons) aient été conçus spécifiquement pour corriger des illusions d'optique [1.5.1]. Si ces variations géométriques existent bel et bien, l'idée qu'elles visent à « restaurer la rectitude » est désormais débattue et perçue par certains comme une interprétation postérieure non étayée [1.5.1].</li>
+              <li><strong>Approche moderne :</strong> La recherche actuelle (ex: Oxford Academic) privilégie une lecture de l'architecture grecque basée sur l'expérience du visiteur en mouvement (vision ambulatoire) plutôt que sur une statique mathématique rigide [1.5.2].</li>
+            </ul>
+            <p>Les plateformes comme JSTOR, Persée ou Google Scholar.</p>
+            <p class="sub">1. Sur l'Égypte antique (Pyramides et organisation)</p>
+            <div class="article-noir">
+              <h4>Le Journal de Merer (Source primaire cruciale)</h4>
+              <p class="cite">Référence : Tallet, P. (2017). Les Papyrus de la Mer Rouge I : Le "Journal de Merer" (Papyrus Jarf A et B). IFAO.</p>
+              <p><strong>Pourquoi l'utiliser :</strong> C'est le document scientifique incontournable pour prouver la gestion logistique et administrative de la construction de la pyramide de Khéops. Il met fin aux théories du "mystère" par la preuve écrite.</p>
+            </div>
+            <div class="article-noir">
+              <h4>Sur la main-d'œuvre et le village des ouvriers</h4>
+              <p class="cite">Référence : Lehner, M. (2015). Giza and the Pyramids: The Definitive History. Thames &amp; Hudson.</p>
+              <p><strong>Pourquoi l'utiliser :</strong> Mark Lehner est la référence mondiale sur le site de Gizeh. Ses fouilles démontrent scientifiquement l'organisation sociale, l'alimentation et les conditions de travail non serviles des bâtisseurs.</p>
+            </div>
+            <div class="article-noir">
+              <h4>Sur la résilience structurelle (Science des matériaux)</h4>
+              <p class="cite">Référence : L'étude sur la réponse dynamique des structures égyptiennes aux séismes : "Electromagnetic properties of the Great Pyramid of Giza" (bien que le titre soit parfois sensationnaliste, les analyses structurelles internes sur les fréquences de résonance sont exploitées par des ingénieurs en génie parasismique).</p>
+            </div>
+            <p class="sub">2. Sur la Grèce antique (Parthénon et architecture)</p>
+            <div class="article-noir">
+              <h4>Sur la construction et les "corrections optiques"</h4>
+              <p class="cite">Référence : Haselberger, L. (Ed.). (1999). Appearance and Essence: Refinements of Classical Architecture: Curvature. University of Pennsylvania Press.</p>
+              <p><strong>Pourquoi l'utiliser :</strong> C'est une référence académique majeure qui analyse les raffinements du Parthénon (entasis, inclinaisons) sans tomber dans les mythes de la "correction optique parfaite".</p>
+            </div>
+            <div class="article-noir">
+              <h4>Sur le débat des "corrections optiques" (Approche moderne)</h4>
+              <p class="cite">Référence : Mantha, K. (2025). Reassessing the Optical Refinements of the Parthenon. Journal of Architectural History. (Recherche ce type d'articles récents sur les bases de données universitaires).</p>
+              <p><strong>Pourquoi l'utiliser :</strong> Cet article récent illustre parfaitement la démarche scientifique de L'Empire Contre-Intox : on prend une idée reçue (les corrections optiques) et on la confronte aux nouvelles mesures laser et à la vision ambulatoire.</p>
+            </div>
+            <div class="article-noir">
+              <h4>Sur les ordres architecturaux (Histoire de l'art)</h4>
+              <p class="cite">Référence : The Oxford Handbook of Greek and Roman Art and Architecture. Oxford University Press.</p>
+              <p><strong>Pourquoi l'utiliser :</strong> Pour avoir une définition factuelle et indiscutable des ordres Dorique, Ionique et Corinthien, basée sur l'évolution historique des sites archéologiques.</p>
+            </div>
+            <p class="group-title">Comment utiliser ces sources</p>
+            <ul>
+              <li><strong>Citez par l'exemple :</strong> « Selon les analyses de Mark Lehner sur le site de Gizeh... » ou « Les travaux de Pierre Tallet sur les papyrus de la Mer Rouge démontrent que... »</li>
+              <li><strong>Apporter de la nuance :</strong> « Contrairement à ce qu'on lit souvent sur les corrections optiques, les recherches actuelles, comme celles publiées dans le Journal of Architectural History, suggèrent que... »</li>
+              <li><strong>Encourager la curiosité :</strong> vous pouvez consulter le site de l'IFAO (Institut français d'archéologie orientale) pour des publications sérieuses et accessibles.</li>
+            </ul>
+            <div class="science-block">
+              <p class="block-label">Anti-intox · une référence à corriger</p>
+              <p>⚠️ La référence « <em>Mantha, K. (2025). Reassessing the Optical Refinements of the Parthenon</em> » citée dans le déroulé du live <strong>n'a pas pu être vérifiée</strong> (introuvable sur arXiv et les bases universitaires) : à ne pas citer comme source fiable. La <strong>vraie</strong> étude 2025 qui remet en cause les « corrections optiques » est : <strong>Goriely, A. (2025), « The illusion of illusions: There are no optical corrections in the Parthenon », arXiv:2510.16831</strong> (DOI 10.48550/arXiv.2510.16831). C'est exactement le type de vérification que fait l'Empire Contre-Intox — y compris sur ses propres notes.</p>
+            </div>
+            <p><a href="../../sources/sources.html">Consulter Les Sources <span aria-hidden="true">→</span></a></p>
+          </div>
+          <aside class="side-note">
+            <h3>La méthode</h3>
+            <p>Faits vérifiés par agents de recherche en parallèle : IFAO (Tallet), Mark Lehner (Gizeh), World History Encyclopedia, Britannica, University of Pennsylvania Museum (Haselberger), et articles à comité de lecture — <strong>DOI vérifiés</strong> (Goriely 2025 ; ELGabry 2026 ; polychromie 2022).</p>
+            <div class="tag-list">
+              <span class="tag">Vérifié par agents</span>
+              <span class="tag">DOI vérifiés</span>
+              <span class="tag">Verdicts</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="lexique">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">Pour aller plus loin</p>
+            <h2>Lexique</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">14</div>
+        </div>
+        <div class="reveal" data-d="1">
+          <div class="prose">
+            <p class="sub">1. Terminologie Égyptienne</p>
+            <ul>
+              <li><strong>Maât :</strong> Concept fondamental égyptien désignant l'ordre cosmique, la vérité, la justice et l'équilibre du monde. Construire en harmonie avec la Maât est le devoir du Pharaon.</li>
+              <li><strong>Merchet :</strong> Instrument de visée composé d'un fil à plomb et d'une tige, utilisé pour définir le méridien et aligner les monuments sur les étoiles circumpolaires.</li>
+              <li><strong>Bay :</strong> Tige fendue en V, utilisée avec la Merchet pour effectuer des visées astronomiques précises.</li>
+              <li><strong>Circumpolaire :</strong> Désigne les étoiles qui, du point de vue d'un observateur terrestre, ne se couchent jamais car elles gravitent près du pôle céleste. Elles symbolisaient l'éternité pour les Égyptiens.</li>
+              <li><strong>Lever Héliaque :</strong> Moment où une étoile (comme Sirius) devient visible à l'aube, juste avant le lever du soleil, après avoir été invisible pendant une période. Crucial pour le calendrier agricole (crue du Nil).</li>
+              <li><strong>Journal de Merer :</strong> Document archéologique (papyrus) attestant de la logistique de transport des blocs de calcaire pour la construction des pyramides, preuve formelle d'une organisation étatique complexe.</li>
+            </ul>
+            <p class="sub">2. Terminologie Grecque</p>
+            <ul>
+              <li><strong>Agora :</strong> Place publique au cœur de la cité grecque, lieu de vie sociale, d'échanges commerciaux et surtout de débat politique (la démocratie).</li>
+              <li><strong>Logos :</strong> Concept clé de la pensée grecque signifiant à la fois la "raison", le "discours" et la "logique". L'architecture et la science grecques visent à refléter cette rationalité.</li>
+              <li><strong>Péristyle :</strong> Galerie de colonnes entourant un monument ou un espace (comme autour du temple).</li>
+              <li><strong>Ordre Architectural :</strong> Système de règles de proportions et de formes pour les colonnes.
+                <ul>
+                  <li><strong>Dorique :</strong> Le plus ancien et le plus sobre, sans base, chapiteau simple. Symbole de force.</li>
+                  <li><strong>Ionique :</strong> Caractérisé par des volutes (spirales) au chapiteau. Plus élégant.</li>
+                  <li><strong>Corinthien :</strong> Le plus tardif et orné, avec des feuilles d'acanthe au chapiteau.</li>
+                </ul>
+              </li>
+              <li><strong>Entasis :</strong> Correction architecturale consistant en un léger renflement du fût de la colonne pour éviter qu'elle ne paraisse concave à l'œil humain.</li>
+              <li><strong>Corrections Optiques (ou Raffinements) :</strong> Procédés géométriques (lignes courbes, inclinaisons) destinés à modifier la perception visuelle de l'édifice pour le rendre "parfait" à l'œil du spectateur.</li>
+            </ul>
+            <p class="sub">3. Terminologie Scientifique et Méthodologique</p>
+            <ul>
+              <li><strong>Archéologie Expérimentale :</strong> Discipline qui consiste à reconstruire des techniques anciennes (ex: transport de blocs) pour tester leur faisabilité réelle et contrer les théories spéculatives.</li>
+              <li><strong>Trigonométrie / Géométrie plane :</strong> Outils mathématiques fondamentaux utilisés par les architectes grecs pour calculer les dimensions, les pentes et les proportions des édifices.</li>
+              <li><strong>Ratio / Proportion :</strong> Rapport mathématique entre deux dimensions (ex: 4:9). Au cœur de l'esthétique et de la solidité des monuments antiques.</li>
+              <li><strong>Science Formelle :</strong> Discipline basée sur la démonstration logique (comme les mathématiques) plutôt que sur l'observation expérimentale.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing reveal" aria-labelledby="final">
+        <h2 id="final">« La pierre égyptienne fige l'éternité, la pierre grecque libère la parole. »</h2>
+        <p>Ce dossier conserve mot pour mot la transcription du live. Du Nil à l'Agora, de la pyramide au Parthénon, un même fil : deux civilisations ont répondu à la même angoisse — dompter le chaos, assurer la pérennité — par deux logiciels opposés, la Maât et le Logos. Et partout où la légende crie au « mystère » ou à l'« aide extérieure », l'Empire Contre-Intox répond par la méthode, la patience et le génie humain. Nos démocraties modernes sont nées de ce duel permanent entre le besoin d'ordre égyptien et le besoin de liberté grecque.</p>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans la mémoire collective. Ce dossier prolonge le live en donnant au public une version lisible, structurée et partageable du duel entre l'Égypte de la Maât et la Grèce du Logos.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="ymir.jpeg" alt="Avatar d'Ymir">
+              <img src="lalie.jpeg" alt="Avatar de Lalie">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Ymir &amp; Lalie</strong></span>
+          </div>
+          <p class="collective-credit">Ymir &amp; Lalie</p>
+          <div class="collective-actions">
+            <a class="button primary" href="../../index.html">Retour à l'index</a>
+            <a class="button" href="../premier-empires/index.html">Les Premiers Empires</a>
+            <a class="button" href="../premieres-cites/index.html">Les Premières Cités</a>
+            <a class="button" href="../../sources/sources.html">Les Sources</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <main>Page HTML autonome créée à partir de <strong>egypte-grece.txt</strong> (déroulé du live « Ordre Divin ou Démocratie ? — Duel des Modèles : Égypte vs Grèce »). La transcription est conservée mot pour mot. Faits vérifiés (IFAO, British Museum, Metropolitan Museum, World History Encyclopedia, Britannica, University of Pennsylvania Museum, et articles à comité de lecture avec DOI vérifié). Images d'illustration : repères Codex.</main>
+    </footer>
+  </div>
+
+  <script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    if (mobileMenu) mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => { nav.classList.remove("open"); if (mobileMenu) mobileMenu.setAttribute("aria-expanded", "false"); }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }
+    document.addEventListener("scroll", revealTall, { passive: true });
+    window.addEventListener("resize", revealTall, { passive: true });
+    revealTall();
+
+    /* ===================== KaTeX ===================== */
+    function renderMath() {
+      document.querySelectorAll(".imath[data-tex], .formula[data-tex]").forEach((node) => {
+        if (node.dataset.done) return;
+        const tex = node.getAttribute("data-tex");
+        const display = node.classList.contains("formula");
+        if (window.katex) {
+          try { katex.render(tex, node, { throwOnError: false, displayMode: display }); node.dataset.done = "1"; return; }
+          catch (e) { /* repli ci-dessous */ }
+        }
+        node.textContent = tex;
+      });
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderMath);
+    else renderMath();
+    window.addEventListener("load", renderMath);
+
+    /* ===================== Comparateur Égypte ⇄ Grèce ===================== */
+    (function () {
+      const chips = document.getElementById("duel-chips");
+      const egHead = document.getElementById("eg-head"), egBody = document.getElementById("eg-body");
+      const grHead = document.getElementById("gr-head"), grBody = document.getElementById("gr-body");
+      if (!chips || !egHead || !grHead) return;
+      const DUEL = [
+        { th: "Géographie",
+          eh: "Le Nil, un métronome", eb: "Un fleuve prévisible et un désert-rempart : une unité territoriale naturelle, et un état d'esprit unique — la certitude.",
+          gh: "L'Égée, un puzzle", gb: "Montagnes, îles isolées, mer omniprésente : la nature impose la fragmentation. Chaque vallée devient un monde à part — le berceau de l'indépendance." },
+        { th: "Pouvoir",
+          eh: "Verticalité — la Grande Maison", eb: "Per-aâ, garant de la Maât ; le Vizir exécute, le Scribe enregistre. Une bureaucratie efficace prouve que l'ordre cosmique tient.",
+          gh: "Horizontalité — l'Agora", gb: "Le Citoyen remplace le Sujet ; la loi (Nomos) se débat et se vote. Tirage au sort et rotation des charges contre la concentration du pouvoir." },
+        { th: "Femmes",
+          eh: "La souveraineté incarnée", eb: "Hatchepsout se fait couronner Pharaon, Cléopâtre négocie avec Rome : la reine est une composante du trône — visibilité institutionnelle.",
+          gh: "Le pouvoir par l'exception", gb: "Aspasie façonne Athènes par son salon ; Gorgo règne à Sparte. Influence subversive : contourner un système qui assigne la femme au foyer (l'Oikos)." },
+        { th: "Les dieux",
+          eh: "La Machine — des rouages", eb: "Rê, Hapi, Osiris : des forces qui maintiennent le cosmos. Le temple est une infrastructure de maintenance. On prie pour que rien ne change.",
+          gh: "Le Miroir — des passions", gb: "Athéna réfléchit, Zeus négocie, Dionysos déborde. Des dieux à notre image, qui disent les limites de l'homme. On prie pour affronter le changement." },
+        { th: "La pierre",
+          eh: "Le gigantisme pour l'éternité", eb: "La pyramide et le temple écrasent l'individu pour magnifier l'ordre immuable. Aligner sur les étoiles, c'est fixer le ciel sur la Terre.",
+          gh: "L'humain au centre", gb: "La colonne est une mesure, pas un monument. Le Parthénon abrite la cité et le débat : la victoire du Logos sur la matière." }
+      ];
+      function show(i) {
+        const d = DUEL[i];
+        egHead.textContent = d.eh; egBody.textContent = d.eb;
+        grHead.textContent = d.gh; grBody.textContent = d.gb;
+        chips.querySelectorAll(".duel-chip").forEach((c, j) => {
+          const on = j === i; c.classList.toggle("active", on); c.setAttribute("aria-selected", String(on));
+        });
+      }
+      DUEL.forEach((d, i) => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "duel-chip"; b.setAttribute("role", "tab");
+        b.textContent = d.th;
+        b.addEventListener("click", () => show(i));
+        chips.appendChild(b);
+      });
+      show(0);
+    })();
+  </script>
+</body>
+</html>
