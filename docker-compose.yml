@@ -1,0 +1,9 @@
+services:
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: empire-contre-intox-site:latest
+    ports:
+      - "${SITE_PORT:-3004}:80"
+    restart: unless-stopped

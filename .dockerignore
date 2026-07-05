@@ -1,0 +1,28 @@
+# Keep the deployment image small and avoid publishing private/local work files.
+.git
+.gitignore
+.pi
+.DS_Store
+**/.DS_Store
+
+# Secrets / local environment files
+.env
+.env.*
+!.env.example
+
+# Private source material explicitly excluded by the project charter
+a_traiter/
+
+# Local dependency/build artefacts
+node_modules/
+**/node_modules/
+port-manager.db*
+
+# Agent / editor temp files
+*.tmp
+*.swp
+.~lock.*#
+
+# Untracked local work-in-progress files currently outside the published site
+provoxys/exoplanetes/Chapitre3_Outils_au_Sol_enrichi_avec_photos.md
+provoxys/sondes/assets/radio-univers.png

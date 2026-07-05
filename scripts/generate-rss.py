@@ -16,6 +16,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_TITLE = "Empire contre Intox — Dossiers"
 SITE_DESC = ("Archives publiques d'Empire contre Intox : dossiers scientifiques sur le temps "
              "profond, transcriptions structurées et esprit critique. Veritas omnia vincit.")
+LICENSE_URL = "https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr"
+LICENSE_LABEL = "CC BY-NC-ND 4.0"
 FALLBACK_DATE = "2026-05-30T00:00:00+02:00"
 
 MIME = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
@@ -119,6 +121,7 @@ def build_item(c):
     if c["tags"]:
         rich.append('<p>' + " · ".join(escape(t) for t in c["tags"]) + '</p>')
     rich.append(f'<p><a href="{link}">Consulter le dossier →</a></p>')
+    rich.append(f'<p><small>Licence de contenu : <a href="{LICENSE_URL}">{LICENSE_LABEL}</a> — partage autorisé avec attribution, sans usage commercial ni modification.</small></p>')
     content = "".join(rich)
 
     media = ""
@@ -157,14 +160,16 @@ def main():
      xmlns:content="http://purl.org/rss/1.0/modules/content/"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:atom="http://www.w3.org/2005/Atom"
-     xmlns:media="http://search.yahoo.com/mrss/">
+     xmlns:media="http://search.yahoo.com/mrss/"
+     xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule">
   <channel>
     <title>{escape(SITE_TITLE)}</title>
     <link>{BASE}</link>
     <atom:link href="{BASE}rss.xml" rel="self" type="application/rss+xml" />
     <description>{escape(SITE_DESC)}</description>
     <language>fr-FR</language>
-    <copyright>Empire contre Intox — Veritas omnia vincit</copyright>
+    <copyright>{escape('Empire contre Intox — contenu sous licence ' + LICENSE_LABEL)}</copyright>
+    <creativeCommons:license>{LICENSE_URL}</creativeCommons:license>
     <lastBuildDate>{now}</lastBuildDate>
     <generator>generate-rss.py</generator>
     <image>

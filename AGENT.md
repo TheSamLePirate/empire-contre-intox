@@ -306,6 +306,40 @@ Page codex ECI qui rassemble les sources de **tous** les dossiers, avec **barre 
 - `.gitignore` en place : `.DS_Store`, fichiers verrou office (`.~lock.*#`), `a_traiter/` (sources de travail privées). Ne jamais committer ce genre de fichiers.
 - **Toujours stager `rss.xml` avec `index.html`** (régénéré via `scripts/generate-rss.py`) pour que le flux reflète les dossiers publiés.
 
+## Déploiement Portainer (domaine `empire-contre-intox.com`)
+
+En plus de GitHub Pages, le site peut être servi comme site statique Docker/Nginx sur le serveur Portainer.
+
+- Domaine cible : `https://empire-contre-intox.com`
+- Port serveur attendu : `3004` → conteneur Nginx `80`
+- Stack Portainer : `empire-contre-intox-site`
+- Fichiers de déploiement à la racine du dépôt :
+  - `Dockerfile` — image Nginx statique ;
+  - `nginx.conf` — configuration de cache/headers et service des fichiers ;
+  - `docker-compose.yml` — service `site`, mapping `${SITE_PORT:-3004}:80` ;
+  - `.dockerignore` — exclut `.git`, `.pi`, `.env*`, `a_traiter/` et fichiers locaux privés/hors sujet.
+
+Commande de déploiement depuis la racine du dépôt :
+
+```bash
+cd ../devServerTest
+bun run port-manager deploy ../empire-contre-intox --name empire-contre-intox-site
+```
+
+Le CLI `../devServerTest` construit l'image localement en `linux/amd64`, l'envoie à Portainer, puis crée/met à jour la stack. Ne jamais committer les secrets Portainer (`../devServerTest/.env`).
+
+Après déploiement, vérifier :
+
+```bash
+cd ../devServerTest
+bun run port-manager stack empire-contre-intox-site
+bun run port-manager ps --all | grep empire-contre-intox-site
+curl -L -s -o /dev/null -w "%{http_code}\n" https://empire-contre-intox.com/
+curl -L -s -o /dev/null -w "%{http_code}\n" https://empire-contre-intox.com/rss.xml
+```
+
+Le conteneur doit être `running` et `healthy`, et les URLs doivent répondre `200`.
+
 ## Vérification finale
 
 Avant de terminer :
