@@ -2,7 +2,10 @@
 
 Ce projet transforme des **déroulés de live** (transcriptions, scripts d'émission) en pages HTML éducatives, immersives et partageables, rassemblées dans un index commun et publiées en site statique.
 
-Le site est publié via GitHub Pages : **https://thesamlepirate.github.io/empire-contre-intox/** (dépôt `TheSamLePirate/empire-contre-intox`, branche `main`, racine).
+Le site est publié sur deux canaux :
+
+- **Production Portainer / domaine principal** : https://empire-contre-intox.com — stack `empire-contre-intox-site`, port serveur `3004` → Nginx conteneur `80`.
+- **Miroir GitHub Pages** : https://thesamlepirate.github.io/empire-contre-intox/ — dépôt `TheSamLePirate/empire-contre-intox`, branche `main`, racine.
 
 > ## ▶ Skill `nouveau-dossier` (process automatisé)
 >
@@ -67,18 +70,21 @@ horloge-univers/                ← Samlepirate — « Horloge de l'Univers » (
     events.json                 ← SOURCE CANONIQUE des 46 événements (clock + calendrier)
     super-images/               ← une image par événement (01 → 46)
     extinctions/ · geologie/ · temps-univers.png
-sources/                        ← Dossier V « Les Sources » — vérification & sources de TOUS les dossiers
+sources/                        ← Dossier XXIII « Les Sources » — vérification & sources de TOUS les dossiers
   sources.html                  ← page codex (fiches donnée→résumé→verdict→source, références DOI, biblio, RECHERCHE)
   README.md                     ← index des fichiers de sources + bilan d'audit
   dossier-*.md                  ← audit par dossier (affirmation → verdict → source avec URL)
   refs-doi-*.md                 ← références primaires à comité de lecture (DOI vérifiés)
   chronos-bibliographie.md · sources_audit_scientifique_chronos.csv
+LICENCE-CONTENU.md              ← licence de contenu CC BY-NC-ND 4.0 (textes, transcriptions, images, médias)
+Dockerfile · nginx.conf · docker-compose.yml · .dockerignore
+                                ← déploiement statique Nginx vers Portainer (`empire-contre-intox-site`)
 ```
 
-> **V dossiers** au total — l'index affiche **`<b>V</b> dossiers`**. Numérotation (ordre d'affichage) :
-> I `ymir-lalie/resume-eres.html` · II `ymir-lalie/edicarien.html` ·
-> III `provoxys/Artemis2.html` · IV `horloge-univers/` (carte unique → `chronos.html` + `calendrier.html` + `clock.html`) ·
-> V `sources/sources.html` (« Les Sources » — appareil critique **commun à tous les dossiers**).
+> **XXIII dossiers** au total — l'index affiche **`<b>XXIII</b> dossiers`**. Numérotation actuelle (ordre d'affichage) :
+> I `ymir-lalie/resume-eres.html` · II `ymir-lalie/edicarien.html` · III `provoxys/Artemis2.html` · IV `horloge-univers/chronos.html` · V `jorge-zalex/elements.html` · VI `la-vie-de-la-terre/index.html` · VII `samlepirate/champs-vecteurs.html` · VIII `ymir-lalie/ancetres-genetiques/index.html` · IX `lalie-ymir-sam/index.html` · X `ymir-lalie/singe-aquatique/index.html` · XI `ymir-lalie/esclavage/index.html` · XII `provoxys/tornades/index.html` · XIII `phantom/abeilles/index.html` · XIV `formules/index.html` · XV `ymir-lalie/la-resistance/index.html` · XVI `provoxys/briser-le-silence/index.html` · XVII `provoxys/exoplanetes/index.html` · XVIII `ymir-lalie/premieres-cites/index.html` · XIX `provoxys/sondes/index.html` · XX `ymir-lalie/premier-empires/index.html` · XXI `provoxys/therapie-conversion/index.html` · XXII `ymir-lalie/egypte-grece/index.html` · XXIII `sources/sources.html` (« Les Sources » — appareil critique commun à tous les dossiers).
+>
+> La carte « Calendrier des lives » est une carte d'agenda externe, pas un dossier numéroté.
 
 Règles :
 
@@ -118,7 +124,8 @@ Voir `provoxys/Artemis2.html` (classes `.eci-home`, `.eci-collective`, `.eci-btn
 11. **Vérifier & sourcer** chaque information, affirmation et donnée du dossier, puis **alimenter le dossier `sources/`** (audit `.md` + références DOI + page `sources.html`) — voir « Vérification scientifique & sources ». **OBLIGATOIRE pour tout dossier**, existant ou nouveau.
 12. Mettre à jour `index.html` (carte + compteurs + numérotation — voir « Mise à jour de l'index »).
 13. **Régénérer le flux RSS** : `python3 scripts/generate-rss.py` (relit `index.html` → réécrit `rss.xml`). **OBLIGATOIRE pour tout dossier** ajouté/modifié/réordonné — voir « Flux RSS ».
-14. Vérifier en local : images chargées, liens corrects, pas de scroll horizontal.
+14. Ajouter/maintenir la licence de contenu sur la page : métadonnées `<link rel="license">` + `<meta name="rights">`, cartouche `.eci-license` dans le footer, lien relatif vers `LICENCE-CONTENU.md`.
+15. Vérifier en local : images chargées, liens corrects, pas de scroll horizontal, licence visible, aucune mention technique obsolète du type « Page HTML autonome créée à partir… ».
 
 ## Style visuel — Codex scientifique impérial (voie A)
 
@@ -187,7 +194,8 @@ Capitales romaines gravées, or sur nuit profonde, gravité cérémonielle.
 - encadrés : script, méthode scientifique, question au public, leçon, anti-intox selon le contenu.
 - **bandeau crédit** après le sommaire (`.credit-band` : avatars + « Réalisé par <auteur(s)> »).
 - **collective-footer** : sceau ECI, texte collectif, liens vers index et autres dossiers, devise.
-- footer technique court.
+- **cartouche licence** `.eci-license` en pied de page : CC BY-NC-ND 4.0, partage avec attribution, sans usage commercial ni modification, lien vers `LICENCE-CONTENU.md`.
+- Ne plus ajouter de footer technique du type « Page HTML autonome créée à partir… » ; les détails de provenance/sources doivent être dans le dossier lui-même et dans `sources/`.
 
 ## Crédits auteurs (obligatoire)
 
@@ -205,13 +213,14 @@ Pour chaque nouveau dossier :
 - **Numéro** : `Dossier I / II / III…` suivant **l'ordre d'affichage**. Si on réordonne, **renuméroter partout** : les cartes, l'ordre du menu de nav, et l'eyebrow « Dossier N » dans le hero de chaque page concernée.
 - **Titre**, **description courte**, **tags** (3), **lien relatif**.
 - **Byline** auteur (avatars + « Réalisé par … », + `.note` participation si besoin).
-- **Compteurs** : mettre à jour le hero (compteur en chiffres romains, actuellement `<b>V</b> dossiers`) et le sec-head (la phrase qui chiffre le nombre de dossiers, actuellement « Cinq dossiers… »). Penser aussi au **Décret méthodologique** (`#decret`) et au menu du pied de page si l'on ajoute/réordonne des dossiers.
+- **Compteurs** : mettre à jour le hero (compteur en chiffres romains, actuellement `<b>XXIII</b> dossiers`) et le sec-head (la phrase qui chiffre le nombre de dossiers, actuellement « Vingt-trois dossiers… »). Penser aussi au **Décret méthodologique** (`#decret`), au menu du pied de page, aux eyebrows des pages concernées et à `sources/sources.html` si l'on ajoute/réordonne des dossiers.
 - Les nouvelles cartes se placent **avant** le bandeau manifeste `#manifeste` (« Rejoignez l'Empire… »), qui reste juste après la grille des dossiers.
 
 ## Flux RSS (`rss.xml`) — obligatoire à chaque dossier
 
 Le site expose un **flux RSS riche** à `rss.xml` (racine), servi sur
-`https://thesamlepirate.github.io/empire-contre-intox/rss.xml` et déclaré dans le
+`https://empire-contre-intox.com/rss.xml` et sur le miroir
+`https://thesamlepirate.github.io/empire-contre-intox/rss.xml`, déclaré dans le
 `<head>` de `index.html` (`<link rel="alternate" type="application/rss+xml">`).
 
 - **Ne pas éditer `rss.xml` à la main** : il est **généré** depuis les cartes de
@@ -228,13 +237,29 @@ Le site expose un **flux RSS riche** à `rss.xml` (racine), servi sur
 - Le script produit un `<item>` par carte (dossiers + carte « Calendrier des lives ») :
   `title` (« Dossier N — Titre »), `link`/`guid` absolus, `dc:creator` (auteurs +
   mention de participation), `description` + `content:encoded` (HTML riche : image,
-  résumé, crédit, tags, lien), `enclosure` + `media:content`/`media:thumbnail`
-  (image hero, taille réelle), `category` (tags + badge), `pubDate` (date du 1er
-  commit git du dossier ; repli sinon). Items **antéchronologiques** (récents en tête).
+  résumé, crédit, tags, lien, rappel de licence CC BY-NC-ND 4.0), `enclosure` +
+  `media:content`/`media:thumbnail` (image hero, taille réelle), `category` (tags +
+  badge), `pubDate` (date du 1er commit git du dossier ; repli sinon). Le flux porte aussi
+  `<creativeCommons:license>` et un copyright « contenu sous licence CC BY-NC-ND 4.0 ».
+  Items **antéchronologiques** (récents en tête).
 - **Vérifier** que `rss.xml` reste bien formé : `python3 -c "import xml.dom.minidom;
   xml.dom.minidom.parse('rss.xml')"`, et qu'il compte le **bon nombre d'items**.
 - À la **publication**, stager `rss.xml` **avec** `index.html` (sinon le flux pointe
   vers un dossier non publié, ou omet le nouveau — cf. piège des références orphelines).
+
+## Licence de contenu (obligatoire)
+
+Sauf mention contraire, les contenus éditoriaux, textes, transcriptions, images et médias du site sont publiés sous licence **Creative Commons Attribution – Pas d’Utilisation Commerciale – Pas de Modification 4.0 International** (**CC BY-NC-ND 4.0**) : https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr
+
+Règles à maintenir :
+
+- Conserver `LICENCE-CONTENU.md` à la racine : il décrit le périmètre (contenus éditoriaux) et les exceptions (code, scripts techniques, marques/logos, avatars ou ressources tierces crédités séparément).
+- Chaque page HTML doit contenir dans le `<head>` :
+  - `<link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr">` ;
+  - `<meta name="rights" content="… CC BY-NC-ND 4.0 …">`.
+- Chaque page HTML doit afficher dans son footer un cartouche `.eci-license` : « partage autorisé avec attribution, sans usage commercial ni modification », avec lien vers la licence officielle et lien relatif vers `LICENCE-CONTENU.md`.
+- Le RSS est généré avec un rappel de licence dans chaque item et un élément `<creativeCommons:license>` au niveau du channel.
+- Pour tout nouveau contenu tiers (images, modèles 3D, vidéos, polices, extraits), créditer explicitement et ne pas laisser croire qu'il est couvert par la licence ECI si ses droits sont différents.
 
 ## Liens externes / compagnons interactifs
 
@@ -260,9 +285,9 @@ Le contenu doit rester **défendable** :
 - Préférer des **fourchettes** et des marqueurs de prudence (« ~90–96 % », « probablement », « selon les estimations », « des indices suggèrent ») aux **affirmations absolues** (« tous », « tout le gaz », « presque tous les plans »).
 - En cas de révision des données, la répercuter dans **les trois** vues (`events.json`, `clock.html`, `calendrier.html`) et, si concerné, dans `chronos.html`.
 
-## Vérification scientifique & sources (obligatoire — Dossier V)
+## Vérification scientifique & sources (obligatoire — Dossier XXIII)
 
-**Pour CHAQUE dossier** — existant ou nouveau —, refaire le **même travail de vérification** et **centraliser toutes les sources dans le dossier `sources/`** (Dossier V, « Les Sources »). Aucune page ne doit affirmer sans preuve traçable. Le travail déjà réalisé pour les dossiers I→IV sert de gabarit (voir `sources/*.md` et `sources/sources.html`).
+**Pour CHAQUE dossier** — existant ou nouveau —, refaire le **même travail de vérification** et **centraliser toutes les sources dans le dossier `sources/`** (Dossier XXIII, « Les Sources »). Aucune page ne doit affirmer sans preuve traçable. Le travail déjà réalisé pour les dossiers existants sert de gabarit (voir `sources/*.md`, `sources/README.md` et `sources/sources.html`).
 
 ### 1. Vérifier chaque information, affirmation et donnée
 - Extraire du dossier **toutes les affirmations factuelles et données chiffrées** : dates, durées, quantités, pourcentages, températures, noms d'espèces / de personnes / de missions, bornes géologiques, etc.
@@ -276,7 +301,7 @@ Le contenu doit rester **défendable** :
 - **Anti-hallucination — RÈGLE ABSOLUE :** ne **JAMAIS inventer ni deviner un DOI**. Vérifier chaque DOI (résolution `https://doi.org/<doi>` et/ou Crossref `api.crossref.org/works/<doi>` ; concordance titre / auteurs / revue / pages). À défaut de DOI fiable : écrire « DOI non trouvé — [source institutionnelle] » plutôt que d'en fabriquer un.
 - Mettre à jour l'**index** `sources/README.md` (table des fichiers + bilan global : ✅/⚠️/🔶/❌ et corrections appliquées).
 
-### 3. Surfacer dans la page `sources/sources.html` (Dossier V)
+### 3. Surfacer dans la page `sources/sources.html` (Dossier XXIII)
 Page codex ECI qui rassemble les sources de **tous** les dossiers, avec **barre de recherche** (filtre accents-insensible sur titre / donnée / résumé / auteur / revue / DOI). Pour chaque vérification, ajouter aux tableaux JS de `sources.html` :
 - une **fiche** dans la section thématique : *donnée → court résumé → verdict (badge couleur) → source(s) cliquable(s) → image* (réutiliser une `super-image` ou l'image hero du dossier) ;
 - une entrée dans **« Références scientifiques »** : *titre (lien DOI) → citation → badge DOI → résumé/abstract* ;
@@ -295,7 +320,7 @@ Page codex ECI qui rassemble les sources de **tous** les dossiers, avec **barre 
 - Les titres de chapitres peuvent être éditorialisés, le contenu original reste présent.
 - Éviter les blocs trop longs sans respiration visuelle.
 
-## Publication (GitHub Pages, via `gh`)
+## Publication GitHub Pages (miroir, via `gh`)
 
 - Dépôt : `TheSamLePirate/empire-contre-intox` — Pages servies depuis `main` / racine.
 - **Commit / push uniquement quand l'utilisateur le demande.** Messages en français ; terminer chaque message de commit par :
@@ -315,30 +340,62 @@ En plus de GitHub Pages, le site peut être servi comme site statique Docker/Ngi
 - Stack Portainer : `empire-contre-intox-site`
 - Fichiers de déploiement à la racine du dépôt :
   - `Dockerfile` — image Nginx statique ;
-  - `nginx.conf` — configuration de cache/headers et service des fichiers ;
-  - `docker-compose.yml` — service `site`, mapping `${SITE_PORT:-3004}:80` ;
-  - `.dockerignore` — exclut `.git`, `.pi`, `.env*`, `a_traiter/` et fichiers locaux privés/hors sujet.
+  - `nginx.conf` — configuration de cache/headers, service des fichiers et proxy `/api/` ;
+  - `docker-compose.yml` — service `site`, mapping `${SITE_PORT:-3004}:80`, service interne `counter`, volume `counter-data` ;
+  - `.dockerignore` — exclut `.git`, `.pi`, `.env*`, `a_traiter/` et fichiers locaux privés/hors sujet ;
+  - `counter/` — mini-service Bun + SQLite pour le compteur public de visites par page ;
+  - `assets/visit-counter.js` — script front qui incrémente et affiche le compteur de la page courante.
 
-Commande de déploiement depuis la racine du dépôt :
+Commande recommandée depuis la racine du dépôt :
+
+```bash
+scripts/deploy-portainer.sh --check   # préflight : RSS, XML, docker compose
+scripts/deploy-portainer.sh           # régénère le RSS, déploie, attend healthy, vérifie les URLs
+```
+
+Le script appelle le CLI `../devServerTest` qui construit l'image localement en `linux/amd64`, l'envoie à Portainer, puis crée/met à jour la stack. Ne jamais committer les secrets Portainer (`../devServerTest/.env`).
+
+Options utiles :
+
+```bash
+scripts/deploy-portainer.sh --no-rss          # ne pas régénérer rss.xml
+scripts/deploy-portainer.sh --no-http-check   # ignorer les curl publics
+scripts/deploy-portainer.sh --timeout 300     # attendre plus longtemps le healthcheck
+```
+
+Commande manuelle équivalente si le script doit être contourné :
 
 ```bash
 cd ../devServerTest
 bun run port-manager deploy ../empire-contre-intox --name empire-contre-intox-site
 ```
 
-Le CLI `../devServerTest` construit l'image localement en `linux/amd64`, l'envoie à Portainer, puis crée/met à jour la stack. Ne jamais committer les secrets Portainer (`../devServerTest/.env`).
+Après déploiement, le conteneur doit être `running` et `healthy`, et les URLs `https://empire-contre-intox.com/`, `/rss.xml`, `/LICENCE-CONTENU.md` et `/api/count?path=/` doivent répondre `200`.
 
-Après déploiement, vérifier :
+## Compteur public de visites par page
 
-```bash
-cd ../devServerTest
-bun run port-manager stack empire-contre-intox-site
-bun run port-manager ps --all | grep empire-contre-intox-site
-curl -L -s -o /dev/null -w "%{http_code}\n" https://empire-contre-intox.com/
-curl -L -s -o /dev/null -w "%{http_code}\n" https://empire-contre-intox.com/rss.xml
+Le site affiche un compteur public minimal : **nombre total de visites sur cette page**. Il ne s'agit pas d'un compteur de visiteurs uniques.
+
+Architecture :
+
+- `counter/server.ts` : service Bun exposant `POST /visit`, `GET /count?path=/...` et `GET /health` ;
+- stockage SQLite persistant dans le volume Docker `counter-data` (`/data/visits.sqlite`) ;
+- Nginx proxifie `/api/` vers `http://counter:3001/` ;
+- `assets/visit-counter.js` est chargé par chaque page et appelle `POST /api/visit` avec le `location.pathname` normalisé ;
+- chaque footer affiche un élément `[data-visit-counter]` avec le libellé `N visites sur cette page`.
+
+Règles de confidentialité :
+
+- ne pas stocker d'IP, d'user-agent, de cookie ou d'identifiant utilisateur ;
+- stocker uniquement `path`, `visits`, `created_at`, `updated_at` ;
+- accepter que les refreshs, bots ou appels directs incrémentent le compteur : c'est un compteur de **visites totales**, volontairement simple.
+
+Pour un nouveau HTML, vérifier qu'il contient :
+
+```html
+<span class="eci-visit-counter" data-visit-counter>— visites sur cette page</span>
+<script src="<chemin-relatif>/assets/visit-counter.js" defer></script>
 ```
-
-Le conteneur doit être `running` et `healthy`, et les URLs doivent répondre `200`.
 
 ## Vérification finale
 
@@ -349,5 +406,7 @@ Avant de terminer :
 - vérifier numérotation et compteurs cohérents (index ↔ eyebrows des pages) ;
 - **vérifier que chaque affirmation et donnée du dossier est sourcée** dans `sources/` (audit `.md` + références DOI) **et surfacée** dans `sources/sources.html` (fiche + référence) ;
 - **régénérer `rss.xml`** (`python3 scripts/generate-rss.py`) et vérifier qu'il est bien formé + qu'il contient le nouveau dossier (voir « Flux RSS ») ;
-- si publication demandée : confirmer build Pages `built` + `200` sur les URLs ;
+- si publication demandée : confirmer build Pages `built` + `200` sur les URLs, puis redéployer Portainer si le domaine principal doit refléter la modification ;
+- vérifier que les pages touchées contiennent la licence (`.eci-license`, métadonnées de licence, lien local `LICENCE-CONTENU.md`) ;
+- vérifier qu'aucun footer ne contient encore « Page HTML autonome créée à partir… » ;
 - mentionner les fichiers créés ou modifiés.

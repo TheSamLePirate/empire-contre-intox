@@ -4,6 +4,23 @@ services:
       context: .
       dockerfile: Dockerfile
     image: empire-contre-intox-site:latest
+    depends_on:
+      - counter
     ports:
       - "${SITE_PORT:-3004}:80"
     restart: unless-stopped
+
+  counter:
+    build:
+      context: ./counter
+      dockerfile: Dockerfile
+    image: empire-contre-intox-counter:latest
+    environment:
+      PORT: 3001
+      DB_PATH: /data/visits.sqlite
+    volumes:
+      - counter-data:/data
+    restart: unless-stopped
+
+volumes:
+  counter-data:
