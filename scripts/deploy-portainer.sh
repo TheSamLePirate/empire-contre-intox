@@ -147,16 +147,22 @@ if [[ "$HTTP_CHECKS" -eq 1 ]]; then
     ok "$url -> 200"
   done
 
-  curl -L -s "$DOMAIN/" | grep -q 'CC BY-NC-ND 4.0' || {
+  index_tmp="$(mktemp /tmp/eci-index-public.XXXXXX)"
+  curl -L -s "$DOMAIN/" -o "$index_tmp"
+
+  grep -q 'CC BY-NC-ND 4.0' "$index_tmp" || {
+    rm -f "$index_tmp"
     err "Licence CC BY-NC-ND 4.0 non trouvée sur l'index public"
     exit 1
   }
   ok "Licence visible sur l'index"
 
-  curl -L -s "$DOMAIN/" | grep -q 'visites sur cette page' || {
+  grep -q 'visites sur cette page' "$index_tmp" || {
+    rm -f "$index_tmp"
     err "Emplacement du compteur par page non trouvé sur l'index public"
     exit 1
   }
+  rm -f "$index_tmp"
   ok "Compteur par page présent sur l'index"
 else
   warn "Vérifications HTTP ignorées (--no-http-check)"
