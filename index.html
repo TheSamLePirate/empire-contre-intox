@@ -406,7 +406,7 @@
     @keyframes float { 50% { transform: translateY(-12px); } }
 
     /* ---------- Section heads ---------- */
-    .section { padding: clamp(40px, 6vw, 80px) 0; }
+    .section { padding: clamp(40px, 6vw, 80px) 0; scroll-margin-top: 104px; }
     .sec-head {
       display: flex; align-items: flex-end; justify-content: space-between; gap: 28px;
       padding-bottom: 28px; margin-bottom: 38px;
@@ -425,6 +425,216 @@
       line-height: 1;
     }
     .sec-head p { max-width: 38ch; margin: 0; color: var(--soft); font-size: 1rem; }
+
+    /* ---------- Parcours / thematic gateways ---------- */
+    .parcours-panel {
+      --group-accent: var(--gold);
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(260px, .72fr) 1.28fr;
+      gap: clamp(24px, 4vw, 46px);
+      align-items: stretch;
+      margin: 0 0 clamp(42px, 6vw, 72px);
+      padding: clamp(24px, 4vw, 42px);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background:
+        radial-gradient(85% 140% at 0% 0%, rgba(214,172,85,.13), transparent 52%),
+        radial-gradient(90% 120% at 100% 20%, rgba(47,111,105,.11), transparent 58%),
+        linear-gradient(180deg, rgba(15,23,53,.54), rgba(8,13,29,.66));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .parcours-panel::before {
+      content: "";
+      position: absolute; inset: 12px;
+      border: 1px solid rgba(214,172,85,.09);
+      pointer-events: none;
+    }
+    .parcours-panel::after {
+      content: "";
+      position: absolute; inset: auto -12% -2px -12%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--gold-bright), var(--gold), transparent);
+      opacity: .8;
+      box-shadow: 0 0 24px rgba(243,217,138,.42);
+    }
+    .parcours-intro { position: relative; z-index: 1; align-self: center; }
+    .parcours-intro .kicker {
+      margin: 0 0 14px;
+      font-family: var(--roman); font-size: .68rem; font-weight: 700;
+      letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
+    }
+    .parcours-intro h3 {
+      margin: 0;
+      max-width: 12ch;
+      font-family: var(--roman); font-size: clamp(1.75rem, 3.5vw, 2.85rem);
+      line-height: .98; letter-spacing: .02em; text-transform: uppercase;
+      color: var(--ink);
+    }
+    .parcours-intro p {
+      margin: 20px 0 0;
+      max-width: 43ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.3vw, 1.08rem);
+    }
+    .parcours-grid {
+      position: relative; z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .parcours-card {
+      --group-accent: var(--gold);
+      position: relative;
+      min-height: 112px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: 1fr auto;
+      column-gap: 14px;
+      row-gap: 12px;
+      align-items: center;
+      padding: 18px;
+      border: 1px solid rgba(244,236,216,.10);
+      border-radius: 3px;
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--group-accent) 13%, transparent), transparent 44%),
+        rgba(5,8,17,.42);
+      overflow: hidden;
+      transition: transform .38s var(--ease), border-color .38s var(--ease), background .38s var(--ease), box-shadow .38s var(--ease);
+    }
+    .parcours-card::before {
+      content: "";
+      position: absolute; inset: 0 auto 0 0; width: 3px;
+      background: linear-gradient(180deg, transparent, var(--group-accent), color-mix(in srgb, var(--group-accent) 70%, #fff), var(--group-accent), transparent);
+      opacity: .72;
+    }
+    .parcours-card::after {
+      content: "";
+      position: absolute; inset: -45% -25% auto auto;
+      width: 170px; aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--group-accent) 22%, transparent), transparent 66%);
+      opacity: .45;
+      transform: scale(.82);
+      transition: transform .45s var(--ease), opacity .45s var(--ease);
+    }
+    .parcours-card:hover {
+      transform: translateY(-5px);
+      border-color: color-mix(in srgb, var(--group-accent) 48%, rgba(244,236,216,.12));
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--group-accent) 18%, transparent), transparent 48%),
+        rgba(5,8,17,.58);
+      box-shadow: 0 28px 70px rgba(0,0,0,.38), 0 0 0 1px color-mix(in srgb, var(--group-accent) 22%, transparent);
+    }
+    .parcours-card:hover::after { transform: scale(1.05); opacity: .72; }
+    .pc-num {
+      position: relative; z-index: 1;
+      width: 46px; height: 46px;
+      display: grid; place-items: center;
+      font-family: var(--roman); font-size: 1rem; font-weight: 800;
+      color: var(--ink);
+      border: 1px solid color-mix(in srgb, var(--group-accent) 62%, rgba(244,236,216,.18));
+      background: rgba(5,8,17,.55);
+      box-shadow: inset 0 0 18px color-mix(in srgb, var(--group-accent) 12%, transparent), 0 0 18px color-mix(in srgb, var(--group-accent) 18%, transparent);
+    }
+    .pc-copy { position: relative; z-index: 1; min-width: 0; }
+    .pc-copy strong {
+      display: block;
+      font-family: var(--roman); font-size: .78rem; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+    .pc-copy small {
+      display: block; margin-top: 6px;
+      color: var(--soft);
+      font-size: .86rem;
+      line-height: 1.35;
+    }
+    .parcours-card em {
+      position: relative; z-index: 1;
+      grid-column: 1 / -1;
+      justify-self: start;
+      font-family: var(--roman); font-style: normal; font-size: .6rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: color-mix(in srgb, var(--group-accent) 70%, #fff6dc);
+    }
+
+    .dossier-groups { display: grid; gap: clamp(54px, 7vw, 92px); }
+    .dossier-group {
+      --group-accent: var(--gold);
+      position: relative;
+      scroll-margin-top: 106px;
+    }
+    .dossier-group::before {
+      content: "";
+      position: absolute; top: -24px; left: 50%; width: min(620px, 82vw); height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--group-accent) 58%, transparent), transparent);
+      opacity: .72;
+    }
+    .group-head {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 38ch) auto;
+      gap: clamp(18px, 3vw, 34px);
+      align-items: end;
+      margin-bottom: 24px;
+      padding: clamp(18px, 3vw, 28px);
+      border: 1px solid rgba(244,236,216,.10);
+      border-radius: 3px;
+      background:
+        radial-gradient(80% 160% at 0% 0%, color-mix(in srgb, var(--group-accent) 18%, transparent), transparent 58%),
+        linear-gradient(180deg, rgba(15,23,53,.36), rgba(8,13,29,.48));
+      overflow: hidden;
+    }
+    .group-head::before {
+      content: "";
+      position: absolute; inset: 0 0 auto; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--group-accent), color-mix(in srgb, var(--group-accent) 70%, #fff), var(--group-accent), transparent);
+      opacity: .86;
+    }
+    .group-titleline { display: flex; align-items: center; gap: 18px; min-width: 0; }
+    .group-roman {
+      flex: 0 0 auto;
+      font-family: var(--roman); font-weight: 900;
+      font-size: clamp(3rem, 7vw, 5.2rem);
+      line-height: .82;
+      color: transparent;
+      -webkit-text-stroke: 1.2px color-mix(in srgb, var(--group-accent) 74%, var(--gold));
+      text-stroke: 1.2px color-mix(in srgb, var(--group-accent) 74%, var(--gold));
+      opacity: .86;
+      text-shadow: 0 0 28px color-mix(in srgb, var(--group-accent) 24%, transparent);
+    }
+    .group-kicker {
+      margin: 0 0 8px;
+      font-family: var(--roman); font-size: .62rem; font-weight: 700;
+      letter-spacing: .24em; text-transform: uppercase;
+      color: color-mix(in srgb, var(--group-accent) 72%, #fff6dc);
+    }
+    .group-head h3 {
+      margin: 0;
+      font-family: var(--roman); font-size: clamp(1.38rem, 2.7vw, 2.18rem); font-weight: 800;
+      letter-spacing: .08em; text-transform: uppercase; line-height: 1.05;
+      color: var(--ink);
+    }
+    .group-head > p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .group-count {
+      justify-self: end;
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 34px; padding: 0 14px;
+      font-family: var(--roman); font-size: .62rem; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--ink);
+      border: 1px solid color-mix(in srgb, var(--group-accent) 46%, rgba(244,236,216,.16));
+      background: color-mix(in srgb, var(--group-accent) 12%, rgba(5,8,17,.64));
+      white-space: nowrap;
+    }
 
     /* ---------- Dossier cards ---------- */
     .dossiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 26px; }
@@ -679,6 +889,10 @@
     @media (max-width: 920px) {
       .hero { grid-template-columns: 1fr; }
       .emblem { order: -1; width: min(360px, 78vw); }
+      .parcours-panel { grid-template-columns: 1fr; }
+      .parcours-intro h3 { max-width: 18ch; }
+      .group-head { grid-template-columns: 1fr; align-items: start; }
+      .group-count { justify-self: start; }
       .dossiers { grid-template-columns: 1fr; }
       .steps { grid-template-columns: 1fr; }
       .nav { display: none; }
@@ -686,6 +900,12 @@
     @media (max-width: 560px) {
       .wrap { width: min(100% - 32px, var(--max)); }
       .sec-head { flex-direction: column; align-items: flex-start; }
+      .parcours-panel { padding: 20px; }
+      .parcours-grid { grid-template-columns: 1fr; }
+      .parcours-card { min-height: 104px; padding: 16px; }
+      .group-head { padding: 18px; }
+      .group-titleline { align-items: flex-start; gap: 14px; }
+      .group-roman { font-size: 3rem; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
     }
 
@@ -780,627 +1000,771 @@
             <p class="kicker">Le fonds documentaire</p>
             <h2>Les Dossiers</h2>
           </div>
-          <p>Vingt-trois dossiers prêts à partager — transcription structurée, mise en scène visuelle et, désormais, toutes les formules rendues interactives et toutes les sources vérifiables.</p>
+          <p>Vingt-trois dossiers prêts à partager, désormais organisés en sept parcours — du temps profond aux sources — pour trouver vite le bon angle d’entrée.</p>
         </div>
 
-        <div class="dossiers">
-          <article class="dossier reveal" data-d="1" style="--accent:#e0964a">
-            <div class="dossier-media">
-              <img src="ymir-lalie/assets/eres-hero.png" alt="Illustration des ères géologiques de la Terre">
-              <span class="dossier-no">Dossier I</span>
-              <span class="badge">Frise géologique</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Le Résumé des Ères</h3>
-              <p>Le roman de la Terre en actes : Précambrien, Paléozoïque, Mésozoïque, Cénozoïque — puis la leçon vertigineuse de la dernière seconde humaine.</p>
-              <div class="tags">
-                <span class="tag">Temps profond</span>
-                <span class="tag">Ères géologiques</span>
-                <span class="tag">Anti-intox</span>
-              </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                  <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
-              </div>
-              <a class="dossier-link" href="ymir-lalie/resume-eres.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="ymir-lalie/resume-eres.html" aria-label="Ouvrir le dossier Résumé des Ères"></a>
-            </div>
-          </article>
+        <div class="parcours-panel reveal" aria-labelledby="parcours-title">
+          <div class="parcours-intro">
+            <p class="kicker">Choisir son chemin</p>
+            <h3 id="parcours-title">Sept portes d’entrée dans l’archive</h3>
+            <p>Les dossiers gardent leur numéro d’origine, mais l’index devient une carte de navigation : temps profond, vivant, modèles, cosmos, histoire, société et méthode. Choisissez une constellation — puis entrez par la carte qui vous appelle.</p>
+          </div>
+          <nav class="parcours-grid" aria-label="Parcours thématiques des dossiers">
+            <a class="parcours-card" href="#parcours-temps-profond" style="--group-accent:#e0964a">
+              <span class="pc-num">I</span>
+              <span class="pc-copy"><strong>Temps profond & Terre</strong><small>Univers · Terre · ères · vie primitive</small></span>
+              <em>I · II · IV · VI</em>
+            </a>
+            <a class="parcours-card" href="#parcours-vivant-evolution" style="--group-accent:#56c8a6">
+              <span class="pc-num">II</span>
+              <span class="pc-copy"><strong>Vivant, évolution & écosystèmes</strong><small>Génétique · évolution · écologie</small></span>
+              <em>VIII · X · XIII</em>
+            </a>
+            <a class="parcours-card" href="#parcours-lois-modeles" style="--group-accent:#5fd2e6">
+              <span class="pc-num">III</span>
+              <span class="pc-copy"><strong>Lois du réel & modèles</strong><small>Physique · chimie · maths · simulation</small></span>
+              <em>V · VII · XII · XIV</em>
+            </a>
+            <a class="parcours-card" href="#parcours-cosmos-exploration" style="--group-accent:#9d8cff">
+              <span class="pc-num">IV</span>
+              <span class="pc-copy"><strong>Cosmos & exploration</strong><small>Lune · exoplanètes · sondes</small></span>
+              <em>III · XVII · XIX</em>
+            </a>
+            <a class="parcours-card" href="#parcours-civilisations-memoire" style="--group-accent:#b8763a">
+              <span class="pc-num">V</span>
+              <span class="pc-copy"><strong>Civilisations, empires & mémoire</strong><small>Cités · empires · mémoire · Antiquité</small></span>
+              <em>XI · XV · XVIII · XX · XXII</em>
+            </a>
+            <a class="parcours-card" href="#parcours-societe-droits" style="--group-accent:#b69bff">
+              <span class="pc-num">VI</span>
+              <span class="pc-copy"><strong>Société, droits & vigilance</strong><small>Institutions · violences · droits</small></span>
+              <em>IX · XVI · XXI</em>
+            </a>
+            <a class="parcours-card" href="#parcours-methode-sources" style="--group-accent:#d6ac55">
+              <span class="pc-num">VII</span>
+              <span class="pc-copy"><strong>Méthode, sources & vie du collectif</strong><small>Sources · vérification · calendrier</small></span>
+              <em>XXIII · Agenda</em>
+            </a>
+          </nav>
+        </div>
 
-          <article class="dossier reveal" data-d="2" style="--accent:#56c8a6">
-            <div class="dossier-media">
-              <img src="ymir-lalie/assets/ediacaran-hero.png" alt="Illustration d'un fond marin édiacarien">
-              <span class="dossier-no">Dossier II</span>
-              <span class="badge">Transcription TikTok</span>
-            </div>
-            <div class="dossier-body">
-              <h3>L'Édiacarien</h3>
-              <p>Une plongée dans les premiers écosystèmes complexes : tapis microbiens, Dickinsonia, Charnia, Kimberella, Cloudina — et la naissance de la prédation.</p>
-              <div class="tags">
-                <span class="tag">Paléontologie</span>
-                <span class="tag">Vie primitive</span>
-                <span class="tag">Design immersif</span>
+        <div class="dossier-groups">
+          <section class="dossier-group reveal" id="parcours-temps-profond" style="--group-accent:#e0964a" aria-labelledby="parcours-temps-profond-title" data-d="1">
+            <header class="group-head">
+              <div class="group-titleline">
+                <span class="group-roman">I</span>
+                <div>
+                  <p class="group-kicker">Parcours thématique</p>
+                  <h3 id="parcours-temps-profond-title">Temps profond & Terre</h3>
+                </div>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                  <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+              <p>Le grand vertige des échelles : poser le temps long, traverser les ères, lire les premières traces du vivant et replacer l’humain à sa juste distance.</p>
+              <span class="group-count">4 dossiers</span>
+            </header>
+            <div class="dossiers">
+            <article class="dossier reveal" data-d="1" style="--accent:#e0964a">
+              <div class="dossier-media">
+                <img src="ymir-lalie/assets/eres-hero.png" alt="Illustration des ères géologiques de la Terre">
+                <span class="dossier-no">Dossier I</span>
+                <span class="badge">Frise géologique</span>
               </div>
-              <a class="dossier-link" href="ymir-lalie/edicarien.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="ymir-lalie/edicarien.html" aria-label="Ouvrir le dossier L'Édiacarien"></a>
-            </div>
-          </article>
+              <div class="dossier-body">
+                <h3>Le Résumé des Ères</h3>
+                <p>Le roman de la Terre en actes : Précambrien, Paléozoïque, Mésozoïque, Cénozoïque — puis la leçon vertigineuse de la dernière seconde humaine.</p>
+                <div class="tags">
+                  <span class="tag">Temps profond</span>
+                  <span class="tag">Ères géologiques</span>
+                  <span class="tag">Anti-intox</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+                </div>
+                <a class="dossier-link" href="ymir-lalie/resume-eres.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/resume-eres.html" aria-label="Ouvrir le dossier Résumé des Ères"></a>
+              </div>
+            </article>
 
-          <article class="dossier reveal" data-d="3" style="--accent:#ff9a52">
-            <div class="dossier-media">
-              <img src="provoxys/assets/artemis2-hero.png" alt="Lancement du SLS Artemis II, avec la Terre et la Lune en arrière-plan">
-              <span class="dossier-no">Dossier III</span>
-              <span class="badge">Émission Provoxys</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Artemis II — l'Odyssée Lunaire</h3>
-              <p>L'intégralité de l'émission Provoxys, mot pour mot : objectifs scientifiques, glace lunaire, Accords Artemis — ponctuée par la simulation multi-étages menée en direct par Sam (Nebula Orbit).</p>
-              <div class="tags">
-                <span class="tag">Artemis II</span>
-                <span class="tag">Exploration lunaire</span>
-                <span class="tag">Simulation</span>
+            <article class="dossier reveal" data-d="2" style="--accent:#56c8a6">
+              <div class="dossier-media">
+                <img src="ymir-lalie/assets/ediacaran-hero.png" alt="Illustration d'un fond marin édiacarien">
+                <span class="dossier-no">Dossier II</span>
+                <span class="badge">Transcription TikTok</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                  <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec la participation de Samlepirate</span></span>
+              <div class="dossier-body">
+                <h3>L'Édiacarien</h3>
+                <p>Une plongée dans les premiers écosystèmes complexes : tapis microbiens, Dickinsonia, Charnia, Kimberella, Cloudina — et la naissance de la prédation.</p>
+                <div class="tags">
+                  <span class="tag">Paléontologie</span>
+                  <span class="tag">Vie primitive</span>
+                  <span class="tag">Design immersif</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+                </div>
+                <a class="dossier-link" href="ymir-lalie/edicarien.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/edicarien.html" aria-label="Ouvrir le dossier L'Édiacarien"></a>
               </div>
-              <a class="dossier-link" href="provoxys/Artemis2.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="provoxys/Artemis2.html" aria-label="Ouvrir le dossier Artemis II"></a>
-            </div>
-          </article>
+            </article>
 
-          <article class="dossier reveal" data-d="1" style="--accent:#9d8cff">
-            <div class="dossier-media">
-              <img src="horloge-univers/assets/temps-univers.png" alt="Le temps de l'univers : du Big Bang à aujourd'hui, 13,787 milliards d'années en une frise cosmique">
-              <span class="dossier-no">Dossier IV</span>
-              <span class="badge">Frise interactive</span>
-            </div>
-            <div class="dossier-body">
-              <h3>La Grande Horloge de l'Univers</h3>
-              <p>Du Big Bang à maintenant : frise logarithmique manipulable, calendrier cosmique, puis l'Horloge de la Terre — toutes les ères géologiques, l'histoire du vivant et les cinq grandes extinctions. Chaque date est mesurée, pas inventée.</p>
-              <div class="tags">
-                <span class="tag">Cosmologie</span>
-                <span class="tag">Ères géologiques</span>
-                <span class="tag">Vie &amp; extinctions</span>
+            <article class="dossier reveal" data-d="1" style="--accent:#9d8cff">
+              <div class="dossier-media">
+                <img src="horloge-univers/assets/temps-univers.png" alt="Le temps de l'univers : du Big Bang à aujourd'hui, 13,787 milliards d'années en une frise cosmique">
+                <span class="dossier-no">Dossier IV</span>
+                <span class="badge">Frise interactive</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong></span>
+              <div class="dossier-body">
+                <h3>La Grande Horloge de l'Univers</h3>
+                <p>Du Big Bang à maintenant : frise logarithmique manipulable, calendrier cosmique, puis l'Horloge de la Terre — toutes les ères géologiques, l'histoire du vivant et les cinq grandes extinctions. Chaque date est mesurée, pas inventée.</p>
+                <div class="tags">
+                  <span class="tag">Cosmologie</span>
+                  <span class="tag">Ères géologiques</span>
+                  <span class="tag">Vie &amp; extinctions</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong></span>
+                </div>
+                <a class="dossier-link" href="horloge-univers/chronos.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="horloge-univers/chronos.html" aria-label="Ouvrir le dossier La Grande Horloge de l'Univers"></a>
               </div>
-              <a class="dossier-link" href="horloge-univers/chronos.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="horloge-univers/chronos.html" aria-label="Ouvrir le dossier La Grande Horloge de l'Univers"></a>
-            </div>
-          </article>
+            </article>
 
-          <article class="dossier reveal" data-d="3" style="--accent:#5fd2e6">
-            <div class="dossier-media">
-              <img src="jorge-zalex/assets/elements-hero.png" alt="Le Tableau périodique des éléments, de la particule élémentaire à l'élément chimique">
-              <span class="dossier-no">Dossier V</span>
-              <span class="badge">Cours scientifique</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Le Tableau Périodique</h3>
-              <p>De la particule élémentaire à l'élément chimique, en huit mouvements : charge, masse et spin ; les quatre interactions ; trois minutes de nucléosynthèse ; puis l'électron qui dessine, niveau par niveau, chaque ligne et chaque colonne du tableau.</p>
-              <div class="tags">
-                <span class="tag">Particules</span>
-                <span class="tag">Atomes</span>
-                <span class="tag">Tableau périodique</span>
+            <article class="dossier reveal" data-d="2" style="--accent:#5bd6e0">
+              <div class="dossier-media">
+                <img src="la-vie-de-la-terre/assets/earth-observatory.png" alt="Capture de l'application La Vie de la Terre : globe, frise du temps profond et télémétrie scientifique">
+                <span class="dossier-no">Dossier VI</span>
+                <span class="badge">Observatoire interactif</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="jorge-zalex/jorge.jpeg" alt="Avatar de Jorge">
-                  <img src="jorge-zalex/zalex.astro.jpeg" alt="Avatar de Zalex">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Jorge &amp; Zalex</strong><span class="note">d'après le cours de Jorge</span></span>
+              <div class="dossier-body">
+                <h3>La Vie de la Terre</h3>
+                <p>L'application de SamLePirate mise en scène façon codex : 4,54 milliards d'années, 201 paléo-cartes, 10 séries temporelles et un pipeline reproductible pour distinguer mesure, modèle et estimation.</p>
+                <div class="tags">
+                  <span class="tag">Temps profond</span>
+                  <span class="tag">Données ouvertes</span>
+                  <span class="tag">Paléoclimat</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="la-vie-de-la-terre/assets/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong></span>
+                </div>
+                <a class="dossier-link" href="la-vie-de-la-terre/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="la-vie-de-la-terre/index.html" aria-label="Ouvrir le dossier La Vie de la Terre"></a>
               </div>
-              <a class="dossier-link" href="jorge-zalex/elements.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="jorge-zalex/elements.html" aria-label="Ouvrir le dossier Le Tableau Périodique"></a>
+            </article>
             </div>
-          </article>
+          </section>
+          <section class="dossier-group reveal" id="parcours-vivant-evolution" style="--group-accent:#56c8a6" aria-labelledby="parcours-vivant-evolution-title" data-d="2">
+            <header class="group-head">
+              <div class="group-titleline">
+                <span class="group-roman">II</span>
+                <div>
+                  <p class="group-kicker">Parcours thématique</p>
+                  <h3 id="parcours-vivant-evolution-title">Vivant, évolution & écosystèmes</h3>
+                </div>
+              </div>
+              <p>Des ancêtres communs aux sociétés d’abeilles : comprendre le vivant sans mythes fondateurs, sans pseudo-science et sans simplification abusive.</p>
+              <span class="group-count">3 dossiers</span>
+            </header>
+            <div class="dossiers">
+            <article class="dossier reveal" data-d="1" style="--accent:#4aa6b8">
+              <div class="dossier-media">
+                <img src="ymir-lalie/ancetres-genetiques/assets/ancetres-hero.png" alt="Double hélice d'ADN dorée se ramifiant en un arbre des lignées humaines : Ève mitochondriale, Adam chromosome Y et LUCA">
+                <span class="dossier-no">Dossier VIII</span>
+                <span class="badge">Génétique &amp; dialogue</span>
+              </div>
+              <div class="dossier-body">
+                <h3>Adam &amp; Ève génétiques</h3>
+                <p>Ève mitochondriale, Adam chromosome Y, LUCA : ce que la génétique dit vraiment de nos ancêtres communs — des points de convergence, jamais un couple fondateur — et comment en parler sans opposer la science à la foi.</p>
+                <div class="tags">
+                  <span class="tag">Ascendance commune</span>
+                  <span class="tag">Génétique des populations</span>
+                  <span class="tag">Science &amp; foi</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+                </div>
+                <a class="dossier-link" href="ymir-lalie/ancetres-genetiques/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/ancetres-genetiques/index.html" aria-label="Ouvrir le dossier Adam & Ève génétiques"></a>
+              </div>
+            </article>
 
-          <article class="dossier reveal" data-d="2" style="--accent:#5bd6e0">
-            <div class="dossier-media">
-              <img src="la-vie-de-la-terre/assets/earth-observatory.png" alt="Capture de l'application La Vie de la Terre : globe, frise du temps profond et télémétrie scientifique">
-              <span class="dossier-no">Dossier VI</span>
-              <span class="badge">Observatoire interactif</span>
-            </div>
-            <div class="dossier-body">
-              <h3>La Vie de la Terre</h3>
-              <p>L'application de SamLePirate mise en scène façon codex : 4,54 milliards d'années, 201 paléo-cartes, 10 séries temporelles et un pipeline reproductible pour distinguer mesure, modèle et estimation.</p>
-              <div class="tags">
-                <span class="tag">Temps profond</span>
-                <span class="tag">Données ouvertes</span>
-                <span class="tag">Paléoclimat</span>
+            <article class="dossier reveal" data-d="3" style="--accent:#3fa6b5">
+              <div class="dossier-media">
+                <img src="ymir-lalie/singe-aquatique/assets/singe-aquatique-hero.png" alt="Un ancêtre humain nage à la surface d'une mer au crépuscule, mi-dessus mi-dessous la ligne d'eau : l'hypothèse du singe aquatique">
+                <span class="dossier-no">Dossier X</span>
+                <span class="badge">Esprit critique</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="la-vie-de-la-terre/assets/samlepirate.jpeg" alt="Avatar de Samlepirate">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong></span>
+              <div class="dossier-body">
+                <h3>Le Singe Aquatique</h3>
+                <p>L'hypothèse la plus controversée de l'anthropologie au crible : le mythe, sa réfutation point par point (fossiles, sueur, sel, mains palmées), ses figures (Hardy, Morgan, Deloison) — puis la part qui surnage, le régime côtier et les Oméga-3.</p>
+                <div class="tags">
+                  <span class="tag">Évolution humaine</span>
+                  <span class="tag">Pseudo-science</span>
+                  <span class="tag">Régime côtier</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+                </div>
+                <a class="dossier-link" href="ymir-lalie/singe-aquatique/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/singe-aquatique/index.html" aria-label="Ouvrir le dossier Le Singe Aquatique"></a>
               </div>
-              <a class="dossier-link" href="la-vie-de-la-terre/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="la-vie-de-la-terre/index.html" aria-label="Ouvrir le dossier La Vie de la Terre"></a>
-            </div>
-          </article>
+            </article>
 
-          <article class="dossier reveal" data-d="3" style="--accent:#43d6c4">
-            <div class="dossier-media">
-              <img src="samlepirate/assets/champs-vecteurs-hero.jpg" alt="Champ de vecteurs : flèches d'un écoulement, avec sources, puits et tourbillons">
-              <span class="dossier-no">Dossier VII</span>
-              <span class="badge">Mathématiques + atelier</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Le langage des champs</h3>
-              <p>Vecteurs, gradient, divergence et rotationnel : apprendre à lire un champ comme un fluide — sources, puits, tourbillons — jusqu'aux équations de Maxwell et à la naissance de la lumière. Avec un atelier interactif pour manipuler le champ.</p>
-              <div class="tags">
-                <span class="tag">Champs de vecteurs</span>
-                <span class="tag">Divergence &amp; rotationnel</span>
-                <span class="tag">Atelier interactif</span>
+            <article class="dossier reveal" data-d="2" style="--accent:#e0962f">
+              <div class="dossier-media">
+                <img src="phantom/abeilles/assets/abeilles-hero.png" alt="Une abeille (Apis mellifera) sur un rayon de miel hexagonal doré, planche d'histoire naturelle codex">
+                <span class="dossier-no">Dossier XIII</span>
+                <span class="badge">Histoire naturelle</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="samlepirate/samlepirate.jpeg" alt="Avatar de Samlepirate">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong><span class="note">d'après 3Blue1Brown</span></span>
+              <div class="dossier-body">
+                <h3>L'Abeille — Apis mellifera</h3>
+                <p>De la biologie moléculaire à l'écologie globale, en 15 chapitres mot pour mot : classification, géométrie de l'alvéole, société et castes, miel, pollinisation, phéromones, danse et menaces. Chaque chiffre vérifié, les nuances signalées.</p>
+                <div class="tags">
+                  <span class="tag">Apis mellifera</span>
+                  <span class="tag">Pollinisation</span>
+                  <span class="tag">Anti-intox</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="phantom/abeilles/phantom-avatar.png" alt="Avatar de PhantomBlast">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>PhantomBlast</strong><span class="note">avec Abeillaud</span></span>
+                </div>
+                <a class="dossier-link" href="phantom/abeilles/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="phantom/abeilles/index.html" aria-label="Ouvrir le dossier L'Abeille"></a>
               </div>
-              <a class="dossier-link" href="samlepirate/champs-vecteurs.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="samlepirate/champs-vecteurs.html" aria-label="Ouvrir le dossier Le langage des champs"></a>
+            </article>
             </div>
-          </article>
+          </section>
+          <section class="dossier-group reveal" id="parcours-lois-modeles" style="--group-accent:#5fd2e6" aria-labelledby="parcours-lois-modeles-title" data-d="3">
+            <header class="group-head">
+              <div class="group-titleline">
+                <span class="group-roman">III</span>
+                <div>
+                  <p class="group-kicker">Parcours thématique</p>
+                  <h3 id="parcours-lois-modeles-title">Lois du réel & modèles</h3>
+                </div>
+              </div>
+              <p>La fabrique du mesurable : particules, champs, fluides et formules manipulables pour passer de l’intuition au modèle vérifiable.</p>
+              <span class="group-count">4 dossiers</span>
+            </header>
+            <div class="dossiers">
+            <article class="dossier reveal" data-d="3" style="--accent:#5fd2e6">
+              <div class="dossier-media">
+                <img src="jorge-zalex/assets/elements-hero.png" alt="Le Tableau périodique des éléments, de la particule élémentaire à l'élément chimique">
+                <span class="dossier-no">Dossier V</span>
+                <span class="badge">Cours scientifique</span>
+              </div>
+              <div class="dossier-body">
+                <h3>Le Tableau Périodique</h3>
+                <p>De la particule élémentaire à l'élément chimique, en huit mouvements : charge, masse et spin ; les quatre interactions ; trois minutes de nucléosynthèse ; puis l'électron qui dessine, niveau par niveau, chaque ligne et chaque colonne du tableau.</p>
+                <div class="tags">
+                  <span class="tag">Particules</span>
+                  <span class="tag">Atomes</span>
+                  <span class="tag">Tableau périodique</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="jorge-zalex/jorge.jpeg" alt="Avatar de Jorge">
+                    <img src="jorge-zalex/zalex.astro.jpeg" alt="Avatar de Zalex">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Jorge &amp; Zalex</strong><span class="note">d'après le cours de Jorge</span></span>
+                </div>
+                <a class="dossier-link" href="jorge-zalex/elements.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="jorge-zalex/elements.html" aria-label="Ouvrir le dossier Le Tableau Périodique"></a>
+              </div>
+            </article>
 
-          <article class="dossier reveal" data-d="1" style="--accent:#4aa6b8">
-            <div class="dossier-media">
-              <img src="ymir-lalie/ancetres-genetiques/assets/ancetres-hero.png" alt="Double hélice d'ADN dorée se ramifiant en un arbre des lignées humaines : Ève mitochondriale, Adam chromosome Y et LUCA">
-              <span class="dossier-no">Dossier VIII</span>
-              <span class="badge">Génétique &amp; dialogue</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Adam &amp; Ève génétiques</h3>
-              <p>Ève mitochondriale, Adam chromosome Y, LUCA : ce que la génétique dit vraiment de nos ancêtres communs — des points de convergence, jamais un couple fondateur — et comment en parler sans opposer la science à la foi.</p>
-              <div class="tags">
-                <span class="tag">Ascendance commune</span>
-                <span class="tag">Génétique des populations</span>
-                <span class="tag">Science &amp; foi</span>
+            <article class="dossier reveal" data-d="3" style="--accent:#43d6c4">
+              <div class="dossier-media">
+                <img src="samlepirate/assets/champs-vecteurs-hero.jpg" alt="Champ de vecteurs : flèches d'un écoulement, avec sources, puits et tourbillons">
+                <span class="dossier-no">Dossier VII</span>
+                <span class="badge">Mathématiques + atelier</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                  <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+              <div class="dossier-body">
+                <h3>Le langage des champs</h3>
+                <p>Vecteurs, gradient, divergence et rotationnel : apprendre à lire un champ comme un fluide — sources, puits, tourbillons — jusqu'aux équations de Maxwell et à la naissance de la lumière. Avec un atelier interactif pour manipuler le champ.</p>
+                <div class="tags">
+                  <span class="tag">Champs de vecteurs</span>
+                  <span class="tag">Divergence &amp; rotationnel</span>
+                  <span class="tag">Atelier interactif</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="samlepirate/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong><span class="note">d'après 3Blue1Brown</span></span>
+                </div>
+                <a class="dossier-link" href="samlepirate/champs-vecteurs.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="samlepirate/champs-vecteurs.html" aria-label="Ouvrir le dossier Le langage des champs"></a>
               </div>
-              <a class="dossier-link" href="ymir-lalie/ancetres-genetiques/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="ymir-lalie/ancetres-genetiques/index.html" aria-label="Ouvrir le dossier Adam & Ève génétiques"></a>
-            </div>
-          </article>
+            </article>
 
-          <article class="dossier reveal" data-d="2" style="--accent:#5b8fb0">
-            <div class="dossier-media">
-              <img src="lalie-ymir-sam/assets/politique-2026-hero.png" alt="Un hémicycle parlementaire doré divisé en quatre blocs, un bulletin glissé dans l'urne : comprendre la politique française en 2026">
-              <span class="dossier-no">Dossier IX</span>
-              <span class="badge">Éducation civique</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Comprendre la Politique Française en 2026</h3>
-              <p>Le grand décryptage : municipales, les quatre blocs de l'Assemblée, financement des campagnes, 49.3, institutions de la Ve République — et le clivage gauche-droite. Pourquoi votre bulletin pèse plus que vous ne le pensez.</p>
-              <div class="tags">
-                <span class="tag">Ve République</span>
-                <span class="tag">Élections &amp; institutions</span>
-                <span class="tag">Esprit critique</span>
+            <article class="dossier reveal" data-d="3" style="--accent:#4a93b8">
+              <div class="dossier-media">
+                <img src="provoxys/tornades/assets/tornades-hero.png" alt="Une tornade descend d'un orage supercellulaire au crépuscule, ciel de nuit et soleil d'or — tornades, typhons et ouragans">
+                <span class="dossier-no">Dossier XII</span>
+                <span class="badge">Live Provox × Sam</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="lalie-ymir-sam/lalie.jpeg" alt="Avatar de Lalie">
-                  <img src="lalie-ymir-sam/ymir.jpeg" alt="Avatar d'Ymir">
-                  <img src="lalie-ymir-sam/sam.jpeg" alt="Avatar de Sam">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie, Ymir &amp; Sam</strong></span>
+              <div class="dossier-body">
+                <h3>Tornades, Typhons &amp; Ouragans</h3>
+                <p>Le live de Provoxys, mot pour mot : la physique des vortex — tornades, typhons, ouragans, tempêtes tropicales, ENSO — illustrée en direct par une vraie simulation Navier–Stokes 3D dans le navigateur. Captures réelles du simulateur, et chaque chiffre vérifié.</p>
+                <div class="tags">
+                  <span class="tag">Physique des fluides</span>
+                  <span class="tag">Simulation</span>
+                  <span class="tag">Anti-intox</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="provoxys/tornades/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img src="provoxys/tornades/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec le soutien de Samlepirate</span></span>
+                </div>
+                <a class="dossier-link" href="provoxys/tornades/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="provoxys/tornades/index.html" aria-label="Ouvrir le dossier Tornades, Typhons & Ouragans"></a>
               </div>
-              <a class="dossier-link" href="lalie-ymir-sam/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="lalie-ymir-sam/index.html" aria-label="Ouvrir le dossier Comprendre la Politique Française en 2026"></a>
-            </div>
-          </article>
+            </article>
 
-          <article class="dossier reveal" data-d="3" style="--accent:#3fa6b5">
-            <div class="dossier-media">
-              <img src="ymir-lalie/singe-aquatique/assets/singe-aquatique-hero.png" alt="Un ancêtre humain nage à la surface d'une mer au crépuscule, mi-dessus mi-dessous la ligne d'eau : l'hypothèse du singe aquatique">
-              <span class="dossier-no">Dossier X</span>
-              <span class="badge">Esprit critique</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Le Singe Aquatique</h3>
-              <p>L'hypothèse la plus controversée de l'anthropologie au crible : le mythe, sa réfutation point par point (fossiles, sueur, sel, mains palmées), ses figures (Hardy, Morgan, Deloison) — puis la part qui surnage, le régime côtier et les Oméga-3.</p>
-              <div class="tags">
-                <span class="tag">Évolution humaine</span>
-                <span class="tag">Pseudo-science</span>
-                <span class="tag">Régime côtier</span>
+            <article class="dossier reveal" data-d="3" style="--accent:#d6ac55">
+              <div class="dossier-media">
+                <img src="formules/assets/formules-hero.png" alt="Planche codex des formules de l'Empire : orbites, onde électromagnétique, atome et champ de vecteurs en filets d'or">
+                <span class="dossier-no">Dossier XIV</span>
+                <span class="badge">Atlas interactif</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                  <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+              <div class="dossier-body">
+                <h3>Les Formules de l'Empire</h3>
+                <p>Toutes les équations des dossiers — vis-viva, Tsiolkovsky, Maxwell, Bohr, Rydberg, décroissance radioactive, Lotka-Volterra, Coriolis, CAPE… — rendues en LaTeX, expliquées et surtout <strong>mises en application</strong> : un atelier interactif par formule, avec curseurs et visualisation qui réagit en direct.</p>
+                <div class="tags">
+                  <span class="tag">Interactif</span>
+                  <span class="tag">LaTeX · KaTeX</span>
+                  <span class="tag">Dataviz</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="formules/samlepirate.jpeg" alt="Avatar de SamLePirate">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>SamLePirate</strong></span>
+                </div>
+                <a class="dossier-link" href="formules/index.html">Manipuler les formules <span class="arrow">→</span></a>
+                <a class="stretch" href="formules/index.html" aria-label="Ouvrir le dossier Les Formules de l'Empire"></a>
               </div>
-              <a class="dossier-link" href="ymir-lalie/singe-aquatique/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="ymir-lalie/singe-aquatique/index.html" aria-label="Ouvrir le dossier Le Singe Aquatique"></a>
+            </article>
             </div>
-          </article>
+          </section>
+          <section class="dossier-group reveal" id="parcours-cosmos-exploration" style="--group-accent:#9d8cff" aria-labelledby="parcours-cosmos-exploration-title" data-d="1">
+            <header class="group-head">
+              <div class="group-titleline">
+                <span class="group-roman">IV</span>
+                <div>
+                  <p class="group-kicker">Parcours thématique</p>
+                  <h3 id="parcours-cosmos-exploration-title">Cosmos & exploration</h3>
+                </div>
+              </div>
+              <p>Du pas de tir lunaire aux mondes lointains : missions, instruments, satellites et machines qui prolongent nos sens dans le ciel.</p>
+              <span class="group-count">3 dossiers</span>
+            </header>
+            <div class="dossiers">
+            <article class="dossier reveal" data-d="3" style="--accent:#ff9a52">
+              <div class="dossier-media">
+                <img src="provoxys/assets/artemis2-hero.png" alt="Lancement du SLS Artemis II, avec la Terre et la Lune en arrière-plan">
+                <span class="dossier-no">Dossier III</span>
+                <span class="badge">Émission Provoxys</span>
+              </div>
+              <div class="dossier-body">
+                <h3>Artemis II — l'Odyssée Lunaire</h3>
+                <p>L'intégralité de l'émission Provoxys, mot pour mot : objectifs scientifiques, glace lunaire, Accords Artemis — ponctuée par la simulation multi-étages menée en direct par Sam (Nebula Orbit).</p>
+                <div class="tags">
+                  <span class="tag">Artemis II</span>
+                  <span class="tag">Exploration lunaire</span>
+                  <span class="tag">Simulation</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec la participation de Samlepirate</span></span>
+                </div>
+                <a class="dossier-link" href="provoxys/Artemis2.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="provoxys/Artemis2.html" aria-label="Ouvrir le dossier Artemis II"></a>
+              </div>
+            </article>
 
-          <article class="dossier reveal" data-d="3" style="--accent:#b3503e">
-            <div class="dossier-media">
-              <img src="ymir-lalie/esclavage/assets/esclavage-hero.png" alt="Le commerce triangulaire : trois continents reliés par des routes d'or sur l'Atlantique, une chaîne brisée se changeant en grains de sucre">
-              <span class="dossier-no">Dossier XI</span>
-              <span class="badge">Mémoire &amp; histoire</span>
-            </div>
-            <div class="dossier-body">
-              <h3>L'Esclavage triangulaire</h3>
-              <p>En trois parties, mot pour mot : le commerce triangulaire et le Code Noir, le bulletin de l'IFAN qui regarde depuis l'Afrique, la route de l'horreur et la résistance — puis la fracture napoléonienne, vue depuis Nantes, premier port négrier de France.</p>
-              <div class="tags">
-                <span class="tag">Traite atlantique</span>
-                <span class="tag">Code Noir &amp; Nantes</span>
-                <span class="tag">Mémoire</span>
+            <article class="dossier reveal" data-d="2" style="--accent:#5fb9d4">
+              <div class="dossier-media">
+                <img src="provoxys/exoplanetes/assets/exoplanetes-hero.png" alt="Un système exoplanétaire : une géante gazeuse en transit devant son étoile, un monde rocheux et des anneaux de lumière">
+                <span class="dossier-no">Dossier XVII</span>
+                <span class="badge">Astronomie &amp; exoplanètes</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                  <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+              <div class="dossier-body">
+                <h3>Atmosphères &amp; Mondes Lointains</h3>
+                <p>Un fil unique à travers la science des exoplanètes : physique des atmosphères, télescopes au sol et spatiaux (HARPS, ESPRESSO, JWST), spectroscopie, géantes de glace, Jupiters chauds, super-Terres et mondes habitables. Formules interactives, spectre du JWST dessiné en direct, et chaque donnée vérifiée.</p>
+                <div class="tags">
+                  <span class="tag">Exoplanètes</span>
+                  <span class="tag">Atmosphères</span>
+                  <span class="tag">JWST</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec le soutien de Samlepirate (Atlas)</span></span>
+                </div>
+                <a class="dossier-link" href="provoxys/exoplanetes/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="provoxys/exoplanetes/index.html" aria-label="Ouvrir le dossier Atmosphères et Mondes Lointains"></a>
               </div>
-              <a class="dossier-link" href="ymir-lalie/esclavage/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="ymir-lalie/esclavage/index.html" aria-label="Ouvrir le dossier L'Esclavage triangulaire"></a>
-            </div>
-          </article>
+            </article>
 
-          <article class="dossier reveal" data-d="3" style="--accent:#4a93b8">
-            <div class="dossier-media">
-              <img src="provoxys/tornades/assets/tornades-hero.png" alt="Une tornade descend d'un orage supercellulaire au crépuscule, ciel de nuit et soleil d'or — tornades, typhons et ouragans">
-              <span class="dossier-no">Dossier XII</span>
-              <span class="badge">Live Provox × Sam</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Tornades, Typhons &amp; Ouragans</h3>
-              <p>Le live de Provoxys, mot pour mot : la physique des vortex — tornades, typhons, ouragans, tempêtes tropicales, ENSO — illustrée en direct par une vraie simulation Navier–Stokes 3D dans le navigateur. Captures réelles du simulateur, et chaque chiffre vérifié.</p>
-              <div class="tags">
-                <span class="tag">Physique des fluides</span>
-                <span class="tag">Simulation</span>
-                <span class="tag">Anti-intox</span>
+            <article class="dossier reveal" data-d="2">
+              <div class="dossier-media">
+                <img src="provoxys/sondes/assets/sondes-hero.png" alt="Une sonde interplanétaire de type Voyager dérivant dans l'espace profond, antenne tournée vers un Soleil lointain, planète géante annelée en arrière-plan">
+                <span class="dossier-no">Dossier XIX</span>
+                <span class="badge">Exploration spatiale</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="provoxys/tornades/provoxys.jpeg" alt="Avatar de Provoxys">
-                  <img src="provoxys/tornades/samlepirate.jpeg" alt="Avatar de Samlepirate">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec le soutien de Samlepirate</span></span>
+              <div class="dossier-body">
+                <h3>L'Odyssée des Machines</h3>
+                <p>Soixante-dix ans de sondes, satellites et télescopes, de Sputnik (1957) aux missions 2030+ : modèles 3D interactifs, fiches détaillées et localisation par objet. Avec « Les Femmes de l'Espace » de Lalie — et un Atlas de 70+ engins.</p>
+                <div class="tags">
+                  <span class="tag">Sondes &amp; satellites</span>
+                  <span class="tag">Modèles 3D</span>
+                  <span class="tag">Atlas interactif</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys, Lalie &amp; Samlepirate</strong></span>
+                </div>
+                <a class="dossier-link" href="provoxys/sondes/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="provoxys/sondes/index.html" aria-label="Ouvrir le dossier L'Odyssée des Machines"></a>
               </div>
-              <a class="dossier-link" href="provoxys/tornades/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="provoxys/tornades/index.html" aria-label="Ouvrir le dossier Tornades, Typhons & Ouragans"></a>
+            </article>
             </div>
-          </article>
+          </section>
+          <section class="dossier-group reveal" id="parcours-civilisations-memoire" style="--group-accent:#b8763a" aria-labelledby="parcours-civilisations-memoire-title" data-d="2">
+            <header class="group-head">
+              <div class="group-titleline">
+                <span class="group-roman">V</span>
+                <div>
+                  <p class="group-kicker">Parcours thématique</p>
+                  <h3 id="parcours-civilisations-memoire-title">Civilisations, empires & mémoire</h3>
+                </div>
+              </div>
+              <p>Naissance des villes, machines impériales, esclavage, résistances et visions du pouvoir : l’histoire comme antidote aux récits simplistes.</p>
+              <span class="group-count">5 dossiers</span>
+            </header>
+            <div class="dossiers">
+            <article class="dossier reveal" data-d="3" style="--accent:#b3503e">
+              <div class="dossier-media">
+                <img src="ymir-lalie/esclavage/assets/esclavage-hero.png" alt="Le commerce triangulaire : trois continents reliés par des routes d'or sur l'Atlantique, une chaîne brisée se changeant en grains de sucre">
+                <span class="dossier-no">Dossier XI</span>
+                <span class="badge">Mémoire &amp; histoire</span>
+              </div>
+              <div class="dossier-body">
+                <h3>L'Esclavage triangulaire</h3>
+                <p>En trois parties, mot pour mot : le commerce triangulaire et le Code Noir, le bulletin de l'IFAN qui regarde depuis l'Afrique, la route de l'horreur et la résistance — puis la fracture napoléonienne, vue depuis Nantes, premier port négrier de France.</p>
+                <div class="tags">
+                  <span class="tag">Traite atlantique</span>
+                  <span class="tag">Code Noir &amp; Nantes</span>
+                  <span class="tag">Mémoire</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+                </div>
+                <a class="dossier-link" href="ymir-lalie/esclavage/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/esclavage/index.html" aria-label="Ouvrir le dossier L'Esclavage triangulaire"></a>
+              </div>
+            </article>
 
-          <article class="dossier reveal" data-d="2" style="--accent:#e0962f">
-            <div class="dossier-media">
-              <img src="phantom/abeilles/assets/abeilles-hero.png" alt="Une abeille (Apis mellifera) sur un rayon de miel hexagonal doré, planche d'histoire naturelle codex">
-              <span class="dossier-no">Dossier XIII</span>
-              <span class="badge">Histoire naturelle</span>
-            </div>
-            <div class="dossier-body">
-              <h3>L'Abeille — Apis mellifera</h3>
-              <p>De la biologie moléculaire à l'écologie globale, en 15 chapitres mot pour mot : classification, géométrie de l'alvéole, société et castes, miel, pollinisation, phéromones, danse et menaces. Chaque chiffre vérifié, les nuances signalées.</p>
-              <div class="tags">
-                <span class="tag">Apis mellifera</span>
-                <span class="tag">Pollinisation</span>
-                <span class="tag">Anti-intox</span>
+            <article class="dossier reveal" data-d="2" style="--accent:#b23a48">
+              <div class="dossier-media">
+                <img src="ymir-lalie/la-resistance/assets/resistance-hero.png" alt="Silhouettes de résistants à l'aube, croix de Lorraine dorée et affiche rougie : Les Résistants, portraits de courage entre Histoire et Vérité">
+                <span class="dossier-no">Dossier XV</span>
+                <span class="badge">Mémoire &amp; Résistance</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="phantom/abeilles/phantom-avatar.png" alt="Avatar de PhantomBlast">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>PhantomBlast</strong><span class="note">avec Abeillaud</span></span>
+              <div class="dossier-body">
+                <h3>Les Résistants</h3>
+                <p>Portraits de courage, mot pour mot : Jean Moulin et le CNR, le réseau Alliance (« L'Arche de Noé »), Manouchian et l'Affiche Rouge, Joséphine Baker, Cécile Rol-Tanguy, Geneviève de Gaulle-Anthonioz, Kernabat et les frères Jacob. Chaque récit vérifié, chaque date recoupée.</p>
+                <div class="tags">
+                  <span class="tag">Seconde Guerre mondiale</span>
+                  <span class="tag">Mémoire</span>
+                  <span class="tag">Anti-intox</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+                </div>
+                <a class="dossier-link" href="ymir-lalie/la-resistance/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/la-resistance/index.html" aria-label="Ouvrir le dossier Les Résistants"></a>
               </div>
-              <a class="dossier-link" href="phantom/abeilles/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="phantom/abeilles/index.html" aria-label="Ouvrir le dossier L'Abeille"></a>
-            </div>
-          </article>
+            </article>
 
-          <article class="dossier reveal" data-d="3" style="--accent:#d6ac55">
-            <div class="dossier-media">
-              <img src="formules/assets/formules-hero.png" alt="Planche codex des formules de l'Empire : orbites, onde électromagnétique, atome et champ de vecteurs en filets d'or">
-              <span class="dossier-no">Dossier XIV</span>
-              <span class="badge">Atlas interactif</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Les Formules de l'Empire</h3>
-              <p>Toutes les équations des dossiers — vis-viva, Tsiolkovsky, Maxwell, Bohr, Rydberg, décroissance radioactive, Lotka-Volterra, Coriolis, CAPE… — rendues en LaTeX, expliquées et surtout <strong>mises en application</strong> : un atelier interactif par formule, avec curseurs et visualisation qui réagit en direct.</p>
-              <div class="tags">
-                <span class="tag">Interactif</span>
-                <span class="tag">LaTeX · KaTeX</span>
-                <span class="tag">Dataviz</span>
+            <article class="dossier reveal" data-d="3" style="--accent:#4a6bb0">
+              <div class="dossier-media">
+                <img src="ymir-lalie/premieres-cites/assets/premieres-cites-hero.png" alt="La cité sumérienne d'Uruk au crépuscule : une ziggourat de briques crues domine une ville dense traversée d'un canal">
+                <span class="dossier-no">Dossier XVIII</span>
+                <span class="badge">Archéologie &amp; cités</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="formules/samlepirate.jpeg" alt="Avatar de SamLePirate">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>SamLePirate</strong></span>
+              <div class="dossier-body">
+                <h3>Les Premières Cités</h3>
+                <p>Le code source de notre monde : Uruk, Ur, Mohenjo-Daro, Jéricho. La naissance de l'écriture (née pour compter), du temple-banque, du droit et du mythe comme « logiciel social ». De Gilgamesh à Caral, toute la transcription du live, conservée mot pour mot et vérifiée.</p>
+                <div class="tags">
+                  <span class="tag">Mésopotamie</span>
+                  <span class="tag">Écriture</span>
+                  <span class="tag">Mythe &amp; pouvoir</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+                </div>
+                <a class="dossier-link" href="ymir-lalie/premieres-cites/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/premieres-cites/index.html" aria-label="Ouvrir le dossier Les Premières Cités"></a>
               </div>
-              <a class="dossier-link" href="formules/index.html">Manipuler les formules <span class="arrow">→</span></a>
-              <a class="stretch" href="formules/index.html" aria-label="Ouvrir le dossier Les Formules de l'Empire"></a>
-            </div>
-          </article>
+            </article>
 
-          <article class="dossier reveal" data-d="2" style="--accent:#b23a48">
-            <div class="dossier-media">
-              <img src="ymir-lalie/la-resistance/assets/resistance-hero.png" alt="Silhouettes de résistants à l'aube, croix de Lorraine dorée et affiche rougie : Les Résistants, portraits de courage entre Histoire et Vérité">
-              <span class="dossier-no">Dossier XV</span>
-              <span class="badge">Mémoire &amp; Résistance</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Les Résistants</h3>
-              <p>Portraits de courage, mot pour mot : Jean Moulin et le CNR, le réseau Alliance (« L'Arche de Noé »), Manouchian et l'Affiche Rouge, Joséphine Baker, Cécile Rol-Tanguy, Geneviève de Gaulle-Anthonioz, Kernabat et les frères Jacob. Chaque récit vérifié, chaque date recoupée.</p>
-              <div class="tags">
-                <span class="tag">Seconde Guerre mondiale</span>
-                <span class="tag">Mémoire</span>
-                <span class="tag">Anti-intox</span>
+            <article class="dossier reveal" data-d="3" style="--accent:#b8763a">
+              <div class="dossier-media">
+                <img src="ymir-lalie/premier-empires/assets/premier-empires-hero.png" alt="Fresque des premiers empires : ziggourat, forge de bronze, char de guerre et muraille lointaine sous un ciel d'or et de nuit">
+                <span class="dossier-no">Dossier XX</span>
+                <span class="badge">Histoire des empires</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                  <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+              <div class="dossier-body">
+                <h3>Les Premiers Empires</h3>
+                <p>L'Empire, machine à conquérir le temps et l'espace : d'Uruk à la Chine des Qin, en passant par Akkad (Sargon), l'Égypte du Nouvel Empire (la Maât) et l'effondrement de l'Âge du Bronze (Cu + Sn). Bureaucratie, harnais à collier, arbalète, fonte et première mondialisation — toute la transcription, mot pour mot et vérifiée.</p>
+                <div class="tags">
+                  <span class="tag">Akkad · Égypte · Qin</span>
+                  <span class="tag">Âge du Bronze</span>
+                  <span class="tag">Machine impériale</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong><span class="note">avec l'aide précieuse de Phantom</span></span>
+                </div>
+                <a class="dossier-link" href="ymir-lalie/premier-empires/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/premier-empires/index.html" aria-label="Ouvrir le dossier Les Premiers Empires"></a>
               </div>
-              <a class="dossier-link" href="ymir-lalie/la-resistance/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="ymir-lalie/la-resistance/index.html" aria-label="Ouvrir le dossier Les Résistants"></a>
-            </div>
-          </article>
+            </article>
 
-          <article class="dossier reveal" data-d="3" style="--accent:#b69bff">
-            <div class="dossier-media">
-              <img src="provoxys/briser-le-silence/assets/briser-le-silence-hero.png" alt="Briser le Silence : la silhouette d'une femme face à un mur d'écrans hostiles, traversé par un ruban de lumière dorée">
-              <span class="dossier-no">Dossier XVI</span>
-              <span class="badge">Live Provoxys × Lalie</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Briser le Silence</h3>
-              <p>Harcèlement, cyber-harcèlement, emprise, doxing, grooming et violences faites aux femmes : le script du live mot pour mot — expliquer, analyser, témoigner, agir. Chaque chiffre vérifié et sourcé, avec une annexe data qui met chaque statistique en graphique, et le 3018 pour agir.</p>
-              <div class="tags">
-                <span class="tag">Cyberviolences</span>
-                <span class="tag">Données sourcées</span>
-                <span class="tag">Protection des mineurs</span>
+            <article class="dossier reveal" data-d="2" style="--accent:#c98a3c">
+              <div class="dossier-media">
+                <img src="ymir-lalie/egypte-grece/assets/egypte-grece-hero.png" alt="Duel visuel entre Égypte de la Maât et Grèce du Logos, du Nil à l'Agora">
+                <span class="dossier-no">Dossier XXII</span>
+                <span class="badge">Antiquité comparée</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                  <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys &amp; Lalie</strong></span>
+              <div class="dossier-body">
+                <h3>Ordre Divin ou Démocratie ?</h3>
+                <p>L'Égypte de la Maât face à la Grèce du Logos : deux visions du pouvoir, du sacré, des pyramides et du marbre — du Nil à l'Agora, transcription mot pour mot et mythes démontés.</p>
+                <div class="tags">
+                  <span class="tag">Égypte antique</span>
+                  <span class="tag">Grèce classique</span>
+                  <span class="tag">Pouvoir &amp; sacré</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="ymir-lalie/egypte-grece/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img src="ymir-lalie/egypte-grece/lalie.jpeg" alt="Avatar de Lalie">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Ymir &amp; Lalie</strong></span>
+                </div>
+                <a class="dossier-link" href="ymir-lalie/egypte-grece/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/egypte-grece/index.html" aria-label="Ouvrir le dossier Ordre Divin ou Démocratie ?"></a>
               </div>
-              <a class="dossier-link" href="provoxys/briser-le-silence/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="provoxys/briser-le-silence/index.html" aria-label="Ouvrir le dossier Briser le Silence"></a>
+            </article>
             </div>
-          </article>
+          </section>
+          <section class="dossier-group reveal" id="parcours-societe-droits" style="--group-accent:#b69bff" aria-labelledby="parcours-societe-droits-title" data-d="3">
+            <header class="group-head">
+              <div class="group-titleline">
+                <span class="group-roman">VI</span>
+                <div>
+                  <p class="group-kicker">Parcours thématique</p>
+                  <h3 id="parcours-societe-droits-title">Société, droits & vigilance</h3>
+                </div>
+              </div>
+              <p>Comprendre les institutions, nommer les violences, identifier les emprises : des dossiers civiques pour agir avec lucidité.</p>
+              <span class="group-count">3 dossiers</span>
+            </header>
+            <div class="dossiers">
+            <article class="dossier reveal" data-d="2" style="--accent:#5b8fb0">
+              <div class="dossier-media">
+                <img src="lalie-ymir-sam/assets/politique-2026-hero.png" alt="Un hémicycle parlementaire doré divisé en quatre blocs, un bulletin glissé dans l'urne : comprendre la politique française en 2026">
+                <span class="dossier-no">Dossier IX</span>
+                <span class="badge">Éducation civique</span>
+              </div>
+              <div class="dossier-body">
+                <h3>Comprendre la Politique Française en 2026</h3>
+                <p>Le grand décryptage : municipales, les quatre blocs de l'Assemblée, financement des campagnes, 49.3, institutions de la Ve République — et le clivage gauche-droite. Pourquoi votre bulletin pèse plus que vous ne le pensez.</p>
+                <div class="tags">
+                  <span class="tag">Ve République</span>
+                  <span class="tag">Élections &amp; institutions</span>
+                  <span class="tag">Esprit critique</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="lalie-ymir-sam/lalie.jpeg" alt="Avatar de Lalie">
+                    <img src="lalie-ymir-sam/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img src="lalie-ymir-sam/sam.jpeg" alt="Avatar de Sam">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie, Ymir &amp; Sam</strong></span>
+                </div>
+                <a class="dossier-link" href="lalie-ymir-sam/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="lalie-ymir-sam/index.html" aria-label="Ouvrir le dossier Comprendre la Politique Française en 2026"></a>
+              </div>
+            </article>
 
-          <article class="dossier reveal" data-d="2" style="--accent:#5fb9d4">
-            <div class="dossier-media">
-              <img src="provoxys/exoplanetes/assets/exoplanetes-hero.png" alt="Un système exoplanétaire : une géante gazeuse en transit devant son étoile, un monde rocheux et des anneaux de lumière">
-              <span class="dossier-no">Dossier XVII</span>
-              <span class="badge">Astronomie &amp; exoplanètes</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Atmosphères &amp; Mondes Lointains</h3>
-              <p>Un fil unique à travers la science des exoplanètes : physique des atmosphères, télescopes au sol et spatiaux (HARPS, ESPRESSO, JWST), spectroscopie, géantes de glace, Jupiters chauds, super-Terres et mondes habitables. Formules interactives, spectre du JWST dessiné en direct, et chaque donnée vérifiée.</p>
-              <div class="tags">
-                <span class="tag">Exoplanètes</span>
-                <span class="tag">Atmosphères</span>
-                <span class="tag">JWST</span>
+            <article class="dossier reveal" data-d="3" style="--accent:#b69bff">
+              <div class="dossier-media">
+                <img src="provoxys/briser-le-silence/assets/briser-le-silence-hero.png" alt="Briser le Silence : la silhouette d'une femme face à un mur d'écrans hostiles, traversé par un ruban de lumière dorée">
+                <span class="dossier-no">Dossier XVI</span>
+                <span class="badge">Live Provoxys × Lalie</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                  <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec le soutien de Samlepirate (Atlas)</span></span>
+              <div class="dossier-body">
+                <h3>Briser le Silence</h3>
+                <p>Harcèlement, cyber-harcèlement, emprise, doxing, grooming et violences faites aux femmes : le script du live mot pour mot — expliquer, analyser, témoigner, agir. Chaque chiffre vérifié et sourcé, avec une annexe data qui met chaque statistique en graphique, et le 3018 pour agir.</p>
+                <div class="tags">
+                  <span class="tag">Cyberviolences</span>
+                  <span class="tag">Données sourcées</span>
+                  <span class="tag">Protection des mineurs</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys &amp; Lalie</strong></span>
+                </div>
+                <a class="dossier-link" href="provoxys/briser-le-silence/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="provoxys/briser-le-silence/index.html" aria-label="Ouvrir le dossier Briser le Silence"></a>
               </div>
-              <a class="dossier-link" href="provoxys/exoplanetes/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="provoxys/exoplanetes/index.html" aria-label="Ouvrir le dossier Atmosphères et Mondes Lointains"></a>
-            </div>
-          </article>
+            </article>
 
-          <article class="dossier reveal" data-d="3" style="--accent:#4a6bb0">
-            <div class="dossier-media">
-              <img src="ymir-lalie/premieres-cites/assets/premieres-cites-hero.png" alt="La cité sumérienne d'Uruk au crépuscule : une ziggourat de briques crues domine une ville dense traversée d'un canal">
-              <span class="dossier-no">Dossier XVIII</span>
-              <span class="badge">Archéologie &amp; cités</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Les Premières Cités</h3>
-              <p>Le code source de notre monde : Uruk, Ur, Mohenjo-Daro, Jéricho. La naissance de l'écriture (née pour compter), du temple-banque, du droit et du mythe comme « logiciel social ». De Gilgamesh à Caral, toute la transcription du live, conservée mot pour mot et vérifiée.</p>
-              <div class="tags">
-                <span class="tag">Mésopotamie</span>
-                <span class="tag">Écriture</span>
-                <span class="tag">Mythe &amp; pouvoir</span>
+            <article class="dossier reveal" data-d="1" style="--accent:#6f5bc9">
+              <div class="dossier-media">
+                <img src="provoxys/therapie-conversion/assets/therapie-conversion-hero.png" alt="Une silhouette face à un miroir fissuré traversé d'un rai de lumière dorée, fils de marionnette rompus au-dessus d'elle : le poids de l'emprise et la sortie vers la lumière">
+                <span class="dossier-no">Dossier XXI</span>
+                <span class="badge">Live Provoxys</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                  <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+              <div class="dossier-body">
+                <h3>Le Danger des Thérapies de Conversion</h3>
+                <p>Emprise pseudo-médicale, spirituelle et familiale, effraction psychique, dossier clinique, témoignages, arsenal juridique et reconstruction : le dossier complet sur les pratiques visant à modifier de force l'orientation sexuelle ou l'identité de genre — mot pour mot, chaque donnée vérifiée (dont deux corrections importantes : le risque suicidaire réel, et un numéro d'urgence à jour) et le statut légal mondial 2026.</p>
+                <div class="tags">
+                  <span class="tag">Santé mentale</span>
+                  <span class="tag">Droit &amp; société</span>
+                  <span class="tag">Données sourcées</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong></span>
+                </div>
+                <a class="dossier-link" href="provoxys/therapie-conversion/index.html">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="provoxys/therapie-conversion/index.html" aria-label="Ouvrir le dossier Le Danger des Thérapies de Conversion"></a>
               </div>
-              <a class="dossier-link" href="ymir-lalie/premieres-cites/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="ymir-lalie/premieres-cites/index.html" aria-label="Ouvrir le dossier Les Premières Cités"></a>
+            </article>
             </div>
-          </article>
+          </section>
+          <section class="dossier-group reveal" id="parcours-methode-sources" style="--group-accent:#d6ac55" aria-labelledby="parcours-methode-sources-title" data-d="1">
+            <header class="group-head">
+              <div class="group-titleline">
+                <span class="group-roman">VII</span>
+                <div>
+                  <p class="group-kicker">Parcours thématique</p>
+                  <h3 id="parcours-methode-sources-title">Méthode, sources & vie du collectif</h3>
+                </div>
+              </div>
+              <p>L’appareil critique et le temps présent du collectif : vérifier chaque affirmation, remonter aux sources et suivre les prochains lives.</p>
+              <span class="group-count">1 dossier + agenda</span>
+            </header>
+            <div class="dossiers">
+            <article class="dossier reveal" data-d="1">
+              <div class="dossier-media">
+                <img src="horloge-univers/assets/super-images/44-l-histoire-ecrite.png" alt="Archives et écriture : toutes les sources des dossiers, rendues vérifiables">
+                <span class="dossier-no">Dossier XXIII</span>
+                <span class="badge">Appareil critique</span>
+              </div>
+              <div class="dossier-body">
+                <h3>Les Sources</h3>
+                <p>Chaque affirmation des dossiers, vérifiée et sourcée : pour chaque donnée, un résumé, un verdict (confirmé, à nuancer, débattu) et la source autoritative (NASA, ESA, USGS, IUGS/ICS, Smithsonian, articles à comité de lecture). Rien n'est affirmé sans preuve.</p>
+                <div class="tags">
+                  <span class="tag">Vérification</span>
+                  <span class="tag">Sources</span>
+                  <span class="tag">Esprit critique</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Empire contre Intox</strong></span>
+                </div>
+                <a class="dossier-link" href="sources/sources.html">Consulter les sources <span class="arrow">→</span></a>
+                <a class="stretch" href="sources/sources.html" aria-label="Ouvrir le dossier Les Sources"></a>
+              </div>
+            </article>
 
-          <article class="dossier reveal" data-d="2">
-            <div class="dossier-media">
-              <img src="provoxys/sondes/assets/sondes-hero.png" alt="Une sonde interplanétaire de type Voyager dérivant dans l'espace profond, antenne tournée vers un Soleil lointain, planète géante annelée en arrière-plan">
-              <span class="dossier-no">Dossier XIX</span>
-              <span class="badge">Exploration spatiale</span>
-            </div>
-            <div class="dossier-body">
-              <h3>L'Odyssée des Machines</h3>
-              <p>Soixante-dix ans de sondes, satellites et télescopes, de Sputnik (1957) aux missions 2030+ : modèles 3D interactifs, fiches détaillées et localisation par objet. Avec « Les Femmes de l'Espace » de Lalie — et un Atlas de 70+ engins.</p>
-              <div class="tags">
-                <span class="tag">Sondes &amp; satellites</span>
-                <span class="tag">Modèles 3D</span>
-                <span class="tag">Atlas interactif</span>
+            <article class="dossier reveal" data-d="2" style="--accent:#43a89d">
+              <div class="dossier-media">
+                <img src="calendrier-lives-hero.png" alt="Calendrier mensuel de L'Empire Contre-Intox : le programme des lives, sur parchemin impérial">
+                <span class="dossier-no">Agenda</span>
+                <span class="badge">Calendrier des lives</span>
               </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                  <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                  <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys, Lalie &amp; Samlepirate</strong></span>
+              <div class="dossier-body">
+                <h3>Le Calendrier des Lives</h3>
+                <p>Le programme du mois en direct, jour par jour : Ascèse, Provoxys, Ymir &amp; Lalie, Prehistoric Man… Une carte impériale du temps présent — cliquez une date pour les détails et rejoindre le direct.</p>
+                <div class="tags">
+                  <span class="tag">Programme</span>
+                  <span class="tag">Lives</span>
+                  <span class="tag">En direct</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Empire contre Intox</strong></span>
+                </div>
+                <a class="dossier-link" href="https://thesamlepirate.github.io/empire-calendrier/" target="_blank" rel="noopener">Ouvrir le calendrier <span class="arrow">↗</span></a>
+                <a class="stretch" href="https://thesamlepirate.github.io/empire-calendrier/" target="_blank" rel="noopener" aria-label="Ouvrir le calendrier des lives (nouvel onglet)"></a>
               </div>
-              <a class="dossier-link" href="provoxys/sondes/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="provoxys/sondes/index.html" aria-label="Ouvrir le dossier L'Odyssée des Machines"></a>
+            </article>
             </div>
-          </article>
-
-          <article class="dossier reveal" data-d="3" style="--accent:#b8763a">
-            <div class="dossier-media">
-              <img src="ymir-lalie/premier-empires/assets/premier-empires-hero.png" alt="Fresque des premiers empires : ziggourat, forge de bronze, char de guerre et muraille lointaine sous un ciel d'or et de nuit">
-              <span class="dossier-no">Dossier XX</span>
-              <span class="badge">Histoire des empires</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Les Premiers Empires</h3>
-              <p>L'Empire, machine à conquérir le temps et l'espace : d'Uruk à la Chine des Qin, en passant par Akkad (Sargon), l'Égypte du Nouvel Empire (la Maât) et l'effondrement de l'Âge du Bronze (Cu + Sn). Bureaucratie, harnais à collier, arbalète, fonte et première mondialisation — toute la transcription, mot pour mot et vérifiée.</p>
-              <div class="tags">
-                <span class="tag">Akkad · Égypte · Qin</span>
-                <span class="tag">Âge du Bronze</span>
-                <span class="tag">Machine impériale</span>
-              </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                  <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong><span class="note">avec l'aide précieuse de Phantom</span></span>
-              </div>
-              <a class="dossier-link" href="ymir-lalie/premier-empires/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="ymir-lalie/premier-empires/index.html" aria-label="Ouvrir le dossier Les Premiers Empires"></a>
-            </div>
-          </article>
-
-          <article class="dossier reveal" data-d="1" style="--accent:#6f5bc9">
-            <div class="dossier-media">
-              <img src="provoxys/therapie-conversion/assets/therapie-conversion-hero.png" alt="Une silhouette face à un miroir fissuré traversé d'un rai de lumière dorée, fils de marionnette rompus au-dessus d'elle : le poids de l'emprise et la sortie vers la lumière">
-              <span class="dossier-no">Dossier XXI</span>
-              <span class="badge">Live Provoxys</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Le Danger des Thérapies de Conversion</h3>
-              <p>Emprise pseudo-médicale, spirituelle et familiale, effraction psychique, dossier clinique, témoignages, arsenal juridique et reconstruction : le dossier complet sur les pratiques visant à modifier de force l'orientation sexuelle ou l'identité de genre — mot pour mot, chaque donnée vérifiée (dont deux corrections importantes : le risque suicidaire réel, et un numéro d'urgence à jour) et le statut légal mondial 2026.</p>
-              <div class="tags">
-                <span class="tag">Santé mentale</span>
-                <span class="tag">Droit &amp; société</span>
-                <span class="tag">Données sourcées</span>
-              </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong></span>
-              </div>
-              <a class="dossier-link" href="provoxys/therapie-conversion/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="provoxys/therapie-conversion/index.html" aria-label="Ouvrir le dossier Le Danger des Thérapies de Conversion"></a>
-            </div>
-          </article>
-
-          <article class="dossier reveal" data-d="2" style="--accent:#c98a3c">
-            <div class="dossier-media">
-              <img src="ymir-lalie/egypte-grece/assets/egypte-grece-hero.png" alt="Duel visuel entre Égypte de la Maât et Grèce du Logos, du Nil à l'Agora">
-              <span class="dossier-no">Dossier XXII</span>
-              <span class="badge">Antiquité comparée</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Ordre Divin ou Démocratie ?</h3>
-              <p>L'Égypte de la Maât face à la Grèce du Logos : deux visions du pouvoir, du sacré, des pyramides et du marbre — du Nil à l'Agora, transcription mot pour mot et mythes démontés.</p>
-              <div class="tags">
-                <span class="tag">Égypte antique</span>
-                <span class="tag">Grèce classique</span>
-                <span class="tag">Pouvoir &amp; sacré</span>
-              </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="ymir-lalie/egypte-grece/ymir.jpeg" alt="Avatar d'Ymir">
-                  <img src="ymir-lalie/egypte-grece/lalie.jpeg" alt="Avatar de Lalie">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Ymir &amp; Lalie</strong></span>
-              </div>
-              <a class="dossier-link" href="ymir-lalie/egypte-grece/index.html">Consulter le dossier <span class="arrow">→</span></a>
-              <a class="stretch" href="ymir-lalie/egypte-grece/index.html" aria-label="Ouvrir le dossier Ordre Divin ou Démocratie ?"></a>
-            </div>
-          </article>
-
-          <article class="dossier reveal" data-d="1">
-            <div class="dossier-media">
-              <img src="horloge-univers/assets/super-images/44-l-histoire-ecrite.png" alt="Archives et écriture : toutes les sources des dossiers, rendues vérifiables">
-              <span class="dossier-no">Dossier XXIII</span>
-              <span class="badge">Appareil critique</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Les Sources</h3>
-              <p>Chaque affirmation des dossiers, vérifiée et sourcée : pour chaque donnée, un résumé, un verdict (confirmé, à nuancer, débattu) et la source autoritative (NASA, ESA, USGS, IUGS/ICS, Smithsonian, articles à comité de lecture). Rien n'est affirmé sans preuve.</p>
-              <div class="tags">
-                <span class="tag">Vérification</span>
-                <span class="tag">Sources</span>
-                <span class="tag">Esprit critique</span>
-              </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Empire contre Intox</strong></span>
-              </div>
-              <a class="dossier-link" href="sources/sources.html">Consulter les sources <span class="arrow">→</span></a>
-              <a class="stretch" href="sources/sources.html" aria-label="Ouvrir le dossier Les Sources"></a>
-            </div>
-          </article>
-
-          <article class="dossier reveal" data-d="2" style="--accent:#43a89d">
-            <div class="dossier-media">
-              <img src="calendrier-lives-hero.png" alt="Calendrier mensuel de L'Empire Contre-Intox : le programme des lives, sur parchemin impérial">
-              <span class="dossier-no">Agenda</span>
-              <span class="badge">Calendrier des lives</span>
-            </div>
-            <div class="dossier-body">
-              <h3>Le Calendrier des Lives</h3>
-              <p>Le programme du mois en direct, jour par jour : Ascèse, Provoxys, Ymir &amp; Lalie, Prehistoric Man… Une carte impériale du temps présent — cliquez une date pour les détails et rejoindre le direct.</p>
-              <div class="tags">
-                <span class="tag">Programme</span>
-                <span class="tag">Lives</span>
-                <span class="tag">En direct</span>
-              </div>
-              <div class="byline">
-                <span class="avatars">
-                  <img src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
-                </span>
-                <span class="who"><span class="lbl">Réalisé par</span><strong>Empire contre Intox</strong></span>
-              </div>
-              <a class="dossier-link" href="https://thesamlepirate.github.io/empire-calendrier/" target="_blank" rel="noopener">Ouvrir le calendrier <span class="arrow">↗</span></a>
-              <a class="stretch" href="https://thesamlepirate.github.io/empire-calendrier/" target="_blank" rel="noopener" aria-label="Ouvrir le calendrier des lives (nouvel onglet)"></a>
-            </div>
-          </article>
+          </section>
         </div>
       </section>
 
