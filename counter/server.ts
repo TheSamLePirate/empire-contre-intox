@@ -2,6 +2,7 @@ import { Database } from "bun:sqlite";
 
 const PORT = Number(process.env.PORT || 3001);
 const DB_PATH = process.env.DB_PATH || "/data/visits.sqlite";
+const GITHUB_PAGES_PREFIX = "/empire-contre-intox";
 const ALLOWED_ORIGINS = new Set([
   "https://empire-contre-intox.com",
   "https://www.empire-contre-intox.com",
@@ -43,9 +44,52 @@ function normalizePath(input: unknown): string {
   try { raw = decodeURI(raw); } catch { /* keep undecoded */ }
   raw = raw.replace(/\/+/g, "/");
   raw = raw.replace(/\/index\.html$/i, "/");
+
+  // GitHub Pages sert le miroir sous /empire-contre-intox/ ; on stocke
+  // toujours le chemin canonique du domaine principal pour agréger les visites.
+  raw = raw.replace(new RegExp(`^${GITHUB_PAGES_PREFIX}(?=/|$)`, "i"), "") || "/";
+
   if (raw.length > 512) raw = raw.slice(0, 512);
   return raw || "/";
 }
+
+function migrateLegacyGithubPagesRows(): void {
+  const legacyRows = db.query<{
+    path: string;
+    visits: number;
+    created_at: string;
+    updated_at: string;
+  }, []>(`SELECT path, visits, created_at, updated_at
+    FROM page_visits
+    WHERE path = '${GITHUB_PAGES_PREFIX}' OR path LIKE '${GITHUB_PAGES_PREFIX}/%'`).all();
+
+  if (!legacyRows.length) return;
+
+  const merge = db.query<unknown, [string, number, string, string]>(`INSERT INTO page_visits(path, visits, created_at, updated_at)
+    VALUES (?, ?, ?, ?)
+    ON CONFLICT(path) DO UPDATE SET
+      visits = page_visits.visits + excluded.visits,
+      created_at = CASE
+        WHEN excluded.created_at < page_visits.created_at THEN excluded.created_at
+        ELSE page_visits.created_at
+      END,
+      updated_at = CASE
+        WHEN excluded.updated_at > page_visits.updated_at THEN excluded.updated_at
+        ELSE page_visits.updated_at
+      END`);
+  const remove = db.query<unknown, [string]>("DELETE FROM page_visits WHERE path = ?");
+
+  for (const row of legacyRows) {
+    const canonical = normalizePath(row.path);
+    if (canonical === row.path) continue;
+    merge.run(canonical, row.visits, row.created_at, row.updated_at);
+    remove.run(row.path);
+  }
+
+  console.log(`Merged ${legacyRows.length} legacy GitHub Pages visit counter row(s) into canonical paths.`);
+}
+
+migrateLegacyGithubPagesRows();
 
 function corsHeaders(req: Request): HeadersInit {
   const origin = req.headers.get("origin") || "";

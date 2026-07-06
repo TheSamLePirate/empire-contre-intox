@@ -2,15 +2,24 @@
   const target = document.querySelector("[data-visit-counter]");
   if (!target) return;
 
+  const isGithubMirror = location.hostname === "thesamlepirate.github.io";
+
   const normalizePath = (value) => {
     const url = new URL(value || location.href, location.origin);
     let path = url.pathname || "/";
     path = path.replace(/\/index\.html$/i, "/");
+
+    // GitHub Pages sert le site sous /empire-contre-intox/ ; le compteur
+    // canonise ce préfixe pour agréger miroir + domaine principal.
+    if (isGithubMirror) {
+      path = path.replace(/^\/empire-contre-intox(?=\/|$)/i, "") || "/";
+    }
+
     return path || "/";
   };
 
   const path = normalizePath(location.href);
-  const apiBase = location.hostname === "thesamlepirate.github.io"
+  const apiBase = isGithubMirror
     ? "https://empire-contre-intox.com/api"
     : "/api";
 
