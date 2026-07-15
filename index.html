@@ -6,11 +6,12 @@
   <title>Empire contre Intox — Archives publiques</title>
   <meta name="description" content="Archives publiques d'Empire contre Intox : dossiers scientifiques sur le temps profond, transcriptions structurées et esprit critique. Veritas omnia vincit.">
   <meta name="theme-color" content="#060914">
+  <link rel="icon" href="ymir-lalie/assets/logo-eci.jpg" type="image/jpeg">
   <link rel="alternate" type="application/rss+xml" title="Empire contre Intox — Dossiers" href="rss.xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&amp;family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&amp;display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -102,11 +103,12 @@
     }
     .grain {
       position: fixed;
-      inset: -50%;
+      inset: 0;
       z-index: 1;
       pointer-events: none;
-      opacity: .05;
+      opacity: .04;
       mix-blend-mode: overlay;
+      contain: strict;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
@@ -126,10 +128,13 @@
 
     /* Scroll progress — a thin gilded thread */
     .progress {
-      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      position: fixed; top: 0; left: 0; height: 2px; width: 100%;
       z-index: 60;
       background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), var(--gold));
       box-shadow: 0 0 14px rgba(243, 217, 138, .6);
+      transform: scaleX(0);
+      transform-origin: left center;
+      will-change: transform;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -222,12 +227,18 @@
       filter: saturate(1.08) contrast(1.07) brightness(1.04);
       opacity: 0;
       animation: panelIn 1.15s var(--ease) forwards, hmDrift 44s ease-in-out infinite alternate;
+      will-change: transform, background-position;
     }
-    .hm-1 { background-image: url("ymir-lalie/assets/eres-hero.png");                     clip-path: polygon(0 0, 25.75% 0, 14.75% 100%, 0 100%);          animation-delay: 0s, 0s; }
-    .hm-2 { background-image: url("ymir-lalie/assets/ediacaran-hero.png");                clip-path: polygon(26.25% 0, 47.75% 0, 36.75% 100%, 15.25% 100%); animation-delay: .12s, .4s; }
-    .hm-3 { background-image: url("provoxys/assets/artemis2-hero.png");                   clip-path: polygon(48.25% 0, 68.75% 0, 57.75% 100%, 37.25% 100%); animation-delay: .24s, .8s; }
-    .hm-4 { background-image: url("horloge-univers/assets/temps-univers.png");            clip-path: polygon(69.25% 0, 86.75% 0, 75.75% 100%, 58.25% 100%); animation-delay: .36s, 1.2s; }
-    .hm-5 { background-image: url("la-vie-de-la-terre/assets/earth-observatory.png");     clip-path: polygon(87.25% 0, 100% 0, 100% 100%, 76.25% 100%);      animation-delay: .48s, 1.6s; }
+    .hm-1 { background-image: url("ymir-lalie/assets/eres-hero.index-hero.webp");                     clip-path: polygon(0 0, 25.75% 0, 14.75% 100%, 0 100%);          animation-delay: 0s, 0s; }
+    .hm-2 { background-image: url("ymir-lalie/assets/ediacaran-hero.index-hero.webp");                clip-path: polygon(26.25% 0, 47.75% 0, 36.75% 100%, 15.25% 100%); animation-delay: .12s, .4s; }
+    .hm-3 { background-image: url("provoxys/assets/artemis2-hero.index-hero.webp");                   clip-path: polygon(48.25% 0, 68.75% 0, 57.75% 100%, 37.25% 100%); animation-delay: .24s, .8s; }
+    .hm-4 { background-image: url("horloge-univers/assets/temps-univers.index-hero.webp");            clip-path: polygon(69.25% 0, 86.75% 0, 75.75% 100%, 58.25% 100%); animation-delay: .36s, 1.2s; }
+    .hm-5 { background-image: url("la-vie-de-la-terre/assets/earth-observatory.index-hero.webp");     clip-path: polygon(87.25% 0, 100% 0, 100% 100%, 76.25% 100%);      animation-delay: .48s, 1.6s; }
+    .hero-section.is-paused .hm-panel,
+    .hero-section.is-paused .emblem::before,
+    .hero-section.is-paused .emblem-ring,
+    .hero-section.is-paused .emblem-ticks,
+    .hero-section.is-paused .emblem-core { animation-play-state: paused; }
     @keyframes panelIn { from { opacity: 0; transform: scale(1.07); } to { opacity: 1; transform: none; } }
     @keyframes hmDrift { from { background-position: 50% 40%; } to { background-position: 50% 60%; } }
     /* legibility scrim : darken the left for the title, glow on the right, fade into the void */
@@ -673,6 +684,7 @@
       width: 100%; height: 100%; object-fit: cover;
       filter: saturate(.92) contrast(1.04);
       transition: transform .8s var(--ease), filter .6s var(--ease);
+      background: var(--navy);
     }
     .dossier:hover .dossier-media img { transform: scale(1.06); filter: saturate(1.08) contrast(1.06); }
     .dossier-media::after {
@@ -877,16 +889,21 @@
     .footer-nav .to-top { margin-left: auto; color: var(--gold); }
 
     /* ---------- Reveal animations ---------- */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .62s var(--ease), transform .62s var(--ease); }
     .reveal.in { opacity: 1; transform: none; }
-    .reveal[data-d="1"] { transition-delay: .08s; }
-    .reveal[data-d="2"] { transition-delay: .16s; }
-    .reveal[data-d="3"] { transition-delay: .24s; }
-    .reveal[data-d="4"] { transition-delay: .32s; }
-    .reveal[data-d="5"] { transition-delay: .4s; }
+    .reveal[data-d="1"] { transition-delay: .05s; }
+    .reveal[data-d="2"] { transition-delay: .1s; }
+    .reveal[data-d="3"] { transition-delay: .15s; }
+    .reveal[data-d="4"] { transition-delay: .2s; }
+    .reveal[data-d="5"] { transition-delay: .25s; }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 920px) {
+      body { background-attachment: scroll; }
+      .topbar { backdrop-filter: none; background: rgba(5, 8, 17, .94); }
+      .badge { backdrop-filter: none; background: rgba(5,8,17,.9); }
+      .grain { opacity: .025; mix-blend-mode: normal; }
+      .hm-panel { animation: panelIn 1.15s var(--ease) forwards; will-change: auto; }
       .hero { grid-template-columns: 1fr; }
       .emblem { order: -1; width: min(360px, 78vw); }
       .parcours-panel { grid-template-columns: 1fr; }
@@ -937,7 +954,7 @@
     <header class="topbar">
       <div class="wrap topbar-inner">
         <a class="brand" href="./index.html" aria-label="Accueil Empire contre Intox">
-          <img class="brand-seal" src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+          <img decoding="async" fetchpriority="high" class="brand-seal" src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
           <span class="brand-name">Empire contre Intox<small>Veritas omnia vincit</small></span>
         </a>
         <nav class="nav" aria-label="Navigation principale">
@@ -987,7 +1004,7 @@
           </svg>
           <div class="emblem-ticks"></div>
           <div class="emblem-core">
-            <img src="ymir-lalie/assets/logo-eci.jpg" alt="">
+            <img decoding="async" fetchpriority="high" src="ymir-lalie/assets/logo-eci.jpg" alt="">
           </div>
         </div>
         </div>
@@ -1064,7 +1081,7 @@
             <div class="dossiers">
             <article class="dossier reveal" data-d="1" style="--accent:#e0964a">
               <div class="dossier-media">
-                <img src="ymir-lalie/assets/eres-hero.png" alt="Illustration des ères géologiques de la Terre">
+                <img src="ymir-lalie/assets/eres-hero.index.webp" alt="Illustration des ères géologiques de la Terre" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier I</span>
                 <span class="badge">Frise géologique</span>
               </div>
@@ -1078,8 +1095,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1090,7 +1107,7 @@
 
             <article class="dossier reveal" data-d="2" style="--accent:#56c8a6">
               <div class="dossier-media">
-                <img src="ymir-lalie/assets/ediacaran-hero.png" alt="Illustration d'un fond marin édiacarien">
+                <img src="ymir-lalie/assets/ediacaran-hero.index.webp" alt="Illustration d'un fond marin édiacarien" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier II</span>
                 <span class="badge">Transcription TikTok</span>
               </div>
@@ -1104,8 +1121,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1116,7 +1133,7 @@
 
             <article class="dossier reveal" data-d="1" style="--accent:#9d8cff">
               <div class="dossier-media">
-                <img src="horloge-univers/assets/temps-univers.png" alt="Le temps de l'univers : du Big Bang à aujourd'hui, 13,787 milliards d'années en une frise cosmique">
+                <img src="horloge-univers/assets/temps-univers.index.webp" alt="Le temps de l'univers : du Big Bang à aujourd'hui, 13,787 milliards d'années en une frise cosmique" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier IV</span>
                 <span class="badge">Frise interactive</span>
               </div>
@@ -1130,7 +1147,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img loading="lazy" decoding="async" src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong></span>
                 </div>
@@ -1141,7 +1158,7 @@
 
             <article class="dossier reveal" data-d="2" style="--accent:#5bd6e0">
               <div class="dossier-media">
-                <img src="la-vie-de-la-terre/assets/earth-observatory.png" alt="Capture de l'application La Vie de la Terre : globe, frise du temps profond et télémétrie scientifique">
+                <img src="la-vie-de-la-terre/assets/earth-observatory.index.webp" alt="Capture de l'application La Vie de la Terre : globe, frise du temps profond et télémétrie scientifique" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier VI</span>
                 <span class="badge">Observatoire interactif</span>
               </div>
@@ -1155,7 +1172,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="la-vie-de-la-terre/assets/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img loading="lazy" decoding="async" src="la-vie-de-la-terre/assets/samlepirate.jpeg" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong></span>
                 </div>
@@ -1180,7 +1197,7 @@
             <div class="dossiers">
             <article class="dossier reveal" data-d="1" style="--accent:#4aa6b8">
               <div class="dossier-media">
-                <img src="ymir-lalie/ancetres-genetiques/assets/ancetres-hero.png" alt="Double hélice d'ADN dorée se ramifiant en un arbre des lignées humaines : Ève mitochondriale, Adam chromosome Y et LUCA">
+                <img src="ymir-lalie/ancetres-genetiques/assets/ancetres-hero.index.webp" alt="Double hélice d'ADN dorée se ramifiant en un arbre des lignées humaines : Ève mitochondriale, Adam chromosome Y et LUCA" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier VIII</span>
                 <span class="badge">Génétique &amp; dialogue</span>
               </div>
@@ -1194,8 +1211,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1206,7 +1223,7 @@
 
             <article class="dossier reveal" data-d="3" style="--accent:#3fa6b5">
               <div class="dossier-media">
-                <img src="ymir-lalie/singe-aquatique/assets/singe-aquatique-hero.png" alt="Un ancêtre humain nage à la surface d'une mer au crépuscule, mi-dessus mi-dessous la ligne d'eau : l'hypothèse du singe aquatique">
+                <img src="ymir-lalie/singe-aquatique/assets/singe-aquatique-hero.index.webp" alt="Un ancêtre humain nage à la surface d'une mer au crépuscule, mi-dessus mi-dessous la ligne d'eau : l'hypothèse du singe aquatique" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier X</span>
                 <span class="badge">Esprit critique</span>
               </div>
@@ -1220,8 +1237,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1232,7 +1249,7 @@
 
             <article class="dossier reveal" data-d="2" style="--accent:#e0962f">
               <div class="dossier-media">
-                <img src="phantom/abeilles/assets/abeilles-hero.png" alt="Une abeille (Apis mellifera) sur un rayon de miel hexagonal doré, planche d'histoire naturelle codex">
+                <img src="phantom/abeilles/assets/abeilles-hero.index.webp" alt="Une abeille (Apis mellifera) sur un rayon de miel hexagonal doré, planche d'histoire naturelle codex" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XIII</span>
                 <span class="badge">Histoire naturelle</span>
               </div>
@@ -1246,7 +1263,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="phantom/abeilles/phantom-avatar.png" alt="Avatar de PhantomBlast">
+                    <img loading="lazy" decoding="async" src="phantom/abeilles/phantom-avatar.png" alt="Avatar de PhantomBlast">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>PhantomBlast</strong><span class="note">avec Abeillaud</span></span>
                 </div>
@@ -1257,7 +1274,7 @@
 
             <article class="dossier reveal" data-d="2" style="--accent:#56c8a6">
               <div class="dossier-media">
-                <img src="ymir-lalie/evolution/assets/evolution-hero.png" alt="Un arbre-corail doré du vivant, tronc en double hélice d'ADN, avec un poisson, un primate, un humain et un oiseau sur des branches voisines : l'évolution est un buisson, pas une échelle">
+                <img src="ymir-lalie/evolution/assets/evolution-hero.index.webp" alt="Un arbre-corail doré du vivant, tronc en double hélice d'ADN, avec un poisson, un primate, un humain et un oiseau sur des branches voisines : l'évolution est un buisson, pas une échelle" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XXIII</span>
                 <span class="badge">Anti-intox</span>
               </div>
@@ -1271,8 +1288,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1297,7 +1314,7 @@
             <div class="dossiers">
             <article class="dossier reveal" data-d="3" style="--accent:#5fd2e6">
               <div class="dossier-media">
-                <img src="jorge-zalex/assets/elements-hero.png" alt="Le Tableau périodique des éléments, de la particule élémentaire à l'élément chimique">
+                <img src="jorge-zalex/assets/elements-hero.index.webp" alt="Le Tableau périodique des éléments, de la particule élémentaire à l'élément chimique" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier V</span>
                 <span class="badge">Cours scientifique</span>
               </div>
@@ -1311,8 +1328,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="jorge-zalex/jorge.jpeg" alt="Avatar de Jorge">
-                    <img src="jorge-zalex/zalex.astro.jpeg" alt="Avatar de Zalex">
+                    <img loading="lazy" decoding="async" src="jorge-zalex/jorge.jpeg" alt="Avatar de Jorge">
+                    <img loading="lazy" decoding="async" src="jorge-zalex/zalex.astro.jpeg" alt="Avatar de Zalex">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Jorge &amp; Zalex</strong><span class="note">d'après le cours de Jorge</span></span>
                 </div>
@@ -1323,7 +1340,7 @@
 
             <article class="dossier reveal" data-d="3" style="--accent:#43d6c4">
               <div class="dossier-media">
-                <img src="samlepirate/assets/champs-vecteurs-hero.jpg" alt="Champ de vecteurs : flèches d'un écoulement, avec sources, puits et tourbillons">
+                <img src="samlepirate/assets/champs-vecteurs-hero.index.webp" alt="Champ de vecteurs : flèches d'un écoulement, avec sources, puits et tourbillons" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier VII</span>
                 <span class="badge">Mathématiques + atelier</span>
               </div>
@@ -1337,7 +1354,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="samlepirate/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img loading="lazy" decoding="async" src="samlepirate/samlepirate.jpeg" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong><span class="note">d'après 3Blue1Brown</span></span>
                 </div>
@@ -1348,7 +1365,7 @@
 
             <article class="dossier reveal" data-d="3" style="--accent:#4a93b8">
               <div class="dossier-media">
-                <img src="provoxys/tornades/assets/tornades-hero.png" alt="Une tornade descend d'un orage supercellulaire au crépuscule, ciel de nuit et soleil d'or — tornades, typhons et ouragans">
+                <img src="provoxys/tornades/assets/tornades-hero.index.webp" alt="Une tornade descend d'un orage supercellulaire au crépuscule, ciel de nuit et soleil d'or — tornades, typhons et ouragans" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XII</span>
                 <span class="badge">Live Provox × Sam</span>
               </div>
@@ -1362,8 +1379,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="provoxys/tornades/provoxys.jpeg" alt="Avatar de Provoxys">
-                    <img src="provoxys/tornades/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img loading="lazy" decoding="async" src="provoxys/tornades/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img loading="lazy" decoding="async" src="provoxys/tornades/samlepirate.jpeg" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec le soutien de Samlepirate</span></span>
                 </div>
@@ -1374,7 +1391,7 @@
 
             <article class="dossier reveal" data-d="3" style="--accent:#d6ac55">
               <div class="dossier-media">
-                <img src="formules/assets/formules-hero.png" alt="Planche codex des formules de l'Empire : orbites, onde électromagnétique, atome et champ de vecteurs en filets d'or">
+                <img src="formules/assets/formules-hero.index.webp" alt="Planche codex des formules de l'Empire : orbites, onde électromagnétique, atome et champ de vecteurs en filets d'or" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XIV</span>
                 <span class="badge">Atlas interactif</span>
               </div>
@@ -1388,7 +1405,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="formules/samlepirate.jpeg" alt="Avatar de SamLePirate">
+                    <img loading="lazy" decoding="async" src="formules/samlepirate.jpeg" alt="Avatar de SamLePirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>SamLePirate</strong></span>
                 </div>
@@ -1413,7 +1430,7 @@
             <div class="dossiers">
             <article class="dossier reveal" data-d="3" style="--accent:#ff9a52">
               <div class="dossier-media">
-                <img src="provoxys/assets/artemis2-hero.png" alt="Lancement du SLS Artemis II, avec la Terre et la Lune en arrière-plan">
+                <img src="provoxys/assets/artemis2-hero.index.webp" alt="Lancement du SLS Artemis II, avec la Terre et la Lune en arrière-plan" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier III</span>
                 <span class="badge">Émission Provoxys</span>
               </div>
@@ -1427,8 +1444,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                    <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img loading="lazy" decoding="async" src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img loading="lazy" decoding="async" src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec la participation de Samlepirate</span></span>
                 </div>
@@ -1439,7 +1456,7 @@
 
             <article class="dossier reveal" data-d="2" style="--accent:#5fb9d4">
               <div class="dossier-media">
-                <img src="provoxys/exoplanetes/assets/exoplanetes-hero.png" alt="Un système exoplanétaire : une géante gazeuse en transit devant son étoile, un monde rocheux et des anneaux de lumière">
+                <img src="provoxys/exoplanetes/assets/exoplanetes-hero.index.webp" alt="Un système exoplanétaire : une géante gazeuse en transit devant son étoile, un monde rocheux et des anneaux de lumière" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XVII</span>
                 <span class="badge">Astronomie &amp; exoplanètes</span>
               </div>
@@ -1453,8 +1470,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                    <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img loading="lazy" decoding="async" src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img loading="lazy" decoding="async" src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec le soutien de Samlepirate (Atlas)</span></span>
                 </div>
@@ -1465,7 +1482,7 @@
 
             <article class="dossier reveal" data-d="2">
               <div class="dossier-media">
-                <img src="provoxys/sondes/assets/sondes-hero.png" alt="Une sonde interplanétaire de type Voyager dérivant dans l'espace profond, antenne tournée vers un Soleil lointain, planète géante annelée en arrière-plan">
+                <img src="provoxys/sondes/assets/sondes-hero.index.webp" alt="Une sonde interplanétaire de type Voyager dérivant dans l'espace profond, antenne tournée vers un Soleil lointain, planète géante annelée en arrière-plan" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XIX</span>
                 <span class="badge">Exploration spatiale</span>
               </div>
@@ -1479,9 +1496,9 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img loading="lazy" decoding="async" src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys, Lalie &amp; Samlepirate</strong></span>
                 </div>
@@ -1506,7 +1523,7 @@
             <div class="dossiers">
             <article class="dossier reveal" data-d="3" style="--accent:#b3503e">
               <div class="dossier-media">
-                <img src="ymir-lalie/esclavage/assets/esclavage-hero.png" alt="Le commerce triangulaire : trois continents reliés par des routes d'or sur l'Atlantique, une chaîne brisée se changeant en grains de sucre">
+                <img src="ymir-lalie/esclavage/assets/esclavage-hero.index.webp" alt="Le commerce triangulaire : trois continents reliés par des routes d'or sur l'Atlantique, une chaîne brisée se changeant en grains de sucre" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XI</span>
                 <span class="badge">Mémoire &amp; histoire</span>
               </div>
@@ -1520,8 +1537,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1532,7 +1549,7 @@
 
             <article class="dossier reveal" data-d="2" style="--accent:#b23a48">
               <div class="dossier-media">
-                <img src="ymir-lalie/la-resistance/assets/resistance-hero.png" alt="Silhouettes de résistants à l'aube, croix de Lorraine dorée et affiche rougie : Les Résistants, portraits de courage entre Histoire et Vérité">
+                <img src="ymir-lalie/la-resistance/assets/resistance-hero.index.webp" alt="Silhouettes de résistants à l'aube, croix de Lorraine dorée et affiche rougie : Les Résistants, portraits de courage entre Histoire et Vérité" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XV</span>
                 <span class="badge">Mémoire &amp; Résistance</span>
               </div>
@@ -1546,8 +1563,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1558,7 +1575,7 @@
 
             <article class="dossier reveal" data-d="3" style="--accent:#4a6bb0">
               <div class="dossier-media">
-                <img src="ymir-lalie/premieres-cites/assets/premieres-cites-hero.png" alt="La cité sumérienne d'Uruk au crépuscule : une ziggourat de briques crues domine une ville dense traversée d'un canal">
+                <img src="ymir-lalie/premieres-cites/assets/premieres-cites-hero.index.webp" alt="La cité sumérienne d'Uruk au crépuscule : une ziggourat de briques crues domine une ville dense traversée d'un canal" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XVIII</span>
                 <span class="badge">Archéologie &amp; cités</span>
               </div>
@@ -1572,8 +1589,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1584,7 +1601,7 @@
 
             <article class="dossier reveal" data-d="3" style="--accent:#b8763a">
               <div class="dossier-media">
-                <img src="ymir-lalie/premier-empires/assets/premier-empires-hero.png" alt="Fresque des premiers empires : ziggourat, forge de bronze, char de guerre et muraille lointaine sous un ciel d'or et de nuit">
+                <img src="ymir-lalie/premier-empires/assets/premier-empires-hero.index.webp" alt="Fresque des premiers empires : ziggourat, forge de bronze, char de guerre et muraille lointaine sous un ciel d'or et de nuit" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XX</span>
                 <span class="badge">Histoire des empires</span>
               </div>
@@ -1598,8 +1615,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong><span class="note">avec l'aide précieuse de Phantom</span></span>
                 </div>
@@ -1610,7 +1627,7 @@
 
             <article class="dossier reveal" data-d="2" style="--accent:#c98a3c">
               <div class="dossier-media">
-                <img src="ymir-lalie/egypte-grece/assets/egypte-grece-hero.png" alt="Duel visuel entre Égypte de la Maât et Grèce du Logos, du Nil à l'Agora">
+                <img src="ymir-lalie/egypte-grece/assets/egypte-grece-hero.index.webp" alt="Duel visuel entre Égypte de la Maât et Grèce du Logos, du Nil à l'Agora" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XXII</span>
                 <span class="badge">Antiquité comparée</span>
               </div>
@@ -1624,8 +1641,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="ymir-lalie/egypte-grece/ymir.jpeg" alt="Avatar d'Ymir">
-                    <img src="ymir-lalie/egypte-grece/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/egypte-grece/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/egypte-grece/lalie.jpeg" alt="Avatar de Lalie">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Ymir &amp; Lalie</strong></span>
                 </div>
@@ -1650,7 +1667,7 @@
             <div class="dossiers">
             <article class="dossier reveal" data-d="2" style="--accent:#5b8fb0">
               <div class="dossier-media">
-                <img src="lalie-ymir-sam/assets/politique-2026-hero.png" alt="Un hémicycle parlementaire doré divisé en quatre blocs, un bulletin glissé dans l'urne : comprendre la politique française en 2026">
+                <img src="lalie-ymir-sam/assets/politique-2026-hero.index.webp" alt="Un hémicycle parlementaire doré divisé en quatre blocs, un bulletin glissé dans l'urne : comprendre la politique française en 2026" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier IX</span>
                 <span class="badge">Éducation civique</span>
               </div>
@@ -1664,9 +1681,9 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="lalie-ymir-sam/lalie.jpeg" alt="Avatar de Lalie">
-                    <img src="lalie-ymir-sam/ymir.jpeg" alt="Avatar d'Ymir">
-                    <img src="lalie-ymir-sam/sam.jpeg" alt="Avatar de Sam">
+                    <img loading="lazy" decoding="async" src="lalie-ymir-sam/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="lalie-ymir-sam/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img loading="lazy" decoding="async" src="lalie-ymir-sam/sam.jpeg" alt="Avatar de Sam">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie, Ymir &amp; Sam</strong></span>
                 </div>
@@ -1677,7 +1694,7 @@
 
             <article class="dossier reveal" data-d="3" style="--accent:#b69bff">
               <div class="dossier-media">
-                <img src="provoxys/briser-le-silence/assets/briser-le-silence-hero.png" alt="Briser le Silence : la silhouette d'une femme face à un mur d'écrans hostiles, traversé par un ruban de lumière dorée">
+                <img src="provoxys/briser-le-silence/assets/briser-le-silence-hero.index.webp" alt="Briser le Silence : la silhouette d'une femme face à un mur d'écrans hostiles, traversé par un ruban de lumière dorée" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XVI</span>
                 <span class="badge">Live Provoxys × Lalie</span>
               </div>
@@ -1691,8 +1708,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                    <img src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys &amp; Lalie</strong></span>
                 </div>
@@ -1703,7 +1720,7 @@
 
             <article class="dossier reveal" data-d="1" style="--accent:#6f5bc9">
               <div class="dossier-media">
-                <img src="provoxys/therapie-conversion/assets/therapie-conversion-hero.png" alt="Une silhouette face à un miroir fissuré traversé d'un rai de lumière dorée, fils de marionnette rompus au-dessus d'elle : le poids de l'emprise et la sortie vers la lumière">
+                <img src="provoxys/therapie-conversion/assets/therapie-conversion-hero.index.webp" alt="Une silhouette face à un miroir fissuré traversé d'un rai de lumière dorée, fils de marionnette rompus au-dessus d'elle : le poids de l'emprise et la sortie vers la lumière" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XXI</span>
                 <span class="badge">Live Provoxys</span>
               </div>
@@ -1717,7 +1734,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img loading="lazy" decoding="async" src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong></span>
                 </div>
@@ -1742,7 +1759,7 @@
             <div class="dossiers">
             <article class="dossier reveal" data-d="1">
               <div class="dossier-media">
-                <img src="horloge-univers/assets/super-images/44-l-histoire-ecrite.png" alt="Archives et écriture : toutes les sources des dossiers, rendues vérifiables">
+                <img src="horloge-univers/assets/super-images/44-l-histoire-ecrite.index.webp" alt="Archives et écriture : toutes les sources des dossiers, rendues vérifiables" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XXIV</span>
                 <span class="badge">Appareil critique</span>
               </div>
@@ -1756,7 +1773,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Empire contre Intox</strong></span>
                 </div>
@@ -1767,7 +1784,7 @@
 
             <article class="dossier reveal" data-d="2" style="--accent:#43a89d">
               <div class="dossier-media">
-                <img src="calendrier-lives-hero.png" alt="Calendrier mensuel de L'Empire Contre-Intox : le programme des lives, sur parchemin impérial">
+                <img src="calendrier-lives-hero.index.webp" alt="Calendrier mensuel de L'Empire Contre-Intox : le programme des lives, sur parchemin impérial" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Agenda</span>
                 <span class="badge">Calendrier des lives</span>
               </div>
@@ -1781,7 +1798,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+                    <img loading="lazy" decoding="async" src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Empire contre Intox</strong></span>
                 </div>
@@ -1881,7 +1898,7 @@
         </nav>
         <div class="footer-inner">
           <div class="footer-brand">
-            <img src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+            <img loading="lazy" decoding="async" src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
             <strong>Empire contre Intox</strong>
           </div>
           <p class="footer-motto">Ad astra per aspera.</p>
@@ -1895,12 +1912,19 @@
   <script>
     // Scroll progress thread
     const bar = document.getElementById('progress');
+    let scrollRaf = 0;
     const onScroll = () => {
-      const h = document.documentElement;
-      const max = h.scrollHeight - h.clientHeight;
-      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      if (scrollRaf) return;
+      scrollRaf = requestAnimationFrame(() => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        const progress = max > 0 ? h.scrollTop / max : 0;
+        bar.style.transform = `scaleX(${progress})`;
+        scrollRaf = 0;
+      });
     };
     addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll, { passive: true });
     onScroll();
 
     // Staggered reveals for content below the fold
@@ -1908,7 +1932,7 @@
       for (const e of entries) {
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       }
-    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.04, rootMargin: '0px 0px -2% 0px' });
     document.querySelectorAll('.reveal:not(.in)').forEach((el) => io.observe(el));
 
     // Reveal the method steps (border + numeral cue)
@@ -1919,10 +1943,20 @@
 
     // Mouse parallax on the hero mosaic — depth per diagonal panel
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const finePointer = matchMedia('(pointer: fine)').matches;
     const heroSection = document.querySelector('.hero-section');
     const hmPanels = [...document.querySelectorAll('.hm-panel')];
-    if (heroSection && hmPanels.length && !reduce) {
-      let raf = null, tx = 0, ty = 0;
+
+    // Stop all decorative hero animations as soon as the hero leaves the viewport.
+    if (heroSection && !reduce) {
+      const heroIo = new IntersectionObserver(([entry]) => {
+        heroSection.classList.toggle('is-paused', !entry.isIntersecting);
+      }, { rootMargin: '120px 0px' });
+      heroIo.observe(heroSection);
+    }
+
+    if (heroSection && hmPanels.length && !reduce && finePointer) {
+      let raf = null, tx = 0, ty = 0, rect = null;
       const apply = () => {
         hmPanels.forEach((p, i) => {
           const f = (i + 1) * 3.2;
@@ -1930,15 +1964,19 @@
         });
         raf = null;
       };
+      const measure = () => { rect = heroSection.getBoundingClientRect(); };
+      heroSection.addEventListener('pointerenter', measure, { passive: true });
       heroSection.addEventListener('pointermove', (e) => {
-        const r = heroSection.getBoundingClientRect();
-        tx = (e.clientX - r.left) / r.width - 0.5;
-        ty = (e.clientY - r.top) / r.height - 0.5;
+        if (!rect) measure();
+        tx = (e.clientX - rect.left) / rect.width - 0.5;
+        ty = (e.clientY - rect.top) / rect.height - 0.5;
         if (!raf) raf = requestAnimationFrame(apply);
-      });
+      }, { passive: true });
       heroSection.addEventListener('pointerleave', () => {
+        rect = null;
         hmPanels.forEach((p) => { p.style.transform = ''; });
       });
+      addEventListener('resize', () => { rect = null; }, { passive: true });
     }
   </script>
   <script src="assets/visit-counter.js" defer></script>
