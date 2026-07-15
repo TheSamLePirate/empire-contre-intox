@@ -373,6 +373,7 @@
     .tl-detail .yr { font-family:var(--roman); font-weight:800; font-size:1.15rem; color:var(--gold-bright); letter-spacing:.02em; }
     .tl-detail h4 { margin:3px 0 6px; font-family:var(--serif); font-weight:600; font-size:1.1rem; color:var(--ink); }
     .tl-detail p { margin:0; color:var(--muted); font-size:.95rem; }
+    .tl-mobile { display:none; }
 
     /* — Bar chart (identité génétique) — */
     .bars-row { cursor:pointer; }
@@ -515,9 +516,38 @@
 
     @media (max-width:720px) {
       section[id] { scroll-margin-top:132px; }
+      .timeline { padding:6px; }
+      .timeline::before { left:31px; top:26px; bottom:26px; }
+      .timeline-row { grid-template-columns:50px minmax(0,1fr); gap:10px; padding:12px 8px; }
+      .timeline-row:hover,.timeline-row[aria-selected="true"] { transform:none; }
+      .timeline-row time { min-height:42px; padding:4px 2px; font-size:.58rem; }
+      .timeline-copy { min-width:0; }
+      .timeline-copy strong { font-size:.62rem; letter-spacing:.045em; }
+      .timeline-copy span { font-size:.81rem; line-height:1.38; }
+      .timeline-arrow { display:none; }
+      .timeline-detail { min-height:0; margin:6px 0 0; padding:15px 12px 12px; }
+      .timeline-detail .era { font-size:.56rem; letter-spacing:.12em; }
+      .timeline-detail h3 { font-size:1rem; }
+      .timeline-detail p { font-size:.86rem; line-height:1.5; }
       .leg-cards { grid-template-columns:1fr; }
       .viz-body { overflow-x:auto; scrollbar-width:thin; scrollbar-color:var(--gold-deep) transparent; }
       .viz-body > div { min-width:700px; }
+      .viz-body > .timeline-mount { min-width:0; }
+      .timeline-mount > svg { display:none; }
+      .tl-mobile { position:relative; display:grid; gap:8px; }
+      .tl-mobile::before { content:""; position:absolute; left:34px; top:28px; bottom:28px; width:1px; background:linear-gradient(var(--ocean),var(--gold),var(--ember)); opacity:.65; }
+      .tl-mobile-node { position:relative; display:grid; grid-template-columns:68px minmax(0,1fr) 18px; gap:10px; align-items:center; width:100%; min-height:68px; padding:10px 8px 10px 0; border:1px solid transparent; border-radius:3px; color:inherit; background:transparent; text-align:left; cursor:pointer; transition:background .25s var(--ease),border-color .25s var(--ease); }
+      .tl-mobile-node:hover,.tl-mobile-node.active { border-color:var(--line); background:rgba(244,236,216,.065); }
+      .tl-mobile-date { position:relative; z-index:1; display:grid; place-items:center; min-height:42px; padding:5px 3px; border:1px solid var(--node-color,var(--gold)); border-radius:2px; background:var(--abyss); color:var(--gold-bright); font-family:var(--roman); font-size:.59rem; font-weight:800; line-height:1.25; text-align:center; }
+      .tl-mobile-copy { min-width:0; }
+      .tl-mobile-copy strong { display:block; color:var(--parch); font-family:var(--serif); font-size:.94rem; line-height:1.25; }
+      .tl-mobile-copy small { display:block; margin-top:4px; color:var(--soft); font-family:var(--roman); font-size:.51rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+      .tl-mobile-arrow { color:var(--gold); font-size:1rem; transition:transform .25s var(--ease); }
+      .tl-mobile-node.active .tl-mobile-arrow { transform:translateX(3px); }
+      .tl-detail { min-height:0; margin:10px 14px 4px; padding-top:13px; }
+      .tl-detail .yr { font-size:1rem; }
+      .tl-detail h4 { font-size:1rem; line-height:1.3; }
+      .tl-detail p { font-size:.88rem; line-height:1.5; }
       .myth-lab { grid-template-columns:1fr; }
       .myth-intro { border-right:0; border-bottom:1px solid var(--line); }
       .myth-stage { min-height:390px; }
@@ -2252,26 +2282,46 @@
     function buildFrise(mountId, detailId, EV, colFor, ariaLabel){
       const mount = document.getElementById(mountId); if (!mount) return;
       const detail = document.getElementById(detailId);
+      mount.classList.add("timeline-mount");
       const W=920, H=150, x0=54, x1=866, ay=80, n=EV.length;
       const xs = EV.map((e,i) => x0 + (x1-x0)*i/(n-1));
       const svg = el("svg", { viewBox:"0 0 "+W+" "+H, role:"img", "aria-label":ariaLabel });
+      const mobile = document.createElement("div");
+      mobile.className = "tl-mobile";
+      mobile.setAttribute("aria-label", ariaLabel);
       for (let i=0;i<n-1;i++){
         svg.appendChild(el("line", { x1:xs[i], y1:ay, x2:xs[i+1], y2:ay, stroke:"var(--line)", "stroke-width":6, opacity:.5, "stroke-linecap":"round" }));
       }
-      const nodes = [];
+      const nodes = [], mobileNodes = [];
       EV.forEach((e,i) => {
         const g = el("g", { class:"tl-node", tabindex:0, role:"button", "aria-label":e.k+" "+e.h });
         g.appendChild(el("circle", { class:"dot", cx:xs[i], cy:ay, r:6, stroke:colFor(e) }));
         const ty = i%2 ? ay-15 : ay+25;
         const yr = el("text", { x:xs[i], y:ty, "text-anchor":"middle" }); yr.textContent = e.k;
         g.appendChild(yr);
-        const pick = () => { nodes.forEach((nd,j) => nd.classList.toggle("active", j===i)); detail.innerHTML = '<span class="yr">'+e.k+'</span><h4>'+e.h+'</h4><p>'+e.d+'</p>'; };
+        const button = document.createElement("button");
+        button.className = "tl-mobile-node";
+        button.type = "button";
+        button.style.setProperty("--node-color", colFor(e));
+        button.setAttribute("aria-pressed", "false");
+        const date = document.createElement("span"); date.className = "tl-mobile-date"; date.textContent = e.k;
+        const copy = document.createElement("span"); copy.className = "tl-mobile-copy";
+        const title = document.createElement("strong"); title.textContent = e.h;
+        const step = document.createElement("small"); step.textContent = "Étape "+(i+1)+" sur "+n;
+        const arrow = document.createElement("span"); arrow.className = "tl-mobile-arrow"; arrow.setAttribute("aria-hidden", "true"); arrow.textContent = "→";
+        copy.append(title, step); button.append(date, copy, arrow);
+        const pick = () => {
+          nodes.forEach((nd,j) => nd.classList.toggle("active", j===i));
+          mobileNodes.forEach((nd,j) => { nd.classList.toggle("active", j===i); nd.setAttribute("aria-pressed", String(j===i)); });
+          detail.innerHTML = '<span class="yr">'+e.k+'</span><h4>'+e.h+'</h4><p>'+e.d+'</p>';
+        };
         g.addEventListener("click", pick); g.addEventListener("mouseenter", pick); g.addEventListener("focus", pick);
         g.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); pick(); } });
-        svg.appendChild(g); nodes.push(g);
+        button.addEventListener("click", pick);
+        svg.appendChild(g); mobile.appendChild(button); nodes.push(g); mobileNodes.push(button);
       });
-      mount.appendChild(svg);
-      nodes[0].classList.add("active");
+      mount.append(svg, mobile);
+      nodes[0].classList.add("active"); mobileNodes[0].classList.add("active"); mobileNodes[0].setAttribute("aria-pressed", "true");
       detail.innerHTML = '<span class="yr">'+EV[0].k+'</span><h4>'+EV[0].h+'</h4><p>'+EV[0].d+'</p>';
     }
 
