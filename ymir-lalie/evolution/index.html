@@ -1,0 +1,1985 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>L'Évolution — Fin des idées reçues — Empire contre Intox</title>
+  <meta name="description" content="L'homme ne descend pas du singe, il EST un singe : cladistique, buisson du vivant, chaînon manquant, ADN à 98,8 %, mauvais design (nerf laryngé, œil inversé), dinosaures à plumes et organes vestigiaux — la théorie de l'évolution débarrassée de ses idées reçues, mot pour mot et vérifiée. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents — le vivant, la chlorophylle, l'ADN, l'os */
+      --ocean:#4bb58f;   /* la vie, la chlorophylle (accent maître secondaire) */
+      --ember:#c8603f;   /* la braise, l'anti-intox */
+      --iron:#8a94a0;    /* l'os, la pierre taillée */
+      --sugar:#e6dcc4;   /* l'ivoire, la coquille */
+
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+
+      --hero:url("assets/evolution-hero.png");
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(75,181,143,.15), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.13), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(200,96,63,.10), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px; mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.6),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(63,107,120,.6),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(179,80,62,.45),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.32),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate; }
+    .grain { position:fixed; inset:-50%; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--ember),var(--gold-bright),var(--ocean)); box-shadow:0 0 14px rgba(243,217,138,.55); }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(214,172,85,.28); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    /* Hero */
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02); }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2;
+      background:linear-gradient(86deg,rgba(3,6,13,.94) 0%,rgba(3,6,13,.72) 36%,rgba(3,6,13,.18) 68%,rgba(3,6,13,.5) 100%),linear-gradient(180deg,rgba(3,6,13,.1) 0%,rgba(3,6,13,.28) 54%,var(--void) 100%); }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1; background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh; display:grid; grid-template-columns:minmax(0,780px) minmax(250px,340px); gap:46px; align-items:end; }
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:16ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.7rem,7vw,5.8rem); line-height:.96; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil { background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 40%,#fff6dc 50%,var(--gold-bright) 60%,var(--gold-deep)); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% 0; } }
+    .hero-lead { max-width:58ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-quote { max-width:60ch; margin:22px 0 0; padding-left:20px; border-left:2px solid var(--ember); font-family:var(--serif); font-style:italic; color:var(--parch); font-size:clamp(1.05rem,1.5vw,1.26rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px; font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px); transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1 1 auto; min-width:0; -webkit-overflow-scrolling:touch;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent); }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--ember),var(--gold-bright),var(--ocean)); }
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    /* Intro band */
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.9rem); line-height:1.04; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:96px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time { font-family:var(--roman); font-weight:600; font-size:.8rem; letter-spacing:.04em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(63,107,120,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .act-band { margin:70px 0 0; padding:clamp(26px,4vw,46px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(130% 130% at 0% 0%,rgba(214,172,85,.12),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.55),rgba(7,12,26,.6)); text-align:center; }
+    .act-band .act-no { font-family:var(--roman); font-weight:700; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+    .act-band h2 { margin:14px 0 0; font-family:var(--roman); font-weight:800; font-size:clamp(1.9rem,4.4vw,3.2rem); text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .act-band p { max-width:72ch; margin:16px auto 0; color:var(--muted); }
+
+    /* Chapters */
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"❖"; position:absolute; left:0; top:0; color:var(--gold); font-size:.8em; }
+    .prose ol { margin:14px 0 24px; padding-left:24px; }
+    .prose ol li { padding-left:6px; }
+    .prose ol li::before { content:none; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+    .sub { margin:26px 0 10px; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--parch); }
+
+    .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
+    .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); }
+    /* doc-figure — présentation d'un document d'archive (couverture portrait + provenance) */
+    .doc-figure { display:grid; grid-template-columns:minmax(0,210px) 1fr; margin:8px 0 32px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:linear-gradient(180deg,rgba(12,9,7,.55),rgba(3,6,13,.55)); }
+    .doc-figure .doc-img { display:grid; place-items:center; padding:22px; background:radial-gradient(120% 90% at 50% 0%, rgba(179,80,62,.12), transparent 62%); }
+    .doc-figure .doc-img img { width:100%; max-width:186px; height:auto; border-radius:2px; box-shadow:0 16px 42px rgba(0,0,0,.6), 0 0 0 1px var(--line-2); }
+    .doc-figure figcaption { padding:22px 24px; border-left:1px solid var(--line-2); align-self:center; }
+    .doc-figure .doc-k { font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .doc-figure .doc-t { font-family:var(--serif); font-size:1.04rem; color:var(--parch); margin:9px 0 0; line-height:1.5; }
+    .doc-figure .doc-t b { color:var(--gold-bright); font-weight:600; }
+    .doc-figure .doc-m { font-size:.84rem; color:var(--muted); margin:11px 0 0; line-height:1.58; }
+    .doc-figure .doc-m a { color:var(--gold); }
+    @media (max-width:640px){ .doc-figure { grid-template-columns:1fr; } .doc-figure figcaption { border-left:0; border-top:1px solid var(--line-2); } .doc-figure .doc-img img { max-width:150px; } }
+
+    .script-block,.science-block,.question-block,.lesson-block,.dialogue-block {
+      border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
+    .dialogue-block { border-left-color:var(--gold); background:rgba(214,172,85,.06); font-family:var(--serif); }
+    .dialogue-block p { color:var(--parch); font-style:italic; }
+    .science-block { border-left-color:var(--ocean); background:rgba(63,107,120,.09); }
+    .question-block { border-left-color:var(--ember); background:rgba(179,80,62,.1); }
+    .lesson-block { border-left-color:var(--gold-bright); background:rgba(243,217,138,.06); }
+    .script-block p:last-child,.science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,.dialogue-block p:last-child,
+    .science-block ul:last-child,.lesson-block ul:last-child { margin-bottom:0; }
+    .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .science-block .block-label { color:var(--ocean); }
+    .question-block .block-label { color:var(--ember); }
+
+    /* Code Noir articles */
+    .articles { display:grid; gap:14px; margin:18px 0; }
+    .article-noir { border:1px solid var(--line-2); border-left:3px solid var(--ember); border-radius:3px; padding:20px 22px; background:rgba(179,80,62,.07); }
+    .article-noir h4 { font-family:var(--roman); font-size:.82rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ember); margin:0 0 8px; }
+    .article-noir .cite { display:block; font-family:var(--serif); font-style:italic; color:var(--parch); margin:0 0 10px; padding-left:14px; border-left:1px solid var(--line); }
+    .article-noir p { margin:0; color:var(--muted); font-size:.98rem; }
+    .article-noir p strong { color:var(--parch); }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    .dtable { width:100%; border-collapse:collapse; margin:14px 0; border:1px solid var(--line); border-radius:3px; overflow:hidden; font-size:.98rem; }
+    .dtable caption { text-align:left; padding:0 0 14px; color:var(--muted); font-style:italic; font-family:var(--serif); }
+    .dtable th { text-align:left; padding:13px 15px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); background:rgba(214,172,85,.06); border-bottom:1px solid var(--line); }
+    .dtable td { padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--line-2); color:var(--muted); }
+    .dtable tr:last-child td { border-bottom:0; }
+    .dtable td.k { color:var(--parch); font-weight:600; }
+    .dtable tr:hover td { background:rgba(244,236,216,.03); }
+
+    .sommaire-list { display:grid; gap:14px; margin:18px 0; }
+    .pillar { border:1px solid var(--line-2); border-radius:3px; padding:22px 24px; background:rgba(244,236,216,.035); border-left:3px solid rgba(214,172,85,.5); }
+    .pillar h3 { margin:0 0 10px; font-family:var(--serif); font-weight:600; font-size:1.24rem; color:var(--ink); }
+    .pillar p { margin:0 0 8px; }
+    .pillar ul { margin:8px 0 0; }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(179,80,62,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(63,107,120,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left:-14px; }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left:-20px; }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    .reveal[data-d="3"] { transition-delay:.24s; }
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .hero-inner > div > *:nth-child(5){ animation-delay:.5s; }
+    .js .signal-board { animation-delay:.5s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid { grid-template-columns:1fr; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+      .dtable { font-size:.9rem; }
+      .dtable th,.dtable td { padding:10px 11px; }
+    }
+    /* ============ Visualisations interactives ============ */
+    .viz { margin:30px 0; border:1px solid var(--line); border-radius:4px; overflow:hidden;
+      background:radial-gradient(140% 120% at 100% 0%,rgba(63,107,120,.1),transparent 55%),linear-gradient(180deg,rgba(7,12,26,.66),rgba(5,8,17,.74));
+      box-shadow:0 22px 64px rgba(0,0,0,.36); }
+    .viz-head { padding:20px 24px 0; }
+    .viz-eyebrow { display:inline-flex; align-items:center; gap:10px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
+    .viz-eyebrow::before { content:""; width:22px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    .viz-title { margin:10px 0 5px; font-family:var(--serif); font-weight:600; font-size:1.28rem; color:var(--ink); line-height:1.15; }
+    .viz-sub { margin:0; color:var(--soft); font-size:.92rem; }
+    .viz-body { padding:14px 24px 8px; }
+    .viz svg { display:block; width:100%; height:auto; overflow:visible; }
+    .viz-foot { padding:6px 24px 18px; font-family:var(--serif); font-style:italic; color:var(--soft); font-size:.84rem; }
+    .viz-foot a { color:var(--gold); border-bottom:1px solid var(--line); }
+    .viz text { font-family:var(--roman); fill:var(--muted); }
+    .viz-legend { display:flex; flex-wrap:wrap; gap:8px 16px; padding:0 24px 14px; }
+    .viz-legend span { display:inline-flex; align-items:center; gap:7px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .viz-legend i { width:11px; height:11px; border-radius:2px; display:inline-block; }
+
+    /* — Carte triangulaire — */
+    .tri-legs path.hit { stroke:transparent; stroke-width:34; fill:none; cursor:pointer; }
+    .tri-legs path.route { fill:none; stroke-width:2.4; stroke-linecap:round; transition:stroke-width .35s,opacity .35s; }
+    .tri-legs g.leg path.route { opacity:.4; }
+    .tri-legs g.leg.active path.route { opacity:1; stroke-width:3.4; }
+    .tri-legs path.flow { fill:none; stroke-width:3.2; stroke-linecap:round; stroke-dasharray:2 16; opacity:0; }
+    .tri-legs g.leg.active path.flow { opacity:1; animation:triflow 2.4s linear infinite; }
+    @keyframes triflow { to { stroke-dashoffset:-180; } }
+    .tri-node circle { fill:rgba(5,8,17,.9); stroke:var(--gold); stroke-width:1.4; }
+    .tri-node text { fill:var(--parch); font-weight:600; font-size:13px; letter-spacing:.04em; }
+    .tri-node .sub { fill:var(--soft); font-size:10px; font-weight:600; }
+    .leg-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:4px 24px; }
+    .leg-card { border:1px solid var(--line-2); border-left:3px solid var(--lc,var(--gold)); border-radius:3px; padding:13px 15px; background:rgba(244,236,216,.03); cursor:pointer; transition:transform .3s var(--ease),background .3s; text-align:left; }
+    .leg-card:hover { transform:translateY(-3px); background:rgba(244,236,216,.06); }
+    .leg-card.active { background:rgba(244,236,216,.08); box-shadow:0 0 0 1px var(--lc,var(--gold)) inset; }
+    .leg-card h5 { margin:0 0 3px; font-family:var(--roman); font-size:.64rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lc,var(--gold)); }
+    .leg-card p { margin:0; color:var(--muted); font-size:.85rem; }
+    .leg-detail { margin:14px 24px 4px; border-top:1px solid var(--line-2); padding-top:16px; min-height:104px; }
+    .leg-detail .lab { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--lc,var(--gold)); }
+    .leg-detail h4 { margin:7px 0 8px; font-family:var(--serif); font-weight:600; font-size:1.18rem; color:var(--ink); }
+    .leg-detail p { margin:0 0 10px; color:var(--muted); font-size:.96rem; }
+    .leg-detail ul { margin:0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+    .leg-detail li { font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--parch); border:1px solid var(--line); border-radius:2px; padding:5px 10px; background:rgba(214,172,85,.05); }
+    .leg-detail li::before { content:none; }
+
+    /* — Frise chronologique — */
+    .tl-node { cursor:pointer; }
+    .tl-node circle.dot { fill:var(--void); stroke-width:2; transition:r .25s; }
+    .tl-node:hover circle.dot,.tl-node.active circle.dot { r:8.5; }
+    .tl-node text { fill:var(--soft); font-size:10.5px; font-weight:600; letter-spacing:.02em; transition:fill .25s; }
+    .tl-node:hover text,.tl-node.active text { fill:var(--parch); }
+    .tl-detail { margin:6px 24px 4px; border-top:1px solid var(--line-2); padding-top:14px; min-height:74px; }
+    .tl-detail .yr { font-family:var(--roman); font-weight:800; font-size:1.15rem; color:var(--gold-bright); letter-spacing:.02em; }
+    .tl-detail h4 { margin:3px 0 6px; font-family:var(--serif); font-weight:600; font-size:1.1rem; color:var(--ink); }
+    .tl-detail p { margin:0; color:var(--muted); font-size:.95rem; }
+
+    /* — Bar chart (identité génétique) — */
+    .bars-row { cursor:pointer; }
+    .bars-row rect.bar { transition:filter .3s; }
+    .bars-row:hover rect.bar,.bars-row.active rect.bar { filter:brightness(1.3); }
+    .bars-row text.cap { fill:var(--parch); font-size:11px; font-weight:700; }
+    .bars-row text.yr { fill:var(--soft); font-size:10px; font-weight:600; }
+    .bars-detail { margin:10px 24px 4px; border-top:1px solid var(--line-2); padding-top:14px; min-height:58px; color:var(--muted); font-size:.95rem; }
+    .bars-detail b { color:var(--parch); }
+
+    /* — Plan du navire — */
+    .ship-controls { display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; padding:4px 24px 12px; }
+    .ship-toggle { display:inline-flex; border:1px solid var(--line); border-radius:3px; overflow:hidden; }
+    .ship-toggle button { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); background:transparent; border:0; padding:9px 14px; cursor:pointer; transition:background .25s,color .25s; }
+    .ship-toggle button.on { background:linear-gradient(140deg,var(--gold-bright),var(--gold-deep)); color:#14110a; }
+    .ship-readout { font-family:var(--serif); color:var(--muted); font-size:.94rem; }
+    .ship-readout b { font-family:var(--roman); font-weight:800; font-size:1.18rem; color:var(--gold-bright); letter-spacing:.02em; }
+    .ship svg .hull { fill:rgba(124,135,148,.07); stroke:var(--iron); stroke-width:1.4; }
+    .ship svg .deckline { stroke:var(--line); stroke-width:1; stroke-dasharray:3 4; }
+    .ship svg .fig { fill:var(--gold); opacity:.6; }
+    .ship svg .barricado { stroke:var(--ember); stroke-width:2.4; stroke-dasharray:5 4; }
+    .ship svg text.lbl { fill:var(--soft); font-size:10px; font-weight:600; }
+
+    @media (max-width:720px) {
+      .leg-cards { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      .tri-legs g.leg path.flow { opacity:0 !important; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+  <link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr">
+<meta name="rights" content="Sauf mention contraire, les contenus éditoriaux, textes, transcriptions, images et médias du site Empire contre Intox sont sous licence CC BY-NC-ND 4.0. Partage autorisé avec attribution, sans usage commercial ni modification.">
+  <style id="eci-license-style">
+  .eci-license{max-width:1100px;margin:18px auto 0;padding:14px 18px;border:1px solid rgba(214,172,85,.24);border-radius:3px;background:rgba(214,172,85,.06);color:inherit;font-size:.88rem;line-height:1.6;text-align:center;}
+  .eci-license a{color:#f3d98a;text-decoration:underline;text-underline-offset:.18em;}
+  .eci-license strong{color:inherit;font-weight:700;}
+  .eci-license-footer{position:relative;z-index:2;padding:24px 20px;border-top:1px solid rgba(214,172,85,.18);background:rgba(5,8,17,.72);}
+  .eci-counter-sep{opacity:.55;margin:0 .35em;}
+  .eci-visit-counter{white-space:nowrap;color:#c0b59a;}
+</style>
+</head>
+<body>
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" id="top">
+      <div class="hero-waterline"></div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Dossier XXIII · Le vivant &amp; l'évolution</p>
+          <h1>L'Évolution <span class="foil">sans idées reçues</span></h1>
+          <p class="hero-lead">« L'homme descend du singe », « pourquoi y a-t-il encore des singes ? », « le chaînon manquant », « c'est juste une théorie »… On remet les pendules à l'heure : preuves ADN et paléontologiques à l'appui, l'évolution n'est ni une échelle, ni une chaîne, mais un buisson dont nous ne sommes qu'une branche.</p>
+          <p class="hero-quote">« Nous ne sommes pas le point final de la création, mais un magnifique brouillon en perpétuelle réécriture. »</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#transcription">Lire le dossier</a>
+            <a class="button" href="#imperfection">La preuve par le bricolage</a>
+            <a class="button" href="../../index.html">Accueil ECI</a>
+          </div>
+        </div>
+        <aside class="signal-board" aria-label="Repères">
+          <div class="signal"><span>Le vrai modèle</span><strong>Un buisson, pas une échelle</strong></div>
+          <div class="signal"><span>La parenté</span><strong>~98,8 % d'ADN commun avec le chimpanzé</strong></div>
+          <div class="signal"><span>La preuve</span><strong>Le mauvais design du corps humain</strong></div>
+          <div class="signal"><span>Le fil rouge</span><strong>La science n'est pas une croyance, c'est une méthode</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="topbar" aria-label="Navigation principale">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Retour au début">
+          <img class="brand-mark" src="../assets/logo-eci.jpg" alt="" aria-hidden="true">
+          <span>Évolution</span>
+        </a>
+        <a class="home-link" href="../../index.html">Accueil ECI</a>
+        <button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+        <div class="nav" id="navLinks">
+          <a href="#fil">Le fil</a>
+          <a href="#sommaire">Sommaire</a>
+          <a href="#semantique">Le piège sémantique</a>
+          <a href="#singe-ignore">Ce singe qui s'ignore</a>
+          <a href="#singe-evolue">Le singe a évolué</a>
+          <a href="#fakenews">Fake News</a>
+          <a href="#maillon">Le maillon manquant</a>
+          <a href="#chiffres">Chiffres chocs</a>
+          <a href="#dinosaures">Dinosaures</a>
+          <a href="#imperfection">Le bricolage</a>
+          <a href="#oeil">L'œil</a>
+          <a href="#methode">La méthode</a>
+          <a href="#organes">Les vestiges</a>
+          <a href="#conclusion">Conclusion</a>
+        </div>
+      </div>
+      <div class="progress" aria-hidden="true"><span></span></div>
+    </nav>
+
+    <main id="transcription">
+      <section class="intro-band" id="fil">
+        <div class="manifesto reveal">
+          <p class="section-kicker">Le fil conducteur</p>
+          <h2>L'évolution n'est pas une échelle, ni une chaîne, mais un buisson.</h2>
+          <p>Ce dossier reprend <strong>mot pour mot</strong> le déroulé du live d'Ymir &amp; Lalie consacré à l'évolution et à ses idées reçues. On y déconstruit, avec de la biologie, de la génétique et un peu de mauvaise foi envers ceux qui croient l'humain « produit fini » : le piège sémantique de « l'homme descend du singe », le mythe du singe « inachevé », le fantôme du chaînon manquant, la preuve par le mauvais design, les dinosaures qui n'ont pas disparu — et pourquoi la science n'est pas une croyance mais une méthode.</p>
+        </div>
+        <div class="timeline reveal" data-d="1" aria-label="Fil conducteur">
+          <div class="timeline-row"><time>~375 Ma</time><p>Tiktaalik, cousin proche de nos ancêtres, illustre la sortie des eaux.</p></div>
+          <div class="timeline-row"><time>~7 Ma</time><p>La lignée se scinde : d'un côté les chimpanzés, de l'autre les humains.</p></div>
+          <div class="timeline-row"><time>1859 · 1871</time><p>Darwin publie <em>L'Origine des espèces</em>, puis <em>La Filiation de l'homme</em>.</p></div>
+          <div class="timeline-row"><time>Maintenant</time><p>Nous ne sommes pas les élus, mais les rescapés — et l'évolution continue.</p></div>
+        </div>
+      </section>
+
+      <section class="learning-panel reveal" aria-labelledby="objectifs">
+        <p class="section-kicker">Objectifs pédagogiques</p>
+        <h2 id="objectifs">Comprendre pourquoi nous ne descendons pas du singe : nous en <em>sommes</em> un.</h2>
+        <div class="learning-grid">
+          <div class="learning-item reveal" data-d="1"><span>Comprendre</span><p>La cladistique et la phylogénie : pourquoi appartenir au clade des grands singes n'est pas une insulte, mais une description technique de notre architecture biologique.</p></div>
+          <div class="learning-item reveal" data-d="2"><span>Déconstruire</span><p>Les idées reçues : « juste une théorie », « la loi du plus fort », « le chaînon manquant », « les animaux s'adaptent par volonté » — cinq fake news démontées une à une.</p></div>
+          <div class="learning-item reveal" data-d="3"><span>Prouver</span><p>Par le bricolage : le nerf laryngé, l'œil inversé, les organes vestigiaux. Le « mauvais design » du corps humain est la meilleure preuve que la nature tâtonne, elle ne prévoit pas.</p></div>
+        </div>
+      </section>
+
+      <!-- ===== VIZ — Frise du temps profond ===== -->
+      <section class="viz reveal" id="frise" aria-label="Frise des formes de transition et de la lignée humaine">
+        <div class="viz-head">
+          <span class="viz-eyebrow">Repères · interactif</span>
+          <p class="viz-title">De la sortie des eaux à « vous êtes ici »</p>
+          <p class="viz-sub">Cliquez (ou survolez) un repère. Le « maillon manquant » n'est pas un trou : c'est une forêt de formes de transition, chacune à sa place dans le temps profond.</p>
+        </div>
+        <div class="viz-body"><div id="friseMount"></div></div>
+        <div class="tl-detail" id="friseDetail"></div>
+        <div class="viz-legend">
+          <span><i style="background:var(--ocean)"></i>Sortie des eaux</span>
+          <span><i style="background:var(--gold)"></i>Lignée humaine</span>
+          <span><i style="background:var(--ember)"></i>Nous, aujourd'hui</span>
+        </div>
+        <div class="viz-foot">Sources : Nature (Brunet 2002, Daeschler &amp; Shubin 2006) · Smithsonian Human Origins. <a href="../../sources/sources.html">Appareil critique →</a></div>
+      </section>
+
+      <!-- ===== CH 01 — OUVERTURE ===== -->
+      <section class="chapter reveal" aria-labelledby="c1">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Ouverture du live</p><h2 id="c1">« Arrêtez de raconter n'importe quoi. »</h2></div>
+          <div class="chapter-number">01</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p class="lede">L'Évolution, … fin des idées reçues.</p>
+            <div class="dialogue-block">
+              <span class="block-label">Au micro</span>
+              <p>Salut à toutes et à tous ! On est enfin de retour. Vous nous l'avez demandé, on l'a travaillé, et aujourd'hui, on ne va pas juste 'parler' d'évolution. On va enfin mettre les pendules à l'heure."</p>
+              <p>Exactement. Parce qu'on a vu passer pas mal de choses sur les lives et sur les réseaux ces derniers temps... Et franchement ça va pas du tout !</p>
+              <p>Des trucs du genre 'si on descend du singe, pourquoi y'a encore des singes ?' ou encore cette fameuse quête du 'chaînon manquant'...Mais Adam et Eve, c'est eux les premiers !</p>
+              <p>- On a décidé, avec Ymir et toute l'équipe de L'Empire Contre-Intox, qu'il était temps de déconstruire tout ça. On va vous montrer pourquoi, en réalité, l'évolution n'est pas une échelle, pas une chaîne, mais un buisson incroyablement complexe dont nous sommes juste... une branche parmi d'autres.</p>
+              <p>Et on va le faire avec du concret. Pas de bla-bla mystique, juste de la biologie, de la génétique et un peu de mauvaise foi envers ceux qui pensent que l'humain est le 'produit fini' de la nature.</p>
+              <p>Préparez vos questions, sortez vos notes. On attaque direct avec le plus gros malentendu de toute l'histoire de la biologie : notre parenté avec nos cousins primates."</p>
+            </div>
+            <p>On s'attaque à nouveau donc à un monument : <strong>La Théorie De L'Evolution.</strong></p>
+            <p>Entre mythes tenaces, erreurs linguistiques et raccourcis scientifiques, nous allons remettre les pendules à l'heure. Oubliez l'image de l'homme qui descend du singe : nous allons vous démontrer, preuves ADN et paléontologiques à l'appui, pourquoi nous sommes en réalité des 'cousins' au sein de la grande famille des grands singes. Pas de cours magistral, juste une déconstruction méthodique et sans filtre, dans le pur style de L'Empire Contre-Intox.</p>
+          </article>
+          <aside class="side-note">
+            <h3>Le décor</h3>
+            <p>Un live d'<strong>Ymir &amp; Lalie</strong> pour l'Empire Contre-Intox : sept parties, des dizaines d'idées reçues, et une conviction — reconnaître que nous sommes des singes, ce n'est pas nous rabaisser, c'est intégrer la beauté de notre parenté avec le vivant.</p>
+            <div class="tag-list"><span class="tag">Évolution</span><span class="tag">Anti-intox</span><span class="tag">Phylogénie</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 02 — SOMMAIRE ===== -->
+      <section class="chapter reveal" id="sommaire" aria-labelledby="c2">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Sommaire</p><h2 id="c2">Sept parties pour en finir avec les idées reçues.</h2></div>
+          <div class="chapter-number">02</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="sommaire-list">
+              <div class="pillar reveal" data-d="1"><h3>I. Le Piège Sémantique : "L'Homme descend du singe" ?</h3>
+                <ul>
+                  <li>Le concept de cladistique (le jeu d'emboîtement).</li>
+                  <li>Déconstruction de la linéarité : pourquoi nous sommes des singes, pas des descendants.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>II. L'Homme, ce singe qui s'ignore</h3>
+                <ul>
+                  <li>L'erreur de l'essentialisme vs la réalité de la phylogénie.</li>
+                  <li>L'évolution : un buisson, pas une échelle.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>III. Le "Singe" n'a pas évolué ? (Le Grand Malentendu)</h3>
+                <ul>
+                  <li>Le mythe du singe "inachevé" : le cousin vs l'ancêtre.</li>
+                  <li>Adaptation vs Perfection : le buffet des stratégies de survie.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>IV. La "Fake News" Station</h3>
+                <ul>
+                  <li>"C'est juste une théorie" / "La loi du plus fort".</li>
+                  <li>"L'évolution explique l'origine de la vie" (abiogenèse).</li>
+                  <li>Les erreurs sur l'adaptation par volonté (Lamarckisme).</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>V. Le Mystère du "Maillon Manquant"</h3>
+                <ul>
+                  <li>Pourquoi cette expression est obsolète (le concept de dégradé).</li>
+                  <li>L'historique du malentendu (Lyell, Haeckel, Dubois).</li>
+                  <li>Le maillon manquant : un "Bigfoot" biologique.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>VI. L'Imperfection : La preuve par le bricolage</h3>
+                <ul>
+                  <li>Les erreurs de conception du corps humain (Nerf laryngé, œil inversé, accouchement).</li>
+                  <li>Science vs Dogme : Pourquoi le "mauvais design" prouve l'évolution.</li>
+                </ul>
+              </div>
+              <div class="pillar reveal" data-d="1"><h3>VII. Analogie Finale : Le Nouveau Monde</h3>
+                <ul>
+                  <li>L'objet existe avant le nom (Dinosaures, Australie).</li>
+                  <li>Ouverture : "L'évolution n'est pas une quête de perfection, c'est une leçon de survie."</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Architecture</h3>
+            <p>Du piège des mots à la leçon de survie : sept parties qui vont du malentendu linguistique aux preuves ADN, des dinosaures à plumes aux organes vestigiaux que vous portez en ce moment même.</p>
+            <div class="tag-list"><span class="tag">Cladistique</span><span class="tag">Buisson du vivant</span><span class="tag">Chaînon manquant</span><span class="tag">Bricolage</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CRÉDIT ===== -->
+      <section class="credit-band reveal" aria-label="Crédits auteurs">
+        <span class="credit-avatars">
+          <img src="lalie.jpeg" alt="Avatar de Lalie">
+          <img src="ymir.jpeg" alt="Avatar d'Ymir">
+        </span>
+        <div class="credit-text">
+          <span class="lbl">Réalisé par</span>
+          <strong>Lalie &amp; Ymir</strong>
+        </div>
+      </section>
+
+      <!-- ===== ACT I ===== -->
+      <section class="act-band reveal" id="semantique" aria-labelledby="actI">
+        <p class="act-no">Partie I · Le piège sémantique</p>
+        <h2 id="actI">« L'homme descend du singe » ?</h2>
+        <p>L'idée que « l'homme descend du singe » est l'erreur classique qui occulte la compréhension réelle de l'évolution. En sciences, nous ne parlons pas de descendance linéaire (ancêtre → descendant), mais de parenté phylogénétique (ancêtre commun → embranchements).</p>
+      </section>
+
+      <!-- ===== CH 03 — CLADISTIQUE ===== -->
+      <section class="chapter reveal" aria-labelledby="c3">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La taxonomie</p><h2 id="c3">Un jeu d'emboîtement.</h2></div>
+          <div class="chapter-number">03</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/buisson-vivant.png" alt="Un buisson doré du vivant qui se ramifie : à l'inverse de la fausse « échelle » linéaire, l'humain n'est qu'une brindille parmi les grands singes" loading="lazy">
+              <figcaption>Le vivant est un buisson — l'humain, une brindille parmi les grands singes</figcaption>
+            </figure>
+            <h3 class="group-title">1. La taxonomie : Un jeu d'emboîtement</h3>
+            <p>La classification moderne (cladistique) ne définit plus les groupes par ce qu'ils font, mais par ce qu'ils sont (leurs caractères dérivés partagés).</p>
+            <ul>
+              <li><strong>Le concept de clade :</strong> Un clade regroupe un ancêtre commun et tous ses descendants.</li>
+              <li><strong>La place de l'humain :</strong> L'humain appartient à la famille des Hominidés. Cette famille inclut les chimpanzés, les gorilles et les orangs-outans.</li>
+              <li><strong>La logique biologique :</strong> Si vous êtes un Hominidé, vous êtes par définition un grand singe. Dire que l'humain « descend » du singe est une erreur, car cela suppose que le singe est une entité figée dont l'humain se serait détaché. En réalité, l'humain est une branche parmi d'autres du groupe des singes.</li>
+            </ul>
+            <h3 class="group-title">2. L'ancêtre commun : Le pivot de la réflexion</h3>
+            <p>Pour expliquer pourquoi nous sommes des singes, il faut déconstruire le mythe du « chaînon manquant » linéaire.</p>
+            <ul>
+              <li><strong>La notion de divergence :</strong> Il y a environ 6 à 7 millions d'années, une population ancestrale de primates s'est scindée. Un groupe a évolué vers la lignée des Paninés (chimpanzés et bonobos), l'autre vers la lignée des Homininés (humains).</li>
+              <li><strong>L'erreur du « plus primitif » :</strong> Aucun des deux n'est l'ancêtre de l'autre. Le chimpanzé actuel n'est pas « l'ancêtre » de l'humain, il est un cousin qui a évolué de son côté pendant 7 millions d'années, tout comme nous.</li>
+            </ul>
+            <h3 class="group-title">3. Les preuves de notre « siméité » (Appartenance au groupe)</h3>
+            <p>Pour convaincre votre audience, appuyez-vous sur des caractères dérivés partagés qui ne laissent aucune place au doute :</p>
+            <ul>
+              <li><strong>Génétique :</strong> Nous partageons environ 98,8 % de notre ADN avec les chimpanzés.</li>
+              <li><strong>Morphologie :</strong> La structure de notre squelette, la disposition de nos organes et même notre système immunitaire témoignent de cette origine commune profonde.</li>
+              <li><strong>Éthologie :</strong> Les capacités cognitives, l'utilisation d'outils, les structures sociales complexes et la gestion des émotions observées chez les grands singes sont des reflets de notre propre héritage biologique.</li>
+            </ul>
+            <h3 class="group-title">4. Synthèse</h3>
+            <div class="dialogue-block">
+              <span class="block-label">Le mot-clé</span>
+              <p>« Ne cherchez pas un ancêtre qui ressemblerait à un chimpanzé actuel. Cherchez plutôt une population de primates ancestraux dont nous partageons tous les deux l'héritage. L'humain n'est pas un singe qui a "réussi" à sortir du groupe : il est l'un des membres les plus spécialisés, et peut-être le plus surprenant, de la famille des grands singes. »</p>
+            </div>
+            <div class="science-block">
+              <span class="block-label">Sources pour vos recherches complémentaires</span>
+              <ul>
+                <li>Lecointre, G. (2018). La classification phylogénétique du vivant. (Ouvrage de référence pour la taxonomie).</li>
+                <li>Brunet, M. (2002). Travaux sur Sahelanthropus tchadensis (Toumaï), pour illustrer la divergence des lignées.</li>
+                <li>Muséum national d'Histoire naturelle. Dossiers pédagogiques sur l'évolution humaine et la phylogénie.</li>
+              </ul>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le chiffre 98,8 %</h3>
+            <p>Le « ~98,8 % » est exact <strong>pour les substitutions d'un seul nucléotide</strong> sur les portions directement alignables (Chimpanzee Sequencing Consortium, <em>Nature</em>, 2005). En comptant les insertions/délétions, l'identité globale tombe à <strong>~96 %</strong>. Le bonobo, lui, ne sera séquencé qu'en 2012.</p>
+            <div class="tag-list"><span class="tag">Clade</span><span class="tag">Hominidés</span><span class="tag">Divergence</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== ACT II ===== -->
+      <section class="act-band reveal" id="singe-ignore" aria-labelledby="actII">
+        <p class="act-no">Partie II · L'Homme, ce singe qui s'ignore</p>
+        <h2 id="actII">Le problème n'est pas biologique, il est linguistique.</h2>
+        <p>Nous sommes héritiers d'une vision essentialiste du monde : celle d'Aristote, qui classait les êtres selon des « essences » fixes. La phylogénie moderne, elle, refuse de considérer qu'un groupe s'arrête là où un autre commence.</p>
+      </section>
+
+      <!-- ===== CH 04 — ESSENTIALISME ===== -->
+      <section class="chapter reveal" aria-labelledby="c4">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La faute épistémologique</p><h2 id="c4">« Essentialisme » vs « Phylogénie ».</h2></div>
+          <div class="chapter-number">04</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">1. La faute épistémologique : Le "Essentialisme" vs "Phylogénie"</h3>
+            <p>Le problème fondamental n'est pas biologique, il est linguistique et philosophique. Nous sommes héritiers d'une vision essentialiste du monde : celle d'Aristote, qui classait les êtres selon des "essences" fixes.</p>
+            <ul>
+              <li><strong>L'erreur :</strong> Imaginer que le mot "singe" désigne un groupe figé dont l'humain serait extérieur. C'est ce qu'on appelle une vision anthropocentrée.</li>
+              <li><strong>La correction :</strong> La phylogénie moderne (la science des parentés) refuse de considérer qu'un groupe s'arrête là où un autre commence. Si vous avez un ancêtre commun avec un chimpanzé, alors vous appartenez au même "clade". En biologie, on ne "sort" jamais de son groupe d'origine : on est toujours ce qu'on était.
+                <ul><li><strong>Exemple :</strong> Un mammifère reste un mammifère, même s'il devient une baleine. L'humain reste un singe, même s'il devient bipède et technologique.</li></ul>
+              </li>
+            </ul>
+            <h3 class="group-title">2. Le mythe de la linéarité : Le "Grand Échelle des Êtres"</h3>
+            <p>Pourquoi cette image d'un singe qui se redresse est-elle si tenace ? Parce qu'elle flatte notre ego en nous plaçant au sommet d'une hiérarchie.</p>
+            <ul>
+              <li><strong>Le biais :</strong> Nous projetons une finalité sur l'évolution (téléologie). On imagine que la nature a "visé" l'humain.</li>
+              <li><strong>La réalité :</strong> L'évolution est un buisson, pas une échelle.</li>
+              <li><strong>L'épistémologie de terrain :</strong> Lorsque nous disons "l'homme descend du singe", nous sous-entendons que le singe actuel est "inachevé" et que nous sommes le produit "fini". C'est une erreur de raisonnement grave : les chimpanzés et nous sommes le résultat de 7 millions d'années d'évolution divergente. Ils sont aussi "évolués" que nous, mais dans une autre direction, parfaitement adaptée à leur niche écologique.</li>
+            </ul>
+            <h3 class="group-title">3. La taxonomie comme miroir de notre ignorance</h3>
+            <p>Pour le dire simplement à vos abonnés : Nommer, c'est classer, et classer, c'est trahir.</p>
+            <ul>
+              <li><strong>La classification cladistique :</strong> Elle est rigoureuse car elle interdit les groupes "fourre-tout". Si on appelle un groupe "singes" (simiiformes), alors, par définition, nous devons y figurer. Si on nous en exclut, le groupe devient "non-scientifique".</li>
+              <li><strong>L'argument d'autorité biologique :</strong>
+                <ul>
+                  <li>Nos mains ont la même structure pentadactyle (cinq doigts) que celles de nos ancêtres primates.</li>
+                  <li>Nos yeux sont orientés vers l'avant (vision stéréoscopique), un héritage de la vie arboricole.</li>
+                  <li>Le fait que nous soyons des singes n'est pas une "insulte" ou une "théorie", c'est une description technique de notre architecture biologique.</li>
+                </ul>
+              </li>
+            </ul>
+            <h3 class="group-title">4. Synthèse</h3>
+            <ul><li><strong>La posture :</strong> Ne pas être dans la confrontation, mais dans la révélation.</li></ul>
+            <div class="dialogue-block">
+              <span class="block-label">La révélation</span>
+              <p>"Dire que l'homme descend du singe, c'est comme dire qu'un cousin descend de son frère. C'est faux. L'homme, le chimpanzé et le gorille sont tous des frères, des cousins qui partagent le même grand-père primate, disparu il y a des millions d'années. Nous ne sommes pas les descendants d'une espèce de singe, nous sommes une espèce de singe parmi les autres."</p>
+            </div>
+            <h3 class="group-title">5. Pour aller plus loin (L'angle "Empire Contre-Intox")</h3>
+            <ul>
+              <li><strong>Le point de réflexion :</strong> Pourquoi avons-nous besoin de nous sentir "spéciaux" au point de nier notre parenté biologique ?</li>
+              <li><strong>La piste :</strong> Peut-être parce que nous avons peur de voir que nos comportements sociaux, nos guerres, notre solidarité et notre curiosité sont aussi des héritages profonds de nos racines primatiales. Reconnaître que nous sommes des singes, c'est aussi reconnaître que notre intelligence est une continuité, pas une rupture miraculeuse.</li>
+            </ul>
+          </article>
+          <aside class="side-note">
+            <h3>La clé</h3>
+            <p><strong>L'évolution est un buisson, pas une échelle.</strong> L'image du singe qui se redresse (la « Marche du Progrès ») flatte notre ego, mais elle est fausse : chaque espèce vivante est le bout d'une branche, aucune n'est « en route » vers une autre.</p>
+            <div class="tag-list"><span class="tag">Essentialisme</span><span class="tag">Téléologie</span><span class="tag">Anthropocentrisme</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== ACT III ===== -->
+      <section class="act-band reveal" id="singe-evolue" aria-labelledby="actIII">
+        <p class="act-no">Partie III · Le grand malentendu</p>
+        <h2 id="actIII">Pourquoi le singe n'a pas évolué ?</h2>
+        <p>C'est la question que tout le monde se pose, dans certains lives voir ici maintenant ! C'est le moment idéal pour corriger une énorme idée reçue avec parcimonie et rigueur.</p>
+      </section>
+
+      <!-- ===== CH 05 — LE SINGE A ÉVOLUÉ ===== -->
+      <section class="chapter reveal" aria-labelledby="c5">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le singe a autant évolué que nous</p><h2 id="c5">Trois arguments chocs.</h2></div>
+          <div class="chapter-number">05</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/cousins-primates.png" alt="Depuis un même ancêtre, deux chemins divergents : le chimpanzé vers la forêt, l'humain vers la savane — deux cousins contemporains" loading="lazy">
+              <figcaption>Deux cousins, deux niches — aucun n'est l'ancêtre de l'autre</figcaption>
+            </figure>
+            <p>L'erreur, c'est de croire que l'homme est le "but" de l'évolution et que le singe est une "étape ratée".</p>
+            <p>En réalité :</p>
+            <p class="lede">Le singe a autant évolué que l'homme, mais dans une direction différente.</p>
+            <p>Voici les 3 arguments chocs pour répondre aux sceptiques</p>
+            <h3 class="group-title">1. Nous ne descendons pas du chimpanzé</h3>
+            <p>Nous avons un ancêtre commun (qui ne ressemblait ni tout à fait à un homme, ni tout à fait à un chimpanzé).</p>
+            <ul>
+              <li>Il y a environ 7 millions d'années, la lignée s'est séparée en deux.</li>
+              <li>Une branche a évolué vers la savane (nous).</li>
+              <li>L'autre branche a continué d'évoluer pour la forêt (les chimpanzés).</li>
+            </ul>
+            <h3 class="group-title">2. Le chimpanzé est "parfait" pour son milieu</h3>
+            <p>L'évolution ne cherche pas à créer de l'intelligence, elle cherche à créer de la survie.</p>
+            <ul>
+              <li>Si tu mets un humain nu en pleine jungle face à un chimpanzé, c'est l'humain qui a l'air "moins évolué" : le chimpanzé est 4 fois plus fort que nous, il grimpe avec une agilité incroyable et sait survivre sans outils.</li>
+              <li>Pour son environnement (la forêt tropicale), le singe est un chef-d'œuvre d'évolution. Il n'avait aucune raison de développer un gros cerveau énergivore pour marcher dans la savane.</li>
+            </ul>
+            <h3 class="group-title">3. Ils ont évolué... mais ça ne se voit pas au premier coup d'œil</h3>
+            <p>On croit qu'ils n'ont pas bougé parce qu'ils ont toujours des poils et quatre pattes, mais leur ADN a changé autant que le nôtre :</p>
+            <ul>
+              <li>Leur système immunitaire a évolué pour combattre des virus tropicaux.</li>
+              <li>Leur dentition s'est adaptée à leur régime.</li>
+              <li>Leurs pieds sont restés des "mains" parce que c'est un avantage vital pour eux, alors que pour nous, c'était devenu un handicap pour marcher droit.</li>
+            </ul>
+            <div class="dialogue-block">
+              <span class="block-label">La punchline</span>
+              <p>"Dire que le singe n'a pas évolué parce qu'il n'est pas devenu humain, c'est comme dire que le voilier est un échec parce qu'il n'est pas devenu un avion. Les deux servent à voyager, mais pas sur le même terrain."</p>
+            </div>
+            <p>Nous avons une petite histoire à vous conter.</p>
+            <h3 class="group-title">« Le Cousin et le Millionnaire »</h3>
+            <div class="dialogue-block">
+              <span class="block-label">L'histoire</span>
+              <p>"Si quelqu'un dit : 'Si l'homme descend du singe, pourquoi y a-t-il encore des singes ?', posez-lui cette question :</p>
+              <p>'Si tu descends de tes grands-parents, pourquoi as-tu encore des cousins ?'</p>
+              <p>C'est exactement la même chose. Tes cousins n'ont pas 'échoué' à devenir toi. Vous avez simplement pris des chemins différents après vos grands-parents. Le singe, c'est ton cousin éloigné. Il n'est pas ton ancêtre, il est ton contemporain.</p>
+              <p>L'évolution, ce n'est pas une course où l'humain est la ligne d'arrivée. C'est un buffet à volonté : nous on a pris l'option 'Gros Cerveau et Mal de Dos', et le chimpanzé a pris l'option 'Muscles d'Acier et Vie en Forêt'. Chacun sa stratégie, et pour l'instant, les deux fonctionnent !"</p>
+            </div>
+            <div class="lesson-block">
+              <span class="block-label">Fiche Mémo (Les 3 points clés)</span>
+              <p>Retenir juste ces 3 mots :</p>
+              <ol>
+                <li><strong>COUSINS, PAS PARENTS :</strong> On partage un ancêtre, on ne descend pas d'eux.</li>
+                <li><strong>ADAPTATION :</strong> Le singe est le roi de la jungle, l'humain est le roi de l'outil. Chacun son domaine.</li>
+                <li><strong>PAS DE BUT :</strong> L'évolution ne cherche pas à fabriquer des humains, elle cherche à fabriquer des survivants.</li>
+              </ol>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">Le mot de la fin</span>
+              <p>"Au final, la question n'est pas de savoir pourquoi le singe n'est pas devenu humain, mais plutôt : serons-nous encore là dans un million d'années pour voir ce que le singe est devenu ? Car lui aussi, il continue d'évoluer en ce moment même !"</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · « 4 fois plus fort »</h3>
+            <p>Le « chimpanzé 4× plus fort » est un <strong>mythe populaire</strong>. À masse musculaire égale, son muscle ne produit qu'environ <strong>1,35 fois</strong> plus de force/puissance dynamique (O'Neill <em>et al.</em>, <em>PNAS</em>, 2017) — la vraie différence tient à sa proportion de fibres rapides (~66 % contre ~30 % chez l'humain), pas à une force surhumaine.</p>
+            <div class="tag-list"><span class="tag">Cousins, pas parents</span><span class="tag">Adaptation</span><span class="tag">Pas de but</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== ACT IV ===== -->
+      <section class="act-band reveal" id="fakenews" aria-labelledby="actIV">
+        <p class="act-no">Partie IV · La « Fake News » Station</p>
+        <h2 id="actIV">Cinq idées reçues, cinq réponses.</h2>
+        <p>« L'évolution n'est pas une quête de perfection, c'est une leçon de survie : on ne devient pas le meilleur, on devient simplement celui qui reste. »</p>
+      </section>
+
+      <!-- ===== CH 06 — FAKE NEWS ===== -->
+      <section class="chapter reveal" aria-labelledby="c6">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Les Fakes News</p><h2 id="c6">L'idée reçue contre la réalité.</h2></div>
+          <div class="chapter-number">06</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">Fake News n°1 : "C'est juste une théorie"</h3>
+            <ul>
+              <li><strong>L'idée reçue :</strong> "Si c'est une théorie, c'est que les scientifiques ne sont pas sûrs, c'est comme une opinion."</li>
+              <li><strong>La réalité :</strong> En science, une Théorie est le niveau de certitude le plus élevé. C'est un ensemble de preuves vérifiées qui expliquent des faits. On parle de la théorie de la gravitation (pourtant, personne ne doute que si tu lâches ton téléphone, il tombe) ou de la théorie des germes. L'évolution est un fait observé</li>
+            </ul>
+            <h3 class="group-title">Fake News n°2 : "L'évolution, c'est la loi du plus fort"</h3>
+            <ul>
+              <li><strong>L'idée reçue :</strong> "Seuls les plus costauds survivent (Darwinisme social)."</li>
+              <li><strong>La réalité :</strong> Darwin n'a jamais dit ça. Il parlait du plus apte (survival of the fittest), c'est-à-dire celui qui est le mieux adapté à son environnement. Parfois, être petit, discret ou solitaire est un bien meilleur avantage que d'être fort et agressif.</li>
+            </ul>
+            <h3 class="group-title">Fake News n°3 : "L'évolution explique l'origine de la vie"</h3>
+            <ul>
+              <li><strong>L'idée reçue :</strong> "L'évolution explique comment la première cellule est apparue à partir de rien."</li>
+              <li><strong>La réalité :</strong> Non. L'évolution explique comment la vie change et se diversifie une fois qu'elle existe déjà. L'étude de l'origine de la vie s'appelle l'abiogenèse. Ce sont deux domaines différents !</li>
+            </ul>
+            <h3 class="group-title">Fake News n°4 : "Il manque le 'maillon manquant'"</h3>
+            <ul>
+              <li><strong>L'idée reçue :</strong> "On n'a jamais trouvé le fossile qui fait le pont entre le singe et l'homme."</li>
+              <li><strong>La réalité :</strong> Cette expression est périmée. On a trouvé des dizaines de formes intermédiaires (Toumaï, Lucy, Homo Habilis...). L'évolution n'est pas une chaîne avec un maillon manquant, c'est un arbre immense. On trouve chaque année de nouvelles "branches".</li>
+            </ul>
+            <h3 class="group-title">Fake News n°5 : "Les animaux s'adaptent par volonté"</h3>
+            <ul>
+              <li><strong>L'idée reçue :</strong> "La girafe a voulu manger des feuilles hautes, donc son cou a grandi."</li>
+              <li><strong>La réalité :</strong> C'est du "Lamarckisme" (une vieille erreur). Un individu ne change pas parce qu'il le veut. C'est juste que les girafes nées avec un cou légèrement plus long ont mieux survécu et ont eu plus de bébés. L'évolution ne choisit rien, elle trie ce qui marche déjà.</li>
+            </ul>
+            <div class="dialogue-block">
+              <span class="block-label">La leçon</span>
+              <p>« L'évolution n'est pas une quête de perfection, c'est une leçon de survie : on ne devient pas le meilleur, on devient simplement celui qui reste. »</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · « survival of the fittest »</h3>
+            <p>L'idée (le plus <em>apte</em>, pas le plus fort) est juste, mais la formule n'est pas de Darwin : elle a été forgée par <strong>Herbert Spencer</strong> en 1864, puis reprise par Darwin à la 5ᵉ édition de <em>L'Origine des espèces</em> (1869). Et « théorie » ne désigne pas une hiérarchie de certitude : une théorie <em>explique</em> les faits, elle ne « devient » jamais un fait.</p>
+            <div class="tag-list"><span class="tag">Théorie ≠ opinion</span><span class="tag">Le plus apte</span><span class="tag">Abiogenèse</span><span class="tag">Lamarckisme</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== ACT V ===== -->
+      <section class="act-band reveal" id="maillon" aria-labelledby="actV">
+        <p class="act-no">Partie V · Le chaînon manquant ou Missing Link</p>
+        <h2 id="actV">Le « Missing Link », ce Bigfoot de la biologie.</h2>
+        <p>Le concept du "Missing Link" (le maillon manquant) est l'une des expressions les plus célèbres, mais aussi l'une des plus mal comprises de la biologie, car il permet de démonter une idée reçue majeure.</p>
+      </section>
+
+      <!-- ===== CH 07 — LE MAILLON MANQUANT ===== -->
+      <section class="chapter reveal" aria-labelledby="c7">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le concept de dégradé</p><h2 id="c7">On ne cherche pas un maillon, mais un dégradé.</h2></div>
+          <div class="chapter-number">07</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/foret-fossiles.png" alt="Une galerie de crânes fossiles en dégradé continu, du grand singe à l'humain : le « maillon manquant » n'est pas un trou, c'est une forêt de découvertes" loading="lazy">
+              <figcaption>Non un maillon, mais un dégradé — une forêt entière de fossiles</figcaption>
+            </figure>
+            <h3 class="group-title">1. Pourquoi cette expression est fausse ?</h3>
+            <p>L'idée de "maillon" suggère une chaîne. On imagine une chaîne en métal où il manquerait une pièce entre le singe et l'homme.</p>
+            <ul>
+              <li><strong>La réalité :</strong> L'évolution n'est pas une chaîne, c'est un arbre.</li>
+              <li>On ne cherche pas un "maillon", on cherche le dernier ancêtre commun (qu'on appelle le DAC). C'est le point où une branche s'est séparée en deux.</li>
+            </ul>
+            <h3 class="group-title">2. Le "Maillon" n'existe pas, car tout est transition</h3>
+            <p>Dire qu'il manque un maillon, c'est comme regarder une photo de vous à 5 ans et une nouvelle photo de vous à 20 ans et dire : "Où est le maillon manquant entre les deux ?".</p>
+            <p>En réalité, chaque jour de votre vie a été une transition invisible. Pour l'évolution, c'est pareil : chaque fossile est une forme intermédiaire entre ce qui l'a précédé et ce qui l'a suivi.</p>
+            <h3 class="group-title">3. Les découvertes qui ont "rempli" le vide</h3>
+            <p>Pendant longtemps, on n'avait rien entre les grands singes et l'humain. Mais aujourd'hui, on a tellement de fossiles que le "vide" a disparu. On a découvert :</p>
+            <ul>
+              <li><strong>Lucy (Australopithèque) :</strong> Elle marchait debout mais avait un petit cerveau.</li>
+              <li><strong>Toumaï (Sahelanthropus) :</strong> Proche de la séparation entre nous et les chimpanzés (environ 7 millions d'années).</li>
+              <li><strong>Homo Habilis :</strong> Le premier à utiliser des outils de pierre de manière systématique.(à vérifier).</li>
+            </ul>
+            <h3 class="group-title">4. L'anecdote choc</h3>
+            <div class="dialogue-block">
+              <span class="block-label">L'anecdote choc</span>
+              <p>"On cherche souvent un squelette mi-homme mi-singe, comme une créature de film. Mais en réalité, le 'maillon manquant', c'est un peu comme la couleur orange entre le rouge et le jaune. Où s'arrête le rouge ? Où commence l'orange ? C'est un dégradé. Nous avons trouvé tellement de fossiles ces 20 dernières années que le 'maillon manquant' n'est plus un trou, c'est devenu une forêt entière de découvertes."</p>
+            </div>
+            <p>L'expression "Missing Link" n'a pas été inventée par un scientifique pour valider l'évolution, mais elle est devenue populaire suite à une sorte de malentendu médiatique et scientifique au 19ème siècle.</p>
+            <h3 class="group-title">Voici les noms clés à retenir pour le live :</h3>
+            <p class="sub">1. Charles Lyell (Le premier à l'utiliser)</p>
+            <p>C'est un géologue célèbre et ami de Darwin. En 1863, dans son livre Antiquity of Man, il utilise l'expression pour parler du fossile qui ferait le pont entre les grands singes et l'humain. À l'époque, on n'avait presque aucun fossile humain ancien, donc le "vide" était immense.</p>
+            <p class="sub">2. Ernst Haeckel (Le vulgarisateur)</p>
+            <p>Ce biologiste allemand a vraiment "vendu" l'idée au grand public. Il était tellement convaincu qu'il existait une créature intermédiaire qu'il l'a même nommée avant de la trouver : il l'a appelée le Pithecanthropus alalus (l'homme-singe sans parole).</p>
+            <p class="sub">3. Eugène Dubois (Celui qui pensait l'avoir trouvé)</p>
+            <p>Inspiré par Haeckel, ce médecin néerlandais est parti en Indonésie exprès pour chercher ce fameux maillon. En 1891, il découvre des ossements qu'il nomme "L'Homme de Java". Il proclame alors au monde entier : "J'ai trouvé le maillon manquant !". Aujourd'hui, on sait qu'il s'agissait de l'Homo erectus.</p>
+            <div class="question-block">
+              <span class="block-label">⚠️ Pourquoi c'est devenu un "piège" ?</span>
+              <p>Les journalistes de l'époque ont adoré l'expression parce qu'elle était simple et spectaculaire. Mais pour Charles Darwin, c'était un terme dangereux.</p>
+              <p><strong>L'avis de Darwin :</strong> Dans L'Origine des Espèces, Darwin explique que les archives fossiles sont comme un livre dont on aurait arraché 99 % des pages. Il ne cherchait pas un "maillon" unique, mais il expliquait que la transition était lente et continue. Pour lui, le "maillon" était une illusion d'optique due au fait qu'on n'avait pas encore trouvé tous les fossiles.</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">La minute "Punchline"</span>
+              <p>L'expression 'Maillon manquant' a été inventée par des gens qui cherchaient une réponse simple à un puzzle complexe. Aujourd'hui, les scientifiques détestent ce mot, car on a réalisé que l'évolution n'est pas une chaîne avec une pièce manquante, mais un dégradé infini. Le maillon manquant, c'est un peu le 'Bigfoot' de la biologie : tout le monde en parle, mais personne ne l'a trouvé car il n'a jamais existé sous cette forme !</p>
+            </div>
+            <div class="science-block">
+              <span class="block-label">Les Sources Fondatrices (Historiques)</span>
+              <ul>
+                <li>Charles Darwin, L'Origine des espèces (1859) : La base de la sélection naturelle.</li>
+                <li>Charles Darwin, La Filiation de l'homme (1871) : Là où il applique sa théorie à l'être humain.</li>
+                <li>Charles Lyell, The Geological Evidences of the Antiquity of Man (1863) : La première mention du fameux "Missing Link".</li>
+              </ul>
+              <span class="block-label" style="margin-top:16px">Les Sources Scientifiques Modernes (Biologie &amp; Évolution)</span>
+              <ul>
+                <li>Richard Dawkins, Le Gène égoïste (1976) : Pour comprendre comment l'évolution se passe au niveau des gènes et non des individus.</li>
+                <li>Stephen Jay Gould, La Vie est belle : Un livre génial pour expliquer que l'évolution est un buisson plein de hasard et non une ligne droite vers la perfection.</li>
+                <li>Neil Shubin, Au commencement était le poisson (Your Inner Fish) : C'est la source parfaite pour les organes inutiles. Il explique comment notre corps garde les traces de nos ancêtres poissons.</li>
+              </ul>
+              <span class="block-label" style="margin-top:16px">Sources Anthropologiques (L'Humain)</span>
+              <ul>
+                <li>Pascal Picq, Au commencement était l'homme : L'un des plus grands paléoanthropologues français. Il explique très bien pourquoi l'homme ne descend pas du singe mais est un "cousin".</li>
+                <li>Yuval Noah Harari, Sapiens : Une brève histoire de l'humanité : Idéal pour la partie sur l'évolution culturelle et le futur (l'homme augmenté).</li>
+              </ul>
+              <span class="block-label" style="margin-top:16px">Sites &amp; Revues de référence (Pour vérifier des faits en direct)</span>
+              <ul>
+                <li>CNRS (Le journal) : Dossiers très complets sur l'évolution humaine.</li>
+                <li>Hominides.com : Le site de référence en français pour suivre les découvertes de fossiles (Toumaï, Lucy, etc.).</li>
+                <li>Nature / Science : Les revues où sont publiées toutes les grandes découvertes mondiales (comme la résistance des bactéries).</li>
+              </ul>
+            </div>
+            <div class="lesson-block">
+              <span class="block-label">Petit conseil "Crédibilité"</span>
+              <p>Si quelqu'un demande les sources, on peut vous répondre :</p>
+              <p>On s'appuie sur le consensus scientifique actuel, notamment les travaux de paléoanthropologues comme Pascal Picq et les découvertes génétiques publiées dans les revues Nature et Science.</p>
+              <p>Ça calme tout de suite les sceptiques !</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · deux nuances</h3>
+            <p><strong>Homo habilis « premier fabricant d'outils » :</strong> à nuancer. Les outils de <strong>Lomekwi 3</strong> (Kenya, 3,3 Ma) précèdent d'un million d'années le genre <em>Homo</em> : tailler la pierre est plus vieux que nous. Le « à vérifier » du script était justifié.</p>
+            <p><strong>Lyell « le premier » :</strong> il emploie « missing link » en 1863, mais ne l'a pas inventé — le terme circulait déjà (Chambers, 1844).</p>
+            <div class="tag-list"><span class="tag">DAC</span><span class="tag">Lucy · Toumaï</span><span class="tag">Dubois 1891</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 08 — CHIFFRES CHOCS ===== -->
+      <section class="chapter reveal" id="chiffres" aria-labelledby="c8">
+        <div class="chapter-head">
+          <div><p class="section-kicker">4 chiffres &amp; faits chocs</p><h2 id="c8">Le test de paternité des espèces.</h2></div>
+          <div class="chapter-number">08</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Voici 4 chiffres et faits chocs incontestables, avec les données précises et illustrer de nos propos durant le live :</p>
+
+            <section class="viz reveal" aria-label="Identité génétique entre l'humain et d'autres espèces">
+              <div class="viz-head">
+                <span class="viz-eyebrow">Génome · interactif</span>
+                <p class="viz-title">Le test de paternité, à l'échelle des espèces</p>
+                <p class="viz-sub">Cliquez une barre. Attention à ce que mesure chaque chiffre : de l'ADN aligné pour le chimpanzé, mais des <em>gènes</em> homologues pour la banane.</p>
+              </div>
+              <div class="viz-body"><div id="genMount"></div></div>
+              <div class="bars-detail" id="genDetail"></div>
+              <div class="viz-foot">Sources : Chimpanzee Sequencing Consortium (<em>Nature</em>, 2005) · NHGRI/NIH. <a href="../../sources/sources.html">Appareil critique →</a></div>
+            </section>
+
+            <h3 class="group-title">1. Le test de paternité : 98,8 % ?</h3>
+            <ul>
+              <li><strong>Le chiffre :</strong> Nous partageons environ 98,8 % de notre ADN avec les chimpanzés et les bonobos.</li>
+              <li><strong>L'argument choc :</strong> "Si vous faisiez un test de paternité à l'échelle des espèces, le résultat serait sans appel : nous sommes génétiquement presque identiques. Ce qui fait de nous des humains, c'est ce minuscule 1,2 % de différence qui a suffi à nous donner le langage et la technologie."</li>
+            </ul>
+            <h3 class="group-title">2. Le voyageur du temps : 375 millions d'années ?</h3>
+            <ul>
+              <li><strong>Le fait :</strong> Vous avez des gènes de poisson. L'ancêtre commun que nous partageons avec les poissons s'appelle le Tiktaalik.</li>
+              <li><strong>L'argument choc :</strong> "Regardez votre cou. Les poissons n'en ont pas. Mais nous avons gardé les nerfs et les muscles qui servaient autrefois à faire bouger les branchies. Aujourd'hui, ces mêmes muscles nous servent à avaler et à parler. On n'a pas inventé de nouvelles pièces, on a juste recyclé celles d'un poisson vieux de 375 millions d'années."</li>
+            </ul>
+            <h3 class="group-title">3. La vitesse de l'évolution : 20 minutes ?</h3>
+            <ul>
+              <li><strong>Le chiffre :</strong> Une bactérie comme E. coli se reproduit toutes les 20 minutes.</li>
+              <li><strong>L'argument choc :</strong> "On croit que l'évolution prend des millions d'années. C'est vrai pour les éléphants, mais pour les bactéries, ça va à la vitesse de l'éclair. En une seule journée, une bactérie peut vivre 72 générations. C'est pour ça qu'elles évoluent si vite pour résister à nos antibiotiques : en 24h, elles ont fait l'équivalent de 2 000 ans d'évolution humaine !"</li>
+            </ul>
+            <h3 class="group-title">4. Le "cimetière" génétique : 99 %</h3>
+            <ul>
+              <li><strong>Le chiffre :</strong> 99 % de toutes les espèces qui ont un jour vécu sur Terre ont disparu.</li>
+              <li><strong>L'argument choc :</strong> "L'évolution n'est pas une machine à créer des gagnants, c'est un cimetière géant. Sur 100 tentatives de la nature, 99 finissent par une extinction. Nous ne sommes pas les 'élus', nous sommes juste les rescapés d'une loterie ultra-violente qui dure depuis 4 milliards d'années."</li>
+            </ul>
+            <div class="lesson-block">
+              <span class="block-label">Le petit "plus"</span>
+              <ul>
+                <li>Humain vs Chimpanzé : 98,8 % d'ADN commun.</li>
+                <li>Humain vs Banane : 60 % d'ADN commun (oui, vous avez la moitié de vos instructions génétiques identiques à celles d'un fruit, ce qui fait toujours rire le chat !).</li>
+              </ul>
+            </div>
+            <p>Pour répondre à n'importe quel "sceptique", voici les sources classées par type.</p>
+            <div class="science-block">
+              <span class="block-label">Les livres de référence (La base scientifique)</span>
+              <ul>
+                <li>Neil Shubin, Au commencement était le poisson (2008) : C'est LA source pour tes exemples sur les organes inutiles et les structures héritées des poissons (le hoquet, les nerfs du cou).</li>
+                <li>Richard Dawkins, Le plus grand spectacle du monde (2009) : Un livre entièrement dédié aux preuves irréfutables de l'évolution (fossiles, ADN, sélection artificielle).</li>
+                <li>Stephen Jay Gould, La vie est belle (1989) : La source idéale pour expliquer que l'évolution est un buisson (l'arbre) et non une échelle vers la perfection.</li>
+                <li>Alice Roberts, The Incredible Unlikeliness of Being (2014) : Une anatomiste qui explique comment chaque partie de notre corps est un vestige de notre passé évolutif.</li>
+              </ul>
+              <span class="block-label" style="margin-top:16px">Les sources génétiques (Les chiffres)</span>
+              <ul>
+                <li>The Chimpanzee Sequencing and Analysis Consortium (Nature, 2005) : C'est l'étude historique qui a prouvé les 98,8% d'ADN commun entre l'homme et le chimpanzé.</li>
+                <li>National Human Genome Research Institute (NIH) : Leurs bases de données publiques confirment les partages d'ADN entre les espèces (même les 50% avec la banane !).</li>
+              </ul>
+              <span class="block-label" style="margin-top:16px">Les sources paléontologiques (Les fossiles)</span>
+              <ul>
+                <li>Hominides.com : Le site francophone le plus complet et à jour sur les découvertes de fossiles. Idéal pour vérifier les dates de Lucy ou de Toumaï.</li>
+                <li>Journal of Human Evolution : La revue scientifique où sont publiés les détails techniques sur les nouveaux "maillons" découverts.</li>
+              </ul>
+            </div>
+            <div class="lesson-block">
+              <span class="block-label">Comment citer les sources en direct ? Petits conseils.</span>
+              <p>Si quelqu'un demande : "C'est quoi tes sources ?", répondez calmement :</p>
+              <ol>
+                <li>Pour l'anatomie : "Je me base sur les travaux de l'anatomiste Neil Shubin sur les vestiges évolutifs dans le corps humain."</li>
+                <li>Pour les fossiles : "Ce sont les datations publiées par les équipes du CNRS et de la revue Nature sur les fossiles d'Australopithèques."</li>
+                <li>Pour la génétique : "C'est le séquençage complet du génome humain et du chimpanzé terminé au début des années 2000."</li>
+              </ol>
+            </div>
+            <div class="science-block">
+              <span class="block-label">Petit lexique pour faire "Expert" (3 mots clés)</span>
+              <ul>
+                <li><strong>Phénotype :</strong> Ce qu'on voit (ton corps, tes poils).</li>
+                <li><strong>Génotype :</strong> Ce qui est écrit dans ton ADN.</li>
+                <li><strong>Sélection Sexuelle :</strong> Quand l'évolution choisit ce qui est "beau" ou attirant, même si c'est inutile (ex: la queue du paon).</li>
+              </ul>
+            </div>
+            <div class="question-block">
+              <span class="block-label">Le moment interactif</span>
+              <p>D'après vous, quel critère fait qu'on est humain ?</p>
+              <p>Le fait de marcher debout ?<br>De parler ?<br>Ou de fabriquer des outils ?</p>
+              <p>(Cela permettra d'expliquer que ces critères ne sont pas apparus d'un coup, mais petit à petit sur des millions d'années).</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · ce que mesurent vraiment les chiffres</h3>
+            <p><strong>Tiktaalik</strong> n'est pas « l'ancêtre commun avec les poissons » : c'est un <strong>fossile de transition</strong> (un « poisson-tétrapode » du Dévonien, ~375 Ma) proche de la lignée qui mène aux tétrapodes, pas un ancêtre direct.</p>
+            <p><strong>Banane 60 % :</strong> ce n'est pas « 60 % de l'ADN » mais <strong>~60 % de nos gènes codants</strong> qui ont un équivalent chez la banane (au niveau de la séquence entière, c'est &lt; 1 %).</p>
+            <p><strong>E. coli / « 2 000 ans » :</strong> les 20 min valent en conditions idéales ; l'équivalence « 2 000 ans d'évolution humaine » est une <strong>image</strong> (un compte de générations), pas une équivalence stricte.</p>
+            <div class="tag-list"><span class="tag">98,8 %</span><span class="tag">Tiktaalik</span><span class="tag">72 générations</span><span class="tag">99 % éteints</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== ACT VI ===== -->
+      <section class="act-band reveal" id="dinosaures" aria-labelledby="actVI">
+        <p class="act-no">Partie VI · Point Analogie</p>
+        <h2 id="actVI">L'objet existe avant le nom.</h2>
+        <p>Les dinosaures existaient bien avant qu'on ne leur donne un nom en 1841. L'analogie du « Nouveau Monde » : ce n'est pas parce qu'on invente un mot que la chose n'existait pas avant.</p>
+      </section>
+
+      <!-- ===== CH 09 — L'ANALOGIE DU NOUVEAU MONDE ===== -->
+      <section class="chapter reveal" aria-labelledby="c9">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La preuve par la logique</p><h2 id="c9">Le Nouveau Monde &amp; les dinosaures.</h2></div>
+          <div class="chapter-number">09</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/oiseau-dinosaure.png" alt="Un théropode emplumé dont la silhouette se prolonge en oiseau prenant son envol, avec un œuf fossilisé bleu-vert au premier plan : les oiseaux sont des dinosaures" loading="lazy">
+              <figcaption>Les oiseaux ne descendent pas des dinosaures — ils <em>sont</em> des dinosaures</figcaption>
+            </figure>
+            <h3 class="group-title">1. L'analogie du Nouveau Monde (La preuve par la logique)</h3>
+            <ul>
+              <li><strong>L'argument :</strong> "On n'a inventé le mot 'Australie' qu'au 19ème siècle. Est-ce que ça veut dire que l'Australie n'existait pas avant ?"</li>
+              <li><strong>L'explication :</strong> L'Amérique existait avant que Christophe Colomb ne l'appelle ainsi. Les dinosaures existaient, mais les humains n'avaient simplement pas encore de mot pour désigner ce groupe spécifique d'animaux.</li>
+            </ul>
+            <h3 class="group-title">2. On les trouvait déjà, mais on les appelait autrement</h3>
+            <p>Avant que le mot "Dinosaure" ne soit inventé en 1841 par Richard Owen, les gens trouvaient déjà des os géants, mais ils les interprétaient avec les connaissances de leur époque :</p>
+            <ul>
+              <li><strong>En Chine :</strong> On pensait que c'étaient des os de Dragons.</li>
+              <li><strong>En Europe (Moyen Âge) :</strong> On pensait que c'étaient des restes de Géants bibliques ou de créatures mortes pendant le Déluge.</li>
+              <li><strong>En 1676 :</strong> Robert Plot a décrit un fémur de Mégalosaure, mais il pensait que c'était l'os d'un éléphant de guerre romain ou d'un humain géant.</li>
+            </ul>
+            <h3 class="group-title">3. Pourquoi le nom "Dinosaure" est apparu tard ?</h3>
+            <p>C'est la naissance de la paléontologie en tant que science.</p>
+            <ul>
+              <li>Avant le 19ème siècle, on n'avait pas les outils pour comprendre que la Terre avait des millions d'années.</li>
+              <li>Richard Owen a créé le mot (Dinos = terrible, Sauros = lézard) parce qu'il a réalisé que ces os appartenaient à une famille d'animaux totalement différente des reptiles actuels. Ce n'est pas une "invention", c'est une classification.</li>
+            </ul>
+            <h3 class="group-title">4. Les preuves irréfutables (Au-delà du nom)</h3>
+            <ul>
+              <li><strong>La chimie des fossiles :</strong> On peut dater les roches dans lesquelles on trouve les os grâce à la radioactivité. Ces roches ont des millions d'années, peu importe le nom qu'on leur donne.</li>
+              <li><strong>Les empreintes :</strong> On ne trouve pas que des os, mais aussi des empreintes de pas, des œufs fossilisés et même des restes de peau.</li>
+              <li><strong>La continuité :</strong> On a des fossiles de transition (comme l'Archaeopteryx) qui montrent le passage du dinosaure à l'oiseau. Si les dinosaures étaient une invention du 19ème siècle, comment expliquer que les oiseaux (leurs descendants) partagent leur structure osseuse ?</li>
+            </ul>
+            <div class="dialogue-block">
+              <span class="block-label">La "Punchline"</span>
+              <p>"Dire que les dinosaures n'existaient pas parce qu'on a inventé le mot en 1841, c'est comme dire que la gravité n'existait pas avant que Newton ne lui donne un nom en 1687. Les pommes tombaient déjà sur la tête des gens, on ne savait juste pas comment appeler la force qui les attirait !"</p>
+            </div>
+            <p>Voici une liste structurée des sources que l'on peut citer. Elles couvrent l'histoire, la biologie et les découvertes de fossiles.</p>
+            <div class="science-block">
+              <span class="block-label">Les Sources Historiques (L'origine des noms et concepts)</span>
+              <ul>
+                <li>Charles Lyell, The Geological Evidences of the Antiquity of Man (1863) : La première source majeure mentionnant le "Missing Link".</li>
+                <li>Richard Owen, Report on British Fossil Reptiles (1841) : La publication scientifique où le mot "Dinosauria" est officiellement créé pour regrouper les fossiles découverts.</li>
+                <li>Robert Plot, The Natural History of Oxfordshire (1677) : La première trace écrite d'un os de dinosaure (un fémur), même s'il pensait à l'époque que c'était un géant.</li>
+              </ul>
+              <span class="block-label" style="margin-top:16px">Les Sources Scientifiques (Les preuves physiques)</span>
+              <ul>
+                <li>The Chimpanzee Sequencing and Analysis Consortium (Revue Nature, 2005) : L'étude génétique de référence qui prouve les 98,8% d'ADN commun entre l'homme et le chimpanzé.</li>
+                <li>Neil Shubin, Your Inner Fish (2008) : Un livre (et documentaire) indispensable pour expliquer comment nos organes actuels sont des héritages de poissons préhistoriques (les organes inutiles).</li>
+                <li>Michel Brunet et al. (Revue Nature, 2002) : La publication officielle sur la découverte de Toumaï, notre plus vieil ancêtre connu (7 millions d'années).</li>
+              </ul>
+              <span class="block-label" style="margin-top:16px">Sources de Fact-Checking (Pour vérifier en direct)</span>
+              <ul>
+                <li>CNRS (Le Journal) : Pour les dossiers vulgarisés mais très rigoureux sur l'évolution humaine.</li>
+                <li>Hominides.com : Le site francophone le plus complet pour l'histoire de la lignée humaine (Lucy, Néandertal, etc.).</li>
+                <li>Understanding Evolution (UC Berkeley) : Une base de données mondiale pour démonter les fake news sur l'évolution.</li>
+              </ul>
+            </div>
+            <div class="lesson-block">
+              <span class="block-label">Comment présenter ces sources au chat</span>
+              <p>Si on nous accuse de "tout inventer", vous êtes invitez à nous rejoindre pour échanger.</p>
+              <ol>
+                <li>Sur les dinosaures : "Le mot a été inventé en 1841 par Richard Owen, mais on trouve des descriptions d'ossements dès 1677 par Robert Plot. L'objet préexiste toujours au nom qu'on lui donne."</li>
+                <li>Sur l'homme et le singe : "L'idée que nous sommes cousins est prouvée par la génétique moderne. La revue Nature a publié le séquençage complet du génome du chimpanzé en 2005, confirmant notre proximité."</li>
+                <li>Sur les fossiles : "L'évolution n'est pas une supposition, c'est une observation basée sur des milliers de fossiles datés par radioactivité dans des revues à comité de lecture comme Science ou Nature."</li>
+              </ol>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · Owen &amp; le mot « dinosaure »</h3>
+            <p>Owen a <strong>annoncé</strong> le groupe en 1841, mais le mot <em>Dinosauria</em> n'est <strong>imprimé qu'en 1842</strong>. Et <em>deinos</em> ne veut pas dire « terrible » au sens de monstrueux : Owen l'entendait comme « <strong>formidablement grand / redoutable</strong> » — il visait la taille. « Terrible lézard » est la traduction populaire, un peu infidèle.</p>
+            <div class="tag-list"><span class="tag">Australie</span><span class="tag">Owen 1841</span><span class="tag">Plot 1677</span><span class="tag">Archaeopteryx</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 10 — SAVIEZ-VOUS QUE ? ===== -->
+      <section class="chapter reveal" aria-labelledby="c10">
+        <div class="chapter-head">
+          <div><p class="section-kicker">« Saviez-vous que ? »</p><h2 id="c10">Cinq faits qui changent tout sur les dinosaures.</h2></div>
+          <div class="chapter-number">10</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">1. Ils n'ont pas (tous) disparu ? ➡️</h3>
+            <ul>
+              <li><strong>Le fait :</strong> Les oiseaux ne sont pas les "descendants" des dinosaures, ce sont des dinosaures.</li>
+              <li><strong>L'argument choc :</strong> "Quand vous mangez un poulet rôti, vous mangez techniquement un dinosaure théropode. Ils ont simplement survécu en devenant plus petits et en développant des plumes."</li>
+            </ul>
+            <h3 class="group-title">2. Le T-Rex junevile avait (probablement) des plumes</h3>
+            <ul>
+              <li><strong>Le fait :</strong> On a trouvé des traces de duvet ou de plumes sur de nombreux cousins du T-Rex (comme le Yutyrannus).</li>
+              <li><strong>L'argument choc :</strong> "Oubliez le monstre à la peau de lézard de Jurassic Park. Le T-Rex ressemblait sans doute plus à un oiseau géant et terrifiant avec quelques plumes sur le haut du corps. L'évolution l'avait équipé pour réguler sa température."</li>
+            </ul>
+            <h3 class="group-title">3. Le "trou temporel" géant</h3>
+            <ul>
+              <li><strong>Le fait :</strong> Il y a plus de temps entre le Stégosaure et le T-Rex qu'entre le T-Rex et nous.</li>
+              <li><strong>L'argument choc :</strong> "On a tendance à mettre tous les dinosaures dans le même sac. Mais le Stégosaure était déjà un fossile depuis 80 millions d'années quand le T-Rex est apparu ! Ils ne se sont jamais croisés."</li>
+            </ul>
+            <h3 class="group-title">4. Les dinosaures "momies"</h3>
+            <ul>
+              <li><strong>Le fait :</strong> On a retrouvé des dinosaures si bien conservés qu'on a encore leur peau, leurs écailles et même le contenu de leur dernier repas (comme le Borealopelta).</li>
+              <li><strong>L'argument choc :</strong> "On n'a pas besoin de 'croire' en eux ou d'imaginer leur apparence. On a littéralement des momies de dinosaures où l'on peut toucher leur peau fossilisée. Ce n'est pas de la science-fiction, c'est de l'archive géologique."</li>
+            </ul>
+            <h3 class="group-title">5. La couleur de leurs œufs</h3>
+            <ul>
+              <li><strong>Le fait :</strong> Des études récentes ont montré que les dinosaures pondaient des œufs colorés et tachetés (bleus, verts, marrons), exactement comme les oiseaux modernes.</li>
+              <li><strong>L'argument choc :</strong> "L'évolution des couleurs de camouflage sur les œufs de nos oiseaux actuels a commencé il y a plus de 100 millions d'années chez les dinosaures."</li>
+            </ul>
+            <div class="lesson-block">
+              <span class="block-label">Petit conseil "Rappel des Sources" pour ces faits</span>
+              <p>Si on demande comment on sait tout ça :</p>
+              <ul>
+                <li><strong>Plumes :</strong> Les découvertes incroyables dans la province du Liaoning en Chine (revue Nature).</li>
+                <li><strong>Temps :</strong> La stratigraphie et la datation radiométrique des couches géologiques.</li>
+                <li><strong>Momies :</strong> Le spécimen du Royal Tyrrell Museum au Canada.</li>
+              </ul>
+            </div>
+            <div class="science-block">
+              <span class="block-label">Sources</span>
+              <p class="sub">Sur l'anatomie et les "organes inutiles"</p>
+              <ul>
+                <li><strong>Source :</strong> Neil Shubin, Your Inner Fish: A Journey into the 3.5-Billion-Year History of the Human Body (2008).
+                  <ul>
+                    <li>Pourquoi l'utiliser : Shubin est paléontologue et professeur d'anatomie. Il explique avec précision comment les nerfs de notre cou et le hoquet viennent directement de nos ancêtres poissons.</li>
+                    <li>Référence académique : Shubin, N. (2008). Your Inner Fish. Pantheon.</li>
+                  </ul>
+                </li>
+              </ul>
+              <p class="sub">2. Sur l'ADN commun (98,8%)</p>
+              <ul>
+                <li><strong>Source :</strong> The Chimpanzee Sequencing and Analysis Consortium, Revue Nature (2005).
+                  <ul>
+                    <li>Pourquoi l'utiliser : C'est l'étude historique qui a séquencé le génome du chimpanzé pour le comparer à l'humain.</li>
+                    <li>Référence académique : "Initial sequence of the chimpanzee genome and comparison with the human genome", Nature 437, 69–87 (2005).</li>
+                  </ul>
+                </li>
+              </ul>
+              <p class="sub">3. Sur les dinosaures et l'origine du nom</p>
+              <ul>
+                <li><strong>Source :</strong> Richard Owen, Report on British Fossil Reptiles (1841). Pourquoi l'utiliser : C'est la source primaire où Owen forge le mot "Dinosauria".</li>
+                <li><strong>Source :</strong> Robert Plot, The Natural History of Oxfordshire (1677). Pourquoi l'utiliser : Pour prouver que l'on trouvait des os (le fémur de Mégalosaure) bien avant de savoir ce que c'était.</li>
+              </ul>
+              <p class="sub">4. Sur le "Chaînon Manquant" et l'évolution humaine</p>
+              <ul>
+                <li><strong>Source :</strong> Charles Lyell, The Geological Evidences of the Antiquity of Man (1863). Pourquoi l'utiliser : Pour l'origine historique du terme.</li>
+                <li><strong>Source :</strong> Pascal Picq, Au commencement était l'homme (Odile Jacob). Pourquoi l'utiliser : C'est la référence francophone pour expliquer la différence entre "descendre de" et "être cousin".</li>
+              </ul>
+              <p class="sub">5. Sur les fossiles de transition (Dinosaures vers Oiseaux)</p>
+              <ul>
+                <li><strong>Source :</strong> Xing Xu et al., Revue Nature ou Science. Pourquoi l'utiliser : Les découvertes de dinosaures à plumes dans la province du Liaoning (Chine) depuis les années 1990. Référence académique : Xu, X., et al. (2010). "Exceptional fossils demonstrate the existence of feathered dinosaurs".</li>
+              </ul>
+            </div>
+            <div class="lesson-block">
+              <span class="block-label">Petit conseil "Masterclass"</span>
+              <p>Si quelqu'un demande les sources en plein live, ne pas citer tout. Dire simplement :</p>
+              <p>"Nous nous appuyons sur le consensus scientifique actuel, notamment les travaux de Neil Shubin sur l'anatomie humaine et les données génomiques publiées dans la revue Nature en 2005 qui confirment notre parenté avec les grands singes."</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · les dinos, précisément</h3>
+            <p><strong>Plumes du T-Rex :</strong> gardez le conditionnel. <em>Yutyrannus</em> prouve qu'un grand tyrannosauroïde <em>pouvait</em> être emplumé, mais <em>T. rex</em> adulte est connu par des empreintes <strong>écailleuses</strong> (Bell, 2017) ; les plumes juvéniles restent plausibles, non démontrées.</p>
+            <p><strong>Œufs colorés :</strong> vrai, mais pour les <strong>théropodes maniraptoriens</strong> (Wiemann, <em>Nature</em>, 2018), pas « tous » les dinosaures. Le « trou temporel » Stégosaure/T-Rex, lui, est exact (~83 Ma contre ~66 Ma).</p>
+            <div class="tag-list"><span class="tag">Oiseaux = dinos</span><span class="tag">Yutyrannus</span><span class="tag">Borealopelta</span><span class="tag">Liaoning</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== ACT — IMPERFECTION ===== -->
+      <section class="act-band reveal" id="imperfection" aria-labelledby="actImp">
+        <p class="act-no">Partie VI · L'imperfection, preuve par le bricolage</p>
+        <h2 id="actImp">Le « mauvais design » prouve l'évolution.</h2>
+        <p>C'est le débat classique entre Science et Croyance (souvent appelé le Créationnisme). L'objectif n'est pas d'insulter la foi de quelqu'un, mais de montrer pourquoi l'évolution est une explication scientifique autonome qui n'a pas besoin d'une intervention divine pour fonctionner.</p>
+      </section>
+
+      <!-- ===== CH 11 — AXES ARGUMENTAIRES ===== -->
+      <section class="chapter reveal" aria-labelledby="c11">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Axes Argumentaires</p><h2 id="c11">Quatre axes pour répondre avec calme et logique.</h2></div>
+          <div class="chapter-number">11</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Voici les 4 axes d'argumentation pour répondre avec calme et logique :</p>
+            <h3 class="group-title">1. L'argument de l'Imperfection (Le "Mauvais Design")</h3>
+            <p>Si un Dieu ingénieur avait tout créé, pourquoi aurait-il fait des erreurs aussi grossières ?</p>
+            <ul>
+              <li><strong>L'exemple du nerf laryngé :</strong> Chez la girafe, le nerf qui va du cerveau au larynx descend jusqu'au cœur avant de remonter tout le cou. C'est un détour inutile de plusieurs mètres.</li>
+              <li><strong>L'argument :</strong> "Un créateur intelligent aurait fait un trajet direct de quelques centimètres. L'évolution, elle, fait avec ce qu'elle a : elle a dû bricoler à partir du plan d'un poisson. L'imperfection est la preuve que la nature tâtonne, elle ne prévoit pas."</li>
+            </ul>
+            <h3 class="group-title">2. Le Hasard n'est pas le chaos</h3>
+            <p>Les croyants disent souvent : "C'est trop complexe pour être arrivé par hasard (l'analogie de la montre et de l'horloger)."</p>
+            <ul>
+              <li><strong>La réponse :</strong> L'évolution n'est pas que du hasard. Les mutations sont aléatoires, mais la sélection naturelle est un filtre ultra-strict.</li>
+              <li><strong>L'analogie :</strong> "Si vous jetez des milliers de dés et que vous ne gardez que les '6', au bout de quelques lancers, vous n'aurez que des 6. Ce n'est pas un miracle, c'est un mécanisme de tri. La vie fait pareil : elle garde ce qui marche et élimine le reste."</li>
+            </ul>
+            <h3 class="group-title">3. La preuve par les Fossiles de Transition</h3>
+            <p>Un créateur ferait apparaître des espèces finies et parfaites d'un coup.</p>
+            <ul>
+              <li><strong>Le fait :</strong> On voit dans les couches géologiques des transformations lentes. On voit les baleines perdre leurs pattes sur des millions d'années.</li>
+              <li><strong>L'argument :</strong> "Pourquoi un Dieu créerait-il des milliers d'espèces intermédiaires qui finissent toutes par s'éteindre ? Pourquoi créer des dinosaures pour les supprimer et mettre des humains à la place ? L'évolution explique cela par l'adaptation au changement climatique, pas par un plan mystérieux."</li>
+            </ul>
+            <h3 class="group-title">4. Science vs Dogme (La méthode)</h3>
+            <p>C'est l'argument le plus puissant sur le plan intellectuel.</p>
+            <ul>
+              <li><strong>L'explication :</strong> La science change d'avis quand elle trouve de nouvelles preuves. La croyance part d'une conclusion (Dieu a créé) et essaie d'ajuster les faits autour.</li>
+              <li><strong>L'argument :</strong> "La théorie de l'évolution est falsifiable : si on trouvait demain un fossile de lapin dans une couche de l'ère des dinosaures, toute la théorie s'effondrerait. À l'inverse, rien ne peut prouver ou nier l'existence d'un Dieu, ce qui en fait une question de foi personnelle, pas une explication biologique."</li>
+            </ul>
+            <div class="dialogue-block">
+              <span class="block-label">La "Punchline"</span>
+              <p>"Dire que la complexité de l'œil prouve l'existence d'un créateur, c'est ignorer les millions d'années où la nature a testé des taches de pigments sensibles à la lumière, puis des cupules, puis des lentilles floues. L'évolution n'est pas un saut dans le vide, c'est un escalier dont chaque marche a pris des millions d'années."</p>
+              <p>"La science explique le 'Comment', la religion essaie d'expliquer le 'Pourquoi'. On peut avoir la foi, mais en biologie, on n'a pas besoin de l'hypothèse divine pour expliquer comment une bactérie devient résistante ou comment l'humain a perdu sa queue."</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le lapin précambrien</h3>
+            <p>La célèbre expérience de pensée « un fossile qui réfuterait l'évolution » vise en fait le <strong>Précambrien</strong> — bien <em>avant</em> l'ère des dinosaures. Elle est <strong>attribuée à J.B.S. Haldane</strong> (« des lapins fossiles dans le Précambrien »), sans source primaire certaine. L'exemple est même plus fort ainsi.</p>
+            <div class="tag-list"><span class="tag">Mauvais design</span><span class="tag">Filtre de sélection</span><span class="tag">Falsifiabilité</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 12 — ERREURS DE CONCEPTION ===== -->
+      <section class="chapter reveal" aria-labelledby="c12">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Erreurs de conception</p><h2 id="c12">Le corps humain, ce patchwork bricolé.</h2></div>
+          <div class="chapter-number">12</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <figure class="chapter-figure">
+              <img src="assets/oeil-bricolage.png" alt="Planche d'anatomie dorée confrontant l'œil humain « inversé » (avec son point aveugle) et l'œil du poulpe, câblé dans le bon sens" loading="lazy">
+              <figcaption>Deux yeux, deux câblages : le « mauvais design » raconte l'histoire du bricolage</figcaption>
+            </figure>
+            <h3 class="group-title">1. Le nerf laryngé récurrent (Le plus célèbre)</h3>
+            <ul>
+              <li><strong>L'erreur :</strong> Ce nerf relie le cerveau au larynx (la gorge). Au lieu d'y aller directement (un trajet de quelques centimètres), il descend dans la poitrine, s'enroule autour de l'aorte (près du cœur) et remonte vers la gorge.</li>
+              <li><strong>Pourquoi ?</strong> Chez nos ancêtres poissons, le cœur était proche de la gorge. Avec l'évolution du cou, le nerf s'est retrouvé "coincé" derrière l'artère et s'est étiré au fil des millénaires.</li>
+              <li><strong>L'argument :</strong> "Pourquoi un créateur ferait-il faire un détour de 5 mètres à un nerf chez la girafe pour parcourir une distance que 5 cm auraient suffi à combler ?"</li>
+            </ul>
+            <h3 class="group-title">2. L'œil inversé (Une erreur de câblage)</h3>
+            <ul>
+              <li><strong>L'erreur :</strong> Nos cellules photoréceptrices (celles qui captent la lumière) sont orientées vers l'arrière de l'œil, et les câbles (nerfs) passent devant elles. Cela crée deux problèmes : la lumière doit traverser les nerfs avant d'être captée, et le regroupement des nerfs crée un point aveugle là où ils sortent de l'œil.</li>
+              <li><strong>Pourquoi ?</strong> L'évolution a "improvisé" à partir de tissus embryonnaires qui se sont repliés de cette façon. Notez que le poulpe, lui, a un œil "mieux câblé" avec les nerfs derrière les capteurs.</li>
+              <li><strong>L'argument :</strong> "Pourquoi donner un œil mieux conçu à un poulpe qu'à l'être humain si nous sommes le sommet de la création ?"</li>
+            </ul>
+            <h3 class="group-title">3. Le bassin étroit et l'accouchement</h3>
+            <ul>
+              <li><strong>L'erreur :</strong> À cause de la bipédie (marcher debout), le bassin humain s'est rétréci. En parallèle, notre cerveau a grossi. Résultat : l'accouchement humain est le plus dangereux et douloureux de tout le règne animal.</li>
+              <li><strong>L'argument :</strong> "Un design intelligent aurait prévu un passage plus large ou un mode de naissance moins risqué. C'est le résultat d'un compromis brutal entre marcher debout et être intelligent."</li>
+            </ul>
+            <h3 class="group-title">4. Le croisement des voies respiratoires et digestives</h3>
+            <ul>
+              <li><strong>L'erreur :</strong> Nous mangeons et respirons par le même conduit (le pharynx). Un petit clapet (l'épiglotte) essaie de trier, mais des milliers de personnes meurent étouffées chaque année en avalant de travers.</li>
+              <li><strong>L'argument :</strong> "Séparer totalement la trachée de l'œsophage aurait été une solution simple et vitale. L'évolution ne l'a pas fait car elle a recyclé une structure de poisson où les deux étaient liés."</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">Les Sources pour appuyer ces points</span>
+              <ul>
+                <li>Nathan Lents, Not So Different: Finding Human Nature in Animals (et son livre Human Errors). C'est l'expert mondial des failles du corps humain.</li>
+                <li>Richard Dawkins, Le plus grand spectacle du monde. Il y consacre un chapitre entier sur l'imperfection des organes.</li>
+                <li>Alice Roberts, The Incredible Unlikeliness of Being. Elle détaille comment notre anatomie est un "patchwork" historique.</li>
+              </ul>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">La Punchline de conclusion</span>
+              <p>"Si le corps humain est l'œuvre d'un ingénieur divin, alors cet ingénieur mérite d'être licencié pour faute grave. Mais si le corps humain est le résultat d'une survie acharnée sur des millions d'années, alors c'est un miracle d'adaptation."</p>
+            </div>
+            <table class="dtable">
+              <caption>L'attaque, la défense, l'argument massue.</caption>
+              <thead><tr><th>L'Attaque (Le Mythe)</th><th>La Défense (La Réalité Scientifique)</th><th>L'Argument Massue (La Punchline)</th></tr></thead>
+              <tbody>
+                <tr><td class="k">"L'évolution n'est qu'une théorie, pas une preuve."</td><td>En science, une "théorie" est un fait prouvé (ex: la gravité). Ce n'est pas une simple supposition.</td><td>"On ne dit pas que la gravité est 'juste une théorie' quand on saute d'un avion, on met un parachute."</td></tr>
+                <tr><td class="k">"L'œil est trop complexe pour être arrivé par hasard."</td><td>L'œil n'est pas apparu d'un coup. On a des fossiles et des animaux vivants montrant toutes les étapes, de la tache sensible à la lumière jusqu'à l'œil complexe.</td><td>"L'évolution n'est pas un saut, c'est un escalier de millions de marches."</td></tr>
+                <tr><td class="k">"Si on descend du singe, pourquoi y en a-t-il encore ?"</td><td>On ne descend pas du singe actuel, on est ses cousins. Nous partageons un ancêtre commun.</td><td>"Si tu descends de tes grands-parents, pourquoi as-tu encore des cousins ?"</td></tr>
+                <tr><td class="k">"Où est le maillon manquant ?"</td><td>Il n'y a pas un "maillon", mais des milliers de fossiles de transition (Lucy, Toumaï, etc.).</td><td>"Le maillon manquant, c'est comme chercher la photo exacte où un bébé devient un adulte : ça n'existe pas, c'est un dégradé."</td></tr>
+                <tr><td class="k">"La vie est trop parfaite pour être un accident."</td><td>Le corps humain est rempli d'erreurs (nerf du cou, point aveugle de l'œil, mal de dos).</td><td>"Si nous avions un créateur, il aurait de sérieux comptes à rendre au service après-vente !"</td></tr>
+              </tbody>
+            </table>
+            <div class="lesson-block">
+              <span class="block-label">Rappel des Sources "Blindées"</span>
+              <ol>
+                <li>Génétique : The Chimpanzee Sequencing and Analysis Consortium (Nature, 2005) -&gt; Preuve des 98,8% d'ADN commun.</li>
+                <li>Anatomie : Neil Shubin, "Your Inner Fish" -&gt; Preuve que notre corps est un bricolage de poisson.</li>
+                <li>Fossiles : Hominides.com ou les publications du CNRS -&gt; Preuves des formes de transition.</li>
+                <li>Erreurs de design : Nathan Lents, "Human Errors" -&gt; Liste des défauts de conception du corps humain.</li>
+              </ol>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">La conclusion</span>
+              <p>"La science n'est pas une question de croyance. Elle ne cherche pas à savoir si Dieu existe ou non, elle cherche à comprendre comment la nature fonctionne. Et tout ce que nous observons, de l'ADN aux fossiles, nous raconte la même histoire : celle d'une vie qui s'adapte sans cesse depuis 4 milliards d'années."</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · trois précisions anatomiques</h3>
+            <p><strong>Nerf laryngé :</strong> c'est le récurrent <strong>gauche</strong> qui contourne la crosse de l'aorte (le droit fait une boucle plus courte). Détour « de plusieurs mètres » chez la girafe : exact.</p>
+            <p><strong>Accouchement :</strong> « le plus dangereux de <em>tout</em> le règne animal » est excessif — disons « l'un des plus difficiles chez les primates ». La hyène tachetée, elle, met bas dans des conditions bien plus mortelles.</p>
+            <p><strong>Œil du poulpe « mieux câblé » :</strong> à nuancer — chez les vertébrés, les <em>cellules de Müller</em> guident la lumière comme des fibres optiques ; « câblé autrement, sans point aveugle » est plus juste.</p>
+            <div class="tag-list"><span class="tag">Nerf laryngé</span><span class="tag">Œil inversé</span><span class="tag">Épiglotte</span><span class="tag">Human Errors</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== ACT — L'ŒIL ===== -->
+      <section class="act-band reveal" id="oeil" aria-labelledby="actOeil">
+        <p class="act-no">L'œil · la plus belle démonstration</p>
+        <h2 id="actOeil">L'escalier de millions de marches.</h2>
+        <p>L'évolution de l'œil est souvent utilisée par les sceptiques comme argument ("un organe si complexe ne peut pas apparaître par hasard"), mais c'est en réalité l'une des plus belles démonstrations de la puissance de la sélection naturelle. Il ne s'agit pas d'un "accident" soudain, mais d'une accumulation de petites améliorations sur environ 500 millions d'années.</p>
+      </section>
+
+      <!-- ===== CH 13 — L'ÉVOLUTION DE L'ŒIL ===== -->
+      <section class="chapter reveal" aria-labelledby="c13">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Les étapes clés</p><h2 id="c13">De la tache pigmentaire à l'œil complexe.</h2></div>
+          <div class="chapter-number">13</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Voici les étapes clés</p>
+
+            <section class="viz reveal" aria-label="Les étapes de l'évolution de l'œil">
+              <div class="viz-head">
+                <span class="viz-eyebrow">Sélection naturelle · interactif</span>
+                <p class="viz-title">Cinq marches, ~500 millions d'années</p>
+                <p class="viz-sub">Cliquez une étape. Chaque stade existe encore aujourd'hui chez un animal vivant : l'œil n'est pas un saut dans le vide, c'est un escalier.</p>
+              </div>
+              <div class="viz-body"><div id="eyeMount"></div></div>
+              <div class="tl-detail" id="eyeDetail"></div>
+              <div class="viz-foot">Source : Nilsson &amp; Pelger (<em>Proc. R. Soc. B</em>, 1994). <a href="../../sources/sources.html">Appareil critique →</a></div>
+            </section>
+
+            <h3 class="group-title">1. La tache pigmentaire (Le détecteur de lumière)</h3>
+            <p>Au tout début, il y a plus de 500 millions d'années, certains organismes simples possédaient une simple tache de cellules photosensibles (sensibles à la lumière) sur leur peau.</p>
+            <ul>
+              <li><strong>Capacité :</strong> Distinguer le jour de la nuit ou l'ombre d'un prédateur passant au-dessus d'eux.</li>
+              <li><strong>Analogie :</strong> C'est comme avoir un capteur solaire qui dit juste "ON" ou "OFF".</li>
+            </ul>
+            <h3 class="group-title">2. La cupule optique (Le détecteur de direction)</h3>
+            <p>Avec le temps, cette tache plate s'est creusée pour former une petite coupe (une dépression).</p>
+            <ul>
+              <li><strong>L'avantage :</strong> En étant creuses, les cellules ne reçoivent la lumière que sous certains angles. L'animal peut enfin savoir d'où vient la lumière.</li>
+              <li><strong>Capacité :</strong> S'orienter et fuir plus efficacement.</li>
+            </ul>
+            <h3 class="group-title">3. L'œil à sténopé (Le début de l'image)</h3>
+            <p>Le creux s'est refermé de plus en plus, ne laissant qu'un tout petit trou (comme un appareil photo rudimentaire appelé camera obscura).</p>
+            <ul>
+              <li><strong>L'avantage :</strong> Cela permet de projeter une image (certes floue et sombre) sur le fond de l'œil. C'est l'œil que possède encore le Nautile aujourd'hui.</li>
+              <li><strong>Capacité :</strong> Distinguer des formes et des mouvements précis.</li>
+            </ul>
+            <h3 class="group-title">4. L'apparition du cristallin (La mise au point)</h3>
+            <p>Pour protéger l'œil des débris et améliorer la luminosité, une couche de protéines transparentes s'est formée sur l'ouverture. Cette couche s'est densifiée pour devenir une lentille (le cristallin).</p>
+            <ul>
+              <li><strong>L'avantage :</strong> Le cristallin permet de concentrer la lumière en un point précis. L'image devient alors nette et lumineuse.</li>
+            </ul>
+            <h3 class="group-title">5. L'œil complexe (La perfection actuelle)</h3>
+            <p>Enfin, des structures comme l'iris (pour régler la lumière) et les muscles (pour faire la mise au point) se sont ajoutées.</p>
+            <div class="dialogue-block">
+              <span class="block-label">L'argument choc pour le live</span>
+              <p>Si quelqu'un te dit que l'œil est "trop parfait", rappelle-lui que l'œil humain est "mal câblé" (comme on l'a vu avec le point aveugle), alors que celui du poulpe est bien plus logique.</p>
+              <p>Cela prouve que l'évolution ne cherche pas le "meilleur plan possible", mais le "plan qui fonctionne juste assez pour ne pas mourir".</p>
+            </div>
+            <div class="science-block">
+              <span class="block-label">Source à citer</span>
+              <p>Dan-Erik Nilsson, un scientifique qui a prouvé par simulation informatique qu'il ne faut que 364 000 générations (ce qui est très court à l'échelle géologique) pour passer d'une tache plate à un œil complexe.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · le chiffre de Nilsson</h3>
+            <p>Nilsson &amp; <strong>Pelger</strong> (1994) estiment ~<strong>364 000 générations</strong> — soit ~364 000 ans à une génération par an. C'est une <strong>borne pessimiste</strong> issue d'un modèle optique (1 829 pas de 1 %), pas une durée observée : « très court à l'échelle géologique », donc, mais c'est une simulation, pas un chronomètre.</p>
+            <div class="tag-list"><span class="tag">Tache pigmentaire</span><span class="tag">Sténopé · Nautile</span><span class="tag">Cristallin</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 14 — POULPE VS HUMAIN + POINT AVEUGLE ===== -->
+      <section class="chapter reveal" aria-labelledby="c14">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Le match du design</p><h2 id="c14">L'œil du poulpe contre l'œil humain.</h2></div>
+          <div class="chapter-number">14</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>C'est l'exemple ultime pour clouer le bec à ceux qui pensent que l'humain est le sommet absolu de la création. Le poulpe (et les céphalopodes en général) possède un œil qui ressemble beaucoup au nôtre, mais mieux conçu.</p>
+            <p>Voici l'anecdote à raconter pour marquer les esprits :</p>
+            <h3 class="group-title">L'œil du Poulpe vs l'œil Humain : Le match du design</h3>
+            <div class="dialogue-block">
+              <span class="block-label">L'évolution convergente</span>
+              <p>"Regardez bien : l'évolution a créé deux yeux presque identiques deux fois, de manière totalement séparée. C'est ce qu'on appelle l'évolution convergente. Mais le poulpe a gagné le match du génie civil."</p>
+            </div>
+            <p><strong>Le problème du câblage humain (Le "fail")</strong>. Chez nous, les humains, l'œil est monté à l'envers. Les fibres nerveuses passent devant les cellules qui captent la lumière. C'est comme si, pour brancher votre télé, vous passiez tous les câbles devant l'écran avant de les relier à la prise derrière. La conséquence, On a un point aveugle là où les câbles se rejoignent pour sortir vers le cerveau. Notre cerveau doit "inventer" l'image manquante en permanence.</p>
+            <p><strong>2. La solution du poulpe (La perfection)</strong> Chez le poulpe, les câbles sont branchés derrière les récepteurs. Rien ne gêne la lumière.</p>
+            <ul>
+              <li><strong>Conséquence :</strong> Le poulpe n'a aucun point aveugle. Sa vision est continue et plus efficace que la nôtre.</li>
+            </ul>
+            <p><strong>3. Le focus (Zoom vs Déformation)</strong> Nous : On change la forme de notre cristallin (on le contracte) pour faire la mise au point. Avec l'âge, il fatigue (presbytie).</p>
+            <ul>
+              <li><strong>Le poulpe :</strong> Il déplace son cristallin d'avant en arrière, comme l'objectif d'un appareil photo. C'est mécaniquement beaucoup plus stable.</li>
+            </ul>
+            <div class="dialogue-block">
+              <span class="block-label">La punchline</span>
+              <p>"Si un ingénieur vous vendait une caméra avec les câbles devant l'objectif comme dans l'œil humain, vous le vireriez sur-le-champ. Le poulpe, lui, a eu la chance que l'évolution installe le système dans le bon sens. On est peut-être plus intelligents qu'une pieuvre, mais pour ce qui est de voir clair, c'est elle la patronne !"</p>
+            </div>
+            <div class="science-block">
+              <span class="block-label">La Source "Expert"</span>
+              <p>Cite le biologiste Richard Dawkins dans son livre Le plus grand spectacle du monde. Il y explique en détail cette "erreur de câblage" humaine et l'utilise comme preuve ultime que l'évolution n'est pas guidée par une intelligence supérieure, mais par le pur hasard du bricolage génétique.</p>
+              <p>(il faudrait demander à Sam)</p>
+            </div>
+
+            <h3 class="group-title">L'expérience du Point Aveugle (en direct)</h3>
+            <p>On va vous demander de faire une petite expérience:</p>
+            <ol>
+              <li>Cachez votre œil GAUCHE avec votre main.</li>
+              <li>Fixez la CROIX avec votre œil droit.</li>
+              <li>Approchez ou éloignez doucement votre tête de l'écran tout en fixant toujours la croix.</li>
+              <li>À une certaine distance (environ 20-30 cm), le ROND va totalement disparaître.</li>
+            </ol>
+            <div class="viz" style="margin:18px 0" aria-label="Test du point aveugle">
+              <div class="viz-head"><span class="viz-eyebrow">À tester maintenant</span><p class="viz-title">Œil gauche caché · fixez la croix de l'œil droit</p></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:40px;max-width:520px;margin:8px auto 4px;padding:34px 44px;color:var(--ink);font-size:clamp(2.4rem,7vw,3.4rem);font-family:var(--roman);font-weight:700;" aria-hidden="true">
+                <span>✚</span>
+                <span style="color:var(--gold-bright)">●</span>
+              </div>
+              <div class="viz-foot" style="text-align:center">À ~20–30 cm (selon l'espacement des motifs), le rond doré disparaît : il tombe sur votre point aveugle.</div>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">Ce que l'on dit pendant qu'ils testent</span>
+              <p>"Est-ce que le rond a disparu ? Si oui, dites-le dans le chat ! Ce que vous vivez, c'est l'erreur de conception dont je vous parlais. À cet endroit précis de votre rétine, il n'y a aucun capteur car c'est là que tous vos nerfs se rejoignent pour partir vers le cerveau. C'est un 'trou' dans votre vision."</p>
+              <p>"Et le plus fou ? Votre cerveau est un menteur professionnel : d'habitude, il 'bouche' ce trou en inventant du décor pour que vous ne remarquiez rien. Vous ne voyez pas un trou noir, vous voyez du blanc (ou la couleur du fond). Votre cerveau vous fait croire que votre vision est parfaite alors qu'elle est pleine de trous !"</p>
+            </div>
+            <div class="lesson-block">
+              <span class="block-label">Pourquoi ça cartonne ?</span>
+              <ul>
+                <li><strong>C'est viral :</strong> Les gens vont spammer "OMGGG ÇA MARCHE" ou "J'le vois plus !" dans le chat.</li>
+                <li><strong>C'est une preuve :</strong> Tu ne te contentes pas de parler, tu leur prouves physiquement qu'ils ont un défaut de fabrication.</li>
+                <li><strong>Engagement :</strong> Ça crée un pic d'interaction massif.</li>
+              </ul>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Évolution convergente</h3>
+            <p>Vertébrés et céphalopodes ont bâti un œil « caméra » <strong>indépendamment</strong>, à plus de 500 Ma d'écart d'un ancêtre qui n'avait que des taches photosensibles. Deux histoires séparées, deux solutions au même problème : voir.</p>
+            <div class="tag-list"><span class="tag">Point aveugle</span><span class="tag">Filling-in</span><span class="tag">Presbytie</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== ACT — LA MÉTHODE ===== -->
+      <section class="act-band reveal" id="methode" aria-labelledby="actMeth">
+        <p class="act-no">La science n'est pas une croyance</p>
+        <h2 id="actMeth">C'est une méthode.</h2>
+        <p>Répondre à ceux qui doutent de la science (les climatosceptiques, les platistes ou ceux qui rejettent l'évolution) demande de la finesse. Si on les attaque, ils se braquent. La clé, c'est de montrer que la science n'est pas une croyance, mais une méthode.</p>
+      </section>
+
+      <!-- ===== CH 15 — 4 ARGUMENTS ===== -->
+      <section class="chapter reveal" aria-labelledby="c15">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Recadrer le débat</p><h2 id="c15">Quatre arguments pour la méthode.</h2></div>
+          <div class="chapter-number">15</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Voici les 4 meilleurs arguments pour recadrer le débat pendant le live :</p>
+            <h3 class="group-title">1. La science ne demande pas qu'on "croie" en elle</h3>
+            <p>C'est la différence majeure avec un dogme.</p>
+            <ul>
+              <li><strong>L'argument :</strong> "La science, c'est l'inverse d'une religion. Un scientifique passe sa vie à essayer de prouver que ses collègues ont tort. Si quelqu'un prouve demain, avec des données solides, que l'évolution est fausse, il recevra le Prix Nobel, il ne sera pas brûlé sur un bûcher."</li>
+              <li><strong>La punchline :</strong> "La science n'est pas une vérité absolue, c'est la recherche constante de l'erreur."</li>
+            </ul>
+            <h3 class="group-title">2. Le "Crash Test" permanent (La Falsifiabilité)</h3>
+            <p>Explique que pour qu'une idée soit scientifique, elle doit pouvoir être testée.</p>
+            <ul>
+              <li><strong>L'argument :</strong> "Si je dis 'il y a un dragon invisible dans mon garage', ce n'est pas de la science car personne ne peut prouver le contraire. Si je dis 'l'humain et le chimpanzé sont cousins', je peux tester l'ADN. Si l'ADN était totalement différent, la théorie s'effondrerait. Elle survit parce qu'elle réussit tous les tests depuis 150 ans."</li>
+            </ul>
+            <h3 class="group-title">3. L'argument du Smartphone (La preuve par le résultat)</h3>
+            <p>C'est l'argument le plus pragmatique pour les "sceptiques" qui utilisent la technologie pour critiquer la science.</p>
+            <ul>
+              <li><strong>L'argument :</strong> "On ne peut pas trier dans la science. On ne peut pas accepter les satellites (GPS), la micro-informatique (smartphone) et la médecine (anesthésie), puis rejeter la biologie ou l'astrophysique sous prétexte que ça nous dérange. C'est la même méthode de calcul et la même rigueur qui font fonctionner ton téléphone et qui prouvent l'évolution."</li>
+            </ul>
+            <h3 class="group-title">4. Le consensus n'est pas un complot</h3>
+            <p>Beaucoup pensent que les scientifiques se mettent d'accord pour "cacher la vérité".</p>
+            <ul>
+              <li><strong>L'argument :</strong> "Il y a des millions de scientifiques dans le monde, de toutes les nationalités, religions et cultures. S'il y avait un complot mondial sur l'évolution ou la forme de la Terre, il y aurait forcément quelqu'un pour vendre la mèche et devenir riche. Le consensus scientifique, c'est simplement quand des milliers de personnes indépendantes arrivent à la même conclusion après avoir vérifié les faits."</li>
+            </ul>
+            <div class="dialogue-block">
+              <span class="block-label">La minute "Mindset"</span>
+              <p>"On ne vous demande pas de 'croire' en l'évolution. La science n'est pas une opinion. On vous présente les preuves (ADN, fossiles, anatomie). Si vous avez d'autres preuves vérifiables et testables, la communauté scientifique est prête à les lire. Vous serez peut-être le prochain Prix Nobel ! Mais en attendant, les faits sont là."</p>
+            </div>
+            <div class="science-block">
+              <span class="block-label">La source ultime à citer</span>
+              <p>Karl Popper, le philosophe des sciences. C'est lui qui a défini qu'une théorie n'est scientifique que si elle est "falsifiable" (si on peut imaginer une expérience qui prouve qu'elle est fausse).</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Le fil rouge</h3>
+            <p>« La science n'est pas une vérité absolue, c'est la recherche constante de l'erreur. » Elle ne demande pas qu'on y croie — elle demande qu'on la teste. C'est exactement ce qui la sépare d'un dogme.</p>
+            <div class="tag-list"><span class="tag">Falsifiabilité</span><span class="tag">Popper</span><span class="tag">Consensus ≠ complot</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 16 — RÉVOLUTIONS SCIENTIFIQUES ===== -->
+      <section class="chapter reveal" aria-labelledby="c16">
+        <div class="chapter-head">
+          <div><p class="section-kicker">La science s'auto-corrige</p><h2 id="c16">Quand la science admet ses erreurs.</h2></div>
+          <div class="chapter-number">16</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <p>Voici une liste de "révolutions scientifiques" qui prouvent que la science n'est pas un dogme figé, mais un système qui sait admettre ses erreurs lorsqu'on lui apporte de nouvelles preuves. C'est l'argument ultime pour montrer que la science est honnête.</p>
+            <h3 class="group-title">1. La Dérive des Continents (Alfred Wegener)</h3>
+            <ul>
+              <li><strong>L'idée folle :</strong> En 1912, Wegener affirme que les continents bougent et qu'ils étaient tous réunis en un seul bloc (la Pangée).</li>
+              <li><strong>Réaction de l'époque :</strong> On s'est moqué de lui. Les géologues disaient : "Comment des masses de terre aussi lourdes pourraient-elles glisser sur du roc ?"</li>
+              <li><strong>Le retournement :</strong> Dans les années 60, grâce à l'exploration des fonds marins, on a découvert la tectonique des plaques. La science a admis qu'il avait raison.</li>
+            </ul>
+            <h3 class="group-title">2. L'origine des Ulcères (Marshall et Warren)</h3>
+            <ul>
+              <li><strong>L'idée folle :</strong> Pendant des décennies, on pensait que les ulcères à l'estomac étaient causés par le stress ou la nourriture épicée. En 1982, deux chercheurs affirment que c'est une bactérie (H. pylori).</li>
+              <li><strong>Réaction de l'époque :</strong> Personne ne les croit, car on pense qu'aucune bactérie ne peut survivre dans l'acide de l'estomac.</li>
+              <li><strong>Le retournement :</strong> Barry Marshall a fini par boire la bactérie lui-même pour se donner un ulcère et prouver ses dires. Il a eu le Prix Nobel en 2005. La science a changé tous les manuels de médecine.</li>
+            </ul>
+            <h3 class="group-title">3. La Terre n'est pas le centre de l'Univers (Galilée/Copernic)</h3>
+            <ul>
+              <li><strong>L'idée folle :</strong> Dire que la Terre tourne autour du Soleil (Héliocentrisme).</li>
+              <li><strong>Réaction de l'époque :</strong> C'était un scandale religieux et scientifique.</li>
+              <li><strong>Le retournement :</strong> Les observations au télescope ont fini par rendre l'ancienne théorie (Géocentrisme) mathématiquement impossible. La science a abandonné l'idée de la Terre centrale.</li>
+            </ul>
+            <h3 class="group-title">L'ADN n'est pas "poubelle"</h3>
+            <ul>
+              <li><strong>L'idée folle :</strong> Dans les années 70, on pensait que 98% de notre ADN ne servait à rien (on l'appelait "Junk DNA").</li>
+              <li><strong>Le retournement :</strong> Récemment, on a découvert que cet ADN "poubelle" joue en fait un rôle crucial dans la régulation de nos gènes. La science a affiné sa vision.</li>
+            </ul>
+            <div class="dialogue-block">
+              <span class="block-label">Comment utiliser ça dans le Live ?</span>
+              <p>"Ceux qui doutent de la science disent souvent : 'Oui, mais les scientifiques changent tout le temps d'avis !'. En fait, c'est leur plus grande force. Contrairement à une croyance qui refuse de bouger même face aux faits, la science est le seul système au monde qui s'auto-corrige. Si tu prouves demain que l'évolution est fausse, la science ne t'ignorera pas : elle s'adaptera à cette nouvelle vérité."</p>
+            </div>
+            <div class="lesson-block">
+              <span class="block-label">Doute ≠ Preuve</span>
+              <p>Douter de quelque chose ne suffit pas pour dire que c'est faux.</p>
+              <ul>
+                <li><strong>L'outil, pas le camp :</strong> La science est un outil (comme un marteau), pas une opinion politique.</li>
+                <li><strong>L'avion et le médicament :</strong> Si tu ne crois pas à la méthode scientifique, pourquoi acceptes-tu de monter dans un avion ou de prendre un médicament ?</li>
+                <li><strong>Honnêteté :</strong> Marshall a bu ses bactéries, Wegener a été moqué. La vérité scientifique finit toujours par triompher par la preuve, pas par la force.</li>
+              </ul>
+            </div>
+            <div class="closing" style="margin:36px 0">
+              <span class="block-label" style="display:block;margin-bottom:10px;font-family:var(--roman);font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)">En conclusion</span>
+              <h2>« L'évolution n'est pas une opinion à laquelle on choisit de croire ou non. C'est le livre d'histoire que nous portons tous dans nos cellules. »</h2>
+              <p>Chaque dent de sagesse, chaque frisson, chaque gène partagé avec un brin d'herbe ou un chimpanzé est une cicatrice de notre survie. Douter de la science, c'est douter du thermomètre quand on a de la fièvre. La science ne cherche pas à nous dire ce qui est "beau" ou "confortable", elle nous montre ce qui est VRAI. Et la vérité, c'est que nous ne sommes pas le point final de la création, mais un magnifique brouillon en perpétuelle réécriture.</p>
+            </div>
+            <div class="science-block">
+              <span class="block-label">Le visuel</span>
+              <p>afficher une image de l'arbre de la vie (le "buisson" dont on a parlé) qui s'étend à l'infini.</p>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">N'oubliez pas</span>
+              <p>Restez curieux, car la curiosité est le moteur même de notre évolution. À la prochaine !"</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · deux précisions</h3>
+            <p><strong>Marshall :</strong> la preuve du lien <em>H. pylori</em>/ulcère date de 1982, mais son <strong>auto-inoculation</strong> (boire la bactérie) est de <strong>1984</strong> ; Nobel de médecine 2005.</p>
+            <p><strong>« Junk DNA » :</strong> l'ADN non codant (~98 %) contient bien des éléments régulateurs, mais la <strong>proportion réellement fonctionnelle reste débattue</strong> (d'~80 % d'« activité » selon ENCODE à ~10–25 % de fonction sélective selon ses critiques).</p>
+            <div class="tag-list"><span class="tag">Wegener</span><span class="tag">H. pylori</span><span class="tag">Héliocentrisme</span><span class="tag">Auto-correction</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== ACT VII ===== -->
+      <section class="act-band reveal" id="organes" aria-labelledby="actVII">
+        <p class="act-no">Partie VII · Les organes inutiles</p>
+        <h2 id="actVII">L'évolution se passe dans votre corps, maintenant.</h2>
+        <p>Dents de sagesse, coccyx, chair de poule : vous portez, en ce moment même, les vestiges de vos ancêtres. Autant de preuves que la nature bricole, recycle et n'efface jamais tout à fait.</p>
+      </section>
+
+      <!-- ===== CH 17 — ORGANES VESTIGIAUX ===== -->
+      <section class="chapter reveal" aria-labelledby="c17">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Les Organes inutiles</p><h2 id="c17">Sept vestiges que vous portez.</h2></div>
+          <div class="chapter-number">17</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">1. Les dents de sagesse</h3>
+            <p>C'est l'exemple le plus connu. Nos ancêtres avaient des mâchoires plus larges pour broyer des végétaux crus et de la viande dure. Avec l'invention du feu et de la cuisine, nos mâchoires ont rétréci, mais les gènes de ces dents sont restés. Résultat : elles manquent de place et on doit souvent les arracher.</p>
+            <h3 class="group-title">2. Le coccyx</h3>
+            <p>C'est la preuve ultime que nos ancêtres avaient une queue. Situé à la base de la colonne vertébrale, ce petit ensemble d'os ne sert plus à l'équilibre ou à la communication (comme chez les chiens ou les singes), mais il sert encore de point d'ancrage à certains muscles du bassin.</p>
+            <h3 class="group-title">3. L'appendice</h3>
+            <p>Longtemps considéré comme totalement inutile et dangereux (à cause de l'appendicite), on pense aujourd'hui qu'il sert de "refuge" aux bonnes bactéries intestinales. Cependant, on vit parfaitement bien sans, ce qui prouve que son rôle originel (digérer la cellulose des plantes) a disparu.</p>
+            <h3 class="group-title">4. Les muscles auriculaires (muscles de l'oreille)</h3>
+            <p>Avez-vous des amis qui savent bouger leurs oreilles ? C'est un vestige de l'époque où nous devions orienter nos oreilles vers le bruit des prédateurs sans bouger la tête. Aujourd'hui, avec notre cou très mobile, ces muscles ne servent plus à rien.</p>
+            <h3 class="group-title">5. Le Plica Semilunaris (la troisième paupière)</h3>
+            <p>Regardez le petit coin rose à l'intérieur de votre œil (près du nez). C'est le reste d'une membrane nictitante, une paupière horizontale transparente que l'on trouve encore chez les requins, les oiseaux et les reptiles pour protéger l'œil tout en gardant la vision.</p>
+            <h3 class="group-title">6. Le muscle long palmaire</h3>
+            <p>Posez votre main à plat sur une table et joignez votre pouce et votre petit doigt en levant légèrement le poignet. Si un tendon ressort au milieu, c'est le muscle long palmaire. Environ 15% de la population ne l'a plus. Il servait à nos ancêtres pour grimper aux arbres avec plus de force.</p>
+            <h3 class="group-title">7. Les mamelons chez l'homme</h3>
+            <p>Puisque les hommes n'allaitent pas, pourquoi en ont-ils ? C'est parce que lors du développement de l'embryon, les mamelons se forment avant que le sexe du bébé ne soit déterminé par les hormones. Ils ne servent à rien, mais comme ils ne sont pas handicapants, l'évolution ne les a pas supprimés.</p>
+            <div class="question-block">
+              <span class="block-label">L'astuce pour live</span>
+              <p>Faites le test du muscle long palmaire (le tendon du poignet) en direct. C'est ultra interactif et ça prouve que l'évolution se passe dans leur propre corps en ce moment même !</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · vestige ≠ inutile</h3>
+            <p>Le <strong>long palmaire</strong> : le « ~15 % » vaut pour certaines populations, mais l'absence varie énormément (de moins de 2 % à plus de 60 % selon les régions). Et « inutile » mérite des guillemets : l'<strong>appendice</strong> sert probablement de réservoir bactérien, et les <strong>muscles auriculaires</strong> s'activent encore un peu quand on tend l'oreille. Ce sont des vestiges — pas des pièces mortes.</p>
+            <div class="tag-list"><span class="tag">Dents de sagesse</span><span class="tag">Coccyx</span><span class="tag">Membrane nictitante</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== CH 18 — LA CHAIR DE POULE ===== -->
+      <section class="chapter reveal" aria-labelledby="c18">
+        <div class="chapter-head">
+          <div><p class="section-kicker">L'anecdote du "Grand Frisson"</p><h2 id="c18">La chair de poule.</h2></div>
+          <div class="chapter-number">18</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <div class="dialogue-block">
+              <span class="block-label">La piloérection</span>
+              <p>"Avant de commencer, faites une expérience. Vous avez déjà eu la chair de poule en écoutant une musique ou en ayant froid ? On appelle ça techniquement la piloérection.</p>
+              <p>À cet instant précis, des milliers de petits muscles à la base de vos poils se contractent. Mais pourquoi ? Vous n'avez plus assez de poils pour que ça vous réchauffe ! En réalité, c'est un réflexe de survie vieux de plusieurs millions d'années.</p>
+              <p>*Quand nos ancêtres étaient couverts de fourrure, hérisser les poils servait à deux choses :</p>
+            </div>
+            <ol>
+              <li>Emprisonner l'air pour créer une couche isolante contre le froid.</li>
+              <li>Paraître deux fois plus gros face à un prédateur, exactement comme un chat qui fait le gros dos.</li>
+            </ol>
+            <div class="dialogue-block">
+              <span class="block-label">La chute</span>
+              <p>Aujourd'hui, vous n'avez plus de fourrure, mais votre cerveau, lui, a gardé le logiciel de défense du singe ou de l'ours. Vous êtes un animal nu qui essaie encore de faire peur à des lions imaginaires. C'est ça, la magie (et l'absurdité) de l'évolution !"</p>
+            </div>
+            <div class="lesson-block">
+              <span class="block-label">Pourquoi ça marche ?</span>
+              <ul>
+                <li><strong>C'est sensoriel :</strong> Tout le monde sait ce qu'est la chair de poule.</li>
+                <li><strong>C'est visuel :</strong> Les gens s'imaginent tout de suite l'ancêtre poilu.</li>
+                <li><strong>C'est un "pattern interrupt" :</strong> on passe d'un sujet sérieux à une image concrète et un peu drôle sur notre propre corps.</li>
+              </ul>
+            </div>
+            <div class="dialogue-block">
+              <span class="block-label">Pour conclure ce live</span>
+              <p>"Pour conclure ce live, on voulait revenir sur l'essentiel. Si vous ne devez retenir qu'une chose aujourd'hui, c'est que l'évolution n'est pas une course, ni une échelle, ni une quête vers un 'humain parfait'. C'est une immense fresque de survie, où chaque espèce — nous comme nos cousins primates — est un chef-d'œuvre d'adaptation à son milieu."</p>
+              <p>"Exactement. Et cette idée du 'maillon manquant' ou du singe qui aurait 'échoué' à nous ressembler, ce ne sont que des biais qui flattent notre ego. La réalité est bien plus fascinante : nous sommes le produit d'un bricolage biologique vieux de milliards d'années, avec nos erreurs, nos vestiges de poissons et nos gènes partagés avec la moindre bactérie."</p>
+              <p>"Reconnaître que nous sommes des singes, ce n'est pas nous rabaisser. Au contraire, c'est intégrer la beauté de notre parenté avec le vivant. C'est comprendre que notre intelligence n'est pas une rupture miraculeuse, mais une continuité."</p>
+              <p>"Et surtout, n'oubliez jamais : la science n'est pas un dogme figé, c'est une méthode. Si demain on découvre un fossile qui change notre vision de l'arbre, on changera d'avis. C'est ça, la vraie force de la démarche scientifique."</p>
+              <p>"Merci à toutes et à tous d'avoir suivi ce live. Si ces sujets vous passionnent, on vous invite à rejoindre l'association L'Empire Contre-Intox pour continuer à débusquer les fake news et à aiguiser votre esprit critique. On se retrouve très vite pour le prochain dossier !"</p>
+              <p>"Prenez soin de vous, restez curieux, et à la prochaine !"</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Le logiciel du singe</h3>
+            <p>La chair de poule est un <strong>réflexe fossile</strong> : les muscles arrecteurs qui dressent vos poils servaient à isoler du froid et à paraître plus gros. Chez un primate quasi nu, le matériel est resté — sans le bénéfice.</p>
+            <div class="tag-list"><span class="tag">Piloérection</span><span class="tag">Réflexe de survie</span><span class="tag">Continuité</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ===== ACT — ANNEXE ===== -->
+      <section class="act-band reveal" id="annexe" aria-labelledby="actAnn">
+        <p class="act-no">Annexe · La boîte à outils</p>
+        <h2 id="actAnn">Arguments contre des anti-évolutions ?</h2>
+        <p>De quoi répondre, calmement, à celles et ceux qui rejettent l'évolution — et un mot sur la coexistence possible entre science et foi.</p>
+      </section>
+
+      <!-- ===== CH 19 — ANNEXE ===== -->
+      <section class="chapter reveal" aria-labelledby="c19">
+        <div class="chapter-head">
+          <div><p class="section-kicker">Annexe</p><h2 id="c19">La méthode, et le dialogue avec la foi.</h2></div>
+          <div class="chapter-number">19</div>
+        </div>
+        <div class="transcript">
+          <article class="prose">
+            <h3 class="group-title">1. Clarifier la définition d'une "Théorie"</h3>
+            <p>C'est l'argument numéro un : "L'évolution n'est qu'une théorie".</p>
+            <ul>
+              <li><strong>La confusion :</strong> Dans le langage courant, "théorie" signifie une supposition.</li>
+              <li><strong>La réalité scientifique :</strong> En science, une théorie est le degré le plus élevé de certitude. C'est un cadre qui explique un ensemble de faits observés (comme la théorie de la gravitation ou la théorie cellulaire).</li>
+              <li><strong>L'astuce :</strong> Demandez-leur s'ils sauteraient du haut d'un immeuble sous prétexte que la gravité n'est "qu'une théorie".</li>
+            </ul>
+            <h3 class="group-title">2. Expliquer que l'évolution est observable</h3>
+            <p>Beaucoup pensent que l'évolution prend des millions d'années et qu'on ne peut pas la "voir". C'est faux.</p>
+            <ul>
+              <li><strong>La résistance bactérienne :</strong> L'apparition de bactéries résistantes aux antibiotiques est une preuve d'évolution par sélection naturelle en temps réel.</li>
+              <li><strong>La sélection artificielle :</strong> Rappelez que tous les chiens (du Chihuahua au Grand Danois) descendent du loup parce que l'homme a sélectionné certains traits. C'est de l'évolution dirigée.</li>
+            </ul>
+            <h3 class="group-title">3. Démonter le mythe du "chaînon manquant"</h3>
+            <p>L'idée qu'il manque une pièce du puzzle entre le singe et l'homme est dépassée.</p>
+            <ul>
+              <li><strong>L'arbre, pas l'échelle :</strong> L'évolution n'est pas une ligne droite (le singe qui se redresse), mais un buisson. Nous ne descendons pas des singes actuels ; nous avons un ancêtre commun avec eux.</li>
+              <li><strong>Les fossiles transitionnels :</strong> Nous en avons des milliers (Tiktaalik pour le passage de l'eau à la terre, Archaeopteryx pour les dinosaures vers les oiseaux). Dire qu'il manque un fossile entre A et B, c'est comme regarder un film et dire qu'on ne comprend pas l'histoire parce qu'il manque une image à la 42ème minute.</li>
+            </ul>
+            <h3 class="group-title">4. Utiliser des preuves anatomiques (les "erreurs" de la nature)</h3>
+            <p>Si la vie avait été "conçue" de façon parfaite, pourquoi existe-t-il des imperfections flagrantes ?</p>
+            <ul>
+              <li><strong>Le nerf laryngé récurrent :</strong> Chez la girafe, ce nerf descend du cerveau, fait le tour de l'aorte près du cœur, et remonte tout le long du cou pour atteindre le larynx. Un détour de plusieurs mètres totalement inutile, vestige de nos ancêtres poissons.</li>
+              <li><strong>Les organes vestigiaux :</strong> Les baleines ont encore des restes d'os de bassin et de pattes arrière cachés sous leur graisse.</li>
+            </ul>
+            <table class="dtable">
+              <caption>Tableau récapitulatif des arguments courants.</caption>
+              <thead><tr><th>Argument Anti-Évolution</th><th>Réponse Scientifique</th></tr></thead>
+              <tbody>
+                <tr><td class="k">"L'œil est trop complexe pour être né du hasard."</td><td>L'évolution n'est pas le hasard, c'est la sélection. On observe tous les stades d'yeux intermédiaires dans la nature.</td></tr>
+                <tr><td class="k">"C'est une violation de la 2nde loi de la thermodynamique."</td><td>Cette loi ne s'applique qu'aux systèmes fermés. La Terre reçoit l'énergie du Soleil, ce qui permet l'organisation du vivant.</td></tr>
+                <tr><td class="k">"Pourquoi y a-t-il encore des singes ?"</td><td>Pour la même raison qu'il y a encore des Européens alors que les Américains existent : une séparation géographique et une adaptation différente.</td></tr>
+              </tbody>
+            </table>
+            <h3 class="group-title">1. La distinction des domaines (Le "NOMA")</h3>
+            <p>Le biologiste Stephen Jay Gould a théorisé le concept de NOMA (Non-Overlapping Magisteria ou Non-recouvrement des magistères).</p>
+            <ul>
+              <li><strong>La Science s'occupe du "Comment" :</strong> les faits, les processus biologiques, les preuves empiriques.</li>
+              <li><strong>La Religion/Philosophie s'occupe du "Pourquoi" :</strong> le sens de la vie, l'éthique, les valeurs morales.</li>
+              <li><strong>L'argument :</strong> On peut expliquer comment l'humain est apparu via la sélection naturelle sans pour autant invalider la question du sens de cette présence.</li>
+            </ul>
+            <h3 class="group-title">2. L'interprétation symbolique vs littérale</h3>
+            <p>C'est le point de friction majeur. Si l'on lit les textes sacrés (comme la Genèse) comme un manuel de biologie, il y a conflit.</p>
+            <ul>
+              <li><strong>L'allégorie :</strong> De nombreuses traditions religieuses (notamment l'Église Catholique depuis l'encyclique Humani Generis en 1950) considèrent que les récits de création sont des métaphores.</li>
+              <li><strong>L'argument :</strong> Dire que le monde a été créé en "6 jours" peut être interprété comme 6 étapes symboliques ou 6 ères géologiques. Le texte transmet une vérité spirituelle, pas une donnée chronométrique.</li>
+            </ul>
+            <h3 class="group-title">3. L'évolution comme "outil" de création</h3>
+            <p>C'est ce qu'on appelle souvent l'Évolution Théiste.</p>
+            <ul>
+              <li><strong>Le concept :</strong> L'idée est que si un Créateur existe, il a pu utiliser l'évolution comme le mécanisme même de sa création.</li>
+              <li><strong>L'analogie :</strong> Un programmeur crée un algorithme qui génère un monde complexe. Le programmeur n'a pas dessiné chaque pixel à la main, mais il est l'auteur des lois qui permettent au monde d'émerger.</li>
+              <li><strong>L'argument :</strong> L'évolution n'élimine pas forcément Dieu, elle change simplement la perception de sa méthode : il ne serait pas un "sculpteur de boue", mais un "législateur de l'univers".</li>
+            </ul>
+            <h3 class="group-title">4. Le principe de la "Double Révélation"</h3>
+            <p>Certains croyants utilisent cet argument historique (très présent chez Galilée) :</p>
+            <ul>
+              <li>Dieu a écrit deux livres : la Bible (révélation textuelle) et la Nature (révélation physique).</li>
+              <li>Puisque les deux viennent de la même source, ils ne peuvent pas se contredire.</li>
+              <li><strong>Conclusion :</strong> Si la Nature nous montre des preuves de l'évolution, alors c'est notre interprétation du texte qui doit être revue, et non les faits scientifiques qui doivent être rejetés.</li>
+            </ul>
+            <div class="science-block">
+              <span class="block-label">Note historique</span>
+              <p>Rappelez-leur que l'un des plus grands défenseurs de l'évolution aujourd'hui était Francis Collins, le directeur du projet Génome Humain, qui est lui-même un chrétien évangélique pratiquant.</p>
+            </div>
+          </article>
+          <aside class="side-note">
+            <h3>Anti-intox · deux nuances</h3>
+            <p><strong>Chiens &amp; loup :</strong> exact, mais le chien descend d'une <strong>population de loups pléistocènes aujourd'hui éteinte</strong>, pas du loup gris moderne (leur cousin).</p>
+            <p><strong>Humani Generis (1950) :</strong> l'encyclique <em>autorise l'étude</em> de l'évolution du corps humain, mais maintient l'âme créée par Dieu et le monogénisme — ce n'est pas une adhésion pleine à l'évolution. La lecture non littérale de la Genèse sera surtout formalisée plus tard (Jean-Paul II, 1996).</p>
+            <div class="tag-list"><span class="tag">NOMA</span><span class="tag">Évolution théiste</span><span class="tag">Francis Collins</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="closing reveal" id="conclusion" aria-labelledby="final">
+        <h2 id="final">Nous ne sommes pas le point final de la création, mais un magnifique brouillon en perpétuelle réécriture.</h2>
+        <p>Ce dossier conserve mot pour mot le live d'Ymir &amp; Lalie sur l'évolution et ses idées reçues : du piège des mots (« l'homme descend du singe ») au buisson du vivant, du chaînon manquant qui n'a jamais existé au mauvais design qui, lui, prouve tout. L'évolution n'est ni une course, ni une échelle, ni une quête d'« humain parfait » : c'est une leçon de survie. On ne devient pas le meilleur — on devient simplement celui qui reste. Restez curieux : la curiosité est le moteur même de notre évolution.</p>
+      </section>
+
+      <section class="collective-footer reveal" aria-labelledby="collectif">
+        <div class="collective-logo-wrap">
+          <img class="collective-logo" src="../assets/logo-eci.jpg" alt="Logo du collectif Empire Contre-Intox">
+        </div>
+        <div class="collective-copy">
+          <p class="section-kicker">Collectif</p>
+          <h2 id="collectif">Empire contre Intox</h2>
+          <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans le débat public. Ce dossier prolonge le live en donnant au public une version lisible, structurée, vérifiée et partageable de l'intervention d'Ymir &amp; Lalie sur l'évolution.</p>
+          <div class="byline">
+            <span class="avatars">
+              <img src="lalie.jpeg" alt="Avatar de Lalie">
+              <img src="ymir.jpeg" alt="Avatar d'Ymir">
+            </span>
+            <span class="who"><span class="lbl">Dossier réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
+          </div>
+          <div class="collective-actions">
+            <a class="button primary" href="../../index.html">Retour à l'index</a>
+            <a class="button" href="../ancetres-genetiques/index.html">Ancêtres génétiques</a>
+            <a class="button" href="../singe-aquatique/index.html">Le Singe Aquatique</a>
+            <a class="button" href="../../sources/sources.html">Les Sources</a>
+          </div>
+          <span class="collective-motto">Veritas omnia vincit</span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+  <p class="eci-license"><strong>Licence de contenu :</strong> sauf mention contraire, textes, transcriptions, images et médias sont sous <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr" target="_blank" rel="license noopener">CC BY-NC-ND 4.0</a> — partage autorisé avec attribution, sans usage commercial ni modification. <a href="../../LICENCE-CONTENU.md">Détails</a>. <span class="eci-counter-sep" aria-hidden="true">·</span> <span class="eci-visit-counter" data-visit-counter>— visites sur cette page</span></p>
+</footer>
+  </div>
+
+  <script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => { nav.classList.remove("open"); mobileMenu.setAttribute("aria-expanded", "false"); }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    // Filet de sécurité pour les sections très hautes (jamais "intersectées" au seuil)
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }
+    document.addEventListener("scroll", revealTall, { passive: true });
+    window.addEventListener("resize", revealTall, { passive: true });
+    revealTall();
+
+    /* ===================== Visualisations interactives ===================== */
+    const NS = "http://www.w3.org/2000/svg";
+    const el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+
+    /* — Frise horizontale générique (nœuds cliquables) — */
+    function buildFrise(mountId, detailId, EV, colFor, ariaLabel){
+      const mount = document.getElementById(mountId); if (!mount) return;
+      const detail = document.getElementById(detailId);
+      const W=920, H=150, x0=54, x1=866, ay=80, n=EV.length;
+      const xs = EV.map((e,i) => x0 + (x1-x0)*i/(n-1));
+      const svg = el("svg", { viewBox:"0 0 "+W+" "+H, role:"img", "aria-label":ariaLabel });
+      for (let i=0;i<n-1;i++){
+        svg.appendChild(el("line", { x1:xs[i], y1:ay, x2:xs[i+1], y2:ay, stroke:"var(--line)", "stroke-width":6, opacity:.5, "stroke-linecap":"round" }));
+      }
+      const nodes = [];
+      EV.forEach((e,i) => {
+        const g = el("g", { class:"tl-node", tabindex:0, role:"button", "aria-label":e.k+" "+e.h });
+        g.appendChild(el("circle", { class:"dot", cx:xs[i], cy:ay, r:6, stroke:colFor(e) }));
+        const ty = i%2 ? ay-15 : ay+25;
+        const yr = el("text", { x:xs[i], y:ty, "text-anchor":"middle" }); yr.textContent = e.k;
+        g.appendChild(yr);
+        const pick = () => { nodes.forEach((nd,j) => nd.classList.toggle("active", j===i)); detail.innerHTML = '<span class="yr">'+e.k+'</span><h4>'+e.h+'</h4><p>'+e.d+'</p>'; };
+        g.addEventListener("click", pick); g.addEventListener("mouseenter", pick); g.addEventListener("focus", pick);
+        svg.appendChild(g); nodes.push(g);
+      });
+      mount.appendChild(svg);
+      nodes[0].classList.add("active");
+      detail.innerHTML = '<span class="yr">'+EV[0].k+'</span><h4>'+EV[0].h+'</h4><p>'+EV[0].d+'</p>';
+    }
+
+    /* — 1. Frise du temps profond — */
+    (function(){
+      const col = (e) => e.t==="eau" ? "var(--ocean)" : e.t==="nous" ? "var(--ember)" : "var(--gold)";
+      buildFrise("friseMount", "friseDetail", [
+        { k:"~375 Ma", t:"eau",   h:"Tiktaalik — la sortie des eaux", d:"Un « poisson-tétrapode » du Dévonien, cousin proche de la lignée qui mène aux tétrapodes (dont nous). Pas un ancêtre direct : une forme de transition qui illustre le passage de l'eau à la terre." },
+        { k:"~7 Ma",   t:"humain",h:"Toumaï (Sahelanthropus)", d:"L'un des plus anciens homininés connus, proche de la divergence entre nous et les chimpanzés. Découvert par Michel Brunet (Nature, 2002). Son statut de bipède reste débattu." },
+        { k:"~3,2 Ma", t:"humain",h:"Lucy (Australopithecus afarensis)", d:"Elle marchait debout mais avait un petit cerveau (~1/3 du nôtre). La bipédie a précédé le gros cerveau. Découverte en 1974 par Donald Johanson." },
+        { k:"~2,4 Ma", t:"humain",h:"Homo habilis", d:"Longtemps vu comme le premier fabricant d'outils (industrie oldowayenne). Nuance : la taille de la pierre est plus ancienne que le genre Homo (Lomekwi, 3,3 Ma)." },
+        { k:"~1,9 Ma", t:"humain",h:"Homo erectus", d:"Le fameux « Homme de Java » d'Eugène Dubois (1891), proclamé « chaînon manquant » à l'époque. On sait aujourd'hui que c'est un Homo erectus." },
+        { k:"~0,3 Ma", t:"humain",h:"Homo sapiens", d:"Notre espèce apparaît en Afrique. Une brindille de plus sur le buisson — pas un sommet, une branche parmi d'autres." },
+        { k:"Nous",    t:"nous",  h:"Vous êtes ici", d:"Nous ne sommes pas les « élus », mais les rescapés d'une loterie qui dure depuis ~4 milliards d'années. Et l'évolution continue, en ce moment même." }
+      ], col, "Frise du temps profond, de Tiktaalik à aujourd'hui");
+    })();
+
+    /* — 2. Identité génétique (barres) — */
+    (function(){
+      const mount = document.getElementById("genMount"); if (!mount) return;
+      const detail = document.getElementById("genDetail");
+      const D = [
+        { p:"Chimpanzé", v:98.8, lab:"98,8 %", col:"var(--ocean)", d:"<b>ADN directement aligné.</b> ~98,8 % d'identité sur les substitutions d'un seul nucléotide (Nature, 2005). En comptant les insertions/délétions, l'identité globale tombe à ~96 %." },
+        { p:"Gorille",   v:98.2, lab:"~98 %",  col:"var(--ocean)", d:"<b>ADN aligné.</b> Le gorille partage environ 98 % de son génome avec nous — un peu moins que le chimpanzé, notre plus proche parent." },
+        { p:"Souris",    v:85,   lab:"~85 %",  col:"var(--iron)",  d:"<b>Gènes homologues.</b> Nous partageons avec la souris ~85 % de nos gènes codant des protéines — d'où son rôle d'animal modèle en biologie." },
+        { p:"Banane",    v:60,   lab:"~60 %",  col:"var(--gold)",  d:"<b>Attention : gènes, pas ADN.</b> ~60 % de nos <i>gènes codants</i> ont un équivalent chez la banane — pas « 60 % de l'ADN » (au niveau de la séquence, c'est &lt; 1 %). Preuve d'une parenté profonde du vivant." }
+      ];
+      const W=760, H=300, padL=20, padR=20, top=24, base=234, cw=(W-padL-padR)/D.length;
+      const svg = el("svg", { viewBox:"0 0 "+W+" "+H, role:"img", "aria-label":"Identité génétique entre l'humain et d'autres espèces" });
+      svg.appendChild(el("line", { x1:padL, x2:W-padR, y1:base, y2:base, stroke:"var(--line)" }));
+      const rows = [];
+      D.forEach((d,i) => {
+        const g = el("g", { class:"bars-row", tabindex:0, role:"button", "aria-label":d.p+" "+d.lab });
+        const bw=cw*0.46, cx=padL+cw*i+cw/2, bx=cx-bw/2, bh=(base-top)*(d.v/100), by=base-bh;
+        g.appendChild(el("rect", { class:"bar", x:bx, y:by, width:bw, height:bh, rx:2, fill:d.col, opacity:.82 }));
+        const cap = el("text", { class:"cap", x:cx, y:by-9, "text-anchor":"middle" }); cap.textContent=d.lab; g.appendChild(cap);
+        const yr = el("text", { class:"yr", x:cx, y:base+18, "text-anchor":"middle" }); yr.textContent=d.p; g.appendChild(yr);
+        const pick = () => { rows.forEach((r,j) => r.classList.toggle("active", j===i)); detail.innerHTML = "<b>"+d.p+" — "+d.lab+" :</b> "+d.d.replace(/^<b>[^<]*<\/b>\s*/, ""); };
+        g.addEventListener("click", pick); g.addEventListener("mouseenter", pick); g.addEventListener("focus", pick);
+        svg.appendChild(g); rows.push(g);
+      });
+      mount.appendChild(svg);
+      rows[0].classList.add("active");
+      detail.innerHTML = "<b>"+D[0].p+" — "+D[0].lab+" :</b> "+D[0].d.replace(/^<b>[^<]*<\/b>\s*/, "");
+    })();
+
+    /* — 3. L'évolution de l'œil (stepper) — */
+    (function(){
+      const col = (e) => e.c;
+      buildFrise("eyeMount", "eyeDetail", [
+        { k:"1 · Tache", c:"var(--ocean)", h:"La tache pigmentaire", d:"Une simple tache de cellules photosensibles sur la peau. Elle distingue le jour de la nuit, ou l'ombre d'un prédateur. Un capteur qui dit juste « ON » ou « OFF »." },
+        { k:"2 · Cupule", c:"#5aa9a0", h:"La cupule optique", d:"La tache se creuse en coupe : les cellules ne reçoivent la lumière que sous certains angles. L'animal sait enfin d'où vient la lumière, et peut fuir plus efficacement." },
+        { k:"3 · Sténopé", c:"#8fb46f", h:"L'œil à sténopé", d:"Le creux se referme, ne laissant qu'un petit trou (une camera obscura). Il projette une image floue sur le fond de l'œil. C'est l'œil que possède encore le Nautile aujourd'hui." },
+        { k:"4 · Cristallin", c:"var(--gold)", h:"L'apparition du cristallin", d:"Une couche de protéines transparentes se densifie en lentille. Le cristallin concentre la lumière en un point précis : l'image devient nette et lumineuse." },
+        { k:"5 · Complexe", c:"var(--gold-bright)", h:"L'œil complexe", d:"Iris (pour régler la lumière) et muscles (pour la mise au point) s'ajoutent. Nilsson & Pelger (1994) : ~364 000 générations suffisent — très court à l'échelle géologique." }
+      ], col, "Les cinq étapes de l'évolution de l'œil");
+    })();
+  </script>
+  <script src="../../assets/visit-counter.js" defer></script>
+</body>
+</html>
