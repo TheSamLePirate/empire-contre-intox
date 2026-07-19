@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../lib/paths";
+
+const homePath = withBase("/");
+---
+
+<BaseLayout
+  title="Page introuvable — Empire contre Intox"
+  description="Cette page n'existe pas ou a été déplacée."
+  canonicalPath="/404.html"
+>
+  <main class="eci-wrap">
+    <p>Erreur 404</p>
+    <h1>Cette archive reste à découvrir.</h1>
+    <a href={homePath}>Revenir aux dossiers</a>
+  </main>
+</BaseLayout>
+
+<style>
+  main {
+    display: grid;
+    min-height: 100vh;
+    place-content: center;
+    gap: 1rem;
+  }
+
+  p,
+  h1 {
+    margin: 0;
+  }
+
+  p,
+  a {
+    color: var(--eci-gold);
+    font-family: var(--eci-roman);
+    text-transform: uppercase;
+  }
+</style>

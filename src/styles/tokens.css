@@ -1,0 +1,22 @@
+:root {
+  color-scheme: dark;
+  --eci-void: #050811;
+  --eci-abyss: #070c1a;
+  --eci-navy: #0e1a2e;
+  --eci-ink: #f4ecd8;
+  --eci-parchment: #e7dcc1;
+  --eci-muted: #c0b59a;
+  --eci-soft: #8f8c78;
+  --eci-gold: #d6ac55;
+  --eci-gold-bright: #f3d98a;
+  --eci-gold-deep: #9c7228;
+  --eci-line: rgb(214 172 85 / 20%);
+  --eci-line-neutral: rgb(244 236 216 / 10%);
+  --eci-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --eci-roman: "Cinzel", Georgia, serif;
+  --eci-content-width: 73.75rem;
+  --eci-radius: 3px;
+  --eci-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --eci-accent: var(--eci-gold);
+  --eci-accent-secondary: var(--eci-gold-bright);
+}
