@@ -40,7 +40,7 @@
       --hero:url("assets/pirates-hero.png");
     }
     * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
+    html { scroll-behavior:smooth; scroll-padding-top:92px; }
     body {
       margin:0; color:var(--ink); font-family:var(--serif);
       font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
@@ -391,20 +391,73 @@
     .leg-detail li { font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--parch); border:1px solid var(--line); border-radius:2px; padding:5px 10px; background:rgba(214,172,85,.05); }
     .leg-detail li::before { content:none; }
 
-    /* — Carte des théâtres — */
-    .seamap .grid-line { stroke:rgba(244,236,216,.07); stroke-width:1; }
-    .seamap .rhumb { stroke:rgba(214,172,85,.16); stroke-width:1; stroke-dasharray:2 7; }
-    .seamap .landmass { fill:rgba(124,135,148,.09); stroke:rgba(124,135,148,.28); stroke-width:1; }
-    .seamap .zone { cursor:pointer; }
-    .seamap .zone circle.halo { fill:var(--zc,var(--gold)); opacity:.08; transition:opacity .3s,r .3s; }
-    .seamap .zone.active circle.halo,.seamap .zone:hover circle.halo { opacity:.22; }
-    .seamap .zone circle.pin { fill:rgba(5,8,17,.92); stroke:var(--zc,var(--gold)); stroke-width:1.8; transition:r .25s; }
-    .seamap .zone.active circle.pin { r:9; }
-    .seamap .zone text.zn { fill:var(--parch); font-size:11px; font-weight:700; letter-spacing:.06em; }
-    .seamap .zone text.zy { fill:var(--soft); font-size:9.5px; font-weight:600; }
+    /* — Carte des théâtres : atlas hydrographique nocturne — */
+    .seamap { position:relative; scroll-margin-top:92px; border-color:rgba(214,172,85,.34);
+      background:
+        linear-gradient(90deg,transparent 0 49.9%,rgba(214,172,85,.07) 50%,transparent 50.1%),
+        radial-gradient(90% 140% at 50% -30%,rgba(214,172,85,.13),transparent 58%),
+        linear-gradient(180deg,#0a1420 0%,#050a12 100%); }
+    .seamap::before,.seamap::after { content:""; position:absolute; z-index:3; pointer-events:none; width:44px; height:44px; opacity:.7; }
+    .seamap::before { inset:10px auto auto 10px; border-top:1px solid var(--gold); border-left:1px solid var(--gold); }
+    .seamap::after { inset:auto 10px 10px auto; border-right:1px solid var(--gold); border-bottom:1px solid var(--gold); }
+    .seamap .viz-head { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:22px; align-items:end; padding:28px 28px 18px; border-bottom:1px solid rgba(214,172,85,.14); }
+    .seamap .viz-title { max-width:24ch; margin:9px 0 6px; font-family:var(--roman); font-size:clamp(1.45rem,3vw,2.35rem); font-weight:800; line-height:1.02; letter-spacing:.025em; text-transform:uppercase; color:var(--ink); }
+    .seamap .viz-sub { max-width:72ch; }
+    .map-ledger { display:grid; grid-template-columns:repeat(3,auto); align-items:stretch; border:1px solid var(--line); background:rgba(3,6,13,.48); box-shadow:0 16px 42px rgba(0,0,0,.28); }
+    .map-ledger span { min-width:84px; padding:11px 14px; border-left:1px solid var(--line-2); text-align:center; }
+    .map-ledger span:first-child { border-left:0; }
+    .map-ledger b { display:block; font-family:var(--roman); font-size:1.18rem; line-height:1; color:var(--gold-bright); }
+    .map-ledger small { display:block; margin-top:6px; font-family:var(--roman); font-size:.5rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--soft); }
+    .seamap .viz-body { padding:18px 24px 10px; }
+    #mapMount { position:relative; isolation:isolate; aspect-ratio:1200/520; min-height:340px; overflow:hidden; border:1px solid rgba(214,172,85,.25); border-radius:2px;
+      background:
+        radial-gradient(circle at 25% 25%,rgba(214,172,85,.08),transparent 28%),
+        radial-gradient(circle at 76% 64%,rgba(63,142,163,.09),transparent 30%),
+        linear-gradient(rgba(214,172,85,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(214,172,85,.02) 1px,transparent 1px),
+        url("assets/world-nautical-map.svg") center/100% 100% no-repeat,
+        linear-gradient(180deg,rgba(11,28,38,.96),rgba(4,12,20,.99));
+      background-size:auto,auto,24px 24px,24px 24px,100% 100%,auto;
+      box-shadow:inset 0 0 80px rgba(0,0,0,.7),0 18px 50px rgba(0,0,0,.3); }
+    #mapMount::before { content:"THEATRVM ORBIS MARITIMI · MD—MDCCCX"; position:absolute; z-index:2; left:50%; top:14px; transform:translateX(-50%); padding:3px 12px; color:rgba(243,217,138,.55); background:rgba(5,8,17,.58); border:1px solid rgba(214,172,85,.14); font-family:var(--roman); font-size:.52rem; font-weight:700; letter-spacing:.22em; white-space:nowrap; }
+    #mapMount::after { content:""; position:absolute; z-index:2; inset:0; pointer-events:none; background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.38) 100%); box-shadow:inset 0 0 0 5px rgba(214,172,85,.025),inset 0 0 0 6px rgba(214,172,85,.12); }
+    .seamap .grid-line { stroke:rgba(244,236,216,.075); stroke-width:.8; }
+    .seamap .grid-line.major { stroke:rgba(214,172,85,.16); stroke-width:1; }
+    .seamap .rhumb { fill:none; stroke:rgba(214,172,85,.2); stroke-width:1; stroke-dasharray:2 8; }
+    .seamap .sea-route { fill:none; stroke:rgba(243,217,138,.42); stroke-width:1.5; stroke-linecap:round; stroke-dasharray:1 9; filter:drop-shadow(0 0 4px rgba(214,172,85,.32)); animation:chartRoute 16s linear infinite; }
+    @keyframes chartRoute { to { stroke-dashoffset:-120; } }
+    .seamap .ocean-name { fill:rgba(192,181,154,.32); font-family:var(--serif); font-style:italic; font-size:15px; font-weight:400; letter-spacing:.12em; }
+    .seamap .coord { fill:rgba(192,181,154,.34); font-size:8px; font-weight:600; letter-spacing:.08em; }
+    .seamap .zone { cursor:pointer; outline:none; }
+    .seamap .zone ellipse.wash { fill:var(--zc,var(--gold)); opacity:.055; stroke:var(--zc,var(--gold)); stroke-width:.8; stroke-dasharray:3 6; transition:opacity .35s,transform .35s var(--ease); transform-box:fill-box; transform-origin:center; }
+    .seamap .zone:hover ellipse.wash,.seamap .zone.active ellipse.wash,.seamap .zone:focus-visible ellipse.wash { opacity:.19; transform:scale(1.12); }
+    .seamap .zone circle.halo { fill:none; stroke:var(--zc,var(--gold)); stroke-width:1; opacity:.32; transition:opacity .3s,r .3s; }
+    .seamap .zone.active circle.halo,.seamap .zone:hover circle.halo { opacity:.95; r:18; }
+    .seamap .zone circle.pin { fill:var(--zc,var(--gold)); stroke:#050811; stroke-width:3; filter:drop-shadow(0 0 7px var(--zc,var(--gold))); transition:r .25s; }
+    .seamap .zone.active circle.pin { r:7.5; }
+    .seamap .zone .crosshair { stroke:var(--zc,var(--gold)); stroke-width:.8; opacity:.5; }
+    .seamap .zone text.zn { fill:var(--parch); font-size:11px; font-weight:800; letter-spacing:.075em; paint-order:stroke; stroke:rgba(3,6,13,.95); stroke-width:4px; stroke-linejoin:round; }
+    .seamap .zone text.zy { fill:var(--soft); font-size:9px; font-weight:700; paint-order:stroke; stroke:rgba(3,6,13,.95); stroke-width:3px; }
     .seamap .zone.active text.zn { fill:var(--gold-bright); }
-    .seamap .compass { fill:none; stroke:rgba(214,172,85,.3); stroke-width:1; }
-    .seamap text.compass-l { fill:var(--soft); font-size:9px; font-weight:700; letter-spacing:.1em; }
+    .seamap .compass-ring { fill:rgba(5,8,17,.58); stroke:rgba(214,172,85,.52); stroke-width:1; }
+    .seamap .compass-ray { fill:rgba(214,172,85,.16); stroke:rgba(243,217,138,.7); stroke-width:.8; }
+    .seamap text.compass-l { fill:var(--gold-bright); font-size:10px; font-weight:800; letter-spacing:.12em; paint-order:stroke; stroke:#050811; stroke-width:3px; }
+    .seamap .leg-cards { gap:8px; padding:10px 24px 4px; }
+    .seamap .leg-card { position:relative; display:grid; grid-template-columns:34px minmax(0,1fr); gap:11px; align-items:center; min-height:78px; padding:13px 14px; border-left:1px solid var(--line-2); border-top:2px solid var(--lc,var(--gold)); overflow:hidden; }
+    .seamap .leg-card::after { content:""; position:absolute; inset:auto -20px -34px auto; width:78px; height:78px; border:1px solid var(--lc,var(--gold)); border-radius:50%; opacity:.08; transition:transform .35s var(--ease),opacity .35s; }
+    .seamap .leg-card:hover::after,.seamap .leg-card.active::after { opacity:.24; transform:scale(1.25); }
+    .leg-no { display:grid; place-items:center; width:32px; height:32px; border:1px solid var(--lc,var(--gold)); border-radius:50%; color:var(--lc,var(--gold)); font-family:var(--roman); font-size:.56rem; font-weight:800; }
+    .leg-copy { min-width:0; }
+    .seamap .leg-card h5 { margin:0 0 4px; }
+    .seamap .leg-card p { font-size:.79rem; line-height:1.35; }
+    .seamap .leg-detail { min-height:142px; margin:16px 24px 4px; padding:18px 0 4px; }
+    .map-detail-grid { display:grid; grid-template-columns:minmax(210px,.72fr) minmax(0,1.28fr); gap:26px; align-items:start; }
+    .map-detail-stamp { padding:14px 16px; border:1px solid var(--line); border-left:3px solid var(--lc,var(--gold)); background:rgba(244,236,216,.025); }
+    .map-detail-stamp .lab { color:var(--lc,var(--gold)); }
+    .map-detail-stamp h4 { margin-bottom:4px; }
+    .map-detail-stamp .kind { margin:0; font-family:var(--serif); font-style:italic; color:var(--soft); font-size:.9rem; }
+    .map-detail-copy p { margin-top:0; }
+    .map-detail-copy strong { color:var(--gold-bright); font-weight:600; }
 
     /* — Frise chronologique — */
     .tl-node { cursor:pointer; }
@@ -439,8 +492,19 @@
     .ship svg .barricado { stroke:var(--blood); stroke-width:2.4; stroke-dasharray:5 4; }
     .ship svg text.lbl { fill:var(--soft); font-size:10px; font-weight:600; }
 
+    @media (max-width:820px) {
+      .seamap .viz-head { grid-template-columns:1fr; padding:24px 18px 16px; }
+      .map-ledger { width:100%; }
+      .map-ledger span { width:33.333%; min-width:0; }
+      .seamap .viz-body { padding:14px 12px 8px; overflow-x:auto; scrollbar-color:var(--gold-deep) rgba(214,172,85,.08); }
+      #mapMount { min-width:720px; min-height:312px; }
+      .seamap .leg-cards { padding-inline:12px; }
+      .map-detail-grid { grid-template-columns:1fr; gap:12px; }
+      .seamap .leg-detail { margin-inline:14px; }
+    }
     @media (max-width:720px) {
       .leg-cards { grid-template-columns:1fr; }
+      .seamap .leg-card { min-height:68px; }
     }
     @media (prefers-reduced-motion:reduce) {
       *,*::before,*::after { animation:none !important; transition:none !important; }
@@ -551,20 +615,27 @@
 
       <section class="viz reveal seamap" id="carte" aria-label="Carte des cinq théâtres de la piraterie">
         <div class="viz-head">
-          <span class="viz-eyebrow">Géographie · interactif</span>
-          <p class="viz-title">Cinq mers, onze figures, quatre siècles</p>
-          <p class="viz-sub">Cliquez (ou survolez) un théâtre. Carte <em>schématique</em> : les positions sont indicatives, elles servent à situer les récits les uns par rapport aux autres, pas à mesurer des distances.</p>
+          <div class="map-heading">
+            <span class="viz-eyebrow">Atlas hydrographique · interactif</span>
+            <p class="viz-title">Cinq mers, onze figures, quatre siècles</p>
+            <p class="viz-sub">Choisissez un théâtre pour ouvrir son journal de bord. Les côtes suivent les données géographiques Natural Earth ; les halos indiquent des zones d'activité, non des frontières.</p>
+          </div>
+          <div class="map-ledger" aria-label="Résumé de la carte">
+            <span><b>V</b><small>théâtres</small></span>
+            <span><b>XI</b><small>figures</small></span>
+            <span><b>IV</b><small>siècles</small></span>
+          </div>
         </div>
         <div class="viz-body"><div id="mapMount"></div></div>
-        <div class="leg-cards five" id="mapCards">
-          <button class="leg-card" type="button" style="--lc:var(--sea)"><h5>Mer de Chine</h5><p>Ching Shih · 1807-1810</p></button>
-          <button class="leg-card" type="button" style="--lc:var(--blood)"><h5>Caraïbes</h5><p>Bonny, Read, l'Olonnais, Jacquotte</p></button>
-          <button class="leg-card" type="button" style="--lc:var(--gold)"><h5>Atlantique nord</h5><p>Grace O'Malley · Barbe Noire · Roberts</p></button>
-          <button class="leg-card" type="button" style="--lc:var(--sail)"><h5>Méditerranée</h5><p>Sayyida al Hurra · 1515-1542</p></button>
-          <button class="leg-card" type="button" style="--lc:var(--steel)"><h5>Océan Indien</h5><p>Olivier Levasseur · 1721-1730</p></button>
+        <div class="leg-cards five" id="mapCards" aria-label="Choisir un théâtre maritime">
+          <button class="leg-card" type="button" style="--lc:var(--sea)"><span class="leg-no">01</span><span class="leg-copy"><h5>Mer de Chine</h5><p>Zheng Yi Sao · 1805-1810</p></span></button>
+          <button class="leg-card" type="button" style="--lc:var(--blood)"><span class="leg-no">02</span><span class="leg-copy"><h5>Caraïbes</h5><p>Bonny, Read, l'Olonnais, Lafitte</p></span></button>
+          <button class="leg-card" type="button" style="--lc:var(--gold)"><span class="leg-no">03</span><span class="leg-copy"><h5>Atlantique nord</h5><p>O'Malley, Teach, Roberts</p></span></button>
+          <button class="leg-card" type="button" style="--lc:var(--sail)"><span class="leg-no">04</span><span class="leg-copy"><h5>Méditerranée</h5><p>Sayyida al-Hurra · 1515-1542</p></span></button>
+          <button class="leg-card" type="button" style="--lc:var(--steel)"><span class="leg-no">05</span><span class="leg-copy"><h5>Océan Indien</h5><p>Levasseur &amp; Taylor · 1721</p></span></button>
         </div>
-        <div class="leg-detail" id="mapDetail"></div>
-        <div class="viz-foot">Repères géographiques et chronologiques vérifiés dossier par dossier. <a href="../../sources/sources.html">Appareil critique →</a></div>
+        <div class="leg-detail" id="mapDetail" aria-live="polite"></div>
+        <div class="viz-foot">Fond géographique : Natural Earth, domaine public · Repères historiques vérifiés dossier par dossier. <a href="../../sources/sources.html">Consulter l'appareil critique →</a></div>
       </section>
 
       <section class="act-band reveal" id="acteI" aria-labelledby="actI">
@@ -2087,7 +2158,7 @@
     window.addEventListener("resize", revealTall, { passive: true });
     revealTall();
 
-    /* Carte schématique des cinq théâtres */
+    /* Atlas hydrographique des cinq théâtres */
     (function () {
       const mount = document.getElementById("mapMount");
       const detail = document.getElementById("mapDetail");
@@ -2095,51 +2166,92 @@
       if (!mount || !detail || !cards.length) return;
 
       const zones = [
-        { x:790, y:208, col:"var(--sea)", title:"Mer de Chine méridionale", dates:"1805–1810", names:"Zheng Yi Sao · Zhang Bao", text:"Delta de la rivière des Perles : six flottes codées par couleur, une proto-fiscalité du sel, des bureaux de taxation à terre et une amnistie négociée sous contrainte militaire." },
-        { x:265, y:250, col:"var(--blood)", title:"Caraïbes & golfe du Mexique", dates:"v. 1650–1823", names:"Bonny · Read · l'Olonnais · Lafitte · Jacquotte (légende)", text:"La Tortue, la Jamaïque, Barataria : le théâtre des procès d'Amirauté, des lettres de marque contestées, de la flibuste — et de la fabrication tardive de Jacquotte Delahaye." },
-        { x:435, y:120, col:"var(--gold)", title:"Atlantique nord", dates:"v. 1530–1722", names:"Grace O'Malley · Barbe Noire · Bartholomew Roberts", text:"De Greenwich à Ocracoke, le pouvoir passe par les State Papers, les grâces coloniales, les Articles signés et la réputation : le navire se rend avant même le premier boulet." },
-        { x:500, y:205, col:"var(--sail)", title:"Méditerranée occidentale", dates:"1515–1542", names:"Sayyida al-Hurra", text:"Depuis Tétouan, la course devient politique d'État : négociation directe des rançons, corridor maritime, autonomie réelle sous suzeraineté wattasside nominale." },
-        { x:650, y:300, col:"var(--steel)", title:"Océan Indien", dates:"1721–1730", names:"Olivier Levasseur · John Taylor", text:"La prise de la Nossa Senhora do Cabo, puis deux siècles de silence avant l'apparition, en 1934, du cryptogramme qui allait fabriquer la légende de La Buse." }
+        { x:977, y:196, rx:72, ry:38, col:"var(--sea)", title:"Mer de Chine méridionale", dates:"1805–1810", names:"Zheng Yi Sao · Zhang Bao", kind:"Empire maritime · Delta de la rivière des Perles", fact:"Six flottes identifiées par couleur", text:"Une confédération navale immense, appuyée sur une fiscalité du sel, des relais à terre et une amnistie finalement négociée sous forte contrainte militaire." },
+        { x:347, y:208, rx:86, ry:50, col:"var(--blood)", title:"Caraïbes & golfe du Mexique", dates:"v. 1650–1823", names:"Bonny · Read · l'Olonnais · Lafitte", kind:"Flibuste, procès et lettres de marque", fact:"De la Tortue à Barataria", text:"Le grand laboratoire colonial de la flibuste : procès d'Amirauté, statuts ambigus, ports-refuges et légendes tardives — dont celle de Jacquotte Delahaye." },
+        { x:510, y:130, rx:92, ry:48, col:"var(--gold)", title:"Atlantique nord", dates:"v. 1530–1722", names:"Grace O'Malley · Barbe Noire · Bartholomew Roberts", kind:"Diplomatie, réputation et Articles", fact:"De Greenwich à Ocracoke", text:"Ici, le pouvoir passe par les State Papers, les grâces coloniales, les contrats d'équipage et la terreur calculée : obtenir la reddition avant le premier boulet." },
+        { x:583, y:159, rx:72, ry:34, col:"var(--sail)", title:"Méditerranée occidentale", dates:"1515–1542", names:"Sayyida al-Hurra", kind:"Course d'État · Gouvernement de Tétouan", fact:"La rançon comme instrument diplomatique", text:"Depuis Tétouan, la course devient politique de souveraineté : négociation directe des captifs, contrôle des routes et autonomie réelle sous suzeraineté wattasside." },
+        { x:783, y:318, rx:105, ry:54, col:"var(--steel)", title:"Océan Indien", dates:"1721–1730", names:"Olivier Levasseur · John Taylor", kind:"Prise océanique · Île Bourbon et Mascareignes", fact:"La Nossa Senhora do Cabo, 1721", text:"Une prise historique spectaculaire, puis deux siècles de silence avant que le cryptogramme apparu en 1934 ne transforme La Buse en énigme mondiale." }
       ];
 
       const NS = "http://www.w3.org/2000/svg";
       const el = (name, attrs = {}) => { const n = document.createElementNS(NS, name); for (const [k,v] of Object.entries(attrs)) n.setAttribute(k,v); return n; };
-      const svg = el("svg", { viewBox:"0 0 920 390", role:"img", "aria-label":"Carte schématique des cinq théâtres de la piraterie" });
-      for (let x=70; x<900; x+=95) svg.appendChild(el("line", { x1:x, y1:22, x2:x, y2:365, class:"grid-line" }));
-      for (let y=45; y<370; y+=65) svg.appendChild(el("line", { x1:25, y1:y, x2:895, y2:y, class:"grid-line" }));
-      [[460,195,40],[460,195,90],[460,195,150],[460,195,215],[460,195,290],[460,195,350]].forEach(([x,y,a]) => {
-        const r=400, rad=a*Math.PI/180; svg.appendChild(el("line", { x1:x, y1:y, x2:x+Math.cos(rad)*r, y2:y+Math.sin(rad)*r, class:"rhumb" }));
+      const text = (content, attrs) => { const n=el("text",attrs); n.textContent=content; return n; };
+      const svg = el("svg", { viewBox:"0 0 1200 520", role:"img", "aria-label":"Planisphère interactif des cinq théâtres de la piraterie" });
+
+      for (let x=0; x<=1200; x+=100) svg.appendChild(el("line", { x1:x, y1:0, x2:x, y2:520, class:`grid-line${x===600?" major":""}` }));
+      [87,173,260,347,433].forEach((y,i) => svg.appendChild(el("line", { x1:0, y1:y, x2:1200, y2:y, class:`grid-line${i===2?" major":""}` })));
+      [
+        [12,84,"60° N"],[12,170,"30° N"],[12,256,"ÉQUATEUR"],[12,343,"30° S"],[12,430,"60° S"],
+        [196,508,"120° O"],[392,508,"60° O"],[592,508,"0°"],[790,508,"60° E"],[986,508,"120° E"]
+      ].forEach(([x,y,label]) => svg.appendChild(text(label,{x,y,class:"coord"})));
+
+      [[1065,82,15],[1065,82,55],[1065,82,105],[1065,82,145],[1065,82,195],[1065,82,235],[1065,82,285],[1065,82,325]].forEach(([x,y,a]) => {
+        const r=610, rad=a*Math.PI/180;
+        svg.appendChild(el("line", { x1:x, y1:y, x2:x+Math.cos(rad)*r, y2:y+Math.sin(rad)*r, class:"rhumb" }));
       });
-      const masses = [
-        "M40 72 C105 40 180 48 228 78 C250 98 220 122 236 147 C245 164 217 176 194 164 C159 146 133 182 115 215 C94 252 68 239 59 206 C52 179 23 163 36 132 Z",
-        "M225 236 C267 218 302 231 318 263 C330 292 310 325 283 358 C254 338 247 299 232 279 Z",
-        "M384 56 C434 31 504 38 548 57 C568 71 548 91 562 108 C593 118 617 145 602 170 C584 191 540 180 521 205 C498 235 457 242 424 224 C397 205 378 170 390 141 C403 111 364 89 384 56 Z",
-        "M532 212 C571 186 627 193 662 221 C677 246 654 275 668 307 C648 347 601 364 565 343 C546 311 519 282 532 212 Z",
-        "M620 68 C679 37 775 53 837 89 C861 111 840 139 861 161 C839 193 798 188 774 212 C736 238 687 218 655 199 C626 181 606 129 620 68 Z",
-        "M783 274 C821 260 858 276 874 307 C866 339 839 356 805 345 C781 331 765 299 783 274 Z"
-      ];
-      masses.forEach(d => svg.appendChild(el("path", { d, class:"landmass" })));
+
+      [
+        "M583 159 C520 135 430 145 347 208",
+        "M510 130 C452 160 398 190 347 208",
+        "M583 159 C665 212 724 270 783 318",
+        "M783 318 C850 284 918 230 977 196"
+      ].forEach(d => svg.appendChild(el("path",{d,class:"sea-route"})));
+
+      svg.appendChild(text("OCÉAN PACIFIQUE",{x:92,y:284,class:"ocean-name"}));
+      svg.appendChild(text("OCÉAN ATLANTIQUE",{x:430,y:315,class:"ocean-name"}));
+      svg.appendChild(text("OCÉAN INDIEN",{x:760,y:394,class:"ocean-name"}));
+      svg.appendChild(text("MER DE CHINE",{x:938,y:255,class:"ocean-name"}));
 
       const nodes=[];
-      function show(i) {
-        nodes.forEach((n,j)=>n.classList.toggle("active",j===i));
-        cards.forEach((c,j)=>c.classList.toggle("active",j===i));
-        const z=zones[i]; detail.style.setProperty("--lc",z.col);
-        detail.innerHTML=`<div class="lab">${z.dates} · ${z.names}</div><h4>${z.title}</h4><p>${z.text}</p>`;
+      function centerZone(i, behavior="smooth") {
+        const scroller=mount.parentElement;
+        if (!scroller || scroller.scrollWidth<=scroller.clientWidth) return;
+        const scale=mount.scrollWidth/1200;
+        const left=Math.max(0,zones[i].x*scale-scroller.clientWidth/2);
+        scroller.scrollTo({left,behavior});
       }
+      function show(i, shouldCenter=false) {
+        nodes.forEach((node,j)=>node.classList.toggle("active",j===i));
+        cards.forEach((card,j) => {
+          card.classList.toggle("active",j===i);
+          card.setAttribute("aria-pressed",String(j===i));
+        });
+        const z=zones[i];
+        detail.style.setProperty("--lc",z.col);
+        detail.innerHTML=`<div class="map-detail-grid"><div class="map-detail-stamp"><div class="lab">${z.dates} · ${z.names}</div><h4>${z.title}</h4><p class="kind">${z.kind}</p></div><div class="map-detail-copy"><p><strong>${z.fact}.</strong> ${z.text}</p><ul><li>Théâtre ${String(i+1).padStart(2,"0")}</li><li>Coordonnées indicatives</li><li>Sources vérifiées</li></ul></div></div>`;
+        if (shouldCenter) centerZone(i);
+      }
+
       zones.forEach((z,i) => {
-        const g=el("g", { class:"zone", tabindex:"0", role:"button", "aria-label":z.title });
+        const g=el("g", { class:"zone", tabindex:"0", role:"button", "aria-label":`${z.title}, ${z.dates}` });
         g.style.setProperty("--zc",z.col);
-        g.appendChild(el("circle", { cx:z.x, cy:z.y, r:25, class:"halo" }));
-        g.appendChild(el("circle", { cx:z.x, cy:z.y, r:6, class:"pin" }));
-        const tx=z.x>700?z.x-14:z.x+14, anchor=z.x>700?"end":"start";
-        const t1=el("text", { x:tx, y:z.y-7, class:"zn", "text-anchor":anchor }); t1.textContent=z.title;
-        const t2=el("text", { x:tx, y:z.y+10, class:"zy", "text-anchor":anchor }); t2.textContent=z.dates;
-        g.append(t1,t2); g.addEventListener("click",()=>show(i)); g.addEventListener("mouseenter",()=>show(i)); g.addEventListener("focus",()=>show(i));
+        g.appendChild(el("ellipse", { cx:z.x, cy:z.y, rx:z.rx, ry:z.ry, class:"wash" }));
+        g.appendChild(el("line", { x1:z.x-24, y1:z.y, x2:z.x+24, y2:z.y, class:"crosshair" }));
+        g.appendChild(el("line", { x1:z.x, y1:z.y-24, x2:z.x, y2:z.y+24, class:"crosshair" }));
+        g.appendChild(el("circle", { cx:z.x, cy:z.y, r:13, class:"halo" }));
+        g.appendChild(el("circle", { cx:z.x, cy:z.y, r:5.5, class:"pin" }));
+        const right=z.x>880, tx=right?z.x-18:z.x+18, anchor=right?"end":"start";
+        g.appendChild(text(z.title.toUpperCase(),{x:tx,y:z.y-9,class:"zn","text-anchor":anchor}));
+        g.appendChild(text(z.dates,{x:tx,y:z.y+9,class:"zy","text-anchor":anchor}));
+        g.addEventListener("click",()=>show(i));
+        g.addEventListener("mouseenter",()=>show(i));
+        g.addEventListener("focus",()=>show(i));
+        g.addEventListener("keydown",(event)=>{ if (event.key==="Enter" || event.key===" ") { event.preventDefault(); show(i); } });
         svg.appendChild(g); nodes.push(g);
       });
-      const cg=el("g"); cg.appendChild(el("circle",{cx:854,cy:55,r:20,class:"compass"})); cg.appendChild(el("line",{x1:854,y1:30,x2:854,y2:80,class:"compass"})); cg.appendChild(el("line",{x1:829,y1:55,x2:879,y2:55,class:"compass"})); const n=el("text",{x:854,y:24,"text-anchor":"middle",class:"compass-l"});n.textContent="N";cg.appendChild(n);svg.appendChild(cg);
-      mount.appendChild(svg); cards.forEach((c,i)=>c.addEventListener("click",()=>show(i))); show(0);
+
+      const compass=el("g",{"aria-hidden":"true"});
+      compass.appendChild(el("circle",{cx:1065,cy:82,r:46,class:"compass-ring"}));
+      compass.appendChild(el("circle",{cx:1065,cy:82,r:31,class:"compass-ring"}));
+      compass.appendChild(el("path",{d:"M1065 27 L1072 70 L1065 82 L1058 70 Z M1120 82 L1077 89 L1065 82 L1077 75 Z M1065 137 L1058 94 L1065 82 L1072 94 Z M1010 82 L1053 75 L1065 82 L1053 89 Z",class:"compass-ray"}));
+      compass.appendChild(el("path",{d:"M1065 42 L1069 76 L1065 82 L1061 76 Z",fill:"var(--gold-bright)"}));
+      compass.appendChild(text("N",{x:1065,y:20,"text-anchor":"middle",class:"compass-l"}));
+      svg.appendChild(compass);
+
+      mount.appendChild(svg);
+      cards.forEach((card,i)=>card.addEventListener("click",()=>show(i,true)));
+      show(0);
+      requestAnimationFrame(()=>centerZone(0,"auto"));
     })();
   </script>
   <script src="../../assets/visit-counter.js" defer></script>
