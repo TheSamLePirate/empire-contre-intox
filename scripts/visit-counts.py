@@ -10,12 +10,12 @@ mêmes chemins canoniques, afin d'agréger automatiquement les deux canaux :
   - miroir Pages      : /empire-contre-intox/ymir-lalie/resume-eres.html → /ymir-lalie/resume-eres.html
 
 Usage courant :
-  python3 scripts/visit-counts.py
+  python3 scripts/visit-counts.py                     # inclut l'accueil + les dossiers
 
 Options utiles :
   python3 scripts/visit-counts.py --mode primary       # compteur agrégé canonique
   python3 scripts/visit-counts.py --mode mirror        # diagnostic du chemin miroir
-  python3 scripts/visit-counts.py --include-index      # ajoute la page d'accueil
+  python3 scripts/visit-counts.py --no-index           # masque la page d'accueil
   python3 scripts/visit-counts.py --include-agenda     # ajoute l'agenda externe si présent
   python3 scripts/visit-counts.py --json               # sortie JSON
   python3 scripts/visit-counts.py --csv                # sortie CSV
@@ -227,7 +227,9 @@ def main() -> int:
     parser.add_argument("--mode", choices=["primary", "mirror", "both"], default="primary", help="Chemins à interroger (défaut: primary, déjà agrégé principal + miroir)")
     parser.add_argument("--sort", choices=["number", "count", "title"], default="number", help="Tri de sortie (défaut: number)")
     parser.add_argument("--timeout", type=float, default=8.0, help="Timeout HTTP par requête, en secondes")
-    parser.add_argument("--include-index", action="store_true", help="Ajoute la page d'accueil /")
+    parser.set_defaults(include_index=True)
+    parser.add_argument("--include-index", action="store_true", help=argparse.SUPPRESS)
+    parser.add_argument("--no-index", dest="include_index", action="store_false", help="Masque la page d'accueil /")
     parser.add_argument("--include-agenda", action="store_true", help="Ajoute la carte Agenda si elle est présente dans index.html")
     parser.add_argument("--json", action="store_true", help="Sortie JSON")
     parser.add_argument("--csv", action="store_true", help="Sortie CSV")
