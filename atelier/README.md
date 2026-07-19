@@ -10,8 +10,9 @@ publication. Servi par GitHub Pages mais **non lié aux menus** du site et marqu
 
 ## URL (une fois publié)
 
-- Hub : `https://thesamlepirate.github.io/empire-contre-intox/atelier/`
-- Projet Sondes : `https://thesamlepirate.github.io/empire-contre-intox/atelier/sondes/`
+- Hub : `https://empire-contre-intox.com/atelier/`
+- Projet Sondes : `https://empire-contre-intox.com/atelier/sondes/`
+- Miroir secondaire : `https://thesamlepirate.github.io/empire-contre-intox/atelier/`
 
 ## Architecture
 

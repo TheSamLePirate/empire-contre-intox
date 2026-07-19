@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, rm, stat } from "node:fs/promises";
+import { cp, mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -16,6 +16,22 @@ const config = JSON.parse(await readFile(configPath, "utf8")) as LegacyConfig;
 const manifestPath = path.join(root, config.manifest);
 const manifest = JSON.parse(await readFile(manifestPath, "utf8")) as string[];
 const destinationRoot = path.join(root, config.outputDirectory);
+const canonicalOrigin = "https://empire-contre-intox.com";
+
+function canonicalUrl(relativePath: string): string {
+  const publicPath = relativePath === "index.html"
+    ? "/"
+    : `/${relativePath.replace(/index\.html$/i, "")}`;
+  return new URL(publicPath, canonicalOrigin).href;
+}
+
+function addCanonicalMetadata(source: string, relativePath: string): string {
+  const canonical = canonicalUrl(relativePath);
+  const metadata = `\n  <link rel="canonical" href="${canonical}">\n  <meta property="og:url" content="${canonical}">`;
+  const output = source.replace(/<head\b[^>]*>/i, (head) => `${head}${metadata}`);
+  if (output === source) throw new Error(`Missing <head> in legacy HTML file: ${relativePath}`);
+  return output;
+}
 
 function assertSafeRelativePath(relativePath: string): void {
   if (path.isAbsolute(relativePath) || relativePath.includes("..")) {
@@ -42,7 +58,12 @@ for (const relativePath of manifest) {
   const sourceStats = await stat(source).catch(() => undefined);
   if (!sourceStats?.isFile()) throw new Error(`Missing public legacy file: ${relativePath}`);
   await mkdir(path.dirname(destination), { recursive: true });
-  await cp(source, destination);
+  if (path.extname(relativePath).toLowerCase() === ".html") {
+    const html = await readFile(source, "utf8");
+    await writeFile(destination, addCanonicalMetadata(html, relativePath), "utf8");
+  } else {
+    await cp(source, destination);
+  }
 }
 
 for (const requiredFile of config.requiredFiles) {

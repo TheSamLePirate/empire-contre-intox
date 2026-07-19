@@ -11,7 +11,7 @@ import re, html, os, subprocess
 from xml.sax.saxutils import escape
 from datetime import datetime, timezone
 
-BASE = "https://thesamlepirate.github.io/empire-contre-intox/"
+BASE = "https://empire-contre-intox.com/"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_TITLE = "Empire contre Intox — Dossiers"
 SITE_DESC = ("Archives publiques d'Empire contre Intox : dossiers scientifiques sur le temps "
