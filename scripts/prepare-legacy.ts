@@ -68,6 +68,7 @@ function buildSocialPreviews(indexSource: string, publicFiles: Set<string>): Map
     const cardImage = image?.[2];
     const imageAlt = image?.[4];
     if (!href || href.startsWith("/") || !cardImage || imageAlt === undefined) continue;
+    const documentPath = href.endsWith("/") ? `${href}index.html` : href;
 
     const fullSizeCandidates = [
       cardImage.replace(/\.index\.webp$/i, ".png"),
@@ -79,7 +80,7 @@ function buildSocialPreviews(indexSource: string, publicFiles: Set<string>): Map
     const cardDescription = card.match(/<div\s+class=(["'])dossier-body\1[^>]*>[\s\S]*?<p>([\s\S]*?)<\/p>/i)?.[2]
       ?.replace(/<[^>]+>/g, "")
       .trim();
-    previews.set(href, {
+    previews.set(documentPath, {
       imagePath,
       imageAlt: decodeHtmlEntities(imageAlt),
       ...(cardDescription ? { description: decodeHtmlEntities(cardDescription) } : {}),

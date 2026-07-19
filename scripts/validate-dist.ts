@@ -78,7 +78,9 @@ const indexHtml = await readFile(path.join(dist, "index.html"), "utf8");
 const socialPages = new Set(["index.html"]);
 for (const match of indexHtml.matchAll(/<a\s+class=["']dossier-link["']\s+href=["']([^"']+)["']/gi)) {
   const href = match[1];
-  if (href && !href.startsWith("/") && href.endsWith(".html")) socialPages.add(href);
+  if (!href || href.startsWith("/")) continue;
+  const documentPath = href.endsWith("/") ? `${href}index.html` : href;
+  if (documentPath.endsWith(".html")) socialPages.add(documentPath);
 }
 
 for (const relativePath of socialPages) {
