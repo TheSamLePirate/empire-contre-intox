@@ -1,0 +1,29 @@
+{
+  "manifest": "config/legacy-public-manifest.json",
+  "outputDirectory": ".legacy-public",
+  "requiredFiles": [
+    "index.html",
+    "rss.xml",
+    ".nojekyll",
+    "LICENCE-CONTENU.md",
+    "assets/visit-counter.js",
+    "sources/sources.html"
+  ],
+  "forbiddenSegments": [
+    ".git",
+    ".claude",
+    ".codex-pet-runs",
+    "a_traiter",
+    "counter",
+    "empire-calendrier",
+    "node_modules",
+    "scripts"
+  ],
+  "forbiddenExtensions": [
+    ".doc",
+    ".docx",
+    ".odt",
+    ".pptx",
+    ".txt"
+  ]
+}

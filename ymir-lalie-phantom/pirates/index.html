@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&amp;family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&amp;display=swap" rel="stylesheet">
 
   <script>document.documentElement.classList.add('js');</script>
 
@@ -401,35 +401,87 @@
     .forgotten-seal { display:grid; grid-template-columns:auto auto; align-items:center; gap:12px; min-width:160px; padding:12px 16px; border:1px solid var(--line); background:rgba(3,6,13,.48); }
     .forgotten-seal b { font-family:var(--roman); font-size:2.2rem; line-height:1; color:var(--gold-bright); }
     .forgotten-seal span { max-width:9ch; font-family:var(--roman); font-size:.55rem; font-weight:700; line-height:1.4; letter-spacing:.16em; text-transform:uppercase; color:var(--soft); }
-    .forgotten-grid { position:relative; z-index:1; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-    .forgotten-card { --fc:var(--gold); position:relative; min-width:0; margin:0; border:1px solid var(--line-2); border-top:2px solid var(--fc); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.62); transition:transform .45s var(--ease),border-color .45s var(--ease),box-shadow .45s var(--ease); }
-    .forgotten-card:hover { transform:translateY(-6px); border-color:color-mix(in srgb,var(--fc) 58%,transparent); box-shadow:0 24px 60px rgba(0,0,0,.42),0 0 34px color-mix(in srgb,var(--fc) 12%,transparent); }
-    .forgotten-card:nth-child(5) { grid-column:1/-1; display:grid; grid-template-columns:minmax(0,1.45fr) minmax(230px,.55fr); }
     .forgotten-media { position:relative; aspect-ratio:16/10; min-height:0; overflow:hidden; isolation:isolate; background:var(--abyss); }
     .forgotten-scene { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(.78) contrast(1.06) brightness(.84); transition:transform .9s var(--ease),filter .7s var(--ease); }
-    .forgotten-card:hover .forgotten-scene { transform:scale(1.035); filter:saturate(.98) contrast(1.04) brightness(.92); }
     .forgotten-media::after { content:""; position:absolute; z-index:1; inset:0; pointer-events:none; background:linear-gradient(180deg,transparent 42%,rgba(3,6,13,.78) 100%),linear-gradient(90deg,rgba(3,6,13,.2),transparent 45%); }
     .forgotten-vignette { position:absolute; z-index:2; right:18px; bottom:18px; width:clamp(86px,25%,132px); aspect-ratio:4/5; object-fit:cover; object-position:center top; padding:4px; border:1px solid rgba(243,217,138,.72); background:rgba(5,8,17,.92); box-shadow:0 18px 40px rgba(0,0,0,.62); }
     .forgotten-no { position:absolute; z-index:3; top:16px; left:16px; display:grid; place-items:center; width:42px; height:42px; border:1px solid var(--fc); border-radius:50%; color:var(--fc); background:rgba(5,8,17,.82); font-family:var(--roman); font-size:.62rem; font-weight:800; letter-spacing:.08em; box-shadow:0 0 0 5px rgba(5,8,17,.36); }
-    .forgotten-card figcaption { position:relative; padding:18px 20px 20px; border-top:1px solid var(--line-2); }
-    .forgotten-card:nth-child(5) figcaption { display:flex; flex-direction:column; justify-content:center; border-top:0; border-left:1px solid var(--line-2); }
-    .forgotten-card .figure-k { font-family:var(--roman); font-size:.56rem; font-weight:800; letter-spacing:.19em; text-transform:uppercase; color:var(--fc); }
-    .forgotten-card h3 { margin:7px 0 8px; font-family:var(--roman); font-size:clamp(1rem,2vw,1.3rem); font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); }
-    .forgotten-card p { margin:0; color:var(--soft); font-size:.88rem; line-height:1.55; }
     .forgotten-note { position:relative; z-index:1; margin:18px 0 0; padding:13px 15px; border-left:3px solid var(--gold); background:rgba(214,172,85,.055); color:var(--muted); font-size:.9rem; }
     .forgotten-note strong { color:var(--parch); }
+
+    /* — Sommaire des cinq fiches — */
+    .fgt-nav { position:relative; z-index:1; display:flex; flex-wrap:wrap; gap:8px; margin:0 0 22px; padding:0; list-style:none; }
+    .fgt-nav a { display:inline-flex; align-items:baseline; gap:9px; padding:8px 14px; border:1px solid var(--line); border-radius:2px; background:rgba(3,6,13,.5);
+      font-family:var(--roman); font-size:.7rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--parch);
+      transition:border-color .3s var(--ease),color .3s var(--ease),background .3s var(--ease); }
+    .fgt-nav a i { font-style:normal; font-size:.58rem; letter-spacing:.14em; color:var(--gold); }
+    .fgt-nav a:hover,.fgt-nav a:focus-visible { border-color:var(--gold); color:var(--gold-bright); background:rgba(214,172,85,.09); }
+
+    /* — Note méthodologique : conversion en euros — */
+    .fgt-method { position:relative; z-index:1; margin:0 0 26px; padding:18px 20px; border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; background:rgba(214,172,85,.045); }
+    .fgt-method p { margin:0 0 10px; color:var(--muted); font-size:.93rem; }
+    .fgt-method p:last-child { margin-bottom:0; }
+    .fgt-method strong { color:var(--parch); }
+    .fgt-rates { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin:14px 0; padding:0; list-style:none; }
+    .fgt-rates li { padding:10px 12px; border:1px solid var(--line-2); border-radius:2px; background:rgba(3,6,13,.5); }
+    .fgt-rates b { display:block; font-family:var(--roman); font-size:.95rem; font-weight:700; letter-spacing:.04em; color:var(--gold-bright); }
+    .fgt-rates span { display:block; margin-top:3px; color:var(--soft); font-size:.8rem; line-height:1.5; }
+
+    /* — Fiches détaillées — */
+    .fgt-files { position:relative; z-index:1; display:grid; gap:24px; margin:0 0 20px; }
+    .fgt-file { --fc:var(--gold); min-width:0; border:1px solid var(--line-2); border-top:2px solid var(--fc); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.62); scroll-margin-top:100px;
+      transition:border-color .45s var(--ease),box-shadow .45s var(--ease); }
+    .fgt-file:hover { border-color:color-mix(in srgb,var(--fc) 46%,transparent); box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 34px color-mix(in srgb,var(--fc) 10%,transparent); }
+    .fgt-file .forgotten-media { aspect-ratio:21/8; }
+    .fgt-file:hover .forgotten-scene { transform:scale(1.03); filter:saturate(.98) contrast(1.04) brightness(.92); }
+    .fgt-ident { position:absolute; z-index:3; left:clamp(16px,3vw,28px); right:clamp(120px,30%,190px); bottom:clamp(14px,2.6vw,24px); }
+    .fgt-ident .figure-k { display:block; font-family:var(--roman); font-size:.56rem; font-weight:800; letter-spacing:.19em; text-transform:uppercase; color:var(--fc); }
+    .fgt-ident h3 { margin:6px 0 5px; font-family:var(--roman); font-size:clamp(1.35rem,3.1vw,2.05rem); font-weight:800; line-height:1.05; letter-spacing:.03em; text-transform:uppercase; color:var(--ink); text-shadow:0 2px 22px rgba(3,6,13,.9); }
+    .fgt-epithet { margin:0; font-family:var(--serif); font-style:italic; font-size:.95rem; line-height:1.45; color:var(--parch); text-shadow:0 2px 16px rgba(3,6,13,.9); }
+    .fgt-body { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:clamp(18px,2.4vw,30px); padding:clamp(18px,2.6vw,28px); border-top:1px solid var(--line-2); }
+    .fgt-rows { display:grid; gap:15px; min-width:0; }
+    .fgt-row { min-width:0; padding-left:14px; border-left:1px solid var(--line-2); }
+    .fgt-row:hover { border-left-color:color-mix(in srgb,var(--fc) 55%,transparent); }
+    .fgt-lab { display:block; margin-bottom:5px; font-family:var(--roman); font-size:.58rem; font-weight:800; letter-spacing:.19em; text-transform:uppercase; color:var(--fc); }
+    .fgt-row p { margin:0; color:var(--muted); font-size:.93rem; line-height:1.66; }
+    .fgt-row strong { color:var(--parch); font-weight:600; }
+    .fgt-side { display:grid; gap:14px; align-content:start; min-width:0; }
+    .fgt-money { padding:15px 16px; border:1px solid rgba(214,172,85,.28); border-radius:2px; background:rgba(214,172,85,.06); }
+    .fgt-money-list { display:grid; gap:9px; margin:0; padding:0; list-style:none; }
+    .fgt-money-list li { display:grid; gap:2px; padding-left:20px; position:relative; }
+    .fgt-money-list li::before { content:"€"; position:absolute; left:0; top:1px; font-family:var(--roman); font-size:.85rem; font-weight:700; color:var(--gold); }
+    .fgt-money-list b { font-family:var(--roman); font-size:1.02rem; font-weight:700; letter-spacing:.03em; color:var(--gold-bright); }
+    .fgt-money-list span { color:var(--soft); font-size:.82rem; line-height:1.5; }
+    .fgt-total { margin:12px 0 0; padding-top:11px; border-top:1px solid var(--line); font-family:var(--roman); font-size:.9rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); }
+    .fgt-money-note { margin:9px 0 0; color:var(--soft); font-size:.78rem; line-height:1.55; }
+    .fgt-pop { padding:15px 16px; border-left:3px solid var(--sea); border-radius:2px; background:rgba(63,142,163,.09); }
+    .fgt-pop .block-label { color:var(--sea); }
+    .fgt-pop p { margin:0; color:var(--muted); font-size:.9rem; line-height:1.62; }
+    .fgt-pop em { color:var(--parch); }
+    .fgt-src { border:1px solid var(--line-2); border-radius:2px; background:rgba(3,6,13,.45); }
+    .fgt-src summary { padding:11px 14px; cursor:pointer; font-family:var(--roman); font-size:.6rem; font-weight:800; letter-spacing:.19em; text-transform:uppercase; color:var(--gold); list-style:none; }
+    .fgt-src summary::-webkit-details-marker { display:none; }
+    .fgt-src summary::after { content:" ▾"; color:var(--soft); }
+    .fgt-src[open] summary::after { content:" ▴"; }
+    .fgt-src summary:hover { color:var(--gold-bright); }
+    .fgt-src ul { margin:0; padding:0 14px 14px 30px; display:grid; gap:7px; }
+    .fgt-src li { color:var(--soft); font-size:.82rem; line-height:1.5; }
+    .fgt-src a { color:var(--parch); border-bottom:1px solid var(--line); }
+    .fgt-src a:hover,.fgt-src a:focus-visible { color:var(--gold-bright); border-bottom-color:var(--gold); }
+    @media (max-width:960px) {
+      .fgt-body { grid-template-columns:1fr; }
+      .fgt-file .forgotten-media { aspect-ratio:16/9; }
+    }
     @media (max-width:820px) {
       .forgotten-head { grid-template-columns:1fr; }
       .forgotten-seal { width:max-content; }
-      .forgotten-card:nth-child(5) { display:block; }
-      .forgotten-card:nth-child(5) figcaption { border-left:0; border-top:1px solid var(--line-2); }
     }
     @media (max-width:640px) {
       .forgotten-gallery { padding:18px; }
-      .forgotten-grid { grid-template-columns:1fr; }
-      .forgotten-card:nth-child(5) { grid-column:auto; }
       .forgotten-media { aspect-ratio:4/3; }
       .forgotten-vignette { right:13px; bottom:13px; }
+      .fgt-file .forgotten-media { aspect-ratio:4/3; }
+      .fgt-ident { right:clamp(90px,26%,130px); }
     }
 
     /* ============ Visualisations interactives ============ */
@@ -1668,81 +1720,310 @@
       <section class="forgotten-gallery reveal" id="oublies" aria-labelledby="forgotten-title">
         <header class="forgotten-head">
           <div>
-            <p class="section-kicker">Contrechamp iconographique · document complémentaire</p>
+            <p class="section-kicker">Hors champ du live · document complémentaire</p>
             <h2 id="forgotten-title">Les cinq pirates oubliés</h2>
-            <p class="forgotten-lede">Le document de travail associé au dossier propose cinq autres personnages. Ses illustrations sont réunies ici comme un cabinet de figures : une vignette et une scène narrative pour chaque nom, sans interrompre ni modifier la transcription du live.</p>
+            <p class="forgotten-lede">Cinq destins de flibustiers, corsaires et amiraux — méconnus du grand public et documentés à des degrés très inégaux —, accompagnés des estimations monétaires et récits de culture populaire du document d'origine, désormais confrontés aux archives. Ce cabinet vient du document de travail associé au dossier : il complète le live sans en interrompre ni en modifier la transcription.</p>
           </div>
           <div class="forgotten-seal" aria-hidden="true"><b>V</b><span>figures hors champ</span></div>
         </header>
 
-        <div class="forgotten-grid">
-          <figure class="forgotten-card" style="--fc:var(--sea)">
+        <ul class="fgt-nav">
+          <li><a href="#oublie-de-graff"><i>I</i> Laurens de Graff</a></li>
+          <li><a href="#oublie-belleville"><i>II</i> Jeanne de Belleville</a></li>
+          <li><a href="#oublie-angre"><i>III</i> Kanhoji Angre</a></li>
+          <li><a href="#oublie-cofresi"><i>IV</i> Roberto Cofresí</a></li>
+          <li><a href="#oublie-le-clerc"><i>V</i> François Le Clerc</a></li>
+        </ul>
+
+        <div class="fgt-method">
+          <span class="block-label">Note méthodologique · convertir un butin en euros</span>
+          <p>Convertir des sommes d'Ancien Régime en euros actuels n'a <strong>pas de solution exacte</strong> : les indices d'inflation sur 300 à 500 ans sont peu fiables et les usages monétaires (pesos, livres tournois, roupies) n'ont pas d'équivalent direct. La méthode retenue ici est celle de nombreux historiens économiques : convertir chaque somme via son <strong>poids d'argent-métal pur</strong>, puis valoriser ce poids au cours actuel de l'argent.</p>
+          <p>Cours retenu : environ <strong>1,82 $/gramme d'argent</strong>, soit ≈ <strong>1,59 €/gramme</strong> au taux de change du 18 juillet 2026 (1 $ ≈ 0,874 €).</p>
+          <ul class="fgt-rates">
+            <li><b>1 peso ≈ 41 €</b><span>« pièce de huit » espagnole, ~25,6 g d'argent fin</span></li>
+            <li><b>1 livre tournois ≈ 7 €</b><span>fin XVII<sup>e</sup> siècle, ~4,5 g d'argent fin</span></li>
+            <li><b>1 roupie moghole ≈ 19 €</b><span>roupie d'argent, ~11,7 g d'argent fin</span></li>
+          </ul>
+          <p>Ces montants sont des <strong>ordres de grandeur</strong> illustrant un pouvoir d'achat en métal précieux, non une conversion comptable exacte : ils ne tiennent pas compte du pouvoir d'achat réel de l'époque — un salaire, un repas ou une maison ne coûtaient pas alors ce qu'ils coûtent aujourd'hui. Là où une source (Forbes) donnait déjà une estimation en dollars actuels, celle-ci a simplement été convertie au taux du jour.</p>
+        </div>
+
+        <div class="fgt-files">
+
+          <article class="fgt-file" id="oublie-de-graff" style="--fc:var(--sea)" aria-labelledby="fgt-t1">
             <div class="forgotten-media">
               <img class="forgotten-scene" src="assets/laurens-de-graff-illustration.webp" alt="Illustration éditoriale de Laurens de Graff debout sur le pont d'un navire à voiles." loading="lazy" decoding="async" style="object-position:center top">
               <img class="forgotten-vignette" src="assets/laurens-de-graff-vignette.webp" alt="Vignette peinte représentant Laurens de Graff en tenue du dix-septième siècle." loading="lazy" decoding="async">
               <span class="forgotten-no" aria-hidden="true">01</span>
+              <div class="fgt-ident">
+                <span class="figure-k">Figure oubliée · I</span>
+                <h3 id="fgt-t1">Laurens de Graff</h3>
+                <p class="fgt-epithet">Le Flibustier Insaisissable · vers 1653–1704</p>
+              </div>
             </div>
-            <figcaption>
-              <span class="figure-k">Figure oubliée · I</span>
-              <h3>Laurens de Graff</h3>
-              <p>Étude de personnage et scène de pont extraites du document complémentaire.</p>
-            </figcaption>
-          </figure>
+            <div class="fgt-body">
+              <div class="fgt-rows">
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi il est méconnu</span><p>Éclipsé par les légendes d'Hollywood, son nom est rarement cité dans les manuels scolaires.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi il est ultra-documenté</span><p>Canonnier au service des Espagnols passé à la flibuste française, ses exploits sont gravés dans les archives coloniales françaises et espagnoles. En <strong>mai 1683</strong>, il participe au titanesque <strong>sac de Veracruz</strong> — avec le titre d'<strong>amiral</strong>, c'est-à-dire second de Van Hoorn — au moyen d'une ruse remarquable : <strong>deux navires espagnols réellement capturés placés en tête de flotte</strong>, ce qui fit croire aux guetteurs à l'arrivée de la flotte de Caracas attendue. Il épouse en 1693 la célèbre <strong>Anne Dieu-le-Veut</strong>.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Les preuves de son existence</span><p>Son <strong>brevet de naturalité du 5 août 1685</strong> (Archives nationales d'outre-mer, <em>FR ANOM COL/B/11/fol. 193-194</em>) naturalise les deux époux et mentionne « Françoise Petronille de Gusman », native de Tenerife — c'est la pièce la mieux établie de tout son dossier. Le portrait canonique est celui du chirurgien-chroniqueur <strong>Alexandre Exquemelin</strong>, qui le surnomme « le grand pirate de Petit-Goâve ». Côté anglais, <strong>Henry Morgan</strong>, alors <strong>lieutenant-gouverneur</strong> de la Jamaïque, lui ordonne en juin 1680 de quitter les cayes de Port Royal, puis lance contre lui la frégate royale <em>Norwich</em> en juillet 1681.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi il est devenu pirate</span><p>Né vers 1653 à Dordrecht, il s'établit <strong>volontairement</strong> à Tenerife, y épouse en <strong>1674</strong> Francisca Petronila de Guzmán et sert comme <strong>maître-canonnier</strong> (<em>condestable</em>) pour un armateur canarien. Le <strong>6 octobre 1676</strong>, la frégate espagnole <em>Concordia</em> sur laquelle il sert est capturée à Trujillo (Honduras) par deux flibustiers <strong>français</strong>, Le Moigne et Grammont. Il reste leur <strong>prisonnier</strong> — il l'est encore en 1678 — avant de passer de leur côté. Premier commandement en <strong>février 1679</strong>, première commission française en propre en <strong>novembre 1682</strong>.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Son plus grand coup</span><p>En 1682, il s'empare d'une <strong>frégate de l'Armada de Barlovento</strong> — la <em>Santísimo Sacramento</em>, dite <em>la Francesa</em> (appelée <em>Princesa</em> par la tradition anglophone) — qui transportait la solde des garnisons de San Juan de Porto Rico et de <strong>Santo Domingo</strong> : environ <strong>120 000 pesos</strong> selon les sources secondaires. En 1683, le sac de Veracruz aux côtés de Van Hoorn, Grandmont et Jan Willems, avec environ <strong>4 000 otages</strong> rançonnés.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Sa mort</span><p>Devenu citoyen français et propriétaire terrien à Saint-Domingue, il meurt le <strong>24 mai 1704</strong> au Cap-Français. <em>La tradition du golfe du Mexique qui le fait mourir en Alabama lors de l'expédition de d'Iberville est un folklore régional sans appui d'archives : sa succession fut ouverte et jugée à Saint-Domingue.</em></p></div>
+                <div class="fgt-row"><span class="fgt-lab">Ce sur quoi reposait sa fortune</span><p>Sa succession n'était pas un coffre de doublons : c'était une <strong>sucrerie à cinq chaudières, au quartier Morin, exploitant plus de 120 personnes réduites en esclavage</strong>. Le flibustier finit planteur — et sa richesse est celle du système colonial, pas celle du roman d'aventures.</p></div>
+              </div>
+              <aside class="fgt-side">
+                <div class="fgt-money">
+                  <span class="block-label">Valeur estimée du trésor</span>
+                  <ul class="fgt-money-list">
+                    <li><b>≈ 4 880 000 €</b><span>~120 000 pesos — prise de <em>la Francesa</em>, 1682 <em>(chiffre de sources secondaires)</em></span></li>
+                    <li><b>≈ 1 330 000 – 1 430 000 €</b><span>190 000 à 200 000 livres tournois — succession, 1704</span></li>
+                  </ul>
+                  <p class="fgt-total">Ordre de grandeur ≈ 6 M€ actuels</p>
+                  <p class="fgt-money-note">La succession fut <strong>contestée</strong> — un sieur de la Grange attaqua la légitimité de sa fille — et ne fut rendue à la veuve et aux enfants que le 9 décembre 1705, après arrêt du Conseil d'État. Conversion par équivalent-argent métal : voir la note méthodologique.</p>
+                </div>
+                <div class="fgt-pop">
+                  <span class="block-label">🎬 Dans la pop culture</span>
+                  <p>On lit souvent qu'il aurait inspiré le <strong>capitaine Peter Blood</strong> de Rafael Sabatini (<em>Captain Blood</em>, 1922 ; film de 1935 avec Errol Flynn). <strong>Cette filiation n'est pas établie.</strong> La source principale avérée du roman est le récit du chirurgien <strong>Henry Pitman</strong> (1689) — rebelle de Monmouth déporté à la Barbade et évadé par mer —, complété par Morgan et Exquemelin ; l'historien Benerson Little identifie le capitaine qui sauva Pitman au colonel <strong>Robert Daniell</strong>, et ne relie jamais de Graff à Blood. Des commentateurs relèvent en revanche de <em>vrais échos</em> : le duel Blood/LeVasseur rappelle celui de de Graff et Van Hoorn. Un écho, pas une filiation.</p>
+                </div>
+                <details class="fgt-src">
+                  <summary>Sources vérifiées</summary>
+                  <ul>
+                    <li><a href="https://diable-volant.github.io/flibuste/blog/GdF2011-degraffe.pdf" target="_blank" rel="noopener">Raynald Laprise — « Les débuts de la carrière de Laurens De Graffe (1674-1681) »</a> <em>(étude d'archives de référence : AGI, ANOM, TNA, BL Sloane)</em></li>
+                    <li><a href="https://diable-volant.github.io/flibuste/archives/1685/16850805naturalite.html" target="_blank" rel="noopener">Brevet de naturalité du 5 août 1685 — FR ANOM COL/B/11</a></li>
+                    <li><a href="https://diable-volant.github.io/flibuste/figurehead/D.html" target="_blank" rel="noopener">Dictionnaire des flibustiers — Laurens de Graff</a></li>
+                    <li><a href="https://goldenageofpiracy.org/history/buccaneering-era/sack-of-veracruz-1683" target="_blank" rel="noopener">Golden Age of Piracy — le sac de Veracruz (1683)</a></li>
+                    <li><a href="https://benersonlittle.com/2021/11/23/how-a-mystery-pirate-captain-gave-us-rafael-sabatinis-captain-blood-the-films-of-errol-flynn/" target="_blank" rel="noopener">Benerson Little — la véritable genèse de <em>Captain Blood</em></a></li>
+                    <li><a href="https://id.loc.gov/authorities/names/nr95030218.html" target="_blank" rel="noopener">Library of Congress — notice d'autorité « Graff, Laurent de, -1704 »</a></li>
+                  </ul>
+                </details>
+                <div class="fgt-pop" style="border-left-color:var(--blood)">
+                  <span class="block-label" style="color:var(--blood)">⚠ Anti-intox · ce que le document disait</span>
+                  <p>Le document de travail racontait qu'il avait été <em>« capturé par des négriers espagnols et envoyé sur une plantation aux Canaries »</em>, dont il se serait évadé. <strong>La chronologie est inversée</strong> : il servait les Espagnols <em>par contrat</em> et fut capturé par des <em>Français</em>. Il affirmait aussi qu'il embarquait « un orchestre complet » d'après le journal de <strong>Raveneau de Lussan</strong> — dont le <em>Journal</em> porte sur la mer du Sud, <strong>où de Graff n'était pas</strong>. L'anecdote musicale ne remonte à aucune source de première main.</p>
+                </div>
+              </aside>
+            </div>
+          </article>
 
-          <figure class="forgotten-card" style="--fc:var(--blood)">
+          <article class="fgt-file" id="oublie-belleville" style="--fc:var(--blood)" aria-labelledby="fgt-t2">
             <div class="forgotten-media">
               <img class="forgotten-scene" src="assets/jeanne-de-belleville-illustration.webp" alt="Illustration éditoriale de Jeanne de Belleville sur le pont d'un navire au milieu d'une bataille navale." loading="lazy" decoding="async">
               <img class="forgotten-vignette" src="assets/jeanne-de-belleville-vignette.webp" alt="Vignette enluminée représentant Jeanne de Belleville en robe rouge." loading="lazy" decoding="async">
               <span class="forgotten-no" aria-hidden="true">02</span>
+              <div class="fgt-ident">
+                <span class="figure-k">Figure oubliée · II</span>
+                <h3 id="fgt-t2">Jeanne de Belleville</h3>
+                <p class="fgt-epithet">La Tigresse Bretonne · vers 1300–1359</p>
+              </div>
             </div>
-            <figcaption>
-              <span class="figure-k">Figure oubliée · II</span>
-              <h3>Jeanne de Belleville</h3>
-              <p>Enluminure recomposée et scène maritime extraites du document complémentaire.</p>
-            </figcaption>
-          </figure>
+            <div class="fgt-body">
+              <div class="fgt-rows">
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi elle est méconnue</span><p>On associe souvent la piraterie à l'âge d'or des Caraïbes au XVII<sup>e</sup> siècle, oubliant cette noble bretonne du XIV<sup>e</sup>.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Ce que les archives établissent vraiment</span><p>Le socle documentaire est <strong>judiciaire et diplomatique</strong>, pas romanesque. Le <strong>Parlement de Paris</strong> la condamne <strong>par contumace le 1<sup>er</sup> décembre 1343</strong> — bannissement, confiscation des biens, peine capitale pour complicité de trahison ; les <em>Grandes Chroniques de France</em> le confirment. Les <strong>registres de la cour d'Angleterre</strong> montrent qu'Édouard III lui octroie un revenu sur des terres bretonnes, et la <strong>trêve franco-anglaise de 1347</strong> la nomme <strong>comme alliée de l'Angleterre</strong>. La <em>Chronique normande</em> rapporte qu'elle attaquait navires de guerre et marchands français et tuait sans merci les Français capturés.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi elle prend la mer</span><p>En 1343, son troisième mari, <strong>Olivier IV de Clisson</strong>, est arrêté lors d'un tournoi au mépris des règles de la chevalerie, accusé de trahison et <strong>décapité le 2 août 1343</strong> aux Halles de Paris sur ordre de Philippe VI ; sa tête est fichée sur une lance à la porte Sauvetout de Nantes. Froissart atteste le <strong>doute des contemporains</strong> sur sa culpabilité — et décrit le basculement de Jeanne, d'une femme « douce » à une femme « ne respirant que vengeance ».</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Sa mort</span><p>Son navire amiral fait naufrage en <strong>1346</strong>, pendant la campagne de Crécy, alors qu'elle ravitaillait les forces anglaises. Elle se remarie vers <strong>1356</strong> avec le chevalier anglais <strong>Sir Walter Bentley</strong>, lieutenant d'Édouard III en Bretagne, et se retire. Bentley meurt en décembre 1359 ; elle le suit quelques semaines plus tard, soit <strong>début 1360</strong>, probablement à Hennebont — <strong>de cause inconnue</strong>.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Corsaire plutôt que pirate</span><p>Ce socle dessine une <strong>combattante du parti montfortiste financée par l'Angleterre</strong> — proche d'une corsaire officieuse — bien plus qu'une vengeresse solitaire. Détail qui abîme la lecture romanesque : <strong>Philippe VI meurt en 1350</strong> sans que son activité s'arrête. <em>Réserve : aucun accord de corsaire n'a été retrouvé dans les archives.</em></p></div>
+              </div>
+              <aside class="fgt-side">
+                <div class="fgt-money">
+                  <span class="block-label">Valeur estimée du trésor</span>
+                  <ul class="fgt-money-list">
+                    <li><b>Aucun montant chiffrable</b><span>aucune source médiévale ne chiffre le butin accumulé</span></li>
+                  </ul>
+                  <p class="fgt-total">Non quantifiable</p>
+                  <p class="fgt-money-note">Contrairement aux Caraïbes du XVII<sup>e</sup> siècle, ses prises n'étaient pas comptabilisées par une autorité coloniale : toute estimation resterait pure spéculation.</p>
+                </div>
+                <div class="fgt-pop">
+                  <span class="block-label">🎬 Dans la pop culture</span>
+                  <p><strong>Aucune adaptation grand public n'a pu être identifiée</strong> — ni film, ni jeu vidéo. Elle reste une source de fascination croissante en ligne : podcasts d'histoire, blogs (<em>Rejected Princesses</em>), récits illustrés, qui la présentent comme l'archétype de la noble vengeresse en mer. <em>Une absence ne se prouve pas exhaustivement : disons qu'aucun lien direct et documenté n'a été établi avec un personnage précis.</em></p>
+                </div>
+                <details class="fgt-src">
+                  <summary>Sources vérifiées</summary>
+                  <ul>
+                    <li><a href="https://www.idref.fr/255823576" target="_blank" rel="noopener">IdRef / ABES — notice d'autorité « Belleville, Jeanne de (1300?-1359?) »</a></li>
+                    <li><a href="https://gallica.bnf.fr/ark:/12148/bpt6k206452r" target="_blank" rel="noopener">Chronique normande du XIV<sup>e</sup> s., éd. Molinier, SHF 1882 (Gallica)</a></li>
+                    <li><a href="https://gallica.bnf.fr/ark:/12148/bpt6k27924j.image" target="_blank" rel="noopener">Chronographia Regum Francorum, éd. Moranvillé, t. II (Gallica)</a></li>
+                    <li><a href="https://gallica.bnf.fr/ark:/12148/bpt6k6461119k" target="_blank" rel="noopener">Émile Péhant, <em>Jeanne de Belleville</em>, Nantes, 1868 — la source de la légende (Gallica)</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Joan_of_Flanders,_Countess_of_Montfort" target="_blank" rel="noopener">Jeanne de Flandre — la véritable destinataire du « cœur de lion »</a></li>
+                    <li><a href="https://guides.loc.gov/feminism-french-women-history/famous/Jeanne-de-Clisson" target="_blank" rel="noopener">Library of Congress — French Women &amp; Feminists in History</a></li>
+                  </ul>
+                </details>
+                <div class="fgt-pop" style="border-left-color:var(--blood)">
+                  <span class="block-label" style="color:var(--blood)">⚠ Anti-intox · un cas d'école de contamination</span>
+                  <p>Le « <strong>cœur d'un lion</strong> » que Froissart lui prêterait vise en réalité <strong>Jeanne de Flandre, comtesse de Montfort</strong> — autre Jeanne, même guerre de Succession de Bretagne, même camp, également associée à un combat en mer <em>et à Hennebont</em>. Le surnom « Lionne de Bretagne » a absorbé la citation destinée à son homonyme.</p>
+                  <p>Le reste de la couche spectaculaire ne repose sur <strong>aucune chronique médiévale</strong> : les <em>voiles rouge sang</em> (la Wikipédia anglaise écrit elle-même « <em>they may have been</em> painted black »), la <em>hache</em> brandie en personne (classée « <em>in other tales</em> » par ses propres sources), les <em>treize ans</em> de traque (la Wikipédia française ramène l'activité maritime à ~neuf mois), et le <em>témoin unique épargné</em> — un <strong>topos</strong> qui apparaît deux fois dans le même document. Le foyer identifié de cette légende est un <strong>poème épique de 1868</strong> : Émile Péhant, bibliothécaire de Nantes, 8 000 vers. Il n'existe à ce jour <strong>aucune étude universitaire</strong> consacrée à Jeanne de Belleville.</p>
+                </div>
+              </aside>
+            </div>
+          </article>
 
-          <figure class="forgotten-card" style="--fc:var(--gold-bright)">
+          <article class="fgt-file" id="oublie-angre" style="--fc:var(--gold-bright)" aria-labelledby="fgt-t3">
             <div class="forgotten-media">
               <img class="forgotten-scene" src="assets/kanhoji-angre-illustration.webp" alt="Illustration éditoriale de Kanhoji Angre commandant ses hommes pendant un affrontement naval." loading="lazy" decoding="async">
               <img class="forgotten-vignette" src="assets/kanhoji-angre-vignette.webp" alt="Vignette dessinée représentant Kanhoji Angre coiffé d'un turban." loading="lazy" decoding="async">
               <span class="forgotten-no" aria-hidden="true">03</span>
+              <div class="fgt-ident">
+                <span class="figure-k">Figure oubliée · III</span>
+                <h3 id="fgt-t3">Kanhoji Angre</h3>
+                <p class="fgt-epithet">Le Fléau des Empires Coloniaux · 1669–1729</p>
+              </div>
             </div>
-            <figcaption>
-              <span class="figure-k">Figure oubliée · III</span>
-              <h3>Kanhoji Angre</h3>
-              <p>Portrait dessiné et tableau de bataille extraits du document complémentaire.</p>
-            </figcaption>
-          </figure>
+            <div class="fgt-body">
+              <div class="fgt-rows">
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi il est méconnu</span><p>L'histoire occidentale se focalise sur les pirates des Caraïbes ou de l'océan Indien (comme l'Anglais William Kidd), laissant Angre dans l'ombre des récits européens.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi il est ultra-documenté</span><p>Les archives de la <strong>Compagnie britannique des Indes orientales</strong> débordent de rapports frustrés à son sujet. Amiral de la flotte du royaume marathe, il tint en échec trois décennies durant les marines anglaise, portugaise et hollandaise — <strong>séparément, puis alliées deux à deux</strong> : elles ne l'ont jamais affronté ensemble à trois.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Ce qu'aucun Européen n'a réussi</span><p>C'est sur ses <strong>forts</strong> que porte l'invincibilité, et là elle tient : <strong>aucune de ses places ne tomba de son vivant</strong>. Échec anglais devant Gheriah en 1717 — « nous découvrîmes bientôt que la place était imprenable », écrit Downing, présent. Échec total de l'assaut massif de <strong>Khanderi en novembre 1718</strong> (l'<em>Addison</em>, le <em>Dartmouth</em>, le <em>Victoria</em>, deux galiotes à bombes, 48 gallivats) : deux débarquements repoussés, 18 tués et 50 blessés « plus par la force des pierres jetées du haut des rochers que par les armes à feu », escadre rentrée à Bombay <strong>à court de munitions</strong>. Puis Vijaydurg en 1720, l'anglo-portugaise de 1721-1722, la hollandaise de 1724. Ses forts ne tombèrent qu'<strong>après sa mort</strong> — et par une alliance anglo-<em>peshwa</em> : son propre camp.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Les preuves de son existence</span><p>Les registres de la Compagnie consignent ses attaques, les rançons et les expéditions lancées contre lui — notamment les <strong>30 000 roupies</strong> versées après la capture, le <strong>4 novembre 1712</strong>, du yacht armé du gouverneur de Bombay <strong>William Aislabie</strong> (le chef de factorerie Thomas Chown tué ; libération des prisonniers le 13 février 1713). Son tombeau (<em>Samadhi</em>) se dresse à <strong>Alibag</strong>, township qu'il fonda et où il frappa sa propre monnaie, l'<em>Alibagi rupaiya</em>. Le QG du <strong>Western Naval Command</strong> de la marine indienne porte aujourd'hui le nom d'<strong>INS Angre</strong>.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi il est devenu « pirate » — ou plutôt amiral</span><p>Fils d'un officier de la marine de Shivaji (origine débattue), il prend la tête de la marine marathe à la fin des années 1690 ; le titre de <strong>Sarkhel</strong> lui est confirmé et formalisé par l'<strong>accord de 1713</strong> avec Balaji Vishwanath, avec <strong>26 forts et places fortifiées</strong>. Il vendait des <strong>passeports maritimes</strong> (<em>dastak</em>) et prélevait le <em>jakat</em> — <strong>exactement le système que pratiquaient les Européens eux-mêmes</strong>, Biddulph reconnaissant que Bombay « avait adopté la pratique des autres chefs ». Ce sont donc les puissances européennes qui l'ont qualifié de « pirate » : la recherche universitaire y voit aujourd'hui un <strong>instrument rhétorique</strong> pour délégitimer une souveraineté maritime rivale.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Son plus grand coup</span><p>En <strong>1710</strong> il s'empare de <strong>Khanderi</strong> (les Anglais écrivaient <em>Kennery</em>) et la fortifie, à portée de vue de Bombay. La même année, ses navires livrent un combat de deux jours à l'East Indiaman <em>Godolphin</em> — <strong>dont ils sont finalement repoussés</strong> : les deux faits sont concomitants, non liés. En <strong>1721-1722</strong>, l'expédition anglo-portugaise montée pour le réduire échoue ; son commandant, le commodore Thomas Mathews, sera convaincu en 1723 <strong>d'avoir commercé avec les Marathes</strong>.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Sa mort</span><p>Il meurt de causes naturelles le <strong>4 juillet 1729</strong> à Colaba, sans avoir vu tomber un seul de ses forts.</p></div>
+              </div>
+              <aside class="fgt-side">
+                <div class="fgt-money">
+                  <span class="block-label">Valeur estimée du trésor</span>
+                  <ul class="fgt-money-list">
+                    <li><b>≈ 556 000 €</b><span>30 000 roupies — rançon du yacht d'Aislabie, 1712</span></li>
+                    <li><b>≈ 1 300 000 €</b><span>~70 000 roupies — accord de 1718-1719 <em>(qu'il répudia)</em></span></li>
+                  </ul>
+                  <p class="fgt-total">Aucun total consolidé ne peut être établi</p>
+                  <p class="fgt-money-note">Le <em>jakat</em> était perçu port par port, sans consolidation comptable connue. S'y ajoutent <strong>26 forts</strong> et une flotte estimée entre <strong>60 et 80 bâtiments</strong> — grabs et gallivats légers, taillés pour les eaux côtières peu profondes, dont beaucoup « n'étaient guère plus que des barques de pêche surdimensionnées ». Conversion par équivalent-argent métal.</p>
+                </div>
+                <div class="fgt-pop">
+                  <span class="block-label">🎬 Dans la pop culture</span>
+                  <p>En Occident, Kanhoji Angre est largement absent de la fiction grand public ; en Inde il est une figure officielle de la mémoire nationale. Le feuilleton <strong><em>Swaraj</em></strong> (75 épisodes, Doordarshan National, depuis le <strong>14 août 2022</strong>) le traite explicitement, aux côtés de Rani Abbakka et Rani Lakshmibai. Un <strong>timbre à 3 roupies</strong> émis en <strong>avril 1999</strong> représente un <em>ghurab</em> de sa flotte — <em>un navire, pas son portrait</em>. Il est surnommé <strong><em>Samudratla Shivaji</em></strong>, « le Shivaji des mers ». Deux films sont annoncés — <em>Angre</em> (annoncé en juillet 2026, <strong>encore à l'écriture</strong>) et le marathi <em>Daryasarang</em>.</p>
+                </div>
+                <details class="fgt-src">
+                  <summary>Sources vérifiées</summary>
+                  <ul>
+                    <li><a href="https://doi.org/10.1163/15700658-12342358" target="_blank" rel="noopener">Simon Layton, « The "Moghul's Admiral" » — <em>Journal of Early Modern History</em> 17/1 (2013), DOI vérifié</a></li>
+                    <li><a href="https://doi.org/10.47362/EJSSS.2025.6903" target="_blank" rel="noopener">Cmde S. L. Deshmukh (Indian Navy), EJSSS 2025 — DOI vérifié</a></li>
+                    <li><a href="https://www.gutenberg.org/cache/epub/11399/pg11399.txt" target="_blank" rel="noopener">John Biddulph, <em>The Pirates of Malabar</em> (1907) — d'après les <em>Bombay Consultations</em></a></li>
+                    <li><a href="https://archive.org/details/in.ernet.dli.2015.7503" target="_blank" rel="noopener">Kolaba District Gazetteer (1883)</a></li>
+                    <li><a href="https://networks.h-net.org/node/22055/reviews/191003/mathew-subramaniam-sovereign-and-pirate" target="_blank" rel="noopener">Lakshmi Subramanian, <em>The Sovereign and the Pirate</em> (OUP, 2016) — recension H-Net</a></li>
+                    <li><a href="https://www.gatewayhouse.in/kanhoji-angre-indias-first-naval-commander/" target="_blank" rel="noopener">Gateway House — Kanhoji Angre, India's first naval commander</a></li>
+                  </ul>
+                </details>
+                <div class="fgt-pop" style="border-left-color:var(--blood)">
+                  <span class="block-label" style="color:var(--blood)">⚠ Anti-intox · l'invincible et le chiffre fantôme</span>
+                  <p>« <strong>Il n'a jamais perdu une seule bataille</strong> » est un <strong>topos hagiographique</strong>, pas un constat d'archives : ses navires furent <em>repoussés</em> par le <em>Godolphin</em> en 1710, il rompit le combat face aux <em>Somers</em> et <em>Grantham</em> en 1712, subit des revers face aux Portugais à partir de 1713 — concédés par l'article de l'amiral Deshmukh lui-même —, et des raids anglais pillèrent son territoire en juin 1717. L'invincibilité vaut pour ses <em>forts</em>, pas pour lui.</p>
+                  <p>Les « <strong>34 lakhs de roupies</strong> » de tributs cumulés annoncés par le document de travail n'existent <strong>dans aucune source</strong> — recherche menée en anglais et en devanagari, y compris dans les gazetteers et la presse indienne : <strong>zéro occurrence</strong>. Chiffre très probablement fabriqué en ligne. De même, le « traité de 1717 à 60 000 roupies » est en réalité l'accord de <strong>1718-1719</strong> (~70 000 roupies) — que Biddulph décrit comme un leurre : « dès qu'Angria vit qu'il était à l'abri d'une attaque pour une saison de plus, il répudia le traité ».</p>
+                  <p><em>Nuance inverse, pour ne pas tomber dans l'hagiographie : Angre attaquait aussi des navires marchands <strong>indiens</strong> sans passeport et pilla des villes côtières jusqu'au Travancore. C'était l'exercice d'une souveraineté fiscale maritime, avec sa part de prédation.</em></p>
+                </div>
+              </aside>
+            </div>
+          </article>
 
-          <figure class="forgotten-card" style="--fc:var(--sail)">
+          <article class="fgt-file" id="oublie-cofresi" style="--fc:var(--sail)" aria-labelledby="fgt-t4">
             <div class="forgotten-media">
               <img class="forgotten-scene" src="assets/roberto-cofresi-illustration.webp" alt="Illustration éditoriale de Roberto Cofresí sur un pont portant le pavillon portoricain." loading="lazy" decoding="async">
               <img class="forgotten-vignette" src="assets/roberto-cofresi-vignette.webp" alt="Photographie d'un monument portant le nom de Roberto Cofresí dans un paysage tropical." loading="lazy" decoding="async">
               <span class="forgotten-no" aria-hidden="true">04</span>
+              <div class="fgt-ident">
+                <span class="figure-k">Figure oubliée · IV</span>
+                <h3 id="fgt-t4">Roberto Cofresí</h3>
+                <p class="fgt-epithet">Le Robin des Bois des Caraïbes · 1791–1825</p>
+              </div>
             </div>
-            <figcaption>
-              <span class="figure-k">Figure oubliée · IV</span>
-              <h3>Roberto Cofresí</h3>
-              <p>Monument commémoratif et scène de pont extraits du document complémentaire.</p>
-            </figcaption>
-          </figure>
+            <div class="fgt-body">
+              <div class="fgt-rows">
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi il est méconnu</span><p>Bien que surnommé le « dernier grand pirate des Caraïbes », son épopée reste largement ignorée hors de Porto Rico et de sa diaspora, éclipsée dans l'imaginaire collectif par les pirates anglophones de l'âge d'or classique du siècle précédent.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi il est ultra-documenté</span><p>Alors que l'âge d'or de la piraterie était officiellement révolu depuis un siècle, Cofresí décida de s'en moquer complètement. Son vaisseau amiral est la <strong>balandra à six canons <em>Anne</em> (<em>Ana</em>)</strong>, capturée en février 1825 ; avant elle, le <em>Caballo Blanco</em> et le <em>Neptune</em>. Il visait surtout les marchands étrangers — américains, danois, anglais, français —, mais sa règle réelle n'était pas le pavillon : <strong>c'était l'identité des gens à bord</strong>.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Les preuves de son existence</span><p>Les rapports de l'expédition combinée hispano-américaine de mars 1825 et les minutes du tribunal militaire de San Juan documentent sa traque et sa capture. Les <strong>registres de l'église San Miguel Arcángel de Cabo Rojo</strong> conservent son acte de naissance — aux côtés de ceux de Ramón Emeterio Betances et Salvador Brau — et son mariage du <strong>14 janvier 1815</strong> avec <strong>Juana Creitoff</strong>. Trois historiens portoricains structurent le sujet, et leurs rôles diffèrent : <strong>Cardona Bonet</strong> (l'archive), <strong>Fernández Valledor</strong> (le mythe, 26 récits oraux collectés) et <strong>Ursula Acosta</strong> (la critique révisionniste).</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi il est devenu pirate</span><p>Né le <strong>17 juin 1791</strong> à Cabo Rojo, fils d'un noble originaire de <strong>Trieste</strong> (port des Habsbourg), d'une lignée pragoise anoblie en 1549 — mais d'un ménage pauvre : en 1818 il ne paie que 17 maravédis d'impôts. D'abord marin et pêcheur ; <strong>dès 1818</strong> lié à une organisation criminelle <strong>terrestre</strong> près du barrio Hormigueros ; il ne bascule vers la <strong>piraterie maritime qu'au début de 1823</strong>, comblant le vide laissé par la mort de Jean Lafitte.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Son plus grand coup</span><p>Plus qu'une prise unique, son exploit fut de tenir deux ans durant entre les îles avec une agilité remarquable, adossé à un <strong>réseau de complicités impénétrable</strong>. Sa réputation força l'Espagne et les États-Unis à monter une opération combinée — coopération rare pour l'époque —, aboutissant au combat du <strong>5 mars 1825</strong> à la Boca del Infierno.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Sa mort</span><p>Après 45 minutes de combat, il échoue son navire et <strong>fuit à terre</strong> ; il est capturé <strong>le lendemain à minuit</strong>, embusqué et blessé à l'espingole par le milicien <strong>Juan Cándido Garay</strong>. Jugé en conseil de guerre expédié — son avocat n'étant qu'« une formalité » —, il est <strong>fusillé publiquement le 29 mars 1825</strong> entre 8 et 9 heures du matin, avec la plupart de ses hommes. <em>Il était détenu au château San Felipe del Morro, site d'exécution communément admis ; Tapia y Rivera situe pourtant l'exécution au Baluarte de Santo Domingo.</em></p></div>
+              </div>
+              <aside class="fgt-side">
+                <div class="fgt-money">
+                  <span class="block-label">Valeur estimée du trésor</span>
+                  <ul class="fgt-money-list">
+                    <li><b>Aucun bien saisi</b><span>l'État espagnol ne put rien confisquer : il avait tout dilapidé</span></li>
+                    <li><b>133 pesos</b><span>vente aux enchères de <strong>Carlos</strong>, son esclave — son unique actif saisissable</span></li>
+                  </ul>
+                  <p class="fgt-total">Le trésor de Cofresí n'a jamais existé</p>
+                  <p class="fgt-money-note">Sa famille resta débitrice de <strong>643 pièces de huit</strong> de frais de justice ; sa veuve <strong>Juana Creitoff assuma seule la dette et mourut un an plus tard</strong>. De nombreuses traditions locales évoquent des trésors enfouis — île de Mona, Cabo Rojo —, jamais retrouvés.</p>
+                </div>
+                <div class="fgt-pop">
+                  <span class="block-label">🎬 Dans la pop culture</span>
+                  <p>Le surnom de « Robin des Bois des Caraïbes » recouvre un <strong>débat historiographique ouvert</strong>. <strong>Aurelio Tió</strong> soutient qu'il partageait son butin avec les nécessiteux — mais précise « <em>en particulier sa famille et ses amis proches</em> », ce qui n'est déjà plus Robin des Bois. <strong>Ursula Acosta</strong> juge ces gestes « <em>probablement opportunistes</em> ». Et <strong>Cardona Bonet</strong> propose l'explication la plus économique : Cofresí organisait des <strong>marchés informels à Cabo Rojo</strong> où des familles de marchands rachetaient le butin pour le revendre — un <strong>réseau de recel</strong> plutôt qu'une aumône. Sa légende a inspiré le roman fondateur <em>Cofresí</em> d'<strong>Alejandro Tapia y Rivera</strong> (1876), né un an après l'exécution et nourri des souvenirs de son père, ainsi que chansons, <em>décimas</em> et théâtre populaire. <strong>Playa Cofresí</strong>, près de Puerto Plata en République dominicaine, porte son nom.</p>
+                </div>
+                <details class="fgt-src">
+                  <summary>Sources vérifiées</summary>
+                  <ul>
+                    <li>Walter A. Cardona Bonet, <em>El marinero, bandolero, pirata y contrabandista Roberto Cofresí (1819-1825)</em>, Sociedad Puertorriqueña de Genealogía, 1991</li>
+                    <li>Ursula Acosta, <em>Cofresí y Ducoudray: hombres al margen de la historia</em>, Editorial Edil, 1991</li>
+                    <li><a href="https://en.casapaolipr.com/product-page/el-pirata-cofres%C3%AD-mitificado-por-la-tradici%C3%B3n-oral-puertorrique%C3%B1a" target="_blank" rel="noopener">R. Fernández Valledor, <em>El pirata Cofresí mitificado por la tradición oral</em> — Casa Paoli</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Capture_of_the_sloop_Anne" target="_blank" rel="noopener">Capture of the sloop <em>Anne</em> — le combat du 5 mars 1825</a></li>
+                    <li><a href="https://www.usni.org/magazines/proceedings/1911/december/repression-piracy-west-indies-1814-1825" target="_blank" rel="noopener">US Naval Institute — « The Repression of Piracy in the West Indies, 1814-1825 » (1911)</a></li>
+                    <li><a href="https://enciclopediapr.org/content/alejandro-tapia-rivera/" target="_blank" rel="noopener">EnciclopediaPR — Alejandro Tapia y Rivera</a></li>
+                  </ul>
+                </details>
+                <div class="fgt-pop" style="border-left-color:var(--blood)">
+                  <span class="block-label" style="color:var(--blood)">⚠ Anti-intox · le trésor qui n'a jamais existé</span>
+                  <p>Le document de travail affirmait que « <strong>4 000 pièces de huit ont été retrouvées sur lui et dans ses caches</strong> ». <strong>C'est un contresens complet.</strong> Ces 4 000 pièces sont la somme qu'il <em>prétendait posséder</em> en tentant de <strong>corrompre le maire de Guayama, Francisco Brenes</strong>, depuis sa prison, pour acheter sa liberté. Rien ne fut jamais vérifié, retrouvé ni saisi — et c'est, toutes sources confondues, <strong>la seule mention historique d'un trésor caché de Cofresí</strong>. Autrement dit : <em>la source unique du mythe est le mensonge d'un condamné qui marchandait sa vie.</em></p>
+                  <p>Deux autres rectifications. « <strong>El Mosquito</strong> » n'apparaît dans <strong>aucun document officiel</strong> : c'est un surnom populaire appliqué rétroactivement à l'<em>Anne</em> — il n'y a pas de séquence « <em>El Mosquito</em> puis <em>Ana</em> », c'est le même bateau, et c'est un sloop, pas une goélette. Et il n'épargnait pas « systématiquement » le pavillon espagnol : il <em>abordait</em> des navires espagnols en y ciblant les <strong>immigrants arrivés par la Cédula de 1815</strong>, épargnant les <strong>créoles</strong> — sa propre formule était qu'il avait tué près de 400 personnes « <em>mais aucun Portoricain</em> ». Loin de le tolérer, le gouverneur Miguel de la Torre avait fait de sa capture une <strong>priorité</strong>.</p>
+                </div>
+              </aside>
+            </div>
+          </article>
 
-          <figure class="forgotten-card" style="--fc:var(--steel)">
+          <article class="fgt-file" id="oublie-le-clerc" style="--fc:var(--steel)" aria-labelledby="fgt-t5">
             <div class="forgotten-media">
               <img class="forgotten-scene" src="assets/francois-le-clerc-illustration.webp" alt="Diptyque éditorial de François Le Clerc sur le pont d'un navire, avec sa jambe de bois visible." loading="lazy" decoding="async">
               <img class="forgotten-vignette" src="assets/francois-le-clerc-vignette.webp" alt="Silhouette éditoriale d'un corsaire à jambe de bois évoquant François Le Clerc." loading="lazy" decoding="async">
               <span class="forgotten-no" aria-hidden="true">05</span>
+              <div class="fgt-ident">
+                <span class="figure-k">Figure oubliée · V</span>
+                <h3 id="fgt-t5">François Le Clerc</h3>
+                <p class="fgt-epithet">« Jambe de Bois » · mort en 1563</p>
+              </div>
             </div>
-            <figcaption>
-              <span class="figure-k">Figure oubliée · V</span>
-              <h3>François Le Clerc</h3>
-              <p>Silhouette symbolique et diptyque de personnage extraits du document complémentaire.</p>
-            </figcaption>
-          </figure>
+            <div class="fgt-body">
+              <div class="fgt-rows">
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi il est méconnu</span><p>Tout le monde connaît le cliché du pirate unijambiste, mais presque personne ne sait d'où il vient.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi il est ultra-documenté</span><p>Les chroniques espagnoles détaillent ses assauts destructeurs, notamment le <strong>sac de Santiago de Cuba en 1554</strong>. Ce corsaire normand du XVI<sup>e</sup> siècle, financé par la Couronne française, est <strong>le plus ancien capitaine à jambe de bois solidement documenté de l'époque moderne</strong> : aucun prédécesseur connu, et le seul autre cas bien établi — le Néerlandais <strong>Cornelis Jol « Houtebeen »</strong>, lui aussi surnommé <em>Pie de Palo</em> — lui est postérieur d'un demi-siècle.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Les preuves de son existence</span><p>Son <strong>anoblissement de septembre 1551</strong> figure dans les archives royales : le texte loue son combat « avecques telle hardiesse et vaillance » et note qu'il s'y est « grandement mutilé de ses membres, ayant perdu une jambe ». Sa <strong>lettre de marque</strong> — la première accordée par la France pour les Caraïbes — suit en <strong>1553</strong>. Le journal du gentilhomme normand <strong>Gilles de Gouberville</strong>, source réelle, majeure et éditée, le mentionne à plusieurs reprises : les deux hommes se fréquentaient, et Gouberville était présent à son manoir de La Crasvillerie le 29 mars 1555 lors de la réception de l'amiral Coligny. Les autorités espagnoles le surnomment « <em>Pie de Palo</em> » / « <em>Pata de Palo</em> ».</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Pourquoi il est devenu pirate</span><p>Corsaire normand basé à Cherbourg, il perd une jambe et l'usage d'un bras en <strong>1549</strong>, lors de la campagne française des îles anglo-normandes — <em>les sources divergent sur le lieu exact de la blessure : prise de Sercq le 21 juillet, ou échec devant Guernesey</em>. Plutôt que de prendre sa retraite, il est anobli en 1551 puis reçoit en 1553 une lettre de marque d'Henri II pour la <strong>guerre de course contre l'Espagne</strong>.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Son plus grand coup</span><p>En 1554, son escadre s'empare de <strong>Santiago de Cuba</strong>, alors capitale de l'île — l'assaut sur la rade étant mené par son lieutenant <strong>Jacques de Sores</strong>, avec quatre navires et quatre auxiliaires. Ils l'occupent <strong>six semaines</strong>, du <strong>1<sup>er</sup> juillet au 16 août 1554</strong>, détruisent la forteresse, et n'en repartent qu'après avoir extorqué <strong>80 000 pesos de rançon</strong> pour la libération de l'évêque <strong>Fernando de Uranga</strong> et de plusieurs notables. La ville ne retrouvera jamais son rang de capitale, supplantée par La Havane.</p></div>
+                <div class="fgt-row"><span class="fgt-lab">Sa mort</span><p>Converti au protestantisme, il rejoint les Anglais en <strong>1562</strong> — année où Élisabeth I<sup>re</sup> fait occuper Le Havre — et s'attaque à la navigation française. En mars 1563 il réclame une forte pension à la reine ; éconduit, il cingle vers les <strong>Açores</strong>, où il est tué la même année en pourchassant des galions espagnols. <em>Son âge reste inconnu : aucune date de naissance n'est attestée, les estimations allant de 1520 à 1530.</em></p></div>
+              </div>
+              <aside class="fgt-side">
+                <div class="fgt-money">
+                  <span class="block-label">Valeur estimée du trésor</span>
+                  <ul class="fgt-money-list">
+                    <li><b>≈ 3 250 000 €</b><span>80 000 pesos — <strong>rançon</strong> de Santiago de Cuba, 1554</span></li>
+                    <li><b>≈ 6 555 000 €</b><span>7,5 M$ — estimation Forbes <em>(exercice journalistique)</em></span></li>
+                  </ul>
+                  <p class="fgt-total">Deux ordres de grandeur, non additionnables</p>
+                  <p class="fgt-money-note">Les 80 000 pesos ne sont <strong>pas un butin mais une rançon d'otages</strong>. Le classement Forbes existe bel et bien — Matt Woolsey, « Top-Earning Pirates », 19 septembre 2008, vingt noms — mais l'entrée le concernant n'a pas pu être confirmée sur l'article original, et sa <strong>méthode de conversion monétaire n'est ni publiée ni reproductible</strong> : à lire comme une curiosité médiatique, jamais comme une donnée historique.</p>
+                </div>
+                <div class="fgt-pop">
+                  <span class="block-label">🎬 Dans la pop culture</span>
+                  <p>Son surnom, « Jambe de Bois » / « <em>Pata de Palo</em> », porté en pleine mer dès les années 1550, annonce une figure que la littérature populaire consacrera trois siècles plus tard. Mais <strong>aucune filiation documentée</strong> ne le relie aux pirates de fiction : c'est une <strong>antériorité réelle, pas une paternité</strong>. Il reste que le fait brut — un capitaine qui commande une escadre transatlantique amputé d'une jambe et privé d'un bras, en 1554 — est plus saisissant que le cliché qu'on lui prête.</p>
+                </div>
+                <details class="fgt-src">
+                  <summary>Sources vérifiées</summary>
+                  <ul>
+                    <li><a href="https://www.wikimanche.fr/Fran%C3%A7ois_Leclerc" target="_blank" rel="noopener">Wikimanche — François Leclerc</a> <em>(cite le texte de l'anoblissement de 1551)</em></li>
+                    <li><a href="https://benersonlittle.com/2017/12/04/of-pirates-wooden-legs/" target="_blank" rel="noopener">Benerson Little — « Of Pirates &amp; Wooden Legs »</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/William_Ernest_Henley" target="_blank" rel="noopener">W. E. Henley — le véritable modèle de Long John Silver, désigné par Stevenson</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Jacques_de_Sores" target="_blank" rel="noopener">Jacques de Sores — son lieutenant, exécutant du sac de Santiago</a></li>
+                    <li><a href="http://zeus.atilf.fr/dmf/JournalGouberville/" target="_blank" rel="noopener">Journal de Gilles de Gouberville — édition numérique ATILF</a></li>
+                    <li><a href="https://www.worldhistory.org/article/1879/ten-notorious-french-pirates/" target="_blank" rel="noopener">World History Encyclopedia — Ten Notorious French Pirates</a></li>
+                  </ul>
+                </details>
+                <div class="fgt-pop" style="border-left-color:var(--blood)">
+                  <span class="block-label" style="color:var(--blood)">⚠ Anti-intox · trois erreurs empilées</span>
+                  <p>Le document de travail faisait de lui l'ancêtre direct de <em>Long John Silver</em> et du <em>Capitaine Crochet</em>. <strong>Les trois maillons sont faux.</strong> D'abord, Stevenson a lui-même désigné son modèle par écrit, dans une lettre à son ami <strong>William Ernest Henley</strong>, amputé de la jambe gauche : « <em>It was the sight of your maimed strength and masterfulness that begot Long John Silver.</em> » Ensuite, <strong>Silver n'a pas de jambe de bois dans le roman</strong> — il est amputé haut et se déplace à la <em>béquille</em> ; la jambe de bois est un ajout des adaptations. Enfin, <strong>le Capitaine Crochet n'a pas de jambe de bois du tout</strong> : il a un crochet à la main.</p>
+                  <p>Deux autres rectifications : les « <strong>dix navires</strong> » appartiennent à l'expédition de <strong>1553</strong>, pas au raid de 1554 ; et « la ville ne s'en relèvera jamais » est démenti par les faits — <strong>Santiago de Cuba est aujourd'hui la deuxième ville du pays</strong> (plus de 500 000 habitants). Enfin, les dates d'anoblissement et de lettre de marque étaient <strong>inversées</strong> dans le document — erreur venant de Grokipedia, écartée de cet appareil de sources.</p>
+                </div>
+              </aside>
+            </div>
+          </article>
+
         </div>
 
-        <p class="forgotten-note"><strong>Précaution iconographique :</strong> ces visuels sont des représentations éditoriales fournies dans le document source. Ils servent à incarner les personnages, mais ne doivent pas être lus comme des portraits d'époque authentifiés.</p>
+        <p class="forgotten-note"><strong>Précaution iconographique :</strong> les illustrations de ces cinq fiches sont des <strong>emblèmes symboliques</strong> (pavillon, silhouette de navire, blason, scène recomposée) fournis par le document source — il ne s'agit pas de portraits d'époque authentifiés. Des portraits ou gravures d'archives existent pour certains d'entre eux (notamment Laurens de Graff, dont un portrait à l'huile des années 1670 est conservé sur Wikimedia Commons) ; ils sont consultables via les liens sources de chaque fiche.</p>
+
+        <p class="forgotten-note"><strong>Ces cinq fiches ont été auditées</strong> comme le reste du dossier — cinq vérifications menées en parallèle, sources primaires et littérature académique d'abord. Le bilan est sévère : <strong>plus d'une dizaine d'affirmations erronées</strong> ont été corrigées et de nombreuses autres rétrogradées en tradition. Les récits les plus spectaculaires du document d'origine n'ont pas survécu : le trésor de Cofresí était une <em>tentative de corruption</em>, l'esclavage de de Graff une <em>chronologie inversée</em>, le « cœur de lion » de Jeanne de Belleville visait <em>une autre femme</em>, l'invincibilité d'Angre reposait sur un <em>chiffre introuvable</em>, et la paternité de Long John Silver revient à <em>l'ami amputé de Stevenson</em>. Les encadrés rouges de chaque fiche exposent ces corrections plutôt que de les effacer — c'est l'objet même de ce dossier. Détail complet dans <a href="../../sources/sources.html">Dossier XXIII · Les Sources</a>.</p>
       </section>
 
       <!-- ===== CH 14 — JEAN LAFITTE ===== -->
@@ -2143,7 +2424,7 @@
 
             <div class="science-block">
               <span class="block-label">Anti-intox · Le pavillon de Barbe Noire est un faux du XX<sup>e</sup> siècle</span>
-              <p><strong>Aucune source contemporaine</strong> ne décrit le squelette cornu, le sablier, la lance et le cœur pour Teach. L'historien <strong>E. T. Fox</strong> a retrouvé sa première apparition : un article du ***Mariner's Mirror* de 1912</strong>, où il figure comme pavillon pirate <strong>générique</strong>, sans aucune mention de Barbe Noire. L'attribution s'impose seulement <strong>dans les années 1970</strong>.</p>
+              <p><strong>Aucune source contemporaine</strong> ne décrit le squelette cornu, le sablier, la lance et le cœur pour Teach. L'historien <strong>E. T. Fox</strong> a retrouvé sa première apparition : un article du <strong><em>Mariner's Mirror</em> de 1912</strong>, où il figure comme pavillon pirate <strong>générique</strong>, sans aucune mention de Barbe Noire. L'attribution s'impose seulement <strong>dans les années 1970</strong>.</p>
               <p>Le design est même <strong>anachronique par construction</strong> : au XVIII<sup>e</sup> siècle le diable cornu n'était jamais représenté en squelette, et la Mort n'avait jamais de cornes. Ce qui est documenté en 1718 : des « <strong>Black Flags and Deaths Heads</strong> » et des pavillons rouges.</p>
               <p><strong>194 ans</strong> entre la mort de Teach et la première image ; ~250 ans avant l'attribution. Son symbole le plus célèbre n'a jamais flotté sur son navire.</p>
             </div>

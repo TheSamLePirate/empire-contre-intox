@@ -1337,3 +1337,640 @@ de personnes déportées (§8.2) ; la **règle de Ching Shih sur les captives** 
 une politique protectrice (§1.6) ; le tri systématique entre **« confirmé par Oda »** et
 **« théorie de fans »** (§13) ; et le fait, transversal, que **presque toute la légende
 pirate repose sur un seul livre de 1724** dont l'auteur reste inconnu.
+
+---
+
+# Annexe — Les cinq pirates oubliés (section `#oublies`)
+
+Audit de la section « Les cinq pirates oubliés » de `ymir-lalie-phantom/pirates/index.html`,
+issue du document de travail `a_traiter/pirates/les_5_pirates_oublies.docx`.
+
+> ⚠️ **Statut particulier de cette annexe.** Contrairement au reste du dossier, ce
+> matériau ne provient pas du live mais d'un document complémentaire dont les sources
+> d'origine étaient majoritairement des **wikis, blogs et sites de vulgarisation**
+> (dont *Grokipedia*, écarté ici comme non fiable). L'audit ci-dessous a donc autant
+> pour objet de **séparer l'attesté de la tradition moderne** que de corriger des
+> valeurs. Verdicts : ✅ confirmé · ⚠️ approximatif / à nuancer · 🔶 débattu · ❌ erroné.
+
+## I. Laurens de Graff (v. 1653 – 1704)
+
+> **Source décisive** : **Raynald Laprise, « Les débuts de la carrière de Laurens De Graffe
+> (1674-1681) »**, *Gazette de la flibuste*, Le Diable Volant, 2011-2015 — seul travail
+> archivistique moderne sur ses débuts (fonds AGI Séville, ANOM, TNA, BL Sloane, Blathwayt
+> Papers). **Il contredit frontalement le récit d'origine du document de travail.**
+
+### ❌ « Capturé par des négriers espagnols… envoyé sur une plantation aux Canaries… il s'en échappe »
+**Verdict : ❌ l'affirmation la plus fausse de toute l'annexe. La chronologie est inversée.**
+Ni négrier, ni plantation, ni mise en esclavage, ni évasion. Ce que les archives établissent :
+1. Il s'établit **volontairement** à Tenerife (colonie marchande néerlandaise depuis la paix de
+   Westphalie), s'y convertit probablement au catholicisme et **épouse en 1674, à Santa Cruz de
+   Tenerife, Francisca Petronila de Guzmán**.
+2. Il entre au service du marchand-armateur canarien **Juan Rico de Moya** comme
+   ***condestable*** (maître-canonnier) — **par contrat, pas par contrainte**.
+3. Le **6 octobre 1676**, la frégate espagnole ***Concordia*** sur laquelle il sert est capturée
+   dans le port de **Trujillo (Honduras)** par deux flibustiers **français** — Bernard Le Moigne
+   et Jean de Grammont. De Graff figure parmi les 50 prisonniers.
+4. Il **reste prisonnier des flibustiers** (encore en juin 1678 à Maracaïbo) avant de passer de
+   leur côté.
+→ Il fut donc **capturé par des Français**, pas par des Espagnols, alors qu'il servait
+**les Espagnols**. Laprise réfute explicitement la thèse (Clifford & Kinkor, 2002) d'un de Graff
+noir et ancien esclave : toutes les sources documentaires attestent des origines européennes, et
+Exquemelin le décrit « les cheveux d'un blond doré sans être roux ».
+**Point connexe** : son service dans l'**Armada de Barlovento** n'est confirmé par aucune source
+manuscrite (Laprise, note 21) — c'est une confusion, le *San Juan Bautista* n'y fut incorporé
+qu'ultérieurement. → Récit entièrement réécrit.
+
+### ❌ « commande dès 1675 un navire corsaire français à Saint-Domingue »
+**Verdict : ❌ faux de quatre à sept ans.** En 1675 il est encore au service des Espagnols.
+- **Février 1679** : premier commandement — une **barque longue de 4 canons**, sous l'autorité de
+  Grammont. Il participe le **23 février 1679** à l'attaque de Puerto Príncipe (Cuba), y est
+  blessé. Congé transcrit (BL Sloane MS 2724, fol. 218).
+- **Début 1681** : il capture la frégate hollandaise ***De Tijger***, qui fait de lui un chef de
+  premier plan.
+- **Novembre 1682 seulement** : première véritable **commission française** en propre, du
+  gouverneur de Pouancey. → Correction appliquée.
+
+### ❌ « la principale source d'inspiration du capitaine Peter Blood »
+**Verdict : ❌ non étayé.** La filiation documentée du *Captain Blood* de Sabatini (1922) est
+tout autre : la source principale avérée est le récit du chirurgien **Henry Pitman** (*A Relation
+of the Great Sufferings…*, 1689) — rebelle de Monmouth condamné par le juge Jeffreys, déporté à
+la Barbade, évadé par mer, recueilli par des flibustiers : toute la première partie du roman en
+découle. Sources secondaires : Morgan et Exquemelin. **Benerson Little**, qui consacre une étude
+entière à la question, identifie le capitaine anonyme ayant sauvé Pitman au colonel **Robert
+Daniell** — et **ne relie de Graff ni à Pitman ni à Blood**, alors même qu'il traite longuement
+du duel avec Van Hoorn. Le rapprochement provient d'un **blog de vulgarisation**, présenté comme
+un parallèle frappant et non comme une filiation démontrée ; Sabatini n'a rien déclaré en ce sens.
+→ Correction appliquée : présenté comme écho relevé par des commentateurs, non comme filiation.
+
+### 🔶 « il naviguait toujours avec un orchestre complet à bord » (attribué à Raveneau de Lussan)
+**Verdict : 🔶 attribution fausse, fond sans source de première main.** Raveneau de Lussan a bien
+connu de Graff — embarquement à Petit-Goâve le **22 novembre 1684** — mais **s'en sépare au bout
+de quelques mois** ; son *Journal du voyage fait à la mer du Sud* porte sur le Pacifique, **où de
+Graff n'était pas**. Aucune occurrence de l'anecdote n'y est localisable. Le détail circule dans
+les vulgarisations françaises et sur Wikipédia FR **sans référence de page**, sans remonter ni à
+Exquemelin, ni aux archives dépouillées par Laprise. **Solidement établi en revanche** : les
+**trompettes** faisaient partie des postes réguliers d'équipage flibustier.
+→ Attribution retirée ; l'anecdote est donnée comme tradition, et l'habillage « pour intimider
+ses ennemis et divertir ses otages » — sans aucune source — **supprimé**.
+
+### 🔶 « après qu'elle l'a menacé d'un pistolet pour une insulte » (Anne Dieu-le-Veut)
+**Verdict : 🔶 anecdote tardive.** Le mariage de **1693 au Cap-Français** est certain (il n'a pu
+l'épouser qu'après l'annulation, obtenue en 1693, de son mariage canarien). Mais l'épisode du
+pistolet remonte à **une seule source non contemporaine** : **Pierre Margry, *Relations et
+mémoires inédits*, Paris, 1867**, d'après un mémoire manuscrit du XVIII<sup>e</sup> siècle. Les
+historiens modernes tiennent l'essentiel de la légende d'Anne Dieu-le-Veut pour une construction
+postérieure : aucune source d'époque ne la montre embarquée, et la course de de Graff était de
+toute façon terminée au moment du mariage. *(Date divergente : mars vs 28 juillet 1693.)*
+→ Présenté comme légende rapportée tardivement.
+
+### ⚠️ Corrections de détail
+- **« Né en 1653 »** → « **vers 1653** » : aucun acte de baptême connu ; Laprise écrit « vers
+  1654 ». Les documents d'époque donnent la ville sous la forme « **Doort** / **Dort** »
+  (Dordrecht).
+- **« le galion espagnol la Princesa »** → c'est une **frégate** de l'Armada de Barlovento, la
+  ***Santísimo Sacramento* dite *la Francesa*** (« *Princesa* » vient de la tradition anglophone
+  via Marley). Surtout : la solde était destinée aux garnisons de **San Juan de Puerto Rico et de
+  Santo Domingo** — c'est-à-dire la colonie **espagnole**, et non le Saint-Domingue **français**
+  où de Graff était basé. Le chiffre de 120 000 pesos vient des sources secondaires ; Laprise ne
+  chiffre pas.
+- **« co-dirige le sac de Veracruz »** → il était **second de Van Hoorn, avec le titre d'amiral**
+  (Laprise, sur les *autos* espagnols). Un **quatrième chef**, **Jan Willems dit Yankey**,
+  participait à l'expédition. La ruse est plus précise que « faux pavillons » : **deux navires
+  espagnols réellement capturés** furent placés **en tête de flotte**. Date, ~4 000 otages et
+  duel avec Van Hoorn : ✅ confirmés.
+- **« Exquemelin l'a personnellement côtoyé »** → **non établi**. Le récit propre d'Exquemelin
+  couvre **1666-1671**, quand de Graff n'est pas encore aux Antilles ; celui-ci n'apparaît que
+  dans l'**édition française de 1699**, dans des chapitres additionnels rédigés à partir de
+  **mémoires de flibustiers anonymes**. L'épithète « **le grand pirate de Petit-Goâve** » est
+  bien d'Exquemelin. *(Argument de fiabilité retenu par Laprise : le livre parut du vivant de de
+  Graff, homme chatouilleux sur l'honneur.)*
+- **« le gouverneur de Jamaïque Henry Morgan »** → **lieutenant-gouverneur** (depuis 1674), jamais
+  gouverneur en titre ; il n'exerça la fonction que **par intérim** (1678, 1680). La citation
+  « great and mischievous pirate » circule **sans cote localisable**, et « mischievous » signifie
+  plutôt « **malfaisant** » que « redoutable ». **Fait documenté et bien plus solide à lui
+  substituer** : Morgan lui ordonne en **juin 1680** de quitter les cayes de Port Royal, puis
+  lance contre lui la frégate royale ***Norwich*** en **juillet 1681** (Blathwayt Papers XL/2).
+- **Succession** → « **environ 190 000 à 200 000 livres** selon les estimations » ; elle fut
+  **contestée** (le sieur de la Grange attaqua la légitimité de la fille) ; le couple eut **trois
+  enfants** ; entrée en possession le **9 décembre 1705** après l'arrêt du Conseil d'État du
+  **2 décembre 1705**.
+
+### ✅ Confirmé
+**Naturalisation du 5 août 1685** — brevet **FR ANOM COL/B/11/fol. 193-194**, Versailles,
+naturalisant les deux époux et mentionnant **« Françoise Petronille de Gusman », native de
+Tenerife** : c'est l'affirmation la mieux sourcée de toute l'annexe. Le même mois, il reçoit des
+**lettres de grâce pour le duel avec Van Hoorn** · **Veracruz 1683** (17 mai, ~1 300 hommes,
+~4 000 otages, douze exécutions) · **mort au Cap-Français le 24 mai 1704** — la version
+« Alabama / Mobile lors de l'expédition de d'Iberville » est un **folklore régional
+explicitement démenti**, sans appui d'archives ; la chaîne documentaire de la succession
+(succession ouverte et jugée à Saint-Domingue) est décisive.
+
+> ⚠️ **Point de dignité.** Sa fortune reposait sur une **sucrerie à cinq chaudières exploitant
+> plus de 120 personnes réduites en esclavage** au quartier Morin. Ce patrimoine ne peut pas
+> être présenté comme un butin romanesque. → Mention intégrée à la fiche.
+
+### Sources
+- Laprise, « Les débuts de la carrière de Laurens De Graffe » : https://diable-volant.github.io/flibuste/blog/GdF2011-degraffe.pdf
+- Dictionnaire des flibustiers, lettre D : https://diable-volant.github.io/flibuste/figurehead/D.html
+- Brevet de naturalité, 5 août 1685 (transcription, FR ANOM COL/B/11) : https://diable-volant.github.io/flibuste/archives/1685/16850805naturalite.html
+- Benerson Little, genèse de *Captain Blood* : https://benersonlittle.com/2021/11/23/how-a-mystery-pirate-captain-gave-us-rafael-sabatinis-captain-blood-the-films-of-errol-flynn/
+- Sac de Veracruz (1683) : https://goldenageofpiracy.org/history/buccaneering-era/sack-of-veracruz-1683
+- Raveneau de Lussan, *Journal…* (1690), BnF : https://gallica.bnf.fr/ark:/12148/bpt6k324196v
+- Anne Dieu-le-Veut (attribution à Margry, 1867) : https://fr.wikipedia.org/wiki/Anne_Dieu-le-veut
+- Notice d'autorité LoC « Graff, Laurent de, -1704 » : https://id.loc.gov/authorities/names/nr95030218.html
+
+## II. Jeanne de Belleville / Jeanne de Clisson (vers 1300 – vers 1360)
+
+> **Constat structurant** : il n'existe **aucune monographie ni article à comité de
+> lecture** consacré à Jeanne de Belleville. Crossref ne retourne rien sur elle. La
+> quasi-totalité de ce qui circule remonte, en dernière analyse, à un **poème épique de
+> 1868** — Émile Péhant, *Jeanne de Belleville*, Nantes, chanson de geste de 8 000 vers.
+
+### ❌ « Le chroniqueur Jean Froissart lui attribue "le cœur d'un lion". »
+**Verdict : ❌ erroné — la citation vise une autre femme.** La formule « the courage of a
+man and the heart of a lion » est appliquée par Froissart à **Jeanne de Flandre, comtesse
+de Montfort** (« Jeanne la Flamme »), lors d'un combat naval contre Louis d'Espagne — pas
+à Jeanne de Clisson. La confusion est structurelle : deux Jeanne, même guerre de Succession
+de Bretagne, même camp montfortiste, toutes deux associées à un combat en mer **et à
+Hennebont** (siège de 1342 pour l'une, lieu de mort supposé pour l'autre). Le surnom
+« Lionne de Bretagne » a vraisemblablement absorbé par contamination la citation destinée à
+l'homonyme. Chaîne doublement fragile : même pour Jeanne de Flandre, la citation ne circule
+que via Butler, *Women of Medieval France* (1907), et l'engagement naval est douté.
+→ Correction appliquée : **citation supprimée**, remplacée par la mention de la contamination.
+Sources : https://en.wikipedia.org/wiki/Joan_of_Flanders,_Countess_of_Montfort
+
+### ❌ « Naufrage de son navire amiral en 1356 »
+**Verdict : ❌ date erronée.** Le naufrage est unanimement placé en **1346**, pendant la
+campagne de Crécy, alors qu'elle ravitaillait les forces anglaises. **1356 est la date du
+remariage** avec Walter Bentley : la source du docx a fusionné les deux événements.
+→ Correction appliquée. (L'épisode du canot — cinq jours de dérive, mort du fils Guillaume —
+n'est adossé à aucune source médiévale : traité comme tradition.)
+
+### ❌ « très probablement emportée par la peste noire » / « meurt en décembre 1359 »
+**Verdict : ❌ sur la cause, ⚠️ sur la date.** **Aucune source ne mentionne la peste** ;
+l'inférence est chronologiquement douteuse (grande vague : 1348-1350, dix ans plus tôt).
+C'est **Bentley** qui meurt en décembre 1359 ; Jeanne le suit « quelques semaines plus tard »,
+soit **début 1360**. Le lieu lui-même est incertain : Hennebont, l'Angleterre, ou ses terres
+recouvrées. → Correction appliquée : « vers 1359-1360, probablement à Hennebont, de cause
+inconnue ».
+
+### ❌ « Pendant treize ans, elle a traqué et décapité à la hache… »
+**Verdict : ❌ sur la durée, 🔶 sur la hache.** Les « treize ans » résultent d'un calcul
+mécanique 1343 → 1356 supposant une activité continue jamais documentée ; la Wikipédia
+française ramène l'activité maritime à **environ neuf mois**. La hache brandie en personne
+est classée « *in other tales* » par les sources elles-mêmes — variante narrative, pas donnée.
+**Ce qui est attesté** (Chronique normande) : elle attaquait navires de guerre et marchands
+français et tuait sans merci les Français capturés. → Correction appliquée : durée mal établie,
+violence attribuée à la Chronique normande sans la hache.
+
+### 🔶 « trois navires de guerre, la Flotte Noire, aux voiles rouge sang »
+**Verdict : 🔶 tradition moderne.** Les coques noires, les voiles rouges et le nom
+« Ma Vengeance » ne reposent sur **aucune chronique médiévale** ; la Wikipédia anglaise écrit
+elle-même « *they **may have been** painted black* ». Le nombre de trois navires est une
+tradition constante mais sans source médiévale citée. → Signalé comme imagerie postérieure.
+
+### 🔶 Les fils emmenés devant la tête · 🔶 le témoin unique de Touffou
+**Verdict : 🔶 tradition.** Aucune source médiévale identifiée pour la scène des enfants ;
+les formulations oscillent entre le factuel et « *legend has it* ». Pour l'attaque du château
+de **Touffou** (paroisse du Bignon), la Wikipédia française dit que **Galois de la Heuse
+s'échappa** et rattache le récit à des reprises romantiques du XIX<sup>e</sup>. Le motif du
+**survivant unique chargé de raconter au roi** est un **topos** — il apparaît deux fois dans
+le même document (Touffou et les marins épargnés en mer), ce qui signale une construction
+littéraire et non deux faits indépendants. → Signalés comme tradition.
+**Attesté en revanche (Froissart)** : le basculement psychologique, d'une femme « douce » à
+une femme « ne respirant que vengeance ».
+
+### ✅ Le socle documentaire réel
+- **Exécution d'Olivier IV de Clisson** : décapité le **2 août 1343** aux Halles de Paris,
+  arrêté lors d'un tournoi au mépris des règles de la chevalerie ; corps pendu au gibet, tête
+  fichée sur une lance à la **porte Sauvetout** de Nantes. Froissart atteste le doute
+  contemporain sur sa culpabilité. Nuance : la *Chronique normande* primitive parlait « sans
+  ménagement de la trahison d'Olivier » — passage **censuré** dans une copie ultérieure quand
+  le fils devint connétable de France.
+- **Condamnation par contumace du 1<sup>er</sup> décembre 1343** (Parlement de Paris) :
+  bannissement, confiscation des biens, peine capitale pour complicité de trahison. Confirmé
+  par les *Grandes Chroniques de France*.
+- **Registres de la cour d'Angleterre (1343/1345)** : Édouard III lui octroie un revenu sur
+  des terres bretonnes.
+- **Trêve franco-anglaise de 1347** : elle y est nommée **comme alliée de l'Angleterre**.
+- **Remariage** avec Sir Walter Bentley (v. 1356), lieutenant d'Édouard III en Bretagne.
+- **Butin jamais chiffré** par aucune source médiévale. ✅
+
+> **Nuance de fond portée dans la page.** Ce socle documente une **combattante du parti
+> montfortiste soutenue par l'Angleterre** — proche d'une corsaire officieuse — bien plus
+> qu'une pirate vengeresse solitaire. Duncombe (*Pirate Women*, 2016) le relève ; réserve :
+> aucun accord de corsaire n'a été retrouvé. À noter que Philippe VI meurt en **1350** sans
+> que la « vengeance » s'arrête, ce qui affaiblit la lecture purement vengeresse.
+
+### ⚠️ Réserves de méthode
+- Dates : IdRef/ABES écrit « **Belleville, Jeanne de (1300?-1359?)** » — point
+  d'interrogation sur les **deux** bornes.
+- La **Chronographia Regum Francorum** est composée à Saint-Denis **entre 1415 et 1429**,
+  soit **70 à 85 ans après les faits** : ce n'est pas un témoignage contemporain.
+- **À vérifier page à page sur Gallica avant toute citation directe** : le passage sur Jeanne
+  dans la *Chronique normande* (éd. Molinier, 1882) et le récit de Touffou dans la
+  *Chronographia* (éd. Moranvillé, t. II) n'ont pas pu être confirmés sur les textes numérisés.
+  Ce sont les **seuls piliers médiévaux du volet maritime**.
+- Pop culture : préférer « **aucune adaptation grand public n'a pu être identifiée** » à
+  « elle n'a inspiré aucun personnage » — une absence ne se prouve pas exhaustivement.
+
+### Sources
+- IdRef/ABES : https://www.idref.fr/255823576
+- Chronique normande du XIV<sup>e</sup> s., éd. Molinier, SHF 1882 : https://gallica.bnf.fr/ark:/12148/bpt6k206452r
+- Chronographia Regum Francorum, éd. Moranvillé, SHF, t. II : https://gallica.bnf.fr/ark:/12148/bpt6k27924j.image
+- Émile Péhant, *Jeanne de Belleville*, Nantes, 1868 : https://gallica.bnf.fr/ark:/12148/bpt6k6461119k
+- Jeanne de Flandre (contamination de la citation) : https://en.wikipedia.org/wiki/Joan_of_Flanders,_Countess_of_Montfort
+- Walter Bentley : https://en.wikipedia.org/wiki/Walter_Bentley_(died_1359)
+- The Land of Desire : https://www.thelandofdesire.com/2020/10/29/jeanne-de-clisson/
+- Library of Congress : https://guides.loc.gov/feminism-french-women-history/famous/Jeanne-de-Clisson
+
+## III. Kanhoji Angre (v. 1667/1669 – 1729)
+
+> **Méthode de croisement.** Le meilleur socle est **Biddulph (1907)**, hostile à Angre mais
+> rédigé d'après les *Bombay Consultations* et les journaux de bord — donc fiable **quand il
+> concède un échec anglais**. Symétriquement, l'article de l'**amiral Deshmukh** (Indian Navy,
+> 2025) est à décharge — donc fiable **quand il concède un revers d'Angre**. Croiser ces deux
+> biais opposés est la méthode la plus sûre. ⚠️ **Wikipédia est ici particulièrement peu fiable**
+> (bandeaux « citation needed », contradiction interne sur l'année de naissance, et **inversion
+> du sens de la source primaire** dans l'affaire du *Godolphin*).
+
+### ❌ « Il n'a jamais perdu une seule bataille »
+**Verdict : ❌ erroné tel quel — mais il faut scinder en deux affirmations de statuts différents.**
+
+**A. « Aucun de ses forts n'est jamais tombé » — ✅ solide.** Toutes les expéditions européennes
+échouèrent de son vivant : **1717** contre Gheriah (Vijaydurg) — Downing, présent : « nous
+découvrîmes bientôt que la place était imprenable » ; **novembre 1718**, attaque massive de
+Khanderi par Boone (l'*Addison*, le *Dartmouth*, le *Victoria*, deux galiotes à bombes, 48
+gallivats) : **échec total**, deux débarquements repoussés, 18 tués et 50 blessés au premier
+assaut « plus par la force des pierres jetées du haut des rochers que par les armes à feu »,
+escadre rentrée à Bombay **à court de munitions** ; **1720** contre Vijaydurg ; **1721-1722**
+anglo-portugaise sur Colaba ; **1724** hollandaise. Ses forts ne tombèrent qu'**après sa mort** —
+Suvarnadurg en 1755, Vijaydurg en 1756 — contre son fils Tulaji, et par une alliance
+anglo-**peshwa**, c'est-à-dire trahi par son propre camp.
+
+**B. « Jamais perdu une bataille » — ❌ contredit par les sources.** Contre-exemples :
+1. **1710, le *Godolphin*** — la source d'origine (Bombay Gazetteer, repris par Biddulph) est sans
+   ambiguïté : « *his ships fought the Godolphin for two days, within sight of Bombay, **but were
+   finally beaten off*** ». **Ses navires furent repoussés.**
+2. **Décembre 1712**, *Somers* et *Grantham* : Angre **rompt le combat**.
+3. **1713 — revers face aux Portugais**, concédés par **Deshmukh lui-même** : « à partir de 1713,
+   il subit davantage de revers face aux forces portugaises mieux organisées ».
+4. **Juin 1717 — raids anglais réussis sur son territoire** (registre de Bombay : « deux gallivats
+   de retour après avoir pillé une ville du pays d'Angria et ramené seize prisonniers ») ; Boone
+   rapporta des prises pour **9 785 roupies**.
+5. **1721-1722** : ce n'est pas un fait d'armes — c'est le **Peshwa Bajirao** qui arrêta la guerre
+   par voie diplomatique (traité maratho-portugais du 12 janvier 1722).
+→ Correction appliquée : l'invincibilité est reportée **sur les forts**, les revers en mer sont
+nommés. Le superlatif « jamais vaincu » est un **topos hagiographique** qui circule de la presse
+indienne aux communiqués de production cinéma.
+
+### ❌ « 34 lakhs de roupies de tributs (jakat) cumulés jusqu'en 1721 »
+**Verdict : ❌ aucune source — à supprimer.** Chiffre cherché en anglais (« 34 lakhs »), en
+devanagari (« ३४ लाख ») et croisé avec *jakat* / *tribute* / 1721 : **zéro occurrence**, dans
+aucune source — ni académique, ni gazetteer, ni presse indienne, ni même les sites de dévotion.
+Aucun agrégat comptable de ce type n'existe : le *jakat* était perçu port par port, sans
+consolidation connue. **Ce chiffre a toute l'apparence d'une fabrication de contenu web**, et
+Grokipedia — citée par le document d'origine — en est le vecteur le plus probable.
+→ **Supprimé**, remplacé par les montants réellement documentés.
+
+### ❌/⚠️ « Traité de 1717 : 60 000 roupies »
+**Verdict : ❌ mauvaise année, montant approximatif, et traité jamais appliqué.** Aucun traité de
+1717 à 60 000 roupies n'est documenté. Ce qui existe, chez Biddulph, c'est l'accord négocié
+**après l'échec de Khanderi**, donc **fin 1718 – début 1719** : restitution des navires sauf le
+*Success* (**10 000 roupies**), **50 000 roupies** en compensation des cargaisons, et **10 000
+roupies sous deux ans**, Shahu garant — soit **~70 000 roupies**. Surtout, Biddulph précise que
+**le traité était un leurre** : « dès qu'Angria vit qu'il était à l'abri d'une attaque pour une
+saison de plus, il répudia le traité ». Le gouverneur Boone avait été « régulièrement berné ».
+→ Correction appliquée.
+
+### ⚠️ « En 1710, il s'empare des îles Kennery après un combat de deux jours contre le Godolphin »
+**Verdict : ⚠️ mi-vrai, mi-inversé.** La prise et la fortification de **Khanderi** (graphie
+anglaise d'époque : *Kennery*) en 1710 sont ✅ confirmées, et le combat de deux jours en vue de
+Bombay est documenté — **mais ses navires en furent repoussés** (voir ci-dessus), et les deux
+événements sont **concomitants mais distincts** : le second n'a pas produit le premier. Le
+document liait causalement ce qui ne l'est pas. → Correction appliquée.
+
+### ⚠️ « En 1721, il repousse une flotte anglo-portugaise de six mille soldats »
+**Verdict : ⚠️ date flottante, effectif non recoupé, issue mal attribuée.** Deux dates circulent
+pour la même opération (29 novembre 1721 vs 21 septembre 1721), l'attaque sur Colaba étant
+parfois datée de 1722 sous l'amiral **Thomas Mathews** → écrire « **1721-1722** ». Le chiffre de
+**6 000** est **unique et non recoupé**, logistiquement douteux (6 000 hommes pour quatre
+navires). Commandement ✅ : vice-roi **Francisco José de Sampaio e Castro**, gouverneur **Robert
+Cowan**, commodore **Mathews** — lequel fut de retour en Angleterre **convaincu en décembre 1723
+d'avoir commercé avec les Marathes** : l'expédition fut un fiasco autant qu'un scandale.
+**L'issue relève de l'intervention diplomatique du Peshwa Bajirao**, non d'une victoire tactique.
+→ « l'expédition échoue » plutôt que « il la repousse ».
+
+### ⚠️ Corrections de détail
+- **Naissance** → « **vers 1667-1669** » : Wikipédia donne *août 1669* en tête d'article et
+  **1667** dans la section biographique du même article. **« Paisiblement »** n'est sourcé par
+  rien : écrire « mort de causes naturelles, à Colaba ». La date du **4 juillet 1729** est ✅.
+- **« nommé vers 1698 Sarkhel »** → deux traditions incompatibles. La date de 1698 est marquée
+  « *better source needed* » sur Wikipédia ; **Biddulph et le Kolaba Gazetteer** sont formels :
+  c'est dans l'**accord de 1713 avec Balaji Vishwanath** qu'il « fut confirmé dans le commandement
+  de la flotte, **avec le titre de Surkheil** ». Deshmukh se contredit lui-même (1698 / 1699).
+  → « fin des années 1690, titre confirmé et formalisé en **1713** ».
+- **Le père** → origine **controversée** : officier de la flotte de Shivaji selon Kurup et Grant
+  Duff, mais le Kolaba Gazetteer cite Grose (v. 1750) selon qui Tukaji aurait été un musulman né
+  dans le golfe d'Ormuz, naufragé près de Chaul en 1643 ; **Barendse (2009)** conclut que
+  « l'origine de Kanhoji Angre est hautement controversée ».
+- **« les trois puissances réunies »** → elles ne l'ont **jamais** affronté simultanément :
+  alliance **anglo-portugaise** en 1721-1722, expédition **hollandaise séparée** en 1724.
+- **Flotte et forts** → **« 26 forts »** est mieux attesté et plus percutant que « plus de 20 »
+  (Biddulph, traité de 1713 : « vingt-six forts et places fortifiées » ; Wikipédia donne
+  « dix forts et seize postes », soit **10 + 16 = 26**). La flotte est une **fourchette de 60 à
+  80 bâtiments** — grabs et gallivats légers ; Gateway House précise que « beaucoup n'étaient
+  guère plus que des barques de pêche surdimensionnées construites par les kolis ».
+- **Le yacht de 1712** → la rançon de **30 000 roupies** est ✅ (capture du **4 novembre 1712** du
+  yacht armé du gouverneur **William Aislabie** ; le chef de factorerie **Thomas Chown** tué ;
+  rançon portée par le lieutenant Mackintosh, libération le **13 février 1713**). Mais le nom
+  ***Algerine*** est **douteux** — Biddulph dit seulement « the Governor of Bombay's armed
+  yacht », et Wikipédia confond probablement avec un autre navire. Nuance : Biddulph présente la
+  somme comme la **rançon des prisonniers européens**, dans un accord de paix plus large.
+- **Timbre** → **avril 1999**, valeur **3 roupies**, représentant un ***ghurab* de sa flotte**
+  d'après une peinture de v. 1700 — **pas son portrait**. Non confirmé sur India Post directement.
+- **Pop culture** → ***Swaraj*** ✅ (75 épisodes, DD National depuis le **14 août 2022**, Angre y
+  figure explicitement). Mais le film ***Angre*** (Abundantia Entertainment, réalisation Rajesh
+  Mapuskar) a été **annoncé en juillet 2026 et est encore à l'écriture** — à ne pas présenter
+  comme sorti. Surnom ***Samudratla Shivaji*** ✅.
+
+### ✅ Le socle le plus solide — et il est académique
+**« Ce sont les Européens qui l'ont qualifié de pirate »** est le point **le mieux étayé** de
+toute l'annexe, et le seul adossé à de la littérature à comité de lecture : **Simon Layton**,
+« The "Moghul's Admiral": Angrian "Piracy" and the Rise of British Bombay », *Journal of Early
+Modern History* 17/1 (2013) — **DOI 10.1163/15700658-12342358 vérifié** — démontre que la
+qualification de « piraterie » fut un **instrument rhétorique** de la Compagnie anglaise pour
+délégitimer un pouvoir souverain rival ; **Lakshmi Subramanian**, *The Sovereign and the Pirate*
+(OUP, 2016), porte la même thèse. Le mécanisme concret : Angre vendait des **passeports
+(*dastak*)** et prélevait le ***jakat*** — exactement le système que pratiquaient les Européens,
+Biddulph reconnaissant que « les autorités de Bombay délivraient des passes aux marchands sous
+leur protection et avaient adopté la pratique des autres chefs ».
+> ⚠️ **Nuance à conserver, pour ne pas basculer dans l'hagiographie inverse** : Angre attaquait
+> aussi des navires marchands **indiens** sans passeport et pilla des villes côtières jusqu'au
+> Travancore (Biddulph). C'était l'exercice d'une **souveraineté maritime fiscale**, avec sa part
+> de prédation — pas une pure résistance anticoloniale.
+
+Également ✅ : **Samadhi à Shivaji Chowk, Alibag** (il y fonda le township et y frappa sa monnaie,
+l'*Alibagi rupaiya*) ; bonus vérifié — le QG du **Western Naval Command** de la marine indienne
+s'appelle **INS Angre**.
+
+### Sources
+- Layton 2013 (DOI vérifié) : https://doi.org/10.1163/15700658-12342358
+- Deshmukh, EJSSS 2025 (DOI vérifié) : https://doi.org/10.47362/EJSSS.2025.6903
+- Biddulph, *The Pirates of Malabar* (1907), texte intégral : https://www.gutenberg.org/cache/epub/11399/pg11399.txt
+- Kolaba District Gazetteer (1883) : https://archive.org/details/in.ernet.dli.2015.7503
+- Subramanian, *The Sovereign and the Pirate* (recension H-Net) : https://networks.h-net.org/node/22055/reviews/191003/mathew-subramaniam-sovereign-and-pirate
+- Gateway House : https://www.gatewayhouse.in/kanhoji-angre-indias-first-naval-commander/
+
+## IV. Roberto Cofresí (1791–1825)
+
+> **Note historiographique.** Trois travaux portoricains structurent le sujet, et leur
+> répartition est la colonne vertébrale de l'audit : **Cardona Bonet (1991)** = l'archive ·
+> **Fernández Valledor (1978)** = le mythe (26 récits oraux collectés) · **Ursula Acosta
+> (1991)** = la critique révisionniste. Le document d'origine ignorait Acosta — c'est-à-dire
+> précisément la voix critique.
+
+### ❌ « il se tourne vers la piraterie vers 1818 »
+**Verdict : ❌ erroné.** Trois phases à distinguer : **~1815-1822** marin/pêcheur (viviers de la
+baie de Boquerón) ; **dès 1818** liens avec une **organisation criminelle terrestre** près du
+barrio Hormigueros (contrebande, banditisme) — **pas de la piraterie** ; **début 1823** bascule
+vers la piraterie maritime, probablement après avoir servi sur le corsaire *El Scipión*. Le
+titre même de l'ouvrage de référence acte la gradation : « *El marinero, bandolero, pirata y
+contrabandista Roberto Cofresí (1819-1825)* ». Premier document daté attestant son *modus
+operandi* pirate : lettre du **5 juillet 1823** d'Aguadilla (*St. Thomas Gazette*).
+→ Correction appliquée : **début 1823**.
+
+### ❌ « son schooner ultra-rapide surnommé El Mosquito, puis l'Ana »
+**Verdict : ❌ ordre inversé et nom apocryphe.** Le passage décisif (Fernández Valledor 1978
+p. 104 ; Acosta 1991 p. 94) : « *Although she is popularly believed to have been renamed El
+Mosquito, **all official documents use her formal name***. » Donc :
+- Le vaisseau amiral est la **balandra (sloop) *Anne* / *Ana***, à **six canons**, capturée et
+  adoptée en **février 1825** — dans le **dernier mois** de sa carrière.
+- **« El Mosquito » n'apparaît dans aucun document officiel** : surnom de tradition populaire
+  appliqué **rétroactivement** à l'*Anne*. Ce n'est **pas** un navire antérieur distinct : il
+  n'y a pas de séquence « El Mosquito → Ana », c'est le même bateau.
+- Navires antérieurs réellement attestés : ***Caballo Blanco***, ***Neptune***.
+- C'est un **sloop**, pas un *schooner*. → Correction appliquée.
+
+### ❌ « épargnant systématiquement les navires battant pavillon espagnol »
+**Verdict : ❌ erroné — le critère n'est pas le pavillon mais l'identité des personnes à bord.**
+Il **abordait** des navires espagnols, en y ciblant les **immigrants arrivés par la Cédula de
+Gracias de 1815**, et en épargnant les **créoles portoricains**. Sa propre formule (lettre au
+*Weekly Register*) : il aurait tué près de 400 personnes, « **mais aucun Portoricain** ».
+**Contre-exemples documentés d'attaques contre des navires espagnols/portoricains :** navire du
+port de **Patillas** (28 octobre 1823, 800 pesos volés) · balandra ***María*** au large de
+**Guayama** (5 août 1824) · embarcation de **Vicente Antoneti** à **Salinas** (5 mars 1825,
+dernière prise).
+**La « tolérance des autorités coloniales » est fausse** pour 1823-1825 : le gouverneur **Miguel
+de la Torre** fit de sa capture une **priorité** (agents infiltrés, expéditions multiples). Ce
+qui est vrai, ce sont des **complicités familiales et clientélistes** — son frère Juan Francisco
+était lié au capitaine de port **José Mendoza**, parrain de plusieurs de ses enfants.
+→ Correction appliquée.
+
+### ❌ « Seules 4 000 pièces de huit auraient été retrouvées sur lui et dans ses caches »
+**Verdict : ❌ contresens complet — le point le plus important de cette fiche.** Le chiffre est
+réel mais la phrase le **retourne**. Source : « *Cofresí met with mayor **Francisco Brenes**,
+**offering him 4,000 pieces of eight (which he claimed to possess) in exchange for his
+freedom**. Although a key component of modern myth, **this is the only historical reference to
+Cofresí's hiding any treasure**.* » Donc :
+- il s'agit d'une **tentative de corruption** depuis la prison de **Guayama**, portant sur une
+  somme qu'il **prétendait** posséder — jamais vérifiée, jamais retrouvée, jamais saisie ;
+- c'est **la seule et unique référence historique** à un trésor caché de Cofresí ;
+- **preuve que rien ne fut retrouvé** : l'État espagnol ne put saisir **aucun bien** (il avait
+  tout dilapidé). Son **unique actif saisissable fut Carlos, son esclave**, vendu aux enchères
+  **133 pesos** (dont il resta 108 pesos 2 réaux après frais). Sa famille resta débitrice des
+  **643 pièces de huit** de frais de justice ; sa veuve **Juana Creitoff assuma seule la dette**
+  et **mourut un an plus tard**.
+→ Correction appliquée. **La source unique du mythe du trésor est le mensonge d'un homme qui
+tentait d'échapper au peloton.**
+
+### ⚠️ Origine du père · ⚠️ la capture · 🔶 le lieu d'exécution
+- **Père : ⚠️ ni allemand ni autrichien** au sens moderne. **Francesco Giuseppe Fortunato von
+  Kupferschein**, né à **Trieste** (port des Habsbourg, aujourd'hui Italie), famille originaire
+  de **Prague**, anoblie par **Ferdinand I<sup>er</sup>** en décembre 1549 ; nom hispanisé en
+  Francisco José Cofresí. Noblesse réelle, ménage pauvre (17 maravédis d'impôts en 1818).
+- **Capture : ⚠️ trois imprécisions.** **John Drake Sloat est *Lieutenant*** en mars 1825 — il
+  n'est promu **Master Commandant qu'en 1826**, un an après ; « capitaine » est un anachronisme
+  projeté depuis sa carrière ultérieure. Il **coordonnait l'alliance depuis Saint-Thomas**
+  (Espagne / Danemark / US Navy) et **resta à bord du *Grampus*, non engagé dans le combat** :
+  la bataille du **5 mars 1825** à la **Boca del Infierno** (45 minutes) fut livrée par la
+  balandra espagnole ***San José y las Ánimas*** commandée par le **lieutenant américain
+  Garrett J. Pendergrast**. Cofresí **échoua son navire et fuit à terre** ; il fut capturé **le
+  lendemain à minuit**, embusqué et blessé à l'**espingole** par le milicien **Juan Cándido
+  Garay**. *(Ne pas reprendre la version « marins danois et colombiens » de* Caribbean Beat*,
+  inexacte pour l'engagement final.)*
+- **Exécution : ✅ date, mode et tribunal · 🔶 lieu.** Conseil de guerre expédié (jugé comme
+  corsaire insurgé, avocat « de pure formalité ») ; **fusillé le 29 mars 1825 entre 8 h et 9 h**,
+  publiquement. Il était **détenu** au **Castillo San Felipe del Morro**, site d'exécution
+  communément admis — mais **Tapia y Rivera situe l'exécution au Baluarte de Santo Domingo**.
+  → Nuancé. Les corps ne furent pas inhumés dans le cimetière catholique mais **derrière** le
+  cimetière Santa María Magdalena de Pazzis.
+
+### 🔶 « il redistribuait une large part de ses butins aux plus démunis »
+**Verdict : 🔶 débat historiographique explicite, à exposer plutôt qu'à trancher.**
+| Position | Historien | Contenu |
+|---|---|---|
+| Pour | **Aurelio Tió** | Partageait son butin avec les nécessiteux, « **en particulier sa famille et ses amis proches** » |
+| Contre | **Ursula Acosta** | Actes de générosité « **probablement opportunistes** » |
+| Explication alternative | **Cardona Bonet** | **Marchés improvisés** à Cabo Rojo où le butin était écoulé informellement, des familles de marchands rachetant pour revendre |
+
+La lecture de Cardona Bonet est décisive : ce que la tradition orale lit comme une redistribution
+charitable ressemble davantage à un **réseau de recel** — une économie parallèle profitant à des
+marchands. Même chez Tió, la générosité vise « surtout la famille et les amis », ce qui n'est pas
+Robin des Bois. Sont également agrégés à la légende des éléments **non historiques** : sa
+prétendue participation au mouvement indépendantiste et à la campagne de **Bolívar**.
+**En revanche le réseau d'informateurs est ✅ solidement attesté**, et « impénétrable » est
+justifié : il fallut **jusqu'en 1839**, soit **14 ans après sa mort**, pour que les autorités
+espagnoles en arrêtent les derniers associés. → Débat exposé dans la page.
+
+### ⚠️ « dernier grand pirate des Caraïbes » · ⚠️ « premier roman »
+- « **The last of the West India pirates** » est une **formule d'époque** (presse américaine des
+  années 1820), née de la campagne anti-piraterie de l'US Navy dont Cofresí fut le dernier
+  objectif majeur — **pas un jugement porté au terme d'un débat par « de nombreux historiens »**.
+  Nuance : son réseau ne fut démantelé qu'en 1839. → Attribué plutôt qu'affirmé.
+- **Tapia y Rivera, *Cofresí*, 1876** : ✅ auteur et année confirmés ; le statut de « **premier**
+  roman » n'est pas sourcé. → « roman fondateur ». Tapia naît **un an après l'exécution** et
+  s'inspire des souvenirs de son père, contemporain des faits.
+
+### ✅ Confirmé
+Naissance le **17 juin 1791** à Cabo Rojo · **registres de l'église San Miguel Arcángel** (acte
+de naissance conservé aux côtés de ceux de Betances et Salvador Brau) · mariage le **14 janvier
+1815** avec **Juana Creitoff** (orthographe correcte) · existence et bibliographie de **Cardona
+Bonet** et **Fernández Valledor** · **Playa Cofresí** près de Puerto Plata (République
+dominicaine) · toponymes de grottes et plages à Porto Rico — mais **aucun trésor jamais
+retrouvé**, et l'**Isla de Mona** était un repaire de pirates **depuis plus d'un siècle** avant
+lui (ses bases réelles : barrio Pedernales, Mona, Vieques).
+
+### Sources
+- Wikipédia EN (*Featured Article*, notes vers Cardona Bonet / Fernández Valledor / Acosta) : https://en.wikipedia.org/wiki/Roberto_Cofres%C3%AD
+- Capture of the sloop Anne : https://en.wikipedia.org/wiki/Capture_of_the_sloop_Anne
+- John Drake Sloat : https://en.wikipedia.org/wiki/John_Drake_Sloat
+- Cardona Bonet 1991 : https://books.google.com/books/about/El_marinero_bandolero_pirata_y_contraban.html?id=iBXjAAAAMAAJ
+- Fernández Valledor (Casa Paoli) : https://en.casapaolipr.com/product-page/el-pirata-cofres%C3%AD-mitificado-por-la-tradici%C3%B3n-oral-puertorrique%C3%B1a
+- Alejandro Tapia y Rivera : https://enciclopediapr.org/content/alejandro-tapia-rivera/
+- US Naval Institute, « The Repression of Piracy in the West Indies, 1814-1825 » (1911) : https://www.usni.org/magazines/proceedings/1911/december/repression-piracy-west-indies-1814-1825
+- Playa Cofresí : https://www.visitdominicanrepublic.org/cofresi-beach-puerto-plata
+
+## V. François Le Clerc « Jambe de Bois » (v. 1520/1530 – 1563)
+
+> **Avertissement de sources.** **Grokipedia est à l'origine d'au moins une erreur avérée**
+> de cette fiche (lettre de marque datée 1551) et durcit la formulation sur la primauté de la
+> jambe de bois. Retirée de l'appareil de sources. Une part notable de cette biographie circule
+> en boucle entre wikis sans remonter aux trois travaux érudits réels : **La Roncière
+> (1907-08)**, **Michel Leclerc (1979)**, **Lerouvillois (2008)**.
+
+### ❌ « Sa lettre de marque, accordée par Henri II en 1551, puis son anoblissement en 1553 »
+**Verdict : ❌ dates inversées.** **Anoblissement : septembre 1551** — le texte royal loue son
+combat « avecques telle hardiesse et vaillance » et note qu'il s'y est « grandement mutilé de
+ses membres, ayant perdu une jambe ». **Lettre de marque : 1553** — la première lettre de
+marque française pour les Caraïbes. La version fautive vient de Grokipedia et n'est corroborée
+par aucune source sérieuse. → Correction appliquée.
+*Réserve : ces dates reposent sur la tradition érudite normande, aucune cote d'archive
+(Archives nationales / BnF) n'a pu être vérifiée directement.*
+
+### ❌ « C'est lui qui a donné naissance au stéréotype repris par Long John Silver ou le Capitaine Crochet »
+**Verdict : ❌ erroné — trois erreurs superposées.** À supprimer intégralement.
+1. **L'inspiration de Long John Silver est attestée par Stevenson lui-même**, dans une lettre à
+   **William Ernest Henley**, ami amputé de la jambe gauche en 1868-69 : « *It was the sight of
+   your maimed strength and masterfulness that begot Long John Silver… the idea of the maimed
+   man, ruling and dreaded by the sound, was entirely taken from you.* » Source primaire directe.
+2. **Silver n'a pas de jambe de bois dans le roman** : il est amputé haut et se déplace **à la
+   béquille**. La jambe de bois est un ajout des adaptations scéniques et cinématographiques —
+   le stéréotype visuel ne remonte même pas au texte de 1883.
+3. **Le Capitaine Crochet n'a pas de jambe de bois** : il a un **crochet à la main**. L'amalgame
+   est intégral. (Ironie : c'est Henley, pas Le Clerc, qui relie les deux œuvres — sa fille
+   Margaret inspira à Barrie le prénom **Wendy**.)
+→ Correction appliquée : filiation supprimée, remplacée par la mention explicite de Henley.
+
+### 🔶 « Le tout premier capitaine de l'ère moderne à avoir navigué et commandé avec une jambe de bois »
+**Verdict : 🔶 formulation trop forte.** Aucun contre-exemple antérieur à 1549 n'a été trouvé,
+et le seul autre capitaine à jambe de bois solidement documenté — le Néerlandais **Cornelis Jol
+« Houtebeen »** (1597-1641), lui aussi surnommé « Pie de Palo » — est **postérieur d'un
+demi-siècle**. Mais **aucun historien du sujet ne formule cette primauté** : **Benerson Little**
+consacre un article entier aux pirates à jambe de bois (« Of Pirates & Wooden Legs », 2017) et
+**ne mentionne pas Le Clerc**. L'absence de contre-exemple est un **argument par le silence des
+archives**, pas un résultat d'historien. → Rétrogradé en « le plus ancien capitaine à jambe de
+bois solidement documenté ».
+
+### ❌ « à la tête d'une flotte de dix navires… l'occupe un mois entier… un butin de 80 000 pesos »
+**Verdict : ❌ sur les dix navires · ⚠️ sur la durée · ⚠️ sur la nature de la somme.**
+- **Dix navires** : chiffre appartenant à l'expédition **de 1553** (7 privés + 3 royaux). Pour
+  **1554**, 8 navires ; l'assaut effectif sur la rade se fit avec **4 navires + 4 auxiliaires**.
+- **Durée** : **environ six semaines** — entrée dans la rade le **1<sup>er</sup> juillet 1554**,
+  retrait le **16 août 1554**.
+- **Nature de la somme** : les 80 000 pesos sont une **rançon**, pas un butin — exigée pour la
+  libération de l'évêque **Fernando de Uranga** et d'une demi-douzaine de notables retenus
+  captifs. Parler de « butin » travestit une **prise d'otages**. (Les Français détruisirent en
+  outre la forteresse et brûlèrent plusieurs bâtiments, épargnant l'église contre son argenterie.)
+- **Statut de capitale de Santiago en 1554** : ✅ exact.
+- **Exécution de l'opération** : menée par **Jacques de Sores**, lieutenant de Le Clerc — qui
+  avait le commandement d'ensemble. → Corrections appliquées.
+
+### ❌ « La ville, dévastée, ne s'en relèvera jamais. »
+**Verdict : ❌ erroné tel qu'écrit.** Santiago de Cuba est la **deuxième ville de Cuba**
+(507 167 hab., 2022). Ce qu'elle n'a jamais retrouvé, c'est son **rang de capitale** — et la
+bascule vers La Havane est plus lente et plus disputée qu'un basculement immédiat (dates de
+transfert variant de 1553 à **1589**, capitale formelle en **1607**), avec des causes
+structurelles antérieures et postérieures au raid. → Correction appliquée.
+
+### 🔶/⚠️ Blessure, âge, effectifs de 1562
+- **Lieu de la blessure (1549) : 🔶 disputé.** Wikimanche et Wikipédia FR disent **Sercq** ;
+  Wikipédia EN et World History Encyclopedia disent **Guernesey**. Même campagne française de
+  1549 : prise de Sercq le 21 juillet, puis échec devant Guernesey. → Les deux mentionnés.
+  L'année et la nature des blessures (jambe emportée **et** bras mutilé) sont ✅ confirmées.
+- **« à l'âge de quarante-trois ans » : 🔶 douteux.** **Aucune date de naissance attestée** :
+  Wikimanche pose « vers 1520 » (d'où 43 ans), Wikipédia EN « vers 1530 » (soit ~33 ans).
+  L'âge est le produit arithmétique d'une estimation incertaine présentée comme un fait.
+  → Supprimé.
+- **« douze navires » en 1562 : ⚠️ non corroboré** — probable dérive du chiffre de 1553.
+  → Supprimé. Le ralliement aux Anglais (1562) et la mort aux **Açores en 1563** sont ✅.
+
+### ⚠️ « Forbes l'a classé 13e pirate le plus riche, ~7,5 M$ »
+**Verdict : ⚠️ le classement existe, l'entrée précise n'est pas vérifiable, la valeur est nulle.**
+L'article est réel : **Matt Woolsey, « Top-Earning Pirates », Forbes.com, 19 septembre 2008** —
+classement des **20 pirates les plus riches** (1. Bellamy 120 M$ · 2. Drake 115 M$ · 3. Tew
+103 M$ · … · 10. Blackbeard 12,5 M$). Mais le **rang 13 / 7,5 M$ n'a pas pu être confirmé sur
+l'article original** (page inaccessible) : il provient de Wikipédia EN qui le source à cet
+article. Surtout : c'est un **exercice journalistique** dont la méthode de conversion monétaire
+n'est ni publiée ni reproductible. → Présenté comme estimation journalistique, jamais comme
+donnée historique.
+
+### ✅ Confirmé
+Ancrage **cherbourgeois** (La Roncière, « Le premier corsaire de Cherbourg : Jambe-de-Bois »,
+*Revue d'études normandes*, 1907-08 ; manoir de **La Crasvillerie**, où il reçut l'amiral
+Coligny le 29 mars 1555) · **journal de Gilles de Gouberville** (1521-1578), source réelle,
+majeure et éditée (Archives de la Manche ; édition numérique ATILF), qui le mentionne à
+plusieurs reprises — les deux hommes se fréquentaient · surnom espagnol **« Pie de Palo » /
+« Pata de Palo »**.
+*Réserve : aucune cote de l'Archivo General de Indias n'a été vérifiée — ne pas écrire « les
+archives de Séville conservent le rapport X ».*
+
+### Sources
+- Wikimanche : https://www.wikimanche.fr/Fran%C3%A7ois_Leclerc
+- Benerson Little, « Of Pirates & Wooden Legs » : https://benersonlittle.com/2017/12/04/of-pirates-wooden-legs/
+- W. E. Henley (lettre de Stevenson) : https://en.wikipedia.org/wiki/William_Ernest_Henley
+- Long John Silver : https://en.wikipedia.org/wiki/Long_John_Silver
+- Jacques de Sores : https://en.wikipedia.org/wiki/Jacques_de_Sores
+- Cornelis Jol : https://en.wikipedia.org/wiki/Cornelis_Jol
+- Santiago de Cuba : https://www.britannica.com/place/Santiago-de-Cuba-Cuba
+- Journal de Gouberville (Archives de la Manche) : https://www.archives-manche.fr/informations-pratiques-1/publications/sources-inedites-sur-lhistoire-de-la-manche/journal-de-gilles-de-gouberville
+- Journal de Gouberville (ATILF) : http://zeus.atilf.fr/dmf/JournalGouberville/
+- Forbes, « Top-Earning Pirates » (2008) : https://www.forbes.com/2008/09/18/top-earning-pirates-biz-logistics-cx_mw_0919piracy.html
+- World History Encyclopedia : https://www.worldhistory.org/article/1879/ten-notorious-french-pirates/
+
+## Synthèse de l’annexe
+
+### Corrections ❌ appliquées dans la page
+
+1. **Laurens de Graff** — ni négriers espagnols, ni plantation, ni évasion : établi volontairement à Tenerife, maître-canonnier au service des Espagnols, il est capturé par des **flibustiers français en 1676** ; premier commandement en 1679, commission française en 1682. La filiation avec *Captain Blood* n’est pas établie.
+2. **Jeanne de Belleville** — le « cœur d’un lion » de Froissart vise **Jeanne de Flandre** ; le naufrage date de **1346**, non 1356 ; aucune source ne l’emporte par la peste. Voiles rouges, hache et treize ans de traque appartiennent à la couche romantique, dont le foyer identifié est Péhant (1868).
+3. **Kanhoji Angre** — l’invincibilité vaut pour ses **forts**, non pour toutes ses batailles ; le *Godolphin* repousse ses navires en 1710. Les **34 lakhs de roupies** sont introuvables dans toute source et ont été supprimés ; l’accord est de 1718-1719 (~70 000 roupies), non de 1717.
+4. **Roberto Cofresí** — les 4 000 pièces de huit n’ont jamais été retrouvées : c’est la somme qu’il **prétendait posséder pour corrompre le maire de Guayama**. *El Mosquito* est un nom populaire tardif de l’*Anne*, pas un navire antérieur ; sa carrière pirate débute en 1823, non en 1818.
+5. **François Le Clerc** — Stevenson a explicitement modelé Long John Silver sur **W. E. Henley** ; Silver se déplace à la béquille dans le roman et Crochet a perdu une main. Anoblissement **1551**, lettre de marque **1553** ; Santiago fut occupée six semaines, et les 80 000 pesos étaient une **rançon d’otages**.
+
+### Résultat documentaire
+
+- **5 DOI nouveaux vérifiés via Crossref**, tous ajoutés à `refs-24-pirates.md` et à `sources.html` : Layton 2013, Deshmukh 2025, Henneman 1996, Graham-Goering 2020, Jones 2024.
+- **Aucun DOI inventé** pour de Graff, Cofresí ou Le Clerc : leurs bibliographies utiles sont archivistiques, monographiques ou issues de sociétés savantes.
+- **Grokipedia retirée comme source** et explicitement signalée comme vecteur probable de deux erreurs : dates de Le Clerc inversées et chiffre fantôme des 34 lakhs d’Angre.
+- Les cinq fiches de la page d’origine portent désormais chacune un encadré **Anti-intox** exposant la correction, au lieu de simplement effacer le récit fautif.

@@ -1,0 +1,65 @@
+---
+interface Props {
+  id: string;
+  number: string;
+  title: string;
+  kicker?: string;
+}
+
+const { id, number, title, kicker } = Astro.props;
+---
+
+<section class="eci-chapter" {id} aria-labelledby={`${id}-title`}>
+  <header>
+    <div>
+      {kicker && <p>{kicker}</p>}
+      <h2 id={`${id}-title`}>{title}</h2>
+    </div>
+    <span aria-hidden="true">{number}</span>
+  </header>
+  <div class="eci-chapter__body"><slot /></div>
+</section>
+
+<style>
+  .eci-chapter {
+    padding-block: clamp(3rem, 8vw, 6rem);
+    border-top: 1px solid var(--eci-line);
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2rem;
+    align-items: end;
+  }
+
+  p,
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    color: var(--eci-accent);
+    font-family: var(--eci-roman);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-family: var(--eci-roman);
+    text-transform: uppercase;
+  }
+
+  header > span {
+    color: transparent;
+    font-family: var(--eci-roman);
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.8;
+    -webkit-text-stroke: 1px color-mix(in srgb, var(--eci-accent) 55%, transparent);
+  }
+
+  .eci-chapter__body {
+    margin-top: 2rem;
+  }
+</style>

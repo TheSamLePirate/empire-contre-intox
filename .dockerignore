@@ -17,6 +17,11 @@ a_traiter/
 node_modules/
 **/node_modules/
 port-manager.db*
+dist/
+.astro/
+.legacy-public/
+coverage/
+test-results/
 
 # Agent / editor temp files
 *.tmp
