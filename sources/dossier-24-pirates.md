@@ -11,9 +11,10 @@ des **institutions muséales** (Royal Museums Greenwich, Queen Anne's Revenge Pr
 North Carolina DNCR, Louisiana State Museum, Texas State Historical Association) et
 de la **littérature académique avec DOI vérifié** (voir `refs-24-pirates.md`).
 
-> ⚠️ **Avertissement méthodologique transversal.** Aucune des neuf figures de ce
-> dossier n'a laissé d'écrit de sa main. Tout ce que nous en savons vient de leurs
-> adversaires : lettrés au service de la répression impériale, minutes de procès
+> ⚠️ **Avertissement méthodologique transversal.** Aucune des figures historiques
+> étudiées dans ce dossier n'a laissé de récit autobiographique complet et
+> incontesté. L'essentiel de ce que nous en savons vient de sources adverses ou
+> institutionnelles : lettrés au service de la répression impériale, comptes rendus de procès
 > coloniaux, correspondances de gouverneurs, chroniques de vainqueurs, et un
 > best-seller de 1724 (*A General History of the Pyrates*) qui mêle archive et
 > fiction. C'est le cœur de la démarche épistémologique du live — et la raison

@@ -161,6 +161,9 @@
     .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
     .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
     .prose { min-width:0; }
+    .transcript > .prose::before,.side-note::before { display:block; margin:0 0 16px; padding:8px 11px; border:1px solid var(--line); border-left:3px solid var(--gold); background:rgba(214,172,85,.045); font-family:var(--roman); font-size:.56rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .transcript > .prose::before { content:"Transcription verbatim · les mots du live sont conservés, pas automatiquement confirmés"; }
+    .side-note::before { content:"Appareil critique · corrections, nuances et sources"; border-left-color:var(--sea); color:var(--sea); background:rgba(63,142,163,.07); }
     .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
     .prose p { margin:0 0 20px; }
     .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
@@ -201,6 +204,40 @@
     .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
     .science-block .block-label { color:var(--sea); }
     .question-block .block-label { color:var(--blood); }
+
+    /* — Clé de lecture & liaisons verbatim → audit — */
+    .audit-key { position:relative; margin:0 0 56px; padding:clamp(24px,4vw,38px); border:1px solid var(--line); border-radius:3px; overflow:hidden;
+      background:radial-gradient(110% 180% at 0% 0%,rgba(180,71,58,.11),transparent 52%),linear-gradient(180deg,rgba(14,26,46,.5),rgba(7,12,26,.64)); }
+    .audit-key::after { content:""; position:absolute; top:0; right:0; width:34%; height:100%; pointer-events:none; opacity:.18;
+      background:repeating-linear-gradient(135deg,transparent 0 14px,rgba(214,172,85,.16) 14px 15px); mask-image:linear-gradient(90deg,transparent,#000); }
+    .audit-key-head { position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:24px; align-items:end; }
+    .audit-key h2 { max-width:18ch; font-family:var(--roman); font-size:clamp(1.45rem,3vw,2.25rem); font-weight:800; line-height:1.02; text-transform:uppercase; color:var(--ink); }
+    .audit-key .audit-note { max-width:48ch; margin:0; color:var(--muted); font-style:italic; }
+    .audit-key-grid { position:relative; z-index:1; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-top:24px; }
+    .audit-key-item { min-height:108px; padding:16px; border:1px solid var(--line-2); border-top:2px solid var(--kc,var(--gold)); background:rgba(244,236,216,.025); }
+    .audit-key-item b { display:block; font-family:var(--roman); font-size:.62rem; letter-spacing:.13em; text-transform:uppercase; color:var(--kc,var(--gold)); }
+    .audit-key-item p { margin:8px 0 0; color:var(--soft); font-size:.88rem; line-height:1.5; }
+
+    .fact-pair { --pair:var(--gold); position:relative; margin:22px 0 28px; border-radius:3px; scroll-margin-top:96px; }
+    .fact-pair.bad { --pair:var(--blood); }
+    .fact-pair.warn { --pair:var(--gold); }
+    .fact-claim,.fact-correction { position:relative; padding:18px 20px; border:1px solid var(--line-2); scroll-margin-top:96px; transition:border-color .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease); }
+    .fact-claim { border-left:3px solid var(--pair); background:linear-gradient(90deg,color-mix(in srgb,var(--pair) 10%,transparent),rgba(244,236,216,.025)); }
+    .fact-correction { margin-top:11px; border-left:3px solid var(--sea); background:linear-gradient(90deg,rgba(63,142,163,.12),rgba(244,236,216,.025)); }
+    .fact-claim + .fact-correction::before { content:""; position:absolute; top:-12px; left:28px; width:2px; height:11px; background:linear-gradient(var(--pair),var(--sea)); }
+    .fact-stamp { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:9px; font-family:var(--roman); font-size:.58rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--pair); }
+    .fact-stamp .fact-no { display:grid; place-items:center; min-width:30px; height:24px; padding:0 7px; border:1px solid currentColor; border-radius:999px; }
+    .fact-correction .fact-stamp { color:var(--sea); }
+    .fact-claim blockquote { margin:0; padding:0; border:0; color:var(--parch); font-family:var(--serif); font-style:italic; font-size:1rem; line-height:1.55; }
+    .fact-correction p { margin:0; color:var(--muted); font-size:.96rem; }
+    .fact-correction p strong { color:var(--parch); }
+    .fact-link { display:inline-flex; align-items:center; justify-content:center; min-height:44px; margin-top:12px; padding:0 13px; border:1px solid var(--line); border-radius:2px; color:var(--gold-bright); background:rgba(214,172,85,.045); font-family:var(--roman); font-size:.58rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .fact-link:hover { border-color:var(--gold); background:rgba(214,172,85,.1); }
+    .fact-pair:target .fact-claim,.fact-pair.pair-active .fact-claim { border-color:var(--pair); box-shadow:0 0 0 1px color-mix(in srgb,var(--pair) 42%,transparent),0 18px 42px rgba(0,0,0,.25); }
+    .fact-pair:target .fact-correction,.fact-pair.pair-active .fact-correction { border-color:var(--sea); box-shadow:0 0 0 1px rgba(63,142,163,.4),0 18px 42px rgba(0,0,0,.25); }
+    .side-note[id] { scroll-margin-top:96px; }
+    .side-note[id]:target { border-color:rgba(243,217,138,.62); box-shadow:0 0 0 1px rgba(214,172,85,.22),0 24px 70px rgba(0,0,0,.4); }
+    .audit-return { display:inline-flex; align-items:center; min-height:40px; margin:0 0 16px; padding:0 12px; border:1px solid var(--line); color:var(--gold); font-family:var(--roman); font-size:.56rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
 
     /* Code Noir articles */
     .articles { display:grid; gap:14px; margin:18px 0; }
@@ -287,6 +324,8 @@
       .signal-board { max-width:560px; }
       .chapter-number { justify-self:start; font-size:4.4rem; }
       .side-note { position:static; }
+      .audit-key-head { grid-template-columns:1fr; }
+      .audit-key-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .learning-grid { grid-template-columns:1fr; }
       .collective-footer { grid-template-columns:1fr; }
       .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
@@ -301,6 +340,10 @@
       .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
       .hero-inner { margin-bottom:5vh; gap:26px; }
       .chapter { padding:60px 0; }
+      .audit-key-grid { grid-template-columns:1fr; }
+      .audit-key-item { min-height:0; }
+      .fact-claim,.fact-correction { padding:16px; }
+      .fact-link { width:100%; }
       .dtable { font-size:.9rem; }
       .dtable th,.dtable td { padding:10px 11px; }
     }
@@ -592,12 +635,12 @@
       <section class="intro-band" id="fil">
         <div class="manifesto reveal">
           <p class="section-kicker">Le fil conducteur</p>
-          <h2>Le pirate n'est pas un chaos. C'est un statut juridique — et presque toujours celui que l'ennemi vous attribue.</h2>
+          <h2>Le pirate n'est pas seulement une figure du chaos : c'est aussi une qualification juridique et politique, dont l'application varie selon les autorités et les contextes.</h2>
           <p>Ce dossier conserve mot pour mot les deux déroulés du live consacré à la piraterie : la galerie des <em>femmes pirates</em> conduite par Lalie, puis la déconstruction des clichés et la galerie des grands noms préparée par Ymir et Phantom. Entre les deux, une seule question : que reste-t-il du pirate quand on remplace la légende par l'archive ?</p>
         </div>
         <div class="timeline reveal" data-d="1" aria-label="Fil conducteur">
-          <div class="timeline-row"><time>1485-1561</time><p>Sayyida al Hurra gouverne Tétouan et fait de la course un instrument d'État.</p></div>
-          <div class="timeline-row"><time>1593</time><p>Grace O'Malley négocie avec Élisabeth I<sup>re</sup>, à Greenwich, en latin.</p></div>
+          <div class="timeline-row"><time>1515-1542</time><p>Sayyida al-Hurra gouverne Tétouan et fait de la course un instrument de pouvoir.</p></div>
+          <div class="timeline-row"><time>1593</time><p>Grace O'Malley présente sa pétition à Élisabeth I<sup>re</sup> à Greenwich et négocie la libération de ses proches.</p></div>
           <div class="timeline-row"><time>1716-1730</time><p>L'« âge d'or » : Barbe Noire, Bonny et Read, Bartholomew Roberts, La Buse.</p></div>
           <div class="timeline-row"><time>1807-1810</time><p>Ching Shih commande une flotte immense, puis négocie son amnistie avec l'Empire.</p></div>
         </div>
@@ -609,7 +652,23 @@
         <div class="learning-grid">
           <div class="learning-item reveal" data-d="1"><span>Déconstruire</span><p>Le cache-œil, la carte au trésor, la planche, l'accent « Arrr » : d'où viennent réellement les clichés, et qui les a fabriqués — souvent le cinéma, parfois un seul acteur.</p></div>
           <div class="learning-item reveal" data-d="2"><span>Lire l'archive</span><p>Presque tout ce que nous savons vient de leurs adversaires : minutes de procès, correspondances de gouverneurs, chroniques de vainqueurs. Savoir d'où parle une source, c'est déjà de la méthode.</p></div>
-          <div class="learning-item reveal" data-d="3"><span>Décentrer</span><p>Code de lois, chasse-partie signée, lettres de marque, amnisties négociées, rançons arbitrées par des ordres religieux : la piraterie comme droit, logistique et diplomatie.</p></div>
+          <div class="learning-item reveal" data-d="3"><span>Décentrer</span><p>Code de flotte, chasse-partie signée, commissions contestées, amnisties et rançons négociées : la piraterie comme droit, logistique et diplomatie — sans effacer la violence documentée.</p></div>
+        </div>
+      </section>
+
+      <section class="audit-key" aria-labelledby="cle-audit">
+        <div class="audit-key-head">
+          <div>
+            <p class="section-kicker">Mode d'emploi critique</p>
+            <h2 id="cle-audit">Lire le verbatim sans confondre parole et preuve</h2>
+          </div>
+          <p class="audit-note"><strong>« Verbatim » signifie « conservé mot pour mot » — pas « confirmé ».</strong> Les passages les plus fragiles sont désormais suivis immédiatement de leur verdict et reliés à la démonstration complète.</p>
+        </div>
+        <div class="audit-key-grid">
+          <div class="audit-key-item" style="--kc:var(--parch)"><b>Transcription verbatim</b><p>Les mots prononcés pendant le live restent inchangés, y compris lorsqu'ils sont inexacts.</p></div>
+          <div class="audit-key-item" style="--kc:var(--gold)"><b>À nuancer</b><p>Le fond est utilisable, mais la date, l'attribution, l'échelle ou le niveau de certitude doivent être corrigés.</p></div>
+          <div class="audit-key-item" style="--kc:var(--blood)"><b>Erroné après audit</b><p>L'affirmation est conservée comme document du live, puis explicitement réfutée.</p></div>
+          <div class="audit-key-item" style="--kc:var(--sea)"><b>Correction factuelle</b><p>La réponse éditoriale résume le verdict et mène vers la démonstration et les sources.</p></div>
         </div>
       </section>
 
@@ -635,7 +694,7 @@
           <button class="leg-card" type="button" style="--lc:var(--steel)"><span class="leg-no">05</span><span class="leg-copy"><h5>Océan Indien</h5><p>Levasseur &amp; Taylor · 1721</p></span></button>
         </div>
         <div class="leg-detail" id="mapDetail" aria-live="polite"></div>
-        <div class="viz-foot">Fond géographique : Natural Earth, domaine public · Repères historiques vérifiés dossier par dossier. <a href="../../sources/sources.html">Consulter l'appareil critique →</a></div>
+        <div class="viz-foot">Fond géographique : Natural Earth, domaine public · Repères historiques vérifiés dossier par dossier. <a href="../../sources/sources.html#pirates">Consulter l'appareil critique →</a></div>
       </section>
 
       <section class="act-band reveal" id="acteI" aria-labelledby="actI">
@@ -668,7 +727,7 @@
             </div>
             <div class="lesson-block">
               <span class="block-label">Le pari du dossier</span>
-              <p>« Une affaire de droit, de logistique et de diplomatie » : c'est exactement ce que la vérification confirme. Un code de flotte, un jury de matrones, une pétition à Élisabeth I<sup>re</sup>, des rançons arbitrées, des amnisties négociées, des lettres de marque. Le sabre est presque toujours l'accessoire ; le document est le sujet.</p>
+              <p>« Une affaire de droit, de logistique et de diplomatie » : c'est ce que la vérification permet d'étudier. Un code de flotte, un jury de matrones, une pétition à Élisabeth I<sup>re</sup>, des rançons négociées, des amnisties et des commissions contestées. Le document est le fil directeur du dossier, sans faire du sabre un simple accessoire : la violence reste documentée et fréquente.</p>
             </div>
           </aside>
         </div>
@@ -711,7 +770,7 @@
           <aside class="side-note">
             <div class="science-block">
               <span class="block-label">La règle qui tient tout le dossier</span>
-              <p>Aucune des neuf figures de ce dossier n'a laissé d'écrit de sa main. Ce que nous savons vient de <strong>lettrés au service de la répression impériale</strong>, de <strong>minutes de procès coloniaux</strong>, de <strong>correspondances de gouverneurs</strong>, et d'un best-seller de 1724 — <em>A General History of the Pyrates</em> — dont l'auteur reste inconnu et qui mêle archive et fiction.</p>
+              <p>Aucune des figures historiques étudiées dans ce dossier n'a laissé de récit autobiographique complet et incontesté. Ce que nous savons vient de <strong>lettrés au service de la répression impériale</strong>, de <strong>comptes rendus de procès coloniaux</strong>, de <strong>correspondances de gouverneurs</strong>, et d'un best-seller de 1724 — <em>A General History of the Pyrates</em> — dont l'auteur reste inconnu et qui mêle archive et fiction.</p>
               <p>Savoir <em>qui écrit</em> et <em>pour qui</em> ne relativise pas le savoir : c'est ce qui permet de le hiérarchiser.</p>
             </div>
             <div class="lesson-block">
@@ -746,6 +805,18 @@
                 <dt>Héritage</dt><dd>Créatrice d'un code de lois maritime parmi les plus stricts de l'histoire.</dd>
               </dl>
               <p class="id-bio">Biographie : Issue d'un milieu modeste, elle accède au pouvoir en 1807 à la mort de son mari pirate. Loin de s'effacer, elle prend les commandes d'une flotte qui comptera jusqu'à 1 500 navires. Elle est avant tout une administratrice hors pair : elle instaure un système de taxation des villages côtiers, garantissant une protection en échange de vivres. Son génie réside dans son code de lois : tout pillage non autorisé ou acte de désobéissance était puni de décapitation. Lorsqu'elle comprend que les puissances impériales chinoises, britanniques et portugaises ne peuvent la vaincre par la force, elle négocie une amnistie en 1810. Elle obtient le droit de conserver ses richesses, finit ses jours paisiblement en tenant une maison de jeu, démontrant que la piraterie peut être une gestion souveraine.</p>
+            </div>
+
+            <div class="fact-pair bad" id="claim-ching-code">
+              <div class="fact-claim">
+                <span class="fact-stamp"><span class="fact-no">C01</span> Transcription verbatim · affirmation erronée</span>
+                <blockquote>« Cheffe de la Flotte des Drapeaux Rouges » · « Créatrice d'un code de lois » · « jusqu'à 1 500 navires »</blockquote>
+              </div>
+              <div class="fact-correction" id="corr-ching-code" tabindex="-1">
+                <span class="fact-stamp"><span class="fact-no">C01</span> Correction factuelle</span>
+                <p>Elle dirigeait <strong>les six flottes de la Confédération du Guangdong</strong>. Le chiffre de 1 500 n'a pas de base identifiée et le règlement est attribué par la source primaire à <strong>Zhang Bao</strong>, avec 20 % du butin au navire capteur et 80 % au fonds commun.</p>
+                <a class="fact-link" href="#audit-ching">Lire la démonstration complète ↓</a>
+              </div>
             </div>
 
             <h3 class="group-title">1. Le contexte géopolitique : Un empire en fragilité</h3>
@@ -794,7 +865,8 @@
             <p>Maintenant que nous avons vu comment une femme peut bâtir un empire maritime par une gestion administrative implacable, quittons les grandes flottes de la Mer de Chine pour rejoindre les Caraïbes, là où la survie ne se jouait pas dans les palais impériaux, mais dans les salles d'audience coloniales avec Anne Bonny et Mary Read.</p>
           </article>
 
-          <aside class="side-note">
+          <aside class="side-note" id="audit-ching">
+            <a class="audit-return" href="#claim-ching-code">↑ Retour au passage C01</a>
             <div class="science-block">
               <span class="block-label">Anti-intox · Le nom lui-même</span>
               <p><strong>« Zheng Yi Sao » (鄭一嫂) n'est pas un nom propre</strong> : cela signifie littéralement « <em>épouse de Zheng Yi</em> ». Son nom de naissance était <strong>Shi Yang</strong> (石陽). La femme qui a commandé la plus grande flotte pirate de l'histoire est passée à la postérité sous un nom qui la définit par son mari — et « Ching Shih » n'est qu'une translittération ancienne popularisée par les récits anglophones.</p>
@@ -837,7 +909,7 @@
             <div class="science-block">
               <span class="block-label">Anti-intox · « Plus puissante que les marines nationales »</span>
               <p><strong>En coques et en hommes</strong> : défendable — la Royal Navy alignait ~335 navires en service actif en 1810. <strong>En puissance de feu</strong> : non. Six navires portugais et 120 canons ont battu des centaines de jonques. Pas de navires de ligne, pas d'artillerie lourde comparable.</p>
-              <p>La formule juste : la plus grande flotte pirate jamais documentée, supérieure en nombre à la plupart des marines d'État — et très inférieure à n'importe quelle escadre européenne en artillerie.</p>
+              <p>La formule juste : la plus grande flotte pirate jamais documentée, supérieure en nombre à la plupart des marines d'État — et très inférieure en artillerie à une escadre européenne de ligne comparable.</p>
             </div>
           </aside>
         </div>
@@ -855,7 +927,7 @@
 
             <figure class="chapter-figure">
               <img src="assets/proces-jamaique.png" alt="Salle d'audience coloniale déserte : boiseries sombres, table de justice couverte de registres et d'un texte de loi ouvert, deux chaises vides dans la lumière." loading="lazy">
-              <figcaption>Tout ce que nous savons d'Anne Bonny et de Mary Read sort de cette pièce : les minutes du procès de novembre 1720, imprimées à la Jamaïque en 1721.</figcaption>
+              <figcaption>La principale source primaire sur Anne Bonny et Mary Read est le compte rendu imprimé de leurs procès de novembre 1720, publié à la Jamaïque en 1721.</figcaption>
             </figure>
 
             <div class="idcard">
@@ -867,6 +939,18 @@
                 <dt>Signe particulier</dt><dd>Subversion des normes de genre par le travestissement.</dd>
               </dl>
               <p class="id-bio">Biographie : Leur histoire est celle de femmes ayant refusé les carcans de leur époque. Anne Bonny, fille illégitime à l'esprit indomptable, et Mary Read, élevée en garçon pour survivre et hériter, se rencontrent sur le navire de Rackham. Elles se distinguent par une férocité au combat qui sidère leurs contemporains. Lors de l'arrestation de leur équipage en 1720, elles sont les seules à défendre vaillamment le navire alors que les hommes sont en état d'ébriété. Condamnées à la pendaison, elles invoquent le droit de "ventre plaidé" (grossesse) pour surseoir à leur exécution. Ce geste juridique souligne la complexité de leur statut : hors-la-loi par leurs actes, mais protégées par des mécanismes légaux qu'elles ont su utiliser.</p>
+            </div>
+
+            <div class="fact-pair bad" id="claim-bonny-read">
+              <div class="fact-claim">
+                <span class="fact-stamp"><span class="fact-no">C02</span> Transcription verbatim · récit composite</span>
+                <blockquote>« élevée en garçon pour survivre et hériter » · « les hommes sont en état d'ébriété » · le sursis comme échappatoire acquise</blockquote>
+              </div>
+              <div class="fact-correction" id="corr-bonny-read" tabindex="-1">
+                <span class="fact-stamp"><span class="fact-no">C02</span> Correction factuelle</span>
+                <p>Le procès confirme leur présence et le <em>pleading the belly</em>, mais <strong>pas l'ivresse paralysante de l'équipage</strong>. Le travestissement de Read servait à maintenir une pension, et la grossesse accordait un <strong>sursis</strong>, jamais une grâce automatique.</p>
+                <a class="fact-link" href="#audit-bonny">Lire la démonstration complète ↓</a>
+              </div>
             </div>
 
             <p>Pour leur portrait, l'aspect technique majeur est le cadre juridique qui leur a permis d'échapper à la potence.</p>
@@ -885,14 +969,15 @@
             <p>Si Anne et Mary ont utilisé les failles juridiques pour échapper à la potence dans les Caraïbes, notre prochaine figure, elle, a choisi de redéfinir les règles du jeu foncier en Irlande, prouvant que la piraterie peut être un outil de haute diplomatie. Place à la Reine des Clans, Grace O'Malley.</p>
           </article>
 
-          <aside class="side-note">
+          <aside class="side-note" id="audit-bonny">
+            <a class="audit-return" href="#claim-bonny-read">↑ Retour au passage C02</a>
             <div class="lesson-block">
               <span class="block-label">Deux mois</span>
               <p>Leur carrière de piraterie a duré <strong>environ deux mois</strong> : elles rejoignent l'équipage de Rackham le <strong>22 août 1720</strong> et sont capturées le <strong>22 octobre 1720</strong> au large de Point Negril, par le sloop du corsaire <strong>Jonathan Barnet</strong>. Trois siècles de légende pour huit semaines de mer.</p>
             </div>
 
             <div class="science-block">
-              <span class="block-label">Anti-intox · Le procès, seule source solide</span>
+              <span class="block-label">Anti-intox · Le procès, principale source judiciaire</span>
               <p>La pièce maîtresse est <em>The Tryals of Captain John Rackam, and other Pirates</em>, <strong>imprimé à la Jamaïque en 1721</strong> (exemplaire à la National Library of Jamaica). Rackham et son équipage sont jugés les <strong>16-17 novembre 1720</strong> ; <strong>Bonny et Read séparément le 28 novembre 1720</strong>. Tout le reste dérive de Johnson (1724).</p>
             </div>
 
@@ -955,6 +1040,18 @@
               <p class="id-bio">Biographie : Née dans le clan des O'Malley, réputé pour sa maîtrise de la navigation, Grace ne s'identifie pas comme pirate, mais comme cheffe de territoire. Elle consacre sa vie à protéger les terres ancestrales de l'expansion anglaise. Figure incontournable, elle a mené une véritable carrière de cheffe de guerre navale pendant des décennies. Son moment le plus saisissant est sa rencontre à Greenwich en 1593 avec Élisabeth Ière. Dans un échange en latin, Grace négocie la libération de sa famille. Sa trajectoire illustre la frontière floue entre la résistance locale et la piraterie vue par l'occupant. Elle est le symbole de l'Irlande insoumise, décédée dans son lit après une vie de défi constant.</p>
             </div>
 
+            <div class="fact-pair bad" id="claim-grace-greenwich">
+              <div class="fact-claim">
+                <span class="fact-stamp"><span class="fact-no">C03</span> Transcription verbatim · attributions erronées</span>
+                <blockquote>« échange en latin » · « signer un Composition Agreement » · « lettres de marque officieuses »</blockquote>
+              </div>
+              <div class="fact-correction" id="corr-grace-greenwich" tabindex="-1">
+                <span class="fact-stamp"><span class="fact-no">C03</span> Correction factuelle</span>
+                <p>La langue de l'entretien n'est pas attestée. En 1593, Grace remet une <strong>pétition personnelle</strong>, pas un accord de composition ; aucune lettre de marque n'a été retrouvée. Sa participation au <em>surrender and regrant</em> date de <strong>1576</strong>.</p>
+                <a class="fact-link" href="#audit-grace">Lire la démonstration complète ↓</a>
+              </div>
+            </div>
+
             <p>Ici, l'angle géopolitique est crucial. Grace O'Malley n'est pas qu'une pirate, elle est un acteur de la "Surrender and Regrant" policy irlandaise.</p>
             <ul>
               <li><strong>Le contexte technique :</strong> Dans l'Irlande du XVIe siècle, la Couronne anglaise tentait de convertir les titres fonciers gaéliques (collectifs) en titres de propriété anglais (individuels).</li>
@@ -971,7 +1068,8 @@
             <p>Si Grace O'Malley a utilisé la diplomatie foncière pour protéger son clan en Irlande, traversons l'Atlantique pour découvrir une figure qui a poussé la stratégie jusqu'à la mise en scène totale de sa propre identité : Jacquotte Delahaye. Elle nous prouve que dans un monde hostile, savoir disparaître pour mieux revenir est parfois la plus grande des victoires politiques.</p>
           </article>
 
-          <aside class="side-note">
+          <aside class="side-note" id="audit-grace">
+            <a class="audit-return" href="#claim-grace-greenwich">↑ Retour au passage C03</a>
             <div class="science-block">
               <span class="block-label">Anti-intox · Le « Composition Agreement » de 1593</span>
               <p>C'est la correction principale de ce portrait. La <strong>Composition of Connacht est un accord fiscal de 1585</strong> — et <strong>Grace O'Malley figure parmi ceux qui refusèrent de s'y rallier</strong>, entrant en résistance contre le gouverneur Sir Richard Bingham.</p>
@@ -1030,6 +1128,18 @@
               <p class="id-bio">Biographie : Fille d'un père français et d'une mère haïtienne, Jacquotte serait devenue pirate après l'assassinat de son père. Son histoire est marquée par une "technique" de survie peu commune : elle aurait simulé sa propre mort pour échapper à ses poursuivants, avant de réapparaître quelques années plus tard, devenant une cheffe redoutée sous le surnom de "Back from the Dead Red" (la rousse revenue d'entre les morts). Elle a commandé des centaines de pirates, participant à la défense de l'île de Saint-Domingue.</p>
             </div>
 
+            <div class="fact-pair bad" id="claim-jacquotte">
+              <div class="fact-claim">
+                <span class="fact-stamp"><span class="fact-no">C04</span> Transcription verbatim · personnage probablement fictif</span>
+                <blockquote>« mère haïtienne » · « Back from the Dead Red » · commandement de centaines de pirates</blockquote>
+              </div>
+              <div class="fact-correction" id="corr-jacquotte" tabindex="-1">
+                <span class="fact-stamp"><span class="fact-no">C04</span> Correction factuelle</span>
+                <p><strong>Aucune archive contemporaine ne prouve son existence.</strong> Elle est absente de Johnson (1724) et d'Exquemelin (1678) ; la première attestation connue apparaît chez Léon Treich dans les années 1940. « Haïtienne » en 1660 constitue en outre un anachronisme.</p>
+                <a class="fact-link" href="#audit-jacquotte">Lire la démonstration complète ↓</a>
+              </div>
+            </div>
+
             <ul>
               <li><strong>L'analyse technique (Pivot juridique/stratégique) :</strong> La vie de Jacquotte illustre le concept de "l'identité flottante" dans la piraterie du XVIIe siècle.</li>
               <li><strong>La falsification comme stratégie :</strong> Contrairement aux pirates qui cherchaient la célébrité, Jacquotte a utilisé la "mort symbolique" comme un outil de guerre psychologique et de protection juridique.</li>
@@ -1050,7 +1160,8 @@
             <p>Jacquotte a su utiliser la désinformation comme un outil pour protéger son autonomie face aux autorités coloniales. Mais si elle a préféré disparaître pour survivre, notre prochaine figure, elle, a choisi de s'imposer en pleine lumière. Traversons maintenant la Méditerranée pour rencontrer la gouverneure de Tétouan, Sayyida al Hurra, qui a transformé le droit de la course en une véritable politique d'État.</p>
           </article>
 
-          <aside class="side-note">
+          <aside class="side-note" id="audit-jacquotte">
+            <a class="audit-return" href="#claim-jacquotte">↑ Retour au passage C04</a>
             <div class="science-block">
               <span class="block-label">Anti-intox · La correction majeure du dossier</span>
               <p>Le live avait raison de placer Jacquotte « à la limite de la légende ». La vérification va plus loin : <strong>elle est de l'autre côté de la ligne.</strong></p>
@@ -1098,7 +1209,7 @@
 
             <figure class="chapter-figure">
               <img src="assets/tetouan-sayyida.png" alt="Médina blanche du nord du Maroc au coucher du soleil, vue depuis une terrasse ; au premier plan une silhouette féminine drapée, de dos, entourée de rouleaux de documents et d'un astrolabe." loading="lazy">
-              <figcaption>Tétouan. Elle ne courait pas les mers : elle les administrait depuis son siège de pouvoir. La course, ici, est un instrument de gouvernement.</figcaption>
+              <figcaption>Tétouan. Les sources la montrent surtout administrant la course depuis son siège de pouvoir : ici, l'activité maritime est un instrument de gouvernement.</figcaption>
             </figure>
 
             <div class="idcard">
@@ -1110,6 +1221,18 @@
                 <dt>Héritage</dt><dd>Usage de la course maritime comme outil diplomatique.</dd>
               </dl>
               <p class="id-bio">Biographie : Chassée de Grenade durant la Reconquista, elle transforme son traumatisme d'exilée en une force politique. Gouverneure de Tétouan, elle orchestre une guerre maritime contre l'Espagne et le Portugal. Contrairement aux pirates nomades, elle dirige ses opérations depuis son siège de pouvoir, avec une rigueur de cheffe d'État. Pour elle, la piraterie est un levier diplomatique pour protéger les intérêts du commerce musulman et influencer les rapports de force en Méditerranée. Durant trente ans, elle a régné en maître sur les routes maritimes, montrant que la piraterie, entre ses mains, était une extension légitime de sa souveraineté politique.</p>
+            </div>
+
+            <div class="fact-pair warn" id="claim-sayyida">
+              <div class="fact-claim">
+                <span class="fact-stamp"><span class="fact-no">C05</span> Transcription verbatim · biographie à corriger</span>
+                <blockquote>« 1485–1561 » · « Chassée de Grenade » · Trinitaires et Mercédaires associés à son gouvernement</blockquote>
+              </div>
+              <div class="fact-correction" id="corr-sayyida" tabindex="-1">
+                <span class="fact-stamp"><span class="fact-no">C05</span> Correction factuelle</span>
+                <p>« Sayyida al-Hurra » est un <strong>titre</strong>. Elle naît probablement vers 1491–1495 à Chefchaouen, fille de réfugiés andalous, et gouverne Tétouan jusqu'en 1542. Les missions documentées des ordres rédempteurs sont surtout postérieures à son époque.</p>
+                <a class="fact-link" href="#audit-sayyida">Lire la démonstration complète ↓</a>
+              </div>
             </div>
 
             <p>Sayyida al Hurra illustre parfaitement la professionnalisation de la guerre maritime en Méditerranée au XVIe siècle.</p>
@@ -1134,7 +1257,8 @@
             </div>
           </article>
 
-          <aside class="side-note">
+          <aside class="side-note" id="audit-sayyida">
+            <a class="audit-return" href="#claim-sayyida">↑ Retour au passage C05</a>
             <div class="science-block">
               <span class="block-label">Anti-intox · Ce n'est pas son nom</span>
               <p><strong>« Sayyida al-Hurra » est un titre, pas un prénom.</strong> <em>al-Ḥurra</em> signifie « la libre » — « la noble dame indépendante, la femme souveraine qui ne s'incline devant aucune autorité supérieure ». Son nom propre était <strong>Lalla Aïcha bint Ali ibn Rashid al-Alami</strong>.</p>
@@ -1215,7 +1339,7 @@
           <aside class="side-note">
             <div class="lesson-block">
               <span class="block-label">La rigueur du live</span>
-              <p>Ce chapitre est le plus solide du dossier, et il mérite d'être signalé comme tel : <strong>la vérification n'y a rien trouvé à corriger.</strong> Refuser l'étiquette « féministes avant l'heure » parce que le concept n'existait pas, tout en documentant une insoumission de fait, c'est exactement la méthode que réclament les historiens.</p>
+              <p>Le raisonnement central de ce chapitre est solide : refuser l'étiquette « féministes avant l'heure » parce que le concept n'existait pas, tout en documentant une insoumission de fait, correspond à la méthode des historiens. <strong>Plusieurs formulations de contexte et du tableau juridique demandent néanmoins les nuances ci-dessous.</strong></p>
               <p>Et l'aveu — « ma première erreur a été de penser… c'est faux » — est la chose la plus précieuse d'un travail de contre-intox : montrer qu'on s'est corrigé.</p>
             </div>
             <div class="science-block">
@@ -1224,7 +1348,7 @@
             </div>
             <div class="script-block">
               <span class="block-label">Le pivot juridique, vérifié</span>
-              <p>Le tableau des quatre pivots tient, avec deux corrections déjà exposées : le « code » de la mer de Chine est attribué par les sources primaires à <strong>Zhang Bao</strong>, et Grace O'Malley n'a <strong>pas</strong> signé de Composition Agreement — la Composition de Connacht date de 1585 et elle s'y est opposée. Le <em>Pleading the Belly</em> et le droit de la course, eux, sont exacts.</p>
+              <p>Le tableau des quatre pivots tient, avec deux corrections déjà exposées : le « code » de la mer de Chine est attribué par les sources primaires à <strong>Zhang Bao</strong>, et Grace O'Malley n'a <strong>pas</strong> signé de Composition Agreement — la Composition de Connacht date de 1585 et elle s'y est opposée. Le <em>Pleading the Belly</em> est exact ; pour Sayyida, la course légitimée est réelle, mais sa présentation comme un corpus juridique constitué doit être nuancée.</p>
             </div>
           </aside>
         </div>
@@ -1271,8 +1395,8 @@
 
           <aside class="side-note">
             <div class="science-block">
-              <span class="block-label">Anti-intox · Le seul ❌ de cette bibliographie</span>
-              <p>« La figure de Jacquotte Delahaye est principalement issue du livre <em>A General History of the Pyrates</em> (1724) » : <strong>c'est la seule affirmation franchement erronée de tout l'appareil critique du live</strong>, et elle est vérifiable en une recherche textuelle — <strong>zéro occurrence</strong> dans les 778 Ko du texte de 1724 (voir chapitre 06).</p>
+              <span class="block-label">Anti-intox · L'erreur la plus nette de cette bibliographie</span>
+              <p>« La figure de Jacquotte Delahaye est principalement issue du livre <em>A General History of the Pyrates</em> (1724) » : <strong>c'est l'affirmation la plus nettement erronée de l'appareil critique du live</strong>, et elle est vérifiable en une recherche textuelle — <strong>zéro occurrence</strong> dans les 778 Ko du texte de 1724 (voir chapitre 06).</p>
               <p>La conclusion du paragraphe, elle, reste juste et même prudente : aucun document d'archives contemporain n'atteste son existence. Le live avait le bon réflexe ; il s'est seulement trompé de source fondatrice.</p>
             </div>
             <div class="lesson-block">
@@ -1823,6 +1947,18 @@
             </ul>
             <p><strong>Le pavillon (Jolly Roger) :</strong> Son drapeau représentait un squelette cornu (parfois associé au diable) tenant un sablier dans une main (pour dire "votre temps est compté") et perçant un cœur de sa lance pour le faire saigner.</p>
 
+            <div class="fact-pair bad" id="claim-teach-flag">
+              <div class="fact-claim">
+                <span class="fact-stamp"><span class="fact-no">C06</span> Transcription verbatim · symbole moderne</span>
+                <blockquote>« Son drapeau représentait un squelette cornu […] perçant un cœur de sa lance »</blockquote>
+              </div>
+              <div class="fact-correction" id="corr-teach-flag" tabindex="-1">
+                <span class="fact-stamp"><span class="fact-no">C06</span> Correction factuelle</span>
+                <p><strong>Aucune source de 1718 ne relie ce dessin à Barbe Noire.</strong> Il apparaît comme pavillon générique en 1912 et ne lui est attribué que dans les années 1970. Les sources contemporaines mentionnent seulement des pavillons noirs à têtes de mort et des pavillons rouges.</p>
+                <a class="fact-link" href="#audit-barbe-noire">Lire la démonstration complète ↓</a>
+              </div>
+            </div>
+
             <h3 class="group-title">3. Le Coup d'Éclat : Le blocus de Charles Town (1718)</h3>
             <p>C'est l'un de ses actes les plus audacieux et parfaits pour illustrer sa stratégie. En mai 1718, Barbe Noire jette l'ancre avec sa flotte devant le port de Charles Town (aujourd'hui Charleston, en Caroline du Sud) :</p>
             <p>Il bloque complètement le port et capture plusieurs navires en quelques jours.</p>
@@ -1861,7 +1997,8 @@
             <p><strong>L'outil de propagande :</strong> Même s'il s'agit probablement d'une exagération des autorités de l'époque pour diaboliser sa moralité, Teach laissait courir ce genre de bruits. Cela participait pleinement à son image de hors-la-loi flamboyant et sans limites, vivant selon ses propres règles.</p>
           </article>
 
-          <aside class="side-note">
+          <aside class="side-note" id="audit-barbe-noire">
+            <a class="audit-return" href="#claim-teach-flag">↑ Retour au passage C06</a>
             <div class="lesson-block">
               <span class="block-label">Le fait le plus solide : il savait lire</span>
               <p>Après Ocracoke, Maynard fouille l'<em>Adventure</em> et y trouve la <strong>correspondance de Teach</strong>, dont une lettre de <strong>Tobias Knight</strong>, secrétaire de la province et collecteur des douanes, adressée à « <em>Captain Edward Thache on board his sloop Adventure</em> ». La lettre a servi de pièce à charge ; Knight a reconnu l'avoir écrite.</p>
@@ -1985,6 +2122,18 @@
             <p><strong>L'exécution publique :</strong> Le début de One Piece est un copier-coller exact de la mort d'Olivier Levasseur. Tout comme La Buse sur son échafaud, Gol D. Roger sourit devant la foule juste avant son exécution et lance sa réputation à la postérité : "Mon trésor ? Je vous le laisse si vous le voulez. Cherchez-le, je l'ai caché quelque part dans ce monde !"</p>
             <p><strong>Le One Piece = Le trésor de La Buse :</strong> Le grand mystère qui pousse tous les pirates du manga à prendre la mer est directement inspiré de la traque du trésor de La Buse et de son fameux cryptogramme.</p>
 
+            <div class="fact-pair bad" id="claim-labuse-cryptogramme">
+              <div class="fact-claim">
+                <span class="fact-stamp"><span class="fact-no">C07</span> Transcription verbatim · légende du XXe siècle</span>
+                <blockquote>Le parchemin jeté en 1730, les 17 lignes du cryptogramme et l'inspiration directe de <em>One Piece</em></blockquote>
+              </div>
+              <div class="fact-correction" id="corr-labuse-cryptogramme" tabindex="-1">
+                <span class="fact-stamp"><span class="fact-no">C07</span> Correction factuelle</span>
+                <p>Le cryptogramme et le cri apparaissent pour la première fois dans un livre populaire de <strong>1934</strong>, 204 ans après l'exécution. Aucun document indépendant ne les atteste et aucune déclaration d'Eiichiro Oda ne confirme l'inspiration.</p>
+                <a class="fact-link" href="#audit-la-buse">Lire la démonstration complète ↓</a>
+              </div>
+            </div>
+
             <div class="lesson-block">
               <span class="block-label">Résumé :</span>
               <p>Barbe Noire : Le showman de l'enfer.<br>
@@ -1995,7 +2144,8 @@
             </div>
           </article>
 
-          <aside class="side-note">
+          <aside class="side-note" id="audit-la-buse">
+            <a class="audit-return" href="#claim-labuse-cryptogramme">↑ Retour au passage C07</a>
             <div class="science-block">
               <span class="block-label">Anti-intox · L'acte de baptême retrouvé</span>
               <p>Calais : confirmé — et exceptionnel, parce que son <strong>acte de baptême a été retrouvé dans les archives municipales</strong> par le chercheur Cyrille Lougnon. Il donne le <strong>5 novembre 1695</strong>, parents Olivier Levasseur et Marie-Anne Jensse.</p>
@@ -2080,7 +2230,7 @@
       </section>
 
       <section class="closing reveal" aria-labelledby="final">
-        <h2 id="final">Le pirate est toujours celui que l'archive du pouvoir décide d'appeler pirate.</h2>
+        <h2 id="final">Qui est dit « pirate » dépend aussi du droit, du rapport de force et de l'archive.</h2>
         <p>De la mer de Chine au golfe du Mexique, les catégories se renversent : un corsaire devient pirate à la signature d'un traité de paix ; un pirate devient officier Qing par l'effet d'une amnistie ; un gouverneur peut lancer une expédition illégale contre un homme gracié ; une dirigeante de Tétouan peut être appelée corsaire par les uns et souveraine par les autres. Le sabre est réel. Mais le statut l'est tout autant — et il dépend du sceau apposé sur le document.</p>
         <p>Ce dossier conserve intégralement les deux déroulés du live — <em>pirates.txt</em> et <em>pirates-celebres.txt</em> — tout en rendant visibles, sans toucher au verbatim, les corrections et nuances apportées par l'audit des sources.</p>
       </section>
@@ -2105,7 +2255,7 @@
             <a class="button primary" href="../../index.html">Retour à l'index</a>
             <a class="button" href="../../ymir-lalie/esclavage/index.html">L'Esclavage triangulaire</a>
             <a class="button" href="../../phantom/abeilles/index.html">Les Abeilles</a>
-            <a class="button" href="../../sources/sources.html">Les Sources</a>
+            <a class="button" href="../../sources/sources.html#pirates">Les Sources</a>
           </div>
           <span class="collective-motto">Veritas omnia vincit</span>
         </div>
@@ -2157,6 +2307,33 @@
     document.addEventListener("scroll", revealTall, { passive: true });
     window.addEventListener("resize", revealTall, { passive: true });
     revealTall();
+
+    /* Liaison accessible entre passages verbatim et audit */
+    (function () {
+      const pairs=[...document.querySelectorAll(".fact-pair")];
+      if (!pairs.length) return;
+      function activate(pair) {
+        pairs.forEach((item)=>item.classList.toggle("pair-active",item===pair));
+      }
+      pairs.forEach((pair)=>{
+        pair.querySelectorAll(".fact-link").forEach((link)=>link.addEventListener("click",()=>activate(pair)));
+      });
+      document.querySelectorAll(".audit-return").forEach((link)=>{
+        link.addEventListener("click",()=>{
+          const target=document.querySelector(link.getAttribute("href"));
+          if (target?.classList.contains("fact-pair")) activate(target);
+        });
+      });
+      function activateFromHash() {
+        if (!location.hash) return;
+        const target=document.querySelector(location.hash);
+        if (target?.classList.contains("fact-pair")) { activate(target); return; }
+        const pair=pairs.find((item)=>item.querySelector(`.fact-link[href="${location.hash}"]`));
+        if (pair) activate(pair);
+      }
+      window.addEventListener("hashchange",activateFromHash);
+      activateFromHash();
+    })();
 
     /* Atlas hydrographique des cinq théâtres */
     (function () {
