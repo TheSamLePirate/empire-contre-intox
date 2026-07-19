@@ -390,6 +390,48 @@
     .figure-grid h5 { margin:0 0 4px; font-family:var(--roman); font-size:.7rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--fc,var(--gold)); }
     .figure-grid p { margin:0; color:var(--muted); font-size:.9rem; }
 
+    /* — Cabinet iconographique des cinq pirates oubliés — */
+    .forgotten-gallery { position:relative; margin:0 0 80px; padding:clamp(24px,4vw,44px); scroll-margin-top:92px; border:1px solid var(--line); border-radius:3px; overflow:hidden;
+      background:radial-gradient(100% 120% at 100% 0%,rgba(180,71,58,.13),transparent 50%),radial-gradient(100% 120% at 0% 100%,rgba(63,142,163,.12),transparent 52%),linear-gradient(180deg,rgba(14,26,46,.58),rgba(5,8,17,.78)); box-shadow:var(--shadow); }
+    .forgotten-gallery::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:.16;
+      background:repeating-linear-gradient(135deg,transparent 0 18px,rgba(214,172,85,.10) 18px 19px); mask-image:linear-gradient(90deg,transparent 18%,#000 100%); }
+    .forgotten-head { position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:28px; align-items:end; margin-bottom:26px; }
+    .forgotten-head h2 { max-width:16ch; margin:8px 0 0; font-family:var(--roman); font-size:clamp(1.9rem,4vw,3.15rem); font-weight:800; line-height:1.02; letter-spacing:.015em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .forgotten-head .forgotten-lede { max-width:72ch; margin:15px 0 0; color:var(--muted); }
+    .forgotten-seal { display:grid; grid-template-columns:auto auto; align-items:center; gap:12px; min-width:160px; padding:12px 16px; border:1px solid var(--line); background:rgba(3,6,13,.48); }
+    .forgotten-seal b { font-family:var(--roman); font-size:2.2rem; line-height:1; color:var(--gold-bright); }
+    .forgotten-seal span { max-width:9ch; font-family:var(--roman); font-size:.55rem; font-weight:700; line-height:1.4; letter-spacing:.16em; text-transform:uppercase; color:var(--soft); }
+    .forgotten-grid { position:relative; z-index:1; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .forgotten-card { --fc:var(--gold); position:relative; min-width:0; margin:0; border:1px solid var(--line-2); border-top:2px solid var(--fc); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.62); transition:transform .45s var(--ease),border-color .45s var(--ease),box-shadow .45s var(--ease); }
+    .forgotten-card:hover { transform:translateY(-6px); border-color:color-mix(in srgb,var(--fc) 58%,transparent); box-shadow:0 24px 60px rgba(0,0,0,.42),0 0 34px color-mix(in srgb,var(--fc) 12%,transparent); }
+    .forgotten-card:nth-child(5) { grid-column:1/-1; display:grid; grid-template-columns:minmax(0,1.45fr) minmax(230px,.55fr); }
+    .forgotten-media { position:relative; aspect-ratio:16/10; min-height:0; overflow:hidden; isolation:isolate; background:var(--abyss); }
+    .forgotten-scene { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(.78) contrast(1.06) brightness(.84); transition:transform .9s var(--ease),filter .7s var(--ease); }
+    .forgotten-card:hover .forgotten-scene { transform:scale(1.035); filter:saturate(.98) contrast(1.04) brightness(.92); }
+    .forgotten-media::after { content:""; position:absolute; z-index:1; inset:0; pointer-events:none; background:linear-gradient(180deg,transparent 42%,rgba(3,6,13,.78) 100%),linear-gradient(90deg,rgba(3,6,13,.2),transparent 45%); }
+    .forgotten-vignette { position:absolute; z-index:2; right:18px; bottom:18px; width:clamp(86px,25%,132px); aspect-ratio:4/5; object-fit:cover; object-position:center top; padding:4px; border:1px solid rgba(243,217,138,.72); background:rgba(5,8,17,.92); box-shadow:0 18px 40px rgba(0,0,0,.62); }
+    .forgotten-no { position:absolute; z-index:3; top:16px; left:16px; display:grid; place-items:center; width:42px; height:42px; border:1px solid var(--fc); border-radius:50%; color:var(--fc); background:rgba(5,8,17,.82); font-family:var(--roman); font-size:.62rem; font-weight:800; letter-spacing:.08em; box-shadow:0 0 0 5px rgba(5,8,17,.36); }
+    .forgotten-card figcaption { position:relative; padding:18px 20px 20px; border-top:1px solid var(--line-2); }
+    .forgotten-card:nth-child(5) figcaption { display:flex; flex-direction:column; justify-content:center; border-top:0; border-left:1px solid var(--line-2); }
+    .forgotten-card .figure-k { font-family:var(--roman); font-size:.56rem; font-weight:800; letter-spacing:.19em; text-transform:uppercase; color:var(--fc); }
+    .forgotten-card h3 { margin:7px 0 8px; font-family:var(--roman); font-size:clamp(1rem,2vw,1.3rem); font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); }
+    .forgotten-card p { margin:0; color:var(--soft); font-size:.88rem; line-height:1.55; }
+    .forgotten-note { position:relative; z-index:1; margin:18px 0 0; padding:13px 15px; border-left:3px solid var(--gold); background:rgba(214,172,85,.055); color:var(--muted); font-size:.9rem; }
+    .forgotten-note strong { color:var(--parch); }
+    @media (max-width:820px) {
+      .forgotten-head { grid-template-columns:1fr; }
+      .forgotten-seal { width:max-content; }
+      .forgotten-card:nth-child(5) { display:block; }
+      .forgotten-card:nth-child(5) figcaption { border-left:0; border-top:1px solid var(--line-2); }
+    }
+    @media (max-width:640px) {
+      .forgotten-gallery { padding:18px; }
+      .forgotten-grid { grid-template-columns:1fr; }
+      .forgotten-card:nth-child(5) { grid-column:auto; }
+      .forgotten-media { aspect-ratio:4/3; }
+      .forgotten-vignette { right:13px; bottom:13px; }
+    }
+
     /* ============ Visualisations interactives ============ */
     .viz { margin:30px 0; border:1px solid var(--line); border-radius:4px; overflow:hidden;
       background:radial-gradient(140% 120% at 100% 0%,rgba(63,142,163,.1),transparent 55%),linear-gradient(180deg,rgba(7,12,26,.66),rgba(5,8,17,.74));
@@ -621,6 +663,7 @@
           <a href="#archives">Archives</a>
           <a href="#mythes">Mythes</a>
           <a href="#chasse-partie">Chasse-partie</a>
+          <a href="#oublies">Pirates oubliés</a>
           <a href="#lafitte">Lafitte</a>
           <a href="#blackbart">Black Bart</a>
           <a href="#olonnais">L'Olonnais</a>
@@ -1620,6 +1663,86 @@
             </div>
           </aside>
         </div>
+      </section>
+
+      <section class="forgotten-gallery reveal" id="oublies" aria-labelledby="forgotten-title">
+        <header class="forgotten-head">
+          <div>
+            <p class="section-kicker">Contrechamp iconographique · document complémentaire</p>
+            <h2 id="forgotten-title">Les cinq pirates oubliés</h2>
+            <p class="forgotten-lede">Le document de travail associé au dossier propose cinq autres personnages. Ses illustrations sont réunies ici comme un cabinet de figures : une vignette et une scène narrative pour chaque nom, sans interrompre ni modifier la transcription du live.</p>
+          </div>
+          <div class="forgotten-seal" aria-hidden="true"><b>V</b><span>figures hors champ</span></div>
+        </header>
+
+        <div class="forgotten-grid">
+          <figure class="forgotten-card" style="--fc:var(--sea)">
+            <div class="forgotten-media">
+              <img class="forgotten-scene" src="assets/laurens-de-graff-illustration.webp" alt="Illustration éditoriale de Laurens de Graff debout sur le pont d'un navire à voiles." loading="lazy" decoding="async" style="object-position:center top">
+              <img class="forgotten-vignette" src="assets/laurens-de-graff-vignette.webp" alt="Vignette peinte représentant Laurens de Graff en tenue du dix-septième siècle." loading="lazy" decoding="async">
+              <span class="forgotten-no" aria-hidden="true">01</span>
+            </div>
+            <figcaption>
+              <span class="figure-k">Figure oubliée · I</span>
+              <h3>Laurens de Graff</h3>
+              <p>Étude de personnage et scène de pont extraites du document complémentaire.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="forgotten-card" style="--fc:var(--blood)">
+            <div class="forgotten-media">
+              <img class="forgotten-scene" src="assets/jeanne-de-belleville-illustration.webp" alt="Illustration éditoriale de Jeanne de Belleville sur le pont d'un navire au milieu d'une bataille navale." loading="lazy" decoding="async">
+              <img class="forgotten-vignette" src="assets/jeanne-de-belleville-vignette.webp" alt="Vignette enluminée représentant Jeanne de Belleville en robe rouge." loading="lazy" decoding="async">
+              <span class="forgotten-no" aria-hidden="true">02</span>
+            </div>
+            <figcaption>
+              <span class="figure-k">Figure oubliée · II</span>
+              <h3>Jeanne de Belleville</h3>
+              <p>Enluminure recomposée et scène maritime extraites du document complémentaire.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="forgotten-card" style="--fc:var(--gold-bright)">
+            <div class="forgotten-media">
+              <img class="forgotten-scene" src="assets/kanhoji-angre-illustration.webp" alt="Illustration éditoriale de Kanhoji Angre commandant ses hommes pendant un affrontement naval." loading="lazy" decoding="async">
+              <img class="forgotten-vignette" src="assets/kanhoji-angre-vignette.webp" alt="Vignette dessinée représentant Kanhoji Angre coiffé d'un turban." loading="lazy" decoding="async">
+              <span class="forgotten-no" aria-hidden="true">03</span>
+            </div>
+            <figcaption>
+              <span class="figure-k">Figure oubliée · III</span>
+              <h3>Kanhoji Angre</h3>
+              <p>Portrait dessiné et tableau de bataille extraits du document complémentaire.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="forgotten-card" style="--fc:var(--sail)">
+            <div class="forgotten-media">
+              <img class="forgotten-scene" src="assets/roberto-cofresi-illustration.webp" alt="Illustration éditoriale de Roberto Cofresí sur un pont portant le pavillon portoricain." loading="lazy" decoding="async">
+              <img class="forgotten-vignette" src="assets/roberto-cofresi-vignette.webp" alt="Photographie d'un monument portant le nom de Roberto Cofresí dans un paysage tropical." loading="lazy" decoding="async">
+              <span class="forgotten-no" aria-hidden="true">04</span>
+            </div>
+            <figcaption>
+              <span class="figure-k">Figure oubliée · IV</span>
+              <h3>Roberto Cofresí</h3>
+              <p>Monument commémoratif et scène de pont extraits du document complémentaire.</p>
+            </figcaption>
+          </figure>
+
+          <figure class="forgotten-card" style="--fc:var(--steel)">
+            <div class="forgotten-media">
+              <img class="forgotten-scene" src="assets/francois-le-clerc-illustration.webp" alt="Diptyque éditorial de François Le Clerc sur le pont d'un navire, avec sa jambe de bois visible." loading="lazy" decoding="async">
+              <img class="forgotten-vignette" src="assets/francois-le-clerc-vignette.webp" alt="Silhouette éditoriale d'un corsaire à jambe de bois évoquant François Le Clerc." loading="lazy" decoding="async">
+              <span class="forgotten-no" aria-hidden="true">05</span>
+            </div>
+            <figcaption>
+              <span class="figure-k">Figure oubliée · V</span>
+              <h3>François Le Clerc</h3>
+              <p>Silhouette symbolique et diptyque de personnage extraits du document complémentaire.</p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <p class="forgotten-note"><strong>Précaution iconographique :</strong> ces visuels sont des représentations éditoriales fournies dans le document source. Ils servent à incarner les personnages, mais ne doivent pas être lus comme des portraits d'époque authentifiés.</p>
       </section>
 
       <!-- ===== CH 14 — JEAN LAFITTE ===== -->
