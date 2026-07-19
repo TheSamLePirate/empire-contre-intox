@@ -264,3 +264,66 @@ sur la critique des **sources primaires narratives**. L'absence de DOI n'est pas
 défaut pour un procès de 1720, une pétition de 1593 ou une chronique de 1678 : la
 rigueur consiste à identifier la bonne pièce, à la dater, à la localiser et à exposer
 ses biais — pas à lui inventer un identifiant moderne.
+
+---
+
+## Annexe — Les cinq pirates oubliés
+
+> **Constat de fond.** L'historiographie de ces cinq figures est **massivement non indexée dans
+> Crossref**. Trois d'entre elles — Jeanne de Belleville, Roberto Cofresí, François Le Clerc —
+> n'ont **aucun article à comité de lecture** qui leur soit consacré : leur bibliographie réelle
+> est monographique (sociétés savantes portoricaines, érudition régionale normande) ou médiévale
+> (éditions critiques SHF). Conformément à la règle anti-hallucination, **aucun DOI n'a été
+> fabriqué** ; les références sans DOI sont données comme telles.
+
+### DOI vérifiés via Crossref (5)
+
+| Donnée | Référence | DOI | Ce que l'article établit |
+|---|---|---|---|
+| Angre n'était pas un pirate mais un souverain maritime | **Layton, S. (2013)**, « The "Moghul's Admiral": Angrian "Piracy" and the Rise of British Bombay », *Journal of Early Modern History* 17(1), 75-93 | [10.1163/15700658-12342358](https://doi.org/10.1163/15700658-12342358) | Démontre que la qualification de « piraterie » appliquée aux Angre fut un **instrument rhétorique** de la Compagnie anglaise pour délégitimer une souveraineté rivale, et non une description juridique. **Socle académique de la fiche III.** |
+| Revers d'Angre face aux Portugais dès 1713 | **Deshmukh, S. L. (2025)**, « Kanhoji Angre and Maratha Navy — Jewel in India's Maritime History », *Electronic Journal of Social and Strategic Studies* 6, n° spécial VIII, 46-71 | [10.47362/EJSSS.2025.6903](https://doi.org/10.47362/EJSSS.2025.6903) | Synthèse par un officier de la marine indienne, **favorable à Angre mais concédant explicitement les revers de 1713** — d'où sa valeur de contre-témoignage contre le mythe de l'invincibilité. |
+| Contexte savant de l'exécution de Clisson (1343) | **Henneman, J. B. (1996)**, « Clisson and the Royal Failure in Brittany », in *Olivier de Clisson and Political Society in France Under Charles V and Charles VI*, Univ. of Pennsylvania Press, 86-102 | [10.9783/9781512802573-008](https://doi.org/10.9783/9781512802573-008) | Référence savante de premier ordre sur la famille de Clisson et l'échec royal en Bretagne — contexte direct de l'exécution du mari de Jeanne de Belleville. |
+| Ce qu'on peut établir d'une noble bretonne quand la documentation existe | **Graham-Goering, E. (2020)**, « The Career of Jeanne de Penthièvre », in *Princely Power in Late Medieval France*, Cambridge Univ. Press, 36-77 | [10.1017/9781108773904.003](https://doi.org/10.1017/9781108773904.003) | Modèle méthodologique : le pouvoir d'une femme noble bretonne pendant la guerre de Succession, **documenté** — contraste éclairant avec le vide documentaire entourant Jeanne de Belleville. |
+| Fiabilité de Froissart sur la guerre de Succession | **Jones, M. (2024)**, « Ancenis, Froissart and the beginnings of the War of Succession in Brittany (1341) », in *Between France and England*, Routledge, IV-1–IV-12 | [10.4324/9781003554981-4](https://doi.org/10.4324/9781003554981-4) | Michael Jones est la référence sur la Bretagne ducale ; article consacré à la **fiabilité de Froissart** — directement pertinent pour l'erreur du « cœur de lion » (fiche II). |
+
+### Références primaires sans DOI — pièces d'archives et éditions critiques
+
+**Laurens de Graff**
+- **Raynald Laprise, « Les débuts de la carrière de Laurens De Graffe (1674-1681) »**, *Gazette de la flibuste*, Le Diable Volant, 2011-2015. *DOI non trouvé — publication en ligne de l'auteur.* Seul travail archivistique moderne sur ses débuts (AGI Séville, ANOM, TNA, BL Sloane, Blathwayt Papers). **Réfute l'esclavage aux Canaries et le commandement de 1675.**
+- **Brevet de naturalité, Versailles, 5 août 1685** — cote **FR ANOM COL/B/11/fol. 193-194**, Archives nationales d'outre-mer. *Source d'archives, sans DOI.*
+- **Arrêt du Conseil d'État, 2 décembre 1705**, in Moreau de Saint-Méry, *Lois et constitutions des colonies françaises de l'Amérique sous le Vent*, Paris, 1785, t. 2, p. 42-45. *Imprimé du XVIII<sup>e</sup> s.*
+- **Exquemelin, *Histoire des aventuriers flibustiers***, Paris, Jacques Lefebvre, **1699**, t. 1, p. 360-363 — portrait de de Graff. *Attention : chapitres additionnels de l'édition de 1699, tirés de mémoires de flibustiers anonymes, non du témoignage propre d'Exquemelin (1666-1671).*
+- **Raveneau de Lussan, *Journal du voyage fait à la mer du Sud*, 1690** — [Gallica](https://gallica.bnf.fr/ark:/12148/bpt6k324196v). *À consulter pour trancher définitivement l'anecdote de l'orchestre, absente à ce stade.*
+- **Pierre Margry, *Relations et mémoires inédits*, Paris, 1867** — source unique et tardive de l'épisode du pistolet d'Anne Dieu-le-Veut.
+
+**Jeanne de Belleville**
+- **Chronique normande du XIV<sup>e</sup> siècle**, éd. A. & E. Molinier, Société de l'histoire de France, 1882 — [Gallica](https://gallica.bnf.fr/ark:/12148/bpt6k206452r). *Rédigée après 1372, ~30 ans après les faits.*
+- **Chronographia Regum Francorum**, éd. Moranvillé, SHF, t. II — [Gallica](https://gallica.bnf.fr/ark:/12148/bpt6k27924j.image). *Composée à Saint-Denis entre 1415 et 1429 : **70 à 85 ans après les faits**, en aucun cas un témoignage contemporain.*
+- **Émile Péhant, *Jeanne de Belleville*, Nantes, 1868** — [Gallica](https://gallica.bnf.fr/ark:/12148/bpt6k6461119k). **Foyer identifié de la légende moderne** : chanson de geste de 8 000 vers.
+- ⚠️ **Deux vérifications restant à faire avant toute citation directe** : localiser le passage sur Jeanne dans la *Chronique normande* et le récit de Touffou dans la *Chronographia*. Ce sont les **seuls piliers médiévaux du volet maritime** ; à ce stade, seuls l'appareil éditorial et les actes judiciaires ont pu être confirmés.
+
+**Kanhoji Angre**
+- **John Biddulph, *The Pirates of Malabar*, Smith, Elder & Co., 1907** — [Gutenberg #11399](https://www.gutenberg.org/cache/epub/11399/pg11399.txt). *Domaine public.* Rédigé d'après les *Bombay Consultations*, les procès-verbaux du conseil et les journaux de bord. **Hostile à Angre — donc fiable quand il concède un échec anglais.**
+- ***Gazetteer of the Bombay Presidency — Kolaba District*, 1883** — [Internet Archive](https://archive.org/details/in.ernet.dli.2015.7503), p. 146-148. *Source gouvernementale.*
+- **Lakshmi Subramanian, *The Sovereign and the Pirate*, OUP, 2016.** *DOI non trouvé — monographie OUP* ; [recension H-Net](https://networks.h-net.org/node/22055/reviews/191003/mathew-subramaniam-sovereign-and-pirate).
+
+**Roberto Cofresí**
+- **Walter A. Cardona Bonet, *El marinero, bandolero, pirata y contrabandista Roberto Cofresí (1819-1825)*, Sociedad Puertorriqueña de Genealogía, 1991** — ISBN 9781933545059. *DOI non trouvé — monographie d'archives.* **L'archive.**
+- **Ursula Acosta, *Cofresí y Ducoudray: hombres al margen de la historia*, Editorial Edil, 1991** — ISBN 9780317616286. *DOI non trouvé.* **La critique révisionniste — absente du document d'origine.**
+- **Roberto Fernández Valledor, *El mito de Cofresí en la narrativa antillana*, Editorial Universitaria, 1978** ; et *El pirata Cofresí mitificado por la tradición oral puertorriqueña*, Casa Paoli / CIFPR. *DOI non trouvé.* **Le mythe.**
+- **Archivo General de Puerto Rico** (Instituto de Cultura Puertorriqueña) ; **église San Miguel Arcángel, Cabo Rojo** (acte de naissance, acte de mariage du 14 janvier 1815).
+- **US Naval Institute, « The Repression of Piracy in the West Indies, 1814-1825 », *Proceedings*, 1911, 37/4/140** — [usni.org](https://www.usni.org/magazines/proceedings/1911/december/repression-piracy-west-indies-1814-1825).
+
+**François Le Clerc**
+- **Charles de La Roncière, « Le premier corsaire de Cherbourg : Jambe-de-Bois », *Revue d'études normandes*, 1907-1908.** *DOI non trouvé — érudition imprimée.*
+- **Michel Leclerc, « Un contemporain de Gilles de Gouberville », *Revue du département de la Manche*, n° 81, 1979.** *DOI non trouvé.* Établit le lien Le Clerc / journal de Gouberville.
+- **Robert Lerouvillois, *Jambe de Bois, marins du Cotentin et grandes découvertes*, Eurocibles, 2008.** *DOI non trouvé — monographie la plus récente.*
+- ***Journal du sire de Gouberville*** (1549-1562), Archives départementales de la Manche, coll. « Sources inédites sur l'histoire de la Manche » ; [édition numérique ATILF](http://zeus.atilf.fr/dmf/JournalGouberville/).
+- **David F. Marley, *Wars of the Americas*, ABC-CLIO** — détails opérationnels du sac de Santiago (4 navires + 4 auxiliaires, évêque Uranga, retrait le 16 août 1554).
+- **Matt Woolsey, « Top-Earning Pirates », *Forbes.com*, 19 septembre 2008** — [forbes.com](https://www.forbes.com/2008/09/18/top-earning-pirates-biz-logistics-cx_mw_0919piracy.html). *Presse — exercice journalistique, méthode de conversion non publiée.*
+- **Lettre de R. L. Stevenson à W. E. Henley** — source primaire décisive contre la filiation Le Clerc → Long John Silver.
+
+### Sources écartées
+
+- **Grokipedia** — retirée intégralement de l'appareil de sources. Elle est à l'origine d'au moins une erreur avérée (dates lettre de marque / anoblissement de Le Clerc inversées) et le vecteur le plus probable des « 34 lakhs de roupies » d'Angre, chiffre introuvable dans toute autre source. Aucun processus de vérification.
+- **Wikipédia EN sur Kanhoji Angre** — à manier avec précaution sur ce sujet précis : bandeaux « citation needed » et « better source needed », contradiction interne sur l'année de naissance, **inversion du sens de la source primaire** dans l'affaire du *Godolphin* (suppression du « *but were finally beaten off* »), et introduction probable du nom « *Algerine* » par confusion entre deux navires.
