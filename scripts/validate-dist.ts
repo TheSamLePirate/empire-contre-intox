@@ -30,6 +30,11 @@ async function walk(directory: string): Promise<string[]> {
 const outputFiles = await walk(dist);
 const outputSet = new Set(outputFiles);
 
+function metaContent(html: string, attribute: "property" | "name", key: string): string | undefined {
+  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return html.match(new RegExp(`<meta\\s+${attribute}=["']${escapedKey}["']\\s+content=["']([^"']+)["']`, "i"))?.[1];
+}
+
 for (const relativePath of manifest) {
   if (!outputSet.has(relativePath)) throw new Error(`Build omitted legacy file: ${relativePath}`);
 }
@@ -68,5 +73,28 @@ if (!rss.includes(`<atom:link href="${canonicalOrigin}/rss.xml"`)) {
 
 const indexStats = await stat(path.join(dist, "index.html"));
 if (!indexStats.isFile() || indexStats.size === 0) throw new Error("dist/index.html is empty");
+
+const indexHtml = await readFile(path.join(dist, "index.html"), "utf8");
+const socialPages = new Set(["index.html"]);
+for (const match of indexHtml.matchAll(/<a\s+class=["']dossier-link["']\s+href=["']([^"']+)["']/gi)) {
+  const href = match[1];
+  if (href && !href.startsWith("/") && href.endsWith(".html")) socialPages.add(href);
+}
+
+for (const relativePath of socialPages) {
+  const html = await readFile(path.join(dist, relativePath), "utf8");
+  const openGraphImage = metaContent(html, "property", "og:image");
+  const twitterCard = metaContent(html, "name", "twitter:card");
+  const twitterImage = metaContent(html, "name", "twitter:image");
+  if (!openGraphImage?.startsWith(`${canonicalOrigin}/`)) {
+    throw new Error(`Missing absolute social image in ${relativePath}`);
+  }
+  if (twitterCard !== "summary_large_image" || twitterImage !== openGraphImage) {
+    throw new Error(`Twitter large-image metadata is incomplete in ${relativePath}`);
+  }
+
+  const imagePath = new URL(openGraphImage).pathname.replace(/^\//, "");
+  if (!outputSet.has(imagePath)) throw new Error(`Social image is absent from dist: ${imagePath}`);
+}
 
 console.log(`Validated ${outputFiles.length} dist files; ${manifest.length} legacy files preserved.`);

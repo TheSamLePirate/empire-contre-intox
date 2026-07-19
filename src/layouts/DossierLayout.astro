@@ -5,15 +5,16 @@ interface Props {
   title: string;
   description: string;
   canonicalPath: string;
+  image?: string | undefined;
   accent: string;
   accentSecondary?: string;
 }
 
-const { title, description, canonicalPath, accent, accentSecondary = accent } = Astro.props;
+const { title, description, canonicalPath, image, accent, accentSecondary = accent } = Astro.props;
 const themeStyle = `--eci-accent:${accent};--eci-accent-secondary:${accentSecondary}`;
 ---
 
-<BaseLayout {title} {description} {canonicalPath}>
+<BaseLayout {title} {description} {canonicalPath} {image}>
   <div class="eci-dossier" style={themeStyle}>
     <slot />
   </div>
