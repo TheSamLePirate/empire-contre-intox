@@ -367,7 +367,7 @@
         -cos(TAU * q.x) * sin(TAU * q.y)
       );
       cellFlow = inverseRotation * cellFlow;
-      float convection = 85.0 + level * 170.0;
+      float convection = level * (85.0 + level * 170.0);
       current += cellFlow * convection * wall * wall * dt;
       outColor = vec4(current, 0.0, 1.0);
     }
@@ -793,7 +793,9 @@
     dye.swap();
 
     // Explicit finite-difference integration of ∂c/∂t = D∇²c (Fick).
-    const diffusion = Math.min(0.16, (0.32 + agitation * 1.15) * dt);
+    // DΔt/Δx² for the explicit Fick step. 0.235 stays below the
+    // two-dimensional stability limit (1/4) while making diffusion legible.
+    const diffusion = Math.min(0.235, (4.0 + agitation * 10.0) * dt);
     for (let iteration = 0; iteration < 2; iteration += 1) {
       uniforms = use(programs.diffusion);
       gl.uniform1i(uniforms.source, bindTexture(dye.read.texture, 0));
@@ -1075,9 +1077,10 @@
         const drop = pourSequence.shift();
         impactDrop(drop.point, drop.amount, drop.size);
       }
-      const substeps = elapsed > 0.021 || agitation > 0.74 ? 2 : 1;
+      const substeps = elapsed > 0.021 ? 2 : 1;
+      const stableAgitation = Math.min(agitation, 0.7);
       for (let substep = 0; substep < substeps; substep += 1) {
-        step(elapsed / substeps, agitation, simulationTime, circulationDirection);
+        step(elapsed / substeps, stableAgitation, simulationTime, circulationDirection);
       }
       simulationTime += elapsed;
       pointerForce *= Math.pow(0.055, elapsed);
