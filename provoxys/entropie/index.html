@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>L'Entropie, le temps et l'Univers — Empire contre Intox</title>
-  <meta name="description" content="Du café qui refroidit aux trous noirs : un grand dossier Provoxys × Samlepirate sur l'entropie. Machines de Carnot, micro-états de Boltzmann, information de Shannon, démon de Maxwell, flèche du temps et cosmologie — avec 26 visualisations interactives, formules expliquées et faits vérifiés. Veritas omnia vincit.">
+  <meta name="description" content="Du café qui refroidit aux trous noirs : un grand dossier Provoxys × Samlepirate sur l'entropie. Une expérience WebGL immersive, 26 laboratoires interactifs, formules expliquées et faits vérifiés. Veritas omnia vincit.">
   <meta name="theme-color" content="#050811">
   <meta name="author" content="Provoxys, avec la participation de Samlepirate">
 
@@ -13,7 +13,7 @@
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="L'Entropie, le temps et l'Univers — Empire contre Intox">
-  <meta property="og:description" content="Du café qui refroidit aux trous noirs : l'entropie expliquée sans le mot « désordre ». 26 visualisations interactives, faits vérifiés et sourcés.">
+  <meta property="og:description" content="Du café qui refroidit aux trous noirs : l'entropie expliquée sans le mot « désordre ». Une expérience WebGL immersive et 26 laboratoires interactifs.">
   <meta property="og:image" content="https://empire-contre-intox.com/provoxys/entropie/assets/entropie-hero.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +26,7 @@
 
   <!-- Visualisations interactives V1–V26 (bundle React autonome) -->
   <link rel="stylesheet" href="assets/entropie-viz.css">
+  <link rel="stylesheet" href="assets/milk-coffee.css">
 
   <script>document.documentElement.classList.add('js');</script>
 
@@ -889,19 +890,71 @@
       <p class="lead reveal in" data-d="2">Pourquoi un café chaud refroidit-il&nbsp;? Pourquoi ne le voit-on jamais se réchauffer tout seul&nbsp;? De la machine à vapeur aux trous noirs, un grand live <b>Provoxys × Samlepirate</b> pour comprendre ce que mesure vraiment l'entropie — sans se contenter du mot «&nbsp;désordre&nbsp;».</p>
       <p class="hero-quote reveal in" data-d="2">«&nbsp;On ne peut jamais annoncer “l'entropie” sans préciser trois éléments&nbsp;: les états considérés, les probabilités ou variables utilisées, et la frontière du système.&nbsp;»<span class="hq-src">— Sam, synthèse finale du live</span><span class="hq-plain">Traduction&nbsp;: avant de dire «&nbsp;désordre&nbsp;», dites de quels états vous parlez, avec quelles chances, et où vous tracez la limite.</span></p>
       <div class="hero-actions reveal in" data-d="3">
-        <a class="btn btn--gold" href="#ouverture">Lire le dossier</a>
+        <a class="btn btn--gold" href="#hero-simulation">Vivre l'expérience</a>
+        <a class="btn btn--ghost" href="#ouverture">Lire le dossier</a>
         <a class="btn btn--ghost" href="#labos">Les 26 laboratoires</a>
         <a class="btn btn--ghost" href="../../index.html">Accueil ECI</a>
       </div>
       <div class="signal-board reveal in" data-d="3">
         <div><div class="k">Format</div><div class="v">4 h · 7 actes</div></div>
-        <div><div class="k">Visualisations</div><div class="v">26 labos jouables</div></div>
+        <div><div class="k">Visualisations</div><div class="v">WebGL + 26 labos</div></div>
         <div><div class="k">Portée</div><div class="v">Café → trous noirs</div></div>
         <div><div class="k">Devise</div><div class="v">Veritas omnia vincit</div></div>
       </div>
-      <a class="scroll-cue" href="#intro">Explorer</a>
+      <a class="scroll-cue" href="#hero-simulation">Explorer</a>
     </div>
   </header>
+
+  <!-- ================= HERO SIMULATION · LAIT DANS LE CAFÉ ================= -->
+  <section class="milk-lab" id="hero-simulation" aria-labelledby="milkTitle">
+    <canvas class="milk-lab__canvas" id="milkCanvas" aria-label="Simulation interactive de diffusion du lait dans une tasse de café"></canvas>
+    <div class="milk-lab__fallback" id="milkFallback" hidden>
+      <p>Le rendu WebGL n'est pas disponible sur cet appareil.</p>
+    </div>
+    <div class="milk-lab__shade" aria-hidden="true"></div>
+    <div class="milk-lab__top">
+      <p class="milk-lab__eyebrow"><span>Expérience 00</span> La flèche du temps, à l'œil nu</p>
+      <h2 id="milkTitle">Une goutte.<br><em>Des milliards de chemins.</em></h2>
+      <p class="milk-lab__intro">Touchez le café pour verser du lait. Faites glisser pour remuer. Les molécules restent là — mais leur répartition devient presque impossible à inverser.</p>
+    </div>
+    <div class="milk-lab__readout" aria-live="polite">
+      <div class="milk-lab__metric">
+        <span>État du mélange</span>
+        <strong id="milkState">Café noir</strong>
+      </div>
+      <div class="milk-lab__entropy">
+        <span class="milk-lab__entropy-label">Répartition</span>
+        <span class="milk-lab__entropy-track"><i id="milkEntropyBar"></i></span>
+        <strong id="milkEntropy">0%</strong>
+      </div>
+    </div>
+    <div class="milk-lab__prompt" id="milkPrompt" aria-hidden="true">
+      <span></span>
+      <b>Versez une goutte</b>
+    </div>
+    <div class="milk-lab__spoon" id="milkSpoon" aria-hidden="true"><i></i><b></b></div>
+    <div class="milk-lab__controls" role="group" aria-label="Contrôles de la simulation">
+      <button class="milk-lab__primary" id="milkPour" type="button">
+        <span class="milk-lab__drop" aria-hidden="true"></span>
+        Verser le lait
+      </button>
+      <button class="milk-lab__icon-btn" id="milkPause" type="button" aria-pressed="false">
+        <span aria-hidden="true">Ⅱ</span>
+        <b>Pause</b>
+      </button>
+      <button class="milk-lab__icon-btn" id="milkReset" type="button">
+        <span aria-hidden="true">↺</span>
+        <b>Recommencer</b>
+      </button>
+      <label class="milk-lab__range" for="milkAgitation">
+        <span>Agitation imposée</span>
+        <input id="milkAgitation" type="range" min="0" max="100" value="68">
+        <output id="milkAgitationValue">Vortex</output>
+      </label>
+    </div>
+    <p class="milk-lab__note"><span></span> Fluide incompressible en domaine circulaire fermé · pression, paroi solide, viscosité et diffusion de Fick — modèle qualitatif.</p>
+    <a class="milk-lab__continue" href="#intro">Comprendre pourquoi <span aria-hidden="true">↓</span></a>
+  </section>
 
   <!-- ================= TOPBAR ================= -->
   <nav class="topbar" aria-label="Navigation du dossier">
@@ -2546,6 +2599,7 @@
   <!-- ================= SCRIPTS ================= -->
   <script src="../../assets/visit-counter.js" defer></script>
   <script src="assets/entropie-viz.js" defer></script>
+  <script src="assets/milk-coffee.js" defer></script>
   <script>
     // ---- Partition à deux voix -------------------------------------------
     // Regroupe chaque prise de parole (du label « speaker » jusqu'au prochain,
