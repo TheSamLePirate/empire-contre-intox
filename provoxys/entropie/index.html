@@ -679,7 +679,7 @@
        réservée, la page se réorganise sous le lecteur et les ancres ratent
        leur cible. */
     .entropy-gallery > [data-entropy-viz]:empty { display:block; min-height:min(70vh,620px); }
-    :is(.chapter, .act-band, .viz-mount, main > section[id]) { scroll-margin-top:86px; }
+    :is(.chapter, .act-band, .viz-mount, main > section[id], .lex-group) { scroll-margin-top:86px; }
     .progress-top { background:linear-gradient(90deg,var(--hot),var(--gold-bright) 40%,var(--info) 74%,var(--cold-bright)); }
 
     /* --- 9. Pied de page ---------------------------------------------------
@@ -768,6 +768,97 @@
       details.faq-details > p { padding:0 20px 16px; }
       .lex-item > p { padding-left:36px; }
     }
+
+    /* ================================================================
+        AUDIT N° 2 — TL;DR « cinq idées », sélecteur de mode de lecture,
+        zones repliées, rappel de mode, renvois lexique
+        ================================================================ */
+
+    /* --- TL;DR « L'entropie en cinq idées » (intro) ------------------ */
+    .tldr { margin-top:clamp(28px,4vw,44px); border:1px solid var(--line); border-radius:16px; overflow:hidden;
+      background:linear-gradient(145deg,rgba(214,172,85,.10),rgba(14,26,46,.62) 55%,rgba(7,12,26,.6));
+      box-shadow:0 24px 70px rgba(0,0,0,.22); }
+    .tldr-head { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding:15px 24px;
+      border-bottom:1px solid var(--line); background:rgba(5,8,17,.45); }
+    .tldr-head b { font-family:var(--roman); font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+      font-size:.86rem; color:var(--gold-bright); }
+    .tldr-head span { font-family:var(--mono); font-size:.66rem; color:var(--soft); }
+    .tldr ol { margin:0; padding:18px 24px 20px 52px; }
+    .tldr li { margin:0 0 10px; color:var(--parch); line-height:1.65; }
+    .tldr li:last-child { margin-bottom:0; }
+    .tldr li b { color:var(--gold-bright); font-weight:600; }
+    @media (max-width:560px){ .tldr ol{ padding:16px 18px 18px 42px; } }
+
+    /* --- durées dans la timeline d'intro ------------------------------ */
+    .timeline .tdur { display:block; font-family:var(--mono); font-weight:400; font-size:.64rem;
+      letter-spacing:.04em; text-transform:none; color:var(--cold-bright); margin-top:2px; }
+
+    /* --- chemins de lecture = sélecteur de mode ------------------------
+       Les trois cartes sont les trois boutons du mode de lecture. */
+    button.path { text-align:left; cursor:pointer; font-family:inherit; color:inherit; width:100%;
+      appearance:none; transition:border-color .3s, box-shadow .3s, transform .3s var(--ease), background .3s; }
+    button.path .ptext { display:block; margin:0; font-size:.92rem; color:var(--muted); line-height:1.6; }
+    button.path:hover { border-color:rgba(243,217,138,.42); transform:translateY(-3px); }
+    button.path .mode-hint { display:inline-flex; align-items:center; gap:7px; margin-top:14px;
+      font-family:var(--roman); font-weight:600; font-size:.58rem; letter-spacing:.16em; text-transform:uppercase;
+      color:var(--gold-bright); border:1px solid var(--line); border-radius:999px; padding:7px 13px;
+      background:rgba(214,172,85,.06); }
+    button.path[aria-pressed="true"] { border-color:rgba(243,217,138,.55);
+      background:linear-gradient(145deg,rgba(214,172,85,.16),rgba(7,12,26,.6));
+      box-shadow:0 14px 40px rgba(0,0,0,.28), inset 0 0 0 1px rgba(243,217,138,.22); }
+    button.path[aria-pressed="true"] .mode-hint { background:linear-gradient(180deg,var(--gold-bright),var(--gold));
+      color:#241706; border-color:transparent; }
+    button.path[aria-pressed="true"] .mode-hint::before { content:"✓"; font-weight:700; }
+
+    /* --- rappel de mode dans la barre de titre -------------------------
+       Visible dès qu'un mode non complet est actif ; « Tout afficher »
+       ramène au mode Complet. */
+    .mode-chip { display:none; align-items:center; gap:4px; flex:none; margin:0;
+      font-family:var(--roman); font-weight:600; font-size:.56rem; letter-spacing:.13em; text-transform:uppercase;
+      color:var(--cold-bright); border:1px solid rgba(127,212,232,.35); background:rgba(88,166,217,.08);
+      border-radius:999px; padding:7px 8px 7px 13px; white-space:nowrap; }
+    .mode-chip button { font:inherit; color:var(--gold-bright); background:transparent; border:0; cursor:pointer;
+      padding:2px 6px 2px 9px; margin-left:4px; border-left:1px solid rgba(127,212,232,.3);
+      letter-spacing:inherit; text-transform:inherit; }
+    .mode-chip button:hover { text-decoration:underline; text-underline-offset:3px; }
+    body[data-mode="presse"] .mode-chip, body[data-mode="curieux"] .mode-chip { display:inline-flex; }
+    @media (max-width:900px){ .mode-chip{ display:none !important; } }
+
+    /* --- zones repliées par le mode de lecture --------------------------
+       Rien n'est masqué sans alternative visible : chaque zone repliée garde
+       un libellé compté et un bouton déplier/replier. */
+    [data-folded] { display:none !important; }
+    .fold-zone { padding:8px 0; }
+    .fold-note { display:block; width:calc(100% - 32px); max-width:920px; margin:0 auto; padding:17px 22px;
+      font-family:var(--roman); font-weight:600; font-size:.68rem; letter-spacing:.14em; text-transform:uppercase;
+      color:var(--gold-bright); text-align:center; cursor:pointer;
+      border:1px dashed rgba(214,172,85,.4); border-radius:14px; background:rgba(214,172,85,.045);
+      transition:background .3s, border-color .3s; }
+    .fold-note:hover { background:rgba(214,172,85,.11); border-color:var(--gold-bright); }
+    .fold-note .fn-act { color:var(--parch); }
+    .fold-note .fn-count { display:block; margin-top:6px; font-family:var(--mono); font-weight:400;
+      font-size:.64rem; letter-spacing:.05em; text-transform:none; color:var(--soft); }
+    .fold-note .fn-toggle { display:inline-block; margin-top:9px; padding:6px 14px; border:1px solid var(--line);
+      border-radius:999px; color:var(--cold-bright); font-size:.58rem; letter-spacing:.16em; }
+    .fold-retain { max-width:920px; margin:14px auto 0; padding:0 clamp(16px,4vw,40px); }
+
+    /* --- vue consolidée « À retenir » + anti-intox (mode Pressé) --------
+       Remplie par le sélecteur : clones d'affichage, le verbatim reste en place. */
+    #retain-digest { display:none; }
+    body[data-mode="presse"] #retain-digest { display:block; }
+    #retain-digest .digest-group { margin-top:30px; }
+    #retain-digest .digest-title { font-family:var(--roman); font-weight:600; letter-spacing:.2em;
+      text-transform:uppercase; font-size:.72rem; color:var(--gold); margin:0 0 14px; }
+
+    /* --- renvois ciblés vers le lexique, depuis les définitions --------- */
+    .def-block .def-lex { margin:12px 0 0; font-size:.82rem; }
+    .def-block .def-lex a { color:var(--gold-bright); text-decoration:none; border-bottom:1px solid var(--line); }
+    .def-block .def-lex a:hover { border-bottom-color:var(--gold-bright); }
+
+    /* --- sommaire : marquage des cibles repliées par le mode ------------ */
+    .som a.som-folded { opacity:.55; }
+    .som a.som-folded::after { content:"replié"; margin-left:auto; align-self:center;
+      font-family:var(--mono); font-size:.56rem; color:var(--soft); }
   </style>
 </head>
 <body>
@@ -819,6 +910,7 @@
       <span class="btxt"><span class="bt">Entropie</span><span class="bs">Provoxys × Sam</span></span>
     </a>
     <p class="here" id="here" aria-live="polite"></p>
+    <p class="mode-chip" id="modeChip"><span id="modeChipLabel">Mode</span><button type="button" id="modeReset">Tout afficher</button></p>
     <div class="nav" id="nav">
       <a href="#lexique">Lexique</a>
       <a href="#labos">Les 26 laboratoires</a>
@@ -869,14 +961,24 @@
             <p style="color:var(--muted);margin-top:18px;">Ce dossier reprend, mot pour mot, le grand live de <b style="color:var(--hot-bright)">Provoxys</b> — qui porte le récit — et de <b style="color:var(--cold-bright)">Samlepirate</b>, qui manipule en direct les expériences. Les <b>26 laboratoires interactifs</b> décrits par Sam sont ici <b>réellement jouables</b>&nbsp;: touchez les curseurs, lisez les bilans, refaites les mesures.</p>
           </div>
           <ul class="timeline">
-            <li><b>Ouverture</b><span>Le café qui refroidit et le film qui ne passe que dans un sens.</span></li>
-            <li><b>Actes I–II · Machines</b><span>Carnot, Joule, Clausius&nbsp;: naissance du second principe et du bilan d'entropie.</span></li>
-            <li><b>Acte III · Micro-états</b><span>Boltzmann et Gibbs&nbsp;: compter les mondes possibles.</span></li>
-            <li><b>Acte IV · Matière &amp; vivant</b><span>Production d'entropie, phases, exergie, organismes, Ising.</span></li>
-            <li><b>Acte V · Information</b><span>Shannon, démon de Maxwell, Landauer, entropie quantique.</span></li>
-            <li><b>Actes VI–VII · Temps &amp; cosmos</b><span>Flèche du temps, trous noirs, mort thermique de l'Univers.</span></li>
+            <li><b>Ouverture</b><span class="tdur">~ 15 min</span><span>Le café qui refroidit et le film qui ne passe que dans un sens.</span></li>
+            <li><b>Actes I–II · Machines</b><span class="tdur">~ 1 h</span><span>Carnot, Joule, Clausius&nbsp;: naissance du second principe et du bilan d'entropie.</span></li>
+            <li><b>Acte III · Micro-états</b><span class="tdur">~ 40 min</span><span>Boltzmann et Gibbs&nbsp;: compter les mondes possibles.</span></li>
+            <li><b>Acte IV · Matière &amp; vivant</b><span class="tdur">~ 35 min</span><span>Production d'entropie, phases, exergie, organismes, Ising.</span></li>
+            <li><b>Acte V · Information</b><span class="tdur">~ 35 min</span><span>Shannon, démon de Maxwell, Landauer, entropie quantique.</span></li>
+            <li><b>Actes VI–VII · Temps &amp; cosmos</b><span class="tdur">~ 45 min</span><span>Flèche du temps, trous noirs, mort thermique de l'Univers.</span></li>
           </ul>
         </div>
+        <aside class="tldr" aria-label="L'entropie en cinq idées">
+          <div class="tldr-head"><b>L'entropie en cinq idées</b><span>pour le visiteur de 30 secondes — tout le dossier ne fait que le prouver</span></div>
+          <ol>
+            <li>L'énergie se conserve <b>toujours</b>&nbsp;; l'entropie, elle, compte <b>comment</b> elle est répartie — en joules par kelvin, pas en joules.</li>
+            <li>Plus un état visible correspond à de <b>nombreuses</b> configurations microscopiques, plus il est probable&nbsp;: l'équilibre «&nbsp;gagne&nbsp;» toujours — c'est pour ça que le café refroidit.</li>
+            <li>L'entropie d'une <b>partie</b> peut baisser (frigo, cristal, vivant) si le <b>total</b> augmente&nbsp;: tout dépend où l'on trace la frontière.</li>
+            <li>«&nbsp;Désordre&nbsp;» est une <b>image</b>, pas une définition&nbsp;: une entropie se définit par des états, leurs probabilités et une frontière.</li>
+            <li><b>Une même idée, six formules</b> — de la machine à vapeur aux trous noirs.</li>
+          </ol>
+        </aside>
       </div>
     </section>
 
@@ -889,12 +991,13 @@
           <div class="learn-card"><div class="n">Objectif 2</div><h4>Trois entropies à ne pas confondre</h4><p>Système, milieu, ensemble total&nbsp;: une partie peut perdre de l'entropie pendant que le total augmente. C'est là que se cachent les faux paradoxes.</p></div>
           <div class="learn-card"><div class="n">Objectif 3</div><h4>Une même idée, du café aux trous noirs</h4><p>Clausius, Boltzmann, Gibbs, Shannon, von Neumann, Bekenstein-Hawking&nbsp;: une famille de concepts reliés sans être identiques.</p></div>
         </div>
-        <div class="paths">
-          <div class="path"><b>Pressé·e</b><span class="dur">~ 20 minutes</span><p>Lisez l'<a href="#ouverture">ouverture</a>, les cinq encadrés anti-intox et la <a href="#conclusion">conclusion</a> — le message essentiel y est.</p></div>
-          <div class="path"><b>Curieux·se</b><span class="dur">~ 1 heure</span><p>Ajoutez les actes <a href="#acte1">I</a> à <a href="#acte3">III</a>&nbsp;: des machines à vapeur au comptage de Boltzmann, le cœur du sujet.</p></div>
-          <div class="path"><b>Complet</b><span class="dur">~ 4 heures</span><p>Tout, dans l'ordre, avec les 26 labos. Les blocs «&nbsp;Respiration&nbsp;» marquent les pauses prévues du live&nbsp;; l'encart «&nbsp;À retenir&nbsp;» referme chaque acte.</p></div>
+        <div class="paths" role="group" aria-label="Choisir un mode de lecture">
+          <button type="button" class="path" data-mode-target="presse" aria-pressed="false"><b>Pressé·e</b><span class="dur">~ 20 minutes</span><span class="ptext">Lisez l'ouverture, les sept «&nbsp;À retenir&nbsp;» (une phrase par acte), les cinq encadrés anti-intox et la conclusion — le message essentiel y est.</span><span class="mode-hint">Activer ce parcours</span></button>
+          <button type="button" class="path" data-mode-target="curieux" aria-pressed="false"><b>Curieux·se</b><span class="dur">~ 1 heure</span><span class="ptext">Ajoutez les actes I à III&nbsp;: des machines à vapeur au comptage de Boltzmann, le cœur du sujet.</span><span class="mode-hint">Activer ce parcours</span></button>
+          <button type="button" class="path" data-mode-target="complet" aria-pressed="true"><b>Complet</b><span class="dur">~ 4 heures</span><span class="ptext">Tout, dans l'ordre, avec les 26 labos. Les blocs «&nbsp;Respiration&nbsp;» marquent les pauses prévues du live&nbsp;; l'encart «&nbsp;À retenir&nbsp;» referme chaque acte.</span><span class="mode-hint">Parcours actif</span></button>
         </div>
-        <p class="prereq">Prérequis&nbsp;: aucun en physique. Quelques formules utilisent probabilités et logarithmes — chacune est expliquée dans son encadré, et chaque terme technique est défini en une ligne dans le <a href="#lexique">lexique</a>.</p>
+        <p class="prereq" style="margin-top:16px">Ces trois cartes sont aussi des <b>boutons</b>&nbsp;: elles reconfigurent la page selon votre temps — chaque zone repliée reste visible, comptée et dépliable d'un clic. Sans JavaScript, tout reste ouvert.</p>
+        <p class="prereq">Prérequis&nbsp;: aucun en physique. Quelques formules utilisent probabilités et logarithmes — chacune est expliquée dans son encadré, et chaque terme technique est défini en une ligne dans le <a href="#lexique">lexique</a>. Et si les équations vous rebutent&nbsp;: sautez-les. Chaque formule est un luxe, jamais un passage obligé — sa note la résume en une phrase.</p>
       </div>
     </section>
 
@@ -908,7 +1011,7 @@
         </div>
         <div class="lex-groups">
 
-          <div class="lex-group">
+          <div class="lex-group" id="lex-machines">
             <h3>Machines &amp; principes <span>· actes I–II</span></h3>
             <details class="lex-item"><summary><b>travail</b><span class="act">acte I</span></summary><p>Énergie transférée de façon ordonnée (une force qui déplace quelque chose&nbsp;: piston, masse, arbre moteur), par opposition à la chaleur, transfert désordonné entre agitations microscopiques.</p></details>
             <details class="lex-item"><summary><b>pression</b><span class="act">acte I</span></summary><p>Force exercée par unité de surface&nbsp;; au niveau microscopique, le résultat des chocs incessants des molécules contre les parois.</p></details>
@@ -925,7 +1028,7 @@
             <details class="lex-item"><summary><b>principe zéro</b><span class="act">actes I–II</span></summary><p>Si deux systèmes sont chacun en équilibre thermique avec un troisième, ils sont en équilibre entre eux&nbsp;: la transitivité qui rend la température mesurable et les thermomètres possibles.</p></details>
           </div>
 
-          <div class="lex-group">
+          <div class="lex-group" id="lex-mondes">
             <h3>Compter les mondes <span>· acte III</span></h3>
             <details class="lex-item"><summary><b>macro-état</b><span class="act">acte III</span></summary><p>La description globale, visible&nbsp;: «&nbsp;50 particules à gauche, 50 à droite&nbsp;», une pression, une température.</p></details>
             <details class="lex-item"><summary><b>micro-état</b><span class="act">acte III</span></summary><p>La description détaillée&nbsp;: quelle particule est où, avec quelle vitesse. Un même macro-état cache une multitude de micro-états.</p></details>
@@ -937,7 +1040,7 @@
             <details class="lex-item"><summary><b>oscillateur (solide d'Einstein)</b><span class="act">acte III</span></summary><p>Modèle où chaque atome est un petit ressort vibrant autour de sa place&nbsp;; on y distribue l'énergie par paquets entiers.</p></details>
           </div>
 
-          <div class="lex-group">
+          <div class="lex-group" id="lex-matiere">
             <h3>Matière, machines réelles &amp; vivant <span>· acte IV</span></h3>
             <details class="lex-item"><summary><b>gradient</b><span class="act">acte IV</span></summary><p>Un écart entre deux points — de température, de concentration, de vitesse. Plus la pente est raide, plus le flux qu'il entraîne est fort.</p></details>
             <details class="lex-item"><summary><b>relations d'Onsager</b><span class="act">acte IV</span></summary><p>Lois de la thermodynamique hors équilibre qui relient flux et forces près de l'équilibre (Lars Onsager, prix Nobel de chimie 1968).</p></details>
@@ -951,7 +1054,7 @@
             <details class="lex-item"><summary><b>Monte-Carlo (Metropolis)</b><span class="act">acte IV</span></summary><p>Tirages au sort répétés qui explorent les configurations les plus probables&nbsp;: l'algorithme qui fait vivre la mosaïque d'Ising.</p></details>
           </div>
 
-          <div class="lex-group">
+          <div class="lex-group" id="lex-info">
             <h3>Information <span>· acte V</span></h3>
             <details class="lex-item"><summary><b>bit</b><span class="act">actes III–V</span></summary><p>Un chiffre binaire, 0 ou 1&nbsp;: la plus petite réponse possible à une question oui/non. Une entropie en bits compte les questions binaires nécessaires pour lever toute l'incertitude.</p></details>
             <details class="lex-item"><summary><b>code préfixe</b><span class="act">acte V</span></summary><p>Code où aucun mot n'est le début d'un autre&nbsp;: on décode au fil, sans espaces ni ambiguïté (principe du codage de Huffman).</p></details>
@@ -963,7 +1066,7 @@
             <details class="lex-item"><summary><b>entropie de Rényi</b><span class="act">coulisses</span></summary><p>Famille d'entropies généralisant Shannon par un paramètre d'ordre&nbsp;: on règle la sensibilité aux événements rares ou dominants.</p></details>
           </div>
 
-          <div class="lex-group">
+          <div class="lex-group" id="lex-cosmos">
             <h3>Temps &amp; cosmos <span>· actes VI–VII</span></h3>
             <details class="lex-item"><summary><b>coarse-graining</b><span class="act">acte VI</span></summary><p>«&nbsp;Grain grossier&nbsp;»&nbsp;: on regroupe des milliards de détails microscopiques en quelques variables (densité, pression, température)… et on perd le reste.</p></details>
             <details class="lex-item"><summary><b>paradoxe de Loschmidt</b><span class="act">acte VI</span></summary><p>Objection de 1876&nbsp;: si les lois microscopiques sont réversibles, renverser toutes les vitesses devrait faire reculer l'entropie. La réponse tient à l'extrême fragilité de l'inversion.</p></details>
@@ -1050,6 +1153,9 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== MODE PRESSÉ : vue consolidée (remplie par le sélecteur de mode) ===== -->
+    <section class="band" id="retain-digest" aria-label="L'essentiel du dossier — vue consolidée du mode Pressé"></section>
 
     <!-- ================= ACTE I ================= -->
     <section class="act-band reveal" id="acte1">
@@ -1188,6 +1294,12 @@
             </div>
 
             <p>«&nbsp;Question pour le chat&nbsp;: si je double la quantité d'eau sans changer les masses, est-ce que l'énergie transférée change, ou seulement l'élévation de température&nbsp;?&nbsp;»</p>
+
+            <details class="question-block faq-details">
+              <summary class="blk-label">«&nbsp;Alors, l'énergie ou la température&nbsp;?&nbsp;» <span class="faq-note">la réponse du live — déplier</span></summary>
+              <p><b style="color:var(--cold-bright)">Sam —</b> «&nbsp;Les masses et la hauteur n'ont pas changé&nbsp;: le travail fourni — donc l'énergie transférée — est strictement identique. Mais cette énergie se répartit maintenant dans deux fois plus d'eau&nbsp;: l'élévation de température est divisée par deux. L'énergie dépend du travail fourni&nbsp;; la température, de la matière qui le reçoit.&nbsp;»</p>
+            </details>
+
             <p>«&nbsp;Provoxys, maintenant nous avons la conservation. Il nous manque encore le sens.&nbsp;»</p>
 
             <div class="lesson-block retain">
@@ -1442,10 +1554,10 @@
               <noscript><p class="viz-noscript">Visualisation interactive (JavaScript requis)&nbsp;: Ω(n_gauche), ln Ω et probabilité du macro-état.</p></noscript>
             </div>
 
-            <aside class="science-block">
-              <p class="blk-label">◆ Ordre de grandeur · à quel point «&nbsp;jamais&nbsp;»&nbsp;?</p>
+            <details class="science-block faq-details">
+              <summary class="blk-label">◆ Ordre de grandeur · à quel point «&nbsp;jamais&nbsp;»&nbsp;? <span class="faq-note">pour aller plus loin — déplier</span></summary>
               <p>Choisir 50 pions parmi 100 offre déjà ~10²⁹ arrangements — <b>cent mille milliards de fois plus</b> que les secondes écoulées depuis le Big Bang (~4&nbsp;×&nbsp;10¹⁷&nbsp;s). Et une gorgée d'eau contient ~10²⁴ molécules&nbsp;: davantage qu'il n'y a de gorgées dans tous les océans de la Terre. Quand le dossier dit qu'un retour spontané «&nbsp;n'est pas une stratégie expérimentale&nbsp;», c'est à cette échelle-là qu'il faut le penser.</p>
-            </aside>
+            </details>
 
             <p>«&nbsp;Voilà comment une loi statistique devient, dans la pratique, une loi implacable.&nbsp;»</p>
             <p>«&nbsp;À toi Provoxys pour la formule et pour Gibbs.&nbsp;»</p>
@@ -1522,6 +1634,12 @@
               <div class="entropy-gallery"><div data-entropy-viz="V9" data-seed="42"></div></div>
               <noscript><p class="viz-noscript">Visualisation interactive (JavaScript requis)&nbsp;: multiplicités, entropies et échanges de quanta entre deux solides.</p></noscript>
             </div>
+
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définitions · oscillateurs &amp; quanta</p>
+              <p>Dans le <b>solide d'Einstein</b>, chaque atome est modélisé comme un petit ressort vibrant autour de sa place&nbsp;: c'est un <b>oscillateur</b>. Son énergie n'arrive pas en continu mais par <b>quanta</b> — des paquets indivisibles imposés par la mécanique quantique, les «&nbsp;points&nbsp;» que les deux solides s'échangent ici. Compter les façons de répartir ces paquets entre les oscillateurs, c'est compter les micro-états&nbsp;: tout le chapitre tient dans ce comptage.</p>
+              <p class="def-lex"><a href="#lex-mondes">Ces deux mots sont aussi au lexique →</a></p>
+            </aside>
 
             <p>«&nbsp;Donc le second principe n'est pas une petite police qui interdit chaque mouvement microscopique. C'est le poids colossal du nombre de possibilités.&nbsp;»</p>
             <p>«&nbsp;Provoxys, on vient de voir l'équilibre. Mais il reste à montrer qu'un petit système peut s'en éloigner.&nbsp;»</p>
@@ -1764,6 +1882,12 @@
               <div class="entropy-gallery"><div data-entropy-viz="V16" data-seed="42"></div></div>
               <noscript><p class="viz-noscript">Visualisation interactive (JavaScript requis)&nbsp;: grille de spins, énergie, magnétisation, fluctuations.</p></noscript>
             </div>
+
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définitions · spins &amp; grandeurs d'Ising</p>
+              <p>Un <b>spin</b> est la variable binaire du modèle&nbsp;: un petit aimant élémentaire pointant «&nbsp;en haut&nbsp;» (+1) ou «&nbsp;en bas&nbsp;» (−1). La <b>magnétisation</b> est leur orientation moyenne&nbsp;: forte quand ils s'alignent, nulle quand leurs directions s'annulent. La <b>capacité thermique</b> mesure l'énergie nécessaire pour élever le système d'un kelvin&nbsp;; la <b>susceptibilité</b>, la réponse de la magnétisation à un petit champ magnétique. Près de la transition, ces deux grandeurs explosent — le système devient sensible à toutes les échelles, c'est la signature du point critique.</p>
+              <p class="def-lex"><a href="#lex-matiere">Ces quatre mots sont aussi au lexique →</a></p>
+            </aside>
 
             <aside class="science-block antiintox">
               <p class="blk-label">◆ Anti-intox · la transition de phase exige au moins deux dimensions</p>
@@ -2028,6 +2152,7 @@
             <aside class="science-block def-block">
               <p class="blk-label">◆ Définition · le paradoxe de Loschmidt</p>
               <p>En 1876, <b>Josef Loschmidt</b> objecte à Boltzmann&nbsp;: si les lois microscopiques sont réversibles, renverser toutes les vitesses d'un gaz devrait faire reculer son entropie. La visualisation ci-dessus donne la réponse&nbsp;: l'inversion <em>existe</em> mais est d'une fragilité extrême — la moindre perturbation la détruit, et la description macroscopique a déjà perdu les détails qu'elle exige.</p>
+              <p class="def-lex"><a href="#lex-cosmos">Coarse-graining, Loschmidt&nbsp;: aussi au lexique →</a></p>
             </aside>
 
             <p>«&nbsp;Question au chat&nbsp;: une vidéo inversée suffit-elle à inverser toutes les vitesses moléculaires et toutes les corrélations avec l'environnement&nbsp;? Évidemment non.&nbsp;»</p>
@@ -2131,6 +2256,7 @@
             <aside class="science-block def-block">
               <p class="blk-label">◆ Définitions · horizon &amp; rayon de Schwarzschild</p>
               <p>L'<b>horizon</b> d'un trou noir est sa surface de non-retour&nbsp;: ce qui la franchit ne peut plus rien envoyer vers l'extérieur, pas même la lumière — c'est son <em>aire</em> A qui porte l'entropie. Le <b>rayon de Schwarzschild</b> est le rayon de cet horizon pour un trou noir sans rotation ni charge&nbsp;: environ 3&nbsp;km par masse solaire.</p>
+              <p class="def-lex"><a href="#lex-cosmos">Horizon, Schwarzschild&nbsp;: aussi au lexique →</a></p>
             </aside>
 
             <p>Ce résultat est l'un des carrefours les plus profonds de la physique moderne&nbsp;: thermodynamique, relativité générale, théorie quantique et information s'y rencontrent.</p>
@@ -2159,10 +2285,10 @@
               <p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Le rayonnement de Hawking est une prédiction robuste de la théorie quantique des champs en espace-temps courbe, mais il est beaucoup trop faible pour avoir été directement détecté sur un trou noir astrophysique. Les explications par paires de particules virtuelles sont des images pédagogiques, pas la dérivation complète.&nbsp;»</p>
             </details>
 
-            <aside class="science-block">
-              <p class="blk-label">◆ Ordre de grandeur · sentir les chiffres</p>
+            <details class="science-block faq-details">
+              <summary class="blk-label">◆ Ordre de grandeur · sentir les chiffres <span class="faq-note">pour aller plus loin — déplier</span></summary>
               <p>Un trou noir d'une masse solaire est <b>~45 millions de fois plus froid</b> que le fond diffus cosmologique — c'est l'objet le plus froid qui puisse exister à cette masse. Son évaporation complète demanderait de l'ordre de <b>10⁶⁷ ans</b>, soit ~10⁵⁷ fois l'âge actuel de l'Univers. Et un seul trou noir supermassif, comme celui du centre de notre Galaxie, porte à lui seul plus d'entropie que toutes les étoiles de l'Univers observable réunies.</p>
-            </aside>
+            </details>
 
             <p>«&nbsp;Et comme les trous noirs supermassifs portent des entropies immenses, ils dominent les estimations actuelles de l'inventaire entropique de l'Univers observable.&nbsp;»</p>
             <p>«&nbsp;Provoxys, je te rends la parole pour le paradoxe de l'information et le futur cosmique.&nbsp;»</p>
@@ -2618,14 +2744,20 @@
       return a;
     });
 
-    let docMax = 1, docH = 0, tops = [];
+    let docMax = 1, docH = 0, tops = [], VIEW = MOVEMENTS.slice();
     function placeMarks() {
       const h = document.documentElement;
       docH = h.scrollHeight;
       docMax = Math.max(1, docH - h.clientHeight);
-      tops = MOVEMENTS.map((m) => m.el.getBoundingClientRect().top + window.scrollY);
-      tops.forEach((top, i) => {
-        marks[i].style.top = Math.min(100, Math.max(0, (top / docMax) * 100)) + '%';
+      // la jauge ne gradue que ce qui reste visible dans le mode courant —
+      // sinon la progression mentirait sur des sections repliées
+      VIEW = MOVEMENTS.filter((m) => !m.el.hasAttribute('data-folded'));
+      tops = VIEW.map((m) => m.el.getBoundingClientRect().top + window.scrollY);
+      MOVEMENTS.forEach((m, i) => {
+        const vi = VIEW.indexOf(m);
+        if (vi === -1) { marks[i].style.display = 'none'; return; }
+        marks[i].style.display = '';
+        marks[i].style.top = Math.min(100, Math.max(0, (tops[vi] / docMax) * 100)) + '%';
       });
     }
 
@@ -2644,12 +2776,13 @@
       if (idx === current) return;
       current = idx;
       marks.forEach((a, i) => {
-        a.classList.toggle('on', i === idx);
-        a.classList.toggle('past', i < idx);
+        const vi = VIEW.indexOf(MOVEMENTS[i]);
+        a.classList.toggle('on', vi === idx);
+        a.classList.toggle('past', vi !== -1 && vi < idx);
       });
-      const id = idx >= 0 ? '#' + MOVEMENTS[idx].id : '';
+      const id = idx >= 0 ? '#' + VIEW[idx].id : '';
       navLinks.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === id));
-      if (here) here.textContent = idx >= 0 ? MOVEMENTS[idx].label : '';
+      if (here) here.textContent = idx >= 0 ? VIEW[idx].label : '';
     }
     function onScroll() {
       if (queued) return;
@@ -2660,6 +2793,178 @@
     window.addEventListener('resize', () => { placeMarks(); current = -1; measure(); }, { passive: true });
     window.addEventListener('load', () => { placeMarks(); current = -1; measure(); });
     placeMarks(); measure();
+
+    // ================================================================
+    // SÉLECTEUR DE MODE DE LECTURE (audit n° 2, §5.1)
+    // Les trois cartes du learning panel reconfigurent réellement la page :
+    // Pressé (~20 min) · Curieux·se (~1 h) · Complet (~4 h). C'est un
+    // FILTRE de lecture, pas une version alternative : le verbatim n'est
+    // jamais déplacé ni supprimé — chaque zone repliée reste comptée,
+    // visible et dépliable d'un clic. Sans JavaScript, tout reste ouvert.
+    // ================================================================
+    const MODE_KEY = 'eci-entropie-mode';
+    const MODE_NAMES = { presse: 'Pressé', curieux: 'Curieux·se', complet: 'Complet' };
+
+    // chaque section de <main> rejoint son mouvement (ouverture, acte I…,
+    // conclusion, coulisses) ; tout ce qui précède l'ouverture reste ouvert
+    const ACT_SECTIONS = {};
+    (function mapSections() {
+      let cur = 'front';
+      document.querySelectorAll('main > section').forEach((sec) => {
+        if (sec.id && MOVEMENTS.some((m) => m.id === sec.id)) cur = sec.id;
+        else if (sec.classList.contains('closing')) cur = 'closing';
+        (ACT_SECTIONS[cur] = ACT_SECTIONS[cur] || []).push(sec);
+      });
+    })();
+
+    // vue consolidée du mode Pressé : les 7 « À retenir » et les 5 anti-intox
+    // vivent au fond de chapitres repliés — on les CLONE ici à l'affichage.
+    (function buildDigest() {
+      const digest = document.getElementById('retain-digest');
+      if (!digest) return;
+      const retains = [...document.querySelectorAll('.chapter .retain')];
+      const antis = [...document.querySelectorAll('.chapter .antiintox')];
+      const wrap = document.createElement('div');
+      wrap.className = 'wrap';
+      const head = document.createElement('div');
+      head.innerHTML = '<p class="sec-eyebrow">Mode Pressé — l\'essentiel du dossier</p>'
+        + '<div class="bench-head"><h2>Sept actes,<br>sept phrases à retenir</h2>'
+        + '<p>Le dossier entier tient dans ces sept récapitulatifs d\'acte et ces cinq vérifications anti-intox. '
+        + 'Chaque bloc existe aussi dans son chapitre&nbsp;: il est ici <em>dupliqué à l\'affichage</em>, jamais déplacé — '
+        + 'les chapitres complets restent à un pli de distance, plus bas.</p></div>';
+      wrap.appendChild(head);
+      const g1 = document.createElement('div');
+      g1.className = 'digest-group';
+      g1.innerHTML = '<p class="digest-title">À retenir — une phrase par acte</p>';
+      retains.forEach((r) => g1.appendChild(r.cloneNode(true)));
+      const g2 = document.createElement('div');
+      g2.className = 'digest-group';
+      g2.innerHTML = '<p class="digest-title">Anti-intox — les cinq vérifications du dossier</p>';
+      antis.forEach((a) => g2.appendChild(a.cloneNode(true)));
+      wrap.append(g1, g2);
+      digest.appendChild(wrap);
+    })();
+
+    const FOLD_CONTROLLERS = [];
+    function refreshGauge() { placeMarks(); current = -1; measure(); }
+    function markSommaire() {
+      document.querySelectorAll('#sommaire a[href^="#"]').forEach((a) => {
+        let t = null;
+        try { t = document.querySelector(a.getAttribute('href')); } catch (err) { return; }
+        a.classList.toggle('som-folded', !!(t && (t.hasAttribute('data-folded') || t.closest('[data-folded]'))));
+      });
+    }
+
+    // replie un mouvement (acte ou coulisses) derrière un libellé compté ;
+    // keepBand laisse l'interstitiel d'acte visible, showRetain clone son
+    // « À retenir » sous le libellé (mode Curieux·se).
+    function foldSections(actId, sections, opts) {
+      const options = opts || {};
+      const toFold = options.keepBand ? sections.filter((s) => !s.classList.contains('act-band')) : sections.slice();
+      if (!toFold.length) return null;
+      const mv = MOVEMENTS.find((m) => m.id === actId);
+      const chapters = toFold.filter((s) => s.classList.contains('chapter')).length;
+      const zone = document.createElement('div');
+      zone.className = 'fold-zone';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'fold-note';
+      zone.appendChild(btn);
+      let retainBox = null;
+      if (options.showRetain) {
+        const src = toFold.map((s) => s.querySelector('.retain')).find(Boolean);
+        if (src) {
+          retainBox = document.createElement('div');
+          retainBox.className = 'fold-retain';
+          retainBox.appendChild(src.cloneNode(true));
+          retainBox.style.display = 'none';
+          zone.appendChild(retainBox);
+        }
+      }
+      const ctl = {
+        id: actId, sections: toFold, zone: zone, folded: false,
+        setFolded: function (f) {
+          this.folded = f;
+          toFold.forEach((s) => { if (f) s.setAttribute('data-folded', ''); else s.removeAttribute('data-folded'); });
+          if (retainBox) retainBox.style.display = f ? '' : 'none';
+          renderBtn();
+          markSommaire();
+        },
+      };
+      function renderBtn() {
+        btn.innerHTML = '<span class="fn-act">' + (mv ? mv.long : actId) + '</span>'
+          + '<span class="fn-count">' + chapters + ' chapitre' + (chapters > 1 ? 's' : '') + ' replié' + (chapters > 1 ? 's' : '')
+          + ' — le verbatim reste à un pli de distance</span>'
+          + '<span class="fn-toggle">' + (ctl.folded ? '▸ Déplier' : '▾ Replier') + '</span>';
+      }
+      btn.addEventListener('click', () => { ctl.setFolded(!ctl.folded); refreshGauge(); });
+      toFold[0].before(zone);
+      ctl.setFolded(true);
+      FOLD_CONTROLLERS.push(ctl);
+      return ctl;
+    }
+
+    function clearFolds() {
+      FOLD_CONTROLLERS.forEach((c) => { c.sections.forEach((s) => s.removeAttribute('data-folded')); c.zone.remove(); });
+      FOLD_CONTROLLERS.length = 0;
+    }
+
+    function applyMode(mode, opts) {
+      const options = opts || {};
+      clearFolds();
+      document.body.dataset.mode = mode;
+      if (mode === 'presse') {
+        ['acte1', 'acte2', 'acte3', 'acte4', 'acte5', 'acte6', 'acte7']
+          .forEach((id) => foldSections(id, ACT_SECTIONS[id] || []));
+        foldSections('coulisses', ACT_SECTIONS['coulisses'] || []);
+      } else if (mode === 'curieux') {
+        ['acte4', 'acte5', 'acte6', 'acte7']
+          .forEach((id) => foldSections(id, ACT_SECTIONS[id] || [], { keepBand: true, showRetain: true }));
+        foldSections('coulisses', ACT_SECTIONS['coulisses'] || []);
+      }
+      const foldedCount = document.querySelectorAll('section.chapter[data-folded]').length;
+      document.querySelectorAll('button.path[data-mode-target]').forEach((b) => {
+        const on = b.dataset.modeTarget === mode;
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        const hint = b.querySelector('.mode-hint');
+        if (hint) hint.textContent = on ? 'Parcours actif' : 'Activer ce parcours';
+      });
+      const chipLabel = document.getElementById('modeChipLabel');
+      if (chipLabel) {
+        chipLabel.textContent = 'Mode ' + (MODE_NAMES[mode] || mode) + (foldedCount
+          ? ' · ' + foldedCount + ' chapitre' + (foldedCount > 1 ? 's' : '') + ' replié' + (foldedCount > 1 ? 's' : '')
+          : '');
+      }
+      if (options.persist !== false) { try { localStorage.setItem(MODE_KEY, mode); } catch (e) { /* navigation privée */ } }
+      markSommaire();
+      refreshGauge();
+    }
+
+    // un lien vers une cible repliée déplie d'abord la zone — jamais de saut
+    // dans le vide
+    function ensureVisible(el) {
+      if (!el) return;
+      const folded = (el.hasAttribute && el.hasAttribute('data-folded')) ? el : el.closest('[data-folded]');
+      if (!folded) return;
+      const ctl = FOLD_CONTROLLERS.find((c) => c.sections.indexOf(folded) !== -1);
+      if (ctl) { ctl.setFolded(false); refreshGauge(); }
+    }
+
+    document.querySelectorAll('button.path[data-mode-target]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const mode = btn.dataset.modeTarget;
+        applyMode(mode);
+        if (mode !== 'complet') jumpTo(document.getElementById('ouverture'));
+      });
+    });
+    const modeReset = document.getElementById('modeReset');
+    if (modeReset) modeReset.addEventListener('click', () => applyMode('complet'));
+
+    // persistance : le mode mémorisé s'applique au chargement (sans sauter)
+    let storedMode = 'complet';
+    try { storedMode = localStorage.getItem(MODE_KEY) || 'complet'; } catch (e) { /* navigation privée */ }
+    if (!MODE_NAMES[storedMode]) storedMode = 'complet';
+    applyMode(storedMode, { persist: false });
 
     // ---- Aller à une ancre -----------------------------------------------
     // Deux pièges sur cette page :
@@ -2718,13 +3023,24 @@
       e.preventDefault();
       closeSommaire();
       history.pushState(null, '', a.getAttribute('href'));
+      ensureVisible(el);
       jumpTo(el);
     });
     window.addEventListener('popstate', () => {
-      try { jumpTo(location.hash && document.querySelector(location.hash)); } catch (err) { /* ancre invalide */ }
+      try {
+        const t = location.hash && document.querySelector(location.hash);
+        ensureVisible(t);
+        jumpTo(t);
+      } catch (err) { /* ancre invalide */ }
     });
     window.addEventListener('load', () => {
-      try { if (location.hash) jumpTo(document.querySelector(location.hash)); } catch (err) { /* ancre invalide */ }
+      try {
+        if (location.hash) {
+          const t = document.querySelector(location.hash);
+          ensureVisible(t);
+          jumpTo(t);
+        }
+      } catch (err) { /* ancre invalide */ }
     });
 
     // ---- Sommaire : ouverture / fermeture ---------------------------------

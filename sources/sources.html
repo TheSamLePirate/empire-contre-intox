@@ -1340,6 +1340,9 @@
       { t:"Grille 100/50 : ce que « identiques » veut dire", d:"log₂ C(100,50) ≈ 96,3 bits", v:"warn", img:NT+"microetats-boltzmann.png",
         s:"Nuance anti-intox : l'entropie binaire (1 bit/case, 100 bits) et la log-multiplicité (96,3 bits) sont identiques ENTRE la grille rangée et la grille aléatoire — pas égales entre elles (100 ≠ 96,3). Seule l'entropie des motifs 2×2 distingue rangé/aléatoire.",
         src:[{n:"Boltzmann's entropy formula",u:"https://en.wikipedia.org/wiki/Boltzmann%27s_entropy_formula"}] },
+      { t:"Ordres de grandeur des multiplicités (chiffres éditoriaux)", d:"C(100,50) ≈ 10²⁹ · gorgée ≈ 10²⁴ molécules", v:"ok", img:NT+"microetats-boltzmann.png",
+        s:"Choisir 50 pions parmi 100 offre ≈ 1,009×10²⁹ arrangements — ≈ 2,3×10¹¹ fois les ~4,35×10¹⁷ s écoulées depuis le Big Bang (13,787 Ga). Une gorgée d'eau (~20 mL) contient ≈ 7×10²³ molécules : plus qu'il n'y a de gorgées dans les océans (~1,34×10²¹ L). Un trou noir d'1 M☉ est ~45 millions de fois plus froid que le CMB ; son évaporation demanderait ~10⁶⁷ ans (~10⁵⁷ × l'âge de l'Univers).",
+        src:[{n:"USGS · Water Science School",u:"https://www.usgs.gov/special-topics/water-science-school"},{n:"Page 1976, PRD · DOI",u:"https://doi.org/10.1103/PhysRevD.13.198"}] },
       { t:"Principe de Landauer : effacer un bit coûte k_B T ln 2", d:"≈ 2,9×10⁻²¹ J à 300 K", v:"ok", img:NT+"demon-maxwell.png",
         s:"Le démon de Maxwell ne viole pas le second principe : pour trier, il doit acquérir, mémoriser puis EFFACER de l'information. Effacer un bit dissipe au moins k_B T ln 2. Le coût est attaché à l'effacement, pas à la mesure. Confirmé par Bérut et al. 2012.",
         src:[{n:"Landauer 1961 · DOI",u:"https://doi.org/10.1147/rd.53.0183"},{n:"Bérut et al. 2012, Nature · DOI",u:"https://doi.org/10.1038/nature10872"}] },
@@ -1360,7 +1363,10 @@
         src:[{n:"Egan & Lineweaver 2010, ApJ · DOI",u:"https://doi.org/10.1088/0004-637X/710/2/1825"}] },
       { t:"Courbe de Page : « compatible avec l'unitarité », pas « résolu »", d:"îlots / surfaces quantiques extrémales", v:"deb", img:NT+"six-entropies.png",
         s:"Nuance anti-intox : les calculs récents d'« îlots » (2019-2020) reproduisent une courbe de Page compatible avec l'unitarité dans certains cadres semi-classiques, mais ne constituent pas une résolution universellement admise du paradoxe de l'information. Le dossier n'affiche jamais « paradoxe résolu ». CCC de Penrose et sélection de Smolin restent spéculatives.",
-        src:[{n:"Page 1993, PRL · DOI",u:"https://doi.org/10.1103/PhysRevLett.71.3743"},{n:"Entropy of Hawking radiation, RMP 2021 · DOI",u:"https://doi.org/10.1103/RevModPhys.93.035002"}] }
+        src:[{n:"Page 1993, PRL · DOI",u:"https://doi.org/10.1103/PhysRevLett.71.3743"},{n:"Entropy of Hawking radiation, RMP 2021 · DOI",u:"https://doi.org/10.1103/RevModPhys.93.035002"}] },
+      { t:"Pompes à chaleur, centrales & data-centers (« vraie vie »)", d:"COP 3–5 · rendements 40–60 % · ~1–2 % de l'électricité mondiale", v:"ok", img:NT+"machines-vapeur.png",
+        s:"Chiffres éditoriaux de la section « Et dans la vraie vie ? » : une pompe à chaleur déplace typiquement 3–5 kWh de chaleur par kWh électrique (COP 3–5) ; les centrales plafonnent autour de 40–60 % de rendement (cycles combinés) ; les data-centers consomment ~1–2 % de l'électricité mondiale (~240–340 TWh en 2022). Effacer 10⁹ bits/s à la limite de Landauer ne dégagerait que ~3 picowatts.",
+        src:[{n:"IEA · Data Centres & Networks",u:"https://www.iea.org/energy-system/buildings/data-centres-and-networks"},{n:"IEA HPT · Heat Pumping Technologies",u:"https://heatpumpingtechnologies.org/"}] }
     ];
     fill("g-entropie",ENTROPIE);
     fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES); fill("g-politique",POLITIQUE); fill("g-singe",SINGE); fill("g-esclavage",ESCLAVAGE); fill("g-tornades-cyclones",TORNADES); fill("g-abeilles",ABEILLES); fill("g-resistance",RESISTANCE); fill("g-formules",FORMULES); fill("g-cyberviolences",CYBERVIOLENCES); fill("g-exoplanetes",EXOPLANETES); fill("g-premieres-cites",PREMIERES); fill("g-premier-empires",PREMIER_EMPIRES); fill("g-therapie-conversion",THERAPIE_CONVERSION); fill("g-evolution",EVOLUTION); fill("g-pirates",PIRATES);

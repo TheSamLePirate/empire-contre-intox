@@ -121,12 +121,33 @@ présentés comme spéculatifs.
 
 ---
 
+## Chiffres éditoriaux ajoutés par l'appareil (ordres de grandeur & « vraie vie »)
+
+Chiffres introduits par les encadrés « Ordre de grandeur », la note Landauer étendue et
+la section « Et dans la vraie vie ? » — hors verbatim, tous recalculés (signalé audit
+n° 1 §11, intégré ici) :
+
+| Affirmation (encadrés éditoriaux) | Verdict | Référence / recalcul |
+|---|---|---|
+| C(100,50) ≈ 10²⁹ arrangements, « cent mille milliards de fois plus » que les secondes depuis le Big Bang (~4×10¹⁷ s) | ✅ | recalculé : C(100,50) = 1,009×10²⁹ ; âge Univers 13,787 Ga ≈ 4,35×10¹⁷ s → ratio ≈ 2,3×10¹¹ (Planck/WMAP pour l'âge) |
+| Une gorgée d'eau ≈ 10²⁴ molécules — davantage que de gorgées dans tous les océans | ✅ | ~20 mL ≈ 1,1 mol ≈ 6,7×10²³ molécules ; océans ≈ 1,34×10²¹ L ÷ 0,02 L ≈ 7×10²² gorgées (USGS *Water Science School*) — l'image classique tient |
+| Effacer 10⁹ bits/s à la limite de Landauer ≈ 3 pW ; puces réelles à 10³–10⁶× la limite | ✅ | 2,87×10⁻²¹ J × 10⁹ s⁻¹ ≈ 2,9×10⁻¹² W ; énergies/commutation réelles ~10⁻¹⁵–10⁻¹⁸ J (IRDS) |
+| 1 M☉ : T_H ~45 millions de fois **sous** le fond diffus cosmologique | ✅ | 2,725 K / 6,17×10⁻⁸ K ≈ 4,4×10⁷ (NASA/COBE-FIRAS) |
+| Évaporation d'1 M☉ ≈ 10⁶⁷ ans ≈ 10⁵⁷ × l'âge de l'Univers | ✅ | t ∝ M³, ≈ 2,1×10⁶⁷ ans pour 1 M☉ (Page 1976, DOI 10.1103/PhysRevD.13.198) ; 10⁶⁷ / 1,38×10¹⁰ ≈ 7×10⁵⁶ ≈ 10⁵⁷ |
+| Un trou noir supermassif (type Sgr A*) porte plus d'entropie que toutes les étoiles de l'Univers observable | ✅ | Sgr A* ≈ 10⁹¹ k_B ; étoiles ≈ 10⁸¹ k_B (Egan & Lineweaver 2010, DOI 10.1088/0004-637X/710/2/1825) |
+| Pompe à chaleur : 1 kWh électrique déplace typiquement 3–5 kWh de chaleur (COP 3–5) | ✅ | ADEME / IEA HPT — COP saisonniers courants 3–5 pour PAC air/eau et air/air modernes |
+| Rendement des centrales électriques « autour de 40 à 60 %, même au mieux » | ✅ | cycles combinés gaz ≈ 55–62 %, charbon ≈ 35–45 % (IEA) — « autour de » tient la fourchette |
+| Data-centers ≈ 1–2 % de l'électricité mondiale | ✅ | IEA *Data Centres & Networks* : ~240–340 TWh en 2022 ≈ 1–1,3 %, ~2 % avec les actifs numériques |
+
+---
+
 ## Synthèse
 
-Sur **~55 affirmations et données chiffrées** vérifiées : **aucune ❌ erronée**, aucune
-🔶 réellement débattue au niveau du dossier. Tous les calculs numériques sont exacts
-(50 % Carnot, 1,67 J/K, 50 °C, 96,3 bits, r_s = 2,95 km, T_H = 6×10⁻⁸ K, S = 10⁷⁷ k_B,
-inventaire ~10¹⁰⁴ k_B).
+Sur **~64 affirmations et données chiffrées** vérifiées (dont les 9 chiffres éditoriaux
+ajoutés par l'appareil — ordres de grandeur, Landauer étendu, « vraie vie ») : **aucune
+❌ erronée**, aucune 🔶 réellement débattue au niveau du dossier. Tous les calculs
+numériques sont exacts (50 % Carnot, 1,67 J/K, 50 °C, 96,3 bits, r_s = 2,95 km,
+T_H = 6×10⁻⁸ K, S = 10⁷⁷ k_B, inventaire ~10¹⁰⁴ k_B, C(100,50) ≈ 10²⁹, ~3 pW, COP 3–5).
 
 **Cinq nuances ⚠️**, toutes traitées par **encadré « anti-intox »** dans la page (le
 verbatim reste intact) :
