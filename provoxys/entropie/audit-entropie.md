@@ -285,3 +285,13 @@ Toutes les recommandations de cet audit ont été implémentées dans `index.htm
 | **Hero · citation** | ✅ Fait | Attribution « — Sam, synthèse finale du live » + traduction en clair en sous-ligne. |
 
 **Note méthode :** les ajouts chiffrés nouveaux (comparaisons d'ordres de grandeur, COP des pompes à chaleur, part des data-centers) sont volontairement exprimés en fourchettes prudents. À terme, les faire entrer dans l'appareil critique du dossier `sources/` (fiche + référence) comme pour le reste du dossier.
+
+---
+
+## 12. Addendum — 23 juillet 2026 (contrôle « principes & définitions »)
+
+Demande&nbsp;: vérifier que les principes de la thermodynamique et les définitions de l'entropie sont énoncés **en clair (texte, pas seulement des formules)**, et que **chaque variable de chaque formule est expliquée**.
+
+- **Principes — 4/4 ✓.** Premier (ch. 3, ΔU = Q + W + convention), second (ch. 4, énoncés Clausius **et** Kelvin-Planck + bilan S_créée ≥ 0 + cas isolé/adiabatique), troisième (ch. 6, cristal parfait + 3 nuances). Le **principe zéro manquait** : ajouté en fin de ch. 5 (def-block, hook sur la réplique de Sam) + 47ᵉ entrée au lexique (titre et lien sommaire mis à jour 46 → 47).
+- **Définitions d'entropie — 6/6 ✓ en texte.** Clausius, Boltzmann, Gibbs, Shannon, von Neumann, Bekenstein-Hawking&nbsp;: chacune a sa formule KaTeX, une explication en prose, et sa ligne « Ce qu'elle mesure » dans le tableau de synthèse (conclusion). La définition en langage courant (états / probabilités / frontière) est martelée hero → objectifs → conclusion → devise.
+- **Variables — 11/11 blocs ✓ (vérifié par script).** Légendes ajoutées aux fb-notes qui en manquaient&nbsp;: **η** (êta = rendement) et T_chaud/T_froid&nbsp;; **dS** et **δQ_rev**&nbsp;; **S** et **ln** (naturel, base e)&nbsp;; **Σ**, **i**, **p_i** et le rôle du **signe moins**&nbsp;; **P** (pression) et le sens de (ΔG)_{T,P} ≤ 0&nbsp;; **H**, **p_i**, **Σ** (Shannon)&nbsp;; **Q_min** et **ln 2 ≈ 0,693** (deux états d'un bit)&nbsp;; **k** et **Tr** (trace, équivalent quantique de −Σ p ln p). Gouy-Stodola et Bekenstein-Hawking étaient déjà complets.
