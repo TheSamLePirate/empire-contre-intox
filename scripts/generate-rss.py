@@ -11,7 +11,7 @@ import re, html, os, subprocess
 from xml.sax.saxutils import escape
 from datetime import datetime, timezone
 
-BASE = "https://thesamlepirate.github.io/empire-contre-intox/"
+BASE = "https://empire-contre-intox.com/"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_TITLE = "Empire contre Intox — Dossiers"
 SITE_DESC = ("Archives publiques d'Empire contre Intox : dossiers scientifiques sur le temps "
@@ -65,6 +65,9 @@ def parse_cards(src):
         tags = [strip_tags(t) for t in re.findall(r'class="tag">(.*?)<\/span>', b, re.S)]
         who = re.search(r'class="who">.*?<strong>(.*?)</strong>(?:\s*<span class="note">(.*?)</span>)?', b, re.S)
         link = re.search(r'class="dossier-link" href="([^"]+)"', b)
+        promo = re.search(
+            r'<a class="teaser-trigger"[^>]*href="([^"]+)"[^>]*data-promo-image="([^"]+)"',
+            b, re.S)
         if not (title and link):
             continue
         author = strip_tags(who.group(1)) if who else "Empire contre Intox"
@@ -80,6 +83,8 @@ def parse_cards(src):
             "tags": tags,
             "author": author,
             "note": note,
+            "promo_url": promo.group(1) if promo else "",
+            "promo_image": promo.group(2) if promo else "",
         })
     return cards
 
@@ -117,6 +122,16 @@ def build_item(c):
     if c["badge"]:
         rich.append(f'<p><strong>{escape(c["badge"])}</strong></p>')
     rich.append(f'<p>{escape(c["desc"])}</p>')
+    if c.get("promo_url") and c.get("promo_image"):
+        promo_url = c["promo_url"]
+        promo_image = absolute(c["promo_image"])
+        rich.append(
+            f'<p><a href="{promo_url}"><img src="{promo_image}" '
+            f'alt="Affiche de la bande-annonce du dossier Pirates" '
+            f'style="display:block;max-width:360px;width:100%;height:auto;border-radius:4px" /></a></p>')
+        rich.append(
+            f'<p><strong>La bande-annonce du dossier</strong><br />'
+            f'<a href="{promo_url}">▶ Regarder « Pirates : mythes contre réalité historique » sur TikTok</a></p>')
     rich.append(f'<p><em>Réalisé par {escape(full_author)}.</em></p>')
     if c["tags"]:
         rich.append('<p>' + " · ".join(escape(t) for t in c["tags"]) + '</p>')

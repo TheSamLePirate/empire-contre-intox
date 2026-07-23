@@ -13,7 +13,7 @@
 
 | # | Source | Données |
 |---|--------|---------|
-| 1 | [Page auditée — Chronos / Horloge de l'Univers](https://thesamlepirate.github.io/empire-contre-intox/horloge-univers/chronos.html) | Texte exact de la page : Big Bang, inflation, ère de Planck, âge Terre/Système solaire, origine de la vie, Grande Oxydation, dinosaures, extinctions, dates géologiques. *(objet de l'audit, pas une source externe)* |
+| 1 | [Page auditée — Chronos / Horloge de l'Univers](https://empire-contre-intox.com/horloge-univers/chronos.html) | Texte exact de la page : Big Bang, inflation, ère de Planck, âge Terre/Système solaire, origine de la vie, Grande Oxydation, dinosaures, extinctions, dates géologiques. *(objet de l'audit, pas une source externe)* |
 
 ## 1. Cosmologie
 

@@ -2,8 +2,10 @@
 
 Mini-site HTML qui transforme des **déroulés de live** (transcriptions, scripts d'émission) en pages éducatives immersives, rassemblées dans un index commun et publiées en site statique.
 
-🌐 **En ligne :** https://thesamlepirate.github.io/empire-contre-intox/
-(dépôt `TheSamLePirate/empire-contre-intox`, GitHub Pages servi depuis `main` / racine.)
+🌐 **Site principal :** https://empire-contre-intox.com/
+
+🪞 **Miroir secondaire :** https://thesamlepirate.github.io/empire-contre-intox/
+(dépôt `TheSamLePirate/empire-contre-intox`, GitHub Pages servi depuis `main`.)
 
 ## Organisation
 

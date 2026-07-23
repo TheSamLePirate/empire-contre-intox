@@ -693,6 +693,34 @@
         linear-gradient(180deg, rgba(5,8,17,.05) 30%, rgba(5,8,17,.55) 72%, rgba(8,13,29,.95) 100%),
         linear-gradient(120deg, rgba(214,172,85,.12), transparent 55%);
     }
+    .teaser-trigger {
+      position: absolute; inset: 50% auto auto 50%; z-index: 5;
+      display: inline-flex; align-items: center; gap: 12px;
+      min-height: 54px; padding: 7px 16px 7px 8px;
+      border: 1px solid rgba(243,217,138,.52); border-radius: 999px;
+      color: var(--ink); background: rgba(5,8,17,.78);
+      box-shadow: 0 16px 36px rgba(0,0,0,.44), 0 0 28px color-mix(in srgb, var(--accent) 22%, transparent);
+      backdrop-filter: blur(12px);
+      transform: translate(-50%,-34%);
+      transition: transform .35s var(--ease), border-color .35s var(--ease), background .35s var(--ease);
+    }
+    .teaser-trigger:hover,
+    .teaser-trigger:focus-visible {
+      color: var(--ink); border-color: var(--gold-bright); background: rgba(11,18,37,.94);
+      transform: translate(-50%,-40%) scale(1.035);
+    }
+    .teaser-play {
+      display: grid; place-items: center; flex: 0 0 38px; width: 38px; height: 38px;
+      border-radius: 50%; color: var(--void);
+      background: linear-gradient(135deg,var(--gold-bright),var(--gold));
+      box-shadow: 0 0 22px rgba(214,172,85,.38);
+      font-size: .8rem; line-height: 1; padding-left: 2px;
+    }
+    .teaser-copy { display: flex; flex-direction: column; gap: 2px; white-space: nowrap; }
+    .teaser-copy small,
+    .teaser-copy strong { font-family: var(--roman); text-transform: uppercase; }
+    .teaser-copy small { color: var(--gold-bright); font-size: .51rem; letter-spacing: .18em; }
+    .teaser-copy strong { color: var(--ink); font-size: .66rem; letter-spacing: .09em; }
     .dossier-no {
       position: absolute; top: 16px; left: 18px; z-index: 2;
       font-family: var(--roman); font-weight: 700;
@@ -750,6 +778,64 @@
     .dossier-link .arrow { transition: transform .3s var(--ease); color: var(--gold); }
     .dossier:hover .dossier-link .arrow { transform: translateX(6px); }
     .stretch { position: absolute; inset: 0; z-index: 3; }
+
+    /* ---------- Bande-annonce TikTok ---------- */
+    .teaser-dialog {
+      position: fixed; inset: 50% auto auto 50%; z-index: 50; margin: 0;
+      width: min(920px, calc(100% - 32px)); max-height: calc(100dvh - 32px);
+      padding: 0; border: 1px solid rgba(214,172,85,.42); border-radius: 3px;
+      color: var(--ink); background: var(--void);
+      box-shadow: 0 42px 120px rgba(0,0,0,.78), 0 0 0 1px rgba(244,236,216,.06);
+      transform: translate(-50%,-50%);
+      overflow: auto;
+    }
+    .teaser-dialog::backdrop { background: rgba(1,3,8,.86); backdrop-filter: blur(8px); }
+    body.teaser-open { overflow: hidden; }
+    body.teaser-open::before {
+      content: ""; position: fixed; inset: 0; z-index: 49;
+      background: rgba(1,3,8,.86); backdrop-filter: blur(8px);
+    }
+    .teaser-dialog[open] { animation: teaserIn .38s var(--ease); }
+    @keyframes teaserIn { from { opacity: 0; transform: translate(-50%,calc(-50% + 16px)) scale(.985); } }
+    .teaser-dialog-inner { display: grid; grid-template-columns: minmax(280px,420px) 1fr; min-height: 620px; }
+    .teaser-player {
+      position: relative; align-self: stretch; min-height: 620px;
+      background: #03060d url("ymir-lalie-phantom/pirates/assets/pirates-teaser-poster.webp") center / cover no-repeat;
+      overflow: hidden;
+    }
+    .teaser-player::after {
+      content: "Chargement du lecteur…"; position: absolute; inset: auto 0 22px; z-index: 0;
+      font-family: var(--roman); font-size: .58rem; letter-spacing: .16em; text-align: center; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .teaser-player iframe { position: relative; z-index: 1; display: block; width: 100%; height: 100%; min-height: 620px; border: 0; background: transparent; }
+    .teaser-dialog-copy {
+      position: relative; display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(36px,5vw,64px);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(63,142,163,.15), transparent 46%),
+        linear-gradient(180deg,rgba(14,26,46,.98),rgba(5,8,17,.98));
+    }
+    .teaser-dialog-copy .kicker {
+      margin: 0 0 18px; font-family: var(--roman); font-size: .62rem; letter-spacing: .26em;
+      text-transform: uppercase; color: var(--gold-bright);
+    }
+    .teaser-dialog-copy h2 { margin: 0; font-family: var(--serif); font-size: clamp(2rem,4vw,3.4rem); line-height: 1.02; font-weight: 500; }
+    .teaser-dialog-copy p { color: var(--muted); font-size: 1.06rem; }
+    .teaser-dialog-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .teaser-dialog-actions a {
+      display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px;
+      border: 1px solid var(--line); border-radius: 2px;
+      font-family: var(--roman); font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .teaser-dialog-actions .primary { color: var(--void); border-color: var(--gold); background: linear-gradient(135deg,var(--gold-bright),var(--gold)); }
+    .teaser-dialog-actions .secondary { color: var(--ink); background: rgba(214,172,85,.06); }
+    .teaser-close {
+      position: absolute; top: 14px; right: 14px; z-index: 4; display: grid; place-items: center;
+      width: 42px; height: 42px; padding: 0; border: 1px solid rgba(244,236,216,.24); border-radius: 50%;
+      color: var(--ink); background: rgba(5,8,17,.82); cursor: pointer; font: 1.35rem/1 var(--roman);
+    }
+    .teaser-close:hover { border-color: var(--gold-bright); color: var(--gold-bright); }
 
     /* ---------- Decree / parcours ---------- */
     .decree {
@@ -913,6 +999,7 @@
       .dossiers { grid-template-columns: 1fr; }
       .steps { grid-template-columns: 1fr; }
       .nav { display: none; }
+      .teaser-dialog-inner { grid-template-columns: minmax(260px,42%) 1fr; }
     }
     @media (max-width: 560px) {
       .wrap { width: min(100% - 32px, var(--max)); }
@@ -924,6 +1011,12 @@
       .group-titleline { align-items: flex-start; gap: 14px; }
       .group-roman { font-size: 3rem; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
+      .teaser-dialog { width: calc(100% - 20px); max-height: calc(100dvh - 20px); }
+      .teaser-dialog-inner { display: block; min-height: 0; }
+      .teaser-player { min-height: min(68dvh,640px); }
+      .teaser-player iframe { min-height: min(68dvh,640px); }
+      .teaser-dialog-copy { padding: 30px 24px 34px; }
+      .teaser-dialog-copy h2 { font-size: 2rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -982,10 +1075,10 @@
           <p class="lead reveal in" data-d="2">Le fonds documentaire du collectif : des transcriptions devenues pages immersives, où la <b>science du temps profond</b> répond, fait par fait, aux récits de l'intox.</p>
           <div class="cta reveal in" data-d="3">
             <a class="btn btn-gold" href="#dossiers">Explorer les dossiers <span class="arrow">→</span></a>
-            <a class="btn btn-ghost" href="la-vie-de-la-terre/index.html">Ouvrir La Vie de la Terre</a>
+            <a class="btn btn-ghost" href="la-vie-de-la-terre/">Ouvrir La Vie de la Terre</a>
           </div>
           <div class="credentials reveal in" data-d="4">
-            <span><b>XXIV</b> dossiers</span>
+            <span><b>XXVI</b> dossiers</span>
             <span class="dot"></span>
             <span>Transcriptions structurées</span>
             <span class="dot"></span>
@@ -1017,7 +1110,7 @@
             <p class="kicker">Le fonds documentaire</p>
             <h2>Les Dossiers</h2>
           </div>
-          <p>Vingt-quatre dossiers prêts à partager, désormais organisés en sept parcours — du temps profond aux sources — pour trouver vite le bon angle d’entrée.</p>
+          <p>Vingt-six dossiers prêts à partager, désormais organisés en sept parcours — du temps profond aux sources — pour trouver vite le bon angle d’entrée.</p>
         </div>
 
         <div class="parcours-panel reveal" aria-labelledby="parcours-title">
@@ -1050,7 +1143,7 @@
             <a class="parcours-card" href="#parcours-civilisations-memoire" style="--group-accent:#b8763a">
               <span class="pc-num">V</span>
               <span class="pc-copy"><strong>Civilisations, empires & mémoire</strong><small>Cités · empires · mémoire · Antiquité</small></span>
-              <em>XI · XV · XVIII · XX · XXII</em>
+              <em>XI · XV · XVIII · XX · XXII · XXIV</em>
             </a>
             <a class="parcours-card" href="#parcours-societe-droits" style="--group-accent:#b69bff">
               <span class="pc-num">VI</span>
@@ -1060,7 +1153,7 @@
             <a class="parcours-card" href="#parcours-methode-sources" style="--group-accent:#d6ac55">
               <span class="pc-num">VII</span>
               <span class="pc-copy"><strong>Méthode, sources & vie du collectif</strong><small>Sources · vérification · calendrier</small></span>
-              <em>XXIII · Agenda</em>
+              <em>XXV · Agenda</em>
             </a>
           </nav>
         </div>
@@ -1176,8 +1269,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong></span>
                 </div>
-                <a class="dossier-link" href="la-vie-de-la-terre/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="la-vie-de-la-terre/index.html" aria-label="Ouvrir le dossier La Vie de la Terre"></a>
+                <a class="dossier-link" href="la-vie-de-la-terre/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="la-vie-de-la-terre/" aria-label="Ouvrir le dossier La Vie de la Terre"></a>
               </div>
             </article>
             </div>
@@ -1216,8 +1309,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
-                <a class="dossier-link" href="ymir-lalie/ancetres-genetiques/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="ymir-lalie/ancetres-genetiques/index.html" aria-label="Ouvrir le dossier Adam & Ève génétiques"></a>
+                <a class="dossier-link" href="ymir-lalie/ancetres-genetiques/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/ancetres-genetiques/" aria-label="Ouvrir le dossier Adam & Ève génétiques"></a>
               </div>
             </article>
 
@@ -1242,8 +1335,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
-                <a class="dossier-link" href="ymir-lalie/singe-aquatique/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="ymir-lalie/singe-aquatique/index.html" aria-label="Ouvrir le dossier Le Singe Aquatique"></a>
+                <a class="dossier-link" href="ymir-lalie/singe-aquatique/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/singe-aquatique/" aria-label="Ouvrir le dossier Le Singe Aquatique"></a>
               </div>
             </article>
 
@@ -1267,8 +1360,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>PhantomBlast</strong><span class="note">avec Abeillaud</span></span>
                 </div>
-                <a class="dossier-link" href="phantom/abeilles/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="phantom/abeilles/index.html" aria-label="Ouvrir le dossier L'Abeille"></a>
+                <a class="dossier-link" href="phantom/abeilles/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="phantom/abeilles/" aria-label="Ouvrir le dossier L'Abeille"></a>
               </div>
             </article>
 
@@ -1293,8 +1386,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
-                <a class="dossier-link" href="ymir-lalie/evolution/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="ymir-lalie/evolution/index.html" aria-label="Ouvrir le dossier L'Évolution"></a>
+                <a class="dossier-link" href="ymir-lalie/evolution/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/evolution/" aria-label="Ouvrir le dossier L'Évolution"></a>
               </div>
             </article>
             </div>
@@ -1308,8 +1401,8 @@
                   <h3 id="parcours-lois-modeles-title">Lois du réel & modèles</h3>
                 </div>
               </div>
-              <p>La fabrique du mesurable : particules, champs, fluides et formules manipulables pour passer de l’intuition au modèle vérifiable.</p>
-              <span class="group-count">4 dossiers</span>
+              <p>La fabrique du mesurable : particules, champs, fluides, formules et le second principe, manipulables pour passer de l’intuition au modèle vérifiable.</p>
+              <span class="group-count">5 dossiers</span>
             </header>
             <div class="dossiers">
             <article class="dossier reveal" data-d="3" style="--accent:#5fd2e6">
@@ -1384,8 +1477,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec le soutien de Samlepirate</span></span>
                 </div>
-                <a class="dossier-link" href="provoxys/tornades/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="provoxys/tornades/index.html" aria-label="Ouvrir le dossier Tornades, Typhons & Ouragans"></a>
+                <a class="dossier-link" href="provoxys/tornades/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="provoxys/tornades/" aria-label="Ouvrir le dossier Tornades, Typhons & Ouragans"></a>
               </div>
             </article>
 
@@ -1409,8 +1502,34 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>SamLePirate</strong></span>
                 </div>
-                <a class="dossier-link" href="formules/index.html">Manipuler les formules <span class="arrow">→</span></a>
-                <a class="stretch" href="formules/index.html" aria-label="Ouvrir le dossier Les Formules de l'Empire"></a>
+                <a class="dossier-link" href="formules/">Manipuler les formules <span class="arrow">→</span></a>
+                <a class="stretch" href="formules/" aria-label="Ouvrir le dossier Les Formules de l'Empire"></a>
+              </div>
+            </article>
+
+            <article class="dossier reveal" data-d="1" style="--accent:#ef7d57">
+              <div class="dossier-media">
+                <img src="provoxys/entropie/assets/entropie-hero.index.webp" alt="Une tasse de café chaud dont la vapeur se disperse en particules puis en galaxies et un trou noir : l'entropie à toutes les échelles" loading="lazy" decoding="async" fetchpriority="low">
+                <span class="dossier-no">Dossier XXV</span>
+                <span class="badge">Live Provox × Sam</span>
+              </div>
+              <div class="dossier-body">
+                <h3>L'Entropie, le temps et l'Univers</h3>
+                <p>Le grand live de Provoxys, mot pour mot : pourquoi un café refroidit sans jamais se réchauffer seul. De Carnot aux trous noirs — machines, micro-états de Boltzmann, information de Shannon, démon de Maxwell, flèche du temps — avec <strong>26 visualisations React réellement jouables</strong>, chaque formule expliquée en LaTeX et chaque donnée vérifiée.</p>
+                <div class="tags">
+                  <span class="tag">Thermodynamique</span>
+                  <span class="tag">26 labos interactifs</span>
+                  <span class="tag">Trous noirs</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img loading="lazy" decoding="async" src="provoxys/entropie/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img loading="lazy" decoding="async" src="provoxys/entropie/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec la participation de Samlepirate</span></span>
+                </div>
+                <a class="dossier-link" href="provoxys/entropie/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="provoxys/entropie/" aria-label="Ouvrir le dossier L'Entropie, le temps et l'Univers"></a>
               </div>
             </article>
             </div>
@@ -1475,8 +1594,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec le soutien de Samlepirate (Atlas)</span></span>
                 </div>
-                <a class="dossier-link" href="provoxys/exoplanetes/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="provoxys/exoplanetes/index.html" aria-label="Ouvrir le dossier Atmosphères et Mondes Lointains"></a>
+                <a class="dossier-link" href="provoxys/exoplanetes/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="provoxys/exoplanetes/" aria-label="Ouvrir le dossier Atmosphères et Mondes Lointains"></a>
               </div>
             </article>
 
@@ -1502,8 +1621,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys, Lalie &amp; Samlepirate</strong></span>
                 </div>
-                <a class="dossier-link" href="provoxys/sondes/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="provoxys/sondes/index.html" aria-label="Ouvrir le dossier L'Odyssée des Machines"></a>
+                <a class="dossier-link" href="provoxys/sondes/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="provoxys/sondes/" aria-label="Ouvrir le dossier L'Odyssée des Machines"></a>
               </div>
             </article>
             </div>
@@ -1518,7 +1637,7 @@
                 </div>
               </div>
               <p>Naissance des villes, machines impériales, esclavage, résistances et visions du pouvoir : l’histoire comme antidote aux récits simplistes.</p>
-              <span class="group-count">5 dossiers</span>
+              <span class="group-count">6 dossiers</span>
             </header>
             <div class="dossiers">
             <article class="dossier reveal" data-d="3" style="--accent:#b3503e">
@@ -1542,8 +1661,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
-                <a class="dossier-link" href="ymir-lalie/esclavage/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="ymir-lalie/esclavage/index.html" aria-label="Ouvrir le dossier L'Esclavage triangulaire"></a>
+                <a class="dossier-link" href="ymir-lalie/esclavage/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/esclavage/" aria-label="Ouvrir le dossier L'Esclavage triangulaire"></a>
               </div>
             </article>
 
@@ -1568,8 +1687,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
-                <a class="dossier-link" href="ymir-lalie/la-resistance/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="ymir-lalie/la-resistance/index.html" aria-label="Ouvrir le dossier Les Résistants"></a>
+                <a class="dossier-link" href="ymir-lalie/la-resistance/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/la-resistance/" aria-label="Ouvrir le dossier Les Résistants"></a>
               </div>
             </article>
 
@@ -1594,8 +1713,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
-                <a class="dossier-link" href="ymir-lalie/premieres-cites/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="ymir-lalie/premieres-cites/index.html" aria-label="Ouvrir le dossier Les Premières Cités"></a>
+                <a class="dossier-link" href="ymir-lalie/premieres-cites/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/premieres-cites/" aria-label="Ouvrir le dossier Les Premières Cités"></a>
               </div>
             </article>
 
@@ -1620,8 +1739,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong><span class="note">avec l'aide précieuse de Phantom</span></span>
                 </div>
-                <a class="dossier-link" href="ymir-lalie/premier-empires/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="ymir-lalie/premier-empires/index.html" aria-label="Ouvrir le dossier Les Premiers Empires"></a>
+                <a class="dossier-link" href="ymir-lalie/premier-empires/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/premier-empires/" aria-label="Ouvrir le dossier Les Premiers Empires"></a>
               </div>
             </article>
 
@@ -1646,8 +1765,41 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Ymir &amp; Lalie</strong></span>
                 </div>
-                <a class="dossier-link" href="ymir-lalie/egypte-grece/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="ymir-lalie/egypte-grece/index.html" aria-label="Ouvrir le dossier Ordre Divin ou Démocratie ?"></a>
+                <a class="dossier-link" href="ymir-lalie/egypte-grece/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie/egypte-grece/" aria-label="Ouvrir le dossier Ordre Divin ou Démocratie ?"></a>
+              </div>
+            </article>
+
+            <article class="dossier reveal" data-d="3" style="--accent:#3f8ea3">
+              <div class="dossier-media">
+                <img src="ymir-lalie-phantom/pirates/assets/pirates-hero.index.webp" alt="Carte marine ancienne déployée sur une table sombre, compas, sablier, plume et acte juridique scellé de cire rouge" loading="lazy" decoding="async" fetchpriority="low">
+                <span class="dossier-no">Dossier XXIV</span>
+                <span class="badge">Histoire maritime</span>
+                <a class="teaser-trigger" href="https://www.tiktok.com/@lalie290370/video/7663944917676346657"
+                   target="_blank" rel="noopener" aria-haspopup="dialog" aria-controls="pirates-teaser-dialog"
+                   data-teaser-open data-promo-image="ymir-lalie-phantom/pirates/assets/pirates-teaser-poster.webp">
+                  <span class="teaser-play" aria-hidden="true">▶</span>
+                  <span class="teaser-copy"><small>Bande-annonce</small><strong>Voir la vidéo</strong></span>
+                </a>
+              </div>
+              <div class="dossier-body">
+                <h3>Pirates : mythe, droit &amp; diplomatie</h3>
+                <p>Du cache-œil inventé au procès de Bonny et Read, de la bureaucratie de Zheng Yi Sao aux pétitions de Grace O'Malley, des Articles signés au faux pavillon de Barbe Noire : deux déroulés conservés mot pour mot, 915 segments vérifiés, et dix-sept intox majeures démontées.</p>
+                <div class="tags">
+                  <span class="tag">Piraterie &amp; course</span>
+                  <span class="tag">Droit &amp; archives</span>
+                  <span class="tag">Mythes démontés</span>
+                </div>
+                <div class="byline">
+                  <span class="avatars">
+                    <img loading="lazy" decoding="async" src="ymir-lalie-phantom/pirates/lalie.jpeg" alt="Avatar de Lalie">
+                    <img loading="lazy" decoding="async" src="ymir-lalie-phantom/pirates/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img loading="lazy" decoding="async" src="ymir-lalie-phantom/pirates/phantom.png" alt="Avatar de Phantom">
+                  </span>
+                  <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie, Ymir &amp; Phantom</strong></span>
+                </div>
+                <a class="dossier-link" href="ymir-lalie-phantom/pirates/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="ymir-lalie-phantom/pirates/" aria-label="Ouvrir le dossier Pirates : mythe, droit et diplomatie"></a>
               </div>
             </article>
             </div>
@@ -1687,8 +1839,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie, Ymir &amp; Sam</strong></span>
                 </div>
-                <a class="dossier-link" href="lalie-ymir-sam/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="lalie-ymir-sam/index.html" aria-label="Ouvrir le dossier Comprendre la Politique Française en 2026"></a>
+                <a class="dossier-link" href="lalie-ymir-sam/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="lalie-ymir-sam/" aria-label="Ouvrir le dossier Comprendre la Politique Française en 2026"></a>
               </div>
             </article>
 
@@ -1713,8 +1865,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys &amp; Lalie</strong></span>
                 </div>
-                <a class="dossier-link" href="provoxys/briser-le-silence/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="provoxys/briser-le-silence/index.html" aria-label="Ouvrir le dossier Briser le Silence"></a>
+                <a class="dossier-link" href="provoxys/briser-le-silence/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="provoxys/briser-le-silence/" aria-label="Ouvrir le dossier Briser le Silence"></a>
               </div>
             </article>
 
@@ -1738,8 +1890,8 @@
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong></span>
                 </div>
-                <a class="dossier-link" href="provoxys/therapie-conversion/index.html">Consulter le dossier <span class="arrow">→</span></a>
-                <a class="stretch" href="provoxys/therapie-conversion/index.html" aria-label="Ouvrir le dossier Le Danger des Thérapies de Conversion"></a>
+                <a class="dossier-link" href="provoxys/therapie-conversion/">Consulter le dossier <span class="arrow">→</span></a>
+                <a class="stretch" href="provoxys/therapie-conversion/" aria-label="Ouvrir le dossier Le Danger des Thérapies de Conversion"></a>
               </div>
             </article>
             </div>
@@ -1760,7 +1912,7 @@
             <article class="dossier reveal" data-d="1">
               <div class="dossier-media">
                 <img src="horloge-univers/assets/super-images/44-l-histoire-ecrite.index.webp" alt="Archives et écriture : toutes les sources des dossiers, rendues vérifiables" loading="lazy" decoding="async" fetchpriority="low">
-                <span class="dossier-no">Dossier XXIV</span>
+                <span class="dossier-no">Dossier XXVI</span>
                 <span class="badge">Appareil critique</span>
               </div>
               <div class="dossier-body">
@@ -1847,7 +1999,7 @@
               <div class="num">III</div>
               <h4>Le modèle</h4>
               <p>Une hypothèse n'a de valeur que si elle <b>se teste et se rejoue</b>. La mécanique orbitale d'Artemis II se simule en direct ; la Terre ancienne se reconstruit par cartes, proxies et modèles contraints.</p>
-              <a class="step-ref" href="la-vie-de-la-terre/index.html">La Vie de la Terre &amp; les modèles <span class="arrow">→</span></a>
+              <a class="step-ref" href="la-vie-de-la-terre/">La Vie de la Terre &amp; les modèles <span class="arrow">→</span></a>
             </div>
             <div class="step reveal" data-d="4">
               <div class="num">IV</div>
@@ -1874,25 +2026,27 @@
           <a href="provoxys/Artemis2.html">III · Artemis II</a>
           <a href="horloge-univers/chronos.html">IV · Horloge de l'Univers</a>
           <a href="jorge-zalex/elements.html">V · Le Tableau Périodique</a>
-          <a href="la-vie-de-la-terre/index.html">VI · La Vie de la Terre</a>
+          <a href="la-vie-de-la-terre/">VI · La Vie de la Terre</a>
           <a href="samlepirate/champs-vecteurs.html">VII · Le langage des champs</a>
-          <a href="ymir-lalie/ancetres-genetiques/index.html">VIII · Ancêtres génétiques</a>
-          <a href="lalie-ymir-sam/index.html">IX · Politique française 2026</a>
-          <a href="ymir-lalie/singe-aquatique/index.html">X · Le Singe Aquatique</a>
-          <a href="ymir-lalie/esclavage/index.html">XI · L'Esclavage triangulaire</a>
-          <a href="provoxys/tornades/index.html">XII · Tornades, Typhons &amp; Ouragans</a>
-          <a href="phantom/abeilles/index.html">XIII · L'Abeille (Apis mellifera)</a>
-          <a href="formules/index.html">XIV · Les Formules de l'Empire</a>
-          <a href="ymir-lalie/la-resistance/index.html">XV · Les Résistants</a>
-          <a href="provoxys/briser-le-silence/index.html">XVI · Briser le Silence</a>
-          <a href="provoxys/exoplanetes/index.html">XVII · Atmosphères &amp; Mondes Lointains</a>
-          <a href="ymir-lalie/premieres-cites/index.html">XVIII · Les Premières Cités</a>
-          <a href="provoxys/sondes/index.html">XIX · L'Odyssée des Machines</a>
-          <a href="ymir-lalie/premier-empires/index.html">XX · Les Premiers Empires</a>
-          <a href="provoxys/therapie-conversion/index.html">XXI · Thérapies de Conversion</a>
-          <a href="ymir-lalie/egypte-grece/index.html">XXII · Égypte vs Grèce</a>
-          <a href="ymir-lalie/evolution/index.html">XXIII · L'Évolution</a>
-          <a href="sources/sources.html">XXIV · Les Sources</a>
+          <a href="ymir-lalie/ancetres-genetiques/">VIII · Ancêtres génétiques</a>
+          <a href="lalie-ymir-sam/">IX · Politique française 2026</a>
+          <a href="ymir-lalie/singe-aquatique/">X · Le Singe Aquatique</a>
+          <a href="ymir-lalie/esclavage/">XI · L'Esclavage triangulaire</a>
+          <a href="provoxys/tornades/">XII · Tornades, Typhons &amp; Ouragans</a>
+          <a href="phantom/abeilles/">XIII · L'Abeille (Apis mellifera)</a>
+          <a href="formules/">XIV · Les Formules de l'Empire</a>
+          <a href="ymir-lalie/la-resistance/">XV · Les Résistants</a>
+          <a href="provoxys/briser-le-silence/">XVI · Briser le Silence</a>
+          <a href="provoxys/exoplanetes/">XVII · Atmosphères &amp; Mondes Lointains</a>
+          <a href="ymir-lalie/premieres-cites/">XVIII · Les Premières Cités</a>
+          <a href="provoxys/sondes/">XIX · L'Odyssée des Machines</a>
+          <a href="ymir-lalie/premier-empires/">XX · Les Premiers Empires</a>
+          <a href="provoxys/therapie-conversion/">XXI · Thérapies de Conversion</a>
+          <a href="ymir-lalie/egypte-grece/">XXII · Égypte vs Grèce</a>
+          <a href="ymir-lalie/evolution/">XXIII · L'Évolution</a>
+          <a href="ymir-lalie-phantom/pirates/">XXIV · Pirates</a>
+          <a href="provoxys/entropie/">XXV · L'Entropie, le temps et l'Univers</a>
+          <a href="sources/sources.html">XXVI · Les Sources</a>
           <a href="/empire-calendrier">Calendrier des lives →</a>
           <a class="to-top" href="#top">Haut de page ↑</a>
         </nav>
@@ -1908,6 +2062,22 @@
       </div>
     </footer>
   </div>
+
+  <dialog class="teaser-dialog" id="pirates-teaser-dialog" aria-labelledby="pirates-teaser-title">
+    <div class="teaser-dialog-inner">
+      <div class="teaser-player" data-teaser-player></div>
+      <div class="teaser-dialog-copy">
+        <button class="teaser-close" type="button" data-teaser-close aria-label="Fermer la bande-annonce">×</button>
+        <p class="kicker">Dossier XXIV · Bande-annonce de Lalie</p>
+        <h2 id="pirates-teaser-title">Pirates : mythe, droit &amp; diplomatie</h2>
+        <p>Mythes contre réalité historique : découvrez la vidéo promotionnelle, puis remontez aux archives, aux procès et aux dix-sept intox démontées dans le dossier complet.</p>
+        <div class="teaser-dialog-actions">
+          <a class="primary" href="ymir-lalie-phantom/pirates/">Lire le dossier →</a>
+          <a class="secondary" href="https://www.tiktok.com/@lalie290370/video/7663944917676346657" target="_blank" rel="noopener">Voir sur TikTok ↗</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
 
   <script>
     // Scroll progress thread
@@ -1977,6 +2147,57 @@
         hmPanels.forEach((p) => { p.style.transform = ''; });
       });
       addEventListener('resize', () => { rect = null; }, { passive: true });
+    }
+
+    // Charge le lecteur TikTok uniquement lorsque la bande-annonce est demandée.
+    const teaserDialog = document.getElementById('pirates-teaser-dialog');
+    const teaserOpen = document.querySelector('[data-teaser-open]');
+    const teaserPlayer = teaserDialog?.querySelector('[data-teaser-player]');
+    const teaserClose = teaserDialog?.querySelector('[data-teaser-close]');
+    const teaserSrc = 'https://www.tiktok.com/player/v1/7663944917676346657?controls=1&description=1&music_info=1&rel=0';
+
+    const unloadTeaser = () => {
+      teaserPlayer?.querySelector('iframe')?.remove();
+    };
+    const closeTeaser = () => {
+      if (!teaserDialog) return;
+      document.body.classList.remove('teaser-open');
+      if (typeof teaserDialog.close === 'function' && teaserDialog.open) {
+        teaserDialog.close();
+      } else {
+        teaserDialog.removeAttribute('open');
+        unloadTeaser();
+        teaserOpen?.focus();
+      }
+    };
+    if (teaserDialog && teaserOpen && teaserPlayer) {
+      teaserOpen.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (!teaserPlayer.querySelector('iframe')) {
+          const iframe = document.createElement('iframe');
+          iframe.src = teaserSrc;
+          iframe.title = 'Bande-annonce TikTok du dossier Pirates';
+          iframe.allow = 'fullscreen; autoplay; encrypted-media';
+          iframe.allowFullscreen = true;
+          teaserPlayer.append(iframe);
+        }
+        document.body.classList.add('teaser-open');
+        if (typeof teaserDialog.showModal === 'function') teaserDialog.showModal();
+        else teaserDialog.setAttribute('open','');
+        teaserClose?.focus();
+      });
+      teaserClose?.addEventListener('click', closeTeaser);
+      teaserDialog.addEventListener('click', (event) => {
+        if (event.target === teaserDialog) closeTeaser();
+      });
+      teaserDialog.addEventListener('close', () => {
+        document.body.classList.remove('teaser-open');
+        unloadTeaser();
+        teaserOpen.focus();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && teaserDialog.hasAttribute('open')) closeTeaser();
+      });
     }
   </script>
   <script src="assets/visit-counter.js" defer></script>

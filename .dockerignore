@@ -23,6 +23,16 @@ dist/
 coverage/
 test-results/
 
+# empire-calendrier remains in the build context because Portainer publishes it
+# directly. Only its repository/development files are unnecessary at runtime.
+empire-calendrier/.git/
+empire-calendrier/.githooks/
+empire-calendrier/scripts/
+empire-calendrier/.gitignore
+empire-calendrier/*.md
+empire-calendrier/.DS_Store
+empire-calendrier/bon-example-calendrier.png
+
 # Agent / editor temp files
 *.tmp
 *.swp

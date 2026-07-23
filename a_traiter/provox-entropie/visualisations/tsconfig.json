@@ -1,0 +1,10 @@
+{
+  "extends": "../../../tsconfig.json",
+  "include": ["./**/*.ts", "./**/*.tsx"],
+  "exclude": [],
+  "compilerOptions": {
+    "noEmit": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["node", "react", "react-dom"]
+  }
+}

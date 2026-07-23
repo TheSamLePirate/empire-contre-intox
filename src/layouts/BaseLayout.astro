@@ -6,12 +6,12 @@ interface Props {
   title: string;
   description: string;
   canonicalPath: string;
-  image?: string;
+  image?: string | undefined;
 }
 
 const { title, description, canonicalPath, image } = Astro.props;
 const canonical = canonicalUrl(canonicalPath);
-const socialImage = image ? canonicalUrl(image) : undefined;
+const socialImage = canonicalUrl(image ?? "/manifest-poster.jpg");
 ---
 
 <!doctype html>
@@ -32,7 +32,12 @@ const socialImage = image ? canonicalUrl(image) : undefined;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    {socialImage && <meta property="og:image" content={socialImage} />}
+    <meta property="og:site_name" content="Empire contre Intox" />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
     <title>{title}</title>
     <slot name="head" />
   </head>

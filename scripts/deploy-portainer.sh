@@ -81,6 +81,32 @@ require_cmd curl
 [[ -f .dockerignore ]] || { err ".dockerignore manquant"; exit 1; }
 [[ -f "$MANAGER_ABS/package.json" ]] || { err "package.json introuvable dans $MANAGER_ABS"; exit 1; }
 
+# This is a separate Git repository, copied directly into the final image. Astro
+# must not prepare or transform it.
+[[ -d empire-calendrier/.git ]] || {
+  err "Dépôt Git empire-calendrier introuvable dans $REPO_ROOT"
+  exit 1
+}
+calendar_files=(
+  empire-calendrier/index.html
+  empire-calendrier/data/events.json
+  empire-calendrier/background.png
+  empire-calendrier/Logo-ECI.jpg
+  empire-calendrier/og-image.png
+)
+for calendar_file in "${calendar_files[@]}"; do
+  [[ -f "$calendar_file" ]] || {
+    err "Fichier calendrier manquant: $calendar_file"
+    exit 1
+  }
+done
+python3 - <<'PY'
+import json
+with open('empire-calendrier/data/events.json', encoding='utf-8') as source:
+    json.load(source)
+print('empire-calendrier/data/events.json valide')
+PY
+
 if [[ "$GENERATE_RSS" -eq 1 ]]; then
   log "Régénération du RSS"
   python3 scripts/generate-rss.py
@@ -134,6 +160,8 @@ if [[ "$HTTP_CHECKS" -eq 1 ]]; then
   log "Vérifications HTTP publiques"
   urls=(
     "$DOMAIN/"
+    "$DOMAIN/empire-calendrier/"
+    "$DOMAIN/empire-calendrier/data/events.json"
     "$DOMAIN/rss.xml"
     "$DOMAIN/LICENCE-CONTENU.md"
     "$DOMAIN/api/count?path=/"

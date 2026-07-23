@@ -244,7 +244,8 @@ de `index.html`. Il est **généré**, jamais édité à la main.
 ## Conventions du dépôt (rappels)
 
 - Dépôt : `TheSamLePirate/empire-contre-intox` — GitHub Pages, branche `main`, racine.
-- URL publique : `https://thesamlepirate.github.io/empire-contre-intox/`.
+- URL publique principale : `https://empire-contre-intox.com/`.
+- Miroir secondaire : `https://thesamlepirate.github.io/empire-contre-intox/`.
 - Sceau ECI **unique** : `ymir-lalie/assets/logo-eci.jpg` (référencer au bon chemin
   relatif).
 - Outils requis (skill) : `codex` (génération des images, `codex exec`), `python3`,

@@ -241,8 +241,8 @@
           <div class="stat"><div class="n" id="stFiches">—</div><div class="l">Données vérifiées</div></div>
           <div class="stat"><div class="n" id="stSrc">—</div><div class="l">Sources de référence</div></div>
           <div class="stat"><div class="n" id="stDoi">—</div><div class="l">DOI vérifiés</div></div>
-          <div class="stat"><div class="n">20</div><div class="l">Dossiers audités</div></div>
-          <div class="stat"><div class="n">22</div><div class="l">Formulations à corriger</div></div>
+          <div class="stat"><div class="n">21</div><div class="l">Dossiers audités</div></div>
+          <div class="stat"><div class="n">27</div><div class="l">Formulations à corriger</div></div>
         </div>
         <div class="legend" aria-label="Légende des verdicts">
           <span class="vbadge"><i class="v-ok" style="background:currentColor"></i>Confirmé</span>
@@ -282,6 +282,8 @@
       <section class="wrap section" id="evolution"><div class="sec-head reveal"><p class="kick">Dossier XXIII · Lalie &amp; Ymir</p><h3>L'Évolution — Fin des idées reçues</h3><p>« L'homme descend du singe », le chaînon manquant, le mauvais design, les dinosaures à plumes : le live d'Ymir &amp; Lalie au crible — sources autoritatives (Nature, Science, PNAS, Smithsonian Human Origins, NHGRI/NIH, Royal Society) et <b>11 DOI vérifiés</b> via Crossref.</p></div><div class="grid" id="g-evolution"></div></section>
 
       <section class="wrap section" id="pirates"><div class="sec-head reveal"><p class="kick">Dossier XXIV · Lalie, Ymir &amp; Phantom</p><h3>Pirates — Mythe, droit &amp; diplomatie</h3><p>Zheng Yi Sao, Bonny &amp; Read, Grace O'Malley, Sayyida al-Hurra, chasse-partie, Jolly Roger, Lafitte, Roberts, l'Olonnais, Barbe Noire, La Buse et cinq figures oubliées — de Graff, Belleville, Angre, Cofresí, Le Clerc — au crible des sources primaires : procès jamaïcain de 1721, State Papers SP 63, Yuan Yonglun, Exquemelin, ANOM, archives de Bombay, chroniques médiévales, monographies portoricaines — et <b>26 DOI vérifiés</b> via Crossref.</p></div><div class="grid" id="g-pirates"></div></section>
+
+      <section class="wrap section" id="entropie"><div class="sec-head reveal"><p class="kick">Dossier XXV · Provoxys &amp; Samlepirate</p><h3>L'Entropie, le temps &amp; l'Univers</h3><p>Du café qui refroidit aux trous noirs : machines de Carnot, micro-états de Boltzmann, information de Shannon, démon de Maxwell, Landauer, entropie de von Neumann, flèche du temps et inventaire cosmique — vérifié par 4 recherches parallèles, sources autoritatives (BIPM, NIST/IUPAC, NASA/COBE, Schroeder, LibreTexts) et <b>27 DOI vérifiés</b> via Crossref. Cinq nuances traitées en encadrés « anti-intox ».</p></div><div class="grid" id="g-entropie"></div></section>
 
       <section class="wrap section" id="refs">
         <div class="sec-head reveal"><p class="kick">Appareil critique · niveau le plus strict</p><h3>Références scientifiques</h3><p>La littérature primaire à comité de lecture derrière les données. Chaque <b>DOI a été vérifié</b> (résolution Crossref + page éditeur) — pour chacun : titre, citation et résumé.</p></div>
@@ -820,7 +822,7 @@
       ["⚪","Wikipedia — Grand Unified Theory","https://en.wikipedia.org/wiki/Grand_Unified_Theory","Les grandes unifications restent hypothétiques."],
       ["⚪","Wikipedia — Observable universe","https://en.wikipedia.org/wiki/Observable_universe","Diamètre comobile ≈ 93 milliards d'al."],
       ["⚪","Wikipedia — Ediacaran","https://en.wikipedia.org/wiki/Ediacaran","Bornes & contexte de la biote édiacarienne."],
-      ["🔵","Page auditée — Chronos / Horloge de l'Univers","https://thesamlepirate.github.io/empire-contre-intox/horloge-univers/chronos.html","Objet de l'audit : texte exact de la page vérifiée."],
+      ["🔵","Page auditée — Chronos / Horloge de l'Univers","https://empire-contre-intox.com/horloge-univers/chronos.html","Objet de l'audit : texte exact de la page vérifiée."],
       ["🔵","Application La Vie de la Terre","https://thesamlepirate.github.io/la-vie-de-la-terre/","Observatoire interactif du temps profond : globe, frise, télémétrie et sources."],
       ["🔵","La Vie de la Terre — sources de données","https://thesamlepirate.github.io/la-vie-de-la-terre/#sources","Documentation app : statut mesuré / modélisé / estimé, pipeline et téléchargements."],
       ["🟢","Merdith et al. 2021 — modèle plein-plaque 1 Ga","https://doi.org/10.1016/j.earscirev.2020.103477","Base tectonique des masques continentaux 540–1000 Ma."],
@@ -1321,6 +1323,52 @@
         src:[{n:"le-refuge.org — ligne d'écoute",u:"https://le-refuge.org/la-ligne-decoute/"},{n:"sos-homophobie.org — ligne d'écoute",u:"https://www.sos-homophobie.org/ligne-ecoute"}] }
     ];
 
+    const NT = "../provoxys/entropie/assets/";
+    const ENTROPIE = [
+      { t:"Rendement de Carnot : 1 − T_froid/T_chaud", d:"600 K / 300 K → 50 %", v:"ok", img:NT+"machines-vapeur.png",
+        s:"Le rendement maximal d'un moteur thermique ne dépend que du rapport des températures absolues (en kelvins). Vérifié : 1 − 300/600 = 0,5. Aucune machine réelle entre ces deux sources ne fait mieux. Carnot, 1824.",
+        src:[{n:"Carnot 1824 (fac-similé)",u:"https://archive.org/details/bub_gb_QX9iIWF3yOMC"},{n:"Kostic, Entropy 2025 · DOI",u:"https://doi.org/10.3390/e27050502"}] },
+      { t:"Bilan d'entropie : ΔS = S_échangée + S_créée", d:"S_créée ≥ 0 · unité J/K", v:"ok", img:NT+"machines-vapeur.png",
+        s:"L'entropie créée est toujours ≥ 0 (nulle si réversible). L'entropie se mesure en joules par kelvin — ce n'est pas une énergie. Un mélange 1 kg à 80 °C + 1 kg à 20 °C (isolé) donne ≈ 50 °C avec ΔS_total ≈ +36,5 J/K.",
+        src:[{n:"SFU ENSC 388 · Entropy",u:"https://www.sfu.ca/~mbahrami/ENSC%20388/Notes/Entropy.pdf"}] },
+      { t:"« Isolé » vs « adiabatique »", d:"dS ≥ 0 dès que δQ = 0", v:"warn", img:NT+"machines-vapeur.png",
+        s:"Nuance anti-intox : la propriété « l'entropie ne diminue pas » vaut dès qu'aucune chaleur n'est échangée — donc pour un système isolé (référence) ET pour tout système adiabatique. Dire « seul un isolé » est trop restrictif.",
+        src:[{n:"Chemistry LibreTexts · Four Laws",u:"https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Thermodynamics/The_Four_Laws_of_Thermodynamics"}] },
+      { t:"Formule de Boltzmann : S = k_B ln Ω", d:"k_B = 1,380649×10⁻²³ J/K (exact)", v:"ok", img:NT+"microetats-boltzmann.png",
+        s:"Ω est le nombre de micro-états compatibles avec le macro-état, PAS « le désordre ». Le logarithme transforme le produit des multiplicités en somme des entropies (additivité). k_B est exact depuis la redéfinition du SI (2019).",
+        src:[{n:"BIPM · redéfinition SI 2019",u:"https://www.bipm.org/en/measurement-units"},{n:"Schroeder · Thermal Physics",u:"https://physics.weber.edu/schroeder/statmech.pdf"}] },
+      { t:"Grille 100/50 : ce que « identiques » veut dire", d:"log₂ C(100,50) ≈ 96,3 bits", v:"warn", img:NT+"microetats-boltzmann.png",
+        s:"Nuance anti-intox : l'entropie binaire (1 bit/case, 100 bits) et la log-multiplicité (96,3 bits) sont identiques ENTRE la grille rangée et la grille aléatoire — pas égales entre elles (100 ≠ 96,3). Seule l'entropie des motifs 2×2 distingue rangé/aléatoire.",
+        src:[{n:"Boltzmann's entropy formula",u:"https://en.wikipedia.org/wiki/Boltzmann%27s_entropy_formula"}] },
+      { t:"Ordres de grandeur des multiplicités (chiffres éditoriaux)", d:"C(100,50) ≈ 10²⁹ · gorgée ≈ 10²⁴ molécules", v:"ok", img:NT+"microetats-boltzmann.png",
+        s:"Choisir 50 pions parmi 100 offre ≈ 1,009×10²⁹ arrangements — ≈ 2,3×10¹¹ fois les ~4,35×10¹⁷ s écoulées depuis le Big Bang (13,787 Ga). Une gorgée d'eau (~20 mL) contient ≈ 7×10²³ molécules : plus qu'il n'y a de gorgées dans les océans (~1,34×10²¹ L). Un trou noir d'1 M☉ est ~45 millions de fois plus froid que le CMB ; son évaporation demanderait ~10⁶⁷ ans (~10⁵⁷ × l'âge de l'Univers).",
+        src:[{n:"USGS · Water Science School",u:"https://www.usgs.gov/special-topics/water-science-school"},{n:"Page 1976, PRD · DOI",u:"https://doi.org/10.1103/PhysRevD.13.198"}] },
+      { t:"Principe de Landauer : effacer un bit coûte k_B T ln 2", d:"≈ 2,9×10⁻²¹ J à 300 K", v:"ok", img:NT+"demon-maxwell.png",
+        s:"Le démon de Maxwell ne viole pas le second principe : pour trier, il doit acquérir, mémoriser puis EFFACER de l'information. Effacer un bit dissipe au moins k_B T ln 2. Le coût est attaché à l'effacement, pas à la mesure. Confirmé par Bérut et al. 2012.",
+        src:[{n:"Landauer 1961 · DOI",u:"https://doi.org/10.1147/rd.53.0183"},{n:"Bérut et al. 2012, Nature · DOI",u:"https://doi.org/10.1038/nature10872"}] },
+      { t:"Entropie de Shannon : H = −Σ pᵢ log₂ pᵢ", d:"4 symboles équiprobables → 2 bits", v:"ok", img:NT+"demon-maxwell.png",
+        s:"Même structure mathématique que Gibbs, mesurée en bits. Parenté profonde avec l'entropie thermodynamique, mais la connexion devient PHYSIQUE seulement quand un système matériel porte et efface l'information (Szilard, Landauer).",
+        src:[{n:"Shannon 1948 · DOI",u:"https://doi.org/10.1002/j.1538-7305.1948.tb01338.x"}] },
+      { t:"Modèle d'Ising : transition seulement en dimension ≥ 2", d:"Onsager 1944", v:"warn", img:NT+"six-entropies.png",
+        s:"Nuance anti-intox : la transition de phase à température finie n'existe qu'en dimension ≥ 2 (solution exacte d'Onsager). L'Ising 1D n'a aucune transition à T > 0 (Ising 1925). La grille du dossier est bien 2D. L'entropie ne se lit pas sur une seule image.",
+        src:[{n:"Onsager 1944 · DOI",u:"https://doi.org/10.1103/PhysRev.65.117"}] },
+      { t:"Entropie de Bekenstein-Hawking : S = k_B c³A / 4Gℏ", d:"1 M☉ : r_s ≈ 2,95 km, S ≈ 10⁷⁷ k_B", v:"ok", img:NT+"trou-noir-entropie.png",
+        s:"L'entropie d'un trou noir est proportionnelle à l'AIRE de son horizon. Comme S ∝ M² et T ∝ 1/M, un gros trou noir est plus froid et plus entropique qu'un petit. Valeurs recalculées : rayon 2954 m, température de Hawking 6,17×10⁻⁸ K, entropie 1,05×10⁷⁷ k_B.",
+        src:[{n:"Bekenstein 1973 · DOI",u:"https://doi.org/10.1103/PhysRevD.7.2333"},{n:"Hawking 1975 · DOI",u:"https://doi.org/10.1007/BF02345020"}] },
+      { t:"Un trou noir stellaire est plus froid que le CMB", d:"6×10⁻⁸ K ≪ 2,725 K", v:"warn", img:NT+"trou-noir-entropie.png",
+        s:"Nuance anti-intox : la température de Hawking d'un trou noir d'une masse solaire (~6×10⁻⁸ K) est ~10⁸ fois inférieure au fond diffus cosmologique (2,725 K). Un tel trou noir ABSORBE aujourd'hui plus qu'il n'émet ; l'évaporation nette ne domine que dans un futur très lointain.",
+        src:[{n:"NASA · COBE/FIRAS (T_CMB)",u:"https://lambda.gsfc.nasa.gov/product/cobe/"}] },
+      { t:"Inventaire entropique de l'Univers observable", d:"~3×10¹⁰⁴ k_B (trous noirs supermassifs)", v:"ok", img:NT+"trou-noir-entropie.png",
+        s:"L'entropie totale de l'Univers observable est dominée par les trous noirs supermassifs (~10¹⁰³–10¹⁰⁴ k_B), loin devant les trous noirs stellaires (~10⁹⁷) puis le CMB (~10⁸⁸). Egan & Lineweaver, 2010.",
+        src:[{n:"Egan & Lineweaver 2010, ApJ · DOI",u:"https://doi.org/10.1088/0004-637X/710/2/1825"}] },
+      { t:"Courbe de Page : « compatible avec l'unitarité », pas « résolu »", d:"îlots / surfaces quantiques extrémales", v:"deb", img:NT+"six-entropies.png",
+        s:"Nuance anti-intox : les calculs récents d'« îlots » (2019-2020) reproduisent une courbe de Page compatible avec l'unitarité dans certains cadres semi-classiques, mais ne constituent pas une résolution universellement admise du paradoxe de l'information. Le dossier n'affiche jamais « paradoxe résolu ». CCC de Penrose et sélection de Smolin restent spéculatives.",
+        src:[{n:"Page 1993, PRL · DOI",u:"https://doi.org/10.1103/PhysRevLett.71.3743"},{n:"Entropy of Hawking radiation, RMP 2021 · DOI",u:"https://doi.org/10.1103/RevModPhys.93.035002"}] },
+      { t:"Pompes à chaleur, centrales & data-centers (« vraie vie »)", d:"COP 3–5 · rendements 40–60 % · ~1–2 % de l'électricité mondiale", v:"ok", img:NT+"machines-vapeur.png",
+        s:"Chiffres éditoriaux de la section « Et dans la vraie vie ? » : une pompe à chaleur déplace typiquement 3–5 kWh de chaleur par kWh électrique (COP 3–5) ; les centrales plafonnent autour de 40–60 % de rendement (cycles combinés) ; les data-centers consomment ~1–2 % de l'électricité mondiale (~240–340 TWh en 2022). Effacer 10⁹ bits/s à la limite de Landauer ne dégagerait que ~3 picowatts.",
+        src:[{n:"IEA · Data Centres & Networks",u:"https://www.iea.org/energy-system/buildings/data-centres-and-networks"},{n:"IEA HPT · Heat Pumping Technologies",u:"https://heatpumpingtechnologies.org/"}] }
+    ];
+    fill("g-entropie",ENTROPIE);
     fill("g-eres",ERES); fill("g-edia",EDIA); fill("g-artemis",ARTEMIS); fill("g-elements",ELEMENTS); fill("g-terre-app",TERREAPP); fill("g-ancetres",ANCETRES); fill("g-politique",POLITIQUE); fill("g-singe",SINGE); fill("g-esclavage",ESCLAVAGE); fill("g-tornades-cyclones",TORNADES); fill("g-abeilles",ABEILLES); fill("g-resistance",RESISTANCE); fill("g-formules",FORMULES); fill("g-cyberviolences",CYBERVIOLENCES); fill("g-exoplanetes",EXOPLANETES); fill("g-premieres-cites",PREMIERES); fill("g-premier-empires",PREMIER_EMPIRES); fill("g-therapie-conversion",THERAPIE_CONVERSION); fill("g-evolution",EVOLUTION); fill("g-pirates",PIRATES);
 
     // ===== Références scientifiques primaires (DOI vérifiés) =====
@@ -2038,6 +2086,36 @@
           ab:"Identification scientifique d'un matériau organique provenant du site, exemple de la méthode interdisciplinaire utilisée pour caractériser les artefacts de l'épave." },
         { a:"Kenyon, K. P. et al. (2022)", t:"Queen Anne's Revenge Coal Conundrum: Origins of Coal Found in Association with a Historic Shipwreck", j:"International Journal of Nautical Archaeology 51, 255–266", k:"primary", doi:"10.1080/10572414.2022.2101775",
           ab:"Analyse l'origine du charbon associé au site et montre pourquoi la stratigraphie et les contaminations postérieures doivent être séparées des objets appartenant réellement au naufrage de 1718." }
+      ]},
+      { g:"Dossier XXV · L'Entropie, le temps et l'Univers (27 DOI)", items:[
+        { a:"Shannon, C. E. (1948)", t:"A Mathematical Theory of Communication", j:"Bell System Technical Journal 27(3), 379–423", k:"primary", doi:"10.1002/j.1538-7305.1948.tb01338.x",
+          ab:"Article fondateur de la théorie de l'information. Définit l'entropie H = −Σ pᵢ log₂ pᵢ mesurant l'incertitude d'une source, l'unité (bit) et le théorème du codage de source. Même structure mathématique que Gibbs, sens physique distinct." },
+        { a:"Szilard, L. (1929)", t:"Über die Entropieverminderung in einem thermodynamischen System bei Eingriffen intelligenter Wesen", j:"Zeitschrift für Physik 53, 840–856", k:"primary", doi:"10.1007/BF01341281",
+          ab:"Réduit le démon de Maxwell à une seule particule et un bit d'information : connaître le côté occupé permet d'extraire un travail ≈ k_B T ln 2 par cycle. Premier lien quantitatif entre information et thermodynamique." },
+        { a:"Landauer, R. (1961)", t:"Irreversibility and Heat Generation in the Computing Process", j:"IBM Journal of Research and Development 5(3), 183–191", k:"primary", doi:"10.1147/rd.53.0183",
+          ab:"Établit qu'effacer un bit logique de façon irréversible dissipe au minimum k_B T ln 2 en chaleur (≈ 2,9×10⁻²¹ J à 300 K). Le coût est attaché à l'effacement, pas à la mesure : plancher conceptuel reliant logique et thermodynamique." },
+        { a:"Bérut, A. et al. (2012)", t:"Experimental verification of Landauer's principle linking information and thermodynamics", j:"Nature 483, 187–189", k:"primary", doi:"10.1038/nature10872",
+          ab:"Mesure la chaleur dissipée lors de l'effacement d'un bit dans un piège optique et confirme expérimentalement la borne de Landauer k_B T ln 2." },
+        { a:"Maruyama, K., Nori, F. & Vedral, V. (2009)", t:"Colloquium: The physics of Maxwell's demon and information", j:"Reviews of Modern Physics 81, 1–23", k:"review", doi:"10.1103/RevModPhys.81.1",
+          ab:"Revue de référence sur le démon de Maxwell et sa résolution moderne : la baisse d'entropie du gaz est compensée par le coût informationnel (mémoire et effacement). Le bilan global respecte le second principe." },
+        { a:"Jaynes, E. T. (1957)", t:"Information Theory and Statistical Mechanics", j:"Physical Review 106, 620–630", k:"primary", doi:"10.1103/PhysRev.106.620",
+          ab:"Relie la mécanique statistique au principe de maximum d'entropie : la distribution d'équilibre est celle de plus grande entropie compatible avec les contraintes. La distribution uniforme maximise l'entropie de Gibbs/Shannon." },
+        { a:"Onsager, L. (1944)", t:"Crystal Statistics. I. A Two-Dimensional Model with an Order-Disorder Transition", j:"Physical Review 65, 117–149", k:"primary", doi:"10.1103/PhysRev.65.117",
+          ab:"Solution exacte du modèle d'Ising en 2 dimensions, avec sa transition de phase à température critique finie. En dimension 1, le modèle d'Ising n'a aucune transition à T > 0 (Ising 1925)." },
+        { a:"Metropolis, N. et al. (1953)", t:"Equation of State Calculations by Fast Computing Machines", j:"The Journal of Chemical Physics 21, 1087–1092", k:"primary", doi:"10.1063/1.1699114",
+          ab:"Introduit l'algorithme de Metropolis (Monte-Carlo) utilisé pour simuler le modèle d'Ising et échantillonner les configurations selon leur poids de Boltzmann." },
+        { a:"Bekenstein, J. D. (1973)", t:"Black Holes and Entropy", j:"Physical Review D 7, 2333–2346", k:"primary", doi:"10.1103/PhysRevD.7.2333",
+          ab:"Propose qu'un trou noir possède une entropie proportionnelle à l'aire de son horizon, et le second principe généralisé (entropie ordinaire + entropie des trous noirs ne décroît pas)." },
+        { a:"Hawking, S. W. (1975)", t:"Particle creation by black holes", j:"Communications in Mathematical Physics 43, 199–220", k:"primary", doi:"10.1007/BF02345020",
+          ab:"Montre par la théorie quantique des champs en espace-temps courbe qu'un trou noir a une température et émet un rayonnement thermique. Combinée à Bekenstein : S = k_B c³A / 4Gℏ ; un gros trou noir est plus froid et plus entropique." },
+        { a:"Page, D. N. (1993)", t:"Information in black hole radiation", j:"Physical Review Letters 71, 3743–3746", k:"primary", doi:"10.1103/PhysRevLett.71.3743",
+          ab:"Dans un scénario unitaire, l'entropie d'intrication du rayonnement monte, culmine au « temps de Page » (~moitié de l'évaporation), puis redescend — la « courbe de Page »." },
+        { a:"Egan, C. A. & Lineweaver, C. H. (2010)", t:"A Larger Estimate of the Entropy of the Universe", j:"The Astrophysical Journal 710, 1825–1834", k:"primary", doi:"10.1088/0004-637X/710/2/1825",
+          ab:"Estime l'entropie de l'Univers observable à ~3×10¹⁰⁴ k_B, dominée par les trous noirs supermassifs — loin devant les trous noirs stellaires (~10⁹⁷) et le CMB (~10⁸⁸)." },
+        { a:"Reini, M. & Casisi, M. (2020)", t:"The Gouy-Stodola Theorem and the derivation of exergy revised", j:"Energy 210, 118486", k:"review", doi:"10.1016/j.energy.2020.118486",
+          ab:"Réexamine le théorème de Gouy-Stodola : l'exergie détruite par une irréversibilité vaut T₀·S_créée (T₀ température de l'environnement). L'énergie est conservée ; c'est sa qualité qui se dégrade." },
+        { a:"Masanes, L. & Oppenheim, J. (2017)", t:"A general derivation and quantification of the third law of thermodynamics", j:"Nature Communications 8, 14538", k:"primary", doi:"10.1038/ncomms14538",
+          ab:"Dérive et quantifie le troisième principe : atteindre exactement le zéro absolu demanderait un nombre infini d'opérations (principe d'inaccessibilité de Nernst)." }
       ]}
     ];
     function refHTML(r){
