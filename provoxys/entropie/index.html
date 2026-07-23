@@ -186,19 +186,12 @@
       -webkit-text-stroke:1px var(--line); color:transparent; line-height:1; pointer-events:none; z-index:-1; }
     .transcript { display:grid; grid-template-columns:1fr; gap:0; }
 
-    /* SPEAKER + REGIE */
+    /* SPEAKER */
     .speaker { font-family:var(--roman); font-weight:600; letter-spacing:.16em; text-transform:uppercase; font-size:.7rem;
       display:inline-flex; align-items:center; gap:8px; margin:24px 0 10px; }
     .speaker::before { content:""; width:22px; height:1px; background:currentColor; }
     .speaker--provoxys { color:var(--hot-bright); }
     .speaker--sam { color:var(--cold-bright); }
-    .regie { border:1px dashed var(--line); border-radius:3px; padding:12px 16px; margin:16px 0; background:rgba(5,8,17,.4);
-      font-family:var(--mono); font-size:.86rem; color:var(--muted); }
-    .regie .tag { font-family:var(--roman); font-weight:600; letter-spacing:.18em; text-transform:uppercase; font-size:.6rem; color:var(--gold); margin-right:8px; }
-    .regie--cue { border-style:solid; border-color:var(--line-2); color:var(--parch); }
-    .regie--cue .tag { color:var(--cold-bright); }
-    .regie--repli .tag { color:var(--soft); }
-    .regie--source .tag { color:var(--hot-bright); }
 
     /* BLOCKS */
     .science-block, .question-block, .lesson-block, .script-block { border-radius:3px; padding:20px 22px; margin:22px 0;
@@ -214,9 +207,6 @@
     .science-block p:last-child, .question-block p:last-child, .lesson-block p:last-child { margin-bottom:0; }
     .antiintox { border-left-color:var(--hot); }
     .antiintox .blk-label { color:var(--hot-bright); }
-
-    /* DIALOGUE (citations orales) */
-    .dialogue-block { border-left:2px solid var(--line); padding:4px 0 4px 20px; margin:14px 0; font-style:italic; color:var(--parch); }
 
     /* TABLES */
     .dtable-wrap { overflow-x:auto; margin:20px 0; border:1px solid var(--line-2); border-radius:3px; }
@@ -375,8 +365,8 @@
     .chapter-head h2 { max-width:22ch; margin-bottom:0; text-wrap:balance; }
     .chapter-number { position:static; grid-column:2; grid-row:1 / span 2; align-self:center; min-width:1.3em; text-align:right;
       font-size:clamp(3.5rem,8vw,7rem); -webkit-text-stroke-color:rgba(214,172,85,.24); }
-    .chapter .prose > p:not(.speaker), .chapter .prose > .dialogue-block,
-    .chapter .prose > h3.sub, .chapter .prose > .regie { max-width:78ch; }
+    .chapter .prose > p:not(.speaker),
+    .chapter .prose > h3.sub { max-width:78ch; }
     .chapter .prose > p { font-size:clamp(1rem,1.12vw,1.08rem); line-height:1.82; }
     .speaker { margin-top:34px; padding:7px 13px 7px 0; }
     .speaker::before { width:34px; }
@@ -418,7 +408,6 @@
 
     .science-block,.question-block,.lesson-block,.script-block { border-radius:14px; padding:24px 26px;
       background:linear-gradient(145deg,rgba(14,26,46,.68),rgba(7,12,26,.58)); box-shadow:0 16px 46px rgba(0,0,0,.14); }
-    .regie { border-radius:12px; }
     .dtable-wrap,.chapter-figure,.formula-block { border-radius:16px; }
     .chapter-figure { box-shadow:0 26px 80px rgba(0,0,0,.28); }
     .chapter-figure img { transition:transform .8s var(--ease),filter .8s var(--ease); }
@@ -514,7 +503,7 @@
        transcription redevient une colonne. */
     .chapter > .wrap { max-width:980px; }
     .chapter .prose { --measure:66ch; }
-    :is(.chapter .prose, .voice) > :is(p, h3.sub, .dialogue-block, .regie, ul, ol) { max-width:var(--measure); }
+    :is(.chapter .prose, .voice) > :is(p, h3.sub, ul, ol) { max-width:var(--measure); }
     :is(.chapter .prose, .voice) > :is(.formula-block, .chapter-figure, .dtable-wrap,
       .science-block, .lesson-block, .question-block, .script-block) { max-width:100%; }
     /* sans numéro de chapitre, le titre partait dans la colonne du numéro */
@@ -709,6 +698,76 @@
     @media (prefers-reduced-motion:reduce){
       .arrow-mark i, .arrow-mark b { transition:none; }
     }
+
+    /* ================================================================
+        VULGARISATION — citation hero, chemins de lecture, lexique,
+        définitions dans le fil, questions du chat dépliables
+        ================================================================ */
+    /* citation de hero : attribution + traduction en clair */
+    .hero-quote .hq-src { display:block; font-style:normal; font-family:var(--roman); font-weight:600;
+      font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-top:10px; }
+    .hero-quote .hq-plain { display:block; font-style:normal; font-size:.92rem; line-height:1.55;
+      color:var(--parch); opacity:.85; margin-top:8px; max-width:52ch; }
+
+    /* chemins de lecture */
+    .paths { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:22px; }
+    @media (max-width:860px){ .paths{ grid-template-columns:1fr; } }
+    .path { border:1px solid var(--line-2); border-left:3px solid var(--cold); border-radius:14px; padding:20px 22px;
+      background:linear-gradient(145deg,rgba(14,26,46,.68),rgba(7,12,26,.55)); }
+    .path b { font-family:var(--roman); letter-spacing:.1em; text-transform:uppercase; font-size:.78rem; color:var(--gold-bright); display:block; }
+    .path .dur { font-family:var(--mono); font-size:.7rem; color:var(--cold-bright); display:block; margin:4px 0 8px; }
+    .path p { margin:0; font-size:.92rem; color:var(--muted); line-height:1.6; }
+    .prereq { margin:20px 0 0; font-size:.9rem; color:var(--soft); max-width:78ch; }
+    .prereq a, .path a { color:var(--gold-bright); text-decoration:none; border-bottom:1px solid var(--line); }
+    .prereq a:hover, .path a:hover { border-bottom-color:var(--gold-bright); }
+
+    /* lexique */
+    .lex-groups { display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:18px; align-items:start; }
+    .lex-group { border:1px solid var(--line-2); border-radius:16px; overflow:hidden;
+      background:linear-gradient(145deg,rgba(14,26,46,.6),rgba(7,12,26,.5)); }
+    .lex-group > h3 { margin:0; padding:14px 18px; font-family:var(--roman); font-weight:600; font-size:.78rem;
+      letter-spacing:.14em; text-transform:uppercase; color:var(--gold-bright);
+      background:rgba(5,8,17,.45); border-bottom:1px solid var(--line-2); }
+    .lex-group > h3 span { color:var(--soft); font-weight:400; letter-spacing:.06em; }
+    details.lex-item { border-bottom:1px solid var(--line-2); }
+    details.lex-item:last-child { border-bottom:0; }
+    .lex-item > summary { cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;
+      padding:10px 18px; font-size:.94rem; transition:background .25s; }
+    .lex-item > summary::-webkit-details-marker { display:none; }
+    .lex-item > summary::before { content:"+"; flex:none; width:16px; font-family:var(--mono); color:var(--gold); text-align:center; }
+    .lex-item[open] > summary::before { content:"–"; }
+    .lex-item > summary:hover { background:rgba(214,172,85,.06); }
+    .lex-item > summary b { font-family:var(--roman); font-weight:600; font-size:.8rem; letter-spacing:.04em; color:var(--ink); }
+    .lex-item > summary .act { margin-left:auto; flex:none; font-family:var(--mono); font-size:.62rem; color:var(--soft); }
+    .lex-item > p { margin:0; padding:2px 18px 14px 44px; font-size:.88rem; line-height:1.6; color:var(--muted); }
+    .lex-item > p a { color:var(--cold-bright); text-decoration:none; }
+
+    /* définitions dans le fil du dossier */
+    .def-block { border-left:3px solid var(--info); }
+    .def-block .blk-label { color:var(--info); }
+    .def-block .blk-label .tag-act { margin-left:auto; font-weight:500; letter-spacing:.12em; color:var(--soft); font-size:.56rem; }
+
+    /* « à retenir » de fin d'acte : lesson-block teinté or */
+    .retain { border-left-color:var(--gold-bright); background:linear-gradient(145deg,rgba(214,172,85,.09),rgba(7,12,26,.55)); }
+    .retain .blk-label { color:var(--gold-bright); }
+
+    /* questions du chat dépliables */
+    details.faq-details { padding:0; overflow:hidden; }
+    details.faq-details > summary { cursor:pointer; list-style:none; padding:18px 24px; margin:0;
+      display:flex; align-items:center; gap:10px; }
+    details.faq-details > summary::-webkit-details-marker { display:none; }
+    details.faq-details > summary::after { content:"+"; margin-left:auto; font-family:var(--mono);
+      font-size:1rem; color:var(--gold-bright); flex:none; }
+    details.faq-details[open] > summary::after { content:"–"; }
+    details.faq-details > summary:hover { background:rgba(214,172,85,.05); }
+    details.faq-details > p { padding:0 24px 20px; }
+    details.faq-details > p:last-of-type { margin-bottom:0; }
+    details.faq-details .faq-note { font-family:var(--mono); font-size:.66rem; color:var(--soft); letter-spacing:.04em; }
+    @media (max-width:560px){
+      details.faq-details > summary { padding:16px 20px; }
+      details.faq-details > p { padding:0 20px 16px; }
+      .lex-item > p { padding-left:36px; }
+    }
   </style>
 </head>
 <body>
@@ -737,7 +796,7 @@
       <p class="eyebrow reveal in">Dossier <b>XXV</b> · Thermodynamique · Information · Cosmos</p>
       <h1 class="title reveal in" data-d="1">L'entropie, le temps<br>et l'<span class="foil">Univers</span></h1>
       <p class="lead reveal in" data-d="2">Pourquoi un café chaud refroidit-il&nbsp;? Pourquoi ne le voit-on jamais se réchauffer tout seul&nbsp;? De la machine à vapeur aux trous noirs, un grand live <b>Provoxys × Samlepirate</b> pour comprendre ce que mesure vraiment l'entropie — sans se contenter du mot «&nbsp;désordre&nbsp;».</p>
-      <p class="hero-quote reveal in" data-d="2">«&nbsp;On ne peut jamais annoncer “l'entropie” sans préciser trois éléments&nbsp;: les états considérés, les probabilités ou variables utilisées, et la frontière du système.&nbsp;»</p>
+      <p class="hero-quote reveal in" data-d="2">«&nbsp;On ne peut jamais annoncer “l'entropie” sans préciser trois éléments&nbsp;: les états considérés, les probabilités ou variables utilisées, et la frontière du système.&nbsp;»<span class="hq-src">— Sam, synthèse finale du live</span><span class="hq-plain">Traduction&nbsp;: avant de dire «&nbsp;désordre&nbsp;», dites de quels états vous parlez, avec quelles chances, et où vous tracez la limite.</span></p>
       <div class="hero-actions reveal in" data-d="3">
         <a class="btn btn--gold" href="#ouverture">Lire le dossier</a>
         <a class="btn btn--ghost" href="#labos">Les 26 laboratoires</a>
@@ -761,6 +820,7 @@
     </a>
     <p class="here" id="here" aria-live="polite"></p>
     <div class="nav" id="nav">
+      <a href="#lexique">Lexique</a>
       <a href="#labos">Les 26 laboratoires</a>
       <a href="#coulisses">Coulisses</a>
       <a href="../../sources/sources.html">Les Sources</a>
@@ -786,6 +846,8 @@
           <nav class="som-site" aria-label="Empire contre Intox">
             <p class="som-kicker">Empire contre Intox</p>
             <a href="#labos">Le banc d'essai — les 26 labos</a>
+            <a href="#lexique">Lexique — 46 mots définis simplement</a>
+            <a href="#faq">Questions du chat</a>
             <a href="../../sources/sources.html">Les Sources (Dossier XXVI)</a>
             <a href="../../index.html">Accueil ECI — tous les dossiers</a>
             <a href="../../LICENCE-CONTENU.md">Licence du contenu</a>
@@ -826,6 +888,92 @@
           <div class="learn-card"><div class="n">Objectif 1</div><h4>Sortir du mot « désordre »</h4><p>Une entropie dépend des états qu'on distingue, de leurs probabilités et de la frontière du système. Jamais un simple détecteur de bazar.</p></div>
           <div class="learn-card"><div class="n">Objectif 2</div><h4>Trois entropies à ne pas confondre</h4><p>Système, milieu, ensemble total&nbsp;: une partie peut perdre de l'entropie pendant que le total augmente. C'est là que se cachent les faux paradoxes.</p></div>
           <div class="learn-card"><div class="n">Objectif 3</div><h4>Une même idée, du café aux trous noirs</h4><p>Clausius, Boltzmann, Gibbs, Shannon, von Neumann, Bekenstein-Hawking&nbsp;: une famille de concepts reliés sans être identiques.</p></div>
+        </div>
+        <div class="paths">
+          <div class="path"><b>Pressé·e</b><span class="dur">~ 20 minutes</span><p>Lisez l'<a href="#ouverture">ouverture</a>, les cinq encadrés anti-intox et la <a href="#conclusion">conclusion</a> — le message essentiel y est.</p></div>
+          <div class="path"><b>Curieux·se</b><span class="dur">~ 1 heure</span><p>Ajoutez les actes <a href="#acte1">I</a> à <a href="#acte3">III</a>&nbsp;: des machines à vapeur au comptage de Boltzmann, le cœur du sujet.</p></div>
+          <div class="path"><b>Complet</b><span class="dur">~ 4 heures</span><p>Tout, dans l'ordre, avec les 26 labos. Les blocs «&nbsp;Respiration&nbsp;» marquent les pauses prévues du live&nbsp;; l'encart «&nbsp;À retenir&nbsp;» referme chaque acte.</p></div>
+        </div>
+        <p class="prereq">Prérequis&nbsp;: aucun en physique. Quelques formules utilisent probabilités et logarithmes — chacune est expliquée dans son encadré, et chaque terme technique est défini en une ligne dans le <a href="#lexique">lexique</a>.</p>
+      </div>
+    </section>
+
+    <!-- ===== LEXIQUE — chaque terme technique, en une ligne ===== -->
+    <section class="reveal" id="lexique">
+      <div class="wrap">
+        <p class="sec-eyebrow">Le lexique</p>
+        <div class="bench-head">
+          <h2>Quarante-six mots,<br>définis simplement</h2>
+          <p>Chaque terme technique du dossier, en une ligne et sans jargon. Ouvrez celui qui vous manque au moment où vous le croisez&nbsp;; l'étiquette à droite rappelle l'acte où il devient central. Quelques mots déjà définis dans le texte (macro-état, micro-état, exergie…) sont repris ici pour la consultation rapide.</p>
+        </div>
+        <div class="lex-groups">
+
+          <div class="lex-group">
+            <h3>Machines &amp; principes <span>· actes I–II</span></h3>
+            <details class="lex-item"><summary><b>travail</b><span class="act">acte I</span></summary><p>Énergie transférée de façon ordonnée (une force qui déplace quelque chose&nbsp;: piston, masse, arbre moteur), par opposition à la chaleur, transfert désordonné entre agitations microscopiques.</p></details>
+            <details class="lex-item"><summary><b>pression</b><span class="act">acte I</span></summary><p>Force exercée par unité de surface&nbsp;; au niveau microscopique, le résultat des chocs incessants des molécules contre les parois.</p></details>
+            <details class="lex-item"><summary><b>rendement</b><span class="act">acte I</span></summary><p>Part de la chaleur prélevée qui devient travail&nbsp;: <em>travail obtenu ÷ chaleur reçue</em>. Plafonné par la limite de Carnot.</p></details>
+            <details class="lex-item"><summary><b>kelvin (échelle absolue)</b><span class="act">acte I</span></summary><p>Échelle de température dont le zéro est le vrai zéro physique (0&nbsp;°C = 273,15&nbsp;K). Un rapport de températures n'a de sens que si le zéro est réel — d'où les kelvins dans la formule de Carnot.</p></details>
+            <details class="lex-item"><summary><b>isotherme</b><span class="act">acte I</span></summary><p>«&nbsp;À température constante&nbsp;»&nbsp;: le système échange de la chaleur avec une source sans changer de température.</p></details>
+            <details class="lex-item"><summary><b>adiabatique</b><span class="act">actes I–II</span></summary><p>«&nbsp;Sans échange de chaleur&nbsp;»&nbsp;: le système peut encore recevoir ou fournir du travail (un piston thermiquement isolé).</p></details>
+            <details class="lex-item"><summary><b>théorie calorique</b><span class="act">acte I</span></summary><p>La théorie de l'époque de Carnot&nbsp;: la chaleur comme un fluide impondérable qui se conserve. Fausse, mais compatible avec son raisonnement de limite — c'est toute la force de son modèle.</p></details>
+            <details class="lex-item"><summary><b>réversible / irréversible</b><span class="act">ouverture</span></summary><p>Réversible&nbsp;: on peut, en pensée, remonter le film sans rien laisser changer ailleurs (limite idéale). Irréversible&nbsp;: le monde garde une trace — encre diffusée, café refroidi (le cas réel).</p></details>
+            <details class="lex-item"><summary><b>fonction d'état</b><span class="act">acte II</span></summary><p>Grandeur qui ne dépend que de l'état du système, pas du chemin suivi pour y arriver — comme l'altitude d'un sommet, quel que soit le sentier. L'entropie en est une.</p></details>
+            <details class="lex-item"><summary><b>calorimètre</b><span class="act">actes I–II</span></summary><p>Enceinte isolée dans laquelle on mesure les échanges de chaleur (l'expérience de Joule, le mélange des deux eaux).</p></details>
+            <details class="lex-item"><summary><b>thermostat</b><span class="act">acte I</span></summary><p>Source de chaleur si grande que sa température ne bouge pas, qu'on lui prenne ou qu'on lui donne de la chaleur — les «&nbsp;sources&nbsp;» chaude et froide des machines.</p></details>
+            <details class="lex-item"><summary><b>énergie interne (U)</b><span class="act">acte I</span></summary><p>La somme de toutes les agitations microscopiques du système&nbsp;: mouvements des molécules, vibrations, liaisons chimiques.</p></details>
+          </div>
+
+          <div class="lex-group">
+            <h3>Compter les mondes <span>· acte III</span></h3>
+            <details class="lex-item"><summary><b>macro-état</b><span class="act">acte III</span></summary><p>La description globale, visible&nbsp;: «&nbsp;50 particules à gauche, 50 à droite&nbsp;», une pression, une température.</p></details>
+            <details class="lex-item"><summary><b>micro-état</b><span class="act">acte III</span></summary><p>La description détaillée&nbsp;: quelle particule est où, avec quelle vitesse. Un même macro-état cache une multitude de micro-états.</p></details>
+            <details class="lex-item"><summary><b>équiprobabilité</b><span class="act">acte III</span></summary><p>Le postulat de départ&nbsp;: chaque micro-état compatible a exactement la même chance. C'est elle qui rend le comptage possible.</p></details>
+            <details class="lex-item"><summary><b>multiplicité (Ω)</b><span class="act">acte III</span></summary><p>Le nombre de micro-états compatibles avec un macro-état. Plus Ω est grand, plus le macro-état est probable — l'équilibre est le champion des multiplicités.</p></details>
+            <details class="lex-item"><summary><b>logarithme</b><span class="act">acte III</span></summary><p>Répond à «&nbsp;la base, multipliée par elle-même combien de fois, donne ce nombre&nbsp;?&nbsp;» (log₂&nbsp;1000&nbsp;≈&nbsp;10). Il transforme les produits en sommes&nbsp;; en base <em>e</em> (ln) il donne des J/K, en base 2 des bits.</p></details>
+            <details class="lex-item"><summary><b>coefficient binomial</b><span class="act">acte III</span></summary><p>Le nombre de façons de choisir k objets parmi n&nbsp;: «&nbsp;50 pions parmi 100 cases&nbsp;» offre environ 10²⁹ possibilités.</p></details>
+            <details class="lex-item"><summary><b>quantum (pl. quanta)</b><span class="act">acte III</span></summary><p>Un paquet indivisible d'énergie, imposé par la mécanique quantique — les «&nbsp;points&nbsp;» que les deux solides d'Einstein s'échangent.</p></details>
+            <details class="lex-item"><summary><b>oscillateur (solide d'Einstein)</b><span class="act">acte III</span></summary><p>Modèle où chaque atome est un petit ressort vibrant autour de sa place&nbsp;; on y distribue l'énergie par paquets entiers.</p></details>
+          </div>
+
+          <div class="lex-group">
+            <h3>Matière, machines réelles &amp; vivant <span>· acte IV</span></h3>
+            <details class="lex-item"><summary><b>gradient</b><span class="act">acte IV</span></summary><p>Un écart entre deux points — de température, de concentration, de vitesse. Plus la pente est raide, plus le flux qu'il entraîne est fort.</p></details>
+            <details class="lex-item"><summary><b>relations d'Onsager</b><span class="act">acte IV</span></summary><p>Lois de la thermodynamique hors équilibre qui relient flux et forces près de l'équilibre (Lars Onsager, prix Nobel de chimie 1968).</p></details>
+            <details class="lex-item"><summary><b>chaleur latente (L)</b><span class="act">acte IV</span></summary><p>Énergie à fournir pour changer de phase <em>sans changer la température</em>&nbsp;: elle casse ou tisse les liaisons microscopiques au lieu d'agiter davantage.</p></details>
+            <details class="lex-item"><summary><b>enthalpie (H)</b><span class="act">acte IV</span></summary><p>Énergie totale du système <em>plus</em> le «&nbsp;travail de place&nbsp;» qu'il occupe (H = U + PV)&nbsp;: la bonne comptabilité à pression constante — une casserole, une réaction à l'air libre.</p></details>
+            <details class="lex-item"><summary><b>exergie</b><span class="act">acte IV</span></summary><p>Travail maximal récupérable en laissant un système rejoindre l'équilibre avec son environnement&nbsp;: la «&nbsp;part utile&nbsp;» de l'énergie. Toute entropie créée en détruit (Gouy-Stodola).</p></details>
+            <details class="lex-item"><summary><b>spin</b><span class="act">acte IV</span></summary><p>Variable binaire du modèle d'Ising&nbsp;: un petit aimant élémentaire pointant «&nbsp;en haut&nbsp;» ou «&nbsp;en bas&nbsp;».</p></details>
+            <details class="lex-item"><summary><b>magnétisation</b><span class="act">acte IV</span></summary><p>Orientation moyenne des spins&nbsp;: forte quand ils s'alignent (basse température), nulle quand leurs directions s'annulent.</p></details>
+            <details class="lex-item"><summary><b>capacité thermique</b><span class="act">acte IV</span></summary><p>Énergie nécessaire pour élever un corps d'un kelvin&nbsp;; près du point critique d'Ising, elle devient énorme.</p></details>
+            <details class="lex-item"><summary><b>susceptibilité</b><span class="act">acte IV</span></summary><p>Sensibilité de la magnétisation à un petit champ magnétique&nbsp;; elle explose, elle aussi, près de la transition de phase.</p></details>
+            <details class="lex-item"><summary><b>Monte-Carlo (Metropolis)</b><span class="act">acte IV</span></summary><p>Tirages au sort répétés qui explorent les configurations les plus probables&nbsp;: l'algorithme qui fait vivre la mosaïque d'Ising.</p></details>
+          </div>
+
+          <div class="lex-group">
+            <h3>Information <span>· acte V</span></h3>
+            <details class="lex-item"><summary><b>bit</b><span class="act">actes III–V</span></summary><p>Un chiffre binaire, 0 ou 1&nbsp;: la plus petite réponse possible à une question oui/non. Une entropie en bits compte les questions binaires nécessaires pour lever toute l'incertitude.</p></details>
+            <details class="lex-item"><summary><b>code préfixe</b><span class="act">acte V</span></summary><p>Code où aucun mot n'est le début d'un autre&nbsp;: on décode au fil, sans espaces ni ambiguïté (principe du codage de Huffman).</p></details>
+            <details class="lex-item"><summary><b>redondance</b><span class="act">acte V</span></summary><p>Information répétée volontairement&nbsp;: le message s'allonge, mais survit au bruit — le principe des codes correcteurs d'erreurs.</p></details>
+            <details class="lex-item"><summary><b>état pur / mélange</b><span class="act">acte V</span></summary><p>Pur&nbsp;: l'état quantique est connu aussi parfaitement que la physique le permet (S&nbsp;=&nbsp;0). Mélange&nbsp;: il reste du hasard sur ce qui a été préparé (S&nbsp;&gt;&nbsp;0).</p></details>
+            <details class="lex-item"><summary><b>matrice de densité (ρ)</b><span class="act">acte V</span></summary><p>La fiche d'identité probabiliste complète d'un état quantique&nbsp;; ses valeurs propres donnent l'entropie de von Neumann.</p></details>
+            <details class="lex-item"><summary><b>intrication</b><span class="act">acte V</span></summary><p>Deux particules qui ne forment plus qu'un seul état&nbsp;: le tout peut être pur alors que chaque partie, prise seule, est un mélange.</p></details>
+            <details class="lex-item"><summary><b>ensembles de Gibbs</b><span class="act">coulisses</span></summary><p>Au lieu de suivre un seul système, on moyenne sur tous ses clones imaginables soumis aux mêmes contraintes — la méthode qui généralise Boltzmann.</p></details>
+            <details class="lex-item"><summary><b>entropie de Rényi</b><span class="act">coulisses</span></summary><p>Famille d'entropies généralisant Shannon par un paramètre d'ordre&nbsp;: on règle la sensibilité aux événements rares ou dominants.</p></details>
+          </div>
+
+          <div class="lex-group">
+            <h3>Temps &amp; cosmos <span>· actes VI–VII</span></h3>
+            <details class="lex-item"><summary><b>coarse-graining</b><span class="act">acte VI</span></summary><p>«&nbsp;Grain grossier&nbsp;»&nbsp;: on regroupe des milliards de détails microscopiques en quelques variables (densité, pression, température)… et on perd le reste.</p></details>
+            <details class="lex-item"><summary><b>paradoxe de Loschmidt</b><span class="act">acte VI</span></summary><p>Objection de 1876&nbsp;: si les lois microscopiques sont réversibles, renverser toutes les vitesses devrait faire reculer l'entropie. La réponse tient à l'extrême fragilité de l'inversion.</p></details>
+            <details class="lex-item"><summary><b>horizon (de trou noir)</b><span class="act">acte VII</span></summary><p>La surface de non-retour&nbsp;: ce qui la franchit ne peut plus rien envoyer vers l'extérieur, pas même la lumière.</p></details>
+            <details class="lex-item"><summary><b>rayon de Schwarzschild</b><span class="act">acte VII</span></summary><p>Le rayon de l'horizon d'un trou noir sans rotation ni charge&nbsp;: environ 3&nbsp;km par masse solaire.</p></details>
+            <details class="lex-item"><summary><b>fond diffus cosmologique</b><span class="act">acte VII</span></summary><p>La lueur fossile du Big Bang, aujourd'hui refroidie à 2,725&nbsp;K, qui baigne tout l'Univers — le «&nbsp;thermostat&nbsp;» cosmique actuel.</p></details>
+            <details class="lex-item"><summary><b>unitarité</b><span class="act">acte VII</span></summary><p>Règle d'or de la mécanique quantique&nbsp;: l'information ne se détruit jamais, elle se brouille — l'enjeu exact du paradoxe des trous noirs.</p></details>
+            <details class="lex-item"><summary><b>courbe / temps de Page</b><span class="act">acte VII</span></summary><p>Le moment où un trou noir qui s'évapore a rendu la moitié de son entropie&nbsp;; après lui, l'information peut ressortir — si l'évolution est unitaire.</p></details>
+            <details class="lex-item"><summary><b>îlots &amp; surfaces quantiques extrémales</b><span class="act">acte VII</span></summary><p>Outils récents du calcul de l'entropie du rayonnement&nbsp;: ils reproduisent la courbe de Page dans certains cadres théoriques — sans clore le débat.</p></details>
+          </div>
+
         </div>
       </div>
     </section>
@@ -891,6 +1039,11 @@
               <noscript><p class="viz-noscript">Cette visualisation interactive nécessite JavaScript. Elle compare des phénomènes réversibles (orbite, collisions) et irréversibles (diffusion, fonte).</p></noscript>
             </div>
 
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définition · réversible ≠ irréversible <span class="tag-act">le mot-clé du dossier</span></p>
+              <p>Une transformation est <b>réversible</b> si l'on peut, au moins en pensée, remonter son film sans rien laisser changer ailleurs&nbsp;: orbites et chocs idéaux passent le test. Elle est <b>irréversible</b> dès qu'elle laisse une trace — encre diffusée, glaçon fondu, café refroidi. Toute la physique du dossier tient dans cette différence&nbsp;: <em>réversible</em> est une limite idéale, <em>irréversible</em> le monde réel.</p>
+            </aside>
+
             <p>«&nbsp;Provoxys, à toi&nbsp;: avant de comprendre cette direction, il faut revenir aux machines qui ont obligé les physiciens à la découvrir.&nbsp;»</p>
           </div>
         </div>
@@ -931,6 +1084,11 @@
             <p>En bas, l'entropie&nbsp;: la source chaude perd environ 1,67 joule par kelvin. La source froide gagne exactement la même quantité. Dans cette limite idéale, l'entropie est transportée sans être produite.</p>
             <p>Si j'ajoute des frottements ou un échange de chaleur trop brutal, l'énergie se conserve encore. En revanche, de l'entropie est créée, le travail utile diminue et davantage de chaleur finit dans la source froide.&nbsp;»</p>
 
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définitions · travail, chaleur, rendement</p>
+              <p>Le <b>travail</b> est une énergie transférée de façon <em>ordonnée</em> — une force qui déplace quelque chose (piston, masse, arbre moteur). La <b>chaleur</b> est une énergie transférée de façon <em>désordonnée</em>, d'agitation microscopique à agitation microscopique. Le <b>rendement</b> est la part de la chaleur prélevée qui devient travail&nbsp;: <em>travail obtenu ÷ chaleur reçue</em>.</p>
+            </aside>
+
             <div class="viz-mount reveal">
               <div class="viz-lede"><span class="vid">V2</span> Machine thermique et flux · réglez températures, chaleur et irréversibilité</div>
               <div class="entropy-gallery"><div data-entropy-viz="V2" data-seed="42"></div></div>
@@ -963,6 +1121,11 @@
               <div class="formula" data-tex="\eta_{\text{Carnot}} = 1 - \dfrac{T_{\text{froid}}}{T_{\text{chaud}}}"></div>
               <p class="fb-note">Le rendement maximal d'un moteur cyclique entre deux sources ne dépend que du <b>rapport des températures absolues</b> (en kelvins), pas d'un simple écart de degrés. Avec <span class="imath" data-tex="T_{\text{chaud}}=600\,\mathrm{K}"></span> et <span class="imath" data-tex="T_{\text{froid}}=300\,\mathrm{K}"></span>&nbsp;: <span class="imath" data-tex="\eta = 1-\tfrac{300}{600}=0{,}5"></span>, soit <b>50&nbsp;%</b>. Aucune machine réelle entre ces deux sources ne peut faire mieux.</p>
             </div>
+
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définition · pourquoi des kelvins&nbsp;?</p>
+              <p>Le <b>kelvin</b> est l'échelle de température dont le zéro est le vrai zéro physique — l'<em>échelle absolue</em>&nbsp;: 0&nbsp;°C = 273,15&nbsp;K. Un rapport n'a de sens que si le zéro est réel&nbsp;: entre 20&nbsp;°C et 40&nbsp;°C, «&nbsp;deux fois plus chaud&nbsp;» ne veut rien dire&nbsp;; entre 293&nbsp;K et 586&nbsp;K, si. C'est pourquoi le rendement de Carnot exige des kelvins.</p>
+            </aside>
 
             <p>Ce point est essentiel&nbsp;: le rendement ne dépend pas simplement d'un nombre de degrés d'écart. Il dépend du rapport entre les températures absolues.</p>
             <p>Carnot travaille encore avec la théorie calorique de son époque. La formulation énergétique moderne viendra ensuite avec Mayer, Joule, Helmholtz, Clausius et Kelvin. Mais son raisonnement établit déjà qu'une limite de rendement est inscrite dans la structure même des échanges thermiques.&nbsp;»</p>
@@ -1025,6 +1188,11 @@
 
             <p>«&nbsp;Question pour le chat&nbsp;: si je double la quantité d'eau sans changer les masses, est-ce que l'énergie transférée change, ou seulement l'élévation de température&nbsp;?&nbsp;»</p>
             <p>«&nbsp;Provoxys, maintenant nous avons la conservation. Il nous manque encore le sens.&nbsp;»</p>
+
+            <div class="lesson-block retain">
+              <p class="blk-label">◆ À retenir — l'acte I en une phrase</p>
+              <p>Un moteur thermique fonctionne grâce à une <b>différence de température</b>, et même parfait, il ne transforme jamais toute la chaleur en travail&nbsp;: son rendement maximal ne dépend que du <b>rapport des températures absolues</b> — l'énergie se conserve toujours, mais une part de chaleur doit être rejetée à la source froide.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1061,6 +1229,11 @@
               <div class="formula" data-tex="\mathrm{d}S = \dfrac{\delta Q_{\text{rev}}}{T} \qquad\qquad \Delta S = S_{\text{échangée}} + S_{\text{créée}},\quad S_{\text{créée}} \geq 0"></div>
               <p class="fb-note">Pour une transformation <b>réversible</b>, la variation d'entropie vaut la chaleur échangée divisée par la température absolue <b>T</b>. En général, la variation d'entropie d'un système se décompose en une part <b>échangée</b> avec l'extérieur et une part <b>créée</b> à l'intérieur, toujours positive ou nulle — <b>nulle</b> seulement dans la limite réversible. L'entropie se mesure en <b>joules par kelvin</b> (J/K)&nbsp;: ce n'est pas une énergie.</p>
             </div>
+
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définition · fonction d'état</p>
+              <p>Une <b>fonction d'état</b> est une grandeur qui ne dépend que de l'état où se trouve le système, pas du chemin suivi pour y arriver — comme l'altitude d'un sommet, qu'on y soit monté par le sentier facile ou par la face nord. L'entropie en est une&nbsp;: sa variation entre deux états est la même, que la transformation soit réversible ou non — seule la répartition entre «&nbsp;échangée&nbsp;» et «&nbsp;créée&nbsp;» change.</p>
+            </aside>
 
             <p>Cette entropie créée est toujours positive ou nulle. Nulle dans la limite réversible, positive dans un processus réel.</p>
             <p>Et voici une nuance capitale&nbsp;: l'entropie d'un système peut diminuer. Celle d'un réfrigérateur froid, d'un cristal qui se forme ou d'un organisme qui construit une structure peut localement diminuer. Ce que le second principe interdit, c'est une diminution de l'entropie totale d'un ensemble isolé.&nbsp;»</p>
@@ -1122,6 +1295,12 @@
             </div>
 
             <p>«&nbsp;La frontière n'est donc pas un détail graphique. Elle détermine ce que nous appelons le système et les flux qui traversent notre comptabilité.&nbsp;»</p>
+
+            <details class="question-block faq-details">
+              <summary class="blk-label">«&nbsp;Est-ce que l'entropie augmente toujours partout&nbsp;?&nbsp;» <span class="faq-note">question du chat — déplier</span></summary>
+              <p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Non. L'entropie d'une partie d'un système peut diminuer. Un réfrigérateur refroidit son intérieur, un cristal se forme, un organisme construit des structures. Mais ces processus exportent de l'entropie et en produisent ailleurs. C'est le bilan de l'ensemble isolé qui ne diminue pas.&nbsp;»</p>
+            </details>
+
             <p>«&nbsp;Provoxys, il reste un dernier principe classique avant les molécules.&nbsp;»</p>
           </div>
         </div>
@@ -1142,6 +1321,11 @@
             <p>Cela permet de définir des entropies absolues et pas seulement des variations d'entropie.</p>
             <p>Mais attention à deux simplifications. Premièrement, un matériau réel peut conserver une entropie résiduelle s'il possède plusieurs configurations gelées ou des défauts. Deuxièmement, le zéro absolu n'est pas simplement “plus aucun mouvement”. La mécanique quantique conserve des fluctuations de point zéro.</p>
             <p>Enfin, atteindre exactement zéro kelvin demanderait une procédure limite inaccessible en un nombre fini d'opérations. Nous pouvons nous en approcher extraordinairement près, pas l'atteindre.&nbsp;»</p>
+
+            <div class="lesson-block retain">
+              <p class="blk-label">◆ À retenir — l'acte II en une phrase</p>
+              <p>L'entropie se mesure en <b>joules par kelvin</b>, pas en joules&nbsp;: dans un système isolé (ou simplement sans échange de chaleur), elle ne peut qu'augmenter ou rester constante — mais chaque <b>partie</b> peut en perdre, si le total en gagne davantage.</p>
+            </div>
 
             <div class="lesson-block">
               <p class="blk-label">◆ Respiration — fin de la première heure</p>
@@ -1209,6 +1393,16 @@
               <p>«&nbsp;Identiques&nbsp;» signifie ici <b>identiques entre la grille rangée et la grille aléatoire</b> — pour un même nombre de pions, l'entropie binaire (1&nbsp;bit/case, soit 100&nbsp;bits) et la log-multiplicité <span class="imath" data-tex="\log_2 \binom{100}{50} \approx 96{,}3\ \text{bits}"></span> ne dépendent que de la <em>composition</em>, pas de l'arrangement. Attention&nbsp;: cela ne veut pas dire que ces deux nombres sont égaux <em>entre eux</em> (100 ≠ 96,3)&nbsp;; l'écart mesure l'information «&nbsp;perdue&nbsp;» en fixant exactement le nombre de pions. Seule l'entropie des motifs 2×2 distingue le rangé de l'aléatoire.</p>
             </aside>
 
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définition · le bit</p>
+              <p>Un <b>bit</b> est un chiffre binaire, 0 ou 1&nbsp;: la plus petite réponse possible à une question oui/non — une case noire ou blanche, un spin haut ou bas. Mesurer une entropie «&nbsp;en bits&nbsp;» compte simplement le nombre de questions binaires nécessaires pour lever toute l'incertitude.</p>
+            </aside>
+
+            <details class="question-block faq-details">
+              <summary class="blk-label">«&nbsp;Une chambre en bazar a-t-elle plus d'entropie&nbsp;?&nbsp;» <span class="faq-note">question du chat — déplier</span></summary>
+              <p><b style="color:var(--cold-bright)">Sam —</b> «&nbsp;Pas au sens thermodynamique mesurable simplement. On peut inventer une mesure informationnelle des positions d'objets, mais elle dépendra des catégories choisies. Une chambre ne fournit pas une illustration universelle de la formule de Boltzmann.&nbsp;»</p>
+            </details>
+
             <p>«&nbsp;Provoxys, continue&nbsp;: pourquoi l'équilibre domine-t-il à ce point&nbsp;?&nbsp;»</p>
           </div>
         </div>
@@ -1242,6 +1436,11 @@
               <noscript><p class="viz-noscript">Visualisation interactive (JavaScript requis)&nbsp;: Ω(n_gauche), ln Ω et probabilité du macro-état.</p></noscript>
             </div>
 
+            <aside class="science-block">
+              <p class="blk-label">◆ Ordre de grandeur · à quel point «&nbsp;jamais&nbsp;»&nbsp;?</p>
+              <p>Choisir 50 pions parmi 100 offre déjà ~10²⁹ arrangements — <b>cent mille milliards de fois plus</b> que les secondes écoulées depuis le Big Bang (~4&nbsp;×&nbsp;10¹⁷&nbsp;s). Et une gorgée d'eau contient ~10²⁴ molécules&nbsp;: davantage qu'il n'y a de gorgées dans tous les océans de la Terre. Quand le dossier dit qu'un retour spontané «&nbsp;n'est pas une stratégie expérimentale&nbsp;», c'est à cette échelle-là qu'il faut le penser.</p>
+            </aside>
+
             <p>«&nbsp;Voilà comment une loi statistique devient, dans la pratique, une loi implacable.&nbsp;»</p>
             <p>«&nbsp;À toi Provoxys pour la formule et pour Gibbs.&nbsp;»</p>
           </div>
@@ -1268,6 +1467,11 @@
               <div class="formula" data-tex="S = -k_B \sum_i p_i \ln p_i"></div>
               <p class="fb-note">Quand les micro-états ne sont pas équiprobables, l'entropie fait intervenir chaque probabilité <span class="imath" data-tex="p_i"></span>. Si tous les états sont équiprobables (<span class="imath" data-tex="p_i = 1/\Omega"></span>), on retombe <b>exactement</b> sur Boltzmann <span class="imath" data-tex="S = k_B \ln \Omega"></span>. Une distribution <b>concentrée</b> a une entropie faible&nbsp;; une distribution <b>uniforme</b> sur de nombreux états, l'entropie la plus élevée.</p>
             </div>
+
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définition · le logarithme, en une image</p>
+              <p>Un <b>logarithme</b> répond à la question «&nbsp;la base, multipliée par elle-même combien de fois, donne ce nombre&nbsp;?&nbsp;» — log₂(1000)&nbsp;≈&nbsp;10, car 2¹⁰&nbsp;≈&nbsp;1000. Il transforme les multiplications en additions&nbsp;: exactement ce qu'il faut à une entropie qui doit s'<em>additionner</em> quand les possibilités se <em>multiplient</em>. En base <em>e</em> (ln), il donne des joules par kelvin&nbsp;; en base 2, des bits — le choix de la base fixe l'unité, rien de plus.</p>
+            </aside>
 
             <p>Une distribution très concentrée possède une entropie faible. Une distribution uniforme sur de nombreux états possède une entropie plus élevée.</p>
             <p>Cette formulation permet de traiter des systèmes en contact avec un environnement thermique et prépare aussi le rapprochement mathématique avec l'entropie de Shannon. Mais ressemblance mathématique ne signifie pas identité automatique de sens physique.&nbsp;»</p>
@@ -1349,6 +1553,11 @@
             </div>
 
             <p>«&nbsp;Provoxys, nous savons maintenant pourquoi l'équilibre domine. Regardons où l'entropie est produite dans des phénomènes réels.&nbsp;»</p>
+
+            <div class="lesson-block retain">
+              <p class="blk-label">◆ À retenir — l'acte III en une phrase</p>
+              <p>Un même état visible cache une multitude de configurations microscopiques&nbsp;: l'équilibre n'est pas un état plus «&nbsp;rangé&nbsp;», c'est simplement le macro-état <b>le plus nombreux</b> — et à 10²³ particules, «&nbsp;le plus probable&nbsp;» veut dire «&nbsp;toujours observé&nbsp;».</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1415,6 +1624,11 @@
               <div class="formula" data-tex="\Delta S = \dfrac{L}{T} \qquad\qquad G = H - TS,\quad (\Delta G)_{T,P} \leq 0"></div>
               <p class="fb-note">À température constante <b>T</b>, une transition réversible de chaleur latente <b>L</b> augmente l'entropie de <span class="imath" data-tex="L/T"></span> — d'où un plateau de température qui n'est pas un plateau d'entropie. En chimie, l'<b>énergie libre de Gibbs</b> <span class="imath" data-tex="G = H - TS"></span> combine enthalpie, température et entropie&nbsp;: à <b>T</b> et <b>P</b> constantes, une transformation spontanée fait décroître <b>G</b> jusqu'à l'équilibre. «&nbsp;Spontané&nbsp;» ne veut pas dire «&nbsp;rapide&nbsp;».</p>
             </div>
+
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définitions · chaleur latente &amp; enthalpie</p>
+              <p>La <b>chaleur latente</b> L est l'énergie à fournir pour changer de phase <em>sans changer la température</em>&nbsp;: elle casse ou tisse les liaisons microscopiques au lieu d'agiter davantage les molécules. L'<b>enthalpie</b> H est l'énergie totale du système <em>plus</em> le «&nbsp;travail de place&nbsp;» qu'il occupe (H&nbsp;=&nbsp;U&nbsp;+&nbsp;PV)&nbsp;: à pression constante — une casserole sur le feu, une réaction à l'air libre — c'est elle qui tient les comptes, et c'est pourquoi G&nbsp;=&nbsp;H&nbsp;−&nbsp;TS s'écrit avec elle.</p>
+            </aside>
 
             <p>En chimie, l'énergie libre de Gibbs combine enthalpie, température et entropie. À température et pression constantes, une transformation spontanée tend vers une diminution de G jusqu'à l'équilibre.</p>
             <p>Cela évite une autre erreur fréquente&nbsp;: “spontané” ne signifie pas “rapide”. Une réaction peut être thermodynamiquement favorable et rester presque bloquée par une barrière d'activation.&nbsp;»</p>
@@ -1507,6 +1721,11 @@
               <noscript><p class="viz-noscript">Visualisation interactive (JavaScript requis)&nbsp;: nourriture, énergie chimique, travail, chaleur, déchets et entropie.</p></noscript>
             </div>
 
+            <details class="question-block faq-details">
+              <summary class="blk-label">«&nbsp;Le vivant combat-il l'entropie&nbsp;?&nbsp;» <span class="faq-note">question du chat — déplier</span></summary>
+              <p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Un organisme maintient une organisation locale grâce à des flux de matière et d'énergie. Il absorbe de l'énergie de haute qualité, effectue des transformations et rejette chaleur et déchets. Le bilan avec son environnement respecte le second principe.&nbsp;»</p>
+            </details>
+
             <p>«&nbsp;Provoxys, une transition entre ordre et désordre peut aussi être étudiée dans un modèle beaucoup plus abstrait&nbsp;: Ising.&nbsp;»</p>
           </div>
         </div>
@@ -1546,6 +1765,11 @@
             </aside>
 
             <p>«&nbsp;Voilà un bon avertissement&nbsp;: deux images visuellement semblables peuvent ne pas représenter la même distribution, et donc pas la même situation thermodynamique.&nbsp;»</p>
+
+            <div class="lesson-block retain">
+              <p class="blk-label">◆ À retenir — l'acte IV en une phrase</p>
+              <p>L'entropie est produite par les <b>flux irréversibles</b> — gradients, frottements — et chaque irréversibilité détruit de l'<b>exergie</b>, la part utile de l'énergie&nbsp;; le vivant ne viole rien&nbsp;: il maintient son ordre en <b>exportant</b> de l'entropie.</p>
+            </div>
 
             <div class="lesson-block">
               <p class="blk-label">◆ Respiration — avant la seconde partie</p>
@@ -1646,11 +1870,16 @@
             <div class="formula-block">
               <div class="fb-head">Principe de Landauer <span class="fb-tag">Coût de l'effacement</span></div>
               <div class="formula" data-tex="Q_{\min} = k_B T \ln 2 \qquad\qquad \Delta S_{\min} = k_B \ln 2 \ \text{par bit effacé}"></div>
-              <p class="fb-note">Effacer un bit logique de façon <b>irréversible</b> dissipe au minimum <span class="imath" data-tex="k_B T \ln 2"></span> en chaleur (≈ <span class="imath" data-tex="2{,}9 \times 10^{-21}\ \mathrm{J}"></span> à 300&nbsp;K), soit une production d'entropie d'au moins <span class="imath" data-tex="k_B \ln 2"></span> par bit. Ce coût est attaché à l'<b>effacement</b>, pas automatiquement à la mesure&nbsp;: une mesure peut, en principe, être réalisée réversiblement. Confirmé expérimentalement (Bérut <em>et al.</em>, 2012).</p>
+              <p class="fb-note">Effacer un bit logique de façon <b>irréversible</b> dissipe au minimum <span class="imath" data-tex="k_B T \ln 2"></span> en chaleur (≈ <span class="imath" data-tex="2{,}9 \times 10^{-21}\ \mathrm{J}"></span> à 300&nbsp;K), soit une production d'entropie d'au moins <span class="imath" data-tex="k_B \ln 2"></span> par bit. Ce coût est attaché à l'<b>effacement</b>, pas automatiquement à la mesure&nbsp;: une mesure peut, en principe, être réalisée réversiblement. Confirmé expérimentalement (Bérut <em>et al.</em>, 2012). À cette limite, effacer <b>un milliard de bits par seconde</b> ne dégagerait que ~3 picowatts&nbsp;: ce n'est pas Landauer qui chauffe nos ordinateurs — les puces réelles dissipent encore des milliers à des millions de fois davantage.</p>
             </div>
 
             <p>Je déclenche l'effacement. La courbe violette monte du côté de l'environnement. Le gaz a gagné de l'ordre, mais le bilan gaz plus mémoire plus environnement ne diminue pas.</p>
             <p>Nuance importante&nbsp;: ce coût minimal est attaché à l'effacement logique irréversible, pas automatiquement à toute mesure. Une mesure peut, en principe, être réalisée de manière réversible dans un modèle idéal. C'est la fermeture du cycle informationnel qui oblige à payer.&nbsp;»</p>
+
+            <details class="question-block faq-details">
+              <summary class="blk-label">«&nbsp;Le démon paie-t-il lorsqu'il mesure&nbsp;?&nbsp;» <span class="faq-note">question du chat — déplier</span></summary>
+              <p><b style="color:var(--cold-bright)">Sam —</b> «&nbsp;Pas nécessairement au minimum de Landauer pour chaque mesure. Le point incontournable dans un cycle complet est la remise à zéro irréversible de la mémoire. Dans un appareil réel, mesure, contrôle et porte consomment évidemment bien davantage que cette limite idéale.&nbsp;»</p>
+            </details>
 
             <div class="viz-mount reveal">
               <div class="viz-lede"><span class="vid">V18</span> Démon de Maxwell complet · gaz, mémoire, environnement et bilan total</div>
@@ -1719,6 +1948,11 @@
               <p class="fb-note"><span class="imath" data-tex="\rho"></span> (rho) est la <b>matrice de densité</b> de l'état quantique. Un <b>état pur</b> a une entropie de von Neumann <b>nulle</b>&nbsp;; un <b>mélange statistique</b> en a une positive. La subtilité de l'<b>intrication</b>&nbsp;: un système global peut être pur (<span class="imath" data-tex="S=0"></span>) alors que chacune de ses parties, prise seule, possède une entropie positive.</p>
             </div>
 
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définitions · ρ, pur, mélange, intrication</p>
+              <p>La <b>matrice de densité</b> ρ est la fiche d'identité probabiliste complète d'un état quantique. Un état <b>pur</b> est connu aussi parfaitement que la physique le permet (S&nbsp;=&nbsp;0)&nbsp;; un <b>mélange</b> garde du hasard sur ce qui a été préparé (S&nbsp;&gt;&nbsp;0). Deux particules <b>intriquées</b> ne forment plus qu'un seul état&nbsp;: le tout peut être pur alors que chaque moitié, lue séparément, est un mélange — l'information est dans les <em>corrélations</em>, pas dans les parties.</p>
+            </aside>
+
             <p>Un état pur possède une entropie de von Neumann nulle. Un mélange statistique peut en posséder une positive.</p>
             <p>L'intrication ajoute une subtilité saisissante&nbsp;: un système global peut être dans un état pur tandis que chacune de ses parties, considérée seule, possède une entropie positive.</p>
             <p>Cette entropie ne se réduit pas à une ignorance classique sur une bille déjà cachée quelque part. Elle encode la structure quantique de l'état et devient centrale dans l'étude de l'information quantique et des trous noirs.&nbsp;»</p>
@@ -1736,6 +1970,11 @@
             </div>
 
             <p>«&nbsp;Provoxys, nous avons maintenant tous les outils nécessaires pour revenir à la flèche du temps.&nbsp;»</p>
+
+            <div class="lesson-block retain">
+              <p class="blk-label">◆ À retenir — l'acte V en une phrase</p>
+              <p>L'information est <b>physique</b>&nbsp;: effacer un bit dissipe au minimum <span class="imath" data-tex="k_B T \ln 2"></span> de chaleur — et c'est ce coût d'effacement, payé par la mémoire du démon, qui sauve le second principe face à Maxwell.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1780,6 +2019,11 @@
               <noscript><p class="viz-noscript">Visualisation interactive (JavaScript requis)&nbsp;: dynamique microscopique réversible vs description coarse-grained irréversible.</p></noscript>
             </div>
 
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définition · le paradoxe de Loschmidt</p>
+              <p>En 1876, <b>Josef Loschmidt</b> objecte à Boltzmann&nbsp;: si les lois microscopiques sont réversibles, renverser toutes les vitesses d'un gaz devrait faire reculer son entropie. La visualisation ci-dessus donne la réponse&nbsp;: l'inversion <em>existe</em> mais est d'une fragilité extrême — la moindre perturbation la détruit, et la description macroscopique a déjà perdu les détails qu'elle exige.</p>
+            </aside>
+
             <p>«&nbsp;Question au chat&nbsp;: une vidéo inversée suffit-elle à inverser toutes les vitesses moléculaires et toutes les corrélations avec l'environnement&nbsp;? Évidemment non.&nbsp;»</p>
             <p>«&nbsp;Provoxys, quelles autres flèches associons-nous au temps&nbsp;?&nbsp;»</p>
           </div>
@@ -1803,6 +2047,11 @@
             <p>La flèche cosmologique est liée à l'expansion de l'Univers, sans qu'expansion et augmentation d'entropie soient simplement synonymes.</p>
             <p>La flèche causale distingue ce que nous appelons cause et effet. La flèche psychologique correspond à notre mémoire du passé et à notre ignorance du futur.</p>
             <p>Ces flèches sont reliées dans notre Univers, mais les identifier toutes sans démonstration serait excessif. Le point robuste pour ce live est que la formation de traces et de mémoires est un processus physique irréversible placé dans une histoire cosmique aux conditions initiales très particulières.&nbsp;»</p>
+
+            <div class="lesson-block retain">
+              <p class="blk-label">◆ À retenir — l'acte VI en une phrase</p>
+              <p>Les lois microscopiques sont réversibles&nbsp;: l'irréversibilité naît du <b>regroupement des détails</b> (coarse-graining) et de <b>conditions initiales</b> cosmiques très particulières — l'entropie n'est pas le temps, elle donne une <b>flèche</b> au temps.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1873,6 +2122,11 @@
               <p class="fb-note">L'entropie d'un trou noir est proportionnelle à l'<b>aire</b> <b>A</b> de son horizon (pas à son volume). Elle réunit quatre constantes fondamentales&nbsp;: <span class="imath" data-tex="k_B"></span> (Boltzmann), <span class="imath" data-tex="c"></span> (lumière), <span class="imath" data-tex="G"></span> (gravitation) et <span class="imath" data-tex="\hbar"></span> (Planck réduite) — un carrefour rare entre thermodynamique, relativité générale et théorie quantique. Conséquence contre-intuitive&nbsp;: comme <span class="imath" data-tex="S \propto M^2"></span> mais la température <span class="imath" data-tex="T \propto 1/M"></span>, un <b>gros trou noir est plus froid et plus entropique</b> qu'un petit.</p>
             </div>
 
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définitions · horizon &amp; rayon de Schwarzschild</p>
+              <p>L'<b>horizon</b> d'un trou noir est sa surface de non-retour&nbsp;: ce qui la franchit ne peut plus rien envoyer vers l'extérieur, pas même la lumière — c'est son <em>aire</em> A qui porte l'entropie. Le <b>rayon de Schwarzschild</b> est le rayon de cet horizon pour un trou noir sans rotation ni charge&nbsp;: environ 3&nbsp;km par masse solaire.</p>
+            </aside>
+
             <p>Ce résultat est l'un des carrefours les plus profonds de la physique moderne&nbsp;: thermodynamique, relativité générale, théorie quantique et information s'y rencontrent.</p>
             <p>Et il produit une propriété contre-intuitive&nbsp;: un gros trou noir est plus froid qu'un petit.&nbsp;»</p>
 
@@ -1892,6 +2146,16 @@
             <aside class="science-block antiintox">
               <p class="blk-label">◆ Anti-intox · un trou noir stellaire absorbe aujourd'hui plus qu'il n'émet</p>
               <p>Pour une masse solaire&nbsp;: rayon ≈ <b>2,95&nbsp;km</b>, température de Hawking ≈ <b>6&nbsp;×&nbsp;10⁻⁸&nbsp;K</b>, entropie ≈ <b>10⁷⁷&nbsp;k_B</b> (valeurs recalculées). Cette température est ~10⁸ fois <b>inférieure</b> à celle du fond diffus cosmologique (<span class="imath" data-tex="2{,}725\ \mathrm{K}"></span>)&nbsp;: un tel trou noir <b>absorbe</b> donc aujourd'hui plus de rayonnement qu'il n'en émet. L'évaporation nette ne domine que dans un futur extraordinairement lointain.</p>
+            </aside>
+
+            <details class="question-block faq-details">
+              <summary class="blk-label">«&nbsp;Les trous noirs rayonnent-ils vraiment&nbsp;?&nbsp;» <span class="faq-note">question du chat — déplier</span></summary>
+              <p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Le rayonnement de Hawking est une prédiction robuste de la théorie quantique des champs en espace-temps courbe, mais il est beaucoup trop faible pour avoir été directement détecté sur un trou noir astrophysique. Les explications par paires de particules virtuelles sont des images pédagogiques, pas la dérivation complète.&nbsp;»</p>
+            </details>
+
+            <aside class="science-block">
+              <p class="blk-label">◆ Ordre de grandeur · sentir les chiffres</p>
+              <p>Un trou noir d'une masse solaire est <b>~45 millions de fois plus froid</b> que le fond diffus cosmologique — c'est l'objet le plus froid qui puisse exister à cette masse. Son évaporation complète demanderait de l'ordre de <b>10⁶⁷ ans</b>, soit ~10⁵⁷ fois l'âge actuel de l'Univers. Et un seul trou noir supermassif, comme celui du centre de notre Galaxie, porte à lui seul plus d'entropie que toutes les étoiles de l'Univers observable réunies.</p>
             </aside>
 
             <p>«&nbsp;Et comme les trous noirs supermassifs portent des entropies immenses, ils dominent les estimations actuelles de l'inventaire entropique de l'Univers observable.&nbsp;»</p>
@@ -1966,6 +2230,11 @@
               <p>L'inventaire de l'Univers observable est estimé à <b>~3&nbsp;×&nbsp;10¹⁰⁴&nbsp;k_B</b>, <b>dominé par les trous noirs supermassifs</b> (Egan &amp; Lineweaver, 2010). En revanche, la <b>cosmologie cyclique conforme</b> de Penrose et la <b>sélection cosmologique naturelle</b> de Smolin restent des propositions <b>spéculatives et minoritaires</b>, non confirmées par l'observation. De même, les calculs récents d'«&nbsp;îlots&nbsp;» sur la courbe de Page sont marquants mais ne constituent pas une résolution universellement admise du paradoxe de l'information — on ne dit pas «&nbsp;paradoxe résolu&nbsp;».</p>
             </aside>
 
+            <div class="lesson-block retain">
+              <p class="blk-label">◆ À retenir — l'acte VII en une phrase</p>
+              <p>Avec la gravitation, l'homogène devient improbable&nbsp;: la matière <b>s'agglomère</b>, et les trous noirs — dont l'entropie croît comme l'<b>aire</b> de leur horizon, pas comme leur volume — sont devenus les plus grands réservoirs d'entropie de l'Univers.</p>
+            </div>
+
             <p>«&nbsp;Provoxys, à toi pour refermer la boucle avec le café du début.&nbsp;»</p>
           </div>
         </div>
@@ -1995,6 +2264,23 @@
             <p>Shannon utilise une structure mathématique apparentée pour mesurer l'incertitude d'une source d'information.</p>
             <p>Landauer rappelle que l'information, lorsqu'elle est portée et effacée par un objet physique, rejoint la thermodynamique.</p>
             <p>Bekenstein et Hawking découvrent enfin que même les horizons des trous noirs possèdent une entropie et une température.</p>
+
+            <div class="dtable-wrap">
+              <table class="dtable">
+                <thead>
+                  <tr><th>Entropie</th><th>Ce qu'elle mesure</th><th>Formule</th><th>Unité</th><th>Le labo du dossier</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>Clausius</b> · 1865</td><td>La chaleur échangée réversiblement, rapportée à la température — et le bilan échangée&nbsp;/&nbsp;créée de toute transformation.</td><td><span class="imath" data-tex="\mathrm{d}S = \delta Q_{\text{rev}}/T"></span></td><td>J/K</td><td>Le mélange des deux eaux (V6)</td></tr>
+                  <tr><td><b>Boltzmann</b> · 1877</td><td>Le nombre Ω de micro-états compatibles avec un macro-état dont les états sont équiprobables.</td><td><span class="imath" data-tex="S = k_B \ln \Omega"></span></td><td>J/K</td><td>La grille de pions (V7), les deux compartiments (V8)</td></tr>
+                  <tr><td><b>Gibbs</b> · 1902</td><td>La même idée quand les états ne sont <em>plus</em> équiprobables&nbsp;: chaque probabilité pèse dans la somme.</td><td><span class="imath" data-tex="S = -k_B \sum_i p_i \ln p_i"></span></td><td>J/K</td><td>Façonner une distribution (V10)</td></tr>
+                  <tr><td><b>Shannon</b> · 1948</td><td>L'incertitude d'une source de messages — ni la chaleur, ni le désordre&nbsp;: la surprise moyenne du prochain symbole.</td><td><span class="imath" data-tex="H = -\sum_i p_i \log_2 p_i"></span></td><td>bits</td><td>L'atelier de codage (V17)</td></tr>
+                  <tr><td><b>von Neumann</b> · 1932</td><td>L'incertitude portée par un état quantique (matrice ρ), intrication comprise.</td><td><span class="imath" data-tex="S = -k\,\mathrm{Tr}(\rho \ln \rho)"></span></td><td>J/K</td><td>La paire intriquée (V20)</td></tr>
+                  <tr><td><b>Bekenstein-Hawking</b> · 1972-74</td><td>L'aire de l'horizon d'un trou noir — le carrefour des quatre constantes fondamentales.</td><td><span class="imath" data-tex="S = k_B c^3 A / 4 G \hbar"></span></td><td>J/K</td><td>Le calculateur de trou noir (V23)</td></tr>
+                </tbody>
+              </table>
+            </div>
+
             <p>Alors, est-ce que l'entropie est le désordre&nbsp;? Parfois cette image aide. Souvent elle trompe.</p>
             <p>La meilleure réponse est plus précise&nbsp;: l'entropie dépend des états que nous distinguons, de leur probabilité et des contraintes macroscopiques imposées au système. Elle mesure aussi, dans les bilans thermodynamiques, l'irréversibilité produite et la dispersion des possibilités d'utiliser l'énergie.</p>
             <p>Et la flèche du temps&nbsp;? Elle n'est pas écrite comme une petite flèche dans chaque équation microscopique. Elle apparaît dans le passage entre des conditions initiales très particulières et les macro-états immensément plus nombreux que nous appelons l'équilibre.</p>
@@ -2021,6 +2307,24 @@
             <p class="speaker speaker--provoxys">Provoxys — Fermeture</p>
             <p>«&nbsp;Merci Sam, merci à toutes et à tous. On passe à vos questions. Et surtout&nbsp;: chaque fois que quelqu'un emploie le mot entropie pour expliquer le désordre de sa chambre, demandez-lui quelle distribution, quels états et quelle frontière il a choisis.&nbsp;»</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ET DANS LA VRAIE VIE ? ================= -->
+    <section class="reveal" id="vraie-vie">
+      <div class="wrap">
+        <p class="sec-eyebrow">Pour aller plus loin</p>
+        <div class="bench-head">
+          <h2>Et dans la vraie vie&nbsp;?</h2>
+          <p>Six idées nées devant des machines à vapeur irriguent aujourd'hui le quotidien — et servent de garde-fou contre les mauvaises métaphores. Cinq terrains où ce dossier vous rend plus difficile à intoxiquer.</p>
+        </div>
+        <div class="pillars">
+          <div class="pillar"><div class="pn">Actes I &amp; IV</div><h4>Pompes à chaleur &amp; réfrigérateurs</h4><p>Déplacer la chaleur plutôt que la créer&nbsp;: avec 1&nbsp;kWh d'électricité, une pompe à chaleur en déplace typiquement 3 à 5 — «&nbsp;chauffer à 300&nbsp;%&nbsp;» n'est pas de la magie, c'est Clausius qui travaille pour vous.</p></div>
+          <div class="pillar"><div class="pn">Acte I</div><h4>Centrales électriques</h4><p>Leur rendement plafonne autour de 40 à 60&nbsp;%, même au mieux&nbsp;: la limite de Carnot négocie chaque mégawatt, et le reste part inévitablement en chaleur rejetée.</p></div>
+          <div class="pillar"><div class="pn">Acte V</div><h4>Compression de fichiers</h4><p>ZIP, JPEG, MP3&nbsp;: la limite de toute compression sans perte est l'entropie de Shannon de la source. Un fichier déjà aléatoire ne se compresse pas — promettre mieux, c'est vendre du vent.</p></div>
+          <div class="pillar"><div class="pn">Acte V</div><h4>Ordinateurs &amp; data-centers</h4><p>Nos puces dissipent encore des milliers à des millions de fois la limite de Landauer&nbsp;: elle est un plancher conceptuel, pas la facture. Les data-centers consomment de l'ordre de 1 à 2&nbsp;% de l'électricité mondiale.</p></div>
+          <div class="pillar"><div class="pn">Actes IV &amp; VII</div><h4>Anti-intox du quotidien</h4><p>«&nbsp;L'évolution viole le second principe&nbsp;»&nbsp;: faux, la Terre est un système ouvert baigné par le Soleil. «&nbsp;L'entropie explique le déclin des civilisations&nbsp;»&nbsp;: extrapolation sans états ni mesure définis — et la question à poser, vous la connaissez.</p></div>
         </div>
       </div>
     </section>
@@ -2052,25 +2356,20 @@
             <p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Bekenstein attribue une entropie aux trous noirs. Hawking leur attribue une température par un calcul quantique. Penrose place la faible entropie gravitationnelle initiale au cœur de la flèche cosmique. Smolin explore des modèles de gravitation quantique et de sélection cosmologique. Les deux premiers résultats structurent la thermodynamique des trous noirs&nbsp;; les propositions cosmologiques de Penrose et Smolin doivent être présentées avec leur statut propre, parfois spéculatif.&nbsp;»</p>
             <p><b style="color:var(--cold-bright)">Sam —</b> «&nbsp;À l'écran, les badges changent donc&nbsp;: résultat établi dans le modèle, conséquence théorique, interprétation ou hypothèse. Même couleur de cosmos, pas même niveau de certitude.&nbsp;»</p>
 
-            <div class="chapter-head" style="margin-top:52px">
-              <p class="kicker">Réserve de questions</p>
+            <div class="chapter-head" id="faq" style="margin-top:52px;scroll-margin-top:96px">
+              <p class="kicker">Questions &amp; réponses</p>
               <h2>Ce que le chat a demandé</h2>
             </div>
-            <p style="color:var(--muted)">Ces réponses sont des repères. Elles doivent être reformulées naturellement et raccourcies selon le rythme du live.</p>
+            <p style="color:var(--muted)">Les questions du chat, rassemblées en fin de live. Cinq d'entre elles tombaient au cœur d'un acte&nbsp;: elles ont été glissées dans le chapitre correspondant — dépliez-les au fil de la lecture.</p>
 
-            <div class="question-block"><p class="blk-label">« Est-ce que l'entropie augmente toujours partout&nbsp;? »</p><p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Non. L'entropie d'une partie d'un système peut diminuer. Un réfrigérateur refroidit son intérieur, un cristal se forme, un organisme construit des structures. Mais ces processus exportent de l'entropie et en produisent ailleurs. C'est le bilan de l'ensemble isolé qui ne diminue pas.&nbsp;»</p></div>
             <div class="question-block"><p class="blk-label">« L'entropie, c'est vraiment le désordre&nbsp;? »</p><p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;C'est une analogie parfois utile, pas une définition. Elle fonctionne assez bien pour un gaz qui se mélange, moins bien pour la gravitation, les cristaux, les transitions de phase ou l'information. La définition doit préciser les états et les probabilités.&nbsp;»</p></div>
-            <div class="question-block"><p class="blk-label">« Une chambre en bazar a-t-elle plus d'entropie&nbsp;? »</p><p><b style="color:var(--cold-bright)">Sam —</b> «&nbsp;Pas au sens thermodynamique mesurable simplement. On peut inventer une mesure informationnelle des positions d'objets, mais elle dépendra des catégories choisies. Une chambre ne fournit pas une illustration universelle de la formule de Boltzmann.&nbsp;»</p></div>
             <div class="question-block"><p class="blk-label">« Pourquoi le logarithme dans la formule de Boltzmann&nbsp;? »</p><p><b style="color:var(--cold-bright)">Sam —</b> «&nbsp;Deux systèmes indépendants combinent leurs nombres de micro-états par multiplication. L'entropie, elle, doit s'additionner. Comme le logarithme transforme un produit en somme, il possède exactement la propriété mathématique recherchée.&nbsp;»</p></div>
             <div class="question-block"><p class="blk-label">« Une diminution d'entropie est-elle impossible&nbsp;? »</p><p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Dans un petit système, des diminutions temporaires dues aux fluctuations sont possibles et observables. Dans un système macroscopique, une fluctuation assez grande pour séparer spontanément un gaz mélangé possède une probabilité si faible qu'elle n'est jamais constatée à notre échelle.&nbsp;»</p></div>
             <div class="question-block"><p class="blk-label">« L'Univers est-il vraiment isolé&nbsp;? »</p><p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Il n'existe pas, par définition, d'extérieur observable auquel comparer l'Univers entier. Le traiter comme un système isolé peut être une hypothèse de travail, mais appliquer la thermodynamique globale en cosmologie demande des précautions, notamment à cause de l'expansion et de la gravitation.&nbsp;»</p></div>
-            <div class="question-block"><p class="blk-label">« Le vivant combat-il l'entropie&nbsp;? »</p><p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Un organisme maintient une organisation locale grâce à des flux de matière et d'énergie. Il absorbe de l'énergie de haute qualité, effectue des transformations et rejette chaleur et déchets. Le bilan avec son environnement respecte le second principe.&nbsp;»</p></div>
             <div class="question-block"><p class="blk-label">« Est-ce que l'information a une masse ou une énergie&nbsp;? »</p><p><b style="color:var(--cold-bright)">Sam —</b> «&nbsp;Une information abstraite n'est pas une substance. Mais toute information utilisée physiquement doit être représentée par un support&nbsp;: charge électrique, orientation magnétique, photon, molécule. Les opérations sur ce support ont des coûts thermodynamiques. Landauer établit un coût minimal pour l'effacement logique irréversible.&nbsp;»</p></div>
-            <div class="question-block"><p class="blk-label">« Le démon paie-t-il lorsqu'il mesure&nbsp;? »</p><p><b style="color:var(--cold-bright)">Sam —</b> «&nbsp;Pas nécessairement au minimum de Landauer pour chaque mesure. Le point incontournable dans un cycle complet est la remise à zéro irréversible de la mémoire. Dans un appareil réel, mesure, contrôle et porte consomment évidemment bien davantage que cette limite idéale.&nbsp;»</p></div>
             <div class="question-block"><p class="blk-label">« Shannon et Boltzmann parlent-ils exactement de la même entropie&nbsp;? »</p><p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Ils utilisent des expressions mathématiques très proches pour des distributions de probabilités. Mais l'objet, l'unité et l'interprétation diffèrent. La connexion devient physique lorsqu'on spécifie comment l'information est encodée dans un système matériel.&nbsp;»</p></div>
             <div class="question-block"><p class="blk-label">« Peut-on convertir toute l'énergie en travail&nbsp;? »</p><p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Pas dans un moteur cyclique qui ne ferait que prélever de la chaleur à une seule source. Il faut un rejet vers une source plus froide. L'exergie mesure justement la part d'énergie susceptible d'être convertie en travail compte tenu d'un environnement.&nbsp;»</p></div>
             <div class="question-block"><p class="blk-label">« La mort thermique signifie-t-elle qu'il n'y aura plus d'énergie&nbsp;? »</p><p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Non. Elle désigne un état où les gradients et les différences exploitables deviennent insuffisants pour produire durablement du travail. L'énergie demeure, mais sa disponibilité thermodynamique est très réduite.&nbsp;»</p></div>
-            <div class="question-block"><p class="blk-label">« Les trous noirs rayonnent-ils vraiment&nbsp;? »</p><p><b style="color:var(--hot-bright)">Provoxys —</b> «&nbsp;Le rayonnement de Hawking est une prédiction robuste de la théorie quantique des champs en espace-temps courbe, mais il est beaucoup trop faible pour avoir été directement détecté sur un trou noir astrophysique. Les explications par paires de particules virtuelles sont des images pédagogiques, pas la dérivation complète.&nbsp;»</p></div>
             <div class="question-block"><p class="blk-label">« Votre simulation prouve-t-elle le second principe&nbsp;? »</p><p><b style="color:var(--cold-bright)">Sam —</b> «&nbsp;Non. Une simulation illustre les conséquences d'un modèle et permet de tester ses équations. Elle ne remplace ni une démonstration ni une expérience. Nous affichons donc les hypothèses, les grandeurs conservées, la définition de l'entropie utilisée et les limites du calcul.&nbsp;»</p></div>
           </div>
         </div>
@@ -2130,7 +2429,7 @@
           return run;
         };
         for (const node of Array.from(prose.children)) {
-          const isSpoken = SPOKEN.has(node.tagName) || node.classList.contains('dialogue-block') || node.classList.contains('regie');
+          const isSpoken = SPOKEN.has(node.tagName);
           if (node.classList.contains('speaker')) {
             voice = node.classList.contains('speaker--sam') ? 'voice--sam' : 'voice--provoxys';
             prose.insertBefore(open(false), node);
@@ -2192,6 +2491,9 @@
       if (!mount.id) mount.id = 'labo-' + (num || Math.random().toString(36).slice(2));
       return { num, title, id: mount.id, mv: movementOf(mount) };
     }).filter(Boolean);
+    // le banc et le sommaire trient par numéro, même si deux paires de labos
+    // ont été montées dans un autre ordre (V5/V6 et V9/V10 dans le fil du live)
+    LABS.sort((a, b) => (parseInt(a.num.slice(1), 10) || 0) - (parseInt(b.num.slice(1), 10) || 0));
 
     (function buildBench() {
       const bench = document.getElementById('bench');
