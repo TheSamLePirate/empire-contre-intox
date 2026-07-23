@@ -140,21 +140,6 @@
     .nav a::after { content:""; position:absolute; left:12px; right:12px; bottom:4px; height:1px; background:var(--gold-bright); transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease); }
     .nav a:hover, .nav a.active { color:var(--gold-bright); }
     .nav a:hover::after, .nav a.active::after { transform:scaleX(1); }
-    .nav-progress { flex:none; width:64px; height:3px; border-radius:2px; background:var(--line-2); overflow:hidden; }
-    .nav-progress span { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--hot),var(--gold-bright)); }
-    .menu-btn { display:none; font-family:var(--roman); letter-spacing:.14em; text-transform:uppercase; font-size:.64rem;
-      background:rgba(214,172,85,.06); color:var(--gold-bright); border:1px solid var(--line); padding:9px 14px; border-radius:3px; }
-    .mobile-menu { display:none; }
-    @media (max-width:860px){
-      .nav, .nav-progress { display:none; }
-      .menu-btn { display:inline-block; margin-left:auto; }
-      .mobile-menu { position:fixed; inset:0; z-index:70; background:rgba(3,5,13,.97); padding:80px 28px 40px;
-        display:none; flex-direction:column; gap:4px; overflow-y:auto; }
-      .mobile-menu.open { display:flex; }
-      .mobile-menu a { font-family:var(--roman); letter-spacing:.1em; text-transform:uppercase; font-size:.8rem; color:var(--parch);
-        text-decoration:none; padding:12px 8px; border-bottom:1px solid var(--line-2); }
-      .mobile-menu .close { position:absolute; top:20px; right:24px; font-size:1.6rem; color:var(--gold-bright); background:none; border:none; }
-    }
 
     /* SECTIONS */
     main { position:relative; z-index:3; }
@@ -421,10 +406,6 @@
       linear-gradient(0deg,rgba(3,5,13,.86),transparent 40%); }
     #acte2 .wrap,#acte4 .wrap,#acte6 .wrap,#conclusion .wrap { display:flex; flex-direction:column; align-items:flex-end; }
     #acte2 :is(.act-num,h2,p),#acte4 :is(.act-num,h2,p),#acte6 :is(.act-num,h2,p),#conclusion :is(.act-num,h2,p) { text-align:right; }
-    .act-plate { padding:0; }
-    .act-plate .chapter-figure { max-width:none; margin:0; border:0; border-radius:0; }
-    .act-plate .chapter-figure img { height:clamp(220px,29vw,390px); object-fit:cover; object-position:center; filter:saturate(.86) contrast(1.04); }
-    .act-plate .chapter-figure figcaption { padding:16px clamp(20px,5vw,70px); background:rgba(5,8,17,.92); }
 
     .learn-grid { gap:20px; }
     .learn-card { position:relative; min-height:220px; padding:28px; overflow:hidden; border-radius:16px;
@@ -515,6 +496,219 @@
       .reveal{ opacity:1 !important; transform:none !important; }
       h1.title .foil{ animation:none; }
     }
+
+    /* ================================================================
+       PASSE VISUELLE — colonne de lecture, partition à deux voix,
+       jauge de la flèche du temps, banc d'essai
+       ================================================================ */
+
+    /* --- 1. Colonne de lecture ------------------------------------------
+       .transcript était une grille `1fr` : un labo large (1360 px) fixait la
+       taille min-content de la piste, la prose entière passait à 1360 px et
+       débordait de 120 px à droite (formules, tableaux et labos rognés).
+       Un bloc simple laisse les débordements être des débordements. */
+    .transcript { display:block; }
+    /* Trois paliers de largeur : la colonne de texte (66ch), le palier large
+       (formules, tableaux, figures) et le plein cadre (les labos). Le cadre du
+       chapitre se resserre — les interstitiels restent cinématiques, la
+       transcription redevient une colonne. */
+    .chapter > .wrap { max-width:980px; }
+    .chapter .prose { --measure:66ch; }
+    :is(.chapter .prose, .voice) > :is(p, h3.sub, .dialogue-block, .regie, ul, ol) { max-width:var(--measure); }
+    :is(.chapter .prose, .voice) > :is(.formula-block, .chapter-figure, .dtable-wrap,
+      .science-block, .lesson-block, .question-block, .script-block) { max-width:100%; }
+    /* sans numéro de chapitre, le titre partait dans la colonne du numéro */
+    .chapter-head > .kicker, .chapter-head > h2 { grid-column:1; }
+    /* le filet vertical du chapitre laisse la place aux rails de voix */
+    .chapter > .wrap::before { display:none; }
+    .chapter > .wrap { padding-left:clamp(16px,4vw,40px); }
+
+    /* --- 2. Partition à deux voix ---------------------------------------
+       Le live est un duo : Provoxys porte le récit, Sam manipule. Chaque prise
+       de parole devient une piste colorée — la page se lit comme deux canaux.
+       Groupes construits au chargement ; sans JS, rien ne change. */
+    .voice { position:relative; margin:34px 0; padding:2px 0 2px 34px; border-radius:0 16px 16px 0; }
+    .voice::before { content:""; position:absolute; left:11px; top:15px; bottom:8px; width:2px; border-radius:2px;
+      background:linear-gradient(180deg,var(--vcol),rgba(244,236,216,0)); opacity:.6; }
+    .voice::after { content:""; position:absolute; left:7px; top:11px; width:10px; height:10px; border-radius:50%;
+      background:var(--vcol); box-shadow:0 0 0 3px var(--void),0 0 14px var(--vcol); }
+    .voice--provoxys { --vcol:var(--hot); background:linear-gradient(90deg,rgba(239,125,87,.05),transparent 58%); }
+    .voice--sam { --vcol:var(--cold); background:linear-gradient(90deg,rgba(88,166,217,.05),transparent 58%); }
+    .voice > .speaker { margin-top:0; }
+    .voice > .speaker::before { width:16px; }
+    /* reprise de parole après un labo : le rail continue, sans nouveau point */
+    .voice--cont { margin-top:22px; }
+    .voice--cont::after { display:none; }
+    .voice--cont::before { top:4px; background:linear-gradient(180deg,color-mix(in srgb,var(--vcol) 55%,transparent),rgba(244,236,216,0)); }
+    .voice > p:last-child { margin-bottom:0; }
+    @media (max-width:560px){ .voice{ padding-left:22px; } .voice::before{ left:5px; } .voice::after{ left:1px; } }
+
+    /* --- 3. Jauge de la flèche du temps (signature) -----------------------
+       Un rail fixe : les crans sont aux positions RÉELLES des actes, donc la
+       hauteur d'un segment est la durée réelle de l'acte. Le remplissage
+       refroidit de l'ember (les machines, 600 K) au cyan (la mort thermique)
+       à mesure que l'entropie monte. Navigation et progression en un objet. */
+    .arrow { display:none; position:fixed; z-index:45; right:clamp(16px,2.4vw,38px); top:50%; translate:0 -50%;
+      flex-direction:column; align-items:center; gap:14px; height:min(62vh,540px); font-family:var(--roman); }
+    @media (min-width:1080px){ .arrow:has(.arrow-mark){ display:flex; } }
+    .arrow-cap { font-size:.6rem; font-weight:700; letter-spacing:.14em; color:rgba(127,212,232,.8); cursor:help; }
+    .arrow-rail { position:relative; flex:1 1 auto; width:3px; border-radius:3px; background:rgba(244,236,216,.14); }
+    .arrow-fill { position:absolute; inset:0; border-radius:3px;
+      background:linear-gradient(180deg,var(--hot) 0%,var(--gold-bright) 38%,var(--info) 70%,var(--cold-bright) 100%);
+      -webkit-mask-image:linear-gradient(180deg,#000 var(--p,0%),transparent var(--p,0%));
+      mask-image:linear-gradient(180deg,#000 var(--p,0%),transparent var(--p,0%)); }
+    .arrow-marks { position:absolute; inset:-6px 0; }
+    .arrow-mark { position:absolute; left:50%; translate:-50% -50%; display:grid; place-items:center;
+      width:26px; height:26px; text-decoration:none; }
+    .arrow-mark i { width:6px; height:6px; border-radius:50%; background:var(--muted); opacity:.6;
+      transition:width .3s var(--ease),height .3s var(--ease),background .3s,opacity .3s,box-shadow .3s; }
+    .arrow-mark b { position:absolute; right:24px; padding:6px 11px; white-space:nowrap; border-radius:2px;
+      font-size:.54rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold-bright);
+      background:rgba(5,8,17,.92); border:1px solid var(--line); backdrop-filter:blur(8px);
+      opacity:0; translate:8px 0; pointer-events:none; transition:opacity .3s var(--ease),translate .3s var(--ease); }
+    .arrow-mark:hover i { background:var(--gold-bright); opacity:1; }
+    .arrow-mark:hover b, .arrow-mark:focus-visible b { opacity:1; translate:0 0; }
+    .arrow-mark.past i { background:var(--gold-deep); opacity:.85; }
+    .arrow-mark.on i { width:9px; height:9px; background:var(--gold-bright); opacity:1; box-shadow:0 0 14px rgba(243,217,138,.8); }
+
+    /* --- 4. Banc d'essai : l'index des 26 labos --------------------------- */
+    .bench-head { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(24px,4vw,56px);
+      align-items:end; margin-bottom:30px; }
+    .bench-head h2 { margin:0; }
+    .bench-head p { margin:0; color:var(--muted); max-width:58ch; }
+    @media (max-width:860px){ .bench-head{ grid-template-columns:1fr; gap:18px; align-items:start; } }
+    .bench { list-style:none; margin:0; padding:0; display:grid; gap:0; background:rgba(7,12,26,.62);
+      border:1px solid var(--line-2); border-radius:16px; overflow:hidden;
+      grid-template-columns:repeat(auto-fill,minmax(248px,1fr)); }
+    .bench li { display:flex; border-right:1px solid var(--line-2); border-bottom:1px solid var(--line-2); }
+    .bench a { display:flex; gap:12px; width:100%; padding:15px 17px; text-decoration:none;
+      transition:background .3s var(--ease); }
+    .bench a:hover { background:rgba(214,172,85,.09); }
+    .bench .n { flex:none; height:max-content; padding:2px 6px; border-radius:2px; font-family:var(--mono);
+      font-size:.64rem; color:var(--cold-bright); border:1px solid rgba(127,212,232,.32); background:rgba(88,166,217,.07); }
+    .bench .t { font-family:var(--roman); font-weight:600; font-size:.74rem; letter-spacing:.05em;
+      text-transform:uppercase; color:var(--parch); line-height:1.45; }
+    .bench .t em { display:block; margin-top:5px; font-family:var(--serif); font-style:normal; font-size:.74rem;
+      font-weight:400; letter-spacing:0; text-transform:none; color:var(--soft); opacity:.85; }
+    .bench-noscript { margin:14px 0 0; font-size:.86rem; color:var(--soft); }
+    .js .bench-noscript { display:none; }
+
+    /* --- 5. Interstitiels d'acte ----------------------------------------- */
+    .act-band .act-note { max-width:50ch; margin:20px 0 0; padding-top:15px; border-top:1px solid var(--line);
+      font-size:.95rem; font-style:italic; color:var(--muted); }
+    /* La conclusion est le seul interstitiel sans photographie : après sept
+       actes d'images, elle revient au signe et au fond noir. */
+    #conclusion::before { background-image:none;
+      background:radial-gradient(58% 72% at 50% 48%,rgba(214,172,85,.12),transparent 72%),
+        repeating-conic-gradient(from 0deg at 50% 48%,rgba(214,172,85,.05) 0 .5deg,transparent .5deg 11deg); }
+    #conclusion::after { background:linear-gradient(0deg,rgba(3,5,13,.92),transparent 52%,rgba(3,5,13,.55)); }
+    #conclusion .wrap { align-items:center; }
+    #conclusion :is(.act-num,h2,p) { text-align:center; }
+    #conclusion .act-num { font-size:clamp(4.5rem,10vw,8.5rem); margin-bottom:4px;
+      -webkit-text-stroke:1.5px rgba(243,217,138,.75); }
+    #conclusion h2, #conclusion p { margin-inline:auto; }
+
+    /* --- 6. Barre de titre ------------------------------------------------ */
+    .brand .btxt { display:flex; flex-direction:column; line-height:1.2; }
+    .nav { justify-content:flex-end; -webkit-mask-image:none; mask-image:none; }
+    .nav a { font-size:.62rem; letter-spacing:.13em; }
+    /* « vous êtes ici » : le mouvement en cours, en clair, sans survol */
+    .here { flex:none; display:none; align-items:center; gap:9px; min-width:0; margin:0;
+      font-family:var(--roman); font-weight:600; font-size:.6rem; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--gold-bright); white-space:nowrap; }
+    .here::before { content:""; width:5px; height:5px; border-radius:50%; background:currentColor;
+      box-shadow:0 0 10px currentColor; }
+    .here:not(:empty) { display:flex; }
+    @media (max-width:900px){ .here{ display:none !important; } }
+
+    /* la jauge occupe la marge droite : les labos lui laissent le couloir */
+    @media (min-width:1080px){ .viz-mount { width:min(1320px,calc(100vw - 100px)); } }
+
+    /* --- 7. Sommaire : la table des matières complète ----------------------
+       Un seul menu pour toutes les tailles d'écran, construit depuis la page :
+       les 27 chapitres sous leur acte, les 26 labos, les liens ECI. Chaque
+       acte porte sa teinte sur la rampe de refroidissement de la jauge. */
+    .menu-btn { display:inline-flex; align-items:center; gap:8px; margin-left:auto; flex:none;
+      font-family:var(--roman); font-weight:600; font-size:.62rem; letter-spacing:.16em; text-transform:uppercase;
+      color:var(--gold-bright); background:rgba(214,172,85,.07); border:1px solid var(--line);
+      padding:10px 15px; border-radius:999px; cursor:pointer; transition:background .3s var(--ease); }
+    .menu-btn::before { content:""; width:14px; height:9px; flex:none;
+      border-top:1px solid currentColor; border-bottom:1px solid currentColor; }
+    .menu-btn:hover { background:rgba(214,172,85,.16); }
+
+    .som[hidden] { display:none; }
+    .som { position:fixed; inset:0; z-index:80; display:grid; place-items:start center; overflow-y:auto;
+      padding:clamp(12px,3vh,40px) clamp(12px,3vw,32px); background:rgba(3,5,13,.88); backdrop-filter:blur(10px); }
+    .som-sheet { width:min(1180px,100%); border:1px solid var(--line); border-radius:18px;
+      background:linear-gradient(160deg,rgba(14,26,46,.96),rgba(5,8,17,.98));
+      box-shadow:0 50px 140px rgba(0,0,0,.7); padding:clamp(22px,3vw,38px); }
+    .som-head { display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap;
+      padding-bottom:20px; margin-bottom:26px; border-bottom:1px solid var(--line); }
+    .som-head h2 { margin:0; font-size:clamp(1.5rem,3vw,2.2rem); }
+    .som-close { font-family:var(--roman); font-weight:600; font-size:.62rem; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--parch); background:transparent; border:1px solid var(--line-2);
+      padding:10px 16px; border-radius:999px; cursor:pointer; transition:border-color .3s,color .3s; }
+    .som-close:hover { color:var(--gold-bright); border-color:var(--gold); }
+    .som-cols { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:clamp(24px,3.5vw,52px); }
+    @media (max-width:900px){ .som-cols{ grid-template-columns:1fr; gap:30px; } }
+
+    .som-kicker { margin:0 0 12px; font-family:var(--roman); font-weight:600; font-size:.58rem;
+      letter-spacing:.24em; text-transform:uppercase; color:var(--soft); }
+    .som-act { margin-bottom:20px; padding-left:16px; border-left:2px solid var(--c,var(--gold)); }
+    .som-act > a { display:block; text-decoration:none; font-family:var(--roman); font-weight:700;
+      font-size:.82rem; letter-spacing:.08em; text-transform:uppercase; color:var(--c,var(--gold-bright));
+      margin-bottom:6px; }
+    .som-act > a:hover { text-decoration:underline; text-underline-offset:4px; }
+    .som-act ol { list-style:none; margin:0; padding:0; }
+    .som-act ol a { display:flex; gap:10px; padding:5px 0; text-decoration:none; color:var(--muted);
+      font-size:.92rem; line-height:1.45; transition:color .25s; }
+    .som-act ol a:hover { color:var(--ink); }
+    .som-act ol a .cn { flex:none; min-width:1.9em; font-family:var(--mono); font-size:.7rem;
+      color:var(--soft); padding-top:.22em; }
+    .som-act ol a .lab { flex:none; align-self:center; padding:1px 5px; border-radius:2px; font-family:var(--mono);
+      font-size:.6rem; color:var(--cold-bright); border:1px solid rgba(127,212,232,.3); }
+
+    .som-labs { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:5px;
+      margin-bottom:30px; }
+    .som-labs a { display:flex; gap:7px; align-items:baseline; padding:7px 9px; border-radius:3px;
+      text-decoration:none; background:rgba(244,236,216,.03); border:1px solid var(--line-2);
+      font-size:.8rem; color:var(--muted); line-height:1.35; transition:background .25s,color .25s; }
+    .som-labs a:hover { background:rgba(214,172,85,.1); color:var(--ink); }
+    .som-labs a .n { flex:none; font-family:var(--mono); font-size:.62rem; color:var(--cold-bright); }
+    .som-site a { display:block; padding:9px 0; text-decoration:none; color:var(--parch);
+      font-family:var(--roman); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+      border-bottom:1px solid var(--line-2); transition:color .25s; }
+    .som-site a:hover { color:var(--gold-bright); }
+
+    @media (max-width:900px){
+      .nav { display:none; }
+      .som-labs { grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); }
+    }
+
+    /* --- 8. Ancres et stabilité verticale ---------------------------------
+       Les labos montent à l'approche (IntersectionObserver) : sans hauteur
+       réservée, la page se réorganise sous le lecteur et les ancres ratent
+       leur cible. */
+    .entropy-gallery > [data-entropy-viz]:empty { display:block; min-height:min(70vh,620px); }
+    :is(.chapter, .act-band, .viz-mount, main > section[id]) { scroll-margin-top:86px; }
+    .progress-top { background:linear-gradient(90deg,var(--hot),var(--gold-bright) 40%,var(--info) 74%,var(--cold-bright)); }
+
+    /* --- 9. Pied de page ---------------------------------------------------
+       `.seal` est un <span> : hors d'un conteneur flex, il restait en ligne,
+       sa largeur était ignorée et le sceau s'affichait en pleine page. */
+    .collective-footer .seal { display:block; }
+    .eci-license { text-align:left; }
+
+    /* --- 10. Rythme vertical ----------------------------------------------- */
+    main > section:not(.chapter):not(.act-band):not(.closing) { padding-block:clamp(30px,4vw,54px); }
+    #intro { padding-top:clamp(46px,6vw,84px); }
+    .credit-band { max-width:980px; margin-inline:auto; }
+    .signal-board .v { font-size:.82rem; line-height:1.45; }
+    .signal-board .k { margin-bottom:8px; }
+
+    @media (prefers-reduced-motion:reduce){
+      .arrow-mark i, .arrow-mark b { transition:none; }
+    }
   </style>
 </head>
 <body>
@@ -522,6 +716,19 @@
   <div class="grain" aria-hidden="true"></div>
   <div class="frame" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
   <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <!-- ===== JAUGE DE LA FLÈCHE DU TEMPS =====
+       Navigation par actes ET mesure de progression. Les crans sont placés à la
+       position réelle de chaque acte dans le document : la hauteur d'un segment
+       est la durée réelle de l'acte. Le remplissage refroidit de l'ember (les
+       machines, 600 K) vers le cyan (la mort thermique) à mesure que S augmente. -->
+  <nav class="arrow" id="arrow" aria-label="Progression du dossier">
+    <div class="arrow-rail">
+      <span class="arrow-fill" id="arrowFill"></span>
+      <div class="arrow-marks" id="arrowMarks"></div>
+    </div>
+    <span class="arrow-cap" title="L'entropie croît vers le bas — comme le live">S&nbsp;↑</span>
+  </nav>
 
   <!-- ================= HERO ================= -->
   <header class="hero" id="top">
@@ -537,8 +744,8 @@
         <a class="btn btn--ghost" href="../../index.html">Accueil ECI</a>
       </div>
       <div class="signal-board reveal in" data-d="3">
-        <div><div class="k">Format</div><div class="v">Live · 4 h · 7 actes</div></div>
-        <div><div class="k">Visualisations</div><div class="v">26 labos interactifs</div></div>
+        <div><div class="k">Format</div><div class="v">4 h · 7 actes</div></div>
+        <div><div class="k">Visualisations</div><div class="v">26 labos jouables</div></div>
         <div><div class="k">Portée</div><div class="v">Café → trous noirs</div></div>
         <div><div class="k">Devise</div><div class="v">Veritas omnia vincit</div></div>
       </div>
@@ -550,38 +757,42 @@
   <nav class="topbar" aria-label="Navigation du dossier">
     <a class="brand" href="../../index.html">
       <span class="seal"><img src="../../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox"></span>
-      <span><span class="bt">Entropie</span><span class="bs">Provoxys × Sam</span></span>
+      <span class="btxt"><span class="bt">Entropie</span><span class="bs">Provoxys × Sam</span></span>
     </a>
+    <p class="here" id="here" aria-live="polite"></p>
     <div class="nav" id="nav">
-      <a href="#ouverture">Ouverture</a>
-      <a href="#acte1">I · Machines</a>
-      <a href="#acte2">II · Clausius</a>
-      <a href="#acte3">III · Boltzmann</a>
-      <a href="#acte4">IV · Matière</a>
-      <a href="#acte5">V · Information</a>
-      <a href="#acte6">VI · Flèche du temps</a>
-      <a href="#acte7">VII · Cosmos</a>
-      <a href="#conclusion">Conclusion</a>
+      <a href="#labos">Les 26 laboratoires</a>
       <a href="#coulisses">Coulisses</a>
+      <a href="../../sources/sources.html">Les Sources</a>
+      <a href="../../index.html">Accueil ECI</a>
     </div>
-    <div class="nav-progress" aria-hidden="true"><span id="navProgress"></span></div>
-    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">Menu</button>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sommaire">Sommaire</button>
   </nav>
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="close" id="menuClose" aria-label="Fermer le menu">×</button>
-    <a href="#ouverture">Ouverture — La flèche du temps</a>
-    <a href="#acte1">Acte I — Machines &amp; Carnot</a>
-    <a href="#acte2">Acte II — Clausius &amp; le bilan d'entropie</a>
-    <a href="#acte3">Acte III — Boltzmann &amp; les micro-états</a>
-    <a href="#acte4">Acte IV — Matière &amp; vivant</a>
-    <a href="#acte5">Acte V — Information &amp; démon de Maxwell</a>
-    <a href="#acte6">Acte VI — Flèche du temps</a>
-    <a href="#acte7">Acte VII — Trous noirs &amp; cosmos</a>
-    <a href="#conclusion">Conclusion</a>
-    <a href="#labos">Les 26 laboratoires</a>
-    <a href="#coulisses">Coulisses du live</a>
-    <a href="../../sources/sources.html">Les Sources</a>
-    <a href="../../index.html">Accueil ECI</a>
+
+  <!-- ===== SOMMAIRE — table des matières complète, construite depuis la page ===== -->
+  <div class="som" id="sommaire" hidden>
+    <div class="som-sheet" role="dialog" aria-modal="true" aria-labelledby="somTitle">
+      <div class="som-head">
+        <div>
+          <p class="sec-eyebrow" style="margin:0 0 6px">Dossier XXV · 27 chapitres · 26 laboratoires</p>
+          <h2 id="somTitle">Sommaire</h2>
+        </div>
+        <button class="som-close" id="menuClose" aria-label="Fermer le sommaire">Fermer&nbsp;✕</button>
+      </div>
+      <div class="som-cols">
+        <nav class="som-acts" id="somActs" aria-label="Actes et chapitres"></nav>
+        <div>
+          <nav class="som-labs" id="somLabs" aria-label="Les 26 laboratoires"></nav>
+          <nav class="som-site" aria-label="Empire contre Intox">
+            <p class="som-kicker">Empire contre Intox</p>
+            <a href="#labos">Le banc d'essai — les 26 labos</a>
+            <a href="../../sources/sources.html">Les Sources (Dossier XXVI)</a>
+            <a href="../../index.html">Accueil ECI — tous les dossiers</a>
+            <a href="../../LICENCE-CONTENU.md">Licence du contenu</a>
+          </nav>
+        </div>
+      </div>
+    </div>
   </div>
 
   <main>
@@ -616,6 +827,19 @@
           <div class="learn-card"><div class="n">Objectif 2</div><h4>Trois entropies à ne pas confondre</h4><p>Système, milieu, ensemble total&nbsp;: une partie peut perdre de l'entropie pendant que le total augmente. C'est là que se cachent les faux paradoxes.</p></div>
           <div class="learn-card"><div class="n">Objectif 3</div><h4>Une même idée, du café aux trous noirs</h4><p>Clausius, Boltzmann, Gibbs, Shannon, von Neumann, Bekenstein-Hawking&nbsp;: une famille de concepts reliés sans être identiques.</p></div>
         </div>
+      </div>
+    </section>
+
+    <!-- ===== LE BANC D'ESSAI (index des 26 labos, construit depuis la page) ===== -->
+    <section class="reveal" id="labos">
+      <div class="wrap">
+        <p class="sec-eyebrow">Le banc d'essai</p>
+        <div class="bench-head">
+          <h2>Vingt-six laboratoires<br>jouables</h2>
+          <p>Chaque expérience décrite par Sam pendant le live tourne réellement dans la page. Les curseurs bougent, les bilans se recalculent&nbsp;: rien n'est une capture d'écran. Sautez directement à celle qui vous intéresse — ou lisez le dossier dans l'ordre&nbsp;: elles arrivent au moment où elles servent l'argument.</p>
+        </div>
+        <ol class="bench" id="bench" aria-label="Les 26 visualisations interactives du dossier"></ol>
+        <p class="bench-noscript" id="benchNoscript">Les visualisations demandent JavaScript. Sans lui, la transcription intégrale reste lisible.</p>
       </div>
     </section>
 
@@ -679,15 +903,7 @@
         <div class="act-num" aria-hidden="true">I</div>
         <h2>Transformer la chaleur en travail</h2>
         <p>Machines à vapeur, cycle de Carnot et premier principe. La thermodynamique naît d'un problème industriel avant de devenir cosmique.</p>
-      </div>
-    </section>
-
-    <section class="act-plate reveal">
-      <div class="wrap">
-        <figure class="chapter-figure">
-          <img src="assets/machines-vapeur.png" alt="Machine à vapeur du début du XIXe siècle, foyer chaud d'un côté, condenseur froid de l'autre, schéma de cycle de Carnot en filigrane." loading="lazy">
-          <figcaption><b>Acte I ·</b> De la machine à vapeur au second principe. La question n'est d'abord pas cosmique&nbsp;: elle est industrielle.</figcaption>
-        </figure>
+        <p class="act-note">De la machine à vapeur au second principe&nbsp;: la question n'est d'abord pas cosmique, elle est industrielle.</p>
       </div>
     </section>
 
@@ -943,15 +1159,7 @@
         <div class="act-num" aria-hidden="true">III</div>
         <h2>Boltzmann&nbsp;: compter les mondes possibles</h2>
         <p>Un même état visible correspond à une multitude de réalités invisibles. L'entropie devient le comptage des micro-états — et l'équilibre, le macro-état écrasant de probabilité.</p>
-      </div>
-    </section>
-
-    <section class="act-plate reveal">
-      <div class="wrap">
-        <figure class="chapter-figure">
-          <img src="assets/microetats-boltzmann.png" alt="Boîte transparente à deux compartiments, un nuage de particules diffusant d'un coin dense vers une répartition uniforme, courbe de multiplicité en cloche au-dessus." loading="lazy">
-          <figcaption><b>Acte III ·</b> Presque toutes les configurations accessibles correspondent à un partage proche de la moitié. L'équilibre est le macro-état le plus nombreux.</figcaption>
-        </figure>
+        <p class="act-note">Presque toutes les configurations accessibles correspondent à un partage proche de la moitié. L'équilibre est le macro-état le plus nombreux.</p>
       </div>
     </section>
 
@@ -1606,15 +1814,7 @@
         <div class="act-num" aria-hidden="true">VII</div>
         <h2>Gravitation, trous noirs et cosmos</h2>
         <p>Avec la gravitation, l'intuition s'inverse&nbsp;: la matière ne s'homogénéise pas, elle s'agglomère. Et les trous noirs deviennent les plus grands réservoirs d'entropie de l'Univers.</p>
-      </div>
-    </section>
-
-    <section class="act-plate reveal">
-      <div class="wrap">
-        <figure class="chapter-figure">
-          <img src="assets/trou-noir-entropie.png" alt="Trou noir avec disque d'accrétion doré et horizon lumineux, entouré de galaxies et de filaments de la toile cosmique, arc de frise logarithmique en filigrane." loading="lazy">
-          <figcaption><b>Acte VII ·</b> Un gros trou noir est plus froid et plus entropique qu'un petit. Les trous noirs supermassifs dominent l'inventaire entropique de l'Univers observable.</figcaption>
-        </figure>
+        <p class="act-note">Un gros trou noir est plus froid et plus entropique qu'un petit. Les trous noirs supermassifs dominent l'inventaire entropique de l'Univers observable.</p>
       </div>
     </section>
 
@@ -1812,7 +2012,7 @@
             <p>Et si vous voulez refaire les expériences&nbsp;: commencez par la grille. Mettez cinquante pions bien rangés, puis cinquante pions au hasard, et demandez-vous pourquoi certaines mesures changent et d'autres non. Cette petite surprise contient déjà une grande partie du sujet.</p>
             <p>Merci Provoxys. Je te rends l'antenne.&nbsp;»</p>
 
-            <div class="viz-mount reveal" id="labos">
+            <div class="viz-mount reveal">
               <div class="viz-lede"><span class="vid">V26</span> Carte interactive des entropies · la navigation générale du dossier</div>
               <div class="entropy-gallery"><div data-entropy-viz="V26" data-seed="42"></div></div>
               <noscript><p class="viz-noscript">Visualisation interactive (JavaScript requis)&nbsp;: graphe reliant les six définitions d'entropie, leurs formules, hypothèses et exemples.</p></noscript>
@@ -1916,39 +2116,332 @@
   <script src="../../assets/visit-counter.js" defer></script>
   <script src="assets/entropie-viz.js" defer></script>
   <script>
-    // Progress bar + nav progress
-    const progressTop = document.getElementById('progressTop');
-    const navProgress = document.getElementById('navProgress');
-    function onScroll() {
-      const h = document.documentElement;
-      const max = h.scrollHeight - h.clientHeight;
-      const p = max > 0 ? (h.scrollTop / max) : 0;
-      if (progressTop) progressTop.style.width = (p * 100) + '%';
-      if (navProgress) navProgress.style.width = (p * 100) + '%';
-    }
-    document.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    // Active nav link
-    const navLinks = Array.from(document.querySelectorAll('.nav a'));
-    const targets = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-    const spy = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const id = '#' + e.target.id;
-          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+    // ---- Partition à deux voix -------------------------------------------
+    // Regroupe chaque prise de parole (du label « speaker » jusqu'au prochain,
+    // ou jusqu'au premier bloc non parlé) dans un conteneur .voice. Purement
+    // présentationnel : aucun texte n'est déplacé, seulement enveloppé.
+    (function buildVoices() {
+      const SPOKEN = new Set(['P', 'H3', 'BLOCKQUOTE', 'UL', 'OL']);
+      document.querySelectorAll('.chapter .prose').forEach((prose) => {
+        let run = null, voice = null;
+        const open = (cont) => {
+          run = document.createElement('div');
+          run.className = 'voice ' + voice + (cont ? ' voice--cont' : '');
+          return run;
+        };
+        for (const node of Array.from(prose.children)) {
+          const isSpoken = SPOKEN.has(node.tagName) || node.classList.contains('dialogue-block') || node.classList.contains('regie');
+          if (node.classList.contains('speaker')) {
+            voice = node.classList.contains('speaker--sam') ? 'voice--sam' : 'voice--provoxys';
+            prose.insertBefore(open(false), node);
+            run.appendChild(node);
+            continue;
+          }
+          if (isSpoken && voice) {
+            // un labo ou une figure a coupé la prise de parole : on la reprend
+            if (!run) prose.insertBefore(open(true), node);
+            run.appendChild(node);
+            continue;
+          }
+          run = null; // labo, formule, figure : la piste marque une pause
         }
       });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    targets.forEach(t => spy.observe(t));
+    })();
 
-    // Mobile menu
+    // ---- Les dix mouvements du live, source commune à la jauge, au repère
+    // de la barre de titre et au sommaire.
+    const MOVEMENTS = [
+      ['ouverture', 'Ouverture', 'Ouverture — La flèche du temps'],
+      ['acte1', 'I · Machines', 'Acte I — Machines & Carnot'],
+      ['acte2', 'II · Clausius', 'Acte II — Clausius & le bilan d\'entropie'],
+      ['acte3', 'III · Boltzmann', 'Acte III — Boltzmann & les micro-états'],
+      ['acte4', 'IV · Matière', 'Acte IV — Matière & vivant'],
+      ['acte5', 'V · Information', 'Acte V — Information & démon de Maxwell'],
+      ['acte6', 'VI · Flèche du temps', 'Acte VI — La flèche du temps'],
+      ['acte7', 'VII · Cosmos', 'Acte VII — Trous noirs & cosmos'],
+      ['conclusion', 'Conclusion', 'Conclusion — Ce que mesure vraiment l\'entropie'],
+      ['coulisses', 'Coulisses', 'Coulisses — Interludes & questions du chat'],
+    ].map(([id, label, long]) => ({ id, label, long, el: document.getElementById(id) })).filter((m) => m.el);
+
+    // teinte de chaque mouvement sur la rampe de refroidissement de la jauge
+    const RAMP = [[239, 125, 87], [243, 217, 138], [183, 144, 223], [127, 212, 232]];
+    function rampAt(t) {
+      const x = Math.max(0, Math.min(1, t)) * (RAMP.length - 1);
+      const i = Math.min(RAMP.length - 2, Math.floor(x)), f = x - i;
+      const c = RAMP[i].map((v, k) => Math.round(v + (RAMP[i + 1][k] - v) * f));
+      return 'rgb(' + c.join(',') + ')';
+    }
+
+    // à quel mouvement appartient un élément de la page ? (le dernier qui
+    // commence avant lui — ou celui qu'il est, cas de l'Ouverture)
+    function movementOf(node) {
+      let found = null;
+      for (const m of MOVEMENTS) {
+        const pos = m.el.compareDocumentPosition(node);
+        if (m.el === node || (pos & Node.DOCUMENT_POSITION_FOLLOWING) || (pos & Node.DOCUMENT_POSITION_CONTAINED_BY)) found = m;
+      }
+      return found;
+    }
+
+    // ---- Les 26 labos, lus depuis les intitulés déjà présents dans la page -
+    const LABS = [...document.querySelectorAll('.viz-mount')].map((mount) => {
+      const lede = mount.querySelector('.viz-lede');
+      if (!lede) return null;
+      const num = (lede.querySelector('.vid')?.textContent || '').trim();
+      const title = lede.textContent.replace(num, '').trim().split('·')[0].trim();
+      if (!mount.id) mount.id = 'labo-' + (num || Math.random().toString(36).slice(2));
+      return { num, title, id: mount.id, mv: movementOf(mount) };
+    }).filter(Boolean);
+
+    (function buildBench() {
+      const bench = document.getElementById('bench');
+      if (!bench) return;
+      const frag = document.createDocumentFragment();
+      for (const lab of LABS) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#' + lab.id;
+        a.innerHTML = '<span class="n"></span><span class="t"></span>';
+        a.querySelector('.n').textContent = lab.num;
+        const t = a.querySelector('.t');
+        t.textContent = lab.title;
+        const em = document.createElement('em');
+        em.textContent = lab.mv ? lab.mv.long.split('—')[0].trim() : '';
+        t.appendChild(em);
+        li.appendChild(a);
+        frag.appendChild(li);
+      }
+      bench.appendChild(frag);
+    })();
+
+    // ---- Sommaire : les 27 chapitres rangés sous leur acte, plus les labos -
+    (function buildSommaire() {
+      const acts = document.getElementById('somActs');
+      const labs = document.getElementById('somLabs');
+      if (!acts || !labs) return;
+
+      // chaque chapitre reçoit une ancre et rejoint son mouvement
+      const chapters = [...document.querySelectorAll('section.chapter')].map((sec, i) => {
+        const h2 = sec.querySelector('.chapter-head h2');
+        if (!h2) return null;
+        if (!sec.id) sec.id = 'chap-' + (i + 1);
+        return {
+          id: sec.id,
+          title: h2.textContent.trim(),
+          num: (sec.querySelector('.chapter-number')?.textContent || '').trim(),
+          mv: movementOf(sec),
+          labs: [...sec.querySelectorAll('.viz-mount .vid')].map((v) => v.textContent.trim()),
+        };
+      }).filter(Boolean);
+
+      MOVEMENTS.forEach((m, i) => {
+        const box = document.createElement('div');
+        box.className = 'som-act';
+        box.style.setProperty('--c', rampAt(i / (MOVEMENTS.length - 1)));
+        const head = document.createElement('a');
+        head.href = '#' + m.id;
+        head.textContent = m.long;
+        box.appendChild(head);
+        const list = document.createElement('ol');
+        for (const c of chapters.filter((c) => c.mv === m)) {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = '#' + c.id;
+          const n = document.createElement('span');
+          n.className = 'cn';
+          n.textContent = c.num;
+          const t = document.createElement('span');
+          t.textContent = c.title;
+          a.append(n, t);
+          for (const v of c.labs) {
+            const tag = document.createElement('span');
+            tag.className = 'lab';
+            tag.textContent = v;
+            a.appendChild(tag);
+          }
+          li.appendChild(a);
+          list.appendChild(li);
+        }
+        // un labo posé hors d'un chapitre titré (la conclusion) garde sa ligne
+        const listed = new Set(chapters.filter((c) => c.mv === m).flatMap((c) => c.labs));
+        for (const lab of LABS.filter((l) => l.mv === m && !listed.has(l.num))) {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = '#' + lab.id;
+          a.innerHTML = '<span class="cn"></span><span></span><span class="lab"></span>';
+          a.children[1].textContent = lab.title;
+          a.children[2].textContent = lab.num;
+          li.appendChild(a);
+          list.appendChild(li);
+        }
+        if (list.children.length) box.appendChild(list);
+        acts.appendChild(box);
+      });
+
+      const k = document.createElement('p');
+      k.className = 'som-kicker';
+      k.textContent = 'Les 26 laboratoires';
+      labs.parentNode.insertBefore(k, labs);
+      for (const lab of LABS) {
+        const a = document.createElement('a');
+        a.href = '#' + lab.id;
+        a.innerHTML = '<span class="n"></span><span></span>';
+        a.querySelector('.n').textContent = lab.num;
+        a.lastChild.textContent = lab.title;
+        labs.appendChild(a);
+      }
+    })();
+
+    // ---- Jauge de la flèche du temps + repérage --------------------------
+    const progressTop = document.getElementById('progressTop');
+    const arrowFill = document.getElementById('arrowFill');
+    const arrowMarks = document.getElementById('arrowMarks');
+    const here = document.getElementById('here');
+    const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
+
+    const marks = MOVEMENTS.map((m) => {
+      const a = document.createElement('a');
+      a.className = 'arrow-mark';
+      a.href = '#' + m.id;
+      a.innerHTML = '<i aria-hidden="true"></i><b></b>';
+      a.querySelector('b').textContent = m.label;
+      a.setAttribute('aria-label', 'Aller à : ' + m.label);
+      arrowMarks && arrowMarks.appendChild(a);
+      return a;
+    });
+
+    let docMax = 1, docH = 0, tops = [];
+    function placeMarks() {
+      const h = document.documentElement;
+      docH = h.scrollHeight;
+      docMax = Math.max(1, docH - h.clientHeight);
+      tops = MOVEMENTS.map((m) => m.el.getBoundingClientRect().top + window.scrollY);
+      tops.forEach((top, i) => {
+        marks[i].style.top = Math.min(100, Math.max(0, (top / docMax) * 100)) + '%';
+      });
+    }
+
+    let current = -1, queued = false;
+    function measure() {
+      if (document.documentElement.scrollHeight !== docH) placeMarks();
+      const y = window.scrollY;
+      const p = Math.min(1, Math.max(0, y / docMax));
+      if (progressTop) progressTop.style.width = (p * 100) + '%';
+      if (arrowFill) arrowFill.style.setProperty('--p', (p * 100) + '%');
+
+      // mouvement courant = dernier dont le haut est passé sous le tiers haut de l'écran
+      const line = y + window.innerHeight * 0.34;
+      let idx = -1;
+      for (let i = 0; i < tops.length; i++) if (tops[i] <= line) idx = i;
+      if (idx === current) return;
+      current = idx;
+      marks.forEach((a, i) => {
+        a.classList.toggle('on', i === idx);
+        a.classList.toggle('past', i < idx);
+      });
+      const id = idx >= 0 ? '#' + MOVEMENTS[idx].id : '';
+      navLinks.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === id));
+      if (here) here.textContent = idx >= 0 ? MOVEMENTS[idx].label : '';
+    }
+    function onScroll() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => { queued = false; measure(); });
+    }
+    document.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { placeMarks(); current = -1; measure(); }, { passive: true });
+    window.addEventListener('load', () => { placeMarks(); current = -1; measure(); });
+    placeMarks(); measure();
+
+    // ---- Aller à une ancre -----------------------------------------------
+    // Deux pièges sur cette page :
+    //  1. `scroll-behavior:smooth` est global, et `behavior:'auto'` veut dire
+    //     « suis le style » — donc *smooth*. Un saut animé traverse 60 000 px,
+    //     fait monter tous les labos au passage, la page grandit sous le
+    //     défilement et l'ancre s'échappe : d'où le va-et-vient. On force donc
+    //     un saut réellement instantané.
+    //  2. Même instantané, les deux ou trois labos autour de la cible montent
+    //     après coup et la déplacent. On réaligne alors quelques fois, en
+    //     s'arrêtant dès que la cible est stable — ou dès que le lecteur
+    //     reprend la main.
+    const HEAD = 86; // hauteur de la barre de titre
+    let jumpToken = 0;
+    function jumpTo(el) {
+      if (!el) return;
+      const token = ++jumpToken;
+      const root = document.documentElement;
+      const align = () => {
+        const delta = el.getBoundingClientRect().top - HEAD;
+        if (Math.abs(delta) < 2) return true;
+        const prev = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.scrollTo({ top: window.scrollY + delta, behavior: 'instant' });
+        root.style.scrollBehavior = prev;
+        return false;
+      };
+      // saut court (« Lire le dossier », « Explorer ») : rien ne peut monter
+      // en chemin, on garde le défilement animé.
+      const near = Math.abs(el.getBoundingClientRect().top - HEAD) < window.innerHeight * 2;
+      if (near && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - HEAD, behavior: 'smooth' });
+        return;
+      }
+      align();
+      let stable = 0;
+      (function settle(tries) {
+        if (token !== jumpToken || tries > 10) return;
+        setTimeout(() => {
+          if (token !== jumpToken) return;
+          if (align()) stable++; else stable = 0;
+          if (stable < 2) settle(tries + 1);
+        }, 180);
+      })(0);
+    }
+    // le lecteur reprend la main : on cesse toute correction
+    ['wheel', 'touchstart', 'keydown'].forEach((ev) =>
+      window.addEventListener(ev, () => { jumpToken++; }, { passive: true }));
+
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a || a.getAttribute('href') === '#') return;
+      let el;
+      try { el = document.querySelector(a.getAttribute('href')); } catch (err) { return; }
+      if (!el) return;
+      e.preventDefault();
+      closeSommaire();
+      history.pushState(null, '', a.getAttribute('href'));
+      jumpTo(el);
+    });
+    window.addEventListener('popstate', () => {
+      try { jumpTo(location.hash && document.querySelector(location.hash)); } catch (err) { /* ancre invalide */ }
+    });
+    window.addEventListener('load', () => {
+      try { if (location.hash) jumpTo(document.querySelector(location.hash)); } catch (err) { /* ancre invalide */ }
+    });
+
+    // ---- Sommaire : ouverture / fermeture ---------------------------------
     const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
+    const sommaire = document.getElementById('sommaire');
     const menuClose = document.getElementById('menuClose');
-    if (menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
-    if (menuClose) menuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
-    if (mobileMenu) mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+    function openSommaire() {
+      if (!sommaire) return;
+      sommaire.hidden = false;
+      document.body.style.overflow = 'hidden';
+      menuBtn.setAttribute('aria-expanded', 'true');
+      menuClose.focus();
+    }
+    function closeSommaire() {
+      if (!sommaire || sommaire.hidden) return;
+      sommaire.hidden = true;
+      document.body.style.overflow = '';
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+    if (menuBtn) menuBtn.addEventListener('click', openSommaire);
+    if (menuClose) menuClose.addEventListener('click', () => { closeSommaire(); menuBtn.focus(); });
+    if (sommaire) sommaire.addEventListener('click', (e) => { if (e.target === sommaire) closeSommaire(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sommaire && !sommaire.hidden) { closeSommaire(); menuBtn.focus(); }
+    });
 
     // Reveal on scroll (threshold 0 + safety net for very tall sections)
     const io = new IntersectionObserver((entries) => {
