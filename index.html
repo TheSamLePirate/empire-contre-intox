@@ -800,7 +800,7 @@
     .teaser-dialog-inner { display: grid; grid-template-columns: minmax(280px,420px) 1fr; min-height: 620px; }
     .teaser-player {
       position: relative; align-self: stretch; min-height: 620px;
-      background: #03060d url("ymir-lalie-phantom/pirates/assets/pirates-teaser-poster.webp") center / cover no-repeat;
+      background-color: #03060d; background-position: center; background-size: cover; background-repeat: no-repeat;
       overflow: hidden;
     }
     .teaser-player::after {
@@ -1512,6 +1512,12 @@
                 <img src="provoxys/entropie/assets/entropie-hero.index.webp" alt="Une tasse de café chaud dont la vapeur se disperse en particules puis en galaxies et un trou noir : l'entropie à toutes les échelles" loading="lazy" decoding="async" fetchpriority="low">
                 <span class="dossier-no">Dossier XXV</span>
                 <span class="badge">Live Provox × Sam</span>
+                <a class="teaser-trigger" href="https://www.tiktok.com/@provoxys/video/7666079085038144800"
+                   target="_blank" rel="noopener" aria-haspopup="dialog" aria-controls="entropie-teaser-dialog"
+                   data-teaser-open>
+                  <span class="teaser-play" aria-hidden="true">▶</span>
+                  <span class="teaser-copy"><small>Bande-annonce</small><strong>Voir la vidéo</strong></span>
+                </a>
               </div>
               <div class="dossier-body">
                 <h3>L'Entropie, le temps et l'Univers</h3>
@@ -2065,7 +2071,7 @@
 
   <dialog class="teaser-dialog" id="pirates-teaser-dialog" aria-labelledby="pirates-teaser-title">
     <div class="teaser-dialog-inner">
-      <div class="teaser-player" data-teaser-player></div>
+      <div class="teaser-player" data-teaser-player style="background-image:url('ymir-lalie-phantom/pirates/assets/pirates-teaser-poster.webp')"></div>
       <div class="teaser-dialog-copy">
         <button class="teaser-close" type="button" data-teaser-close aria-label="Fermer la bande-annonce">×</button>
         <p class="kicker">Dossier XXIV · Bande-annonce de Lalie</p>
@@ -2074,6 +2080,24 @@
         <div class="teaser-dialog-actions">
           <a class="primary" href="ymir-lalie-phantom/pirates/">Lire le dossier →</a>
           <a class="secondary" href="https://www.tiktok.com/@lalie290370/video/7663944917676346657" target="_blank" rel="noopener">Voir sur TikTok ↗</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="teaser-dialog" id="entropie-teaser-dialog" aria-labelledby="entropie-teaser-title"
+          data-teaser-src="https://www.tiktok.com/player/v1/7666079085038144800?controls=1&amp;description=1&amp;music_info=1&amp;rel=0"
+          data-teaser-title="Bande-annonce TikTok du dossier Entropie">
+    <div class="teaser-dialog-inner">
+      <div class="teaser-player" data-teaser-player style="background-image:url('provoxys/entropie/assets/entropie-hero.index.webp')"></div>
+      <div class="teaser-dialog-copy">
+        <button class="teaser-close" type="button" data-teaser-close aria-label="Fermer la bande-annonce">×</button>
+        <p class="kicker">Dossier XXV · Bande-annonce de Provoxys</p>
+        <h2 id="entropie-teaser-title">L'Entropie, le temps et l'Univers</h2>
+        <p>Du café qui refroidit à la flèche du temps et aux trous noirs : découvrez la vidéo de Provoxys, puis explorez les explications et visualisations interactives du dossier complet.</p>
+        <div class="teaser-dialog-actions">
+          <a class="primary" href="provoxys/entropie/">Lire le dossier →</a>
+          <a class="secondary" href="https://www.tiktok.com/@provoxys/video/7666079085038144800" target="_blank" rel="noopener">Voir sur TikTok ↗</a>
         </div>
       </div>
     </div>
@@ -2149,34 +2173,38 @@
       addEventListener('resize', () => { rect = null; }, { passive: true });
     }
 
-    // Charge le lecteur TikTok uniquement lorsque la bande-annonce est demandée.
-    const teaserDialog = document.getElementById('pirates-teaser-dialog');
-    const teaserOpen = document.querySelector('[data-teaser-open]');
-    const teaserPlayer = teaserDialog?.querySelector('[data-teaser-player]');
-    const teaserClose = teaserDialog?.querySelector('[data-teaser-close]');
-    const teaserSrc = 'https://www.tiktok.com/player/v1/7663944917676346657?controls=1&description=1&music_info=1&rel=0';
+    // Charge chaque lecteur TikTok uniquement lorsque sa bande-annonce est demandée.
+    document.querySelectorAll('[data-teaser-open]').forEach((teaserOpen) => {
+      const teaserDialog = document.getElementById(teaserOpen.getAttribute('aria-controls'));
+      const teaserPlayer = teaserDialog?.querySelector('[data-teaser-player]');
+      const teaserClose = teaserDialog?.querySelector('[data-teaser-close]');
+      const teaserSrc = teaserDialog?.dataset.teaserSrc
+        || 'https://www.tiktok.com/player/v1/7663944917676346657?controls=1&description=1&music_info=1&rel=0';
+      const teaserTitle = teaserDialog?.dataset.teaserTitle
+        || 'Bande-annonce TikTok du dossier Pirates';
 
-    const unloadTeaser = () => {
-      teaserPlayer?.querySelector('iframe')?.remove();
-    };
-    const closeTeaser = () => {
-      if (!teaserDialog) return;
-      document.body.classList.remove('teaser-open');
-      if (typeof teaserDialog.close === 'function' && teaserDialog.open) {
-        teaserDialog.close();
-      } else {
-        teaserDialog.removeAttribute('open');
-        unloadTeaser();
-        teaserOpen?.focus();
-      }
-    };
-    if (teaserDialog && teaserOpen && teaserPlayer) {
+      if (!teaserDialog || !teaserPlayer) return;
+
+      const unloadTeaser = () => {
+        teaserPlayer.querySelector('iframe')?.remove();
+      };
+      const closeTeaser = () => {
+        document.body.classList.remove('teaser-open');
+        if (typeof teaserDialog.close === 'function' && teaserDialog.open) {
+          teaserDialog.close();
+        } else {
+          teaserDialog.removeAttribute('open');
+          unloadTeaser();
+          teaserOpen.focus();
+        }
+      };
+
       teaserOpen.addEventListener('click', (event) => {
         event.preventDefault();
         if (!teaserPlayer.querySelector('iframe')) {
           const iframe = document.createElement('iframe');
           iframe.src = teaserSrc;
-          iframe.title = 'Bande-annonce TikTok du dossier Pirates';
+          iframe.title = teaserTitle;
           iframe.allow = 'fullscreen; autoplay; encrypted-media';
           iframe.allowFullscreen = true;
           teaserPlayer.append(iframe);
@@ -2198,7 +2226,7 @@
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && teaserDialog.hasAttribute('open')) closeTeaser();
       });
-    }
+    });
   </script>
   <script src="assets/visit-counter.js" defer></script>
 </body>
