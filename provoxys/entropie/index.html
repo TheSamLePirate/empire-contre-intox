@@ -25,7 +25,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 
   <!-- Visualisations interactives V1–V26 (bundle React autonome) -->
-  <link rel="stylesheet" href="assets/entropie-viz.css">
+  <link rel="stylesheet" href="assets/entropie-viz.css?v=6">
   <link rel="stylesheet" href="assets/milk-coffee.css">
 
   <script>document.documentElement.classList.add('js');</script>
@@ -277,6 +277,32 @@
     .credit-band .ct .over { font-family:var(--roman); font-size:.62rem; letter-spacing:.24em; text-transform:uppercase; color:var(--soft); }
     .credit-band .ct .nm { font-family:var(--roman); font-weight:700; letter-spacing:.06em; font-size:1.2rem; color:var(--gold-bright); }
     .credit-band .ct .note { color:var(--muted); font-size:.9rem; margin-top:4px; }
+
+    /* GALERIE VIDÉO — lecteurs YouTube embarqués (façade lite) */
+    .video-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:22px; }
+    .vcard { border:1px solid var(--line-2); border-radius:16px; overflow:hidden; background:var(--glass);
+      transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s; }
+    .vcard:hover { border-color:var(--line); box-shadow:0 22px 55px rgba(0,0,0,.5); }
+    .vframe { position:relative; aspect-ratio:16/9; background:#0b1220; overflow:hidden; }
+    .vframe iframe { position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+    .vfacade { position:absolute; inset:0; border:0; padding:0; margin:0; cursor:pointer; background:#0b1220; overflow:hidden; }
+    .vfacade img { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.92) contrast(1.02); transition:transform .5s var(--ease), filter .4s var(--ease); }
+    .vfacade::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(5,8,17,.06) 40%,rgba(5,8,17,.62)); transition:opacity .3s; }
+    .vfacade:hover img { transform:scale(1.05); filter:saturate(1.05) contrast(1.04); }
+    .vplay { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:2;
+      width:66px; height:66px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      background:rgba(5,8,17,.55); border:1.5px solid var(--gold); backdrop-filter:blur(3px);
+      transition:transform .3s var(--ease), background .3s, box-shadow .3s; }
+    .vplay::before { content:""; width:0; height:0; margin-left:5px;
+      border-style:solid; border-width:12px 0 12px 20px; border-color:transparent transparent transparent var(--gold-bright); }
+    .vfacade:hover .vplay, .vfacade:focus-visible .vplay { transform:translate(-50%,-50%) scale(1.12); background:rgba(214,172,85,.22); box-shadow:0 0 30px rgba(214,172,85,.5); }
+    .vmeta { display:flex; align-items:baseline; gap:12px; padding:15px 18px 17px; }
+    .vmeta .vtxt { min-width:0; }
+    .vchan { display:inline-block; font-family:var(--roman); font-weight:600; letter-spacing:.16em; text-transform:uppercase; font-size:.58rem;
+      color:var(--gold); background:rgba(214,172,85,.08); border:1px solid var(--line); border-radius:2px; padding:3px 8px; margin-bottom:9px; }
+    .vtitle { font-family:var(--serif); font-weight:500; font-size:1.04rem; line-height:1.35; color:var(--ink); }
+    .video-note { margin:22px 0 0; font-size:.82rem; color:var(--soft); }
+    .video-note a { color:var(--gold-bright); }
 
     /* CLOSING + COLLECTIVE FOOTER */
     .closing { text-align:center; }
@@ -689,6 +715,181 @@
     .collective-footer .seal { display:block; }
     .eci-license { text-align:left; }
 
+    /* --- Logo entropique : érosion granulaire 2 × 2 px -------------------- */
+    .entropy-seal {
+      width:100vw;
+      margin:0 0 clamp(32px,5vw,56px) calc(50% - 50vw);
+      text-align:left;
+    }
+    .entropy-seal__stage {
+      position:relative;
+      overflow:hidden;
+      width:100%;
+      height:clamp(560px,62vw,800px);
+      background:
+        radial-gradient(circle at 50% 37%,rgba(88,166,217,.14),transparent 30%),
+        radial-gradient(ellipse at 50% 100%,rgba(214,172,85,.08),transparent 54%),
+        linear-gradient(180deg,rgba(10,18,37,.9),rgba(2,5,13,.98));
+      border-block:1px solid rgba(214,172,85,.26);
+      box-shadow:
+        inset 0 1px rgba(255,255,255,.08),
+        inset 0 -40px 90px rgba(0,0,0,.34),
+        0 34px 90px rgba(0,0,0,.38);
+      isolation:isolate;
+    }
+    .entropy-seal__stage::before {
+      position:absolute;
+      inset:0;
+      z-index:2;
+      pointer-events:none;
+      content:"";
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.035),transparent 18%,transparent 78%,rgba(214,172,85,.035)),
+        repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0,rgba(255,255,255,.012) 1px,transparent 1px,transparent 4px);
+      mix-blend-mode:screen;
+    }
+    .entropy-seal canvas,
+    .entropy-seal__fallback {
+      position:absolute;
+      inset:0;
+      display:block;
+      width:100%;
+      height:100%;
+    }
+    .entropy-seal canvas { z-index:1; touch-action:none; }
+    .entropy-seal__fallback {
+      z-index:0;
+      padding:8% 8% 20%;
+      object-fit:contain;
+      opacity:.92;
+      transition:opacity .35s ease;
+    }
+    .entropy-seal.is-ready .entropy-seal__fallback { opacity:0; }
+    .entropy-seal__hud {
+      position:absolute;
+      top:clamp(12px,3vw,18px);
+      right:clamp(12px,3vw,18px);
+      left:clamp(12px,3vw,18px);
+      z-index:3;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      pointer-events:none;
+    }
+    .entropy-seal__eyebrow,
+    .entropy-seal__gravity {
+      display:grid;
+      gap:3px;
+      padding:8px 10px;
+      background:rgba(3,7,16,.62);
+      border:1px solid rgba(255,255,255,.11);
+      border-radius:8px;
+      box-shadow:0 12px 28px rgba(0,0,0,.25);
+      backdrop-filter:blur(12px);
+    }
+    .entropy-seal__eyebrow span,
+    .entropy-seal__gravity span {
+      color:var(--soft);
+      font-family:var(--mono);
+      font-size:.55rem;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .entropy-seal__eyebrow strong {
+      color:var(--gold-bright);
+      font-family:var(--roman);
+      font-size:clamp(.72rem,2.2vw,.92rem);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .entropy-seal__gravity { text-align:right; }
+    .entropy-seal__gravity strong {
+      color:var(--cold-bright);
+      font-family:var(--mono);
+      font-size:clamp(.68rem,2vw,.82rem);
+    }
+    .entropy-seal__readout {
+      position:absolute;
+      right:clamp(12px,3vw,18px);
+      bottom:clamp(12px,3vw,18px);
+      left:clamp(12px,3vw,18px);
+      z-index:3;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      color:var(--muted);
+      font-family:var(--mono);
+      font-size:.6rem;
+      letter-spacing:.08em;
+      background:rgba(3,7,16,.64);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:8px;
+      backdrop-filter:blur(12px);
+    }
+    .entropy-seal__track {
+      height:3px;
+      overflow:hidden;
+      background:rgba(255,255,255,.12);
+      border-radius:999px;
+    }
+    .entropy-seal__track i {
+      display:block;
+      width:0;
+      height:100%;
+      background:linear-gradient(90deg,var(--gold-bright),var(--hot-bright));
+      border-radius:inherit;
+      box-shadow:0 0 12px rgba(239,125,87,.6);
+      transition:width .18s linear;
+    }
+    .entropy-seal figcaption {
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      gap:8px 14px;
+      margin-top:14px;
+      color:var(--muted);
+      font-size:.72rem;
+      text-align:center;
+    }
+    .entropy-seal__controls { display:flex; gap:7px; }
+    .entropy-seal__controls button {
+      padding:7px 10px;
+      color:var(--parch);
+      font:700 .58rem/1 var(--mono);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      background:rgba(214,172,85,.06);
+      border:1px solid var(--line);
+      border-radius:999px;
+      cursor:pointer;
+      transition:border-color .2s,background .2s,transform .2s;
+    }
+    .entropy-seal__controls button:hover {
+      background:rgba(214,172,85,.13);
+      border-color:var(--gold);
+      transform:translateY(-1px);
+    }
+    .entropy-seal__controls button:disabled {
+      opacity:.42;
+      cursor:not-allowed;
+      transform:none;
+    }
+    .entropy-seal__controls button:focus-visible {
+      outline:2px solid var(--cold-bright);
+      outline-offset:3px;
+    }
+    @media (max-width:520px) {
+      .entropy-seal__stage { height:clamp(500px,145vw,620px); }
+      .entropy-seal__gravity { display:none; }
+      .entropy-seal__readout { grid-template-columns:auto 1fr; }
+      .entropy-seal__count { display:none; }
+    }
+
     /* --- 10. Rythme vertical ----------------------------------------------- */
     main > section:not(.chapter):not(.act-band):not(.closing) { padding-block:clamp(30px,4vw,54px); }
     #intro { padding-top:clamp(46px,6vw,84px); }
@@ -893,6 +1094,7 @@
         <a class="btn btn--gold" href="#hero-simulation">Vivre l'expérience</a>
         <a class="btn btn--ghost" href="#ouverture">Lire le dossier</a>
         <a class="btn btn--ghost" href="#labos">Les 26 laboratoires</a>
+        <a class="btn btn--ghost" href="portraits.html">Portraits des savants</a>
         <a class="btn btn--ghost" href="../../index.html">Accueil ECI</a>
       </div>
       <div class="signal-board reveal in" data-d="3">
@@ -968,6 +1170,8 @@
       <a href="#lexique">Lexique</a>
       <a href="#labos">Les 26 laboratoires</a>
       <a href="#coulisses">Coulisses</a>
+      <a href="#ressources">Vidéos</a>
+      <a href="portraits.html">Portraits des savants</a>
       <a href="../../sources/sources.html">Les Sources</a>
       <a href="../../index.html">Accueil ECI</a>
     </div>
@@ -993,6 +1197,8 @@
             <a href="#labos">Le banc d'essai — les 26 labos</a>
             <a href="#lexique">Lexique — 47 mots définis simplement</a>
             <a href="#faq">Questions du chat</a>
+            <a href="#ressources">Pour en savoir plus — vidéos</a>
+            <a href="portraits.html">Portraits des savants — la galerie</a>
             <a href="../../sources/sources.html">Les Sources (Dossier XXVI)</a>
             <a href="../../index.html">Accueil ECI — tous les dossiers</a>
             <a href="../../LICENCE-CONTENU.md">Licence du contenu</a>
@@ -2561,6 +2767,59 @@
       </div>
     </section>
 
+    <!-- ================= POUR EN SAVOIR PLUS · VIDÉOS ================= -->
+    <section class="band reveal" id="ressources">
+      <div class="wrap">
+        <p class="sec-eyebrow">Pour en savoir plus</p>
+        <h2>Une galerie de vulgarisation</h2>
+        <p style="color:var(--muted);max-width:66ch;margin:0 0 30px;">Quatre vidéos de chaînes françaises de référence pour prolonger le dossier — du café qui refroidit au démon de Maxwell, de la flèche du temps à la nature profonde de l'entropie. Cliquez pour lire directement ici.</p>
+        <div class="video-gallery">
+
+          <div class="vcard">
+            <div class="vframe">
+              <button type="button" class="vfacade" data-yt="rHIPMHO_tNA" aria-label="Lire la vidéo : L'Entropie — Passe-science #17">
+                <img src="https://i.ytimg.com/vi/rHIPMHO_tNA/maxresdefault.jpg" alt="Miniature — L'Entropie, Passe-science #17" loading="lazy" referrerpolicy="no-referrer">
+                <span class="vplay" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="vmeta"><div class="vtxt"><span class="vchan">Passe-Science</span><div class="vtitle">L'Entropie — Passe-science #17</div></div></div>
+          </div>
+
+          <div class="vcard">
+            <div class="vframe">
+              <button type="button" class="vfacade" data-yt="VJ61CF9sxm4" aria-label="Lire la vidéo : Démon de Maxwell et entropie — Passe-science #52">
+                <img src="https://i.ytimg.com/vi/VJ61CF9sxm4/maxresdefault.jpg" alt="Miniature — Démon de Maxwell et entropie, Passe-science #52" loading="lazy" referrerpolicy="no-referrer">
+                <span class="vplay" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="vmeta"><div class="vtxt"><span class="vchan">Passe-Science</span><div class="vtitle">Démon de Maxwell et entropie — Passe-science #52</div></div></div>
+          </div>
+
+          <div class="vcard">
+            <div class="vframe">
+              <button type="button" class="vfacade" data-yt="flz_aSIJS0A" aria-label="Lire la vidéo : Entropie et flèche du Temps — ScienceClic">
+                <img src="https://i.ytimg.com/vi/flz_aSIJS0A/maxresdefault.jpg" alt="Miniature — Entropie et flèche du Temps, ScienceClic" loading="lazy" referrerpolicy="no-referrer">
+                <span class="vplay" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="vmeta"><div class="vtxt"><span class="vchan">ScienceClic</span><div class="vtitle">Entropie et flèche du Temps</div></div></div>
+          </div>
+
+          <div class="vcard">
+            <div class="vframe">
+              <button type="button" class="vfacade" data-yt="H71WR50stm4" aria-label="Lire la vidéo : La nature profonde de l'entropie — Science4All">
+                <img src="https://i.ytimg.com/vi/H71WR50stm4/hqdefault.jpg" alt="Miniature — La nature profonde de l'entropie, Science4All" loading="lazy" referrerpolicy="no-referrer">
+                <span class="vplay" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="vmeta"><div class="vtxt"><span class="vchan">Science4All</span><div class="vtitle">La nature profonde de l'entropie</div></div></div>
+          </div>
+
+        </div>
+        <p class="video-note">Lecture directe sur cette page via le lecteur <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a> (chargé au clic, en mode sans cookie). Vidéos et miniatures sont des contenus tiers appartenant à leurs auteurs — Passe-Science, ScienceClic, Science4All — et ne relèvent pas de la licence CC BY-NC-ND du dossier.</p>
+      </div>
+    </section>
+
     <!-- ================= CLOSING ================= -->
     <section class="closing reveal">
       <div class="wrap">
@@ -2573,11 +2832,50 @@
   <!-- ================= COLLECTIVE FOOTER ================= -->
   <footer class="collective-footer reveal">
     <div class="wrap">
-      <span class="seal"><img src="../../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox"></span>
+      <figure
+        class="entropy-seal"
+        data-entropy-seal
+        data-logo-src="../../ymir-lalie/assets/logo-eci.jpg"
+      >
+        <div class="entropy-seal__stage">
+          <img
+            class="entropy-seal__fallback"
+            src="../../ymir-lalie/assets/logo-eci.jpg"
+            alt=""
+          >
+          <canvas
+            role="img"
+            aria-label="Logo Empire contre Intox composé de blocs de deux pixels qui se détachent depuis les bords, tombent sous la gravité puis se réassemblent."
+          ></canvas>
+          <div class="entropy-seal__hud" aria-hidden="true">
+            <div class="entropy-seal__eyebrow">
+              <span>Simulation cyclique</span>
+              <strong data-entropy-phase>Ordre initial</strong>
+            </div>
+            <div class="entropy-seal__gravity">
+              <span>Force appliquée</span>
+              <strong>GRAVITÉ ↓ 9,81</strong>
+            </div>
+          </div>
+          <div class="entropy-seal__readout" aria-hidden="true">
+            <span>S VISUELLE</span>
+            <span class="entropy-seal__track"><i data-entropy-progress></i></span>
+            <span class="entropy-seal__count" data-entropy-count>0 % LIBRE</span>
+          </div>
+        </div>
+        <figcaption>
+          <span>Chaque bloc représente un groupe de 2 × 2 pixels. Passez le pointeur pour perturber leur chute.</span>
+          <span class="entropy-seal__controls">
+            <button type="button" data-entropy-accelerate>Accélérer</button>
+            <button type="button" data-entropy-rebuild>Reformer</button>
+          </span>
+        </figcaption>
+      </figure>
       <h3>Empire contre Intox</h3>
       <p>Un collectif qui transforme les grands lives en dossiers durables&nbsp;: transcription intégrale, faits vérifiés et sourcés, mise en scène pédagogique. Ce dossier sur l'entropie a été porté par <b style="color:var(--hot-bright)">Provoxys</b>, avec la participation de <b style="color:var(--cold-bright)">Samlepirate</b> pour les visualisations interactives.</p>
       <div class="footer-actions">
         <a href="../../index.html">↩ Retour à l'index</a>
+        <a href="portraits.html">Portraits des savants</a>
         <a href="../../sources/sources.html">Les Sources (Dossier XXVI)</a>
         <a href="../Artemis2.html">Provoxys · Artémis II</a>
         <a href="../exoplanetes/index.html">Provoxys · Exoplanètes</a>
@@ -2598,8 +2896,9 @@
 
   <!-- ================= SCRIPTS ================= -->
   <script src="../../assets/visit-counter.js" defer></script>
-  <script src="assets/entropie-viz.js" defer></script>
+  <script src="assets/entropie-viz.js?v=10" defer></script>
   <script src="assets/milk-coffee.js?v=5" defer></script>
+  <script src="assets/footer-entropy.js?v=3" defer></script>
   <script>
     // ---- Partition à deux voix -------------------------------------------
     // Regroupe chaque prise de parole (du label « speaker » jusqu'au prochain,
@@ -3154,6 +3453,25 @@
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderMath);
     else renderMath();
     window.addEventListener("load", renderMath);
+  </script>
+
+  <!-- Lecteurs YouTube embarqués : chargement au clic (façade lite, mode sans cookie) -->
+  <script>
+    document.querySelectorAll('.vfacade[data-yt]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-yt');
+        if (!id) return;
+        const frame = btn.closest('.vframe');
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+        iframe.title = btn.getAttribute('aria-label') || 'Lecteur vidéo YouTube';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        frame.innerHTML = '';
+        frame.appendChild(iframe);
+      });
+    });
   </script>
 </body>
 </html>

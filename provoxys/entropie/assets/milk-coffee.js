@@ -870,6 +870,7 @@
   let pointerUv = [0.5, 0.5];
   let pointerForce = 0;
   let previousPointer = null;
+  let pointerGesture = null;
   let lastMetricAt = 0;
   let displayedUniformity = 0;
   let pourSequence = [];
@@ -886,9 +887,19 @@
     const center = point || [0.5, 0.5];
     const now = performance.now();
     for (let index = 0; index < 6; index += 1) {
+      const angle = Math.random() * Math.PI * 2;
+      const spread = Math.sqrt(Math.random()) * 0.012;
+      const candidate = [
+        center[0] + Math.cos(angle) * spread,
+        center[1] + Math.sin(angle) * spread
+      ];
+      const offsetX = candidate[0] - 0.5;
+      const offsetY = candidate[1] - 0.5;
+      const distance = Math.hypot(offsetX, offsetY);
+      const scale = distance > 0.478 ? 0.478 / distance : 1;
       pourSequence.push({
         at: now + index * 72,
-        point: [center[0], center[1]],
+        point: [0.5 + offsetX * scale, 0.5 + offsetY * scale],
         amount: 0.56 + Math.random() * 0.22,
         size: 0.00045 + Math.random() * 0.00038
       });
@@ -986,6 +997,7 @@
     hasMilk = false;
     pointerDown = false;
     previousPointer = null;
+    pointerGesture = null;
     pointerForce = 0;
     pourSequence = [];
     simulationTime = 0;
@@ -1010,7 +1022,14 @@
     pointerDown = true;
     pointerUv = point.uv;
     previousPointer = { uv: point.uv, time: performance.now() };
-    if (!hasMilk) queuePour(point.uv);
+    pointerGesture = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      startUv: point.uv,
+      startedAt: performance.now(),
+      dragged: false
+    };
     ui.spoon?.classList.add('is-stirring');
   });
 
@@ -1020,6 +1039,18 @@
       const point = pointerInCup(sample.clientX, sample.clientY);
       moveSpoon(sample, point);
       if (!pointerDown) continue;
+      if (pointerGesture && !pointerGesture.dragged) {
+        pointerGesture.dragged =
+          Math.hypot(
+            sample.clientX - pointerGesture.startX,
+            sample.clientY - pointerGesture.startY
+          ) >= (sample.pointerType === 'touch' ? 10 : 6);
+        if (!pointerGesture.dragged) continue;
+        previousPointer = {
+          uv: pointerGesture.startUv,
+          time: pointerGesture.startedAt
+        };
+      }
       if (!point.inside) {
         previousPointer = null;
         continue;
@@ -1037,8 +1068,25 @@
   });
 
   function endPointer(event) {
+    const gesture = pointerGesture;
+    if (
+      pointerDown &&
+      gesture &&
+      !gesture.dragged &&
+      performance.now() - gesture.startedAt < 650
+    ) {
+      const release = pointerInCup(
+        event?.clientX ?? gesture.startX,
+        event?.clientY ?? gesture.startY
+      );
+      if (release.inside) {
+        pointerUv = release.uv;
+        queuePour(release.uv);
+      }
+    }
     pointerDown = false;
     previousPointer = null;
+    pointerGesture = null;
     ui.spoon?.classList.remove('is-stirring');
     if (event?.pointerType === 'touch') ui.spoon?.classList.remove('is-visible');
   }
