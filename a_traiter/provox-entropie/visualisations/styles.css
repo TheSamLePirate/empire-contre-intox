@@ -249,6 +249,60 @@
 .entropy-viz__carnot-balance {
   grid-column: 1 / -1;
 }
+.entropy-viz__thermal-contact rect {
+  stroke-width: 2;
+}
+.entropy-viz__thermal-contact text,
+.entropy-viz__adiabatic-shell text {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.entropy-viz__thermal-contact--hot rect {
+  fill: rgba(255, 90, 55, 0.16);
+  stroke: var(--ev-hot);
+}
+.entropy-viz__thermal-contact--hot text,
+.entropy-viz__thermal-contact--hot .entropy-viz__heat-flow {
+  fill: var(--ev-hot);
+  stroke: var(--ev-hot);
+}
+.entropy-viz__thermal-contact--cold rect {
+  fill: rgba(88, 166, 217, 0.16);
+  stroke: var(--ev-cold);
+}
+.entropy-viz__thermal-contact--cold text,
+.entropy-viz__thermal-contact--cold .entropy-viz__heat-flow {
+  fill: var(--ev-cold);
+  stroke: var(--ev-cold);
+}
+.entropy-viz__heat-flow {
+  fill: none;
+  stroke-width: 4;
+  stroke-dasharray: 4 3;
+  animation: entropy-viz-heat-flow 0.55s linear infinite;
+}
+.entropy-viz__adiabatic-shell rect {
+  fill: none;
+  stroke: var(--ev-info);
+  stroke-width: 5;
+  stroke-dasharray: 9 5;
+  opacity: 0.76;
+}
+.entropy-viz__adiabatic-shell text {
+  fill: var(--ev-info);
+}
+@keyframes entropy-viz-heat-flow {
+  to {
+    stroke-dashoffset: -7;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entropy-viz__heat-flow {
+    animation: none;
+  }
+}
 .entropy-viz__panel .entropy-viz__balance-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -342,6 +396,539 @@
 }
 .entropy-viz__pattern-panel {
   min-width: 0;
+}
+.entropy-viz__einstein-scene {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(6.5rem, 0.28fr) minmax(0, 1fr);
+  gap: clamp(0.55rem, 1.4vw, 1rem);
+  align-items: stretch;
+  margin: 1rem 0 0.6rem;
+  padding: clamp(0.7rem, 1.8vw, 1.1rem);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 50%, rgba(88, 166, 217, 0.1), transparent 34%),
+    radial-gradient(circle at 82% 50%, rgba(219, 104, 74, 0.1), transparent 34%),
+    rgba(5, 8, 17, 0.42);
+  border: 1px solid var(--ev-line-neutral);
+  border-radius: var(--ev-radius);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.04),
+    0 24px 60px rgba(0, 0, 0, 0.2);
+}
+.entropy-viz__einstein-solid {
+  position: relative;
+  min-width: 0;
+  padding: clamp(0.7rem, 1.4vw, 1rem);
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.045), transparent 42%),
+    rgba(8, 15, 27, 0.82);
+  border: 1px solid color-mix(in srgb, var(--v09-color) 52%, var(--ev-line));
+  border-radius: var(--ev-radius-sm);
+  box-shadow:
+    inset 0 0 45px color-mix(in srgb, var(--v09-color) 14%, transparent),
+    0 12px 32px rgba(0, 0, 0, 0.22);
+}
+.entropy-viz__einstein-solid--a {
+  --v09-color: var(--ev-cold);
+}
+.entropy-viz__einstein-solid--b {
+  --v09-color: var(--ev-hot);
+}
+.entropy-viz__einstein-solid > header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.12rem 0.65rem;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--ev-line-neutral);
+}
+.entropy-viz__einstein-solid > header > span {
+  color: var(--v09-color);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+.entropy-viz__einstein-solid > header > strong {
+  color: var(--ev-text);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: clamp(0.86rem, 1.5vw, 1.05rem);
+}
+.entropy-viz__einstein-solid > header > small {
+  grid-column: 1 / -1;
+  color: var(--ev-muted);
+  font-size: 0.72rem;
+}
+.entropy-viz__einstein-lattice {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(1.8rem, 1fr));
+  gap: clamp(0.3rem, 0.8vw, 0.55rem);
+}
+.entropy-viz__einstein-oscillator {
+  position: relative;
+  min-width: 0;
+  height: clamp(2.8rem, 5.5vw, 3.8rem);
+  overflow: hidden;
+  background: rgba(5, 8, 17, 0.42);
+  border: 1px solid var(--ev-line-neutral);
+  border-radius: 5px;
+}
+.entropy-viz__einstein-oscillator > i {
+  position: absolute;
+  top: 50%;
+  left: 12%;
+  width: 76%;
+  height: 2px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--ev-muted) 0 4px,
+      transparent 4px 7px
+    );
+  opacity: 0.5;
+}
+.entropy-viz__einstein-oscillator > b {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(0.65rem, 1.4vw, 0.9rem);
+  aspect-ratio: 1;
+  background: var(--v09-color);
+  border: 2px solid var(--ev-text);
+  border-radius: 50%;
+  box-shadow:
+    0 0 12px color-mix(in srgb, var(--v09-color) 74%, transparent),
+    0 0 28px color-mix(in srgb, var(--v09-color) 34%, transparent);
+  animation: entropy-viz-einstein-vibrate var(--v09-duration) ease-in-out
+    var(--v09-delay) infinite alternate;
+}
+.entropy-viz__einstein-oscillator > span {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  display: grid;
+  min-width: 1rem;
+  height: 1rem;
+  place-items: center;
+  color: var(--ev-bg);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 900;
+  background: var(--ev-gold-bright);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(214, 172, 85, 0.48);
+}
+.entropy-viz__einstein-coupling {
+  display: grid;
+  align-content: center;
+  gap: 0.55rem;
+  min-width: 0;
+  text-align: center;
+}
+.entropy-viz__einstein-coupling > span,
+.entropy-viz__einstein-coupling > small {
+  color: var(--ev-muted);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+}
+.entropy-viz__einstein-coupling > strong {
+  color: var(--ev-gold-bright);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+}
+.entropy-viz__einstein-channel {
+  position: relative;
+  height: 3.1rem;
+}
+.entropy-viz__einstein-channel > i {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--ev-cold),
+    var(--ev-gold-bright),
+    var(--ev-hot)
+  );
+  box-shadow: 0 0 15px rgba(214, 172, 85, 0.32);
+}
+.entropy-viz__einstein-channel > i::before,
+.entropy-viz__einstein-channel > i::after {
+  position: absolute;
+  top: 50%;
+  width: 0.45rem;
+  height: 0.45rem;
+  content: "";
+  border-top: 2px solid var(--ev-gold-bright);
+  border-right: 2px solid var(--ev-gold-bright);
+}
+.entropy-viz__einstein-channel > i::before {
+  left: 1px;
+  transform: translateY(-50%) rotate(-135deg);
+}
+.entropy-viz__einstein-channel > i::after {
+  right: 1px;
+  transform: translateY(-50%) rotate(45deg);
+}
+.entropy-viz__einstein-channel > b {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  width: 1.8rem;
+  height: 1.8rem;
+  place-items: center;
+  color: var(--ev-bg);
+  font-family: Georgia, serif;
+  background: var(--ev-gold-bright);
+  border: 2px solid var(--ev-text);
+  border-radius: 50%;
+  box-shadow:
+    0 0 18px rgba(214, 172, 85, 0.7),
+    0 0 42px rgba(214, 172, 85, 0.38);
+}
+.entropy-viz__einstein-channel > b.is-to-a {
+  animation: entropy-viz-quantum-to-a 0.7s var(--ev-ease) both;
+}
+.entropy-viz__einstein-channel > b.is-to-b {
+  animation: entropy-viz-quantum-to-b 0.7s var(--ev-ease) both;
+}
+.entropy-viz__einstein-channel > b.is-idle {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: entropy-viz-quantum-idle 1.8s ease-in-out infinite;
+}
+.entropy-viz__einstein-note {
+  margin: 0 0 1rem;
+  color: var(--ev-muted);
+  font-size: 0.78rem;
+  text-align: center;
+}
+.entropy-viz__cosmic-universe {
+  position: relative;
+  min-height: clamp(21rem, 48vw, 31rem);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  background: #02040a;
+  border: 1px solid var(--ev-line-neutral);
+  border-radius: var(--ev-radius);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.06),
+    0 28px 75px rgba(0, 0, 0, 0.34);
+  isolation: isolate;
+}
+.entropy-viz__cosmic-universe::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(180deg, rgba(2, 4, 10, 0.72), transparent 24%, transparent 70%, rgba(2, 4, 10, 0.72)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.012) 0,
+      rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  mix-blend-mode: screen;
+}
+.entropy-viz__cosmic-universe canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.entropy-viz__cosmic-hud,
+.entropy-viz__cosmic-dominant,
+.entropy-viz__cosmic-expansion {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  gap: 0.18rem;
+  padding: 0.75rem 0.9rem;
+  color: var(--ev-text);
+  background: rgba(3, 7, 16, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--ev-radius-sm);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.04),
+    0 12px 30px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(14px);
+}
+.entropy-viz__cosmic-hud {
+  top: 1rem;
+  left: 1rem;
+}
+.entropy-viz__cosmic-dominant {
+  top: 1rem;
+  right: 1rem;
+  text-align: right;
+}
+.entropy-viz__cosmic-expansion {
+  position: absolute;
+  bottom: 2rem;
+  left: 1rem;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.18rem 0.65rem;
+  min-width: 11.5rem;
+  padding: 0.58rem 0.72rem;
+  color: var(--ev-text);
+  background: rgba(3, 7, 16, 0.46);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--ev-radius-sm);
+  backdrop-filter: blur(12px);
+}
+.entropy-viz__cosmic-expansion > span {
+  color: var(--ev-cold);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+.entropy-viz__cosmic-expansion > strong {
+  grid-row: span 2;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+}
+.entropy-viz__cosmic-expansion > i {
+  position: relative;
+  display: block;
+  width: 5.8rem;
+  height: 2px;
+  overflow: visible;
+  background: rgba(255, 255, 255, 0.14);
+}
+.entropy-viz__cosmic-expansion > i::after {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: var(--cosmic-expansion-width);
+  height: 6px;
+  content: "";
+  background: linear-gradient(90deg, var(--ev-info), var(--ev-cold));
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(88, 166, 217, 0.54);
+  transition: width 1.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.entropy-viz__cosmic-hud > span,
+.entropy-viz__cosmic-dominant > span {
+  color: var(--ev-gold-bright);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+.entropy-viz__cosmic-hud > strong {
+  max-width: 28ch;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: clamp(0.98rem, 2vw, 1.3rem);
+  letter-spacing: 0.03em;
+}
+.entropy-viz__cosmic-dominant > strong {
+  color: var(--ev-text);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: clamp(1rem, 2.2vw, 1.45rem);
+}
+.entropy-viz__cosmic-hud > small,
+.entropy-viz__cosmic-dominant > small {
+  color: var(--ev-muted);
+  font-size: 0.7rem;
+}
+.entropy-viz__cosmic-stage-index {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.35rem;
+}
+.entropy-viz__cosmic-stage-index > i {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  transition:
+    background 0.45s ease,
+    box-shadow 0.45s ease;
+}
+.entropy-viz__cosmic-stage-index > i.is-past {
+  background: var(--ev-gold-bright);
+  box-shadow: 0 0 12px rgba(214, 172, 85, 0.52);
+}
+@media (max-width: 620px) {
+  .entropy-viz__cosmic-universe {
+    min-height: 26rem;
+  }
+  .entropy-viz__cosmic-hud,
+  .entropy-viz__cosmic-dominant {
+    right: 0.65rem;
+    left: 0.65rem;
+    padding: 0.6rem 0.7rem;
+  }
+  .entropy-viz__cosmic-hud {
+    top: 0.65rem;
+  }
+  .entropy-viz__cosmic-dominant {
+    top: auto;
+    bottom: 2rem;
+    text-align: left;
+  }
+  .entropy-viz__cosmic-expansion {
+    top: 6.7rem;
+    right: 0.65rem;
+    bottom: auto;
+    left: auto;
+    min-width: 10.4rem;
+  }
+  .entropy-viz__cosmic-stage-index {
+    right: 0.65rem;
+    bottom: 0.65rem;
+    left: 0.65rem;
+  }
+}
+@keyframes entropy-viz-einstein-vibrate {
+  from {
+    transform: translate(
+      calc(-50% - var(--v09-amplitude)),
+      calc(-50% - 1px)
+    );
+  }
+  to {
+    transform: translate(
+      calc(-50% + var(--v09-amplitude)),
+      calc(-50% + 1px)
+    );
+  }
+}
+@keyframes entropy-viz-quantum-to-a {
+  from {
+    left: 100%;
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+  to {
+    left: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes entropy-viz-quantum-to-b {
+  from {
+    left: 0;
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+  to {
+    left: 100%;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes entropy-viz-quantum-idle {
+  50% {
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+@media (max-width: 720px) {
+  .entropy-viz__einstein-scene {
+    grid-template-columns: 1fr;
+  }
+  .entropy-viz__einstein-coupling {
+    width: min(13rem, 75%);
+    margin-inline: auto;
+  }
+  .entropy-viz__einstein-lattice {
+    grid-template-columns: repeat(5, minmax(2rem, 1fr));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entropy-viz__einstein-oscillator > b,
+  .entropy-viz__einstein-channel > b {
+    animation: none;
+  }
+}
+.entropy-viz__pattern-histogram {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(2.6rem, 1fr));
+  gap: 0.75rem 0.42rem;
+  align-items: end;
+  min-width: 0;
+  padding: 0.75rem 0 0.25rem;
+}
+.entropy-viz__pattern-bin {
+  display: grid;
+  grid-template-rows: 1.2rem 6.5rem auto;
+  gap: 0.35rem;
+  min-width: 0;
+  color: var(--ev-text);
+  text-align: center;
+}
+.entropy-viz__pattern-bin > strong {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+.entropy-viz__pattern-track {
+  position: relative;
+  display: flex;
+  align-items: end;
+  width: min(1.8rem, 68%);
+  height: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--ev-line-neutral);
+  border-radius: 4px 4px 2px 2px;
+}
+.entropy-viz__pattern-track > i {
+  width: 100%;
+  min-height: 2px;
+  border-top: 2px solid rgba(255, 255, 255, 0.42);
+  transition: height 0.28s var(--ev-ease);
+}
+.entropy-viz__pattern-code {
+  display: grid;
+  gap: 0.28rem;
+  justify-items: center;
+}
+.entropy-viz__pattern-glyph {
+  display: grid;
+  grid-template-columns: repeat(2, 0.55rem);
+  grid-template-rows: repeat(2, 0.55rem);
+  gap: 2px;
+  padding: 3px;
+  background: rgba(5, 8, 17, 0.5);
+  border: 1px solid var(--ev-line-neutral);
+  border-radius: 4px;
+}
+.entropy-viz__pattern-glyph > b {
+  background: var(--ev-bg);
+  border: 1px solid var(--ev-muted);
+  border-radius: 2px;
+}
+.entropy-viz__pattern-glyph > b.is-on {
+  background: var(--ev-text);
+  border-color: var(--ev-text);
+  box-shadow: 0 0 7px rgba(255, 255, 255, 0.24);
+}
+.entropy-viz__pattern-code code {
+  color: var(--ev-text);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 460px) {
+  .entropy-viz__pattern-histogram {
+    grid-template-columns: repeat(4, minmax(3rem, 1fr));
+  }
 }
 
 .entropy-viz__fluctuation-list {
@@ -707,10 +1294,42 @@
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-.entropy-viz__range input {
+.entropy-viz__range input[type="range"] {
   height: 0.34rem;
   accent-color: var(--ev-gold);
   cursor: ew-resize;
+}
+
+/* Champ de saisie texte (V17 « atelier de codage ») : sans ce bloc il héritait
+   de la hauteur d'un slider — 0,34rem — et devenait inutilisable. */
+.entropy-viz__range:has(input[type="text"]) {
+  flex-basis: 100%;
+  max-width: 100%;
+}
+.entropy-viz__range input[type="text"] {
+  height: auto;
+  padding: 0.62rem 0.8rem;
+  cursor: text;
+  color: var(--ev-text);
+  background: rgba(5, 8, 17, 0.6);
+  border: 1px solid var(--ev-line);
+  border-radius: 3px;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 0.94rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.entropy-viz__range input[type="text"]::placeholder {
+  color: var(--ev-muted);
+  letter-spacing: 0.06em;
+}
+.entropy-viz__range input[type="text"]:focus-visible {
+  outline: none;
+  border-color: var(--ev-gold);
+  box-shadow: 0 0 0 3px rgba(214, 172, 85, 0.18);
 }
 
 .entropy-viz__stage {

@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type CSSProperties,
+} from "react";
 import { Metric, RangeControl, VizFrame } from "../shared/VizFrame";
 import { logChoose, mulberry32 } from "../shared/math";
 import type { VisualizationProps } from "../shared/types";
@@ -15,6 +21,74 @@ function inverseTemperature(oscillators: number, quanta: number) {
   );
 }
 
+export function oscillatorQuanta(
+  oscillators: number,
+  quanta: number,
+  index: number,
+) {
+  const base = Math.floor(quanta / oscillators);
+  const remainder = quanta % oscillators;
+  const rank = (index * 7) % oscillators;
+  return base + Number(rank < remainder);
+}
+
+function EinsteinSolid({
+  id,
+  oscillators,
+  quanta,
+  temperature,
+}: {
+  id: "A" | "B";
+  oscillators: number;
+  quanta: number;
+  temperature: number;
+}) {
+  const excitation = quanta / Math.max(1, quanta + oscillators);
+  const coldShare = Math.round((1 - excitation) * 100);
+  return (
+    <section
+      className={`entropy-viz__einstein-solid entropy-viz__einstein-solid--${id.toLowerCase()}`}
+      style={
+        {
+          "--v09-color": `color-mix(in srgb, var(--ev-cold) ${coldShare}%, var(--ev-hot))`,
+        } as CSSProperties
+      }
+      aria-label={`Solide ${id}, ${oscillators} oscillateurs et ${quanta} quanta`}
+    >
+      <header>
+        <span>SOLIDE {id}</span>
+        <strong>{quanta} quanta</strong>
+        <small>
+          {oscillators} oscillateurs · T ≈ {temperature.toFixed(2)} ε/kB
+        </small>
+      </header>
+      <div className="entropy-viz__einstein-lattice">
+        {Array.from({ length: oscillators }, (_, index) => {
+          const energy = oscillatorQuanta(oscillators, quanta, index);
+          return (
+            <div
+              className="entropy-viz__einstein-oscillator"
+              key={index}
+              style={
+                {
+                  "--v09-amplitude": `${2 + Math.min(8, energy * 1.8)}px`,
+                  "--v09-duration": `${Math.max(0.42, 1.15 - energy * 0.11)}s`,
+                  "--v09-delay": `${-(index % 7) * 0.09}s`,
+                } as CSSProperties
+              }
+              aria-label={`Oscillateur ${index + 1}, ${energy} quantum${energy > 1 ? "s" : ""}`}
+            >
+              <i aria-hidden="true" />
+              <b aria-hidden="true" />
+              {energy ? <span aria-hidden="true">{energy}</span> : null}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 export function V09EinsteinSolids({
   className,
   seed = 9009,
@@ -25,6 +99,10 @@ export function V09EinsteinSolids({
   const [qA, setQA] = useState(9);
   const [sample, setSample] = useState(0);
   const [running, setRunning] = useState(false);
+  const [transfer, setTransfer] = useState<{
+    id: number;
+    direction: "toA" | "toB";
+  } | null>(null);
 
   const distribution = useMemo(() => {
     const rows = Array.from({ length: quanta + 1 }, (_, value) => {
@@ -62,7 +140,13 @@ export function V09EinsteinSolids({
       1,
       Math.exp(distribution[proposal]!.lnTotal - current.lnTotal),
     );
-    if (random() < acceptance) setQA(proposal);
+    if (random() < acceptance && proposal !== qA) {
+      setQA(proposal);
+      setTransfer({
+        id: sample + 1,
+        direction: proposal > qA ? "toA" : "toB",
+      });
+    }
     setSample((value) => value + 1);
   }, [current.lnTotal, distribution, qA, quanta, sample, seed]);
 
@@ -79,9 +163,22 @@ export function V09EinsteinSolids({
     setQA(Math.round((q * a) / (a + b)));
     setSample(0);
     setRunning(false);
+    setTransfer(null);
   };
   const betaA = inverseTemperature(nA, qA);
   const betaB = inverseTemperature(nB, quanta - qA);
+  const temperatureA = 1 / betaA;
+  const temperatureB = 1 / betaB;
+  const chooseSharing = (next: number) => {
+    if (next !== qA) {
+      setTransfer({
+        id: sample + 1,
+        direction: next > qA ? "toA" : "toB",
+      });
+      setSample((value) => value + 1);
+    }
+    setQA(next);
+  };
   return (
     <VizFrame
       id="V9"
@@ -168,9 +265,55 @@ export function V09EinsteinSolids({
           min={0}
           max={quanta}
           value={qA}
-          onChange={(event) => setQA(Number(event.currentTarget.value))}
+          onChange={(event) => chooseSharing(Number(event.currentTarget.value))}
         />
       </label>
+      <div
+        className="entropy-viz__einstein-scene"
+        aria-label="Deux solides d’Einstein couplés échangeant des quanta d’énergie"
+      >
+        <EinsteinSolid
+          id="A"
+          oscillators={nA}
+          quanta={qA}
+          temperature={temperatureA}
+        />
+        <div className="entropy-viz__einstein-coupling" aria-live="polite">
+          <span>COUPLAGE</span>
+          <div className="entropy-viz__einstein-channel" aria-hidden="true">
+            <i />
+            {transfer ? (
+              <b
+                className={`is-${transfer.direction}`}
+                key={transfer.id}
+              >
+                ε
+              </b>
+            ) : (
+              <b className="is-idle">ε</b>
+            )}
+          </div>
+          <strong>
+            {transfer
+              ? transfer.direction === "toA"
+                ? "B → A"
+                : "A → B"
+              : "A ⇄ B"}
+          </strong>
+          <small>1 quantum par échange</small>
+        </div>
+        <EinsteinSolid
+          id="B"
+          oscillators={nB}
+          quanta={quanta - qA}
+          temperature={temperatureB}
+        />
+      </div>
+      <p className="entropy-viz__einstein-note">
+        Les pastilles chiffrées représentent ici une répartition pédagogique
+        des quanta entre oscillateurs ; dans le modèle quantique, ce sont les
+        niveaux d’excitation collectifs qui sont comptés.
+      </p>
       <svg
         className="entropy-viz__plot"
         viewBox="0 0 760 290"
@@ -241,7 +384,7 @@ export function V09EinsteinSolids({
             <dt>ln ΩA</dt>
             <dd>{current.lnA.toFixed(3)}</dd>
             <dt>Température discrète</dt>
-            <dd>{(1 / betaA).toFixed(2)} ε/kB</dd>
+            <dd>{temperatureA.toFixed(2)} ε/kB</dd>
           </dl>
         </div>
         <div className="entropy-viz__panel">
@@ -250,7 +393,7 @@ export function V09EinsteinSolids({
             <dt>ln ΩB</dt>
             <dd>{current.lnB.toFixed(3)}</dd>
             <dt>Température discrète</dt>
-            <dd>{(1 / betaB).toFixed(2)} ε/kB</dd>
+            <dd>{temperatureB.toFixed(2)} ε/kB</dd>
           </dl>
         </div>
       </div>

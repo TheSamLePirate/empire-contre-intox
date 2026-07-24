@@ -7,12 +7,18 @@ import {
   mulberry32,
   shannonEntropy,
 } from "../shared/math";
-import { BarPlot } from "../shared/plots";
 type VisualizationProps = { className?: string; seed?: number };
-type Pattern = "rangée" | "amas" | "bandes" | "mélange";
+type Pattern = "rangée" | "amas" | "bandes" | "pavés 1001" | "mélange";
 const SIZE = 100,
   W = 10;
-function configuration(n: number, pattern: Pattern, seed: number) {
+const PATTERNS: Pattern[] = [
+  "rangée",
+  "amas",
+  "bandes",
+  "pavés 1001",
+  "mélange",
+];
+export function configuration(n: number, pattern: Pattern, seed: number) {
   const order = Array.from({ length: SIZE }, (_, i) => i);
   if (pattern === "amas")
     order.sort(
@@ -23,6 +29,12 @@ function configuration(n: number, pattern: Pattern, seed: number) {
     );
   if (pattern === "bandes")
     order.sort((a, b) => ((a % W) % 2) - ((b % W) % 2) || a - b);
+  if (pattern === "pavés 1001")
+    order.sort((a, b) => {
+      const aDiagonal = Number((a % W) % 2 !== Math.floor(a / W) % 2);
+      const bDiagonal = Number((b % W) % 2 !== Math.floor(b / W) % 2);
+      return aDiagonal - bDiagonal || a - b;
+    });
   if (pattern === "mélange") {
     const rng = mulberry32(seed);
     for (let i = order.length - 1; i > 0; i--) {
@@ -48,6 +60,58 @@ function blocks(cells: boolean[]) {
     }
   return { counts, h: shannonEntropy(counts.map((v) => v / 81)) };
 }
+
+function PatternHistogram({
+  counts,
+  label,
+}: {
+  counts: number[];
+  label: string;
+}) {
+  const ceiling = Math.max(...counts, 1);
+  const densityColors = [
+    "var(--ev-muted)",
+    "var(--ev-cold)",
+    "var(--ev-gold)",
+    "var(--ev-hot)",
+    "var(--ev-text)",
+  ];
+  return (
+    <div className="entropy-viz__pattern-histogram" role="img" aria-label={label}>
+      {counts.map((value, index) => {
+        const code = index.toString(2).padStart(4, "0");
+        const bits = [...code].map(Number);
+        const density = bits.reduce((sum, bit) => sum + bit, 0);
+        return (
+          <div
+            className="entropy-viz__pattern-bin"
+            key={code}
+            title={`Motif ${code} : ${value} occurrence${value > 1 ? "s" : ""}`}
+          >
+            <strong>{value}</strong>
+            <span className="entropy-viz__pattern-track" aria-hidden="true">
+              <i
+                style={{
+                  height: `${Math.max(2, (value / ceiling) * 100)}%`,
+                  background: densityColors[density],
+                }}
+              />
+            </span>
+            <span className="entropy-viz__pattern-code">
+              <i className="entropy-viz__pattern-glyph" aria-hidden="true">
+                {bits.map((bit, bitIndex) => (
+                  <b className={bit ? "is-on" : ""} key={bitIndex} />
+                ))}
+              </i>
+              <code>{code}</code>
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function MiniGrid({
   cells,
   label,
@@ -132,6 +196,7 @@ export function V07GrilleConfigurations({
     setSelected(undefined);
   };
   const setA = (p: Pattern) => {
+    if (p === "pavés 1001") setCount(50);
     setPatternA(p);
     setManual(null);
     setSelected(undefined);
@@ -177,24 +242,28 @@ export function V07GrilleConfigurations({
               value={patternA}
               onChange={(e) => setA(e.currentTarget.value as Pattern)}
             >
-              {(["rangée", "amas", "bandes", "mélange"] as Pattern[]).map(
-                (p) => (
-                  <option key={p}>{p}</option>
-                ),
-              )}
+              {PATTERNS.map((p) => (
+                <option key={p}>{p}</option>
+              ))}
             </select>
           </label>
           <label>
             Organisation B{" "}
             <select
               value={patternB}
-              onChange={(e) => setPatternB(e.currentTarget.value as Pattern)}
+              onChange={(e) => {
+                const pattern = e.currentTarget.value as Pattern;
+                if (pattern === "pavés 1001") {
+                  setCount(50);
+                  setManual(null);
+                  setSelected(undefined);
+                }
+                setPatternB(pattern);
+              }}
             >
-              {(["rangée", "amas", "bandes", "mélange"] as Pattern[]).map(
-                (p) => (
-                  <option key={p}>{p}</option>
-                ),
-              )}
+              {PATTERNS.map((p) => (
+                <option key={p}>{p}</option>
+              ))}
             </select>
           </label>
           <button
@@ -248,25 +317,37 @@ export function V07GrilleConfigurations({
         </div>
         <div className="entropy-viz__panel entropy-viz__pattern-panel">
           <h4>Motifs locaux de A</h4>
-          <BarPlot
-            values={ab.counts}
-            labels={ab.counts.map((_, i) => i.toString(2).padStart(4, "0"))}
+          <PatternHistogram
+            counts={ab.counts}
+            label="Histogramme des seize motifs locaux 2 par 2 de la grille A"
           />
           <p>
-            Chaque code lit le carré 2×2 de gauche à droite, puis de haut en
-            bas.
+            La miniature montre directement le carré 2×2. Son code se lit de
+            gauche à droite, puis de haut en bas.
           </p>
+          {patternA === "pavés 1001" && !manual ? (
+            <p className="entropy-viz__legend">
+              Chaque pavé non chevauchant vaut <strong>1001</strong>. Les
+              fenêtres décalées d’une case valent <strong>0110</strong>.
+            </p>
+          ) : null}
         </div>
         <div className="entropy-viz__panel entropy-viz__pattern-panel">
           <h4>Motifs locaux de B</h4>
-          <BarPlot
-            values={bb.counts}
-            labels={bb.counts.map((_, i) => i.toString(2).padStart(4, "0"))}
+          <PatternHistogram
+            counts={bb.counts}
+            label="Histogramme des seize motifs locaux 2 par 2 de la grille B"
           />
           <p>
             <strong>Invariant global :</strong> H d’une case et log₂ C(100,n).{" "}
             <strong>Variable locale :</strong> fréquence des motifs 2×2.
           </p>
+          {patternB === "pavés 1001" ? (
+            <p className="entropy-viz__legend">
+              Chaque pavé non chevauchant vaut <strong>1001</strong>. Les
+              fenêtres décalées d’une case valent <strong>0110</strong>.
+            </p>
+          ) : null}
         </div>
       </div>
     </VizFrame>

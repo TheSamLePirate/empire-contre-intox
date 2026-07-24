@@ -142,15 +142,14 @@ export function V10GibbsDistribution({ className }: VisualizationProps) {
                     max={0.997}
                     step={0.001}
                     value={probability}
-                    onChange={(event) =>
+                    onChange={(event) => {
+                      // React libère `currentTarget` après le gestionnaire :
+                      // capturer la valeur avant le callback différé du setter.
+                      const nextProbability = Number(event.currentTarget.value);
                       setManual((values) =>
-                        redistribute(
-                          values,
-                          index,
-                          Number(event.currentTarget.value),
-                        ),
-                      )
-                    }
+                        redistribute(values, index, nextProbability),
+                      );
+                    }}
                   />
                 ) : null}
               </label>

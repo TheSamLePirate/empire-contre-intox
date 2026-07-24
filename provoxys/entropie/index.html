@@ -231,6 +231,60 @@
     .chapter-figure figcaption { padding:12px 16px; font-size:.86rem; color:var(--muted); border-top:1px solid var(--line-2); }
     .chapter-figure figcaption b { color:var(--gold-bright); font-family:var(--roman); font-weight:600; letter-spacing:.06em; }
 
+    /* CARTE « SOURCE ORIGINALE » (article de 1948 consultable en ligne) */
+    .paper-card { margin:26px 0; border:1px solid var(--line); border-radius:3px; overflow:hidden;
+      background:linear-gradient(180deg,rgba(214,172,85,.05),rgba(7,12,26,.7)); }
+    .paper-card .pc-head { display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:12px 22px;
+      border-bottom:1px solid var(--line); font-family:var(--roman); font-weight:700; font-size:.66rem;
+      letter-spacing:.16em; text-transform:uppercase; color:var(--gold-bright); }
+    .paper-card .pc-head .pc-year { margin-left:auto; font-family:var(--mono); font-weight:400;
+      letter-spacing:.1em; color:var(--soft); }
+    .paper-card .pc-body { padding:18px 22px 20px; }
+    .paper-card .pc-body > p { margin:0 0 12px; font-size:.97rem; line-height:1.66; color:var(--muted); }
+    .paper-card .pc-body > p:last-child { margin-bottom:0; }
+    .paper-card .pc-body b { color:var(--ink); font-weight:600; }
+    .paper-cta { display:inline-flex; align-items:center; gap:9px; margin:6px 0 4px; padding:10px 18px;
+      border-radius:3px; text-decoration:none; font-family:var(--roman); font-weight:700; font-size:.66rem;
+      letter-spacing:.14em; text-transform:uppercase; color:#120d04;
+      background:linear-gradient(135deg,var(--gold-bright),var(--gold)); transition:transform .3s var(--ease),box-shadow .3s var(--ease); }
+    .paper-cta:hover { transform:translateY(-2px); box-shadow:0 14px 34px rgba(214,172,85,.28); }
+    .paper-cta::after { content:"↗"; font-family:var(--mono); font-size:1rem; line-height:1; }
+    .paper-card .pc-rights { margin-top:14px; padding-top:12px; border-top:1px solid var(--line-2);
+      font-size:.84rem; line-height:1.55; color:var(--soft); }
+    .paper-card .pc-rights b { color:var(--muted); }
+
+    .paper-quote { margin:18px 0; padding:2px 0 2px 20px; border-left:2px solid var(--gold); }
+    .paper-quote > p { margin:0; font-style:italic; color:var(--parch); font-size:1.02rem; line-height:1.6; }
+    .paper-quote .fr { display:block; margin-top:8px; font-style:normal; color:var(--muted); font-size:.94rem; }
+    .paper-quote cite { display:block; margin-top:9px; font-style:normal; font-family:var(--roman);
+      font-weight:600; font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--soft); }
+    .mono-sample { font-family:var(--mono); font-size:.82rem; line-height:1.5; color:var(--quanta); letter-spacing:.01em; }
+
+    /* DIAGRAMMES SVG INTÉGRÉS (carte des potentiels, cycles T–S) */
+    svg.diagram { width:100%; height:auto; display:block;
+      background:linear-gradient(180deg,rgba(5,8,17,.62),rgba(7,12,26,.30)); }
+    svg.diagram text { fill:var(--parch); font-family:var(--serif); font-size:13px; }
+    svg.diagram .d-title { fill:var(--gold-bright); font-family:var(--roman); font-weight:700;
+      letter-spacing:.16em; text-transform:uppercase; font-size:10.5px; }
+    svg.diagram .d-node { fill:var(--ink); font-family:var(--roman); font-weight:700; letter-spacing:.05em; font-size:20px; }
+    svg.diagram .d-sub { fill:var(--muted); font-size:11px; }
+    svg.diagram .d-op { fill:var(--gold); font-family:var(--mono); font-size:12px; letter-spacing:.02em; }
+    svg.diagram .d-hot { fill:var(--hot-bright); }
+    svg.diagram .d-cold { fill:var(--cold-bright); }
+    svg.diagram .d-useful { fill:var(--useful); }
+    svg.diagram .d-info { fill:var(--info); }
+    svg.diagram .s-line { fill:none; stroke:var(--line-2); stroke-width:1; }
+    svg.diagram .s-gold { fill:none; stroke:var(--gold); stroke-width:1.4; }
+    svg.diagram .s-hot { fill:none; stroke:var(--hot); stroke-width:1.8; }
+    svg.diagram .s-cold { fill:none; stroke:var(--cold); stroke-width:1.8; }
+    svg.diagram .s-dash { stroke-dasharray:4 4; }
+    svg.diagram .box { fill:rgba(214,172,85,.06); stroke:var(--line); stroke-width:1; }
+    @media (max-width:640px){
+      svg.diagram text { font-size:12px; }
+      svg.diagram .d-node { font-size:17px; }
+      svg.diagram .d-sub,svg.diagram .d-op { font-size:10px; }
+    }
+
     /* VIZ MOUNT */
     .viz-mount { margin:26px 0; border:1px solid var(--line); border-radius:4px; overflow:hidden; box-shadow:var(--shadow); }
     .viz-mount .entropy-gallery { background:var(--abyss); }
@@ -1195,7 +1249,7 @@
           <nav class="som-site" aria-label="Empire contre Intox">
             <p class="som-kicker">Empire contre Intox</p>
             <a href="#labos">Le banc d'essai — les 26 labos</a>
-            <a href="#lexique">Lexique — 47 mots définis simplement</a>
+            <a href="#lexique">Lexique — 55 mots définis simplement</a>
             <a href="#faq">Questions du chat</a>
             <a href="#ressources">Pour en savoir plus — vidéos</a>
             <a href="portraits.html">Portraits des savants — la galerie</a>
@@ -1265,7 +1319,7 @@
       <div class="wrap">
         <p class="sec-eyebrow">Le lexique</p>
         <div class="bench-head">
-          <h2>Quarante-sept mots,<br>définis simplement</h2>
+          <h2>Cinquante-cinq mots,<br>définis simplement</h2>
           <p>Chaque terme technique du dossier, en une ligne et sans jargon. Ouvrez celui qui vous manque au moment où vous le croisez&nbsp;; l'étiquette à droite rappelle l'acte où il devient central. Quelques mots déjà définis dans le texte (macro-état, micro-état, exergie…) sont repris ici pour la consultation rapide.</p>
         </div>
         <div class="lex-groups">
@@ -1285,6 +1339,7 @@
             <details class="lex-item"><summary><b>thermostat</b><span class="act">acte I</span></summary><p>Source de chaleur si grande que sa température ne bouge pas, qu'on lui prenne ou qu'on lui donne de la chaleur — les «&nbsp;sources&nbsp;» chaude et froide des machines.</p></details>
             <details class="lex-item"><summary><b>énergie interne (U)</b><span class="act">acte I</span></summary><p>La somme de toutes les agitations microscopiques du système&nbsp;: mouvements des molécules, vibrations, liaisons chimiques.</p></details>
             <details class="lex-item"><summary><b>principe zéro</b><span class="act">actes I–II</span></summary><p>Si deux systèmes sont chacun en équilibre thermique avec un troisième, ils sont en équilibre entre eux&nbsp;: la transitivité qui rend la température mesurable et les thermomètres possibles.</p></details>
+            <details class="lex-item"><summary><b>entropie absolue</b><span class="act">acte II</span></summary><p>Pas seulement une variation, mais une <em>valeur</em>&nbsp;: rendue possible par le troisième principe, qui plante le «&nbsp;niveau de la mer&nbsp;» à S&nbsp;=&nbsp;0 au zéro absolu. On la mesure en additionnant des C<sub>P</sub>&nbsp;dT/T depuis 0&nbsp;K — c'est ce qui remplit les tables du NIST.</p></details>
           </div>
 
           <div class="lex-group" id="lex-mondes">
@@ -1305,7 +1360,14 @@
             <details class="lex-item"><summary><b>relations d'Onsager</b><span class="act">acte IV</span></summary><p>Lois de la thermodynamique hors équilibre qui relient flux et forces près de l'équilibre (Lars Onsager, prix Nobel de chimie 1968).</p></details>
             <details class="lex-item"><summary><b>chaleur latente (L)</b><span class="act">acte IV</span></summary><p>Énergie à fournir pour changer de phase <em>sans changer la température</em>&nbsp;: elle casse ou tisse les liaisons microscopiques au lieu d'agiter davantage.</p></details>
             <details class="lex-item"><summary><b>enthalpie (H)</b><span class="act">acte IV</span></summary><p>Énergie totale du système <em>plus</em> le «&nbsp;travail de place&nbsp;» qu'il occupe (H = U + PV)&nbsp;: la bonne comptabilité à pression constante — une casserole, une réaction à l'air libre.</p></details>
+            <details class="lex-item"><summary><b>énergie libre de Gibbs (G)</b><span class="act">acte IV</span></summary><p>G&nbsp;=&nbsp;H&nbsp;−&nbsp;TS&nbsp;: l'énergie qui reste mobilisable quand la température <em>et</em> la pression sont imposées — le cas de la Terre entière. Elle décroît jusqu'à l'équilibre, et sa baisse n'est rien d'autre que la hausse de l'entropie totale, vue depuis l'intérieur du système.</p></details>
+            <details class="lex-item"><summary><b>énergie libre de Helmholtz (F)</b><span class="act">acte IV</span></summary><p>F&nbsp;=&nbsp;U&nbsp;−&nbsp;TS&nbsp;: la même idée, mais à <em>volume</em> fixe au lieu de la pression — celle d'une bombe calorimétrique ou d'un gaz enfermé dans un récipient rigide.</p></details>
+            <details class="lex-item"><summary><b>potentiel thermodynamique</b><span class="act">acte IV</span></summary><p>Nom collectif des quatre comptabilités U, H, F et G. Chacune correspond à un couple de grandeurs que l'expérience tient fixes&nbsp;; utiliser la mauvaise, c'est appliquer un critère de spontanéité faux.</p></details>
+            <details class="lex-item"><summary><b>transformée de Legendre</b><span class="act">acte IV</span></summary><p>L'opération qui fait passer d'un potentiel à un autre en ajoutant PV ou en retranchant TS. Traduction&nbsp;: changer de variable de contrôle sans changer de physique.</p></details>
+            <details class="lex-item"><summary><b>relations de Maxwell</b><span class="act">acte IV</span></summary><p>Quatre égalités (sans rapport avec le démon de l'acte&nbsp;V) qui relient une variation d'entropie — invisible — à une dilatation ou à une montée en pression — mesurables. Elles viennent de l'égalité des dérivées croisées des potentiels.</p></details>
             <details class="lex-item"><summary><b>exergie</b><span class="act">acte IV</span></summary><p>Travail maximal récupérable en laissant un système rejoindre l'équilibre avec son environnement&nbsp;: la «&nbsp;part utile&nbsp;» de l'énergie. Toute entropie créée en détruit (Gouy-Stodola).</p></details>
+            <details class="lex-item"><summary><b>cycle de Rankine</b><span class="act">acte IV</span></summary><p>Pompe, chaudière, turbine, condenseur&nbsp;: le cycle réel de presque toutes les centrales électriques. Toujours moins efficace que Carnot entre les mêmes extrêmes, parce que sa chaleur n'entre pas à température constante.</p></details>
+            <details class="lex-item"><summary><b>température moyenne d'apport</b><span class="act">acte IV</span></summary><p>La chaleur reçue divisée par l'entropie qu'elle a fait entrer. C'est <em>elle</em>, et non la température de pointe affichée sur la chaudière, qui fixe le rendement maximal d'un cycle réel.</p></details>
             <details class="lex-item"><summary><b>spin</b><span class="act">acte IV</span></summary><p>Variable binaire du modèle d'Ising&nbsp;: un petit aimant élémentaire pointant «&nbsp;en haut&nbsp;» ou «&nbsp;en bas&nbsp;».</p></details>
             <details class="lex-item"><summary><b>magnétisation</b><span class="act">acte IV</span></summary><p>Orientation moyenne des spins&nbsp;: forte quand ils s'alignent (basse température), nulle quand leurs directions s'annulent.</p></details>
             <details class="lex-item"><summary><b>capacité thermique</b><span class="act">acte IV</span></summary><p>Énergie nécessaire pour élever un corps d'un kelvin&nbsp;; près du point critique d'Ising, elle devient énorme.</p></details>
@@ -1699,6 +1761,18 @@
             <p>Mais attention à deux simplifications. Premièrement, un matériau réel peut conserver une entropie résiduelle s'il possède plusieurs configurations gelées ou des défauts. Deuxièmement, le zéro absolu n'est pas simplement “plus aucun mouvement”. La mécanique quantique conserve des fluctuations de point zéro.</p>
             <p>Enfin, atteindre exactement zéro kelvin demanderait une procédure limite inaccessible en un nombre fini d'opérations. Nous pouvons nous en approcher extraordinairement près, pas l'atteindre.&nbsp;»</p>
 
+            <div class="formula-block">
+              <div class="fb-head">Entropie absolue par calorimétrie <span class="fb-tag">Le troisième principe au laboratoire</span></div>
+              <div class="formula" data-tex="S(T) \;=\; \int_{0}^{T} \dfrac{C_P(T')}{T'}\,\mathrm{d}T' \;+\; \sum_{\text{transitions}} \dfrac{L}{T_{\text{tr}}}"></div>
+              <p class="fb-note">«&nbsp;Entropie absolue&nbsp;» n'est pas une formule de style&nbsp;: c'est un nombre <b>mesuré</b>, puis imprimé dans une table. La recette tient en trois gestes. <b>Un</b>&nbsp;: on refroidit l'échantillon aussi près que possible du zéro absolu — c'est là que le troisième principe fixe le point de départ, <span class="imath" data-tex="S(0)=0"></span>, et c'est <em>tout</em> ce qu'il sert à faire ici. <b>Deux</b>&nbsp;: on le réchauffe par toutes petites étapes en mesurant à chaque température sa <b>capacité thermique</b> <span class="imath" data-tex="C_P"></span>, l'énergie qu'il faut lui donner pour gagner un kelvin&nbsp;; chaque miette de chaleur <span class="imath" data-tex="C_P\,\mathrm{d}T"></span> reçue à la température <b>T′</b> ajoute <span class="imath" data-tex="C_P\,\mathrm{d}T/T'"></span> d'entropie — c'est la définition de Clausius du chapitre&nbsp;4, appliquée pas à pas. <b>Trois</b>&nbsp;: on additionne tout, sans oublier un <span class="imath" data-tex="L/T_{\text{tr}}"></span> à chaque fusion et à chaque vaporisation rencontrées en chemin (chapitre&nbsp;13).</p>
+            </div>
+
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définition · ce que le troisième principe autorise vraiment <span class="tag-act">et ce qu'il n'autorise pas</span></p>
+              <p>Sans lui, on ne saurait calculer que des <b>écarts</b> d'entropie&nbsp;: «&nbsp;+&nbsp;12&nbsp;J/K entre cet état et celui-là&nbsp;», jamais «&nbsp;cette substance possède <em>tant</em> d'entropie&nbsp;». C'est la différence entre mesurer un dénivelé et mesurer une altitude&nbsp;: il faut que quelqu'un ait planté le niveau de la mer quelque part. Le troisième principe est ce niveau de la mer. Une fois posé, l'entropie d'un gaz à 298&nbsp;K devient un nombre comparable d'un laboratoire à l'autre, d'un pays à l'autre — les tables du NIST ou du <em>CRC Handbook</em> ne sont rien d'autre que le résultat de ces intégrations, refaites et recoupées depuis un siècle.</p>
+              <p>Une entropie ne se «&nbsp;ressent&nbsp;» donc pas et ne s'estime pas à l'œil sur une chambre en désordre. Elle se met en bouteille dans un cryostat, avec un thermomètre étalonné et un chauffage dont on connaît chaque joule.</p>
+            </aside>
+
             <div class="lesson-block retain">
               <p class="blk-label">◆ À retenir — l'acte II en une phrase</p>
               <p>L'entropie se mesure en <b>joules par kelvin</b>, pas en joules&nbsp;: dans un système isolé (ou simplement sans échange de chaleur), elle ne peut qu'augmenter ou rester constante — mais chaque <b>partie</b> peut en perdre, si le total en gagne davantage.</p>
@@ -2016,6 +2090,123 @@
             <p>En chimie, l'énergie libre de Gibbs combine enthalpie, température et entropie. À température et pression constantes, une transformation spontanée tend vers une diminution de G jusqu'à l'équilibre.</p>
             <p>Cela évite une autre erreur fréquente&nbsp;: “spontané” ne signifie pas “rapide”. Une réaction peut être thermodynamiquement favorable et rester presque bloquée par une barrière d'activation.&nbsp;»</p>
 
+            <!-- ===== A1 · La famille des potentiels thermodynamiques ===== -->
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Pour aller plus loin · d'où sort ce G, au juste&nbsp;? <span class="tag-act">la famille des potentiels</span></p>
+              <p>G n'est pas tombé du ciel, et ce n'est pas non plus une «&nbsp;énergie de plus&nbsp;». C'est <b>la même énergie que d'habitude, corrigée deux fois</b>, pour tenir compte de ce que l'expérimentateur laisse fixe. Il en existe quatre versions, et savoir laquelle on tient en main est exactement ce qui sépare un calcul juste d'un calcul faux.</p>
+              <p>Le principe des deux corrections&nbsp;:</p>
+              <p><b>+&nbsp;PV — le loyer de la place.</b> Un système qui grandit à l'air libre doit repousser l'atmosphère&nbsp;: ce travail, il le paie, même si personne ne le facture. On l'ajoute d'avance à l'énergie interne et l'on obtient l'enthalpie <b>H&nbsp;=&nbsp;U&nbsp;+&nbsp;PV</b>. C'est la comptabilité de la casserole ouverte.</p>
+              <p><b>−&nbsp;TS — le loyer de l'entropie.</b> Un système en contact avec un thermostat peut lui emprunter de la chaleur… à condition de lui rendre de l'entropie. Cette part de l'énergie qui ne sera <em>jamais</em> convertible en travail dans ces conditions, on la retire d'avance&nbsp;: c'est le <b>−&nbsp;TS</b>. Ce qui reste est la part réellement mobilisable — d'où le nom d'«&nbsp;énergie <em>libre</em>&nbsp;».</p>
+            </aside>
+
+            <div class="formula-block">
+              <div class="fb-head">Les quatre potentiels thermodynamiques <span class="fb-tag">Deux corrections, quatre comptabilités</span></div>
+              <div class="formula" data-tex="H = U + PV \qquad F = U - TS \qquad G = H - TS = U + PV - TS"></div>
+              <p class="fb-note">Une seule énergie de départ, <b>U</b>, et deux corrections que l'on applique ou non&nbsp;: <span class="imath" data-tex="+PV"></span> si la <b>pression</b> est imposée, <span class="imath" data-tex="-TS"></span> si la <b>température</b> l'est. Zéro correction&nbsp;: <b>U</b>. Une seule&nbsp;: <b>H</b> (enthalpie) ou <b>F</b> (énergie libre de Helmholtz). Les deux&nbsp;: <b>G</b> (énergie libre de Gibbs). Ce passage d'un jeu de variables à un autre porte un nom, la <b>transformée de Legendre</b> — mais l'idée tient en une phrase&nbsp;: <em>on choisit sa comptabilité en fonction de ce que le laboratoire tient fixe.</em></p>
+            </div>
+
+            <figure class="chapter-figure">
+              <svg class="diagram" viewBox="0 0 760 412" role="img" aria-label="Carte des quatre potentiels thermodynamiques : U, H, F et G, reliés par les corrections plus PV horizontalement et moins TS verticalement.">
+                <defs>
+                  <marker id="ar-pot" viewBox="0 0 10 10" refX="9.4" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 z" fill="#d6ac55"></path>
+                  </marker>
+                </defs>
+                <text class="d-title" x="40" y="36">La carte des quatre potentiels</text>
+                <text class="d-sub" x="40" y="56">Horizontalement&nbsp;: on paie la place. Verticalement&nbsp;: on paie l'entropie.</text>
+
+                <rect class="box" x="72" y="86" width="230" height="98" rx="3"></rect>
+                <text class="d-node" x="92" y="120">U</text>
+                <text x="122" y="119">énergie interne</text>
+                <text class="d-sub" x="92" y="143">variables naturelles&nbsp;: S, V</text>
+                <text class="d-op" x="92" y="165">aucun thermostat, aucun piston</text>
+
+                <rect class="box" x="458" y="86" width="230" height="98" rx="3"></rect>
+                <text class="d-node" x="478" y="120">H</text>
+                <text x="508" y="119">enthalpie</text>
+                <text class="d-sub" x="478" y="143">variables naturelles&nbsp;: S, P</text>
+                <text class="d-op" x="478" y="165">pression imposée</text>
+
+                <rect class="box" x="72" y="248" width="230" height="98" rx="3"></rect>
+                <text class="d-node" x="92" y="282">F</text>
+                <text x="122" y="281">énergie libre de Helmholtz</text>
+                <text class="d-sub" x="92" y="305">variables naturelles&nbsp;: T, V</text>
+                <text class="d-op d-useful" x="92" y="327">ΔF ≤ 0 · bombe calorimétrique</text>
+
+                <rect class="box" x="458" y="248" width="230" height="98" rx="3"></rect>
+                <text class="d-node" x="478" y="282">G</text>
+                <text x="508" y="281">énergie libre de Gibbs</text>
+                <text class="d-sub" x="478" y="305">variables naturelles&nbsp;: T, P</text>
+                <text class="d-op d-useful" x="478" y="327">ΔG ≤ 0 · la chimie de tous les jours</text>
+
+                <line class="s-gold" x1="308" y1="135" x2="452" y2="135" marker-end="url(#ar-pot)"></line>
+                <text class="d-op" x="380" y="124" text-anchor="middle">+ PV</text>
+                <line class="s-gold" x1="308" y1="297" x2="452" y2="297" marker-end="url(#ar-pot)"></line>
+                <text class="d-op" x="380" y="286" text-anchor="middle">+ PV</text>
+                <line class="s-gold" x1="187" y1="190" x2="187" y2="242" marker-end="url(#ar-pot)"></line>
+                <text class="d-op" x="199" y="220">− TS</text>
+                <line class="s-gold" x1="573" y1="190" x2="573" y2="242" marker-end="url(#ar-pot)"></line>
+                <text class="d-op" x="585" y="220">− TS</text>
+
+                <text class="d-sub" x="40" y="374">Ligne du bas&nbsp;= les «&nbsp;énergies libres&nbsp;»&nbsp;: celles qui décroissent d'elles-mêmes jusqu'à l'équilibre, et les seules</text>
+                <text class="d-sub" x="40" y="392">utilisables dans un laboratoire réel, où c'est la température que l'on tient fixe — jamais l'entropie.</text>
+              </svg>
+              <figcaption><b>Carte des potentiels</b> — la même énergie interne U, vue depuis quatre comptabilités. On se déplace vers la droite quand la pression est imposée (+&nbsp;PV), vers le bas quand la température l'est (−&nbsp;TS). Le chapitre&nbsp;13 vit dans la case en bas à droite&nbsp;: température et pression ambiantes.</figcaption>
+            </figure>
+
+            <div class="dtable-wrap">
+              <table class="dtable">
+                <thead>
+                  <tr><th>Potentiel</th><th>Ce que l'on tient fixe</th><th>Définition</th><th>Ce qui décroît jusqu'à l'équilibre</th><th>La scène concrète</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>U</b> · énergie interne</td><td>l'entropie S et le volume V</td><td><span class="imath" data-tex="U"></span></td><td>ΔU&nbsp;≤&nbsp;0 — mais «&nbsp;garder S constante&nbsp;» n'est pas un réglage que l'on impose à une paillasse&nbsp;: c'est le critère le plus pur, et le plus inutilisable.</td><td>Le bilan du premier principe, ΔU&nbsp;=&nbsp;Q&nbsp;+&nbsp;W (chapitre&nbsp;3)</td></tr>
+                  <tr><td><b>H</b> · enthalpie</td><td>l'entropie S et la pression P</td><td><span class="imath" data-tex="H = U + PV"></span></td><td>ΔH&nbsp;≤&nbsp;0 — même remarque&nbsp;: on impose facilement P, jamais S.</td><td>La chaleur d'une réaction à l'air libre, la chaleur latente</td></tr>
+                  <tr><td><b>F</b> · énergie libre de Helmholtz</td><td>la température T et le volume V</td><td><span class="imath" data-tex="F = U - TS"></span></td><td><b>ΔF&nbsp;≤&nbsp;0</b> — critère réellement utilisable&nbsp;: un thermostat et un récipient rigide, cela s'achète.</td><td>Une bombe calorimétrique, un gaz enfermé dans un volume fixe</td></tr>
+                  <tr><td><b>G</b> · énergie libre de Gibbs</td><td>la température T et la pression P</td><td><span class="imath" data-tex="G = H - TS"></span></td><td><b>ΔG&nbsp;≤&nbsp;0</b> — le critère roi, parce que T et P ambiantes sont les conditions par défaut de la Terre entière.</td><td>La glace qui fond, une réaction en flacon ouvert, la biochimie</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="formula-block">
+              <div class="fb-head">Pourquoi «&nbsp;G qui baisse&nbsp;» <em>est</em> le second principe <span class="fb-tag">Le même bilan, vu de l'intérieur</span></div>
+              <div class="formula" data-tex="\Delta S_{\text{total}} = \underbrace{\Delta S}_{\text{système}} + \underbrace{\left(-\dfrac{\Delta H}{T}\right)}_{\text{environnement}} = -\,\dfrac{\Delta H - T\Delta S}{T} = -\,\dfrac{\Delta G}{T}"></div>
+              <p class="fb-note">Voici le point qui change tout, et il tient en trois lignes. À température et pression constantes, la chaleur que le système absorbe vaut <b>ΔH</b>&nbsp;; l'environnement, lui, la <em>perd</em> à la température <b>T</b>, donc son entropie varie de <span class="imath" data-tex="-\Delta H/T"></span>. En additionnant les deux, on tombe exactement sur <span class="imath" data-tex="-\Delta G / T"></span>. Autrement dit&nbsp;: <b>«&nbsp;G diminue&nbsp;» et «&nbsp;l'entropie totale augmente&nbsp;» sont la même phrase</b>, écrite une fois avec les grandeurs du système et de son milieu, une fois avec les seules grandeurs du système. L'énergie libre de Gibbs n'ajoute aucune loi&nbsp;: c'est le second principe rendu <em>calculable sans jamais quitter le bécher</em>. Et cela répond enfin à la nuance du chapitre&nbsp;4 — une partie peut perdre de l'entropie si le total en gagne&nbsp;: le terme −TS est précisément la facture d'entropie envoyée au reste du monde.</p>
+            </div>
+
+            <!-- ===== A2 · Les relations de Maxwell ===== -->
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Définition · les relations de Maxwell <span class="tag-act">rien à voir avec le démon du chapitre 18</span></p>
+              <p>Une question n'a encore jamais été posée dans ce dossier, et c'est la plus terre-à-terre de toutes&nbsp;: <b>avec quel appareil mesure-t-on une entropie&nbsp;?</b> Il n'existe pas d'entropimètre. Aucune aiguille ne dévie devant un gaz désordonné. Le chapitre&nbsp;6 a donné une première réponse — la calorimétrie, en additionnant des <span class="imath" data-tex="C_P\,\mathrm{d}T/T"></span> depuis le zéro absolu. Les relations de Maxwell en donnent une seconde, et elle est presque scandaleuse de simplicité&nbsp;: <b>on lit l'entropie sur un thermomètre et un mètre.</b></p>
+            </aside>
+
+            <div class="formula-block">
+              <div class="fb-head">Les relations de Maxwell <span class="fb-tag">L'entropie devient mesurable</span></div>
+              <div class="formula" data-tex="\left(\dfrac{\partial S}{\partial P}\right)_{T} = -\left(\dfrac{\partial V}{\partial T}\right)_{P} \qquad\qquad \left(\dfrac{\partial S}{\partial V}\right)_{T} = \left(\dfrac{\partial P}{\partial T}\right)_{V}"></div>
+              <p class="fb-note">Lisez-les de gauche à droite. <b>À gauche</b>&nbsp;: une variation d'entropie — invisible, abstraite, qu'aucun instrument n'affiche. <b>À droite</b>&nbsp;: de combien un corps se <b>dilate</b> quand on le chauffe, ou de combien sa <b>pression</b> monte quand on le chauffe à volume bloqué. Deux choses qu'un lycéen mesure avec un thermomètre, une règle et un manomètre. Le signe «&nbsp;=&nbsp;» au milieu est un pont&nbsp;: il fait passer une grandeur que l'on ne sait pas voir du côté des grandeurs que l'on sait lire.</p>
+            </div>
+
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Le cas d'école · comprimez de l'eau glacée</p>
+              <p>Prenez un métal. Chauffez-le&nbsp;: il se dilate. Donc <span class="imath" data-tex="(\partial V/\partial T)_P > 0"></span>, donc — d'après la première relation — <span class="imath" data-tex="(\partial S/\partial P)_T < 0"></span>&nbsp;: <b>le comprimer fait baisser son entropie</b>. Ce qui se comprend&nbsp;: on lui laisse moins de place, donc moins de configurations possibles.</p>
+              <p>Maintenant le contre-exemple, et il est délicieux. Entre 0&nbsp;°C et environ 4&nbsp;°C, l'eau liquide fait l'inverse de tout le monde&nbsp;: elle se <em>contracte</em> quand on la chauffe. Donc <span class="imath" data-tex="(\partial V/\partial T)_P < 0"></span> dans cette plage, donc <span class="imath" data-tex="(\partial S/\partial P)_T > 0"></span>&nbsp;: <b>comprimer de l'eau à 2&nbsp;°C augmente son entropie</b>. Personne n'aurait deviné cela en regardant des molécules s'agiter. La relation de Maxwell, elle, le prédit à partir d'une simple courbe de dilatation — celle-là même qui fait flotter la glace et qui a probablement sauvé la vie dans les lacs gelés.</p>
+              <p>C'est tout l'intérêt de ces égalités&nbsp;: elles ne sont pas décoratives. Ce sont elles qui permettent de remplir les tables thermodynamiques à des pressions où personne n'a jamais fait de calorimétrie, et de calculer un cycle de turbine sans mesurer une seule entropie directement.</p>
+            </aside>
+
+            <details class="science-block faq-details">
+              <summary class="blk-label">◆ D'où sortent-elles&nbsp;? <span class="faq-note">une seule idée, celle de l'escalier — déplier</span></summary>
+              <p>De la carte des potentiels ci-dessus, et de rien d'autre. Prenez G, dont les variables naturelles sont T et P. Une petite variation de G s'écrit <span class="imath" data-tex="\mathrm{d}G = -S\,\mathrm{d}T + V\,\mathrm{d}P"></span>&nbsp;: la pente de G quand on change la température, c'est <b>−S</b>&nbsp;; sa pente quand on change la pression, c'est <b>V</b>.</p>
+              <p>Imaginez maintenant G comme le relief d'un terrain au-dessus du plan (T,&nbsp;P). Faites un pas vers l'est puis un pas vers le nord&nbsp;; puis recommencez dans l'ordre inverse, nord puis est. Vous arrivez au même endroit, donc à la même altitude. Cette évidence géométrique — les mathématiciens l'appellent le <b>théorème de Schwarz</b>, l'égalité des dérivées croisées — impose que la variation de (−S) selon P soit égale à la variation de V selon T. C'est exactement la première relation de Maxwell.</p>
+              <p>Les quatre potentiels donnent quatre relations, une chacun. Elles ne contiennent aucune physique nouvelle&nbsp;: elles ne font qu'exploiter le fait que U, H, F et G sont des <b>fonctions d'état</b> (chapitre&nbsp;4) — des altitudes, pas des chemins.</p>
+            </details>
+
+            <aside class="science-block antiintox">
+              <p class="blk-label">◆ Anti-intox · «&nbsp;l'entropie, c'est flou, c'est une question de point de vue&nbsp;»</p>
+              <p>Le dossier le dit lui-même dès l'ouverture&nbsp;: une entropie dépend des états que l'on choisit de distinguer. Certains en concluent un peu vite qu'elle serait <b>subjective</b>, une affaire d'opinion ou de ressenti. C'est un glissement, et il faut le nommer précisément.</p>
+              <p>Ce qui est un choix, c'est la <b>description</b>&nbsp;: décide-t-on de repérer la position de chaque molécule, ou seulement la pression et la température&nbsp;? Ce choix est <em>explicite, déclaré, et physique</em> — pas un état d'âme. Une fois qu'il est posé — et pour la thermodynamique il l'est depuis Clausius&nbsp;: pression, volume, température, composition —, l'entropie devient un nombre <b>reproductible</b>, obtenu par intégration calorimétrique, recoupé par les relations de Maxwell, tabulé au NIST, et identique dans tous les laboratoires du monde. Deux équipes qui mesurent l'entropie standard de l'eau liquide à 298&nbsp;K trouvent la même valeur, aux barres d'erreur près.</p>
+              <p>«&nbsp;Dépend de la description choisie&nbsp;» n'est pas «&nbsp;dépend de qui regarde&nbsp;». La longueur d'une côte dépend de l'échelle de la règle&nbsp;: cela n'a jamais rendu la géographie subjective.</p>
+            </aside>
+
             <p class="speaker speaker--sam">Sam — De la glace à la vapeur</p>
             <p>«&nbsp;Sur l'axe horizontal, l'énergie ajoutée. En haut, la température. En dessous, l'entropie.</p>
             <p>La glace se réchauffe&nbsp;: température et entropie augmentent. Au plateau de fusion, la température reste fixe tandis que l'entropie continue d'augmenter. Même chose, à une autre échelle, lors de la vaporisation.</p>
@@ -2068,6 +2259,82 @@
               <div class="entropy-gallery"><div data-entropy-viz="V14" data-seed="42"></div></div>
               <noscript><p class="viz-noscript">Visualisation interactive (JavaScript requis)&nbsp;: flux d'énergie conservés, exergie détruite reliée à l'entropie créée.</p></noscript>
             </div>
+
+            <!-- ===== B2 · Rankine vs Carnot : la vraie machine derrière le Sankey ===== -->
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Pour aller plus loin · quelle machine, exactement&nbsp;? <span class="tag-act">le cycle de Rankine</span></p>
+              <p>Le Sankey ci-dessus parle de combustion, d'échangeurs, de turbine et de condenseur. Ces quatre mots ne sont pas décoratifs&nbsp;: ils désignent les quatre temps d'un cycle précis, celui qui fait tourner l'écrasante majorité de l'électricité mondiale — charbon, gaz, fioul, nucléaire, solaire à concentration, géothermie. Il s'appelle le <b>cycle de Rankine</b>, et il n'est <em>pas</em> le cycle de Carnot du chapitre&nbsp;2.</p>
+              <p><b>Un</b> — la <b>pompe</b> comprime l'eau liquide, de la basse à la haute pression. C'est le seul travail à payer, et il est minuscule&nbsp;: comprimer un liquide ne coûte presque rien. <b>Deux</b> — la <b>chaudière</b> chauffe cette eau à pression constante&nbsp;: elle monte en température, bout, puis la vapeur est encore surchauffée. <b>Trois</b> — la <b>turbine</b> détend la vapeur&nbsp;: c'est là qu'on récolte le travail. <b>Quatre</b> — le <b>condenseur</b> ramène la vapeur à l'état liquide en rejetant de la chaleur dans une rivière, la mer ou une tour de refroidissement. Et on recommence.</p>
+              <p>Pourquoi ne pas construire une machine de Carnot, puisqu'elle est meilleure&nbsp;? Deux raisons, très concrètes. D'abord, un cycle de Carnot réversible doit être <b>infiniment lent</b>&nbsp;: sa puissance est nulle, il ne produit aucun kilowatt en un temps fini. Ensuite, à la vapeur, ses deux adiabatiques exigeraient de <b>comprimer un mélange liquide-vapeur</b> — un brouillard humide qui détruit les aubages et les pompes. Rankine, lui, ne comprime que du liquide propre. C'est un cycle qui accepte de perdre du rendement pour exister.</p>
+            </aside>
+
+            <figure class="chapter-figure">
+              <svg class="diagram" viewBox="0 0 760 430" role="img" aria-label="Diagramme température-entropie comparant le rectangle du cycle de Carnot et le contour du cycle de Rankine, dont l'apport de chaleur n'est pas isotherme.">
+                <text class="d-title" x="40" y="34">Carnot vs Rankine · diagramme T–S</text>
+                <text class="d-sub" x="40" y="54">Entre les mêmes températures extrêmes, l'aire du Rankine est plus petite. Ce n'est pas un défaut de fabrication.</text>
+
+                <line class="s-line" x1="112" y1="72" x2="112" y2="346"></line>
+                <line class="s-line" x1="112" y1="346" x2="716" y2="346"></line>
+                <text class="d-sub" x="106" y="66" text-anchor="end">T</text>
+                <text class="d-sub" x="716" y="366" text-anchor="end">S</text>
+
+                <line class="s-line s-dash" x1="112" y1="92" x2="700" y2="92"></line>
+                <line class="s-line s-dash" x1="112" y1="312" x2="700" y2="312"></line>
+                <text class="d-sub d-hot" x="106" y="96" text-anchor="end">T chaud</text>
+                <text class="d-sub d-cold" x="106" y="316" text-anchor="end">T froid</text>
+
+                <path d="M200,312 L200,304 C 214,270 232,232 250,206 L516,206 C 560,178 596,132 624,92 L624,312 Z"
+                      fill="rgba(239,125,87,.13)" stroke="#ef7d57" stroke-width="1.8" stroke-linejoin="round"></path>
+                <rect x="200" y="92" width="424" height="220" fill="none" stroke="#d6ac55" stroke-width="1.4" stroke-dasharray="5 5"></rect>
+
+                <text class="d-op" x="330" y="130" text-anchor="middle">aire perdue par le Rankine</text>
+                <text class="d-sub" x="330" y="148" text-anchor="middle">la chaleur n'est pas apportée à T chaud,</text>
+                <text class="d-sub" x="330" y="164" text-anchor="middle">mais depuis l'eau froide, en montant</text>
+
+                <circle cx="200" cy="312" r="3.5" fill="#ff9d7a"></circle>
+                <circle cx="250" cy="206" r="3.5" fill="#ff9d7a"></circle>
+                <circle cx="516" cy="206" r="3.5" fill="#ff9d7a"></circle>
+                <circle cx="624" cy="92" r="3.5" fill="#ff9d7a"></circle>
+
+                <text class="d-sub" x="196" y="332" text-anchor="end">pompe</text>
+                <text class="d-sub" x="256" y="196">chaudière&nbsp;: chauffage</text>
+                <text class="d-sub" x="383" y="224" text-anchor="middle">vaporisation (T constante)</text>
+                <text class="d-sub" x="556" y="150" text-anchor="end">surchauffe</text>
+                <text class="d-sub" x="634" y="210">turbine</text>
+                <text class="d-sub" x="412" y="330" text-anchor="middle">condenseur — le seul palier vraiment isotherme</text>
+
+                <text class="d-sub" x="40" y="400">Le trait doré&nbsp;: le rectangle de Carnot, deux isothermes et deux adiabatiques. Le trait orange&nbsp;: le Rankine réel, qui doit réchauffer</text>
+                <text class="d-sub" x="40" y="418">son eau depuis le bas. Le rendement se lit comme le rapport de l'aire du cycle à toute l'aire sous son apport de chaleur.</text>
+              </svg>
+              <figcaption><b>Le rendement se lit à l'œil</b> — sur un diagramme température-entropie, l'aire enfermée par le cycle est le travail net, et l'aire sous la branche d'apport est la chaleur payée. Carnot enferme un rectangle parfait&nbsp;; Rankine y renonce dès qu'il faut réchauffer l'eau depuis le condenseur.</figcaption>
+            </figure>
+
+            <div class="formula-block">
+              <div class="fb-head">Rendement de Rankine &amp; température moyenne d'apport <span class="fb-tag">La vraie limite d'une centrale</span></div>
+              <div class="formula" data-tex="\eta_{\text{Rankine}} = \dfrac{W_{\text{turbine}} - W_{\text{pompe}}}{Q_{\text{chaudière}}} \qquad\qquad \eta_{\text{idéal}} = 1 - \dfrac{T_{\text{froid}}}{\bar{T}_{\text{chaud}}},\quad \bar{T}_{\text{chaud}} = \dfrac{Q_{\text{chaudière}}}{\Delta S}"></div>
+              <p class="fb-note">La formule de droite est la clé, et elle a exactement la forme de celle de Carnot — <b>à un détail près qui coûte des dizaines de points de rendement</b>. Chez Carnot, la chaleur entre entièrement à <span class="imath" data-tex="T_{\text{chaud}}"></span>. Chez Rankine, elle entre <em>tout au long</em> du réchauffage, de la vaporisation et de la surchauffe&nbsp;: ce qui compte n'est donc pas la température maximale, mais la <b>température moyenne d'apport</b> <span class="imath" data-tex="\bar{T}_{\text{chaud}}"></span> — la chaleur totale divisée par l'entropie qu'elle a fait entrer. Elle est toujours plus basse que le pic affiché sur la plaque de la chaudière — et de très loin&nbsp;: dans une centrale dont la vapeur atteint 600&nbsp;°C, <span class="imath" data-tex="\bar{T}_{\text{chaud}}"></span> tourne autour de 300&nbsp;°C, parce que la moitié de la chaleur a servi à réchauffer de l'eau bien plus froide. Toute l'ingénierie des centrales depuis 150&nbsp;ans consiste à remonter cette moyenne&nbsp;: surchauffe, resurchauffe, régénération, cycles supercritiques.</p>
+            </div>
+
+            <div class="dtable-wrap">
+              <table class="dtable">
+                <thead>
+                  <tr><th>Machine</th><th>Températures typiques</th><th>Rendement</th><th>Ce qui explique l'écart</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><b>Carnot idéal</b></td><td>≈&nbsp;600&nbsp;°C (873&nbsp;K) → 30&nbsp;°C (303&nbsp;K)</td><td>≈&nbsp;65&nbsp;%</td><td>Rien&nbsp;: c'est la borne. Mais elle exige une machine de puissance nulle.</td></tr>
+                  <tr><td><b>Rankine idéal</b> (sans aucun frottement)</td><td>mêmes extrêmes</td><td>de l'ordre de 45–50&nbsp;%</td><td>La chaleur n'entre pas à 600&nbsp;°C mais en moyenne bien plus bas&nbsp;: <span class="imath" data-tex="\bar{T}_{\text{chaud}}"></span> écrase le rendement <em>avant même</em> la moindre irréversibilité.</td></tr>
+                  <tr><td><b>Centrale à charbon ultra-supercritique</b></td><td>≈&nbsp;600&nbsp;°C → 30&nbsp;°C</td><td>44 à 46&nbsp;% (record&nbsp;: 47,5&nbsp;%)</td><td>S'ajoutent les frottements, les écarts de température dans les échangeurs, les pertes de charge — l'entropie créée du théorème de Gouy-Stodola.</td></tr>
+                  <tr><td><b>Cycle combiné gaz</b> (Brayton + Rankine)</td><td>≈&nbsp;1&nbsp;400&nbsp;°C → 30&nbsp;°C</td><td>de l'ordre de 60&nbsp;% (record vérifié&nbsp;: 64,2&nbsp;%)</td><td>On empile une turbine à gaz au-dessus&nbsp;: la vapeur récupère ses fumées. On n'a pas triché avec Carnot — on a simplement relevé <span class="imath" data-tex="\bar{T}_{\text{chaud}}"></span>.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <aside class="science-block antiintox">
+              <p class="blk-label">◆ Anti-intox · «&nbsp;une centrale gaspille la moitié de son énergie&nbsp;»</p>
+              <p>La phrase revient sans cesse, avec un sous-entendu d'incompétence ou de complaisance industrielle. Elle est <b>trompeuse deux fois</b>.</p>
+              <p><b>Premièrement</b>, rien n'est «&nbsp;gaspillé&nbsp;» au sens du premier principe&nbsp;: l'énergie sort intégralement, simplement sous forme de chaleur tiède plutôt que d'électricité. Ce qui est perdu, c'est l'<b>exergie</b> — la capacité à produire du travail —, pas l'énergie. Le Sankey&nbsp;V14 montre exactement cette différence&nbsp;: à gauche la largeur totale se conserve, à droite elle fond.</p>
+              <p><b>Deuxièmement</b>, l'essentiel de l'écart n'est pas de la mauvaise ingénierie&nbsp;: c'est la structure du cycle. Même une centrale parfaite, sans un seul frottement, resterait très en dessous de 100&nbsp;% — parce que le condenseur doit rejeter de la chaleur pour boucler le cycle (Kelvin, chapitre&nbsp;4) et parce que sa chaleur n'entre pas toute à température maximale. Les vrais leviers existent et ils sont connus&nbsp;: monter <span class="imath" data-tex="\bar{T}_{\text{chaud}}"></span> (supercritique, cycle combiné), ou cesser de vouloir du travail et <b>valoriser la chaleur rejetée</b> telle quelle — c'est la cogénération et les réseaux de chaleur urbains, où le «&nbsp;déchet&nbsp;» chauffe des immeubles.</p>
+            </aside>
 
             <p>«&nbsp;Question au chat&nbsp;: une pièce chauffée à 21 degrés contient-elle de l'énergie thermique&nbsp;? Oui. Peut-on facilement convertir cette énergie uniforme en travail sans source plus froide&nbsp;? Non.&nbsp;»</p>
             <p>«&nbsp;Provoxys, si l'équilibre efface les gradients, comment le vivant maintient-il des structures&nbsp;?&nbsp;»</p>
@@ -2200,6 +2467,16 @@
               <p class="fb-note">La même structure mathématique que Gibbs, mais mesurée en <b>bits</b> (logarithme en base 2)&nbsp;: <b>H</b> est l'entropie de la source, <b>p_i</b> la probabilité d'apparition du symbole <b>i</b>, et <b>Σ</b> l'addition sur tout l'alphabet. Elle quantifie l'<b>incertitude</b> d'une source&nbsp;: nulle pour une source parfaitement prévisible, maximale (<span class="imath" data-tex="\log_2 N"></span>) pour <b>N</b> symboles équiprobables — soit <b>2 bits</b> pour quatre symboles équiprobables. Parenté profonde avec l'entropie thermodynamique, mais objet, unité et sens diffèrent&nbsp;: la connexion devient <em>physique</em> seulement quand un système matériel porte, manipule et efface l'information.</p>
             </div>
 
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ Pourquoi <em>cette</em> formule&nbsp;? <span class="tag-act">le théorème 2 de Shannon</span></p>
+              <p>La question mérite d'être posée, parce qu'elle a une réponse remarquable. On pourrait croire que Shannon a choisi <span class="imath" data-tex="-\sum p_i \log p_i"></span> parce qu'elle marchait bien, ou par analogie avec Boltzmann. Il fait exactement l'inverse&nbsp;: il énonce d'abord <b>trois exigences de bon sens</b> auxquelles toute mesure d'incertitude devrait obéir, puis il démontre qu'<b>une seule fonction</b> les satisfait toutes les trois.</p>
+              <p><b>Un — la continuité.</b> Si l'on modifie très légèrement les probabilités, l'incertitude ne doit pas faire un bond.</p>
+              <p><b>Deux — la monotonie.</b> Avec <b>n</b> possibilités toutes également probables, l'incertitude doit <em>croître</em> avec n. Choisir entre mille portes est plus incertain que choisir entre deux.</p>
+              <p><b>Trois — le regroupement.</b> C'est la condition décisive, et la plus élégante. Si l'on décompose un choix en deux choix successifs, le total doit être inchangé. Tirer une carte parmi ½, ⅓, ⅙ ou bien tirer d'abord à pile ou face puis, une fois sur deux seulement, trancher entre ⅔ et ⅓&nbsp;: c'est le même tirage, donc la même incertitude — à condition de <em>pondérer</em> le second choix par la fréquence à laquelle il a lieu.</p>
+              <p>De ces trois phrases seules, Shannon tire son <b>théorème 2</b>&nbsp;: la seule forme possible est <span class="imath" data-tex="H = -K\sum p_i \log p_i"></span>, à la constante <b>K</b> près — laquelle ne fait que fixer l'unité (base 2 → des bits, base <em>e</em> → des nats). Autrement dit&nbsp;: <b>la formule n'est pas un choix, c'est une conséquence</b>. Toute mesure d'incertitude qui se comporte raisonnablement <em>est</em> celle-là.</p>
+              <p>Shannon lui-même reste d'ailleurs prudent sur la portée de sa démonstration&nbsp;: elle est là, écrit-il, «&nbsp;principalement pour donner une certaine plausibilité&nbsp;» aux définitions — la vraie justification résidant dans leurs conséquences.</p>
+            </aside>
+
             <p>Il faut distinguer les objets. L'entropie thermodynamique possède une unité physique, le joule par kelvin. L'entropie de Shannon quantifie l'incertitude d'une distribution de messages. Leur parenté est profonde, mais elles ne deviennent physiquement équivalentes que lorsqu'une information est portée, manipulée et effacée par un système matériel.</p>
             <p>Avant d'arriver à la physique de la mémoire, regardons ce que cette entropie signifie pour un message.&nbsp;»</p>
 
@@ -2214,6 +2491,67 @@
               <div class="entropy-gallery"><div data-entropy-viz="V17" data-seed="42"></div></div>
               <noscript><p class="viz-noscript">Visualisation interactive (JavaScript requis)&nbsp;: entropie de Shannon d'un alphabet, code préfixe et redondance.</p></noscript>
             </div>
+
+            <!-- ===== L'article fondateur de 1948, consultable ===== -->
+            <div class="paper-card">
+              <div class="pc-head">Lire la source · l'article fondateur <span class="pc-year">Bell System Technical Journal · 1948</span></div>
+              <div class="pc-body">
+                <p>Tout ce chapitre tient dans un seul texte, et ce texte est lisible. <b>« A Mathematical Theory of Communication »</b>, de Claude E. Shannon, publié en deux parties dans le <em>Bell System Technical Journal</em> (vol.&nbsp;27, p.&nbsp;379-423 en juillet, puis p.&nbsp;623-656 en octobre 1948). Cinquante-cinq pages qui ont fondé la théorie de l'information — et, de proche en proche, le disque dur, le modem, le JPEG, le code correcteur de vos QR codes et la 5G.</p>
+                <p>Il se lit mieux qu'on ne le craint. Les vingt premières pages ne demandent presque rien&nbsp;: des probabilités, un logarithme, et beaucoup de bon sens exposé avec une clarté rare. Quelques points de repère si vous l'ouvrez&nbsp;:</p>
+                <p><b>p.&nbsp;1</b> — la position du problème et la phrase la plus citée de l'article. <b>p.&nbsp;2</b> — le schéma en cinq blocs (source, émetteur, canal, récepteur, destination) avec la source de bruit branchée sur le canal&nbsp;: la figure qui structure encore aujourd'hui toutes les télécommunications. <b>p.&nbsp;7</b> — l'échelle des approximations de l'anglais, reproduite ci-dessous. <b>p.&nbsp;10-11</b> — les trois exigences et le théorème d'unicité de <b>H</b>. <b>p.&nbsp;11</b> — la remarque de Shannon sur Boltzmann, et la courbe d'entropie binaire. <b>p.&nbsp;14</b> — la redondance de l'anglais.</p>
+                <a class="paper-cta" href="Shannon-Mathematical-theory-of-communication.pdf" target="_blank" rel="noopener">Ouvrir l'article (PDF, 55 pages)</a>
+                <p class="pc-rights"><b>Crédit et droits —</b> Claude E. Shannon, «&nbsp;A Mathematical Theory of Communication&nbsp;», <em>The Bell System Technical Journal</em>, vol.&nbsp;27, 1948 (réédition corrigée). Ce document est une <b>œuvre tierce</b>&nbsp;: il reste la propriété de ses ayants droit (Bell Telephone Laboratories / Nokia Bell Labs) et <b>n'est pas couvert par la licence CC BY-NC-ND du présent dossier</b>. Il est mis à disposition ici à des fins de citation et d'étude&nbsp;; les extraits ci-dessous sont de courtes citations traduites, données avec leur référence de page.</p>
+              </div>
+            </div>
+
+            <aside class="science-block antiintox">
+              <p class="blk-label">◆ Anti-intox · «&nbsp;plus d'entropie = plus d'information utile&nbsp;»</p>
+              <p>Sam vient de le dire à sa manière&nbsp;; Shannon l'avait écrit dès sa deuxième page, et de façon si tranchante que la phrase est devenue célèbre&nbsp;:</p>
+              <blockquote class="paper-quote">
+                <p>«&nbsp;Frequently the messages have <em>meaning</em>&nbsp;; […] These semantic aspects of communication are irrelevant to the engineering problem.&nbsp;»
+                  <span class="fr">«&nbsp;Souvent les messages ont un <em>sens</em>&nbsp;; […] Ces aspects sémantiques de la communication sont sans rapport avec le problème d'ingénierie.&nbsp;»</span></p>
+                <cite>C. E. Shannon, 1948, p. 1</cite>
+              </blockquote>
+              <p>C'est une <b>délimitation volontaire</b>, pas un aveu de faiblesse. Shannon ne prétend pas mesurer la valeur, la vérité ou l'intérêt d'un message&nbsp;: il mesure la <b>difficulté à le transmettre</b>. D'où l'erreur courante — un texte parfaitement aléatoire a l'entropie maximale, et ne dit rigoureusement rien. «&nbsp;Beaucoup d'information&nbsp;» au sens de Shannon veut dire «&nbsp;beaucoup de place pour le stocker&nbsp;», jamais «&nbsp;beaucoup de contenu&nbsp;».</p>
+              <p>Le même piège vaut pour l'entropie thermodynamique&nbsp;: un gaz à l'équilibre a une entropie énorme et une structure nulle. Entropie n'est ni le désordre, ni la complexité, ni la richesse.</p>
+            </aside>
+
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ L'expérience de la page 7 · fabriquer de l'anglais avec des dés</p>
+              <p>Pour montrer ce qu'une source «&nbsp;à structure statistique&nbsp;» produit vraiment, Shannon construit une échelle d'approximations de l'anglais. À chaque marche, il tient compte d'un peu plus de contexte&nbsp;: d'abord des lettres tirées au hasard, puis avec les bonnes fréquences, puis en respectant les paires de lettres, les triplets, enfin les enchaînements de mots. Il les fabrique à la main, en ouvrant des livres au hasard.</p>
+              <div class="dtable-wrap">
+                <table class="dtable">
+                  <thead><tr><th>Ce qui est pris en compte</th><th>Ce que la source produit (p. 7 de l'article)</th></tr></thead>
+                  <tbody>
+                    <tr><td><b>Rien</b> — 27 symboles équiprobables</td><td class="mono-sample">XFOML RXKHRJFFJUJ ZLPWCFWKCYJ FFJEYVKCQSGHYD QPAAMKBZAACIBZLHJQD</td></tr>
+                    <tr><td><b>La fréquence des lettres</b> de l'anglais</td><td class="mono-sample">OCRO HLI RGWR NMIELWIS EU LL NBNESEBYA TH EEI ALHENHTTPA OOBTTVA NAH BRL</td></tr>
+                    <tr><td><b>Les paires de lettres</b> (digrammes)</td><td class="mono-sample">ON IE ANTSOUTINYS ARE T INCTORE ST BE S DEAMY ACHIN D ILONASIVE TUCOOWE AT TEASONARE FUSO TIZIN ANDY TOBE SEACE CTISBE</td></tr>
+                    <tr><td><b>Les triplets de lettres</b> (trigrammes)</td><td class="mono-sample">IN NO IST LAT WHEY CRATICT FROURE BIRS GROCID PONDENOME OF DEMONSTURES OF THE REPTAGIN IS REGOACTIONA OF CRE</td></tr>
+                    <tr><td><b>Les enchaînements de mots</b> (2ᵉ ordre)</td><td class="mono-sample">THE HEAD AND IN FRONTAL ATTACK ON AN ENGLISH WRITER THAT THE CHARACTER OF THIS POINT IS THEREFORE ANOTHER METHOD FOR THE LETTERS THAT THE TIME OF WHO EVER TOLD THE PROBLEM FOR AN UNEXPECTED</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Lisez la colonne de droite du haut vers le bas&nbsp;: la langue <em>apparaît</em>. Aucune grammaire n'a été programmée, aucun dictionnaire consulté — seulement des probabilités de plus en plus contextuelles. Shannon note lui-même que la ressemblance progresse d'environ le double de la portée prise en compte&nbsp;: avec les triplets, les séquences de deux lettres sont bonnes&nbsp;; avec les mots, des groupes de quatre à cinq mots deviennent presque plausibles.</p>
+              <p>Cette page de 1948 est l'ancêtre direct des modèles de langue actuels, qui font exactement la même chose — prédire le symbole suivant à partir du contexte — avec un contexte des milliers de fois plus long. Et elle dit quelque chose sur l'entropie&nbsp;: <b>plus une source a de structure, moins elle est incertaine, moins il faut de bits pour la transmettre</b>. La descente de ce tableau est une descente d'entropie.</p>
+            </aside>
+
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ La moitié de ce que vous écrivez est déjà décidée <span class="tag-act">redondance ≈ 50 %</span></p>
+              <p>Shannon met un chiffre sur cette structure. En comparant l'entropie réelle de l'anglais à celle qu'aurait un tirage libre sur le même alphabet, il obtient une <b>redondance d'environ 50&nbsp;%</b> — en ne tenant compte du contexte que sur huit lettres environ. Sa formule&nbsp;:</p>
+              <blockquote class="paper-quote">
+                <p>«&nbsp;When we write English half of what we write is determined by the structure of the language and half is chosen freely.&nbsp;»
+                  <span class="fr">«&nbsp;Quand nous écrivons en anglais, la moitié de ce que nous écrivons est déterminée par la structure de la langue, et l'autre moitié est choisie librement.&nbsp;»</span></p>
+                <cite>C. E. Shannon, 1948, p. 14</cite>
+              </blockquote>
+              <p>C'est cette moitié prévisible que compresse un fichier ZIP, et c'est elle aussi qui vous permet de lire un SMS amputé de ses voyelles. Le fait que l'estimation ait été obtenue «&nbsp;par plusieurs méthodes indépendantes donnant des résultats concordants&nbsp;», comme le précise l'article, en dit long sur la solidité de la mesure. Retenez surtout la conséquence, qui reviendra dans «&nbsp;Et dans la vraie vie&nbsp;?&nbsp;»&nbsp;: <b>l'entropie de la source est le plancher absolu de toute compression sans perte</b>. Un fichier déjà aléatoire n'a plus de redondance à retirer — promettre de le compresser, c'est vendre du vent.</p>
+            </aside>
+
+            <details class="science-block faq-details">
+              <summary class="blk-label">◆ Shannon a-t-il vraiment «&nbsp;emprunté&nbsp;» le mot entropie à Boltzmann&nbsp;? <span class="faq-note">ce qu'il en dit lui-même — déplier</span></summary>
+              <p>Une anecdote très répandue veut que von Neumann ait conseillé à Shannon d'appeler sa grandeur «&nbsp;entropie&nbsp;» parce que «&nbsp;personne ne sait ce qu'est vraiment l'entropie, vous aurez donc toujours l'avantage dans un débat&nbsp;». Elle est plausible, mais il faut savoir d'où elle vient&nbsp;: elle est rapportée par Myron Tribus et Edward McIrvine dans <em>Scientific American</em> en <b>1971</b> — soit vingt-trois ans après —, d'après un souvenir de Shannon lui-même. Elle n'apparaît nulle part dans l'article.</p>
+              <p>Ce que l'article dit, en revanche, est net et se lit page&nbsp;11&nbsp;: la forme de <b>H</b>, écrit Shannon, «&nbsp;sera reconnue comme celle de l'entropie telle que définie dans certaines formulations de la mécanique statistique&nbsp;», où <span class="imath" data-tex="p_i"></span> est la probabilité qu'un système se trouve dans la cellule <b>i</b> de son espace des phases — et il ajoute que c'est le <b>H</b> du fameux théorème H de Boltzmann. En note de bas de page, il renvoie au traité de Tolman, <em>Principles of Statistical Mechanics</em> (1938).</p>
+              <p>Autrement dit&nbsp;: Shannon constate explicitement l'identité <em>de forme</em>, la source, et n'en tire aucune revendication d'identité <em>physique</em>. C'est exactement la prudence que ce dossier maintient depuis le chapitre&nbsp;9 — parenté mathématique profonde, objets et unités distincts. La connexion devient physique chez Szilard et Landauer, pas chez Shannon.</p>
+            </details>
 
             <p>«&nbsp;Provoxys, nous avons mesuré l'information abstraite. Faisons maintenant porter cette information par un dispositif physique.&nbsp;»</p>
             <p class="speaker speaker--provoxys">Provoxys</p>
@@ -2884,7 +3222,7 @@
       <p class="devise" style="font-size:1.1rem">Veritas omnia vincit</p>
 
       <div class="eci-license">
-        <b>Licence du contenu —</b> Sauf mention contraire, les textes, la transcription et les images de ce dossier sont publiés sous licence <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr" target="_blank" rel="noopener">Creative Commons Attribution – Pas d'Utilisation Commerciale – Pas de Modification 4.0 International (CC BY-NC-ND 4.0)</a>&nbsp;: partage autorisé avec attribution, sans usage commercial ni modification. Voir le détail dans <a href="../../LICENCE-CONTENU.md">LICENCE-CONTENU.md</a>. Les 26 visualisations interactives sont fournies à titre pédagogique&nbsp;; leurs modèles simplifient la physique et affichent leurs propres limites.
+        <b>Licence du contenu —</b> Sauf mention contraire, les textes, la transcription et les images de ce dossier sont publiés sous licence <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr" target="_blank" rel="noopener">Creative Commons Attribution – Pas d'Utilisation Commerciale – Pas de Modification 4.0 International (CC BY-NC-ND 4.0)</a>&nbsp;: partage autorisé avec attribution, sans usage commercial ni modification. Voir le détail dans <a href="../../LICENCE-CONTENU.md">LICENCE-CONTENU.md</a>. Les 26 visualisations interactives sont fournies à titre pédagogique&nbsp;; leurs modèles simplifient la physique et affichent leurs propres limites. <b>Œuvre tierce —</b> l'article de C. E. Shannon, «&nbsp;A Mathematical Theory of Communication&nbsp;» (<em>Bell System Technical Journal</em>, vol.&nbsp;27, 1948), mis à disposition depuis l'acte&nbsp;V, reste la propriété de ses ayants droit (Bell Telephone Laboratories / Nokia Bell Labs) et <b>n'est pas couvert par cette licence</b>.
         <span class="eci-visit-counter" data-visit-counter>— visites sur cette page</span>
       </div>
     </div>
