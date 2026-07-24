@@ -141,6 +141,100 @@ n° 1 §11, intégré ici) :
 
 ---
 
+## Ajouts éditoriaux du 24 juillet 2026 — potentiels, Maxwell, Rankine
+
+Trois blocs éditoriaux ajoutés à partir du corpus de révision `les_bases/`
+(thermochimie ; thermodynamique des gaz) — voir `a_traiter/provox-entropie/ajout-partie.md`.
+**Aucun mot du verbatim n'a été touché** : tout passe par des encadrés `def-block`,
+`formula-block`, tableaux, figures SVG et `anti-intox`.
+
+### A1 — La famille des potentiels thermodynamiques (Chapitre 13)
+
+| Affirmation | Verdict | Référence / recalcul |
+|---|---|---|
+| H = U + PV ; F = U − TS ; G = H − TS = U + PV − TS | ✅ | définitions IUPAC standard ; LibreTexts *Thermodynamic Potentials* |
+| Différentielles : dU = T dS − P dV ; dH = T dS + V dP ; dF = −S dT − P dV ; dG = −S dT + V dP | ✅ | transformées de Legendre successives ; HyperPhysics *Thermodynamic Potentials* |
+| Variables naturelles : U(S,V), H(S,P), F(T,V), G(T,P) | ✅ | idem |
+| Critères de spontanéité : (ΔF)_{T,V} ≤ 0 et (ΔG)_{T,P} ≤ 0 | ✅ | LibreTexts ; cohérent avec l'encadré *Transitions & chimie* déjà en page |
+| **ΔS_total = ΔS_syst − ΔH/T = −ΔG/T** à T et P constantes | ✅ | dérivation standard : l'environnement (thermostat à T) perd la chaleur ΔH absorbée par le système, donc ΔS_env = −ΔH/T ; ΔG ≤ 0 ⟺ ΔS_total ≥ 0 |
+| « Garder S constante » n'est pas un réglage de paillasse — d'où l'inutilité pratique des critères sur U et H | ✅ | motivation classique de F et G (Callen, *Thermodynamics*, ch. 5–6) |
+| F est le potentiel des transformations à volume fixe (bombe calorimétrique) ; G celui à pression fixe | ✅ | LibreTexts ; script source `les_bases/script_thermochimie_complet.txt` l. 258-279 |
+
+### A2 — Mesurer une entropie : calorimétrie (Ch. 6) et relations de Maxwell (Ch. 13)
+
+| Affirmation | Verdict | Référence / recalcul |
+|---|---|---|
+| S(T) = ∫₀^T C_P(T′)/T′ dT′ + Σ L/T_tr — l'entropie du troisième principe se **mesure** par calorimétrie | ✅ | méthode standard des entropies absolues (« third-law entropies ») ; NIST Chemistry WebBook ; cohérent avec dS = δQ_rev/T déjà en page (Ch. 4) |
+| Sans le troisième principe, seules les **variations** d'entropie sont calculables | ✅ | déjà énoncé par le verbatim du Ch. 6 (« définir des entropies absolues et pas seulement des variations ») — l'encadré ne fait qu'expliciter le mécanisme |
+| Relations de Maxwell : (∂S/∂P)_T = −(∂V/∂T)_P et (∂S/∂V)_T = (∂P/∂T)_V | ✅ | égalité des dérivées croisées (théorème de Schwarz) appliquée à G(T,P) et F(T,V) ; LibreTexts *Maxwell Relations* ; HyperPhysics |
+| Elles viennent de dG = −S dT + V dP ⟹ (∂G/∂T)_P = −S et (∂G/∂P)_T = V | ✅ | dérivation élémentaire, reproduite dans l'encadré dépliant |
+| Un corps qui se dilate en chauffant voit son entropie **baisser** quand on le comprime | ✅ | conséquence directe de la 1ʳᵉ relation : (∂V/∂T)_P > 0 ⟹ (∂S/∂P)_T < 0 |
+| **L'eau liquide se contracte quand on la chauffe entre 0 et ≈ 4 °C**, donc comprimer de l'eau à 2 °C **augmente** son entropie | ✅ | maximum de densité à **3,98 °C** (0,99997 g/cm³) ; coefficient de dilatation β **négatif** sous 4 °C, nul à 4 °C — tec-science, *Density anomaly of water* ; Wikipedia EN *Negative thermal expansion* |
+| C'est la même anomalie qui fait flotter la glace / isole les lacs gelés | ✅ | même source ; formulation prudente conservée en page |
+| Nuance « l'entropie n'est pas subjective » : le choix de la description est explicite et physique, la valeur mesurée est reproductible et tabulée | ✅ | cohérent avec la thèse d'ouverture du dossier (« dépend des états qu'on distingue ») — l'encadré distingue *choix de description* et *subjectivité*, sans la contredire. Formulation « aux barres d'erreur près » (pas de sur-précision revendiquée) |
+
+### B2 — Cycle de Rankine vs Carnot (Chapitre 14)
+
+| Affirmation | Verdict | Référence / recalcul |
+|---|---|---|
+| Le cycle de Rankine = pompe (compression du liquide) → chaudière (isobare) → turbine (détente) → condenseur (isobare) | ✅ | cycle de référence des centrales à vapeur ; `les_bases/script_thermochimie_complet.txt` l. 426-438 ; SFU ENSC 388 |
+| η_Rankine = (W_turbine − W_pompe) / Q_chaudière | ✅ | définition standard |
+| **η_idéal = 1 − T_froid / T̄_chaud, avec T̄_chaud = Q_chaudière / ΔS** | ✅ | exact pour un cycle dont le **rejet** est isotherme (c'est le cas du condenseur) : η = 1 − T_c·ΔS / (T̄_h·ΔS). C'est la reformulation rigoureuse de « Rankine < Carnot » |
+| Carnot entre 600 °C (873 K) et 30 °C (303 K) ≈ 65 % | ✅ | recalculé : 1 − 303/873 = **0,6529** |
+| Rankine **idéal** (sans aucune irréversibilité) aux mêmes extrêmes : de l'ordre de 45–50 % | ✅ | recalculé sur un cycle 300 bar / 600 °C / condenseur 30 °C : W_net ≈ 1 531 kJ/kg, Q_in ≈ 3 288 kJ/kg → **η ≈ 46,6 %** (tables vapeur standard) |
+| T̄_chaud « autour de 300 °C » pour un pic à 600 °C | ✅ | recalculé sur le même cycle : T̄_h = Q_in/ΔS ≈ 3 288 / 5,79 ≈ **568 K ≈ 295 °C** |
+| Centrale à charbon ultra-supercritique : 44–46 %, record 47,5 % | ✅ | RDK Block 8 (Karlsruhe), 600/620 °C, ~275 bar → 47,5 % net ; unités 600 °C mono-resurchauffe ≈ 44 % — *Global Energy Monitor*, *Coal power technologies* ; ScienceDirect *Ultrasupercritical Plant* |
+| Cycle combiné gaz : de l'ordre de 60 %, record vérifié 64,2 % | ✅ | Keadby-2 (SGT5-9000HL, Siemens Energy) — record Guinness vérifié **mai 2024**, 64,2 % ; précédent : EDF Bouchain (GE 9HA) 62,22 % — *Gas Turbine World* ; *Turbomachinery Magazine* |
+| On ne construit pas de machine de Carnot à vapeur : compression d'un mélange diphasique + puissance nulle si réversible | ✅ | `les_bases` l. 440-448 ; argument classique (Çengel & Boles, *Thermodynamics*, ch. 10) |
+| Anti-intox « une centrale gaspille la moitié de son énergie » : c'est de l'**exergie** perdue, pas de l'énergie ; l'écart est structurel, pas de l'incompétence | ✅ | cohérent avec Gouy-Stodola déjà en page (Ch. 14) et avec Kelvin-Planck (Ch. 4) |
+| Levier réel : cogénération / réseaux de chaleur valorisant la chaleur rejetée | ✅ | formulation prudente ; pratique industrielle établie (IEA *District Heating*) |
+
+**Aucune ❌, aucune 🔶.** Deux points de vigilance traités **avant** publication :
+- la sur-affirmation « à la troisième décimale » (entropie standard de l'eau) a été
+  ramenée à « aux barres d'erreur près » ;
+- les rendements de centrales, initialement écrits « de l'ordre de 45 % / 60 % », ont
+  été précisés avec les records réellement vérifiés (47,5 % et 64,2 %).
+
+### C1 — L'article de Shannon (1948) mis à disposition et exploité (Chapitre 17)
+
+Le texte intégral — `provoxys/entropie/Shannon-Mathematical-theory-of-communication.pdf`,
+55 pages, réédition corrigée du *Bell System Technical Journal* — était **versionné dans
+le dépôt mais jamais lié depuis la page**. Il est désormais présenté, cité et référencé.
+Toutes les affirmations ci-dessous sont vérifiables **dans le PDF lui-même**, page par
+page (la pagination du PDF coïncide avec la pagination imprimée de l'article).
+
+| Affirmation | Verdict | Référence / vérification |
+|---|---|---|
+| Publié en deux parties : *Bell Syst. Tech. J.* vol. 27, p. 379-423 (juillet) puis p. 623-656 (octobre) 1948 | ✅ | mention de réédition en tête de la p. 1 du PDF |
+| **Théorème 2** : la seule H satisfaisant les trois hypothèses est `H = −K Σ pᵢ log pᵢ`, K fixant l'unité | ✅ | p. 11 du PDF, énoncé littéral ; démonstration en appendice 2 |
+| Les trois exigences : continuité en les pᵢ ; croissance monotone avec n si équiprobables ; décomposition d'un choix en choix successifs, **pondérée** par leur fréquence | ✅ | p. 10, points 1-3 et Fig. 6 (exemple ½, ⅓, ⅙ → ½·H(½,½) + ½·H(⅔,⅓)) |
+| Shannon relativise lui-même la portée du théorème (« donner une certaine plausibilité » aux définitions, la vraie justification étant dans leurs implications) | ✅ | p. 11, juste après le théorème 2 |
+| Citation p. 1 : « These semantic aspects of communication are irrelevant to the engineering problem » | ✅ | p. 1, §2 de l'introduction — citation courte, traduite, référencée en page |
+| Le mot **bit** est introduit dans cet article, crédité à J. W. Tukey | ✅ | p. 1, dernier paragraphe |
+| Schéma en cinq blocs (source, émetteur, canal + bruit, récepteur, destination) | ✅ | Fig. 1, p. 2 |
+| **Approximations de l'anglais** : les cinq échantillons reproduits (ordre 0, fréquences, digrammes, trigrammes, mots de 2ᵉ ordre) | ✅ | p. 7, section 3 — échantillons **transcrits mot pour mot** depuis le PDF |
+| « La ressemblance progresse d'environ le double de la portée prise en compte » | ✅ | p. 7, paragraphe suivant les échantillons |
+| Shannon les construit à la main, en ouvrant des livres au hasard | ✅ | p. 8, premier paragraphe (méthode décrite explicitement) |
+| **Redondance de l'anglais ≈ 50 %**, contexte limité à ~8 lettres ; « obtenue par plusieurs méthodes indépendantes donnant des résultats concordants » | ✅ | p. 14, fin de section 7 |
+| Citation p. 14 : « When we write English half of what we write is determined by the structure of the language and half is chosen freely » | ✅ | p. 14, citation courte traduite et référencée |
+| Shannon note que la forme de H « sera reconnue comme celle de l'entropie telle que définie dans certaines formulations de la mécanique statistique », et que c'est le H du théorème H de Boltzmann | ✅ | p. 11, avec note 8 renvoyant à R. C. Tolman, *Principles of Statistical Mechanics*, 1938 |
+| **L'anecdote von Neumann est de seconde main** : rapportée par Tribus & McIrvine en 1971 (23 ans après), absente de l'article | ⚠️→✅ | Tribus & McIrvine, « Energy and Information », *Sci. Am.* 225(3):179-188, DOI `10.1038/scientificamerican0971-179` — **vérifié Crossref** (titre, auteurs, revue, volume, pages concordants). Présentée en page comme un récit tardif, jamais comme une source primaire |
+| « L'entropie de la source est le plancher de toute compression sans perte » | ✅ | théorème du codage de source (Shannon 1948) ; déjà affirmé dans la section « vraie vie » du dossier, désormais rattaché à sa source |
+
+**Droits — point de conformité.** Le PDF est une **œuvre tierce** (Bell Telephone
+Laboratories / Nokia Bell Labs) et **n'est pas couvert par la licence CC BY-NC-ND du
+dossier**. Conformément à `AGENT.md` (§ Licence de contenu, dernier point), la mention
+figure **à deux endroits** : dans la carte « Lire la source » de l'acte V et dans le
+cartouche `.eci-license` du pied de page. Les extraits sont de **courtes citations**
+traduites, chacune accompagnée de sa référence de page.
+
+**Non repris volontairement du corpus source** — `les_bases/script_thermochimie_complet.txt`
+l. 21 énonce « le premier principe : l'énergie totale de l'Univers est constante ».
+Formulation écartée : le dossier prend explicitement des précautions sur les bilans
+globaux en cosmologie (Ch. 26). Aucun des encadrés ajoutés ne la reprend.
+
+---
+
 ## Synthèse
 
 Sur **~64 affirmations et données chiffrées** vérifiées (dont les 9 chiffres éditoriaux
@@ -159,5 +253,14 @@ verbatim reste intact) :
 
 Vigilance de convention (pas une erreur) : ΔU = Q + W suppose « travail reçu > 0 »,
 tenu de façon cohérente dans toute la page.
+
+**Mise à jour du 24 juillet 2026** — les blocs éditoriaux ajoutés (potentiels
+thermodynamiques, relations de Maxwell, cycle de Rankine, puis exploitation de l'article
+de Shannon 1948) portent l'audit à **~109 affirmations vérifiées**, toujours **aucune ❌**,
+et le total à **28 DOI vérifiés Crossref** (ajout de Tribus & McIrvine 1971). Deux formulations ont été
+corrigées avant publication (sur-précision sur l'entropie standard de l'eau ;
+rendements de centrales précisés avec les records vérifiés) et une formulation du
+corpus source a été écartée (« l'énergie totale de l'Univers est constante »).
+Détail : section « Ajouts éditoriaux du 24 juillet 2026 » ci-dessus.
 
 Références primaires à comité de lecture, DOI vérifiés : [`refs-doi-25-entropie.md`](refs-doi-25-entropie.md).

@@ -20,9 +20,21 @@ import {
   elasticCollisionPositions,
   keplerPosition,
 } from "../a_traiter/provox-entropie/visualisations/components/V01FlecheDuTemps";
-import { sampleCarnotSegment } from "../a_traiter/provox-entropie/visualisations/components/V03CycleCarnotSynchronise";
+import {
+  CARNOT_PARTICLE_RADIUS,
+  carnotPhaseDurations,
+  carnotParticlePosition,
+  sampleCarnotSegment,
+} from "../a_traiter/provox-entropie/visualisations/components/V03CycleCarnotSynchronise";
 import { jouleWeightY } from "../a_traiter/provox-entropie/visualisations/components/V04ExperienceJoule";
 import { redistribute } from "../a_traiter/provox-entropie/visualisations/components/V17CodageShannon";
+import { configuration } from "../a_traiter/provox-entropie/visualisations/components/V07GrilleConfigurations";
+import { oscillatorQuanta } from "../a_traiter/provox-entropie/visualisations/components/V09EinsteinSolids";
+import {
+  COSMIC_EXPANSION,
+  cosmicExpandedPosition,
+  createCosmicField,
+} from "../a_traiter/provox-entropie/visualisations/components/V25FriseCosmique";
 import {
   COARSE_PARTICLE_RADIUS,
   coarseParticleState,
@@ -156,6 +168,28 @@ describe("animated physics invariants", () => {
     }
   });
 
+  it("keeps Carnot gas particles below the piston and inside the cylinder", () => {
+    for (const pistonY of [49, 86, 132, 174]) {
+      for (let index = 0; index < 16; index += 1) {
+        const particle = carnotParticlePosition(index, pistonY);
+        expect(particle.x - CARNOT_PARTICLE_RADIUS).toBeGreaterThanOrEqual(88);
+        expect(particle.x + CARNOT_PARTICLE_RADIUS).toBeLessThanOrEqual(352);
+        expect(particle.y - CARNOT_PARTICLE_RADIUS).toBeGreaterThanOrEqual(
+          pistonY + 12,
+        );
+        expect(particle.y + CARNOT_PARTICLE_RADIUS).toBeLessThanOrEqual(214);
+      }
+    }
+  });
+
+  it("synchronizes Carnot phase duration with piston travel", () => {
+    const durations = carnotPhaseDurations([10, 20, 113, 57, 10]);
+    expect(durations[0]).toBe(850);
+    expect(durations[1]).toBeGreaterThan(durations[2]!);
+    expect(durations[2]).toBeGreaterThan(durations[3]!);
+    expect(durations[3]).toBeGreaterThan(durations[0]!);
+  });
+
   it("keeps coarse-graining particles inside elastic walls without changing their speed", () => {
     const initial = { position: 0.23, velocity: 0.37 };
     for (let frame = 0; frame <= 1000; frame += 1) {
@@ -210,6 +244,65 @@ describe("animated physics invariants", () => {
       Math.hypot(after.vx + before.vx, after.vy + before.vy) /
       Math.hypot(before.vx, before.vy);
     expect(relativeError).toBeCloseTo(0.075, 12);
+  });
+});
+
+describe("configuration grid patterns", () => {
+  it("tiles the 10 by 10 board with non-overlapping 1001 blocks", () => {
+    const cells = configuration(50, "pavés 1001", 707);
+    for (let y = 0; y < 10; y += 2) {
+      for (let x = 0; x < 10; x += 2) {
+        const index = y * 10 + x;
+        expect([
+          cells[index],
+          cells[index + 1],
+          cells[index + 10],
+          cells[index + 11],
+        ]).toEqual([true, false, false, true]);
+      }
+    }
+  });
+});
+
+describe("Einstein solid oscillator scene", () => {
+  it("distributes every displayed quantum across the oscillators", () => {
+    for (const oscillators of [2, 6, 10, 20]) {
+      for (const quanta of [0, 1, 9, 24, 40]) {
+        const displayed = Array.from({ length: oscillators }, (_, index) =>
+          oscillatorQuanta(oscillators, quanta, index),
+        );
+        expect(displayed.reduce((sum, value) => sum + value, 0)).toBe(quanta);
+        expect(
+          Math.max(...displayed) - Math.min(...displayed),
+        ).toBeLessThanOrEqual(1);
+      }
+    }
+  });
+});
+
+describe("cosmic entropy canvas field", () => {
+  it("creates a deterministic normalized universe field", () => {
+    const first = createCosmicField(32, 25);
+    const second = createCosmicField(32, 25);
+    expect(first).toEqual(second);
+    expect(first).toHaveLength(32);
+    for (const point of first) {
+      expect(point.x).toBeGreaterThanOrEqual(0);
+      expect(point.x).toBeLessThan(1);
+      expect(point.y).toBeGreaterThanOrEqual(0);
+      expect(point.y).toBeLessThan(1);
+      expect(point.size).toBeGreaterThan(0);
+    }
+  });
+
+  it("moves comoving objects away from the center as space expands", () => {
+    const point = { x: 0.8, y: 0.2 };
+    const distances = COSMIC_EXPANSION.map((expansion) => {
+      const position = cosmicExpandedPosition(point, 1000, 500, expansion);
+      return Math.hypot(position.x - 500, position.y - 250);
+    });
+    expect(distances).toEqual([...distances].sort((a, b) => a - b));
+    expect(distances.at(-1)).toBeGreaterThan(distances[0]! * 2);
   });
 });
 
