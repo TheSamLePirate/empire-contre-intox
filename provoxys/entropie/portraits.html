@@ -1,0 +1,1363 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Les Bâtisseurs de l'Entropie — Portraits · Empire contre Intox</title>
+  <meta name="description" content="Seize portraits, trois siècles de science : de Sadi Carnot aux trous noirs de Bekenstein et Hawking, les visages qui ont bâti l'entropie, la thermodynamique et la théorie de l'information. Une galerie du dossier Entropie (Provoxys × Samlepirate), réalisée par Lalie. Veritas omnia vincit.">
+  <meta name="theme-color" content="#050811">
+  <meta name="author" content="Lalie — Empire contre Intox">
+
+  <link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr">
+  <meta name="rights" content="Texte éditorial sous licence Creative Commons Attribution – Pas d'Utilisation Commerciale – Pas de Modification 4.0 International (CC BY-NC-ND 4.0). Portraits : Wikimedia Commons (domaine public ou licences Creative Commons, crédités individuellement).">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Les Bâtisseurs de l'Entropie — Portraits">
+  <meta property="og:description" content="Seize visages, de Carnot à Smolin : la galerie des architectes de l'entropie, de la thermodynamique et de l'information.">
+  <meta property="og:image" content="https://empire-contre-intox.com/provoxys/entropie/assets/entropie-hero.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- KaTeX — rendu des vraies formules mathématiques -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+      --hot:#ef7d57; --hot-bright:#ff9d7a; --cold:#58a6d9; --cold-bright:#7fd4e8;
+      --useful:#6bc78c; --info:#b790df; --quanta:#7fd4e8;
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --mono:"JetBrains Mono",ui-monospace,monospace;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+      --hero:url("assets/entropie-hero.png");
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.75; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 10% 2%, rgba(239,125,87,.13), transparent 44%),
+        radial-gradient(120% 70% at 92% 0%, rgba(88,166,217,.13), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(214,172,85,.08), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+
+    /* ATMOSPHÈRE */
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px; mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:radial-gradient(1.4px 1.4px at 18% 24%,rgba(255,255,255,.5),transparent),radial-gradient(1.2px 1.2px at 72% 38%,rgba(255,255,255,.42),transparent),radial-gradient(1.5px 1.5px at 46% 72%,rgba(255,255,255,.36),transparent),radial-gradient(1.1px 1.1px at 88% 66%,rgba(255,255,255,.4),transparent),radial-gradient(1.2px 1.2px at 32% 88%,rgba(255,255,255,.34),transparent);
+      animation:twinkle 7s var(--ease) infinite alternate; }
+    @keyframes twinkle { from{opacity:.5} to{opacity:.9} }
+    .grain { position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"); }
+    .frame { position:fixed; inset:14px; z-index:2; pointer-events:none; }
+    .frame span { position:absolute; width:26px; height:26px; border:1px solid var(--gold); opacity:.5; }
+    .frame span:nth-child(1){ top:0; left:0; border-right:0; border-bottom:0; }
+    .frame span:nth-child(2){ top:0; right:0; border-left:0; border-bottom:0; }
+    .frame span:nth-child(3){ bottom:0; left:0; border-right:0; border-top:0; }
+    .frame span:nth-child(4){ bottom:0; right:0; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; height:2px; width:0; z-index:60;
+      background:linear-gradient(90deg,var(--hot),var(--gold-bright) 40%,var(--info) 74%,var(--cold-bright)); box-shadow:0 0 12px rgba(214,172,85,.6); }
+
+    .wrap { position:relative; z-index:3; max-width:var(--max); margin:0 auto; padding:0 clamp(16px,4vw,40px); }
+
+    a { color:inherit; }
+    ::selection { background:rgba(239,125,87,.28); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:2px; }
+
+    /* HERO */
+    .hero { position:relative; min-height:92svh; display:flex; align-items:center; overflow:hidden; }
+    .hero__bg { position:absolute; inset:0; z-index:0; background:var(--hero) center/cover no-repeat; opacity:.42; }
+    .hero__bg::after { content:""; position:absolute; inset:0;
+      background:linear-gradient(90deg,var(--void) 6%,rgba(5,8,17,.5) 46%,transparent 78%),linear-gradient(0deg,var(--void),transparent 40%); }
+    .hero .wrap { padding-top:15vh; padding-bottom:9vh; }
+    .eyebrow { font-family:var(--roman); font-weight:600; letter-spacing:.42em; text-transform:uppercase;
+      font-size:.72rem; color:var(--gold); margin:0 0 22px; }
+    .eyebrow b { color:var(--hot-bright); font-weight:700; }
+    h1.title { font-family:var(--roman); font-weight:800; line-height:1.02; letter-spacing:.02em;
+      font-size:clamp(2.5rem,7vw,5.4rem); margin:0 0 26px; text-transform:uppercase; }
+    h1.title .foil { background:linear-gradient(92deg,var(--gold-deep),var(--gold-bright) 40%,#fff 52%,var(--gold-bright) 64%,var(--gold-deep));
+      -webkit-background-clip:text; background-clip:text; color:transparent; background-size:220% auto; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% center; } }
+    .lead { font-size:clamp(1.06rem,1.7vw,1.32rem); max-width:64ch; color:var(--parch); margin:0 0 20px; }
+    .hero-quote { font-style:italic; color:var(--gold-bright); font-size:clamp(1.05rem,1.8vw,1.32rem);
+      border-left:2px solid var(--line); padding-left:18px; margin:0 0 34px; max-width:60ch; }
+    .hero-quote .hq-src { display:block; font-style:normal; font-family:var(--roman); font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--soft); margin-top:10px; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-bottom:44px; }
+    .btn { font-family:var(--roman); font-weight:600; letter-spacing:.16em; text-transform:uppercase; font-size:.72rem;
+      padding:14px 26px; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; gap:10px;
+      border:1px solid var(--gold); transition:transform .3s var(--ease), box-shadow .3s var(--ease), background .3s; }
+    .btn--gold { background:linear-gradient(180deg,var(--gold-bright),var(--gold)); color:#241706; border-color:transparent; }
+    .btn--ghost { color:var(--gold-bright); background:rgba(214,172,85,.05); }
+    .btn:hover { transform:translateY(-3px); box-shadow:0 16px 40px rgba(0,0,0,.4); }
+    .signal-board { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-2);
+      border:1px solid var(--line-2); border-radius:3px; overflow:hidden; max-width:820px; }
+    .signal-board div { background:var(--glass); padding:16px 18px; }
+    .signal-board .k { font-family:var(--roman); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--soft); margin-bottom:6px; }
+    .signal-board .v { font-family:var(--mono); font-size:1rem; color:var(--gold-bright); }
+    @media (max-width:720px){ .signal-board{ grid-template-columns:repeat(2,1fr); } }
+
+    /* TOPBAR */
+    .topbar { position:sticky; top:0; z-index:50; display:flex; align-items:center; gap:16px;
+      padding:10px clamp(16px,4vw,40px); background:rgba(5,8,17,.82); backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line); }
+    .brand { display:flex; align-items:center; gap:12px; text-decoration:none; flex:none; }
+    .seal { width:38px; height:38px; border-radius:50%; flex:none; padding:2px;
+      background:conic-gradient(from 0deg,var(--gold-deep),var(--gold-bright),var(--gold-deep)); }
+    .seal img { width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; }
+    .brand .bt { font-family:var(--roman); font-weight:700; letter-spacing:.12em; font-size:.72rem; text-transform:uppercase; color:var(--ink); line-height:1.2; }
+    .brand .bs { font-size:.62rem; color:var(--soft); letter-spacing:.08em; }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1 1 auto; min-width:0; -webkit-overflow-scrolling:touch;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent); }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { font-family:var(--roman); font-weight:500; letter-spacing:.1em; text-transform:uppercase; font-size:.64rem;
+      color:var(--muted); text-decoration:none; padding:8px 12px; white-space:nowrap; position:relative; transition:color .25s; }
+    .nav a::after { content:""; position:absolute; left:12px; right:12px; bottom:4px; height:1px; background:var(--gold-bright); transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease); }
+    .nav a:hover, .nav a.active { color:var(--gold-bright); }
+    .nav a:hover::after, .nav a.active::after { transform:scaleX(1); }
+
+    /* SECTIONS */
+    main { position:relative; z-index:3; }
+    section { padding:clamp(48px,8vw,104px) 0; }
+    .band { border-top:1px solid var(--line-2); }
+    .sec-eyebrow { font-family:var(--roman); font-weight:600; letter-spacing:.34em; text-transform:uppercase; font-size:.68rem; color:var(--gold); margin:0 0 16px; }
+    h2 { font-family:var(--roman); font-weight:700; text-transform:uppercase; letter-spacing:.03em; line-height:1.08;
+      font-size:clamp(1.7rem,3.6vw,2.9rem); margin:0 0 20px; }
+    h3.sub { font-family:var(--roman); font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:1rem; color:var(--gold-bright); margin:30px 0 12px; }
+    .prose p { margin:0 0 18px; }
+    .prose p.lead-in { font-size:1.1rem; color:var(--parch); font-style:italic; }
+    .prose b, .prose strong { color:var(--ink); font-weight:600; }
+    .prose .hl { color:var(--gold-bright); font-weight:600; }
+
+    /* INTRO / TIMELINE */
+    .intro-band .manifesto { font-family:var(--serif); font-size:clamp(1.2rem,2.4vw,1.7rem); line-height:1.5; color:var(--parch); max-width:30ch; }
+    .intro-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:clamp(28px,5vw,64px); align-items:start; }
+    @media (max-width:860px){ .intro-grid{ grid-template-columns:1fr; } }
+    .timeline { list-style:none; margin:0; padding:0; }
+    .timeline li { position:relative; padding:0 0 22px 30px; border-left:1px solid var(--line); }
+    .timeline li::before { content:""; position:absolute; left:-5px; top:4px; width:9px; height:9px; border-radius:50%; background:var(--gold-bright); box-shadow:0 0 10px rgba(214,172,85,.6); }
+    .timeline b { font-family:var(--roman); letter-spacing:.08em; text-transform:uppercase; font-size:.74rem; color:var(--gold-bright); display:block; margin-bottom:3px; }
+    .timeline span { color:var(--muted); font-size:.98rem; }
+
+    /* LEARNING PANEL */
+    .learn-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    @media (max-width:860px){ .learn-grid{ grid-template-columns:1fr; } }
+    .learn-card { border:1px solid var(--line-2); border-top:2px solid var(--gold); border-radius:3px; padding:22px; background:var(--glass); }
+    .learn-card .n { font-family:var(--roman); font-size:.62rem; letter-spacing:.2em; color:var(--soft); text-transform:uppercase; }
+    .learn-card h4 { font-family:var(--roman); font-weight:600; letter-spacing:.06em; text-transform:uppercase; font-size:.98rem; color:var(--gold-bright); margin:8px 0 8px; }
+    .learn-card p { margin:0; color:var(--muted); font-size:.96rem; }
+
+    /* GALERIE */
+    .gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:16px; }
+    .gcard { position:relative; display:block; text-decoration:none; border:1px solid var(--line-2); border-radius:4px; overflow:hidden;
+      background:var(--glass); transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s; }
+    .gcard:hover { transform:translateY(-6px); border-color:var(--line); box-shadow:0 20px 50px rgba(0,0,0,.45); }
+    .gcard .gimg { aspect-ratio:4/5; overflow:hidden; background:#0b1220; }
+    .gcard img { width:100%; height:100%; object-fit:cover; object-position:center 22%; display:block; filter:grayscale(.28) contrast(1.02); transition:filter .4s var(--ease), transform .5s var(--ease); }
+    .gcard:hover img { filter:grayscale(0) contrast(1.05); transform:scale(1.04); }
+    .gcard .gmeta { padding:11px 13px 13px; border-top:1px solid var(--line-2); }
+    .gcard .gn { font-family:var(--roman); font-weight:700; letter-spacing:.04em; text-transform:uppercase; font-size:.74rem; color:var(--gold-bright); line-height:1.2; }
+    .gcard .gd { font-family:var(--mono); font-size:.66rem; color:var(--soft); margin-top:4px; letter-spacing:.02em; }
+    .gcard .gnum { position:absolute; top:8px; left:10px; font-family:var(--roman); font-weight:800; font-size:.9rem; color:var(--gold-bright);
+      text-shadow:0 2px 8px rgba(0,0,0,.8); }
+
+    /* GALERIE VIDÉO */
+    .video-gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
+    .vcard { position:relative; display:block; text-decoration:none; border:1px solid var(--line-2); border-radius:5px; overflow:hidden;
+      background:var(--glass); transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s; }
+    .vcard:hover { transform:translateY(-6px); border-color:var(--line); box-shadow:0 22px 55px rgba(0,0,0,.5); }
+    .vthumb { position:relative; aspect-ratio:16/9; overflow:hidden; background:#0b1220; }
+    .vthumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s var(--ease), filter .4s var(--ease); filter:saturate(.92) contrast(1.02); }
+    .vcard:hover .vthumb img { transform:scale(1.05); filter:saturate(1.05) contrast(1.04); }
+    .vthumb::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(5,8,17,.05) 40%,rgba(5,8,17,.72)); }
+    .vplay { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:2;
+      width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      background:rgba(5,8,17,.55); border:1.5px solid var(--gold); backdrop-filter:blur(3px);
+      transition:transform .3s var(--ease), background .3s, box-shadow .3s; }
+    .vplay::before { content:""; width:0; height:0; margin-left:4px;
+      border-style:solid; border-width:11px 0 11px 18px; border-color:transparent transparent transparent var(--gold-bright); }
+    .vcard:hover .vplay { transform:translate(-50%,-50%) scale(1.12); background:rgba(214,172,85,.22); box-shadow:0 0 30px rgba(214,172,85,.5); }
+    .vdur { position:absolute; bottom:10px; right:10px; z-index:2; font-family:var(--mono); font-size:.62rem; letter-spacing:.04em;
+      color:var(--ink); background:rgba(5,8,17,.72); border:1px solid var(--line-2); padding:2px 7px; border-radius:3px; }
+    .vmeta { padding:14px 16px 16px; }
+    .vchan { display:inline-block; font-family:var(--roman); font-weight:600; letter-spacing:.16em; text-transform:uppercase; font-size:.58rem;
+      color:var(--gold); background:rgba(214,172,85,.08); border:1px solid var(--line); border-radius:2px; padding:3px 8px; margin-bottom:10px; }
+    .vtitle { font-family:var(--serif); font-weight:500; font-size:1.02rem; line-height:1.4; color:var(--ink); }
+    .vcard:hover .vtitle { color:var(--gold-bright); }
+    .video-note { margin:22px 0 0; font-size:.82rem; color:var(--soft); }
+    .video-note a { color:var(--gold-bright); }
+
+    /* ACT BANDS */
+    .act-band { text-align:center; padding:clamp(56px,9vw,120px) 0; }
+    .act-band .act-num { font-family:var(--roman); font-weight:800; font-size:clamp(3rem,10vw,7rem); letter-spacing:.06em;
+      -webkit-text-stroke:1px var(--gold); color:transparent; line-height:1; }
+    .act-band h2 { color:var(--gold-bright); margin-top:10px; }
+    .act-band p { color:var(--muted); max-width:60ch; margin:8px auto 0; }
+
+    /* FICHE (PORTRAIT) */
+    .chapter { position:relative; }
+    .chapter-head { position:relative; margin-bottom:26px; }
+    .kicker { font-family:var(--roman); font-weight:600; letter-spacing:.28em; text-transform:uppercase; font-size:.66rem; color:var(--hot-bright); margin:0 0 10px; }
+    .chapter-number { position:absolute; top:-42px; right:0; font-family:var(--roman); font-weight:800; font-size:clamp(3rem,8vw,6rem);
+      -webkit-text-stroke:1px var(--line); color:transparent; line-height:1; pointer-events:none; z-index:-1; }
+    .fiche { display:grid; grid-template-columns:300px 1fr; gap:clamp(24px,4vw,48px); align-items:start; }
+    @media (max-width:820px){ .fiche{ grid-template-columns:1fr; } }
+    .fiche-aside { position:sticky; top:78px; }
+    @media (max-width:820px){ .fiche-aside{ position:static; } }
+    .portrait-figure { margin:0; border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--glass); box-shadow:var(--shadow); }
+    .portrait-figure .pf-img { aspect-ratio:4/5; overflow:hidden; background:#0b1220; }
+    .portrait-figure img { width:100%; height:100%; object-fit:cover; object-position:center 20%; display:block; filter:grayscale(.15) contrast(1.03); }
+    .portrait-figure figcaption { padding:11px 15px; font-size:.82rem; color:var(--muted); border-top:1px solid var(--line-2); }
+    .portrait-figure figcaption b { color:var(--gold-bright); font-family:var(--roman); font-weight:600; letter-spacing:.05em; }
+    .idcard { margin:16px 0 0; padding:16px 18px; border:1px solid var(--line-2); border-top:2px solid var(--gold); border-radius:3px; background:rgba(7,12,26,.5); }
+    .idcard .idtitle { font-family:var(--roman); font-weight:600; letter-spacing:.18em; text-transform:uppercase; font-size:.6rem; color:var(--gold); margin:0 0 12px; display:flex; align-items:center; gap:8px; }
+    .idcard .idtitle::before { content:""; width:18px; height:1px; background:var(--gold); }
+    .idcard dl { margin:0; display:grid; grid-template-columns:1fr; gap:10px; }
+    .idcard .row { display:block; }
+    .idcard dt { font-family:var(--roman); font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:var(--soft); margin-bottom:2px; }
+    .idcard dd { margin:0; color:var(--parch); font-size:.92rem; line-height:1.5; }
+    .fiche-body .epithet { font-family:var(--roman); font-weight:600; letter-spacing:.14em; text-transform:uppercase; font-size:.82rem; color:var(--gold); margin:0 0 18px; }
+
+    /* BLOCKS */
+    .lesson-block, .science-block, .question-block { border-radius:3px; padding:18px 20px; margin:22px 0; border:1px solid var(--line-2); background:rgba(7,12,26,.5); }
+    .lesson-block { border-left:3px solid var(--useful); }
+    .science-block { border-left:3px solid var(--cold); }
+    .question-block { border-left:3px solid var(--gold); background:rgba(214,172,85,.05); }
+    .antiintox { border-left:3px solid var(--hot); background:rgba(239,125,87,.05); }
+    .blk-label { font-family:var(--roman); font-weight:700; letter-spacing:.18em; text-transform:uppercase; font-size:.62rem; margin:0 0 8px; display:flex; align-items:center; gap:8px; }
+    .lesson-block .blk-label { color:var(--useful); }
+    .science-block .blk-label { color:var(--cold-bright); }
+    .question-block .blk-label { color:var(--gold-bright); }
+    .antiintox .blk-label { color:var(--hot-bright); }
+    .lesson-block p:last-child, .science-block p:last-child, .question-block p:last-child, .antiintox p:last-child { margin-bottom:0; }
+
+    /* FORMULAS (KaTeX) */
+    .imath { display:inline-block; line-height:1; vertical-align:-.16em; }
+    .imath .katex { font-size:1.02em; color:var(--gold-bright); }
+    .imath:empty { display:none; }
+    .formula-block { margin:26px 0; position:relative; border:1px solid var(--line); border-radius:3px; overflow:hidden;
+      background:
+        radial-gradient(120% 140% at 0% 0%, rgba(214,172,85,.12), transparent 55%),
+        radial-gradient(120% 140% at 100% 100%, rgba(88,166,217,.09), transparent 55%),
+        linear-gradient(180deg, rgba(14,26,46,.58), rgba(7,12,26,.66));
+      box-shadow:var(--shadow); }
+    .formula-block::before { content:""; position:absolute; inset:0; pointer-events:none;
+      background-image:linear-gradient(rgba(214,172,85,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(214,172,85,.05) 1px, transparent 1px);
+      background-size:38px 38px; opacity:.5; }
+    .formula-block > * { position:relative; z-index:1; }
+    .formula-block .fb-head { display:flex; align-items:center; gap:12px; padding:11px 22px; border-bottom:1px solid var(--line);
+      background:rgba(5,8,17,.42); font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); }
+    .formula-block .fb-head::before { content:"ƒ"; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; flex:none;
+      border:1px solid var(--gold); border-radius:50%; font-family:var(--serif); font-style:italic; font-size:13px; letter-spacing:0; color:var(--gold-bright); background:rgba(214,172,85,.08); }
+    .formula-block .fb-head .fb-tag { margin-left:auto; color:var(--soft); letter-spacing:.14em; }
+    .formula { display:block; margin:0; padding:24px 22px; text-align:center; overflow-x:auto; }
+    .formula .katex { font-size:1.42rem; color:var(--gold-bright); }
+    .formula:empty { display:none; }
+    .formula-block .fb-note { padding:2px 22px 18px; margin:0; font-family:var(--serif); font-size:.96rem; line-height:1.62; color:var(--muted); }
+    .formula-block .fb-note b { color:var(--ink); font-weight:600; }
+    .formula-block .fb-note .imath .katex { font-size:1em; color:var(--quanta); }
+    @media (max-width:640px){ .formula .katex{ font-size:1.12rem; } .formula-block .fb-head{ padding:10px 16px; } .formula,.formula-block .fb-note{ padding-left:16px; padding-right:16px; } }
+
+    /* CREDIT BAND */
+    .credit-band { display:flex; flex-wrap:wrap; align-items:center; gap:22px; border:1px solid var(--line); border-radius:18px;
+      padding:30px 34px; background:linear-gradient(120deg,rgba(239,125,87,.06),rgba(88,166,217,.06)); box-shadow:0 24px 70px rgba(0,0,0,.22); backdrop-filter:blur(12px); }
+    .avatars { display:flex; }
+    .avatars img { width:64px; height:64px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold); margin-left:-18px; }
+    .avatars img:first-child { margin-left:0; }
+    .credit-band .ct .over { font-family:var(--roman); font-size:.62rem; letter-spacing:.24em; text-transform:uppercase; color:var(--soft); }
+    .credit-band .ct .nm { font-family:var(--roman); font-weight:700; letter-spacing:.06em; font-size:1.2rem; color:var(--gold-bright); }
+    .credit-band .ct .note { color:var(--muted); font-size:.9rem; margin-top:4px; }
+
+    /* CLOSING + COLLECTIVE FOOTER */
+    .collective-footer { text-align:center; border-top:1px solid var(--line); background:rgba(5,8,17,.6); padding-top:clamp(70px,9vw,110px); }
+    .collective-footer .seal { width:74px; height:74px; margin:0 auto 18px; }
+    .collective-footer h3 { font-family:var(--roman); font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:1.3rem; color:var(--ink); margin:0 0 12px; }
+    .collective-footer p { color:var(--muted); max-width:62ch; margin:0 auto 22px; }
+    .devise { font-style:italic; color:var(--gold-bright); font-size:clamp(1.2rem,2.6vw,1.9rem); font-family:var(--serif); }
+    .footer-actions { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:26px; }
+    .footer-actions a { font-family:var(--roman); letter-spacing:.12em; text-transform:uppercase; font-size:.66rem; color:var(--gold-bright);
+      text-decoration:none; padding:10px 18px; border:1px solid var(--line); border-radius:3px; transition:background .3s; }
+    .footer-actions a:hover { background:rgba(214,172,85,.08); }
+
+    /* CRÉDITS IMAGES */
+    .imgcred { max-width:900px; margin:0 auto; text-align:left; border:1px solid var(--line-2); border-radius:3px; background:rgba(7,12,26,.5); padding:20px 24px; }
+    .imgcred h4 { font-family:var(--roman); font-weight:600; letter-spacing:.14em; text-transform:uppercase; font-size:.72rem; color:var(--gold); margin:0 0 12px; }
+    .imgcred p { color:var(--soft); font-size:.78rem; line-height:1.6; margin:0; }
+    .imgcred a { color:var(--gold-bright); }
+
+    /* LICENSE + COUNTER */
+    .eci-license { max-width:720px; margin:28px auto 0; padding:18px 22px; border:1px solid var(--line-2); border-radius:3px;
+      background:rgba(7,12,26,.5); color:var(--muted); font-size:.84rem; line-height:1.6; text-align:left; }
+    .eci-license b { color:var(--parch); font-family:var(--roman); font-weight:600; letter-spacing:.06em; }
+    .eci-license a { color:var(--gold-bright); }
+    .eci-visit-counter { display:block; margin-top:14px; font-family:var(--mono); font-size:.76rem; color:var(--soft); letter-spacing:.04em; }
+    footer.tech { text-align:center; padding:26px 0 60px; color:var(--soft); font-size:.78rem; }
+
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(26px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"]{ transition-delay:.08s; } .reveal[data-d="2"]{ transition-delay:.16s; } .reveal[data-d="3"]{ transition-delay:.24s; }
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      .reveal{ opacity:1 !important; transform:none !important; }
+      .atmos::after, h1.title .foil { animation:none !important; }
+      .gcard:hover, .gcard:hover img, .btn:hover { transform:none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <!-- ================= HERO ================= -->
+  <header class="hero" id="top">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow reveal in">Dossier <b>XXV</b> · Portraits · Thermodynamique · Information · Cosmos</p>
+      <h1 class="title reveal in" data-d="1">Les bâtisseurs<br>de l'<span class="foil">Entropie</span></h1>
+      <p class="lead reveal in" data-d="2">Derrière chaque formule, un visage. De l'ingénieur qui a rêvé le moteur parfait au physicien qui a donné une température aux trous noirs, voici <b>seize portraits</b> — trois siècles de science pour comprendre d'où vient l'entropie, ce mot que l'on croit connaître.</p>
+      <p class="hero-quote reveal in" data-d="2">«&nbsp;L'énergie de l'univers est constante. L'entropie de l'univers tend vers un maximum.&nbsp;»<span class="hq-src">— Rudolf Clausius, 1865</span></p>
+      <div class="hero-actions reveal in" data-d="3">
+        <a class="btn btn--gold" href="#galerie">Voir la galerie</a>
+        <a class="btn btn--ghost" href="index.html">↩ Le dossier Entropie</a>
+        <a class="btn btn--ghost" href="../../index.html">Accueil ECI</a>
+      </div>
+      <div class="signal-board reveal in" data-d="3">
+        <div><div class="k">Portraits</div><div class="v">16 figures</div></div>
+        <div><div class="k">Époque</div><div class="v">1796 → aujourd'hui</div></div>
+        <div><div class="k">De</div><div class="v">Carnot à Smolin</div></div>
+        <div><div class="k">Devise</div><div class="v">Veritas omnia vincit</div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= TOPBAR ================= -->
+  <nav class="topbar" aria-label="Navigation des portraits">
+    <a class="brand" href="../../index.html">
+      <span class="seal"><img src="../../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox"></span>
+      <span class="btxt"><span class="bt">Portraits</span><span class="bs">Dossier Entropie</span></span>
+    </a>
+    <div class="nav" id="nav">
+      <a href="#galerie">Galerie</a>
+      <a href="#acte1">Fondateurs</a>
+      <a href="#acte2">Les principes</a>
+      <a href="#acte3">Statistique</a>
+      <a href="#acte4">Information</a>
+      <a href="#acte5">Trous noirs</a>
+      <a href="#ressources">Vidéos</a>
+      <a href="index.html">Le dossier</a>
+      <a href="../../sources/sources.html">Les Sources</a>
+      <a href="../../index.html">Accueil ECI</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ===== INTRO ===== -->
+    <section class="band reveal" id="intro">
+      <div class="wrap intro-band">
+        <div class="intro-grid">
+          <div>
+            <p class="sec-eyebrow">Le fil conducteur</p>
+            <p class="manifesto">Une seule idée traverse ces seize vies&nbsp;: comprendre pourquoi le temps ne remonte jamais, et pourquoi l'énergie, sans jamais se perdre, se dégrade toujours.</p>
+            <p style="color:var(--muted);margin-top:18px;">Ces fiches accompagnent le grand dossier <a href="index.html" style="color:var(--gold-bright)">« L'Entropie, le temps et l'Univers »</a> de <b style="color:var(--hot-bright)">Provoxys</b> et <b style="color:var(--cold-bright)">Samlepirate</b>. Elles racontent, de génération en génération, la chaîne humaine qui a bâti la thermodynamique&nbsp;: un ingénieur français, un médecin de marine, un brasseur anglais, un professeur discret de Yale, un mathématicien hongrois évadé des camps, un cosmologiste dans un fauteuil roulant. Une science écrite par des génies parfois incompris, souvent brisés, toujours obstinés.</p>
+          </div>
+          <div>
+            <p class="sec-eyebrow">Cinq âges de l'entropie</p>
+            <ul class="timeline">
+              <li><b>1824 · La machine</b><span>Carnot cherche la limite du moteur thermique. Mayer, Joule et Helmholtz découvrent que l'énergie se conserve.</span></li>
+              <li><b>1850–1865 · Le mot</b><span>Clausius forge l'« entropie » et énonce le second principe. Kelvin invente le zéro absolu ; Maxwell lâche son démon.</span></li>
+              <li><b>1877–1902 · Les atomes</b><span>Boltzmann relie l'entropie au nombre de micro-états ; Gibbs fonde la mécanique statistique.</span></li>
+              <li><b>1948–1961 · L'information</b><span>Shannon mesure l'information en bits ; Rényi généralise l'entropie.</span></li>
+              <li><b>1972–2020 · Le cosmos</b><span>Bekenstein et Hawking donnent une entropie aux trous noirs ; Penrose et Smolin repensent l'espace-temps.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OBJECTIFS ===== -->
+    <section class="reveal">
+      <div class="wrap">
+        <p class="sec-eyebrow">Ce que raconte cette galerie</p>
+        <div class="learn-grid">
+          <div class="learn-card"><div class="n">Objectif 01</div><h4>Une science incarnée</h4><p>Mettre des visages sur les noms devenus des unités ou des lois&nbsp;: le joule, le kelvin, le démon de Maxwell, la constante de Boltzmann.</p></div>
+          <div class="learn-card"><div class="n">Objectif 02</div><h4>Une chaîne d'idées</h4><p>Voir comment chaque découverte s'appuie sur la précédente&nbsp;: de la vapeur de Carnot aux bits de Shannon, jusqu'aux trous noirs de Hawking.</p></div>
+          <div class="learn-card"><div class="n">Objectif 03</div><h4>La part d'ombre</h4><p>Rappeler que le génie côtoie le doute&nbsp;: rejets, polémiques, dépressions et drames — la science est une aventure profondément humaine.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALERIE ===== -->
+    <section class="reveal" id="galerie">
+      <div class="wrap">
+        <p class="sec-eyebrow">La galerie · seize visages</p>
+        <h2>De Carnot à Smolin</h2>
+        <p style="color:var(--muted);max-width:64ch;margin:0 0 30px;">Cliquez un portrait pour lire sa fiche complète — parcours, œuvre majeure et postérité.</p>
+        <div class="gallery">
+          <a class="gcard" href="#carnot"><span class="gnum">01</span><span class="gimg"><img src="assets/portraits/carnot.jpg" alt="Portrait de Sadi Carnot" loading="lazy"></span><span class="gmeta"><span class="gn">Sadi Carnot</span><span class="gd">1796–1832</span></span></a>
+          <a class="gcard" href="#mayer"><span class="gnum">02</span><span class="gimg"><img src="assets/portraits/mayer.jpg" alt="Portrait de Julius Robert von Mayer" loading="lazy"></span><span class="gmeta"><span class="gn">R. von Mayer</span><span class="gd">1814–1878</span></span></a>
+          <a class="gcard" href="#joule"><span class="gnum">03</span><span class="gimg"><img src="assets/portraits/joule.jpg" alt="Portrait de James Prescott Joule" loading="lazy"></span><span class="gmeta"><span class="gn">James P. Joule</span><span class="gd">1818–1889</span></span></a>
+          <a class="gcard" href="#helmholtz"><span class="gnum">04</span><span class="gimg"><img src="assets/portraits/helmholtz.jpg" alt="Portrait de Hermann von Helmholtz" loading="lazy"></span><span class="gmeta"><span class="gn">H. von Helmholtz</span><span class="gd">1821–1894</span></span></a>
+          <a class="gcard" href="#clausius"><span class="gnum">05</span><span class="gimg"><img src="assets/portraits/clausius.jpg" alt="Portrait de Rudolf Clausius" loading="lazy"></span><span class="gmeta"><span class="gn">Rudolf Clausius</span><span class="gd">1822–1888</span></span></a>
+          <a class="gcard" href="#kelvin"><span class="gnum">06</span><span class="gimg"><img src="assets/portraits/kelvin.jpg" alt="Portrait de William Thomson, Lord Kelvin" loading="lazy"></span><span class="gmeta"><span class="gn">Lord Kelvin</span><span class="gd">1824–1907</span></span></a>
+          <a class="gcard" href="#kelvin-planck"><span class="gnum">07</span><span class="gimg"><img src="assets/portraits/planck.jpg" alt="Max Planck, coauteur de l'énoncé de Kelvin-Planck" loading="lazy"></span><span class="gmeta"><span class="gn">Énoncé Kelvin-Planck</span><span class="gd">Kelvin · Planck</span></span></a>
+          <a class="gcard" href="#maxwell"><span class="gnum">08</span><span class="gimg"><img src="assets/portraits/maxwell.jpg" alt="Portrait de James Clerk Maxwell" loading="lazy"></span><span class="gmeta"><span class="gn">J. C. Maxwell</span><span class="gd">1831–1879</span></span></a>
+          <a class="gcard" href="#boltzmann"><span class="gnum">09</span><span class="gimg"><img src="assets/portraits/boltzmann.jpg" alt="Portrait de Ludwig Boltzmann" loading="lazy"></span><span class="gmeta"><span class="gn">Ludwig Boltzmann</span><span class="gd">1844–1906</span></span></a>
+          <a class="gcard" href="#gibbs"><span class="gnum">10</span><span class="gimg"><img src="assets/portraits/gibbs.jpg" alt="Portrait de Josiah Willard Gibbs" loading="lazy"></span><span class="gmeta"><span class="gn">J. Willard Gibbs</span><span class="gd">1839–1903</span></span></a>
+          <a class="gcard" href="#shannon"><span class="gnum">11</span><span class="gimg"><img src="assets/portraits/shannon.jpg" alt="Portrait de Claude Shannon" loading="lazy"></span><span class="gmeta"><span class="gn">Claude Shannon</span><span class="gd">1916–2001</span></span></a>
+          <a class="gcard" href="#renyi"><span class="gnum">12</span><span class="gimg"><img src="assets/portraits/renyi.jpg" alt="Portrait d'Alfréd Rényi" loading="lazy"></span><span class="gmeta"><span class="gn">Alfréd Rényi</span><span class="gd">1921–1970</span></span></a>
+          <a class="gcard" href="#bekenstein"><span class="gnum">13</span><span class="gimg"><img src="assets/portraits/bekenstein.jpg" alt="Portrait de Jacob Bekenstein" loading="lazy"></span><span class="gmeta"><span class="gn">Jacob Bekenstein</span><span class="gd">1947–2015</span></span></a>
+          <a class="gcard" href="#hawking"><span class="gnum">14</span><span class="gimg"><img src="assets/portraits/hawking.jpg" alt="Portrait de Stephen Hawking" loading="lazy"></span><span class="gmeta"><span class="gn">Stephen Hawking</span><span class="gd">1942–2018</span></span></a>
+          <a class="gcard" href="#penrose"><span class="gnum">15</span><span class="gimg"><img src="assets/portraits/penrose.jpg" alt="Portrait de Roger Penrose" loading="lazy"></span><span class="gmeta"><span class="gn">Roger Penrose</span><span class="gd">né en 1931</span></span></a>
+          <a class="gcard" href="#smolin"><span class="gnum">16</span><span class="gimg"><img src="assets/portraits/smolin.jpg" alt="Portrait de Lee Smolin" loading="lazy"></span><span class="gmeta"><span class="gn">Lee Smolin</span><span class="gd">né en 1955</span></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ACTE I ================= -->
+    <section class="act-band reveal" id="acte1">
+      <div class="wrap">
+        <div class="act-num">I</div>
+        <h2>Les fondateurs de la thermodynamique</h2>
+        <p>Une machine, une conservation. Quatre esprits posent, entre 1824 et 1847, les fondations&nbsp;: la limite du moteur thermique et la loi qui dit que rien ne se perd.</p>
+      </div>
+    </section>
+
+    <!-- ===== 01 · CARNOT ===== -->
+    <section class="chapter reveal" id="carnot">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte I · Les fondateurs</p>
+          <h2>Sadi Carnot <span style="color:var(--soft);font-size:.5em;">1796–1832</span></h2>
+          <span class="chapter-number">01</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/carnot.jpg" alt="Portrait de Sadi Carnot en uniforme d'élève de l'École polytechnique"></span>
+              <figcaption><b>Sadi Carnot</b> — Le Père de la Thermodynamique.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>Nicolas Léonard Sadi Carnot</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>1er juin 1796 à Paris</dd></div>
+                <div class="row"><dt>Décès</dt><dd>24 août 1832 à Paris (à l'âge de 36 ans, des suites du choléra)</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Physique, mathématiques, ingénierie, thermodynamique</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>École Polytechnique (promotion 1812), École d'application de l'artillerie et du génie de Metz</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Père de la Thermodynamique</p>
+            <h3 class="sub">1. Contexte Familial et Éducation</h3>
+            <p>Sadi Carnot naît dans une famille de hauts fonctionnaires et d'intellectuels républicains&nbsp;:</p>
+            <p><b>Un héritage politique&nbsp;:</b> Il est le fils de Lazare Carnot (le "Grand Comité de Salut Public", mathématicien et ingénieur militaire surnommé l'organisateur de la victoire) et l'oncle du futur président de la République Marie François Sadi Carnot.</p>
+            <p><b>Prénom singulier&nbsp;:</b> Son père le prénomme Sadi en hommage au poète persan Saïdi de Chiraz, témoignant des goûts littéraires et philosophiques de la famille.</p>
+            <p><b>Formation rigoureuse&nbsp;:</b> Élève brillant, il entre à l'École Polytechnique à seulement 16 ans, où il suit l'enseignement des plus grands esprits de l'époque avant de devenir officier du génie militaire.</p>
+            <h3 class="sub">2. L'Œuvre Majeure : Réflexions sur la puissance motrice du feu (1824)</h3>
+            <p>C'est son unique ouvrage publié de son vivant, mais il va révolutionner la physique&nbsp;:</p>
+            <p><b>Le problème industriel&nbsp;:</b> À l'ère de la révolution industrielle, les machines à vapeur anglaises dominent, mais leur rendement est extrêmement mal compris sur le plan théorique. Carnot cherche à répondre à une question fondamentale&nbsp;: Peut-on améliorer indéfiniment la puissance d'un moteur thermique, ou existe-t-il une limite physique absolue&nbsp;?</p>
+            <p><b>Le cycle de Carnot&nbsp;:</b> Il introduit le concept fondamental de cycle thermodynamique idéal (le cycle de Carnot) composé de transformations isothermes et adiabatiques réversibles.</p>
+            <p><b>Les principes fondateurs&nbsp;:</b> Il démontre que la production de travail mécanique nécessite un transfert de chaleur d'une source chaude vers une source froide, posant ainsi les bases empiriques du second principe de la thermodynamique (bien que formulé formellement plus tard par Rudolf Clausius et William Thomson).</p>
+            <h3 class="sub">3. Destin et Postérité</h3>
+            <p><b>Un génie méconnu de son vivant&nbsp;:</b> Son ouvrage, auto-édité à quelques centaines d'exemplaires, passe presque inaperçu auprès des scientifiques de son époque. Seul Émile Clapeyron le redécouvrira mathématiquement en 1834.</p>
+            <p><b>Mort tragique&nbsp;:</b> Atteint de la scarlatine puis du typhus, il est emporté par l'épidémie de choléra de 1832. En raison des consignes sanitaires strictes de l'époque pour endiguer la maladie, la grande majorité de ses effets personnels et de ses derniers écrits scientifiques non publiés ont été détruits ou perdus.</p>
+            <p><b>Reconnaissance posthume&nbsp;:</b> Ses travaux serviront de pilier absolu à la physique moderne, reliant l'énergie, la chaleur, l'entropie et le fonctionnement de toutes nos technologies thermiques contemporaines (moteurs, turbines, centrales électriques).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 02 · MAYER ===== -->
+    <section class="chapter reveal" id="mayer">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte I · Les fondateurs</p>
+          <h2>Julius Robert von Mayer <span style="color:var(--soft);font-size:.5em;">1814–1878</span></h2>
+          <span class="chapter-number">02</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/mayer.jpg" alt="Portrait photographique de Julius Robert von Mayer"></span>
+              <figcaption><b>J. R. von Mayer</b> — Le Pionnier de la Conservation de l'Énergie.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>Julius Robert von Mayer</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>25 novembre 1814 à Heilbronn (Wurtemberg)</dd></div>
+                <div class="row"><dt>Décès</dt><dd>20 mars 1878 à Heilbronn</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Médecine, physique, thermodynamique</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>Université de Tübingen</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Pionnier de la Conservation de l'Énergie</p>
+            <h3 class="sub">1. Du Médecin de Marine au Physicien</h3>
+            <p><b>Le voyage décisif&nbsp;:</b> Après des études de médecine, Mayer s'engage comme médecin de bord sur un navire marchand naviguant vers Java (Indonésie) en 1840.</p>
+            <p><b>L'observation biologique&nbsp;:</b> En soignant les marins tropicaux, il remarque que le sang veineux de ses patients est d'un rouge beaucoup plus vif qu'en Europe. Il en déduit que pour maintenir leur température corporelle dans un climat chaud, les habitants ont besoin de consommer moins d'oxygène (et donc de brûler moins de nutriments) que dans les climats froids.</p>
+            <p><b>La grande intuition&nbsp;:</b> Cette réflexion physiologique l'amène à formuler un principe universel&nbsp;: la chaleur et le mouvement (le travail mécanique) sont des formes d'une même quantité indestructible, convertibles l'une en l'autre.</p>
+            <h3 class="sub">2. L'Œuvre et la Découverte du Premier Principe</h3>
+            <p><b>La formulation de l'équivalence&nbsp;:</b> En 1842, il publie son article fondateur intitulé Remarques sur les forces de la nature inorganique. Il y énonce l'idée que l'énergie ne se crée pas et ne se détruit pas, elle se transforme (ce qui deviendra la loi de conservation de l'énergie, ou premier principe de la thermodynamique).</p>
+            <p><b>Le calcul de l'équivalent mécanique&nbsp;:</b> Mayer parvient à calculer la première estimation du «&nbsp;équivalent mécanique de la chaleur&nbsp;» (la quantité de travail nécessaire pour élever la température d'une masse d'eau), obtenant des résultats remarquables pour l'époque.</p>
+            <h3 class="sub">3. Tragédie Personnelle et Reconnaissance Tardive</h3>
+            <p><b>L'indifférence et le rejet&nbsp;:</b> Ayant une formation de médecin et non de physicien mathématicien, ses écrits sont largement ignorés, voire tournés en dérision par l'académie scientifique allemande. De plus, le Britannique James Prescott Joule formule des conclusions similaires presque simultanément, ce qui déclenche une âpre polémique sur la paternité de la découverte.</p>
+            <p><b>La dépression&nbsp;:</b> Rongé par le doute, le manque de reconnaissance et touché par de tragiques deuils familiaux, Mayer sombre dans une grave dépression. En 1850, il tente de se suicider en se jetant par la fenêtre, une épreuve dont il gardera des séquelles physiques et psychiatriques durables (il sera brièvement interné en hôpital psychiatrique).</p>
+            <p><b>La réhabilitation&nbsp;:</b> À la fin de sa vie, la communauté scientifique finit par lui rendre justice. Des physiciens de renom comme John Tyndall saluent son génie pionnier. En 1867, il reçoit la prestigieuse médaille Copley de la Royal Society, consacrant enfin son rôle fondamental dans la physique moderne.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 03 · JOULE ===== -->
+    <section class="chapter reveal" id="joule">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte I · Les fondateurs</p>
+          <h2>James Prescott Joule <span style="color:var(--soft);font-size:.5em;">1818–1889</span></h2>
+          <span class="chapter-number">03</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/joule.jpg" alt="Portrait de James Prescott Joule"></span>
+              <figcaption><b>James P. Joule</b> — L'Expérimentateur de l'Énergie.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>James Prescott Joule</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>24 décembre 1818 à Salford (Angleterre)</dd></div>
+                <div class="row"><dt>Décès</dt><dd>11 octobre 1889 à Sale (Angleterre)</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Physique, thermodynamique, électromagnétisme</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">L'Expérimentateur de l'Énergie</p>
+            <h3 class="sub">1. Un Brasseur Passionné de Science</h3>
+            <p><b>Origines et formation&nbsp;:</b> Issu d'une riche famille de brasseurs écossais, Joule grandit avec des facilités financières mais une santé fragile qui l'empêche de suivre une scolarité classique. Il est éduqué à domicile, notamment par le célèbre chimiste John Dalton, qui éveille sa passion pour l'expérimentation.</p>
+            <p><b>Le laboratoire familial&nbsp;:</b> Il installe son laboratoire dans la brasserie de son père. Ses premières recherches portent sur l'amélioration des moteurs électriques, cherchant à rivaliser avec la machine à vapeur grâce à l'électricité.</p>
+            <h3 class="sub">2. Les Découvertes Majeures</h3>
+            <p><b>L'effet Joule (1841)&nbsp;:</b> Il démontre mathématiquement et expérimentalement que le passage d'un courant électrique à travers un conducteur dégage de la chaleur, proportionnelle à la résistance du conducteur et au carré de l'intensité du courant (<span class="imath" data-tex="P = R \cdot I^2"></span>).</p>
+            <div class="formula-block">
+              <div class="fb-head">L'effet Joule <span class="fb-tag">Puissance dissipée</span></div>
+              <div class="formula" data-tex="P = R \cdot I^2"></div>
+              <p class="fb-note">La puissance <span class="imath" data-tex="P"></span> transformée en chaleur dans un conducteur croît comme <b>le carré</b> de l'intensité <span class="imath" data-tex="I"></span> qui le traverse, multipliée par sa résistance <span class="imath" data-tex="R"></span>. Doubler le courant quadruple la chaleur&nbsp;: c'est pourquoi un fil trop fin chauffe et fond.</p>
+            </div>
+            <p><b>L'équivalent mécanique de la chaleur&nbsp;:</b> Grâce à des expériences d'une précision remarquable (notamment son célèbre dispositif à palettes brassant de l'eau dans un calorimètre grâce à la chute de poids), il prouve de manière irréfutable que le travail mécanique se convertit directement en quantité de chaleur.</p>
+            <p><b>La conservation de l'énergie&nbsp;:</b> Ses travaux, combinés à ceux de Julius Robert von Mayer, permettent d'établir définitivement le premier principe de la thermodynamique&nbsp;: l'énergie totale d'un système isolé se conserve.</p>
+            <h3 class="sub">3. Postérité et Hommages</h3>
+            <p><b>Une reconnaissance internationale&nbsp;:</b> Contrairement à Mayer, Joule finit par obtenir le respect de ses pairs, notamment grâce au soutien du physicien William Thomson (futur Lord Kelvin), avec qui il collaborera étroitement.</p>
+            <p><b>L'unité universelle&nbsp;:</b> En son honneur, l'unité internationale de l'énergie, du travail et de la quantité de chaleur a été baptisée le joule (symbole&nbsp;: J).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 04 · HELMHOLTZ ===== -->
+    <section class="chapter reveal" id="helmholtz">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte I · Les fondateurs</p>
+          <h2>Hermann von Helmholtz <span style="color:var(--soft);font-size:.5em;">1821–1894</span></h2>
+          <span class="chapter-number">04</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/helmholtz.jpg" alt="Portrait de Hermann von Helmholtz"></span>
+              <figcaption><b>H. von Helmholtz</b> — Le Gérant Universel de la Science.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>Hermann Ludwig Ferdinand von Helmholtz</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>31 août 1821 à Potsdam (Prusse)</dd></div>
+                <div class="row"><dt>Décès</dt><dd>8 septembre 1894 à Charlottenburg (Allemagne)</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Physiologie, physique, mathématiques, acoustique, optique</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>Institut médico-chirurgical de la Charité de Berlin</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Gérant Universel de la Science</p>
+            <h3 class="sub">1. Un Esprit Précoce et Polyvalent</h3>
+            <p><b>Médecin militaire&nbsp;:</b> Issu d'un milieu modeste et intellectuel, Helmholtz commence par étudier la médecine car la bourse de l'État exige qu'il serve ensuite comme médecin militaire dans l'armée prussienne.</p>
+            <p><b>Le pont entre le vivant et l'inerte&nbsp;:</b> Très vite, ses recherches le poussent à s'interroger sur la nature de la vie. Il rejette le vitalisme (l'idée d'une "force vitale" mystérieuse animant les êtres vivants) pour affirmer que les organismes obéissent strictement aux mêmes lois physiques et chimiques que la matière inanimée.</p>
+            <h3 class="sub">2. Les Contributions Majeures</h3>
+            <p><b>La conservation de l'énergie (1847)&nbsp;:</b> Indépendamment de Mayer et de Joule, Helmholtz publie son mémoire monumental Sur la conservation de la force (Über die Erhaltung der Kraft). Il y démontre mathématiquement que la loi de la conservation de l'énergie est une conséquence universelle des lois de la mécanique newtonienne appliquées aux forces centrales, unifiant définitivement la physique.</p>
+            <p><b>L'ophtalmoscope (1850)&nbsp;:</b> En plein essor de ses recherches physiologiques, il invente l'ophtalmoscope, un instrument révolutionnaire permettant d'examiner directement la rétine de l'œil humain, ce qui transforme radicalement l'ophtalmologie.</p>
+            <p><b>L'optique et l'acoustique physiologique&nbsp;:</b> Il élabore la théorie de la vision des couleurs (tri-chromatique, dite de Young-Helmholtz) et étudie la perception physique et physiologique des sons et de l'harmonie musicale dans son ouvrage de référence De la sensation des sons (1863).</p>
+            <p><b>L'électrodynamique et la thermodynamique chimique&nbsp;:</b> Dans la seconde moitié de sa carrière, il s'oriente vers la physique théorique, introduisant le concept d'énergie libre, capital pour la chimie physique.</p>
+            <h3 class="sub">3. Postérité et Institutions</h3>
+            <p><b>Un patriarche de la science allemande&nbsp;:</b> Professeur à Königsberg, Bonn, Heidelberg, puis à Berlin, il forme toute une génération de physiciens brillants (comme Heinrich Hertz ou Max Planck).</p>
+            <p><b>Le fondateur du PTR&nbsp;:</b> En 1887, il devient le premier président de l'Institut impérial de physique et de technique (Physikalisch-Technische Reichsanstalt), posant les bases des grands organismes modernes de métrologie et de normalisation scientifique.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ACTE II ================= -->
+    <section class="act-band reveal" id="acte2">
+      <div class="wrap">
+        <div class="act-num">II</div>
+        <h2>Le mot, les lois et le démon</h2>
+        <p>Entre 1850 et 1867, l'entropie reçoit son nom, le second principe ses énoncés, la température son zéro absolu — et Maxwell lâche un petit démon qui hante encore la physique.</p>
+      </div>
+    </section>
+
+    <!-- ===== 05 · CLAUSIUS ===== -->
+    <section class="chapter reveal" id="clausius">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte II · Les principes</p>
+          <h2>Rudolf Clausius <span style="color:var(--soft);font-size:.5em;">1822–1888</span></h2>
+          <span class="chapter-number">05</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/clausius.jpg" alt="Portrait de Rudolf Clausius"></span>
+              <figcaption><b>Rudolf Clausius</b> — Le Mathématicien de l'Entropie.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>Rudolf Julius Emmanuel Clausius</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>2 janvier 1822 à Köslin (Prusse)</dd></div>
+                <div class="row"><dt>Décès</dt><dd>24 août 1888 à Bonn (Allemagne)</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Physique théorique, thermodynamique, mathématiques</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>Université de Berlin</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Mathématicien de l'Entropie</p>
+            <h3 class="sub">1. L'Unificateur des Principes de la Thermodynamique</h3>
+            <p><b>Formation rigoureuse&nbsp;:</b> Doté d'un esprit mathématique brillant, Clausius étudie les mathématiques et la physique à Berlin avant d'obtenir son doctorat et de devenir professeur.</p>
+            <p><b>Le pont entre Carnot et Joule&nbsp;:</b> Au milieu du XIXe siècle, les découvertes de Sadi Carnot (sur les cycles thermiques) et celles de James Prescott Joule (sur l'équivalence entre chaleur et travail) semblent parfois contradictoires ou déconnectées. Clausius a le génie de les réconcilier.</p>
+            <p><b>La formulation mathématique&nbsp;:</b> Dans son mémoire fondateur de 1850 (De la puissance motrice de la chaleur), il énonce clairement les deux premiers principes de la thermodynamique sous leur forme mathématique moderne&nbsp;:</p>
+            <p class="group-title-inline"><b>Premier principe&nbsp;:</b> L'énergie se conserve (la chaleur est une forme d'énergie).</p>
+            <p><b>Second principe&nbsp;:</b> La chaleur ne peut pas passer d'elle-même d'un corps froid à un corps chaud (énoncé de Clausius).</p>
+            <h3 class="sub">2. L'Invention de l'Entropie (1865)</h3>
+            <p><b>Le concept révolutionnaire&nbsp;:</b> En cherchant à mesurer l'efficacité perdue et la dissipation irréversible d'énergie dans les machines thermiques, Clausius introduit en 1865 une grandeur physique totalement nouvelle qu'il nomme l'entropie (du grec tropê, signifiant la transformation).</p>
+            <p><b>La célèbre formule&nbsp;:</b> Il énonce l'évolution universelle du second principe à travers sa formule lapidaire résumant l'état du monde&nbsp;:</p>
+            <div class="question-block">
+              <p class="blk-label">◆ L'aphorisme de Clausius (1865)</p>
+              <p style="font-style:italic;color:var(--gold-bright);font-size:1.05rem;margin:0;">«&nbsp;L'énergie de l'univers est constante. L'entropie de l'univers tend vers un maximum.&nbsp;»</p>
+            </div>
+            <p>Il pose ainsi les bases mathématiques permettant de comprendre pourquoi certains processus physiques sont irréversibles (comme un œuf qui se cassera toujours, mais ne se recomposera jamais de lui-même).</p>
+            <h3 class="sub">3. Autres Contributions et Héritage</h3>
+            <p><b>La théorie cinétique des gaz&nbsp;:</b> Clausius ne se limite pas à la thermodynamique macroscopique. Il apporte des contributions majeures à la théorie cinétique des gaz, en introduisant notamment le concept de libre parcours moyen (la distance moyenne qu'une molécule de gaz parcourt avant d'entrer en collision avec une autre).</p>
+            <p><b>Engagements personnels&nbsp;:</b> Durant la guerre franco-prussienne de 1870, il organise un corps d'ambulanciers composé d'étudiants de l'université de Bonn, ce qui lui vaudra d'être blessé à la jambe et de recevoir la Croix de fer.</p>
+            <p><b>Reconnaissance&nbsp;:</b> Membre des plus grandes académies scientifiques européennes (dont la Royal Society et l'Académie des sciences de Paris), il reste l'un des pères fondateurs absolus de la physique statistique et de la thermodynamique moderne.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 06 · KELVIN ===== -->
+    <section class="chapter reveal" id="kelvin">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte II · Les principes</p>
+          <h2>William Thomson, Lord Kelvin <span style="color:var(--soft);font-size:.5em;">1824–1907</span></h2>
+          <span class="chapter-number">06</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/kelvin.jpg" alt="Portrait photographique de William Thomson, Lord Kelvin"></span>
+              <figcaption><b>Lord Kelvin</b> — Le Maître de la Thermodynamique et de la Mesure.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>William Thomson (anobli sous le titre de Lord Kelvin of Largs)</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>26 juin 1824 à Belfast (Irlande)</dd></div>
+                <div class="row"><dt>Décès</dt><dd>17 décembre 1907 à Largs (Écosse)</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Physique mathématique, thermodynamique, télégraphie sous-marine</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>Université de Glasgow, Peterhouse (Cambridge)</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Maître de la Thermodynamique et de la Mesure</p>
+            <h3 class="sub">1. Un Enfant Prodige au Destin Hors Norme</h3>
+            <p><b>Précocité intellectuelle&nbsp;:</b> Fils d'un professeur de mathématiques, William entre à l'Université de Glasgow à seulement 10 ans&nbsp;! Il termine ses études à Cambridge comme l'un des meilleurs étudiants de sa promotion, avant de devenir professeur de philosophie naturelle (physique) à Glasgow dès l'âge de 22 ans.</p>
+            <p><b>Le carrefour de la science britannique&nbsp;:</b> Thomson devient rapidement la figure centrale de la physique au XIXe siècle. Il est l'un des premiers à comprendre toute la portée des travaux de Sadi Carnot et à faire le lien avec les découvertes de James Prescott Joule, avec qui il nouera une fructueuse collaboration.</p>
+            <h3 class="sub">2. Les Contributions Majeures</h3>
+            <p><b>L'échelle absolue de température (1848)&nbsp;:</b> En s'appuyant sur le second principe de la thermodynamique et les travaux de Carnot, il imagine une échelle de température indépendante des propriétés d'un matériau particulier (comme le mercure). C'est la naissance de l'échelle Kelvin, dont le zéro absolu correspond au seuil théorique où l'agitation moléculaire est nulle (-273,15 °C).</p>
+            <p><b>La formulation officielle des principes&nbsp;:</b> Avec Clausius, il formalise et consolide les premier et second principes de la thermodynamique, introduisant notamment le concept de dissipation de l'énergie.</p>
+            <p><b>Le télégraphe transatlantique&nbsp;:</b> Praticien autant que théoricien, Thomson joue un rôle technique crucial dans la pose du premier câble télégraphique sous-marin transatlantique entre 1858 et 1866. Il invente pour l'occasion des instruments de mesure ultrasensibles (le galvanomètre à miroir).</p>
+            <h3 class="sub">3. Entre Génie et Erreurs Historiques</h3>
+            <p><b>Le débat sur l'âge de la Terre&nbsp;:</b> En appliquant la thermodynamique au refroidissement de la Terre, Thomson calcule que notre planète ne peut pas être âgée de plusieurs milliards d'années (comme le soutenait Charles Darwin avec la géologie et l'évolution), mais tout au plus de 20 à 40 millions d'années. C'était une erreur monumentale, car il ignorait l'existence de la radioactivité (qui libère de la chaleur en continu à l'intérieur de la Terre), mais elle a contraint les géologues à affiner leurs méthodes.</p>
+            <div class="antiintox">
+              <p class="blk-label">▲ Anti-intox · une erreur féconde</p>
+              <p style="margin:0;">L'erreur de Kelvin sur l'âge de la Terre n'était pas de la mauvaise science&nbsp;: elle était rigoureuse mais reposait sur une donnée manquante — la radioactivité, découverte seulement en 1896. C'est un rappel utile&nbsp;: une conclusion peut être fausse alors même que le raisonnement est impeccable, si une pièce du puzzle reste inconnue. Aujourd'hui, l'âge de la Terre est établi à ≈ 4,54 milliards d'années.</p>
+            </div>
+            <p><b>Anoblissement et honneurs&nbsp;:</b> En 1892, en reconnaissance de ses immenses contributions scientifiques et de son rôle dans le projet de câble sous-marin, la reine Victoria l'élève au rang de pair du royaume (Lord), prenant le nom de Lord Kelvin (du nom d'une petite rivière qui coule près de l'université de Glasgow). Il est le premier scientifique britannique à entrer à la Chambre des lords.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 07 · KELVIN-PLANCK ===== -->
+    <section class="chapter reveal" id="kelvin-planck">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte II · Les principes</p>
+          <h2>L'Énoncé de Kelvin-Planck</h2>
+          <span class="chapter-number">07</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/planck.jpg" alt="Portrait de Max Planck, coauteur de l'énoncé de Kelvin-Planck"></span>
+              <figcaption><b>Max Planck</b> — coauteur de l'énoncé, avec William Thomson (Lord Kelvin).</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Concepts clés</dt><dd>Thermodynamique, machines thermiques, second principe, irréversibilité</dd></div>
+                <div class="row"><dt>Auteurs de la formulation</dt><dd>William Thomson (Lord Kelvin) et Max Planck</dd></div>
+                <div class="row"><dt>Domaine</dt><dd>Physique statistique et énergétique</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Second Principe de la Thermodynamique</p>
+            <h3 class="sub">1. Le Contexte et la Genèse</h3>
+            <p><b>La suite logique de Carnot&nbsp;:</b> Au XIXe siècle, les travaux de Sadi Carnot avaient démontré qu'une machine thermique ne peut produire du travail qu'en faisant circuler de la chaleur entre une source chaude et une source froide.</p>
+            <p><b>L'impossibilité d'un «&nbsp;mouvement perpétuel de second ordre&nbsp;»&nbsp;:</b> En formalisant la thermodynamique moderne, Lord Kelvin (en 1851) puis le physicien allemand Max Planck (dans ses traités de thermodynamique) érigent une règle absolue pour formaliser l'impossibilité observée dans toutes les expériences de l'époque.</p>
+            <h3 class="sub">2. La Définition et l'Énoncé</h3>
+            <p>L'énoncé de Kelvin-Planck est l'une des manières les plus rigoureuses d'exprimer le second principe de la thermodynamique appliqué aux cycles moteurs&nbsp;:</p>
+            <div class="question-block">
+              <p class="blk-label">◆ Énoncé de Kelvin-Planck</p>
+              <p style="font-style:italic;color:var(--gold-bright);margin:0;">«&nbsp;Il est impossible de construire un dispositif fonctionnant en cycle thermodynamique qui ne produise aucun autre effet que le transfert de chaleur d'une seule source thermique et la production d'une quantité équivalente de travail.&nbsp;»</p>
+            </div>
+            <p><b>En termes simples&nbsp;:</b> On ne peut pas transformer intégralement de la chaleur en travail mécanique sans rejeter une partie de cette chaleur vers une source plus froide. Un moteur thermique parfait (ayant un rendement de 100&nbsp;%) est donc physiquement impossible à réaliser.</p>
+            <p><b>Le réchauffeur et le refroidisseur&nbsp;:</b> Toute machine thermique a obligatoirement besoin de deux sources de températures différentes. Une partie de l'énergie thermique est inévitablement perdue (dissipée sous forme d'entropie), ce qui pose la limite fondamentale de tous nos moteurs, turbines et centrales électriques.</p>
+            <h3 class="sub">3. Équivalence et Postérité</h3>
+            <p><b>L'équivalence avec l'énoncé de Clausius&nbsp;:</b> L'énoncé de Kelvin-Planck est strictement équivalent à l'énoncé de Rudolf Clausius (qui stipule quant à lui que la chaleur ne peut pas passer spontanément d'un corps froid à un corps chaud). Si l'on pouvait violer l'énoncé de Kelvin-Planck, on pourrait violer celui de Clausius, et inversement.</p>
+            <p><b>Le pilier de la technique&nbsp;:</b> Cet énoncé n'est pas seulement une loi théorique abstraite&nbsp;; il définit les limites d'efficacité de toute l'ingénierie moderne, dictant l'efficience maximale (le rendement de Carnot) de tout système convertissant la chaleur en énergie utile.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 08 · MAXWELL ===== -->
+    <section class="chapter reveal" id="maxwell">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte II · Les principes</p>
+          <h2>James Clerk Maxwell <span style="color:var(--soft);font-size:.5em;">1831–1879</span></h2>
+          <span class="chapter-number">08</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/maxwell.jpg" alt="Portrait de James Clerk Maxwell"></span>
+              <figcaption><b>J. C. Maxwell</b> — Le Maître de l'Électromagnétisme et de la Lumière.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>James Clerk Maxwell</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>13 juin 1831 à Édimbourg (Écosse)</dd></div>
+                <div class="row"><dt>Décès</dt><dd>5 novembre 1879 à Cambridge (Angleterre)</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Physique théorique, mathématiques, optique, thermodynamique</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>Université d'Édimbourg, Trinity College (Cambridge)</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Maître de l'Électromagnétisme et de la Lumière</p>
+            <h3 class="sub">1. Un Esprit Précoce et Curieux de Tout</h3>
+            <p><b>Un génie mathématique natif des Highlands&nbsp;:</b> Élevé dans la propriété familiale de Glenlair en Écosse, Maxwell montre dès l'enfance une curiosité insatiable pour la géométrie et le fonctionnement mécanique des choses. Il publie son premier article scientifique à l'âge de 14 ans seulement, présenté à l'Académie d'Édimbourg par un professeur car il était trop jeune pour y assister lui-même.</p>
+            <p><b>La synthèse parfaite&nbsp;:</b> Brillant diplômé de Cambridge, il devient professeur tour à tour à Aberdeen, au King's College de Londres, puis le premier directeur du fameux Laboratoire Cavendish à Cambridge. C'est l'un des rares physiciens à posséder à la fois une intuition physique géniale et une maîtrise absolue de l'analyse mathématique.</p>
+            <h3 class="sub">2. Les Contributions Majeures</h3>
+            <p><b>Les Équations de Maxwell (1861–1865)&nbsp;:</b> C'est son chef-d'œuvre absolu. Maxwell unifie en un seul système mathématique cohérent tous les phénomènes électriques et magnétiques découverts avant lui (par Oersted, Ampère, Faraday). En ajoutant un terme crucial (le courant de déplacement), il formalise les quatre équations fondamentales de l'électromagnétisme.</p>
+            <p><b>La nature électromagnétique de la lumière&nbsp;:</b> En manipulant ses équations, Maxwell découvre mathématiquement qu'une perturbation électromagnétique se propage sous forme d'onde à une vitesse constante qui correspond exactement à la vitesse de la lumière. Il révolutionne la physique en affirmant une vérité fulgurante&nbsp;: la lumière est une onde électromagnétique.</p>
+            <p><b>La distribution de Maxwell-Boltzmann en thermodynamique&nbsp;:</b> Loin de se limiter à l'électricité, il pose les bases de la théorie cinétique des gaz en décrivant statistiquement la vitesse des molécules à l'équilibre thermique (la loi de distribution des vitesses).</p>
+            <p><b>Le démon de Maxwell (1867)&nbsp;:</b> Célèbre expérience de pensée en thermodynamique où il imagine un être microscopique capable de trier les molécules chaudes et froides pour violer potentiellement le second principe de la thermodynamique, ouvrant ainsi le débat séculaire sur l'information et l'entropie.</p>
+            <h3 class="sub">3. Postérité et Héritage</h3>
+            <p><b>La validation expérimentale&nbsp;:</b> De son vivant, les équations de Maxwell, jugées complexes et abstraites, peinent à convaincre la majorité des physiciens continentaux. C'est Heinrich Hertz qui prouvera expérimentalement l'existence des ondes électromagnétiques en 1887, quelques années après la mort prématurée de Maxwell.</p>
+            <p><b>La première photo couleur (1861)&nbsp;:</b> Grand touche-à-tout de génie, il réalise également la première démonstration de photographie trichrome en couleur en projetant un ruban écossais à travers des filtres rouge, vert et bleu.</p>
+            <p><b>L'hommage suprême&nbsp;:</b> Albert Einstein dira plus tard que les réalisations de Maxwell ont représenté «&nbsp;la plus profonde et la plus fructueuse contribution à la physique depuis le temps de Newton&nbsp;», modifiant à jamais notre conception de l'espace, du temps et de l'univers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ACTE III ================= -->
+    <section class="act-band reveal" id="acte3">
+      <div class="wrap">
+        <div class="act-num">III</div>
+        <h2>La révolution statistique</h2>
+        <p>Et si l'entropie n'était qu'un décompte&nbsp;? Boltzmann et Gibbs relient le monde invisible des atomes aux grandeurs mesurables — au prix, pour l'un, d'un combat qui lui coûtera la vie.</p>
+      </div>
+    </section>
+
+    <!-- ===== 09 · BOLTZMANN ===== -->
+    <section class="chapter reveal" id="boltzmann">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte III · La révolution statistique</p>
+          <h2>Ludwig Boltzmann <span style="color:var(--soft);font-size:.5em;">1844–1906</span></h2>
+          <span class="chapter-number">09</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/boltzmann.jpg" alt="Portrait de Ludwig Boltzmann"></span>
+              <figcaption><b>Ludwig Boltzmann</b> — Le Père de la Physique Statistique.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>Ludwig Eduard Boltzmann</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>20 février 1844 à Vienne (Autriche)</dd></div>
+                <div class="row"><dt>Décès</dt><dd>5 septembre 1906 à Duino (Italie)</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Physique théorique, thermodynamique, mécanique statistique</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>Université de Vienne</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Père de la Physique Statistique</p>
+            <h3 class="sub">1. La Révolution de l'Atomisme</h3>
+            <p><b>Un parcours académique fulgurant&nbsp;:</b> Doté d'une énergie intellectuelle débordante, Boltzmann obtient son doctorat à Vienne à 22 ans et devient professeur titulaire de physique mathématique dès l'âge de 25 ans. Il enseignera successivement à Vienne, Graz, Munich et Leipzig, marquant durablement ses étudiants par son enthousiasme communicatif.</p>
+            <p><b>L'audace de croire aux atomes&nbsp;:</b> À une époque où la majorité des physiciens et des chimistes (comme Ernst Mach ou Wilhelm Ostwald) considèrent les atomes comme de simples vues de l'esprit ou des outils mathématiques abstraits, Boltzmann fait un pari radical&nbsp;: la matière est bel et bien faite d'atomes et de molécules en mouvement incessant.</p>
+            <h3 class="sub">2. Les Contributions Majeures</h3>
+            <p><b>La distribution de Maxwell-Boltzmann&nbsp;:</b> En prolongeant les travaux de James Clerk Maxwell, il énonce la loi mathématique qui décrit la distribution statistique des vitesses des molécules dans un gaz à l'équilibre thermique, jetant les ponts entre le monde microscopique et le monde macroscopique.</p>
+            <p><b>L'interprétation statistique de l'entropie (<span class="imath" data-tex="S = k \ln W"></span>)&nbsp;:</b> C'est son chef-d'œuvre absolu. Boltzmann démontre que l'entropie d'un système n'est pas qu'une grandeur macroscopique mystérieuse, mais qu'elle mesure le nombre de micro-états possibles correspondant à un même état macroscopique (autrement dit, le degré de désordre moléculaire).</p>
+            <p><b>La célèbre formule&nbsp;:</b> Cette magnifique relation est gravée sur sa pierre tombale au cimetière central de Vienne&nbsp;:</p>
+            <div class="formula-block">
+              <div class="fb-head">L'entropie de Boltzmann <span class="fb-tag">Gravée sur sa tombe</span></div>
+              <div class="formula" data-tex="S = k \ln W"></div>
+              <p class="fb-note">(où <span class="imath" data-tex="S"></span> est l'entropie, <span class="imath" data-tex="k"></span> la constante de Boltzmann, et <span class="imath" data-tex="W"></span> la probabilité de l'état). Autrement dit&nbsp;: l'entropie compte de combien de façons microscopiques (les <b>micro-états</b>) un même état visible peut être réalisé. Plus il y a de façons, plus l'entropie est grande.</p>
+            </div>
+            <h3 class="sub">3. Un Drame Tragique et une Reconnaissance Posthume</h3>
+            <p><b>La solitude face aux critiques&nbsp;:</b> Durant des décennies, Boltzmann mène un combat intellectuel acharné contre ses détracteurs positivistes qui nient l'existence des atomes et rejettent ses théories statistiques. Épuisé par ces polémiques incessantes, sujet à des crises de dépression sévères (probablement des troubles bipolaires), et voyant sa santé visuelle décliner, il sombre dans une profonde détresse psychologique.</p>
+            <p><b>Une fin tragique&nbsp;:</b> Il se donne la mort par pendaison le 5 septembre 1906, lors de vacances en famille près de Trieste, quelques années seulement avant que les expériences de Jean Perrin sur le mouvement brownien ne finissent par prouver de manière irréfutable l'existence réelle des atomes.</p>
+            <p><b>La victoire de la postérité&nbsp;:</b> Aujourd'hui célébré comme l'un des plus grands physiciens de l'histoire, Boltzmann a fondé à lui seul la physique statistique, ouvrant la voie à la physique quantique et à notre compréhension moderne de la flèche du temps.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 10 · GIBBS ===== -->
+    <section class="chapter reveal" id="gibbs">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte III · La révolution statistique</p>
+          <h2>Josiah Willard Gibbs <span style="color:var(--soft);font-size:.5em;">1839–1903</span></h2>
+          <span class="chapter-number">10</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/gibbs.jpg" alt="Portrait de Josiah Willard Gibbs"></span>
+              <figcaption><b>J. Willard Gibbs</b> — Le Géant de la Thermodynamique Chimique.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>Josiah Willard Gibbs</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>11 février 1839 à New Haven (Connecticut, États-Unis)</dd></div>
+                <div class="row"><dt>Décès</dt><dd>28 avril 1903 à New Haven</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Physique mathématique, thermodynamique, chimie physique, analyse vectorielle</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>Université Yale</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Géant de la Thermodynamique Chimique</p>
+            <h3 class="sub">1. Un Esprit Discret au Cœur de Yale</h3>
+            <p><b>Une vie ancrée dans sa ville natale&nbsp;:</b> Issu d'une famille universitaire (son père était professeur de littérature sacrée à Yale), Gibbs passe la majeure partie de sa vie à New Haven. Après un doctorat obtenu à Yale — le premier en génie aux États-Unis —, il voyage en Europe pour étudier à Paris, Berlin et Heidelberg, au contact des grands physiciens de l'époque.</p>
+            <p><b>Un professeur atypique&nbsp;:</b> De retour aux États-Unis, il devient professeur de physique mathématique à Yale à partir de 1871. Homme extrêmement discret, modeste et réservé, il enseigne pendant des années sans demander de salaire au début, préférant se consacrer entièrement à la recherche théorique pure. Ses cours, d'une grande rigueur mathématique, étaient parfois si abstraits qu'ils déconcertaient ses étudiants.</p>
+            <h3 class="sub">2. Les Contributions Majeures</h3>
+            <p><b>L'énergie libre de Gibbs (1873-1878)&nbsp;:</b> C'est son chef-d'œuvre absolu. En appliquant la thermodynamique aux réactions chimiques et aux changements de phase, il introduit un nouveau potentiel thermodynamique, l'enthalpie libre (ou énergie libre de Gibbs, notée <span class="imath" data-tex="G"></span>).</p>
+            <p><b>Le critère d'évolution chimique&nbsp;:</b> Grâce à cette grandeur, Gibbs parvient à prédire mathématiquement si une réaction chimique se produira spontanément à température et pression constantes (<span class="imath" data-tex="\Delta G < 0"></span>), unifiant ainsi la thermodynamique, l'électricité et la chimie.</p>
+            <p><b>La règle des phases&nbsp;:</b> Il énonce la célèbre loi mathématique qui relie le nombre de phases, de composants et de degrés de liberté dans un système thermodynamique hétérogène, posant les fondations de la métallurgie et de la pétrochimie modernes.</p>
+            <p><b>La création de l'analyse vectorielle&nbsp;:</b> Pour simplifier ses calculs complexes en physique, il développe indépendamment (en même temps qu'Oliver Heaviside) l'algèbre vectorielle moderne, dotant les physiciens des outils mathématiques indispensables pour étudier l'électromagnétisme et la mécanique des fluides.</p>
+            <p><b>La mécanique statistique&nbsp;:</b> Dans son dernier grand traité publié en 1902, il formalise définitivement la mécanique statistique (prolongeant les travaux de Boltzmann), en introduisant les notions d'ensemble statistique (microcanonique, canonique et grand canonique).</p>
+            <h3 class="sub">3. Postérité et Hommages</h3>
+            <p><b>Une reconnaissance d'abord européenne&nbsp;:</b> En raison de l'isolement scientifique des États-Unis à la fin du XIXe siècle et de la complexité austère de ses écrits (souvent publiés dans de modestes revues locales comme les Transactions of the Connecticut Academy), ses travaux mettent du temps à être perçus à leur juste mesure. Ce sont des figures européennes comme James Clerk Maxwell et Wilhelm Ostwald (qui traduit ses livres en allemand) qui révèlent son génie au monde entier.</p>
+            <p><b>L'éloge d'Einstein&nbsp;:</b> Albert Einstein le qualifie plus tard de «&nbsp;esprit le plus remarquable de l'histoire des États-Unis&nbsp;».</p>
+            <p><b>La postérité universelle&nbsp;:</b> Aujourd'hui, tout étudiant en chimie, en biologie ou en physique croise quotidiennement son héritage à travers l'énergie libre de Gibbs, qui gouverne l'ensemble des équilibres chimiques et biochimiques de notre univers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ACTE IV ================= -->
+    <section class="act-band reveal" id="acte4">
+      <div class="wrap">
+        <div class="act-num">IV</div>
+        <h2>L'entropie de l'information</h2>
+        <p>Au XXe siècle, l'entropie quitte la physique pour mesurer autre chose&nbsp;: l'incertitude, la surprise, l'information. Shannon lui donne une unité — le bit — ; Rényi en fait toute une famille.</p>
+      </div>
+    </section>
+
+    <!-- ===== 11 · SHANNON ===== -->
+    <section class="chapter reveal" id="shannon">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte IV · L'information</p>
+          <h2>Claude Shannon <span style="color:var(--soft);font-size:.5em;">1916–2001</span></h2>
+          <span class="chapter-number">11</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/shannon.jpg" alt="Portrait de Claude Shannon"></span>
+              <figcaption><b>Claude Shannon</b> — Le Père de la Théorie de l'Information.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>Claude Elwood Shannon</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>30 avril 1916 à Petoskey (Michigan, États-Unis)</dd></div>
+                <div class="row"><dt>Décès</dt><dd>24 février 2001 à Medford (Massachusetts, États-Unis)</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Mathématiques, génie électrique, cryptographie, théorie de l'information</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>Université du Michigan, Massachusetts Institute of Technology (MIT)</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Père de la Théorie de l'Information</p>
+            <h3 class="sub">1. Le Génie des Circuits Logiques</h3>
+            <p><b>Des études pionnières&nbsp;:</b> Très jeune, Shannon se passionne pour le bricolage, la mécanique et l'ingénierie. Durant ses études au MIT, il travaille sur l'un des premiers ordinateurs analogiques de l'époque, l'analyseur différentiel de Vannevar Bush.</p>
+            <p><b>La thèse du siècle (1937)&nbsp;:</b> Dans sa maîtrise en génie électrique soutenue à seulement 21 ans (qualifiée par la suite de «&nbsp;plus importante et la plus fameuse master's thesis du XXe siècle&nbsp;»), il fait une découverte révolutionnaire&nbsp;: il démontre que l'algèbre de Boole (le calcul logique basé sur le VRAI et le FAUX, ou les valeurs 1 et 0) peut être directement appliquée aux circuits électriques à relais et interrupteurs. C'est l'acte de naissance théorique de tous les ordinateurs et systèmes numériques modernes.</p>
+            <h3 class="sub">2. La Naissance de la Théorie de l'Information (1948)</h3>
+            <p><b>Le problème de la communication&nbsp;:</b> Employé aux Laboratoires Bell, Shannon publie en 1948 un article fondateur intitulé Une théorie mathématique de la communication. Il s'attaque à un problème fondamental&nbsp;: comment mesurer, quantifier et transmettre de l'information de manière fiable à travers un canal bruité&nbsp;?</p>
+            <p><b>L'invention du "bit"&nbsp;:</b> Il formalise mathématiquement le concept d'information en introduisant l'unité de base, le bit (contraction de binary digit), et définit l'entropie informationnelle (un concept qui mesure l'incertitude ou la quantité de surprise contenue dans un message).</p>
+            <p><b>Le théorème de Shannon&nbsp;:</b> Ses travaux permettent d'optimiser la compression des données et la correction d'erreurs, posant les fondations absolues de toutes nos technologies modernes de télécommunication (Internet, Wi-Fi, téléphonie mobile, disques optiques).</p>
+            <h3 class="sub">3. Un Esprit Fantaisiste et Touche-à-Tout</h3>
+            <p><b>Un chercheur atypique&nbsp;:</b> Loin de l'image austère du mathématicien en laboratoire, Shannon était doté d'une curiosité ludique insatiable. Aux Laboratoires Bell, il aimait se déplacer en unicycle tout en jonglant dans les couloirs.</p>
+            <p><b>Inventions insolites&nbsp;:</b> Il a créé de nombreux gadgets loufoques, comme une machine entièrement conçue pour résoudre le jeu du Rubik's Cube, une souris mécanique intelligente capable de trouver son chemin dans un labyrinthe (Thésée), ou encore des boîtes dont le seul but était de s'ouvrir pour actionner un interrupteur qui les refermait immédiatement.</p>
+            <p><b>La cryptographie moderne&nbsp;:</b> Durant la Seconde Guerre mondiale, il travaille pour le gouvernement américain sur la sécurité des communications, posant également les bases mathématiques de la cryptographie moderne (notamment à travers ses travaux sur le chiffre de Vernam et la notion de secret parfait).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 12 · RÉNYI ===== -->
+    <section class="chapter reveal" id="renyi">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte IV · L'information</p>
+          <h2>Alfréd Rényi <span style="color:var(--soft);font-size:.5em;">1921–1970</span></h2>
+          <span class="chapter-number">12</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/renyi.jpg" alt="Portrait d'Alfréd Rényi, attablé à un café"></span>
+              <figcaption><b>Alfréd Rényi</b> — Le Mathématicien des Probabilités et de l'Information. (Ici attablé à un café — clin d'œil à sa célèbre boutade.)</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>Alfréd Rényi</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>20 mars 1921 à Budapest (Hongrie)</dd></div>
+                <div class="row"><dt>Décès</dt><dd>1er février 1970 à Budapest</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Théorie des probabilités, combinatoire, théorie des nombres, théorie de l'information</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>Université Pázmány Péter (Budapest)</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Mathématicien des Probabilités et de l'Information</p>
+            <h3 class="sub">1. Un Prodige Mathématique sous l'Ombre de la Guerre</h3>
+            <p><b>Un parcours marqué par l'Histoire&nbsp;:</b> Né dans une famille juive à Budapest, Rényi fait preuve d'un talent mathématique précoce. Durant la Seconde Guerre mondiale, il est enrôlé dans les camps de travail forcé en raison de ses origines. Faisant preuve d'un courage extraordinaire, il parvient à s'échapper en utilisant de faux papiers, et sauve même ses parents du ghetto de Budapest en se rendant directement aux contrôles avec des documents falsifiés.</p>
+            <p><b>L'école mathématique hongroise&nbsp;:</b> Après la guerre, il obtient son doctorat et devient l'un des piliers incontestés de la brillante école de mathématiques hongroise, aux côtés de personnalités comme Paul Erdős (avec qui il écrira une série d'articles légendaires sur les graphes aléatoires). En 1950, il fonde l'Institut de Mathématiques de l'Académie des sciences de Hongrie à Budapest, qu'il dirigera jusqu'à sa mort.</p>
+            <h3 class="sub">2. Les Contributions Majeures</h3>
+            <p><b>La généralisation de l'entropie (Entropie de Rényi)&nbsp;:</b> C'est sa contribution la plus célèbre en physique statistique et en théorie de l'information. En 1961, Rényi généralise la notion d'entropie introduite par Claude Shannon en y ajoutant un paramètre d'ordre (souvent noté alpha). L'entropie de Rényi englobe non seulement l'entropie de Shannon, mais aussi d'autres mesures fondamentales (comme l'entropie de Hartley ou l'indice de collision). Elle est aujourd'hui omniprésente en traitement du signal, en apprentissage automatique (machine learning), en mécanique quantique et dans l'étude des systèmes complexes.</p>
+            <p><b>Les graphes aléatoires&nbsp;:</b> En étroite collaboration avec Paul Erdős, il pose les fondations mathématiques de la théorie des graphes aléatoires (le modèle d'Erdős-Rényi). Leurs travaux démontrent comment de grands réseaux complexes se structurent soudainement de manière probabiliste, révolutionnant l'étude des réseaux sociaux, des télécommunications et des structures biologiques.</p>
+            <p><b>La théorie des nombres et probabiliste&nbsp;:</b> Il a également appliqué la théorie des probabilités à l'arithmétique, démontrant des théorèmes célèbres concernant la distribution des diviseurs d'un nombre entier ou les représentations des nombres réels (notamment les expansions de Rényi).</p>
+            <h3 class="sub">3. Philosophie et Postérité</h3>
+            <div class="question-block">
+              <p class="blk-label">◆ La boutade de Rényi</p>
+              <p style="font-style:italic;color:var(--gold-bright);margin:0;">«&nbsp;Un mathématicien est un dispositif qui transforme le café en théorèmes.&nbsp;»</p>
+            </div>
+            <p><b>L'amour des mathématiques&nbsp;:</b> Rényi était connu pour sa passion communicative pour la recherche et sa vision philosophique de sa discipline. On lui attribue cette célèbre citation&nbsp;: «&nbsp;Un mathématicien est un dispositif qui transforme le café en théorèmes&nbsp;» (souvent attribuée à tort à Paul Erdős, mais prononcée à l'origine par Rényi).</p>
+            <p><b>Un héritage universel&nbsp;:</b> L'institut qu'il a fondé porte aujourd'hui son nom (l'Institut de mathématiques Alfréd-Rényi). Ses travaux sur l'entropie et l'aléatoire continuent d'alimenter les avancées technologiques et scientifiques les plus pointues du XXIe siècle.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ACTE V ================= -->
+    <section class="act-band reveal" id="acte5">
+      <div class="wrap">
+        <div class="act-num">V</div>
+        <h2>L'entropie, la gravité et le cosmos</h2>
+        <p>Ultime frontière&nbsp;: l'entropie rejoint la gravité. Bekenstein et Hawking en dotent les trous noirs ; Penrose et Smolin repensent l'espace-temps lui-même.</p>
+      </div>
+    </section>
+
+    <!-- ===== 13 · BEKENSTEIN ===== -->
+    <section class="chapter reveal" id="bekenstein">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte V · Trous noirs & cosmos</p>
+          <h2>Jacob Bekenstein <span style="color:var(--soft);font-size:.5em;">1947–2015</span></h2>
+          <span class="chapter-number">13</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/bekenstein.jpg" alt="Portrait de Jacob Bekenstein devant un tableau d'équations"></span>
+              <figcaption><b>Jacob Bekenstein</b> — Le Pionnier de la Thermodynamique des Trous Noirs.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>Jacob David Bekenstein</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>1er mai 1947 à Mexico (Mexique)</dd></div>
+                <div class="row"><dt>Décès</dt><dd>16 août 2015 à Helsinki (Finlande)</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Physique théorique, gravitation, trous noirs, information quantique</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>Institut Polytechnique de Brooklyn, Université de Princeton</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Pionnier de la Thermodynamique des Trous Noirs</p>
+            <h3 class="sub">1. L'Intuition Révolutionnaire</h3>
+            <p><b>Le mystère de l'aire&nbsp;:</b> Au début des années 1970, alors qu'il est doctorant à Princeton sous la direction de John Wheeler, Bekenstein s'interroge sur le comportement des trous noirs face aux lois de la thermodynamique.</p>
+            <p><b>La violation apparente&nbsp;:</b> Si l'on jette de la matière chaude (portée par de l'entropie) dans un trou noir, cette entropie semble disparaître à tout jamais de l'univers, ce qui violerait le second principe de la thermodynamique (qui stipule que l'entropie totale ne peut jamais diminuer).</p>
+            <p><b>L'audace du calcul&nbsp;:</b> Pour sauver ce principe fondamental, Bekenstein ose émettre une hypothèse folle&nbsp;: un trou noir possède une entropie, et cette entropie est directement proportionnelle à la surface de son horizon des événements. Au début, cette idée est accueillie avec scepticisme par la communauté, y compris par Stephen Hawking lui-même.</p>
+            <h3 class="sub">2. Les Contributions Majeures</h3>
+            <p><b>L'entropie de Bekenstein-Hawking&nbsp;:</b> En combinant la relativité générale et la thermodynamique, il démontre que l'aire d'un trou noir ne peut jamais décroître lors d'interactions physiques (ce qui fait écho au théorème de l'aire de Stephen Hawking).</p>
+            <p><b>Le pont vers la gravitation quantique&nbsp;:</b> Ses travaux ouvrent la voie à la physique statistique des trous noirs, montrant que ces objets astrophysiques ne sont pas de simples gouffres inertes, mais des systèmes thermodynamiques à part entière dotés d'une température et d'une entropie mesurables.</p>
+            <h3 class="sub">3. Postérité et Héritage</h3>
+            <p><b>La validation par Hawking&nbsp;:</b> Peu de temps après les propositions de Bekenstein, Stephen Hawking découvrira mathématiquement que les trous noirs émettent un rayonnement thermique (le rayonnement de Hawking), confirmant de manière éclatante l'intuition de Bekenstein et donnant naissance à la thermodynamique des trous noirs.</p>
+            <p><b>Reconnaissance internationale&nbsp;:</b> Professeur respecté à l'Université hébraïque de Jérusalem, il reçoit de nombreux prix prestigieux (comme le prix Wolf de physique en 2012) pour avoir unifié la gravité, la thermodynamique et la théorie de l'information.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 14 · HAWKING ===== -->
+    <section class="chapter reveal" id="hawking">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte V · Trous noirs & cosmos</p>
+          <h2>Stephen Hawking <span style="color:var(--soft);font-size:.5em;">1942–2018</span></h2>
+          <span class="chapter-number">14</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/hawking.jpg" alt="Portrait de Stephen Hawking"></span>
+              <figcaption><b>Stephen Hawking</b> — L'Explorateur des Cosmos et des Singularités.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>Stephen William Hawking</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>8 janvier 1942 à Oxford (Angleterre)</dd></div>
+                <div class="row"><dt>Décès</dt><dd>14 mars 2018 à Cambridge (Angleterre)</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Cosmologie, physique théorique, gravitation quantique</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>Université d'Oxford, Université de Cambridge</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">L'Explorateur des Cosmos et des Singularités</p>
+            <h3 class="sub">1. Un Parcours Hors du Commun</h3>
+            <p><b>Une jeunesse brillante&nbsp;:</b> Issu d'une famille d'universitaires, Hawking étudie les sciences naturelles à Oxford avant de s'orienter vers la cosmologie à Cambridge. C'est là qu'à l'âge de 21 ans, alors qu'il commence son doctorat, les premiers symptômes de la maladie de Charcot (sclérose latérale amyotrophique) se manifestent, les médecins ne lui donnant alors que deux ans à vivre.</p>
+            <p><b>La force de l'esprit&nbsp;:</b> Malgré un handicap lourd qui le condamnera progressivement à l'immobilité totale et à l'utilisation d'une voix synthétique, Hawking poursuit ses recherches avec une détermination légendaire, devenant l'un des physiciens les plus célèbres de la planète.</p>
+            <h3 class="sub">2. Les Contributions Majeures</h3>
+            <p><b>Les théorèmes sur les singularités&nbsp;:</b> En collaboration avec le mathématicien Roger Penrose dans les années 1960 et 1970, il applique la relativité générale d'Einstein à l'échelle cosmique et démontre mathématiquement que l'univers a nécessairement dû naître d'une singularité initiale (le Big Bang), et que les trous noirs possèdent en leur centre une telle singularité.</p>
+            <p><b>Le rayonnement de Hawking (1974)&nbsp;:</b> C'est sa découverte la plus magistrale. En appliquant la mécanique quantique aux abords de l'horizon d'un trou noir, il démontre que les trous noirs ne sont pas totalement noirs, mais qu'ils émettent un faible rayonnement thermique par création de paires de particules virtuelles. Par conséquent, les trous noirs s'évaporent lentement et finissent par disparaître.</p>
+            <p><b>Une brève histoire du temps&nbsp;:</b> Vulgarisateur de génie, il publie en 1988 un livre de vulgarisation scientifique qui devient un phénomène mondial, vendant plus de 10 millions d'exemplaires et rendant la cosmologie accessible au grand public.</p>
+            <h3 class="sub">3. Postérité et Icône Populaire</h3>
+            <p><b>L'ambassadeur de la science&nbsp;:</b> Titulaire de la prestigieuse chaire lucasienne de mathématiques à Cambridge (la même qu'Isaac Newton), Hawking est devenu une icône de la culture pop, apparaissant dans des séries cultes comme Les Simpson, Star Trek ou The Big Bang Theory.</p>
+            <p><b>Héritage scientifique&nbsp;:</b> Ses travaux ont jeté les bases indispensables pour tenter d'unifier la mécanique quantique et la théorie de la gravitation, le grand Graal de la physique moderne.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 15 · PENROSE ===== -->
+    <section class="chapter reveal" id="penrose">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte V · Trous noirs & cosmos</p>
+          <h2>Roger Penrose <span style="color:var(--soft);font-size:.5em;">né en 1931</span></h2>
+          <span class="chapter-number">15</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/penrose.jpg" alt="Portrait de Roger Penrose"></span>
+              <figcaption><b>Roger Penrose</b> — Le Géomètre de l'Univers et de l'Esprit.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>Sir Roger Penrose</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>8 août 1931 à Colchester (Angleterre)</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Physique mathématique, cosmologie, géométrie, philosophie de l'esprit</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>University College de Londres, Université de Cambridge</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Géomètre de l'Univers et de l'Esprit</p>
+            <h3 class="sub">1. Un Esprit Géométrique Hors Pair</h3>
+            <p><b>Une famille de scientifiques&nbsp;:</b> Issu d'une famille d'universitaires et d'artistes surdoués (son père était psychiatre et généticien, son frère un mathématicien renommé), Penrose se distingue très tôt par une intuition géométrique et visuelle extraordinaire.</p>
+            <p><b>Le mathématicien de l'impossible&nbsp;:</b> Il est mondialement connu pour ses contributions aux mathématiques récréatives et fondamentales, notamment les pavages de Penrose (des figures géométriques non périodiques qui recouvrent un plan à l'infini) et les objets impossibles qui ont inspiré les œuvres graphiques de Maurits Cornelis Escher.</p>
+            <h3 class="sub">2. Les Contributions Majeures</h3>
+            <p><b>La géométrie des trous noirs&nbsp;:</b> Dans les années 1960, Penrose invente une nouvelle méthode mathématique (basée sur la topologie globale) pour analyser l'espace-temps. En 1965, il publie un article révolutionnaire démontrant que lorsqu'une étoile massive s'effondre sous son propre poids, elle forme inévitablement une singularité gravitationnelle cachée derrière un horizon des événements. C'est la première preuve mathématique rigoureuse de l'existence des trous noirs selon la relativité générale.</p>
+            <p><b>Le prix Nobel de physique (2020)&nbsp;:</b> Il reçoit la moitié du prix Nobel de physique pour avoir démontré que «&nbsp;la formation des trous noirs est une prédiction robuste de la théorie générale de la relativité&nbsp;» (l'autre moitié étant attribuée à Reinhard Genzel et Andrea Ghez pour la découverte d'un objet supermassif au centre de notre galaxie).</p>
+            <p><b>La cosmologie cyclique conforme (CCC)&nbsp;:</b> Dans ses travaux plus récents, il propose une vision audacieuse de l'univers, suggérant que notre univers actuel ne serait qu'une phase (un «&nbsp;éon&nbsp;») parmi une succession infinie d'univers nés d'une expansion éternelle.</p>
+            <h3 class="sub">3. Réflexions sur la Conscience</h3>
+            <p><b>Au-delà de la physique&nbsp;:</b> Penrose s'est également illustré par des incursions audacieuses en biologie et en philosophie de l'esprit. Dans ses ouvrages (comme L'Esprit de l'ordinateur), il défend l'idée que la conscience humaine ne peut pas être réduite à un simple calcul algorithmique d'ordinateur, et qu'elle fait appel à des processus de physique quantique encore mal compris se produisant au cœur des neurones (la théorie de la réduction objective orchestrée, développée avec l'anesthésiste Stuart Hameroff).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 16 · SMOLIN ===== -->
+    <section class="chapter reveal" id="smolin">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">Acte V · Trous noirs & cosmos</p>
+          <h2>Lee Smolin <span style="color:var(--soft);font-size:.5em;">né en 1955</span></h2>
+          <span class="chapter-number">16</span>
+        </div>
+        <div class="fiche">
+          <aside class="fiche-aside">
+            <figure class="portrait-figure">
+              <span class="pf-img"><img src="assets/portraits/smolin.jpg" alt="Portrait de Lee Smolin"></span>
+              <figcaption><b>Lee Smolin</b> — Le Rebelle de la Gravitation Quantique.</figcaption>
+            </figure>
+            <div class="idcard">
+              <p class="idtitle">Fiche d'Identité</p>
+              <dl>
+                <div class="row"><dt>Nom complet</dt><dd>Lee Smolin</dd></div>
+                <div class="row"><dt>Naissance</dt><dd>6 juin 1955 à New York (États-Unis)</dd></div>
+                <div class="row"><dt>Domaines principaux</dt><dd>Physique théorique, gravitation quantique, cosmologie, philosophie des sciences</dd></div>
+                <div class="row"><dt>Alma mater</dt><dd>Hampshire College, Université Harvard</dd></div>
+              </dl>
+            </div>
+          </aside>
+          <div class="fiche-body prose">
+            <p class="epithet">Le Rebelle de la Gravitation Quantique</p>
+            <h3 class="sub">1. Un Parcours Indépendant et Iconoclaste</h3>
+            <p><b>Formation ouverte&nbsp;:</b> Élevé dans une atmosphère intellectuelle stimulante à New York, Smolin s'oriente rapidement vers la physique théorique. Il obtient son doctorat à Harvard en 1979 et effectue des séjours de recherche dans plusieurs institutions prestigieuses avant de devenir l'un des membres fondateurs du célèbre Perimeter Institute for Theoretical Physics à Waterloo (Canada), un centre de recherche de premier plan dédié à la physique fondamentale.</p>
+            <p><b>Le doute critique&nbsp;:</b> Contrairement à une grande partie de la communauté théorique qui s'est investie corps et âme dans la théorie des cordes dès les années 1980, Smolin adopte une position critique face au consensus académique, estimant que la physique théorique s'est parfois trop éloignée de l'expérimentation et de la rigueur conceptuelle.</p>
+            <h3 class="sub">2. Les Contributions Majeures</h3>
+            <p><b>La gravitation quantique à boucles (Loop Quantum Gravity)&nbsp;:</b> C'est son cheval de bataille. Aux côtés de physiciens comme Carlo Rovelli et Abhay Ashtekar, Smolin développe cette théorie alternative à la théorie des cordes. Elle postule que l'espace-temps n'est pas un tissu lisse et continu, mais qu'il est constitué de minuscules boucles quantiques entrelacées, dont la taille minimale est fixée par l'échelle de Planck (environ 10⁻³⁵ mètres). L'espace lui-même devient ainsi discret et granulaire.</p>
+            <p><b>La sélection naturelle cosmologique&nbsp;:</b> Dans un registre plus audacieux, il propose l'hypothèse selon laquelle les univers naissent à l'intérieur des trous noirs par un processus de "rebond", et que les lois physiques de chaque nouvel univers subissent de légères mutations. L'univers se sélectionnera ainsi pour maximiser la production de trous noirs, expliquant pourquoi nos constantes physiques sont si finement ajustées pour abriter des étoiles et de la vie.</p>
+            <p><b>La crise de la physique moderne&nbsp;:</b> Vulgarisateur engagé, il signe des ouvrages percutants comme Rien ne va plus en physique&nbsp;! L'échec de la théorie des cordes, où il plaide pour un retour à la pluralité des idées et à la confrontation directe avec l'observation empirique.</p>
+            <h3 class="sub">3. Postérité et Héritage</h3>
+            <p><b>Un agitateur d'idées&nbsp;:</b> Par son refus des dogmes et sa recherche permanente d'une unification entre la mécanique quantique et la relativité générale d'Einstein, Lee Smolin incarne la figure du physicien philosophe, cherchant à redéfinir la nature même du temps de l'espace et de la causalité dans l'univers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== POUR EN SAVOIR PLUS · VIDÉOS ===== -->
+    <section class="band reveal" id="ressources">
+      <div class="wrap">
+        <p class="sec-eyebrow">Pour en savoir plus</p>
+        <h2>Une galerie de vulgarisation</h2>
+        <p style="color:var(--muted);max-width:64ch;margin:0 0 30px;">Quatre vidéos de chaînes françaises de référence pour prolonger ces portraits et comprendre l'entropie autrement — du café qui refroidit au démon de Maxwell, de la flèche du temps à sa nature profonde.</p>
+        <div class="video-gallery">
+
+          <a class="vcard" href="https://www.youtube.com/watch?v=rHIPMHO_tNA" target="_blank" rel="noopener">
+            <span class="vthumb">
+              <img src="https://i.ytimg.com/vi/rHIPMHO_tNA/maxresdefault.jpg" alt="Miniature de la vidéo « L'Entropie — Passe-science #17 »" loading="lazy" referrerpolicy="no-referrer">
+              <span class="vplay" aria-hidden="true"></span>
+            </span>
+            <span class="vmeta">
+              <span class="vchan">Passe-Science</span>
+              <span class="vtitle">L'Entropie — Passe-science #17</span>
+            </span>
+          </a>
+
+          <a class="vcard" href="https://www.youtube.com/watch?v=VJ61CF9sxm4" target="_blank" rel="noopener">
+            <span class="vthumb">
+              <img src="https://i.ytimg.com/vi/VJ61CF9sxm4/maxresdefault.jpg" alt="Miniature de la vidéo « Démon de Maxwell et entropie — Passe-science #52 »" loading="lazy" referrerpolicy="no-referrer">
+              <span class="vplay" aria-hidden="true"></span>
+            </span>
+            <span class="vmeta">
+              <span class="vchan">Passe-Science</span>
+              <span class="vtitle">Démon de Maxwell et entropie — Passe-science #52</span>
+            </span>
+          </a>
+
+          <a class="vcard" href="https://www.youtube.com/watch?v=flz_aSIJS0A" target="_blank" rel="noopener">
+            <span class="vthumb">
+              <img src="https://i.ytimg.com/vi/flz_aSIJS0A/maxresdefault.jpg" alt="Miniature de la vidéo « Entropie et flèche du Temps » de ScienceClic" loading="lazy" referrerpolicy="no-referrer">
+              <span class="vplay" aria-hidden="true"></span>
+            </span>
+            <span class="vmeta">
+              <span class="vchan">ScienceClic</span>
+              <span class="vtitle">Entropie et flèche du Temps</span>
+            </span>
+          </a>
+
+          <a class="vcard" href="https://www.youtube.com/watch?v=H71WR50stm4" target="_blank" rel="noopener">
+            <span class="vthumb">
+              <img src="https://i.ytimg.com/vi/H71WR50stm4/hqdefault.jpg" alt="Miniature de la vidéo « La nature profonde de l'entropie » de Science4All" loading="lazy" referrerpolicy="no-referrer">
+              <span class="vplay" aria-hidden="true"></span>
+            </span>
+            <span class="vmeta">
+              <span class="vchan">Science4All</span>
+              <span class="vtitle">La nature profonde de l'entropie</span>
+            </span>
+          </a>
+
+        </div>
+        <p class="video-note">Les vidéos s'ouvrent sur <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a> (contenus tiers appartenant à leurs auteurs — Passe-Science, ScienceClic, Science4All ; miniatures et liens fournis par YouTube). Elles ne font pas partie du contenu ECI sous licence CC BY-NC-ND.</p>
+      </div>
+    </section>
+
+    <!-- ===== CRÉDIT AUTEUR ===== -->
+    <section class="reveal">
+      <div class="wrap">
+        <div class="credit-band">
+          <div class="avatars">
+            <img src="../../ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+          </div>
+          <div class="ct">
+            <p class="over">Réalisé par</p>
+            <p class="nm">Lalie</p>
+            <p class="note">Galerie de portraits pour le dossier « L'Entropie, le temps et l'Univers » — <span style="color:var(--hot-bright)">Provoxys</span> × <span style="color:var(--cold-bright)">Samlepirate</span>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= COLLECTIVE FOOTER ================= -->
+  <footer class="collective-footer reveal">
+    <div class="wrap">
+      <span class="seal"><img src="../../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox"></span>
+      <h3>Empire contre Intox</h3>
+      <p>Un collectif qui transforme les grands lives en dossiers durables&nbsp;: transcription intégrale, faits vérifiés et sourcés, mise en scène pédagogique. Cette galerie de portraits, réalisée par <b style="color:var(--gold-bright)">Lalie</b>, accompagne le dossier <b style="color:var(--hot-bright)">Entropie</b> de Provoxys et Samlepirate.</p>
+      <div class="footer-actions">
+        <a href="index.html">↩ Le dossier Entropie</a>
+        <a href="../../index.html">Accueil ECI</a>
+        <a href="../../sources/sources.html">Les Sources</a>
+        <a href="../exoplanetes/index.html">Provoxys · Exoplanètes</a>
+        <a href="../sondes/index.html">Provoxys · Sondes</a>
+      </div>
+      <p class="devise">Veritas omnia vincit</p>
+
+      <div class="imgcred">
+        <h4>Crédits des portraits</h4>
+        <p>Portraits issus de <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>. <b>Domaine public</b>&nbsp;: Sadi Carnot (Louis-Léopold Boilly), Julius Robert von Mayer (Friedrich Berrer), James Prescott Joule, Hermann von Helmholtz, Rudolf Clausius, William Thomson – Lord Kelvin (Dickinson, London), James Clerk Maxwell, Ludwig Boltzmann, Josiah Willard Gibbs, Jacob Bekenstein, Stephen Hawking (NASA). <b>Licences Creative Commons</b> (attribution aux auteurs)&nbsp;: Claude Shannon &amp; Alfréd Rényi — © Konrad Jacobs / Mathematisches Forschungsinstitut Oberwolfach (CC BY-SA)&nbsp;; Max Planck — Bundesarchiv, Bild 183-R0116-504 (CC BY-SA 3.0 de)&nbsp;; Roger Penrose — Cirone-Musi, Festival della Scienza (CC BY-SA 2.0)&nbsp;; Lee Smolin — Lumidek / Wikipedia (CC BY-SA 3.0). Les textes sont l'œuvre d'ECI ; les portraits restent sous leurs licences d'origine.</p>
+      </div>
+
+      <div class="eci-license">
+        <b>Licence du contenu —</b> Sauf mention contraire, les <b>textes</b> de cette galerie sont publiés sous licence <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr" target="_blank" rel="noopener">Creative Commons Attribution – Pas d'Utilisation Commerciale – Pas de Modification 4.0 International (CC BY-NC-ND 4.0)</a>&nbsp;: partage autorisé avec attribution, sans usage commercial ni modification. Voir le détail dans <a href="../../LICENCE-CONTENU.md">LICENCE-CONTENU.md</a>. Les <b>portraits</b> proviennent de Wikimedia Commons et restent soumis à leurs licences propres (domaine public ou Creative Commons), créditées ci-dessus.
+        <span class="eci-visit-counter" data-visit-counter>— visites sur cette page</span>
+      </div>
+    </div>
+  </footer>
+
+  <footer class="tech">
+    <div class="wrap">Dossier XXV · « Les Bâtisseurs de l'Entropie » — Portraits des scientifiques · Galerie du dossier Entropie · Empire contre Intox</div>
+  </footer>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script src="../../assets/visit-counter.js" defer></script>
+
+  <script>
+    // Barre de progression de défilement
+    const progress = document.getElementById('progressTop');
+    function onScroll() {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+      if (progress) progress.style.width = (p * 100).toFixed(2) + '%';
+    }
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Nav active au scroll
+    const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
+    const targets = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const id = '#' + e.target.id;
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    targets.forEach(t => spy.observe(t));
+
+    // Reveal on scroll (threshold 0 + filet de sécurité pour sections hautes)
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll('.reveal:not(.in)').forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add('in'); io.unobserve(el); }
+      });
+    }
+    document.addEventListener('scroll', revealTall, { passive: true });
+    window.addEventListener('resize', revealTall, { passive: true });
+    revealTall();
+  </script>
+
+  <!-- KaTeX rendering -->
+  <script>
+    function renderMath() {
+      document.querySelectorAll(".imath[data-tex], .formula[data-tex]").forEach((node) => {
+        if (node.dataset.rendered) return;
+        const tex = node.getAttribute("data-tex");
+        const display = node.classList.contains("formula");
+        if (window.katex) {
+          try { katex.render(tex, node, { throwOnError: false, displayMode: display }); node.dataset.rendered = "1"; return; }
+          catch (e) { /* repli ci-dessous */ }
+        }
+        node.textContent = tex;
+      });
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderMath);
+    else renderMath();
+    window.addEventListener("load", renderMath);
+  </script>
+</body>
+</html>
