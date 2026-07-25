@@ -261,6 +261,32 @@
     .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
     .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
 
+    /* GALERIE VIDÉO — lecteurs YouTube embarqués (façade lite, même lecteur que le dossier Entropie) */
+    .video-gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:22px; margin:24px 0 4px; }
+    .vcard { border:1px solid var(--line-2); border-radius:3px; overflow:hidden; background:var(--glass);
+      transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s; }
+    .vcard:hover { border-color:var(--line); box-shadow:0 22px 55px rgba(0,0,0,.5); transform:translateY(-4px); }
+    .vframe { position:relative; aspect-ratio:16/9; background:#0b1220; overflow:hidden; }
+    .vframe iframe { position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+    .vfacade { position:absolute; inset:0; border:0; padding:0; margin:0; cursor:pointer; background:#0b1220; overflow:hidden; }
+    .vfacade img { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.92) contrast(1.02); transition:transform .5s var(--ease), filter .4s var(--ease); }
+    .vfacade::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(5,8,17,.06) 40%,rgba(5,8,17,.62)); transition:opacity .3s; }
+    .vfacade:hover img { transform:scale(1.05); filter:saturate(1.05) contrast(1.04); }
+    .vplay { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:2;
+      width:66px; height:66px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      background:rgba(5,8,17,.55); border:1.5px solid var(--gold); backdrop-filter:blur(3px);
+      transition:transform .3s var(--ease), background .3s, box-shadow .3s; }
+    .vplay::before { content:""; width:0; height:0; margin-left:5px;
+      border-style:solid; border-width:12px 0 12px 20px; border-color:transparent transparent transparent var(--gold-bright); }
+    .vfacade:hover .vplay, .vfacade:focus-visible .vplay { transform:translate(-50%,-50%) scale(1.12); background:rgba(214,172,85,.22); box-shadow:0 0 30px rgba(214,172,85,.5); }
+    .vmeta { display:flex; align-items:baseline; gap:12px; padding:15px 18px 17px; }
+    .vmeta .vtxt { min-width:0; }
+    .vchan { display:inline-block; font-family:var(--roman); font-weight:600; letter-spacing:.16em; text-transform:uppercase; font-size:.58rem;
+      color:var(--gold); background:rgba(214,172,85,.08); border:1px solid var(--line); border-radius:2px; padding:3px 8px; margin-bottom:9px; }
+    .vtitle { font-family:var(--serif); font-weight:500; font-size:1.04rem; line-height:1.35; color:var(--ink); }
+    .video-note { margin:22px 0 0; font-size:.82rem; color:var(--soft); }
+    .video-note a { color:var(--gold-bright); }
+
     .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
       background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
     .credit-band .credit-avatars { display:flex; }
@@ -574,6 +600,7 @@
           <a href="#sources-dossier">Sources</a>
           <a href="#lexique">Lexique</a>
           <a href="#conclusion">Conclusion</a>
+          <a href="#videos">Vidéos</a>
         </div>
         <div class="progress" aria-hidden="true"><span></span></div>
       </div>
@@ -1677,6 +1704,55 @@
         </div>
       </section>
 
+      <section class="chapter" id="videos">
+        <div class="chapter-head reveal">
+          <div>
+            <p class="section-kicker">Pour en savoir plus</p>
+            <h2>Aristote et ses héritiers, en vidéo</h2>
+          </div>
+          <div class="chapter-number" aria-hidden="true">12</div>
+        </div>
+        <div class="reveal" data-d="1">
+          <div class="prose">
+            <p>Trois vidéos de la chaîne <strong>Mr Phi</strong> pour prolonger le chapitre V — la querelle entre le maître et l'élève, la réception d'Aristote pendant deux mille ans, et le duel médiéval entre ses deux plus grands commentateurs. Cliquez pour lire directement ici.</p>
+          </div>
+          <div class="video-gallery">
+
+            <div class="vcard">
+              <div class="vframe">
+                <button type="button" class="vfacade" data-yt="4Rcs2gAzKbY" aria-label="Lire la vidéo : Faire des maths ou disséquer des poulpes — Platon vs. Aristote, Mr Phi">
+                  <img src="https://i.ytimg.com/vi/4Rcs2gAzKbY/maxresdefault.jpg" alt="Miniature — Faire des maths ou disséquer des poulpes, Platon vs. Aristote, Mr Phi" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/4Rcs2gAzKbY/hqdefault.jpg';">
+                  <span class="vplay" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="vmeta"><div class="vtxt"><span class="vchan">Mr Phi</span><div class="vtitle">Faire des maths ou disséquer des poulpes — Platon vs. Aristote</div></div></div>
+            </div>
+
+            <div class="vcard">
+              <div class="vframe">
+                <button type="button" class="vfacade" data-yt="0-6mXQ746KI" aria-label="Lire la vidéo : Qu'a-t-on fait d'Aristote pendant 2000 ans ?, Mr Phi">
+                  <img src="https://i.ytimg.com/vi/0-6mXQ746KI/maxresdefault.jpg" alt="Miniature — Qu'a-t-on fait d'Aristote pendant 2000 ans ?, Mr Phi" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/0-6mXQ746KI/hqdefault.jpg';">
+                  <span class="vplay" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="vmeta"><div class="vtxt"><span class="vchan">Mr Phi</span><div class="vtitle">Qu'a-t-on fait d'Aristote pendant 2000 ans ?</div></div></div>
+            </div>
+
+            <div class="vcard">
+              <div class="vframe">
+                <button type="button" class="vfacade" data-yt="_P7v2OJgYnU" aria-label="Lire la vidéo : Duel épique de philosophie médiévale — Thomas d'Aquin vs Averroès, Mr Phi">
+                  <img src="https://i.ytimg.com/vi/_P7v2OJgYnU/maxresdefault.jpg" alt="Miniature — Duel épique de philosophie médiévale, Thomas d'Aquin vs Averroès, Mr Phi" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/_P7v2OJgYnU/hqdefault.jpg';">
+                  <span class="vplay" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="vmeta"><div class="vtxt"><span class="vchan">Mr Phi</span><div class="vtitle">Duel épique de philosophie médiévale — Thomas d'Aquin vs Averroès</div></div></div>
+            </div>
+
+          </div>
+          <p class="video-note">Lecture directe sur cette page via le lecteur <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a> (chargé au clic, en mode sans cookie). Vidéos et miniatures sont des contenus tiers appartenant à leur auteur — <a href="https://www.youtube.com/@MrPhi" target="_blank" rel="noopener">Mr Phi</a> — et ne relèvent pas de la licence CC BY-NC-ND du dossier.</p>
+        </div>
+      </section>
+
       <section class="closing reveal" aria-labelledby="final">
         <h2 id="final">« Faire de l'histoire ancienne, c'est enquêter sur des récits de seconde main. »</h2>
         <p>Ce dossier conserve mot pour mot la transcription du live. D'un bout à l'autre, la même tension : un homme qui marche à l'intérieur d'un scénario mythologique qu'il écrit en temps réel — et une armée qui avance parce que quelqu'un a calculé le grain, les gués et les distances. Là où la légende crie au prodige, l'Empire Contre-Intox cherche la méthode : les tablettes babyloniennes qui datent une mort au jour près, les monnaies qui disent quel dieu on invoque, les fourchettes d'effectifs qui remplacent le « million de Perses ». Alexandre n'en sort pas diminué. Il en sort <em>connaissable</em>.</p>
@@ -2282,6 +2358,23 @@
       window.addEventListener("pointerup", () => { drag = null; frame.style.cursor = ""; });
       frame.addEventListener("pointermove", (e) => { if (!drag) return; frame.scrollLeft = drag.l - (e.clientX - drag.x); frame.scrollTop = drag.t - (e.clientY - drag.y); });
     })();
+
+    /* ===================== Lecteurs YouTube embarqués (façade lite, mode sans cookie) ===================== */
+    document.querySelectorAll('.vfacade[data-yt]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-yt');
+        if (!id) return;
+        const frame = btn.closest('.vframe');
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+        iframe.title = btn.getAttribute('aria-label') || 'Lecteur vidéo YouTube';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        frame.innerHTML = '';
+        frame.appendChild(iframe);
+      });
+    });
   </script>
   <script src="../../assets/visit-counter.js" defer></script>
 </body>
