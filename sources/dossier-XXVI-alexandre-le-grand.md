@@ -132,9 +132,30 @@ Verdicts : ✅ confirmé · ⚠️ approximatif / à nuancer · 🔶 débattu ·
 | « Paul Veyne, *L'Empire gréco-romain* (Seuil) » | ✅ | Seuil, « Des travaux », 2005 — porte sur l'**Empire romain hellénisé**, périphérique au règne d'Alexandre | [Seuil](https://www.seuil.com/ouvrage/l-empire-greco-romain-paul-veyne/9782020577984) |
 | « Dr Katherine Hall, *The Geographical Journal* (2019), syndrome de Guillain-Barré » | ❌ | **Revue et année fausses.** Référence exacte : *The Ancient History Bulletin*, vol. **32 (2018)**, n° 3-4, p. 106-128, ISSN 0835-3638. **DOI non trouvé** (l'AHB n'attribue pas de DOI). La confusion vient de la couverture presse de janvier 2019. Thèse **minoritaire et contestée** | [AHB 32 (2018), PDF](https://www.ancienthistorybulletin.org/subscribed-users-area/wp-content/uploads/2018/12/hall.pdf) · [Otago](https://www.otago.ac.nz/news/newsroom/classics-lecture-leads-to-research-on-alexander-the-greats-death) |
 | « Andrew Stewart, *Faces of Power* » | ✅ | University of California Press, **1993**, ISBN 0-520-06851-3 ; DOI éd. électronique **10.1525/9780520909847** (vérifié Crossref) | [Crossref](https://api.crossref.org/works/10.1525/9780520909847) |
-| Lexique : « Agogé / Éducation macédonienne » | ❌ | L'**agôgè est spartiate**. L'institution macédonienne est celle des **pages royaux** (*basilikoi paides*) — précisément le corps de la conjuration de 327 | [Britannica — agoge](https://www.britannica.com/topic/agoge) |
-| Lexique : sarisse « 5 à 7 mètres » | ⚠️ | **~4 à 6,5 m** (reconstitutions d'après Vergina) ; la longueur **augmente après Alexandre** | [Britannica — sarissa](https://www.britannica.com/technology/sarissa) |
+| Lexique : « Agogé / Éducation macédonienne » | ❌ | L'**agôgè est spartiate**. L'institution macédonienne est celle des **pages royaux** (*basilikoi paides*) — précisément le corps de la conjuration de 327. **[v2 : entrée retirée du déroulé — correction intégrée en amont]** | [Britannica — agoge](https://www.britannica.com/topic/agoge) |
+| Lexique : sarisse « 5 à 7 mètres » | ⚠️ | **~4 à 6,5 m** (reconstitutions d'après Vergina) ; la longueur **augmente après Alexandre**. **[v2 : corrigé dans le déroulé en « 4,5 à 6 m »]** | [Britannica — sarissa](https://www.britannica.com/technology/sarissa) |
 | Lexique : hubris, Maât, œkoumène, poliorcétique, satrapie, syllogisme, zoon politikon, hellénisme | ✅ | Définitions exactes | — |
+
+## 8. Mise à jour v2 (juillet 2026) — Alexandrie, angle mort chinois, sources antiques, lexique spécialisé
+
+Nouvelle version du déroulé (`script2.txt`) : ajout d'un **focus thématique sur la fondation d'Alexandrie** (inséré entre les Portes Persiques et la Roche de Sogdiane), d'un **focus sur l'angle mort de la Chine**, d'une galerie **« Les sources antiques »**, d'un **lexique spécialisé** réécrit (Diadoques, hellénisation, époque hellénistique, Lagides, Mouseion, syncrétisme…) et d'un **teaser du prochain live** (de l'éclatement hellénistique à Rome). Conclusion : « l'hybris » → « l'hubris ».
+
+| Affirmation | Verdict | Référence | Source |
+|---|---|---|---|
+| Alexandrie fondée en 331 av. J.-C., entre Méditerranée et lac Mariout, face à Pharos ; plan hippodamien ; avant la campagne de Perse | ✅ | Date traditionnelle (parfois au 7 avril 331) ; site de **Rhakôtis** ; plan confié à **Dinocrates** ; 331 est bien **antérieur** aux Portes Persiques (330) — la note de régie du déroulé le signale elle-même | [Britannica — Alexandria](https://www.britannica.com/place/Alexandria-Egypt) · [Livius](https://www.livius.org/articles/person/alexander-the-great/alexander-2.8/) |
+| « Son corps y sera ramené par Ptolémée Iᵉʳ pour y être inhumé dans un somptueux tombeau » | ⚠️ | Ptolémée Iᵉʳ détourne le cortège en Syrie (fin 322 / début 321) et inhume le corps à **Memphis** (Pausanias I, 6 ; Chronique de Paros, 321-320). Transfert à Alexandrie sous **Ptolémée II Philadelphe, v. 280** ; mausolée **Sōma** ; emplacement **perdu** (140+ tentatives de localisation) | [Pausanias I.6 (Perseus)](http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0159%3Abook%3D1%3Achapter%3D6) · [Archaeology — Hunting Alexander's Tomb](https://archaeology.org/issues/july-august-2013/collection/alexander-the-great-macedon-alexandria-the-soma/lost-tombs/) |
+| Bibliothèque : « des centaines de milliers de rouleaux » ; attire Euclide | 🔶 (✅ Euclide) | Chiffres antiques de **~40 000 à 700 000** volumes (Aulu-Gelle, Tzetzès) — indécidable ; fonds dispersés entre Mouseion et Sérapeum. Euclide y travaille bien sous Ptolémée Iᵉʳ (~300) | [Britannica — Library of Alexandria](https://www.britannica.com/topic/Library-of-Alexandria) |
+| Phare : l'une des Sept Merveilles, « plus de 100 mètres » | ✅ | Sous Ptolémée Iᵉʳ–II (achevé v. 280) ; **~100 à 130 m** selon les reconstitutions | [Britannica — Lighthouse](https://www.britannica.com/topic/lighthouse-of-Alexandria) |
+| Mouseion : temple dédié aux Muses, ancêtre des instituts de recherche | ✅ | Exact (coquille du déroulé : « Mouses » → **Muses**) | [Britannica — Museum](https://www.britannica.com/topic/Museum-institution) |
+| Sérapis : mélange de divinités grecques et égyptiennes | ✅ | Culte syncrétique **promu sous Ptolémée Iᵉʳ** : Osiris-Apis fondu à Zeus, Hadès, Asclépios | [Britannica — Serapis](https://www.britannica.com/topic/Serapis) |
+| Chute d'Alexandrie sous Octave en 30 av. J.-C., fin de l'Égypte ptolémaïque | ✅ | **1ᵉʳ août 30 av. J.-C.** ; l'Égypte devient province romaine | [Britannica — Alexandria](https://www.britannica.com/place/Alexandria-Egypt) |
+| Ni Alexandre ni la science grecque ne soupçonnent la Chine (Royaumes combattants) | ✅ | Œkoumène arrêtée à l'Inde et aux steppes ; premières mentions gréco-romaines des **« Sères »** au **Iᵉʳ s. av. J.-C.** (Strabon, Virgile, Horace) ; Royaumes combattants **~475-221** ; unification Qin en **221**, un siècle après Alexandre | [Britannica — Warring States](https://www.britannica.com/event/Warring-States) · [Serica](https://en.wikipedia.org/wiki/Serica) |
+| « Comment prétendre conquérir le monde quand on en ignore l'exacte moitié ? » | ⚠️ | **Image rhétorique**, pas une mesure : Afrique intérieure, Europe du Nord et Amériques sont aussi hors carte. Valide pour la Chine, seul autre monde civilisationnel complet alors en voie d'unification | — |
+| Galerie « Les sources antiques » : Arrien sobre d'après Ptolémée/Aristobule ; Plutarque biographe moral ; Quinte-Curce romanesque ; Callisthène propagandiste | ✅ (⚠️) | Exact dans l'ensemble. Deux rappels : Callisthène est le **petit-neveu** d'Aristote (déjà corrigé au chap. V) ; et l'argument d'Arrien (« un roi aurait honte de mentir ») est jugé **naïf** par la critique moderne — Ptolémée avait des raisons d'État d'écrire | [Hammond 1983](https://www.cambridge.org/core/journals/classical-review/article/historians-of-alexander-hammond-n-g-l-three-historians-of-alexander-the-great-the-socalled-vulgate-authors-diodorus-justin-and-curtius-cambridge-classical-studies-pp-xi-205-cambridge-university-press-1983-20/AD8717B36B9B06004DA1ACE24E47895C) |
+| Lexique v2 : Diadoques, hellénisation, époque hellénistique 323-30, Lagides « près de trois siècles », Maât, Mouseion, œkoumène, poliorcétique, proskynèse, satrapie, syncrétisme, hubris, zoon politikon | ✅ | Définitions exactes ; Lagides : 305/304 → 30 av. J.-C. ≈ **275 ans** | — |
+| Lexique v2 : sarisse « entre 4,5 et 6 mètres » | ✅ | **Corrigé à la source** (v1 : « 5 à 7 m ») — rejoint les reconstitutions de Vergina (4 à 6,5 m) | [Britannica — sarissa](https://www.britannica.com/technology/sarissa) |
+| Lexique v2 : retrait de « Agogé / Éducation macédonienne » | ✅ | La correction ❌ de l'audit v1 (agôgè **spartiate**) est **intégrée en amont** : l'entrée confuse a disparu du déroulé | — |
+| Teaser : éclatement de l'empire en royaumes rivaux (Diadoques → Ptolémées), guerres stériles, ascension de Rome | ✅ | Schéma historiographique standard | — |
 
 ---
 
@@ -164,8 +185,21 @@ Superficie de l'empire (estimation Taagepera) · couronnement pharaonique à Mem
 `10.1525/9780520909847` (Stewart, *Faces of Power*, UC Press — Crossref).
 Pour Katherine Hall : **DOI non trouvé — ISSN 0835-3638**.
 
+**Mise à jour v2 (juillet 2026).** Nouvelle version du déroulé (`script2.txt`) :
+**+6 ✅** (fondation d'Alexandrie 331/Rhakôtis/Dinocrates ; Phare ~100-130 m, Sept
+Merveilles ; Mouseion ; Sérapis syncrétique lagide ; chute d'Alexandrie sous
+Octave, 1ᵉʳ août 30 av. J.-C. ; Chine inconnue des Grecs — Sères au Iᵉʳ s. av.
+J.-C., Royaumes combattants ~475-221) ; **+2 ⚠️** (le corps inhumé d'abord à
+**Memphis** par Ptolémée Iᵉʳ, transféré à Alexandrie sous **Ptolémée II** v. 280 ;
+« l'exacte moitié » du monde = image rhétorique) ; **+1 🔶** (« des centaines de
+milliers de rouleaux » de la Bibliothèque — estimations antiques de ~40 000 à
+700 000, indécidable). Deux corrections de l'audit v1 sont **intégrées en amont**
+dans le déroulé : la sarisse (« 5 à 7 m » → « 4,5 à 6 m ») et le retrait de
+l'entrée « Agogé / éducation macédonienne » — le lexique v2 est entièrement vérifié ✅.
+
 **Note verbatim.** La transcription est conservée **mot pour mot** (contrôle
-`check-coverage.py` : 458 segments, 0 manquant). Les coquilles du déroulé
-(« Amintas III », « Quinte-Curse », « Táctique », « il orchebre », « se retrachent »,
-« Neoptolèmus », « à sa infanterie légère », « Οἱ ἀρισotέλης ») ont été **conservées
+`check-coverage.py` : **536 segments, 0 manquant** — v2 ; 458 en v1). Les coquilles
+du déroulé (« Amintas III », « Quinte-Curse »/« Quinte-Curce », « Táctique »,
+« il orchebre », « se retrachent », « Neoptolèmus », « à sa infanterie légère »,
+« Οἱ ἀρισotέλης », « Mouses », « historographie ») ont été **conservées
 telles quelles** : aucune correction silencieuse n'a été appliquée au texte transcrit.
