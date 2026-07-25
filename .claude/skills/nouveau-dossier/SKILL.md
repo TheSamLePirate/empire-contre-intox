@@ -67,6 +67,9 @@ Les chemins ci-dessous sont relatifs à la racine du dépôt et à
     `sources.html`** (section + fiches + compteurs). Voir `reference/sources-and-index.md`.
 11. **Mettre à jour `index.html`** : nouvelle carte, renuméroter « Les Sources »,
     compteurs, nav de pied. (Lire l'état courant d'abord — la numérotation bouge.)
+11 bis. **Déclarer les fichiers dans `config/legacy-public-manifest.json`.**
+    **OBLIGATOIRE** — sans ça le build casse (« Missing social image for dossier »).
+    Voir « Manifeste public » ci-dessous.
 12. **Régénérer le flux RSS** : `python3 scripts/generate-rss.py` (depuis la racine
     du dépôt) relit `index.html` et réécrit `rss.xml`. **OBLIGATOIRE dès que l'index
     change** (ajout/modif/réordonnancement). Vérifier que le flux est bien formé et
@@ -173,6 +176,69 @@ Avec `playwright-core` (Chrome système, sans téléchargement) :
 
 ---
 
+## Manifeste public (`config/legacy-public-manifest.json`) — obligatoire
+
+Le site est bâti par **Astro** : `scripts/prepare-legacy.ts` (lancé par `prebuild`)
+ne copie dans `dist/` que les fichiers **explicitement listés** dans une allowlist.
+Un fichier absent de cette liste **n'est pas publié** — et pire, le build **échoue
+en dur** si l'image de la carte d'index n'y est pas :
+
+```
+scripts/prepare-legacy.ts:79
+    if (!imagePath) throw new Error(`Missing social image for dossier: ${href}`);
+```
+
+Ce script construit aussi les métadonnées **Open Graph / Twitter** (`og:image`) de
+chaque page à partir de la carte d'index : il cherche l'image pleine taille
+(`<nom>-hero.png` / `.jpg`) correspondant à la vignette `<nom>-hero.index.webp`
+**dans le manifeste**. Pas d'entrée → pas d'aperçu social, ou build cassé.
+
+**À faire pour chaque dossier**, après avoir mis l'index à jour :
+
+```bash
+python3 - <<'PY'
+import io, json, os
+cfg = json.load(io.open('config/legacy-public.json', encoding='utf-8'))
+bad_ext, bad_seg = set(cfg['forbiddenExtensions']), set(cfg['forbiddenSegments'])
+p = 'config/legacy-public-manifest.json'
+m = set(json.load(io.open(p, encoding='utf-8')))
+TARGETS = ['<equipe>/<dossier>', 'sources/dossier-<N>-<nom>.md', 'sources/refs-<N>-<nom>.md']
+added = []
+for t in TARGETS:
+    walk = os.walk(t) if os.path.isdir(t) else [(os.path.dirname(t), [], [os.path.basename(t)])]
+    for root, dirs, files in walk:
+        dirs[:] = [d for d in dirs if d not in bad_seg and not d.startswith('.')]
+        for f in files:
+            rel = os.path.join(root, f)
+            if f.startswith('.') or os.path.splitext(f)[1].lower() in bad_ext: continue
+            if rel not in m: m.add(rel); added.append(rel)
+io.open(p, 'w', encoding='utf-8').write(json.dumps(sorted(m), ensure_ascii=False, indent=2) + "\n")
+print(len(added), "entrées ajoutées"); [print(" ", a) for a in added]
+PY
+```
+
+- Les extensions **interdites** (`.txt`, `.odt`, `.docx`, `.pptx`, `.doc`) sont
+  filtrées : le **transcript source n'est jamais publié**, c'est voulu — ne pas
+  l'ajouter à la main.
+- **Vérifier ensuite que le build passe** (obligatoire, ~20 s) :
+
+  ```bash
+  npx --yes tsx scripts/prepare-legacy.ts   # → "Prepared N allowlisted legacy files"
+  rm -rf .legacy-public                     # dossier de travail, ne pas committer
+  ```
+
+- Contrôler au passage que l'`og:image` est bien câblée :
+  `grep -o 'og:image" content="[^"]*"' .legacy-public/<equipe>/<dossier>/index.html`
+- **Committer `config/legacy-public-manifest.json` avec `index.html` et `rss.xml`.**
+
+> **Vécu :** oublié sur le dossier XXVI (Alexandre le Grand) → déploiement Portainer
+> en échec. En le corrigeant, on a découvert que le **dossier XXV (Entropie) n'y
+> avait jamais été ajouté non plus** : le build était donc déjà cassé. Si le script
+> échoue sur *un autre* dossier que le vôtre, c'est une dette antérieure — la
+> corriger aussi, et le dire.
+
+---
+
 ## Flux RSS (`rss.xml`) — à régénérer pour chaque dossier
 
 Le site publie un **flux RSS riche** à `rss.xml` (racine), déclaré dans le `<head>`
@@ -211,6 +277,8 @@ de `index.html`. Il est **généré**, jamais édité à la main.
       de pied ↔ `sources.html`) ;
 - [ ] chaque affirmation/donnée **sourcée** dans `sources/` (audit + refs) **et
       surfacée** dans `sources.html` (fiche + compteurs) ;
+- [ ] **`config/legacy-public-manifest.json` complété** (page, assets, avatars,
+      fichiers `sources/`) et `npx tsx scripts/prepare-legacy.ts` **qui passe** ;
 - [ ] **`rss.xml` régénéré** (`python3 scripts/generate-rss.py`), bien formé, et
       contenant le nouveau dossier (voir « Flux RSS ») ;
 - [ ] encadrés « anti-intox » pour tous les ⚠️/🔶, corrections des ❌ ;
@@ -225,7 +293,8 @@ de `index.html`. Il est **généré**, jamais édité à la main.
 ## Publication (uniquement quand l'utilisateur le demande)
 
 - Stager **précisément** les fichiers du dossier (page, .txt, avatars, `assets/*.png`
-  optimisés, `index.html`, **`rss.xml`**, `sources/*`) — **ne pas** balayer les
+  optimisés, `index.html`, **`rss.xml`**, **`config/legacy-public-manifest.json`**,
+  `sources/*`) — **ne pas** balayer les
   dossiers non suivis sans rapport (`.pi/`, `a_traiter/`, etc.). Utiliser
   `git add <chemins explicites>`.
 - Message de commit **en français**, terminé par :
