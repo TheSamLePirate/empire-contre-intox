@@ -9,32 +9,36 @@
 <meta name="rights" content="Contenu éditorial sous licence Creative Commons Attribution – Pas d'Utilisation Commerciale – Pas de Modification 4.0 International (CC BY-NC-ND 4.0). « A Mathematical Theory of Communication » (C. E. Shannon, 1948) est une œuvre tierce, non couverte par cette licence.">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<!-- ===================== ATMOSPHÈRE ===================== -->
+<div class="atmos" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
 <!-- ===================== TOP BAR ===================== -->
-<header class="sticky top-0 z-40" style="background:rgba(7,9,15,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)">
+<header class="sticky top-0 z-40" style="background:rgba(5,8,17,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)">
   <div class="max-w-[1500px] mx-auto px-4 sm:px-6">
-    <div class="h-14 flex items-center justify-between gap-4">
-      <button id="homeBtn" class="flex items-center gap-2.5 shrink-0">
-        <span class="w-7 h-7 rounded-lg grid place-items-center" style="background:var(--accent)">
-          <i data-lucide="waves" class="w-4 h-4 text-white"></i>
-        </span>
+    <div class="h-16 flex items-center justify-between gap-4">
+      <button id="homeBtn" class="flex items-center gap-3 shrink-0" title="Retour à l'introduction">
+        <span class="brand-mark">H</span>
         <span class="text-left">
-          <span class="block text-[13px] font-bold leading-none" style="color:var(--txt)">Entropia</span>
-          <span class="block text-[10px] leading-none mt-0.5" style="color:var(--txt-3)">de l'information à l'IA</span>
+          <span class="brand-name">Entropia</span>
+          <span class="brand-sub">de l'information à l'IA</span>
         </span>
       </button>
 
-      <div class="hidden md:flex items-center gap-3 flex-1 max-w-md">
-        <div class="flex-1 progress-track rounded-full overflow-hidden">
-          <div id="progressFill" class="progress-fill rounded-full" style="width:0%"></div>
+      <div class="hidden md:flex items-center gap-4 flex-1 max-w-md">
+        <div class="flex-1 progress-track overflow-hidden">
+          <div id="progressFill" class="progress-fill" style="width:0%"></div>
         </div>
-        <span id="progressLabel" class="mono text-[11px] tabular shrink-0" style="color:var(--txt-3)">0 / 11</span>
+        <span id="progressLabel" class="brand-count shrink-0">· / XI</span>
       </div>
 
       <div class="flex items-center gap-2 shrink-0">
@@ -80,33 +84,43 @@
     <!-- ============ INTRO ============ -->
     <section class="chapter" data-ch="intro">
       <div class="max-w-3xl">
-        <p class="eyebrow mb-4">Une expérience interactive · d'après Shannon 1948</p>
-        <h1 class="h-display text-4xl sm:text-6xl mb-6">
-          Le langage est<br><span style="color:var(--accent)">prévisible</span>.
+        <p class="eyebrow mb-5">Une expérience interactive · d'après Shannon 1948</p>
+        <h1 class="h-display text-4xl sm:text-6xl mb-7">
+          <span class="resolve" data-resolve="Le langage est">Le langage est</span><br><span class="foil">prévisible</span>.
         </h1>
         <p class="lead mb-4">
           En 1948, Claude Shannon montre que l'<b style="color:var(--txt)">information se mesure</b>, en bits, et que le langage humain — plein de règles, de grammaire et d'habitudes — en contient bien moins qu'il n'y paraît. Le reste est <b style="color:var(--txt)">redondance</b>.
         </p>
-        <p class="lead mb-8">
+        <p class="lead mb-9">
           Ici, rien n'est simulé. Un vrai modèle statistique est entraîné devant vous sur un corpus, évalué sur un texte qu'il n'a jamais vu, puis utilisé pour compresser, corriger le bruit et prédire le mot suivant — exactement ce que fait un modèle de langage moderne, en plus petit.
         </p>
 
-        <div class="grid sm:grid-cols-3 gap-3 mb-8">
-          <div class="card p-4">
-            <div class="mono text-2xl font-bold mb-1" style="color:var(--hot)" id="introF0">4,75</div>
-            <p class="text-xs leading-relaxed" style="color:var(--txt-2)">bits/lettre si les 27 symboles étaient équiprobables — <span class="mono">F₀</span></p>
+        <!-- La descente : la thèse de la page, mesurée. Chaque barre est
+             proportionnelle aux bits, et lit sur l'axe chaud → froid. -->
+        <div class="descent mb-9">
+          <p class="eyebrow descent-head">L'incertitude, mesurée en bits par lettre</p>
+          <div class="descent-row">
+            <span class="descent-key mono">F₀</span>
+            <span class="descent-bar"><i id="introF0Bar" style="width:100%;background:var(--hot)"></i></span>
+            <span class="descent-val mono" id="introF0" style="color:var(--hot)">4,75</span>
+            <span class="descent-txt">si les 27 symboles étaient équiprobables</span>
           </div>
-          <div class="card p-4">
-            <div class="mono text-2xl font-bold mb-1" style="color:var(--warn)" id="introF1">—</div>
-            <p class="text-xs leading-relaxed" style="color:var(--txt-2)">en tenant compte des fréquences de lettres — <span class="mono">F₁</span></p>
+          <div class="descent-row">
+            <span class="descent-key mono">F₁</span>
+            <span class="descent-bar"><i id="introF1Bar" style="width:0%;background:var(--gold)"></i></span>
+            <span class="descent-val mono" id="introF1" style="color:var(--gold)">—</span>
+            <span class="descent-txt">en tenant compte des fréquences de lettres</span>
           </div>
-          <div class="card p-4">
-            <div class="mono text-2xl font-bold mb-1" style="color:var(--ok)" id="introFn">—</div>
-            <p class="text-xs leading-relaxed" style="color:var(--txt-2)">avec 6 lettres de contexte, mesuré sur texte inédit — <span class="mono">F₇</span></p>
+          <div class="descent-row">
+            <span class="descent-key mono">F₇</span>
+            <span class="descent-bar"><i id="introFnBar" style="width:0%;background:var(--cold)"></i></span>
+            <span class="descent-val mono" id="introFn" style="color:var(--cold)">—</span>
+            <span class="descent-txt">avec 6 lettres de contexte, sur texte inédit</span>
           </div>
+          <p class="descent-foot">Tout le parcours tient dans cet écart : ce que la structure de la langue vous fait économiser.</p>
         </div>
 
-        <button id="startBtn" class="btn btn-primary" style="font-size:.875rem;padding:.6875rem 1.25rem">
+        <button id="startBtn" class="btn btn-primary" style="font-size:.72rem;padding:.75rem 1.4rem">
           Commencer le parcours <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </button>
 

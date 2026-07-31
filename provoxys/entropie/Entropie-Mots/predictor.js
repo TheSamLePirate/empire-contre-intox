@@ -188,10 +188,10 @@ function components(lang, ctxWords, ctxTail, word, cache) {
 const KEYS = ['ngram', 'cache', 'klass', 'spell'];
 
 export const COMPONENT_META = {
-  ngram: { label: 'n-gramme', desc: "l'ordre des mots", color: '#5b8cff' },
-  cache: { label: 'cache', desc: 'ce que vous venez d\'écrire', color: '#35d0a5' },
-  klass: { label: 'classes', desc: 'les terminaisons', color: '#f5b544' },
-  spell: { label: 'orthographe', desc: 'lettre à lettre', color: '#a78bfa' }
+  ngram: { label: 'n-gramme', desc: "l'ordre des mots", color: '#d6ac55' },
+  cache: { label: 'cache', desc: 'ce que vous venez d\'écrire', color: '#6fb094' },
+  klass: { label: 'classes', desc: 'les terminaisons', color: '#ef7d57' },
+  spell: { label: 'orthographe', desc: 'lettre à lettre', color: '#9d86c9' }
 };
 
 /** Mélange pondéré, en ignorant les composantes inactives. */

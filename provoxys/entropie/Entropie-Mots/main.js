@@ -67,6 +67,15 @@ function go(id, { scroll = true, hash = true } = {}) {
   if (!meta(id)) id = 'intro';
   document.querySelectorAll('section.chapter').forEach(s => { s.hidden = s.dataset.ch !== id; });
   current = id;
+
+  /* Grave le degré en chiffre romain dans la tête du chapitre. */
+  const sec = document.querySelector(`section[data-ch="${id}"]`);
+  const num = meta(id).num;
+  if (sec) {
+    if (num > 0) sec.dataset.num = roman(num);
+    else delete sec.dataset.num;
+  }
+
   store.chapter = id;
   if (hash && location.hash.slice(1) !== id) history.replaceState(null, '', '#' + id);
   if (id !== 'intro') store.visited.add(id);
@@ -93,15 +102,21 @@ nav.go = go;
 nav.reset = () => { reset(); started.clear(); location.reload(); };
 
 /* ---------- Rail, chips, progression ---------- */
+
+/* Chiffres romains : le parcours est une séquence réelle, l'ordre porte
+   du sens. On grave donc les degrés à la manière du codex. */
+const ROMAN = ['·', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI'];
+export const roman = n => ROMAN[n] || String(n);
+
 function renderRail() {
   el('rail').innerHTML = CHAPTERS.map(c => `
     <button class="rail-item ${store.visited.has(c.id) ? 'done' : ''}" data-go="${c.id}" aria-current="${c.id === current}">
-      <span class="rail-num">${c.num === 0 ? '·' : c.num}</span>
+      <span class="rail-num">${roman(c.num)}</span>
       <span class="truncate">${c.short}</span>
     </button>`).join('');
 
   el('chipNav').innerHTML = CHAPTERS.map(c => `
-    <button class="chip" data-go="${c.id}" aria-current="${c.id === current}">${c.num === 0 ? 'Intro' : c.num + '. ' + c.short}</button>`).join('');
+    <button class="chip" data-go="${c.id}" aria-current="${c.id === current}">${c.num === 0 ? 'Intro' : roman(c.num) + ' · ' + c.short}</button>`).join('');
 
   document.querySelectorAll('[data-go]').forEach(b => { b.onclick = () => go(b.dataset.go); });
 
@@ -111,8 +126,11 @@ function renderRail() {
 
 function renderProgress() {
   const n = store.visited.size;
-  el('progressFill').style.width = (n / TOTAL * 100) + '%';
-  el('progressLabel').textContent = `${n} / ${TOTAL}`;
+  const pct = n / TOTAL * 100;
+  el('progressFill').style.width = pct + '%';
+  el('progressLabel').textContent = `${roman(n)} / ${roman(TOTAL)}`;
+  /* le fil d'or du rail se remplit au même rythme */
+  el('rail').style.setProperty('--rail-progress', pct + '%');
 }
 
 function renderFooter() {
@@ -128,12 +146,11 @@ function renderFooter() {
 
 function renderIntroList() {
   el('introList').innerHTML = CHAPTERS.filter(c => c.num > 0).map(c => `
-    <button data-go="${c.id}" class="card p-3.5 text-left flex items-start gap-3 transition"
-      onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--line)'">
-      <span class="rail-num shrink-0 mt-0.5">${c.num}</span>
+    <button data-go="${c.id}" class="card p-4 text-left flex items-start gap-3.5">
+      <span class="rail-num shrink-0 mt-0.5">${roman(c.num)}</span>
       <span class="min-w-0">
-        <span class="block text-[13px] font-semibold" style="color:var(--txt)">${c.short}</span>
-        <span class="block text-[11px] leading-snug mt-0.5" style="color:var(--txt-3)">${BLURBS[c.id]}</span>
+        <span class="block h-chapter text-[13px]">${c.short}</span>
+        <span class="block text-[12px] leading-relaxed mt-1" style="color:var(--txt-3)">${BLURBS[c.id]}</span>
       </span>
     </button>`).join('');
 }
@@ -143,9 +160,20 @@ function renderIntroFigures() {
   try {
     const st = letterStats(store.lang);
     const fn = fnCurve(store.lang);
+    const f7 = fn[fn.length - 1].test;
     el('introF0').textContent = st.F0.toFixed(2).replace('.', ',');
     el('introF1').textContent = st.F1.toFixed(2).replace('.', ',');
-    el('introFn').textContent = fn[fn.length - 1].test.toFixed(2).replace('.', ',');
+    el('introFn').textContent = f7.toFixed(2).replace('.', ',');
+
+    /* Les barres de la descente sont proportionnelles aux bits mesurés,
+       F₀ valant la pleine largeur : l'écart se voit avant de se lire. */
+    const bar = (id, bits) => {
+      const n = el(id);
+      if (n) n.style.width = Math.max(0, Math.min(100, bits / st.F0 * 100)) + '%';
+    };
+    bar('introF0Bar', st.F0);
+    bar('introF1Bar', st.F1);
+    bar('introFnBar', f7);
     const cov = coverage(store.lang);
     const nf = n => n.toLocaleString('fr-FR');
     const set = (id, v) => { const n = el(id); if (n) n.textContent = v; };
@@ -199,6 +227,69 @@ function boot() {
   const fromHash = location.hash.slice(1);
   go(meta(fromHash) ? fromHash : (store.chapter || 'intro'), { scroll: false });
   refreshIcons();
+  resolveTitle();
+}
+
+/* ============================================================
+   Le titre se résout hors du bruit.
+   ------------------------------------------------------------
+   Chaque lettre part d'un tirage uniforme dans l'alphabet même
+   du parcours — les 27 symboles de Shannon, équiprobables, soit
+   F₀ — puis se fixe. C'est la thèse de la page jouée une fois :
+   le bruit s'effondre en structure. Coupé si l'utilisateur a
+   demandé moins de mouvement.
+   ============================================================ */
+function resolveTitle() {
+  const host = document.querySelector('.resolve');
+  if (!host) return;
+  const text = host.dataset.resolve || host.textContent;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    host.textContent = text;
+    return;
+  }
+
+  const POOL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ';
+  const chars = [...text];
+  host.textContent = '';
+  const spans = chars.map(ch => {
+    const s = document.createElement('span');
+    if (ch === ' ') { s.textContent = ' '; return host.appendChild(s), s; }
+    s.className = 'noise';
+    s.textContent = POOL[(Math.random() * POOL.length) | 0];
+    host.appendChild(s);
+    return s;
+  });
+
+  const start = performance.now();
+  const SETTLE = 620;   // date de fixation du dernier caractère
+  const SPREAD = 430;   // décalage de gauche à droite
+  let raf;
+
+  const tick = now => {
+    const t = now - start;
+    let pending = 0;
+    spans.forEach((s, i) => {
+      if (chars[i] === ' ' || !s.classList.contains('noise')) return;
+      const due = SPREAD * (i / Math.max(1, spans.length - 1)) + SETTLE;
+      if (t >= due) {
+        s.classList.remove('noise');
+        s.textContent = chars[i];
+      } else {
+        pending++;
+        if ((t | 0) % 2 === 0) s.textContent = POOL[(Math.random() * POOL.length) | 0];
+      }
+    });
+    if (pending) raf = requestAnimationFrame(tick);
+  };
+  raf = requestAnimationFrame(tick);
+
+  /* Si l'onglet passe en arrière-plan, on fixe le titre immédiatement. */
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && raf) {
+      cancelAnimationFrame(raf);
+      host.textContent = text;
+    }
+  }, { once: true });
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

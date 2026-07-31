@@ -5,7 +5,7 @@ export const LANGUAGES = {
     name: "Français",
     flag: "🇫🇷",
     script: "latin",
-    color: "#2563eb",
+    color: "#58a6d9",
     freq: {
       a: 8.15, b: 0.90, c: 3.34, d: 3.67, e: 14.72, f: 1.07, g: 0.87,
       h: 0.74, i: 7.53, j: 0.55, k: 0.05, l: 5.46, m: 2.97, n: 7.10,
@@ -17,7 +17,7 @@ export const LANGUAGES = {
     name: "Anglais",
     flag: "🇬🇧",
     script: "latin",
-    color: "#dc2626",
+    color: "#ef7d57",
     freq: {
       a: 8.17, b: 1.49, c: 2.78, d: 4.25, e: 12.70, f: 2.23, g: 2.02,
       h: 6.09, i: 6.97, j: 0.15, k: 0.77, l: 4.03, m: 2.41, n: 6.75,
@@ -29,7 +29,7 @@ export const LANGUAGES = {
     name: "Espagnol",
     flag: "🇪🇸",
     script: "latin",
-    color: "#d97706",
+    color: "#d6ac55",
     freq: {
       a: 11.53, b: 2.22, c: 4.02, d: 5.01, e: 12.18, f: 0.69, g: 1.01,
       h: 0.70, i: 6.25, j: 0.44, k: 0.02, l: 4.97, m: 3.16, n: 6.71,
@@ -41,7 +41,7 @@ export const LANGUAGES = {
     name: "Russe",
     flag: "🇷🇺",
     script: "cyrillic",
-    color: "#7c3aed",
+    color: "#9d86c9",
     freq: {
       "о": 10.98, "е": 8.45, "а": 8.01, "и": 7.35, "н": 6.70, "т": 6.26,
       "с": 5.47, "р": 4.73, "в": 4.54, "л": 4.40, "к": 3.49, "м": 3.21,

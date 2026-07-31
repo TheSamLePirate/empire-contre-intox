@@ -1,279 +1,543 @@
 /* ============================================================
-   ENTROPIA — Design system
-   Parcours pédagogique : de l'information à l'IA
+   ENTROPIA — Codex scientifique impérial
+   Laboratoire interactif du dossier XXV « Entropie »
+   ------------------------------------------------------------
+   Deux registres, jamais mélangés :
+   · L'OR est le mobilier du codex — navigation, filets, chiffres
+     romains, boutons. Il structure, il ne mesure rien.
+   · L'axe CHAUD ↔ FROID est la donnée — chaud = haute entropie,
+     surprise, bruit ; froid = basse entropie, ordre, prédiction.
+     Toute jauge, barre ou pastille lit sur cet axe.
    ============================================================ */
 
 :root{
-  --bg:        #07090f;
-  --surface:   #0d1017;
-  --surface-2: #12161f;
-  --line:      #1c212c;
-  --line-soft: #161b24;
-  --txt:       #e8eaf0;
-  --txt-2:     #9aa3b2;
-  --txt-3:     #626c7d;
-  --accent:    #5b8cff;
-  --ok:        #35d0a5;
-  --warn:      #f5b544;
-  --hot:       #ff6b6b;
-  --violet:    #a78bfa;
+  /* --- nuit --- */
+  --void:      #050811;
+  --abyss:     #070c1a;
+  --navy:      #0e1a2e;
+
+  /* --- parchemin --- */
+  --ink:       #f4ecd8;
+  --parch:     #e7dcc1;
+  --muted:     #c0b59a;
+  --soft:      #8f8c78;
+
+  /* --- or --- */
+  --gold:      #d6ac55;
+  --gold-bright:#f3d98a;
+  --gold-deep: #9c7228;
+
+  /* --- axe de l'entropie (hérité du dossier parent) --- */
+  --hot:       #ef7d57;   /* haute entropie · surprise · bruit  */
+  --hot-bright:#ff9d7a;
+  --cold:      #58a6d9;   /* basse entropie · ordre · prédiction */
+  --cold-bright:#7fd4e8;
+
+  /* --- verdicts --- */
+  --ok:        #6fb094;
+  --warn:      #ef7d57;
+  --violet:    #9d86c9;
+
+  /* --- filets --- */
+  --line:      rgba(214,172,85,.20);
+  --line-soft: rgba(244,236,216,.09);
+
+  /* --- alias hérités : tout le JS et les styles inline pointent ici --- */
+  --bg:        var(--void);
+  --surface:   var(--abyss);
+  --surface-2: #0b1220;
+  --txt:       var(--ink);
+  --txt-2:     var(--muted);
+  --txt-3:     var(--soft);
+  --accent:    var(--gold);
+
+  --glass:     rgba(7,12,26,.72);
+  --shadow:    0 40px 120px rgba(0,0,0,.55);
+  --roman:     "Cinzel",Georgia,serif;
+  --serif:     "Fraunces",Georgia,"Times New Roman",serif;
+  --mono:      "JetBrains Mono",ui-monospace,monospace;
+  --ease:      cubic-bezier(.22,1,.36,1);
 }
 
 *{ -webkit-tap-highlight-color: transparent; }
-
 html{ scroll-behavior:smooth; }
 
 body{
-  background:var(--bg);
-  color:var(--txt);
-  font-family:Inter,system-ui,sans-serif;
+  background:var(--void);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-optical-sizing:auto;
   -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- accessibilité : anneau de focus doré, partout ---------- */
+a:focus-visible, button:focus-visible, select:focus-visible,
+textarea:focus-visible, input:focus-visible, [tabindex]:focus-visible{
+  outline:2px solid var(--gold-bright);
+  outline-offset:2px;
+  border-radius:2px;
 }
 
 /* ---------- scrollbars ---------- */
 ::-webkit-scrollbar{width:9px;height:9px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:#232a36;border-radius:6px}
-::-webkit-scrollbar-thumb:hover{background:#2f3846}
-*{scrollbar-width:thin;scrollbar-color:#232a36 transparent}
+::-webkit-scrollbar-thumb{background:rgba(214,172,85,.22);border-radius:0}
+::-webkit-scrollbar-thumb:hover{background:rgba(214,172,85,.4)}
+*{scrollbar-width:thin;scrollbar-color:rgba(214,172,85,.22) transparent}
 
-/* ---------- typography ---------- */
-.h-display{ font-weight:800; letter-spacing:-0.03em; line-height:1.05; }
-.h-chapter{ font-weight:800; letter-spacing:-0.02em; line-height:1.15; }
-.lead{ color:var(--txt-2); font-size:1.0625rem; line-height:1.65; }
-.mono{ font-family:'JetBrains Mono',ui-monospace,monospace; font-variant-ligatures:none; }
+/* ============================================================
+   ATMOSPHÈRE — grille gravée, champ d'étoiles, grain, équerres
+   ============================================================ */
+.atmos{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(1px 1px at 12% 22%, rgba(244,236,216,.30), transparent 60%),
+    radial-gradient(1px 1px at 78% 14%, rgba(244,236,216,.22), transparent 60%),
+    radial-gradient(1px 1px at 34% 68%, rgba(214,172,85,.26), transparent 60%),
+    radial-gradient(1px 1px at 88% 74%, rgba(244,236,216,.18), transparent 60%),
+    radial-gradient(1px 1px at 58% 40%, rgba(214,172,85,.20), transparent 60%),
+    linear-gradient(rgba(214,172,85,.045) 1px, transparent 1px) 0 0/72px 72px,
+    linear-gradient(90deg, rgba(214,172,85,.045) 1px, transparent 1px) 0 0/72px 72px;
+  -webkit-mask-image:radial-gradient(ellipse at 50% 0%, #000 0%, transparent 78%);
+  mask-image:radial-gradient(ellipse at 50% 0%, #000 0%, transparent 78%);
+  animation:twinkle 9s ease-in-out infinite alternate;
+}
+@keyframes twinkle{ from{opacity:.62} to{opacity:1} }
+
+.grain{
+  position:fixed; inset:0; z-index:1; pointer-events:none;
+  opacity:.05; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* équerres d'or aux quatre coins — le cadre de charte */
+.frame{ position:fixed; inset:0; z-index:2; pointer-events:none; }
+.frame i{
+  position:absolute; width:26px; height:26px;
+  border:1px solid rgba(214,172,85,.42);
+}
+.frame i:nth-child(1){ top:14px; left:14px;  border-right:0; border-bottom:0; }
+.frame i:nth-child(2){ top:14px; right:14px; border-left:0;  border-bottom:0; }
+.frame i:nth-child(3){ bottom:14px; left:14px;  border-right:0; border-top:0; }
+.frame i:nth-child(4){ bottom:14px; right:14px; border-left:0;  border-top:0; }
+
+/* tout le contenu passe au-dessus de l'atmosphère */
+body > header, body > div, body > footer{ position:relative; z-index:3; }
+
+/* ============================================================
+   TYPOGRAPHIE
+   ============================================================ */
+.h-display{
+  font-family:var(--roman); font-weight:800;
+  letter-spacing:.015em; line-height:1.04; color:var(--ink);
+  text-transform:uppercase;
+}
+.h-chapter{
+  font-family:var(--roman); font-weight:700;
+  letter-spacing:.05em; line-height:1.15; color:var(--ink);
+  text-transform:uppercase;
+}
+.lead{
+  color:var(--muted); font-size:1.06rem; line-height:1.72;
+  font-family:var(--serif);
+}
+.mono{ font-family:var(--mono); font-variant-ligatures:none; }
 .eyebrow{
-  font-size:.6875rem; font-weight:700; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--txt-3);
+  font-family:var(--roman); font-weight:600;
+  font-size:.62rem; letter-spacing:.34em;
+  text-transform:uppercase; color:var(--soft);
 }
 
-/* ---------- surfaces ---------- */
+/* mot-accent du titre : feuille d'or animée */
+.foil{
+  background:linear-gradient(100deg,var(--gold-deep),var(--gold-bright) 42%,var(--gold) 58%,var(--gold-deep));
+  background-size:220% 100%;
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+  animation:foil 7s linear infinite;
+}
+@keyframes foil{ from{background-position:0% 0} to{background-position:220% 0} }
+
+/* le titre se résout hors du bruit — la thèse de la page, jouée une fois */
+.resolve span{ display:inline-block; white-space:pre; }
+.resolve span.noise{ color:var(--soft); opacity:.55; }
+
+/* ============================================================
+   MARQUE — H, le symbole de Shannon, dans un anneau d'or
+   ============================================================ */
+.brand-mark{
+  width:34px; height:34px; flex:none;
+  display:grid; place-items:center; border-radius:50%;
+  font-family:var(--roman); font-weight:700; font-size:.95rem;
+  color:var(--gold-bright); background:var(--void);
+  box-shadow:0 0 0 1px var(--gold-deep), 0 0 0 3px rgba(214,172,85,.12);
+  transition:box-shadow .3s var(--ease), color .3s;
+}
+#homeBtn:hover .brand-mark{
+  color:var(--ink);
+  box-shadow:0 0 0 1px var(--gold-bright), 0 0 18px rgba(214,172,85,.35);
+}
+.brand-name{
+  display:block; font-family:var(--roman); font-weight:700;
+  font-size:.78rem; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--ink); line-height:1.1;
+}
+.brand-sub{
+  display:block; font-family:var(--serif); font-style:italic;
+  font-size:.66rem; color:var(--soft); margin-top:2px; line-height:1.1;
+}
+.brand-count{
+  font-family:var(--roman); font-weight:600;
+  font-size:.62rem; letter-spacing:.18em; color:var(--gold);
+}
+
+/* Sur petit écran la barre doit tenir : on retire le sous-titre et le
+   bouton « précédent » (le fil de pastilles et le pied de chapitre
+   assurent déjà la navigation dans les deux sens). */
+@media (max-width:640px){
+  .brand-sub{ display:none; }
+  #navPrev{ display:none; }
+  .brand-name{ font-size:.68rem; letter-spacing:.16em; }
+  .brand-mark{ width:30px; height:30px; font-size:.85rem; }
+  select.field{ max-width:6.4rem; }
+}
+
+/* ============================================================
+   LA DESCENTE — F₀ → F₁ → F₇, la thèse de la page en trois barres
+   ============================================================ */
+.descent{
+  border:1px solid var(--line-soft); border-top:2px solid var(--line);
+  border-radius:3px; padding:20px clamp(16px,2.4vw,26px) 18px;
+  background:linear-gradient(180deg,rgba(214,172,85,.04),rgba(7,12,26,.55));
+}
+.descent-head{ margin-bottom:16px; }
+.descent-row{
+  display:grid; grid-template-columns:2.1rem minmax(0,1fr) 3.6rem;
+  grid-template-areas:"key bar val" ".  txt txt";
+  align-items:center; gap:.35rem .8rem; padding:.42rem 0;
+}
+.descent-key{ grid-area:key; font-size:.78rem; color:var(--soft); }
+.descent-bar{
+  grid-area:bar; display:block; height:6px;
+  background:rgba(244,236,216,.06); border-radius:1px; overflow:hidden;
+}
+.descent-bar i{
+  display:block; height:100%; border-radius:1px;
+  transition:width 1.1s var(--ease);
+}
+.descent-val{
+  grid-area:val; text-align:right; font-size:1rem; font-weight:700;
+  font-variant-numeric:tabular-nums;
+}
+.descent-txt{
+  grid-area:txt; font-family:var(--serif); font-size:.78rem;
+  line-height:1.5; color:var(--soft);
+}
+.descent-foot{
+  margin-top:16px; padding-top:14px; border-top:1px solid var(--line-soft);
+  font-family:var(--serif); font-style:italic; font-size:.82rem;
+  line-height:1.6; color:var(--muted);
+}
+@media (max-width:560px){
+  .descent-row{ grid-template-columns:1.8rem minmax(0,1fr) 3.2rem; }
+  .descent-txt{ font-size:.74rem; }
+}
+
+/* ============================================================
+   SURFACES
+   ============================================================ */
 .card{
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:16px;
-}
-.card-inset{
-  background:var(--bg);
+  background:linear-gradient(180deg,rgba(214,172,85,.035),var(--abyss));
   border:1px solid var(--line-soft);
-  border-radius:12px;
+  border-radius:3px;
+  position:relative;
+  transition:border-color .3s var(--ease), box-shadow .3s var(--ease);
 }
-.divider{ height:1px; background:var(--line); }
+.card:hover{ border-color:var(--line); }
+.card-inset{
+  background:rgba(5,8,17,.72);
+  border:1px solid var(--line-soft);
+  border-radius:2px;
+}
+.divider{ height:1px; background:var(--line); border:0; }
 
-/* ---------- buttons ---------- */
+/* ============================================================
+   BOUTONS — primaire = or gravé, secondaire = fantôme bordé
+   ============================================================ */
 .btn{
   display:inline-flex; align-items:center; gap:.5rem;
-  font-size:.8125rem; font-weight:600;
-  padding:.5rem .875rem; border-radius:10px;
-  border:1px solid var(--line); color:var(--txt-2);
-  background:var(--surface-2);
-  transition:color .15s, border-color .15s, background-color .15s;
+  font-family:var(--roman); font-weight:600;
+  font-size:.68rem; letter-spacing:.14em; text-transform:uppercase;
+  padding:.6rem 1rem; border-radius:2px;
+  border:1px solid var(--line); color:var(--muted);
+  background:rgba(214,172,85,.05);
+  transition:color .25s, border-color .25s, background-color .25s, transform .25s var(--ease), box-shadow .25s var(--ease);
   cursor:pointer;
 }
-.btn:hover{ color:var(--txt); border-color:#2b3444; }
-.btn-primary{
-  background:var(--accent); border-color:var(--accent); color:#fff;
+.btn:hover:not(:disabled){
+  color:var(--gold-bright); border-color:rgba(214,172,85,.55);
+  transform:translateY(-2px);
 }
-.btn-primary:hover{ background:#4a7cf0; border-color:#4a7cf0; color:#fff; }
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold));
+  border-color:transparent; color:#120d04; font-weight:700;
+}
+.btn-primary:hover:not(:disabled){
+  color:#120d04; box-shadow:0 14px 34px rgba(214,172,85,.28);
+}
 .btn-ghost{ background:transparent; }
-.btn:disabled{ opacity:.45; cursor:not-allowed; }
-.btn-sm{ font-size:.75rem; padding:.375rem .625rem; border-radius:8px; }
+.btn:disabled{ opacity:.4; cursor:not-allowed; }
+.btn-sm{ font-size:.62rem; padding:.42rem .7rem; letter-spacing:.12em; }
 
-/* ---------- inputs ---------- */
+/* ============================================================
+   CHAMPS
+   ============================================================ */
 .field{
-  width:100%; background:var(--bg);
-  border:1px solid var(--line); border-radius:12px;
-  color:var(--txt); padding:.875rem 1rem;
-  font-size:.9375rem; line-height:1.6;
-  transition:border-color .15s, box-shadow .15s;
+  width:100%; background:rgba(5,8,17,.8);
+  border:1px solid var(--line); border-radius:2px;
+  color:var(--ink); padding:.85rem 1rem;
+  font-family:var(--serif); font-size:.95rem; line-height:1.6;
+  transition:border-color .25s, box-shadow .25s;
 }
 .field:focus{
-  outline:none; border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(91,140,255,.14);
+  outline:none; border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(214,172,85,.14);
 }
-.field::placeholder{ color:var(--txt-3); }
-select.field{ padding:.5rem .75rem; font-size:.8125rem; }
+.field::placeholder{ color:var(--soft); }
+select.field{
+  padding:.45rem .7rem; font-family:var(--roman);
+  font-size:.64rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted);
+}
 
 input[type=range]{
   -webkit-appearance:none; appearance:none;
-  height:3px; border-radius:9999px; background:var(--line); outline:none;
+  height:2px; border-radius:0; background:var(--line); outline:none;
 }
 input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none; width:15px; height:15px; border-radius:50%;
-  background:var(--accent); cursor:pointer; border:3px solid var(--bg);
-  box-sizing:content-box;
+  -webkit-appearance:none; width:13px; height:13px; border-radius:50%;
+  background:var(--gold); cursor:pointer; border:3px solid var(--void);
+  box-sizing:content-box; transition:background-color .2s;
 }
+input[type=range]:hover::-webkit-slider-thumb{ background:var(--gold-bright); }
 input[type=range]::-moz-range-thumb{
-  width:15px; height:15px; border-radius:50%; background:var(--accent);
-  cursor:pointer; border:3px solid var(--bg);
+  width:13px; height:13px; border-radius:50%; background:var(--gold);
+  cursor:pointer; border:3px solid var(--void);
 }
 
-/* ---------- chapter rail (desktop) ---------- */
+/* ============================================================
+   RAIL DU PARCOURS — onze degrés gravés sur un fil d'or
+   ============================================================ */
+#rail{ position:relative; }
+#rail::before{                       /* le fil, en creux */
+  content:""; position:absolute; left:18px; top:6px; bottom:6px;
+  width:1px; background:var(--line-soft);
+}
+#rail::after{                        /* le fil, rempli par la progression */
+  content:""; position:absolute; left:18px; top:6px;
+  width:1px; height:var(--rail-progress,0%);
+  background:linear-gradient(180deg,var(--gold-bright),var(--gold-deep));
+  box-shadow:0 0 8px rgba(214,172,85,.5);
+  transition:height .6s var(--ease);
+}
 .rail-item{
-  display:flex; align-items:center; gap:.75rem;
-  padding:.5rem .625rem; border-radius:10px;
-  font-size:.8125rem; color:var(--txt-3);
-  transition:color .15s, background-color .15s;
+  display:flex; align-items:center; gap:.8rem;
+  padding:.46rem .5rem; border-radius:2px;
+  font-family:var(--roman); font-weight:500;
+  font-size:.66rem; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--soft);
+  transition:color .25s, background-color .25s;
   cursor:pointer; width:100%; text-align:left;
-  border:1px solid transparent;
+  border:0; position:relative; z-index:1;
 }
-.rail-item:hover{ color:var(--txt-2); background:var(--surface-2); }
-.rail-item[aria-current="true"]{
-  color:var(--txt); background:var(--surface-2); border-color:var(--line);
-}
+.rail-item:hover{ color:var(--gold-bright); }
+.rail-item[aria-current="true"]{ color:var(--gold-bright); }
 .rail-num{
-  width:22px; height:22px; flex-shrink:0;
+  width:21px; height:21px; flex-shrink:0;
   display:grid; place-items:center;
-  border-radius:6px; font-size:.6875rem; font-weight:700;
-  background:var(--surface-2); border:1px solid var(--line);
-  color:var(--txt-3);
-  font-family:'JetBrains Mono',monospace;
+  border-radius:50%; font-size:.56rem; font-weight:700;
+  background:var(--void); border:1px solid var(--line);
+  color:var(--soft); font-family:var(--roman);
+  letter-spacing:0; transition:all .3s var(--ease);
 }
+.rail-item:hover .rail-num{ border-color:rgba(214,172,85,.6); color:var(--gold-bright); }
 .rail-item[aria-current="true"] .rail-num{
-  background:var(--accent); border-color:var(--accent); color:#fff;
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold));
+  border-color:transparent; color:#120d04;
+  box-shadow:0 0 0 4px rgba(214,172,85,.12);
 }
-.rail-item.done .rail-num{ color:var(--ok); border-color:rgba(53,208,165,.35); }
+.rail-item.done .rail-num{ color:var(--gold); border-color:rgba(214,172,85,.45); }
 
-/* ---------- chapter panels ---------- */
+/* ============================================================
+   PANNEAUX DE CHAPITRE
+   ============================================================ */
 .chapter[hidden]{ display:none; }
-.chapter{ animation:chapterIn .4s cubic-bezier(.16,1,.3,1) both; }
+.chapter{ animation:chapterIn .5s var(--ease) both; position:relative; }
 @keyframes chapterIn{
-  from{ opacity:0; transform:translateY(12px); }
+  from{ opacity:0; transform:translateY(10px); }
   to{ opacity:1; transform:none; }
 }
 
-/* ---------- animation utils ---------- */
-.grow{ transition:width .55s cubic-bezier(.16,1,.3,1), height .55s cubic-bezier(.16,1,.3,1), background-color .3s; }
+/* Grand chiffre romain en contour, gravé en tête de chapitre.
+   Le degré est posé par main.js (data-num) — décoratif, donc
+   masqué aux lecteurs d'écran : le titre porte déjà « Chapitre N ». */
+.chapter[data-num]::before{
+  content:attr(data-num);
+  position:absolute; top:-14px; right:0; z-index:0;
+  font-family:var(--roman); font-weight:900;
+  font-size:clamp(3.5rem,7vw,6rem); line-height:1;
+  color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.22);
+  pointer-events:none; user-select:none;
+}
+@media (max-width:900px){ .chapter[data-num]::before{ display:none; } }
+
+/* ---------- utilitaires d'animation ---------- */
+.grow{ transition:width .6s var(--ease), height .6s var(--ease), background-color .3s; }
 .fade{ animation:fadeIn .4s ease both; }
 @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
-.rise{ animation:rise .45s cubic-bezier(.16,1,.3,1) both; }
+.rise{ animation:rise .5s var(--ease) both; }
 @keyframes rise{ from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
 
-/* ---------- glyph tiles (heatmaps) ---------- */
+/* ============================================================
+   PASTILLES DE GLYPHES (cartes de chaleur)
+   ============================================================ */
 .glyph{
   display:inline-grid; place-items:center;
-  border-radius:6px; font-family:'JetBrains Mono',monospace;
-  font-size:.8125rem; font-weight:600;
+  border-radius:2px; font-family:var(--mono);
+  font-size:.8rem; font-weight:600;
   transition:background-color .3s, color .3s, transform .12s;
   cursor:default;
 }
 .glyph:hover{ transform:translateY(-2px); }
 
-/* ---------- key buttons (game) ---------- */
+/* ---------- touches du jeu de 1951 ---------- */
 .keycap{
-  font-family:'JetBrains Mono',monospace;
-  font-weight:600; font-size:.8125rem;
-  border-radius:8px; border:1px solid var(--line);
-  background:var(--surface-2); color:var(--txt-2);
-  transition:transform .08s, background-color .15s, border-color .15s, color .15s;
+  font-family:var(--roman); font-weight:600; font-size:.78rem;
+  border-radius:2px; border:1px solid var(--line);
+  background:rgba(214,172,85,.05); color:var(--muted);
+  transition:transform .08s, background-color .2s, border-color .2s, color .2s;
   cursor:pointer;
 }
-.keycap:hover:not(:disabled){ color:var(--txt); border-color:var(--accent); }
+.keycap:hover:not(:disabled){ color:var(--gold-bright); border-color:rgba(214,172,85,.55); }
 .keycap:active:not(:disabled){ transform:scale(.93); }
 .keycap:disabled{ cursor:not-allowed; }
 .keycap.wrong{
-  background:rgba(255,107,107,.08); border-color:rgba(255,107,107,.28);
-  color:rgba(255,107,107,.55); text-decoration:line-through;
+  background:rgba(239,125,87,.08); border-color:rgba(239,125,87,.3);
+  color:rgba(239,125,87,.6); text-decoration:line-through;
 }
 
-/* ---------- stat blocks ---------- */
+/* ============================================================
+   BLOCS DE MESURE
+   ============================================================ */
 .stat{
-  background:var(--bg); border:1px solid var(--line-soft);
-  border-radius:12px; padding:.75rem; text-align:center;
+  background:rgba(5,8,17,.7); border:1px solid var(--line-soft);
+  border-radius:2px; padding:.8rem .6rem; text-align:center;
+  border-top:2px solid var(--line);
 }
-.stat-v{ font-family:'JetBrains Mono',monospace; font-weight:700; font-size:1.25rem; line-height:1.1; }
-.stat-l{ font-size:.625rem; color:var(--txt-3); margin-top:.3rem; letter-spacing:.02em; }
+.stat-v{ font-family:var(--mono); font-weight:700; font-size:1.2rem; line-height:1.1; }
+.stat-l{
+  font-family:var(--roman); font-size:.55rem; color:var(--soft);
+  margin-top:.4rem; letter-spacing:.14em; text-transform:uppercase;
+}
 
-/* ---------- callouts ---------- */
+/* ---------- encarts ---------- */
 .callout{
-  display:flex; gap:.75rem; padding:.875rem 1rem;
-  border-radius:12px; font-size:.8125rem; line-height:1.6;
-  border:1px solid;
+  display:flex; gap:.8rem; padding:.9rem 1.05rem;
+  border-radius:2px; font-size:.86rem; line-height:1.68;
+  border:1px solid; border-left-width:2px; font-family:var(--serif);
 }
 .callout-key{
-  background:rgba(91,140,255,.07); border-color:rgba(91,140,255,.22); color:#c7d6ff;
+  background:rgba(214,172,85,.055); border-color:rgba(214,172,85,.22);
+  border-left-color:var(--gold); color:var(--parch);
 }
 .callout-ok{
-  background:rgba(53,208,165,.07); border-color:rgba(53,208,165,.22); color:#b6f0e0;
+  background:rgba(111,176,148,.06); border-color:rgba(111,176,148,.22);
+  border-left-color:var(--ok); color:#cfe6da;
 }
 .callout-warn{
-  background:rgba(245,181,68,.07); border-color:rgba(245,181,68,.22); color:#f6dfae;
+  background:rgba(239,125,87,.06); border-color:rgba(239,125,87,.22);
+  border-left-color:var(--hot); color:#f6d9c9;
 }
 
-/* ---------- progress ---------- */
-.progress-track{ height:2px; background:var(--line); }
-.progress-fill{ height:100%; background:var(--accent); transition:width .5s cubic-bezier(.16,1,.3,1); }
+/* ---------- progression (fil doré du bandeau) ---------- */
+.progress-track{ height:1px; background:var(--line-soft); }
+.progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright));
+  box-shadow:0 0 10px rgba(214,172,85,.55);
+  transition:width .6s var(--ease);
+}
 
-/* ---------- highlight overlay (typing) ---------- */
+/* ---------- laboratoire de frappe : le fond et la saisie
+     partagent exactement la même métrique (superposition) ---------- */
 #tBackdrop, #tInput{
-  font-family:Inter,system-ui,sans-serif;
-  font-size:.9375rem; line-height:1.6; letter-spacing:normal;
+  font-family:var(--mono);
+  font-size:.86rem; line-height:1.72; letter-spacing:normal;
 }
 #tBackdrop mark{
-  background:transparent; color:inherit; border-radius:4px; padding:1px 0;
+  background:transparent; color:inherit; border-radius:2px; padding:1px 0;
   -webkit-box-decoration-break:clone; box-decoration-break:clone;
   transition:background-color .3s, box-shadow .3s;
 }
 
-/* ---------- mobile chapter nav ---------- */
+/* ---------- navigation mobile par pastilles ---------- */
 .chip-nav{
   display:flex; gap:.375rem; overflow-x:auto; padding-bottom:.25rem;
   scrollbar-width:none;
 }
 .chip-nav::-webkit-scrollbar{ display:none; }
 .chip{
-  flex-shrink:0; font-size:.75rem; font-weight:600;
-  padding:.375rem .75rem; border-radius:9999px;
-  border:1px solid var(--line); color:var(--txt-3);
-  background:var(--surface); cursor:pointer; transition:all .15s;
+  flex-shrink:0; font-family:var(--roman); font-weight:600;
+  font-size:.6rem; letter-spacing:.12em; text-transform:uppercase;
+  padding:.4rem .8rem; border-radius:2px;
+  border:1px solid var(--line); color:var(--soft);
+  background:rgba(214,172,85,.04); cursor:pointer;
+  transition:color .25s, border-color .25s, background .25s;
 }
-.chip[aria-current="true"]{ background:var(--accent); border-color:var(--accent); color:#fff; }
+.chip[aria-current="true"]{
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold));
+  border-color:transparent; color:#120d04;
+}
 
 /* ---------- formules ---------- */
 .formula{
-  background:var(--surface-2); border:1px solid var(--line);
-  border-radius:12px; padding:.875rem 1rem;
+  background:rgba(5,8,17,.6); border:1px solid var(--line);
+  border-radius:2px; padding:.95rem 1.05rem;
   overflow-x:auto; overflow-y:hidden;
-  color:var(--txt); font-size:1.02rem; text-align:center;
+  color:var(--ink); font-size:1.02rem; text-align:center;
 }
-.formula .katex{ color:var(--txt); }
-.formula.raw{ font-family:'JetBrains Mono',monospace; font-size:.8125rem; color:var(--txt-2); }
+.formula .katex{ color:var(--parch); }
+.formula.raw{ font-family:var(--mono); font-size:.8rem; color:var(--muted); }
 
 /* ---------- tableaux ---------- */
-.tbl{ width:100%; border-collapse:collapse; font-size:.75rem; }
+.tbl{ width:100%; border-collapse:collapse; font-size:.78rem; }
 .tbl th{
-  text-align:left; font-weight:700; font-size:.625rem; letter-spacing:.08em;
-  text-transform:uppercase; color:var(--txt-3);
-  padding:.4rem .5rem; border-bottom:1px solid var(--line);
+  text-align:left; font-family:var(--roman); font-weight:600;
+  font-size:.56rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--soft);
+  padding:.5rem .5rem; border-bottom:1px solid var(--line);
 }
-.tbl td{ padding:.35rem .5rem; border-bottom:1px solid var(--line-soft); color:var(--txt-2); }
-.tbl tr:last-child td{ border-bottom:0; }
-.tbl td.num, .tbl th.num{ text-align:right; font-family:'JetBrains Mono',monospace; font-variant-numeric:tabular-nums; }
-.tbl td.code{ font-family:'JetBrains Mono',monospace; color:var(--accent); letter-spacing:.06em; }
-.tbl tr.hl td{ background:rgba(91,140,255,.07); color:var(--txt); }
-
-/* ---------- touche clavier ---------- */
-.kbd{
-  font-family:'JetBrains Mono',monospace; font-size:.6875rem;
-  padding:.1rem .35rem; border-radius:5px;
-  border:1px solid var(--line); border-bottom-width:2px;
-  background:var(--surface-2); color:var(--txt-2);
+.tbl td{
+  padding:.4rem .5rem; border-bottom:1px solid var(--line-soft);
+  color:var(--muted); font-family:var(--serif);
 }
-
-/* ---------- ruban de texte (canal bruité) ---------- */
-.ribbon{
-  font-family:'JetBrains Mono',monospace; font-size:.8125rem;
-  line-height:1.9; word-break:break-word; letter-spacing:.02em;
-}
-.ribbon .bad{ background:rgba(255,107,107,.22); color:#ffb3b3; border-radius:3px; }
-.ribbon .fixed{ background:rgba(53,208,165,.22); color:#8ff0d5; border-radius:3px; }
-.ribbon .miss{ background:rgba(245,181,68,.2); color:#f6dfae; border-radius:3px; }
-.ribbon .gap{ color:#3a4353; }
 
 /* ---------- badge ---------- */
 .badge{
-  font-size:.625rem; font-weight:700; letter-spacing:.05em;
-  padding:.15rem .4rem; border-radius:5px; white-space:nowrap;
+  font-family:var(--roman); font-size:.55rem; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase;
+  padding:.2rem .45rem; border-radius:2px; white-space:nowrap;
+}
+
+/* ---------- ruban / touche clavier ---------- */
+.ribbon{
+  font-family:var(--roman); font-size:.55rem; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--gold);
+}
+.kbd{
+  font-family:var(--mono); font-size:.7rem;
+  padding:.1rem .35rem; border:1px solid var(--line);
+  border-radius:2px; color:var(--muted); background:rgba(214,172,85,.05);
 }
 
 /* ---------- confinement horizontal ----------
@@ -284,83 +548,72 @@ input[type=range]::-moz-range-thumb{
 
 /* ============================================================
    INTÉGRATION EMPIRE CONTRE INTOX
-   Cette expérience est un laboratoire du dossier XXV « Entropie ».
-   Le codex ECI (Cinzel / or sur nuit) n'est pas imposé ici : on
-   reprend les jetons d'Entropia, avec l'or ECI en accent de rappel.
    ============================================================ */
-:root{ --eci-gold:#d6ac55; --eci-gold-bright:#f3d98a; }
-
 .eci-seal{
   display:block; width:26px; height:26px; border-radius:50%; flex:none; padding:1.5px;
-  background:conic-gradient(from 0deg,#9c7228,var(--eci-gold-bright),#9c7228);
+  background:conic-gradient(from 0deg,var(--gold-deep),var(--gold-bright),var(--gold-deep));
 }
 .eci-seal img{ width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; }
 
-/* ---------- retour au dossier, dans la barre du haut ---------- */
 .eci-back{
-  display:inline-flex; align-items:center; gap:.5rem; padding:.3rem .55rem;
-  border:1px solid rgba(214,172,85,.28); border-radius:8px;
-  font-size:11px; font-weight:600; letter-spacing:.04em; color:var(--txt-2);
-  text-decoration:none; white-space:nowrap;
+  display:inline-flex; align-items:center; gap:.5rem; padding:.34rem .6rem;
+  border:1px solid var(--line); border-radius:2px;
+  font-family:var(--roman); font-weight:600;
+  font-size:.6rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted); text-decoration:none; white-space:nowrap;
   transition:color .25s, border-color .25s, background .25s;
 }
-.eci-back:hover{ color:var(--eci-gold-bright); border-color:rgba(214,172,85,.55); background:rgba(214,172,85,.07); }
-.eci-back:focus-visible{ outline:2px solid var(--eci-gold-bright); outline-offset:2px; }
+.eci-back:hover{ color:var(--gold-bright); border-color:rgba(214,172,85,.55); background:rgba(214,172,85,.07); }
 
-/* ---------- bandeau collectif de bas de page ---------- */
 .eci-collective{
-  margin-top:64px; padding:56px 24px 48px; text-align:center;
-  border-top:1px solid rgba(214,172,85,.20);
-  background:linear-gradient(180deg,rgba(214,172,85,.045),rgba(7,9,15,0) 60%);
+  margin-top:72px; padding:clamp(56px,7vw,88px) 24px 56px; text-align:center;
+  border-top:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(214,172,85,.05),rgba(5,8,17,0) 62%);
 }
 .eci-inner{ max-width:760px; margin:0 auto; }
-.eci-seal-lg{ width:64px; height:64px; margin:0 auto 18px; padding:2.5px; }
+.eci-seal-lg{ width:70px; height:70px; margin:0 auto 20px; padding:2.5px; }
 .eci-collective h3{
-  font-size:1.05rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
-  color:var(--txt); margin:0 0 14px;
+  font-family:var(--roman); font-size:1.25rem; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink); margin:0 0 14px;
 }
 .eci-collective > .eci-inner > p{
-  font-size:.86rem; line-height:1.75; color:var(--txt-2); max-width:62ch; margin:0 auto 22px;
+  font-family:var(--serif); font-size:.95rem; line-height:1.78;
+  color:var(--muted); max-width:62ch; margin:0 auto 24px;
 }
-.eci-collective b{ color:var(--eci-gold-bright); font-weight:700; }
+.eci-collective b{ color:var(--gold-bright); font-weight:600; }
 
 .eci-links{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:26px; }
 .eci-btn{
-  display:inline-flex; align-items:center; padding:.5rem .95rem; border-radius:8px;
-  border:1px solid rgba(214,172,85,.30); background:rgba(214,172,85,.05);
-  font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--txt-2); text-decoration:none;
-  transition:transform .25s, color .25s, border-color .25s, box-shadow .25s;
+  display:inline-flex; align-items:center; padding:.55rem 1rem; border-radius:2px;
+  border:1px solid var(--line); background:rgba(214,172,85,.05);
+  font-family:var(--roman); font-size:.62rem; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); text-decoration:none;
+  transition:transform .25s var(--ease), color .25s, border-color .25s, box-shadow .25s;
 }
-.eci-btn:hover{ transform:translateY(-2px); color:var(--eci-gold-bright); border-color:rgba(214,172,85,.6); }
-.eci-btn:focus-visible{ outline:2px solid var(--eci-gold-bright); outline-offset:2px; }
+.eci-btn:hover{ transform:translateY(-2px); color:var(--gold-bright); border-color:rgba(214,172,85,.6); }
 .eci-btn-primary{
-  color:#120d04; border-color:transparent;
-  background:linear-gradient(135deg,var(--eci-gold-bright),var(--eci-gold));
+  color:#120d04; border-color:transparent; font-weight:700;
+  background:linear-gradient(135deg,var(--gold-bright),var(--gold));
 }
 .eci-btn-primary:hover{ color:#120d04; box-shadow:0 12px 30px rgba(214,172,85,.26); }
 
 .eci-devise{
-  font-family:Georgia,"Times New Roman",serif; font-style:italic;
-  font-size:.95rem; color:var(--eci-gold); letter-spacing:.06em; margin:0 0 4px;
+  font-family:var(--serif); font-style:italic;
+  font-size:1rem; color:var(--gold); letter-spacing:.05em; margin:0 0 4px;
 }
 
 .eci-license{
-  max-width:720px; margin:28px auto 0; padding:16px 20px;
-  border:1px solid var(--line); border-radius:10px; background:var(--surface);
-  font-size:11.5px; line-height:1.7; color:var(--txt-3); text-align:left;
+  max-width:720px; margin:30px auto 0; padding:18px 22px;
+  border:1px solid var(--line-soft); border-radius:2px; background:rgba(5,8,17,.6);
+  font-family:var(--serif); font-size:.78rem; line-height:1.75;
+  color:var(--soft); text-align:left;
 }
-.eci-license b{ color:var(--txt-2); }
-.eci-license a{ color:var(--eci-gold); text-decoration:underline; text-underline-offset:2px; }
-.eci-license a:hover{ color:var(--eci-gold-bright); }
+.eci-license b{ color:var(--parch); font-family:var(--roman); font-weight:600; letter-spacing:.06em; }
+.eci-license a{ color:var(--gold-bright); text-decoration:underline; text-underline-offset:2px; }
 .eci-visit-counter{
-  display:block; margin-top:12px; font-family:"JetBrains Mono",ui-monospace,monospace;
-  font-size:10.5px; letter-spacing:.04em; color:var(--txt-3);
-}
-
-@media (prefers-reduced-motion: reduce){
-  .eci-btn, .eci-back{ transition:none; }
-  .eci-btn:hover{ transform:none; }
+  display:block; margin-top:14px; font-family:var(--mono);
+  font-size:.72rem; letter-spacing:.04em; color:var(--soft);
 }
 
 /* ---------- misc ---------- */
@@ -369,4 +622,21 @@ input[type=range]::-moz-range-thumb{
 .sr-only{
   position:absolute; width:1px; height:1px; padding:0; margin:-1px;
   overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+
+/* ============================================================
+   MOUVEMENT RÉDUIT — on garde la lisibilité, on coupe le geste
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *, *::before, *::after{
+    animation-duration:.001ms !important; animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .atmos{ animation:none; opacity:.8; }
+  .foil{
+    -webkit-text-fill-color:var(--gold-bright); color:var(--gold-bright);
+    background:none; animation:none;
+  }
+  .btn:hover:not(:disabled), .eci-btn:hover, .glyph:hover{ transform:none; }
 }

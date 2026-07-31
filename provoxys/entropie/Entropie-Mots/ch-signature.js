@@ -140,7 +140,7 @@ function renderFreq(p, refCode) {
       title="${k === ' ' ? 'espace' : esc(k)} — vous ${((p.get(k) || 0) * 100).toFixed(2)} % · référence ${((ref.get(k) || 0) * 100).toFixed(2)} %">
       <div class="flex items-end gap-[1px] w-full" style="height:118px">
         <div class="flex-1 rounded-t grow" style="height:${Math.max(1, (p.get(k) || 0) / max * 118)}px;background:var(--accent)"></div>
-        <div class="flex-1 rounded-t grow" style="height:${Math.max(1, (ref.get(k) || 0) / max * 118)}px;background:#39414f"></div>
+        <div class="flex-1 rounded-t grow" style="height:${Math.max(1, (ref.get(k) || 0) / max * 118)}px;background:rgba(244,236,216,.16)"></div>
       </div>
       <span class="mono text-[10px]" style="color:var(--txt-3)">${k === ' ' ? '␣' : esc(k)}</span>
     </div>`).join('');

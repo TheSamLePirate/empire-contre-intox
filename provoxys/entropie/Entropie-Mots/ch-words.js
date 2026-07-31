@@ -76,7 +76,7 @@ function renderNext(text) {
         }).join('');
         return `
         <button data-w="${esc(r.word)}" class="w-full flex items-center gap-2.5 text-left">
-          <span class="mono text-xs px-2 py-1.5 rounded-lg truncate shrink-0" style="width:7.5rem;background:${i === 0 ? 'rgba(91,140,255,.14)' : 'var(--surface-2)'};border:1px solid ${i === 0 ? 'rgba(91,140,255,.4)' : r.known ? 'var(--line)' : 'rgba(167,139,250,.5)'};color:${i === 0 ? '#c7d6ff' : 'var(--txt-2)'}">${esc(r.word)}${r.known ? '' : '<sup style="color:var(--violet)">✦</sup>'}</span>
+          <span class="mono text-xs px-2 py-1.5 rounded-lg truncate shrink-0" style="width:7.5rem;background:${i === 0 ? 'rgba(214,172,85,.14)' : 'var(--surface-2)'};border:1px solid ${i === 0 ? 'rgba(214,172,85,.4)' : r.known ? 'var(--line)' : 'rgba(157,134,201,.5)'};color:${i === 0 ? COLORS.coldBright : 'var(--txt-2)'}">${esc(r.word)}${r.known ? '' : '<sup style="color:var(--violet)">✦</sup>'}</span>
           <span class="flex-1 rounded-full overflow-hidden flex" style="height:.55rem;background:var(--bg);width:${(r.pn / max * 100).toFixed(1)}%;min-width:2px">${seg}</span>
           <span class="mono text-[11px] tabular text-right shrink-0" style="width:3rem;color:${i === 0 ? 'var(--accent)' : 'var(--txt-3)'}">${(r.pn * 100).toFixed(1)}%</span>
           <span class="badge shrink-0" style="background:${m.color}1f;color:${m.color}">${m.label}</span>

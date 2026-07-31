@@ -16,7 +16,7 @@ const APPS = [
   { icon: 'keyboard', color: COLORS.warn, title: 'Clavier prédictif', text: 'Votre téléphone propose le mot suivant avec un modèle n-gramme — celui du chapitre 5, en plus gros.' },
   { icon: 'lock', color: COLORS.violet, title: 'Cryptographie', text: 'Shannon a prouvé qu\'un chiffrement est parfait si le message chiffré n\'apporte aucune information sur le clair.' },
   { icon: 'radio', color: COLORS.hot, title: 'Codes correcteurs', text: 'Ajouter de la redondance choisie permet de transmettre sans erreur sur un canal bruité — du Wi-Fi aux sondes spatiales.' },
-  { icon: 'brain-circuit', color: '#c7d6ff', title: 'Modèles de langage', text: 'Un LLM est entraîné à minimiser la surprise du token suivant. Sa métrique, la perplexité, vaut 2 puissance l\'entropie.' }
+  { icon: 'brain-circuit', color: '#7fd4e8', title: 'Modèles de langage', text: 'Un LLM est entraîné à minimiser la surprise du token suivant. Sa métrique, la perplexité, vaut 2 puissance l\'entropie.' }
 ];
 
 export function init() {

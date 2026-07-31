@@ -51,12 +51,12 @@ function bounds(history) {
 function renderText() {
   let html = '';
   state.revealed.forEach(r => {
-    const color = r.revealed ? COLORS.txt3 : r.tries === 1 ? COLORS.ok : r.tries <= 3 ? COLORS.warn : '#f7894a';
+    const color = r.revealed ? COLORS.txt3 : r.tries === 1 ? COLORS.ok : r.tries <= 3 ? COLORS.warn : COLORS.hot;
     html += `<span title="${r.revealed ? 'révélée' : r.tries + ' essai(s)'}" style="color:${color}">${r.ch === ' ' ? '·' : esc(r.ch)}</span>`;
   });
   if (state.pos < state.target.length) {
     html += `<span class="animate-pulse" style="color:var(--accent);border-bottom:2px solid var(--accent)">?</span>`;
-    html += `<span style="color:#232a36">${'·'.repeat(Math.max(0, state.target.length - state.pos - 1))}</span>`;
+    html += `<span style="color:rgba(214,172,85,.18)">${'·'.repeat(Math.max(0, state.target.length - state.pos - 1))}</span>`;
   } else {
     html += ` <span class="text-xs font-semibold" style="font-family:Inter;color:var(--ok)">✓ texte terminé</span>`;
   }

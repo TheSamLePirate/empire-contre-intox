@@ -13,12 +13,12 @@ import { refreshIcons } from './icons.js';
    ============================================================ */
 
 const ORDERS = [
-  { order: 0, title: 'Ordre 0', desc: 'lettres équiprobables', color: '#ff6b6b' },
-  { order: 1, title: 'Ordre 1', desc: 'fréquences des lettres', color: '#f7894a' },
-  { order: 2, title: 'Ordre 2', desc: 'digrammes', color: '#f5b544' },
-  { order: 3, title: 'Ordre 3', desc: 'trigrammes', color: '#a8cd69' },
-  { order: 4, title: 'Ordre 4', desc: '4 lettres de contexte', color: '#35d0a5' },
-  { order: 5, title: 'Ordre 5', desc: '5 lettres de contexte', color: '#5b8cff' }
+  { order: 0, title: 'Ordre 0', desc: 'lettres équiprobables', color: '#c9503f' },
+  { order: 1, title: 'Ordre 1', desc: 'fréquences des lettres', color: '#ef7d57' },
+  { order: 2, title: 'Ordre 2', desc: 'digrammes', color: '#f3d98a' },
+  { order: 3, title: 'Ordre 3', desc: 'trigrammes', color: '#d6ac55' },
+  { order: 4, title: 'Ordre 4', desc: '4 lettres de contexte', color: '#58a6d9' },
+  { order: 5, title: 'Ordre 5', desc: '5 lettres de contexte', color: '#7fd4e8' }
 ];
 
 const WORDS = [
@@ -55,7 +55,7 @@ function render() {
     w.title, w.desc, COLORS.violet,
     w.order === 0 ? `${vs.types} mots au vocabulaire` : '',
     generateWords(store.lang, 26, '', { order: w.order }),
-    '#ddd6fe'
+    '#cdbde8'
   )).join('');
 
   el('genOut').innerHTML = chars + words + `

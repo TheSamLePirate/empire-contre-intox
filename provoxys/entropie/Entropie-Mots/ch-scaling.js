@@ -42,7 +42,7 @@ function renderLadder() {
       <div class="flex justify-between items-baseline text-[11px] mb-1 gap-2">
         <span style="color:${m.ours ? 'var(--txt-2)' : 'var(--txt-3)'}">
           ${m.label} <span style="color:var(--txt-3)">— ${m.note}</span>
-          ${m.ours ? '' : '<span class="badge" style="background:rgba(98,108,125,.15);color:var(--txt-3)">référence</span>'}
+          ${m.ours ? '' : '<span class="badge" style="background:rgba(143,140,120,.15);color:var(--txt-3)">référence</span>'}
         </span>
         <span class="mono tabular shrink-0" style="color:${m.c}">${m.v.toFixed(2)} bits</span>
       </div>
@@ -149,9 +149,9 @@ function entropyOf(list) {
 function rowsFor(items, max, color, mark) {
   return items.map((x, i) => `
     <div class="flex items-center gap-2.5">
-      <span class="mono text-xs px-2 py-1.5 rounded-lg truncate shrink-0" style="width:7rem;background:${i === 0 ? color + '22' : 'var(--surface-2)'};border:1px solid ${i === 0 ? color + '66' : 'var(--line)'};color:${i === 0 ? '#c7d6ff' : 'var(--txt-2)'}">${esc(x.word)}</span>
+      <span class="mono text-xs px-2 py-1.5 rounded-lg truncate shrink-0" style="width:7rem;background:${i === 0 ? color + '22' : 'var(--surface-2)'};border:1px solid ${i === 0 ? color + '66' : 'var(--line)'};color:${i === 0 ? COLORS.coldBright : 'var(--txt-2)'}">${esc(x.word)}</span>
       <span class="flex-1 h-2 rounded-full overflow-hidden" style="background:var(--bg)">
-        <span class="block h-full rounded-full grow" style="width:${(x.p / max * 100).toFixed(1)}%;background:${i === 0 ? color : '#3d4658'}"></span>
+        <span class="block h-full rounded-full grow" style="width:${(x.p / max * 100).toFixed(1)}%;background:${i === 0 ? color : 'rgba(244,236,216,.20)'}"></span>
       </span>
       <span class="mono text-[11px] tabular text-right shrink-0" style="width:2.75rem;color:${i === 0 ? color : 'var(--txt-3)'}">${(x.p * 100).toFixed(0)}%</span>
       <span class="w-4 shrink-0">${mark(x) ? `<i data-lucide="link-2" class="w-3.5 h-3.5" style="color:var(--ok)"></i>` : ''}</span>
@@ -192,12 +192,12 @@ async function ask() {
           <p class="eyebrow mb-3">${LLM.label} — probabilités <b style="color:var(--warn)">déclarées</b></p>
           <div class="space-y-2">${llmItems.map((x, i) => `
             <div class="flex items-center gap-2.5">
-              <span class="mono text-xs px-2 py-1.5 rounded-lg truncate shrink-0" style="width:7rem;background:${i === 0 ? 'rgba(167,139,250,.18)' : 'var(--surface-2)'};border:1px solid ${i === 0 ? 'rgba(167,139,250,.5)' : 'var(--line)'};color:${i === 0 ? '#ddd6fe' : 'var(--txt-2)'}">${esc(x.word)}</span>
+              <span class="mono text-xs px-2 py-1.5 rounded-lg truncate shrink-0" style="width:7rem;background:${i === 0 ? 'rgba(157,134,201,.18)' : 'var(--surface-2)'};border:1px solid ${i === 0 ? 'rgba(157,134,201,.5)' : 'var(--line)'};color:${i === 0 ? '#cdbde8' : 'var(--txt-2)'}">${esc(x.word)}</span>
               <span class="flex-1 h-2 rounded-full overflow-hidden" style="background:var(--bg)">
-                <span class="block h-full rounded-full grow" style="width:${(x.p / llmItems[0].p * 100).toFixed(1)}%;background:${i === 0 ? COLORS.violet : '#3d4658'}"></span>
+                <span class="block h-full rounded-full grow" style="width:${(x.p / llmItems[0].p * 100).toFixed(1)}%;background:${i === 0 ? COLORS.violet : 'rgba(244,236,216,.20)'}"></span>
               </span>
               <span class="mono text-[11px] tabular text-right shrink-0" style="width:2.75rem;color:${i === 0 ? COLORS.violet : 'var(--txt-3)'}">${(x.p * 100).toFixed(0)}%</span>
-              <span class="badge shrink-0" style="width:5.5rem;text-align:center;background:${x.rank ? (x.rank <= 10 ? 'rgba(53,208,165,.14)' : 'rgba(245,181,68,.14)') : 'rgba(255,107,107,.12)'};color:${x.rank ? (x.rank <= 10 ? 'var(--ok)' : 'var(--warn)') : 'var(--hot)'}"
+              <span class="badge shrink-0" style="width:5.5rem;text-align:center;background:${x.rank ? (x.rank <= 10 ? 'rgba(111,176,148,.14)' : 'rgba(239,125,87,.14)') : 'rgba(201,80,63,.12)'};color:${x.rank ? (x.rank <= 10 ? 'var(--ok)' : 'var(--warn)') : 'var(--hot)'}"
                 title="${x.rank ? 'rang ' + x.rank + ' sur ' + local.all.length + ' dans notre modèle' : 'mot absent de notre corpus'}">${x.rank ? 'rang ' + x.rank : 'inconnu'}</span>
             </div>`).join('')}</div>
           <p class="text-[11px] mt-2.5" style="color:var(--txt-3)">
@@ -252,7 +252,7 @@ const seed = lang => {
 
 export function init() {
   el('llmAuth').innerHTML = `
-    <span class="badge" style="background:rgba(167,139,250,.14);color:var(--violet)">${LLM.label}</span>
+    <span class="badge" style="background:rgba(157,134,201,.14);color:var(--violet)">${LLM.label}</span>
     <span class="text-[11px]" style="color:var(--txt-3)">via OpenRouter, appelé depuis votre navigateur</span>`;
 
   el('llmAsk').addEventListener('click', ask);

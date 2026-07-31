@@ -5,21 +5,27 @@
 export const el = id => document.getElementById(id);
 export const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+/* Jetons du codex, côté JS — miroir exact de styles.css.
+   L'or est le mobilier (structure) ; chaud ↔ froid est la donnée. */
 export const COLORS = {
-  bg: '#07090f', surface: '#0d1017', line: '#1c212c',
-  txt: '#e8eaf0', txt2: '#9aa3b2', txt3: '#626c7d',
-  accent: '#5b8cff', ok: '#35d0a5', warn: '#f5b544', hot: '#ff6b6b', violet: '#a78bfa'
+  bg: '#050811', surface: '#070c1a', line: 'rgba(214,172,85,.20)',
+  txt: '#f4ecd8', txt2: '#c0b59a', txt3: '#8f8c78',
+  accent: '#d6ac55', gold: '#d6ac55', goldBright: '#f3d98a', goldDeep: '#9c7228',
+  ok: '#6fb094', warn: '#ef7d57', violet: '#9d86c9',
+  hot: '#ef7d57', hotBright: '#ff9d7a',
+  cold: '#58a6d9', coldBright: '#7fd4e8'
 };
 
-/** Couleur de chaleur : 0 bit = vert (prévisible) → `scale` bits = rouge. */
+/** Axe de l'entropie : 0 bit = froid (prévisible) → `scale` bits = chaud
+    (surprenant), en passant par l'or, le neutre du codex. */
 export function heatRGB(bits, scale = 6) {
   const t = Math.max(0, Math.min(1, bits / scale));
   const stops = [
-    [0.00, [53, 208, 165]],
-    [0.28, [140, 205, 105]],
-    [0.50, [245, 181, 68]],
-    [0.74, [247, 137, 74]],
-    [1.00, [255, 107, 107]]
+    [0.00, [127, 212, 232]],
+    [0.30, [88, 166, 217]],
+    [0.55, [214, 172, 85]],
+    [0.78, [239, 125, 87]],
+    [1.00, [201, 80, 63]]
   ];
   for (let i = 1; i < stops.length; i++) {
     if (t <= stops[i][0]) {
@@ -28,7 +34,7 @@ export function heatRGB(bits, scale = 6) {
       return c0.map((v, k) => Math.round(v + (c1[k] - v) * f));
     }
   }
-  return [255, 107, 107];
+  return [201, 80, 63];
 }
 
 export function heat(bits, scale = 6) {

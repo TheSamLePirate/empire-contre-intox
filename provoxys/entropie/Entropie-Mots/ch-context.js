@@ -29,9 +29,9 @@ function renderNext(text) {
   const max = top.length ? top[0].p : 1;
   el('cNext').innerHTML = top.map((t, i) => `
     <button data-ch="${t.ch === ' ' ? '_SP_' : esc(t.ch)}" class="w-full flex items-center gap-2.5 text-left">
-      <span class="glyph shrink-0" style="width:2rem;height:2rem;background:${i === 0 ? 'rgba(91,140,255,.16)' : 'var(--surface-2)'};border:1px solid ${i === 0 ? 'rgba(91,140,255,.45)' : 'var(--line)'};color:${i === 0 ? 'var(--accent)' : 'var(--txt-2)'}">${show(t.ch)}</span>
+      <span class="glyph shrink-0" style="width:2rem;height:2rem;background:${i === 0 ? 'rgba(214,172,85,.16)' : 'var(--surface-2)'};border:1px solid ${i === 0 ? 'rgba(214,172,85,.45)' : 'var(--line)'};color:${i === 0 ? 'var(--accent)' : 'var(--txt-2)'}">${show(t.ch)}</span>
       <span class="flex-1 h-2 rounded-full overflow-hidden" style="background:var(--bg)">
-        <span class="block h-full rounded-full grow" style="width:${(t.p / max * 100).toFixed(1)}%;background:${i === 0 ? COLORS.accent : '#3d4658'}"></span>
+        <span class="block h-full rounded-full grow" style="width:${(t.p / max * 100).toFixed(1)}%;background:${i === 0 ? COLORS.accent : 'rgba(244,236,216,.20)'}"></span>
       </span>
       <span class="mono text-[11px] tabular text-right" style="width:3.4rem;color:${i === 0 ? 'var(--accent)' : 'var(--txt-3)'}">${(t.p * 100).toFixed(1)}%</span>
       <span class="mono text-[10px] tabular text-right shrink-0" style="width:3rem;color:var(--txt-3)">${(-Math.log2(t.p)).toFixed(1)} b</span>
