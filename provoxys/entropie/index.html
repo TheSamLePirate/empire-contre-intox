@@ -1226,6 +1226,7 @@
       <a href="#coulisses">Coulisses</a>
       <a href="#ressources">Vidéos</a>
       <a href="portraits.html">Portraits des savants</a>
+      <a href="Entropie-Mots/index.html">Entropia · l'expérience</a>
       <a href="../../sources/sources.html">Les Sources</a>
       <a href="../../index.html">Accueil ECI</a>
     </div>
@@ -1253,6 +1254,7 @@
             <a href="#faq">Questions du chat</a>
             <a href="#ressources">Pour en savoir plus — vidéos</a>
             <a href="portraits.html">Portraits des savants — la galerie</a>
+            <a href="Entropie-Mots/index.html">Entropia — l'expérience interactive</a>
             <a href="../../sources/sources.html">Les Sources (Dossier XXVI)</a>
             <a href="../../index.html">Accueil ECI — tous les dossiers</a>
             <a href="../../LICENCE-CONTENU.md">Licence du contenu</a>
@@ -2490,6 +2492,17 @@
               <div class="viz-lede"><span class="vid">V17</span> Atelier de codage · fréquences, entropie H et longueur moyenne du code</div>
               <div class="entropy-gallery"><div data-entropy-viz="V17" data-seed="42"></div></div>
               <noscript><p class="viz-noscript">Visualisation interactive (JavaScript requis)&nbsp;: entropie de Shannon d'un alphabet, code préfixe et redondance.</p></noscript>
+            </div>
+
+            <!-- ===== Entropia — l'expérience interactive complète ===== -->
+            <div class="paper-card">
+              <div class="pc-head">Aller plus loin · l'expérience <span class="pc-year">Entropia · 11 étapes</span></div>
+              <div class="pc-body">
+                <p>L'atelier ci-dessus fait tenir l'idée en une minute. Mais la formule de Shannon ne se contente pas de mesurer une source&nbsp;: elle est le fil qui relie, en une seule ligne de mathématiques, la <b>compression</b>, la <b>correction d'erreurs</b>, la <b>reconnaissance de langue</b> et les <b>modèles de langage</b> qui font aujourd'hui la une. Pour rendre ce fil manipulable, nous avons construit une expérience à part entière&nbsp;: <b>Entropia</b>.</p>
+                <p>Onze étapes, et <b>rien n'y est simulé</b>. Un véritable modèle statistique — des n-grammes à interpolation Kneser–Ney modifiée — est entraîné devant vous sur un corpus, puis évalué sur un texte qu'il n'a jamais vu. Vous le voyez ensuite <em>servir</em>&nbsp;: <b>compresser</b> un texte par codage de Huffman puis par le modèle lui-même, et se cogner à la limite théorique que <span class="imath" data-tex="H"></span> lui impose&nbsp;; <b>reconnaître</b> la langue d'un texte au seul coût en bits de son codage — une classification qui n'est qu'une entropie croisée comparée&nbsp;; <b>réparer</b> un message abîmé par le bruit en exploitant la redondance&nbsp;; <b>prédire</b> le mot suivant, avec température et <i>top-p</i>. Vous pouvez même rejouer <b>le jeu de 1951</b>, l'expérience où Shannon faisait deviner un texte lettre à lettre à sa femme Betty pour encadrer l'entropie de l'anglais.</p>
+                <p>Le dernier chapitre boucle la boucle et confie le même exercice à <b>un vrai modèle de langage</b>, en regard du n-gramme. La parenté est nue&nbsp;: entraîner un LLM, c'est minimiser l'entropie croisée du token suivant, et la <b>perplexité</b> qui classe ces modèles n'est rien d'autre que <span class="imath" data-tex="2^{H}"></span> — l'entropie de Shannon changée d'unité. Entre notre modèle et GPT, il n'y a pas de rupture conceptuelle&nbsp;: il y a une différence d'échelle.</p>
+                <a class="paper-cta" href="Entropie-Mots/index.html">Lancer l'expérience Entropia</a>
+              </div>
             </div>
 
             <!-- ===== L'article fondateur de 1948, consultable ===== -->

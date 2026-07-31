@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# aperçus générés par l'environnement Puter
+.puter/screenshots/
+
+# dépendances / builds éventuels
+node_modules/
+dist/
+
+# clé brute : la clé effective est dans llm.js
+openrouter-key.txt

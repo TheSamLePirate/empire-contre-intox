@@ -8,7 +8,7 @@
 
 # Sources de travail non publiées (contiennent des métadonnées privées,
 # ex. le vrai nom de l'auteur dans les .pptx) — ne jamais publier.
-a_traiter/
+#a_traiter/
 
 # Outils / plans de l'agent (pas du contenu du site)
 .pi/
@@ -30,3 +30,8 @@ empire-calendrier/
 provoxys/exoplanetes/data/*.csv
 # Notes de travail de rédaction (non publiées)
 provoxys/exoplanetes/script.md
+
+# Expérience « Entropie & les mots » : clé brute et code archivé (non publiés).
+# La clé effective vit dans llm.js (restreinte côté OpenRouter à un modèle gratuit).
+provoxys/entropie/Entropie-Mots/openrouter-key.txt
+provoxys/entropie/Entropie-Mots/_archive/

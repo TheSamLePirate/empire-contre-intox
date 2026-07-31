@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entropia — De l'information à l'intelligence artificielle · Empire contre Intox</title>
+<meta name="description" content="Expérience interactive du dossier XXV « Entropie » (Provoxys × Samlepirate) : onze étapes, d'après Shannon 1948, où un vrai modèle statistique est entraîné devant vous puis utilisé pour compresser, corriger le bruit, reconnaître une langue et prédire le mot suivant — la mécanique d'un modèle de langage, en plus petit.">
+<link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr">
+<meta name="rights" content="Contenu éditorial sous licence Creative Commons Attribution – Pas d'Utilisation Commerciale – Pas de Modification 4.0 International (CC BY-NC-ND 4.0). « A Mathematical Theory of Communication » (C. E. Shannon, 1948) est une œuvre tierce, non couverte par cette licence.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===================== TOP BAR ===================== -->
+<header class="sticky top-0 z-40" style="background:rgba(7,9,15,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)">
+  <div class="max-w-[1500px] mx-auto px-4 sm:px-6">
+    <div class="h-14 flex items-center justify-between gap-4">
+      <button id="homeBtn" class="flex items-center gap-2.5 shrink-0">
+        <span class="w-7 h-7 rounded-lg grid place-items-center" style="background:var(--accent)">
+          <i data-lucide="waves" class="w-4 h-4 text-white"></i>
+        </span>
+        <span class="text-left">
+          <span class="block text-[13px] font-bold leading-none" style="color:var(--txt)">Entropia</span>
+          <span class="block text-[10px] leading-none mt-0.5" style="color:var(--txt-3)">de l'information à l'IA</span>
+        </span>
+      </button>
+
+      <div class="hidden md:flex items-center gap-3 flex-1 max-w-md">
+        <div class="flex-1 progress-track rounded-full overflow-hidden">
+          <div id="progressFill" class="progress-fill rounded-full" style="width:0%"></div>
+        </div>
+        <span id="progressLabel" class="mono text-[11px] tabular shrink-0" style="color:var(--txt-3)">0 / 11</span>
+      </div>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <a class="eci-back" href="../index.html" title="Revenir au dossier Entropie — Empire contre Intox">
+          <span class="eci-seal"><img src="../../../ymir-lalie/assets/logo-eci.jpg" alt=""></span>
+          <span class="hidden lg:inline">Dossier Entropie</span>
+        </a>
+        <select id="globalLang" class="field mono" style="width:auto"></select>
+        <button id="navPrev" class="btn btn-sm btn-ghost" title="Chapitre précédent"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+        <button id="navNext" class="btn btn-sm btn-primary" title="Chapitre suivant">
+          <span class="hidden sm:inline">Suivant</span><i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+    <div class="md:hidden pb-2"><div id="chipNav" class="chip-nav"></div></div>
+  </div>
+</header>
+
+<div class="max-w-[1500px] mx-auto px-4 sm:px-6 flex gap-8">
+
+  <!-- ===================== RAIL ===================== -->
+  <aside class="hidden md:block w-56 shrink-0 py-8">
+    <div class="sticky top-24">
+      <p class="eyebrow mb-3 px-1.5">Parcours</p>
+      <nav id="rail" class="space-y-0.5"></nav>
+      <div class="divider my-4"></div>
+      <div class="px-1.5 space-y-2">
+        <p class="text-[11px] leading-relaxed" style="color:var(--txt-3)">
+          Onze étapes, de la notion de surprise jusqu'aux modèles de langage, en suivant
+          « A Mathematical Theory of Communication » (Shannon, 1948).
+        </p>
+        <button id="resetBtn" class="text-[11px] flex items-center gap-1.5 transition" style="color:var(--txt-3)"
+          onmouseover="this.style.color='var(--hot)'" onmouseout="this.style.color='var(--txt-3)'">
+          <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Recommencer
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="flex-1 min-w-0 py-8 pb-24">
+
+    <!-- ============ INTRO ============ -->
+    <section class="chapter" data-ch="intro">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-4">Une expérience interactive · d'après Shannon 1948</p>
+        <h1 class="h-display text-4xl sm:text-6xl mb-6">
+          Le langage est<br><span style="color:var(--accent)">prévisible</span>.
+        </h1>
+        <p class="lead mb-4">
+          En 1948, Claude Shannon montre que l'<b style="color:var(--txt)">information se mesure</b>, en bits, et que le langage humain — plein de règles, de grammaire et d'habitudes — en contient bien moins qu'il n'y paraît. Le reste est <b style="color:var(--txt)">redondance</b>.
+        </p>
+        <p class="lead mb-8">
+          Ici, rien n'est simulé. Un vrai modèle statistique est entraîné devant vous sur un corpus, évalué sur un texte qu'il n'a jamais vu, puis utilisé pour compresser, corriger le bruit et prédire le mot suivant — exactement ce que fait un modèle de langage moderne, en plus petit.
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-3 mb-8">
+          <div class="card p-4">
+            <div class="mono text-2xl font-bold mb-1" style="color:var(--hot)" id="introF0">4,75</div>
+            <p class="text-xs leading-relaxed" style="color:var(--txt-2)">bits/lettre si les 27 symboles étaient équiprobables — <span class="mono">F₀</span></p>
+          </div>
+          <div class="card p-4">
+            <div class="mono text-2xl font-bold mb-1" style="color:var(--warn)" id="introF1">—</div>
+            <p class="text-xs leading-relaxed" style="color:var(--txt-2)">en tenant compte des fréquences de lettres — <span class="mono">F₁</span></p>
+          </div>
+          <div class="card p-4">
+            <div class="mono text-2xl font-bold mb-1" style="color:var(--ok)" id="introFn">—</div>
+            <p class="text-xs leading-relaxed" style="color:var(--txt-2)">avec 6 lettres de contexte, mesuré sur texte inédit — <span class="mono">F₇</span></p>
+          </div>
+        </div>
+
+        <button id="startBtn" class="btn btn-primary" style="font-size:.875rem;padding:.6875rem 1.25rem">
+          Commencer le parcours <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+
+        <div class="callout callout-key mt-8">
+          <i data-lucide="flask-conical" class="w-4 h-4 shrink-0 mt-0.5"></i>
+          <span><b>Protocole.</b> Le modèle apprend sur un corpus d'environ <b id="introCorpus" style="color:var(--txt)">…</b> caractères par langue et n'est jamais évalué dessus : toutes les entropies annoncées sont mesurées sur un texte tenu à l'écart. C'est la seule façon de mesurer de la prédiction plutôt que de la mémorisation.</span>
+        </div>
+
+        <div class="divider my-10"></div>
+        <p class="eyebrow mb-4">Les 11 étapes</p>
+        <div id="introList" class="grid sm:grid-cols-2 gap-2"></div>
+      </div>
+    </section>
+
+    <!-- ============ 1 · SURPRISE ============ -->
+    <section class="chapter" data-ch="surprise" hidden>
+      <header class="max-w-3xl mb-8">
+        <p class="eyebrow mb-2">Chapitre 1 · §6 du papier</p>
+        <h2 class="h-chapter text-3xl sm:text-4xl mb-4">L'information, c'est de la surprise</h2>
+        <p class="lead mb-4">
+          Un événement certain n'apprend rien ; un événement improbable apprend beaucoup. Shannon reprend l'idée de Hartley et en fait une mesure : l'information apportée par un événement de probabilité <span class="mono" style="color:var(--txt)">p</span> vaut
+        </p>
+        <div class="formula" data-tex="i(x) \;=\; \log_2\frac{1}{p(x)} \;=\; -\log_2 p(x) \quad \text{bits}"></div>
+      </header>
+
+      <div class="grid lg:grid-cols-2 gap-6 max-w-5xl">
+        <div class="space-y-6">
+          <div class="card p-6">
+            <p class="eyebrow mb-4">Faites varier la probabilité</p>
+            <div class="text-center py-4">
+              <div class="mono font-bold" style="font-size:3.25rem;line-height:1;color:var(--accent)" id="sBits">1.00</div>
+              <p class="text-xs mt-2" style="color:var(--txt-3)">bits d'information</p>
+            </div>
+            <input id="sProb" type="range" class="w-full my-4">
+            <div class="flex items-center justify-between text-xs">
+              <span style="color:var(--txt-3)">probabilité de l'événement</span>
+              <span class="mono tabular" id="sProbLabel" style="color:var(--txt)">50 %</span>
+            </div>
+            <div class="card-inset p-3 mt-4">
+              <p class="text-xs leading-relaxed" id="sExplain" style="color:var(--txt-2)"></p>
+            </div>
+          </div>
+          <div class="card p-6">
+            <p class="eyebrow mb-4">La courbe de l'information</p>
+            <div id="sCurve" class="overflow-x-auto"></div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="card p-6">
+            <p class="eyebrow mb-4">Exemples concrets</p>
+            <div id="sExamples" class="space-y-2"></div>
+          </div>
+          <div class="card p-6">
+            <p class="eyebrow mb-3">Pourquoi un logarithme ?</p>
+            <p class="text-xs leading-relaxed mb-3" style="color:var(--txt-2)">
+              Shannon donne trois raisons (§ introduction). La décisive : l'information doit être <b style="color:var(--txt)">additive</b>. Deux tirages indépendants apportent la somme de leurs informations, alors que leurs probabilités se multiplient.
+            </p>
+            <div class="formula" data-tex="p(x,y)=p(x)\,p(y) \;\Longrightarrow\; i(x,y)=i(x)+i(y)"></div>
+            <p class="text-xs leading-relaxed mt-3" style="color:var(--txt-2)">
+              Seul le logarithme transforme un produit en somme. Le choix de la base 2 fixe l'unité : le <b style="color:var(--txt)">bit</b>, mot proposé par J. W. Tukey et employé ici pour la première fois dans un article scientifique.
+            </p>
+          </div>
+          <div class="callout callout-key">
+            <i data-lucide="key" class="w-4 h-4 shrink-0 mt-0.5"></i>
+            <span><b>À retenir :</b> plus un symbole est rare, plus il coûte de bits. Un bon code donnera donc des mots courts aux lettres fréquentes — c'est déjà le principe du morse.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2 · ENTROPIE ============ -->
+    <section class="chapter" data-ch="entropy" hidden>
+      <header class="max-w-3xl mb-8">
+        <p class="eyebrow mb-2">Chapitre 2 · §6, théorème 2</p>
+        <h2 class="h-chapter text-3xl sm:text-4xl mb-4">L'entropie : la surprise moyenne</h2>
+        <p class="lead mb-4">
+          Si l'on répète l'expérience, l'information moyenne par symbole vaut
+        </p>
+        <div class="formula" data-tex="H(X) \;=\; -\sum_{i} p_i \log_2 p_i"></div>
+        <p class="lead mt-4">
+          Shannon démontre (théorème 2) que c'est la <b style="color:var(--txt)">seule</b> mesure possible si l'on exige trois propriétés élémentaires. Écrivez un texte : son entropie se calcule en direct.
+        </p>
+      </header>
+
+      <div class="grid lg:grid-cols-5 gap-6">
+        <div class="lg:col-span-3 space-y-6">
+          <div class="card p-5">
+            <div class="flex items-center justify-between gap-3 mb-3 flex-wrap">
+              <p class="eyebrow">Votre texte</p>
+              <div id="tSamples" class="flex flex-wrap gap-1.5"></div>
+            </div>
+            <div class="relative rounded-xl" style="background:var(--bg)">
+              <div id="tBackdrop" aria-hidden="true" class="absolute inset-0 overflow-hidden rounded-xl pointer-events-none px-4 py-3.5 whitespace-pre-wrap break-words" style="border:1px solid transparent;color:var(--txt)"></div>
+              <textarea id="tInput" rows="6" spellcheck="false" placeholder="Écrivez ou collez un texte…"
+                class="field relative" style="background:transparent;color:transparent;caret-color:var(--accent);resize:vertical"></textarea>
+            </div>
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-3 text-xs" style="color:var(--txt-3)">
+              <span><b class="mono tabular" style="color:var(--txt-2)" id="tChars">0</b> caractères</span>
+              <span><b class="mono tabular" style="color:var(--txt-2)" id="tWords">0</b> mots</span>
+              <span><b class="mono tabular" style="color:var(--txt-2)" id="tLetters">0</b> lettres</span>
+              <button id="tClear" class="ml-auto btn btn-sm btn-ghost" style="padding:.25rem .5rem"><i data-lucide="eraser" class="w-3 h-3"></i>Effacer</button>
+            </div>
+          </div>
+
+          <div class="card p-5">
+            <p class="eyebrow mb-4">Distribution des lettres de votre texte</p>
+            <div id="tFreq" class="flex items-end gap-[2px] overflow-x-auto" style="height:150px"></div>
+          </div>
+
+          <div class="card p-5">
+            <div class="flex items-baseline justify-between mb-1 flex-wrap gap-2">
+              <p class="eyebrow">Le cas à deux issues</p>
+              <span class="text-[10px] mono" style="color:var(--txt-3)">figure 7 du papier</span>
+            </div>
+            <p class="text-xs mb-3" style="color:var(--txt-3)">
+              Une pièce de probabilité <span class="mono">p</span> : l'incertitude est maximale à <span class="mono">p = 1/2</span> et nulle aux extrémités.
+            </p>
+            <div id="eBinary" class="overflow-x-auto"></div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 space-y-6">
+          <div class="card p-5">
+            <div class="flex items-baseline justify-between mb-1">
+              <p class="eyebrow">Entropie</p>
+              <span class="text-[10px] mono" style="color:var(--txt-3)">bits / caractère</span>
+            </div>
+            <div class="flex items-end gap-2 mt-3">
+              <span id="tH" class="mono font-bold" style="font-size:2.75rem;line-height:1;color:var(--txt)">0.00</span>
+              <span class="text-xs mb-1" style="color:var(--txt-3)">bits</span>
+            </div>
+            <div class="h-2 rounded-full overflow-hidden mt-4" style="background:var(--bg)">
+              <div id="tHBar" class="grow h-full rounded-full" style="width:0%;background:var(--accent)"></div>
+            </div>
+            <div class="flex justify-between text-[10px] mono mt-1.5" style="color:var(--txt-3)">
+              <span>0</span><span id="tHMax">max 0</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 mt-4">
+              <div class="stat"><div class="stat-v" id="tRed" style="color:var(--ok)">—</div><div class="stat-l">redondance</div></div>
+              <div class="stat"><div class="stat-v" id="tEff" style="color:var(--warn)">—</div><div class="stat-l">entropie relative</div></div>
+            </div>
+            <p class="text-[11px] leading-relaxed mt-3" style="color:var(--txt-3)">
+              Shannon appelle <i>entropie relative</i> le rapport H / H<sub>max</sub>, et <i>redondance</i> son complément à 1.
+            </p>
+          </div>
+
+          <div class="card p-5">
+            <p class="eyebrow mb-3">Comparaison</p>
+            <div id="tCompare" class="space-y-2.5"></div>
+          </div>
+
+          <div class="card p-5">
+            <p class="eyebrow mb-3">Les trois axiomes (théorème 2)</p>
+            <div id="eAxioms" class="space-y-3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3 · CODES ============ -->
+    <section class="chapter" data-ch="code" hidden>
+      <header class="max-w-3xl mb-8">
+        <p class="eyebrow mb-2">Chapitre 3 · §9, théorème 9</p>
+        <h2 class="h-chapter text-3xl sm:text-4xl mb-4">L'entropie est une limite physique</h2>
+        <p class="lead mb-4">
+          L'entropie n'est pas une métaphore : c'est le nombre de bits qu'il faut, et qu'il suffit, pour transmettre un message. Le théorème 9 encadre la longueur moyenne <span class="mono">L̄</span> du meilleur code :
+        </p>
+        <div class="formula" data-tex="H \;\le\; \bar{L} \;<\; H + 1"></div>
+        <p class="lead mt-4">Vérifions-le en construisant de vrais codes, puis en compressant réellement un texte.</p>
+      </header>
+
+      <div class="grid lg:grid-cols-2 gap-6 mb-6">
+        <div class="card p-5">
+          <div class="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+            <p class="eyebrow">L'exemple du §10</p>
+            <span class="text-[10px] mono" style="color:var(--txt-3)">A B C D · p = ½ ¼ ⅛ ⅛</span>
+          </div>
+          <p class="text-xs mb-4" style="color:var(--txt-3)">
+            Shannon donne ce code dans le papier. Il atteint exactement H = 7/4 bit : les longueurs sont les <span class="mono">−log₂ p</span>.
+          </p>
+          <div id="kExample"></div>
+        </div>
+
+        <div class="card p-5">
+          <div class="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+            <p class="eyebrow">Code de Huffman sur les lettres</p>
+            <span id="kLangName" class="text-[10px] mono" style="color:var(--txt-3)"></span>
+          </div>
+          <p class="text-xs mb-4" style="color:var(--txt-3)">
+            Construit sur les fréquences réelles du corpus. Les lettres courantes reçoivent des mots de code courts.
+          </p>
+          <div id="kLetters"></div>
+        </div>
+      </div>
+
+      <div class="card p-5 mb-6">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-3">
+          <div>
+            <p class="eyebrow mb-1">Compression réelle par le modèle</p>
+            <p class="text-xs" style="color:var(--txt-3)">
+              Codage arithmétique piloté par le modèle n-gramme, puis décodage et vérification bit à bit.
+            </p>
+          </div>
+          <div class="flex items-center gap-3 flex-wrap">
+            <label class="flex items-center gap-2 text-xs" style="color:var(--txt-3)">contexte
+              <input id="kOrder" type="range" min="0" max="6" value="6" style="width:110px">
+              <span id="kOrderLabel" class="mono" style="color:var(--accent);min-width:64px">6 lettres</span>
+            </label>
+            <button id="kRun" class="btn btn-sm btn-primary"><i data-lucide="file-archive" class="w-3 h-3"></i>Compresser</button>
+          </div>
+        </div>
+        <textarea id="kInput" rows="3" spellcheck="false" class="field mb-4" style="resize:vertical"></textarea>
+        <div id="kResult"></div>
+      </div>
+
+      <div class="card p-5">
+        <div class="flex items-baseline justify-between mb-1 flex-wrap gap-2">
+          <p class="eyebrow">Pourquoi cela fonctionne — théorème 3</p>
+          <span class="text-[10px] mono" style="color:var(--txt-3)">équipartition asymptotique</span>
+        </div>
+        <p class="text-xs mb-4" style="color:var(--txt-3)">
+          Presque toutes les suites longues produites par la source ont la même probabilité <span class="mono">2<sup>−NH</sup></span>. Elles forment l'<i>ensemble typique</i> ; il suffit de les numéroter. Chaque point est une suite tirée du modèle.
+        </p>
+        <div id="kAep" class="overflow-x-auto"></div>
+        <div id="kAepStats" class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4"></div>
+      </div>
+    </section>
+
+    <!-- ============ 4 · SIGNATURES ============ -->
+    <section class="chapter" data-ch="signature" hidden>
+      <header class="max-w-3xl mb-8">
+        <p class="eyebrow mb-2">Chapitre 4</p>
+        <h2 class="h-chapter text-3xl sm:text-4xl mb-4">Chaque langue a sa signature</h2>
+        <p class="lead mb-4">
+          Coder un texte français avec un code optimisé pour l'anglais coûte des bits en trop. Ce surcoût, c'est la <b style="color:var(--txt)">divergence de Kullback–Leibler</b> — une distance entre langues exprimée en bits :
+        </p>
+        <div class="formula" data-tex="D(p\,\|\,q)\;=\;\sum_i p_i\log_2\frac{p_i}{q_i}\;=\;\underbrace{H(p,q)}_{\text{coût réel}}-\underbrace{H(p)}_{\text{coût idéal}}"></div>
+      </header>
+
+      <div class="grid lg:grid-cols-5 gap-6">
+        <div class="lg:col-span-3 space-y-6">
+          <div class="card p-5">
+            <div class="flex items-center justify-between gap-3 mb-3 flex-wrap">
+              <p class="eyebrow">Texte à identifier</p>
+              <div id="dSamples" class="flex flex-wrap gap-1.5"></div>
+            </div>
+            <textarea id="dInput" rows="4" spellcheck="false" placeholder="Écrivez dans n'importe laquelle des quatre langues…" class="field" style="resize:vertical"></textarea>
+          </div>
+          <div class="card p-5">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <p class="eyebrow">Votre texte vs profil de référence</p>
+              <div class="flex items-center gap-3 text-[10px]" style="color:var(--txt-3)">
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm" style="background:var(--accent)"></span>vous</span>
+                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm" style="background:#39414f"></span><span id="dRefName">référence</span></span>
+              </div>
+            </div>
+            <div id="dFreq" class="flex items-end gap-[2px] overflow-x-auto" style="height:150px"></div>
+          </div>
+          <div class="card p-5">
+            <p class="eyebrow mb-1">Matrice des entropies croisées</p>
+            <p class="text-xs mb-4" style="color:var(--txt-3)">
+              Bits/lettre nécessaires pour coder la langue de la ligne avec le code de la colonne. La diagonale est le minimum : c'est l'entropie propre de chaque langue.
+            </p>
+            <div id="dMatrix" class="overflow-x-auto"></div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 space-y-6">
+          <div class="card p-5">
+            <p class="eyebrow mb-4">Langue détectée</p>
+            <div id="dResult"></div>
+          </div>
+          <div class="card p-5">
+            <p class="eyebrow mb-1">Coût du codage</p>
+            <p class="text-[11px] mb-4" style="color:var(--txt-3)">Bits par lettre pour coder VOTRE texte avec le code de chaque langue. Le moins cher gagne.</p>
+            <div id="dRanking" class="space-y-3"></div>
+          </div>
+          <div class="callout callout-key">
+            <i data-lucide="key" class="w-4 h-4 shrink-0 mt-0.5"></i>
+            <span><b>À retenir :</b> identifier une langue, c'est choisir le code le moins coûteux. Le même raisonnement casse un chiffrement par substitution — et c'est aussi ainsi qu'on compare deux modèles de langage.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5 · CONTEXTE ============ -->
+    <section class="chapter" data-ch="context" hidden>
+      <header class="max-w-3xl mb-8">
+        <p class="eyebrow mb-2">Chapitre 5 · §7, théorème 6</p>
+        <h2 class="h-chapter text-3xl sm:text-4xl mb-4">Le contexte fait fondre l'incertitude</h2>
+        <p class="lead mb-4">
+          Shannon définit <span class="mono">Fₙ</span>, l'incertitude sur une lettre quand on connaît les <span class="mono">n−1</span> précédentes, et démontre qu'elle décroît vers l'entropie vraie de la langue :
+        </p>
+        <div class="formula" data-tex="F_N \;=\; -\sum_{i,j} p(B_i,S_j)\,\log_2 p_{B_i}(S_j) \qquad \lim_{N\to\infty}F_N = H"></div>
+      </header>
+
+      <div class="card p-5 mb-6">
+        <div class="flex items-center justify-between gap-4 mb-4 flex-wrap">
+          <p class="eyebrow">Combien de lettres de contexte ?</p>
+          <div class="flex items-center gap-3">
+            <input id="cOrder" type="range" min="0" max="6" value="4" style="width:150px">
+            <span id="cOrderLabel" class="mono text-xs px-2 py-1 rounded" style="background:var(--surface-2);color:var(--accent);min-width:84px;text-align:center">4 lettres</span>
+          </div>
+        </div>
+        <input id="cInput" type="text" spellcheck="false" class="field mono" placeholder="tapez un début de mot…">
+        <div id="cSamples" class="flex flex-wrap gap-1.5 mt-3"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="card p-5">
+          <p class="eyebrow mb-1">Lettre suivante la plus probable</p>
+          <p class="text-xs mb-4" style="color:var(--txt-3)">Cliquez une lettre pour l'accepter et continuer.</p>
+          <div id="cNext" class="space-y-2"></div>
+          <div class="flex items-center justify-between text-xs mt-4 pt-4" style="border-top:1px solid var(--line)">
+            <span style="color:var(--txt-3)">Incertitude sur la lettre suivante</span>
+            <span id="cLocalH" class="mono" style="color:var(--accent)">— bits</span>
+          </div>
+        </div>
+
+        <div class="card p-5">
+          <div class="flex items-baseline justify-between mb-1 flex-wrap gap-2">
+            <p class="eyebrow">Fₙ mesurée</p>
+            <div class="flex items-center gap-3 text-[10px]" style="color:var(--txt-3)">
+              <span class="flex items-center gap-1.5"><span class="w-3 h-[2px]" style="background:var(--accent)"></span>texte inédit</span>
+              <span class="flex items-center gap-1.5"><span class="w-3 h-[2px]" style="background:var(--hot)"></span>texte appris</span>
+            </div>
+          </div>
+          <p class="text-xs mb-4" style="color:var(--txt-3)">
+            L'écart entre les deux courbes est du <b style="color:var(--txt-2)">surapprentissage</b> : sur le texte d'entraînement, le modèle récite.
+          </p>
+          <div id="cFnChart" class="overflow-x-auto"></div>
+        </div>
+      </div>
+
+      <div class="card p-5 mt-6">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-1">
+          <p class="eyebrow">Carte de prévisibilité — caractère par caractère</p>
+          <div class="flex items-center gap-3 text-[10px]" style="color:var(--txt-3)">
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded" style="background:#35d0a5"></span>prévisible</span>
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded" style="background:#f5b544"></span>hésitation</span>
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded" style="background:#ff6b6b"></span>imprévisible</span>
+          </div>
+        </div>
+        <p class="text-xs mb-4" style="color:var(--txt-3)">Survolez une case pour voir ce que le modèle avait prédit.</p>
+        <div id="cHeat" class="flex flex-wrap gap-1"></div>
+        <div id="cStats" class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-5"></div>
+      </div>
+
+      <div class="callout callout-key mt-6">
+        <i data-lucide="key" class="w-4 h-4 shrink-0 mt-0.5"></i>
+        <span><b>À retenir :</b> chaque lettre de contexte supplémentaire réduit l'incertitude, avec des gains qui s'épuisent. Shannon estimait la redondance de l'anglais à <b>environ 50 %</b> en ne regardant pas au-delà de huit lettres.</span>
+      </div>
+    </section>
+
+    <!-- ============ 6 · APPROXIMATIONS ============ -->
+    <section class="chapter" data-ch="lab" hidden>
+      <header class="max-w-3xl mb-8">
+        <p class="eyebrow mb-2">Chapitre 6 · §3</p>
+        <h2 class="h-chapter text-3xl sm:text-4xl mb-4">Quand le charabia devient du langage</h2>
+        <p class="lead">
+          La démonstration la plus frappante du papier : tirer des lettres au hasard selon des statistiques d'ordre croissant. Shannon procédait en ouvrant un livre au hasard pour relever la lettre qui suivait. Nous faisons exactement la même chose, en automatique.
+        </p>
+      </header>
+
+      <div class="flex items-center justify-between gap-3 mb-4 flex-wrap">
+        <p class="eyebrow">Nos approximations</p>
+        <button id="genBtn" class="btn btn-sm btn-primary"><i data-lucide="refresh-cw" class="w-3 h-3"></i>Générer à nouveau</button>
+      </div>
+      <div id="genOut" class="space-y-3"></div>
+
+      <div class="card p-5 mt-6">
+        <div class="flex items-baseline justify-between mb-1 flex-wrap gap-2">
+          <p class="eyebrow">Les échantillons publiés par Shannon en 1948</p>
+          <span class="text-[10px] mono" style="color:var(--txt-3)">§3 — anglais</span>
+        </div>
+        <p class="text-xs mb-4" style="color:var(--txt-3)">À comparer avec les nôtres, produits par le même procédé soixante-quinze ans plus tard.</p>
+        <div id="genShannon" class="space-y-2.5"></div>
+      </div>
+
+      <div class="callout callout-ok mt-6">
+        <i data-lucide="sparkles" class="w-4 h-4 shrink-0 mt-0.5"></i>
+        <span><b>Ce qu'il faut voir :</b> personne n'a appris de grammaire à ce programme. Il a seulement compté des occurrences. La structure du langage émerge des statistiques — c'est la thèse que les modèles de langage ont poussée à son terme.</span>
+      </div>
+    </section>
+
+    <!-- ============ 7 · MOTS / LLM ============ -->
+    <section class="chapter" data-ch="words" hidden>
+      <header class="max-w-3xl mb-8">
+        <p class="eyebrow mb-2">Chapitre 7</p>
+        <h2 class="h-chapter text-3xl sm:text-4xl mb-4">Prédire le symbole suivant</h2>
+        <p class="lead mb-4">
+          Voici le geste exact d'un modèle de langage : estimer <span class="mono">P(suivant | contexte)</span>, en tirer un symbole, l'ajouter au contexte, recommencer. Rien d'autre. Toute la question est de savoir <b style="color:var(--txt)">d'où vient cette probabilité</b>.
+        </p>
+        <p class="lead">
+          Avec <b id="wCorpusTokens" style="color:var(--txt)">…</b> mots de corpus, un trigramme seul est aveugle : <b id="wCorpusTri" style="color:var(--txt)">…</b> des trigrammes y apparaissent deux fois. On combine donc quatre sources d'information, dont les poids sont appris — pas choisis.
+        </p>
+        <div class="formula mt-4" data-tex="P(w \mid h) \;=\; \lambda_1 P_{\text{n-gramme}} + \lambda_2 P_{\text{cache}} + \lambda_3 P_{\text{classes}} + \lambda_4 P_{\text{orthographe}}"></div>
+      </header>
+
+      <div class="card p-5 mb-6">
+        <p class="eyebrow mb-3">Écrivez — tout se recalcule à chaque frappe</p>
+        <input id="wInput" type="text" spellcheck="false" class="field mono" placeholder="ex. la femme qui…">
+        <div class="flex items-center justify-between gap-3 mt-3 flex-wrap">
+          <div id="wSamples" class="flex flex-wrap gap-1.5"></div>
+          <span class="text-[11px]" style="color:var(--txt-3)"><kbd class="kbd">Tab</kbd> accepte la proposition</span>
+        </div>
+        <div class="divider my-4"></div>
+        <p class="eyebrow mb-2">La lettre suivante — le socle du modèle</p>
+        <div id="wLetters"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-5 gap-6 mb-6">
+        <div class="card p-5 lg:col-span-3">
+          <p class="eyebrow mb-1">Le mot suivant</p>
+          <p class="text-xs mb-4" style="color:var(--txt-3)">Chaque barre est colorée selon l'expert qui a porté ce candidat.</p>
+          <div id="wNext"></div>
+        </div>
+        <div class="card p-5 lg:col-span-2">
+          <p class="eyebrow mb-1">Les quatre experts</p>
+          <p class="text-xs mb-4" style="color:var(--txt-3)">Ce que chacun proposerait seul, et le crédit que le réglage lui accorde.</p>
+          <div id="wExperts"></div>
+        </div>
+      </div>
+
+      <div class="card p-5 mb-6">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-4">
+          <div>
+            <p class="eyebrow mb-1">La machine écrit toute seule</p>
+            <p class="text-xs" style="color:var(--txt-3)">Même boucle, mêmes réglages de décodage que dans un modèle de langage.</p>
+          </div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <button id="wModeMix" class="chip" aria-current="true">modèle prudent</button>
+            <button id="wModeRaw" class="chip">modèle qui récite</button>
+            <button id="wGenBtn" class="btn btn-sm btn-primary"><i data-lucide="refresh-cw" class="w-3 h-3"></i>Générer</button>
+          </div>
+        </div>
+
+        <div id="wDecoding" class="grid sm:grid-cols-3 gap-4 mb-4">
+          <label class="text-[11px]" style="color:var(--txt-3)">température <span id="wTempLabel" class="mono" style="color:var(--accent)">0.85</span>
+            <input id="wTemp" type="range" min="10" max="200" value="85" class="w-full mt-1">
+          </label>
+          <label class="text-[11px]" style="color:var(--txt-3)">top-p <span id="wTopPLabel" class="mono" style="color:var(--accent)">0.90</span>
+            <input id="wTopP" type="range" min="10" max="100" value="90" class="w-full mt-1">
+          </label>
+          <label class="text-[11px]" style="color:var(--txt-3)">pénalité de répétition <span id="wPenLabel" class="mono" style="color:var(--accent)">1.80</span>
+            <input id="wPen" type="range" min="100" max="250" value="180" class="w-full mt-1">
+          </label>
+        </div>
+
+        <div class="card-inset p-3.5 mono text-xs leading-relaxed mb-3" style="min-height:90px">
+          <span id="wEcho" style="color:var(--txt-2)"></span><span id="wAuto"></span><span class="animate-pulse" style="color:var(--accent)">▍</span>
+        </div>
+        <p id="wModeNote" class="text-[11px] leading-relaxed mb-4" style="color:var(--txt-3)"></p>
+        <div id="wTrace" class="overflow-x-auto"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="card p-5">
+          <p class="eyebrow mb-1">Prévisibilité de votre texte</p>
+          <p class="text-xs mb-4" style="color:var(--txt-3)">
+            <span style="color:var(--ok)">↺</span> mot déjà employé plus haut — le cache le rend meilleur marché.
+            Bordure violette : mot absent du corpus.
+          </p>
+          <div id="wHeat" class="flex flex-wrap gap-1.5"></div>
+          <div id="wStats" class="grid grid-cols-2 gap-2 mt-5"></div>
+        </div>
+        <div class="card p-5">
+          <p class="eyebrow mb-1">Ce que chaque expert apporte vraiment</p>
+          <p class="text-xs mb-4" style="color:var(--txt-3)">Étude d'ablation : on ajoute une composante à la fois et on mesure.</p>
+          <div id="wAblation" class="overflow-x-auto"></div>
+        </div>
+      </div>
+
+      <div class="callout callout-key mt-6">
+        <i data-lucide="key" class="w-4 h-4 shrink-0 mt-0.5"></i>
+        <span><b>À retenir :</b> un modèle de langage n'est pas un dictionnaire, c'est un <b>arbitrage</b> permanent entre plusieurs sources de régularité. Changer d'échelle ne change pas la nature de l'opération — seulement la finesse de l'arbitrage.</span>
+      </div>
+    </section>
+
+    <!-- ============ 8 · JEU ============ -->
+    <section class="chapter" data-ch="game" hidden>
+      <header class="max-w-3xl mb-8">
+        <p class="eyebrow mb-2">Chapitre 8 · Shannon 1951</p>
+        <h2 class="h-chapter text-3xl sm:text-4xl mb-4">À votre tour : l'expérience de 1951</h2>
+        <p class="lead mb-4">
+          Trois ans après le papier fondateur, Shannon mesure l'entropie de l'anglais en faisant deviner à des humains la lettre suivante d'un texte caché. Le nombre d'essais nécessaires encadre l'entropie :
+        </p>
+        <div class="formula" data-tex="\sum_{i=1}^{V} i\,(q_i - q_{i+1})\log_2 i \;\le\; H \;\le\; \sum_{i=1}^{V} q_i \log_2 \frac{i}{i-1}"></div>
+      </header>
+
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 space-y-6">
+          <div class="card p-5">
+            <div class="flex items-center justify-between gap-3 mb-4 flex-wrap">
+              <p class="eyebrow">Texte caché</p>
+              <button id="gNew" class="btn btn-sm"><i data-lucide="dice-5" class="w-3 h-3"></i>Nouveau texte</button>
+            </div>
+            <div id="gText" class="card-inset p-4 mono leading-loose break-words" style="font-size:1.0625rem;min-height:100px"></div>
+            <p id="gFeedback" class="text-xs mt-3" style="min-height:1rem"></p>
+          </div>
+
+          <div class="card p-5">
+            <div class="flex items-center justify-between mb-3">
+              <p class="eyebrow">Devinez la lettre suivante</p>
+              <span class="text-[11px]" style="color:var(--txt-3)">essai <b class="mono" id="gTry" style="color:var(--txt-2)">1</b></span>
+            </div>
+            <div id="gKeys" class="flex flex-wrap gap-1.5"></div>
+            <div class="flex items-center gap-2 mt-4 flex-wrap">
+              <button id="gReveal" class="btn btn-sm"><i data-lucide="eye" class="w-3 h-3"></i>Révéler</button>
+              <button id="gAuto" class="btn btn-sm"><i data-lucide="bot" class="w-3 h-3"></i>La machine joue</button>
+              <span class="text-[11px] ml-auto" style="color:var(--txt-3)">Tapez au clavier</span>
+            </div>
+          </div>
+
+          <div class="card p-5">
+            <p class="eyebrow mb-3">Vous contre la machine</p>
+            <div id="gVs"></div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="card p-5">
+            <p class="eyebrow mb-4">Performance</p>
+            <div class="text-center py-2">
+              <div class="mono font-bold" style="font-size:2.5rem;line-height:1;color:var(--ok)" id="gAcc">—</div>
+              <p class="text-[11px] mt-1.5" style="color:var(--txt-3)">deviné du premier coup</p>
+            </div>
+            <div class="grid grid-cols-2 gap-2 mt-4">
+              <div class="stat"><div class="stat-v" id="gGuesses" style="color:var(--txt)">—</div><div class="stat-l">essais / lettre</div></div>
+              <div class="stat"><div class="stat-v" id="gDone" style="color:var(--txt)">0</div><div class="stat-l">lettres faites</div></div>
+            </div>
+          </div>
+
+          <div class="card p-5">
+            <p class="eyebrow mb-1">Entropie encadrée</p>
+            <p class="text-[11px] mb-4" style="color:var(--txt-3)">Bornes calculées à partir de vos essais.</p>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1"><span style="color:var(--txt-3)">borne basse</span><span id="gLower" class="mono" style="color:var(--ok)">—</span></div>
+                <div class="h-1.5 rounded-full overflow-hidden" style="background:var(--bg)"><div id="gLowerBar" class="grow h-full" style="width:0%;background:var(--ok)"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1"><span style="color:var(--txt-3)">borne haute</span><span id="gUpper" class="mono" style="color:var(--warn)">—</span></div>
+                <div class="h-1.5 rounded-full overflow-hidden" style="background:var(--bg)"><div id="gUpperBar" class="grow h-full" style="width:0%;background:var(--warn)"></div></div>
+              </div>
+            </div>
+            <p class="text-[11px] leading-relaxed mt-4 pt-3" style="color:var(--txt-3);border-top:1px solid var(--line)">
+              Shannon obtenait <b style="color:var(--txt-2)">0,6 à 1,3 bit/lettre</b> pour l'anglais, contre 4,75 pour un alphabet aléatoire.
+            </p>
+          </div>
+
+          <div class="card p-5">
+            <p class="eyebrow mb-3">Essais nécessaires</p>
+            <div id="gHist" class="space-y-1.5"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 9 · BRUIT ============ -->
+    <section class="chapter" data-ch="noise" hidden>
+      <header class="max-w-3xl mb-8">
+        <p class="eyebrow mb-2">Chapitre 9 · Partie II, §12</p>
+        <h2 class="h-chapter text-3xl sm:text-4xl mb-4">La redondance protège l'information</h2>
+        <p class="lead mb-4">
+          Jusqu'ici la redondance semblait un gaspillage. Elle est en réalité ce qui rend la communication possible dans un monde bruité. Shannon quantifie l'information perdue par l'<b style="color:var(--txt)">équivocation</b>, et la définit comme la capacité du canal :
+        </p>
+        <div class="formula" data-tex="R = H(x) - H_y(x) \qquad C = \max\big(H(x) - H_y(x)\big)"></div>
+      </header>
+
+      <div class="card p-5 mb-6">
+        <div class="flex items-start justify-between gap-4 flex-wrap mb-3">
+          <div>
+            <p class="eyebrow mb-1">Transmission bruitée</p>
+            <p class="text-xs" style="color:var(--txt-3)">Chaque lettre est remplacée au hasard avec probabilité p. Le décodeur ne connaît que la langue.</p>
+          </div>
+          <div class="flex items-center gap-3 flex-wrap">
+            <label class="flex items-center gap-2 text-xs" style="color:var(--txt-3)">bruit p
+              <input id="nP" type="range" min="0" max="30" value="8" style="width:120px">
+              <span id="nPLabel" class="mono" style="color:var(--hot);min-width:40px">8 %</span>
+            </label>
+            <button id="nRun" class="btn btn-sm btn-primary"><i data-lucide="radio" class="w-3 h-3"></i>Transmettre</button>
+          </div>
+        </div>
+        <textarea id="nText" rows="2" spellcheck="false" class="field mb-4" style="resize:vertical"></textarea>
+        <div id="nOut"></div>
+        <div id="nStats" class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="card p-5">
+          <p class="eyebrow mb-1">Capacité du canal</p>
+          <p class="text-xs mb-4" style="color:var(--txt-3)">
+            Ce qui reste transmissible malgré le bruit. À p = 0 on transmet log₂ V bits ; quand le bruit rend la sortie indépendante de l'entrée, la capacité s'annule.
+          </p>
+          <div id="nCapacity" class="overflow-x-auto"></div>
+        </div>
+
+        <div class="card p-5">
+          <div class="flex items-start justify-between gap-3 flex-wrap mb-1">
+            <p class="eyebrow">L'expérience de l'effacement</p>
+            <button id="nEraseBtn" class="btn btn-sm"><i data-lucide="eraser" class="w-3 h-3"></i>Effacer et restaurer</button>
+          </div>
+          <p class="text-xs mb-4" style="color:var(--txt-3)">
+            Shannon (§7) : « si l'on peut restaurer un texte dont on a supprimé la moitié des lettres, la redondance dépasse 50 % ». Vérifions.
+          </p>
+          <label class="flex items-center gap-2 text-xs mb-3" style="color:var(--txt-3)">lettres effacées
+            <input id="nEraseP" type="range" min="10" max="70" value="50" style="width:110px">
+            <span id="nErasePLabel" class="mono" style="color:var(--warn)">50 %</span>
+          </label>
+          <div id="nEraseOut"></div>
+        </div>
+      </div>
+
+      <div class="callout callout-key mt-6">
+        <i data-lucide="key" class="w-4 h-4 shrink-0 mt-0.5"></i>
+        <span><b>À retenir :</b> chercher le texte le plus probable connaissant un signal dégradé, c'est le <b>modèle source-canal</b>. Il a fondé la reconnaissance vocale et la traduction automatique, et c'est encore ce que fait votre correcteur orthographique.</span>
+      </div>
+    </section>
+
+    <!-- ============ 10 · ÉCHELLE / IA ============ -->
+    <section class="chapter" data-ch="scaling" hidden>
+      <header class="max-w-3xl mb-8">
+        <p class="eyebrow mb-2">Chapitre 10</p>
+        <h2 class="h-chapter text-3xl sm:text-4xl mb-4">Du n-gramme à l'intelligence artificielle</h2>
+        <p class="lead">
+          Un modèle de langage moderne fait exactement ce que vous venez de voir : minimiser les bits de surprise du symbole suivant. La différence n'est pas de nature, elle est d'échelle — et cette échelle se mesure.
+        </p>
+      </header>
+
+      <div class="card p-5 mb-6">
+        <p class="eyebrow mb-1">L'échelle des entropies — où en est-on ?</p>
+        <p class="text-xs mb-4" style="color:var(--txt-3)">
+          Tout le parcours tient dans ce graphique : chaque barre est le coût réel d'une lettre de texte,
+          mesuré sur du texte inédit. Les trois premières sont calculées ici même, les deux dernières
+          viennent de Shannon (1951) et des modèles de langage actuels.
+        </p>
+        <div id="scLadder"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6 mb-6">
+        <div class="card p-5">
+          <p class="eyebrow mb-1">Plus de données, moins de bits</p>
+          <p class="text-xs mb-4" style="color:var(--txt-3)">
+            Entropie sur texte inédit en fonction de la taille du corpus d'apprentissage. Chaque point est un modèle réentraîné en direct. La forme de cette courbe est celle des lois d'échelle des modèles de langage.
+          </p>
+          <div id="scData" class="overflow-x-auto"></div>
+        </div>
+        <div class="card p-5">
+          <p class="eyebrow mb-1">Plus de contexte, moins de bits</p>
+          <p class="text-xs mb-4" style="color:var(--txt-3)">
+            Le gain s'épuise vite pour un n-gramme : au-delà de quelques lettres, il n'a plus assez d'exemples. C'est précisément la limite que les réseaux de neurones ont franchie.
+          </p>
+          <div id="scCtx" class="overflow-x-auto"></div>
+        </div>
+      </div>
+
+      <div class="card p-5 mb-6">
+        <div class="flex items-start justify-between gap-3 mb-3 flex-wrap">
+          <div>
+            <p class="eyebrow mb-1">Le même exercice, confié à une IA</p>
+            <p class="text-xs" style="color:var(--txt-3)">Un vrai modèle de langage reçoit la même phrase. Sa réponse est mise en regard de celle de notre n-gramme, mot pour mot.</p>
+          </div>
+          <div id="llmAuth" class="flex items-center gap-2"></div>
+        </div>
+        <input id="aiInput" type="text" spellcheck="false" class="field mono mb-3" placeholder="Écrivez un début de phrase…" autocomplete="off">
+        <button id="llmAsk" class="btn btn-sm btn-primary"><i data-lucide="sparkles" class="w-3 h-3"></i>Demander à l'IA</button>
+        <div id="llmOut2" class="mt-5"></div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="card p-5">
+          <div class="w-8 h-8 rounded-lg grid place-items-center mb-3" style="background:rgba(91,140,255,.12)">
+            <i data-lucide="binary" class="w-4 h-4" style="color:var(--accent)"></i>
+          </div>
+          <h4 class="font-semibold text-sm mb-1.5">Même objectif</h4>
+          <p class="text-xs leading-relaxed" style="color:var(--txt-2)">L'entraînement d'un LLM minimise l'entropie croisée du token suivant : la quantité exacte que vous avez mesurée au chapitre 5.</p>
+        </div>
+        <div class="card p-5">
+          <div class="w-8 h-8 rounded-lg grid place-items-center mb-3" style="background:rgba(167,139,250,.12)">
+            <i data-lucide="expand" class="w-4 h-4" style="color:var(--violet)"></i>
+          </div>
+          <h4 class="font-semibold text-sm mb-1.5">Autre échelle</h4>
+          <p class="text-xs leading-relaxed" style="color:var(--txt-2)">Notre modèle compte des n-grammes sur <b id="scCorpus" style="color:var(--txt-2)">…</b> caractères. Un LLM généralise sur des milliers de milliards, avec un contexte de dizaines de milliers de tokens.</p>
+        </div>
+        <div class="card p-5">
+          <div class="w-8 h-8 rounded-lg grid place-items-center mb-3" style="background:rgba(53,208,165,.12)">
+            <i data-lucide="trending-down" class="w-4 h-4" style="color:var(--ok)"></i>
+          </div>
+          <h4 class="font-semibold text-sm mb-1.5">Même métrique</h4>
+          <p class="text-xs leading-relaxed" style="color:var(--txt-2)">La perplexité qui classe les modèles aujourd'hui n'est rien d'autre que <span class="mono">2^H</span>, l'entropie de Shannon changée d'unité.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 11 · CONCLUSION ============ -->
+    <section class="chapter" data-ch="end" hidden>
+      <header class="max-w-3xl mb-8">
+        <p class="eyebrow mb-2">Chapitre 11</p>
+        <h2 class="h-chapter text-3xl sm:text-4xl mb-4">Une idée, d'innombrables applications</h2>
+        <p class="lead">
+          De la surprise d'un événement isolé jusqu'aux modèles de langage, tout découle d'une seule décision : mesurer l'information en bits.
+        </p>
+      </header>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8" id="endApps"></div>
+
+      <div class="card p-6 max-w-3xl">
+        <p class="eyebrow mb-4">Ce que ce parcours a mesuré</p>
+        <div id="endStats" class="grid grid-cols-2 sm:grid-cols-4 gap-2"></div>
+        <div class="divider my-6"></div>
+        <blockquote class="text-sm leading-relaxed italic" style="color:var(--txt-2)">
+          « La redondance de l'anglais ordinaire, en ne considérant pas de structure statistique au-delà d'environ huit lettres, est approximativement de 50 %. »
+        </blockquote>
+        <p class="text-xs mt-2 mono" style="color:var(--txt-3)">— C. E. Shannon, <i>A Mathematical Theory of Communication</i>, §7, 1948</p>
+        <div class="flex gap-2 mt-6 flex-wrap">
+          <button id="endRestart" class="btn btn-sm"><i data-lucide="rotate-ccw" class="w-3 h-3"></i>Recommencer</button>
+          <button id="endToAi" class="btn btn-sm btn-primary"><i data-lucide="brain-circuit" class="w-3 h-3"></i>Retour au chapitre IA</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== navigation de bas de page ===== -->
+    <div id="chapterFoot" class="mt-12 pt-6 flex items-center justify-between gap-4" style="border-top:1px solid var(--line)">
+      <button id="footPrev" class="btn btn-ghost"><i data-lucide="arrow-left" class="w-4 h-4"></i><span id="footPrevLabel">Précédent</span></button>
+      <button id="footNext" class="btn btn-primary"><span id="footNextLabel">Suivant</span><i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+    </div>
+
+    <footer class="text-center text-[11px] mt-12 leading-relaxed" style="color:var(--txt-3)">
+      D'après C. E. Shannon, « A Mathematical Theory of Communication », <i>Bell System Technical Journal</i>, 1948,<br>
+      et « Prediction and Entropy of Printed English », 1951. Modèle : n-grammes à interpolation Kneser–Ney modifiée (Chen &amp; Goodman, 1998).
+    </footer>
+  </main>
+</div>
+
+<!-- ===================== BANDEAU EMPIRE CONTRE INTOX ===================== -->
+<footer class="eci-collective">
+  <div class="eci-inner">
+    <span class="eci-seal eci-seal-lg"><img src="../../../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox"></span>
+    <h3>Empire contre Intox</h3>
+    <p>
+      Un collectif qui transforme les grands lives en dossiers durables&nbsp;: transcription intégrale,
+      faits vérifiés et sourcés, mise en scène pédagogique. <b>Entropia</b> est le laboratoire interactif
+      du dossier <b>XXV · Entropie</b>, de <b>Provoxys</b> et <b>Samlepirate</b>&nbsp;: le chapitre 17 y démontre
+      la formule de Shannon, cette expérience vous la fait manipuler.
+    </p>
+    <div class="eci-links">
+      <a class="eci-btn eci-btn-primary" href="../index.html">↩ Le dossier Entropie</a>
+      <a class="eci-btn" href="../portraits.html">Portraits des savants</a>
+      <a class="eci-btn" href="../../../sources/sources.html">Les Sources</a>
+      <a class="eci-btn" href="../../../index.html">Accueil ECI</a>
+    </div>
+    <p class="eci-devise">Veritas omnia vincit</p>
+
+    <div class="eci-license">
+      <b>Licence du contenu —</b> Sauf mention contraire, les contenus éditoriaux de cette expérience sont publiés sous licence
+      <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr" target="_blank" rel="noopener">Creative Commons Attribution – Pas d'Utilisation Commerciale – Pas de Modification 4.0 International (CC&nbsp;BY-NC-ND&nbsp;4.0)</a>&nbsp;:
+      partage autorisé avec attribution, sans usage commercial ni modification. Voir le détail dans
+      <a href="../../../LICENCE-CONTENU.md">LICENCE-CONTENU.md</a>. L'article de <b>C.&nbsp;E.&nbsp;Shannon</b> cité et les corpus
+      d'entraînement restent soumis à leurs droits propres.
+      <span class="eci-visit-counter" data-visit-counter>— visites sur cette page</span>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+<script src="../../../assets/visit-counter.js" defer></script>
+</body>
+</html>
