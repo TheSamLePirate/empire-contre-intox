@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>L'Ordinateur de 1983 — Du transistor au système d'exploitation | Empire contre Intox</title>
-  <meta name="description" content="Comment on fabrique un ordinateur à partir de rien : le bit, les six portes logiques, l'additionneur, le comparateur, l'ALU, la mémoire, l'horloge, le jeu d'instructions, l'assembleur, un mini C, un bootloader et un système. Onze expériences interactives — dont un vrai processeur 8 bits qui s'exécute dans cette page. Dossier Samlepirate.">
+  <meta name="description" content="Comment on fabrique un ordinateur à partir de rien : le bit, les six portes logiques, l'additionneur, le comparateur, l'ALU, la mémoire, l'horloge, le jeu d'instructions, l'assembleur, un mini C, un bootloader et un système. Quinze expériences interactives — quatre transistors qui font une porte, un vidage hexadécimal, une carte des 8 192 octets, un décodeur d'instructions et un vrai processeur 8 bits qui s'exécute dans cette page. Dossier Samlepirate.">
   <meta name="theme-color" content="#050811">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +33,15 @@
       --line-2:rgba(244,236,216,.10);
       --glass:rgba(7,12,26,.72);
       --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      /* Le banc — matière des instruments de mesure (chapitre « voie B » du dossier) */
+      --panel:#171e2c;        /* face anodisée du châssis */
+      --panel-2:#0f1522;      /* bas de face, dégradé de tôle */
+      --silk:#8ea3bd;         /* sérigraphie blanche sur panneau sombre */
+      --bev-hi:rgba(226,238,255,.13);   /* arête éclairée : haut-gauche */
+      --bev-lo:rgba(0,0,0,.62);         /* arête ombrée : bas-droite */
+      --led-red:#ff5140;      /* diode rouge / afficheur 7 segments */
+      --crt:#04130c;          /* verre du tube, éteint */
 
       --serif:"Fraunces",Georgia,"Times New Roman",serif;
       --roman:"Cinzel",Georgia,serif;
@@ -106,11 +115,6 @@
     .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
     .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
     .button.live { color:#04150c; border-color:transparent; background:linear-gradient(140deg,var(--phosphor),#3fbe7c); box-shadow:0 14px 38px rgba(110,231,160,.24); }
-    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
-    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
-    .signal:last-child { border-bottom:0; }
-    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
-    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
 
     /* Topbar */
     .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
@@ -306,13 +310,13 @@
     .reveal[data-d="2"] { transition-delay:.16s; }
     .reveal[data-d="3"] { transition-delay:.24s; }
     @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
-    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *,.js .post { opacity:0; animation:rise .9s var(--ease) forwards; }
     .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
     .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
     .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
     .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
     .js .hero-inner > div > *:nth-child(5){ animation-delay:.5s; }
-    .js .signal-board { animation-delay:.5s; }
+    .js .post { animation-delay:.5s; }
 
     /* ============================================================
        LE LABORATOIRE — châssis commun de toutes les expériences
@@ -415,7 +419,7 @@
     .readout { font-family:var(--mono); font-size:.86rem; color:var(--parch); line-height:1.9; }
     .readout b { color:var(--phosphor); font-weight:700; }
     .readout s { color:var(--ember); text-decoration:none; font-weight:700; }
-    @media (max-width:820px){ .lab-cols,.lab-cols.wide-left { grid-template-columns:1fr; } }
+    @media (max-width:820px){ .lab-cols,.lab-cols.wide-left { grid-template-columns:minmax(0,1fr); } }
 
     /* Schémas SVG de circuits */
     .circ-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--line-2); border-radius:3px; background:rgba(5,8,17,.5); padding:10px; }
@@ -531,10 +535,281 @@
     .memrow .mb i { position:relative; margin-left:auto; font-family:var(--mono); font-size:.72rem; font-style:normal; color:var(--soft); }
     @media (max-width:640px){ .memrow { grid-template-columns:1fr; gap:3px; } }
 
+    /* ============================================================
+       LE BANC — chrome d'instrument, façon 1990
+       Le codex reste l'écriture ; les instruments sont de la tôle.
+       Coins vifs, arêtes biseautées d'un pixel, vis aux quatre coins,
+       sérigraphie en capitales monospace, verre de tube pour l'affichage.
+       ============================================================ */
+    :root {
+      --screw:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%230a0f1a'/%3E%3Ccircle cx='12' cy='11' r='9.5' fill='%23252e40'/%3E%3Ccircle cx='12' cy='12.5' r='9' fill='%23131a28'/%3E%3Crect x='3' y='10.6' width='18' height='2.8' rx='1' fill='%23070b14' transform='rotate(32 12 12)'/%3E%3C/svg%3E");
+      --scan:repeating-linear-gradient(180deg,rgba(0,0,0,.34) 0 1px,transparent 1px 3px);
+    }
+
+    /* — Châssis — */
+    .lab {
+      position:relative; border-radius:0; border:1px solid rgba(0,0,0,.72);
+      background:linear-gradient(180deg,var(--panel),var(--panel-2) 68%,#0c111c);
+      box-shadow:inset 1px 1px 0 var(--bev-hi),inset -1px -1px 0 var(--bev-lo),0 26px 62px rgba(0,0,0,.5);
+    }
+    .lab::before {
+      content:""; position:absolute; inset:0; z-index:3; pointer-events:none;
+      background-image:var(--screw),var(--screw),var(--screw),var(--screw);
+      background-repeat:no-repeat; background-size:13px 13px;
+      background-position:9px 9px,right 9px top 9px,9px bottom 9px,right 9px bottom 9px;
+      opacity:1;
+    }
+    .lab > * { position:relative; z-index:1; }
+    .lab-head {
+      padding:12px 34px; border-bottom:1px solid rgba(0,0,0,.66);
+      background:linear-gradient(180deg,rgba(0,0,0,.34),rgba(0,0,0,.06));
+      box-shadow:0 1px 0 var(--bev-hi);
+    }
+    .lab-no {
+      border-radius:0; border:1px solid rgba(0,0,0,.6); min-width:58px; height:26px;
+      background:linear-gradient(180deg,#232c3d,#151c29); color:var(--silk);
+      box-shadow:inset 1px 1px 0 var(--bev-hi),inset -1px -1px 0 rgba(0,0,0,.5);
+      font-family:var(--mono); font-size:.62rem; font-weight:700; letter-spacing:.16em;
+    }
+    .lab-title { font-family:var(--mono); font-size:.72rem; font-weight:700; letter-spacing:.2em; color:var(--parch); }
+    .lab-kind {
+      display:inline-flex; align-items:center; gap:9px;
+      font-family:var(--mono); font-size:.56rem; font-weight:500; letter-spacing:.2em; color:var(--soft);
+    }
+    .lab-kind::after {
+      content:""; width:9px; height:9px; border-radius:50%; flex:none;
+      background:var(--led-red); box-shadow:0 0 9px rgba(255,81,64,.85),inset 0 -2px 3px rgba(0,0,0,.45);
+      animation:pwr 3.4s ease-in-out infinite;
+    }
+    @keyframes pwr { 0%,100%{opacity:1;} 50%{opacity:.55;} }
+    .lab-body { padding:24px 34px; }
+    .lab-foot { padding:0 34px 20px; }
+    .lab-hint { color:var(--muted); }
+
+    /* — Verre de tube : tout affichage vivant est derrière une vitre — */
+    .circ-wrap,.scope,.dpath-wrap,.crt {
+      position:relative; border-radius:0; border:1px solid rgba(0,0,0,.72);
+      background:radial-gradient(130% 130% at 50% -10%,rgba(110,231,160,.07),transparent 62%),var(--crt);
+      box-shadow:inset 2px 2px 9px rgba(0,0,0,.8),inset -1px -1px 0 rgba(255,255,255,.05);
+    }
+    .circ-wrap::after,.scope::after,.dpath-wrap::after,.crt::after {
+      content:""; position:absolute; inset:0; pointer-events:none; z-index:2;
+      background:var(--scan); mix-blend-mode:multiply; opacity:.5;
+    }
+    .crt-frame { padding:14px; }
+
+    /* — Boutons-poussoirs : ils s'enfoncent — */
+    .btn {
+      border-radius:0; border:1px solid rgba(0,0,0,.66); color:var(--parch);
+      background:linear-gradient(180deg,#26303f,#161d2b);
+      box-shadow:inset 1px 1px 0 rgba(226,238,255,.14),inset -1px -1px 0 rgba(0,0,0,.6);
+      font-family:var(--mono); font-size:.62rem; letter-spacing:.1em;
+    }
+    .btn:hover:not(:disabled) { background:linear-gradient(180deg,#2e3a4c,#1b2331); border-color:rgba(0,0,0,.7); transform:none; }
+    .btn:active:not(:disabled) { box-shadow:inset 1px 1px 4px rgba(0,0,0,.75),inset -1px -1px 0 rgba(226,238,255,.06); transform:translateY(1px); }
+    .btn.on { color:#14110a; box-shadow:inset 1px 1px 0 rgba(255,255,255,.45),inset -1px -1px 0 rgba(0,0,0,.35); }
+    .btn.go { color:#04150c; box-shadow:inset 1px 1px 0 rgba(255,255,255,.4),inset -1px -1px 0 rgba(0,0,0,.35); }
+    .tab { border-radius:0; font-family:var(--mono); font-size:.62rem; letter-spacing:.1em;
+      background:linear-gradient(180deg,#222b3a,#141b28); border-color:rgba(0,0,0,.6);
+      box-shadow:inset 1px 1px 0 rgba(226,238,255,.1),inset -1px -1px 0 rgba(0,0,0,.55); }
+    .tab[aria-selected="true"] { box-shadow:inset 1px 1px 3px rgba(0,0,0,.5); }
+    .ctrl-lab { font-family:var(--mono); letter-spacing:.2em; color:var(--silk); }
+    .tinput { flex:1 1 240px; min-width:0; height:36px; padding:0 12px; border:1px solid rgba(0,0,0,.75);
+      background:#080d16; color:var(--phosphor); caret-color:var(--phosphor);
+      font-family:var(--mono); font-size:.84rem; letter-spacing:.02em;
+      box-shadow:inset 2px 2px 6px rgba(0,0,0,.8); }
+    .tinput:focus { outline:none; border-color:rgba(110,231,160,.5); box-shadow:inset 2px 2px 6px rgba(0,0,0,.8),0 0 0 2px rgba(110,231,160,.15); }
+    .num8 input[type="number"] { border-radius:0; background:#080d16; box-shadow:inset 2px 2px 5px rgba(0,0,0,.8); }
+
+    /* — Interrupteur : boîtier DIP — */
+    .sw { border-radius:0; border-color:rgba(0,0,0,.6); background:linear-gradient(180deg,#212a39,#141a26);
+      box-shadow:inset 1px 1px 0 rgba(226,238,255,.1),inset -1px -1px 0 rgba(0,0,0,.5); }
+    .sw .sw-body { border-radius:0; border-color:rgba(0,0,0,.75); background:#080d16;
+      box-shadow:inset 2px 2px 5px rgba(0,0,0,.85); }
+    .sw .sw-knob { background:linear-gradient(180deg,#e9e2cc,#a7a08c); box-shadow:0 1px 2px rgba(0,0,0,.6); }
+    .sw[aria-pressed="true"] { border-color:rgba(96,165,250,.45); }
+    .sw .sw-name,.sw .sw-val { font-family:var(--mono); }
+
+    /* — Rangée de bits : lampes dans leur puits — */
+    .bits .b { border-radius:0; background:#080d16; border-color:rgba(0,0,0,.7);
+      box-shadow:inset 1px 1px 4px rgba(0,0,0,.8); }
+    .bits .b.one { box-shadow:inset 0 0 10px rgba(96,165,250,.35),0 0 9px rgba(96,165,250,.25); }
+    .bits .b.sum.one { box-shadow:inset 0 0 10px rgba(110,231,160,.35),0 0 9px rgba(110,231,160,.22); }
+    .bits .b.carry.one { box-shadow:inset 0 0 10px rgba(224,134,74,.35),0 0 9px rgba(224,134,74,.22); }
+    .led { border-radius:0; background:linear-gradient(180deg,#1b2230,#0e141f); border-color:rgba(0,0,0,.6);
+      box-shadow:inset 1px 1px 0 rgba(226,238,255,.1),inset -1px -1px 0 rgba(0,0,0,.5); }
+    .led .bulb { box-shadow:inset 0 -2px 3px rgba(0,0,0,.5); }
+    .panel { border-radius:0; border-color:rgba(0,0,0,.55);
+      background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,.16));
+      box-shadow:inset 1px 1px 0 rgba(226,238,255,.07),inset -1px -1px 0 rgba(0,0,0,.4); }
+    .panel h4 { font-family:var(--mono); font-size:.58rem; letter-spacing:.2em; color:var(--silk); }
+    .term,.listing,.src,.err,.tt-wrap,.reg,.flag { border-radius:0; }
+    .term { box-shadow:inset 2px 2px 9px rgba(0,0,0,.85); }
+    .reg,.flag { background:#080d16; box-shadow:inset 2px 2px 5px rgba(0,0,0,.8); }
+    .reg .rn,.flag b { font-family:var(--mono); }
+
+    /* — Afficheur 7 segments — */
+    .seg7 { display:inline-flex; gap:9px; padding:13px 16px; border:1px solid rgba(0,0,0,.75);
+      background:radial-gradient(120% 120% at 50% 0%,rgba(255,81,64,.05),transparent 60%),var(--crt);
+      box-shadow:inset 2px 2px 9px rgba(0,0,0,.85); }
+    .seg7 .d { position:relative; width:30px; height:52px; transform:skewX(-5deg); flex:none; }
+    .seg7 .d i { position:absolute; display:block; background:currentColor; color:rgba(255,81,64,.085); transition:color .12s linear; }
+    .seg7 .d i.on { color:var(--led-red); filter:drop-shadow(0 0 5px rgba(255,81,64,.7)); }
+    .seg7 .d i.h { left:5px; width:20px; height:5px;
+      clip-path:polygon(5px 0,calc(100% - 5px) 0,100% 50%,calc(100% - 5px) 100%,5px 100%,0 50%); }
+    .seg7 .d i.v { width:5px; height:20px;
+      clip-path:polygon(0 5px,50% 0,100% 5px,100% calc(100% - 5px),50% 100%,0 calc(100% - 5px)); }
+    .seg7 .d i.sa { top:0; } .seg7 .d i.sg { top:23.5px; } .seg7 .d i.sd { top:47px; }
+    .seg7 .d i.sf { left:0; top:3px; } .seg7 .d i.sb { left:25px; top:3px; }
+    .seg7 .d i.se { left:0; top:26.5px; } .seg7 .d i.sc { left:25px; top:26.5px; }
+    .seg7.small .d { width:20px; height:34px; }
+    .seg7.small .d i.h { left:4px; width:12px; height:4px; }
+    .seg7.small .d i.v { width:4px; height:13px; }
+    .seg7.small .d i.sg { top:15px; } .seg7.small .d i.sd { top:30px; }
+    .seg7.small .d i.sf,.seg7.small .d i.sb { top:2.5px; }
+    .seg7.small .d i.se,.seg7.small .d i.sc { top:17px; }
+    .seg7.small .d i.sb,.seg7.small .d i.sc { left:16px; }
+    .seg-legend { font-family:var(--mono); font-size:.56rem; letter-spacing:.2em; color:var(--silk); margin:8px 0 0; }
+
+    /* — Sérigraphie : légende gravée sur la tôle — */
+    .silk { font-family:var(--mono); font-size:.56rem; font-weight:700; letter-spacing:.22em;
+      text-transform:uppercase; color:var(--silk); }
+    .silk-rule { display:flex; align-items:center; gap:12px; margin:22px 0 14px; }
+    .silk-rule::after { content:""; flex:1 1 auto; height:1px; background:linear-gradient(90deg,rgba(142,163,189,.28),transparent); }
+
+    /* — Numéro de chapitre : le nombre, et le même nombre en octet — */
+    .chapter-number { display:flex; flex-direction:column; align-items:flex-end; gap:9px; }
+    .cn-byte { display:flex; gap:3px; }
+    .cn-byte i { width:11px; height:11px; background:#080d16; border:1px solid rgba(0,0,0,.7);
+      box-shadow:inset 1px 1px 3px rgba(0,0,0,.8); }
+    .cn-byte i.on { background:var(--gold); border-color:var(--gold-deep); box-shadow:0 0 8px rgba(214,172,85,.6); }
+    .cn-hex { font-family:var(--mono); font-size:.56rem; letter-spacing:.18em; color:var(--soft);
+      -webkit-text-stroke:0; font-weight:500; line-height:1; }
+    @media (max-width:980px){ .chapter-number { align-items:flex-start; } }
+
+    /* — Autotest d'amorçage (héros) — */
+    .post { border:1px solid rgba(0,0,0,.75); border-radius:0;
+      background:radial-gradient(130% 120% at 50% -10%,rgba(110,231,160,.09),transparent 62%),rgba(3,15,10,.92);
+      box-shadow:inset 1px 1px 0 rgba(226,238,255,.08),0 26px 70px rgba(0,0,0,.6); backdrop-filter:blur(6px);
+      position:relative; overflow:hidden; }
+    .post::after { content:""; position:absolute; inset:0; pointer-events:none; z-index:2;
+      background:var(--scan); mix-blend-mode:multiply; opacity:.45; }
+    .post-head { display:flex; align-items:center; gap:10px; padding:11px 16px;
+      border-bottom:1px solid rgba(110,231,160,.16); background:rgba(110,231,160,.05);
+      font-family:var(--mono); font-size:.58rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--phosphor); }
+    .post-head::before { content:""; width:8px; height:8px; border-radius:50%; flex:none; background:var(--led-red);
+      box-shadow:0 0 8px rgba(255,81,64,.8); }
+    .post-body { padding:14px 16px 16px; font-family:var(--mono); font-size:.78rem; line-height:1.95;
+      color:var(--phosphor); text-shadow:0 0 8px rgba(110,231,160,.35); }
+    .post-line { display:flex; align-items:baseline; gap:8px; opacity:1; }
+    .js .post-line[data-post] { opacity:0; }
+    .js .post-line.up { opacity:1; }
+    .post-line .pk { flex:none; color:rgba(110,231,160,.62); letter-spacing:.1em; }
+    .post-line .pd { flex:1 1 auto; min-width:14px; overflow:hidden; white-space:nowrap; color:rgba(110,231,160,.25); }
+    .post-line .pv { flex:none; color:#c9ffe0; font-weight:700; }
+    .post-line .ps { flex:none; color:var(--gold-bright); font-size:.68rem; letter-spacing:.12em; }
+    .post-prompt { margin-top:6px; color:rgba(110,231,160,.75); font-size:.72rem; }
+    .post-prompt .cur { display:inline-block; width:.55em; height:1em; vertical-align:-.14em;
+      background:var(--phosphor); animation:blink 1.05s steps(1) infinite; }
+
+    /* — Vidage hexadécimal — */
+    .hexdump { font-family:var(--mono); font-size:.78rem; line-height:1.85; padding:14px 16px; overflow-x:auto;
+      color:var(--parch); position:relative; z-index:1; }
+    .hexdump .hrow { display:flex; gap:16px; white-space:nowrap; }
+    .hexdump .ha { color:var(--gold); flex:none; }
+    .hexdump .hb { display:flex; gap:6px; flex:none; }
+    .hexdump .hc { display:flex; gap:1px; flex:none; color:rgba(110,231,160,.75); }
+    .hexdump b,.hexdump .hc i { cursor:pointer; font-style:normal; font-weight:400; padding:0 2px;
+      border:1px solid transparent; transition:background .12s linear,color .12s linear; }
+    .hexdump b { color:var(--signal); }
+    .hexdump b.hi,.hexdump .hc i.hi { background:var(--phosphor); color:#04150c; border-color:var(--phosphor); }
+    .hexdump b.wide { color:var(--ember); }
+    .hexdump .pad { color:rgba(192,181,154,.2); padding:0 2px; border:1px solid transparent; }
+    .byte-read { display:grid; grid-template-columns:repeat(auto-fit,minmax(128px,1fr)); gap:10px; margin-top:14px; }
+    .byte-read div { border:1px solid rgba(0,0,0,.55); background:#080d16; padding:9px 12px;
+      box-shadow:inset 1px 1px 4px rgba(0,0,0,.7); }
+    .byte-read span { display:block; font-family:var(--mono); font-size:.52rem; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--silk); }
+    .byte-read strong { display:block; margin-top:5px; font-family:var(--mono); font-size:.98rem; font-weight:700; color:var(--phosphor); }
+    .byte-read div.alt strong { color:var(--signal); }
+    .byte-read div.warn strong { color:var(--ember); }
+
+    /* — Carte mémoire 8 Ko — */
+    .memcanvas-wrap { position:relative; max-width:880px; margin-inline:auto; }
+    .memcanvas { display:block; width:100%; height:auto; image-rendering:pixelated; position:relative; z-index:1; }
+    .memtip { position:absolute; z-index:3; pointer-events:none; padding:5px 9px; border:1px solid rgba(110,231,160,.4);
+      background:rgba(3,15,10,.95); font-family:var(--mono); font-size:.7rem; color:var(--phosphor); white-space:nowrap;
+      transform:translate(-50%,-140%); opacity:0; transition:opacity .12s linear; }
+    .memtip.on { opacity:1; }
+    .memlegend { display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:14px; font-family:var(--mono); font-size:.68rem; color:var(--muted); }
+    .memlegend span { display:inline-flex; align-items:center; gap:7px; }
+    .memlegend i { width:11px; height:11px; flex:none; border:1px solid rgba(0,0,0,.6); }
+
+    /* — Décodeur d'instructions — */
+    .dec-byte { display:flex; gap:4px; margin:0 0 14px; }
+    .dec-byte button { width:44px; height:52px; cursor:pointer; border:1px solid rgba(0,0,0,.7); background:#080d16;
+      box-shadow:inset 1px 1px 4px rgba(0,0,0,.8); color:var(--soft);
+      font-family:var(--mono); font-size:1.05rem; font-weight:700; display:grid; place-items:center; align-content:center; gap:2px;
+      transition:color .15s linear,background .15s linear,border-color .15s linear; }
+    .dec-byte button small { font-size:.5rem; letter-spacing:.06em; color:rgba(192,181,154,.35); font-weight:500; }
+    .dec-byte button.one { color:var(--signal); border-color:rgba(96,165,250,.5); background:rgba(96,165,250,.1);
+      box-shadow:inset 0 0 11px rgba(96,165,250,.3); }
+    .dec-byte button.b7 { outline:1px solid var(--gold); outline-offset:2px; }
+    .dec-byte button.one small { color:rgba(96,165,250,.6); }
+    .dec-verdict { border-left:3px solid var(--gold); padding:12px 16px; background:rgba(214,172,85,.07);
+      font-family:var(--mono); font-size:.82rem; line-height:1.75; color:var(--parch); }
+    .dec-verdict b { color:var(--gold-bright); }
+    .dec-verdict u { color:var(--phosphor); text-decoration:none; }
+    .dec-stream { display:flex; flex-wrap:wrap; gap:4px; margin:0 0 14px; }
+    .dec-stream .sb { padding:6px 9px; border:1px solid rgba(0,0,0,.6); background:#0c131f;
+      font-family:var(--mono); font-size:.8rem; color:var(--soft); box-shadow:inset 1px 1px 3px rgba(0,0,0,.6); }
+    .dec-stream .sb.op { color:var(--gold-bright); border-color:rgba(214,172,85,.45); background:rgba(214,172,85,.1); }
+    .dec-stream .sb.arg { color:var(--signal); border-color:rgba(96,165,250,.35); background:rgba(96,165,250,.08); }
+    .dec-stream .gap { width:12px; }
+
+    /* — Compteur de débordement — */
+    .ovf { display:flex; flex-wrap:wrap; gap:22px; align-items:center; }
+    .ovf-chart { border:1px solid rgba(0,0,0,.72); background:var(--crt); position:relative;
+      box-shadow:inset 2px 2px 9px rgba(0,0,0,.8); flex:1 1 320px; min-width:0; max-width:620px; }
+    .ovf-chart svg { display:block; width:100%; height:auto; }
+    .ovf-chart .tr { fill:none; stroke:var(--phosphor); stroke-width:1.6; filter:drop-shadow(0 0 4px rgba(110,231,160,.6)); }
+    .ovf-chart .gl { stroke:rgba(110,231,160,.12); stroke-width:1; }
+    .ovf-chart .wrapmark { stroke:var(--ember); stroke-width:1; stroke-dasharray:2 3; }
+    .carry-lamp { display:inline-flex; align-items:center; gap:10px; padding:9px 14px; border:1px solid rgba(0,0,0,.6);
+      background:linear-gradient(180deg,#1b2230,#0e141f); font-family:var(--mono); font-size:.62rem;
+      letter-spacing:.16em; text-transform:uppercase; color:var(--soft);
+      box-shadow:inset 1px 1px 0 rgba(226,238,255,.08),inset -1px -1px 0 rgba(0,0,0,.5); }
+    .carry-lamp::before { content:""; width:14px; height:14px; border-radius:50%; flex:none;
+      background:rgba(255,81,64,.14); box-shadow:inset 0 -2px 3px rgba(0,0,0,.5); transition:background .1s linear,box-shadow .1s linear; }
+    .carry-lamp.on { color:var(--led-red); }
+    .carry-lamp.on::before { background:var(--led-red); box-shadow:0 0 14px rgba(255,81,64,.85); }
+
+    /* — Transistors — */
+    .circ .mos { fill:rgba(9,15,30,.9); stroke:rgba(142,163,189,.45); stroke-width:1.3; }
+    .circ .mos.pass { fill:rgba(110,231,160,.16); stroke:var(--phosphor); stroke-width:2; filter:drop-shadow(0 0 7px rgba(110,231,160,.4)); }
+    .circ .rail { stroke:rgba(214,172,85,.5); stroke-width:2.4; fill:none; }
+    .circ .slab { fill:var(--silk); font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.08em; text-anchor:middle; }
+    .circ .glab { font-family:"JetBrains Mono",monospace; letter-spacing:.1em; }
+
+    @media (max-width:640px){
+      .lab-body { padding:18px 20px; }
+      .lab-head { padding:11px 20px; }
+      .lab-foot { padding:0 20px 16px; }
+      .seg7 .d { width:22px; height:38px; }
+      .seg7 .d i.h { left:4px; width:14px; height:4px; }
+      .seg7 .d i.v { width:4px; height:15px; }
+      .seg7 .d i.sg { top:17px; } .seg7 .d i.sd { top:34px; }
+      .seg7 .d i.sf,.seg7 .d i.sb { top:2.5px; }
+      .seg7 .d i.se,.seg7 .d i.sc { top:19px; }
+      .seg7 .d i.sb,.seg7 .d i.sc { left:18px; }
+      .dec-byte button { flex:1 1 0; width:auto; min-width:0; padding:0 2px; font-size:.94rem; }
+      .dec-byte button small { font-size:.44rem; }
+    }
+
     @media (max-width:980px) {
       .hero { min-height:88vh; padding:22px; }
       .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
-      .signal-board { max-width:560px; }
+      .post { max-width:560px; }
       .chapter-number { justify-self:start; font-size:4.4rem; }
       .side-note { position:static; }
       .learning-grid { grid-template-columns:1fr; }
@@ -560,7 +835,7 @@
     @media (prefers-reduced-motion:reduce) {
       *,*::before,*::after { animation:none !important; transition:none !important; }
       .js .reveal { opacity:1; transform:none; }
-      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      .js .hero-inner > div > *,.js .post { opacity:1; }
       html { scroll-behavior:auto; }
     }
   </style>
@@ -593,15 +868,20 @@
           <div class="hero-actions">
             <a class="button primary" href="#bit">Commencer par le bit</a>
             <a class="button live" href="#machine">La machine dans la page</a>
-            <a class="button" href="https://computer-1983.puter.site" target="_blank" rel="noopener">Ouvrir le simulateur ↗</a>
+            <a class="button" href="simulateur/" target="_blank" rel="noopener">Ouvrir le simulateur ↗</a>
             <a class="button" href="../../index.html">Accueil ECI</a>
           </div>
         </div>
-        <aside class="signal-board" aria-label="Repères du dossier">
-          <div class="signal"><span>Le point de départ</span><strong>6 portes logiques : ET, OU, OU exclusif, NON-ET, NON-OU, NON</strong></div>
-          <div class="signal"><span>Le point d'arrivée</span><strong>Un processeur 8 bits, 8 192 octets de mémoire, 62 instructions</strong></div>
-          <div class="signal"><span>Ce qu'on y écrit</span><strong>De l'assembleur, un mini C compilé, des programmes sur disque</strong></div>
-          <div class="signal"><span>Dans ce dossier</span><strong>11 expériences interactives, dont un vrai CPU exécutable ici même</strong></div>
+        <aside class="post" id="post" aria-label="Repères du dossier">
+          <div class="post-head">ECI·BIOS v1.983 — autotest</div>
+          <div class="post-body">
+            <div class="post-line" data-post="1"><span class="pk">Logique</span><span class="pd">·······················</span><span class="pv">6 portes</span><span class="ps">OK</span></div>
+            <div class="post-line" data-post="2"><span class="pk">Mémoire</span><span class="pd">·······················</span><span class="pv" data-count="8192">8192 octets</span><span class="ps">OK</span></div>
+            <div class="post-line" data-post="3"><span class="pk">Processeur</span><span class="pd">····················</span><span class="pv">8 bits · 62 instr.</span><span class="ps">OK</span></div>
+            <div class="post-line" data-post="4"><span class="pk">Langages</span><span class="pd">······················</span><span class="pv">asm · C · shell</span><span class="ps">OK</span></div>
+            <div class="post-line" data-post="5"><span class="pk">Expériences</span><span class="pd">···················</span><span class="pv">15 modules</span><span class="ps">PRÊT</span></div>
+            <p class="post-prompt" data-post="6">eci$ <span class="cur" aria-hidden="true"></span> <span style="color:rgba(110,231,160,.45)">faites défiler pour démarrer</span></p>
+          </div>
         </aside>
       </div>
     </header>
@@ -643,7 +923,7 @@
           <p>Ou plutôt : presque personne ne l'a vu <em>en entier</em>. On connaît un étage — le sien. L'électronicien sait ce qu'est une porte NON-ET, le développeur sait ce qu'est une boucle <code class="k">for</code>, et entre les deux s'étend une zone grise où l'on préfère dire « et là, la magie opère ».</p>
           <p>Il n'y a pas de magie. Il y a une douzaine d'idées, chacune assez simple pour tenir en un paragraphe, empilées les unes sur les autres jusqu'à ce que l'ensemble devienne capable de calculer une trajectoire lunaire ou d'afficher un chat.</p>
           <p>Ce dossier reconstruit la pile complète, du courant qui passe jusqu'au <code class="k">unix$</code> qui clignote. Il s'appuie sur un objet précis : un <strong>simulateur logique nodal</strong> écrit par Samlepirate, qui contient, dans un seul onglet de navigateur, un ordinateur 8 bits complet — portes, processeur, mémoire, assembleur, compilateur C, amorceur, disque et système. Tout ce qui est affirmé ici a été vérifié dans son code source.</p>
-          <p>Et surtout : à chaque étage, vous pouvez toucher. <strong>Onze expériences</strong> jalonnent le parcours. La dernière est un processeur 8 bits qui s'exécute réellement dans cette page.</p>
+          <p>Et surtout : à chaque étage, vous pouvez toucher. <strong>Quinze expériences</strong> jalonnent le parcours — chacune montée dans son châssis d'instrument, interrupteurs, afficheurs et tube compris. La quatorzième est un processeur 8 bits qui s'exécute réellement dans cette page.</p>
         </div>
         <div class="timeline reveal" data-d="1" aria-label="Le fil conducteur">
           <div class="timeline-row"><time>Niveau 0</time><p><strong>Le bit</strong> — il y a du courant, ou il n'y en a pas.</p></div>
@@ -738,6 +1018,101 @@
             </div>
           </aside>
         </div>
+
+        <div class="lab reveal" id="exp-mos">
+          <div class="lab-head">
+            <span class="lab-no">EXP 01</span>
+            <span class="lab-title">Quatre interrupteurs font une porte</span>
+            <span class="lab-kind">Interactif</span>
+          </div>
+          <div class="lab-body">
+            <p class="lab-hint">Voici la porte NON-ET telle qu'on la construit vraiment, en technologie CMOS : <b>quatre transistors</b>, deux en haut qui tirent la sortie vers le +5 V, deux en bas qui la tirent vers la masse. Actionnez <b>A</b> et <b>B</b>. Un transistor <b>vert</b> laisse passer ; un fil <b>bleu</b> porte un 1. Les grilles qui portent le même nom sont reliées entre elles.</p>
+            <div class="ctrls">
+              <span class="ctrl-lab">Entrées</span>
+              <button class="sw" type="button" id="mos-a" aria-pressed="false"><span class="sw-name">A</span><span class="sw-body"><span class="sw-knob"></span></span><span class="sw-val">0</span></button>
+              <button class="sw" type="button" id="mos-b" aria-pressed="false"><span class="sw-name">B</span><span class="sw-body"><span class="sw-knob"></span></span><span class="sw-val">0</span></button>
+              <span class="led" id="mos-led"><span class="bulb"></span><span class="led-name">Sortie</span><span class="led-val">0</span></span>
+            </div>
+            <div class="lab-cols wide-left">
+              <div class="circ-wrap">
+                <svg class="circ" id="mos-svg" viewBox="0 0 540 336" role="img" aria-labelledby="mos-t">
+                  <title id="mos-t">Porte NON-ET en CMOS : deux transistors PMOS en parallèle vers le +5 V, deux transistors NMOS en série vers la masse</title>
+                  <path class="rail" d="M100 34 H 440"></path>
+                  <text class="slab" x="72" y="38">+5 V</text>
+                  <path class="rail" d="M100 320 H 440"></path>
+                  <path class="rail" d="M240 320 v 0 M250 326 H 290 M258 331 H 282"></path>
+                  <text class="slab" x="72" y="324">masse</text>
+
+                  <path class="w" id="mos-w-p1s" d="M170 62 V 34"></path>
+                  <path class="w" id="mos-w-p2s" d="M340 62 V 34"></path>
+                  <rect class="mos" id="mos-p1" x="130" y="62" width="80" height="50"></rect>
+                  <rect class="mos" id="mos-p2" x="300" y="62" width="80" height="50"></rect>
+                  <text class="slab" x="170" y="83">P1 · PMOS</text>
+                  <text class="slab" id="mos-p1s" x="170" y="99">bloqué</text>
+                  <text class="slab" x="340" y="83">P2 · PMOS</text>
+                  <text class="slab" id="mos-p2s" x="340" y="99">bloqué</text>
+                  <path class="w" id="mos-w-p1d" d="M170 112 V 152"></path>
+                  <path class="w" id="mos-w-p2d" d="M340 112 V 152"></path>
+                  <path class="w" id="mos-w-out" d="M170 152 H 452"></path>
+
+                  <path class="w" d="M100 87 H 130"></path>
+                  <circle class="pin" id="mos-pin-a1" cx="96" cy="87" r="6"></circle>
+                  <text class="plab" id="mos-l-a1" x="96" y="70">A=0</text>
+                  <path class="w" d="M270 87 H 300"></path>
+                  <circle class="pin" id="mos-pin-b1" cx="266" cy="87" r="6"></circle>
+                  <text class="plab" id="mos-l-b1" x="266" y="70">B=0</text>
+
+                  <path class="w" id="mos-w-nin" d="M255 152 V 186"></path>
+                  <rect class="mos" id="mos-n1" x="215" y="186" width="80" height="48"></rect>
+                  <text class="slab" x="255" y="206">N1 · NMOS</text>
+                  <text class="slab" id="mos-n1s" x="255" y="222">bloqué</text>
+                  <path class="w" id="mos-w-nmid" d="M255 234 V 258"></path>
+                  <rect class="mos" id="mos-n2" x="215" y="258" width="80" height="48"></rect>
+                  <text class="slab" x="255" y="278">N2 · NMOS</text>
+                  <text class="slab" id="mos-n2s" x="255" y="294">bloqué</text>
+                  <path class="w" id="mos-w-ngnd" d="M255 306 V 320"></path>
+
+                  <path class="w" d="M185 209 H 215"></path>
+                  <circle class="pin" id="mos-pin-a2" cx="181" cy="209" r="6"></circle>
+                  <text class="plab" id="mos-l-a2" x="181" y="192">A</text>
+                  <path class="w" d="M185 281 H 215"></path>
+                  <circle class="pin" id="mos-pin-b2" cx="181" cy="281" r="6"></circle>
+                  <text class="plab" id="mos-l-b2" x="181" y="264">B</text>
+
+                  <circle class="out" id="mos-out" cx="466" cy="152" r="13"></circle>
+                  <text class="nlab" x="466" y="183">sortie</text>
+                </svg>
+              </div>
+              <div class="panel">
+                <h4>Ce qui se passe</h4>
+                <p class="readout" id="mos-read"></p>
+                <h4 style="margin-top:16px">Règle des deux familles</h4>
+                <p style="font-size:.88rem">Un <b style="color:var(--parch)">PMOS</b> conduit quand sa grille est à <b style="color:var(--parch)">0</b>. Un <b style="color:var(--parch)">NMOS</b> conduit quand sa grille est à <b style="color:var(--parch)">1</b>. Les deux familles sont exactement complémentaires — c'est de là que vient le C de CMOS.</p>
+              </div>
+            </div>
+          </div>
+          <p class="lab-foot">C'est la raison pour laquelle <b>le NON-ET est la porte naturelle du silicium</b>, et le ET une porte dérivée : le montage ci-dessus <em>inverse</em> spontanément. Pour obtenir un ET, il faut lui ajouter un inverseur — deux transistors de plus. Le simulateur, lui, part du niveau au-dessus : il prend les six portes comme primitives.</p>
+        </div>
+
+        <div class="lab reveal" id="exp-octets">
+          <div class="lab-head">
+            <span class="lab-no">EXP 02</span>
+            <span class="lab-title">Le texte, tel que la machine le range</span>
+            <span class="lab-kind">Interactif</span>
+          </div>
+          <div class="lab-body">
+            <p class="lab-hint">Écrivez quelque chose. Chaque caractère devient <b>un octet</b>, rangé dans une case numérotée. Cliquez sur n'importe quel octet du vidage : la même suite de huit bits est relue de cinq façons différentes — et l'une d'elles est un ordre.</p>
+            <div class="ctrls">
+              <span class="ctrl-lab">Texte</span>
+              <input class="tinput" id="hd-in" type="text" value="Empire contre Intox" maxlength="72" spellcheck="false" aria-label="Texte à convertir en octets">
+              <button class="btn" type="button" data-hd="unix$ ls -l">unix$ ls -l</button>
+              <button class="btn" type="button" data-hd="Ceci n'est pas magique.">Une phrase</button>
+            </div>
+            <div class="crt"><div class="hexdump" id="hd-out"></div></div>
+            <div class="byte-read" id="hd-read"></div>
+          </div>
+          <p class="lab-foot">Les codes 32 à 126 sont les <b>95 caractères imprimables de l'ASCII</b>. La norme paraît en 1963 (ASA X3.4-1963) — mais sans minuscules : elles n'y sont ajoutées qu'à la révision de 1967. Au-delà de 127, il n'y a plus de norme unique : le même octet donne <b>é</b>, <b>Ú</b> ou un caractère de contrôle selon la table employée. Les octets concernés sont signalés en orange — c'est toute l'histoire des accents mal affichés.</p>
+        </div>
       </section>
 
       <!-- ══════════════════════ II — LES PORTES ══════════════════════ -->
@@ -794,7 +1169,7 @@
 
         <div class="lab reveal" id="exp-portes">
           <div class="lab-head">
-            <span class="lab-no">EXP 1</span>
+            <span class="lab-no">EXP 03</span>
             <span class="lab-title">Le banc d'essai des portes</span>
             <span class="lab-kind">Interactif</span>
           </div>
@@ -894,7 +1269,7 @@
 
         <div class="lab reveal" id="exp-nand">
           <div class="lab-head">
-            <span class="lab-no">EXP 2</span>
+            <span class="lab-no">EXP 04</span>
             <span class="lab-title">Tout reconstruire avec un seul type de porte</span>
             <span class="lab-kind">Interactif</span>
           </div>
@@ -1010,7 +1385,7 @@ bit 7 :  A7 + B7 + <b>C6</b>   →  S7, <u>Cout</u>   <i>← le débordement au-
 
         <div class="lab reveal" id="exp-fa">
           <div class="lab-head">
-            <span class="lab-no">EXP 3</span>
+            <span class="lab-no">EXP 05</span>
             <span class="lab-title">L'additionneur complet, porte par porte</span>
             <span class="lab-kind">Interactif</span>
           </div>
@@ -1096,7 +1471,7 @@ bit 7 :  A7 + B7 + <b>C6</b>   →  S7, <u>Cout</u>   <i>← le débordement au-
 
         <div class="lab reveal" id="exp-adder8">
           <div class="lab-head">
-            <span class="lab-no">EXP 4</span>
+            <span class="lab-no">EXP 06</span>
             <span class="lab-title">L'addition 8 bits et la retenue qui traverse</span>
             <span class="lab-kind">Interactif · animé</span>
           </div>
@@ -1199,7 +1574,7 @@ bit 7 :  A7 + B7 + <b>C6</b>   →  S7, <u>Cout</u>   <i>← le débordement au-
 
         <div class="lab reveal" id="exp-cmp">
           <div class="lab-head">
-            <span class="lab-no">EXP 5</span>
+            <span class="lab-no">EXP 07</span>
             <span class="lab-title">Le comparateur : trois drapeaux, quatre décisions</span>
             <span class="lab-kind">Interactif</span>
           </div>
@@ -1297,7 +1672,7 @@ bit 7 :  A7 + B7 + <b>C6</b>   →  S7, <u>Cout</u>   <i>← le débordement au-
 
         <div class="lab reveal" id="exp-alu">
           <div class="lab-head">
-            <span class="lab-no">EXP 6</span>
+            <span class="lab-no">EXP 08</span>
             <span class="lab-title">L'ALU aux commandes</span>
             <span class="lab-kind">Interactif</span>
           </div>
@@ -1414,7 +1789,7 @@ WE = 0  →  <u>Q tient</u>       (la boucle s'auto-alimente, D n'a plus d'effet
 
         <div class="lab reveal" id="exp-latch">
           <div class="lab-head">
-            <span class="lab-no">EXP 7</span>
+            <span class="lab-no">EXP 09</span>
             <span class="lab-title">Mémoriser un bit — le verrou en action</span>
             <span class="lab-kind">Interactif</span>
           </div>
@@ -1536,7 +1911,7 @@ Entre deux fronts : <u>la valeur ne bouge pas</u>, quoi qu'il arrive sur D.</pre
 
         <div class="lab reveal" id="exp-reg">
           <div class="lab-head">
-            <span class="lab-no">EXP 8</span>
+            <span class="lab-no">EXP 10</span>
             <span class="lab-title">L'horloge et le registre : capturer au bon instant</span>
             <span class="lab-kind">Interactif · chronogramme</span>
           </div>
@@ -1633,7 +2008,7 @@ Entre deux fronts : <u>la valeur ne bouge pas</u>, quoi qu'il arrive sur D.</pre
 
         <div class="lab reveal" id="exp-cycle">
           <div class="lab-head">
-            <span class="lab-no">EXP 9</span>
+            <span class="lab-no">EXP 11</span>
             <span class="lab-title">Le cycle chercher–décoder–exécuter, pas à pas</span>
             <span class="lab-kind">Interactif · animé</span>
           </div>
@@ -1728,6 +2103,43 @@ Entre deux fronts : <u>la valeur ne bouge pas</u>, quoi qu'il arrive sur D.</pre
               <span class="tag">Graphe d'appels</span>
             </div>
           </aside>
+        </div>
+
+        <div class="lab reveal" id="exp-mem">
+          <div class="lab-head">
+            <span class="lab-no">EXP 12</span>
+            <span class="lab-title">Les huit mille cases, une par pixel</span>
+            <span class="lab-kind">Interactif · animé</span>
+          </div>
+          <div class="lab-body">
+            <p class="lab-hint">Toute la mémoire de la machine, à l'échelle : <b>un pixel par octet</b>, 128 colonnes, 64 lignes, l'adresse 0 en haut à gauche. Survolez pour lire une adresse. Puis lancez la <b>récursion sans fin</b> et regardez la pile descendre depuis 0x1FFF jusqu'à mordre sur les cadres de fonctions — sans que rien ne l'en empêche.</p>
+            <div class="ctrls">
+              <button class="btn on" type="button" id="mm-zones">Zones</button>
+              <button class="btn" type="button" id="mm-load">Charger un programme</button>
+              <button class="btn go" type="button" id="mm-rec">▶ Récursion sans fin</button>
+              <button class="btn" type="button" id="mm-reset">Réinitialiser</button>
+            </div>
+            <div class="memcanvas-wrap">
+              <div class="crt crt-frame">
+                <canvas class="memcanvas" id="mm-cv" width="128" height="64" role="img" aria-label="Carte des 8192 octets de la mémoire"></canvas>
+              </div>
+              <div class="memtip" id="mm-tip"></div>
+            </div>
+            <div class="memlegend" id="mm-legend"></div>
+            <div class="lab-cols" style="margin-top:18px">
+              <div class="panel">
+                <h4>Pointeur de pile</h4>
+                <div class="ctrls" style="margin:0 0 10px"><span class="seg7 small" id="mm-seg" aria-hidden="true"></span></div>
+                <p class="seg-legend">SP — adresse du sommet, en hexadécimal</p>
+                <p class="readout" id="mm-read" style="margin-top:12px"></p>
+              </div>
+              <div class="panel">
+                <h4>Journal</h4>
+                <p class="readout" id="mm-log"></p>
+              </div>
+            </div>
+          </div>
+          <p class="lab-foot">La récursion est exécutée par le <b>vrai processeur</b> de ce dossier, pas par une animation : chaque niveau consomme trois octets — deux pour l'adresse de retour empilée par <b>CALL</b>, un pour le <b>PUSH</b>. La collision affichée est celle que produit le compte réel des octets.</p>
         </div>
       </section>
 
@@ -1840,6 +2252,45 @@ opcode <b>0x80 … 0xFF</b>   →  <u>3 octets</u>  suivie d'un opérande 16 bit
             </div>
           </aside>
         </div>
+
+        <div class="lab reveal" id="exp-dec">
+          <div class="lab-head">
+            <span class="lab-no">EXP 13</span>
+            <span class="lab-title">Le décodeur : un seul bit décide de tout</span>
+            <span class="lab-kind">Interactif</span>
+          </div>
+          <div class="lab-body">
+            <p class="lab-hint">Composez un octet en cliquant sur ses bits. Le <b>bit 7</b>, cerclé d'or, est le seul que le décodeur regarde pour savoir si l'instruction est suivie d'un opérande. Sous le décodeur, un flux d'octets bruts : voyez où le processeur découpe.</p>
+            <div class="lab-cols">
+              <div>
+                <p class="silk">Octet à décoder</p>
+                <div class="dec-byte" id="dec-bits" role="group" aria-label="Bits de l'opcode"></div>
+                <div class="ctrls">
+                  <button class="btn" type="button" data-dec="0">0x00</button>
+                  <button class="btn" type="button" data-dec="1">0x01</button>
+                  <button class="btn" type="button" data-dec="128">0x80</button>
+                  <button class="btn" type="button" data-dec="160">0xA0</button>
+                  <button class="btn" type="button" data-dec="176">0xB0</button>
+                  <button class="btn" type="button" data-dec="55">0x37</button>
+                </div>
+              </div>
+              <div>
+                <p class="silk">Verdict du décodeur</p>
+                <div class="dec-verdict" id="dec-out"></div>
+              </div>
+            </div>
+            <p class="silk-rule"><span class="silk">Découpage d'un flux d'octets</span></p>
+            <div class="ctrls">
+              <span class="ctrl-lab">Octets</span>
+              <input class="tinput" id="dec-stream-in" type="text" value="80 2A 00 01 01 A0 09 00 0F" spellcheck="false" aria-label="Suite d'octets en hexadécimal">
+              <button class="btn" type="button" data-str="80 2A 00 01 01 A0 09 00 0F">Boucle courte</button>
+              <button class="btn" type="button" data-str="B0 20 00 21 0F 80 07 00 10">Appel &amp; retour</button>
+            </div>
+            <div class="dec-stream" id="dec-chips"></div>
+            <div class="crt"><div class="hexdump" id="dec-list" style="color:var(--parch)"></div></div>
+          </div>
+          <p class="lab-foot">Le découpage est celui de la fonction de désassemblage de cette page, qui applique la règle du simulateur : <b>opcode &lt; 0x80</b> → l'instruction fait un octet ; <b>opcode ≥ 0x80</b> → deux octets d'opérande suivent, poids faible d'abord. Un octet qui ne correspond à aucun opcode connu est rendu tel quel, en <code class="k">.db</code>.</p>
+        </div>
       </section>
 
       <!-- ══════════════════════ XII — LA MACHINE ══════════════════════ -->
@@ -1871,7 +2322,7 @@ opcode <b>0x80 … 0xFF</b>   →  <u>3 octets</u>  suivie d'un opérande 16 bit
 
         <div class="lab reveal" id="exp-machine">
           <div class="lab-head">
-            <span class="lab-no">EXP 10</span>
+            <span class="lab-no">EXP 14</span>
             <span class="lab-title">L'ordinateur 8 bits — assembleur et processeur</span>
             <span class="lab-kind">Exécutable</span>
           </div>
@@ -1925,7 +2376,7 @@ opcode <b>0x80 … 0xFF</b>   →  <u>3 octets</u>  suivie d'un opérande 16 bit
               </div>
             </div>
           </div>
-          <p class="lab-foot">Assembleur deux passes et processeur écrits pour cette page, mais conformes ligne à ligne au jeu d'instructions du simulateur. Les périphériques graphiques, clavier, disque et réseau ne sont pas implémentés ici — pour ceux-là, <b><a href="https://computer-1983.puter.site" target="_blank" rel="noopener">ouvrez le simulateur complet ↗</a></b>.</p>
+          <p class="lab-foot">Assembleur deux passes et processeur écrits pour cette page, mais conformes ligne à ligne au jeu d'instructions du simulateur. Les périphériques graphiques, clavier, disque et réseau ne sont pas implémentés ici — pour ceux-là, <b><a href="simulateur/" target="_blank" rel="noopener">ouvrez le simulateur complet ↗</a></b>.</p>
         </div>
       </section>
 
@@ -2157,6 +2608,54 @@ Chaque entrée de répertoire contient :
             </div>
           </aside>
         </div>
+
+        <div class="lab reveal" id="exp-ovf">
+          <div class="lab-head">
+            <span class="lab-no">EXP 15</span>
+            <span class="lab-title">Le compteur qui repasse par zéro</span>
+            <span class="lab-kind">Interactif · animé</span>
+          </div>
+          <div class="lab-body">
+            <p class="lab-hint">Un registre de huit bits, un afficheur, et rien d'autre. Ajoutez, doublez, laissez tourner : à 255, le neuvième bit n'a nulle part où aller. La lampe <b>retenue</b> s'allume le temps d'une opération — c'est la seule trace, et si le programme ne la lit pas, l'information est perdue.</p>
+            <div class="ovf">
+              <div>
+                <span class="seg7" id="ovf-seg" aria-hidden="true"></span>
+                <p class="seg-legend" id="ovf-mode">Lecture non signée — 0 à 255</p>
+                <p class="visually-value" id="ovf-aria" role="status" aria-live="polite" style="position:absolute;left:-9999px"></p>
+              </div>
+              <div class="ovf-chart">
+                <svg id="ovf-svg" viewBox="0 0 420 150" role="img" aria-label="Tracé de la valeur du registre au cours du temps">
+                  <path class="gl" d="M0 5 H420 M0 75 H420 M0 145 H420"></path>
+                  <path class="tr" id="ovf-trace" d="M0 145"></path>
+                  <g id="ovf-wraps"></g>
+                </svg>
+              </div>
+            </div>
+            <div class="ctrls" style="margin-top:18px">
+              <span class="ctrl-lab">Opérations</span>
+              <button class="btn" type="button" data-ovf="1">A + 1</button>
+              <button class="btn" type="button" data-ovf="17">A + 17</button>
+              <button class="btn" type="button" data-ovf="-1">A − 1</button>
+              <button class="btn" type="button" data-ovf="x2">A × 2</button>
+              <button class="btn go" type="button" id="ovf-run">▶ Laisser tourner</button>
+              <button class="btn" type="button" id="ovf-signed">Lecture signée</button>
+              <button class="btn" type="button" id="ovf-clear">Effacer</button>
+              <span class="carry-lamp" id="ovf-carry">Retenue</span>
+            </div>
+            <div class="lab-cols" style="margin-top:18px">
+              <div class="panel">
+                <h4>Les huit bits, inchangés</h4>
+                <div class="bitgrid"><span class="rl">registre <b>A</b></span><div class="bits" id="ovf-bits"></div></div>
+                <p class="readout" id="ovf-read" style="margin-top:12px"></p>
+              </div>
+              <div class="panel">
+                <h4>Deux lectures, un seul octet</h4>
+                <p style="font-size:.9rem">La bascule « lecture signée » ne touche à <b style="color:var(--parch)">aucun bit</b>. Elle change seulement la convention : en lecture signée, le bit 7 cesse de valoir +128 pour valoir −128, et l'intervalle devient −128 … +127. Le processeur, lui, ne sait pas laquelle des deux vous avez choisie — c'est le programme qui décide, et c'est le programme qui se trompe.</p>
+              </div>
+            </div>
+          </div>
+          <p class="lab-foot">Le calcul est celui du processeur du dossier : troncature à huit bits, drapeau de retenue levé quand le résultat complet sort de l'intervalle 0–255. Exactement ce qui a détruit <b>Ariane 501</b> le 4 juin 1996, à une largeur de registre près.</p>
+        </div>
       </section>
 
       <section class="closing reveal" aria-labelledby="final">
@@ -2181,7 +2680,7 @@ Chaque entrée de répertoire contient :
           <p class="collective-credit">Samlepirate — d'après son <em>Simulateur Logique Nodal</em></p>
           <div class="collective-actions">
             <a class="button primary" href="../../index.html">Retour à l'index</a>
-            <a class="button live" href="https://computer-1983.puter.site" target="_blank" rel="noopener">Ouvrir le simulateur ↗</a>
+            <a class="button live" href="simulateur/" target="_blank" rel="noopener">Ouvrir le simulateur ↗</a>
             <a class="button" href="../champs-vecteurs.html">Le langage des champs</a>
             <a class="button" href="../../formules/index.html">Les Formules</a>
             <a class="button" href="../../sources/sources.html">Les Sources</a>
@@ -2316,7 +2815,7 @@ Chaque entrée de répertoire contient :
       NOT: "Une seule entrée, qu'elle retourne. L'inverseur est la porte la plus simple et la plus indispensable.",
     };
 
-    /* ── EXP 1 — banc d'essai ── */
+    /* ── EXP 03 — banc d'essai ── */
     (function expGates() {
       const root = $("#exp-portes"); if (!root) return;
       let gate = "AND", a = 0, b = 0;
@@ -2362,7 +2861,7 @@ Chaque entrée de répertoire contient :
       render();
     })();
 
-    /* ── EXP 2 — tout en NON-ET ── */
+    /* ── EXP 04 — tout en NON-ET ── */
     (function expNand() {
       const root = $("#exp-nand"); if (!root) return;
       const nand = (x, y) => (x & y ? 0 : 1);
@@ -2488,7 +2987,7 @@ Chaque entrée de répertoire contient :
       render();
     })();
 
-    /* ── EXP 3 — additionneur complet ── */
+    /* ── EXP 05 — additionneur complet ── */
     (function expFA() {
       const root = $("#exp-fa"); if (!root) return;
       let a = 0, b = 0, c = 0;
@@ -2539,7 +3038,7 @@ Chaque entrée de répertoire contient :
       render();
     })();
 
-    /* ── EXP 4 — additionneur 8 bits ── */
+    /* ── EXP 06 — additionneur 8 bits ── */
     (function expAdd8() {
       const root = $("#exp-adder8"); if (!root) return;
       let A = 203, B = 99, cin = 0, live = -1, timer = null;
@@ -2592,7 +3091,7 @@ Chaque entrée de répertoire contient :
       render();
     })();
 
-    /* ── EXP 5 — comparateur ── */
+    /* ── EXP 07 — comparateur ── */
     (function expCmp() {
       const root = $("#exp-cmp"); if (!root) return;
       let A = 42, B = 42;
@@ -2633,7 +3132,7 @@ Chaque entrée de répertoire contient :
       render();
     })();
 
-    /* ── EXP 6 — ALU ── */
+    /* ── EXP 08 — ALU ── */
     (function expAlu() {
       const root = $("#exp-alu"); if (!root) return;
       const NAMES = ["ADD", "SUB", "AND", "OR", "XOR", "NOT", "SHL", "SHR"];
@@ -2693,7 +3192,7 @@ Chaque entrée de répertoire contient :
       render();
     })();
 
-    /* ── EXP 7 — le verrou ── */
+    /* ── EXP 09 — le verrou ── */
     (function expLatch() {
       const root = $("#exp-latch"); if (!root) return;
       const nand = (x, y) => (x & y ? 0 : 1);
@@ -2737,7 +3236,7 @@ Chaque entrée de répertoire contient :
       render();
     })();
 
-    /* ── EXP 8 — horloge et registre ── */
+    /* ── EXP 10 — horloge et registre ── */
     (function expReg() {
       const root = $("#exp-reg"); if (!root) return;
       const MAX = 34;
@@ -3013,7 +3512,460 @@ Chaque entrée de répertoire contient :
       return rows;
     }
 
-    /* ── EXP 9 — le cycle chercher / décoder / exécuter ── */
+    /* ═══════════ Le banc — composants d'instrument ═══════════ */
+
+    /** Afficheur 7 segments : segments allumés pour chaque caractère. */
+    const SEG = {
+      "0": "abcdef", "1": "bc", "2": "abdeg", "3": "abcdg", "4": "bcfg", "5": "acdfg",
+      "6": "acdefg", "7": "abc", "8": "abcdefg", "9": "abcdfg", A: "abcefg", B: "cdefg",
+      C: "adef", D: "bcdeg", E: "adefg", F: "aefg", "-": "g", " ": "", X: "bceg",
+    };
+    function seg7(el, txt, n) {
+      if (!el) return;
+      if (el.childElementCount !== n) {
+        el.innerHTML = "";
+        for (let i = 0; i < n; i++) {
+          const d = document.createElement("span");
+          d.className = "d";
+          for (const s of ["a", "b", "c", "d", "e", "f", "g"]) {
+            const seg = document.createElement("i");
+            seg.className = (s === "a" || s === "d" || s === "g" ? "h s" : "v s") + s;
+            seg.dataset.s = s;
+            d.appendChild(seg);
+          }
+          el.appendChild(d);
+        }
+      }
+      const t = String(txt).padStart(n, " ").slice(-n).toUpperCase();
+      [...el.children].forEach((d, i) => {
+        const lit = SEG[t[i]] !== undefined ? SEG[t[i]] : "";
+        [...d.children].forEach((seg) => seg.classList.toggle("on", lit.includes(seg.dataset.s)));
+      });
+    }
+
+    /* ── Autotest d'amorçage du héros ── */
+    (function boot() {
+      const post = $("#post"); if (!post) return;
+      const lines = $$("[data-post]", post);
+      if (reduced) { lines.forEach((l) => l.classList.add("up")); return; }
+      const memEl = $("[data-count]", post);
+      const target = memEl ? parseInt(memEl.dataset.count, 10) : 0;
+      let i = 0;
+      function countMem() {
+        if (!memEl) return;
+        const t0 = performance.now(), dur = 780;
+        (function frame(t) {
+          const k = clamp((t - t0) / dur, 0, 1);
+          memEl.textContent = Math.round(target * k * k * (3 - 2 * k)) + " octets";
+          if (k < 1) requestAnimationFrame(frame); else memEl.textContent = target + " octets";
+        })(t0);
+      }
+      (function next() {
+        if (i >= lines.length) return;
+        const el = lines[i]; i++;
+        el.classList.add("up");
+        if (el.contains(memEl)) countMem();
+        setTimeout(next, el.contains(memEl) ? 820 : 250);
+      })();
+    })();
+
+    /* ── Numéro de chapitre : le nombre, puis le même nombre en octet ── */
+    $$(".chapter-number").forEach((el) => {
+      const n = parseInt((el.textContent || "").trim(), 10);
+      if (!Number.isFinite(n)) return;
+      const num = document.createElement("span");
+      num.className = "cn-num";
+      num.textContent = String(n).padStart(2, "0");
+      const byte = document.createElement("span");
+      byte.className = "cn-byte";
+      for (let b = 7; b >= 0; b--) {
+        const lamp = document.createElement("i");
+        if ((n >> b) & 1) lamp.className = "on";
+        byte.appendChild(lamp);
+      }
+      const hex = document.createElement("span");
+      hex.className = "cn-hex";
+      hex.textContent = hx(n);
+      el.textContent = "";
+      el.append(num, byte, hex);
+    });
+
+    /* ── EXP 01 — quatre transistors font une porte ── */
+    (function expMos() {
+      const root = $("#exp-mos"); if (!root) return;
+      let a = 0, b = 0;
+      const swA = $("#mos-a"), swB = $("#mos-b");
+      const set = (id, cls, on) => { const e = document.getElementById(id); if (e) e.classList.toggle(cls, !!on); };
+      const txt = (id, t) => { const e = document.getElementById(id); if (e) e.textContent = t; };
+
+      function render() {
+        const p1 = a === 0, p2 = b === 0;      // un PMOS conduit quand sa grille est à 0
+        const n1 = a === 1, n2 = b === 1;      // un NMOS conduit quand sa grille est à 1
+        const up = p1 || p2, down = n1 && n2;
+        const out = up ? 1 : 0;
+
+        set("mos-p1", "pass", p1); set("mos-p2", "pass", p2);
+        set("mos-n1", "pass", n1); set("mos-n2", "pass", n2);
+        txt("mos-p1s", p1 ? "passant" : "bloqué"); txt("mos-p2s", p2 ? "passant" : "bloqué");
+        txt("mos-n1s", n1 ? "passant" : "bloqué"); txt("mos-n2s", n2 ? "passant" : "bloqué");
+
+        wire("mos-w-p1s", 1); wire("mos-w-p2s", 1);
+        wire("mos-w-p1d", p1); wire("mos-w-p2d", p2);
+        wire("mos-w-out", out); wire("mos-w-nin", out);
+        wire("mos-w-nmid", 0); wire("mos-w-ngnd", 0);
+        for (const id of ["mos-w-p1d", "mos-w-p2d", "mos-w-out"]) {
+          const e = document.getElementById(id);
+          if (e) e.classList.toggle("flow", out === 1 && !reduced);
+        }
+        pin("mos-pin-a1", a); pin("mos-pin-a2", a);
+        pin("mos-pin-b1", b); pin("mos-pin-b2", b);
+        for (const id of ["mos-l-a1", "mos-l-a2"]) { const e = document.getElementById(id); if (e) { e.textContent = "A=" + a; e.classList.toggle("on", !!a); } }
+        for (const id of ["mos-l-b1", "mos-l-b2"]) { const e = document.getElementById(id); if (e) { e.textContent = "B=" + b; e.classList.toggle("on", !!b); } }
+        set("mos-out", "on", out);
+        setLed($("#mos-led"), out, String(out));
+
+        const r = $("#mos-read");
+        if (down) {
+          r.innerHTML = "A et B valent 1 : les <b>deux NMOS</b> conduisent, et ils sont en <b>série</b> — la sortie est reliée à la masse. <s>S = 0</s><br>Les deux PMOS sont bloqués au même instant : si l'un d'eux conduisait, le +5 V et la masse seraient court-circuités.";
+        } else {
+          const qui = p1 && p2 ? "les deux PMOS conduisent" : p1 ? "P1 conduit (A = 0)" : "P2 conduit (B = 0)";
+          r.innerHTML = "Ils sont en <b>parallèle</b> : il suffit que l'un des deux passe. Ici, " + qui +
+            " — la sortie est reliée au +5 V. <b>S = 1</b><br>En bas, la série est coupée : " +
+            (!n1 && !n2 ? "N1 et N2 sont bloqués" : !n1 ? "N1 est bloqué" : "N2 est bloqué") + ", donc la masse est hors d'atteinte.";
+        }
+      }
+      onSw(swA, (v) => { a = v; render(); });
+      onSw(swB, (v) => { b = v; render(); });
+      render();
+    })();
+
+    /* ── EXP 02 — le texte tel que la machine le range ── */
+    (function expBytes() {
+      const root = $("#exp-octets"); if (!root) return;
+      const inp = $("#hd-in"), out = $("#hd-out"), read = $("#hd-read");
+      let sel = 0, data = [];
+
+      function scan() {
+        const t = inp.value;
+        data = [];
+        for (let i = 0; i < t.length; i++) {
+          const code = t.charCodeAt(i);
+          data.push({ code, byte: code & 255, over: code > 255, wide: code > 127 });
+        }
+      }
+      function render() {
+        scan();
+        if (sel >= data.length) sel = Math.max(0, data.length - 1);
+        const rows = Math.max(1, Math.ceil(data.length / 16));
+        let h = "";
+        for (let r = 0; r < rows; r++) {
+          h += '<div class="hrow"><span class="ha">' + (r * 16).toString(16).toUpperCase().padStart(4, "0") + "</span>";
+          h += '<span class="hb">';
+          for (let c = 0; c < 16; c++) {
+            const i = r * 16 + c;
+            if (c === 8) h += '<span style="width:8px"></span>';
+            if (i >= data.length) { h += '<span class="pad">··</span>'; continue; }
+            const d = data[i];
+            h += '<b data-i="' + i + '" class="' + (d.wide ? "wide" : "") + (i === sel ? " hi" : "") + '">' +
+              d.byte.toString(16).toUpperCase().padStart(2, "0") + "</b>";
+          }
+          h += '</span><span class="hc">';
+          for (let c = 0; c < 16; c++) {
+            const i = r * 16 + c;
+            if (i >= data.length) { h += '<span class="pad">·</span>'; continue; }
+            const d = data[i];
+            const ch = d.byte >= 32 && d.byte <= 126 ? String.fromCharCode(d.byte) : "·";
+            h += '<i data-i="' + i + '" class="' + (i === sel ? "hi" : "") + '">' + (ch === "<" ? "&lt;" : ch === "&" ? "&amp;" : ch) + "</i>";
+          }
+          h += "</span></div>";
+        }
+        out.innerHTML = h || '<span class="pad">— rien à ranger —</span>';
+        detail();
+      }
+      function detail() {
+        const d = data[sel];
+        if (!d) { read.innerHTML = ""; return; }
+        const info = BYOP[d.byte];
+        const ch = d.byte === 32 ? "espace" : d.byte >= 33 && d.byte <= 126 ? String.fromCharCode(d.byte) : "non imprimable";
+        const tiles = [
+          ["Adresse", hx(sel, 4), ""],
+          ["Hexadécimal", hx(d.byte), "alt"],
+          ["Décimal", String(d.byte), ""],
+          ["Binaire", bin8(d.byte).slice(0, 4) + " " + bin8(d.byte).slice(4), "alt"],
+          ["Comme caractère", ch === "<" ? "&lt;" : ch === "&" ? "&amp;" : ch, d.wide ? "warn" : ""],
+          ["Comme instruction", info ? info.m + " · " + info.size + " o." : "aucun opcode", info ? "" : "warn"],
+        ];
+        read.innerHTML = tiles.map((t) => '<div class="' + t[2] + '"><span>' + t[0] + "</span><strong>" + t[1] + "</strong></div>").join("") +
+          (d.over ? '<div class="warn" style="grid-column:1/-1"><span>Attention</span><strong>ce caractère (' + d.code + ") ne tient pas dans un octet</strong></div>" : "");
+      }
+      out.addEventListener("click", (e) => {
+        const t = e.target.closest("[data-i]");
+        if (!t) return;
+        sel = +t.dataset.i;
+        render();
+      });
+      inp.addEventListener("input", () => { render(); });
+      $$("[data-hd]", root).forEach((b) => b.addEventListener("click", () => { inp.value = b.dataset.hd; sel = 0; render(); }));
+      render();
+    })();
+
+    /* ── EXP 12 — les huit mille cases ── */
+    (function expMemMap() {
+      const root = $("#exp-mem"); if (!root) return;
+      const cv = $("#mm-cv"), ctx = cv.getContext("2d");
+      const tip = $("#mm-tip"), readEl = $("#mm-read"), logEl = $("#mm-log"), segEl = $("#mm-seg");
+      const ZONES = [
+        { a: 0x0000, b: 0x0fff, c: [96, 165, 250], n: "Code du programme" },
+        { a: 0x1000, b: 0x100f, c: [214, 172, 85], n: "Variables globales" },
+        { a: 0x1010, b: 0x1017, c: [160, 132, 70], n: "Brouillon du compilateur" },
+        { a: 0x1018, b: 0x101f, c: [224, 134, 74], n: "Arguments de l'amorceur" },
+        { a: 0x1020, b: 0x17ff, c: [110, 231, 160], n: "Cadres de fonctions" },
+        { a: 0x1800, b: 0x1fff, c: [150, 128, 232], n: "Pile" },
+      ];
+      const zoneOf = (ad) => ZONES.find((z) => ad >= z.a && ad <= z.b) || ZONES[0];
+      const state = new Uint8Array(8192);   // 0 vide · 1 occupé · 2 pile hors de sa zone
+      const img = ctx.createImageData(128, 64);
+      let timer = null, cpu = null, prevSp = 0x1fff, depth = 0, alarm = 0, log = [];
+
+      $("#mm-legend").innerHTML = ZONES.map((z) =>
+        '<span><i style="background:rgb(' + z.c.join(",") + ')"></i>' + z.n + "</span>").join("");
+
+      function paint() {
+        const d = img.data;
+        for (let ad = 0; ad < 8192; ad++) {
+          const z = zoneOf(ad);
+          let r = z.c[0], g = z.c[1], b = z.c[2], k = 0.26;
+          if (state[ad] === 1) k = 1;
+          else if (state[ad] === 2) { r = 255; g = 81; b = 64; k = 1; }
+          const o = ad * 4;
+          d[o] = r * k; d[o + 1] = g * k; d[o + 2] = b * k; d[o + 3] = 255;
+        }
+        ctx.putImageData(img, 0, 0);
+      }
+      function say() {
+        const sp = cpu ? cpu.sp : 0x1fff;
+        seg7(segEl, sp.toString(16).toUpperCase().padStart(4, "0"), 4);
+        readEl.innerHTML =
+          "SP = <b>" + hx(sp, 4) + "</b><br>profondeur d'appel : <b>" + depth + "</b><br>octets consommés : <b>" +
+          (0x1fff - sp) + "</b> / 2048 disponibles" +
+          (alarm ? "<br><s>la pile est sortie de sa zone</s>" : "");
+        logEl.innerHTML = log.length ? log.join("<br>") : "<span style='color:var(--soft)'>— rien à signaler —</span>";
+      }
+      function reset() {
+        if (timer) { cancelAnimationFrame(timer); timer = null; }
+        $("#mm-rec").textContent = "▶ Récursion sans fin";
+        state.fill(0); cpu = null; prevSp = 0x1fff; depth = 0; alarm = 0; log = [];
+        paint(); say();
+      }
+
+      /* Un petit programme réel : compter de 7 en 7 jusqu'à 70. */
+      const DEMO = "; table de 7\n  LDA 0\n  STA 0x1000\nboucle:\n  LDM 0x1000\n  ADD 7\n  STA 0x1000\n  OUTD\n  OUT 32\n  LDM 0x1000\n  CMP 70\n  JC boucle\n  HLT";
+      /* La récursion la plus courte qui soit : elle s'appelle elle-même, sans condition d'arrêt. */
+      const REC = "__rec:\n  PUSH\n  CALL __rec";
+
+      function loadDemo() {
+        reset();
+        const r = assemble(DEMO);
+        if (!r.ok) return;
+        const c = makeCPU();
+        c.load(r.bytes);
+        for (let i = 0; i < r.size; i++) state[i] = 1;
+        let guard = 0;
+        try { while (c.step() && guard++ < 20000); } catch (e) { /* rien : le programme s'arrête */ }
+        for (let ad = 0x1000; ad <= 0x100f; ad++) if (c.mem[ad]) state[ad] = 1;
+        log = ["Programme « table de 7 » assemblé : <b>" + r.size + " octets</b> de code en 0x0000, une variable globale en 0x1000."];
+        paint(); say();
+      }
+      function runRec() {
+        if (timer) { cancelAnimationFrame(timer); timer = null; $("#mm-rec").textContent = "▶ Récursion sans fin"; return; }
+        reset();
+        const r = assemble(REC);
+        if (!r.ok) return;
+        cpu = makeCPU(); cpu.load(r.bytes);
+        for (let i = 0; i < r.size; i++) state[i] = 1;
+        prevSp = cpu.sp;
+        $("#mm-rec").textContent = "■ Arrêter";
+        log = ["La fonction s'appelle elle-même. Chaque niveau coûte <b>3 octets</b> : 2 pour l'adresse de retour, 1 pour le PUSH."];
+        (function frame() {
+          let steps = reduced ? 4000 : 34;
+          while (steps-- > 0) {
+            try { cpu.step(); } catch (e) { break; }
+            if (cpu.pc === 0) depth++;
+            if (cpu.sp < prevSp) {
+              for (let ad = cpu.sp + 1; ad <= prevSp; ad++) state[ad] = ad < 0x1800 ? 2 : 1;
+              prevSp = cpu.sp;
+            }
+            if (!alarm && cpu.sp < 0x1800) {
+              alarm = 1;
+              log.push("Profondeur <b>" + depth + "</b> — la pile atteint <b>0x1800</b>, le bas de sa zone. <s>Rien ne l'arrête.</s>");
+            }
+            if (cpu.sp <= 0x1020) {
+              log.push("Profondeur <b>" + depth + "</b> — la pile a recouvert les <b>cadres de fonctions</b> et arrive sur les variables globales. Les données écrasées sont perdues, sans le moindre avertissement.");
+              paint(); say(); timer = null; $("#mm-rec").textContent = "▶ Récursion sans fin";
+              return;
+            }
+          }
+          paint(); say();
+          timer = requestAnimationFrame(frame);
+        })();
+      }
+
+      cv.addEventListener("mousemove", (e) => {
+        const r = cv.getBoundingClientRect(), w = tip.parentElement.getBoundingClientRect();
+        const x = clamp(Math.floor(((e.clientX - r.left) / r.width) * 128), 0, 127);
+        const y = clamp(Math.floor(((e.clientY - r.top) / r.height) * 64), 0, 63);
+        const ad = y * 128 + x;
+        tip.textContent = hx(ad, 4) + " — " + zoneOf(ad).n + (state[ad] === 2 ? " · écrasé par la pile" : state[ad] === 1 ? " · occupé" : "");
+        tip.style.left = e.clientX - w.left + "px";
+        tip.style.top = e.clientY - w.top + "px";
+        tip.classList.add("on");
+      });
+      cv.addEventListener("mouseleave", () => tip.classList.remove("on"));
+      $("#mm-zones").addEventListener("click", reset);
+      $("#mm-load").addEventListener("click", loadDemo);
+      $("#mm-rec").addEventListener("click", runRec);
+      $("#mm-reset").addEventListener("click", reset);
+      reset();
+    })();
+
+    /* ── EXP 13 — le décodeur ── */
+    const EFFECT = {
+      NOP: "ne fait rien", HLT: "arrête le processeur", INC: "A ← A + 1", DEC: "A ← A − 1",
+      NOT: "A ← NON A, bit à bit", SHL: "A ← A décalé à gauche (×2)", SHR: "A ← A décalé à droite (÷2)",
+      TAB: "B ← A", TBA: "A ← B", ADDB: "A ← A + B", SUBB: "A ← A − B", ANDB: "A ← A ET B",
+      ORB: "A ← A OU B", XORB: "A ← A OU-X B", CMPB: "drapeaux ← A − B, sans ranger",
+      MULB: "A ← A × B", DIVB: "A ← A ÷ B", MODB: "A ← A modulo B", INA: "A ← caractère saisi",
+      GETKEY: "A ← état de la touche d'indice A", RAND: "A ← octet pseudo-aléatoire", SLEEP: "attend A cycles",
+      PUSH: "empile A", POP: "A ← dépile", RET: "dépile l'adresse de retour et y saute",
+      OUTA: "affiche A comme caractère", OUTD: "affiche A comme nombre décimal", CLCON: "efface la console",
+      DRAW: "trace le pixel (A, B)", CLR: "efface l'écran graphique", COLR: "fixe le rouge du tracé",
+      COLG: "fixe le vert du tracé", COLB: "fixe le bleu du tracé", DRVRD: "lit un octet du disque",
+      DRVWR: "écrit un octet sur le disque", DRVCLR: "efface le disque", DRVPG: "choisit la page courante",
+      HTTPIN: "A ← octet suivant de la réponse HTTP",
+      LDA: "A ← valeur immédiate", LDB: "B ← valeur immédiate", ADD: "A ← A + valeur",
+      SUB: "A ← A − valeur", AND: "A ← A ET valeur", OR: "A ← A OU valeur", XOR: "A ← A OU-X valeur",
+      CMP: "drapeaux ← A − valeur, sans ranger", STA: "MEM[adr] ← A", LDM: "A ← MEM[adr]",
+      STB: "MEM[adr] ← B", LBM: "B ← MEM[adr]", LDAI: "A ← MEM[adr + A], lecture indexée",
+      STAI: "MEM[adr + B] ← A, écriture indexée", HTTPGET: "lance une requête HTTP GET",
+      HTTPPOST: "lance une requête HTTP POST", JMP: "saut inconditionnel", JZ: "saut si Z",
+      JNZ: "saut si non Z", JC: "saut si retenue", JNC: "saut si pas de retenue", JN: "saut si négatif",
+      CALL: "empile l'adresse de retour et saute", OUT: "affiche une valeur immédiate comme caractère",
+    };
+    (function expDecode() {
+      const root = $("#exp-dec"); if (!root) return;
+      const bitsEl = $("#dec-bits"), outEl = $("#dec-out");
+      const strIn = $("#dec-stream-in"), chipsEl = $("#dec-chips"), listEl = $("#dec-list");
+      let v = 0x80;
+
+      for (let b = 7; b >= 0; b--) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.dataset.b = b;
+        btn.innerHTML = "0<small>" + (1 << b) + "</small>";
+        btn.setAttribute("aria-label", "bit " + b + ", poids " + (1 << b));
+        bitsEl.appendChild(btn);
+      }
+      bitsEl.addEventListener("click", (e) => {
+        const t = e.target.closest("button[data-b]");
+        if (!t) return;
+        v ^= 1 << +t.dataset.b;
+        renderByte();
+      });
+      function renderByte() {
+        $$("button[data-b]", bitsEl).forEach((btn) => {
+          const b = +btn.dataset.b, on = (v >> b) & 1;
+          btn.classList.toggle("one", !!on);
+          btn.classList.toggle("b7", b === 7);
+          btn.innerHTML = on + "<small>" + (1 << b) + "</small>";
+        });
+        const info = BYOP[v], long = (v & 128) !== 0;
+        let h = "Octet <b>" + hx(v) + "</b> · " + v + " · " + bin8(v).slice(0, 4) + " " + bin8(v).slice(4) + "<br>";
+        h += "Bit 7 = <b>" + ((v >> 7) & 1) + "</b> → instruction de <b>" + (long ? "3 octets" : "1 octet") + "</b>" +
+          (long ? " (opcode + opérande 16 bits)" : " (elle se suffit à elle-même)") + "<br>";
+        if (info) {
+          h += "Mnémonique <u>" + info.m + "</u><br>Effet : " + (EFFECT[info.m] || "—") + "<br>";
+          if (info.size === 3) h += "Le processeur lira ensuite <b>deux octets</b> : poids faible, puis poids fort.";
+          else h += "Le processeur passera directement à l'octet suivant.";
+        } else {
+          h += "<s style='color:var(--ember)'>Aucune instruction à ce code.</s> C'est un des <b>trous du plan d'opcodes</b> — une place laissée libre. Le processeur de cette page s'arrête net s'il en rencontre un.";
+        }
+        outEl.innerHTML = h;
+      }
+      function renderStream() {
+        const raw = (strIn.value.match(/[0-9a-f]{1,2}/gi) || []).map((x) => parseInt(x, 16) & 255);
+        const rows = disassemble(raw);
+        chipsEl.innerHTML = rows.map((r, i) =>
+          (i ? '<span class="gap"></span>' : "") +
+          r.bytes.map((by, k) => '<span class="sb ' + (k === 0 ? "op" : "arg") + '">' +
+            by.toString(16).toUpperCase().padStart(2, "0") + "</span>").join("")).join("");
+        listEl.innerHTML = rows.map((r) =>
+          '<div class="hrow"><span class="ha">' + r.addr.toString(16).toUpperCase().padStart(4, "0") + "</span>" +
+          '<span class="hb" style="min-width:96px">' + r.bytes.map((by) => by.toString(16).toUpperCase().padStart(2, "0")).join(" ") + "</span>" +
+          "<span>" + r.txt + "</span></div>").join("") ||
+          '<div class="hrow"><span class="pad">— aucun octet —</span></div>';
+      }
+      $$("[data-dec]", root).forEach((b) => b.addEventListener("click", () => { v = +b.dataset.dec; renderByte(); }));
+      $$("[data-str]", root).forEach((b) => b.addEventListener("click", () => { strIn.value = b.dataset.str; renderStream(); }));
+      strIn.addEventListener("input", renderStream);
+      renderByte(); renderStream();
+    })();
+
+    /* ── EXP 15 — le compteur qui repasse par zéro ── */
+    (function expOverflow() {
+      const root = $("#exp-ovf"); if (!root) return;
+      const segEl = $("#ovf-seg"), traceEl = $("#ovf-trace"), wrapsEl = $("#ovf-wraps");
+      const carryEl = $("#ovf-carry"), readEl = $("#ovf-read"), modeEl = $("#ovf-mode"), ariaEl = $("#ovf-aria");
+      let A = 0, carry = 0, signed = false, hist = [0], wraps = [], timer = null;
+
+      const asSigned = (x) => (x & 128 ? x - 256 : x);
+      function render() {
+        const shown = signed ? asSigned(A) : A;
+        seg7(segEl, String(shown), 4);
+        carryEl.classList.toggle("on", !!carry);
+        modeEl.textContent = signed ? "Lecture signée — −128 à +127" : "Lecture non signée — 0 à 255";
+        bitsRow($("#ovf-bits"), [7, 6, 5, 4, 3, 2, 1, 0].map((i) => ({ t: (A >> i) & 1, on: (A >> i) & 1 })));
+        readEl.innerHTML =
+          "A = <b>" + A + "</b> · " + hx(A) + " · " + bin8(A).slice(0, 4) + " " + bin8(A).slice(4) +
+          "<br>lecture non signée : <b>" + A + "</b> — lecture signée : <b>" + asSigned(A) + "</b>" +
+          (carry ? "<br><s>retenue levée : le résultat ne tenait pas sur huit bits, le neuvième bit est perdu.</s>" : "");
+        if (ariaEl) ariaEl.textContent = "Registre A : " + shown;
+        // tracé
+        const n = hist.length;
+        const x = (i) => (n < 2 ? 0 : (i / (n - 1)) * 420);
+        const y = (v) => 145 - (v / 255) * 140;
+        traceEl.setAttribute("d", hist.map((v, i) => (i ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1)).join(" "));
+        wrapsEl.innerHTML = wraps.filter((i) => i < n).map((i) =>
+          '<path class="wrapmark" d="M' + x(i).toFixed(1) + ' 2 V148"></path>').join("");
+      }
+      function apply(op) {
+        const full = op === "x2" ? A * 2 : A + op;
+        carry = full > 255 || full < 0 ? 1 : 0;
+        A = ((full % 256) + 256) % 256;
+        hist.push(A);
+        if (carry) wraps.push(hist.length - 1);
+        if (hist.length > 141) { hist.shift(); wraps = wraps.map((i) => i - 1).filter((i) => i >= 0); }
+        render();
+      }
+      $$("[data-ovf]", root).forEach((b) => b.addEventListener("click", () => {
+        const d = b.dataset.ovf;
+        apply(d === "x2" ? "x2" : parseInt(d, 10));
+      }));
+      $("#ovf-run").addEventListener("click", () => {
+        if (timer) { clearInterval(timer); timer = null; $("#ovf-run").textContent = "▶ Laisser tourner"; return; }
+        $("#ovf-run").textContent = "■ Arrêter";
+        timer = setInterval(() => apply(17), 190);
+      });
+      $("#ovf-signed").addEventListener("click", (e) => {
+        signed = !signed;
+        e.currentTarget.classList.toggle("on", signed);
+        e.currentTarget.textContent = signed ? "Lecture non signée" : "Lecture signée";
+        render();
+      });
+      $("#ovf-clear").addEventListener("click", () => { A = 0; carry = 0; hist = [0]; wraps = []; render(); });
+      render();
+    })();
+
+    /* ── EXP 11 — le cycle chercher / décoder / exécuter ── */
     (function expCycle() {
       const root = $("#exp-cycle"); if (!root) return;
       const SRC = "  LDA 65\n  ADD 1\n  OUTA\n  HLT";
@@ -3142,7 +4094,7 @@ Chaque entrée de répertoire contient :
       refresh([], []);
     })();
 
-    /* ── EXP 10 — la machine complète ── */
+    /* ── EXP 14 — la machine complète ── */
     (function expMachine() {
       const root = $("#exp-machine"); if (!root) return;
       const PROGS = {

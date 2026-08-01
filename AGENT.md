@@ -85,8 +85,10 @@ provoxys/                       ← créateur Provoxys (identité visuelle propr
 samlepirate/                    ← créateur Samlepirate
   champs-vecteurs.html          ← Dossier VII (identité propre : Newsreader / JetBrains Mono)
   ordinateur-1983/              ← Dossier XXVII (codex ECI + mono pour le code)
-    index.html                  ← 15 chapitres, 11 expériences interactives, CPU 8 bits exécutable
+    index.html                  ← 15 chapitres, 15 expériences interactives, CPU 8 bits exécutable
     assets/                     ← hero + 5 illustrations de chapitre + vignette d'index
+    simulateur/                 ← BUILD EMBARQUÉ du Simulateur Logique Nodal (Samlepirate)
+                                  index.html retouché + assets/ ; voir simulateur/README.md
   samlepirate.jpeg              ← avatar auteur
 horloge-univers/                ← Samlepirate — « Horloge de l'Univers » (dossier multi-pages, piloté par des données)
   chronos.html                  ← dossier complet (frise log + horloge de la Terre)
@@ -298,6 +300,32 @@ Si un dossier a un compagnon externe (ex. simulation `https://thesamlepirate.git
 
 - le surfacer à plusieurs endroits (CTA hero, lien nav sticky, mention footer) ;
 - toujours `target="_blank" rel="noopener"`.
+
+### Compagnon embarqué (préféré quand c'est possible)
+
+Quand l'application compagnon est **de l'équipe** et que son build tient dans le dépôt,
+mieux vaut l'**embarquer** que de dépendre d'un hébergeur tiers : le dossier reste
+consultable si l'hébergeur disparaît, et le site n'envoie plus ses lecteurs ailleurs.
+Le Dossier XXVII sert de gabarit (`samlepirate/ordinateur-1983/simulateur/`) :
+
+- construire avec des **chemins relatifs** (`vite build --base=./`) — sinon les assets
+  sont cherchés à la racine du domaine et rien ne se charge depuis un sous-dossier ;
+- copier le `dist/` dans un sous-dossier **nommé autrement que `dist`** : `dist/` est
+  couvert par `.gitignore` **et** `.dockerignore`, et le build ne serait jamais publié ;
+- retoucher l'`index.html` produit : `lang`, `<title>`, `<meta name="rights">`, favicon
+  ECI, et un **lien de retour discret** vers le dossier ;
+- **déclarer chaque fichier** dans `config/legacy-public-manifest.json` — les noms de
+  bundle portent un hash qui change à chaque rebuild ;
+- vérifier avant de conclure qu'aucun secret n'est embarqué dans le bundle, et que le
+  build n'appelle ni CDN ni police distante ;
+- laisser un `README.md` à côté du build : provenance, commande de rebuild, retouches à
+  réappliquer, et limites connues ;
+- ne plus laisser traîner l'ancienne URL externe dans le dossier **ni dans `sources/`**
+  (page `sources.html` comprise) — sauf à la conserver explicitement comme mention de
+  provenance dans l'audit.
+
+Un build **module ES** (cas de Vite) ne se charge pas depuis `file://` : le vérifier
+avec un serveur local (`python3 -m http.server`), pas par double-clic.
 
 ## Dossiers pilotés par des données (ex. Horloge de l'Univers)
 

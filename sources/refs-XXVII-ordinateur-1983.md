@@ -28,7 +28,8 @@ piliers de nature différente :
 | Ressource | URL |
 |---|---|
 | Dépôt du code source | https://github.com/TheSamLePirate/Simulateur-Logique-Nodal |
-| Application en ligne | https://computer-1983.puter.site |
+| **Build embarqué dans le site** | [`../samlepirate/ordinateur-1983/simulateur/`](../samlepirate/ordinateur-1983/simulateur/) |
+| Application hébergée par l'auteur | https://computer-1983.puter.site |
 | Miroir | https://1983-computer.puter.site |
 | Page d'application Puter | https://puter.com/app/1983-computer |
 

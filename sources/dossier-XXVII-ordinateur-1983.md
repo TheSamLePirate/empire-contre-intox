@@ -26,8 +26,10 @@ Neumann, 6502, Ariane 5, endianness…) ont été vérifiées séparément, sur 
 primaires ou institutionnelles — voir `refs-XXVII-ordinateur-1983.md`.
 
 - Dépôt du simulateur : https://github.com/TheSamLePirate/Simulateur-Logique-Nodal
-- Application en ligne : https://computer-1983.puter.site
-- Miroir : https://1983-computer.puter.site — https://puter.com/app/1983-computer
+- **Build embarqué dans le site** : [`../samlepirate/ordinateur-1983/simulateur/`](../samlepirate/ordinateur-1983/simulateur/)
+  — c'est désormais la version que le dossier ouvre, servie par le site lui-même.
+- Applications hébergées par l'auteur (hors site) : https://computer-1983.puter.site ·
+  https://1983-computer.puter.site · https://puter.com/app/1983-computer
 
 ---
 
@@ -224,6 +226,17 @@ runtime stack-overflow trap yet, so very deep recursion with large local frames 
 corrupt the stack and output before halting ». Le dossier le présente comme une
 propriété pédagogique, pas comme un défaut caché.
 
+### A26. Une récursion sans fin consomme 3 octets par niveau et franchit 0x1800 vers le 683ᵉ appel
+**Verdict : ✅ confirmé par exécution.** Affirmation ajoutée avec l'expérience 12 (« Les
+huit mille cases »), qui exécute réellement le programme `__rec: PUSH / CALL __rec` sur le
+processeur de la page. Chaque tour consomme **3 octets** de pile : 2 pour l'adresse de
+retour empilée par `CALL` (voir A12) et 1 pour le `PUSH`. Partant de SP = 0x1FFF, les
+2 048 octets de la zone de pile (0x1800–0x1FFF, voir A11) sont épuisés au bout de
+2048 / 3 ≈ **683 niveaux** ; la pile atteint la base des cadres de fonctions (0x1020)
+après 4 063 octets, soit **1 354 niveaux**. Valeurs relevées à l'exécution dans la page
+(SP = 0x1020, profondeur 1 354, 4 063 octets consommés), et cohérentes avec le compte
+théorique. Rien dans le processeur ne borne SP : c'est exactement ce que dit A25.
+
 ---
 
 ## B. Histoire et théorie de l'informatique
@@ -256,6 +269,17 @@ mentionner l'antériorité de Peirce.
 transistors NMOS en série et deux PMOS en parallèle, soit 4 transistors ; un ET
 s'obtient en ajoutant un inverseur (2 transistors), soit 6. C'est la raison structurelle
 pour laquelle les portes inversées sont les briques natives du silicium.
+
+### B4 bis. Un PMOS conduit quand sa grille est à 0, un NMOS quand elle est à 1
+**Verdict : ✅ confirmé.** Affirmation ajoutée avec l'expérience 1 (« Quatre interrupteurs
+font une porte »). Dans la logique CMOS à enrichissement, le transistor **NMOS** devient
+passant lorsque sa tension de grille dépasse le seuil (grille au niveau haut, soit 1) et
+le **PMOS** lorsque sa grille est au niveau bas (soit 0) : les deux familles sont
+complémentaires, d'où le C de CMOS. Le réseau de tirage vers le haut (PMOS) et celui de
+tirage vers le bas (NMOS) sont donc conducteurs sur des combinaisons d'entrées
+mutuellement exclusives, ce qui évite tout court-circuit entre l'alimentation et la
+masse. Appliqué au NON-ET de B4 : deux PMOS **en parallèle** vers V<sub>DD</sub>, deux
+NMOS **en série** vers la masse — la sortie ne tombe à 0 que si les deux entrées valent 1.
 
 ### B5. Ripple carry en O(n), anticipation de retenue en O(log n)
 **Verdict : ✅ confirmé.** Le temps de propagation d'un additionneur à propagation de
@@ -340,13 +364,32 @@ contemporains ; le dossier l'emploie comme comparaison qualitative (« un millia
 fois plus vite que le simulateur », qui tourne entre 0,5 et 10 Hz), pas comme une donnée
 précise.
 
+### B16. ASCII : 95 caractères imprimables, norme de 1963, minuscules ajoutées en 1967
+**Verdict : ✅ confirmé, avec une précision ajoutée.** Affirmation ajoutée avec
+l'expérience 2 (« Le texte, tel que la machine le range »). La norme *American Standard
+Code for Information Interchange* est publiée par l'American Standards Association sous
+la référence **ASA X3.4-1963**, le **17 juin 1963**. Elle définit 128 codes, dont
+**95 caractères graphiques** occupant les positions 0x20 à 0x7E (32 à 126 en décimal) —
+l'espace comprise — et 33 codes de commande, 0x7F (DEL) inclus. La version de 1963 ne
+comporte **pas de minuscules** : elles apparaissent à la révision **X3.4-1967**.
+Au-delà de 127, il n'existe pas de norme unique : les jeux 8 bits (ISO/CEI 8859-1,
+CP437, Mac OS Roman…) attribuent des caractères différents aux mêmes octets.
+
+Sources : *Milestones:American Standard Code for Information Interchange ASCII, 1963*,
+Engineering and Technology History Wiki, https://ethw.org/Milestones:American_Standard_Code_for_Information_Interchange_ASCII,_1963 ·
+*Annotated history of character codes*, https://landley.net/history/mirror/ascii.html
+
+*Précision appliquée :* la première rédaction de l'expérience 2 datait de 1963 l'ASCII
+imprimable **en bloc**, ce qui laissait croire que les minuscules y figuraient. Le texte
+de la page distingue désormais la norme de 1963 et la révision de 1967.
+
 ---
 
 ## Synthèse
 
 | Verdict | Nombre |
 |---|---|
-| ✅ confirmé | 36 |
+| ✅ confirmé | 39 |
 | ⚠️ à corriger / à nuancer | 3 |
 | 🔶 débattu | 0 |
 | ❌ erroné | 0 |
@@ -363,10 +406,20 @@ précise.
    d'après le rapport de la commission d'enquête ; le montant financier non sourcé a
    été retiré.
 
-**Deux nuances ajoutées après vérification externe :**
+**Trois nuances ajoutées après vérification externe :**
 
 - **B3** — antériorité de Peirce (1880, publié en 1933) sur Sheffer (1913).
 - **B13** — attribution des termes *big-endian* / *little-endian* à Danny Cohen (1980).
+- **B16** — l'ASCII de 1963 ne comporte pas de minuscules : elles arrivent à la révision
+  de 1967. La formulation de l'expérience 2 a été corrigée en conséquence.
+
+**Trois affirmations ajoutées avec les cinq nouvelles expériences (août 2026) :**
+
+- **A26** — coût réel d'une récursion sans fin (3 octets par niveau, 683 puis 1 354
+  niveaux avant collision), vérifié **par exécution** dans la page.
+- **B4 bis** — conduction complémentaire PMOS/NMOS, qui fonde le montage de
+  l'expérience 1.
+- **B16** — l'ASCII imprimable et ses dates.
 
 **Deux précisions ajoutées après relecture du code :**
 
