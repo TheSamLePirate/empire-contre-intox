@@ -44,6 +44,26 @@ Quand un nouveau déroulé (`.txt` ou script) doit être implémenté, produire 
 - est référencée par une carte dans `index.html` ;
 - fonctionne comme un site statique autonome.
 
+### Cas particulier — un dossier sans transcription
+
+Le point de départ habituel est un **déroulé de live**, et la règle du **mot pour mot**
+s'applique alors sans exception. Mais un dossier peut aussi être écrit à partir d'un
+**objet** : une application, un jeu de données, un corpus de documents. C'est le cas du
+**Dossier XXVII** (« L'Ordinateur de 1983 »), écrit d'après le *Simulateur Logique Nodal*.
+
+Dans ce cas :
+
+- il n'y a pas de verbatim à conserver, donc **`check-coverage.py` ne s'applique pas** —
+  le dire explicitement dans le récapitulatif final plutôt que de laisser croire à un oubli ;
+- la **source primaire est l'objet lui-même**, pas sa documentation. Si le code et la doc
+  d'un projet se contredisent, **le code fait foi**, et l'écart se signale dans un encadré
+  « anti-intox » ;
+- la vérification se fait autant que possible **par exécution** : faire tourner le code,
+  comparer les sorties affichées dans la page à celles de l'original, et consigner les
+  chiffres obtenus (tailles, cycles, sorties) dans l'audit `sources/` ;
+- tout le reste de la charte s'applique à l'identique — intégration ECI, crédit auteur,
+  images obligatoires, formules en KaTeX, `sources/`, index, manifeste, RSS, licence.
+
 ## Organisation des fichiers (par créateur / équipe)
 
 Chaque créateur ou équipe possède **son propre dossier** à la racine du dépôt. Un nouveau déroulé va dans le dossier de son auteur (en créer un si besoin) :
@@ -62,6 +82,12 @@ provoxys/                       ← créateur Provoxys (identité visuelle propr
   assets/artemis2-hero.png
   Artemis2.html
   provoxys.jpeg, samlepirate.jpeg
+samlepirate/                    ← créateur Samlepirate
+  champs-vecteurs.html          ← Dossier VII (identité propre : Newsreader / JetBrains Mono)
+  ordinateur-1983/              ← Dossier XXVII (codex ECI + mono pour le code)
+    index.html                  ← 15 chapitres, 11 expériences interactives, CPU 8 bits exécutable
+    assets/                     ← hero + 5 illustrations de chapitre + vignette d'index
+  samlepirate.jpeg              ← avatar auteur
 horloge-univers/                ← Samlepirate — « Horloge de l'Univers » (dossier multi-pages, piloté par des données)
   chronos.html                  ← dossier complet (frise log + horloge de la Terre)
   calendrier.html               ← Calendrier Cosmique plein écran
@@ -70,7 +96,7 @@ horloge-univers/                ← Samlepirate — « Horloge de l'Univers » (
     events.json                 ← SOURCE CANONIQUE des 46 événements (clock + calendrier)
     super-images/               ← une image par événement (01 → 46)
     extinctions/ · geologie/ · temps-univers.png
-sources/                        ← Dossier XXIII « Les Sources » — vérification & sources de TOUS les dossiers
+sources/                        ← Dossier XXVIII « Les Sources » — vérification & sources de TOUS les dossiers
   sources.html                  ← page codex (fiches donnée→résumé→verdict→source, références DOI, biblio, RECHERCHE)
   README.md                     ← index des fichiers de sources + bilan d'audit
   dossier-*.md                  ← audit par dossier (affirmation → verdict → source avec URL)
@@ -81,8 +107,12 @@ Dockerfile · nginx.conf · docker-compose.yml · .dockerignore
                                 ← déploiement statique Nginx vers Portainer (`empire-contre-intox-site`)
 ```
 
-> **XXIII dossiers** au total — l'index affiche **`<b>XXIII</b> dossiers`**. Numérotation actuelle (ordre d'affichage) :
-> I `ymir-lalie/resume-eres.html` · II `ymir-lalie/edicarien.html` · III `provoxys/Artemis2.html` · IV `horloge-univers/chronos.html` · V `jorge-zalex/elements.html` · VI `la-vie-de-la-terre/index.html` · VII `samlepirate/champs-vecteurs.html` · VIII `ymir-lalie/ancetres-genetiques/index.html` · IX `lalie-ymir-sam/index.html` · X `ymir-lalie/singe-aquatique/index.html` · XI `ymir-lalie/esclavage/index.html` · XII `provoxys/tornades/index.html` · XIII `phantom/abeilles/index.html` · XIV `formules/index.html` · XV `ymir-lalie/la-resistance/index.html` · XVI `provoxys/briser-le-silence/index.html` · XVII `provoxys/exoplanetes/index.html` · XVIII `ymir-lalie/premieres-cites/index.html` · XIX `provoxys/sondes/index.html` · XX `ymir-lalie/premier-empires/index.html` · XXI `provoxys/therapie-conversion/index.html` · XXII `ymir-lalie/egypte-grece/index.html` · XXIII `sources/sources.html` (« Les Sources » — appareil critique commun à tous les dossiers).
+> **XXVIII dossiers** au total — l'index affiche **`<b>XXVIII</b> dossiers`**. Numérotation actuelle (ordre d'affichage) :
+> I `ymir-lalie/resume-eres.html` · II `ymir-lalie/edicarien.html` · III `provoxys/Artemis2.html` · IV `horloge-univers/chronos.html` · V `jorge-zalex/elements.html` · VI `la-vie-de-la-terre/index.html` · VII `samlepirate/champs-vecteurs.html` · VIII `ymir-lalie/ancetres-genetiques/index.html` · IX `lalie-ymir-sam/index.html` · X `ymir-lalie/singe-aquatique/index.html` · XI `ymir-lalie/esclavage/index.html` · XII `provoxys/tornades/index.html` · XIII `phantom/abeilles/index.html` · XIV `formules/index.html` · XV `ymir-lalie/la-resistance/index.html` · XVI `provoxys/briser-le-silence/index.html` · XVII `provoxys/exoplanetes/index.html` · XVIII `ymir-lalie/premieres-cites/index.html` · XIX `provoxys/sondes/index.html` · XX `ymir-lalie/premier-empires/index.html` · XXI `provoxys/therapie-conversion/index.html` · XXII `ymir-lalie/egypte-grece/index.html` · XXIII `ymir-lalie/evolution/index.html` · XXIV `ymir-lalie-phantom/pirates/index.html` · XXV `provoxys/entropie/index.html` · XXVI `ymir-lalie/alexandre-le-grand/index.html` · XXVII `samlepirate/ordinateur-1983/index.html` · XXVIII `sources/sources.html` (« Les Sources » — appareil critique commun à tous les dossiers).
+>
+> **Cette liste est la première chose à relire avant d'ajouter un dossier** : la numérotation bouge à chaque ajout, et « Les Sources » doit rester **le dernier numéro**. En cas de doute, l'`index.html` fait foi — c'est lui qui est publié.
+>
+> Les cartes sont regroupées en **sept parcours thématiques** (`.dossier-group`) : I Temps profond & Terre · II Vivant, évolution & écosystèmes · III Lois du réel & modèles · IV Cosmos & exploration · V Civilisations, empires & mémoire · VI Société, droits & vigilance · VII Méthode, sources & vie du collectif. Une nouvelle carte se place dans le parcours qui lui correspond, et le `group-count` de ce parcours doit être incrémenté.
 >
 > La carte « Calendrier des lives » est une carte d'agenda externe, pas un dossier numéroté.
 
@@ -214,7 +244,7 @@ Pour chaque nouveau dossier :
 - **Numéro** : `Dossier I / II / III…` suivant **l'ordre d'affichage**. Si on réordonne, **renuméroter partout** : les cartes, l'ordre du menu de nav, et l'eyebrow « Dossier N » dans le hero de chaque page concernée.
 - **Titre**, **description courte**, **tags** (3), **lien relatif**.
 - **Byline** auteur (avatars + « Réalisé par … », + `.note` participation si besoin).
-- **Compteurs** : mettre à jour le hero (compteur en chiffres romains, actuellement `<b>XXIII</b> dossiers`) et le sec-head (la phrase qui chiffre le nombre de dossiers, actuellement « Vingt-trois dossiers… »). Penser aussi au **Décret méthodologique** (`#decret`), au menu du pied de page, aux eyebrows des pages concernées et à `sources/sources.html` si l'on ajoute/réordonne des dossiers.
+- **Compteurs** : mettre à jour le hero (compteur en chiffres romains, actuellement `<b>XXVIII</b> dossiers`), le sec-head (la phrase qui chiffre le nombre de dossiers, actuellement « Vingt-huit dossiers… ») et le `group-count` du parcours thématique d'accueil. Penser aussi au **Décret méthodologique** (`#decret`), au menu du pied de page, aux eyebrows des pages concernées et à `sources/sources.html` si l'on ajoute/réordonne des dossiers.
 - Les nouvelles cartes se placent **avant** le bandeau manifeste `#manifeste` (« Rejoignez l'Empire… »), qui reste juste après la grille des dossiers.
 
 ## Flux RSS (`rss.xml`) — obligatoire à chaque dossier
@@ -286,9 +316,9 @@ Le contenu doit rester **défendable** :
 - Préférer des **fourchettes** et des marqueurs de prudence (« ~90–96 % », « probablement », « selon les estimations », « des indices suggèrent ») aux **affirmations absolues** (« tous », « tout le gaz », « presque tous les plans »).
 - En cas de révision des données, la répercuter dans **les trois** vues (`events.json`, `clock.html`, `calendrier.html`) et, si concerné, dans `chronos.html`.
 
-## Vérification scientifique & sources (obligatoire — Dossier XXIII)
+## Vérification scientifique & sources (obligatoire — Dossier XXVIII)
 
-**Pour CHAQUE dossier** — existant ou nouveau —, refaire le **même travail de vérification** et **centraliser toutes les sources dans le dossier `sources/`** (Dossier XXIII, « Les Sources »). Aucune page ne doit affirmer sans preuve traçable. Le travail déjà réalisé pour les dossiers existants sert de gabarit (voir `sources/*.md`, `sources/README.md` et `sources/sources.html`).
+**Pour CHAQUE dossier** — existant ou nouveau —, refaire le **même travail de vérification** et **centraliser toutes les sources dans le dossier `sources/`** (Dossier XXVIII, « Les Sources »). Aucune page ne doit affirmer sans preuve traçable. Le travail déjà réalisé pour les dossiers existants sert de gabarit (voir `sources/*.md`, `sources/README.md` et `sources/sources.html`).
 
 ### 1. Vérifier chaque information, affirmation et donnée
 - Extraire du dossier **toutes les affirmations factuelles et données chiffrées** : dates, durées, quantités, pourcentages, températures, noms d'espèces / de personnes / de missions, bornes géologiques, etc.
@@ -302,7 +332,7 @@ Le contenu doit rester **défendable** :
 - **Anti-hallucination — RÈGLE ABSOLUE :** ne **JAMAIS inventer ni deviner un DOI**. Vérifier chaque DOI (résolution `https://doi.org/<doi>` et/ou Crossref `api.crossref.org/works/<doi>` ; concordance titre / auteurs / revue / pages). À défaut de DOI fiable : écrire « DOI non trouvé — [source institutionnelle] » plutôt que d'en fabriquer un.
 - Mettre à jour l'**index** `sources/README.md` (table des fichiers + bilan global : ✅/⚠️/🔶/❌ et corrections appliquées).
 
-### 3. Surfacer dans la page `sources/sources.html` (Dossier XXIII)
+### 3. Surfacer dans la page `sources/sources.html` (Dossier XXVIII)
 Page codex ECI qui rassemble les sources de **tous** les dossiers, avec **barre de recherche** (filtre accents-insensible sur titre / donnée / résumé / auteur / revue / DOI). Pour chaque vérification, ajouter aux tableaux JS de `sources.html` :
 - une **fiche** dans la section thématique : *donnée → court résumé → verdict (badge couleur) → source(s) cliquable(s) → image* (réutiliser une `super-image` ou l'image hero du dossier) ;
 - une entrée dans **« Références scientifiques »** : *titre (lien DOI) → citation → badge DOI → résumé/abstract* ;
