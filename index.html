@@ -6,7 +6,7 @@
   <title>Empire contre Intox — Archives publiques</title>
   <meta name="description" content="Archives publiques d'Empire contre Intox : dossiers scientifiques sur le temps profond, transcriptions structurées et esprit critique. Veritas omnia vincit.">
   <meta name="theme-color" content="#060914">
-  <link rel="icon" href="ymir-lalie/assets/logo-eci.jpg" type="image/jpeg">
+  <link rel="icon" href="assets/avatars/logo-eci.webp" type="image/webp">
   <link rel="alternate" type="application/rss+xml" title="Empire contre Intox — Dossiers" href="rss.xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,12 +56,9 @@
       font-weight: 380;
       line-height: 1.68;
       letter-spacing: .002em;
-      background:
-        radial-gradient(140% 90% at 12% -8%, rgba(214, 172, 85, .16), transparent 42%),
-        radial-gradient(120% 80% at 88% 4%, rgba(47, 111, 105, .18), transparent 46%),
-        radial-gradient(120% 120% at 50% 116%, rgba(178, 49, 57, .12), transparent 48%),
-        linear-gradient(180deg, #03040c 0%, var(--void) 40%, var(--abyss) 100%);
-      background-attachment: fixed;
+      /* Le halo de fond vit dans `.atmos` (élément fixe) : `background-attachment: fixed`
+         sur <body> forçait un repaint plein écran à chaque frame de défilement. */
+      background: var(--void);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
@@ -73,6 +70,13 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
+      /* halo impérial : repris de <body>, mais peint une fois sur une couche fixe */
+      background:
+        radial-gradient(140% 90% at 12% -8%, rgba(214, 172, 85, .16), transparent 42%),
+        radial-gradient(120% 80% at 88% 4%, rgba(47, 111, 105, .18), transparent 46%),
+        radial-gradient(120% 120% at 50% 116%, rgba(178, 49, 57, .12), transparent 48%),
+        linear-gradient(180deg, #03040c 0%, var(--void) 40%, var(--abyss) 100%);
+      contain: strict;
     }
     .atmos::before {
       /* faint engraved coordinate grid */
@@ -100,6 +104,9 @@
         radial-gradient(1.1px 1.1px at 30% 8%, rgba(255,255,255,.5), transparent 60%),
         radial-gradient(1px 1px at 95% 33%, rgba(255,255,255,.35), transparent 60%);
       animation: twinkle 7s ease-in-out infinite alternate;
+      /* couche dédiée : le scintillement reste une animation d'opacité compositée,
+         sinon il force le re-blend plein écran de `.grain` à chaque frame */
+      will-change: opacity;
     }
     .grain {
       position: fixed;
@@ -221,26 +228,43 @@
       /* gold leaf shows through the thin diagonal seams between panels */
       background: linear-gradient(106deg, var(--gold-deep), var(--gold-bright) 46%, #fff6dc 52%, var(--gold) 60%, var(--gold-deep));
     }
+    /* Le panneau porte le découpage diagonal ; l'image dérive sur un calque enfant.
+       (Animer `background-position` repeignait les 5 panneaux filtrés à chaque frame ;
+       un `translateY` sur un pseudo-élément reste sur le compositeur.) */
     .hm-panel {
       position: absolute; inset: 0;
+      /* `backwards` (et non `forwards`) : une fois l'entrée jouée, l'animation ne
+         verrouille plus `transform`, ce qui laisse le parallaxe souris s'appliquer. */
+      animation: panelIn 1.15s var(--ease) backwards;
+    }
+    .hm-panel::before {
+      content: "";
+      position: absolute; inset: -2% 0;
+      background-image: var(--hm-img);
       background-size: cover; background-position: 50% 50%;
       filter: saturate(1.08) contrast(1.07) brightness(1.04);
-      opacity: 0;
-      animation: panelIn 1.15s var(--ease) forwards, hmDrift 44s ease-in-out infinite alternate;
-      will-change: transform, background-position;
+      animation: hmDrift 44s ease-in-out infinite alternate;
+      will-change: transform;
     }
-    .hm-1 { background-image: url("ymir-lalie/assets/eres-hero.index-hero.webp");                     clip-path: polygon(0 0, 25.75% 0, 14.75% 100%, 0 100%);          animation-delay: 0s, 0s; }
-    .hm-2 { background-image: url("ymir-lalie/assets/ediacaran-hero.index-hero.webp");                clip-path: polygon(26.25% 0, 47.75% 0, 36.75% 100%, 15.25% 100%); animation-delay: .12s, .4s; }
-    .hm-3 { background-image: url("provoxys/assets/artemis2-hero.index-hero.webp");                   clip-path: polygon(48.25% 0, 68.75% 0, 57.75% 100%, 37.25% 100%); animation-delay: .24s, .8s; }
-    .hm-4 { background-image: url("horloge-univers/assets/temps-univers.index-hero.webp");            clip-path: polygon(69.25% 0, 86.75% 0, 75.75% 100%, 58.25% 100%); animation-delay: .36s, 1.2s; }
-    .hm-5 { background-image: url("la-vie-de-la-terre/assets/earth-observatory.index-hero.webp");     clip-path: polygon(87.25% 0, 100% 0, 100% 100%, 76.25% 100%);      animation-delay: .48s, 1.6s; }
+    .hm-1 { --hm-img: url("ymir-lalie/assets/eres-hero.index-hero.webp");                     clip-path: polygon(0 0, 25.75% 0, 14.75% 100%, 0 100%);          animation-delay: 0s; }
+    .hm-2 { --hm-img: url("ymir-lalie/assets/ediacaran-hero.index-hero.webp");                clip-path: polygon(26.25% 0, 47.75% 0, 36.75% 100%, 15.25% 100%); animation-delay: .12s; }
+    .hm-3 { --hm-img: url("provoxys/assets/artemis2-hero.index-hero.webp");                   clip-path: polygon(48.25% 0, 68.75% 0, 57.75% 100%, 37.25% 100%); animation-delay: .24s; }
+    .hm-4 { --hm-img: url("horloge-univers/assets/temps-univers.index-hero.webp");            clip-path: polygon(69.25% 0, 86.75% 0, 75.75% 100%, 58.25% 100%); animation-delay: .36s; }
+    .hm-5 { --hm-img: url("la-vie-de-la-terre/assets/earth-observatory.index-hero.webp");     clip-path: polygon(87.25% 0, 100% 0, 100% 100%, 76.25% 100%);      animation-delay: .48s; }
+    .hm-1::before { animation-delay: 0s; }
+    .hm-2::before { animation-delay: .4s; }
+    .hm-3::before { animation-delay: .8s; }
+    .hm-4::before { animation-delay: 1.2s; }
+    .hm-5::before { animation-delay: 1.6s; }
     .hero-section.is-paused .hm-panel,
+    .hero-section.is-paused .hm-panel::before,
     .hero-section.is-paused .emblem::before,
     .hero-section.is-paused .emblem-ring,
     .hero-section.is-paused .emblem-ticks,
-    .hero-section.is-paused .emblem-core { animation-play-state: paused; }
+    .hero-section.is-paused .emblem-core,
+    .hero-section.is-paused .scroll-cue i::after { animation-play-state: paused; }
     @keyframes panelIn { from { opacity: 0; transform: scale(1.07); } to { opacity: 1; transform: none; } }
-    @keyframes hmDrift { from { background-position: 50% 40%; } to { background-position: 50% 60%; } }
+    @keyframes hmDrift { from { transform: translateY(-1.4%); } to { transform: translateY(1.4%); } }
     /* legibility scrim : darken the left for the title, glow on the right, fade into the void */
     .hero-mosaic::after {
       content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -318,6 +342,9 @@
       color: transparent;
       animation: foil 7s linear infinite;
     }
+    /* le dégradé sur `background-clip: text` repeint le texte à chaque frame :
+       on l'arrête dès que le mot quitte l'écran */
+    .gold-foil.is-paused { animation-play-state: paused; }
     @keyframes foil { to { background-position: 220% 0; } }
 
     .lead {
@@ -659,6 +686,10 @@
       overflow: hidden;
       box-shadow: 0 26px 70px rgba(0,0,0,.4);
       transition: transform .45s var(--ease), border-color .45s var(--ease), box-shadow .45s var(--ease);
+      /* la vingtaine de cartes hors écran n'est ni mise en page ni peinte tant qu'elle
+         n'approche pas du viewport ; `auto` mémorise la hauteur réelle après le premier rendu */
+      content-visibility: auto;
+      contain-intrinsic-size: auto 772px;   /* hauteur médiane réelle d'une carte */
     }
     /* accent liseré along the top edge */
     .dossier::before {
@@ -736,7 +767,10 @@
       letter-spacing: .16em; text-transform: uppercase; color: var(--ink);
       border: 1px solid rgba(214,172,85,.4);
       border-radius: 2px;
-      background: rgba(5,8,17,.6); backdrop-filter: blur(10px);
+      /* pas de `backdrop-filter` ici : la pastille est répétée sur chaque carte,
+         soit une vingtaine de surfaces de rendu supplémentaires pour un flou
+         invisible derrière un fond quasi opaque. */
+      background: rgba(5,8,17,.86);
     }
     .dossier-body { display: flex; flex-direction: column; gap: 18px; padding: 28px; flex: 1; }
     .dossier h3 {
@@ -987,9 +1021,8 @@
     @media (max-width: 920px) {
       body { background-attachment: scroll; }
       .topbar { backdrop-filter: none; background: rgba(5, 8, 17, .94); }
-      .badge { backdrop-filter: none; background: rgba(5,8,17,.9); }
       .grain { opacity: .025; mix-blend-mode: normal; }
-      .hm-panel { animation: panelIn 1.15s var(--ease) forwards; will-change: auto; }
+      .hm-panel::before { animation: none; will-change: auto; }
       .hero { grid-template-columns: 1fr; }
       .emblem { order: -1; width: min(360px, 78vw); }
       .parcours-panel { grid-template-columns: 1fr; }
@@ -1022,7 +1055,7 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .reveal { opacity: 1; transform: none; }
-      .hm-panel { opacity: 1; }
+      .hm-panel, .hm-panel::before { opacity: 1; will-change: auto; }
       html { scroll-behavior: auto; }
     }
   </style>
@@ -1047,7 +1080,7 @@
     <header class="topbar">
       <div class="wrap topbar-inner">
         <a class="brand" href="./index.html" aria-label="Accueil Empire contre Intox">
-          <img decoding="async" fetchpriority="high" class="brand-seal" src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+          <img width="128" height="128" decoding="async" fetchpriority="high" class="brand-seal" src="assets/avatars/logo-eci.webp" alt="Sceau Empire contre Intox">
           <span class="brand-name">Empire contre Intox<small>Veritas omnia vincit</small></span>
         </a>
         <nav class="nav" aria-label="Navigation principale">
@@ -1097,7 +1130,7 @@
           </svg>
           <div class="emblem-ticks"></div>
           <div class="emblem-core">
-            <img decoding="async" fetchpriority="high" src="ymir-lalie/assets/logo-eci.jpg" alt="">
+            <img decoding="async" fetchpriority="high" width="640" height="640" src="assets/avatars/logo-eci-640.webp" alt="">
           </div>
         </div>
         </div>
@@ -1188,8 +1221,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1214,8 +1247,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1240,7 +1273,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/samlepirate.webp" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong></span>
                 </div>
@@ -1265,7 +1298,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="la-vie-de-la-terre/assets/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/samlepirate.webp" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong></span>
                 </div>
@@ -1304,8 +1337,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1330,8 +1363,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1356,7 +1389,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="phantom/abeilles/phantom-avatar.png" alt="Avatar de PhantomBlast">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/phantom.webp" alt="Avatar de PhantomBlast">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>PhantomBlast</strong><span class="note">avec Abeillaud</span></span>
                 </div>
@@ -1381,8 +1414,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1421,8 +1454,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="jorge-zalex/jorge.jpeg" alt="Avatar de Jorge">
-                    <img loading="lazy" decoding="async" src="jorge-zalex/zalex.astro.jpeg" alt="Avatar de Zalex">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/jorge.webp" alt="Avatar de Jorge">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/zalex.webp" alt="Avatar de Zalex">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Jorge &amp; Zalex</strong><span class="note">d'après le cours de Jorge</span></span>
                 </div>
@@ -1447,7 +1480,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="samlepirate/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/samlepirate.webp" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Samlepirate</strong><span class="note">d'après 3Blue1Brown</span></span>
                 </div>
@@ -1472,8 +1505,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="provoxys/tornades/provoxys.jpeg" alt="Avatar de Provoxys">
-                    <img loading="lazy" decoding="async" src="provoxys/tornades/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/provoxys.webp" alt="Avatar de Provoxys">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/samlepirate.webp" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec le soutien de Samlepirate</span></span>
                 </div>
@@ -1498,7 +1531,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="formules/samlepirate.jpeg" alt="Avatar de SamLePirate">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/samlepirate.webp" alt="Avatar de SamLePirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>SamLePirate</strong></span>
                 </div>
@@ -1523,8 +1556,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="provoxys/entropie/provoxys.jpeg" alt="Avatar de Provoxys">
-                    <img loading="lazy" decoding="async" src="provoxys/entropie/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/provoxys.webp" alt="Avatar de Provoxys">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/samlepirate.webp" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec la participation de Samlepirate</span></span>
                 </div>
@@ -1563,8 +1596,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                    <img loading="lazy" decoding="async" src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/provoxys.webp" alt="Avatar de Provoxys">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/samlepirate.webp" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec la participation de Samlepirate</span></span>
                 </div>
@@ -1589,8 +1622,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                    <img loading="lazy" decoding="async" src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/provoxys.webp" alt="Avatar de Provoxys">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/samlepirate.webp" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span class="note">avec le soutien de Samlepirate (Atlas)</span></span>
                 </div>
@@ -1615,9 +1648,9 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img loading="lazy" decoding="async" src="provoxys/samlepirate.jpeg" alt="Avatar de Samlepirate">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/provoxys.webp" alt="Avatar de Provoxys">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/samlepirate.webp" alt="Avatar de Samlepirate">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys, Lalie &amp; Samlepirate</strong></span>
                 </div>
@@ -1656,8 +1689,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1682,8 +1715,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1708,8 +1741,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span>
                 </div>
@@ -1734,8 +1767,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/ymir.jpeg" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong><span class="note">avec l'aide précieuse de Phantom</span></span>
                 </div>
@@ -1760,8 +1793,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/egypte-grece/ymir.jpeg" alt="Avatar d'Ymir">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/egypte-grece/lalie.jpeg" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Ymir &amp; Lalie</strong></span>
                 </div>
@@ -1792,9 +1825,9 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie-phantom/pirates/lalie.jpeg" alt="Avatar de Lalie">
-                    <img loading="lazy" decoding="async" src="ymir-lalie-phantom/pirates/ymir.jpeg" alt="Avatar d'Ymir">
-                    <img loading="lazy" decoding="async" src="ymir-lalie-phantom/pirates/phantom.png" alt="Avatar de Phantom">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/phantom.webp" alt="Avatar de Phantom">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie, Ymir &amp; Phantom</strong></span>
                 </div>
@@ -1819,8 +1852,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/alexandre-le-grand/ymir.jpeg" alt="Avatar d'Ymir">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/alexandre-le-grand/lalie.jpeg" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Ymir &amp; Lalie</strong></span>
                 </div>
@@ -1859,9 +1892,9 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="lalie-ymir-sam/lalie.jpeg" alt="Avatar de Lalie">
-                    <img loading="lazy" decoding="async" src="lalie-ymir-sam/ymir.jpeg" alt="Avatar d'Ymir">
-                    <img loading="lazy" decoding="async" src="lalie-ymir-sam/sam.jpeg" alt="Avatar de Sam">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/ymir.webp" alt="Avatar d'Ymir">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/samlepirate.webp" alt="Avatar de Sam">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Lalie, Ymir &amp; Sam</strong></span>
                 </div>
@@ -1886,8 +1919,8 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/lalie.jpeg" alt="Avatar de Lalie">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/provoxys.webp" alt="Avatar de Provoxys">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/lalie.webp" alt="Avatar de Lalie">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys &amp; Lalie</strong></span>
                 </div>
@@ -1912,7 +1945,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="provoxys/provoxys.jpeg" alt="Avatar de Provoxys">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/provoxys.webp" alt="Avatar de Provoxys">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Provoxys</strong></span>
                 </div>
@@ -1951,7 +1984,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/logo-eci.webp" alt="Sceau Empire contre Intox">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Empire contre Intox</strong></span>
                 </div>
@@ -1976,7 +2009,7 @@
                 </div>
                 <div class="byline">
                   <span class="avatars">
-                    <img loading="lazy" decoding="async" src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+                    <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/logo-eci.webp" alt="Sceau Empire contre Intox">
                   </span>
                   <span class="who"><span class="lbl">Réalisé par</span><strong>Empire contre Intox</strong></span>
                 </div>
@@ -2079,7 +2112,7 @@
         </nav>
         <div class="footer-inner">
           <div class="footer-brand">
-            <img loading="lazy" decoding="async" src="ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox">
+            <img width="128" height="128" loading="lazy" decoding="async" src="assets/avatars/logo-eci.webp" alt="Sceau Empire contre Intox">
             <strong>Empire contre Intox</strong>
           </div>
           <p class="footer-motto">Ad astra per aspera.</p>
@@ -2150,6 +2183,14 @@
         heroSection.classList.toggle('is-paused', !entry.isIntersecting);
       }, { rootMargin: '120px 0px' });
       heroIo.observe(heroSection);
+    }
+
+    // Idem pour les mots en feuille d'or : leur dégradé repeint du texte à chaque frame.
+    if (!reduce) {
+      const foilIo = new IntersectionObserver((entries) => {
+        for (const e of entries) e.target.classList.toggle('is-paused', !e.isIntersecting);
+      }, { rootMargin: '120px 0px' });
+      document.querySelectorAll('.gold-foil').forEach((el) => foilIo.observe(el));
     }
 
     if (heroSection && hmPanels.length && !reduce && finePointer) {
