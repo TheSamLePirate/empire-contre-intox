@@ -468,10 +468,18 @@ d'être détourné. Ne pas les retirer « pour déboguer » sans les remettre.
 - **Validation du chemin** : refus (**400**) des octets de contrôle, des remontées
   `..`, des antislashs et de tout caractère hors du jeu attendu d'une URL du site.
 
-> Si le proxy amont (openresty) ne transmet pas `X-Forwarded-For`, **tous** les
-> visiteurs partagent une même clé de quota et `RATE_LIMIT_PER_CLIENT` devient de
-> fait un plafond global : le vérifier après déploiement, et relever la valeur au
-> besoin.
+> **Vérifié en production le 2 août 2026** : openresty transmet bien l'IP publique
+> réelle du visiteur dans `X-Forwarded-For`, et **l'écrase** au passage — un client
+> ne peut donc pas forger sa propre clé de quota. Chaque visiteur a bien son
+> compteur, et `limit_req` déclenche sur la bonne clé (journal nginx : `limiting
+> requests … by zone "eci_api"`, dernier champ = IP publique du client).
+>
+> Si l'infrastructure amont change un jour, revérifier ce point : sans
+> `X-Forwarded-For`, **tous** les visiteurs partageraient une même clé et
+> `RATE_LIMIT_PER_CLIENT` deviendrait de fait un plafond global. Contrôle :
+> `bun run port-manager logs empire-contre-intox-site_site_1 --tail 20` depuis
+> `../devServerTest` — le dernier champ de chaque ligne d'accès doit être une IP
+> publique, pas `-`.
 
 Règles de confidentialité :
 
