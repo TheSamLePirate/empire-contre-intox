@@ -1035,6 +1035,111 @@
     }
     .closing > *,.learning-panel > * { position:relative; z-index:1; }
 
+    /* ============================================================
+       LANCEMENT — le bouton du simulateur n'est pas un bouton :
+       c'est une carte d'extension. Au repos, un signal fait
+       lentement le tour de ses pistes et la veille est en ambre.
+       Au survol, la carte s'alimente : la diode passe au vert, le
+       balayage descend comme sur un tube, et le libellé se décode
+       depuis ses octets. Au clic, la couleur se sépare une fraction
+       de seconde — le temps que la machine prenne la main.
+       ============================================================ */
+    .sim-launch {
+      position:relative; display:inline-flex; align-items:stretch; isolation:isolate;
+      min-height:58px; padding:0; border:1px solid rgba(0,0,0,.8); border-radius:0;
+      background:linear-gradient(180deg,#0a1a12,#04100a 60%,#020a06);
+      box-shadow:inset 1px 1px 0 rgba(150,255,200,.13),inset -1px -1px 0 rgba(0,0,0,.7),
+                 0 16px 40px rgba(0,0,0,.5);
+      color:var(--phosphor); text-decoration:none; overflow:hidden;
+      transition:transform .35s var(--ease),box-shadow .35s var(--ease),color .3s var(--ease);
+    }
+    .sim-launch:hover,.sim-launch:focus-visible {
+      transform:translateY(-3px); color:#d6ffe6;
+      box-shadow:inset 1px 1px 0 rgba(190,255,220,.2),inset -1px -1px 0 rgba(0,0,0,.7),
+                 0 22px 54px rgba(0,0,0,.55),0 0 34px rgba(110,231,160,.3);
+    }
+
+    /* Le signal qui parcourt les pistes du bord */
+    .sl-trace { position:absolute; inset:-1px; z-index:0; overflow:hidden; pointer-events:none;
+      padding:1px;
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      mask-composite:exclude; opacity:.7; transition:opacity .3s var(--ease); }
+    .sl-trace::before {
+      content:""; position:absolute; left:50%; top:50%; width:260%; aspect-ratio:1; translate:-50% -50%;
+      background:conic-gradient(transparent 0 62%,rgba(110,231,160,.45) 76%,#eafff2 88%,rgba(110,231,160,.45) 96%,transparent 100%);
+      animation:slSpin 4.4s linear infinite;
+    }
+    @keyframes slSpin { to { rotate:360deg; } }
+    .sim-launch:hover .sl-trace,.sim-launch:focus-visible .sl-trace { opacity:1; }
+    .sim-launch:hover .sl-trace::before,.sim-launch:focus-visible .sl-trace::before { animation-duration:1.5s; }
+
+    /* Trame du tube + balayage */
+    .sl-scan { position:absolute; inset:0; z-index:1; overflow:hidden; pointer-events:none;
+      background:repeating-linear-gradient(180deg,rgba(0,0,0,.3) 0 1px,transparent 1px 3px); }
+    .sl-scan::before {
+      content:""; position:absolute; left:-10%; right:-10%; height:38%; top:-50%; opacity:0;
+      background:linear-gradient(180deg,transparent,rgba(110,231,160,.3),rgba(234,255,242,.58),rgba(110,231,160,.3),transparent);
+      transition:opacity .25s var(--ease);
+    }
+    .sim-launch:hover .sl-scan::before,.sim-launch:focus-visible .sl-scan::before {
+      opacity:1; animation:slSweep 1.25s cubic-bezier(.45,0,.55,1) infinite;
+    }
+    @keyframes slSweep { from { top:-50%; } to { top:112%; } }
+
+    /* Corps : diode de veille, libellé, flèche */
+    .sl-body { position:relative; z-index:2; display:flex; align-items:center; gap:13px;
+      padding:0 24px 6px; }
+    .sl-led { width:11px; height:11px; flex:none; border-radius:50%;
+      background:var(--ember); box-shadow:0 0 9px rgba(224,134,74,.7),inset 0 -2px 3px rgba(0,0,0,.5);
+      transition:background .25s var(--ease),box-shadow .25s var(--ease); }
+    .sim-launch:hover .sl-led,.sim-launch:focus-visible .sl-led {
+      background:var(--phosphor); box-shadow:0 0 14px rgba(110,231,160,.95),inset 0 -2px 3px rgba(0,0,0,.4);
+      animation:slPulse 1s ease-in-out infinite;
+    }
+    @keyframes slPulse { 0%,100% { opacity:1; } 50% { opacity:.5; } }
+    .sl-text { font-family:var(--mono); font-size:.76rem; font-weight:700; letter-spacing:.2em;
+      text-transform:uppercase; white-space:nowrap; text-shadow:0 0 12px rgba(110,231,160,.45);
+      animation:slStandby 4.2s ease-in-out infinite; }
+    @keyframes slStandby {
+      0%,100% { text-shadow:0 0 10px rgba(110,231,160,.32); }
+      50% { text-shadow:0 0 18px rgba(110,231,160,.6); }
+    }
+    .sim-launch:hover .sl-text,.sim-launch:focus-visible .sl-text {
+      animation:none; text-shadow:0 0 16px rgba(110,231,160,.7); }
+    .sl-arrow { font-family:var(--mono); font-size:.9rem; line-height:1;
+      transition:transform .35s var(--ease); }
+    .sim-launch:hover .sl-arrow,.sim-launch:focus-visible .sl-arrow { transform:translate(3px,-3px); }
+
+    /* Doigts de connecteur : la carte s'enfiche */
+    .sl-pins { position:absolute; z-index:2; left:14px; right:14px; bottom:0; height:6px; pointer-events:none;
+      background:repeating-linear-gradient(90deg,rgba(214,172,85,.55) 0 9px,transparent 9px 15px);
+      box-shadow:0 0 10px rgba(214,172,85,.18);
+      transition:background .3s var(--ease),box-shadow .3s var(--ease); }
+    .sim-launch:hover .sl-pins,.sim-launch:focus-visible .sl-pins {
+      background:repeating-linear-gradient(90deg,var(--gold-bright) 0 9px,transparent 9px 15px);
+      box-shadow:0 0 16px rgba(243,217,138,.5);
+    }
+
+    /* Prise en main : la couleur se sépare */
+    .sim-launch:active { transform:translateY(0); }
+    .sim-launch:active .sl-text { animation:slGlitch .16s steps(2) 2; }
+    @keyframes slGlitch {
+      0% { text-shadow:2px 0 rgba(255,81,64,.95),-2px 0 rgba(96,165,250,.95); transform:translateX(-1.5px); }
+      50% { text-shadow:-2px 0 rgba(255,81,64,.95),2px 0 rgba(96,165,250,.95); transform:translateX(1.5px); }
+      100% { text-shadow:0 0 12px rgba(110,231,160,.45); transform:none; }
+    }
+
+    @media (max-width:640px){
+      .sim-launch { min-height:52px; }
+      .sl-body { padding:0 16px 6px; gap:10px; }
+      .sl-text { font-size:.66rem; letter-spacing:.14em; }
+    }
+    @media (prefers-reduced-motion:reduce){
+      .sl-trace { opacity:.9; }
+      .sl-scan::before { display:none; }
+    }
+
     @media (max-width:980px){
       .chapter-figure::after { bottom:32px; }
     }
@@ -1115,7 +1220,7 @@
           <div class="hero-actions">
             <a class="button primary" href="#bit">Commencer par le bit</a>
             <a class="button live" href="#machine">La machine dans la page</a>
-            <a class="button" href="simulateur/" target="_blank" rel="noopener">Ouvrir le simulateur ↗</a>
+            <a class="sim-launch" href="simulateur/" target="_blank" rel="noopener" aria-label="Ouvrir le simulateur logique nodal dans un nouvel onglet"><span class="sl-trace" aria-hidden="true"></span><span class="sl-scan" aria-hidden="true"></span><span class="sl-body" aria-hidden="true"><span class="sl-led"></span><span class="sl-text" data-word="Ouvrir le simulateur">Ouvrir le simulateur</span><span class="sl-arrow">↗</span></span><span class="sl-pins" aria-hidden="true"></span></a>
             <a class="button" href="../../index.html">Accueil ECI</a>
           </div>
         </div>
@@ -2927,7 +3032,7 @@ Chaque entrée de répertoire contient :
           <p class="collective-credit">Samlepirate — d'après son <em>Simulateur Logique Nodal</em></p>
           <div class="collective-actions">
             <a class="button primary" href="../../index.html">Retour à l'index</a>
-            <a class="button live" href="simulateur/" target="_blank" rel="noopener">Ouvrir le simulateur ↗</a>
+            <a class="sim-launch" href="simulateur/" target="_blank" rel="noopener" aria-label="Ouvrir le simulateur logique nodal dans un nouvel onglet"><span class="sl-trace" aria-hidden="true"></span><span class="sl-scan" aria-hidden="true"></span><span class="sl-body" aria-hidden="true"><span class="sl-led"></span><span class="sl-text" data-word="Ouvrir le simulateur">Ouvrir le simulateur</span><span class="sl-arrow">↗</span></span><span class="sl-pins" aria-hidden="true"></span></a>
             <a class="button" href="../champs-vecteurs.html">Le langage des champs</a>
             <a class="button" href="../../formules/index.html">Les Formules</a>
             <a class="button" href="../../sources/sources.html">Les Sources</a>
@@ -2980,6 +3085,41 @@ Chaque entrée de répertoire contient :
       nav.classList.remove("open");
       if (mobileMenu) mobileMenu.setAttribute("aria-expanded", "false");
     }));
+    /* Lancement du simulateur : le libellé se décode depuis ses octets.
+       Chaque lettre traverse quelques chiffres hexadécimaux avant de se fixer,
+       de la gauche vers la droite — la même idée que le chapitre II, en un tiers
+       de seconde. Le nom accessible du lien ne bouge pas (aria-label sur le <a>). */
+    (function simLaunch() {
+      const HEX = "0123456789ABCDEF";
+      $$(".sim-launch").forEach((btn) => {
+        const el = $(".sl-text", btn);
+        if (!el) return;
+        const word = el.dataset.word || el.textContent;
+        let raf = null, running = false;
+        function decode() {
+          if (reduced || running) return;
+          running = true;
+          const t0 = performance.now(), dur = 460, chars = [...word];
+          (function frame(t) {
+            const k = clamp((t - t0) / dur, 0, 1);
+            const settled = k * chars.length * 1.25;
+            el.textContent = chars.map((c, i) =>
+              c === " " || i < settled ? c : HEX[(Math.random() * 16) | 0]).join("");
+            if (k < 1) raf = requestAnimationFrame(frame);
+            else { el.textContent = word; running = false; }
+          })(t0);
+        }
+        function reset() {
+          if (raf) cancelAnimationFrame(raf);
+          raf = null; running = false; el.textContent = word;
+        }
+        btn.addEventListener("mouseenter", decode);
+        btn.addEventListener("focus", decode);
+        btn.addEventListener("mouseleave", reset);
+        btn.addEventListener("blur", reset);
+      });
+    })();
+
     /* Pupitre : la position de lecture, lue comme un octet — 0x00 en haut, 0xFF en bas. */
     const fp = (function frontPanel() {
       const panel = $("#fpanel"), ledBox = $("#fpLeds"), hexEl = $("#fpHex"),
