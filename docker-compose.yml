@@ -18,6 +18,13 @@ services:
     environment:
       PORT: 3001
       DB_PATH: /data/visits.sqlite
+      # Plafond de chemins distincts : borne la taille de visits.sqlite.
+      MAX_DISTINCT_PATHS: "${MAX_DISTINCT_PATHS:-2000}"
+      # Quotas (fenêtre de 60 s). À relever si le proxy amont ne transmet
+      # pas X-Forwarded-For : tous les visiteurs partagent alors une clé.
+      RATE_LIMIT_WINDOW_MS: "${RATE_LIMIT_WINDOW_MS:-60000}"
+      RATE_LIMIT_PER_CLIENT: "${RATE_LIMIT_PER_CLIENT:-120}"
+      RATE_LIMIT_GLOBAL: "${RATE_LIMIT_GLOBAL:-6000}"
     volumes:
       - counter-data:/data
     restart: unless-stopped

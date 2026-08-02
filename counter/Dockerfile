@@ -2,6 +2,7 @@ FROM oven/bun:1.1-alpine
 
 WORKDIR /app
 COPY server.ts ./server.ts
+COPY lib.ts ./lib.ts
 
 RUN mkdir -p /data && chown -R bun:bun /data /app
 USER bun

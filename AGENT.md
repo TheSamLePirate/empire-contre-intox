@@ -438,14 +438,45 @@ Le site affiche un compteur public minimal : **nombre total de visites sur cette
 Architecture :
 
 - `counter/server.ts` : service Bun exposant `POST /visit`, `GET /count?path=/...` et `GET /health` ;
+- `counter/lib.ts` : logique pure (normalisation, validation, origines, quotas), **sans import `bun:*`** pour rester testable par vitest — couverte par `tests/counter.test.ts` ;
 - stockage SQLite persistant dans le volume Docker `counter-data` (`/data/visits.sqlite`) ;
 - Nginx proxifie `/api/` vers `http://counter:3001/` ;
 - `assets/visit-counter.js` est chargé par chaque page et appelle `POST /api/visit` avec le `location.pathname` normalisé ;
 - chaque footer affiche un élément `[data-visit-counter]` avec le libellé `N visites sur cette page`.
 
+### Garde-fous (à conserver)
+
+Le compteur est public et sans authentification : ces limites sont ce qui l'empêche
+d'être détourné. Ne pas les retirer « pour déboguer » sans les remettre.
+
+- **Écriture réservée au site** — `POST /visit` exige un `Origin` (à défaut l'origine
+  du `Referer`) présent dans `ALLOWED_ORIGINS` : domaine principal, `www`, et le
+  miroir `thesamlepirate.github.io` qui appelle l'API en cross-origin. Sinon **403**.
+- **`GET /count` reste ouvert** (le total est déjà affiché publiquement) : le contrôle
+  de déploiement et `scripts/visit-counts.py` appellent en `curl`, sans `Origin`.
+  Ajouter une vérification d'origine ici casserait les deux.
+- **Quotas** — par client et globaux, fenêtre de 60 s, appliqués aussi en lecture ;
+  réponse **429** + `Retry-After`. Réglables par variables d'environnement
+  (`RATE_LIMIT_PER_CLIENT`, `RATE_LIMIT_GLOBAL`, `RATE_LIMIT_WINDOW_MS`) sans
+  reconstruire l'image. Nginx applique en amont `limit_req` + `limit_conn`.
+  Le quota global existe parce que la clé par client vient de `X-Forwarded-For`,
+  donc **déclarative et falsifiable**.
+- **Plafond de chemins distincts** (`MAX_DISTINCT_PATHS`, 2000 par défaut) : borne la
+  taille de `visits.sqlite`. Une page **déjà connue** continue toujours de compter ;
+  seuls les chemins *inconnus* sont refusés au-delà du plafond (**507**). À relever
+  si le site dépasse un jour cet ordre de grandeur de pages.
+- **Validation du chemin** : refus (**400**) des octets de contrôle, des remontées
+  `..`, des antislashs et de tout caractère hors du jeu attendu d'une URL du site.
+
+> Si le proxy amont (openresty) ne transmet pas `X-Forwarded-For`, **tous** les
+> visiteurs partagent une même clé de quota et `RATE_LIMIT_PER_CLIENT` devient de
+> fait un plafond global : le vérifier après déploiement, et relever la valeur au
+> besoin.
+
 Règles de confidentialité :
 
-- ne pas stocker d'IP, d'user-agent, de cookie ou d'identifiant utilisateur ;
+- ne pas stocker d'IP, d'user-agent, de cookie ou d'identifiant utilisateur — les
+  quotas gardent la clé client **en mémoire seulement**, jamais en base ;
 - stocker uniquement `path`, `visits`, `created_at`, `updated_at` ;
 - accepter que les refreshs, bots ou appels directs incrémentent le compteur : c'est un compteur de **visites totales**, volontairement simple.
 
