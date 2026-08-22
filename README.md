@@ -83,7 +83,8 @@ Le process complet est automatisé par la **skill `/nouveau-dossier`** (`.claude
 10. Mettre à jour `index.html` : carte dans le bon parcours thématique, `group-count`, numérotation, compteurs du hero et du sec-head, nav de pied.
 11. **Déclarer tous les fichiers dans `config/legacy-public-manifest.json`** — sans quoi ils ne sont pas publiés, et le build Astro échoue si l'image de la carte d'index manque. Vérifier avec `npx tsx scripts/prepare-legacy.ts`.
 12. **Régénérer le flux RSS** : `python3 scripts/generate-rss.py` (relit `index.html` → réécrit `rss.xml`).
-13. Vérifier en local : images chargées, liens corrects, pas de scroll horizontal, aucune erreur console.
+13. Reprendre tel quel le bloc `<style id="eci-wide-style">` d'un dossier récent, **juste avant `</head>`** : c'est lui qui élargit la page et grossit le texte par paliers, du mobile au 4K.
+14. Vérifier en local **de 360 px à 3840 px** : images chargées, liens corrects, pas de scroll horizontal, rien de coupé, aucune erreur console.
 
 > ℹ️ Les instructions détaillées (charte visuelle « codex impérial », règles de contenu, exactitude scientifique, vérification & sources, licence, déploiement) sont dans **`AGENT.md`** (`CLAUDE.md` est un lien symbolique vers `AGENT.md`).
 
@@ -111,6 +112,9 @@ python3 -m http.server 8080
 
 Puis ouvrir http://127.0.0.1:8080/index.html
 
+L'aperçu partagé de l'accueil (`assets/og-index.jpg`) est un **rendu du hero**, pas une
+image du dépôt : le régénérer avec `node scripts/generate-og-hero.mjs` dès que ce hero change.
+
 ## Déploiement
 
 - **GitHub Pages** (miroir) : automatique au `push` sur `main`. Vérifier avec
@@ -129,7 +133,8 @@ Le site expose aussi un **compteur public de visites par page** (service Bun + S
 - texte source lu en entier ; transcription complète et **vérifiée mot pour mot** (pas un copier-coller brut) ;
 - design conforme à l'identité Empire contre Intox ; sceau ECI présent ;
 - **formules rendues en KaTeX** et expliquées ; aucune formule en texte brut ;
-- images générées et intégrées ; index à jour ; liens internes OK ; pas de débordement horizontal ;
+- images générées et intégrées ; index à jour ; liens internes OK ;
+- **testé de 360 px à 3840 px** : pas de débordement horizontal, rien de coupé, bloc `<style id="eci-wide-style">` présent (voir « Largeurs d'écran » dans `AGENT.md`) ;
 - objectifs pédagogiques présents ;
 - **contenu scientifique défendable** : datations standard, fourchettes plutôt qu'affirmations absolues ;
 - **toutes les affirmations / données sourcées** dans `sources/` (audit + DOI vérifiés) et visibles dans `sources/sources.html` ;

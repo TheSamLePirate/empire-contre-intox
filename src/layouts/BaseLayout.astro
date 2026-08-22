@@ -11,7 +11,7 @@ interface Props {
 
 const { title, description, canonicalPath, image } = Astro.props;
 const canonical = canonicalUrl(canonicalPath);
-const socialImage = canonicalUrl(image ?? "/manifest-poster.jpg");
+const socialImage = canonicalUrl(image ?? "/assets/og-index.jpg");
 ---
 
 <!doctype html>

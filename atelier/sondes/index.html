@@ -119,6 +119,17 @@
   .eci-counter-sep{opacity:.55;margin:0 .35em;}
   .eci-visit-counter{white-space:nowrap;color:#c0b59a;}
 </style>
+  <style id="eci-wide-style">
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ——— */
+  @media (min-width:1440px){ .content{ max-width:1020px; } }
+  @media (min-width:1800px){ html{ font-size:17px; }   .content{ max-width:1120px; } }
+  @media (min-width:2200px){ html{ font-size:18.5px; } .content{ max-width:1240px; } }
+  @media (min-width:2800px){ html{ font-size:20px; }   .content{ max-width:1360px; } }
+  /* ——— Petits écrans : la mention « non listé » était rognée par la barre. ——— */
+  @media (max-width:720px){
+    .topbar .priv{ white-space:normal; text-align:right; }
+  }
+  </style>
 </head>
 <body>
 <div class="topbar">

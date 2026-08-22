@@ -491,6 +491,24 @@
   .eci-counter-sep{opacity:.55;margin:0 .35em;}
   .eci-visit-counter{white-space:nowrap;color:#c0b59a;}
 </style>
+  <style id="eci-wide-style">
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ———
+     La page s'élargit et le texte grossit ensemble, pour garder la mesure. */
+  @media (min-width:1440px){ .container{ max-width:1280px; } }
+  @media (min-width:1800px){ html{ font-size:17px; }   .container{ max-width:1420px; } }
+  @media (min-width:2200px){ html{ font-size:18.5px; } .container{ max-width:1560px; } }
+  @media (min-width:2800px){ html{ font-size:20px; }   .container{ max-width:1700px; } }
+  /* ——— Petits écrans : la barre du haut ne tient pas sur une ligne à 390 px,
+     le lien de droite était rogné. On la laisse passer à la ligne. ——— */
+  @media (max-width:720px){
+    nav.top{ flex-wrap:wrap; gap:10px 16px; padding:16px 18px; }
+    nav.top .left{ flex-wrap:wrap; gap:8px 12px; }
+    nav.top .right{ flex:1 0 100%; }
+  }
+  /* Chaînes techniques non sécables (chemins de fichiers) : autoriser la coupure
+     plutôt que de laisser la ligne sortir de la colonne. */
+  p, li, td{ overflow-wrap:break-word; }
+  </style>
 </head>
 <body>
 

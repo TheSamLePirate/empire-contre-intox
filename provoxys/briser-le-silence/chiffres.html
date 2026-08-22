@@ -345,6 +345,18 @@
   .eci-counter-sep{opacity:.55;margin:0 .35em;}
   .eci-visit-counter{white-space:nowrap;color:#c0b59a;}
 </style>
+  <style id="eci-wide-style">
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ——— */
+  @media (min-width:1440px){ :root{ --maxw:1320px; } }
+  @media (min-width:1800px){ :root{ --maxw:1460px; } html{ font-size:17px; } }
+  @media (min-width:2200px){ :root{ --maxw:1620px; } html{ font-size:18.5px; } }
+  @media (min-width:2800px){ :root{ --maxw:1780px; } html{ font-size:20px; } }
+  /* ——— Petits écrans : les pastilles de section les plus longues
+     (« 03 — Emprise & contrôle coercitif ») débordaient de la colonne. ——— */
+  @media (max-width:600px){
+    .sec-num{ white-space:normal; border-radius:14px; }
+  }
+  </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute"><defs>

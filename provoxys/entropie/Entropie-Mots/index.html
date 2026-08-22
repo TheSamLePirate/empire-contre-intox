@@ -14,6 +14,23 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="styles.css">
+  <style id="eci-wide-style">
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ———
+     Le gabarit vient de Tailwind (`max-w-[1500px]`), injecté à l'exécution : on le
+     surclasse par la spécificité (`body …`), pas par l'ordre de la cascade. */
+  @media (min-width:1800px){
+    html{ font-size:17px; }
+    body .max-w-\[1500px\]{ max-width:1720px; }
+  }
+  @media (min-width:2200px){
+    html{ font-size:18px; }
+    body .max-w-\[1500px\]{ max-width:1980px; }
+  }
+  @media (min-width:2800px){
+    html{ font-size:19px; }
+    body .max-w-\[1500px\]{ max-width:2240px; }
+  }
+  </style>
 </head>
 <body>
 

@@ -54,7 +54,9 @@ function extractDescription(source: string): string | undefined {
 function buildSocialPreviews(indexSource: string, publicFiles: Set<string>): Map<string, SocialPreview> {
   const previews = new Map<string, SocialPreview>([
     ["index.html", {
-      imagePath: "manifest-poster.jpg",
+      // Le hero de l'accueil, rendu par scripts/generate-og-hero.mjs — pas la
+      // première image du manifeste vidéo, qui n'est qu'un carton de générique.
+      imagePath: "assets/og-index.jpg",
       imageAlt: "Empire contre Intox — archives publiques et dossiers scientifiques",
     }],
   ]);

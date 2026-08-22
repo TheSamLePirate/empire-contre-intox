@@ -315,3 +315,91 @@ au profit du bouton « Menu » — ne pas y toucher.
 **Vérifier en navigateur** (toutes largeurs 1280 → 768 px) :
 `document.documentElement.scrollWidth - clientWidth === 0` (aucun débordement) ;
 la nav doit scroller **dans** la barre, pas pousser la page.
+
+---
+
+## 9. ⚠️ OBLIGATOIRE — Bloc grands écrans `<style id="eci-wide-style">`
+
+Le codex tient dans `--max: 1180px`. Sans correctif, sur un écran 2560 ou 3840 px
+la page n'occupe plus que **40 à 45 %** de la largeur : les deux tiers de l'écran
+sont vides. Chaque page publiée porte donc, **juste avant `</head>`** (après ses
+propres `<style>`, pour gagner la cascade — même convention que
+`<style id="eci-license-style">`), ce bloc, à **copier tel quel** :
+
+```html
+  <style id="eci-wide-style">
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ———
+     La page s'élargit ET le texte grossit, ensemble : la colonne de lecture garde
+     sa mesure (~100 signes), la largeur gagnée va à la marge savante et aux
+     visuels, qui débordent la colonne de texte au-delà de 1800 px. */
+  @media (min-width:1440px){
+    :root{ --max:1300px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(300px,430px); gap:52px; }
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(280px,380px); }
+    .intro-band{ grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr); }
+  }
+  @media (min-width:1800px){
+    :root{ --max:1420px; }
+    html{ font-size:17px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(320px,470px); gap:58px; }
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(300px,410px); }
+    .viz-section{ width:min(100vw - 72px,1720px);
+                  margin-inline:calc((100% - min(100vw - 72px,1720px)) / 2); }
+  }
+  @media (min-width:2200px){
+    :root{ --max:1560px; }
+    html{ font-size:18.5px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(340px,530px); gap:64px; }
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(320px,440px); }
+    .viz-section{ width:min(100vw - 96px,2040px);
+                  margin-inline:calc((100% - min(100vw - 96px,2040px)) / 2); }
+  }
+  @media (min-width:2800px){
+    :root{ --max:1820px; }
+    html{ font-size:20px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(380px,700px); gap:74px; }
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(340px,470px); }
+    .viz-section{ width:min(100vw - 120px,2360px);
+                  margin-inline:calc((100% - min(100vw - 120px,2360px)) / 2); }
+  }
+  </style>
+```
+
+### Pourquoi le texte grossit en même temps
+
+C'est le point qui fait tout marcher. Élargir seul allongerait la ligne au-delà du
+lisible ; grossir seul gaspillerait encore l'écran. En faisant les deux **par le même
+palier**, la colonne reste autour de **100 signes** à 1440 comme à 3840 px, et tout est
+simplement plus grand. La colonne de lecture ne doit **jamais** absorber la largeur
+gagnée : elle va à `.side-note` (marge savante) et aux visuels.
+
+`html{font-size}` plutôt que `.prose p{font-size}` : les tailles internes des pages
+sont en `rem`, donc tout suit proportionnellement. Redéfinir `.prose p` écraserait au
+passage `.article-noir p` et consorts (même spécificité, bloc plus tardif) et
+aplatirait les différences de la charte.
+
+### Recentrer un débordement sans casser la page
+
+`margin-inline: calc((100% - <largeur>) / 2)` — **pas** `left:50% + transform`, ni
+`margin-left:50%` : ces variantes créent un défilement horizontal parasite. La largeur
+reste `min(100vw - <gouttière>, <plafond>)` : la gouttière garantit qu'on ne dépasse
+jamais la fenêtre.
+
+### Pièges (déjà rencontrés)
+
+- `repeat(auto-fit, minmax(380px,1fr))` impose une colonne plus large que l'écran sous
+  ~412 px → toujours `minmax(min(380px,100%),1fr)`.
+- `white-space:nowrap` sur une pastille de section longue → déborde à 390 px.
+- Barre de navigation en `flex` sans `flex-wrap` sur mobile → le lien de droite est rogné.
+- Chaîne technique non sécable dans un paragraphe → `overflow-wrap:break-word`.
+
+### Contrôle avant de conclure
+
+À **360 / 768 / 1280 / 1920 / 2560 / 3840 px** :
+
+```js
+window.scrollTo(9999, 0); window.scrollX === 0   // aucun défilement horizontal
+```
+
+et aucun élément dont `getBoundingClientRect().right > clientWidth`, **sauf** à
+l'intérieur d'un conteneur volontairement défilant (`.dtable-wrap`, `.formula`, `.nav`).

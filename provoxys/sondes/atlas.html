@@ -292,6 +292,17 @@
   .eci-counter-sep{opacity:.55;margin:0 .35em;}
   .eci-visit-counter{white-space:nowrap;color:#c0b59a;}
 </style>
+  <style id="eci-wide-style">
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ———
+     Planches de dataviz : les canevas gagnent à occuper l'écran. */
+  @media (min-width:1440px){ .wrap{ max-width:1440px; } }
+  @media (min-width:1800px){ html{ font-size:17px; }   .wrap{ max-width:1700px; } }
+  @media (min-width:2200px){ html{ font-size:18px; }   .wrap{ max-width:1960px; } }
+  @media (min-width:2800px){ html{ font-size:19px; }   .wrap{ max-width:2220px; } }
+  /* ——— Petits écrans : `minmax(380px,1fr)` impose une colonne plus large que
+     l'écran sous 412 px ; `min(380px,100%)` la laisse se replier. ——— */
+  .stat-grid{ grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr)); }
+  </style>
 </head>
 <body>
 <div class="atmos"></div><div class="grain"></div>

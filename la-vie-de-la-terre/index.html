@@ -280,6 +280,38 @@
   .eci-counter-sep{opacity:.55;margin:0 .35em;}
   .eci-visit-counter{white-space:nowrap;color:#c0b59a;}
 </style>
+  <style id="eci-wide-style">
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ———
+     La page s'élargit ET le texte grossit, ensemble, pour que la mesure de
+     lecture reste constante quand l'écran double de largeur. */
+  @media (min-width:1440px){
+    :root{ --max:1300px; }
+  }
+  @media (min-width:1800px){
+    :root{ --max:1420px; }
+    html{ font-size:17px; }
+    .viz-section{ width:min(100vw - 72px,1720px);
+                  margin-inline:calc((100% - min(100vw - 72px,1720px)) / 2); }
+  }
+  @media (min-width:2200px){
+    :root{ --max:1560px; }
+    html{ font-size:18.5px; }
+    .viz-section{ width:min(100vw - 96px,2040px);
+                  margin-inline:calc((100% - min(100vw - 96px,2040px)) / 2); }
+  }
+  @media (min-width:2800px){
+    :root{ --max:1820px; }
+    html{ font-size:20px; }
+    .viz-section{ width:min(100vw - 120px,2360px);
+                  margin-inline:calc((100% - min(100vw - 120px,2360px)) / 2); }
+  }
+  @media (min-width:1440px){
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(280px,380px); }
+  }
+  @media (min-width:2200px){
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(320px,440px); }
+  }
+  </style>
 </head>
 <body>
   <div class="atmos" aria-hidden="true"></div>

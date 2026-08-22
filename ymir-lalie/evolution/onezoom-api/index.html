@@ -39,6 +39,32 @@
     @media(max-width:640px){.topbar-inner{min-height:64px}.brand small,.toplink{display:none}.hero{padding-top:58px;gap:32px}.hero h1{font-size:clamp(2.8rem,15vw,4.2rem)}.hero-visual{min-height:360px}.hero-stats{grid-template-columns:1fr}.hero-stat{grid-template-columns:48px 1fr;padding:12px}.life-node::after{display:none}.mission-strip{grid-template-columns:1fr;width:calc(100% - 24px)}.mission-copy{grid-column:auto}.app-shell{width:100%;border-left:0;border-right:0;border-radius:0}.api-status{display:none}.app-nav{padding:8px}.tab{padding:0 12px}.form-grid,.converter-form,.name-search-form{grid-template-columns:1fr}.field:first-child{grid-column:auto}.submit{grid-column:auto}.name-search-label{align-items:flex-start;flex-direction:column}.search-results{left:10px;right:10px}.search-result{grid-template-columns:1fr}.search-result-actions{width:100%}.search-choice{flex:1}.control-panel,.workspace{padding:22px 16px}.result-grid{gap:12px}.result-grid.list .taxon-card{grid-template-columns:1fr}.result-grid.list .image-strip,.result-grid.list .image-placeholder{height:180px;min-height:0}.image-strip{height:170px}.image-button:nth-child(2),.image-button:nth-child(3){height:84px}.fact-strip{grid-template-columns:1fr}.mini-fact{display:flex;align-items:center;justify-content:space-between;gap:10px}.taxon-actions{flex-direction:column}.relationship-lab{padding:18px 12px}.kinship-stage{padding:16px 10px}.kinship-stage::before{display:none}.common-trunk{justify-content:flex-start}.branch-fork{grid-template-columns:1fr;gap:14px;margin-top:24px}.profile-panel{width:100%}.profile-hero{min-height:250px;padding:24px}.profile-metrics,.profile-grid{grid-template-columns:1fr}.pop-row{grid-template-columns:36px 1fr}.pop-score{display:none}.workspace-head{align-items:flex-start;flex-direction:column}.workspace-actions{width:100%;overflow-x:auto}.workspace-actions .ghost{flex:1;white-space:nowrap}.request-summary{grid-template-columns:1fr}.request-row{grid-template-columns:auto 1fr auto}.request-time{display:none}.collection-button{padding:0 11px}.collection-button>span:first-child{display:none}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   </style>
+  <style id="eci-wide-style">
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ———
+     La page s'élargit ET le texte grossit, ensemble, pour que la mesure de
+     lecture reste constante quand l'écran double de largeur. */
+  @media (min-width:1440px){
+    :root{ --max:1300px; }
+  }
+  @media (min-width:1800px){
+    :root{ --max:1420px; }
+    html{ font-size:17px; }
+    .viz-section{ width:min(100vw - 72px,1720px);
+                  margin-inline:calc((100% - min(100vw - 72px,1720px)) / 2); }
+  }
+  @media (min-width:2200px){
+    :root{ --max:1560px; }
+    html{ font-size:18.5px; }
+    .viz-section{ width:min(100vw - 96px,2040px);
+                  margin-inline:calc((100% - min(100vw - 96px,2040px)) / 2); }
+  }
+  @media (min-width:2800px){
+    :root{ --max:1820px; }
+    html{ font-size:20px; }
+    .viz-section{ width:min(100vw - 120px,2360px);
+                  margin-inline:calc((100% - min(100vw - 120px,2360px)) / 2); }
+  }
+  </style>
 </head>
 <body>
   <div class="atmos" aria-hidden="true"></div><div class="progress" id="progress" aria-hidden="true"></div>

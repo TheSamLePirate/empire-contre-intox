@@ -230,6 +230,65 @@ Capitales romaines gravées, or sur nuit profonde, gravité cérémonielle.
 - **cartouche licence** `.eci-license` en pied de page : CC BY-NC-ND 4.0, partage avec attribution, sans usage commercial ni modification, lien vers `LICENCE-CONTENU.md`.
 - Ne plus ajouter de footer technique du type « Page HTML autonome créée à partir… » ; les détails de provenance/sources doivent être dans le dossier lui-même et dans `sources/`.
 
+## Largeurs d'écran — du mobile au 4K (obligatoire)
+
+Chaque page publiée porte, **juste avant `</head>`** (donc après ses propres
+`<style>`, pour gagner la cascade), un bloc :
+
+```html
+<style id="eci-wide-style"> … </style>
+```
+
+C'est le **dernier mot sur les largeurs** de la page. Même convention que le bloc
+`<style id="eci-license-style">` : un bloc unique, identifiable, injectable en série.
+
+### Ce qu'il fait
+
+La page de codex par défaut tenait dans `--max: 1180px` quelle que soit la taille de
+l'écran : sur un 4K, les deux tiers de la largeur restaient vides. Le bloc élargit la
+page **par paliers**, et fait grossir le texte **en même temps** — c'est ce qui permet
+d'occuper l'écran sans allonger la ligne : la colonne de lecture reste autour de
+**100 signes** à tous les paliers.
+
+| Palier | `html font-size` | `--max` (dossier) | `.transcript` (lecture / marge) |
+|---|---|---|---|
+| ≥ 1440 px | 16 px | 1300 px | 1fr / 300–430 px |
+| ≥ 1800 px | 17 px | 1420 px | 1fr / 320–470 px |
+| ≥ 2200 px | 18,5 px | 1560 px | 1fr / 340–530 px |
+| ≥ 2800 px | 20 px | 1820 px | 1fr / 380–700 px |
+
+La largeur gagnée va à la **marge savante** (`.side-note`), aux **visuels** et à la
+**taille du texte** — jamais à la longueur de ligne. Les sections de dataviz
+(`.viz-section`) débordent la colonne de texte au-delà de 1800 px, recentrées par
+`margin-inline: calc((100% - <largeur>) / 2)` (pas de `transform`, pas de
+défilement horizontal parasite).
+
+L'**accueil** suit ses propres paliers (jusqu'à `--max: 2700px`) parce que c'est une
+grille de cartes : `.dossiers` reste en `repeat(auto-fit, minmax(min(<N>px,100%),1fr))`
+et **gagne des colonnes** (4 vers 1800 px, 5 vers 2800 px) au lieu d'étirer les cartes.
+`min(<N>px,100%)` est indispensable : un `minmax(360px,…)` nu impose une colonne plus
+large que l'écran sous 360 px.
+
+### Pour un nouveau dossier
+
+Copier le bloc d'un dossier récent (`ymir-lalie/esclavage/index.html`) sans le modifier.
+Une page dont le conteneur n'est pas `--max` (identité invitée, page-outil) reçoit le
+même escalier appliqué à **son** conteneur (`.container`, `.wrap`, `--maxw`…).
+
+### Contrôle
+
+Vérifier, pour chaque page touchée et à **360 / 768 / 1280 / 1920 / 2560 / 3840 px** :
+
+- aucun défilement horizontal (`window.scrollTo(9999,0)` doit laisser `scrollX === 0`) ;
+- aucun élément coupé hors de la fenêtre — sauf à l'intérieur d'un conteneur
+  volontairement défilant (`.dtable-wrap`, `.formula`, `.nav`) ;
+- la ligne de lecture reste sous ~100 signes aux grands paliers.
+
+Pièges déjà rencontrés (corrigés, à ne pas réintroduire) : `grid-template-columns:
+repeat(auto-fit, minmax(380px, 1fr))` sans `min()`, `white-space: nowrap` sur une
+pastille de section longue, barre de navigation en `flex` sans `flex-wrap` sur mobile,
+chaîne technique non sécable dans un paragraphe (`overflow-wrap: break-word`).
+
 ## Crédits auteurs (obligatoire)
 
 - Chaque dossier est crédité à **ses** créateurs, avec leurs **avatars** (dossier de l'équipe).
@@ -248,6 +307,19 @@ Pour chaque nouveau dossier :
 - **Byline** auteur (avatars + « Réalisé par … », + `.note` participation si besoin).
 - **Compteurs** : mettre à jour le hero (compteur en chiffres romains, actuellement `<b>XXVIII</b> dossiers`), le sec-head (la phrase qui chiffre le nombre de dossiers, actuellement « Vingt-huit dossiers… ») et le `group-count` du parcours thématique d'accueil. Penser aussi au **Décret méthodologique** (`#decret`), au menu du pied de page, aux eyebrows des pages concernées et à `sources/sources.html` si l'on ajoute/réordonne des dossiers.
 - Les nouvelles cartes se placent **avant** le bandeau manifeste `#manifeste` (« Rejoignez l'Empire… »), qui reste juste après la grille des dossiers.
+
+### Aperçu social de l'accueil (`og:image`)
+
+L'accueil n'a pas d'image hero statique : son hero est une **mosaïque de cinq panneaux
+diagonaux** montée en CSS. L'aperçu partagé est donc un **rendu** de ce hero :
+`assets/og-index.jpg` (1200×630), produit par `node scripts/generate-og-hero.mjs`
+(Chrome headless + `sips`). C'est `scripts/prepare-legacy.ts` qui le câble en
+`og:image` / `twitter:image` pour `index.html` (et `src/layouts/BaseLayout.astro`
+l'utilise comme repli). **Le régénérer dès que le hero de l'accueil change** — sinon
+l'aperçu partagé montre un état périmé du site.
+
+Ne pas y remettre `manifest-poster.jpg` : c'est la première image du manifeste vidéo,
+un carton de générique noir, pas une vitrine du site.
 
 ## Flux RSS (`rss.xml`) — obligatoire à chaque dossier
 
@@ -507,4 +579,8 @@ Avant de terminer :
 - si publication demandée : confirmer build Pages `built` + `200` sur les URLs, puis redéployer Portainer si le domaine principal doit refléter la modification ;
 - vérifier que les pages touchées contiennent la licence (`.eci-license`, métadonnées de licence, lien local `LICENCE-CONTENU.md`) ;
 - vérifier qu'aucun footer ne contient encore « Page HTML autonome créée à partir… » ;
+- vérifier le comportement **de 360 px à 3840 px** (voir « Largeurs d'écran ») : pas de
+  défilement horizontal, rien de coupé, bloc `<style id="eci-wide-style">` présent ;
+- si le hero de l'accueil a changé, **régénérer `assets/og-index.jpg`**
+  (`node scripts/generate-og-hero.mjs`) ;
 - mentionner les fichiers créés ou modifiés.
