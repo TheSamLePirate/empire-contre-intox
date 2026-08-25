@@ -105,9 +105,19 @@ Dossier XXV — Entropie/
 7. **Câblage.** Le MOC référence tout (tableau de bord en tête de sommaire,
    formulaire, sources, galerie, canvas) ; le tableau de bord lie tout le reste.
 8. **Passerelles inter-dossiers.** Le coffre est un graphe, pas des silos :
-   - **enregistrer le dossier** dans la note parapluie
-     `Empire contre Intox — l'index des dossiers.md` (les 28 dossiers de
-     l'accueil groupés par parcours ; l'exporté passe en wikilink 📦) ;
+   - **enregistrer le dossier** dans les trois pièces de tête du coffre, toutes
+     construites depuis `index.html` par `scripts/super-dashboard.py`
+     (relancer le script suffit : il redétecte les dossiers exportés, recompte
+     tout et régénère) —
+     `Empire contre Intox — tableau de bord.md` (le poste de pilotage global :
+     chiffres, fiches des dossiers exportés, **avancement N/28 en cases à
+     cocher**, les 7 parcours en tables, le plan des passerelles, le décret),
+     `Empire contre Intox — la carte de l'Empire.canvas` (7 groupes de parcours ;
+     nœud **fichier** pour un dossier exporté, nœud **texte** — titre, résumé,
+     auteurs, lien — pour les autres) et
+     `Empire contre Intox — l'index des dossiers.md` (la liste détaillée) ;
+   - **compléter le plan des passerelles** (`PLAN` dans le script) quand l'export
+     révèle un recoupement que la table ne prévoyait pas encore ;
    - **chercher les recoupements** avec les dossiers déjà exportés — personnages
      (fiches Portraits) ET concepts : `grep -ril "<terme>"` sur chaque dossier du
      coffre, en partant des mots-clés du nouveau dossier (ex. Entropie ↔ Tableau
