@@ -104,12 +104,34 @@ Dossier XXV — Entropie/
      personnages (vues table + cartes).
 7. **Câblage.** Le MOC référence tout (tableau de bord en tête de sommaire,
    formulaire, sources, galerie, canvas) ; le tableau de bord lie tout le reste.
-8. **Validation (obligatoire)** :
+8. **Passerelles inter-dossiers.** Le coffre est un graphe, pas des silos :
+   - **enregistrer le dossier** dans la note parapluie
+     `Empire contre Intox — l'index des dossiers.md` (les 28 dossiers de
+     l'accueil groupés par parcours ; l'exporté passe en wikilink 📦) ;
+   - **chercher les recoupements** avec les dossiers déjà exportés — personnages
+     (fiches Portraits) ET concepts : `grep -ril "<terme>"` sur chaque dossier du
+     coffre, en partant des mots-clés du nouveau dossier (ex. Entropie ↔ Tableau
+     Périodique : fond diffus, spin, quanta, fonction d'onde) ;
+   - pour chaque recoupement réel, poser une **passerelle bidirectionnelle** :
+     callout `> [!tip] 🔗 Passerelle — Dossier <N> « <Titre> »` inséré **avant le
+     pied de navigation** des deux notes concernées, une ou deux phrases qui
+     disent *pourquoi* les notes se répondent, wikilink au centre ;
+   - ajouter des **renvois du lexique** (s'il existe) vers les notes de l'autre
+     dossier qui développent le terme ;
+   - donner à chaque MOC une section **« Dossiers liés »** (avant les Crédits)
+     vers les MOC voisins et l'index parapluie ;
+   - si un personnage du nouveau dossier a déjà sa fiche Portraits ailleurs,
+     l'auto-lien de l'étape 5 pointe dessus (vérifier avant de créer un doublon).
+9. **Validation (obligatoire)** :
 
    ```bash
    python3 .claude/skills/dossier-to-obsidian/scripts/check-vault-links.py \
-     "/Users/olivierveinand/Documents/Obsidian Vault/Empire contre Intox/Dossier <N> — <Nom>"
+     "/Users/olivierveinand/Documents/Obsidian Vault/Empire contre Intox"
    ```
+
+   Se lance sur le **dossier parent** `Empire contre Intox/` dès qu'il existe des
+   passerelles (les liens traversent les dossiers) ; sur le seul dossier exporté
+   sinon.
 
    Zéro lien/embed/fragment cassé exigé. Compter aussi : formules converties =
    `grep -c 'class="formula-block"'` de la source (+ compagnons), fiches sources

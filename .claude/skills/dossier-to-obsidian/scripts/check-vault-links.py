@@ -27,11 +27,15 @@ while os.path.basename(os.path.dirname(VAULT)) and not \
 VAULT = os.path.dirname(VAULT) if os.path.isdir(os.path.join(os.path.dirname(VAULT), '.obsidian')) else VAULT
 os.chdir(ROOT)
 
-mds = [p for p in glob.glob('**/*.md', recursive=True) if not p.startswith('_assets')]
+def not_asset(p):
+    return '_assets' not in p.split(os.sep)
+
+mds = [p for p in glob.glob('**/*.md', recursive=True) if not_asset(p)]
 names = {os.path.splitext(os.path.basename(p))[0] for p in mds}
-for pat in ('*.canvas', '*.base'):
-    names |= {os.path.basename(p) for p in glob.glob(pat)}
-names |= {os.path.basename(p) for p in glob.glob('_assets/*')}
+canvases = glob.glob('**/*.canvas', recursive=True)
+bases = glob.glob('**/*.base', recursive=True)
+names |= {os.path.basename(p) for p in canvases + bases}
+names |= {os.path.basename(p) for p in glob.glob('**/_assets/*', recursive=True)}
 
 headings, blocks = {}, {}
 for p in mds:
@@ -61,7 +65,7 @@ for p in mds:
             bad.append((p, inner))
 
 canvas_missing = []
-for c in glob.glob('*.canvas'):
+for c in canvases:
     try:
         cv = json.load(open(c, encoding='utf-8'))
     except Exception as e:
@@ -71,7 +75,7 @@ for c in glob.glob('*.canvas'):
         if n.get('type') == 'file' and not os.path.exists(os.path.join(VAULT, n['file'])):
             canvas_missing.append((c, n['file']))
 
-print(f'{len(mds)} notes · {len(glob.glob("*.canvas"))} canvas · {len(glob.glob("*.base"))} bases')
+print(f'{len(mds)} notes · {len(canvases)} canvas · {len(bases)} bases')
 for label, items in (('liens/embeds cassés', bad), ('nœuds canvas manquants', canvas_missing),
                      ('alias redondants [[X|X]]', redundant)):
     print(f'{label} : ' + ('aucun' if not items else ''))
