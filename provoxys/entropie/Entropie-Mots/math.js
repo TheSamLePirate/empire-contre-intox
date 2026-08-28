@@ -31,7 +31,8 @@ function renderOne(node) {
   if (!tex || node.dataset.done) return;
   if (window.katex) {
     try {
-      window.katex.render(tex, node, { displayMode: true, throwOnError: false, output: 'html' });
+      const displayMode = !node.classList.contains('imath');
+      window.katex.render(tex, node, { displayMode, throwOnError: false, output: 'html' });
       node.dataset.done = '1';
       return;
     } catch { /* on bascule sur le texte simple */ }
@@ -42,7 +43,7 @@ function renderOne(node) {
 
 /** Rend toutes les formules présentes dans `root`. */
 export function renderMath(root = document) {
-  const nodes = root.querySelectorAll('.formula[data-tex]');
+  const nodes = root.querySelectorAll('.formula[data-tex], .imath[data-tex]');
   if (!nodes.length) return;
   if (window.katex) { nodes.forEach(renderOne); return; }
   // KaTeX est chargé en `defer` : on attend, sans bloquer la page.

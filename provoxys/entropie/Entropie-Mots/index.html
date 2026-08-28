@@ -161,6 +161,7 @@
           Un événement certain n'apprend rien ; un événement improbable apprend beaucoup. Shannon reprend l'idée de Hartley et en fait une mesure : l'information apportée par un événement de probabilité <span class="mono" style="color:var(--txt)">p</span> vaut
         </p>
         <div class="formula" data-tex="i(x) \;=\; \log_2\frac{1}{p(x)} \;=\; -\log_2 p(x) \quad \text{bits}"></div>
+        <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;i de x égale log base deux de un sur p de x, c'est-à-dire moins log base deux de p de x — le tout en bits&nbsp;»<span class="say-x"><b>log₂</b> se dit «&nbsp;log base deux&nbsp;». «&nbsp;i de x&nbsp;» est l'information apportée par l'événement x, «&nbsp;p de x&nbsp;» sa probabilité. La barre de fraction se lit «&nbsp;sur&nbsp;»&nbsp;: un <em>sur</em> p de x.</span></span></p>
       </header>
 
       <div class="grid lg:grid-cols-2 gap-6 max-w-5xl">
@@ -197,6 +198,7 @@
               Shannon donne trois raisons (§ introduction). La décisive : l'information doit être <b style="color:var(--txt)">additive</b>. Deux tirages indépendants apportent la somme de leurs informations, alors que leurs probabilités se multiplient.
             </p>
             <div class="formula" data-tex="p(x,y)=p(x)\,p(y) \;\Longrightarrow\; i(x,y)=i(x)+i(y)"></div>
+            <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;p de x virgule y égale p de x fois p de y, donc i de x virgule y égale i de x plus i de y&nbsp;»<span class="say-x">La double flèche <b>⟹</b> se lit «&nbsp;implique&nbsp;» (ou «&nbsp;donc&nbsp;»). Deux facteurs côte à côte se lisent «&nbsp;fois&nbsp;»&nbsp;: les probabilités se multiplient, les informations s'additionnent.</span></span></p>
             <p class="text-xs leading-relaxed mt-3" style="color:var(--txt-2)">
               Seul le logarithme transforme un produit en somme. Le choix de la base 2 fixe l'unité : le <b style="color:var(--txt)">bit</b>, mot proposé par J. W. Tukey et employé ici pour la première fois dans un article scientifique.
             </p>
@@ -218,6 +220,7 @@
           Si l'on répète l'expérience, l'information moyenne par symbole vaut
         </p>
         <div class="formula" data-tex="H(X) \;=\; -\sum_{i} p_i \log_2 p_i"></div>
+        <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;H de X égale moins la somme sur i des p i log base deux de p i&nbsp;»<span class="say-x">Le grand <b>Σ</b> se dit «&nbsp;somme sur i&nbsp;»&nbsp;: on additionne le terme pour chaque symbole. <b>p i</b> («&nbsp;p indice i&nbsp;») est la probabilité du i-ième symbole. Le signe moins rend le total positif — chaque log de probabilité est négatif.</span></span></p>
         <p class="lead mt-4">
           Shannon démontre (théorème 2) que c'est la <b style="color:var(--txt)">seule</b> mesure possible si l'on exige trois propriétés élémentaires. Écrivez un texte : son entropie se calcule en direct.
         </p>
@@ -304,9 +307,10 @@
         <p class="eyebrow mb-2">Chapitre 3 · §9, théorème 9</p>
         <h2 class="h-chapter text-3xl sm:text-4xl mb-4">L'entropie est une limite physique</h2>
         <p class="lead mb-4">
-          L'entropie n'est pas une métaphore : c'est le nombre de bits qu'il faut, et qu'il suffit, pour transmettre un message. Le théorème 9 encadre la longueur moyenne <span class="mono">L̄</span> du meilleur code :
+          L'entropie n'est pas une métaphore : c'est le nombre de bits qu'il faut, et qu'il suffit, pour transmettre un message. Le théorème 9 encadre la longueur moyenne <span class="imath" data-tex="\bar{L}"></span> du meilleur code :
         </p>
         <div class="formula" data-tex="H \;\le\; \bar{L} \;<\; H + 1"></div>
+        <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;H est inférieur ou égal à L barre, lui-même strictement inférieur à H plus un&nbsp;»<span class="say-x"><span class="imath" data-tex="\bar{L}"></span> se dit «&nbsp;L barre&nbsp;»&nbsp;: la barre au-dessus marque une moyenne — ici la longueur moyenne des mots de code. <b>≤</b> se lit «&nbsp;inférieur ou égal à&nbsp;», <b>&lt;</b> «&nbsp;strictement inférieur à&nbsp;».</span></span></p>
         <p class="lead mt-4">Vérifions-le en construisant de vrais codes, puis en compressant réellement un texte.</p>
       </header>
 
@@ -376,6 +380,7 @@
           Coder un texte français avec un code optimisé pour l'anglais coûte des bits en trop. Ce surcoût, c'est la <b style="color:var(--txt)">divergence de Kullback–Leibler</b> — une distance entre langues exprimée en bits :
         </p>
         <div class="formula" data-tex="D(p\,\|\,q)\;=\;\sum_i p_i\log_2\frac{p_i}{q_i}\;=\;\underbrace{H(p,q)}_{\text{coût réel}}-\underbrace{H(p)}_{\text{coût idéal}}"></div>
+        <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;D de p double barre q égale la somme sur i des p i log base deux de p i sur q i, soit H de p virgule q moins H de p&nbsp;»<span class="say-x">La double barre <b>‖</b> se lit «&nbsp;double barre&nbsp;» — divergence <em>de</em> p <em>vers</em> q, l'ordre compte. <b>H de p virgule q</b> est l'entropie croisée (le coût réel), <b>H de p</b> l'entropie propre (le coût idéal). Les accolades sous la formule ne se prononcent pas&nbsp;: elles étiquettent les deux coûts.</span></span></p>
       </header>
 
       <div class="grid lg:grid-cols-5 gap-6">
@@ -433,6 +438,7 @@
           Shannon définit <span class="mono">Fₙ</span>, l'incertitude sur une lettre quand on connaît les <span class="mono">n−1</span> précédentes, et démontre qu'elle décroît vers l'entropie vraie de la langue :
         </p>
         <div class="formula" data-tex="F_N \;=\; -\sum_{i,j} p(B_i,S_j)\,\log_2 p_{B_i}(S_j) \qquad \lim_{N\to\infty}F_N = H"></div>
+        <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;F indice grand N égale moins la somme sur i et j des p de B i virgule S j, fois log base deux de p indice B i de S j&nbsp;; et la limite de F N, quand N tend vers l'infini, égale H&nbsp;»<span class="say-x"><b>B i</b> est un bloc de N moins une lettres, <b>S j</b> la lettre qui peut suivre. <b>p indice B i de S j</b> se lit «&nbsp;probabilité de S j <em>connaissant</em> le bloc B i&nbsp;». «&nbsp;lim&nbsp;» se dit «&nbsp;limite&nbsp;», le symbole <b>∞</b> «&nbsp;l'infini&nbsp;».</span></span></p>
       </header>
 
       <div class="card p-5 mb-6">
@@ -536,6 +542,7 @@
           Avec <b id="wCorpusTokens" style="color:var(--txt)">…</b> mots de corpus, un trigramme seul est aveugle : <b id="wCorpusTri" style="color:var(--txt)">…</b> des trigrammes y apparaissent deux fois. On combine donc quatre sources d'information, dont les poids sont appris — pas choisis.
         </p>
         <div class="formula mt-4" data-tex="P(w \mid h) \;=\; \lambda_1 P_{\text{n-gramme}} + \lambda_2 P_{\text{cache}} + \lambda_3 P_{\text{classes}} + \lambda_4 P_{\text{orthographe}}"></div>
+        <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;P de w sachant h égale lambda un P n-gramme, plus lambda deux P cache, plus lambda trois P classes, plus lambda quatre P orthographe&nbsp;»<span class="say-x">La barre verticale <b>|</b> se lit «&nbsp;sachant&nbsp;»&nbsp;: la probabilité du mot w <em>sachant</em> l'historique h. La lettre grecque <b>λ</b> se dit «&nbsp;lambda&nbsp;»&nbsp;: le poids accordé à chaque expert — les quatre lambdas s'additionnent à un.</span></span></p>
       </header>
 
       <div class="card p-5 mb-6">
@@ -627,6 +634,7 @@
           Trois ans après le papier fondateur, Shannon mesure l'entropie de l'anglais en faisant deviner à des humains la lettre suivante d'un texte caché. Le nombre d'essais nécessaires encadre l'entropie :
         </p>
         <div class="formula" data-tex="\sum_{i=1}^{V} i\,(q_i - q_{i+1})\log_2 i \;\le\; H \;\le\; \sum_{i=1}^{V} q_i \log_2 \frac{i}{i-1}"></div>
+        <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;la somme, pour i allant de un à V, des i fois q i moins q i plus un, log base deux de i, est inférieure ou égale à H&nbsp;; H est inférieur ou égal à la somme des q i log base deux de i sur i moins un&nbsp;»<span class="say-x"><b>q i</b> («&nbsp;q indice i&nbsp;») est la part des lettres devinées au i-ième essai&nbsp;; <b>V</b> la taille de l'alphabet. Les bornes écrites sous et sur le <b>Σ</b> se lisent «&nbsp;pour i allant de un à V&nbsp;».</span></span></p>
       </header>
 
       <div class="grid lg:grid-cols-3 gap-6">
@@ -707,6 +715,7 @@
           Jusqu'ici la redondance semblait un gaspillage. Elle est en réalité ce qui rend la communication possible dans un monde bruité. Shannon quantifie l'information perdue par l'<b style="color:var(--txt)">équivocation</b>, et la définit comme la capacité du canal :
         </p>
         <div class="formula" data-tex="R = H(x) - H_y(x) \qquad C = \max\big(H(x) - H_y(x)\big)"></div>
+        <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;R égale H de x moins H indice y de x&nbsp;; C égale le maximum de H de x moins H indice y de x&nbsp;»<span class="say-x"><b>H indice y de x</b> est l'incertitude qui <em>reste</em> sur l'entrée x une fois la sortie y observée — Shannon l'appelle l'<em>équivocation</em>. «&nbsp;max&nbsp;» se lit «&nbsp;maximum&nbsp;»&nbsp;: on prend la meilleure source possible pour le canal.</span></span></p>
       </header>
 
       <div class="card p-5 mb-6">
