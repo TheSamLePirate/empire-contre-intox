@@ -2539,3 +2539,102 @@
     transition: none;
   }
 }
+
+/* ————— V19/V20 · jauges, décomptes et explications vulgarisées ————— */
+
+.ev-gauge,
+.ev-tally {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0.7rem 0;
+}
+
+.ev-gauge__row {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, auto) 1fr auto;
+  gap: 0.6rem;
+  align-items: center;
+  font-size: 0.78rem;
+}
+
+.ev-gauge__row > span:first-child {
+  color: var(--ev-muted, #c0b59a);
+  font-variant-numeric: tabular-nums;
+}
+
+.ev-gauge__bar {
+  position: relative;
+  height: 0.62rem;
+  overflow: hidden;
+  background: rgba(5, 8, 17, 0.5);
+  border: 1px solid var(--ev-line-neutral, rgba(244, 236, 216, 0.1));
+  border-radius: 2px;
+}
+
+.ev-gauge__bar > i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: block;
+  transition: width 0.35s ease;
+}
+
+.ev-gauge__val {
+  color: var(--ev-text, #f4ecd8);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ev-gauge__val small {
+  color: var(--ev-muted, #c0b59a);
+}
+
+.ev-explainers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: 1rem;
+  margin-top: 0.7rem;
+}
+
+.ev-explainers h4 {
+  margin: 0 0 0.35rem;
+}
+
+.ev-explainers p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.ev-measure-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.6rem 0 0.3rem;
+}
+
+.ev-measure-controls button {
+  flex: 0 0 auto;
+  width: auto;
+  border-radius: 4px;
+}
+
+.ev-measure-controls button[disabled] {
+  opacity: 0.45;
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ev-gauge__bar > i {
+    transition: none;
+  }
+}
+
+/* Légende « prose » : phrase longue qui doit se réenrouler (V19/V20) */
+.entropy-viz__legend--prose > span {
+  display: inline;
+}
+
+.entropy-viz__legend--prose .entropy-viz__dot {
+  vertical-align: baseline;
+  transform: translateY(1px);
+}

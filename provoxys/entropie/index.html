@@ -2719,8 +2719,16 @@
             <p>Je lance maintenant une opération réversible, comme permuter les deux puits. Elle conserve la distinction entre les entrées et n'est pas soumise de la même manière au coût minimal d'effacement.</p>
             <p>Le graphe sépare donc limite théorique et dissipation de notre protocole. Il évite de dire qu'un clic, une mesure ou un bit “pèse automatiquement kT ln 2”.&nbsp;»</p>
 
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ En clair — ce que Sam manipule</p>
+              <p><b>Le décor.</b> Un bit de mémoire, c'est une <b>bille dans un moule à deux creux</b>&nbsp;: à gauche elle code 0, à droite 1. La bosse du milieu l'empêche de sauter toute seule d'un creux à l'autre — c'est ce qui rend une mémoire stable. Quand Sam dit «&nbsp;je déforme le potentiel&nbsp;», il ne fait rien d'autre qu'<b>abaisser cette bosse puis pencher le moule</b>.</p>
+              <p><b>Pourquoi effacer coûte.</b> «&nbsp;Effacer&nbsp;», c'est forcer la bille à gauche <em>sans regarder où elle était</em>&nbsp;: que le bit ait valu 0 ou 1, il finit à 0. Deux passés possibles se retrouvent dans le même présent — et la physique n'oublie pas gratuitement&nbsp;: ce «&nbsp;on ne savait pas&nbsp;» doit quitter la mémoire sous forme de <b>chaleur</b>, au minimum <span class="imath" data-tex="k_B T \ln 2"></span> par bit. En penchant le moule <b>lentement</b>, on frôle ce minimum&nbsp;; en allant vite ou en secouant, on paie un surcoût — c'est exactement ce que compare la jauge de la visualisation.</p>
+              <p><b>Pourquoi permuter est presque gratuit.</b> Échanger les deux creux (0 devient 1, 1 devient 0) ne détruit aucune information&nbsp;: en refaisant l'opération, on retrouve le point de départ. Pas de fusion des passés, pas de facture de Landauer — regardez la jauge s'effondrer quand Sam lance la permutation.</p>
+              <p><b>La phrase à retenir.</b> La limite de Landauer ne dit pas «&nbsp;chaque clic chauffe de kT&nbsp;ln&nbsp;2&nbsp;»&nbsp;: elle ne s'applique qu'à l'<b>effacement irréversible</b>, et nos ordinateurs réels dissipent de toute façon des milliers à des millions de fois plus. C'est un <b>plancher de principe</b> qui relie logique et thermodynamique — pas la facture d'électricité de votre machine. Dans la visualisation, suivez la <b>bille pleine</b> et la <b>bille fantôme</b>&nbsp;: l'effacement les fait converger, la permutation les fait se croiser.</p>
+            </aside>
+
             <div class="viz-mount reveal">
-              <div class="viz-lede"><span class="vid">V19</span> Un bit physique · potentiel à double puits, protocole lent puis rapide</div>
+              <div class="viz-lede"><span class="vid">V19</span> Un bit physique · potentiel à double puits, protocole lent puis rapide, coût de l'effacement expliqué avec une bille et son fantôme</div>
               <div class="entropy-gallery"><div data-entropy-viz="V19" data-seed="42"></div></div>
               <noscript><p class="viz-noscript">Visualisation interactive (JavaScript requis)&nbsp;: coût minimal de Landauer contre dissipation réelle simulée.</p></noscript>
             </div>
@@ -2765,8 +2773,16 @@
             <p>Pour la paire intriquée idéale, l'état global est pur&nbsp;: son entropie de von Neumann est nulle. Si je ne regarde qu'une particule et que je trace sur l'autre, l'état réduit est mixte et son entropie est positive.</p>
             <p>Cette interface ne simule pas un laboratoire quantique complet et ne remplace pas les tests de Bell. Elle visualise les matrices, leurs valeurs propres et les entropies globale et réduites.&nbsp;»</p>
 
+            <aside class="science-block def-block">
+              <p class="blk-label">◆ En clair — ce que Sam compare</p>
+              <p><b>Le «&nbsp;mélange classique&nbsp;», c'est l'histoire des gants.</b> Une paire de gants séparée dans deux boîtes, une envoyée à Paris, l'autre à Tokyo. Chaque boîte est une surprise (gauche ou droit, 50/50), mais ouvrir l'une dit aussitôt tout de l'autre. Corrélation parfaite… et pourtant rien de quantique&nbsp;: <b>tout était décidé d'avance</b>, on ignorait juste quoi.</p>
+              <p><b>La paire intriquée ressemble aux gants — de l'extérieur.</b> Mêmes tirages 50/50, même accord parfait entre les deux boîtes&nbsp;: c'est ce que Sam appelle «&nbsp;des statistiques locales qui se ressemblent&nbsp;». La différence est ailleurs&nbsp;: le <b>couple entier</b> est dans un état parfaitement déterminé (entropie globale <b>nulle</b>), alors que chaque moitié, lue seule, est un pur pile-ou-face (entropie <b>1&nbsp;bit</b>). Le couple sait tout, chacun ne sait rien&nbsp;: l'information ne loge <em>dans aucune des deux particules</em> — elle loge dans leurs corrélations.</p>
+              <p><b>«&nbsp;Tracer sur l'autre&nbsp;», traduit.</b> C'est l'opération «&nbsp;j'ignore délibérément la seconde boîte&nbsp;»&nbsp;: on résume ce que voit quelqu'un qui n'a accès qu'à une particule. Pour la paire intriquée, ce résumé est un hasard parfait — d'où son entropie positive alors que le tout est pur.</p>
+              <p><b>Alors comment les distinguer&nbsp;?</b> Pas en ouvrant les boîtes&nbsp;: là-dessus, gants et intrication sont indiscernables. Il faut <b>changer de question</b> — c'est le test «&nbsp;base X&nbsp;» de la visualisation. Posée aux gants, la question diagonale obtient des réponses au hasard (accord ~50&nbsp;%)&nbsp;; posée à la paire de Bell, elle reste parfaitement accordée. Faites l'expérience vous-même avec «&nbsp;Mesurer 100 paires&nbsp;», puis regardez la décohérence transformer, case hors diagonale après case hors diagonale, la paire de Bell en simple paire de gants. Et comme le rappelle Sam&nbsp;: c'est une expérience de pensée fidèle aux probabilités quantiques, pas un test de Bell de laboratoire.</p>
+            </aside>
+
             <div class="viz-mount reveal">
-              <div class="viz-lede"><span class="vid">V20</span> Paire quantique simplifiée · mélange classique vs intrication</div>
+              <div class="viz-lede"><span class="vid">V20</span> Paire quantique simplifiée · mélange classique vs intrication, avec le test de mesure (base Z / base X) qui les départage</div>
               <div class="entropy-gallery"><div data-entropy-viz="V20" data-seed="42"></div></div>
               <noscript><p class="viz-noscript">Visualisation interactive (JavaScript requis)&nbsp;: entropie globale et entropies réduites d'une paire intriquée.</p></noscript>
             </div>

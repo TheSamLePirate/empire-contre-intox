@@ -81,6 +81,7 @@ est l'information « perdue » en fixant exactement n. → encadré ajouté.
 | Distinction mesure/effacement (Bennett) ; PC réels ≫ limite | ✅ | Bennett 2003, DOI 10.1016/S1355-2198(03)00039-X |
 | von Neumann S = −k Tr(ρ ln ρ) ; pur → 0, mixte → > 0 ; intrication (tout pur, parties mixtes) | ✅ | Nielsen & Chuang, DOI 10.1017/CBO9780511976667 |
 | Paire intriquée vs mélange classique ; pas un test de Bell | ✅ | Horodecki *et al.* 2009, DOI 10.1103/RevModPhys.81.865 |
+| Mesures jointes (V20) : en base Z, Bell et mélange 00/11 donnent les mêmes statistiques (00/11 à 50/50) ; en base X, accord (1+v)/2 pour \|Φ+⟩ de visibilité v (100 % à v=1), 50 % pour le mélange classique et l'état produit | ✅ | Calcul standard sur ρAB (Born) ; Nielsen & Chuang, DOI 10.1017/CBO9780511976667 |
 | Ising : spins ±1, alignement basse T, transition de phase, Metropolis ; l'entropie ≠ une seule image | ⚠️ | voir correction ↓ |
 
 **⚠️ Précision (Ising) — encadré anti-intox ajouté (Chapitre 16).** La transition de
