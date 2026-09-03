@@ -81,7 +81,11 @@ ymir-lalie/                     ← équipe Lalie & Ymir (style codex ECI)
 provoxys/                       ← créateur Provoxys (identité visuelle propre)
   assets/artemis2-hero.png
   Artemis2.html
-  provoxys.jpeg, samlepirate.jpeg
+  lumiere/                      ← Dossier XXVIII (codex ECI + accent azur)
+    index.html                  ← 9 actes, 30 chapitres, 22 formules, 37 ateliers React
+    portraits.html              ← compagnon : 19 fiches en six actes
+    assets/                     ← hero + 8 illustrations + 21 portraits + bundle lumiere-viz.js/.css
+  provoxys.jpeg, samlepirate.jpeg, inepties.jpeg
 samlepirate/                    ← créateur Samlepirate
   champs-vecteurs.html          ← Dossier VII (identité propre : Newsreader / JetBrains Mono)
   ordinateur-1983/              ← Dossier XXVII (codex ECI + mono pour le code)
@@ -109,8 +113,8 @@ Dockerfile · nginx.conf · docker-compose.yml · .dockerignore
                                 ← déploiement statique Nginx vers Portainer (`empire-contre-intox-site`)
 ```
 
-> **XXVIII dossiers** au total — l'index affiche **`<b>XXVIII</b> dossiers`**. Numérotation actuelle (ordre d'affichage) :
-> I `ymir-lalie/resume-eres.html` · II `ymir-lalie/edicarien.html` · III `provoxys/Artemis2.html` · IV `horloge-univers/chronos.html` · V `jorge-zalex/elements.html` · VI `la-vie-de-la-terre/index.html` · VII `samlepirate/champs-vecteurs.html` · VIII `ymir-lalie/ancetres-genetiques/index.html` · IX `lalie-ymir-sam/index.html` · X `ymir-lalie/singe-aquatique/index.html` · XI `ymir-lalie/esclavage/index.html` · XII `provoxys/tornades/index.html` · XIII `phantom/abeilles/index.html` · XIV `formules/index.html` · XV `ymir-lalie/la-resistance/index.html` · XVI `provoxys/briser-le-silence/index.html` · XVII `provoxys/exoplanetes/index.html` · XVIII `ymir-lalie/premieres-cites/index.html` · XIX `provoxys/sondes/index.html` · XX `ymir-lalie/premier-empires/index.html` · XXI `provoxys/therapie-conversion/index.html` · XXII `ymir-lalie/egypte-grece/index.html` · XXIII `ymir-lalie/evolution/index.html` · XXIV `ymir-lalie-phantom/pirates/index.html` · XXV `provoxys/entropie/index.html` · XXVI `ymir-lalie/alexandre-le-grand/index.html` · XXVII `samlepirate/ordinateur-1983/index.html` · XXVIII `sources/sources.html` (« Les Sources » — appareil critique commun à tous les dossiers).
+> **XXIX dossiers** au total — l'index affiche **`<b>XXIX</b> dossiers`**. Numérotation actuelle (ordre d'affichage) :
+> I `ymir-lalie/resume-eres.html` · II `ymir-lalie/edicarien.html` · III `provoxys/Artemis2.html` · IV `horloge-univers/chronos.html` · V `jorge-zalex/elements.html` · VI `la-vie-de-la-terre/index.html` · VII `samlepirate/champs-vecteurs.html` · VIII `ymir-lalie/ancetres-genetiques/index.html` · IX `lalie-ymir-sam/index.html` · X `ymir-lalie/singe-aquatique/index.html` · XI `ymir-lalie/esclavage/index.html` · XII `provoxys/tornades/index.html` · XIII `phantom/abeilles/index.html` · XIV `formules/index.html` · XV `ymir-lalie/la-resistance/index.html` · XVI `provoxys/briser-le-silence/index.html` · XVII `provoxys/exoplanetes/index.html` · XVIII `ymir-lalie/premieres-cites/index.html` · XIX `provoxys/sondes/index.html` · XX `ymir-lalie/premier-empires/index.html` · XXI `provoxys/therapie-conversion/index.html` · XXII `ymir-lalie/egypte-grece/index.html` · XXIII `ymir-lalie/evolution/index.html` · XXIV `ymir-lalie-phantom/pirates/index.html` · XXV `provoxys/entropie/index.html` · XXVI `ymir-lalie/alexandre-le-grand/index.html` · XXVII `samlepirate/ordinateur-1983/index.html` · XXVIII `provoxys/lumiere/index.html` (+ compagnon `portraits.html`) · XXIX `sources/sources.html` (« Les Sources » — appareil critique commun à tous les dossiers).
 >
 > **Cette liste est la première chose à relire avant d'ajouter un dossier** : la numérotation bouge à chaque ajout, et « Les Sources » doit rester **le dernier numéro**. En cas de doute, l'`index.html` fait foi — c'est lui qui est publié.
 >
@@ -150,6 +154,7 @@ Voir `provoxys/Artemis2.html` (classes `.eci-home`, `.eci-collective`, `.eci-btn
 5. Référencer le sceau ECI avec le bon chemin relatif.
 6. Créer/placer une **image hero** pertinente dans `<dossier-auteur>/assets/` (nom explicite, ex. `artemis2-hero.png`).
 7. Hero fort + nav interne sticky + chapitres + encadrés pédagogiques.
+7 bis. **Chaque bloc de formule porte sa ligne « Se lit »** (`.fb-say`) : la lecture orale de la formule en français, plus une glose des symboles qui se prononcent mal. **OBLIGATOIRE pour toute formule affichée**, voie A comme voie B — voir « Formules ».
 8. **Intégration ECI** : retour à l'index + footer/bandeau ECI (voie A ou voie B selon le design choisi).
 9. Liens croisés : `../index.html` + autres dossiers pertinents.
 10. **Crédit auteur** dans la page (footer ECI et/ou bandeau crédit après le sommaire) ET sur la carte d'index.
@@ -225,10 +230,98 @@ Capitales romaines gravées, or sur nuit profonde, gravité cérémonielle.
 - `learning-panel` : objectifs pédagogiques (3 blocs).
 - `chapter` : sections de transcription, avec aside pédagogique.
 - encadrés : script, méthode scientifique, question au public, leçon, anti-intox selon le contenu.
+- **bloc de formule** `.formula-block` : en-tête, formule KaTeX, **ligne « Se lit »** (`.fb-say`, obligatoire), puis note explicative.
 - **bandeau crédit** après le sommaire (`.credit-band` : avatars + « Réalisé par <auteur(s)> »).
 - **collective-footer** : sceau ECI, texte collectif, liens vers index et autres dossiers, devise.
 - **cartouche licence** `.eci-license` en pied de page : CC BY-NC-ND 4.0, partage avec attribution, sans usage commercial ni modification, lien vers `LICENCE-CONTENU.md`.
 - Ne plus ajouter de footer technique du type « Page HTML autonome créée à partir… » ; les détails de provenance/sources doivent être dans le dossier lui-même et dans `sources/`.
+
+## Formules — la ligne « Se lit » (obligatoire)
+
+Une formule affichée est muette pour qui ne fréquente pas les intégrales : on voit
+`∂`, `Tr`, `ħ`, `k_B`, `T̄` sans savoir quel son mettre dessus, et on passe. **Chaque
+bloc de formule d'un dossier porte donc sa lecture orale en français**, insérée
+entre la formule et sa note. Gabarit de référence : `provoxys/entropie/index.html`
+(Dossier XXV), dix-huit blocs avec `portraits.html`.
+
+### Le bloc
+
+```html
+<div class="formula-block">
+  <div class="fb-head">Rendement de Carnot <span class="fb-tag">Limite des moteurs thermiques</span></div>
+  <div class="formula" data-tex="\eta_{\text{Carnot}} = 1 - \dfrac{T_{\text{froid}}}{T_{\text{chaud}}}"></div>
+  <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;êta Carnot égale un moins T froid sur T chaud&nbsp;»<span class="say-x">La lettre grecque <b>η</b> se dit «&nbsp;êta&nbsp;». La barre de fraction se lit «&nbsp;sur&nbsp;» (ou «&nbsp;divisé par&nbsp;»)&nbsp;: le froid <em>sur</em> le chaud, jamais l'inverse.</span></span></p>
+  <p class="fb-note">…</p>
+</div>
+```
+
+Deux niveaux, et les deux comptent :
+
+- **`.say-t`** — la phrase telle qu'on la dirait à voix haute, entre guillemets
+  français, en Fraunces italique. On lit de gauche à droite, sans jargon :
+  « égale », « moins », « sur », « somme sur i », et « **le tout sur T** » quand le
+  numérateur est composé (c'est ce qui dit où le numérateur s'arrête).
+- **`.say-x`** — la glose des symboles qui se confondent ou se prononcent mal.
+  C'est là que se règlent les pièges : le `d` droit (« dé ») contre le `δ`
+  (« delta ») contre le `Δ` ; le `∂` qui se dit **« d rond »** et jamais « delta » ;
+  `Tr` (« trace », pas « T R »), `ħ` (« h barre »), `k_B` (« ka bé »), `log₂`
+  (« log base deux »), `c³` (« c cube »), la barre de moyenne `T̄` (« T barre »).
+
+### Règles
+
+- **Une ligne par `.formula-block`, sans exception.** Un bloc qui affiche plusieurs
+  formules reçoit une seule ligne qui les enchaîne, séparées par « ; ».
+- **Du français écrit normalement, jamais de phonétique** — ni alphabet
+  phonétique, ni transcription approximative. On écrit « êta », pas « /ˈeːta/ ».
+- **Les formules inline (`.imath`) n'en reçoivent pas** : une prononciation par
+  symbole en cours de phrase rend le texte illisible. Les gloses des blocs
+  couvrent les conventions que les inline emploient — c'est suffisant, et c'est à
+  dire dans le récapitulatif plutôt que de laisser croire à un oubli.
+- **Un symbole formé d'un caractère combinant se met en KaTeX**, pas en Unicode :
+  `T̄` (T + U+0304) se rend mal dans Fraunces, le macron chevauche l'espace
+  suivante. Écrire `<span class="imath" data-tex="\bar{T}"></span>`.
+- La glose reste **calme** : `--soft`, non italique, et son KaTeX en `--muted`
+  pour ne pas rivaliser avec l'or de la formule elle-même.
+- La lecture suit **l'ordre du symbole**, pas l'ordre de l'idée : `T̄_chaud` se dit
+  « T barre chaud », parce que la barre porte sur le T.
+
+### CSS
+
+À copier tel quel depuis un dossier récent, juste après la règle
+`.formula-block .fb-note .imath .katex` :
+
+```css
+/* « SE LIT » — prononciation française de la formule */
+.formula-block .fb-say { margin:0 22px 16px; padding:11px 15px; display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px;
+  border:1px solid var(--line); border-left:2px solid var(--gold-deep); border-radius:2px; background:rgba(5,8,17,.40); }
+.formula-block .fb-say .say-k { flex:none; font-family:var(--roman); font-size:.58rem; font-weight:700; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--gold); }
+.formula-block .fb-say .say-t { flex:1 1 260px; min-width:0; font-family:var(--serif); font-style:italic; font-size:.98rem;
+  line-height:1.62; color:var(--parch); overflow-wrap:break-word; }
+.formula-block .fb-say .say-t b { font-style:normal; color:var(--ink); font-weight:600; }
+.formula-block .fb-say .say-x { display:block; margin-top:7px; font-style:normal; font-size:.86rem; line-height:1.56; color:var(--soft); }
+.formula-block .fb-say .say-x b { color:var(--muted); font-weight:600; }
+.formula-block .fb-say .say-x .imath .katex { font-size:1em; color:var(--muted); }
+.formula + .fb-say { margin-top:-2px; }
+```
+
+Et dans la media query `max-width:640px`, ajouter à la règle existante :
+`.formula-block .fb-say{ margin-left:16px; margin-right:16px; }` (sous 640 px le
+label « Se lit » passe seul sur sa ligne, c'est voulu).
+
+Une page en **identité invitée** (voie B) applique la même exigence avec ses
+propres jetons : le libellé dans sa police de titrage, la phrase dans sa police de
+lecture, un filet dans son accent. C'est la ligne « Se lit » qui est obligatoire,
+pas l'or.
+
+### Contrôle
+
+- **autant de `.fb-say` que de `.formula-block`** — le compte doit tomber juste :
+  `grep -c 'class="fb-say"'` et `grep -c 'class="formula-block"'` ;
+- de 360 à 3840 px, aucun `.fb-say` ni son contenu ne sort de la fenêtre ;
+- aucun caractère combinant resté en Unicode dans une glose ;
+- un label SVG ou une pastille allongés par une reformulation se **mesurent**
+  (`getComputedTextLength()` contre la largeur de leur boîte), ils ne s'estiment pas.
 
 ## Largeurs d'écran — du mobile au 4K (obligatoire)
 
@@ -263,9 +356,12 @@ La largeur gagnée va à la **marge savante** (`.side-note`), aux **visuels** et
 `margin-inline: calc((100% - <largeur>) / 2)` (pas de `transform`, pas de
 défilement horizontal parasite).
 
-L'**accueil** suit ses propres paliers (jusqu'à `--max: 2700px`) parce que c'est une
-grille de cartes : `.dossiers` reste en `repeat(auto-fit, minmax(min(<N>px,100%),1fr))`
-et **gagne des colonnes** (4 vers 1800 px, 5 vers 2800 px) au lieu d'étirer les cartes.
+L'**accueil** ne partage ni cet escalier ni son nombre de paliers : c'est une grille de
+cartes, pas une colonne de lecture. Il a **cinq** paliers — 1440 / 1800 / 2200 / 2800 /
+**3200 px** — avec sa propre échelle de corps (16 / 17 / 18 / 19 / 20 px) et `--max`
+montant de 1340 à **2700 px**. `.dossiers` reste en
+`repeat(auto-fit, minmax(min(<N>px,100%),1fr))` et **gagne des colonnes** au lieu
+d'étirer les cartes : **4 de 1440 à 2200 px, 5 à partir de 2800 px** (mesuré).
 `min(<N>px,100%)` est indispensable : un `minmax(360px,…)` nu impose une colonne plus
 large que l'écran sous 360 px.
 
@@ -581,6 +677,8 @@ Avant de terminer :
 - vérifier qu'aucun footer ne contient encore « Page HTML autonome créée à partir… » ;
 - vérifier le comportement **de 360 px à 3840 px** (voir « Largeurs d'écran ») : pas de
   défilement horizontal, rien de coupé, bloc `<style id="eci-wide-style">` présent ;
+- vérifier qu'il y a **autant de `.fb-say` que de `.formula-block`** — chaque formule
+  affichée a sa lecture orale (voir « Formules ») ;
 - si le hero de l'accueil a changé, **régénérer `assets/og-index.jpg`**
   (`node scripts/generate-og-hero.mjs`) ;
 - mentionner les fichiers créés ou modifiés.

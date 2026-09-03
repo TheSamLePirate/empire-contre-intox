@@ -21,7 +21,7 @@ au transcript, **factuellement vérifiée**, intégrée à l'index et au dossier
 > Lire d'abord `AGENT.md` (à la racine du dépôt) : c'est la charte du projet, ce
 > skill en est la mise en œuvre opérationnelle. Ce dossier contient en plus :
 > - `reference/design-system.md` — tokens codex + **correctif révélation** + dataviz
->   + **formules LaTeX/KaTeX obligatoires (§7)**
+>   + **formules LaTeX/KaTeX obligatoires (§7)** + **lecture orale « Se lit » (§7 d bis)**
 > - `reference/sources-and-index.md` — vérification, `sources/`, `sources.html`, index
 > - `reference/images-template.md` — gabarit `images_a_generer.md`
 > - `scripts/check-coverage.py` — **contrôle obligatoire** des 100 % verbatim
@@ -46,13 +46,20 @@ Les chemins ci-dessous sont relatifs à la racine du dépôt et à
 5. **Construire la page** `<equipe>/<dossier>/index.html` (ou `<nom>.html`), CSS+JS
    intégrés, en copiant le framework codex d'un dossier abouti
    (`ymir-lalie/esclavage/index.html`) et en adaptant accents + contenu. Inclure le
-   **correctif de révélation** (design-system §4). Voir « Construction » ci-dessous.
+   **correctif de révélation** (design-system §4) **et le bloc grands écrans
+   `<style id="eci-wide-style">`** (design-system §9), copié tel quel du même dossier.
+   Voir « Construction » ci-dessous.
 6. **100 % du transcript, mot pour mot.** Puis **vérifier** avec `check-coverage.py`
    et **corriger jusqu'à 0 manquant** (hors coquilles légères signalées).
    **+ Formules en LaTeX (OBLIGATOIRE)** : toute formule prononcée, rappelée ou à
    expliquer est rendue en **KaTeX** (inline `.imath` à l'endroit exact + bloc
    `.formula-block` titré et **expliqué** à sa 1ʳᵉ occurrence). Jamais de formule en
    texte brut. Setup + CSS + script + validation : **`reference/design-system.md` §7**.
+   **+ Lecture orale (OBLIGATOIRE)** : chaque `.formula-block` porte une ligne
+   `.fb-say` — **comment la formule se dit en français**, plus une glose des symboles
+   qui se prononcent mal (`∂` = « d rond », `Tr` = « trace », `ħ` = « h barre »…).
+   Du français écrit, jamais de phonétique. Les `.imath` inline n'en reçoivent pas —
+   le signaler dans le récapitulatif. Détail : **§7 d bis**.
 7. Intégrer les **nuances** des agents en **encadrés « anti-intox »** (sans toucher
    au verbatim). Crédit auteur (bandeau + collective-footer + carte d'index).
 8. Créer **`images_a_generer.md`** (gabarit `reference/images-template.md`).
@@ -126,6 +133,11 @@ vide jusqu'à génération — le signaler à l'utilisateur).
 
 - **Copier** le `<head>` (Google Fonts Cinzel+Fraunces) et tout le `<style>` d'un
   dossier abouti ; remplacer les jetons d'accent secondaire et `--hero`.
+- **Bloc grands écrans** `<style id="eci-wide-style">` — **juste avant `</head>`**,
+  donc *après* le `<style>` de la page : c'est ce qui lui donne le dernier mot sur la
+  cascade. Sans lui, la page n'occupe que 40–45 % d'un écran 2560/3840 px. Le copier
+  tel quel (design-system §9) ; une page dont le conteneur n'est pas `--max` reçoit le
+  même escalier appliqué à **son** conteneur.
 - **Hero** : eyebrow « Dossier N · <thème> », `h1` avec un mot en `.foil`, lead,
   éventuelle citation, `hero-actions` (Lire le dossier / lien interne / Accueil ECI),
   `signal-board` (4 repères).
@@ -141,7 +153,8 @@ vide jusqu'à génération — le signaler à l'utilisateur).
 - Convertir les **tableaux** du transcript en `.dtable`, les **citations orales** en
   `.dialogue-block`, les **articles de loi** en `.article-noir`, le **sommaire** en
   `.pillar`, et **toute formule mathématique** (orale ou à rappeler) en **KaTeX** —
-  `.imath` inline + `.formula-block` expliqué (voir `reference/design-system.md` §7).
+  `.imath` inline + `.formula-block` expliqué **et doté de sa ligne « Se lit »**
+  (`.fb-say`) — voir `reference/design-system.md` §7 et §7 d bis.
 - **credit-band** après le sommaire ; **collective-footer** (sceau, texte, actions,
   « Veritas omnia vincit ») ; **footer** technique court mentionnant les .txt sources.
 - Construire **par ajouts successifs** (Edit) sur une page longue : insérer chaque
@@ -173,6 +186,13 @@ Avec `playwright-core` (Chrome système, sans téléchargement) :
 - (si dataviz) clique les éléments interactifs et vérifie les mises à jour + 0 erreur
   console ;
 - prend des **screenshots** pour juger le rendu (et les envoyer à l'utilisateur).
+
+**Balayage de largeurs (obligatoire)** — à **360 / 768 / 1280 / 1920 / 2560 / 3840 px**,
+sur chaque page touchée : `window.scrollTo(9999,0)` doit laisser `window.scrollX === 0`,
+et aucun élément ne doit avoir `getBoundingClientRect().right > clientWidth` — sauf à
+l'intérieur d'un conteneur volontairement défilant (`.dtable-wrap`, `.formula`, `.nav`).
+Vérifier au passage que la ligne de lecture reste sous ~100 signes aux grands paliers.
+Détail et pièges connus : design-system §9.
 
 ---
 
@@ -270,7 +290,13 @@ de `index.html`. Il est **généré**, jamais édité à la main.
 - [ ] `check-coverage.py` → **0 manquant** sur chaque transcript ;
 - [ ] **formules** : toutes en KaTeX (inline + blocs expliqués), rendu réel vérifié
       → **0 failure** (script de validation §7), aucune formule en texte brut ;
+- [ ] **lecture orale** : autant de `.fb-say` que de `.formula-block`
+      (`grep -c 'class="fb-say"'` = `grep -c 'class="formula-block"'`), en français
+      écrit et sans phonétique (§7 d bis) ;
 - [ ] images chargées (ou hero briefé si pas encore généré), pas de scroll horizontal ;
+- [ ] **grands écrans** : bloc `<style id="eci-wide-style">` présent juste avant
+      `</head>`, et balayage **360 → 3840 px** propre (aucun défilement horizontal,
+      rien de coupé, ligne de lecture sous ~100 signes) — design-system §9 ;
 - [ ] liens : nav interne, retour Accueil, compagnons externes (`target="_blank"
       rel="noopener"`), liens croisés ;
 - [ ] numérotation & compteurs cohérents (cartes index ↔ eyebrows des pages ↔ nav

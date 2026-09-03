@@ -75,7 +75,7 @@ Le process complet est automatisé par la **skill `/nouveau-dossier`** (`.claude
 2. Identifier titre, ton, chapitres naturels, passages forts, chute.
 3. Créer une page HTML autonome **dans le dossier de son auteur** (en créer un si besoin), CSS + JS intégrés.
 4. Conserver la transcription **complète et mot pour mot** — contrôle obligatoire par `.claude/skills/nouveau-dossier/scripts/check-coverage.py` jusqu'à **0 manquant**. (Sans transcription — cf. Dossier XXVII —, cette étape ne s'applique pas : le dire explicitement.)
-5. Structure : hero, nav sticky, intro, objectifs pédagogiques, chapitres, encadrés ; **toute formule en LaTeX/KaTeX**, écrite *et* expliquée.
+5. Structure : hero, nav sticky, intro, objectifs pédagogiques, chapitres, encadrés ; **toute formule en LaTeX/KaTeX**, écrite, expliquée *et* accompagnée de sa ligne **« Se lit »** — comment elle se prononce en français (voir « Formules » dans `AGENT.md`).
 6. Images **obligatoires** : hero (qui sert de vignette d'index) **+ 3 à 5 illustrations de chapitre**, dans `<dossier-auteur>/assets/`.
 7. **Intégration ECI** : retour `../index.html` + footer/bandeau ECI (sceau, devise « Veritas omnia vincit »), cartouche de licence et compteur de visites.
 8. **Créditer** l'auteur (dans la page **et** sur la carte d'index).
@@ -132,7 +132,7 @@ Le site expose aussi un **compteur public de visites par page** (service Bun + S
 
 - texte source lu en entier ; transcription complète et **vérifiée mot pour mot** (pas un copier-coller brut) ;
 - design conforme à l'identité Empire contre Intox ; sceau ECI présent ;
-- **formules rendues en KaTeX** et expliquées ; aucune formule en texte brut ;
+- **formules rendues en KaTeX**, expliquées, et chacune dotée de sa ligne **« Se lit »** (autant de `.fb-say` que de `.formula-block`) ; aucune formule en texte brut ;
 - images générées et intégrées ; index à jour ; liens internes OK ;
 - **testé de 360 px à 3840 px** : pas de débordement horizontal, rien de coupé, bloc `<style id="eci-wide-style">` présent (voir « Largeurs d'écran » dans `AGENT.md`) ;
 - objectifs pédagogiques présents ;

@@ -172,6 +172,8 @@ typographie. Deux niveaux :
 - **bloc expliqué** `.formula-block` — une stèle gravée (titre + formule(s) en
   display + note explicative) pour chaque formule importante, à sa **première
   occurrence**. Les occurrences suivantes peuvent rester en `.imath`.
+- **lecture orale** `.fb-say` — dans chaque `.formula-block`, entre la formule et
+  sa note : **comment la formule se dit en français**. OBLIGATOIRE, voir **d bis**.
 
 Exemple de référence déjà livré : `provoxys/Artemis2.html` (Voie B, accents orange)
 et `jorge-zalex/elements.html` (Voie A, accents or).
@@ -232,7 +234,19 @@ et `jorge-zalex/elements.html` (Voie A, accents or).
 .formula-block .fb-note { padding:2px 22px 18px; margin:0; font-family:var(--serif); font-size:.96rem; line-height:1.62; color:var(--muted); }
 .formula-block .fb-note b { color:var(--ink); font-weight:600; }
 .formula-block .fb-note .imath .katex { font-size:1em; color:var(--quanta); }
-@media (max-width:640px){ .formula .katex{ font-size:1.12rem; } .formula-block .fb-head{ padding:10px 16px; } .formula,.formula-block .fb-note{ padding-left:16px; padding-right:16px; } }
+/* Lecture orale « Se lit » — OBLIGATOIRE dans chaque .formula-block (voir d bis) */
+.formula-block .fb-say { margin:0 22px 16px; padding:11px 15px; display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px;
+  border:1px solid var(--line); border-left:2px solid var(--gold-deep); border-radius:2px; background:rgba(5,8,17,.40); }
+.formula-block .fb-say .say-k { flex:none; font-family:var(--roman); font-size:.58rem; font-weight:700; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--gold); }
+.formula-block .fb-say .say-t { flex:1 1 260px; min-width:0; font-family:var(--serif); font-style:italic; font-size:.98rem;
+  line-height:1.62; color:var(--parch); overflow-wrap:break-word; }
+.formula-block .fb-say .say-t b { font-style:normal; color:var(--ink); font-weight:600; }
+.formula-block .fb-say .say-x { display:block; margin-top:7px; font-style:normal; font-size:.86rem; line-height:1.56; color:var(--soft); }
+.formula-block .fb-say .say-x b { color:var(--muted); font-weight:600; }
+.formula-block .fb-say .say-x .imath .katex { font-size:1em; color:var(--muted); }
+.formula + .fb-say { margin-top:-2px; }
+@media (max-width:640px){ .formula .katex{ font-size:1.12rem; } .formula-block .fb-head{ padding:10px 16px; } .formula,.formula-block .fb-note{ padding-left:16px; padding-right:16px; } .formula-block .fb-say{ margin-left:16px; margin-right:16px; } }
 ```
 
 ### d) Markup
@@ -244,6 +258,7 @@ et `jorge-zalex/elements.html` (Voie A, accents or).
 <div class="formula-block">
   <div class="fb-head">Équation de vis-viva <span class="fb-tag">Mécanique orbitale</span></div>
   <div class="formula" data-tex="v=\sqrt{\mu\left(\dfrac{2}{r}-\dfrac{1}{a}\right)}"></div>
+  <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;v égale racine de mu, facteur de deux sur r moins un sur a&nbsp;»<span class="say-x">Le signe <b>√</b> se dit «&nbsp;racine de&nbsp;» et couvre tout ce qui passe sous sa barre&nbsp;; <b>μ</b> est un mu.</span></span></p>
   <p class="fb-note">Vitesse <b>v</b> à la distance <b>r</b>, sur une orbite de demi-grand axe <b>a</b>,
      avec <span class="imath" data-tex="\mu=GM"></span> le paramètre gravitationnel. …</p>
 </div>
@@ -253,6 +268,43 @@ et `jorge-zalex/elements.html` (Voie A, accents or).
 - Note **fidèle** : n'expliquer que des valeurs présentes dans le transcript ou des
   constantes standard ; ne jamais inventer un chiffre. Si la page d'origine porte
   une coquille de formule, la **corriger** et la signaler (cf. §6).
+
+### d bis) Lecture orale « Se lit » (OBLIGATOIRE)
+
+Une formule affichée est muette pour qui ne fréquente pas les intégrales : on voit
+`∂`, `Tr`, `ħ`, `k_B`, `T̄` sans savoir quel son mettre dessus. **Chaque
+`.formula-block` porte donc sa lecture orale**, entre la formule et sa note.
+Gabarit : `provoxys/entropie/index.html` (Dossier XXV), 16 blocs.
+
+Deux niveaux dans la même ligne :
+
+- **`.say-t`** — la phrase telle qu'on la dirait, entre guillemets français. On lit
+  de gauche à droite, sans jargon : « égale », « moins », « sur », « somme sur i »,
+  et « **le tout sur T** » quand le numérateur est composé (ça dit où il s'arrête).
+- **`.say-x`** — la glose des symboles qui se confondent ou se prononcent mal. C'est
+  là que se règlent les pièges : le `d` droit (« dé ») contre le `δ` (« delta »)
+  contre le `Δ` ; le `∂` qui se dit **« d rond »** et jamais « delta » ; `Tr`
+  (« trace », pas « T R »), `ħ` (« h barre »), `k_B` (« ka bé »), `log₂` (« log base
+  deux »), `c³` (« c cube »), la barre de moyenne `T̄` (« T barre »).
+
+Règles :
+
+- **une ligne par `.formula-block`, sans exception** ; un bloc à plusieurs formules
+  reçoit une seule ligne qui les enchaîne, séparées par « ; » ;
+- **du français écrit normalement, jamais de phonétique** — « êta », pas « /ˈeːta/ » ;
+- **les `.imath` inline n'en reçoivent pas** : une prononciation par symbole en cours
+  de phrase rend le texte illisible. Le dire dans le récapitulatif final plutôt que
+  de laisser croire à un oubli ;
+- **un symbole formé d'un caractère combinant se met en KaTeX**, pas en Unicode :
+  `T̄` (T + U+0304) se rend mal en Fraunces, le macron chevauche l'espace suivante →
+  `<span class="imath" data-tex="\bar{T}"></span>` ;
+- la glose reste **calme** : `--soft`, non italique, son KaTeX en `--muted`, pour ne
+  pas rivaliser avec l'or de la formule ;
+- la lecture suit **l'ordre du symbole**, pas celui de l'idée : `T̄_chaud` se dit
+  « T barre chaud », parce que la barre porte sur le T ;
+- en **Voie B**, même exigence avec les jetons de la page hôte : le libellé dans sa
+  police de titrage, la phrase dans sa police de lecture, le filet dans son accent.
+  C'est la ligne qui est obligatoire, pas l'or.
 
 ### e) Vérifier (obligatoire) — 0 erreur de rendu
 ```bash
@@ -273,6 +325,13 @@ const dec=t=>t.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").r
 let n=0,bad=0;for(const m of s.matchAll(/data-tex="([^"]*)"/g)){n++;try{katex.renderToString(dec(m[1]),{throwOnError:true});}catch(e){bad++;console.log("FAIL:",m[1]);}}
 console.log(`rendered ${n}, ${bad} failures`);' <chemin absolu>/index.html
 ```
+Compter aussi les lectures orales — le compte doit tomber juste :
+
+```bash
+grep -c 'class="fb-say"' <equipe>/<dossier>/index.html
+grep -c 'class="formula-block"' <equipe>/<dossier>/index.html   # les deux nombres sont égaux
+```
+
 Boucler jusqu'à **0 failure**. `check-coverage.py` reste vert : `data-tex` est un
 attribut, son contenu n'est pas du texte rendu — le verbatim transcrit autour reste
 intact (on **enveloppe** la formule, on ne la supprime pas).
@@ -365,6 +424,15 @@ propres `<style>`, pour gagner la cascade — même convention que
   </style>
 ```
 
+Les quatre paliers en un coup d'œil (tout est déjà dans le bloc ci-dessus) :
+
+| Palier | `html font-size` | `--max` (dossier) | `.transcript` (lecture / marge) |
+|---|---|---|---|
+| ≥ 1440 px | 16 px (défaut) | 1300 px | 1fr / 300–430 px |
+| ≥ 1800 px | 17 px | 1420 px | 1fr / 320–470 px |
+| ≥ 2200 px | 18,5 px | 1560 px | 1fr / 340–530 px |
+| ≥ 2800 px | 20 px | 1820 px | 1fr / 380–700 px |
+
 ### Pourquoi le texte grossit en même temps
 
 C'est le point qui fait tout marcher. Élargir seul allongerait la ligne au-delà du
@@ -377,6 +445,40 @@ gagnée : elle va à `.side-note` (marge savante) et aux visuels.
 sont en `rem`, donc tout suit proportionnellement. Redéfinir `.prose p` écraserait au
 passage `.article-noir p` et consorts (même spécificité, bloc plus tardif) et
 aplatirait les différences de la charte.
+
+### L'accueil a ses propres paliers (cinq, pas quatre)
+
+`index.html` n'est pas une colonne de lecture mais une **grille de cartes** : il ne
+partage donc **ni** l'escalier des dossiers **ni** leur nombre de paliers. Il en a
+**cinq**, avec un dernier à 3200 px que les dossiers n'ont pas, et sa propre échelle de
+corps. Valeurs mesurées dans le navigateur sur `index.html` :
+
+| Viewport | `--max` | `html font-size` | `.dossiers` (`minmax`) | Colonnes réelles |
+|---|---|---|---|---|
+| ≥ 1440 px | 1340 px | 16 px | (héritée) | 4 |
+| ≥ 1800 px | 1660 px | 17 px | `min(360px,100%)` | 4 |
+| ≥ 2200 px | 1960 px | 18 px | `min(400px,100%)` | 4 |
+| ≥ 2800 px | 2300 px | 19 px | `min(430px,100%)` | 5 |
+| ≥ 3200 px | 2700 px | 20 px | `min(470px,100%)` | 5 |
+
+La grille **gagne des colonnes** au lieu d'étirer les cartes : 4 de 1440 à 2200 px,
+5 à partir de 2800 px. Elle reste en `repeat(auto-fit, minmax(min(<N>px,100%),1fr))`,
+et le `min(…,100%)` n'est pas décoratif (voir « Pièges » plus bas).
+
+Si le hero de l'accueil change, **régénérer son aperçu social** :
+`node scripts/generate-og-hero.mjs` → `assets/og-index.jpg`. L'accueil n'a pas d'image
+hero statique, l'`og:image` est un rendu de son hero CSS.
+
+### Pour un nouveau dossier
+
+**Copier le bloc d'un dossier récent** (`ymir-lalie/esclavage/index.html`) **sans le
+modifier** — c'est un bloc unique, identifiable, injectable en série, exactement comme
+`<style id="eci-license-style">`.
+
+Une page dont le conteneur n'est **pas** `--max` — identité invitée (voie B), page-outil,
+compagnon embarqué — reçoit le **même escalier appliqué à *son* conteneur**
+(`.container`, `.wrap`, `--maxw`…). Ce sont les paliers qui sont obligatoires, pas le nom
+de la variable.
 
 ### Recentrer un débordement sans casser la page
 
@@ -403,3 +505,7 @@ window.scrollTo(9999, 0); window.scrollX === 0   // aucun défilement horizontal
 
 et aucun élément dont `getBoundingClientRect().right > clientWidth`, **sauf** à
 l'intérieur d'un conteneur volontairement défilant (`.dtable-wrap`, `.formula`, `.nav`).
+
+Et vérifier que la **ligne de lecture reste sous ~100 signes** aux grands paliers : c'est
+tout l'intérêt de faire grossir le texte en même temps que la page. Si elle s'allonge,
+c'est que la largeur gagnée est partie dans la colonne de texte au lieu de la marge.
