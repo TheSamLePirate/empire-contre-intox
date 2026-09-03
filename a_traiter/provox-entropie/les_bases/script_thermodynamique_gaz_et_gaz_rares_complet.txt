@@ -1,0 +1,244 @@
+Thermodynamique des gaz et des gaz rares
+
+Définition et cadre général
+
+La thermodynamique des gaz étudie les relations entre les grandeurs d’état (pression P, volume V, température T, énergie interne U, enthalpie H, entropie S) pour les systèmes gazeux. On distingue deux grands modèles : le gaz parfait (idéalisation) et les gaz réels (comportement observé). Les gaz rares (ou gaz nobles : He, Ne, Ar, Kr, Xe, Rn) occupent une place particulière car ils sont monoatomiques, chimiquement très inertes et présentent des interactions interatomiques particulièrement faibles.
+
+Le gaz parfait
+
+Un gaz parfait est un modèle dans lequel :
+- les molécules sont ponctuelles (volume propre négligeable),
+- il n’existe aucune interaction attractive ou répulsive entre elles,
+- les chocs sont parfaitement élastiques.
+
+L’équation d’état s’écrit :
+
+PV = nRT
+
+Prononciation à voix haute : « P V égale n R T »
+
+où R = 8,314 J·mol⁻¹·K⁻¹ est la constante des gaz parfaits.
+
+Pour un gaz parfait, l’énergie interne U ne dépend que de la température :
+
+(∂U/∂V)_T = 0
+
+Prononciation à voix haute : « dérivée partielle de U par rapport à V à T constant égale zéro »
+
+On a donc :
+
+ΔU = n C_{V,m} ΔT
+
+Prononciation à voix haute : « delta U égale n C V m delta T »
+
+et
+
+ΔH = n C_{P,m} ΔT
+
+Prononciation à voix haute : « delta H égale n C P m delta T »
+
+avec la relation de Mayer :
+
+C_{P,m} - C_{V,m} = R
+
+Prononciation à voix haute : « C P m moins C V m égale R »
+
+Pour un gaz parfait monoatomique (cas des gaz rares), on a :
+
+C_{V,m} = (3/2)R     C_{P,m} = (5/2)R     γ = C_P / C_V = 5/3
+
+Prononciation à voix haute : « C V m égale trois demis R, C P m égale cinq demis R, gamma égale cinq tiers »
+
+Transformations des gaz parfaits
+
+- Isotherme (T constante) : PV = constante, ΔU = 0, Q = -W
+- Isobare (P constante) : V/T = constante, Q_P = ΔH
+- Isochore (V constant) : P/T = constante, Q_V = ΔU
+- Adiabatique réversible : PV^γ = constante, TV^{γ-1} = constante, Q = 0
+
+Les gaz réels
+
+À haute pression ou basse température, les gaz s’écartent du modèle parfait. Les deux causes principales sont :
+- le volume propre des molécules,
+- les forces d’attraction intermoléculaires (forces de van der Waals).
+
+Équation de van der Waals
+
+L’équation de van der Waals est une équation d’état pour les gaz réels. Elle corrige l’équation des gaz parfaits PV = nRT en tenant compte de deux effets physiques absents du modèle idéal :
+
+1. Le volume propre des molécules (covolume)
+2. Les forces d’attraction intermoléculaires
+
+Forme de l’équation
+
+Pour n moles de gaz :
+
+(P + a n² / V²) (V - n b) = n R T
+
+Prononciation à voix haute : « P plus a n deux sur V deux, le tout multiplié par V moins n b, égale n R T »
+
+Forme molaire (pour une mole, en notant v = V/n) :
+
+(P + a / v²) (v - b) = R T
+
+Signification des paramètres
+
+- a : constante qui quantifie l’intensité des forces d’attraction entre les molécules.  
+  Plus a est grand, plus les attractions sont fortes → la pression réelle est inférieure à la pression idéale.
+
+- b : covolume (volume exclu).  
+  Il représente le volume occupé par les molécules elles-mêmes.  
+  Le volume libre disponible pour le mouvement est donc V - n b.
+
+Interprétation physique
+
+- Le terme a n² / V² est une pression de correction (pression interne) qui s’ajoute à la pression mesurée P.
+- Le terme n b soustrait le volume inaccessible aux molécules.
+
+Limites et comportement
+
+- À faible pression et volume élevé, a n² / V² et n b deviennent négligeables → on retrouve PV = nRT.
+- L’équation de van der Waals prédit l’existence d’un point critique et peut décrire la transition gaz-liquide (avec la construction de Maxwell).
+
+Valeurs typiques pour quelques gaz
+
+Gaz                  | a (L²·bar·mol⁻²) | b (L·mol⁻¹)
+---------------------|------------------|------------
+Hélium               | 0,0346           | 0,0237
+Néon                 | 0,2135           | 0,0171
+Argon                | 1,355            | 0,0320
+Azote                | 1,370            | 0,0387
+Dioxyde de carbone   | 3,640            | 0,0427
+
+L’équation de van der Waals reste l’une des plus simples et des plus pédagogiques pour introduire le comportement des gaz réels, même si des équations d’état plus précises (Redlich-Kwong, Peng-Robinson, ou les formulations explicites en énergie libre de Helmholtz du NIST) sont utilisées aujourd’hui pour les calculs industriels de haute précision.
+
+On définit le facteur de compressibilité :
+
+Z = PV / nRT
+
+Prononciation à voix haute : « Z égale P V sur n R T »
+
+Pour un gaz parfait Z = 1. Pour les gaz réels, Z varie avec P et T.
+
+Le coefficient de Joule-Thomson :
+
+μ_JT = (∂T/∂P)_H
+
+Prononciation à voix haute : « mu J T égale dérivée partielle de T par rapport à P à H constant »
+
+permet de décrire le refroidissement ou le réchauffement lors d’une détente isenthalpique. Il est crucial pour la liquéfaction des gaz.
+
+Théorie cinétique des gaz
+
+La pression est liée à l’énergie cinétique moyenne des molécules :
+
+P = (1/3) ρ v² barre
+
+Prononciation à voix haute : « P égale un tiers rhô v deux barre »
+
+et
+
+(1/2) m v² barre = (3/2) k_B T
+
+Prononciation à voix haute : « un demi m v deux barre égale trois demis k B T »
+
+Cette relation justifie que l’énergie interne d’un gaz parfait monoatomique ne dépend que de T.
+
+Les gaz rares (gaz nobles)
+
+Les gaz rares (He, Ne, Ar, Kr, Xe, Rn) sont monoatomiques et possèdent une couche de valence complète. Leurs interactions interatomiques sont exclusivement de type van der Waals (très faibles). Ils se comportent donc, dans un très large domaine de conditions, comme des gaz presque parfaits.
+
+Particularités thermodynamiques :
+- C_{V,m} très proche de (3/2)R sur un large intervalle de température,
+- températures de liquéfaction et de solidification très basses,
+- enthalpies de vaporisation faibles.
+
+Hélium et superfluidité
+
+L’hélium est le gaz qui s’approche le plus du modèle parfait à température ambiante. Il présente des anomalies uniques :
+- il ne peut pas être solidifié sous pression atmosphérique,
+- en dessous de 2,17 K (point lambda), l’hélium-4 devient superfluide (He II),
+- il est le fluide cryogénique de référence (température d’ébullition 4,2 K à 1 atm).
+
+La superfluidité de l’hélium-4 est un état quantique macroscopique dans lequel le fluide s’écoule sans viscosité. En dessous du point lambda (2,17 K à pression de vapeur saturante), l’hélium passe de He I (liquide normal) à He II (superfluide). Cet état se manifeste par :
+- une conductivité thermique exceptionnellement élevée,
+- la capacité à s’écouler à travers des capillaries extrêmement fins,
+- l’effet fontaine et le film de Rollin.
+
+Le diagramme de phases de l’hélium-4 montre clairement la ligne lambda séparant He I et He II.
+
+Les propriétés thermodynamiques de l’hélium sont tabulées avec une très grande précision par le NIST (équations d’état explicites en énergie libre de Helmholtz).
+
+Argon, néon, krypton et xénon
+
+L’argon est le gaz rare le plus abondant dans l’air (0,93 %). Il est très utilisé comme gaz de protection en soudage et en métallurgie.  
+Le néon, le krypton et le xénon ont des applications en éclairage, en lasers et en propulsion ionique.  
+Leurs coefficients de van der Waals augmentent avec la masse atomique, ce qui les rend progressivement moins idéaux.
+
+Laser hélium-néon
+
+Le laser hélium-néon (He-Ne) est l’un des premiers lasers à gaz commercialisés. Il fonctionne grâce à un mélange d’hélium et de néon (typiquement 5:1 à 10:1) sous faible pression dans un tube à décharge. L’hélium est excité par collision électronique, puis transfère son énergie au néon par collision résonnante. La transition laser principale du néon produit une raie rouge à 632,8 nm.
+
+Le laser He-Ne est caractérisé par :
+- une excellente cohérence spatiale et temporelle,
+- une faible divergence du faisceau,
+- une grande stabilité en longueur d’onde.
+
+Il a été massivement utilisé en alignement, interférométrie, holographie et comme source de référence en métrologie.
+
+Gaz à excimères et lasers à excimères
+
+Les gaz à excimères (ou excimers) désignent des molécules diatomiques formées temporairement à l’état excité entre un atome de gaz rare (Ar, Kr, Xe) et un atome d’halogène (F, Cl, Br). Ces molécules n’existent de façon stable que dans un état électronique excité ; à l’état fondamental elles se dissocient spontanément. C’est cette propriété qui permet l’émission laser dans l’ultraviolet.
+
+Principe de fonctionnement
+
+Dans une décharge électrique ou sous excitation par faisceau d’électrons, un atome de gaz rare excité réagit avec un halogène pour former un excimère (par exemple ArF*, KrF*, XeCl*, XeF*). L’excimère se désexcite rapidement en émettant un photon ultraviolet et se dissocie en atomes séparés. Comme l’état fondamental est répulsif, la population du niveau inférieur reste quasi nulle, ce qui facilite l’inversion de population.
+
+Principaux lasers à excimères et longueurs d’onde
+
+Excimère | Longueur d’onde | Domaine
+---------|-----------------|----------------
+ArF      | 193 nm          | UV profond
+KrF      | 248 nm          | UV
+XeCl     | 308 nm          | UV
+XeF      | 351 nm          | UV proche
+
+Applications des lasers à excimères
+
+- Lithographie pour la fabrication des circuits intégrés (ArF 193 nm et EUV dérivé)
+- Chirurgie réfractive de l’œil (LASIK, PRK) avec le laser XeCl ou ArF
+- Usinage de précision de matériaux (polymères, céramiques, métaux)
+- Traitement de surface et nettoyage
+- Recherche en photochimie et spectroscopie UV
+- Applications médicales (dermatologie, ophtalmologie)
+
+Les lasers à excimères constituent l’une des applications industrielles les plus importantes des gaz rares (argon, krypton, xénon) associés aux halogènes. Leur efficacité repose directement sur les propriétés thermodynamiques et quantiques des gaz nobles : faible réactivité à l’état fondamental et capacité à former des états excités métastables.
+
+Applications industrielles et scientifiques développées
+
+- Liquéfaction de l’air et séparation cryogénique des gaz rares par distillation fractionnée. L’argon, le néon, le krypton et le xénon sont extraits de l’air atmosphérique à l’échelle industrielle.
+- Cryogénie avancée : l’hélium liquide (4,2 K) et l’hélium superfluide sont indispensables pour le refroidissement des aimants supraconducteurs des IRM, des accélérateurs de particules (LHC) et des détecteurs spatiaux.
+- Études fondamentales des interactions intermoléculaires : les gaz rares, grâce à leur monoatomicité et leurs interactions isotropes, servent de modèles de référence pour valider les potentiels interatomiques (Lennard-Jones, etc.).
+- Cycles thermodynamiques à hélium : cycles de Brayton fermés utilisés dans certains concepts de réacteurs nucléaires à haute température et dans les systèmes de conversion d’énergie spatiaux.
+- Étalonnage métrologique : l’hélium et l’argon sont employés comme gaz de référence pour les thermomètres à gaz et les étalons de pression.
+- Propulsion et aérospatiale : le xénon est le propergol de choix pour les propulseurs ioniques et à effet Hall des satellites.
+- Éclairage et lasers : tubes au néon, lampes au xénon, lasers He-Ne et lasers à gaz rares excimères.
+- Recherche quantique : l’hélium superfluide et les condensats de Bose-Einstein d’hélium métastable permettent d’explorer la physique quantique à l’échelle macroscopique.
+
+Sources principales
+
+- NIST Chemistry WebBook et publications NIST sur les équations d’état des gaz nobles  
+- Wikipédia FR « Gaz parfait », « Gaz noble », « Équation de van der Waals », « Superfluidité »  
+- Universalis « Gaz rares »  
+- Air Liquide – documentation technique sur les gaz rares  
+- Cours universitaires de thermodynamique (ENS Lyon, Mines Paris, etc.)
+
+Liens de vidéos recommandées (en français)
+
+- Gaz parfait – équation d’état et manipulations : https://www.youtube.com/watch?v=c0_6tCktH2w  
+- Thermodynamique complète (gaz parfait + 1er principe) : https://www.youtube.com/watch?v=mYoOBuy2ozI  
+- Gaz réels vs gaz parfaits (Khan Academy FR) : https://fr.khanacademy.org/science/concours-d-entree-medecine-chimie/xa5166063b733cf08:les-etats-de-la-matiere-et-les-melanges/xa5166063b733cf08:melanges-de-gaz-et-gaz-reels/v/real-gases-deviations-from-ideal-behavior  
+- Gaz réels et équation de van der Waals : https://www.youtube.com/watch?v=RZ-NEEZ3ZAw  
+- Playlist thermodynamique (gaz parfait, transformations) : https://www.youtube.com/playlist?list=PLFf1gA-ubk_QKuAJSvNOCM35yxaJV-k_G  
+
+Ce script regroupe l’essentiel des connaissances actuelles sur la thermodynamique des gaz et le comportement particulier des gaz rares, avec les relations fondamentales, les écarts au modèle idéal, la superfluidité de l’hélium, le laser hélium-néon, les gaz à excimères et les applications concrètes, sans aucune omission.

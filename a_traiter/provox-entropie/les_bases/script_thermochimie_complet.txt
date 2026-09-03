@@ -1,0 +1,508 @@
+**Définition précise**  
+La thermochimie est la branche de la thermodynamique chimique qui étudie les échanges de chaleur (et plus largement d’énergie) associés aux réactions chimiques et aux changements de phase.  
+Elle s’intéresse essentiellement à la chaleur de réaction \( Q \) et à l’enthalpie \( H \).  
+Réactions exothermiques : chaleur libérée (\( Q < 0 \) ou \( \Delta H < 0 \)).  
+Réactions endothermiques : chaleur absorbée (\( Q > 0 \) ou \( \Delta H > 0 \)).
+
+---
+
+**Histoire courte et fondatrice**  
+- 1761 : Joseph Black introduit la notion de chaleur latente.  
+- 1782-1783 : Lavoisier et Laplace construisent le premier calorimètre à glace et établissent la loi de Lavoisier-Laplace : la chaleur d’une réaction est égale et opposée à celle de la réaction inverse.  
+- 1840 : Germain Hess énonce la loi de la somme constante des chaleurs (loi de Hess).  
+- 1881 : Marcellin Berthelot invente la bombe calorimétrique → mesure précise des chaleurs de combustion.  
+- 1858 : Kirchhoff relie la variation de \( \Delta H \) avec la température aux capacités calorifiques.  
+Ces travaux ont précédé et contribué à la formulation du premier principe de la thermodynamique.  
+*(Sources : Wikipédia Thermodynamique chimique / Thermochemistry ; historique confirmé via travaux originaux Lavoisier-Laplace et Berthelot.)*
+
+---
+
+**Premier principe et énergie interne**  
+Premier principe : l’énergie totale de l’Univers est constante.  
+Pour un système fermé :  
+\[
+\Delta U = Q + W
+\]  
+**Prononciation à voix haute :** « delta U égale Q plus W »  
+
+où \( U \) est l’énergie interne, \( Q \) la chaleur reçue par le système, \( W \) le travail reçu par le système (convention thermodynamique classique).
+
+À volume constant (transformation isochore) :  
+\[
+W = 0 \quad \Rightarrow \quad Q_V = \Delta U
+\]  
+**Prononciation à voix haute :** « W égale zéro implique Q indice V égale delta U »  
+
+C’est exactement ce que mesure une bombe calorimétrique.
+
+**Expérience simple réalisable :** On peut illustrer le premier principe avec un calorimètre à café (deux gobelets emboîtés). On mélange de l’eau chaude et de l’eau froide et on vérifie que la chaleur perdue par l’une est gagnée par l’autre (conservation de l’énergie).  
+**Vidéo d’expérience :** https://www.youtube.com/watch?v=-VQEeqLVpGo (Coffee Cup Calorimetry – démonstration claire du principe).
+
+---
+
+**Enthalpie – concept central**  
+La plupart des réactions chimiques se font à pression constante (atmosphère ouverte).  
+On définit donc l’enthalpie :  
+\[
+H = U + PV
+\]  
+**Prononciation à voix haute :** « H égale U plus P V »  
+
+D’où :  
+\[
+\Delta H = \Delta U + \Delta(PV)
+\]  
+**Prononciation à voix haute :** « delta H égale delta U plus delta de P V »  
+
+À pression constante et pour des gaz parfaits (ou volume négligeable des solides/liquides) :  
+\[
+Q_P = \Delta H
+\]  
+**Prononciation à voix haute :** « Q indice P égale delta H »  
+
+L’enthalpie de réaction \( \Delta_r H \) est la chaleur échangée à pression constante divisée par l’avancement de réaction \( \xi \).
+
+**Équation thermochimique**  
+On écrit toujours l’état physique des corps :  
+\[
+\mathrm{H_2(g) + \frac12 O_2(g) \rightarrow H_2O(l)} \quad \Delta_r H^\circ = -285{,}8\,\mathrm{kJ\,mol^{-1}}
+\]  
+**Prononciation à voix haute :** « H deux gaz plus un demi O deux gaz donne H deux O liquide, delta r H standard égale moins deux cent quatre-vingt-cinq virgule huit kilojoules par mole »  
+
+(valeur standard NIST à 298,15 K).
+
+---
+
+**Calorimétrie – mesure expérimentale**  
+Deux types principaux :  
+1. Calorimètre à pression constante (calorimètre de café, DSC moderne) → mesure \( \Delta H \).  
+2. Bombe calorimétrique (volume constant) → mesure \( \Delta U \).  
+
+Relation entre les deux (gaz parfaits) :  
+\[
+\Delta H = \Delta U + \Delta n_g RT
+\]  
+**Prononciation à voix haute :** « delta H égale delta U plus delta n g R T »  
+
+où \( \Delta n_g \) est la variation du nombre de moles de gaz.
+
+La capacité calorifique du calorimètre \( C_\mathrm{cal} \) est calibrée avec une réaction connue (souvent acide fort + base forte ou combustion d’acide benzoïque).
+
+**Expérience classique de laboratoire :**  
+Utilisation d’une bombe calorimétrique pour mesurer le pouvoir calorifique d’un combustible (par exemple un morceau de sucre ou d’acide benzoïque). On place l’échantillon dans la bombe sous pression d’oxygène, on allume avec un fil métallique et on mesure l’élévation de température de l’eau environnante.  
+**Vidéo d’expérience en français :** https://www.youtube.com/watch?v=XUNpC67QvsU (BOMBE CALORIMÉTRIQUE – présentation complète et claire).  
+**Autre vidéo :** https://www.youtube.com/watch?v=l2vtU0l0rVM (Tutoriel Calorimètre).
+
+---
+
+**Loi de Hess – outil de calcul fondamental**  
+L’enthalpie est une fonction d’état → \( \Delta H \) ne dépend que de l’état initial et final, pas du chemin.  
+
+**Énoncé** : la variation d’enthalpie d’une réaction est égale à la somme algébrique des variations d’enthalpie des étapes intermédiaires.
+
+Exemple classique (formation de CO₂ via CO) :  
+\[
+\begin{align*}
+\mathrm{C(s) + \frac12 O_2 &\rightarrow CO} &\Delta H_1 \\
+\mathrm{CO + \frac12 O_2 &\rightarrow CO_2} &\Delta H_2 \\
+\hline
+\mathrm{C(s) + O_2 &\rightarrow CO_2} &\Delta H = \Delta H_1 + \Delta H_2
+\end{align*}
+\]  
+**Prononciation à voix haute :** « C solide plus un demi O deux donne CO, delta H un ; CO plus un demi O deux donne CO deux, delta H deux ; donc C solide plus O deux donne CO deux, delta H égale delta H un plus delta H deux »  
+
+**Expérience de démonstration de la loi de Hess :**  
+On mesure séparément la chaleur de dissolution de NaOH solide, la chaleur de neutralisation de HCl par NaOH, et la chaleur de réaction de NaOH solide avec HCl. La somme des deux premières doit égaler la troisième (à l’erreur expérimentale près).  
+**Vidéo d’expérience :** https://www.youtube.com/watch?v=ILM42n1CG2A (Laboratoires de calorimétrie et loi de Hess – Yannick Laverdière).  
+**Vidéo d’introduction claire :** https://www.youtube.com/watch?v=C8KSIEUXCKI (Loi de Hess – introduction).
+
+---
+
+**Enthalpies standard de formation**  
+État standard : \( T = 298,15\,\mathrm{K} \), \( p^\circ = 1\,\mathrm{bar} \) (IUPAC depuis 1982).  
+
+Enthalpie standard de formation \( \Delta_f H^\circ \) : enthalpie de la réaction de formation d’1 mole de composé à partir des éléments dans leur état standard.  
+Par définition : \( \Delta_f H^\circ \) (éléments dans leur état standard) = 0.
+
+Formule universelle :  
+\[
+\Delta_r H^\circ = \sum \nu_i \Delta_f H^\circ_{\mathrm{produits}} - \sum \nu_i \Delta_f H^\circ_{\mathrm{réactifs}}
+\]  
+**Prononciation à voix haute :** « delta r H standard égale somme de nu i delta f H standard des produits moins somme de nu i delta f H standard des réactifs »  
+
+Exemples de valeurs standard (NIST) :  
+- \( \mathrm{H_2O(l)} \) : \( -285{,}83\,\mathrm{kJ\,mol^{-1}} \)  
+- \( \mathrm{CO_2(g)} \) : \( -393{,}51\,\mathrm{kJ\,mol^{-1}} \)  
+- \( \mathrm{CH_4(g)} \) : \( -74{,}6\,\mathrm{kJ\,mol^{-1}} \)
+
+Enthalpie standard de combustion \( \Delta_c H^\circ \) : chaleur libérée lors de la combustion complète d’1 mole de substance (très utilisée pour les combustibles et les aliments).
+
+---
+
+**Enthalpies de liaison**  
+Lorsque les données d’enthalpie de formation ne sont pas disponibles, on peut estimer \( \Delta_r H \) à partir des enthalpies de liaison (ou énergies de dissociation de liaison moyennes).  
+
+L’enthalpie de liaison \( D \) (ou \( BE \)) d’une liaison A–B est l’énergie nécessaire pour rompre une mole de cette liaison en phase gazeuse, les fragments étant dans leur état fondamental :  
+\[
+\mathrm{A{-}B(g) \rightarrow A(g) + B(g)} \quad \Delta H = D(\mathrm{A{-}B})
+\]  
+**Prononciation à voix haute :** « A moins B gaz donne A gaz plus B gaz, delta H égale D de A moins B »  
+
+Ces valeurs sont des moyennes tabulées (ex. : C–H ≈ 413 kJ·mol⁻¹, C–C ≈ 348 kJ·mol⁻¹, O=O ≈ 495 kJ·mol⁻¹ – sources NIST et CRC Handbook).  
+
+Estimation de l’enthalpie de réaction :  
+\[
+\Delta_r H \approx \sum D_{\text{liaisons rompues (réactifs)}} - \sum D_{\text{liaisons formées (produits)}}
+\]  
+**Prononciation à voix haute :** « delta r H approximativement égale somme des D des liaisons rompues des réactifs moins somme des D des liaisons formées des produits »  
+
+Cette méthode est approximative car les valeurs sont des moyennes, elle s’applique surtout en phase gazeuse et ignore les effets de résonance.  
+
+---
+
+**Loi de Kirchhoff – dépendance en température**  
+\[
+\left( \frac{\partial \Delta_r H}{\partial T} \right)_p = \Delta_r C_p
+\]  
+**Prononciation à voix haute :** « dérivée partielle de delta r H par rapport à T à p constant égale delta r C p »  
+
+Intégration (si \( \Delta C_p \) constant) :  
+\[
+\Delta_r H(T_2) = \Delta_r H(T_1) + \Delta_r C_p (T_2 - T_1)
+\]  
+**Prononciation à voix haute :** « delta r H de T deux égale delta r H de T un plus delta r C p fois T deux moins T un »  
+
+Si changement de phase → on utilise un cycle de Hess avec les enthalpies de fusion/vaporisation.
+
+---
+
+**Enthalpie libre de Gibbs**  
+L’enthalpie \( H \) renseigne uniquement sur l’échange de chaleur. Pour prédire si une réaction est spontanée, on introduit l’enthalpie libre de Gibbs \( G \) :  
+\[
+G = H - TS
+\]  
+**Prononciation à voix haute :** « G égale H moins T S »  
+
+À température et pression constantes :  
+\[
+\Delta_r G = \Delta_r H - T \Delta_r S
+\]  
+**Prononciation à voix haute :** « delta r G égale delta r H moins T delta r S »  
+
+Critère de spontanéité (à \( T \) et \( p \) constantes) :  
+- \( \Delta_r G < 0 \) : réaction spontanée  
+- \( \Delta_r G = 0 \) : équilibre  
+- \( \Delta_r G > 0 \) : non spontanée  
+
+En conditions standard :  
+\[
+\Delta_r G^\circ = \Delta_r H^\circ - T \Delta_r S^\circ = -RT \ln K
+\]  
+**Prononciation à voix haute :** « delta r G standard égale delta r H standard moins T delta r S standard égale moins R T logarithme népérien de K »  
+
+On calcule \( \Delta_r G^\circ \) à partir des enthalpies libres standard de formation \( \Delta_f G^\circ \) (NIST) :  
+\[
+\Delta_r G^\circ = \sum \nu_i \Delta_f G_i^\circ
+\]  
+**Prononciation à voix haute :** « delta r G standard égale somme de nu i delta f G i standard »  
+
+**Exemples numériques**  
+1. Formation de l’eau liquide à 298 K :  
+\[
+\mathrm{H_2(g) + \frac12 O_2(g) \rightarrow H_2O(l)} \quad \Delta_f G^\circ = -237{,}1\,\mathrm{kJ\,mol^{-1}}
+\]  
+**Prononciation à voix haute :** « H deux gaz plus un demi O deux gaz donne H deux O liquide, delta f G standard égale moins deux cent trente-sept virgule un kilojoules par mole »  
+(valeur standard NIST/CODATA). La réaction est fortement spontanée.  
+
+2. Synthèse de l’ammoniac (procédé Haber) :  
+\[
+\mathrm{N_2(g) + 3H_2(g) \rightarrow 2NH_3(g)} \quad \Delta_r G^\circ \approx -33{,}0\,\mathrm{kJ\,mol^{-1}}
+\]  
+**Prononciation à voix haute :** « N deux gaz plus trois H deux gaz donne deux N H trois gaz, delta r G standard approximativement égale moins trente-trois kilojoules par mole »  
+(\( \Delta_f G^\circ(\mathrm{NH_3}) = -16{,}5\,\mathrm{kJ\,mol^{-1}} \)).  
+
+3. Calcul explicite à partir de \( \Delta H \) et \( \Delta S \) (exemple type LibreTexts) :  
+Pour une réaction avec \( \Delta H = -120\,\mathrm{kJ} \) et \( \Delta S = -150\,\mathrm{J\,K^{-1}} \) à 290 K :  
+\[
+\Delta G = -120 - (290)(-0{,}150) = -120 + 43{,}5 = -76{,}5\,\mathrm{kJ}
+\]  
+**Prononciation à voix haute :** « delta G égale moins cent vingt moins deux cent quatre-vingt-dix fois moins zéro virgule cent cinquante égale moins cent vingt plus quarante-trois virgule cinq égale moins soixante-seize virgule cinq kilojoules »  
+→ spontanée.
+
+**Dérivées de l’enthalpie libre de Gibbs**  
+La différentielle de \( G \) s’écrit :  
+\[
+dG = -S\,dT + V\,dP
+\]  
+**Prononciation à voix haute :** « d G égale moins S d T plus V d P »  
+
+Les variables naturelles de \( G \) sont \( T \) et \( P \).  
+
+Dérivées partielles :  
+\[
+\left( \frac{\partial G}{\partial T} \right)_P = -S \qquad \text{et} \qquad \left( \frac{\partial G}{\partial P} \right)_T = V
+\]  
+**Prononciation à voix haute :** « dérivée partielle de G par rapport à T à P constant égale moins S, et dérivée partielle de G par rapport à P à T constant égale V »  
+
+Ces relations permettent de calculer l’entropie et le volume à partir de \( G \). Les relations de Maxwell associées donnent notamment :  
+\[
+\left( \frac{\partial S}{\partial P} \right)_T = -\left( \frac{\partial V}{\partial T} \right)_P
+\]  
+**Prononciation à voix haute :** « dérivée partielle de S par rapport à P à T constant égale moins la dérivée partielle de V par rapport à T à P constant »  
+
+**Vidéo claire sur Gibbs et spontanéité (en français) :** https://www.youtube.com/watch?v=deohaPWuH68 (Passe-Science – Enthalpie libre de Gibbs).  
+**Autre vidéo :** https://fr.khanacademy.org/science/chemistry/thermodynamics-chemistry/gibbs-free-energy/v/gibbs-free-energy-and-spontaneity  
+
+---
+
+**Énergie libre de Helmholtz**  
+L’énergie libre de Helmholtz (ou énergie de Helmholtz) \( F \) (parfois notée \( A \)) est définie par :  
+\[
+F = U - TS
+\]  
+**Prononciation à voix haute :** « F égale U moins T S »  
+
+Elle s’applique aux transformations à température et volume constants.  
+
+Critère de spontanéité (à \( T \) et \( V \) constants) :  
+- \( \Delta F < 0 \) : transformation spontanée  
+- \( \Delta F = 0 \) : équilibre  
+
+Sa variation correspond au travail maximal utile échangeable par le système (hors travail de pression-volume) dans ces conditions.  
+
+Relation avec Gibbs :  
+\[
+G = F + PV
+\]  
+**Prononciation à voix haute :** « G égale F plus P V »  
+
+L’énergie de Helmholtz est particulièrement utile en physique statistique (liée à la fonction de partition canonique) et pour les processus à volume constant (bombe calorimétrique, explosions, plasmas). En chimie des solutions et des gaz à pression constante, on privilégie toutefois Gibbs.  
+
+**Dérivées partielles et différentielle de Helmholtz**  
+La différentielle totale de \( F \) s’écrit :  
+\[
+dF = -S\,dT - P\,dV
+\]  
+**Prononciation à voix haute :** « d F égale moins S d T moins P d V »  
+
+Les variables naturelles de \( F \) sont donc \( T \) et \( V \).  
+
+On en déduit immédiatement les dérivées partielles :  
+\[
+\left( \frac{\partial F}{\partial T} \right)_V = -S \qquad \text{et} \qquad \left( \frac{\partial F}{\partial V} \right)_T = -P
+\]  
+**Prononciation à voix haute :** « dérivée partielle de F par rapport à T à V constant égale moins S, et dérivée partielle de F par rapport à V à T constant égale moins P »  
+
+Ces relations permettent d’obtenir l’entropie et la pression à partir de \( F \).  
+En appliquant l’égalité des dérivées secondes mixtes (théorème de Schwarz), on obtient les relations de Maxwell associées à Helmholtz, notamment :  
+\[
+\left( \frac{\partial S}{\partial V} \right)_T = \left( \frac{\partial P}{\partial T} \right)_V
+\]  
+**Prononciation à voix haute :** « dérivée partielle de S par rapport à V à T constant égale dérivée partielle de P par rapport à T à V constant »  
+
+Ces dérivées constituent la base des calculs thermodynamiques à volume constant et relient directement les grandeurs mesurables (pression, température) aux potentiels.  
+
+**Dérivées des quatre potentiels thermodynamiques**  
+Les quatre potentiels fondamentaux et leurs différentielles sont :  
+
+- Énergie interne :  
+\[
+dU = T\,dS - P\,dV \quad \Rightarrow \quad \left( \frac{\partial U}{\partial S} \right)_V = T \quad ; \quad \left( \frac{\partial U}{\partial V} \right)_S = -P
+\]  
+**Prononciation à voix haute :** « d U égale T d S moins P d V, donc dérivée partielle de U par rapport à S à V constant égale T, et dérivée partielle de U par rapport à V à S constant égale moins P »  
+
+- Enthalpie :  
+\[
+dH = T\,dS + V\,dP \quad \Rightarrow \quad \left( \frac{\partial H}{\partial S} \right)_P = T \quad ; \quad \left( \frac{\partial H}{\partial P} \right)_S = V
+\]  
+**Prononciation à voix haute :** « d H égale T d S plus V d P, donc dérivée partielle de H par rapport à S à P constant égale T, et dérivée partielle de H par rapport à P à S constant égale V »  
+
+- Énergie libre de Helmholtz :  
+\[
+dF = -S\,dT - P\,dV \quad \Rightarrow \quad \left( \frac{\partial F}{\partial T} \right)_V = -S \quad ; \quad \left( \frac{\partial F}{\partial V} \right)_T = -P
+\]  
+**Prononciation à voix haute :** « d F égale moins S d T moins P d V, donc dérivée partielle de F par rapport à T à V constant égale moins S, et dérivée partielle de F par rapport à V à T constant égale moins P »  
+
+- Enthalpie libre de Gibbs :  
+\[
+dG = -S\,dT + V\,dP \quad \Rightarrow \quad \left( \frac{\partial G}{\partial T} \right)_P = -S \quad ; \quad \left( \frac{\partial G}{\partial P} \right)_T = V
+\]  
+**Prononciation à voix haute :** « d G égale moins S d T plus V d P, donc dérivée partielle de G par rapport à T à P constant égale moins S, et dérivée partielle de G par rapport à P à T constant égale V »  
+
+Ces relations, obtenues par transformées de Legendre successives, forment le cœur de la thermodynamique des potentiels et permettent de passer d’un jeu de variables naturelles à un autre selon les conditions expérimentales (S,V), (S,P), (T,V) ou (T,P).  
+
+**Explication complète et approfondie des relations de Maxwell**  
+Les relations de Maxwell découlent directement de l’égalité des dérivées secondes mixtes des potentiels thermodynamiques (théorème de Schwarz : l’ordre de dérivation n’importe pas).  
+
+Pour chaque potentiel, on obtient une relation de Maxwell :  
+
+1. À partir de \( U(S,V) \) :  
+\[
+\left( \frac{\partial T}{\partial V} \right)_S = -\left( \frac{\partial P}{\partial S} \right)_V
+\]  
+**Prononciation à voix haute :** « dérivée partielle de T par rapport à V à S constant égale moins la dérivée partielle de P par rapport à S à V constant »  
+
+2. À partir de \( H(S,P) \) :  
+\[
+\left( \frac{\partial T}{\partial P} \right)_S = \left( \frac{\partial V}{\partial S} \right)_P
+\]  
+**Prononciation à voix haute :** « dérivée partielle de T par rapport à P à S constant égale la dérivée partielle de V par rapport à S à P constant »  
+
+3. À partir de \( F(T,V) \) :  
+\[
+\left( \frac{\partial S}{\partial V} \right)_T = \left( \frac{\partial P}{\partial T} \right)_V
+\]  
+**Prononciation à voix haute :** « dérivée partielle de S par rapport à V à T constant égale la dérivée partielle de P par rapport à T à V constant »  
+
+4. À partir de \( G(T,P) \) :  
+\[
+\left( \frac{\partial S}{\partial P} \right)_T = -\left( \frac{\partial V}{\partial T} \right)_P
+\]  
+**Prononciation à voix haute :** « dérivée partielle de S par rapport à P à T constant égale moins la dérivée partielle de V par rapport à T à P constant »  
+
+**Applications pratiques approfondies des relations de Maxwell :**  
+- La relation 4 permet de calculer la variation d’entropie avec la pression à température constante à partir du coefficient de dilatation thermique \( \alpha = \frac{1}{V}\left(\frac{\partial V}{\partial T}\right)_P \), grandeur facilement mesurable.  
+- La relation 3 permet de relier la compressibilité isotherme à la variation de pression avec la température.  
+- Elles sont indispensables pour établir les équations d’état et pour les calculs de tables thermodynamiques (vapeur d’eau, gaz réels).  
+- Elles servent aussi à démontrer des relations entre capacités calorifiques \( C_P - C_V \).
+
+Ces quatre relations relient des grandeurs mesurables entre elles (coefficients de dilatation, compressibilité, capacités calorifiques) et permettent de calculer des quantités difficiles à mesurer directement à partir d’autres plus accessibles. Elles constituent l’un des outils les plus puissants de la thermodynamique classique.  
+
+**Autres potentiels thermodynamiques**  
+En plus des quatre potentiels classiques (U, H, F, G), on utilise parfois le potentiel grand canonique (ou grand potentiel) \( \Omega \) :  
+\[
+\Omega = F - \mu N = -PV
+\]  
+**Prononciation à voix haute :** « oméga égale F moins mu N égale moins P V »  
+
+Il est utile pour les systèmes ouverts où le nombre de particules N peut varier (μ est le potentiel chimique). Ses variables naturelles sont T, V et μ.  
+
+**Fonction de partition et lien avec Helmholtz**  
+En mécanique statistique, dans l’ensemble canonique (système à \( N \), \( V \), \( T \) fixés en contact avec un thermostat), l’énergie libre de Helmholtz est directement liée à la fonction de partition \( Z \) :  
+\[
+F = -k_B T \ln Z
+\]  
+**Prononciation à voix haute :** « F égale moins k B T logarithme népérien de Z »  
+
+où \( k_B \) est la constante de Boltzmann.  
+
+La fonction de partition \( Z \) somme les contributions de tous les états microscologiques possibles du système :  
+\[
+Z = \sum_i e^{-E_i / k_B T}
+\]  
+**Prononciation à voix haute :** « Z égale somme sur i de e puissance moins E i sur k B T »  
+
+(pour un spectre discret d’énergies \( E_i \)).  
+
+Pour un gaz parfait monoatomique classique, on obtient explicitement :  
+\[
+Z = \frac{1}{N!} \left( \frac{V}{\Lambda^3} \right)^N
+\]  
+**Prononciation à voix haute :** « Z égale un sur N factorielle fois V sur lambda au cube le tout puissance N »  
+
+où \( \Lambda = h / \sqrt{2\pi m k_B T} \) est la longueur d’onde thermique de de Broglie.  
+
+À partir de \( Z \), on retrouve toutes les grandeurs thermodynamiques :  
+- \( U = k_B T^2 \left( \frac{\partial \ln Z}{\partial T} \right)_{V,N} \)  
+**Prononciation à voix haute :** « U égale k B T au carré fois la dérivée partielle de logarithme de Z par rapport à T à V et N constants »  
+
+- \( S = k_B \ln Z + k_B T \left( \frac{\partial \ln Z}{\partial T} \right)_{V,N} \)  
+**Prononciation à voix haute :** « S égale k B logarithme de Z plus k B T fois la dérivée partielle de logarithme de Z par rapport à T à V et N constants »  
+
+- \( P = k_B T \left( \frac{\partial \ln Z}{\partial V} \right)_{T,N} \)  
+**Prononciation à voix haute :** « P égale k B T fois la dérivée partielle de logarithme de Z par rapport à V à T et N constants »  
+
+Ainsi, la connaissance de la fonction de partition permet de calculer \( F \) puis, par dérivation, l’ensemble des propriétés thermodynamiques du système. C’est le pont fondamental entre la description microscopique (niveaux d’énergie) et la thermodynamique macroscopique.  
+
+*(Sources : Wikipédia Énergie libre / Relations de Maxwell ; cours de thermodynamique PC* et RAPP-THERMO ; HyperPhysics ; LibreTexts Thermodynamic Potentials ; mécanique statistique standard.)*
+
+---
+
+**Applications concrètes**  
+La thermochimie trouve des applications majeures dans de nombreux domaines.  
+
+En énergétique industrielle, elle permet de calculer précisément le pouvoir calorifique inférieur et supérieur des combustibles (gaz naturel, fioul, hydrogène, biomasse). Les valeurs de \( \Delta_c H^\circ \) et \( \Delta_c G^\circ \) orientent le dimensionnement des chaudières, turbines et piles à combustible. Pour l’hydrogène, \( \Delta_c H^\circ = -286\,\mathrm{kJ\,mol^{-1}} \) (eau liquide) guide le rendement théorique des piles à combustible PEM.  
+
+**Le cycle de Rankine – analyse approfondie**  
+Le cycle de Rankine est le cycle thermodynamique de référence des centrales électriques à vapeur. Il comprend quatre transformations :  
+1. Compression isentropique du liquide dans la pompe.  
+2. Apport de chaleur isobare dans la chaudière (vaporisation + éventuelle surchauffe).  
+3. Détente isentropique dans la turbine.  
+4. Rejet de chaleur isobare dans le condenseur.  
+
+Le rendement thermique s’exprime par :  
+\[
+\eta_{\text{Rankine}} = \frac{W_{\text{turbine}} - W_{\text{pompe}}}{Q_{\text{chaudière}}}
+\]  
+
+Les diagrammes T-S et h-S (diagramme de Mollier) permettent de calculer précisément les enthalpies à chaque point. L’amélioration du rendement passe par la surchauffe, le resurchauffe (reheat) et la régénération. La thermochimie intervient dans le calcul des enthalpies de vaporisation et des capacités calorifiques du fluide.
+
+**Le cycle de Carnot – comparaison et limite théorique**  
+Le cycle de Carnot est le cycle idéal de rendement maximal entre deux températures \( T_h \) (source chaude) et \( T_c \) (source froide). Il est constitué de deux isothermes et de deux adiabatiques réversibles.  
+
+Son rendement est :  
+\[
+\eta_{\text{Carnot}} = 1 - \frac{T_c}{T_h}
+\]  
+
+Le cycle de Rankine a toujours un rendement inférieur au cycle de Carnot fonctionnant entre les mêmes températures extrêmes, car les apports et rejets de chaleur ne sont pas isothermes. Le cycle de Carnot n’est pas praticable industriellement avec de la vapeur d’eau (problèmes de compression diphasique), c’est pourquoi le Rankine lui est préféré malgré son rendement plus faible.
+
+Dans l’industrie chimique, la loi de Hess et les tables \( \Delta_f H^\circ \) / \( \Delta_f G^\circ \) sont utilisées pour optimiser les bilans énergétiques des procédés (synthèse de l’ammoniac Haber-Bosch, production d’acide sulfurique, vapocraquage). Le signe et la grandeur de \( \Delta_r G \) déterminent les conditions de pression et température optimales pour maximiser le rendement et minimiser la consommation énergétique.  
+
+En biologie et nutrition, les enthalpies de combustion des glucides (≈ 17 kJ·g⁻¹), lipides (≈ 38 kJ·g⁻¹) et protéines (≈ 17 kJ·g⁻¹) permettent le calcul des apports caloriques. Le métabolisme oxydatif du glucose :  
+\[
+\mathrm{C_6H_{12}O_6 + 6O_2 \rightarrow 6CO_2 + 6H_2O} \quad \Delta G^\circ \approx -2870\,\mathrm{kJ\,mol^{-1}}
+\]  
+**Prononciation à voix haute :** « C six H douze O six plus six O deux donne six CO deux plus six H deux O, delta G standard approximativement égale moins deux mille huit cent soixante-dix kilojoules par mole »  
+illustre le rendement énergétique cellulaire (ATP).  
+
+Dans le domaine des matériaux et du stockage d’énergie, la thermochimie quantifie les chaleurs de formation des alliages, des céramiques et des matériaux de batteries (lithium-ion, sodium-ion). Les cycles de charge/décharge sont analysés via \( \Delta H \) et \( \Delta G \) pour évaluer les pertes et l’efficacité.  
+
+En environnement et géochimie, les calculs d’enthalpie libre permettent de prédire la stabilité des minéraux, la solubilité des gaz à effet de serre et les équilibres dans les aquifères. Les modèles ThermoChimie (utilisés pour le stockage des déchets radioactifs) reposent entièrement sur des bases de données de \( \Delta_f G^\circ \).  
+
+Enfin, en propulsion et explosifs, les enthalpies de formation des propergols et des explosifs (TNT, RDX) déterminent l’énergie libérée et la température de flamme, paramètres critiques pour la conception des moteurs-fusées et des charges militaires.  
+
+Ces applications s’appuient toutes sur les mêmes outils : tables NIST/CRC, loi de Hess, dérivées des potentiels et critères de spontanéité \( \Delta G \) et \( \Delta F \).
+
+---
+
+**Points de vigilance et erreurs classiques**  
+
+Voici les erreurs les plus fréquentes et les points à surveiller absolument :
+
+1. **Oublier de préciser l’état physique**  
+   Écrire simplement H₂O au lieu de H₂O(l) ou H₂O(g) change complètement la valeur de \( \Delta H \) et de \( \Delta G \). L’eau liquide et la vapeur d’eau n’ont pas la même enthalpie de formation.
+
+2. **Confondre ΔU et ΔH**  
+   ΔU est mesuré à volume constant (bombe calorimétrique).  
+   ΔH est mesuré à pression constante (calorimètre de café).  
+   La relation \( \Delta H = \Delta U + \Delta n_g RT \) n’est valable que pour les gaz parfaits.
+
+3. **Utiliser des valeurs à 298 K sans correction**  
+   Les tables donnent presque toujours les valeurs à 25 °C. Si la réaction se déroule à une autre température, il faut appliquer la loi de Kirchhoff. Oublier cette correction peut entraîner des erreurs de plusieurs kJ·mol⁻¹.
+
+4. **Prendre les enthalpies de liaison comme des valeurs exactes**  
+   Ce sont des moyennes. Elles donnent une estimation correcte à ±10-20 kJ·mol⁻¹ en général, mais jamais une valeur précise comme les \( \Delta_f H^\circ \).
+
+5. **Oublier que ΔG dépend fortement de la température**  
+   Une réaction endothermique (\( \Delta H > 0 \)) avec \( \Delta S > 0 \) peut devenir spontanée à haute température. Inversement, une réaction exothermique peut cesser d’être spontanée si la température augmente trop.
+
+6. **Confondre F (Helmholtz) et G (Gibbs)**  
+   - F s’utilise à volume constant (T, V).  
+   - G s’utilise à pression constante (T, P).  
+   Utiliser le mauvais potentiel conduit à un critère de spontanéité faux.
+
+7. **Négliger le signe des coefficients stœchiométriques**  
+   Dans la formule \( \Delta_r H^\circ = \sum \nu_i \Delta_f H_i^\circ \), les réactifs ont des \( \nu_i \) négatifs. Oublier le signe inverse complètement le résultat.
+
+8. **Mélanger les unités**  
+   Toujours convertir les joules en kilojoules (ou l’inverse) avant d’additionner ΔH et TΔS. Une erreur d’un facteur 1000 est très fréquente.
+
+---
+
+**Conclusion**  
+La thermochimie te donne le bilan énergétique exact de n’importe quelle réaction à partir de données tabulées (NIST, CRC Handbook) grâce à la loi de Hess, aux enthalpies de formation et, en estimation, aux enthalpies de liaison.  
+L’enthalpie libre de Gibbs et l’énergie libre de Helmholtz permettent de prédire la spontanéité selon les conditions (pression ou volume constant).  
+C’est un ensemble quantitatif, prédictif et indispensable en chimie, énergétique et ingénierie.  
+
+*(Sources principales croisées et vérifiées : NIST Chemistry WebBook, CODATA, OpenStax Chemistry 2e, LibreTexts, Wikipédia FR/EN, CRC Handbook of Chemistry and Physics, relations de Maxwell et mécanique statistique standard.)*

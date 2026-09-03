@@ -35,6 +35,20 @@ const STEP_INSIGHTS: Record<Operation, string[]> = {
     "La correspondance reste bijective : connaître la sortie permet toujours de retrouver l’entrée.",
   ],
 };
+const STEP_PLAIN: Record<Operation, string[]> = {
+  erase: [
+    "La bille est quelque part — 0 ou 1, on ne sait pas lequel. C’est précisément ce « on ne sait pas » (un bit) qu’il va falloir payer pour l’effacer.",
+    "On rabote la bosse du milieu : la bille peut maintenant sauter d’un creux à l’autre au gré des secousses thermiques. Le bit « fond ».",
+    "On penche le moule vers la gauche : où qu’elle ait été, la bille roule vers 0. C’est ici que la chaleur part vers le bain — d’autant moins qu’on penche lentement.",
+    "On redresse tout : la bille est à gauche, à coup sûr. La mémoire affiche 0… et le bain a empoché au moins kBT ln 2.",
+  ],
+  swap: [
+    "Deux creux, deux états bien distincts : la bille pleine code une histoire, la bille fantôme l’autre.",
+    "On déforme le moule sans jamais fusionner les deux chemins : chaque histoire garde sa voie propre.",
+    "La bille glisse vers l’autre creux ; celle partie de l’autre côté fait exactement le trajet inverse. Les deux histoires se croisent sans se confondre.",
+    "0 est devenu 1, et 1 est devenu 0. Rien n’est perdu : refaire l’opération ramène au départ — d’où une facture thermique quasi nulle.",
+  ],
+};
 
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
 const smooth = (value: number) => {
@@ -75,6 +89,7 @@ export function V19BitLandauer({ className }: VisualizationProps) {
     operation === "erase"
       ? minimum * (1 + excessFactor)
       : minimum * excessFactor * 0.18;
+  const exported = dissipated * smooth(progress);
   const labels = operation === "erase" ? ERASE_STEPS : SWAP_STEPS;
   const loweredBarrier = barrier * 0.32;
   const stageBarrier =
@@ -93,10 +108,8 @@ export function V19BitLandauer({ className }: VisualizationProps) {
           ? 2.8 * eased
           : 2.8 * (1 - eased)
       : 0;
-  const points = linspace(-2, 2, 121).map((x) => ({
-    x,
-    y: stageBarrier * (x * x - 1) ** 2 + tilt * x,
-  }));
+  const potential = (x: number) => stageBarrier * (x * x - 1) ** 2 + tilt * x;
+  const points = linspace(-2, 2, 121).map((x) => ({ x, y: potential(x) }));
   const minY = Math.min(...points.map(({ y }) => y));
   const maxY = Math.max(...points.map(({ y }) => y));
   const px = (x: number) => 46 + ((x + 2) / 4) * 622;
@@ -119,6 +132,12 @@ export function V19BitLandauer({ className }: VisualizationProps) {
         : step === 2
           ? -0.96 + 1.92 * eased
           : 0.96;
+  // La « bille fantôme » : l’autre histoire logique possible. Pour l’effacement,
+  // le bit parti de 0 reste à 0 (les deux histoires convergent) ; pour la
+  // permutation, elle suit le trajet réciproque (les histoires se croisent).
+  const ghostX = operation === "erase" ? -0.96 : -particleX;
+  const haloRadius = 12 + temperature / 42;
+  const gaugeMax = Math.max(minimum, dissipated) * 1.12;
   const selectOperation = (next: Operation) => {
     setOperation(next);
     setPlaying(false);
@@ -228,7 +247,7 @@ export function V19BitLandauer({ className }: VisualizationProps) {
           />
           <Metric
             label="Chaleur exportée"
-            value={formatNumber(dissipated * smooth(progress) * 1e21)}
+            value={formatNumber(exported * 1e21)}
             unit="zJ"
           />
         </>
@@ -240,7 +259,7 @@ export function V19BitLandauer({ className }: VisualizationProps) {
             className="entropy-viz__plot"
             viewBox="0 0 700 255"
             role="img"
-            aria-label={`Étape ${step + 1} : ${labels[step]}. Potentiel en unités de kBT.`}
+            aria-label={`Étape ${step + 1} : ${labels[step]}. Potentiel en unités de kBT ; la bille pleine et la bille fantôme montrent les deux histoires logiques possibles.`}
           >
             <path d="M46 28V206H668" fill="none" stroke="var(--ev-muted)" />
             {[0, 0.5, 1].map((fraction) => (
@@ -256,12 +275,53 @@ export function V19BitLandauer({ className }: VisualizationProps) {
               stroke="var(--ev-gold)"
               strokeWidth="4"
             />
+            {/* hauteur de la barrière, annotée en direct */}
+            <text
+              x={px(0)}
+              y={py(potential(0)) - 12}
+              textAnchor="middle"
+              fill="var(--ev-muted)"
+              fontSize="12"
+            >
+              barrière ≈ {formatNumber(stageBarrier)} kBT
+            </text>
+            {tilt > 0.15 ? (
+              <text
+                x={px(1.55)}
+                y={py(potential(1.55)) - 14}
+                textAnchor="middle"
+                fill="var(--ev-hot)"
+                fontSize="12"
+              >
+                ↙ on penche vers 0
+              </text>
+            ) : null}
+            {/* bille fantôme : l’autre histoire logique */}
+            <circle
+              cx={px(ghostX)}
+              cy={py(potential(ghostX))}
+              r="9"
+              fill="var(--ev-info)"
+              fillOpacity=".28"
+              stroke="var(--ev-text)"
+              strokeOpacity=".35"
+              strokeWidth="1"
+              strokeDasharray="3 3"
+            />
+            {/* halo d’agitation thermique autour de la bille pleine */}
             <circle
               cx={px(particleX)}
-              cy={py(
-                stageBarrier * (particleX * particleX - 1) ** 2 +
-                  tilt * particleX,
-              )}
+              cy={py(potential(particleX))}
+              r={haloRadius}
+              fill="var(--ev-hot)"
+              fillOpacity=".12"
+              stroke="var(--ev-hot)"
+              strokeOpacity=".35"
+              strokeDasharray="2 4"
+            />
+            <circle
+              cx={px(particleX)}
+              cy={py(potential(particleX))}
               r="9"
               fill="var(--ev-info)"
               stroke="var(--ev-text)"
@@ -280,24 +340,72 @@ export function V19BitLandauer({ className }: VisualizationProps) {
               coordonnée physique x
             </text>
           </svg>
+          <p className="entropy-viz__legend entropy-viz__legend--prose">
+            <span>
+              <i className="entropy-viz__dot entropy-viz__dot--info" /> bille
+              pleine : le bit parti de 1 · bille en pointillé : le bit parti de
+              0 — l’effacement fait <b>converger</b> les deux, la permutation
+              les fait <b>se croiser</b>. Le halo est l’agitation thermique :
+              montez la température pour le voir grandir.
+            </span>
+          </p>
         </div>
         <div className="entropy-viz__panel" aria-live="polite">
-          <h4>{labels[step]}</h4>
+          <h4>
+            Étape {step + 1}/4 · {labels[step]}
+          </h4>
+          <p>
+            <strong>En clair :</strong> {STEP_PLAIN[operation][step]}
+          </p>
           <p>
             <strong>À observer :</strong> {STEP_INSIGHTS[operation][step]}
           </p>
           <p>
-            <strong>Entrées possibles :</strong>{" "}
-            {operation === "erase" ? "0 ou 1" : "0 et 1 restent identifiables"}
-          </p>
-          <p>
-            <strong>Sortie logique :</strong>{" "}
+            <strong>Bilan logique :</strong>{" "}
             {operation === "erase"
-              ? step < 3
-                ? "convergence vers 0"
-                : "0 pour les deux entrées"
-              : "bijection : 0 devient 1, 1 devient 0"}
+              ? "0 ou 1 → 0. Irréversible : la sortie ne dit plus d’où l’on vient."
+              : "0 ↔ 1. Réversible : la sortie permet toujours de retrouver l’entrée."}
           </p>
+          <div
+            className="ev-gauge"
+            role="img"
+            aria-label={`Borne de Landauer ${formatNumber(minimum * 1e21)} zeptojoules ; coût du protocole ${formatNumber(dissipated * 1e21)} zeptojoules, dont ${formatNumber(exported * 1e21)} déjà exportés.`}
+          >
+            <div className="ev-gauge__row">
+              <span>Borne kBT ln 2</span>
+              <span className="ev-gauge__bar">
+                <i
+                  style={{
+                    width: `${(minimum / gaugeMax) * 100}%`,
+                    background: "var(--ev-gold)",
+                  }}
+                />
+              </span>
+              <span className="ev-gauge__val">
+                {formatNumber(minimum * 1e21)} zJ
+              </span>
+            </div>
+            <div className="ev-gauge__row">
+              <span>Coût de ce protocole</span>
+              <span className="ev-gauge__bar">
+                <i
+                  style={{
+                    width: `${(dissipated / gaugeMax) * 100}%`,
+                    background: "rgba(239,125,87,.35)",
+                  }}
+                />
+                <i
+                  style={{
+                    width: `${(exported / gaugeMax) * 100}%`,
+                    background: "var(--ev-hot)",
+                  }}
+                />
+              </span>
+              <span className="ev-gauge__val">
+                ×{formatNumber(dissipated / minimum)}
+              </span>
+            </div>
+          </div>
           <p>
             <strong>Excès au-dessus du régime idéal :</strong>{" "}
             {formatNumber(excessFactor * 100)} %{" "}
@@ -307,9 +415,48 @@ export function V19BitLandauer({ className }: VisualizationProps) {
           </p>
           <p>
             {operation === "erase"
-              ? "Deux histoires logiques fusionnent : l’information manquante doit être exportée vers l’environnement."
-              : "Une permutation conserve l’information logique ; elle n’impose pas à elle seule la borne d’effacement."}
+              ? "Deux histoires logiques fusionnent : l’information manquante doit être exportée vers l’environnement, en chaleur."
+              : "Une permutation conserve l’information logique ; elle n’impose pas à elle seule la borne d’effacement — comparez la jauge ci-dessus avec celle de l’effacement."}
           </p>
+        </div>
+      </div>
+      <div className="entropy-viz__panel">
+        <strong>L’image à avoir en tête</strong>
+        <div className="ev-explainers">
+          <div>
+            <h4>La bille et le moule</h4>
+            <p>
+              Une bille au fond d’un moule à deux creux : à gauche elle code 0,
+              à droite 1. Une mémoire d’ordinateur, c’est des milliards de
+              moules comme celui-ci. Tant que la bosse du milieu est haute,
+              l’agitation thermique ne suffit pas à faire sauter la bille : le
+              bit est stable.
+            </p>
+          </div>
+          <div>
+            <h4>Pourquoi effacer chauffe</h4>
+            <p>
+              « Effacer », c’est forcer la bille à gauche <em>sans regarder</em>{" "}
+              où elle était : deux passés possibles (0 ou 1) finissent dans le
+              même présent (0). Un bit disparaît de la mémoire — et la physique
+              n’oublie pas gratuitement : ce bit doit ressortir en chaleur, au
+              minimum kBT ln 2 (principe de Landauer, 1961). La permutation
+              0 ↔ 1, elle, ne détruit rien : on peut toujours revenir en
+              arrière, la borne ne s’applique pas.
+            </p>
+          </div>
+          <div>
+            <h4>Et dans la vraie vie ?</h4>
+            <p>
+              À {formatNumber(temperature)} K, la borne vaut ≈{" "}
+              {formatNumber(minimum * 1e21)} zJ par bit — un zeptojoule, c’est
+              10⁻²¹ joule. Les puces actuelles dissipent encore de l’ordre de
+              10³ à 10⁶ fois cette limite, et la borne a été vérifiée au
+              laboratoire en 2012 sur une microbille piégée par laser (Bérut{" "}
+              <em>et al.</em>, <em>Nature</em>). Aller lentement rapproche de la
+              borne : c’est le curseur « durée relative ».
+            </p>
+          </div>
         </div>
       </div>
     </VizFrame>

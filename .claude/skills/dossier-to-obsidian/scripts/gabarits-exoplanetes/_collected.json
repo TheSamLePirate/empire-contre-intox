@@ -1,0 +1,322 @@
+{
+ "eyebrow": "Dossier XVII · Astronomie & exoplanètes",
+ "h1": "Atmosphères & Mondes Lointains",
+ "lead": "Un fil unique à travers la science des exoplanètes : de la physique d'une atmosphère aux télescopes qui la sondent, des Jupiters chauds aux mondes où l'eau, peut-être, coule. Chaque donnée mesurée, vérifiée et sourcée.",
+ "quote": "« Plus de 6 000 exoplanètes confirmées en 2026 — et derrière chaque point de lumière qui vacille, un monde entier à décrire. »",
+ "signals": [
+  [
+   "L'outil-roi",
+   "JWST — miroir 6,5 m, au point L2"
+  ],
+  [
+   "La précision",
+   "ESPRESSO : quelques cm/s en vitesses radiales"
+  ],
+  [
+   "Le joyau",
+   "WASP-39 b : CO₂, SO₂ et H₂O par le JWST"
+  ],
+  [
+   "La quête",
+   "TRAPPIST-1 : 7 mondes telluriques"
+  ]
+ ],
+ "ouverture_kicker": "Ouverture",
+ "ouverture_titre": "Au-delà du Soleil, des milliers de mondes.",
+ "ouverture": [
+  "Une **exoplanète**, c'est une planète qui tourne autour d'une autre étoile que le Soleil. L'idée est ancienne ; la preuve, récente. Il a fallu attendre **1995** — et une étoile nommée 51 Pegasi — pour en tenir la première autour d'un astre semblable au nôtre. Trente ans plus tard, on en compte **plus de six mille**, et le rythme ne faiblit pas.",
+  "Ce que ces mondes nous ont appris tient en un mot : **la diversité**. Des géantes de gaz brûlantes collées à leur étoile, des « super-Terres » sans équivalent chez nous, des planètes errantes sans soleil. Et nous savons tout cela **presque sans jamais les voir** : on les devine au tremblement qu'elles impriment à leur étoile, ou à la goutte de lumière qu'elles lui dérobent en passant devant. Ce dossier suit ce fil — de la physique d'une atmosphère jusqu'aux mondes où, peut-être, l'eau coule."
+ ],
+ "fil": [
+  [
+   "Comprendre",
+   "La physique des atmosphères : ce qui retient un gaz autour d'un monde, et ce qu'il révèle."
+  ],
+  [
+   "Observer",
+   "Les télescopes au sol et dans l'espace, des vitesses radiales au JWST."
+  ],
+  [
+   "Analyser",
+   "La spectroscopie : lire la composition d'une atmosphère à des années-lumière."
+  ],
+  [
+   "Cataloguer",
+   "Les familles de mondes : géantes de glace, Jupiters chauds, super-Terres, mondes habitables."
+  ]
+ ],
+ "objectifs_titre": "Du gaz retenu par la gravité jusqu'aux biosignatures : la chaîne complète.",
+ "objectifs": [
+  [
+   "La physique",
+   "Hydrostatique, loi des gaz parfaits, profil barométrique, effet de serre : les équations qui gouvernent toute atmosphère, de la Terre à WASP-39 b."
+  ],
+  [
+   "Les instruments",
+   "HARPS, ESPRESSO, le VLT, Hubble, Kepler, TESS et le télescope spatial James Webb (JWST) : comment on détecte et on caractérise un monde qu'on ne verra jamais de près."
+  ],
+  [
+   "Les mondes",
+   "Jupiters chauds, super-Terres, mini-Neptunes, mondes Hycean, planètes vagabondes : la diversité qui dépasse notre Système solaire."
+  ]
+ ],
+ "formules": [
+  {
+   "n": 1,
+   "titre": "Les trois équations de l'atmosphère",
+   "tag": "Statique des fluides",
+   "tex": "\\frac{dP}{dz} = -\\rho g \\qquad P = \\frac{\\rho R T}{M} \\qquad P(z) = P_0\\,\\exp\\!\\left(-\\frac{Mgz}{RT}\\right)",
+   "say": "« dé P sur dé z égale moins rhô g ; P égale rhô R T sur M ; P de z égale P zéro fois exponentielle de moins M g z sur R T »",
+   "glose": "Le **d** droit se dit « dé » : c'est une variation infiniment petite, jamais un « delta ». $dP/dz$ se lit donc « dé P sur dé z » — de combien la pression change quand on monte d'un mètre. La lettre grecque **ρ** se dit « rhô ». **P<sub>0</sub>** se dit « P zéro » : la pression au niveau de référence, le sol. $\\exp(\\cdot)$ se lit « exponentielle de », et tout ce qui suit le signe moins est *en entier* à l'exposant : « moins M g z **le tout sur** R T ».",
+   "note": "Avec **P** la pression, **z** l'altitude, $\\rho$ la masse volumique du gaz, **g** l'accélération de la pesanteur, **T** la température, **M** la masse molaire moyenne du mélange et $R = 8{,}31\\ \\mathrm{J\\,mol^{-1}\\,K^{-1}}$ la constante des gaz parfaits. La troisième relation (profil barométrique, à température constante) montre que la pression décroît **exponentiellement** avec l'altitude — d'autant plus vite que le gaz est lourd."
+  },
+  {
+   "n": 2,
+   "titre": "Équation du transfert radiatif",
+   "tag": "Physique du rayonnement",
+   "tex": "\\frac{dI_\\nu}{d\\tau_\\nu} = I_\\nu - S_\\nu",
+   "say": "« dé I nu sur dé tau nu égale I nu moins S nu »",
+   "glose": "La lettre grecque **ν** se dit « nu » — c'est la fréquence de la lumière, portée en indice : $I_\\nu$ se lit « I nu », l'intensité *à cette fréquence-là*, et non « I fois nu ». Ne pas la confondre avec un **v** latin. **τ** se dit « tau » : l'épaisseur optique, l'épaisseur de matière traversée telle que la lumière la ressent. Le **d** droit se dit « dé », et $S_\\nu$ « S nu », la fonction source.",
+   "note": "La variation de l'intensité spécifique $I_\\nu$ le long d'une ligne de visée, mesurée en épaisseur optique $\\tau_\\nu$, est le bilan entre ce que le milieu **absorbe** (terme $I_\\nu$) et ce qu'il **émet** (la fonction source $S_\\nu$). Résoudre cette équation pour chaque longueur d'onde, c'est reconstituer le spectre qu'on compare aux données."
+  }
+ ],
+ "ateliers": [
+  {
+   "id": "baro",
+   "titre": "Atelier interactif · le profil barométrique",
+   "tag": "P(z) = P₀·e^(−z/H)"
+  },
+  {
+   "id": "rv",
+   "titre": "Atelier interactif · la méthode des vitesses radiales",
+   "tag": "l'étoile « tangue » par effet Doppler"
+  },
+  {
+   "id": "spectre",
+   "titre": "Atelier interactif · spectre de transmission de WASP-39 b (JWST)",
+   "tag": "profondeur de transit vs longueur d'onde"
+  },
+  {
+   "id": "mr",
+   "titre": "Atelier interactif · le diagramme masse-rayon",
+   "tag": "échelles log · courbes de composition (Zeng) · 47 mondes"
+  },
+  {
+   "id": "stats",
+   "titre": "Atelier interactif · toutes les exoplanètes confirmées",
+   "tag": "NASA Exoplanet Archive · 6 298 mondes"
+  },
+  {
+   "id": "transit",
+   "titre": "Atelier interactif · la méthode du transit",
+   "tag": "profondeur = (R<sub>p</sub>/R<sub>★</sub>)²"
+  }
+ ],
+ "kickers": {
+  "01 — Chapitre 1 — Les atmosphères planétaires": "Chapitre 1 · Le socle physique",
+  "02 — Chapitre 2 — Les télescopes au sol": "Chapitre 2 · Les outils d'observation",
+  "03 — Chapitre 3 — Les télescopes spatiaux & les sondes": "Chapitre 3 · Les outils d'observation",
+  "04 — Chapitre 4 — Lire une atmosphère, la spectroscopie": "Chapitre 4 · Méthodes avancées",
+  "05 — Chapitre 5 — Les géantes de glace & les petits corps": "Chapitre 5 · Le Système solaire externe",
+  "06 — Chapitre 6 — Les Jupiters chauds": "Chapitre 6 · Les familles de mondes",
+  "07 — Chapitre 7 — Super-Terres, mini-Neptunes & rocheuses": "Chapitre 7 · Les familles de mondes",
+  "08 — Chapitre 8 — La zone habitable & les mondes habitables": "Chapitre 8 · Les familles de mondes",
+  "09 — Chapitre 9 — Diversité des systèmes & statistiques 2026": "Chapitre 9 · Vue d'ensemble",
+  "10 — Chapitre 10 — Missions futures & perspectives": "Chapitre 10 · Perspectives",
+  "11 — L'appareil critique — Les sources du dossier": "L'appareil critique"
+ },
+ "credit": "Provoxys",
+ "credit_note": "avec le soutien de Samlepirate (Atlas)",
+ "avatars": [
+  "provoxys.jpeg",
+  "samlepirate.jpeg"
+ ],
+ "scopes": [
+  {
+   "nom": "Hubble",
+   "full": "Hubble Space Telescope · NASA / ESA",
+   "chip": "Actif depuis 1990"
+  },
+  {
+   "nom": "Spitzer",
+   "full": "Spitzer Space Telescope · NASA (infrarouge)",
+   "chip": "Retiré en 2020"
+  },
+  {
+   "nom": "Kepler",
+   "full": "Mission Kepler (puis K2) · NASA",
+   "chip": "Retiré en 2018"
+  },
+  {
+   "nom": "TESS",
+   "full": "Transiting Exoplanet Survey Satellite · NASA",
+   "chip": "Actif depuis 2018"
+  }
+ ],
+ "jalons": [
+  [
+   "1995 — La première",
+   "Michel Mayor et Didier Queloz détectent **51 Pegasi b**, première planète autour d'une étoile semblable au Soleil — un Jupiter chaud bouclant son orbite en quatre jours. Prix Nobel de physique 2019."
+  ],
+  [
+   "1999 — Le premier transit",
+   "**HD 209458 b** devient la première exoplanète vue passer devant son étoile. La méthode des transits, qui dominera toute la discipline, est née."
+  ],
+  [
+   "2002 — La première atmosphère",
+   "Hubble lit du **sodium** dans l'atmosphère de HD 209458 b : pour la première fois, on caractérise l'air d'un autre monde."
+  ],
+  [
+   "2009 — Kepler",
+   "Lancé pour fixer en continu 150 000 étoiles d'un seul champ, **Kepler** va recenser les planètes par milliers et établir qu'elles sont plus nombreuses que les étoiles."
+  ],
+  [
+   "2014 — La grande moisson",
+   "715 planètes validées d'un coup, et **Kepler-186 f**, première planète de taille terrestre confirmée dans la zone habitable de son étoile."
+  ],
+  [
+   "2016 — Record & Proxima",
+   "1 284 nouvelles planètes annoncées par Kepler, et la découverte de **Proxima Centauri b**, autour de l'étoile la plus proche du Soleil (4,2 années-lumière)."
+  ],
+  [
+   "2017 — TRAPPIST-1",
+   "Sept planètes telluriques autour d'une seule naine rouge, dont trois en zone tempérée : le plus grand lot de **mondes de la taille de la Terre** connu autour d'une étoile."
+  ],
+  [
+   "2018 — TESS",
+   "Le relevé de tout le ciel commence. **TESS** vise les étoiles brillantes et proches, pourvoyeuses des meilleures cibles pour le JWST."
+  ],
+  [
+   "2022 — Le JWST entre en scène",
+   "Première détection claire de **CO₂** dans une atmosphère d'exoplanète (WASP-39 b), bientôt suivie du SO₂ — la preuve d'une photochimie à l'œuvre sur un autre monde."
+  ],
+  [
+   "2026 — Plus de 6 000 mondes",
+   "L'archive de la NASA franchit les **6 000 exoplanètes** confirmées. En trente ans, on est passé d'une seule à des milliers."
+  ],
+  [
+   "Années 2030 — Imager la Terre 2.0",
+   "Le projet **Habitable Worlds Observatory** vise à photographier directement des mondes de la taille de la Terre et à y traquer des biosignatures."
+  ]
+ ],
+ "closing_titre": "Le réel est déjà vertigineux : plus de 6 000 mondes, et chacun une histoire de gaz, de lumière et de gravité.",
+ "closing": "Ce dossier rassemble en un seul fil tous les documents que Provoxys a consacrés aux exoplanètes : la physique des atmosphères, les instruments qui les sondent, la spectroscopie qui les lit, et le bestiaire des mondes — géantes de glace, Jupiters chauds, super-Terres, mondes Hycean, planètes vagabondes. Tout son contenu est conservé, ses « visuels 3D » compris ; l'Empire contre Intox y a ajouté la vérification des chiffres et la traçabilité des sources. Car face à l'immensité, la meilleure réponse n'est pas le mythe : c'est la mesure.",
+ "devise": "Veritas omnia vincit",
+ "notes": [
+  [
+   "00 — Ouverture — Au-delà du Soleil, des milliers de mondes",
+   "Ouverture — Au-delà du Soleil, des milliers de mondes"
+  ],
+  [
+   "01 — Chapitre 1 — Les atmosphères planétaires",
+   "Chapitre 1 — Les atmosphères planétaires"
+  ],
+  [
+   "02 — Chapitre 2 — Les télescopes au sol",
+   "Chapitre 2 — Les télescopes au sol"
+  ],
+  [
+   "03 — Chapitre 3 — Les télescopes spatiaux & les sondes",
+   "Chapitre 3 — Les télescopes spatiaux & les sondes"
+  ],
+  [
+   "04 — Chapitre 4 — Lire une atmosphère, la spectroscopie",
+   "Chapitre 4 — Lire une atmosphère : la spectroscopie"
+  ],
+  [
+   "05 — Chapitre 5 — Les géantes de glace & les petits corps",
+   "Chapitre 5 — Les géantes de glace & les petits corps"
+  ],
+  [
+   "06 — Chapitre 6 — Les Jupiters chauds",
+   "Chapitre 6 — Les Jupiters chauds"
+  ],
+  [
+   "07 — Chapitre 7 — Super-Terres, mini-Neptunes & rocheuses",
+   "Chapitre 7 — Super-Terres, mini-Neptunes & rocheuses"
+  ],
+  [
+   "08 — Chapitre 8 — La zone habitable & les mondes habitables",
+   "Chapitre 8 — La zone habitable & les mondes habitables"
+  ],
+  [
+   "09 — Chapitre 9 — Diversité des systèmes & statistiques 2026",
+   "Chapitre 9 — Diversité des systèmes & statistiques 2026"
+  ],
+  [
+   "10 — Chapitre 10 — Missions futures & perspectives",
+   "Chapitre 10 — Missions futures & perspectives"
+  ],
+  [
+   "11 — L'appareil critique — Les sources du dossier",
+   "L'appareil critique — Les sources du dossier"
+  ],
+  [
+   "12 — Le mot de la fin — Le réel est déjà vertigineux",
+   "Le mot de la fin"
+  ]
+ ],
+ "chapitres": {
+  "01 — Chapitre 1 — Les atmosphères planétaires": [
+   "1.1 — Définition et nature physique",
+   "1.2 — Équations fondamentales",
+   "1.3 — Composition chimique et structure",
+   "1.4 — Importance pour le climat et la vie",
+   "2 — Comparaison des atmosphères du Système solaire"
+  ],
+  "02 — Chapitre 2 — Les télescopes au sol": [
+   "La révolution de la précision spectroscopique"
+  ],
+  "03 — Chapitre 3 — Les télescopes spatiaux & les sondes": [
+   "James Webb (JWST) — l'outil le plus puissant",
+   "Avant et autour de Webb : quatre éclaireurs",
+   "Les sondes du Système solaire"
+  ],
+  "04 — Chapitre 4 — Lire une atmosphère, la spectroscopie": [
+   "4.1 — Transmission et émission",
+   "4.2 — Molécules détectées & photochimie",
+   "4.3 — JWST vs Hubble / Spitzer",
+   "4.4 — Pipelines & limites (2026)"
+  ],
+  "05 — Chapitre 5 — Les géantes de glace & les petits corps": [
+   "1 — Les géantes de glace : structure interne",
+   "2 — Le rôle des « petits corps »",
+   "3 — L'apport de New Horizons"
+  ],
+  "06 — Chapitre 6 — Les Jupiters chauds": [
+   "6.1 — Histoire de la découverte",
+   "6.2 à 6.4 — Trois fiches",
+   "6.5 — Autres Jupiters chauds notables"
+  ],
+  "07 — Chapitre 7 — Super-Terres, mini-Neptunes & rocheuses": [
+   "7.1 — Définition et occurrence",
+   "7.2 — Le système TRAPPIST-1",
+   "7.3 & 7.4 — LHS 1140 b et GJ 1214 b",
+   "7.5 — Outils & satellites"
+  ],
+  "08 — Chapitre 8 — La zone habitable & les mondes habitables": [
+   "8.1 — Définition de la zone habitable",
+   "8.2 & 8.3 — Proxima Centauri b, TOI-700 d",
+   "8.4 — K2-18 b et les mondes Hycean",
+   "8.5 & 8.6 — Statistiques & futures missions"
+  ],
+  "09 — Chapitre 9 — Diversité des systèmes & statistiques 2026": [
+   "Frise interactive · trente ans d'exoplanètes",
+   "9.1 — Architectures des systèmes",
+   "9.2 — Planètes vagabondes",
+   "9.3 — Statistiques d'occurrence 2026",
+   "9.4 — Outils de découverte",
+   "9.5 — Synthèse de la diversité"
+  ],
+  "10 — Chapitre 10 — Missions futures & perspectives": [],
+  "11 — L'appareil critique — Les sources du dossier": [
+   "Sources institutionnelles",
+   "Articles scientifiques (sélection)"
+  ],
+  "00 — Ouverture — Au-delà du Soleil, des milliers de mondes": [
+   "Le fil conducteur du dossier",
+   "Ce que ce dossier vous apprend"
+  ],
+  "12 — Le mot de la fin — Le réel est déjà vertigineux": []
+ }
+}
