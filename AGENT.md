@@ -88,6 +88,15 @@ provoxys/                       ← créateur Provoxys (identité visuelle propr
   provoxys.jpeg, samlepirate.jpeg, inepties.jpeg
 samlepirate/                    ← créateur Samlepirate
   champs-vecteurs.html          ← Dossier VII (identité propre : Newsreader / JetBrains Mono)
+  sophismes/                    ← Dossier XXIX (codex ECI + accent pourpre)
+    index.html                  ← 7 parties, 40 chapitres, 25 ateliers React, 9 formules
+    repertoire.html             ← les 295 procédés, avec « comment répondre » pour chacun
+    quizz.html · quizz/data/    ← 1 950 questions exportées (fetch : ne marche pas en file://)
+    discours.html               ← le Grand Discours, 4 versions annotées, compteur
+    portraits.html              ← 20 fiches en six actes
+    assets/                     ← hero + 8 illustrations + 3 vignettes + 20 portraits
+                                  + bundle sophismes-viz.js/.css
+                                  SOURCES ET GÉNÉRATEURS : a_traiter/sophisme-rethorique/build/
   ordinateur-1983/              ← Dossier XXVII (codex ECI + mono pour le code)
     index.html                  ← 15 chapitres, 15 expériences interactives, CPU 8 bits exécutable
     assets/                     ← hero + 5 illustrations de chapitre + vignette d'index
@@ -113,8 +122,8 @@ Dockerfile · nginx.conf · docker-compose.yml · .dockerignore
                                 ← déploiement statique Nginx vers Portainer (`empire-contre-intox-site`)
 ```
 
-> **XXIX dossiers** au total — l'index affiche **`<b>XXIX</b> dossiers`**. Numérotation actuelle (ordre d'affichage) :
-> I `ymir-lalie/resume-eres.html` · II `ymir-lalie/edicarien.html` · III `provoxys/Artemis2.html` · IV `horloge-univers/chronos.html` · V `jorge-zalex/elements.html` · VI `la-vie-de-la-terre/index.html` · VII `samlepirate/champs-vecteurs.html` · VIII `ymir-lalie/ancetres-genetiques/index.html` · IX `lalie-ymir-sam/index.html` · X `ymir-lalie/singe-aquatique/index.html` · XI `ymir-lalie/esclavage/index.html` · XII `provoxys/tornades/index.html` · XIII `phantom/abeilles/index.html` · XIV `formules/index.html` · XV `ymir-lalie/la-resistance/index.html` · XVI `provoxys/briser-le-silence/index.html` · XVII `provoxys/exoplanetes/index.html` · XVIII `ymir-lalie/premieres-cites/index.html` · XIX `provoxys/sondes/index.html` · XX `ymir-lalie/premier-empires/index.html` · XXI `provoxys/therapie-conversion/index.html` · XXII `ymir-lalie/egypte-grece/index.html` · XXIII `ymir-lalie/evolution/index.html` · XXIV `ymir-lalie-phantom/pirates/index.html` · XXV `provoxys/entropie/index.html` · XXVI `ymir-lalie/alexandre-le-grand/index.html` · XXVII `samlepirate/ordinateur-1983/index.html` · XXVIII `provoxys/lumiere/index.html` (+ compagnon `portraits.html`) · XXIX `sources/sources.html` (« Les Sources » — appareil critique commun à tous les dossiers).
+> **XXX dossiers** au total — l'index affiche **`<b>XXX</b> dossiers`**. Numérotation actuelle (ordre d'affichage) :
+> I `ymir-lalie/resume-eres.html` · II `ymir-lalie/edicarien.html` · III `provoxys/Artemis2.html` · IV `horloge-univers/chronos.html` · V `jorge-zalex/elements.html` · VI `la-vie-de-la-terre/index.html` · VII `samlepirate/champs-vecteurs.html` · VIII `ymir-lalie/ancetres-genetiques/index.html` · IX `lalie-ymir-sam/index.html` · X `ymir-lalie/singe-aquatique/index.html` · XI `ymir-lalie/esclavage/index.html` · XII `provoxys/tornades/index.html` · XIII `phantom/abeilles/index.html` · XIV `formules/index.html` · XV `ymir-lalie/la-resistance/index.html` · XVI `provoxys/briser-le-silence/index.html` · XVII `provoxys/exoplanetes/index.html` · XVIII `ymir-lalie/premieres-cites/index.html` · XIX `provoxys/sondes/index.html` · XX `ymir-lalie/premier-empires/index.html` · XXI `provoxys/therapie-conversion/index.html` · XXII `ymir-lalie/egypte-grece/index.html` · XXIII `ymir-lalie/evolution/index.html` · XXIV `ymir-lalie-phantom/pirates/index.html` · XXV `provoxys/entropie/index.html` · XXVI `ymir-lalie/alexandre-le-grand/index.html` · XXVII `samlepirate/ordinateur-1983/index.html` · XXVIII `provoxys/lumiere/index.html` (+ compagnon `portraits.html`) · XXIX `samlepirate/sophismes/index.html` (+ compagnons `repertoire.html`, `quizz.html`, `discours.html`, `portraits.html`) · XXX `sources/sources.html` (« Les Sources » — appareil critique commun à tous les dossiers).
 >
 > **Cette liste est la première chose à relire avant d'ajouter un dossier** : la numérotation bouge à chaque ajout, et « Les Sources » doit rester **le dernier numéro**. En cas de doute, l'`index.html` fait foi — c'est lui qui est publié.
 >

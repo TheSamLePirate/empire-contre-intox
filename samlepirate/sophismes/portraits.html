@@ -1,0 +1,1193 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portraits — vingt visages de l'art d'avoir l'air d'avoir raison — Empire contre Intox</title>
+  <meta name="description" content="Vingt fiches en six actes : Corax, Protagoras, Gorgias, Platon, Aristote, Quintilien, Port-Royal, Locke, Bentham, Schopenhauer, Hamblin, Perelman, Asch, Tversky et Kahneman, Mercier et Sperber.">
+  <meta name="theme-color" content="#050811">
+  <meta name="author" content="Samlepirate">
+  <link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr">
+  <meta name="rights" content="Contenu éditorial sous licence Creative Commons Attribution – Pas d'Utilisation Commerciale – Pas de Modification 4.0 International (CC BY-NC-ND 4.0).">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Portraits — vingt visages de l'art d'avoir l'air d'avoir raison">
+  <meta property="og:description" content="Vingt fiches en six actes : Corax, Protagoras, Gorgias, Platon, Aristote, Quintilien, Port-Royal, Locke, Bentham, Schopenhauer, Hamblin, Perelman, Asch, Tversky et Kahneman, Mercier et Sperber.">
+  <meta property="og:image" content="https://empire-contre-intox.com/samlepirate/sophismes/assets/sophismes-hero.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+/* ================= JETONS CODEX ECI + AZUR + SPECTRE ================= */
+:root{
+  --void:#050811;--abyss:#070c1a;--navy:#0e1a2e;--ink:#f4ecd8;--parch:#e7dcc1;--muted:#c0b59a;--soft:#8f8c78;
+  --gold:#d6ac55;--gold-bright:#f3d98a;--gold-deep:#9c7228;--line:rgba(214,172,85,.20);--line-2:rgba(244,236,216,.10);
+  --ease:cubic-bezier(.22,1,.36,1);--roman:'Cinzel',serif;--serif:'Fraunces',serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --pourpre:#e79ac0;--pourpre-deep:#b8557a;--pourpre-glow:rgba(231,154,192,.35);
+  --spectre:linear-gradient(90deg,#9c7228 0%,#d6ac55 26%,#f3d98a 46%,#e79ac0 70%,#b8557a 100%);
+  --spectre-soft:linear-gradient(90deg,rgba(156,114,40,0),rgba(214,172,85,.55) 24%,rgba(243,217,138,.6) 48%,rgba(231,154,192,.55) 74%,rgba(184,85,122,0));
+  --glass-bg:linear-gradient(160deg,rgba(14,26,46,.72),rgba(7,12,26,.55));
+  --max:1180px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{margin:0;background:var(--void);color:var(--parch);font-family:var(--serif);font-optical-sizing:auto;font-size:17px;line-height:1.66;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--gold-bright)}img{max-width:100%;display:block}
+h1,h2,h3,h4,.kicker,.btn,.eyebrow,.tag,.lbl{font-family:var(--roman);text-transform:uppercase;letter-spacing:.14em;font-weight:600}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+::selection{background:rgba(231,154,192,.25);color:#fff}
+
+/* ================= COUCHES DE FOND ================= */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(ellipse 60% 42% at 62% 8%,rgba(184,85,122,.20),transparent 70%),
+  radial-gradient(ellipse 40% 30% at 12% 40%,rgba(214,172,85,.05),transparent 70%),
+  linear-gradient(180deg,#081020 0%,var(--abyss) 35%,var(--void) 100%)}
+#stars,#caustics{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#caustics{mix-blend-mode:screen;opacity:.24;mask-image:radial-gradient(ellipse 75% 60% at 60% 18%,#000 0%,rgba(0,0,0,.6) 45%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 75% 60% at 60% 18%,#000 0%,rgba(0,0,0,.6) 45%,transparent 100%)}
+.gridfx{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+  background-image:linear-gradient(rgba(214,172,85,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(214,172,85,.07) 1px,transparent 1px);background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000,transparent 100%)}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.055;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 90% 80% at 50% 50%,transparent 60%,rgba(5,8,17,.55) 100%)}
+.frame{position:fixed;inset:18px;z-index:40;pointer-events:none}
+.frame i{position:absolute;width:28px;height:28px;border:1px solid var(--gold);opacity:.85}
+.frame i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}.frame i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+.frame i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}.frame i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+.progress-top{position:fixed;top:0;left:0;height:2px;width:0;z-index:50;background:var(--spectre);box-shadow:0 0 14px rgba(231,154,192,.7)}
+main{position:relative;z-index:2}
+
+/* ================= TOPBAR ================= */
+.topbar{position:sticky;top:0;z-index:30;background:rgba(5,8,17,.62);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border-bottom:1px solid var(--line-2)}
+.topbar .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.seal{display:block;width:36px;height:36px;border-radius:50%;padding:2px;background:conic-gradient(from 0deg,var(--gold-deep),var(--gold-bright),var(--gold-deep),var(--gold-bright),var(--gold-deep));flex:none;box-shadow:0 0 18px rgba(214,172,85,.25)}
+.seal img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.topbar .t{font-family:var(--roman);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.nav{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-end}
+.nav a{font-family:var(--roman);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--muted);position:relative;padding:8px 0;white-space:nowrap}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.nav a:hover::after,.nav a:focus-visible::after{transform:scaleX(1)}.nav a.ext{color:var(--pourpre)}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--gold-bright);font-family:var(--roman);font-size:.6rem;letter-spacing:.2em;padding:8px 12px;border-radius:2px;cursor:pointer}
+.topbar.open .nav{display:flex;position:absolute;top:60px;left:0;right:0;background:rgba(5,8,17,.97);border-bottom:1px solid var(--line);padding:16px 28px;flex-direction:column;gap:10px;align-items:flex-start;max-height:70vh;overflow-y:auto}
+
+/* ================= HERO ================= */
+.hero{position:relative;min-height:min(94vh,900px);display:grid;align-items:center;overflow:hidden;isolation:isolate}
+.hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:36px;align-items:center;padding-top:56px;padding-bottom:56px}
+.hero-inner{display:contents}
+.eyebrow{font-size:.62rem;letter-spacing:.34em;color:var(--gold);margin:0 0 18px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);flex:none}
+.hero h1{font-size:clamp(2.6rem,6.4vw,5.6rem);line-height:.96;margin:0 0 24px;color:var(--ink);letter-spacing:.05em;font-weight:700;text-shadow:0 0 40px rgba(244,236,216,.12)}
+.hero-lead{font-size:1.22rem;max-width:54ch;color:var(--parch);margin:0 0 14px;font-weight:300}
+.hero-quote{font-style:italic;color:var(--gold-bright);max-width:52ch;margin:0 0 30px;font-size:1.06rem}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:2px;font-size:.64rem;letter-spacing:.24em;text-decoration:none;transition:transform .5s var(--ease),box-shadow .5s var(--ease),background .5s;border:0;cursor:pointer}
+.btn-1{background:linear-gradient(135deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep));color:#1a1408;box-shadow:0 0 0 1px rgba(214,172,85,.4),0 10px 30px -14px rgba(214,172,85,.6)}
+.btn-2{border:1px solid var(--gold);color:var(--gold-bright);background:rgba(214,172,85,.04)}
+.btn-ext{border:1px solid rgba(231,154,192,.6);color:var(--pourpre);background:rgba(231,154,192,.05)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px -14px rgba(214,172,85,.55)}
+.signal-board{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:36px;background:var(--line);border:1px solid var(--line);position:relative}
+.signal-board::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--spectre-soft)}
+.signal-board div{background:rgba(5,8,17,.72);padding:14px 12px;backdrop-filter:blur(6px)}
+.signal-board b{display:block;font-family:var(--roman);font-size:1.02rem;color:var(--gold-bright);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.signal-board span{font-size:.74rem;color:var(--soft)}
+.foil{display:inline-block;background:var(--foil);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 12s ease-in-out infinite;filter:brightness(1.04)}
+@keyframes foil{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.chroma{position:relative;display:inline-block}
+.chroma::before,.chroma::after{content:attr(data-t);position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.42;transition:transform 1.2s var(--ease),opacity 1.2s}
+.chroma::before{color:#ff5a6a;transform:translate(-1.5px,0)}.chroma::after{color:#e79ac0;transform:translate(1.5px,0)}
+.hero:hover .chroma::before{transform:translate(-3px,0);opacity:.55}.hero:hover .chroma::after{transform:translate(3px,0);opacity:.55}
+
+/* ================= FILETS, BANDES, RAMPE D'ACCÈS ================= */
+.spectral-rule{height:1px;border:0;margin:0;background:var(--spectre-soft);opacity:.75}
+.band{padding:72px 0}
+.intro-band{background:linear-gradient(180deg,rgba(14,26,46,0),rgba(14,26,46,.45) 30%,rgba(14,26,46,.45) 70%,rgba(14,26,46,0))}
+.intro-band .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+.manifesto h2{font-size:1.35rem;color:var(--ink);letter-spacing:.12em;margin:0 0 14px;line-height:1.3}
+.manifesto p{color:var(--muted);margin:0 0 12px;font-size:1.02rem}
+.timeline{list-style:none;margin:0;padding:0 0 0 22px;border-left:1px solid var(--line);position:relative;overflow:hidden}
+.timeline::before{content:"";position:absolute;left:-1px;top:0;width:1px;height:100%;background:linear-gradient(180deg,var(--pourpre),transparent 30%);animation:pulseDown 6s linear infinite}
+@keyframes pulseDown{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+.timeline li{position:relative;padding:0 0 16px 12px;font-size:.95rem;color:var(--parch)}
+.timeline li::before{content:"";position:absolute;left:-27px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--void);border:1px solid var(--gold);box-shadow:0 0 0 3px var(--void)}
+.timeline li b{font-family:var(--roman);font-size:.6rem;letter-spacing:.22em;color:var(--gold);display:block;margin-bottom:2px}
+.learn{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+.glass{position:relative;border:1px solid var(--line-2);border-radius:3px;background:var(--glass-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:20px 22px;overflow:hidden;
+  box-shadow:inset 0 1px 0 rgba(244,236,216,.08),0 20px 40px -30px rgba(0,0,0,.8)}
+.glass::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--spectre);opacity:.85}
+.glass::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 52%,rgba(244,236,216,.07) 60%,transparent 68%);transform:translateX(-130%);transition:transform 1.4s var(--ease)}
+.glass:hover::after{transform:translateX(130%)}
+.lbl{font-size:.56rem;letter-spacing:.28em;color:var(--pourpre);margin:0 0 8px}
+.glass h4{font-size:.86rem;letter-spacing:.14em;color:var(--ink);margin:0 0 8px}
+.glass p{margin:0;font-size:.94rem;color:var(--muted)}
+.digest{margin-top:56px;border:1px solid var(--line);border-radius:3px;padding:26px 28px;background:rgba(5,8,17,.5);position:relative}
+.digest::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 60% at 100% 0%,rgba(231,154,192,.08),transparent 70%)}
+.digest > h3{font-size:.86rem;letter-spacing:.24em;color:var(--gold-bright);margin:0 0 4px;position:relative}
+.digest > p{color:var(--soft);font-size:.9rem;margin:0;position:relative}
+.digest ol{margin:16px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px 28px;counter-reset:d;position:relative}
+.digest li{counter-increment:d;position:relative;padding-left:46px;font-size:.96rem;color:var(--parch)}
+.digest li::before{content:counter(d,upper-roman);position:absolute;left:0;top:-4px;font-family:var(--roman);font-size:1.25rem;color:transparent;-webkit-text-stroke:1px var(--gold)}
+.digest li b{font-family:var(--roman);font-size:.58rem;letter-spacing:.2em;color:var(--gold);display:block}
+
+/* ================= ACTE / CHAPITRE ================= */
+.act-band{position:relative;padding:84px 0 64px;overflow:hidden;scroll-margin-top:70px}
+.act-band::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,26,46,0),rgba(14,26,46,.6) 40%,rgba(14,26,46,0))}
+.act-band .wrap{position:relative;display:grid;grid-template-columns:150px 1fr;gap:34px;align-items:center}
+.act-num{font-family:var(--roman);font-size:6.4rem;line-height:1;color:transparent;-webkit-text-stroke:1px var(--gold);position:relative;text-align:center}
+.act-num::before,.act-num::after{content:attr(data-n);position:absolute;inset:0;opacity:.5;mix-blend-mode:screen}
+.act-num::before{-webkit-text-stroke-color:#ff2f3c;transform:translate(-3px,0)}.act-num::after{-webkit-text-stroke-color:#12b7ff;transform:translate(3px,0)}
+.act-band h2{font-size:1.75rem;color:var(--ink);margin:6px 0 10px;letter-spacing:.1em;line-height:1.25}
+.act-band p{color:var(--muted);max-width:62ch;margin:0}
+.act-kicker{font-family:var(--roman);font-size:.58rem;letter-spacing:.3em;color:var(--pourpre);margin:0 0 4px}
+.chapter{padding:56px 0;scroll-margin-top:70px}
+.chapter-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--line);position:relative}
+.chapter-head::after{content:"";position:absolute;left:0;bottom:-1px;width:120px;height:1px;background:var(--spectre)}
+.kicker{font-size:.6rem;letter-spacing:.3em;color:var(--gold);margin:0 0 10px}
+.chapter-head h2{font-size:1.5rem;margin:0;color:var(--ink);letter-spacing:.09em;line-height:1.28}
+.chapter-number{font-family:var(--roman);font-size:3.2rem;line-height:1;color:transparent;-webkit-text-stroke:1px var(--gold-deep);flex:none}
+.transcript{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,340px);gap:36px}
+.transcript > *{min-width:0}
+.prose{min-width:0}
+:is(.prose, .side-note) > :is(.dtable-wrap,.formula-block,.chapter-figure,.viz-mount,.companion,.science-block,.question-block,.lesson-block,.dialogue-block,.article-noir){max-width:100%}
+.prose p{margin:0 0 1.1em;font-size:1.06rem}
+.prose > p:first-of-type::first-letter{font-family:var(--roman);font-size:3.1em;float:left;line-height:.85;padding:6px 10px 0 0;color:var(--gold-bright)}
+.prose ol,.prose ul{margin:0 0 1.1em;padding-left:1.3em;color:var(--parch)}
+.prose li{margin:0 0 .45em;font-size:1.02rem}
+.prose h3{font-family:var(--roman);font-size:.92rem;letter-spacing:.14em;color:var(--gold-bright);margin:30px 0 12px}
+.group-title{font-family:var(--roman);font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;color:var(--gold);margin:30px 0 10px}
+.side-note{align-self:start;position:sticky;top:80px;display:grid;gap:14px}
+.side-note .glass p{font-size:.92rem;color:var(--parch)}
+.side-note .glass p + p{margin-top:.7em}
+.box-k{font-family:var(--roman);font-size:.55rem;letter-spacing:.26em;color:var(--pourpre);text-transform:uppercase;margin:0 0 8px}
+.box-k.warn{color:#ff8a6e}.box-k.gold{color:var(--gold-bright)}
+.glass.antiintox::before{background:linear-gradient(90deg,#ff2f3c,#ff8a1f)}
+.glass.method::before{background:linear-gradient(90deg,#22d38a,#12b7ff)}
+
+/* ================= BLOCS ÉDITORIAUX ================= */
+.science-block,.question-block,.lesson-block,.dialogue-block,.article-noir{border:1px solid var(--line-2);border-radius:3px;padding:20px 22px;margin:24px 0;background:rgba(5,8,17,.45)}
+.blk-label{font-family:var(--roman);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;margin:0 0 10px;display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
+.question-block{border-left:3px solid var(--gold);background:rgba(214,172,85,.05)}
+.question-block .blk-label{color:var(--gold-bright)}
+.lesson-block{border-left:3px solid var(--pourpre);background:rgba(231,154,192,.045)}
+.lesson-block .blk-label{color:var(--pourpre)}
+.science-block{border-left:3px solid #22d38a;background:rgba(34,211,138,.045)}
+.science-block .blk-label{color:#5fe3ac}
+.dialogue-block{border-left:3px solid var(--gold-deep);background:linear-gradient(160deg,rgba(14,26,46,.62),rgba(7,12,26,.5))}
+.dialogue-block .blk-label{color:var(--gold)}
+.dialogue-block p{font-style:italic;color:var(--parch);margin:0 0 .9em}
+.dialogue-block p:last-child{margin-bottom:0}
+.article-noir{border-left:3px solid #ff4d4d;background:rgba(255,77,77,.06)}
+.article-noir .blk-label{color:#ff9a8a}
+.science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,.article-noir p:last-child{margin-bottom:0}
+.tag-act{margin-left:auto;font-size:.52rem;letter-spacing:.18em;color:var(--soft);border:1px solid var(--line-2);padding:2px 7px;border-radius:2px}
+.lesson-block.retain{border-left-color:var(--gold);background:rgba(214,172,85,.055)}
+.lesson-block.retain .blk-label{color:var(--gold-bright)}
+
+/* — tableaux */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.dtable-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--line-2);border-radius:3px}
+table.dtable{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px}
+table.dtable th,table.dtable td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line-2);vertical-align:top}
+table.dtable th{font-family:var(--roman);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.62rem;color:var(--gold);background:rgba(5,8,17,.6)}
+table.dtable td{color:var(--parch)}table.dtable tr:last-child td{border-bottom:0}
+table.dtable td:first-child{color:var(--ink);white-space:nowrap}
+table.dtable td.wrapok{white-space:normal}
+
+/* — piliers du sommaire */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:14px;margin:24px 0}
+.pillar{border:1px solid var(--line-2);border-top:2px solid var(--pourpre);border-radius:3px;padding:18px;background:var(--glass-bg);text-decoration:none;display:block;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.pillar:hover{transform:translateY(-4px);box-shadow:0 26px 46px -30px rgba(231,154,192,.5)}
+.pillar .pn{font-family:var(--roman);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.pillar h4{font-size:.86rem;color:var(--gold-bright);margin:6px 0}
+.pillar p{margin:0;font-size:.88rem;color:var(--muted)}
+
+/* — figures de chapitre */
+.chapter-figure{margin:26px 0;border:1px solid var(--line-2);border-radius:3px;overflow:hidden;background:var(--glass-bg)}
+.chapter-figure img{width:100%;height:auto;display:block}
+.chapter-figure figcaption{padding:12px 16px;font-size:.85rem;color:var(--muted);border-top:1px solid var(--line-2)}
+.chapter-figure figcaption b{color:var(--gold-bright);font-family:var(--roman);font-weight:600;letter-spacing:.06em}
+
+/* — bloc de formule (charte) */
+.formula-block{position:relative;margin:26px 0;border:1px solid var(--line);border-radius:2px;background:rgba(5,8,17,.62);overflow:hidden}
+.formula-block canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.2;mix-blend-mode:screen;pointer-events:none}
+.fb-head{position:relative;font-family:var(--roman);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-bright);padding:12px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.fb-tag{font-size:.54rem;color:var(--gold);background:rgba(214,172,85,.06);padding:3px 8px;border:1px solid var(--line)}
+.formula{position:relative;padding:22px;text-align:center;color:var(--ink);overflow-x:auto}
+.formula .katex{font-size:1.5rem;color:var(--gold-bright)}
+.imath{display:inline-block;max-width:100%;overflow-x:auto;overflow-y:hidden;vertical-align:bottom;
+  scrollbar-width:none}
+.imath::-webkit-scrollbar{display:none}
+.imath .katex{font-size:1.02em;color:var(--gold-bright)}
+.formula-block .fb-say{position:relative;margin:0 22px 16px;padding:11px 15px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;border:1px solid var(--line);border-left:2px solid var(--gold-deep);border-radius:2px;background:rgba(5,8,17,.40)}
+.fb-say .say-k{flex:none;font-family:var(--roman);font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.fb-say .say-t{flex:1 1 260px;min-width:0;font-family:var(--serif);font-style:italic;font-size:.98rem;line-height:1.62;color:var(--parch);overflow-wrap:break-word}
+.fb-say .say-t b{font-style:normal;color:var(--ink);font-weight:600}
+.fb-say .say-x{display:block;margin-top:7px;font-style:normal;font-size:.86rem;line-height:1.56;color:var(--soft)}
+.fb-say .say-x b{color:var(--muted);font-weight:600}
+.fb-say .say-x .imath .katex{font-size:1em;color:var(--muted)}
+.fb-note{position:relative;margin:0;padding:0 22px 18px;font-size:.91rem;color:var(--muted)}
+.fb-note .imath .katex{font-size:1em;color:var(--pourpre)}
+.formula + .fb-say{margin-top:-2px}
+
+/* ================= ATELIERS ================= */
+.viz-mount{margin:30px 0;scroll-margin-top:74px}
+.viz-lede{font-family:var(--roman);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.viz-lede .vid{color:var(--pourpre);font-weight:700;border:1px solid rgba(231,154,192,.35);padding:2px 7px;border-radius:2px;flex:none}
+.sophismes-gallery{border:1px solid var(--line-2);border-radius:3px;overflow:hidden;background:#07101c;min-height:60px}
+.viz-noscript{padding:18px;color:var(--muted);font-size:.9rem;margin:0}
+.ateliers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:18px;margin-top:30px}
+.card{position:relative;border:1px solid var(--line-2);border-radius:3px;background:linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.7));padding:0 0 18px;overflow:hidden;transition:transform .7s var(--ease),box-shadow .7s var(--ease),border-color .7s;text-decoration:none;display:block;color:inherit}
+.card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--spectre);opacity:.9;z-index:2}
+.lens{height:140px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 30% 30%,rgba(231,154,192,.18),transparent 55%),linear-gradient(180deg,#0c1830,#070c1a)}
+.lens canvas,.lens svg{position:absolute;inset:0;width:100%;height:100%}
+.lens::after{content:"";position:absolute;inset:0;box-shadow:inset 0 -30px 40px -20px rgba(5,8,17,.9);pointer-events:none}
+.card .body{padding:16px 20px 0}
+.card h3{font-size:.76rem;letter-spacing:.18em;margin:0 0 8px;color:var(--ink)}
+.card p{margin:0;font-size:.88rem;color:var(--muted)}
+.card:hover{transform:translateY(-6px);border-color:rgba(231,154,192,.35);box-shadow:0 34px 60px -34px rgba(231,154,192,.4)}
+.card:hover .lens{filter:url(#aberration)}
+.tag{display:inline-block;margin-top:12px;font-size:.52rem;letter-spacing:.2em;color:var(--gold);background:rgba(214,172,85,.06);padding:4px 8px;border:1px solid var(--line)}
+.tag.ext{color:var(--pourpre);border-color:rgba(231,154,192,.35);background:rgba(231,154,192,.05)}
+.atelier-index{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:8px;margin-top:24px}
+.atelier-index a{display:flex;gap:9px;align-items:baseline;text-decoration:none;color:var(--muted);border:1px solid var(--line-2);border-radius:2px;padding:9px 12px;font-size:.85rem;transition:border-color .5s,color .5s,background .5s}
+.atelier-index a:hover{border-color:rgba(231,154,192,.4);color:var(--ink);background:rgba(231,154,192,.05)}
+.atelier-index b{font-family:var(--roman);font-size:.56rem;letter-spacing:.14em;color:var(--pourpre);flex:none}
+
+/* ================= COMPAGNON + PORTRAITS ================= */
+.companion{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;margin:40px 0;border:1px solid rgba(231,154,192,.25);border-radius:3px;padding:26px;background:linear-gradient(120deg,rgba(14,26,46,.75),rgba(7,12,26,.6));position:relative;overflow:hidden}
+.companion::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 40% 60% at 0% 50%,rgba(231,154,192,.12),transparent 70%);pointer-events:none}
+.companion .shot{position:relative;border-radius:2px;overflow:hidden;border:1px solid var(--line-2);aspect-ratio:1600/619;background:#0c1830}
+.companion .shot img{width:100%;height:100%;object-fit:cover;filter:saturate(1.1) contrast(1.05)}
+.companion .cl{font-family:var(--roman);font-size:.55rem;letter-spacing:.28em;color:var(--pourpre);text-transform:uppercase;margin:0 0 10px;position:relative}
+.companion h4{font-size:1.05rem;letter-spacing:.12em;color:var(--ink);margin:0 0 10px;position:relative}
+.companion p{color:var(--muted);margin:0 0 18px;font-size:.96rem;position:relative}
+.companion .ca{position:relative;display:flex;gap:12px;flex-wrap:wrap}
+.portraits{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:26px}
+.gcard{position:relative;display:block;text-decoration:none;border:1px solid var(--line-2);border-radius:3px;overflow:hidden;background:var(--abyss);transition:transform .7s var(--ease),box-shadow .7s var(--ease)}
+.gcard img{aspect-ratio:3/4;object-fit:cover;width:100%;filter:grayscale(1) contrast(1.08) brightness(.92);transition:filter .8s var(--ease),transform 1.2s var(--ease)}
+.gcard:hover img{filter:grayscale(0) contrast(1.05);transform:scale(1.04)}
+.gcard:hover{transform:translateY(-5px);box-shadow:0 30px 50px -30px rgba(214,172,85,.45)}
+.gcard::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--spectre);opacity:0;transition:opacity .6s;z-index:2}
+.gcard:hover::before{opacity:1}
+.gcard .m{position:absolute;left:0;right:0;bottom:0;padding:28px 10px 10px;background:linear-gradient(180deg,transparent,rgba(5,8,17,.95));font-family:var(--roman);font-size:.55rem;letter-spacing:.14em;color:var(--ink);text-transform:uppercase}
+.gcard .m small{display:block;color:var(--soft);font-family:var(--serif);text-transform:none;letter-spacing:0;font-size:.72rem;margin-top:2px}
+.interlude{border:1px solid var(--line-2);border-left:3px solid var(--gold-deep);border-radius:3px;padding:22px 24px;margin:30px 0;background:linear-gradient(150deg,rgba(14,26,46,.55),rgba(7,12,26,.5))}
+.interlude .blk-label{color:var(--gold)}
+.interlude p{margin:0 0 .9em;color:var(--parch);font-size:.98rem}
+.interlude p:last-of-type{margin-bottom:14px}
+
+/* ================= LEXIQUE ================= */
+.lexgroup{margin-top:26px}
+.lexgroup > h3{font-family:var(--roman);font-size:.68rem;letter-spacing:.24em;color:var(--pourpre);margin:0 0 6px}
+.lexlist{border:1px solid var(--line-2);border-radius:3px;background:rgba(5,8,17,.45);overflow:hidden}
+details.lex-item{border-bottom:1px solid var(--line-2)}
+details.lex-item:last-child{border-bottom:0}
+.lex-item > summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:10px;padding:11px 18px;transition:background .4s}
+.lex-item > summary::-webkit-details-marker{display:none}
+.lex-item > summary::before{content:"+";flex:none;width:16px;font-family:var(--mono);color:var(--gold);text-align:center}
+.lex-item[open] > summary::before{content:"–"}
+.lex-item > summary:hover{background:rgba(214,172,85,.06)}
+.lex-item > summary b{font-family:var(--roman);font-weight:600;font-size:.78rem;letter-spacing:.04em;color:var(--ink)}
+.lex-item > summary .act{margin-left:auto;flex:none;font-family:var(--mono);font-size:.6rem;color:var(--soft)}
+.lex-item > p{margin:0;padding:2px 18px 14px 44px;font-size:.88rem;line-height:1.6;color:var(--muted)}
+
+/* ================= CRÉDIT / FOOTER ================= */
+.credit-band{display:flex;flex-wrap:wrap;align-items:center;gap:22px;border:1px solid var(--line);border-radius:4px;padding:26px 30px;margin:30px 0 0;background:var(--glass-bg);backdrop-filter:blur(12px)}
+.credit-band .avatars{display:flex}
+.credit-band .avatars img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);margin-left:-14px;box-shadow:0 0 0 2px var(--void)}
+.credit-band .avatars img:first-child{margin-left:0}
+.credit-band .ct .over{font-family:var(--roman);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--soft)}
+.credit-band .ct .nm{font-family:var(--roman);font-weight:700;letter-spacing:.06em;font-size:1.18rem;color:var(--gold-bright)}
+.credit-band .ct .note{color:var(--muted);font-size:.88rem;margin-top:4px}
+.collective-footer{position:relative;margin-top:70px;padding:64px 0 90px;border-top:1px solid var(--line);text-align:center;overflow:hidden}
+.collective-footer::before{content:"";position:absolute;left:50%;top:0;width:min(900px,90%);height:1px;transform:translateX(-50%);background:var(--spectre-soft)}
+.collective-footer .seal{width:72px;height:72px;margin:0 auto 18px}
+.collective-footer h2{font-size:1rem;letter-spacing:.3em;color:var(--ink);margin:0 0 10px}
+.collective-footer p{max-width:64ch;margin:8px auto;color:var(--muted)}
+.devise{font-family:var(--serif);font-style:italic;color:var(--gold-bright);font-size:1.18rem;margin-top:18px}
+.footer-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:22px}
+.footer-links a{font-family:var(--roman);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--muted);border:1px solid var(--line-2);padding:9px 14px;border-radius:2px;transition:border-color .5s,color .5s}
+.footer-links a:hover{border-color:var(--gold);color:var(--gold-bright)}
+.eci-license{max-width:760px;margin:30px auto 0;padding:18px 22px;border:1px solid var(--line-2);border-radius:3px;font-size:.8rem;color:var(--soft);text-align:left;line-height:1.62}
+.eci-license b{color:var(--parch);font-family:var(--roman);font-weight:600;letter-spacing:.06em}
+.eci-license a{color:var(--gold-bright)}
+.eci-visit-counter{display:block;margin-top:14px;font-family:var(--mono);font-size:.74rem;color:var(--soft);letter-spacing:.04em}
+
+/* ================= RÉVÉLATION / MOTION / RESPONSIVE ================= */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.12s}.reveal[data-d="2"]{transition-delay:.24s}.reveal[data-d="3"]{transition-delay:.36s}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.hero .rise{animation:rise 1.3s var(--ease) both}
+.hero .rise:nth-child(2){animation-delay:.12s}.hero .rise:nth-child(3){animation-delay:.24s}.hero .rise:nth-child(4){animation-delay:.36s}.hero .rise:nth-child(5){animation-delay:.48s}.hero .rise:nth-child(6){animation-delay:.6s}.hero .rise:nth-child(7){animation-delay:.72s}
+:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+@media (max-width:1100px){.act-band .wrap{grid-template-columns:110px 1fr}.portraits{grid-template-columns:repeat(4,1fr)}.digest ol{grid-template-columns:1fr}}
+@media (max-width:900px){
+  .nav{display:none}.burger{display:block}
+  .hero .wrap{grid-template-columns:1fr}
+  .intro-band .wrap{grid-template-columns:1fr}.learn{grid-template-columns:1fr}
+  .transcript{grid-template-columns:minmax(0,1fr)}.side-note{position:static}
+  .act-band .wrap{grid-template-columns:1fr}.signal-board{grid-template-columns:repeat(2,1fr)}
+  .companion{grid-template-columns:1fr}
+  .chapter-head{grid-template-columns:1fr}.chapter-number{display:none}
+}
+@media (max-width:640px){
+  .formula-block .fb-say{margin-left:16px;margin-right:16px}
+  .formula,.fb-note{padding-left:16px;padding-right:16px}
+  .formula .katex{font-size:1.1rem}
+  .portraits{grid-template-columns:repeat(3,1fr)}.wrap{padding:0 18px}
+  .credit-band{padding:22px 18px}
+  .science-block,.question-block,.lesson-block,.dialogue-block,.article-noir,.interlude{padding:18px}
+}
+
+/* ================= REFONTE · IDENTITÉ SPECTRALE =================
+   Chaque acte reçoit sa longueur d'onde : blanc de la bougie (Ouverture),
+   puis du violet au rouge — jusqu'au décalage vers le rouge de l'Acte IX. */
+:root{--act:#e79ac0;--act-rgb:231,154,192;
+  --foil:linear-gradient(100deg,#f3d98a 0%,#fff7e0 16%,#9fe0ff 38%,#c9a6ff 56%,#ffb347 76%,#f3d98a 100%)}
+[data-act="0"]{--act:#f4ecd8;--act-rgb:244,236,216}
+[data-act="1"]{--act:#e0b063;--act-rgb:224,176,99}
+[data-act="2"]{--act:#d6ac55;--act-rgb:214,172,85}
+[data-act="3"]{--act:#cf9a72;--act-rgb:207,154,114}
+[data-act="4"]{--act:#d98aa0;--act-rgb:217,138,160}
+[data-act="5"]{--act:#e79ac0;--act-rgb:231,154,192}
+[data-act="6"]{--act:#c07fc4;--act-rgb:192,127,196}
+[data-act="7"]{--act:#8fb8d8;--act-rgb:143,184,216}
+[data-act="8"]{--act:#f3d98a;--act-rgb:243,217,138}
+h1,h2,h3,.act-band h2,.chapter-head h2{text-wrap:balance}
+.prose p,.prose li,.glass p,.digest li{text-wrap:pretty}
+
+/* — hero cinématique */
+.hero{min-height:min(92vh,960px)}
+.hero-art{position:absolute;inset:-14% -10%;z-index:-1;pointer-events:none;opacity:.62}
+.hero-art img{width:100%;height:100%;object-fit:cover;object-position:62% 50%;filter:blur(42px) saturate(1.4) brightness(.72);transform:scale(1.12)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(5,8,17,.45),rgba(5,8,17,0) 28%,rgba(5,8,17,0) 68%,var(--void) 100%),
+             radial-gradient(ellipse 55% 90% at 18% 50%,rgba(5,8,17,.6),transparent 70%)}
+.hero .wrap{grid-template-columns:minmax(0,1fr) minmax(400px,46%);gap:44px 60px;padding-top:64px;padding-bottom:72px;align-items:center}
+.hero-copy{min-width:0}
+.hero h1{font-size:clamp(2.7rem,6vw,5.3rem);margin-bottom:22px}
+.hero-lead{max-width:56ch}
+.hero-actions{margin-bottom:18px}
+.hero-links{display:flex;flex-wrap:wrap;gap:6px 24px;margin:0 0 26px;font-family:var(--roman);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase}
+.hero-links a{color:var(--muted);text-decoration:none;position:relative;padding:4px 0;transition:color .4s}
+.hero-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.hero-links a:hover{color:var(--ink)}.hero-links a:hover::after{transform:scaleX(1)}
+.hero-links a.ext{color:var(--pourpre)}
+.hero-meta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;padding-top:22px;border-top:1px solid var(--line-2)}
+.hero-meta .avatars{display:flex;flex:none}
+.hero-meta .avatars img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1.5px solid var(--gold);margin-left:-11px;box-shadow:0 0 0 2px var(--void)}
+.hero-meta .avatars img:first-child{margin-left:0}
+.hero-meta .who b{display:block;font-family:var(--roman);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);font-weight:600}
+.hero-meta .who small{display:block;color:var(--soft);font-size:.8rem;margin-top:2px}
+.hero-meta .facts{margin-left:auto;font-size:.8rem;color:var(--soft);text-align:right;line-height:1.9}
+.hero-meta .facts b{font-family:var(--roman);color:var(--gold-bright);font-weight:600;font-size:.88rem;letter-spacing:.04em}
+.hero-side{min-width:0}
+.hero-map{position:relative;margin:0;aspect-ratio:1586/992;border-radius:3px;isolation:isolate;
+  box-shadow:0 60px 100px -50px rgba(0,0,0,.95),0 0 0 1px rgba(214,172,85,.28),0 0 90px -30px rgba(231,154,192,.35);
+  transform:translate3d(var(--px,0px),var(--py,0px),0);transition:transform 1s var(--ease)}
+.hero-map picture{display:block;position:absolute;inset:0;border-radius:3px;overflow:hidden}
+.hero-map img{width:100%;height:100%;object-fit:cover}
+.hero-map::before{content:"";position:absolute;inset:0;border-radius:3px;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(5,8,17,.12),transparent 26%,transparent 72%,rgba(5,8,17,.62))}
+.hero-map .corners i{position:absolute;width:16px;height:16px;border:1px solid var(--gold);z-index:2;opacity:.9}
+.hero-map .corners i:nth-child(1){top:-6px;left:-6px;border-right:0;border-bottom:0}
+.hero-map .corners i:nth-child(2){top:-6px;right:-6px;border-left:0;border-bottom:0}
+.hero-map .corners i:nth-child(3){bottom:-6px;left:-6px;border-right:0;border-top:0}
+.hero-map .corners i:nth-child(4){bottom:-6px;right:-6px;border-left:0;border-top:0}
+.hero-map figcaption{position:absolute;left:14px;bottom:11px;z-index:2;font-family:var(--roman);font-size:.5rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.hs{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);z-index:3;text-decoration:none;color:var(--ink);width:26px;height:26px;display:grid;place-items:center}
+.hs i{display:block;width:9px;height:9px;border-radius:50%;background:var(--act);box-shadow:0 0 0 2px rgba(5,8,17,.75),0 0 14px var(--act);position:relative;transition:transform .5s var(--ease)}
+.hs i::before,.hs i::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px solid var(--act);opacity:0;animation:ping 3s var(--ease) infinite}
+.hs i::after{animation-delay:1.5s}
+@keyframes ping{0%{transform:scale(.45);opacity:.9}100%{transform:scale(2.3);opacity:0}}
+.hs span{position:absolute;left:50%;top:calc(100% + 6px);transform:translate(-50%,6px);white-space:nowrap;background:rgba(5,8,17,.9);border:1px solid var(--line);border-top:2px solid var(--act);padding:6px 11px 7px;border-radius:2px;
+  font-family:var(--serif);font-size:.84rem;color:var(--parch);opacity:0;transition:opacity .4s,transform .5s var(--ease);pointer-events:none;backdrop-filter:blur(8px)}
+.hs span b{display:block;font-family:var(--roman);font-size:.5rem;letter-spacing:.24em;color:var(--act);text-transform:uppercase;margin-bottom:1px}
+.hs.up span{top:auto;bottom:calc(100% + 6px);transform:translate(-50%,-6px)}
+.hs.r span{left:auto;right:-4px;transform:translate(0,6px)}
+.hs.r.up span{transform:translate(0,-6px)}
+.hs:hover span,.hs:focus-visible span,.hs.lit span{opacity:1;transform:translate(-50%,0)}
+.hs.r:hover span,.hs.r:focus-visible span,.hs.r.lit span{transform:translate(0,0)}
+.hs:hover i,.hs.lit i{transform:scale(1.35)}
+.map-legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin:16px 2px 0;padding:0;list-style:none}
+.map-legend a{font-family:var(--roman);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:color .4s}
+.map-legend a::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--act);box-shadow:0 0 8px rgba(var(--act-rgb),.6)}
+.map-legend a:hover{color:var(--ink)}
+.signal-board{grid-column:1/-1;margin-top:4px;background:rgba(5,8,17,.58);border:1px solid var(--line);gap:0;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.signal-board div{background:transparent;border-right:1px solid var(--line-2);padding:18px 22px;backdrop-filter:none}
+.signal-board div:last-child{border-right:0}
+.signal-board b{font-size:1.28rem;margin-bottom:5px}
+.signal-board span{font-size:.78rem}
+.signal-board b span{font-size:inherit;color:inherit}
+
+/* — barre haute : acte courant + pastilles spectrales */
+.topbar .t{display:flex;align-items:baseline;gap:12px;min-width:0}
+.topbar .now{font-family:var(--roman);font-size:.56rem;letter-spacing:.2em;color:var(--muted);white-space:nowrap;opacity:0;transition:opacity .6s;display:inline-flex;align-items:baseline;gap:8px}
+.topbar .now::before{content:"";width:14px;height:1px;background:var(--line);align-self:center}
+.topbar .now.on{opacity:1}
+.topbar .now b{color:var(--act);font-weight:700}
+.nav{gap:13px}
+.nav a{font-size:.58rem;letter-spacing:.17em}
+.nav a[data-act]{padding:8px 1px;letter-spacing:.1em}
+.nav a[data-act]::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--act);margin:0 4px 0 0;vertical-align:middle;opacity:.55;transition:opacity .4s,transform .4s,box-shadow .4s}
+.nav a.cur{color:var(--ink)}
+.nav a.cur::after{transform:scaleX(1);background:var(--act)}
+.nav a.cur::before{opacity:1;transform:scale(1.4);box-shadow:0 0 8px var(--act)}
+
+/* — rail latéral des actes */
+.spine{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:36;display:flex;flex-direction:column;gap:8px;padding:10px 6px;border:1px solid var(--line-2);border-radius:20px;background:rgba(5,8,17,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .6s}
+.spine.on{opacity:1;pointer-events:auto}
+.spine a{position:relative;display:block;width:22px;height:20px;text-decoration:none}
+.spine a i{position:absolute;left:50%;top:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:var(--act);opacity:.42;transition:transform .5s var(--ease),opacity .5s,box-shadow .5s}
+.spine a:hover i,.spine a.cur i{opacity:1;transform:scale(1.55);box-shadow:0 0 10px var(--act)}
+.spine a span{position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%) translateX(6px);white-space:nowrap;font-family:var(--roman);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);background:rgba(5,8,17,.92);border:1px solid var(--line);border-left:2px solid var(--act);padding:6px 10px;border-radius:2px;opacity:0;transition:opacity .4s,transform .4s var(--ease);pointer-events:none}
+.spine a:hover span,.spine a:focus-visible span{opacity:1;transform:translateY(-50%)}
+.spine a.top{margin-top:4px;border-top:1px solid var(--line-2);padding-top:6px;height:26px}
+.spine a.top i{background:none;opacity:1;width:auto;height:auto;margin:0;transform:translate(-50%,-50%);color:var(--gold);font-style:normal;font-family:var(--roman);font-size:.72rem;line-height:1;box-shadow:none}
+.spine a.top:hover i{transform:translate(-50%,-60%);color:var(--gold-bright)}
+@media (max-width:1279px){.spine{display:none}}
+
+/* — rampe d'accès */
+.intro-band .wrap{grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:40px 56px}
+.learn{grid-column:1/-1;margin-top:8px}
+.timeline li{padding:0 0 15px 12px}
+.timeline li a{color:inherit;text-decoration:none;display:block;transition:color .4s}
+.timeline li a:hover{color:var(--ink)}
+.timeline li::before{border-color:var(--act);box-shadow:0 0 0 3px var(--void),0 0 10px rgba(var(--act-rgb),.55)}
+.timeline li b{color:var(--act)}
+.timeline li a:hover b{color:var(--ink)}
+
+/* — sommaire, mode pressé */
+.pillar{border-top-color:var(--act)}
+.pillar .pn{color:var(--act);opacity:.9}
+.pillar:hover{box-shadow:0 26px 46px -30px rgba(var(--act-rgb),.6);border-color:rgba(var(--act-rgb),.3);border-top-color:var(--act)}
+.digest li::before{-webkit-text-stroke-color:var(--act)}
+.digest li b{color:var(--act)}
+
+/* — bandes d'acte illustrées */
+.act-band{padding:0;min-height:min(64vh,620px);display:grid;align-items:center;isolation:isolate}
+.act-band::before{z-index:1;background:linear-gradient(180deg,var(--void) 0%,rgba(5,8,17,0) 22%,rgba(5,8,17,0) 80%,var(--void) 100%),radial-gradient(ellipse 45% 70% at 74% 50%,rgba(var(--act-rgb),.13),transparent 70%)}
+.act-art{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.act-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,58% 50%);opacity:.58;filter:saturate(.92) contrast(1.05);
+  mask-image:linear-gradient(90deg,transparent 6%,rgba(0,0,0,.28) 34%,rgba(0,0,0,.92) 64%,#000 100%);-webkit-mask-image:linear-gradient(90deg,transparent 6%,rgba(0,0,0,.28) 34%,rgba(0,0,0,.92) 64%,#000 100%)}
+.act-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--void),rgba(5,8,17,.08) 30%,rgba(5,8,17,.08) 70%,var(--void)),linear-gradient(90deg,var(--void) 0%,rgba(5,8,17,.65) 32%,rgba(5,8,17,0) 62%)}
+.act-band.glow-0::before{background:linear-gradient(180deg,var(--void) 0%,rgba(5,8,17,0) 22%,rgba(5,8,17,0) 80%,var(--void) 100%),radial-gradient(ellipse 40% 70% at 52% 55%,rgba(255,190,90,.24),transparent 70%)}
+.act-band .wrap{z-index:2;padding-top:88px;padding-bottom:76px;grid-template-columns:170px 1fr;gap:38px}
+.act-num{-webkit-text-stroke-color:var(--act);text-shadow:0 0 44px rgba(var(--act-rgb),.35);font-size:7rem}
+.act-num::before,.act-num::after{opacity:.32}
+.act-kicker{color:var(--act)}
+.act-band h2{font-size:clamp(1.55rem,2.6vw,2.15rem);max-width:24ch;text-shadow:0 2px 26px rgba(5,8,17,.95)}
+.act-band p{text-shadow:0 1px 16px rgba(5,8,17,.95);max-width:58ch}
+.act-rail{display:flex;gap:3px;margin-top:22px;max-width:360px;align-items:flex-end;height:14px}
+.act-rail i{flex:1;height:3px;border-radius:1px;opacity:.45;transition:height .8s var(--ease),opacity .8s}
+.act-rail i:nth-child(1){background:#f4ecd8}.act-rail i:nth-child(2){background:#a98bff}.act-rail i:nth-child(3){background:#6f9dff}.act-rail i:nth-child(4){background:#4fc9ff}.act-rail i:nth-child(5){background:#3fe0b0}.act-rail i:nth-child(6){background:#8be37a}.act-rail i:nth-child(7){background:#f6df2c}.act-rail i:nth-child(8){background:#ffb347}.act-rail i:nth-child(9){background:#ff7a5c}.act-rail i:nth-child(10){background:#ff4d6d}
+[data-act="0"] .act-rail i:nth-child(1){height:12px;opacity:1;box-shadow:0 0 14px var(--act)}[data-act="1"] .act-rail i:nth-child(2){height:12px;opacity:1;box-shadow:0 0 14px var(--act)}[data-act="2"] .act-rail i:nth-child(3){height:12px;opacity:1;box-shadow:0 0 14px var(--act)}[data-act="3"] .act-rail i:nth-child(4){height:12px;opacity:1;box-shadow:0 0 14px var(--act)}[data-act="4"] .act-rail i:nth-child(5){height:12px;opacity:1;box-shadow:0 0 14px var(--act)}[data-act="5"] .act-rail i:nth-child(6){height:12px;opacity:1;box-shadow:0 0 14px var(--act)}[data-act="6"] .act-rail i:nth-child(7){height:12px;opacity:1;box-shadow:0 0 14px var(--act)}[data-act="7"] .act-rail i:nth-child(8){height:12px;opacity:1;box-shadow:0 0 14px var(--act)}[data-act="8"] .act-rail i:nth-child(9){height:12px;opacity:1;box-shadow:0 0 14px var(--act)}[data-act="9"] .act-rail i:nth-child(10){height:12px;opacity:1;box-shadow:0 0 14px var(--act)}
+
+/* — chapitres teintés par leur acte */
+.chapter .kicker{color:var(--act)}
+.chapter-head::after{width:160px;background:linear-gradient(90deg,var(--act),rgba(var(--act-rgb),0))}
+.chapter-number{-webkit-text-stroke-color:rgba(var(--act-rgb),.75)}
+.box-k{color:var(--act)}
+.box-k.warn{color:#ff8a6e}.box-k.gold{color:var(--gold-bright)}
+.glass::before{background:linear-gradient(90deg,var(--act),rgba(var(--act-rgb),.12));opacity:.9}
+.glass.antiintox::before{background:linear-gradient(90deg,#ff2f3c,#ff8a1f)}
+.glass.method::before{background:linear-gradient(90deg,#22d38a,#12b7ff)}
+.lesson-block{border-left-color:var(--act);background:rgba(var(--act-rgb),.05)}
+.lesson-block .blk-label{color:var(--act)}
+.lesson-block.retain{border-left-color:var(--gold);background:rgba(214,172,85,.055)}
+.lesson-block.retain .blk-label{color:var(--gold-bright)}
+.viz-lede .vid{color:var(--act);border-color:rgba(var(--act-rgb),.45)}
+.chapter-figure{box-shadow:0 30px 60px -40px rgba(0,0,0,.9)}
+.chapter-figure img{transition:transform 1.6s var(--ease)}
+.chapter-figure:hover img{transform:scale(1.025)}
+.chapter-figure figcaption b{color:var(--act)}
+
+/* — lexique : filtre + deux colonnes */
+.lex-tools{margin:22px 0 4px}
+.lex-search{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:3px;padding:6px 8px 6px 16px;background:rgba(5,8,17,.55);max-width:600px;transition:border-color .4s,box-shadow .4s}
+.lex-search:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px rgba(214,172,85,.12)}
+.lex-search .lbl{margin:0;flex:none;color:var(--gold)}
+.lex-search input{flex:1;min-width:0;background:none;border:0;color:var(--ink);font-family:var(--serif);font-size:1rem;padding:8px 0;outline:none}
+.lex-search input::placeholder{color:var(--soft);font-style:italic}
+.lex-search output{flex:none;font-family:var(--mono);font-size:.66rem;color:var(--soft);padding:5px 9px;border:1px solid var(--line-2);border-radius:2px;white-space:nowrap}
+.lexlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(390px,100%),1fr));gap:0;background:none;border:0;padding:1px 0 0 1px;overflow:visible}
+details.lex-item{border:1px solid var(--line-2);margin:-1px 0 0 -1px;background:#0a1220;transition:background .4s}
+details.lex-item[open]{background:#0e1a2c}
+.lexgroup[hidden],.lex-item[hidden]{display:none}
+.lex-empty{margin:18px 0 0;color:var(--soft);font-style:italic}
+
+/* — pied de page */
+.collective-footer .seal{display:block}
+
+@media (max-width:1500px){.topbar .now{display:none}}
+@media (max-width:900px){
+  .topbar.open .nav{display:grid;grid-template-columns:repeat(5,1fr);gap:6px 8px;padding:16px 18px 20px;background:#050811;box-shadow:0 30px 50px -20px rgba(0,0,0,.9)}
+  .hero-side{order:-1}
+  .topbar.open .nav a{padding:10px 8px;border:1px solid var(--line-2);border-radius:2px;text-align:center;white-space:normal}
+  .topbar.open .nav a:not([data-act]){grid-column:1/-1;text-align:left}
+  .topbar.open .nav a[data-act]{border-color:rgba(var(--act-rgb),.4);color:var(--ink)}
+  .topbar.open .nav a::after{display:none}
+  .hero .wrap{grid-template-columns:1fr;gap:36px;padding-top:36px;padding-bottom:48px}
+  .intro-band .wrap{grid-template-columns:1fr}
+  .act-band .wrap{grid-template-columns:1fr;gap:18px}
+  .act-num{text-align:left;width:max-content}
+  .hero-meta .facts{margin-left:0;text-align:left}
+  .act-band .wrap{padding-top:64px;padding-bottom:52px}
+  .act-art img{opacity:.42}
+  .act-num{font-size:5.6rem}
+}
+@media (max-width:640px){
+  .hs span{display:none}
+  .btn{white-space:normal;text-align:center;padding:13px 16px;letter-spacing:.18em;max-width:100%}
+  .chapter-head h2{hyphens:auto;overflow-wrap:anywhere}
+  #ressources a,.eci-license a{overflow-wrap:anywhere}
+  .signal-board div{padding:14px 14px}
+  .lex-search{flex-wrap:wrap;padding:8px 12px}
+  .lex-search output{margin-left:auto}
+}
+
+/* ================= LUMIÈRE · EFFETS =================
+   Tout est composité (transform / opacity), coupé par prefers-reduced-motion,
+   et les boucles ne tournent que pour ce qui est à l'écran. */
+.lantern{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;pointer-events:none;z-index:3;opacity:0;
+  background:radial-gradient(circle,rgba(var(--lantern-rgb,243,217,138),.22) 0%,rgba(var(--lantern-rgb,243,217,138),.09) 30%,transparent 64%);
+  mix-blend-mode:screen;transition:opacity .9s,background 1.2s;will-change:transform}
+.lantern.on{opacity:1}
+.spot{position:relative}
+.spot-l{position:absolute;inset:0;pointer-events:none;border-radius:inherit;z-index:1;opacity:0;transition:opacity .55s;mix-blend-mode:screen;
+  background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(var(--act-rgb),.17),rgba(var(--act-rgb),.05) 40%,transparent 64%)}
+.spot:hover .spot-l{opacity:1}
+.gcard .spot-l{z-index:3}
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.34) 50%,transparent 70%);transform:translateX(-140%);transition:transform 1s var(--ease)}
+.btn:hover::after{transform:translateX(140%)}
+.btn-2::after,.btn-ext::after{background:linear-gradient(105deg,transparent 30%,rgba(243,217,138,.22) 50%,transparent 70%)}
+.chapter-figure{position:relative}
+.chapter-figure::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(105deg,transparent 38%,rgba(244,236,216,.14) 50%,transparent 62%);transform:translateX(-130%);transition:transform 1.8s var(--ease)}
+.chapter-figure:hover::after{transform:translateX(130%)}
+.hero-map .torch{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;border-radius:3px;overflow:hidden;transition:opacity .6s;
+  mask-image:radial-gradient(circle at var(--tx,50%) var(--ty,50%),#000 0,#000 var(--tr,0px),transparent calc(var(--tr,0px) * 2.1));-webkit-mask-image:radial-gradient(circle at var(--tx,50%) var(--ty,50%),#000 0,#000 var(--tr,0px),transparent calc(var(--tr,0px) * 2.1))}
+.hero-map .torch img{width:100%;height:100%;object-fit:cover;filter:brightness(1.75) saturate(1.35) contrast(1.05)}
+.hero-map.lit .torch{opacity:1}
+.act-rays{position:absolute;inset:-40% -12%;z-index:1;pointer-events:none;opacity:0;mix-blend-mode:screen;transform-origin:72% 50%;will-change:transform;transition:opacity 1.4s;
+  background:conic-gradient(from 0deg at 72% 50%,transparent 0deg,rgba(var(--act-rgb),.16) 5deg,transparent 11deg,transparent 38deg,rgba(var(--act-rgb),.1) 44deg,transparent 50deg,transparent 96deg,rgba(var(--act-rgb),.13) 103deg,transparent 110deg,transparent 190deg,rgba(var(--act-rgb),.1) 198deg,transparent 205deg,transparent 286deg,rgba(var(--act-rgb),.14) 293deg,transparent 300deg);
+  mask-image:radial-gradient(ellipse 46% 62% at 72% 50%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 46% 62% at 72% 50%,#000 10%,transparent 70%)}
+.act-band.live .act-rays{opacity:1;animation:rays 46s linear infinite}
+.act-band.glow-0 .act-rays{transform-origin:52% 55%;background:conic-gradient(from 0deg at 52% 55%,transparent 0deg,rgba(255,200,110,.14) 4deg,transparent 9deg,transparent 60deg,rgba(255,200,110,.1) 66deg,transparent 72deg,transparent 150deg,rgba(255,200,110,.12) 156deg,transparent 162deg,transparent 250deg,rgba(255,200,110,.1) 256deg,transparent 262deg);mask-image:radial-gradient(ellipse 40% 60% at 52% 55%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 40% 60% at 52% 55%,#000 10%,transparent 70%)}
+@keyframes rays{to{transform:rotate(360deg)}}
+.act-num{transition:text-shadow 1.2s}
+.act-band.live .act-num{text-shadow:0 0 44px rgba(var(--act-rgb),.5),0 0 90px rgba(var(--act-rgb),.25)}
+.spectral-rule{background-size:200% 100%;animation:ruleflow 16s linear infinite}
+@keyframes ruleflow{to{background-position:-200% 0}}
+.chapter-head::after{width:0;transition:width 1.6s var(--ease) .25s}
+.reveal.in .chapter-head::after{width:160px}
+.formula .katex{transition:text-shadow .7s}
+.formula-block:hover .formula .katex{text-shadow:0 0 24px rgba(214,172,85,.5)}
+.lex-item[open] > summary b{text-shadow:0 0 18px rgba(var(--act-rgb),.55);transition:text-shadow .6s}
+.seal{transition:box-shadow .6s}.seal:hover{box-shadow:0 0 30px rgba(214,172,85,.55)}
+.hs i{transition:transform .5s var(--ease),box-shadow .5s}
+.hero-map.lit .hs i{box-shadow:0 0 0 2px rgba(5,8,17,.75),0 0 22px var(--act)}
+@media (prefers-reduced-motion:reduce){.lantern,.act-rays,.spot-l{display:none}.chapter-head::after{width:160px}.hero-map .torch{display:none}}
+@media (hover:none),(pointer:coarse){.lantern,.spot-l,.hero-map .torch{display:none}}
+
+/* ================= GRAPHISME · ICONOGRAPHIE ET DÉTAILS ================= */
+.aic{width:15px;height:15px;vertical-align:-3px;margin-right:8px;color:var(--act);flex:none;filter:drop-shadow(0 0 6px rgba(var(--act-rgb),.55))}
+.timeline li b .aic{width:12px;height:12px;vertical-align:-2px;margin-right:6px}
+.act-kicker .aic{width:16px;height:16px;margin-right:10px}
+.act-num{position:relative}
+.act-num .aic-big{position:absolute;left:50%;top:50%;width:190px;height:190px;transform:translate(-50%,-50%);color:var(--act);opacity:.10;pointer-events:none;filter:blur(.3px);transition:opacity 1.2s,transform 1.6s var(--ease)}
+.act-band.live .act-num .aic-big{opacity:.16;transform:translate(-50%,-50%) scale(1.06)}
+.pillar{position:relative;overflow:hidden;padding-right:52px}
+.pillar .pic{position:absolute;right:14px;top:14px;width:26px;height:26px;color:var(--act);opacity:.85;filter:drop-shadow(0 0 8px rgba(var(--act-rgb),.55));transition:transform .7s var(--ease),opacity .7s}
+.pillar:hover .pic{opacity:1;transform:translateY(-2px) scale(1.08)}
+.pillar .pw{position:absolute;right:-6px;bottom:-22px;font-family:var(--roman);font-size:4.6rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(var(--act-rgb),.22);pointer-events:none;transition:-webkit-text-stroke-color .7s}
+.pillar:hover .pw{-webkit-text-stroke-color:rgba(var(--act-rgb),.5)}
+.pillar .pn,.pillar h4,.pillar p{position:relative}
+.chapter .kicker::before{content:"";display:inline-block;width:18px;height:1px;background:var(--act);margin-right:10px;vertical-align:middle;box-shadow:0 0 8px rgba(var(--act-rgb),.6)}
+.prose > p:first-of-type::first-letter{color:var(--act);text-shadow:0 0 18px rgba(var(--act-rgb),.35)}
+/* — tableaux */
+table.dtable th{color:var(--act);border-bottom:1px solid rgba(var(--act-rgb),.35);background:rgba(var(--act-rgb),.04)}
+table.dtable tbody tr:nth-child(even) td{background:rgba(244,236,216,.025)}
+table.dtable tbody tr{transition:background .4s}
+table.dtable tbody tr:hover td{background:rgba(var(--act-rgb),.07)}
+table.dtable td:first-child{font-family:var(--roman);font-size:.8rem;font-weight:600;letter-spacing:.02em;color:var(--ink)}
+.act-pill{display:inline-flex;align-items:center;gap:7px;font-family:var(--roman);font-size:.6rem;font-weight:600;letter-spacing:.16em;color:var(--act);border:1px solid rgba(var(--act-rgb),.38);padding:3px 9px 2px;border-radius:2px;background:rgba(var(--act-rgb),.07);white-space:nowrap}
+.act-pill::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--act);box-shadow:0 0 6px var(--act)}
+/* — récits (dialogue) : guillemet ornemental */
+.dialogue-block{position:relative;overflow:hidden}
+.dialogue-block::before{content:"“";position:absolute;right:16px;top:-26px;font-family:var(--serif);font-weight:600;font-size:8.5rem;line-height:1;color:rgba(var(--act-rgb),.10);pointer-events:none}
+.dialogue-block .blk-label,.dialogue-block p{position:relative}
+/* — index des ateliers et cartes : couleur d'acte */
+.atelier-index a{position:relative;padding-left:22px}
+.atelier-index a::before{content:"";position:absolute;left:10px;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;background:var(--act);box-shadow:0 0 7px rgba(var(--act-rgb),.7);opacity:.85}
+.atelier-index a b{color:var(--act)}
+.atelier-index a:hover{border-color:rgba(var(--act-rgb),.5);background:rgba(var(--act-rgb),.06)}
+.card .tag{color:var(--act);border-color:rgba(var(--act-rgb),.35);background:rgba(var(--act-rgb),.06)}
+/* — interludes : médaillons des savants */
+.interlude p.who{position:relative;padding-left:60px;min-height:48px}
+.interlude p.who.many{padding-left:126px}
+.interlude .av{position:absolute;left:0;top:1px;display:flex}
+.interlude .av img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:50% 18%;border:1.5px solid var(--gold-deep);box-shadow:0 0 0 2px var(--void),0 8px 18px -8px rgba(0,0,0,.9);margin-left:-12px;filter:grayscale(1) contrast(1.05) brightness(.95);transition:filter .7s,transform .7s var(--ease),border-color .7s}
+.interlude .av img:first-child{margin-left:0}
+.interlude p.who:hover .av img{filter:grayscale(0);border-color:var(--gold)}
+.interlude p.who:hover .av img:first-child{transform:translateY(-2px)}
+/* — chronologie */
+.chrono-list{list-style:none;margin:16px 0 0;padding:0 0 0 24px;border-left:1px solid var(--line);position:relative}
+.chrono-list li{position:relative;padding:0 0 14px 10px;color:var(--parch);font-size:.98rem}
+.chrono-list li:last-child{padding-bottom:0}
+.chrono-list li::before{content:"";position:absolute;left:-29px;top:9px;width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px var(--void),0 0 10px rgba(214,172,85,.6)}
+.chrono-list li b{font-family:var(--roman);font-size:.68rem;letter-spacing:.08em;color:var(--gold-bright);font-weight:600}
+@media (max-width:640px){.interlude .av img{width:36px;height:36px}.interlude p.who{padding-left:50px}.interlude p.who.many{padding-left:104px}.act-num .aic-big{width:130px;height:130px}.pillar .pw{font-size:3.6rem}}
+
+/* ================= RENDU · COUCHES VIVANTES (canvas, parallaxe, aura) =================
+   Ajouts du 3 sept. 2026 : tout est décoratif (aria-hidden), composité, gaté par la
+   visibilité, et coupé par prefers-reduced-motion. Aucun texte n'est touché. */
+@property --cur{syntax:'<color>';inherits:true;initial-value:#e79ac0}
+html{--cur:#e79ac0;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-color:rgba(214,172,85,.38) transparent}
+::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(214,172,85,.32);border-radius:9px;border:2px solid var(--void)}::-webkit-scrollbar-thumb:hover{background:rgba(214,172,85,.55)}
+/* — aura ambiante : la couleur de l'acte courant baigne l'écran */
+.aura{position:fixed;inset:0;z-index:0;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(ellipse 72% 46% at 50% 108%,color-mix(in srgb,var(--cur) 17%,transparent),transparent 70%),
+             radial-gradient(ellipse 42% 40% at 102% -6%,color-mix(in srgb,var(--cur) 10%,transparent),transparent 70%)}
+.frame i{border-color:color-mix(in srgb,var(--cur) 55%,var(--gold));transition:border-color 1.2s;box-shadow:0 0 14px -4px color-mix(in srgb,var(--cur) 60%,transparent)}
+.spine{box-shadow:0 0 34px -10px var(--cur);transition:opacity .6s,box-shadow 1.2s}
+.topbar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;pointer-events:none;background:linear-gradient(90deg,transparent 4%,color-mix(in srgb,var(--cur) 75%,transparent) 50%,transparent 96%)}
+/* — simulations des bandes d'acte */
+.act-fx{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;mix-blend-mode:screen;opacity:0;transition:opacity 1.6s;
+  mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent)}
+.act-band.live .act-fx{opacity:.9}
+.act-fx{mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent),linear-gradient(90deg,#000 0,#000 18%,rgba(0,0,0,.3) 34%,rgba(0,0,0,.3) 66%,#000 84%);-webkit-mask-image:linear-gradient(180deg,transparent,#000 16%,#000 84%,transparent),linear-gradient(90deg,#000 0,#000 18%,rgba(0,0,0,.3) 34%,rgba(0,0,0,.3) 66%,#000 84%);mask-composite:intersect;-webkit-mask-composite:source-in}
+.act-band::after{content:"";position:absolute;left:12%;right:12%;bottom:0;height:1px;z-index:2;pointer-events:none;opacity:0;transition:opacity 1.4s;
+  background:linear-gradient(90deg,transparent,rgba(var(--act-rgb),.75),transparent);box-shadow:0 0 18px rgba(var(--act-rgb),.5)}
+.act-band.live::after{opacity:1}
+/* — poussières du hero (effet Tyndall), aurore du pied de page, flamme de la clôture */
+.motes{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;mix-blend-mode:screen}
+.foot-fx{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.42;mask-image:linear-gradient(180deg,transparent 8%,#000 45%,#000 100%);-webkit-mask-image:linear-gradient(180deg,transparent 8%,#000 45%,#000 100%)}
+.collective-footer .wrap{position:relative;z-index:1}
+.flame{display:block;width:100%;height:150px;margin:-4px 0 8px;pointer-events:none}
+/* — relief 3D des cartes (pointeur fin seulement) */
+.tilt{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d;transition:transform .6s var(--ease),box-shadow .7s var(--ease),border-color .7s}
+.tilt:hover{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px);transition:transform .14s linear,box-shadow .7s var(--ease),border-color .7s}
+/* — onde λ dans les en-têtes de chapitre : la période suit la teinte de l'acte */
+.chapter .kicker{display:flex;align-items:center;flex-wrap:wrap;gap:0 12px}
+.chapter .kicker::before{margin-right:0}
+.lam{width:84px;height:14px;flex:none;color:var(--act);overflow:visible;filter:drop-shadow(0 0 5px rgba(var(--act-rgb),.55))}
+.lam path{animation:lam var(--dur,2s) linear infinite}
+@keyframes lam{to{transform:translateX(calc(-1 * var(--p,10px)))}}
+/* — révélations fines (figures, formules, encadrés) et pulsation des titres */
+.fx{opacity:0;translate:0 16px;transition:opacity 1s var(--ease),translate 1s var(--ease)}
+.fx.in{opacity:1;translate:0 0}
+.reveal.in .chapter-head h2{animation:hpulse 2.4s var(--ease) .2s both}
+@keyframes hpulse{0%{color:var(--ink);text-shadow:0 0 0 rgba(var(--act-rgb),0)}30%{color:#fff;text-shadow:0 0 26px rgba(var(--act-rgb),.75),0 0 60px rgba(var(--act-rgb),.35)}100%{color:var(--ink);text-shadow:0 0 0 rgba(var(--act-rgb),0)}}
+/* — ornements : losange des filets, impulsion lumineuse des frises */
+.spectral-rule{position:relative;overflow:visible}
+.spectral-rule::after{content:"";position:absolute;left:50%;top:50%;width:9px;height:9px;transform:translate(-50%,-50%) rotate(45deg);border:1px solid var(--gold);background:var(--void);box-shadow:0 0 12px rgba(214,172,85,.55)}
+.timeline::after,.chrono-list::after{content:"";position:absolute;left:-1px;top:-70px;width:1px;height:70px;pointer-events:none;opacity:0;background:linear-gradient(180deg,transparent,var(--gold-bright));animation:tlpulse 7s cubic-bezier(.45,0,.55,1) infinite}
+.chrono-list::after{animation-delay:2.5s}
+@keyframes tlpulse{0%{top:-70px;opacity:0}12%{opacity:1}88%{opacity:1}100%{top:100%;opacity:0}}
+/* — parallaxe pilotée par le défilement (sans JS, progressive) */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .act-art img{scale:1.14;animation:par-art linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+    @keyframes par-art{from{translate:0 -5%}to{translate:0 5%}}
+    .act-num{animation:par-num linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+    .chapter-number{animation:par-num linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+    @keyframes par-num{from{translate:0 34px}to{translate:0 -34px}}
+    .chapter-figure img{scale:1.06;animation:par-fig linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+    @keyframes par-fig{from{translate:0 -3%}to{translate:0 3%}}
+  }
+}
+@media (prefers-reduced-motion:reduce){.aura,.act-fx,.motes,.foot-fx,.flame{display:none}.fx{opacity:1;translate:none}.tilt,.tilt:hover{transform:none}}
+@media (hover:none),(pointer:coarse){.tilt,.tilt:hover{transform:none}}
+@media (max-width:640px){.lam{width:64px}.flame{height:120px}}
+
+/* ================= ADDITIONS DU DOSSIER XXIX ================= */
+.prose p.stage{font-style:italic;color:var(--soft);text-align:center;letter-spacing:.06em;margin:22px 0}
+.prose p.refrain{font-family:var(--roman);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-bright);font-size:1.02rem;text-align:center;margin:26px 0;position:relative}
+.prose p.refrain::before,.prose p.refrain::after{content:"";position:absolute;top:50%;width:min(18%,90px);height:1px;background:var(--line)}
+.prose p.refrain::before{left:0}.prose p.refrain::after{right:0}
+.rep-list{list-style:none;margin:0;padding:0}
+.rep-list li{position:relative;padding:0 0 0 18px;margin:0 0 10px;font-size:.9rem;line-height:1.55;color:var(--muted)}
+.rep-list li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:1px;background:var(--gold)}
+.rep-list li b{color:var(--ink);font-weight:600}
+.proc{margin:22px 0;padding:18px 20px;border:1px solid var(--line-2);border-left:2px solid var(--pourpre-deep);border-radius:3px;background:linear-gradient(180deg,rgba(14,26,46,.42),rgba(7,12,26,.32))}
+.proc h4{margin:0 0 6px;font-family:var(--roman);font-size:.78rem;letter-spacing:.14em;color:var(--gold-bright)}
+.proc .lat{font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0;color:var(--soft);font-size:.88rem}
+.proc p{margin:0 0 8px}
+.proc .q{margin:10px 0 0;padding:9px 12px;border:1px solid var(--line);border-radius:2px;background:rgba(214,172,85,.05);font-size:.94rem;color:var(--parch)}
+.proc .q b{font-family:var(--roman);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:3px}
+.qa{display:grid;gap:10px;margin:0}
+.qa details{border:1px solid var(--line-2);border-radius:3px;background:rgba(7,12,26,.5)}
+.qa summary{cursor:pointer;padding:12px 16px;font-family:var(--serif);font-size:1rem;color:var(--ink);list-style:none}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::before{content:"?";display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;margin-right:10px;border:1px solid var(--gold);border-radius:50%;font-family:var(--roman);font-size:.6rem;color:var(--gold-bright);vertical-align:-3px}
+.qa details[open] summary{color:var(--gold-bright)}
+.qa p{margin:0;padding:0 16px 14px 46px;color:var(--muted);font-size:.95rem}
+.situ{display:grid;gap:12px;margin:18px 0 0}
+.situ div{padding:14px 16px;border:1px solid var(--line-2);border-radius:3px;background:rgba(7,12,26,.45)}
+.situ b{display:block;font-family:var(--roman);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pourpre);margin-bottom:6px}
+.situ q{display:block;margin-top:8px;font-style:italic;color:var(--gold-bright)}
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:18px;margin-top:26px}
+.comp{display:block;text-decoration:none;border:1px solid var(--line-2);border-radius:3px;overflow:hidden;background:rgba(7,12,26,.6);transition:transform .5s var(--ease),border-color .5s}
+.comp:hover{transform:translateY(-6px);border-color:var(--gold)}
+.comp img{aspect-ratio:16/10;object-fit:cover;width:100%}
+.comp .cb{padding:14px 16px}
+.comp h4{margin:0 0 6px;font-size:.8rem;letter-spacing:.14em;color:var(--ink)}
+.comp p{margin:0;font-size:.88rem;color:var(--muted)}
+.comp .n{font-family:var(--roman);font-size:.56rem;letter-spacing:.2em;color:var(--gold);display:block;margin-bottom:8px}
+@media (max-width:720px){.prose p.refrain::before,.prose p.refrain::after{display:none}}
+
+
+/* ---- pages compagnons ---- */
+.tools{position:sticky;top:60px;z-index:20;margin:0 0 26px;padding:16px 18px;border:1px solid var(--line);border-radius:3px;background:rgba(5,8,17,.92);backdrop-filter:blur(12px)}
+.tools .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tools input[type=search]{flex:1 1 220px;min-width:0;padding:10px 14px;border:1px solid var(--line-2);border-radius:2px;background:var(--void);color:var(--ink);font-family:var(--serif);font-size:1rem}
+.tools input[type=search]:focus-visible{outline:2px solid var(--gold-bright);outline-offset:1px}
+.tools .cnt{font-family:var(--roman);font-size:.6rem;letter-spacing:.18em;color:var(--gold);white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chips button{font-family:var(--roman);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;padding:6px 11px;border:1px solid var(--line-2);border-radius:2px;background:rgba(7,12,26,.6);color:var(--muted);cursor:pointer;transition:border-color .3s,color .3s}
+.chips button:hover{border-color:var(--gold);color:var(--gold-bright)}
+.chips button.on{border-color:var(--gold);color:var(--gold-bright);background:rgba(214,172,85,.1)}
+.fiches{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(460px,100%),1fr));align-items:start}
+.fiche{border:1px solid var(--line-2);border-left:2px solid var(--gold-deep);border-radius:3px;background:linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.35));padding:18px 20px;scroll-margin-top:96px}
+.fiche.pE{border-left-color:var(--pourpre-deep)}.fiche.pF{border-left-color:#8fb8d8}.fiche.pG{border-left-color:#c07fc4}
+.fiche h3{margin:0 0 4px;font-size:.92rem;letter-spacing:.1em;color:var(--ink);display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
+.fiche h3 .ref{font-family:var(--mono);font-size:.7rem;letter-spacing:0;color:var(--gold);border:1px solid var(--line);border-radius:2px;padding:1px 7px;text-transform:none}
+.fiche .alt{font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--soft);margin:0 0 10px}
+.fiche .def{margin:0 0 10px;color:var(--parch)}
+.fiche .ex{margin:0 0 8px;padding-left:14px;border-left:1px solid var(--line-2);color:var(--muted);font-size:.94rem}
+.fiche .rep{margin:12px 0 0;padding:12px 14px;border:1px solid var(--line);border-radius:2px;background:rgba(214,172,85,.05)}
+.fiche .rep .k{display:block;font-family:var(--roman);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.fiche .rep ul{margin:0;padding-left:18px}
+.fiche .rep li{margin:0 0 5px;color:var(--ink)}
+.fiche .leg{margin:8px 0 0;font-size:.9rem;color:var(--muted)}
+.fiche .leg b{color:#8fd8b4}
+.fiche .voisin{margin:6px 0 0;font-size:.9rem;color:var(--soft)}
+.fiche .liens{margin:12px 0 0;display:flex;flex-wrap:wrap;gap:10px}
+.fiche .liens a{font-family:var(--roman);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--muted);border:1px solid var(--line-2);border-radius:2px;padding:5px 10px}
+.fiche .liens a:hover{border-color:var(--gold);color:var(--gold-bright)}
+.famtitle{grid-column:1/-1;margin:34px 0 12px;font-family:var(--roman);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:8px}
+.empty{grid-column:1/-1;padding:40px;text-align:center;color:var(--soft);font-style:italic}
+
+
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(132px,100%),1fr));gap:12px;margin:26px 0 10px}
+.gcard{display:block;position:relative;text-decoration:none;border:1px solid var(--line-2);border-radius:3px;overflow:hidden;background:rgba(7,12,26,.6);transition:border-color .4s,transform .4s var(--ease)}
+.gcard:hover{border-color:var(--gold);transform:translateY(-4px)}
+.gnum{position:absolute;top:6px;left:8px;z-index:2;font-family:var(--mono);font-size:.62rem;color:var(--gold-bright);text-shadow:0 1px 6px #000}
+.gimg{display:block;aspect-ratio:1/1;overflow:hidden;background:linear-gradient(160deg,rgba(214,172,85,.10),transparent)}
+.gimg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.35) contrast(1.05)}
+.gcard:hover .gimg img{filter:none}
+.noimg{display:grid;place-items:center;height:100%;color:var(--soft);font-family:var(--roman)}
+.gmeta{display:block;padding:8px 10px}
+.gn{display:block;font-family:var(--roman);font-size:.6rem;letter-spacing:.1em;color:var(--ink);text-transform:uppercase}
+.gd{display:block;font-size:.72rem;color:var(--soft);margin-top:2px}
+.pfiche{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:34px;margin:0 0 54px;padding:26px 0 0;border-top:1px solid var(--line-2);scroll-margin-top:90px}
+.portrait-figure{margin:0 0 16px}
+.pf-img{display:block;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--abyss)}
+.pf-img img{width:100%;display:block}
+.portrait-figure figcaption{margin-top:8px;font-size:.82rem;color:var(--soft);line-height:1.5}
+.portrait-figure figcaption em{display:block;margin-top:4px;font-size:.74rem;color:var(--soft);opacity:.8}
+.idcard{border:1px solid var(--line-2);border-radius:3px;padding:14px 16px;background:rgba(7,12,26,.5)}
+.idtitle{margin:0 0 8px;font-family:var(--roman);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.idcard p{margin:0;font-size:.9rem;color:var(--muted);line-height:1.6}
+.pf-body{position:relative}
+.pnum{position:absolute;top:-16px;right:0;white-space:nowrap;font-family:var(--roman);font-weight:800;font-size:clamp(3rem,7vw,5rem);color:transparent;-webkit-text-stroke:1px rgba(214,172,85,.22);margin:0;line-height:1}
+.pf-body h3{margin:0 0 4px;font-size:1.05rem;letter-spacing:.1em;color:var(--ink)}
+.pf-body h3 .pd{font-family:var(--serif);font-size:.86rem;letter-spacing:0;text-transform:none;color:var(--soft)}
+.epithet{margin:0 0 18px;font-family:var(--serif);font-style:italic;font-size:1.06rem;color:var(--gold-bright)}
+.pf-body .sub{margin:20px 0 8px;font-family:var(--roman);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.pdoss{margin:18px 0 0;padding:10px 14px;border-left:2px solid var(--pourpre-deep);background:rgba(184,85,122,.07);font-size:.9rem;color:var(--muted)}
+@media (max-width:860px){.pfiche{grid-template-columns:1fr;gap:20px}.pf-aside{max-width:420px}}
+
+</style>
+  <style id="eci-wide-style">
+
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ———
+     La page s'élargit ET le texte grossit, ensemble : la colonne de lecture garde
+     sa mesure (~100 signes), la largeur gagnée va à la marge savante et aux
+     visuels, qui débordent la colonne de texte au-delà de 1800 px. */
+  @media (min-width:1440px){
+    :root{ --max:1300px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(300px,430px); gap:52px; }
+    .hero .wrap{ grid-template-columns:minmax(0,1fr) minmax(470px,47%); }
+    .intro-band .wrap{ grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr); }
+  }
+  @media (min-width:1800px){
+    :root{ --max:1420px; }
+    html{ font-size:17px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(320px,470px); gap:58px; }
+    .viz-section{ width:min(100vw - 72px,1720px);
+                  margin-inline:calc((100% - min(100vw - 72px,1720px)) / 2); }
+  }
+  @media (min-width:2200px){
+    :root{ --max:1560px; }
+    html{ font-size:18.5px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(340px,530px); gap:64px; }
+    .viz-section{ width:min(100vw - 96px,2040px);
+                  margin-inline:calc((100% - min(100vw - 96px,2040px)) / 2); }
+  }
+  @media (min-width:2800px){
+    :root{ --max:1820px; }
+    html{ font-size:20px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(380px,700px); gap:74px; }
+    .viz-section{ width:min(100vw - 120px,2360px);
+                  margin-inline:calc((100% - min(100vw - 120px,2360px)) / 2); }
+  }
+  
+  </style>
+</head><body>
+<div class="bg" aria-hidden="true"></div>
+<div class="gridfx" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="progress-top" id="prog" aria-hidden="true"></div>
+<header class="topbar" id="topbar">
+  <div class="wrap">
+    <span class="seal"><img src="../../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox"></span>
+    <span class="t">L'air d'avoir raison</span>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    <nav class="nav" id="mainnav" aria-label="Navigation du dossier">
+      <a href="../../index.html">Accueil ECI</a>
+      <a href="index.html">Le dossier</a>
+      <a href="repertoire.html">Répertoire</a>
+      <a href="quizz.html">Quizz</a>
+      <a href="discours.html">Le Discours</a>
+      <a href="portraits.html" class="on">Portraits</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="wrap section" style="padding-top:56px">
+  <p class="eyebrow">Compagnon IV · Dossier XXIX</p>
+  <h1 style="font-size:clamp(2rem,5vw,3.4rem);line-height:1.02;margin:0 0 18px;color:var(--ink);font-family:var(--roman);letter-spacing:.05em">Vingt <span class="foil">portraits</span></h1>
+  <p style="max-width:74ch;color:var(--parch);font-size:1.1rem">Ceux qui ont appris à avoir l'air d'avoir raison, et ceux qui ont appris à le voir. Chaque fiche répond à la précédente&nbsp;: Corax invente le vraisemblable, Platon lui oppose le vrai, Aristote nomme les pièges, Schopenhauer les catalogue pour les parer, Hamblin rouvre le dossier, Kahneman en cherche la cause en nous.</p>
+  <p style="max-width:74ch;color:var(--muted)">Trois régimes de vérité sont distingués dans chaque fiche&nbsp;: ce que l'auteur <b>a écrit</b>, ce qu'on <b>a dit de lui</b> — souvent des siècles plus tard —, et ce que <b>Platon lui fait dire</b>. On y trouve aussi ce qu'on leur prête à tort&nbsp;: la devise de Protagoras, l'<em>ad hominem</em> de Locke, le «&nbsp;vir bonus&nbsp;» de Quintilien, les «&nbsp;trois étapes&nbsp;» de Schopenhauer, le mont Stupide de Dunning.</p>
+  <p style="max-width:74ch;color:var(--soft);font-size:.94rem">Les images proviennent de Wikimedia Commons&nbsp;; chacune porte sa licence et son crédit, et n'est pas couverte par la licence du dossier. Pour les figures sans portrait authentique — Corax et Tisias, Prodicos, Hippias, Hamblin —, on montre un lieu, un objet ou une œuvre, et la légende le dit.</p>
+  <div class="gallery"><a class="gcard" href="#p01"><span class="gnum">01</span><span class="gimg"><img src="assets/portraits/01-corax-tisias-theatre-syracuse.jpg" alt="Corax et Tisias" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Corax</span><span class="gd">Syracuse, actifs v. 467/466 </span></span></a><a class="gcard" href="#p02"><span class="gnum">02</span><span class="gimg"><img src="assets/portraits/02-protagoras.jpg" alt="Protagoras d&#x27;Abdère" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Protagoras d'Abdère</span><span class="gd">v. 490 – v. 420 av. J.-C.</span></span></a><a class="gcard" href="#p03"><span class="gnum">03</span><span class="gimg"><img src="assets/portraits/03-gorgias.jpg" alt="Gorgias de Léontinoi" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Gorgias de Léontinoi</span><span class="gd">v. 485 – v. 380 av. J.-C.</span></span></a><a class="gcard" href="#p04"><span class="gnum">04</span><span class="gimg"><img src="assets/portraits/04-prodicos-heracles.jpg" alt="Prodicos de Céos" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Prodicos de Céos</span><span class="gd">v. 465 – v. 395 av. J.-C.</span></span></a><a class="gcard" href="#p05"><span class="gnum">05</span><span class="gimg"><img src="assets/portraits/05-hippias-olympie.jpg" alt="Hippias d&#x27;Élis" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Hippias d'Élis</span><span class="gd">v. 460 – v. 400 av. J.-C.</span></span></a><a class="gcard" href="#p06"><span class="gnum">06</span><span class="gimg"><img src="assets/portraits/06-aristophane.jpg" alt="Aristophane" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Aristophane</span><span class="gd">v. 445 – v. 385 av. J.-C.</span></span></a><a class="gcard" href="#p07"><span class="gnum">07</span><span class="gimg"><img src="assets/portraits/07-socrate.jpg" alt="Socrate" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Socrate</span><span class="gd">v. 470 – 399 av. J.-C.</span></span></a><a class="gcard" href="#p08"><span class="gnum">08</span><span class="gimg"><img src="assets/portraits/08-platon.jpg" alt="Platon" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Platon</span><span class="gd">v. 428/427 – v. 348/347 av. </span></span></a><a class="gcard" href="#p09"><span class="gnum">09</span><span class="gimg"><img src="assets/portraits/09-aristote.jpg" alt="Aristote" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Aristote</span><span class="gd">384 – 322 av. J.-C.</span></span></a><a class="gcard" href="#p10"><span class="gnum">10</span><span class="gimg"><img src="assets/portraits/10-ciceron.jpg" alt="Cicéron" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Cicéron</span><span class="gd">106 – 43 av. J.-C.</span></span></a><a class="gcard" href="#p11"><span class="gnum">11</span><span class="gimg"><img src="assets/portraits/11-quintilien.jpg" alt="Quintilien" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Quintilien</span><span class="gd">v. 35 – v. 96 apr. J.-C.</span></span></a><a class="gcard" href="#p12"><span class="gnum">12</span><span class="gimg"><img src="assets/portraits/12-arnauld.jpg" alt="Antoine Arnauld et Pierre Nicole" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Antoine Arnauld</span><span class="gd">Port-Royal, 1662</span></span></a><a class="gcard" href="#p13"><span class="gnum">13</span><span class="gimg"><img src="assets/portraits/13-locke.jpg" alt="John Locke" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">John Locke</span><span class="gd">1632 – 1704</span></span></a><a class="gcard" href="#p14"><span class="gnum">14</span><span class="gimg"><img src="assets/portraits/14-bentham.jpg" alt="Jeremy Bentham" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Jeremy Bentham</span><span class="gd">1748 – 1832</span></span></a><a class="gcard" href="#p15"><span class="gnum">15</span><span class="gimg"><img src="assets/portraits/15-schopenhauer.jpg" alt="Arthur Schopenhauer" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Arthur Schopenhauer</span><span class="gd">1788 – 1860</span></span></a><a class="gcard" href="#p16"><span class="gnum">16</span><span class="gimg"><img src="assets/portraits/16-hamblin-deuce.jpg" alt="Charles Hamblin" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Charles Hamblin</span><span class="gd">1922 – 1985</span></span></a><a class="gcard" href="#p17"><span class="gnum">17</span><span class="gimg"><img src="assets/portraits/17-perelman.jpg" alt="Chaïm Perelman et Lucie Olbrechts-Tyteca" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Chaïm Perelman</span><span class="gd">1958</span></span></a><a class="gcard" href="#p18"><span class="gnum">18</span><span class="gimg"><img src="assets/portraits/18-asch-cartes.png" alt="Solomon Asch" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Solomon Asch</span><span class="gd">1907 – 1996</span></span></a><a class="gcard" href="#p19"><span class="gnum">19</span><span class="gimg"><img src="assets/portraits/19-kahneman.jpg" alt="Amos Tversky et Daniel Kahneman" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Amos Tversky</span><span class="gd">1937-1996&nbsp;; 1934-2024</span></span></a><a class="gcard" href="#p20"><span class="gnum">20</span><span class="gimg"><img src="assets/portraits/20-sperber.jpg" alt="Hugo Mercier et Dan Sperber" loading="lazy" decoding="async"></span><span class="gmeta"><span class="gn">Hugo Mercier</span><span class="gd">2011, 2017</span></span></a></div>
+<h2 class="famtitle">Acte I — Syracuse et Athènes&nbsp;: la technique</h2>
+<article class="pfiche" id="p01">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/01-corax-tisias-theatre-syracuse.jpg" alt="Le lieu, à défaut des hommes : le théâtre de Syracuse."></span><figcaption>Le lieu, à défaut des hommes&nbsp;: le théâtre de Syracuse. <em>Giovanni Crupi, v. 1900, domaine public</em></figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Corax («&nbsp;le Corbeau&nbsp;») et Tisias, rhéteurs de Syracuse (Sicile). Aucune date de naissance ni de mort n'est attestée&nbsp;; la seule donnée solide est le contexte&nbsp;: la chute des tyrans de Syracuse (expulsion de Thrasybule, 467/466) et les procès en restitution des biens confisqués qui suivent. Domaine&nbsp;: premier «&nbsp;art&nbsp;» (<em>technè</em>) du discours judiciaire. Œuvre&nbsp;: une <em>Technè</em> attribuée à Corax par Aristote (<em>Rhétorique</em> II, 24, 1402a17) — entièrement perdue, connue par des résumés. Deux personnes ou une seule&nbsp;: selon D. A. G. Hinks (1940), «&nbsp;Corax&nbsp;» pourrait n'être que le surnom de Tisias, les deux noms n'étant jamais accolés avant l'époque hellénistique.</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">01</p>
+    <h3>Corax et Tisias <span class="pd">Syracuse, actifs v. 467/466 av. J.-C.</span></h3>
+    <p class="epithet">Le vraisemblable vaut mieux que le vrai</p>
+    <h4 class="sub">1. Contexte</h4><p>Syracuse, milieu du Ve siècle. Les tyrans sont chassés, la démocratie restaurée, et des centaines de familles réclament des terres et des maisons confisquées vingt ans plus tôt. Il n'y a ni avocats ni titres de propriété fiables&nbsp;: chacun plaide sa cause devant des jurés populaires, et gagne celui qui parle le mieux. C'est dans cette cohue judiciaire que la tradition situe la naissance de la rhétorique comme technique enseignable. Le témoignage vient de Cicéron (<em>Brutus</em> 46), qui résume la <em>Collection des arts</em> d'Aristote&nbsp;: un témoin du IVe siècle, transmis par un auteur du Ier. Ce que l'on retient est modeste mais ferme&nbsp;: une date, un lieu, un besoin — et l'idée neuve qu'apprendre à convaincre est une compétence, pas un don.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Aucun fragment textuel de Corax ni de Tisias ne subsiste&nbsp;: toute «&nbsp;citation&nbsp;» de l'un ou de l'autre est apocryphe par construction. Ce qu'on leur attribue tient en deux points. Les parties du discours d'abord, un plan type pour plaider. Ensuite et surtout l'argument de vraisemblance (<em>eikos</em>), que Platon résume dans le <em>Phèdre</em> (267a, trad. Cousin)&nbsp;: Tisias et Gorgias «&nbsp;ont découvert que le vraisemblable vaut mieux que le vrai&nbsp;». L'exemple canonique (<em>Phèdre</em> 273b-c&nbsp;; Aristote, <em>Rhétorique</em> II, 24, 1402a17-23)&nbsp;: un homme faible accusé d'avoir battu un fort plaide qu'il n'aurait jamais osé&nbsp;; le fort plaide qu'on l'aurait soupçonné, donc qu'il ne l'a pas fait. Quant au procès de Corax contre Tisias — l'élève qui refuse de payer, le juge qui les chasse d'un «&nbsp;d'un mauvais corbeau, un mauvais œuf&nbsp;» —, c'est une anecdote de Sextus Empiricus (<em>Contre les rhéteurs</em> 96-99, vers 200 apr. J.-C.), où l'élève reste anonyme&nbsp;; le jeu de mots est byzantin, et l'histoire est la même que celle de Protagoras et Euathlos. Un paradoxe logique itinérant, pas un fait de 467.</p>
+    <h4 class="sub">3. Postérité</h4><p>L'argument de Corax est le premier sophisme nommé de l'histoire, et il n'a pas vieilli&nbsp;: «&nbsp;il n'aurait jamais osé, donc il l'a fait&nbsp;» se plaide encore. Aristote en fait le modèle de la confusion entre vraisemblable relatif et vraisemblable absolu, et y voit la source du mot d'ordre prêté aux sophistes, «&nbsp;rendre le plus fort l'argument le plus faible&nbsp;» (<em>Rhétorique</em> II, 24, 1402a23-28). Le dossier ouvre sur lui parce qu'il contient déjà tout le problème&nbsp;: la vraisemblance est un outil légitime quand les preuves manquent, et un piège dès qu'on la préfère aux preuves qu'on a. Le paradoxe de l'avocat, lui, survit comme exercice de logique — et comme mise en garde contre les contrats qui prévoient leur propre contradiction.</p>
+    <p class="pdoss">Partie 1, ch. 2 («&nbsp;Corax, Tisias et l'argument du vraisemblable&nbsp;»).</p>
+  </div>
+</article>
+<article class="pfiche" id="p02">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/02-protagoras.jpg" alt="Protagoras d&#x27;Abdère"></span><figcaption>Protagoras d'Abdère <em>Salvator Rosa, 1663-1664, domaine public</em></figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Protagoras, né à Abdère (Thrace) vers 490, mort vers 420 av. J.-C. — de vieillesse selon Platon (<em>Ménon</em> 91e&nbsp;: «&nbsp;environ soixante-dix ans&nbsp;»), en mer selon une tradition tardive rapportée par Diogène Laërce. Séjours à Athènes, ami de Périclès&nbsp;; législateur présumé de Thourioi (444/443). Domaines&nbsp;: enseignement de la «&nbsp;vertu politique&nbsp;» (<em>euboulia</em>), antilogies, correction des mots (<em>orthoepeia</em>), théorie de la connaissance. Œuvres&nbsp;: <em>Vérité</em> (ou <em>Discours renversants</em>), <em>Sur les dieux</em>, <em>Antilogies</em> en deux livres, <em>Sur l'état originel</em>, et une dizaine de titres connus par Diogène Laërce (IX, 55). Il n'en subsiste que des phrases isolées.</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">02</p>
+    <h3>Protagoras d'Abdère <span class="pd">v. 490 – v. 420 av. J.-C.</span></h3>
+    <p class="epithet">L'homme est la mesure&nbsp;; sur toute chose, deux discours</p>
+    <h4 class="sub">1. Contexte</h4><p>Athènes au temps de Périclès&nbsp;: l'Assemblée où tout citoyen peut parler, les tribunaux populaires où tout citoyen doit se défendre lui-même. Une demande neuve apparaît, celle d'un enseignement qui prépare à parler et à décider. Protagoras est le premier à s'en réclamer ouvertement, à voyager de cité en cité et à se faire payer — cent mines selon Diogène Laërce, un chiffre qu'il faut lire comme un topos du «&nbsp;sophiste hors de prix&nbsp;». Platon (<em>Protagoras</em> 328b-c) lui prête un mode de paiement singulier&nbsp;: l'élève verse la somme demandée ou, s'il la conteste, jure dans un temple ce que valent les leçons reçues. Il revendique le nom de sophiste et affirme que l'art est ancien, seulement caché sous la poésie d'Homère ou les oracles (<em>Protagoras</em> 316d).</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Trois fragments authentiques portent tout. «&nbsp;L'homme est la mesure de toutes choses, de l'existence de celles qui existent, et de la non-existence de celles qui n'existent pas&nbsp;» (DK 80 B1, cité au <em>Théétète</em> 152a, trad. Cousin) — la suite est indispensable, et le sens (l'individu&nbsp;? l'espèce&nbsp;?) reste débattu. «&nbsp;Quant aux dieux, je ne puis savoir ni qu'ils sont ni qu'ils ne sont pas&nbsp;» (B4)&nbsp;: un agnosticisme, pas un athéisme. Enfin les antilogies (A1, B5)&nbsp;: «&nbsp;sur toute chose, deux discours opposés&nbsp;». En revanche, «&nbsp;rendre le plus fort l'argument le plus faible&nbsp;» n'est pas une phrase de Protagoras&nbsp;: c'est une accusation rapportée par Aristote (<em>Rhétorique</em> II, 24, 1402a23-25), qui dit qu'on refusait «&nbsp;à bon droit&nbsp;» la prétention affichée par Protagoras. Le procès d'impiété, l'exil et les livres brûlés sont une tradition tardive que Platon ignore et que ses propres contradictions minent (Lenfant 2002, Corradi 2018). Le grand mythe de Prométhée (<em>Protagoras</em> 320c-328d), premier argument théorique en faveur de la démocratie, est écrit par Platon&nbsp;; la plupart des spécialistes y voient un écho fidèle.</p>
+    <h4 class="sub">3. Postérité</h4><p>Protagoras lègue au dossier une méthode et un malentendu. La méthode, c'est l'antilogie&nbsp;: apprendre à soutenir les deux côtés d'une question, exercice que les <em>Dissoi logoi</em> (v. 400) mettent en manuel et qui reste la meilleure école du raisonnement — à condition de ne pas conclure que les deux côtés se valent toujours. Le malentendu, c'est le slogan qu'on lui prête, devenu le nom générique de la sophistique. Le répertoire en garde deux traces&nbsp;: le faux équilibre (entrée 177), antilogie devenue rite médiatique&nbsp;; et la citation apocryphe (127-128), dont «&nbsp;rendre le plus fort…&nbsp;» attribué à Protagoras est un cas d'école. Le paradoxe de l'avocat (Protagoras contre Euathlos, Aulu-Gelle V, 10) circule encore sous son nom.</p>
+    <p class="pdoss">Partie 1, ch. 3 («&nbsp;Les sophistes arrivent&nbsp;»).</p>
+  </div>
+</article>
+<article class="pfiche" id="p03">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/03-gorgias.jpg" alt="Gorgias de Léontinoi"></span><figcaption>Gorgias de Léontinoi <em>Ortolani et Biondi, 1818, domaine public</em></figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Gorgias, né à Léontinoi (Sicile orientale) vers 485, mort vers 380 av. J.-C. après une vie que la tradition étire à 105-109 ans (Philostrate, Pline, Cicéron ne s'accordent pas sur le chiffre, tous sur l'ordre de grandeur). Ambassadeur de sa cité à Athènes en 427&nbsp;; enseignement itinérant&nbsp;; élève présumé d'Empédocle, maître présumé d'Isocrate. Domaines&nbsp;: rhétorique d'apparat, prose d'art (antithèses, isocolons, homéotéleutes), théorie du discours. Œuvres conservées&nbsp;: <em>Éloge d'Hélène</em> (DK 82 B11), <em>Défense de Palamède</em>&nbsp;; le <em>Traité du non-être</em> n'est connu que par deux paraphrases (Sextus Empiricus, <em>Contre les mathématiciens</em> VII, 65-87&nbsp;; pseudo-Aristote, <em>MXG</em>). Discours olympique, pythique et oraison funèbre&nbsp;: fragments.</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">03</p>
+    <h3>Gorgias de Léontinoi <span class="pd">v. 485 – v. 380 av. J.-C.</span></h3>
+    <p class="epithet">Le discours est un puissant maître</p>
+    <h4 class="sub">1. Contexte</h4><p>En 427, Léontinoi est en guerre contre Syracuse et envoie une ambassade demander l'aide d'Athènes. Thucydide (III, 86) rapporte l'ambassade et les vingt navires envoyés en réponse, sans nommer Gorgias&nbsp;; c'est Diodore de Sicile (XII, 53), quatre siècles plus tard, qui en fait le chef de la délégation et raconte l'éblouissement des Athéniens devant sa prose cadencée. Platon confirme le succès, public et privé&nbsp;: Gorgias «&nbsp;a amassé et emporté de grosses sommes d'argent de cette ville&nbsp;» (<em>Hippias majeur</em> 282b, trad. Cousin). Une statue dorée à Delphes, dont la base a été retrouvée à Olympie, atteste au moins qu'il eut les moyens de s'honorer lui-même. Le personnage est réel, l'aura est en partie une construction rétrospective&nbsp;: les «&nbsp;figures gorgianiques&nbsp;» existent déjà chez Antiphon.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>L'<em>Éloge d'Hélène</em> est le premier texte conservé qui théorise la persuasion. Hélène est innocente parce qu'elle a agi par volonté des dieux, par violence, par persuasion ou par amour&nbsp;; et la persuasion contraint l'âme comme la force contraint le corps. Au § 8&nbsp;: «&nbsp;le discours est un grand souverain qui, avec le plus petit et le plus invisible des corps, accomplit les actes les plus divins&nbsp;» (<em>logos dynastès megas estin</em>)&nbsp;; au § 14, le discours est comparé à un médicament (<em>pharmakon</em>) qui peut soigner ou empoisonner&nbsp;; au § 21, l'auteur appelle son texte un «&nbsp;jeu&nbsp;» (<em>paignion</em>). La formule française courante, «&nbsp;la persuasion est un puissant maître&nbsp;», condense les § 8 et 13-14&nbsp;: ce n'est pas la traduction d'une phrase unique. Le résumé en trois thèses du <em>Traité du non-être</em> (rien n'est&nbsp;; si quelque chose est, on ne peut le connaître&nbsp;; si on le connaît, on ne peut le communiquer) est celui de Sextus, pas le texte de Gorgias. Ce que Platon lui fait dire — la rhétorique «&nbsp;ouvrière de la persuasion&nbsp;» (<em>Gorgias</em> 453a), qui produit «&nbsp;la croyance sans le savoir&nbsp;» — est un dialogue, où Gorgias est traité avec courtoisie&nbsp;; la charge vise ses disciples Polos et Calliclès.</p>
+    <h4 class="sub">3. Postérité</h4><p>Gorgias est le premier à décrire ce que le dossier mesure&nbsp;: un discours agit sur l'auditeur indépendamment de sa vérité. Sa comparaison du <em>pharmakon</em> est la meilleure définition ancienne de l'appel aux émotions — peur (entrée 17), pitié (19) — et le § 13 (les discours qui persuadent «&nbsp;sans dire le vrai&nbsp;») annonce la distinction entre persuader et prouver. Aristote garde de lui un précepte de débat toujours en usage&nbsp;: «&nbsp;détruire le sérieux des adversaires par le rire, et leur rire par le sérieux&nbsp;» (<em>Rhétorique</em> III, 18, 1419b3-5), et une critique de sa pédagogie&nbsp;: faire apprendre des modèles par cœur au lieu d'une méthode (<em>Réfutations sophistiques</em> 34). L'atelier S1 (les trois curseurs ethos / pathos / logos) part de son <em>Hélène</em>, et Barbara Cassin en a fait le manifeste d'une pensée où l'être est un effet du dire.</p>
+    <p class="pdoss">Partie 1, ch. 3 et ch. 4 («&nbsp;Gorgias&nbsp;: l'<em>Éloge d'Hélène</em>, ou la première théorie de la persuasion&nbsp;»)&nbsp;; atelier S1.</p>
+  </div>
+</article>
+<article class="pfiche" id="p04">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/04-prodicos-heracles.jpg" alt="Prodicos de Céos"></span><figcaption>Prodicos de Céos <em>Annibale Carracci, 1596, domaine public</em></figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Prodicos, né à Ioulis, dans l'île de Céos (Cyclades), entre 470 et 460 selon les estimations modernes, mort après 399 (aucune date antique explicite&nbsp;; Wikidata donne v. 465 – v. 395). Ambassadeur de Céos à Athènes&nbsp;; conférencier payé à la séance. Domaines&nbsp;: synonymie et «&nbsp;correction des noms&nbsp;» (<em>orthotès onomatôn</em>), morale, anthropologie religieuse. Œuvres&nbsp;: un écrit sur Héraclès (le <em>Choix d'Héraclès</em>, DK 84 B2, connu par Xénophon), <em>Les Heures</em> (<em>Hôrai</em>)&nbsp;; le reste est perdu.</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">04</p>
+    <h3>Prodicos de Céos <span class="pd">v. 465 – v. 395 av. J.-C.</span></h3>
+    <p class="epithet">Le prix exact des mots</p>
+    <h4 class="sub">1. Contexte</h4><p>Prodicos est, avec Hippias, le sophiste de la génération suivante&nbsp;: plus jeune que Protagoras, contemporain de Socrate. Platon le montre député de sa cité, applaudi au Conseil d'Athènes, puis donnant des leçons chez lui et en tirant «&nbsp;des sommes prodigieuses&nbsp;» (<em>Hippias majeur</em> 282c). Sa tarification est la donnée la plus précise dont on dispose sur le commerce du savoir&nbsp;: Socrate dit avoir suivi «&nbsp;sa démonstration à une drachme&nbsp;» faute d'avoir payé «&nbsp;celle à cinquante drachmes&nbsp;» (<em>Cratyle</em> 384b-c) — le paiement à la conférence, non au cursus, dans une ironie dont le montant exact est peut-être un trait d'esprit. Aristophane se moque de lui (<em>Nuées</em> 361), Platon fait dire à Socrate qu'il est son «&nbsp;élève&nbsp;» (<em>Protagoras</em> 341a)&nbsp;: hommage ou ironie, on ne tranche pas.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Ce que Prodicos a réellement enseigné est attesté dans huit dialogues de Platon&nbsp;: distinguer les mots proches. «&nbsp;Discuter&nbsp;» et «&nbsp;disputer&nbsp;», «&nbsp;approbation&nbsp;» et «&nbsp;louange&nbsp;», «&nbsp;joie&nbsp;» et «&nbsp;plaisir&nbsp;» (<em>Protagoras</em> 337a-c, trad. Cousin) — l'exercice qui fonde la sémantique, et qui désamorce les équivoques dont vivent les éristiques. Son apologue d'Héraclès à la croisée des chemins, entre la Volupté et la Vertu, nous vient de Xénophon (<em>Mémorables</em> II, 1, 21-34), qui l'attribue explicitement à «&nbsp;Prodicos le sage, dans son écrit sur Héraclès&nbsp;»&nbsp;; la fidélité de Xénophon est discutée, le contenu moraliste ne l'est pas. Sa théorie des dieux (DK 84 B5, chez Sextus et Cicéron) tient que les hommes ont divinisé ce qui leur est utile — le pain, le vin, l'eau, le feu. Ce qu'on lui prête à tort&nbsp;: une mort par la ciguë, affirmée par la seule Souda — une contamination avec Socrate, qu'aucun auteur classique ne connaît.</p>
+    <h4 class="sub">3. Postérité</h4><p>Prodicos est le contre-exemple qui empêche de caricaturer les sophistes&nbsp;: un moraliste, un grammairien, un théoricien de la religion. Sa méthode est la première parade recensée contre les sophismes d'ambiguïté (entrées 122-124)&nbsp;: avant de répondre, demander ce que vaut le mot. Dans l'<em>Euthydème</em>, c'est à lui que Socrate renvoie pour désamorcer le premier tour de passe-passe des deux frères (277e-278b&nbsp;: «&nbsp;il faut d'abord apprendre la propriété des mots&nbsp;»). L'atelier S2 (le chien d'Euthydème) en fait sa règle&nbsp;: surligner le mot qui change de sens. Et son Héraclès a fourni dix siècles de peinture morale — dont l'image de cette fiche.</p>
+    <p class="pdoss">Partie 1, ch. 3&nbsp;; en écho au ch. 5 et à l'atelier S2.</p>
+  </div>
+</article>
+<article class="pfiche" id="p05">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/05-hippias-olympie.jpg" alt="Hippias d&#x27;Élis"></span><figcaption>Hippias d'Élis</figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Hippias, né à Élis (Péloponnèse, cité organisatrice des Jeux olympiques), actif dans le dernier tiers du Ve siècle, encore vivant après 399 (dialogues de Platon). Wikidata avance 443 – 399&nbsp;; aucune de ces dates n'est attestée, on écrit «&nbsp;v. 460 – v. 400&nbsp;». Ambassadeur d'Élis à Sparte et en Sicile. Domaines&nbsp;: polymathie affichée (astronomie, géométrie, musique, grammaire, mnémotechnie, artisanat), histoire, mathématiques. Œuvres&nbsp;: <em>Liste des vainqueurs olympiques</em> (Plutarque, <em>Numa</em> 1, 4), <em>Noms des peuples</em>, une <em>Synagôgè</em>, une élégie, un «&nbsp;discours troyen&nbsp;»&nbsp;; la quadratrice (courbe pour la trisection de l'angle) lui est attribuée par Proclus, avec un doute sur l'homonymie.</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">05</p>
+    <h3>Hippias d'Élis <span class="pd">v. 460 – v. 400 av. J.-C.</span></h3>
+    <p class="epithet">Tout savoir, et le faire savoir</p>
+    <h4 class="sub">1. Contexte</h4><p>Olympie est la vitrine panhellénique&nbsp;: tous les quatre ans, la Grèce entière s'y rassemble, et un sophiste y trouve son plus large public. Hippias y paraît, dit Platon, vêtu de la tête aux pieds de ce qu'il a fabriqué lui-même — anneau, cachet, chaussures, tunique, ceinture «&nbsp;dans le goût des plus riches ceintures de Perse&nbsp;» — et chargé de poèmes, de tragédies et «&nbsp;je ne sais combien d'écrits en prose sur toutes sortes de sujets&nbsp;» (<em>Hippias mineur</em> 368b-d, trad. Cousin). Il se vante d'avoir gagné «&nbsp;plus de cent cinquante mines&nbsp;» en une tournée sicilienne (<em>Hippias majeur</em> 282d-e). Platon force le trait, mais la polymathie est confirmée par la liste de ses œuvres, et sa <em>Liste des vainqueurs olympiques</em> est le premier essai de chronologie grecque commune.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Presque tout ce qu'on sait d'Hippias, c'est Platon qui le lui fait dire — régime de vérité à garder à l'esprit. Deux apports résistent au filtre. La mnémotechnie&nbsp;: «&nbsp;je n'ai qu'à entendre une seule fois cinquante noms, je les répéterai par cœur&nbsp;» (<em>Hippias majeur</em> 285e), confirmé par Xénophon (<em>Banquet</em> IV, 62) — plus ancien témoignage d'un art de la mémoire enseigné. L'opposition nature / loi&nbsp;: les hommes sont «&nbsp;parents et concitoyens par nature, non par la loi&nbsp;; car le semblable est par nature parent du semblable, tandis que la loi, tyran des hommes, fait violence à la nature&nbsp;» (<em>Protagoras</em> 337c-d) — la formule la plus nette du débat <em>nomos / physis</em>, généralement tenue pour authentiquement hippienne. Ce qu'on lui prête à tort&nbsp;: le portrait d'un vaniteux intellectuellement lent, que deux dialogues (<em>Hippias majeur</em>, <em>Hippias mineur</em>) ont fixé pour vingt-cinq siècles&nbsp;; aucune source non platonicienne ne le confirme.</p>
+    <h4 class="sub">3. Postérité</h4><p>Hippias incarne la figure que le dossier apprend à reconnaître&nbsp;: celui qui sait tout, donc qu'on croit sur tout. Sa polymathie mise en scène est l'ancêtre du faux expert (entrée 60) et de l'autorité déplacée (5-6) — l'anneau gravé qui garantit l'astronomie. Son mot sur la loi «&nbsp;tyran des hommes&nbsp;» ouvre une lignée qui va jusqu'à l'appel à la nature (16)&nbsp;: ce qui est naturel serait juste, ce qui est légal serait arbitraire. Mais Hippias est aussi une leçon de prudence historique&nbsp;: nous ne le connaissons que par son adversaire. Le dossier s'en souvient au ch. 36, quand il rappelle qu'on décrit des arguments et jamais des âmes.</p>
+    <p class="pdoss">Partie 1, ch. 3.</p>
+  </div>
+</article>
+<h2 class="famtitle">Acte II — Athènes&nbsp;: le procès de la technique</h2>
+<article class="pfiche" id="p06">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/06-aristophane.jpg" alt="Aristophane"></span><figcaption>Aristophane</figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Aristophane, poète comique athénien, né vers 445 (Wikidata hésite entre 450 et 444), mort vers 385 (386-388 selon les sources). Athènes, dème de Cydathénée. Domaine&nbsp;: comédie ancienne — onze pièces conservées sur une quarantaine. Œuvres&nbsp;: <em>Les Acharniens</em> (425), <em>Les Cavaliers</em> (424), <em>Les Nuées</em> (423, remaniées entre 421 et 417), <em>Les Guêpes</em> (422), <em>La Paix</em> (421), <em>Les Oiseaux</em> (414), <em>Lysistrata</em> et <em>Les Thesmophories</em> (411), <em>Les Grenouilles</em> (405), <em>L'Assemblée des femmes</em> (v. 392), <em>Ploutos</em> (388).</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">06</p>
+    <h3>Aristophane <span class="pd">v. 445 – v. 385 av. J.-C.</span></h3>
+    <p class="epithet">Le Raisonnement injuste monte sur scène</p>
+    <h4 class="sub">1. Contexte</h4><p>Athènes en guerre contre Sparte, une démocratie où le théâtre est une institution civique&nbsp;: les comédies sont jouées en concours devant des milliers de citoyens, et les auteurs y attaquent nommément les puissants. <em>Les Nuées</em> sont représentées aux Grandes Dionysies de 423 et obtiennent le troisième et dernier prix, derrière Cratinos et Ameipsias — un échec qu'Aristophane n'a pas digéré. Le texte conservé est une seconde version, remaniée, sans doute jamais rejouée&nbsp;: l'agôn des deux Raisonnements et l'incendie final appartiennent à la révision. On ne sait donc pas exactement ce que le public de 423 a vu. Ce qu'il a compris, en revanche, est clair&nbsp;: la «&nbsp;nouvelle éducation&nbsp;» qui remplace l'autorité par l'argument peut tout justifier.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Strepsiade, paysan endetté, veut apprendre au «&nbsp;pensoir&nbsp;» de Socrate l'art de ne pas payer ses dettes&nbsp;: «&nbsp;Ils ont là deux Raisonnements, le fort et le faible&nbsp;; et de ces deux, le faible gagne en plaidant les causes injustes&nbsp;» (v. 112-115). Socrate y apparaît suspendu dans une corbeille, détrônant Zeus au profit des Nuées et du Tourbillon. L'agôn (v. 889-1104) oppose le Raisonnement juste, nostalgique de Marathon, au Raisonnement injuste, «&nbsp;le premier à avoir imaginé de contredire les lois et la justice&nbsp;»&nbsp;; le Juste finit par capituler en comptant les spectateurs. Phidippide, formé, bat son père et le lui démontre par syllogisme (v. 1321-1451)&nbsp;; Strepsiade incendie le pensoir. Ce que la pièce dit à tort — et c'est son sujet — c'est que Socrate est un sophiste&nbsp;: il ne faisait pas payer (Xénophon, <em>Mémorables</em> I, 2, 5-7) et ne s'occupait plus de physique. Le Socrate des <em>Nuées</em> est un type composite&nbsp;: physicien, rhéteur, questionneur.</p>
+    <h4 class="sub">3. Postérité</h4><p><em>Les Nuées</em> sont le premier portrait de l'argumentation vue par ceux qu'elle inquiète, et ce portrait a eu des conséquences&nbsp;: dans l'<em>Apologie</em> (18d, 19c), Platon fait de «&nbsp;la comédie d'Aristophane&nbsp;» la source des «&nbsp;premiers accusateurs&nbsp;» de Socrate, reprise mot pour mot par l'accusation de 399 — même si vingt-quatre ans séparent la pièce du procès et si les motifs réels sont politiques. Le dossier y lit un mécanisme entier&nbsp;: la caricature qui fabrique une cible (entrées 114-115, l'homme de paille), la culpabilité par association (54-56) qui fond trois inquiétudes en un seul homme, et la puissance d'un slogan — «&nbsp;rendre le plus fort l'argument le plus faible&nbsp;» — qui n'a besoin d'aucun nom pour condamner. Le <em>Banquet</em> met pourtant Aristophane et Socrate à la même table.</p>
+    <p class="pdoss">Partie 1, ch. 6 («&nbsp;Les <em>Nuées</em>, le procès de Socrate et la naissance de l'insulte&nbsp;»).</p>
+  </div>
+</article>
+<article class="pfiche" id="p07">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/07-socrate.jpg" alt="Socrate"></span><figcaption>Socrate <em>Eric Gaba, domaine public, via Wikimedia Commons&nbsp;». Mention&nbsp;: portrait sculpté d'après une tradition iconographique, non d'après nature</em></figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Socrate, fils de Sophronisque, né à Athènes (dème d'Alopèce) vers 470, condamné à boire la ciguë en 399 av. J.-C. — la seule date certaine de sa vie. Hoplite à Potidée, Délion et Amphipolis&nbsp;; membre du Conseil en 406. N'a rien écrit&nbsp;: tout ce qu'on sait de lui passe par Platon, Xénophon, Aristophane et, plus tard, Aristote. Domaine&nbsp;: l'interrogation dialoguée (<em>elenchos</em>), l'examen des définitions. Aucune œuvre.</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">07</p>
+    <h3>Socrate <span class="pd">v. 470 – 399 av. J.-C.</span></h3>
+    <p class="epithet">Accusé de rendre le plus fort l'argument le plus faible</p>
+    <h4 class="sub">1. Contexte</h4><p>Athènes, 399&nbsp;: la cité sort de la défaite contre Sparte et de la dictature des Trente, dont deux figures, Critias et Charmide, avaient fréquenté Socrate&nbsp;; Alcibiade, autre familier, a trahi deux fois. L'amnistie interdit d'instruire les affaires politiques, alors on instruit l'impiété et la «&nbsp;corruption de la jeunesse&nbsp;». Dans le portrait qu'en donne Platon, Socrate rappelle que l'accusation ne date pas d'hier&nbsp;: depuis longtemps on répète qu'il y a «&nbsp;un certain Socrate, homme savant, qui s'occupe de ce qui se passe dans le ciel et sous la terre, et qui d'une mauvaise cause en sait faire une bonne&nbsp;» (<em>Apologie</em> 18b-c, trad. Cousin). Trois peurs anciennes — athéisme, corruption des jeunes, inversion judiciaire — sont exactement celles des <em>Nuées</em>.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Socrate n'a laissé aucun texte&nbsp;; «&nbsp;l'œuvre&nbsp;» est ici ce qu'on a dit de lui. Il est appelé «&nbsp;sophiste&nbsp;» par Aristophane et par l'orateur Eschine — le mot n'est pas encore une insulte réservée. Il ne faisait pas payer (Xénophon), ce qui, dans l'<em>Apologie</em> (19d-20c), le distingue de Gorgias, Prodicos et Hippias, «&nbsp;qui parcourent toute la Grèce&nbsp;» et vendent leurs leçons. Sa méthode, telle que Platon la met en scène, consiste à demander une définition, à en tirer les conséquences, à montrer la contradiction&nbsp;: une réfutation qui ne cherche pas à vaincre mais à rendre l'interlocuteur conscient de ce qu'il ne sait pas. Ce qu'on lui prête à tort&nbsp;: «&nbsp;Je sais que je ne sais rien&nbsp;», qui ne figure pas sous cette forme chez Platon (<em>Apologie</em> 21d dit «&nbsp;je ne crois pas savoir ce que je ne sais pas&nbsp;»)&nbsp;; et l'idée qu'il fut condamné «&nbsp;à cause des <em>Nuées</em>&nbsp;» — Platon le suggère, mais les motifs de 399 sont politiques.</p>
+    <h4 class="sub">3. Postérité</h4><p>Socrate est la première victime documentée de l'amalgame que le dossier démonte&nbsp;: on l'a jugé sur l'image du «&nbsp;sophiste&nbsp;» et non sur ce qu'il faisait. Sa figure porte deux entrées du répertoire, l'attaque contre la personne (40) et la culpabilité par association (54-56), et une règle que le dossier adopte au ch. 36&nbsp;: le sophiste se définit par l'intention, donc on ne l'impute à personne. Sa méthode est l'ancêtre direct de la «&nbsp;question critique&nbsp;» enseignée au ch. 34 — demander la définition, demander le lien — et de la réfutation par l'exemple&nbsp;: dans l'<em>Euthydème</em>, c'est en proposant de compter les dents que Ctésippe met fin à la prétention de tout savoir. Le <em>Sophiste</em> de Platon aura tant de mal à le distinguer du sophiste qu'il parlera du loup et du chien.</p>
+    <p class="pdoss">Partie 1, ch. 6&nbsp;; en écho aux ch. 34 et 36.</p>
+  </div>
+</article>
+<article class="pfiche" id="p08">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/08-platon.jpg" alt="Platon"></span><figcaption>Platon</figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Platon (Aristoclès selon une tradition), né à Athènes ou à Égine vers 428/427, mort à Athènes vers 348/347 av. J.-C. (Wikidata retient 427 ou 428&nbsp;; 347 ou 348). Élève de Socrate&nbsp;; trois voyages en Sicile&nbsp;; fondateur de l'Académie (v. 387). Domaine&nbsp;: philosophie — tout le champ. Œuvres liées au dossier&nbsp;: <em>Apologie de Socrate</em>, <em>Protagoras</em>, <em>Gorgias</em> (v. 387), <em>Euthydème</em>, <em>Ménon</em>, <em>Phèdre</em> (v. 370), <em>Théétète</em>, <em>Sophiste</em>, <em>République</em>, <em>Hippias majeur</em> et <em>mineur</em>, <em>Cratyle</em>.</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">08</p>
+    <h3>Platon <span class="pd">v. 428/427 – v. 348/347 av. J.-C.</span></h3>
+    <p class="epithet">La rhétorique sans savoir est une cuisine&nbsp;; avec, une dialectique</p>
+    <h4 class="sub">1. Contexte</h4><p>Platon écrit après la mort de Socrate, et une partie de son œuvre est un procès en révision&nbsp;: montrer que le maître n'était pas ce que la cité a cru. Pour cela, il faut distinguer Socrate des sophistes&nbsp;; pour cela, il faut définir le sophiste. Le mot, honorifique chez Hérodote, devient sous sa plume une catégorie polémique&nbsp;: «&nbsp;chasseur de jeunes gens riches&nbsp;», «&nbsp;marchand de sciences&nbsp;», «&nbsp;fabricant d'images&nbsp;» (<em>Sophiste</em> 223b-268d), «&nbsp;une espèce de marchand ou de détaillant des denrées dont l'âme se nourrit&nbsp;» (<em>Protagoras</em> 313c). Ce que Platon fait dire aux sophistes est un troisième régime de vérité, ni fragment ni témoignage&nbsp;: un dialogue où l'auteur choisit les mots. Cela n'empêche pas ses portraits d'être souvent notre meilleure source.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Dans le <em>Gorgias</em> (462b-466a), la rhétorique n'est pas un art mais une «&nbsp;routine&nbsp;», une «&nbsp;flatterie&nbsp;»&nbsp;: «&nbsp;ce que la cuisine est à la médecine, la rhétorique l'est à la puissance judiciaire&nbsp;» (465c, trad. Cousin) — elle plaît sans soigner, et «&nbsp;ne peut rendre raison de rien&nbsp;». Le <em>Phèdre</em> renverse la perspective&nbsp;: une rhétorique légitime existe, «&nbsp;conduite des âmes par les discours&nbsp;» (261a), à condition de connaître le vrai par la dialectique et de connaître les âmes auxquelles on parle (269d-272b). Ce qu'on lui prête à tort, c'est donc une hostilité de principe à la rhétorique&nbsp;: le <em>Gorgias</em> condamne la rhétorique <em>sans savoir</em>, le <em>Phèdre</em> définit la bonne. Il faut aussi distinguer ce que Platon a écrit de ce qu'il fait dire&nbsp;: «&nbsp;le juste est l'intérêt du plus fort&nbsp;» est dans la <em>République</em> (338c), dans la bouche de Thrasymaque&nbsp;; «&nbsp;la justice est la loi du plus fort&nbsp;» est chez Calliclès (<em>Gorgias</em> 483b-484c), un personnage peut-être fictif&nbsp;; le mythe de Prométhée est dans la bouche de Protagoras.</p>
+    <h4 class="sub">3. Postérité</h4><p>Platon a fixé le vocabulaire dans lequel on parle encore&nbsp;: sophiste, flatterie, simulacre, et cette idée qu'un discours peut être «&nbsp;une cuisine&nbsp;». L'<em>Euthydème</em> est le premier catalogue de sophismes par équivoque — le chien qui est père et qui est à toi, donc ton père (298d-e) — dont Aristote tirera ses <em>Réfutations</em> et le dossier son atelier S2 (entrées 122, 125-126). Le <em>Théétète</em> fournit l'argument d'auto-réfutation contre le relativisme (171a-c), et le <em>Phèdre</em> la thèse que le dossier reprend au ch. 7&nbsp;: la persuasion n'est pas condamnable, c'est la persuasion sans vérité qui l'est. Grote, Kerferd et Cassin ont montré combien la mauvaise réputation des sophistes est son œuvre&nbsp;; il reste que c'est lui qui a posé la question.</p>
+    <p class="pdoss">Partie 1, ch. 5 («&nbsp;Le chien d'Euthydème&nbsp;») et ch. 7 («&nbsp;Platon contre la rhétorique&nbsp;?&nbsp;»)&nbsp;; atelier S2.</p>
+  </div>
+</article>
+<article class="pfiche" id="p09">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/09-aristote.jpg" alt="Aristote"></span><figcaption>Aristote <em>Jastrow, domaine public, via Wikimedia Commons</em></figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Aristote, né à Stagire (Chalcidique) en 384, mort à Chalcis (Eubée) en 322 av. J.-C. Élève de Platon à l'Académie pendant vingt ans&nbsp;; précepteur d'Alexandre&nbsp;; fondateur du Lycée (335). Domaines&nbsp;: logique, rhétorique, physique, biologie, éthique, politique, poétique. Œuvres liées au dossier&nbsp;: <em>Rhétorique</em> (trois livres, strates composées entre v. 360 et 335), <em>Réfutations sophistiques</em> (rattachées par la tradition aux <em>Topiques</em>), <em>Topiques</em>, <em>Premiers</em> et <em>Seconds Analytiques</em>, <em>Métaphysique</em> Γ.</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">09</p>
+    <h3>Aristote <span class="pd">384 – 322 av. J.-C.</span></h3>
+    <p class="epithet">Treize pièges, trois preuves, un enthymème</p>
+    <h4 class="sub">1. Contexte</h4><p>Aristote répond au <em>Phèdre</em>&nbsp;: Platon réclamait une rhétorique fondée sur la connaissance, Aristote la construit. Les manuels antérieurs — Corax, Tisias, Gorgias — n'enseignaient que «&nbsp;l'attaque personnelle, l'appel à la pitié, l'excitation à la colère&nbsp;», qui «&nbsp;ont en vue non l'affaire elle-même, mais le juge&nbsp;» (<em>Rhétorique</em> I, 1, 1354a, trad. Ruelle)&nbsp;: plus ancien réquisitoire conservé contre l'<em>ad hominem</em> et l'appel à l'émotion. Puis il consacre tout le livre II aux passions, parce qu'un orateur doit les connaître pour les susciter ou les apaiser légitimement. Le paradoxe est assumé&nbsp;: la rhétorique est utile parce que le vrai et le juste sont plus forts par nature, mais qu'il faut savoir les défendre devant des auditoires qu'on ne peut instruire.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>La définition (I, 2, 1355b25-26, trad. Ruelle 1883, libre)&nbsp;: «&nbsp;La rhétorique est la faculté de considérer, pour chaque question, ce qui peut être propre à persuader&nbsp;» — la version «&nbsp;découvrir spéculativement&nbsp;» est de Dufour (1932), sous droits. Trois preuves techniques (1356a1-4)&nbsp;: le caractère de l'orateur, la disposition de l'auditoire, le discours lui-même&nbsp;; l'enthymème, «&nbsp;syllogisme oratoire&nbsp;» (1356b4). Les <em>Réfutations sophistiques</em> définissent le sophisme comme réfutation apparente et en dressent treize&nbsp;: six dans l'expression (homonymie, amphibolie, composition, division, accent, forme de l'expression), sept hors de l'expression (accident, <em>secundum quid</em>, ignorance de la réfutation, pétition de principe, conséquent, fausse cause, questions multiples). Ce qu'on lui prête à tort&nbsp;: le «&nbsp;triangle rhétorique&nbsp;» et l'ordre canonique ethos-pathos-logos, pédagogie américaine du XXe siècle&nbsp;; les cinq parties de la rhétorique, doctrine romaine&nbsp;; tout <em>argumentum ad</em> (Locke, Watts)&nbsp;; la formule <em>post hoc ergo propter hoc</em>, latin scolaire tardif — l'idée, elle, est au livre II, 24&nbsp;; et une poignée de maximes de développement personnel («&nbsp;l'excellence est une habitude&nbsp;» est de Will Durant).</p>
+    <h4 class="sub">3. Postérité</h4><p>Toutes les listes de sophismes descendent des treize&nbsp;: équivocation (entrée 122), amphibologie (123), accent (124), composition et division (125-126), pétition de principe (98), fausse cause (61), question complexe, affirmation du conséquent (188) — et l'ignorance de la réfutation, dont l'homme de paille (114-115) est un cas. Deux thèses règlent le dossier. L'ethos se construit dans le discours et n'est pas la réputation préalable&nbsp;: c'est ce qui sépare la crédibilité gagnée de l'argument d'autorité (5-6). Et «&nbsp;ce qui fait le sophiste, ce n'est pas la faculté, c'est l'intention&nbsp;» (1355b17-21)&nbsp;: la même technique sert la dialectique, la rhétorique et l'éristique. Le double devoir du savant — ne pas se tromper, et savoir démasquer qui trompe (165a24-27) — est, mot pour mot, le programme d'un dossier anti-intox.</p>
+    <p class="pdoss">Partie 2, ch. 8 à 11 («&nbsp;Ethos, pathos, logos&nbsp;»&nbsp;; «&nbsp;L'enthymème&nbsp;»&nbsp;; «&nbsp;Les <em>Réfutations sophistiques</em>&nbsp;»&nbsp;; «&nbsp;La dialectique, la rhétorique et l'éristique&nbsp;»)&nbsp;; ateliers S1, S3, S4.</p>
+  </div>
+</article>
+<h2 class="famtitle">Acte III — Rome et l'école</h2>
+<article class="pfiche" id="p10">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/10-ciceron.jpg" alt="Cicéron"></span><figcaption>Cicéron <em>Wilfredor, CC0, via Wikimedia Commons</em></figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Marcus Tullius Cicero, né à Arpinum le 3 janvier 106, assassiné près de Formies le 7 décembre 43 av. J.-C. sur ordre des triumvirs. Avocat, consul en 63 (conjuration de Catilina), exilé puis rappelé, gouverneur de Cilicie, adversaire d'Antoine. Domaines&nbsp;: éloquence judiciaire et politique, théorie rhétorique, philosophie. Œuvres rhétoriques&nbsp;: <em>De inventione</em> (v. 91-88, œuvre de jeunesse qu'il qualifiera d'«&nbsp;ébauche d'adolescent&nbsp;»), <em>De oratore</em> (55), <em>Brutus</em> (46), <em>Orator</em> (46), <em>De optimo genere oratorum</em>, <em>Partitiones oratoriae</em>, <em>Topica</em> (44)&nbsp;; cinquante-huit discours conservés.</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">10</p>
+    <h3>Cicéron <span class="pd">106 – 43 av. J.-C.</span></h3>
+    <p class="epithet">Instruire, plaire, émouvoir</p>
+    <h4 class="sub">1. Contexte</h4><p>Rome au dernier siècle de la République&nbsp;: les procès se plaident au forum devant de grands jurys, les lois se votent après des discours, et un «&nbsp;homme nouveau&nbsp;» comme Cicéron, sans ancêtres consulaires, ne monte que par la parole. La rhétorique grecque y est arrivée par les écoles&nbsp;: les cinq parties du discours — <em>inventio, dispositio, elocutio, memoria, actio</em> — sont déjà dans la <em>Rhétorique à Herennius</em> (anonyme, v. 86-82, longtemps attribuée à Cicéron), et le jeune Cicéron les recopie (<em>De inventione</em> I, 7, 9). Ce n'est pas la doctrine d'Aristote, qui ne dit rien de la mémoire&nbsp;; c'est celle de l'école hellénistique, devenue la grammaire de tout enseignement de l'éloquence en Occident.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Ce que Cicéron a réellement écrit, et sous trois formes authentiques&nbsp;: «&nbsp;tout l'art de parler repose, pour persuader, sur trois choses&nbsp;: prouver que ce que nous soutenons est vrai&nbsp;; nous concilier ceux qui nous écoutent&nbsp;; appeler leurs âmes au mouvement que la cause réclame&nbsp;» (<em>De oratore</em> II, 27, 115)&nbsp;; «&nbsp;prouver, plaire, fléchir&nbsp;» (<em>Orator</em> 69)&nbsp;; «&nbsp;instruire, charmer, émouvoir&nbsp;» (<em>De optimo genere oratorum</em> I, 3). La triade <em>docere / delectare / movere</em> répond terme à terme à <em>logos / ethos / pathos</em>, avec une différence de ton&nbsp;: pour Cicéron, émouvoir «&nbsp;est la victoire&nbsp;» — il assume ce qu'Aristote déplorait. Authentiques aussi&nbsp;: «&nbsp;ignorer ce qui s'est passé avant sa naissance, c'est rester toujours un enfant&nbsp;» (<em>Orator</em> 120) et «&nbsp;l'histoire, témoin des temps, lumière de la vérité&nbsp;» (<em>De oratore</em> II, 36). Ce qu'on lui prête à tort, et qui circule massivement&nbsp;: «&nbsp;le budget doit être équilibré, le Trésor renfloué…&nbsp;» (<em>Chicago Tribune</em>, 1965) et «&nbsp;une nation peut survivre à ses imbéciles… mais pas à la trahison de l'intérieur&nbsp;» (roman de Taylor Caldwell, 1965).</p>
+    <h4 class="sub">3. Postérité</h4><p>Cicéron est le passeur&nbsp;: c'est par lui, et par la <em>Rhétorique à Herennius</em> qu'on lui attribuait, que l'Occident latin a reçu la rhétorique comme école — un programme en cinq parties, trois devoirs, trois styles, qui tiendra jusqu'au XIXe siècle. Il rend aussi un service involontaire au dossier&nbsp;: il est l'auteur antique le plus cité à faux, et ses deux apocryphes politiques sont des cas d'école de la citation inventée (entrées 127-128) et de l'appel à la tradition (12) — l'Antiquité comme caution. Ses trois devoirs alimentent l'atelier S1&nbsp;: à <em>movere</em> poussé à cent pour cent, il ne reste plus d'argument. Et son <em>Brutus</em> est la seule source qui date Corax et Tisias.</p>
+    <p class="pdoss">Partie 3, ch. 12 («&nbsp;Cicéron et Quintilien&nbsp;: la rhétorique devient une école&nbsp;»)&nbsp;; en écho au ch. 21 (citations apocryphes) et à l'atelier S1.</p>
+  </div>
+</article>
+<article class="pfiche" id="p11">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/11-quintilien.jpg" alt="Quintilien"></span><figcaption>Quintilien <em>Étienne-Jehandier Desrochers, XVIIIe siècle, domaine public</em></figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Marcus Fabius Quintilianus, né à Calagurris (Calahorra, Hispanie) vers 35, mort à Rome vers 96 apr. J.-C. Avocat, puis premier professeur de rhétorique rémunéré par l'État, sous Vespasien (v. 71)&nbsp;; précepteur des petits-neveux de Domitien. Domaine&nbsp;: rhétorique, pédagogie. Œuvre&nbsp;: <em>Institutio oratoria</em> (<em>L'Institution oratoire</em>), douze livres publiés vers 95, de l'éducation du petit enfant à la retraite de l'orateur — la somme de la rhétorique antique.</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">11</p>
+    <h3>Quintilien <span class="pd">v. 35 – v. 96 apr. J.-C.</span></h3>
+    <p class="epithet">«&nbsp;Un homme de bien, habile à parler&nbsp;» — la formule est de Caton, Quintilien l'adopte</p>
+    <h4 class="sub">1. Contexte</h4><p>Sous l'Empire, la parole ne renverse plus de consuls&nbsp;: l'éloquence politique s'est retirée dans les écoles de déclamation, où l'on plaide des causes fictives. Quintilien enseigne vingt ans dans ce monde, puis rédige en deux ans le traité qui l'ordonne. Son ambition est double&nbsp;: former l'orateur dès le berceau, et sauver la rhétorique du soupçon que Platon avait jeté sur elle. Le livre XII s'ouvre sur une définition empruntée&nbsp;: «&nbsp;Je définis donc l'orateur, comme l'a défini Caton, un homme de bien, habile dans l'art de parler&nbsp;; mais surtout un homme de bien&nbsp;» (XII, 1, 1, trad. Nisard). <em>Vir bonus dicendi peritus</em> est donc de Caton l'Ancien&nbsp;; Quintilien la cite, l'adopte et en fait le titre de tout son dernier livre. L'attribuer à Quintilien est l'erreur la plus fréquente à son sujet.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Ce que Quintilien a réellement écrit, c'est un traité de méthode et de morale mêlées. Il retient pour la rhétorique la définition de «&nbsp;science de bien parler&nbsp;» (II, 15), <em>bene</em> ayant le double sens d'«&nbsp;avec art&nbsp;» et de «&nbsp;moralement&nbsp;». Le livre V classe les preuves — signes, arguments, exemples — et le chapitre 13 traite de la réfutation, «&nbsp;plus difficile que la preuve&nbsp;». Le livre VI décrit les passions et les «&nbsp;visions&nbsp;» que l'orateur doit se représenter pour émouvoir&nbsp;; les livres VIII et IX dressent la nomenclature des tropes et des figures qui passera à Fontanier et aux manuels scolaires. Une phrase authentique, souvent citée sans référence&nbsp;: «&nbsp;il faut qu'un menteur ait bonne mémoire&nbsp;» (IV, 2, 91). Et une nuance à ne pas taire&nbsp;: en XII, 1, 36-45, il admet qu'un homme de bien peut, dans une bonne cause, user d'arguments qui ne sont pas vrais pour un juge qu'on ne peut convaincre autrement — ce qui interdit d'en faire un moraliste sans faille.</p>
+    <h4 class="sub">3. Postérité</h4><p>Quintilien lègue deux choses au dossier. Une phrase, d'abord, qui vaut règle de dignité&nbsp;: «&nbsp;si le talent de la parole peut devenir l'instrument de la méchanceté, rien n'est plus pernicieux que l'éloquence&nbsp;»&nbsp;; enseigner la rhétorique sans éthique, écrit-il, c'est «&nbsp;forger des armes pour des brigands et non pour des soldats&nbsp;» (XII, 1, 1-3). Le ch. 36 reprend cette idée pour dire ce que la liste des sophismes ne donne pas le droit de faire. Ensuite une méthode&nbsp;: apprendre à réfuter comme on apprend à prouver, ce que le ch. 34 traduit en «&nbsp;question critique&nbsp;». Son cas personnel, enfin, illustre l'argument d'autorité (entrée 5)&nbsp;: la formule de Caton a gagné en prestige en changeant de nom.</p>
+    <p class="pdoss">Partie 3, ch. 12&nbsp;; en écho aux ch. 34 et 36.</p>
+  </div>
+</article>
+<h2 class="famtitle">Acte IV — Nommer les coups</h2>
+<article class="pfiche" id="p12">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/12-arnauld.jpg" alt="Antoine Arnauld et Pierre Nicole"></span><figcaption>Antoine Arnauld et Pierre Nicole <em>Rijksmuseum, CC0&nbsp;». Portraits gravés d'après nature ou d'après des peintures contemporaines des modèles</em></figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Antoine Arnauld, dit «&nbsp;le Grand Arnauld&nbsp;», né à Paris le 6 février 1612 (Wikidata&nbsp;: 5 ou 6 février), mort à Bruxelles le 8 août 1694&nbsp;; théologien, docteur de Sorbonne, chef de file des jansénistes, exilé aux Pays-Bas. Pierre Nicole, né à Chartres le 19 octobre 1625 (Wikidata&nbsp;: 13 ou 19 octobre), mort à Paris le 16 novembre 1695&nbsp;; théologien et moraliste, professeur aux Petites Écoles de Port-Royal. Domaines&nbsp;: logique, grammaire, théologie, morale. Œuvres&nbsp;: <em>La Logique ou l'art de penser</em> (Paris, Charles Savreux, 1662&nbsp;; cinquième édition définitive en 1683)&nbsp;; Arnauld cosigne avec Lancelot la <em>Grammaire générale et raisonnée</em> (1660)&nbsp;; Nicole publie les <em>Essais de morale</em> (1671-1678).</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">12</p>
+    <h3>Antoine Arnauld et Pierre Nicole <span class="pd">Port-Royal, 1662</span></h3>
+    <p class="epithet">Les sophismes en français</p>
+    <h4 class="sub">1. Contexte</h4><p>Port-Royal, les années 1660&nbsp;: une abbaye, un cercle de solitaires, une querelle théologique qui finira par l'expulsion et la destruction du lieu. Entre-temps, les Petites Écoles inventent une pédagogie, et la <em>Logique</em> naît, dit la préface, d'un pari&nbsp;: enseigner en quelques jours à un jeune homme tout ce qui est utile de la logique. Écrite en français et non en latin, elle devient le manuel de logique le plus lu d'Europe jusqu'au XIXe siècle. Elle mêle Aristote, Descartes et Pascal, et surtout elle rapproche la logique de l'usage&nbsp;: raisonner, c'est aussi ne pas se laisser tromper, par les autres et par soi.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>La troisième partie, chapitre XIX, «&nbsp;Des sophismes&nbsp;», réduit les paralogismes à «&nbsp;sept ou huit&nbsp;» — neuf en réalité&nbsp;: prouver autre chose que ce qui est en question, supposer pour vrai ce qui est en question, prendre pour cause ce qui n'est point cause, dénombrement imparfait, juger par l'accident, passer du sens divisé au composé, passer du «&nbsp;vrai à quelque égard&nbsp;» au «&nbsp;vrai simplement&nbsp;», abuser de l'ambiguïté des mots, conclure d'une induction défectueuse. Dans la première rubrique se lit la plus ancienne description française de l'homme de paille&nbsp;: «&nbsp;on attribue à son adversaire ce qui est éloigné de son sentiment pour le combattre avec plus d'avantage&nbsp;». Le chapitre XX — ajouté aux éditions postérieures à 1662 — déplace le sophisme vers la psychologie&nbsp;: «&nbsp;sophismes d'amour-propre, d'intérêt et de passion&nbsp;», argument d'autorité, argument du nombre («&nbsp;il y a tant de gens qui le croient&nbsp;»). Rien n'y est prêté à tort&nbsp;: le texte est daté, signé (anonymement, mais l'attribution est sûre) et consultable sur Gallica.</p>
+    <h4 class="sub">3. Postérité</h4><p>Port-Royal fait entrer dans le répertoire, sous des noms français, ce que le dossier catalogue&nbsp;: l'homme de paille (entrées 114-115), le faux dilemme sous le nom de «&nbsp;dénombrement imparfait&nbsp;» (108), la fausse cause et le <em>post hoc</em> décrits en clair (61), la généralisation hâtive (84), l'équivoque (122). Et le chapitre XX est la passerelle historique entre sophismes et biais&nbsp;: deux siècles et demi avant Tversky et Kahneman, il décrit des erreurs qui viennent de ce qu'on désire croire. L'atelier S9 (de l'homme de paille au <em>steelman</em>) tient en une ligne de 1662&nbsp;: combattre un adversaire «&nbsp;avec plus d'avantage&nbsp;» en le réécrivant. Le ch. 13 leur doit son titre.</p>
+    <p class="pdoss">Partie 3, ch. 13 («&nbsp;Port-Royal, Locke et les noms latins&nbsp;»)&nbsp;; en écho au ch. 20 et à l'atelier S9.</p>
+  </div>
+</article>
+<article class="pfiche" id="p13">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/13-locke.jpg" alt="John Locke"></span><figcaption>John Locke <em>Godfrey Kneller, 1697, domaine public&nbsp;». Portrait peint du vivant du modèle</em></figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>John Locke, né à Wrington (Somerset) le 29 août 1632, mort à Oates, High Laver (Essex), le 28 octobre 1704. Médecin, secrétaire du comte de Shaftesbury, exilé en Hollande de 1683 à 1689. Domaines&nbsp;: théorie de la connaissance, philosophie politique, éducation. Œuvres&nbsp;: <em>Essai sur l'entendement humain</em> (daté 1690, paru fin 1689&nbsp;; trad. Pierre Coste, 1700), <em>Deux traités du gouvernement</em> (1689), <em>Lettre sur la tolérance</em> (1689), <em>Quelques pensées sur l'éducation</em> (1693).</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">13</p>
+    <h3>John Locke <span class="pd">1632 – 1704</span></h3>
+    <p class="epithet"><em>Ad verecundiam</em>, <em>ad ignorantiam</em>, <em>ad judicium</em> — l'<em>ad hominem</em> était «&nbsp;déjà connu&nbsp;»</p>
+    <h4 class="sub">1. Contexte</h4><p>L'Angleterre de la Glorieuse Révolution&nbsp;: Locke rentre d'exil avec Guillaume d'Orange et publie coup sur coup les livres qui font de lui le philosophe du nouveau régime. L'<em>Essai</em> est autre chose — vingt ans de travail sur ce que l'esprit peut connaître et comment il se trompe. Le livre IV, chapitre XVII, «&nbsp;De la raison&nbsp;», se termine par quatre paragraphes de circonstance, § 19-22, sur «&nbsp;les sortes d'arguments dont les hommes se servent ordinairement pour convaincre les autres, ou du moins pour les tenir en respect&nbsp;». Locke ne les appelle jamais «&nbsp;sophismes&nbsp;». Il n'écrit pas un traité de logique&nbsp;: il décrit, en moraliste, ce qui se passe dans une conversation quand on veut avoir raison.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Ce que Locke a réellement écrit&nbsp;: quatre noms latins, dont trois de son cru. L'<em>argumentum ad verecundiam</em>, «&nbsp;argument tiré de la modestie&nbsp;» — alléguer l'opinion d'hommes réputés, de sorte qu'il serait impudent de s'y opposer&nbsp;: «&nbsp;ceci, je pense, peut être appelé…&nbsp;». L'<em>ad ignorantiam</em> — exiger de l'adversaire qu'il admette la preuve ou en fournisse une meilleure&nbsp;: «&nbsp;c'est ce que j'appelle…&nbsp;». L'<em>ad judicium</em>, seul à apporter «&nbsp;une véritable instruction&nbsp;». Et l'<em>ad hominem</em>, dont il dit&nbsp;: «&nbsp;ceci est déjà connu sous le nom de…&nbsp;» — presser un homme par les conséquences tirées de ses propres principes ou concessions. Ce qu'on lui prête à tort, donc&nbsp;: d'avoir nommé l'<em>ad hominem</em>, attesté avant lui (Galilée l'emploie en 1632) et enraciné chez Aristote (<em>Réfutations</em> 20 et 22)&nbsp;; et d'avoir désigné par là l'attaque personnelle — son <em>ad hominem</em> est un argument légitime, tiré des concessions de l'adversaire. Le glissement vers la personne est du XIXe siècle, chez Whately.</p>
+    <h4 class="sub">3. Postérité</h4><p>Locke est le point d'origine de la prolifération des «&nbsp;<em>ad</em>&nbsp;»&nbsp;: Isaac Watts (1725) ajoute <em>ad fidem</em>, <em>ad passiones</em>, <em>ad populum</em>&nbsp;; les manuels des XIXe et XXe siècles forgent <em>ad baculum</em>, <em>ad misericordiam</em>, <em>ad nauseam</em>, <em>ad novitatem</em>, <em>ad antiquitatem</em>. Aucun n'est aristotélicien. Trois entrées du répertoire portent directement sa marque&nbsp;: l'argument d'autorité (5-6), l'appel à l'ignorance (26) et l'<em>ad hominem</em> (40-41) — à condition de rappeler qu'il n'en a nommé que deux, et que son troisième a changé de sens. Locke offre aussi une nuance que le dossier retient&nbsp;: ces arguments ne sont pas toujours fallacieux, ils ne font simplement pas «&nbsp;avancer vers la connaissance&nbsp;». Le ch. 13 s'appuie sur lui pour montrer que les noms latins sont modernes.</p>
+    <p class="pdoss">Partie 3, ch. 13&nbsp;; en écho aux ch. 16 et 17.</p>
+  </div>
+</article>
+<article class="pfiche" id="p14">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/14-bentham.jpg" alt="Jeremy Bentham"></span><figcaption>Jeremy Bentham <em>Henry William Pickersgill, v. 1829, domaine public</em></figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Jeremy Bentham, né à Londres (Houndsditch) le 15 février 1748 (Wikidata mentionne aussi 1749, confusion de calendrier), mort à Londres le 6 juin 1832. Juriste sans exercer, philosophe de l'utilitarisme, réformateur du droit, des prisons (le Panoptique) et du Parlement&nbsp;; son corps momifié, l'<em>auto-icon</em>, est conservé à University College London. Domaines&nbsp;: philosophie morale et politique, droit, économie, théorie de l'argumentation. Œuvres&nbsp;: <em>Introduction aux principes de morale et de législation</em> (1789), <em>Tactique des assemblées législatives, suivie d'un traité des sophismes politiques</em> (recension française d'Étienne Dumont, Genève-Paris, 1816), <em>The Book of Fallacies</em> (éd. Peregrine Bingham, Londres, 1824).</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">14</p>
+    <h3>Jeremy Bentham <span class="pd">1748 – 1832</span></h3>
+    <p class="epithet">Le livre des sophismes politiques</p>
+    <h4 class="sub">1. Contexte</h4><p>L'Angleterre de la Régence et des débats sur la réforme électorale&nbsp;: Bentham observe la Chambre des communes bloquer toute réforme avec les mêmes arguments depuis un siècle. Il rédige entre 1806 et 1811 des liasses sur les «&nbsp;sophismes politiques&nbsp;», que son éditeur genevois Étienne Dumont publie d'abord en français, en 1816&nbsp;; la version anglaise, mise en forme par Bingham, ne paraît qu'en 1824. Le texte français a donc précédé l'anglais de huit ans. Pour la première fois, un traité de sophismes ne part pas de la logique mais d'une assemblée réelle, et classe les arguments selon leur fonction stratégique&nbsp;: freiner.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Bentham définit le sophisme comme «&nbsp;tout argument employé, ou tout sujet suggéré, dans le dessein, ou avec la probabilité, de produire l'effet de la tromperie&nbsp;», et le range en quatre classes. Sophismes d'autorité&nbsp;: «&nbsp;la sagesse de nos ancêtres&nbsp;», l'«&nbsp;argument chinois&nbsp;» de l'immobilisme. Sophismes de danger&nbsp;: l'épouvantail (<em>hobgoblin argument</em>, «&nbsp;pas d'innovation&nbsp;!&nbsp;»), l'accusation de «&nbsp;théorie&nbsp;», le «&nbsp;où s'arrêtera-t-on&nbsp;?&nbsp;» — la pente glissante avant le nom. Sophismes d'ajournement&nbsp;: «&nbsp;ce n'est pas le moment&nbsp;», «&nbsp;pas de précédent&nbsp;», «&nbsp;l'argument de l'escargot&nbsp;». Sophismes de confusion&nbsp;: généralités vagues, et surtout les termes laudatifs et dyslogistiques — la même chose nommée «&nbsp;fermeté&nbsp;» ou «&nbsp;obstination&nbsp;» selon le camp —, la question de fait déplacée en question de personne, le <em>cui bono</em> retourné. Rien ne lui est prêté à tort&nbsp;; le risque est inverse&nbsp;: oublier que l'édition critique de Schofield (Oxford, 2015) a rétabli un texte que Bingham avait abrégé.</p>
+    <h4 class="sub">3. Postérité</h4><p>Bentham est l'inventeur du sophisme politique comme genre, et le premier à analyser les mots qui jugent en nommant — ancêtre direct du cadrage (<em>framing</em>) que le dossier traite au ch. 32 avec Orwell et Lakoff. Le répertoire lui doit quatre entrées reconnaissables&nbsp;: l'appel à la tradition (12), l'appel à la peur (17), la pente glissante (69) et le déplacement de la question vers la personne (40). Il apporte aussi une théorie des intérêts qui font accepter les sophismes — «&nbsp;préjugés engendrés par l'intérêt&nbsp;» —, très proche du chapitre XX de Port-Royal et qui prépare le raisonnement motivé du ch. 28. Enfin, l'histoire éditoriale de son livre est une leçon en soi&nbsp;: un traité anglais sur la mauvaise foi parlementaire, lu d'abord en français.</p>
+    <p class="pdoss">Partie 3, ch. 13&nbsp;; en écho aux ch. 16, 18 et 32.</p>
+  </div>
+</article>
+<article class="pfiche" id="p15">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/15-schopenhauer.jpg" alt="Arthur Schopenhauer"></span><figcaption>Arthur Schopenhauer <em>Johann Schäfer, 1859, domaine public&nbsp;». Un des rares philosophes de cette galerie photographié de son vivant</em></figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Arthur Schopenhauer, né à Dantzig (Gdańsk) le 22 février 1788, mort à Francfort-sur-le-Main le 21 septembre 1860. <em>Privatdozent</em> à Berlin (1820), sans étudiants, en rivalité avec Hegel&nbsp;; retiré à Francfort à partir de 1833. Domaine&nbsp;: philosophie. Œuvres&nbsp;: <em>Le Monde comme volonté et comme représentation</em> (1818/1819), <em>Parerga et Paralipomena</em> (1851), et la <em>Dialectique éristique</em> (<em>Eristische Dialektik</em>), manuscrit inachevé rédigé vers 1830-1831, publié en 1864 par Julius Frauenstädt dans les papiers posthumes.</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">15</p>
+    <h3>Arthur Schopenhauer <span class="pd">1788 – 1860</span></h3>
+    <p class="epithet">Trente-huit stratagèmes pour les parer</p>
+    <h4 class="sub">1. Contexte</h4><p>Berlin, vers 1830&nbsp;: Schopenhauer a programmé ses cours aux mêmes heures que ceux de Hegel, et personne n'est venu. Il rédige alors, pour lui-même, un traité de «&nbsp;l'art de disputer&nbsp;», inachevé, auquel il renonce et dont il ne donne qu'un abrégé dans les <em>Parerga</em> (1851). Le manuscrit paraît quatre ans après sa mort. Le sous-titre allemand <em>Die Kunst, Recht zu behalten</em> et le titre français <em>L'Art d'avoir toujours raison</em> sont des titres d'éditeurs — tirés de la première phrase&nbsp;: «&nbsp;La dialectique éristique est l'art de disputer, et de disputer de telle sorte qu'on ait raison, donc <em>per fas et nefas</em>&nbsp;», par tous les moyens, permis ou non.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Trente-huit <em>Kunstgriffe</em> — ni trente-six ni quarante — écrits du point de vue du tricheur, précédés d'une introduction sérieuse sur la vanité «&nbsp;particulièrement irritable en ce qui concerne les facultés intellectuelles&nbsp;» qui fait disputer pour gagner plutôt que pour trouver. Schopenhauer cite ses sources, Aristote surtout (<em>Topiques</em>, <em>Réfutations sophistiques</em> 15), et plusieurs stratagèmes portent un nom classique&nbsp;: le 1 est l'extension abusive, le 12 le choix des mots qui préjugent, le 16 l'<em>ad hominem</em> au sens de Locke, le 30 l'<em>ad verecundiam</em> («&nbsp;il n'y a pas d'opinion, si absurde soit-elle, que les hommes n'embrassent aussitôt qu'on a réussi à les convaincre qu'elle est généralement admise&nbsp;»), le 32 le rangement dans une catégorie détestée, le 36 le flot de paroles incompréhensibles, le 38 l'insulte finale «&nbsp;quand on s'aperçoit que l'adversaire est supérieur&nbsp;». Ce qu'on lui prête à tort&nbsp;: «&nbsp;toute vérité franchit trois étapes&nbsp;: ridiculisée, combattue, acceptée comme évidente&nbsp;» — introuvable dans ses œuvres, construction anglophone du XXe siècle&nbsp;; et l'image d'un partisan de la manipulation, alors que le texte se conclut par le conseil de ne disputer «&nbsp;qu'avec des gens que l'on estime […] et qui aiment la vérité&nbsp;».</p>
+    <h4 class="sub">3. Postérité</h4><p>Le petit livre (traductions Plard, 1990&nbsp;; Miermont, 1998, sous droits) a fait de Schopenhauer le nom populaire de la mauvaise foi argumentative, à contresens de son intention. Le dossier lui rend son sens&nbsp;: un manuel de coups pour les parer, et l'atelier S5 en déroule la frise, de I à XXXVIII, avec pour chacun l'équivalent moderne. Les correspondances sont nettes&nbsp;: le 30 est l'argument d'autorité et de popularité (entrées 1, 5-6), le 32 la culpabilité par association (54-56) et l'ancêtre du <em>reductio ad Hitlerum</em>, le 36 le Gish gallop (148-150), le 38 l'<em>ad personam</em> (43). Sa fausse citation sur les «&nbsp;trois étapes&nbsp;» est un piège double&nbsp;: appel à l'autorité et sophisme de Galilée (58) — «&nbsp;ils rient de moi, donc j'ai raison&nbsp;» — dans une même phrase.</p>
+    <p class="pdoss">Partie 3, ch. 14 («&nbsp;Schopenhauer&nbsp;: trente-huit façons de gagner sans avoir raison&nbsp;»)&nbsp;; atelier S5.</p>
+  </div>
+</article>
+<h2 class="famtitle">Acte V — Réexaminer la liste</h2>
+<article class="pfiche" id="p16">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/16-hamblin-deuce.jpg" alt="Charles Hamblin"></span><figcaption>Charles Hamblin</figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Charles Leonard Hamblin, né en 1922 en Australie (Nouvelle-Galles du Sud), mort le 14 mai 1985. Logicien, philosophe et pionnier de l'informatique&nbsp;: professeur de philosophie à l'université de Nouvelle-Galles du Sud (Sydney) à partir de 1955&nbsp;; en 1957, il conçoit pour l'ordinateur UTECOM, un English Electric DEUCE, le langage GEORGE, fondé sur la notation polonaise inverse qu'il introduit dans le calcul automatique. Domaines&nbsp;: logique formelle, théorie de l'argumentation, langages de programmation. Œuvres&nbsp;: <em>Fallacies</em> (Londres, Methuen, 1970&nbsp;; réimpr. Vale Press), <em>Imperatives</em> (posthume, 1987), <em>Elementary Formal Logic</em> (1966).</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">16</p>
+    <h3>Charles Hamblin <span class="pd">1922 – 1985</span></h3>
+    <p class="epithet">La fin du traitement standard</p>
+    <h4 class="sub">1. Contexte</h4><p>Dans les années 1960, les manuels de logique anglo-saxons se terminent tous par le même chapitre&nbsp;: une liste de «&nbsp;sophismes&nbsp;» — <em>ad hominem</em>, pétition de principe, pente glissante… — assortie d'exemples inventés et de définitions recopiées de manuel en manuel. Hamblin, qui enseigne la logique formelle et écrit des compilateurs, lit cette liste avec l'œil d'un homme habitué aux définitions exactes, et constate qu'elle n'en a aucune. <em>Fallacies</em> paraît en 1970&nbsp;: c'est le premier livre en trois siècles qui reprenne l'histoire entière, d'Aristote à Locke et Whately, pour demander ce qu'est au juste un sophisme.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>La cible s'appelle le «&nbsp;traitement standard&nbsp;» (<em>the Standard Treatment</em>, chap. 1), résumé par une phrase (p. 12)&nbsp;: «&nbsp;Un argument fallacieux, comme vous le dit presque chaque exposé depuis Aristote, est un argument qui paraît valide mais ne l'est pas.&nbsp;» Hamblin montre que cette définition ne couvre ni la pétition de principe, formellement valide, ni l'<em>ad hominem</em>, qui n'est pas un argument déductif, ni les questions multiples, qui ne sont pas des arguments. Il propose de refonder la théorie sur une «&nbsp;dialectique formelle&nbsp;»&nbsp;: des règles de dialogue, où le sophisme est une infraction à une règle d'échange, non une erreur de forme. Ce qu'on lui prête à tort, ou plutôt ce qu'il a un peu forcé&nbsp;: Hans Hansen (2002) a montré que le «&nbsp;traitement standard&nbsp;» est en partie un homme de paille — peu de manuels donnaient vraiment cette définition. La critique de la liste avait elle-même sa liste.</p>
+    <h4 class="sub">3. Postérité</h4><p><em>Fallacies</em> a relancé une discipline entière&nbsp;: la logique informelle (Johnson et Blair, 1977), la théorie de l'argumentation de Woods et Walton, la pragma-dialectique d'Amsterdam avec ses dix règles, les «&nbsp;questions critiques&nbsp;» de Walton. Ce que le dossier en retient est une méthode&nbsp;: un sophisme n'est pas une faute de logique mais un manquement à ce que le dialogue exige&nbsp;; le nommer n'est pas le réfuter&nbsp;; le même schème est légitime ou non selon le contexte. C'est la base du ch. 34 — poser la question critique plutôt que coller l'étiquette — et du sophisme du sophisme (entrée 173), que Hamblin permet de comprendre&nbsp;: un mauvais argument ne rend pas la conclusion fausse. Et sa pétition de principe (98) reste l'exemple qui fait tomber la définition.</p>
+    <p class="pdoss">Partie 3, ch. 15 («&nbsp;1970&nbsp;: Hamblin, et ce qu'est vraiment un sophisme&nbsp;»)&nbsp;; en écho au ch. 34.</p>
+  </div>
+</article>
+<article class="pfiche" id="p17">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/17-perelman.jpg" alt="Chaïm Perelman et Lucie Olbrechts-Tyteca"></span><figcaption>Chaïm Perelman et Lucie Olbrechts-Tyteca</figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Chaïm Perelman, né à Varsovie le 20 mai 1912, arrivé en Belgique en 1925, mort à Bruxelles (Uccle) le 22 janvier 1984&nbsp;; docteur en droit et en philosophie, professeur à l'Université libre de Bruxelles, résistant. Lucie Olbrechts-Tyteca, née le 28 mars 1899, morte en 1987&nbsp;; formée en sciences sociales et économiques à l'ULB, collaboratrice de Perelman pendant dix ans. Domaines&nbsp;: philosophie du droit, logique, théorie de l'argumentation. Œuvres&nbsp;: <em>Traité de l'argumentation. La nouvelle rhétorique</em> (Paris, PUF, 1958, deux volumes&nbsp;; rééd. Éditions de l'Université de Bruxelles)&nbsp;; Perelman seul&nbsp;: <em>De la justice</em> (1945), <em>L'Empire rhétorique</em> (1977).</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">17</p>
+    <h3>Chaïm Perelman et Lucie Olbrechts-Tyteca <span class="pd">1958</span></h3>
+    <p class="epithet">L'argumentation comme accord d'un auditoire</p>
+    <h4 class="sub">1. Contexte</h4><p>Bruxelles, après la guerre. Perelman, positiviste logique de formation, a voulu fonder la justice en raison et s'est heurté à un mur&nbsp;: les jugements de valeur ne se démontrent pas. Plutôt que d'en conclure qu'ils sont arbitraires, il entreprend avec Lucie Olbrechts-Tyteca une enquête de dix ans sur la manière dont on argumente réellement — en droit, en philosophie, en politique — et redécouvre la rhétorique d'Aristote, oubliée depuis que la logique l'avait réduite à l'étude des figures. L'année 1958 est une charnière&nbsp;: le <em>Traité</em> paraît à Paris, <em>The Uses of Argument</em> de Stephen Toulmin à Cambridge, chacun ignorant l'autre.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Le <em>Traité</em> oppose l'argumentation à la démonstration&nbsp;: l'une est contraignante et formelle, l'autre vise à «&nbsp;provoquer ou accroître l'adhésion des esprits aux thèses qu'on présente à leur assentiment&nbsp;» — elle suppose toujours un auditoire. D'où la notion d'auditoire universel&nbsp;: l'auditoire idéal que l'orateur se donne quand il prétend convaincre tout être raisonnable. Suit une typologie des techniques&nbsp;: arguments quasi logiques, fondés sur la structure du réel, fondant la structure du réel, dissociation des notions&nbsp;; et la réhabilitation du genre épidictique, l'éloge, qui renforce l'adhésion aux valeurs communes. Le <em>Traité</em> parle très peu de «&nbsp;sophismes&nbsp;»&nbsp;: pour ses auteurs, la frontière entre argument et sophisme est relative à l'auditoire. Ce qu'on prête à tort au duo, c'est le silence sur la seconde signataire&nbsp;: Lucie Olbrechts-Tyteca est coauteure à part entière, et la préface le dit.</p>
+    <h4 class="sub">3. Postérité</h4><p>La «&nbsp;nouvelle rhétorique&nbsp;» a rendu à l'argumentation son objet — non pas la validité mais l'adhésion — et sa dignité philosophique. Le dossier lui doit une lecture de l'épidictique qui éclaire la propagande et le discours de meeting (ch. 32)&nbsp;: un genre où le public ne décide rien, et où l'on ne fait que renforcer ce qu'il croit. Il lui doit aussi une prudence de méthode, reprise au ch. 34&nbsp;: un argument n'est pas un sophisme dans l'absolu, il l'est pour un auditoire et dans un échange — ce qui interdit de brandir le répertoire comme un arsenal. Et il partage avec le <em>Traité</em> sa thèse de fond, formulée trois ans avant Asch et vingt ans avant Kahneman&nbsp;: on persuade des gens, pas des propositions.</p>
+    <p class="pdoss">Partie 3, ch. 15&nbsp;; en écho aux ch. 32 et 34.</p>
+  </div>
+</article>
+<h2 class="famtitle">Acte VI — Mesurer ce qui marche sur nous</h2>
+<article class="pfiche" id="p18">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/18-asch-cartes.png" alt="Solomon Asch"></span><figcaption>Solomon Asch</figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Solomon Eliot Asch, né à Varsovie le 14 septembre 1907, émigré aux États-Unis en 1920, mort à Haverford (Pennsylvanie) le 20 février 1996. Psychologue de la Gestalt, professeur à Swarthmore College (1947-1966), puis à l'université de Pennsylvanie. Domaines&nbsp;: psychologie sociale, perception, formation des impressions. Œuvres&nbsp;: «&nbsp;Forming impressions of personality&nbsp;» (1946), <em>Social Psychology</em> (1952), «&nbsp;Effects of group pressure upon the modification and distortion of judgments&nbsp;» (1951), «&nbsp;Opinions and social pressure&nbsp;» (<em>Scientific American</em>, 1955), <em>Studies of independence and conformity</em> (1956).</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">18</p>
+    <h3>Solomon Asch <span class="pd">1907 – 1996</span></h3>
+    <p class="epithet">Les lignes, et ce qu'on leur a fait dire</p>
+    <h4 class="sub">1. Contexte</h4><p>Les États-Unis d'après-guerre, où la psychologie sociale cherche à comprendre comment des sociétés entières ont pu suivre. Asch, formé à la Gestalt, refuse l'idée que le jugement est une simple addition d'influences&nbsp;: il veut savoir ce qu'une personne fait quand ses yeux et le groupe se contredisent. Le protocole est d'une sobriété exemplaire&nbsp;: sept à neuf personnes, toutes complices sauf une, une ligne étalon, trois lignes de comparaison dont une seule a la même longueur, un écart évident&nbsp;; dix-huit essais, dont douze où les compères donnent à voix haute, à l'unanimité, une réponse fausse.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Les chiffres&nbsp;: 36,8&nbsp;% des réponses sur les essais critiques suivent l'erreur de la majorité&nbsp;; environ trois participants sur quatre cèdent au moins une fois&nbsp;; un sur quatre ne cède jamais&nbsp;; sans groupe, moins de 1&nbsp;% d'erreurs. Un seul allié qui répond juste fait tomber la conformité au quart&nbsp;; la majorité produit son plein effet dès trois compères. Ce qu'on a fait dire aux lignes — et qu'Asch n'a pas écrit&nbsp;: que «&nbsp;les gens croient n'importe quoi si le groupe le dit&nbsp;». Il insistait au contraire sur l'indépendance&nbsp;: 63&nbsp;% des réponses restent correctes, et dans les entretiens la plupart des conformes disent avoir douté de leurs yeux ou voulu «&nbsp;ne pas gâcher l'expérience&nbsp;»&nbsp;; très peu ont <em>vu</em> la ligne différemment. La méta-analyse de Bond et Smith (1996, 133 études, 17 pays) confirme l'effet, plus fort dans les cultures collectivistes et en déclin aux États-Unis&nbsp;; Franzen et Mader (2023) retrouvent un tiers d'erreurs en Suisse.</p>
+    <h4 class="sub">3. Postérité</h4><p>Asch a donné une mesure au plus vieux des sophismes, l'appel à la popularité (entrée 1), et sa base au principe de «&nbsp;preuve sociale&nbsp;» de Cialdini. Le dossier lui emprunte deux choses. L'atelier S20, «&nbsp;La ligne C&nbsp;», reproduit le protocole&nbsp;: douze essais, sept «&nbsp;participants&nbsp;» unanimes sur une réponse fausse — et, comme chez Asch, la présence d'un allié, parce que c'est le résultat le plus utile&nbsp;: un seul désaccord exprimé suffit à rendre la liberté aux autres. Et une règle de lecture, au ch. 30&nbsp;: les expériences célèbres sont souvent citées à contresens, et la première chose à vérifier est ce que l'auteur a écrit. Asch, lu dans le texte, est un plaidoyer pour l'indépendance.</p>
+    <p class="pdoss">Partie 5, ch. 28 («&nbsp;Confirmation, raisonnement motivé, conformité&nbsp;»)&nbsp;; atelier S20.</p>
+  </div>
+</article>
+<article class="pfiche" id="p19">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/19-kahneman.jpg" alt="Amos Tversky et Daniel Kahneman"></span><figcaption>Amos Tversky et Daniel Kahneman</figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Amos Tversky, né à Haïfa le 16 mars 1937, mort à Stanford le 2 juin 1996&nbsp;; psychologue mathématicien, université hébraïque de Jérusalem puis Stanford. Daniel Kahneman, né à Tel-Aviv le 5 mars 1934, enfance en France sous l'Occupation, mort le 27 mars 2024&nbsp;; université hébraïque, Colombie-Britannique, Berkeley, Princeton&nbsp;; prix Nobel d'économie 2002, «&nbsp;pour avoir intégré des acquis de la psychologie à la science économique&nbsp;». Domaines&nbsp;: psychologie du jugement et de la décision. Œuvres communes&nbsp;: «&nbsp;Judgment under uncertainty: Heuristics and biases&nbsp;» (<em>Science</em>, 1974), «&nbsp;Prospect theory&nbsp;» (<em>Econometrica</em>, 1979), «&nbsp;Advances in prospect theory&nbsp;» (1992)&nbsp;; Kahneman seul&nbsp;: <em>Thinking, Fast and Slow</em> (2011&nbsp;; <em>Système 1 / Système 2</em>, 2012).</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">19</p>
+    <h3>Amos Tversky et Daniel Kahneman <span class="pd">1937-1996&nbsp;; 1934-2024</span></h3>
+    <p class="epithet">Les erreurs sont systématiques, donc prévisibles</p>
+    <h4 class="sub">1. Contexte</h4><p>Jérusalem, 1969&nbsp;: Kahneman invite Tversky à son séminaire, et une collaboration de quinze ans commence, dont les protagonistes ont dit qu'ils ne savaient plus qui avait eu quelle idée. Le point de départ est un constat&nbsp;: les statisticiens eux-mêmes raisonnent mal sur les petits échantillons. L'hypothèse est que le jugement intuitif ne calcule pas les probabilités mais applique des raccourcis — des heuristiques — utiles et généralement valides, qui produisent des erreurs dans des situations reconnaissables. L'article de <em>Science</em> de 1974, huit pages, installe le vocabulaire. Il ne dit pas que l'humain est irrationnel&nbsp;; il dit que ses erreurs ont une forme.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>Trois heuristiques — représentativité, disponibilité, ancrage-ajustement — et la liste des biais qu'elles produisent&nbsp;: négligence des taux de base, insensibilité à la taille d'échantillon, corrélation illusoire, ajustement insuffisant. L'expérience emblématique de l'ancrage&nbsp;: une roue truquée pour s'arrêter sur 10 ou sur 65, puis la question du pourcentage de pays africains à l'ONU — médiane 25&nbsp;% après 10, 45&nbsp;% après 65. La théorie des perspectives (1979) ajoute que l'on évalue des changements et non des états, que les pertes pèsent plus que les gains, que les petites probabilités sont surpondérées. Ce qu'on prête à tort au programme&nbsp;: que tous ses résultats se répliquent également. L'ancrage est le plus solide de tous (Many Labs, 36 sites, effets très grands)&nbsp;; le paramètre d'aversion à la perte varie&nbsp;; et Kahneman lui-même a reconnu, en 2017, avoir trop cru à certaines études d'amorçage citées dans son livre. La formule «&nbsp;Système 1 / Système 2&nbsp;» est une commodité d'exposition, non une anatomie.</p>
+    <h4 class="sub">3. Postérité</h4><p>Le programme «&nbsp;heuristiques et biais&nbsp;» a fait passer la persuasion du côté de la mesure&nbsp;: ce que Gorgias affirmait, on le chiffre. Le dossier lui consacre deux chapitres et trois ateliers — S16, la roue des nations, avec un nombre vraiment aléatoire&nbsp;; S17, Linda et la règle de conjonction&nbsp;; S18, la lettre et la disponibilité — et lui doit la lecture des sophismes statistiques (entrées 213-214, le taux de base de l'atelier S11). Il lui doit aussi une leçon d'honnêteté, reprise au ch. 30&nbsp;: une science des biais doit dire ses propres biais, et Kahneman a décrit les siens. La collaboration elle-même est un modèle&nbsp;: deux personnes qui se contredisent produisent ce qu'aucune n'aurait trouvé seule — ce que Mercier et Sperber expliqueront.</p>
+    <p class="pdoss">Partie 5, ch. 26 («&nbsp;1974&nbsp;: deux psychologues et un article dans <em>Science</em>&nbsp;») et ch. 27 («&nbsp;Ancrage, représentativité, disponibilité&nbsp;»)&nbsp;; ateliers S16, S17, S18&nbsp;; formule F5.</p>
+  </div>
+</article>
+<article class="pfiche" id="p20">
+  <aside class="pf-aside"><figure class="portrait-figure"><span class="pf-img"><img src="assets/portraits/20-sperber.jpg" alt="Hugo Mercier et Dan Sperber"></span><figcaption>Hugo Mercier et Dan Sperber</figcaption></figure>
+    <div class="idcard"><p class="idtitle">Fiche d'identité</p><p>Dan Sperber, né le 20 juin 1942 (Cagnes-sur-Mer), anthropologue et chercheur en sciences cognitives, directeur de recherche émérite au CNRS (Institut Jean-Nicod), professeur à l'Université d'Europe centrale&nbsp;; coauteur avec Deirdre Wilson de <em>La Pertinence</em> (1986). Hugo Mercier, né le 15 janvier 1980, chercheur en sciences cognitives au CNRS (Institut Jean-Nicod, Paris), formé sous la direction de Sperber. Domaines&nbsp;: psychologie du raisonnement, communication, épistémologie sociale. Œuvres communes&nbsp;: «&nbsp;Why do humans reason? Arguments for an argumentative theory&nbsp;» (<em>Behavioral and Brain Sciences</em>, 2011), <em>The Enigma of Reason</em> (Harvard, 2017&nbsp;; <em>L'Énigme de la raison</em>, Odile Jacob, 2021)&nbsp;; Sperber et al., «&nbsp;Epistemic vigilance&nbsp;» (2010)&nbsp;; Mercier, <em>Not Born Yesterday</em> (2020).</p></div>
+  </aside>
+  <div class="pf-body prose">
+    <p class="pnum" aria-hidden="true">20</p>
+    <h3>Hugo Mercier et Dan Sperber <span class="pd">2011, 2017</span></h3>
+    <p class="epithet">Nous raisonnons pour convaincre</p>
+    <h4 class="sub">1. Contexte</h4><p>Après quarante ans de «&nbsp;biais&nbsp;», la psychologie du raisonnement se trouve devant une énigme&nbsp;: si la raison servait à mieux penser seul, comment expliquer qu'elle y réussisse si mal — biais de confirmation, raisonnement motivé, tâche de Wason échouée par neuf personnes sur dix&nbsp;? Sperber, qui avait avec Wilson refondé la pragmatique sur la notion de pertinence, et Mercier, son élève, prennent le problème à l'envers&nbsp;: et si la raison n'avait pas évolué pour la réflexion solitaire mais pour la conversation — produire des arguments pour convaincre les autres, évaluer ceux qu'on nous adresse&nbsp;? L'article de 2011, ouvert aux commentaires de <em>BBS</em>, reçoit un accueil partagé sur l'évolution et un large accord sur les prédictions.</p>
+    <h4 class="sub">2. L'œuvre</h4><p>La théorie argumentative fait quatre prédictions testables. Le biais de confirmation est attendu en production&nbsp;: chercher des arguments pour sa thèse est le travail d'un avocat. L'évaluation des arguments d'autrui, elle, doit être bonne — et elle l'est&nbsp;: on rejette les mauvais arguments des autres bien mieux que les siens. Les groupes qui délibèrent doivent surpasser les individus&nbsp;: sur la tâche de Wason, environ 9&nbsp;% d'individus trouvent la réponse, environ 75&nbsp;% des groupes de cinq ou six (Moshman et Geil, 1998), et ce sont les arguments, non la confiance, qui l'expliquent (Trouche, Sander et Mercier, 2014). Enfin la vigilance épistémique (Sperber et al., 2010) filtre ce qu'on accepte&nbsp;: nous ne sommes pas crédules par défaut, nous sommes crédules envers ceux que nous avons des raisons de croire. Ce qu'on leur prête à tort&nbsp;: une apologie de la crédulité ou de la «&nbsp;post-vérité&nbsp;». Mercier (2020) soutient l'inverse — la propagande et la publicité marchent beaucoup moins que la légende ne le dit.</p>
+    <h4 class="sub">3. Postérité</h4><p>C'est le pivot du dossier, parce que la théorie relie ses deux moitiés&nbsp;: les sophismes sont les outils d'une faculté faite pour argumenter&nbsp;; les biais sont ce que cette faculté fait quand personne ne lui répond. Le remède n'est donc pas de «&nbsp;raisonner seul, mieux&nbsp;», mais de s'exposer à la contradiction — ce que les ch. 34 et 35 traduisent en méthode, et ce que l'atelier S19 (les quatre cartes) illustre par le contraste entre le score solitaire et le score du groupe. Le récit évolutionnaire reste débattu&nbsp;; les prédictions empiriques tiennent. Et la théorie donne un sens à la galerie entière&nbsp;: Protagoras, Schopenhauer, Asch et Kahneman décrivaient, chacun à sa manière, la même faculté vue de face ou de dos.</p>
+    <p class="pdoss">Partie 5, ch. 30 («&nbsp;Ce que la psychologie des biais doit dire de ses propres biais&nbsp;»)&nbsp;; en écho aux ch. 28, 34 et 35&nbsp;; atelier S19.</p>
+  </div>
+</article>
+</section>
+</main>
+<footer class="collective-footer reveal">
+  <div class="wrap">
+    <span class="seal"><img src="../../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox"></span>
+    <h2>Empire contre Intox</h2>
+    <p>Compagnon du <a href="index.html">Dossier XXIX — L'Art d'avoir l'air d'avoir raison</a>, écrit par <b style="color:var(--gold-bright)">Samlepirate</b>.</p>
+    <div class="footer-links">
+      <a href="../../index.html">↩ Retour à l'index</a>
+      <a href="index.html">Le dossier</a>
+      <a href="repertoire.html">Le répertoire</a>
+      <a href="quizz.html">Le quizz</a>
+      <a href="discours.html">Le Grand Discours</a>
+      <a href="portraits.html">Portraits</a>
+      <a href="../../sources/sources.html">Les Sources</a>
+    </div>
+    <p class="devise">Veritas omnia vincit.</p>
+    <div class="eci-license">
+      <b>Licence du contenu —</b> Sauf mention contraire, les textes et les images de cette page sont publiés sous licence <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a>&nbsp;: partage autorisé avec attribution, sans usage commercial ni modification. Voir <a href="../../LICENCE-CONTENU.md">LICENCE-CONTENU.md</a>. <b>Œuvres tierces —</b> les portraits proviennent de Wikimedia Commons&nbsp;; chacun porte son auteur, sa date et sa licence dans sa légende, et <b>n'est pas couvert</b> par la licence du dossier.
+      <span class="eci-visit-counter" data-visit-counter>— visites sur cette page</span>
+    </div>
+  </div>
+</footer>
+<script src="../../assets/visit-counter.js" defer></script>
+<script>
+(function(){
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -4% 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+function sr(){document.querySelectorAll('.reveal:not(.in)').forEach(function(el){if(el.getBoundingClientRect().top<innerHeight*1.1)el.classList.add('in');});}
+addEventListener('scroll',sr,{passive:true});addEventListener('resize',sr,{passive:true});setTimeout(sr,300);setTimeout(sr,1200);addEventListener('load',sr);
+var prog=document.getElementById('prog');
+addEventListener('scroll',function(){var h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';},{passive:true});
+var b=document.getElementById('burger'),tb=document.getElementById('topbar');
+if(b)b.addEventListener('click',function(){var o=tb.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});
+})();
+</script>
+
+</body>
+</html>
