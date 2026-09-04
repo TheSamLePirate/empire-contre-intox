@@ -195,6 +195,21 @@ main{position:relative;z-index:2}
 .lesson-block.retain{border-left-color:var(--gold);background:rgba(214,172,85,.055)}
 .lesson-block.retain .blk-label{color:var(--gold-bright)}
 
+/* — L'EXPLICATION DE SAM : sous chaque atelier, comment s'en servir et ce qu'il montre */
+.sam-note{margin:16px 0 0;padding:15px 18px 14px;border:1px solid var(--line-2);border-left:3px solid var(--act);border-radius:3px;background:linear-gradient(160deg,rgba(var(--act-rgb),.06),rgba(5,8,17,.5))}
+.sam-note .sn-head{display:flex;align-items:center;gap:11px;margin:0 0 11px;font-family:var(--roman);font-size:.58rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--act)}
+.sam-note .sn-av{flex:none;width:36px;height:36px;border-radius:50%;overflow:hidden;border:1.5px solid var(--gold-deep);box-shadow:0 0 0 2px var(--void),0 8px 18px -10px rgba(0,0,0,.9)}
+.sam-note .sn-av img{width:100%;height:100%;display:block;object-fit:cover;object-position:50% 50%;filter:grayscale(1) contrast(1.08) brightness(1.12);transition:filter .6s var(--ease)}
+.sam-note:hover .sn-av img{filter:grayscale(0)}
+.sam-note .sn-head .tag-act{font-weight:400}
+.sam-note p{margin:0 0 .6em;font-family:var(--serif);font-size:.93rem;line-height:1.64;color:var(--parch);overflow-wrap:break-word}
+.sam-note p:last-child{margin-bottom:0}
+.sam-note .sn-k{display:inline-block;margin-right:9px;font-family:var(--roman);font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--act)}
+.sam-note b{color:var(--ink);font-weight:600}
+.sam-note em{color:var(--muted)}
+@media (max-width:640px){.sam-note{padding:13px 14px 12px}.sam-note .sn-av{width:30px;height:30px}}
+@media (prefers-reduced-motion:reduce){.sam-note .sn-av img{transition:none}}
+
 /* — tableaux */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .dtable-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--line-2);border-radius:3px}
@@ -1151,6 +1166,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L1</span> La bougie · bougie ou laser, puis ajoutez de la brume : un seul des deux montre son trajet</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L1" data-seed="7"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: une bougie ou un laser dans une pièce sombre, la lumière renvoyée par l'objet vers l'œil — et, dès qu'on ajoute des gouttelettes, le trajet du laser qui apparaît tandis que la bougie ne montre qu'un halo.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L1</span></p>
+            <p><span class="sn-k">À faire</span>Laissez la bougie allumée et poussez «&nbsp;Brume&nbsp;» à fond&nbsp;; regardez ce qui apparaît autour de la flamme. Puis basculez «&nbsp;Source&nbsp;» sur Laser sans toucher au reste.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Même brume, même œil, deux images. Le laser envoie tout dans une seule direction&nbsp;: il y a un trajet, et les gouttelettes le révèlent. La bougie envoie dans toutes les directions&nbsp;: il n'y a pas de trajet à révéler, seulement un <b>halo</b> qui s'éteint avec la distance. Et dans l'air propre, ni l'un ni l'autre ne se voit de côté — on ne voit jamais la lumière, on voit ce qu'elle éclaire.</p>
+          </div>
         </div>
 
         <p>Et ce n'est que le début. La même réalité physique peut former un arc-en-ciel, transporter une conversation dans une fibre optique, découper du métal avec un laser, révéler la composition d'une étoile ou produire des corrélations quantiques impossibles à reproduire avec une physique classique locale.</p>
@@ -1234,6 +1254,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L12</span> L'onde E et B · réglez la fréquence, mesurez la longueur d'onde</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L12"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: une onde transverse dont les champs électrique et magnétique oscillent perpendiculairement l'un à l'autre et à la direction de propagation.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L12</span></p>
+            <p><span class="sn-k">À faire</span>Réglez la fréquence et lisez la longueur d'onde qui en découle. Passez en polarisation circulaire, puis coupez «&nbsp;Montrer B&nbsp;» pour voir E seul.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Deux champs perpendiculaires, en phase, tous deux perpendiculaires au sens de la marche&nbsp;: chacun engendre l'autre, et l'ensemble n'a besoin d'<b>aucun support</b> pour avancer. λν = c toujours&nbsp;: monter la fréquence, c'est raccourcir la longueur d'onde. <em>L'amplitude de B est très exagérée pour rester visible&nbsp;; elle vaut réellement |E|/c.</em></p>
+          </div>
         </div>
 
         <p>Dans le vide, la vitesse de propagation est exactement&nbsp;:</p>
@@ -1403,6 +1428,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L2</span> Le sténopé · réduisez le trou jusqu'à ce que la netteté se retourne contre vous</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L2"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: image renversée d'une scène par un trou d'épingle, avec la netteté géométrique et la limite de diffraction, et l'optimum entre les deux.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L2</span></p>
+            <p><span class="sn-k">À faire</span>Partez d'un grand trou et rétrécissez-le pas à pas, l'œil sur «&nbsp;Flou total&nbsp;». Repérez le diamètre où il cesse de descendre, puis changez la profondeur de la boîte et recommencez.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Deux flous tirent en sens inverse&nbsp;: la tache géométrique rétrécit avec le trou, la tache de diffraction grandit. Leur somme passe par un minimum, autour de <b>d ≈ √(2λL)</b>. La netteté d'un sténopé a donc une limite, et cette limite est fixée par la longueur d'onde — pas par le soin du bricoleur.</p>
+          </div>
         </div>
       </div>
       <aside class="side-note">
@@ -1433,18 +1463,33 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L29</span> Lentilles minces · rapprochez l'objet du foyer, puis passez en deçà</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L29"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: construction de l'image par trois rayons, image réelle ou virtuelle, grandissement et vergence recalculés.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L29</span></p>
+            <p><span class="sn-k">À faire</span>Activez «&nbsp;Rayons de construction&nbsp;», rapprochez l'objet du foyer, puis passez-le en deçà. Refaites la même chose avec une lentille divergente.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Toute la formation d'image tient dans <b>1/f = 1/d₀ + 1/dᵢ</b>, et les trois rayons de construction suffisent à la retrouver à la main. L'image bascule du réel au virtuel au passage du foyer&nbsp;: au-delà, un écran la recueille&nbsp;; en deçà, elle n'existe que dans le prolongement des rayons — c'est la loupe. Une divergente, elle, ne donne jamais d'image sur un écran.</p>
+          </div>
         </div>
 
         <div class="viz-mount">
           <div class="viz-lede"><span class="vid">L33</span> L'œil et sa correction · myopie, hypermétropie, presbytie</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L33"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: coupe d'un œil, position de l'image par rapport à la rétine, punctum remotum et proximum, et l'effet d'un verre correcteur.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L33</span></p>
+            <p><span class="sn-k">À faire</span>Choisissez «&nbsp;Myopie&nbsp;», lisez l'écart à la rétine, puis remontez le verre correcteur jusqu'à l'annuler. Vérifiez ensuite où tombent le punctum remotum et le punctum proximum.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Un défaut de vision est une affaire de <b>distance</b>&nbsp;: l'image se forme avant la rétine, ou derrière, et le verre ne fait que la ramener dessus. La presbytie est d'une autre nature — ce n'est pas la position qui est fausse, c'est l'accommodation qui ne suit plus, d'où une correction utile seulement de près.</p>
+          </div>
         </div>
 
         <div class="viz-mount">
           <div class="viz-lede"><span class="vid">L31</span> Miroirs sphériques et télescopes · pourquoi Newton a remplacé la lentille par un miroir</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L31"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: miroir concave ou convexe, foyer à R/2, et comparaison lunette / télescope avec l'aberration chromatique.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L31</span></p>
+            <p><span class="sn-k">À faire</span>Sur «&nbsp;Lunette ou télescope&nbsp;?&nbsp;», comparez les deux instruments à diamètre égal et regardez les bords de l'image. Passez ensuite au miroir convexe, puis au concave en déplaçant l'objet de part et d'autre du foyer.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Un miroir renvoie toutes les couleurs au même endroit&nbsp;: sa focale vaut R/2, et aucune longueur d'onde n'entre dans la formule. Une lentille, non — son indice dépend de la couleur, donc son foyer aussi. C'est le raisonnement de Newton en 1668, et c'est pourquoi les grands instruments sont tous des miroirs. Le <b>diamètre</b>, lui, décide de deux choses à la fois&nbsp;: la lumière collectée et le pouvoir de résolution.</p>
+          </div>
         </div>
 
         <div class="dtable-wrap">
@@ -1534,12 +1579,22 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L3 bis</span> Du miroir au diffuseur · une seule commande, la rugosité</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L3bis" data-seed="11"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: profil d'une surface, rayons réfléchis facette par facette, lobe polaire spéculaire ou diffus, et jauge du critère h &lt; λ/(8 cos θ).</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L3 bis</span></p>
+            <p><span class="sn-k">À faire</span>Montez la rugosité jusqu'à ce que le reflet disparaisse. Puis, sans y toucher, passez «&nbsp;Longueur d'onde&nbsp;» du visible aux micro-ondes, puis à la radio.</p>
+            <p><span class="sn-k">Ce que ça montre</span>«&nbsp;Poli&nbsp;» n'est pas une propriété de la surface&nbsp;: c'est un rapport à la longueur d'onde. Le critère <b>h &lt; λ/(8 cos θ)</b> tranche, et il suffit de changer λ pour que le même mur cesse de diffuser et se mette à réfléchir comme un miroir. L'incidence compte aussi&nbsp;: plus le rayon rase la surface, plus le seuil se relâche.</p>
+          </div>
         </div>
 
         <div class="viz-mount">
           <div class="viz-lede"><span class="vid">L30</span> Le miroir plan · quel axe s'inverse vraiment, et quelle taille de miroir vous faut-il</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L30"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: un trièdre et une personne devant un miroir : seul l'axe avant-arrière est inversé, et la hauteur de miroir nécessaire vaut la moitié de la taille, quelle que soit la distance.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L30</span></p>
+            <p><span class="sn-k">À faire</span>En «&nbsp;Quelle taille de miroir&nbsp;?&nbsp;», changez la distance au miroir en surveillant la hauteur nécessaire. Passez ensuite à «&nbsp;Quel axe s'inverse&nbsp;?&nbsp;» et faites jouer le pivot mental de l'image.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Deux résultats vérifiables chez soi. Il vous faut un miroir de <b>la moitié de votre taille</b>, et reculer n'y change rien. Et un miroir n'inverse ni la gauche ni la droite&nbsp;: il inverse l'avant et l'arrière. Si vous croyez voir un échange gauche-droite, c'est que vous avez fait pivoter votre image dans votre tête pour la comparer à vous.</p>
+          </div>
         </div>
 
         <aside class="question-block">
@@ -1561,6 +1616,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L3</span> Snell-Descartes · faites tourner le rayon jusqu'à l'angle limite</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L3"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: rayon incident, réfléchi et réfracté à une interface, avec l'angle limite et la disparition du rayon réfracté en réflexion totale.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L3</span></p>
+            <p><span class="sn-k">À faire</span>Mettez le verre en milieu 1 et l'air en milieu 2, puis montez l'angle d'incidence jusqu'à dépasser l'angle limite. Activez ensuite «&nbsp;Séparer les polarisations s et p&nbsp;» et cherchez l'angle où la courbe p tombe à zéro.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Snell dit <b>où</b> part le rayon&nbsp;; Fresnel dit <b>combien</b> de lumière part de chaque côté — et c'est la seconde question qui décide de ce qu'on voit. Face à une vitre, la réflexion ne pèse que quelques pour cent&nbsp;; en incidence rasante, la même vitre devient un miroir. À l'angle de Brewster, affiché en bas, la lumière réfléchie ne garde qu'une seule polarisation&nbsp;: c'est de là que viennent les lunettes polarisantes.</p>
+          </div>
         </div>
 
         <p>Cette formule explique pourquoi une paille plongée dans l'eau paraît brisée et comment une lentille dévie la lumière pour former une image. Elle explique aussi la réflexion totale&nbsp;: quand la lumière passe d'un milieu d'indice élevé vers un milieu d'indice plus faible, au-delà d'un certain angle, plus aucun rayon ne sort. Toute la lumière est renvoyée. C'est ce qui guidera un jour la lumière dans les fibres optiques.</p>
@@ -1569,6 +1629,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L28</span> L'arc-en-ciel · un rayon blanc entre dans la goutte, se sépare, se réfléchit, ressort en éventail</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L28" data-seed="1304"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: trajet d'un rayon dans une goutte sphérique (réfraction, réflexions internes, réfraction), courbe de l'angle de sortie et son extrémum, et les deux arcs séparés par la bande d'Alexandre.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L28</span></p>
+            <p><span class="sn-k">À faire</span>Laissez tourner «&nbsp;Le film&nbsp;» une fois en entier. Passez à «&nbsp;Dans la goutte&nbsp;» et balayez le point d'entrée b&nbsp;: cherchez la zone où l'angle de sortie ne bouge presque plus. Finissez par «&nbsp;Pourquoi un arc&nbsp;».</p>
+            <p><span class="sn-k">Ce que ça montre</span>Une goutte ne renvoie pas la lumière dans une direction, elle la renvoie dans <b>toutes</b> — sauf qu'il existe un angle où les rayons s'entassent, parce que la déviation y passe par un extremum. C'est cet entassement qui fait l'arc&nbsp;; et comme l'angle dépend de la couleur, l'arc s'étale en spectre. Deux réflexions internes au lieu d'une donnent l'arc secondaire, plus haut et aux couleurs inversées.</p>
+          </div>
         </div>
 
         <p>Descartes applique la même loi, en 1637, à une goutte d'eau, et calcule l'angle de l'arc-en-ciel&nbsp;: environ 42 degrés par rapport à la direction opposée au Soleil pour l'arc principal.</p>
@@ -1591,6 +1656,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L4</span> Le sauveteur de Fermat · déplacez le point d'entrée, lisez le temps total</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L4"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: un sauveteur qui court sur le sable puis nage&nbsp;; la courbe du temps total, son minimum, et la vérification que l'angle optimal satisfait la loi de Snell.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L4</span></p>
+            <p><span class="sn-k">À faire</span>Balayez «&nbsp;Point d'entrée dans l'eau&nbsp;» jusqu'au temps le plus court, comparez-le à celui de la ligne droite, puis lisez le rapport des sinus à cet endroit précis.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Le trajet le plus rapide n'est pas le plus court. Et au minimum, le rapport des sinus divisés par les vitesses vaut exactement <b>1</b>&nbsp;: on retrouve la loi de Snell sans avoir parlé d'optique une seule fois. Attention au piège de vocabulaire&nbsp;: la lumière ne «&nbsp;choisit&nbsp;» rien, ce principe est une reformulation du comportement des ondes, pas une intention.</p>
+          </div>
         </div>
 
         <aside class="question-block">
@@ -1664,6 +1734,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L5</span> Le prisme de Newton · isolez une couleur, ajoutez le second prisme</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L5"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: dispersion d'un faisceau blanc par un prisme (indice de Cauchy), isolement d'une couleur, second prisme qui la dévie sans la décomposer, et recombinaison en blanc.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L5</span></p>
+            <p><span class="sn-k">À faire</span>En «&nbsp;Lumière blanche&nbsp;», faites tourner l'incidence i₁ jusqu'à ce que la déviation passe par son minimum. Basculez ensuite sur «&nbsp;Experimentum crucis&nbsp;» pour n'envoyer qu'une couleur dans le second prisme, puis sur «&nbsp;Recomposer le blanc&nbsp;».</p>
+            <p><span class="sn-k">Ce que ça montre</span>Le prisme ne fabrique pas les couleurs, il les <b>sépare</b>, parce que l'indice dépend de la longueur d'onde. La démonstration tient en deux montages&nbsp;: une couleur isolée traverse un second prisme sans se décomposer davantage, et un prisme retourné rassemble le spectre en blanc. Changez de matériau pour voir&nbsp;: à angle égal, le flint disperse nettement plus que le crown.</p>
+          </div>
         </div>
 
         <p>Cette dépendance de l'indice a une conséquence pratique&nbsp;: une lentille ne focalise pas toutes les couleurs au même point, et les images des lunettes astronomiques sont bordées de franges colorées. Pour la contourner, Newton construit en 1668 un télescope à miroir, où la lumière est réfléchie au lieu d'être réfractée. C'est l'ancêtre de la plupart des grands télescopes actuels.</p>
@@ -1703,6 +1778,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L7</span> Les trois cônes · deux spectres différents, une seule couleur</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L7"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: courbes de sensibilité des cônes L, M et S, réponse à une longueur d'onde donnée, et démonstration du métamérisme.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L7</span></p>
+            <p><span class="sn-k">À faire</span>Promenez la longueur d'onde et regardez monter et descendre les trois réponses S, M et L. Activez ensuite «&nbsp;Montrer le métamère&nbsp;» et comparez les deux spectres, puis leurs triplets.</p>
+            <p><span class="sn-k">Ce que ça montre</span>L'œil ne mesure pas un spectre&nbsp;: il en tire <b>trois nombres</b>. Deux lumières physiquement différentes qui donnent le même triplet sont, pour vous, la même couleur — c'est le métamérisme. Sans lui, aucun écran à trois primaires ne pourrait vous montrer un coucher de soleil.</p>
+          </div>
         </div>
 
         <p>Le magenta illustre bien cette différence entre physique et perception. Il ne correspond pas à une bande unique du spectre comme le vert spectral. Il apparaît lorsque notre système visuel reçoit certaines combinaisons de rouge et de bleu-violet, sans vert.</p>
@@ -1712,6 +1792,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L6</span> Additif et soustractif · trois lumières, trois filtres</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L6"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: mélange additif de trois lumières rouge, verte et bleue, et mélange soustractif de trois filtres cyan, magenta et jaune.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L6</span></p>
+            <p><span class="sn-k">À faire</span>En additif, montez le rouge et le bleu seuls, et cherchez la couleur obtenue dans le spectre affiché. Passez ensuite en soustractif et empilez les trois filtres l'un après l'autre.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Deux logiques opposées&nbsp;: des lumières s'ajoutent et vont vers le blanc, des filtres se retranchent et vont vers le noir. Et le <b>magenta</b> ne se trouve nulle part dans le spectre — aucune longueur d'onde ne lui correspond. C'est une couleur construite par le cerveau quand les cônes rouges et bleus répondent sans le vert.</p>
+          </div>
         </div>
 
         <aside class="question-block">
@@ -1760,6 +1845,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L8 bis</span> Le spectromètre maison · changez de source, graduez l'axe sur deux raies du mercure</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L8bis"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: le spectre synthétisé de cinq sources (halogène, LED blanche, fluocompacte, sodium, lumière du jour), la courbe d'intensité, les raies repérées et le schéma de la boîte fente → CD → webcam.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L8 bis</span></p>
+            <p><span class="sn-k">À faire</span>Passez d'«&nbsp;Halogène&nbsp;» à «&nbsp;Fluocompacte&nbsp;», puis à «&nbsp;Sodium&nbsp;», sans rien changer d'autre. Remplacez ensuite le CD par un DVD et regardez l'étalement du spectre.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Un continu chaud et lisse, ou des raies plantées à des endroits précis&nbsp;: le spectre trahit la technologie de la lampe. Le pas du réseau, lui, fixe l'étalement — plus il est fin, plus les couleurs s'écartent. <em>Ces spectres sont calculés en attendant les captures du plateau, et un morceau de CD ne sépare pas le doublet du sodium.</em></p>
+          </div>
         </div>
 
         <aside class="science-block">
@@ -1776,6 +1866,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L8</span> Trois spectres · continu, émission, absorption — au choix de l'élément</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L8"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: spectre continu d'un solide chaud, raies d'émission d'un gaz excité, raies d'absorption d'un gaz froid devant un continu, aux longueurs d'onde réelles de H, Na, Hg et Fe.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L8</span></p>
+            <p><span class="sn-k">À faire</span>Choisissez un élément et gardez-le, puis passez d'un montage à l'autre&nbsp;: solide chaud, gaz excité, gaz froid devant un continu. Comparez la position des raies claires et des raies sombres.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Les trois lois de Kirchhoff en une manipulation. Un solide chaud donne un continu&nbsp;; un gaz chaud, des raies brillantes&nbsp;; le même gaz, froid et placé devant le continu, des raies noires — <b>exactement aux mêmes longueurs d'onde</b>. C'est ce qui permet de dire de quoi une étoile est faite sans jamais s'en approcher.</p>
+          </div>
         </div>
 
         <div class="dtable-wrap">
@@ -1846,6 +1941,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L9</span> Rømer et Io · avancez la Terre sur son orbite, regardez l'éclipse prendre du retard</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L9"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: le système Soleil-Terre-Jupiter-Io vu de dessus, l'instant prévu et l'instant observé de l'éclipse, et le retard cumulé jusqu'à ~16,6 minutes.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L9</span></p>
+            <p><span class="sn-k">À faire</span>Lancez l'animation et laissez défiler une année complète, l'œil sur «&nbsp;Retard cumulé&nbsp;» pendant que la Terre s'éloigne de Jupiter.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Rømer n'a pas mesuré une vitesse&nbsp;: il a mesuré un <b>retard</b>, et c'est plus fort. Si la lumière était instantanée, les éclipses d'Io tomberaient à l'heure toute l'année. Elles dérivent, d'au plus 16,6 minutes — le temps qu'il faut à la lumière pour traverser l'orbite terrestre.</p>
+          </div>
         </div>
 
         <p>En 1728, James Bradley utilise l'aberration stellaire, un petit déplacement apparent des étoiles dû à la combinaison du mouvement de la Terre et de la vitesse finie de la lumière — comme la pluie qui semble venir de face quand on court. Il en déduit que la lumière du Soleil met environ 8 minutes et 12 secondes à nous parvenir, soit une vitesse d'environ 301 000 kilomètres par seconde. La valeur est déjà bonne à un pour cent près.</p>
@@ -1883,6 +1983,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L10</span> La roue de Fizeau · accélérez la rotation jusqu'à la première extinction</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L10"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: la roue dentée, le faisceau bloqué ou transmis selon la vitesse de rotation, et la valeur de c déduite des données de 1849.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L10</span></p>
+            <p><span class="sn-k">À faire</span>Montez la vitesse de rotation jusqu'à la première extinction, celle où le faisceau de retour ne repasse plus. Changez ensuite le nombre de dents et retrouvez-la.</p>
+            <p><span class="sn-k">Ce que ça montre</span>On ne sait pas chronométrer un aller-retour de quelques dizaines de microsecondes, mais on sait compter des <b>tours par seconde</b>. Fizeau convertit l'un en l'autre&nbsp;: la roue devient l'horloge. Sa valeur, 315 000 km/s, est trop haute d'environ 5 % — l'ordre de grandeur, lui, était le bon.</p>
+          </div>
         </div>
 
         <p>Léon Foucault remplace la roue par un miroir tournant. En 1850, il montre d'abord que la lumière va plus lentement dans l'eau que dans l'air&nbsp;: c'est ce que prévoyait la théorie ondulatoire, et le contraire de ce que demandait la théorie corpusculaire de Newton. En 1862, il obtient une valeur absolue&nbsp;: 298 000 kilomètres par seconde, à 500 près. Albert Michelson perfectionne ensuite ces dispositifs pendant un demi-siècle&nbsp;: 299 910 kilomètres par seconde en 1879, 299 796 à quatre près en 1926 au mont Wilson, puis, dans un tube sous vide d'un mile de long, une mesure publiée après sa mort en 1935. En 1972, Kenneth Evenson et ses collègues mesurent à la fois la fréquence et la longueur d'onde d'un laser stabilisé, et obtiennent 299 792 456,2 mètres par seconde, à un mètre par seconde près.</p>
@@ -1891,6 +1996,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L11</span> Convergence vers c · trois siècles de mesures et leurs barres d'erreur</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L11"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: les valeurs successives de la vitesse de la lumière de 1676 à 1983, avec leurs incertitudes en échelle logarithmique, autour de la ligne 299 792,458 km/s.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L11</span></p>
+            <p><span class="sn-k">À faire</span>Survolez les points un par un — mais lisez d'abord l'incertitude, pas la valeur.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Trois siècles de mesures, et une barre d'erreur qui rétrécit jusqu'à devenir plus petite que le trait. Au bout du compte, la précision renverse la question&nbsp;: depuis 1983, <b>c n'est plus mesurée, elle est fixée</b> — et c'est le mètre qui en découle. <em>Les incertitudes anciennes sont des estimations modernes&nbsp;; leurs auteurs n'annonçaient pas tous une barre d'erreur.</em></p>
+          </div>
         </div>
 
         <aside class="science-block">
@@ -2005,6 +2115,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L14</span> La double fente · écartez les fentes, changez la couleur, comptez les franges</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L14"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: figure d'interférence de deux fentes modulée par l'enveloppe de diffraction, avec l'interfrange recalculé et la comparaison à une fente unique.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L14</span></p>
+            <p><span class="sn-k">À faire</span>Changez l'écart a des fentes et regardez les franges se resserrer. Puis touchez seulement la largeur b&nbsp;: l'enveloppe bouge, l'espacement des franges non.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Deux causes, deux échelles, et c'est tout l'atelier. L'interférence <b>entre</b> les fentes fixe l'interfrange λD/a&nbsp;; la diffraction <b>par</b> chaque fente fixe l'enveloppe qui module leur intensité. Confondre les deux fait dire n'importe quoi sur l'expérience la plus commentée de la physique.</p>
+          </div>
         </div>
 
         <p>Augustin Fresnel développe ensuite, entre 1815 et 1819, une théorie mathématique de la diffraction. Lorsque son mémoire est examiné par l'Académie des sciences, Siméon Denis Poisson, partisan des corpuscules, en tire une prédiction qu'il juge absurde&nbsp;: au centre géométrique de l'ombre d'un disque opaque devrait apparaître un petit point lumineux. François Arago fait l'expérience&nbsp;: le point est là. Une prédiction qui semblait absurde devient un argument en faveur de la théorie ondulatoire. Fresnel montre aussi que les ondes lumineuses sont transversales, ce qui explique la polarisation, et invente pour les phares les lentilles à échelons qui portent son nom.</p>
@@ -2022,6 +2137,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L32</span> Les lames minces · d'où vient la couleur d'une bulle de savon</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L32"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: interférence entre les deux réflexions d'une lame mince, spectre réfléchi, teinte calculée par les fonctions colorimétriques CIE, et le cas du traitement antireflet.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L32</span></p>
+            <p><span class="sn-k">À faire</span>Sur «&nbsp;Bulle de savon&nbsp;», balayez lentement l'épaisseur et regardez la teinte défiler. Passez ensuite à «&nbsp;Traitement antireflet&nbsp;» et cherchez l'épaisseur qui éteint la réflexion.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Aucune de ces couleurs n'est un pigment. Deux réflexions, l'une sur le dessus, l'autre sur le dessous, se retrouvent décalées de <b>2nt</b>&nbsp;: selon l'épaisseur, une longueur d'onde est renforcée et une autre éteinte. On peut s'en servir à l'envers — déposer une couche d'épaisseur choisie pour annuler la réflexion, ce qui laisse aux verres traités leur reflet résiduel.</p>
+          </div>
         </div>
 
         <p>La diffraction explique aussi pourquoi aucune lentille ne peut produire des détails arbitrairement petits. Même un instrument parfait possède une résolution limitée par la longueur d'onde et son ouverture&nbsp;: c'est pour cela que les télescopes grandissent, et que le sténopé trop petit redevient flou.</p>
@@ -2059,6 +2179,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L14 ter</span> Laser vert · le cheveu, puis la bille et le point d'Arago</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L14ter"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: figure de diffraction calculée d'un cheveu (avec le diamètre déduit de l'écart des taches) et point d'Arago au centre de l'ombre d'une bille, qui disparaît quand la source cesse d'être ponctuelle.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L14 ter</span></p>
+            <p><span class="sn-k">À faire</span>Sur «&nbsp;Le cheveu&nbsp;», mesurez l'écart entre deux minima et comparez le diamètre déduit à celui que vous avez réglé. Passez ensuite sur «&nbsp;La bille&nbsp;» et regardez le centre exact de l'ombre.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Un cheveu se mesure avec une règle et un pointeur laser&nbsp;: par le théorème de Babinet, l'obstacle diffracte comme la fente de même largeur. Et au centre de l'ombre d'un disque, il y a un <b>point lumineux</b> — l'objection sortie pour ridiculiser la théorie ondulatoire, puis observée, est devenue une de ses preuves. <em>Les figures sont calculées en attendant les photos du plateau.</em></p>
+          </div>
         </div>
 
         <aside class="question-block">
@@ -2186,6 +2311,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L13</span> Le spectre en échelle logarithmique · un seul curseur, vingt et un ordres de grandeur</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L13"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: un curseur de fréquence de 10³ à 10²⁴ Hz qui donne la longueur d'onde, l'énergie par photon, la bande et un exemple concret.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L13</span></p>
+            <p><span class="sn-k">À faire</span>Balayez le curseur des ondes radio aux rayons gamma, en surveillant la bande nommée sous le trait.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Vingt et un ordres de grandeur sur une seule règle, et le visible qui n'en occupe qu'une fente minuscule. C'est la <b>même physique</b> d'un bout à l'autre&nbsp;; ce qui change, c'est l'énergie par photon — assez faible pour chauffer d'un côté, assez forte pour casser une molécule de l'autre.</p>
+          </div>
         </div>
 
         <div class="dtable-wrap">
@@ -2257,6 +2387,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L15</span> L'interféromètre de Michelson · faites tourner l'appareil, avec et sans éther</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L15"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: l'interféromètre en rotation, le décalage de franges attendu si un vent d'éther existait (~0,4 frange) et le résultat réellement observé.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L15</span></p>
+            <p><span class="sn-k">À faire</span>Activez l'éther, faites tourner l'appareil d'un quart de tour et lisez le décalage attendu. Comparez-le ensuite à la borne effectivement mesurée en 1887.</p>
+            <p><span class="sn-k">Ce que ça montre</span>L'appareil était largement assez sensible&nbsp;: le décalage prédit dépassait de plusieurs fois ce qu'il savait détecter. Rien n'a défilé. C'est un des rares <b>résultats négatifs</b> à avoir changé la physique — non parce qu'il a échoué, mais parce qu'il a réussi à ne rien trouver, très précisément.</p>
+          </div>
         </div>
       </div>
       <aside class="side-note">
@@ -2373,6 +2508,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L16</span> Le corps noir · chauffez, puis comparez à la prédiction classique</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L16"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: la courbe de Planck de 300 à 10 000 K, le maximum de Wien, l'aire de Stefan-Boltzmann, et la divergence de la formule classique aux courtes longueurs d'onde.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L16</span></p>
+            <p><span class="sn-k">À faire</span>Chauffez de 1 000 à 6 000 K et suivez le maximum qui glisse vers le bleu. Activez ensuite «&nbsp;Prédiction classique (Rayleigh-Jeans)&nbsp;» et regardez ce qu'elle fait du côté des courtes longueurs d'onde.</p>
+            <p><span class="sn-k">Ce que ça montre</span>La loi de Planck colle à la mesure&nbsp;; la théorie classique, elle, part à l'infini. Il a fallu <b>quantifier les échanges d'énergie</b> pour la ramener sur terre — c'est là que le quantique commence, sans que personne l'ait cherché. <em>La teinte affichée est intégrée depuis le spectre, jamais choisie à la main.</em></p>
+          </div>
         </div>
 
         <p>Planck cherchait une dérivation thermodynamique cohérente&nbsp;; il tenait sa constante pour un artifice de calcul plutôt que pour une propriété de la lumière. L'expression «&nbsp;catastrophe ultraviolette&nbsp;», qu'on lui attribue souvent, est de Paul Ehrenfest et date de 1911.</p>
@@ -2423,6 +2563,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L17</span> L'effet photoélectrique · montez l'intensité, ça ne suffit pas&nbsp;; montez la fréquence, ça part</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L17"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: électrons éjectés d'un métal selon la fréquence et l'intensité, droite K_max(ν) dont la pente vaut h, et seuil qui dépend du métal choisi.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L17</span></p>
+            <p><span class="sn-k">À faire</span>Prenez du rouge et poussez l'intensité au maximum sur le césium&nbsp;: comptez les électrons. Redescendez l'intensité au minimum, puis passez dans l'ultraviolet.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Une lumière très intense mais trop rouge n'arrache rien&nbsp;; une lumière très faible mais assez bleue arrache immédiatement. <b>L'intensité fixe le nombre d'électrons, la fréquence fixe leur énergie</b>, et sous le seuil il ne se passe rien, quelle que soit la patience. C'est ce mur que le photon d'Einstein explique et que l'onde seule n'explique pas.</p>
+          </div>
         </div>
 
         <p>Robert Millikan, qui ne croit pas aux quanta de lumière, passe dix ans à tenter de prendre la formule en défaut. En 1916, il publie la vérification la plus précise de la droite d'Einstein, et en tire une valeur de <span class="imath" data-tex="h">h</span> — tout en continuant à douter de l'interprétation.</p>
@@ -2451,6 +2596,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L18</span> L'effet Compton · changez l'angle, lisez l'allongement</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L18"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: photon incident, photon diffusé et électron de recul, avec Δλ recalculé pour chaque angle.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L18</span></p>
+            <p><span class="sn-k">À faire</span>Balayez l'angle de diffusion et lisez Δλ. Changez ensuite la longueur d'onde incidente&nbsp;: Δλ ne bouge pas.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Le décalage ne dépend <b>que de l'angle</b> — ni de l'intensité, ni de la couleur d'entrée. C'est la signature d'un choc entre deux corpuscules qui échangent énergie et quantité de mouvement. Et la constante qui pilote tout, h/(mₑc), ne contient que la masse de l'électron.</p>
+          </div>
         </div>
 
         <aside class="dialogue-block">
@@ -2534,6 +2684,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L19</span> Un photon à la fois · laissez les impacts s'accumuler, puis branchez le détecteur de chemin</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L19" data-seed="1905"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: des impacts ponctuels tirés au hasard dans la loi d'interférence, les franges qui émergent lentement, et leur disparition dès qu'une information de chemin est inscrite.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L19</span></p>
+            <p><span class="sn-k">À faire</span>Laissez l'accumulation partir de zéro avec K à zéro, sans rien toucher, jusqu'à ce que les franges sortent du bruit. Montez alors l'information de chemin K par petits crans.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Chaque photon fait un point isolé&nbsp;: la figure d'interférence n'existe que comme <b>statistique</b>. Et le passage «&nbsp;onde ou particule&nbsp;» n'est pas un interrupteur — la visibilité décroît continûment quand l'information de chemin monte, avec V² + K² ≤ 1. On peut savoir un peu et interférer un peu.</p>
+          </div>
         </div>
 
         <p>L'expérience très affaiblie de Geoffrey Taylor en 1909, avec une flamme de gaz derrière des verres fumés et des poses de plusieurs mois, constitue une étape historique, mais ce n'était pas encore une expérience moderne dotée d'une source et d'un détecteur de photons uniques. Les versions réellement monophotoniques ont été réalisées plus tard&nbsp;: en 1986, Philippe Grangier, Gérard Roger et Alain Aspect montrent qu'un photon unique ne se partage pas sur une lame semi-réfléchissante — il va d'un côté ou de l'autre — et que ce même photon interfère pourtant avec lui-même dans un interféromètre. En 2007, la même équipe réalise l'expérience «&nbsp;à choix retardé&nbsp;» imaginée par John Wheeler&nbsp;: décider de mesurer le chemin ou l'interférence <em>après</em> que le photon est entré dans l'appareil ne change rien aux statistiques.</p>
@@ -2650,6 +2805,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L20</span> Ciel bleu, couchant rouge · baissez le Soleil, puis ajoutez du brouillard</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L20"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: l'épaisseur d'atmosphère traversée selon la hauteur du Soleil, le spectre transmis et le spectre diffusé, et le passage de Rayleigh à Mie quand les gouttelettes grossissent.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L20</span></p>
+            <p><span class="sn-k">À faire</span>Descendez le Soleil vers l'horizon en gardant l'œil sur la masse d'air traversée. Puis changez l'atmosphère, d'«&nbsp;Air pur&nbsp;» à «&nbsp;Brouillard&nbsp;».</p>
+            <p><span class="sn-k">Ce que ça montre</span>Une seule diffusion explique les deux couleurs. Rayleigh, en <b>1/λ⁴</b>, retire le bleu du faisceau direct et l'envoie dans tout le ciel&nbsp;: le ciel bleuit, le disque rougit à mesure que la couche s'allonge. Passez aux grosses gouttelettes et l'effet s'aplatit — la diffusion de Mie traite toutes les couleurs presque pareil, et le blanc revient.</p>
+          </div>
         </div>
 
         <h3>Diffusion inélastique&nbsp;: l'effet Raman</h3>
@@ -2676,6 +2836,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L21</span> Les polariseurs · croisez-en deux, puis glissez le troisième à 45°</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L21"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: l'intensité transmise par deux ou trois polariseurs selon leurs angles, avec la loi en cos²θ et le « paradoxe » du troisième polariseur.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L21</span></p>
+            <p><span class="sn-k">À faire</span>Croisez deux polariseurs jusqu'à l'extinction complète, puis ajoutez le troisième au milieu et faites-le tourner autour de 45°.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Un polariseur ne <b>trie</b> pas la lumière, il la <b>projette</b>&nbsp;: ce qui sort a sa direction à lui, quelle que soit celle qui entrait. D'où le résultat qui semble absurde&nbsp;: ajouter un obstacle entre deux polariseurs croisés fait revenir de la lumière, parce que le troisième réoriente ce qu'il transmet. La loi de Malus en cos² fait le compte à chaque étage.</p>
+          </div>
         </div>
 
         <aside class="question-block">
@@ -2725,6 +2890,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L22</span> Le laser · pompez jusqu'à l'inversion de population, puis fermez la cavité</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L22" data-seed="1960"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: trois niveaux d'énergie, population des états, émission spontanée contre émission stimulée, cavité et seuil de fonctionnement.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L22</span></p>
+            <p><span class="sn-k">À faire</span>Montez le pompage jusqu'à ce que plus de la moitié des atomes soient excités, puis fermez la cavité et jouez sur la réflectivité du miroir de sortie.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Trois conditions, pas une&nbsp;: une <b>inversion de population</b>, une cavité qui fait repasser la lumière dans le milieu, et un gain qui dépasse les pertes. En dessous du seuil vous avez une lampe&nbsp;; au-dessus, un faisceau. L'émission stimulée fabrique des photons copiés sur ceux qui passent — même direction, même phase.</p>
+          </div>
         </div>
 
         <p>Le maser, fonctionnant d'abord dans les micro-ondes, précède le laser&nbsp;: Charles Townes, James Gordon et Herbert Zeiger le font fonctionner en 1954 avec de l'ammoniac. En 1958, Arthur Schawlow et Townes montrent comment étendre le principe à la lumière visible&nbsp;; Gordon Gould, de son côté, invente le mot «&nbsp;laser&nbsp;» et engagera de longues batailles de brevets. Le 16 mai 1960, Theodore Maiman, aux laboratoires Hughes, fait fonctionner le premier laser, un barreau de rubis entouré d'une lampe flash. En décembre de la même année, Ali Javan, William Bennett et Donald Herriott font fonctionner le laser hélium-néon, le premier à émettre en continu. Townes, Nikolaï Bassov et Alexandre Prokhorov reçoivent le prix Nobel en 1964.</p>
@@ -2746,6 +2916,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L13 bis</span> Lumens, lux, candela · un watt de vert ou un watt d'infrarouge&nbsp;?</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L13bis"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: conversion watts → lumens par la courbe V(λ), éclairement en lux à une distance donnée, température de couleur et indice de rendu des couleurs.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L13 bis</span></p>
+            <p><span class="sn-k">À faire</span>Envoyez un watt en «&nbsp;LED verte 555 nm&nbsp;», notez le flux lumineux, puis passez le même watt en «&nbsp;Laser infrarouge 1064 nm&nbsp;».</p>
+            <p><span class="sn-k">Ce que ça montre</span>Le watt mesure la physique, le lumen mesure ce que l'œil en fait, et <b>V(λ)</b> fait le pont entre les deux. Un watt de vert vaut le maximum possible&nbsp;; un watt d'infrarouge vaut <b>zéro lumen</b>, alors qu'il transporte exactement la même puissance. C'est pour cela qu'on ne compare jamais deux lampes en watts.</p>
+          </div>
         </div>
 
         <h3>Les fibres optiques</h3>
@@ -2756,6 +2931,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L23</span> La fibre optique · trouvez le cône d'acceptance</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L23"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: un rayon entrant dans une fibre selon son angle, guidé par réflexion totale ou perdu dans la gaine, avec le cône d'acceptance et l'ouverture numérique.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L23</span></p>
+            <p><span class="sn-k">À faire</span>Augmentez l'angle d'entrée jusqu'à ce que le rayon fuie dans la gaine. Rapprochez ensuite l'indice de la gaine de celui du cœur et recommencez.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Une fibre ne transporte pas n'importe quelle lumière&nbsp;: elle accepte un <b>cône</b>, et rien d'autre. L'ouverture numérique mesure ce cône, et il se referme dès que les deux indices se ressemblent. Au-delà de l'angle limite, plus de réflexion totale&nbsp;: la lumière part dans la gaine, et l'information avec.</p>
+          </div>
         </div>
 
         <h3>Les détecteurs</h3>
@@ -2900,6 +3080,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L24</span> Le test CHSH · choisissez les angles, lancez mille paires, lisez S</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L24" data-seed="1964"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: Alice et Bob mesurent des paires selon quatre orientations&nbsp;; les corrélations E et la valeur S sont calculées, avec sa barre d'erreur, pour un modèle local ou pour la prédiction quantique.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L24</span></p>
+            <p><span class="sn-k">À faire</span>Cliquez «&nbsp;Angles optimaux&nbsp;», lancez l'acquisition et laissez S se construire avec sa barre d'erreur. Basculez ensuite sur «&nbsp;Modèle local&nbsp;» sans rien changer d'autre.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Un monde où les résultats sont décidés à l'avance ne peut pas dépasser <b>S = 2</b>, quels que soient les angles. Le quantique monte à 2√2 ≈ 2,83. Regardez aussi le temps que ça prend&nbsp;: la violation n'apparaît qu'après des milliers de paires, quand l'incertitude devient plus petite que l'écart à 2. <em>Ici les détecteurs sont parfaits&nbsp;; fermer toutes les échappatoires en vrai a demandé jusqu'à 2015.</em></p>
+          </div>
         </div>
 
         <p>Les expériences ont progressivement testé ces prédictions&nbsp;: Stuart Freedman et John Clauser en 1972, avec des photons émis par des atomes de calcium&nbsp;; Alain Aspect, Philippe Grangier, Gérard Roger puis Jean Dalibard en 1981 et 1982, à Orsay, avec des analyseurs dont l'orientation change pendant le vol des photons&nbsp;; Anton Zeilinger et beaucoup d'autres ensuite. En 2015, trois équipes — à Delft, à Vienne et au NIST — réalisent des tests fermant simultanément les principales échappatoires expérimentales classiques&nbsp;: la localité, en séparant assez les mesures pour qu'aucun signal ne puisse les relier, et la détection, en détectant assez de paires pour qu'aucun tri ne puisse biaiser le résultat. Clauser, Aspect et Zeilinger reçoivent le prix Nobel en 2022.</p>
@@ -2972,6 +3157,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L25</span> La SPDC · pompez, et attendez&nbsp;: une paire sur cent milliards</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L25" data-seed="405"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: les photons de pompe traversant le cristal non linéaire, les rares paires signal/idler émises sur leurs cônes, le compteur de paires par seconde et l'histogramme des coïncidences.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L25</span></p>
+            <p><span class="sn-k">À faire</span>Montez la puissance de pompe et comparez, ligne à ligne, les photons envoyés et les paires réellement comptées.</p>
+            <p><span class="sn-k">Ce que ça montre</span>Le rendement est écrasant de petitesse&nbsp;: de l'ordre d'<b>une conversion sur cent milliards</b>. C'est pour cela qu'une source de paires intriquées demande un laser puissant et beaucoup de patience — la vraie difficulté des tests de Bell n'est pas la théorie, c'est le taux de comptage.</p>
+          </div>
         </div>
 
         <h3>Trois mots indispensables</h3>
@@ -3125,6 +3315,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
           <div class="viz-lede"><span class="vid">L26</span> Étirer la lumière · poussez z jusqu'à 1 100, et regardez le spectre quitter le visible</div>
           <div class="lumiere-gallery"><div data-lumiere-viz="L26"></div></div>
           <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: le spectre de raies d'une galaxie glissant vers le rouge puis l'infrarouge à mesure que z augmente, jusqu'au fond diffus cosmologique.</p></noscript>
+          <div class="sam-note">
+            <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L26</span></p>
+            <p><span class="sn-k">À faire</span>Poussez le décalage vers le rouge et suivez la raie Hα jusqu'à ce qu'elle quitte la bande visible.</p>
+            <p><span class="sn-k">Ce que ça montre</span>1 + z est le facteur d'étirement de <b>toutes</b> les longueurs d'onde à la fois&nbsp;: les raies ne se déplacent pas au hasard, elles gardent leurs rapports — c'est ce qui permet de les reconnaître si loin. À grand z, tout le spectre visible d'une galaxie est passé dans l'infrarouge&nbsp;: voilà pourquoi les télescopes qui visent les premières galaxies observent en infrarouge.</p>
+          </div>
         </div>
 
         <p>Autour d'un trou noir, la lumière du plasma chaud est fortement déviée. Les images produites par l'Event Horizon Telescope — celle du trou noir de la galaxie M87 en 2019, celle du centre de notre Galaxie en 2022 — ne montrent pas directement l'intérieur du trou noir. Elles révèlent un anneau lumineux entourant une région sombre liée à l'absorption et à la courbure extrême des trajectoires lumineuses.</p>
@@ -3298,6 +3493,11 @@ html{--cur:#7fd3ff;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
       <div class="viz-lede"><span class="vid">L27</span> La frise · cliquez un nœud pour savoir ce qu'il établit</div>
       <div class="lumiere-gallery"><div data-lumiere-viz="L27"></div></div>
       <noscript><p class="viz-noscript">Atelier interactif (JavaScript requis)&nbsp;: une frise cliquable de quarante repères, du feu maîtrisé aux photons intriqués pompés par le Soleil.</p></noscript>
+      <div class="sam-note">
+        <p class="sn-head"><span class="sn-av" aria-hidden="true"><img src="../samlepirate.jpeg" alt="" loading="lazy" decoding="async"></span>Sam explique<span class="tag-act">L27</span></p>
+        <p><span class="sn-k">À faire</span>Cliquez les nœuds dans l'ordre, puis revenez sur ceux dont vous ne sauriez pas dire ce qu'ils ont établi.</p>
+        <p><span class="sn-k">Ce que ça montre</span>La frise du dossier, acte par acte. Ce qu'elle montre surtout, c'est que rien ne se règle d'un coup&nbsp;: chaque étape ferme une question et en ouvre une autre, et l'intervalle entre deux nœuds se compte parfois en siècles. <em>L'échelle est comprimée avant l'Antiquité pour rester lisible.</em></p>
+      </div>
     </div>
 
     <div class="glass" style="padding:24px 26px">
