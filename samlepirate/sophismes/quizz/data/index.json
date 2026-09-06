@@ -3,54 +3,432 @@
   "A-1": {
    "nom": "A.1 — Sophismes de pertinence : les appels illégitimes (ad …)",
    "items": 39,
-   "questions": 390
+   "questions": 390,
+   "refs": [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8",
+    "A-9",
+    "A-10",
+    "A-11",
+    "A-12",
+    "A-13",
+    "A-14",
+    "A-15",
+    "A-16",
+    "A-17",
+    "A-18",
+    "A-19",
+    "A-20",
+    "A-21",
+    "A-22",
+    "A-23",
+    "A-24",
+    "A-25",
+    "A-26",
+    "A-27",
+    "A-28",
+    "A-29",
+    "A-30",
+    "A-31",
+    "A-32",
+    "A-33",
+    "A-34",
+    "A-35",
+    "A-36",
+    "A-37",
+    "A-38",
+    "A-39"
+   ]
   },
   "A-5": {
    "nom": "A.5 — Structure logique et présupposition",
    "items": 24,
-   "questions": 240
+   "questions": 240,
+   "refs": [
+    "A-98",
+    "A-99",
+    "A-100",
+    "A-101",
+    "A-102",
+    "A-103",
+    "A-104",
+    "A-105",
+    "A-106",
+    "A-107",
+    "A-108",
+    "A-109",
+    "A-110",
+    "A-111",
+    "A-112",
+    "A-113",
+    "A-114",
+    "A-115",
+    "A-116",
+    "A-117",
+    "A-118",
+    "A-119",
+    "A-120",
+    "A-121"
+   ]
   },
   "A-6": {
    "nom": "A.6 — Ambiguïté, sémantique et manipulation du sens",
    "items": 23,
-   "questions": 230
+   "questions": 230,
+   "refs": [
+    "A-122",
+    "A-123",
+    "A-124",
+    "A-125",
+    "A-126",
+    "A-127",
+    "A-128",
+    "A-129",
+    "A-130",
+    "A-131",
+    "A-132",
+    "A-133",
+    "A-134",
+    "A-135",
+    "A-136",
+    "A-137",
+    "A-138",
+    "A-139",
+    "A-140",
+    "A-141",
+    "A-142",
+    "A-143",
+    "A-144"
+   ]
   },
   "A-7": {
    "nom": "A.7 — Diversion, saturation et esquive",
    "items": 19,
-   "questions": 190
+   "questions": 190,
+   "refs": [
+    "A-145",
+    "A-146",
+    "A-147",
+    "A-148",
+    "A-149",
+    "A-150",
+    "A-151",
+    "A-152",
+    "A-153",
+    "A-154",
+    "A-155",
+    "A-156",
+    "A-157",
+    "A-158",
+    "A-159",
+    "A-160",
+    "A-161",
+    "A-162",
+    "A-163"
+   ]
   },
   "A-8": {
    "nom": "A.8 — Exclusion, définition mouvante et critères asymétriques",
    "items": 9,
-   "questions": 90
+   "questions": 90,
+   "refs": [
+    "A-164",
+    "A-165",
+    "A-166",
+    "A-167",
+    "A-168",
+    "A-169",
+    "A-170",
+    "A-171",
+    "A-172"
+   ]
   },
   "A-9": {
    "nom": "A.9 — Sophismes logiques et méthodologiques (les méta-sophismes)",
    "items": 15,
-   "questions": 150
+   "questions": 150,
+   "refs": [
+    "A-173",
+    "A-174",
+    "A-175",
+    "A-176",
+    "A-177",
+    "A-178",
+    "A-179",
+    "A-180",
+    "A-181",
+    "A-182",
+    "A-183",
+    "A-184",
+    "A-185",
+    "A-186",
+    "A-187"
+   ]
   },
   "A-10": {
    "nom": "A.10 — Sophismes formels (erreurs de déduction)",
-   "items": 8,
-   "questions": 80
+   "items": 14,
+   "questions": 140,
+   "refs": [
+    "A-188",
+    "A-189",
+    "A-190",
+    "A-191",
+    "A-192",
+    "A-193",
+    "A-194",
+    "A-195",
+    "A-196",
+    "A-197",
+    "A-198",
+    "A-199",
+    "A-200",
+    "A-201"
+   ]
+  },
+  "A-11": {
+   "nom": "A.11 — Biais statistiques et probabilistes",
+   "items": 19,
+   "questions": 190,
+   "refs": [
+    "A-202",
+    "A-203",
+    "A-204",
+    "A-205",
+    "A-206",
+    "A-207",
+    "A-208",
+    "A-209",
+    "A-210",
+    "A-211",
+    "A-212",
+    "A-213",
+    "A-214",
+    "A-215",
+    "A-216",
+    "A-217",
+    "A-218",
+    "A-219",
+    "A-220"
+   ]
+  },
+  "A-12": {
+   "nom": "A.12 — Analogie, comparaison et équivalence",
+   "items": 5,
+   "questions": 50,
+   "refs": [
+    "A-221",
+    "A-222",
+    "A-223",
+    "A-224",
+    "A-225"
+   ]
+  },
+  "A-13": {
+   "nom": "A.13 — Sophismes normatifs et de valeur",
+   "items": 6,
+   "questions": 60,
+   "refs": [
+    "A-226",
+    "A-227",
+    "A-228",
+    "A-229",
+    "A-230",
+    "A-231"
+   ]
+  },
+  "A-14": {
+   "nom": "A.14 — Sophismes historiques, économiques et de décision",
+   "items": 5,
+   "questions": 50,
+   "refs": [
+    "A-232",
+    "A-233",
+    "A-234",
+    "A-235",
+    "A-236"
+   ]
   },
   "A-2": {
    "nom": "A.2 — Attaques sur la personne et disqualification du messager",
    "items": 21,
-   "questions": 210
+   "questions": 210,
+   "refs": [
+    "A-40",
+    "A-41",
+    "A-42",
+    "A-43",
+    "A-44",
+    "A-45",
+    "A-46",
+    "A-47",
+    "A-48",
+    "A-49",
+    "A-50",
+    "A-51",
+    "A-52",
+    "A-53",
+    "A-54",
+    "A-55",
+    "A-56",
+    "A-57",
+    "A-58",
+    "A-59",
+    "A-60"
+   ]
   },
   "A-3": {
    "nom": "A.3 — Sophismes de causalité",
    "items": 20,
-   "questions": 200
+   "questions": 200,
+   "refs": [
+    "A-61",
+    "A-62",
+    "A-63",
+    "A-64",
+    "A-65",
+    "A-66",
+    "A-67",
+    "A-68",
+    "A-69",
+    "A-70",
+    "A-71",
+    "A-72",
+    "A-73",
+    "A-74",
+    "A-75",
+    "A-76",
+    "A-77",
+    "A-78",
+    "A-79",
+    "A-80"
+   ]
   },
   "A-4": {
    "nom": "A.4 — Généralisation, échantillon et sélection des données",
    "items": 17,
-   "questions": 170
+   "questions": 170,
+   "refs": [
+    "A-81",
+    "A-82",
+    "A-83",
+    "A-84",
+    "A-85",
+    "A-86",
+    "A-87",
+    "A-88",
+    "A-89",
+    "A-90",
+    "A-91",
+    "A-92",
+    "A-93",
+    "A-94",
+    "A-95",
+    "A-96",
+    "A-97"
+   ]
+  },
+  "E-1": {
+   "nom": "E.1 — Les sept techniques classiques (Institute for Propaganda Analysis, 1937)",
+   "items": 7,
+   "questions": 70,
+   "refs": [
+    "E-1",
+    "E-2",
+    "E-3",
+    "E-4",
+    "E-5",
+    "E-6",
+    "E-7"
+   ]
+  },
+  "E-2": {
+   "nom": "E.2 — Procédés contemporains",
+   "items": 13,
+   "questions": 130,
+   "refs": [
+    "E-8",
+    "E-9",
+    "E-10",
+    "E-11",
+    "E-12",
+    "E-13",
+    "E-14",
+    "E-15",
+    "E-16",
+    "E-17",
+    "E-18",
+    "E-19",
+    "E-20"
+   ]
+  },
+  "E-3": {
+   "nom": "E.3 — Manipulation relationnelle",
+   "items": 7,
+   "questions": 70,
+   "refs": [
+    "E-21",
+    "E-22",
+    "E-23",
+    "E-24",
+    "E-25",
+    "E-26",
+    "E-27"
+   ]
+  },
+  "F": {
+   "nom": "Partie F — biais cognitifs",
+   "items": 18,
+   "questions": 180,
+   "refs": [
+    "F-1",
+    "F-2",
+    "F-3",
+    "F-4",
+    "F-5",
+    "F-6",
+    "F-7",
+    "F-8",
+    "F-9",
+    "F-10",
+    "F-11",
+    "F-12",
+    "F-13",
+    "F-14",
+    "F-15",
+    "F-16",
+    "F-17",
+    "F-18"
+   ]
+  },
+  "G": {
+   "nom": "Partie G — procédés de langage détournés",
+   "items": 14,
+   "questions": 140,
+   "refs": [
+    "G-1",
+    "G-2",
+    "G-3",
+    "G-4",
+    "G-5",
+    "G-6",
+    "G-7",
+    "G-8",
+    "G-9",
+    "G-10",
+    "G-11",
+    "G-12",
+    "G-13",
+    "G-14"
+   ]
   }
  },
- "total": 1950,
- "valides": 195
+ "total": 2950,
+ "valides": 295
 }

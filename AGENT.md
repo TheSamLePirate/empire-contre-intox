@@ -91,7 +91,7 @@ samlepirate/                    ← créateur Samlepirate
   sophismes/                    ← Dossier XXIX (codex ECI + accent pourpre)
     index.html                  ← 7 parties, 40 chapitres, 25 ateliers React, 9 formules
     repertoire.html             ← les 295 procédés, avec « comment répondre » pour chacun
-    quizz.html · quizz/data/    ← 1 950 questions exportées (fetch : ne marche pas en file://)
+    quizz.html · quizz/data/    ← 2 950 questions exportées, 295 procédés × 10 (fetch : ne marche pas en file://)
     discours.html               ← le Grand Discours, 4 versions annotées, compteur
     portraits.html              ← 20 fiches en six actes
     assets/                     ← hero + 8 illustrations + 3 vignettes + 20 portraits

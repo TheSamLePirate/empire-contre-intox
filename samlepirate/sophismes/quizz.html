@@ -801,6 +801,9 @@ html{--cur:#e79ac0;transition:--cur 1.8s ease;scrollbar-width:thin;scrollbar-col
 .bilan .n{font-family:var(--roman);font-size:clamp(2.4rem,7vw,4rem);color:var(--gold-bright)}
 .confus{margin:20px auto 0;max-width:60ch;text-align:left}
 .confus li{margin:0 0 6px;color:var(--muted)}
+.item-band{display:flex;flex-wrap:wrap;align-items:baseline;gap:5px 10px;margin:0 0 12px;min-width:0;font-family:var(--roman);text-transform:uppercase;letter-spacing:.18em;font-size:.6rem;color:var(--soft)}
+.item-band b{min-width:0;overflow-wrap:break-word;letter-spacing:.12em;color:var(--gold-bright)}
+.item-band a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
 .hors{padding:24px;border:1px solid var(--line);border-radius:3px;background:rgba(184,85,122,.08);color:var(--parch)}
 
 </style>
@@ -911,9 +914,18 @@ var app=document.getElementById('app'),IDX=null,CACHE={},etat=null;
 function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
 function get(k){return fetch('quizz/data/'+k+'.json').then(function(r){return r.json();});}
 function melange(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+// Le corpus range toujours la bonne reponse en premier : on tire un ordre neuf a chaque partie,
+// sur une copie, pour ne pas figer le melange dans le cache des sections.
+function tirage(q){var c={};for(var k in q)if(Object.prototype.hasOwnProperty.call(q,k))c[k]=q[k];c.o=melange(q.o.slice());return c;}
 function local(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem('eci-quizz:'+k)||'null');localStorage.setItem('eci-quizz:'+k,JSON.stringify(v));}catch(e){}return null;}
 
-fetch('quizz/data/index.json').then(function(r){return r.json();}).then(function(d){IDX=d;accueil();})
+// Lien profond depuis le repertoire : quizz.html#A-62 ouvre les dix questions du procede.
+function sectionDeRef(ref){var s=IDX.sections;for(var k in s){if((s[k].refs||[]).indexOf(ref)>=0)return k;}return null;}
+function depuisHash(){var m=/^#([AEFG]-\d+)$/.exec(location.hash||'');
+  if(!m||!sectionDeRef(m[1]))return false; lance('item',m[1]); return true;}
+addEventListener('hashchange',function(){if(!depuisHash())accueil();});
+
+fetch('quizz/data/index.json').then(function(r){return r.json();}).then(function(d){IDX=d;if(!depuisHash())accueil();})
  .catch(function(){app.innerHTML='<div class="hors"><b>Le quizz ne peut pas charger ses questions depuis un fichier local.</b><p style="margin:10px 0 0">Cette page lit son corpus par <code>fetch</code>, ce que les navigateurs refusent quand la page est ouverte par double-clic (<code>file://</code>). Ouvrez-la depuis le site, ou lancez un serveur local (<code>python3 -m http.server</code>).</p><p style="margin:10px 0 0">En attendant, le <a href="repertoire.html">répertoire</a> fonctionne hors ligne.</p></div>';});
 
 function accueil(){
@@ -936,21 +948,24 @@ function charge(keys){
   return Promise.all(keys.map(function(k){ return CACHE[k]?Promise.resolve(CACHE[k]):get(k).then(function(d){CACHE[k]=d;return d;}); }));
 }
 
-function lance(mode){
+function lance(mode,ref){
   var keys=Object.keys(IDX.sections);
-  var sel=(mode==='famille')?[document.getElementById('fam').value]:keys;
+  var sel=(mode==='famille')?[document.getElementById('fam').value]:(mode==='item')?[sectionDeRef(ref)]:keys;
   app.innerHTML='<p class="empty">Tirage des questions…</p>';
   charge(sel).then(function(ds){
     var pool=[];ds.forEach(function(d){pool=pool.concat(d.questions);});
+    if(mode==='item'){pool=pool.filter(function(q){return q.r===ref;});}
     if(mode==='valide'){
       var v=pool.filter(function(q){return q.ty==='valide';});
       var s=melange(pool.filter(function(q){return q.ty!=='valide';})).slice(0,Math.min(10,v.length));
-      pool=melange(v.slice(0,10).concat(s));
+      pool=melange(melange(v).slice(0,10).concat(s));
     }
     var n=mode==='defi'?20:10;
-    var qs=melange(pool.slice()).slice(0,n);
-    if(mode==='decouverte'){var ordre={facile:0,moyenne:1,difficile:2};qs.sort(function(a,b){return ordre[a.d]-ordre[b.d];});}
-    etat={mode:mode,qs:qs,i:0,bon:0,confusions:[],t0:Date.now()};
+    // Mode item : les dix questions du procede, toutes, dans l'ordre de difficulte.
+    var qs=(mode==='item')?pool.slice().map(tirage):melange(pool.slice()).slice(0,n).map(tirage);
+    if(mode==='decouverte'||mode==='item'){var ordre={facile:0,moyenne:1,difficile:2};qs.sort(function(a,b){return ordre[a.d]-ordre[b.d];});}
+    if(!qs.length){app.innerHTML='<div class="hors"><b>Aucune question pour ce procede.</b><p style="margin:10px 0 0">Retour au <a href="quizz.html">quizz</a>.</p></div>';return;}
+    etat={mode:mode,ref:ref,titre:(mode==='item'?qs[0].n:''),qs:qs,i:0,bon:0,confusions:[],t0:Date.now()};
     question();
   });
 }
@@ -960,6 +975,7 @@ function question(){
   var q=etat.qs[etat.i];
   var opts=q.o.map(function(o,i){return '<button class="opt" data-i="'+i+'"><b>'+'ABCD'[i]+'</b><span>'+o.t+'</span></button>';}).join('');
   app.innerHTML='<div class="jeu">'
+   +(etat.mode==='item'?'<p class="item-band">Les dix questions de&nbsp;: <b>'+etat.titre+'</b> <a href="repertoire.html#'+etat.ref+'">sa fiche</a></p>':'')
    +'<div class="prog"><i style="width:'+(etat.i/etat.qs.length*100)+'%"></i></div>'
    +'<div class="barre"><span class="score">Question '+(etat.i+1)+' sur '+etat.qs.length+'</span><span class="score">'+etat.bon+' juste'+(etat.bon>1?'s':'')+'</span></div>'
    +'<div class="carte"><div class="meta"><span>'+q.cx+'</span><span class="diff">'+q.d+'</span><span>'+q.th+'</span></div>'
@@ -1006,7 +1022,10 @@ function bilan(){
    +'<a class="btn btn-2" style="padding:10px 16px" href="repertoire.html">Ouvrir le répertoire</a>'
    +(etat.mode==='defi'?'<button class="btn btn-2" id="copier" style="padding:10px 16px">Copier mon score</button>':'')+'</div>'
    +'<p style="color:var(--soft);font-size:.86rem;margin-top:18px">'+hist.length+' partie'+(hist.length>1?'s':'')+' enregistrée'+(hist.length>1?'s':'')+' dans ce navigateur. Rien n\'est envoyé.</p></div></div>';
-  document.getElementById('rejouer').addEventListener('click',accueil);
+  document.getElementById('rejouer').addEventListener('click',function(){
+    if(location.hash)history.replaceState(null,'','quizz.html');
+    accueil();
+  });
   var c=document.getElementById('copier');
   if(c)c.addEventListener('click',function(){
     var t='Quizz « L\'Art d\'avoir l\'air d\'avoir raison » — '+etat.bon+'/'+n+' en mode Défi. empire-contre-intox.com';

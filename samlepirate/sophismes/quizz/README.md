@@ -18,5 +18,5 @@ python3 a_traiter/sophisme-rethorique/build/make_quizz.py
 
 ## État du corpus
 
-1950 questions sur les 2 950 prévues, couvrant 195 des 295 procédés (10 questions par procédé, dont une
-« Raisonnement valide »). Les procédés non encore couverts renvoient à leur fiche du répertoire.
+2950 questions sur les 2 950 prévues, couvrant 295 des 295 procédés (10 questions par procédé, dont une
+« Raisonnement valide »). Le corpus est complet : chaque procédé du répertoire a ses dix questions, et son lien profond `quizz.html#<ref>` ouvre directement sa série.
