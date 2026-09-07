@@ -82,7 +82,7 @@ provoxys/                       ← créateur Provoxys (identité visuelle propr
   assets/artemis2-hero.png
   Artemis2.html
   lumiere/                      ← Dossier XXVIII (codex ECI + accent azur)
-    index.html                  ← 9 actes, 30 chapitres, 22 formules, 37 ateliers React
+    index.html                  ← 9 actes, 30 chapitres, 23 formules, 38 ateliers React
     portraits.html              ← compagnon : 19 fiches en six actes
     assets/                     ← hero + 8 illustrations + 21 portraits + bundle lumiere-viz.js/.css
   provoxys.jpeg, samlepirate.jpeg, inepties.jpeg

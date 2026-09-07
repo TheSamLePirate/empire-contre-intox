@@ -1,6 +1,6 @@
 # Références primaires — Dossier XXVIII « La Lumière »
 
-**Soixante DOI**, résolus un par un via l'API Crossref le 1ᵉʳ septembre 2026 : titre, revue, auteurs, année, volume et pages comparés à la citation. Aucun DOI de cette liste n'a été deviné ou reconstruit — c'est la règle absolue de l'appareil critique d'Empire contre Intox. Deux DOI candidats ont été **refusés** parce qu'ils ne résolvent pas sous la forme citée (voir en bas).
+**Soixante-cinq DOI**, résolus un par un via l'API Crossref (soixante le 1ᵉʳ septembre 2026, cinq de plus le 7 septembre 2026 pour l'atelier L34 « Les mirages ») : titre, revue, auteurs, année, volume et pages comparés à la citation. Aucun DOI de cette liste n'a été deviné ou reconstruit — c'est la règle absolue de l'appareil critique d'Empire contre Intox. Deux DOI candidats ont été **refusés** parce qu'ils ne résolvent pas sous la forme citée (voir en bas).
 
 > **Recomptage du 3 septembre 2026.** Le document de préparation annonçait « 62 DOI ». Le tableau en contient **60**, tous distincts et tous vérifiés. Le chiffre a été corrigé partout — dans le dossier, dans l'audit et ici. Un appareil critique qui se trompe sur le nombre de ses propres références n'inspire pas confiance sur le reste.
 
@@ -15,6 +15,11 @@
 | K. M. Evenson et al., « Speed of Light from Direct Frequency and Wavelength Measurements of the Methane-Stabilized Laser », *Phys. Rev. Lett.* 29, 1346 (1972) | [10.1103/PhysRevLett.29.1346](https://doi.org/10.1103/PhysRevLett.29.1346) | ✅ |
 | Ch. Eisele, A. Nevsky, S. Schiller, « Laboratory Test of the Isotropy of Light Propagation at the 10⁻¹⁷ Level », *Phys. Rev. Lett.* 103, 090401 (2009) | [10.1103/PhysRevLett.103.090401](https://doi.org/10.1103/PhysRevLett.103.090401) | ✅ |
 | C. Maraston, « A brief history of the speed of light », *J. Phys.: Conf. Ser.* 2877, 012067 (2024) | [10.1088/1742-6596/2877/1/012067](https://doi.org/10.1088/1742-6596/2877/1/012067) | ✅ |
+| P. E. Ciddor, « Refractive index of air: new equations for the visible and near infrared », *Applied Optics* 35, 1566-1573 (1996) — indice de l'air de l'atelier L34 | [10.1364/AO.35.001566](https://doi.org/10.1364/AO.35.001566) | ✅ (7 sept. 2026) |
+| W. H. Lehn et S. van der Werf, « Atmospheric refraction: a history », *Applied Optics* 44, 5624-5636 (2005) — mirages inférieur et supérieur, atelier L34 | [10.1364/AO.44.005624](https://doi.org/10.1364/AO.44.005624) | ✅ (7 sept. 2026) |
+| A. T. Young et E. Frappa, « Mirages at Lake Geneva: the Fata Morgana », *Applied Optics* 56, G59 (2017) — atelier L34 | [10.1364/AO.56.000G59](https://doi.org/10.1364/AO.56.000G59) | ✅ (7 sept. 2026) |
+| G. G. Bennett, « The Calculation of Astronomical Refraction in Marine Navigation », *Journal of Navigation* 35, 255-259 (1982) — réfraction au-delà du domaine local, atelier L34 | [10.1017/S0373463300022037](https://doi.org/10.1017/S0373463300022037) | ✅ (7 sept. 2026) |
+| A. T. Young, « Sunset science. III. Visual adaptation and green flashes », *J. Opt. Soc. Am. A* 17, 2129 (2000) — rayon vert, atelier L34 | [10.1364/JOSAA.17.002129](https://doi.org/10.1364/JOSAA.17.002129) | ✅ (7 sept. 2026) |
 | A. A. Michelson et E. W. Morley, « On the Relative Motion of the Earth and the Luminiferous Ether », *Am. J. Sci.* s3-34, 333-345 (1887) | [10.2475/ajs.s3-34.203.333](https://doi.org/10.2475/ajs.s3-34.203.333) | ✅ |
 
 ## Histoire de l'optique (XVIIIe-XIXe siècle)

@@ -131,7 +131,18 @@
 | A.19 | Speckle = interférence des ondelettes renvoyées par les facettes | ✅ | Goodman, *Speckle Phenomena in Optics* (2007) |
 
 
-**Bilan :** 114 items · ✅ 88 · ⚠️ 18 (corrigés/nuancés) · 🔶 6 (non tranchables ou non lus) · ❌ 4 (corrigés : Bradley 283 000, tache de Newton, scène du geôlier, « réflexion interne totale » de l'arc-en-ciel).
+**Ajout du 7 septembre 2026 — atelier L34 « Les mirages » et formule « Courbure d'un rayon dans l'air stratifié »** (chapitre 7). Les quatre affirmations ci-dessous n'existaient pas dans le script : elles viennent de l'appareil pédagogique ajouté autour de l'arc-en-ciel.
+
+| # | Affirmation | Verdict | Valeur retenue / source |
+|---|---|---|---|
+| M.1 | Indice de l'air : n − 1 ≈ 2,93 × 10⁻⁴ à 0 °C et 101 325 Pa, ≈ 2,8 × 10⁻⁴ à 15 °C ; (n − 1) ∝ densité ∝ P/T (loi de Gladstone–Dale) | ✅ | Ciddor 1996, *Appl. Opt.* 35, 1566 : n − 1 = 2,7766 × 10⁻⁴ à 15 °C, 101,325 kPa, 589 nm, air sec. Le modèle de l'atelier (2,93 × 10⁻⁴ × 273,15/T) redonne 2,7775 × 10⁻⁴ — écart 0,03 %. La dispersion de l'air (~1 % de n − 1 sur le visible) est ignorée, et l'atelier le dit |
+| M.2 | Courbure d'un rayon dans un milieu stratifié : dθ/ds = (cos θ / n) · dn/dz ; le rayon tourne vers l'air le plus dense — sol chaud (dn/dz > 0) → mirage inférieur, inversion (dn/dz < 0 renforcé) → mirage supérieur | ✅ | Équation des rayons de l'optique géométrique, d/ds (n **t**) = ∇n, projetée sur la normale au rayon ; Lehn & van der Werf 2005, *Appl. Opt.* 44, 5624 (histoire et physique des deux familles de mirages) |
+| M.3 | Réfraction terrestre « standard » : les rayons se courbent vers le bas avec un rayon de quatre à sept fois celui de la Terre ; un gradient d'environ +0,11 K/m rend leur courbure égale à 1/R (conduit) | ✅ | dn/dz = −1/R = −1,57 × 10⁻⁷ m⁻¹ ; calcul refait avec le terme de pression hydrostatique : dT/dz = **0,112 K/m à 0 °C**, 0,128 K/m à 15 °C — cohérent avec la valeur usuelle « ≈ 0,11 K/m » (A. T. Young, SDSU, pages sur la réfraction atmosphérique) ; coefficient de réfraction géodésique k = R/r ≈ 0,13–0,17, soit r ≈ 6–8 R |
+| M.5 | Réfraction astronomique à l'horizon ≈ 34′ (le Soleil couchant est vu alors qu'il est géométriquement sous l'horizon), plus forte pour le bord bas que pour le bord haut : le disque s'aplatit | ✅ | Formule de Bennett 1982, *J. Navigation* 35, 255 : R = cot(h + 7,31/(h + 4,4)) minutes d'arc pour une hauteur apparente h en degrés, ≈ 34,5′ à h = 0, précise à 0,1′ ; l'atelier l'applique au-delà de son domaine local (40 km, 400 m), en retranchant la part déjà intégrée |
+| M.6 | Dispersion de l'air : le bleu-vert est réfracté ~1,3 % de plus que le rouge ; amplifié par un mirage, ce liseré devient le « rayon vert » du Soleil couchant | ✅ | Ciddor 1996, éq. 1 : (n − 1) à 460 nm / (n − 1) à 620 nm = 1,0126 ; sur 34′ de réfraction, ≈ 0,4′ d'écart, soit un liseré vert de ~25″ au bord haut — invisible à l'œil nu sans le grossissement du mirage (Young 2000, *JOSA A* 17, 2129) |
+| M.4 | Fata Morgana : mirage supérieur à images multiples (droite et inversée empilées, étirées, mouvantes) produit par une couche d'inversion ; l'atelier la reproduit avec une inversion de 12 K entre 8 et 15 m au-dessus d'une mer à 6 °C | ✅ | Young & Frappa 2017, *Appl. Opt.* 56, G59 : mirages photographiés sur le lac Léman et reproduits par tracé de rayons dans des profils de température mesurés ; la couche d'inversion est la condition nécessaire |
+
+**Bilan :** 120 items · ✅ 94 · ⚠️ 18 (corrigés/nuancés) · 🔶 6 (non tranchables ou non lus) · ❌ 4 (corrigés : Bradley 283 000, tache de Newton, scène du geôlier, « réflexion interne totale » de l'arc-en-ciel).
 
 Les quatre ❌ ont été corrigés **dans le texte du dossier lui-même**, et chaque correction est signalée au lecteur dans un encadré de marge « Correction apportée » :
 
@@ -146,7 +157,7 @@ Les 18 ⚠️ ont été **nuancés dans le texte** (fourchettes, « probablement
 
 ---
 
-## B. DOI vérifiés (60)
+## B. DOI vérifiés (65)
  — prêts pour `sources/refs-doi-<N>-lumiere.md`
 
 | DOI | Référence | Vérifié |
@@ -211,6 +222,11 @@ Les 18 ⚠️ ont été **nuancés dans le texte** (fourchettes, « probablement
 | 10.1103/PhysRevLett.7.118 | Franken et al. 1961 (seconde harmonique) | ✅ |
 | 10.1038/17561 | Hau et al. 1999 (17 m/s) | ✅ |
 | 10.1038/35054017 | Liu et al. 2001 (lumière arrêtée) | ✅ |
+| 10.1364/AO.35.001566 | Ciddor 1996 (indice de l'air) — ajout L34, 7 sept. 2026 | ✅ |
+| 10.1364/AO.44.005624 | Lehn & van der Werf 2005 (réfraction atmosphérique, histoire) — ajout L34 | ✅ |
+| 10.1364/AO.56.000G59 | Young & Frappa 2017 (Fata Morgana, lac Léman) — ajout L34 | ✅ |
+| 10.1017/S0373463300022037 | Bennett 1982 (réfraction astronomique) — ajout L34 | ✅ |
+| 10.1364/JOSAA.17.002129 | Young 2000 (rayon vert) — ajout L34 | ✅ |
 
 
 **Refusés (n'existent pas sous cette forme, ne pas citer)** : `10.1002/andp.18882690707` (Hertz 1888 — citer l'édition Teubner sans DOI) ; `10.1103/PhysRevLett.30.1109`.
@@ -249,6 +265,9 @@ Certaines valeurs du dossier ne viennent pas d'une source mais d'un calcul, refa
 | Temps de vol chez Fizeau | 2 × 8 633 m / 3,15 × 10⁸ m/s | 54,8 µs, première extinction vers 12,6 tr/s | ch. 12, atelier L10 |
 | Décalage Doppler de Hα | Δλ = λ v/c, v = 30 km/s, λ = 656,3 nm | 0,066 nm | ch. 28 |
 | Trois polariseurs à 45° | (cos² 45°)² | 1/4 | ch. 14, atelier L21 |
+| Indice de l'air à 15 °C | 1 + 2,93 × 10⁻⁴ × 273,15 / 288,15 | 1,000 278 — Ciddor : 1,000 277 7 | ch. 7, atelier L34 |
+| Gradient de conduit (mirages) | dT/dz tel que dn/dz = −1/R, terme de pression compris | 0,112 K/m à 0 °C ; 0,128 K/m à 15 °C | ch. 7, atelier L34 |
+| Dispersion de l'air (rayon vert) | (n−1)₄₆₀/(n−1)₆₂₀ par Ciddor éq. 1 | 1,0126 — soit ≈ 0,4′ sur 34′ de réfraction à l'horizon | ch. 7, atelier L34 |
 
 ---
 
@@ -257,3 +276,36 @@ Certaines valeurs du dossier ne viennent pas d'une source mais d'un calcul, refa
 - **Dans le dossier** : 24 encadrés « anti-intox », 5 encadrés « méthode scientifique », 3 encadrés « correction apportée », un tableau « établi / interprétation / recherche » au chapitre 29, un tableau « ce que ça montre / ce que ça ne montre pas » au chapitre 27, et la section [Ressources](../provoxys/lumiere/index.html#ressources) qui reprend la bibliographie intégrale.
 - **Dans `sources.html`** (Dossier XXX) : section « La Lumière », fiches donnée → résumé → verdict → source, et les références primaires dans le groupe DOI.
 - **Références primaires** : [`refs-doi-XXVIII-lumiere.md`](refs-doi-XXVIII-lumiere.md).
+
+### Contrôle de l'atelier L34 après refonte (7 septembre 2026)
+
+Le moteur est vérifié par 14 tests numériques (`tests/mirage-optics.test.ts`) :
+indice à 589 nm, effets de la température et de la dispersion, trajet analytique
+sans réfraction sur une Terre courbe, absence de coordonnées non finies dans les
+cinq découpages et cinq profils, deux images sur route chaude et trois branches
+pour la Fata Morgana à 240, 480 et 960 lignes. Le préréglage Fata Morgana utilisé
+est **+10 K, hauteur 14 m, épaisseur paramétrique 2 m**, air de surface à 6 °C,
+cargo de 60 m à 8 km (ces valeurs remplacent celles de M.4 pour le simulateur).
+
+Précisions de lecture : le compteur porte sur les branches résolues dans le
+champ actuel ; le maximum des distances de sol échantillonnées ne mesure pas
+exactement l'horizon. Le raccord local à Bennett est approché : la précision
+propre de sa formule n'est pas une garantie de précision du simulateur complet.
+La dispersion mentionnée en M.6 contribue au rayon vert, mais les trois bandes
+RGB de l'atelier ne calculent ni extinction spectrale ni adaptation de l'œil.
+La couleur d'un rayon vert réel ne peut donc pas être déduite exactement de ce
+rendu. Référence primaire déjà citée : A. T. Young (2000), « Sunset science. III.
+Visual adaptation and green flashes », https://doi.org/10.1364/JOSAA.17.002129.
+
+
+### Deuxième contrôle de L34 — rendu HD et expériences recalibrées
+
+Le préréglage Fata Morgana utilise désormais un cargo de **18 m à 8 km**, avec le même profil +10 K / 14 m / 2 m, dans un champ de 0,6° centré sur +0,12°. Le cargo de 60 m ne permettait de voir nettement que la déformation de sa coque. Le profil mer froide (+6 K, centre 8 m, épaisseur 20 m, sans excès de surface) isole un soulèvement simple d’environ 5 minutes d’arc. Le désert est recadré pour inclure le sol.
+
+Le rendu à **2 376 × 1 080 pixels** reconstruit des textures sources RGBA d’après les hauteurs des rayons. Le compteur identifie les branches monotones résolues, pas le nombre d’objets matériels ; certaines images sont partielles. Les textures ont été générées avec imagegen et ne constituent pas des photographies de mirages observés. Le modèle stratifié reproduit ici trois branches de type Fata Morgana ; il ne calcule pas ses variations horizontales et temporelles réelles.
+
+Le calcul continu passe à 240 couches, réparties par quantiles interpolés sur une grille logarithmique : l’arrondi antérieur des frontières à 5 cm perdait la structure près du sol. **27 tests** vérifient les cinq scènes effectives, les témoins sans réfraction et sept trajets confrontés à une intégration RK4 indépendante (écart inférieur à 2 cm à la source sur cet échantillon). Cette validation ne démontre pas une précision uniforme à proximité de toutes les caustiques.
+
+Références consultées pour la qualification des effets : [OMM, Atlas international des nuages — Mirage](https://cloudatlas.wmo.int/en/mirage.html), pour les mirages inférieurs et supérieurs ; [A. T. Young, Fata Morgana](https://aty.sdsu.edu/mirages/FM/FM.html), pour les déformations complexes et les images multiples. Les textures et les couleurs d’ambiance sont illustratives ; les positions, inversions et déformations verticales dépendent du tracé optique.
+
+Publication : le moteur testé est versionné dans `src/lib/mirage-optics.ts`. Les URL du bundle JavaScript, de sa feuille CSS et de l’atlas RGBA portent une version dérivée de leur SHA-256 pour renouveler les caches immuables lors de cette livraison.
