@@ -255,9 +255,6 @@
   .mirage-lab.is-expanded .lv__head h3 { margin-top: 8px; font-size: 2rem; }
   .mirage-lab.is-expanded .mirage-art { height: 64px; }
   .mirage-lab.is-expanded .mirage-intro { padding: 12px 0 15px; }
-  .mirage-lab.is-expanded .lv-mir { grid-template-columns: minmax(0,1fr) minmax(0,1.2fr) minmax(240px,.85fr); grid-template-areas: "obs obs quick" "heading heading heading" "prof side side"; }
-  .mirage-lab.is-expanded .mirage-quick { display: flex; flex-direction: column; align-items: stretch; justify-content: center; }
-  .mirage-lab.is-expanded .mirage-quick > * { width: 100%; }
   .mirage-lab.is-expanded .lv-mir__svgbox { max-width: 250px; }
 }
 .mirage-ray-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 10px 14px; color: #bdc8ce; font: .58rem/1.5 var(--lv-mono); }
@@ -297,6 +294,19 @@
   .mirage-lab.is-expanded .mirage-quick { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); align-items: center; }
   .mirage-lab.is-expanded .mirage-quick > div:first-child { grid-column: auto; }
   .mirage-lab.is-expanded .mirage-quick .mirage-mission { grid-column: 1 / 3; }
+}
+/* Atelier agrandi sur un écran large : l'image de l'observateur et la coupe de côté
+   partagent la même rangée, pour manipuler les deux en même temps (survol d'une ligne
+   de l'image ↔ rayon de la coupe). Les réglages rapides et le profil d'air passent dessous. */
+@media (min-width: 1100px) {
+  .mirage-lab.is-expanded .lv-mir { grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); grid-template-areas: "obs side" "quick prof"; align-items: stretch; }
+  .mirage-lab.is-expanded .mirage-diagnostic-heading { display: none; }
+  .mirage-lab.is-expanded .lv-mir__side { display: flex; flex-direction: column; }
+  .mirage-lab.is-expanded .lv-mir__side svg { flex: 1 1 auto; min-height: 0; max-height: 60vh; }
+  .mirage-lab.is-expanded .mirage-quick { grid-template-columns: repeat(2,minmax(0,1fr)); align-content: start; }
+  .mirage-lab.is-expanded .mirage-quick > div:first-child { grid-column: 1 / -1; }
+  .mirage-lab.is-expanded .mirage-quick .mirage-mission { grid-column: 1 / -1; }
+  .mirage-lab.is-expanded .lv-mir__prof .lv-mir__svgbox { max-width: 300px; min-height: 320px; }
 }
 @container (max-width: 520px) {
   .mirage-view-switch { width: 100%; }
