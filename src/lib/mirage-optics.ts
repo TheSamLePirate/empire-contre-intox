@@ -1,3 +1,6 @@
+import { traceAdaptive, type AirMotion } from "./mirage-ray";
+export { traceAdaptive, displacement, thermalField, layerHeight, indexField, straightAltitude } from "./mirage-ray";
+export type { AirMotion } from "./mirage-ray";
 /* Optique de l'air stratifié — le moteur de l'atelier L34 « Les mirages ».
 
    L'atmosphère est décrite par un PROFIL DE TEMPÉRATURE T(z) : soit paramétrique
@@ -15,18 +18,17 @@
      et obéit à Snell-Descartes à chaque interface (n cos θ = constante, θ mesuré
      depuis l'horizontale) ; il peut s'y réfléchir totalement. Avec trois couches
      on voit les cassures ; c'est le modèle des manuels ;
-   · « continu » — indice linéaire dans chaque couche : le rayon y est une
-     parabole exacte, la pente est continue aux interfaces, et l'on retrouve la
-     courbe lisse de l'atmosphère réelle. C'est le mode par défaut.
-
-   La rondeur de la Terre est prise en compte dans le repère « Terre plate » :
-   le sol y est plan, et tout rayon droit du monde réel y devient une parabole
-   qui s'ÉLOIGNE du sol avec la courbure +1/R (R = 6 371 km) — c'est ce qui
-   fait l'horizon. Un rayon que l'air courbe vers le bas d'exactement 1/R
-   suit alors la surface : c'est le CONDUIT (duct) des mirages supérieurs.
-   Au-delà du domaine local (40 km, 400 m), la réfraction astronomique
-   restante est prise dans la formule de Bennett (1982). Rien n'est codé en
-   dur : tout est recalculé depuis le profil. */
+   · « continu » — équation eikonale sphérique dans mirage-ray.ts, intégrée
+     par RK4 adaptatif, sans approximation paraxiale. Les gradients analytiques
+     du champ n(x,z) incluent les ondulations. Les anciennes couches discrètes
+     restent une comparaison pédagogique paraxiale.
+   Le domaine local s'arrête au sol, à 400 m d'altitude ou à la portée demandée.
+   Une limite numérique n'est pas une source lumineuse. L'image du Soleil utilise
+   encore une correction illustrative de Bennett au-delà du domaine local.
+   Références : https://aty.sdsu.edu/explain/atmos_refr/invariant.html
+   https://emtoolbox.nist.gov/Wavelength/Documentation.asp
+   La mise à l'échelle P/T de la réfractivité standard n'est pas l'équation
+   complète de Ciddor pour l'air humide. */
 
 export const R_EARTH = 6_371_000;           // m
 export const P0 = 101_325;                  // Pa
@@ -101,6 +103,9 @@ export function ducts(p: Profile, Ps = P0): { z1: number; z2: number }[] {
 
 /* ---------------- couches ---------------- */
 export type Layers = {
+  profile?: Profile;
+  Ps?: number;
+  motion?: AirMotion;
   yb: Float64Array;      // N+1 frontières, croissantes, yb[0] = 0
   n: Float64Array;       // N indices (constants par couche — mode « marches »)
   nb: Float64Array;      // N+1 indices AUX frontières (mode « continu » : n linéaire dans la couche)
@@ -148,7 +153,7 @@ export function buildLayers(p: Profile, N: number, continuous = false, lambdaUm 
     n[k] = airIndex(T[k], ym, lambdaUm, Ps);
   }
   for (let k = 0; k <= M; k++) nb[k] = airIndex(tempAt(p, yb[k]), yb[k], lambdaUm, Ps);
-  return { yb: Float64Array.from(yb), n, nb, T, nFine: N, continuous, lambda: lambdaUm };
+  return { profile: p, Ps, yb: Float64Array.from(yb), n, nb, T, nFine: N, continuous, lambda: lambdaUm };
 }
 
 /** Plus petite racine strictement positive de a·x² + b·x + c = 0 (Infinity sinon). */
@@ -168,10 +173,16 @@ function firstRoot(a: number, b: number, c: number): number {
 
 export type Pt = { x: number; y: number };
 export type Hit = {
+  termination?: 'ground' | 'top' | 'range' | 'limit';
+  end?: Pt;
+  steps?: number;
+  rejected?: number;
+  errorEstimate?: number;
+  invariantDrift?: number | null;
   /** le rayon a-t-il traversé le plan de l'objet (x = D) ? hauteur et pente à ce moment */
   hasD: boolean; yD: number; thD: number;
   /** issue finale : sol (à la distance xg) ou ciel (thf = élévation vraie de la direction d'arrivée, vue de l'œil) */
-  kind: "ground" | "sky"; xg: number; thf: number;
+  kind: "ground" | "sky" | "unresolved"; xg: number; thf: number;
   /** nombre de réflexions totales rencontrées (mode marches) */
   tir: number;
   /** hauteur minimale et maximale atteintes */
@@ -194,9 +205,10 @@ function layerOf(L: Layers, y: number): number {
  *  `D` : distance du plan de l'objet ; `xFar` : distance au-delà de laquelle on
  *  déclare « ciel ». Repère Terre plate : parabole de courbure +1/R dans chaque couche. */
 export function trace(L: Layers, y0: number, th0: number, D: number, xFar: number, record = false, segLen = Infinity): Hit {
+  if (L.continuous && L.profile) return traceAdaptive(L, y0, th0, D, xFar, record, segLen);
   const R = R_EARTH, yb = L.yb, n = L.n, M = n.length;
   let x = 0, y = Math.max(1e-6, y0), th = th0, k = layerOf(L, y), tir = 0, yMin = y, yMax = y;
-  const hit: Hit = { hasD: false, yD: NaN, thD: NaN, kind: "sky", xg: NaN, thf: NaN, tir: 0, yMin: y, yMax: y };
+  const hit: Hit = { hasD: false, yD: NaN, thD: NaN, kind: "unresolved", termination: "limit", xg: NaN, thf: NaN, tir: 0, yMin: y, yMax: y };
   const pts: Pt[] | undefined = record ? [{ x, y }] : undefined;
   const turns: Pt[] | undefined = record ? [] : undefined;
   const push = (px: number, py: number) => { if (pts) pts.push({ x: px, y: py }); };
@@ -230,10 +242,10 @@ export function trace(L: Layers, y0: number, th0: number, D: number, xFar: numbe
     advance(dx);
     // au loin : direction VRAIE par rapport à l'horizontale de l'œil — dans le repère Terre plate,
     // l'angle a grandi de x/R au fil du chemin (l'horizontale locale tourne) ; on le retire
-    if (dx === dxEnd) { hit.kind = "sky"; hit.thf = th - x / R; break; }
+    if (dx === dxEnd) { hit.kind = y > 60 && th > 0 ? "sky" : "unresolved"; hit.termination = "range"; hit.thf = th - x / R; break; }
     y = dx === dxBot ? bot : top;                             // recalage exact sur la frontière
     if (dx === dxBot) {
-      if (k === 0) { hit.kind = "ground"; hit.xg = x; hit.thf = th; break; }
+      if (k === 0) { hit.kind = "ground"; hit.termination = "ground"; hit.xg = x; hit.thf = th; break; }
       if (L.continuous) { k--; }
       else {
         const c = (n[k] / n[k - 1]) * Math.cos(th);
@@ -241,7 +253,7 @@ export function trace(L: Layers, y0: number, th0: number, D: number, xFar: numbe
         else { th = -Math.acos(c); k--; }
       }
     } else {
-      if (k + 1 >= M) { th = Math.abs(th); }
+      if (k + 1 >= M) { hit.kind = "sky"; hit.termination = "top"; hit.thf = th - x / R; break; }
       else if (L.continuous) { k++; }
       else {
         const c = (n[k] / n[k + 1]) * Math.cos(th);
@@ -250,6 +262,7 @@ export function trace(L: Layers, y0: number, th0: number, D: number, xFar: numbe
       }
     }
   }
+  hit.end = { x, y }; if (!Number.isFinite(hit.thf)) hit.thf = th - x / R;
   hit.tir = tir; hit.yMin = yMin; hit.yMax = yMax; if (pts) hit.pts = pts; if (turns) hit.turns = turns;
   return hit;
 }

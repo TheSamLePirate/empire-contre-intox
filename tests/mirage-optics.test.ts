@@ -22,11 +22,11 @@ describe('Mirage optics and observer measurements', () => {
     const eye = 1.6, D = 1200, theta = rad(.1);
     const h = trace(vacuum, eye, theta, D, 40000);
     expect(h.hasD).toBe(true);
-    expect(h.yD).toBeCloseTo(eye + theta * D + D * D / (2 * R_EARTH), 6);
+    expect(h.yD).toBeCloseTo((R_EARTH + eye) * Math.cos(theta) / Math.cos(theta + D/R_EARTH) - R_EARTH, 6);
     expect(h.thf).toBeCloseTo(theta, 9);
     const ground = trace(vacuum, eye, rad(-.1), D, 40000);
     expect(ground.kind).toBe('ground');
-    expect(eye + rad(-.1) * ground.xg + ground.xg ** 2 / (2 * R_EARTH)).toBeCloseTo(0, 6);
+    expect((R_EARTH + eye) * Math.cos(rad(-.1)) / Math.cos(rad(-.1) + ground.xg/R_EARTH) - R_EARTH).toBeCloseTo(0, 6);
   });
   it.each([240, 1080, 2160])('resolves the road reflection at %i rows', (rows) => {
     const result = image('route', rows);
@@ -96,7 +96,7 @@ describe('HD experiments match their advertised phenomenon', () => {
   });
   it.each(['route', 'desert', 'mer', 'fata', 'calme'] as const)('stages the intended %s effect at full HD', (id) => {
     const st = MIRAGE_STAGES[id], L = buildLayers(PRESETS[id].p, 240, true);
-    const rays = Array.from({ length: 1080 }, (_, r) => trace(L, st.eye, rad(st.center + st.fov * (.5 - r / 1079)), st.D, Math.max(st.D * 3, 40000)));
+    const rays = Array.from({ length: 1080 }, (_, r) => trace(L, st.eye, rad(st.center + st.fov * (.5 - r / 1079)), st.D, 120000));
     const result = resolvedImages(rays, st.H);
     expect(result.n).toBe({ route: 2, desert: 2, mer: 1, fata: 3, calme: 1 }[id]);
     if (id === 'route' || id === 'desert') {
@@ -117,7 +117,7 @@ describe('HD experiments match their advertised phenomenon', () => {
       expect(inverted.last - inverted.first).toBeGreaterThan(150);
     }
     const vacuum = { ...L, n: L.n.map(() => 1), nb: L.nb.map(() => 1) };
-    const reference = rays.map((_, r) => trace(vacuum, st.eye, rad(st.center + st.fov * (.5 - r / 1079)), st.D, Math.max(st.D * 3, 40000)));
+    const reference = rays.map((_, r) => trace(vacuum, st.eye, rad(st.center + st.fov * (.5 - r / 1079)), st.D, 120000));
     expect(resolvedImages(reference, st.H).n).toBe(1);
     if (id === 'mer') {
       const neutral = resolvedImages(reference, st.H);
