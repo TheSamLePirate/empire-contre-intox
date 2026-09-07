@@ -112,3 +112,13 @@ it('thermal cells change the actual sea-object image and preserve accurate gradi
   expect(Math.abs(a.yD-b.yD)).toBeGreaterThan(.5);
   expect(a.invariantDrift).toBeNull();
 });
+
+it('closes the precalculated thermal and displacement cycle without a seam',()=>{
+  for(const time of [0,.12,.6])for(const z of [.1,1.6,8,45]){
+    const m={...motion,thermal:1,time},end={...m,time:time+1/m.frequency};
+    const a=indexField(PRESETS.route.p,123,z,.55,101325,m),b=indexField(PRESETS.route.p,123,z,.55,101325,end);
+    expect(Math.abs(a.n-b.n)).toBeLessThan(1e-14);
+    expect(Math.abs(a.nz-b.nz)).toBeLessThan(1e-14);
+    expect(Math.abs(layerHeight(123,z,m)-layerHeight(123,z,end))).toBeLessThan(1e-10);
+  }
+});

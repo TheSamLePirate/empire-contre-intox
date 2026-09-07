@@ -12,7 +12,7 @@ const TWO_PI = 2 * Math.PI;
 export function displacement(x: number, z: number, m?: AirMotion) {
   if (!m || m.amplitude === 0 || z >= 80) return { value: 0, dx: 0, dz: 0 };
   const A = Math.min(1, Math.max(0, m.amplitude)), k = TWO_PI / Math.max(100, m.wavelength), t = TWO_PI * m.frequency * m.time;
-  const a = k * x - t, b = 1.73 * k * x + .71 * t + 1.2, c = 2.91 * k * x - 1.31 * t + 2.4;
+  const a = k * x - t, b = 1.73 * k * x + 1 * t + 1.2, c = 2.91 * k * x - 2 * t + 2.4;
   const w = .55 * Math.sin(a) + .3 * Math.sin(b) + .15 * Math.sin(c);
   const wx = k * (.55 * Math.cos(a) + .519 * Math.cos(b) + .4365 * Math.cos(c));
   const e = Math.exp(-Math.max(0, z) / 60), s = Math.exp(-Math.max(0, z) / 2);
@@ -48,7 +48,7 @@ export function thermalField(x:number,z:number,m?:AirMotion){
   const u=Math.max(0,Math.min(1,(z-40)/40)), taper=1-u*u*(3-2*u),dt=z>40?-6*u*(1-u)/40:0;
   const e=Math.exp(-z/20),g=Math.exp(-z/.3),base=(1-g)*e;
   const env=base*taper,ez=(g/.3*e-base/20)*taper+base*dt;
-  const a=k*x-t,b=2.3*k*x+1.3*t+1.1,c=z/1.2+.7*Math.sin(b);
+  const a=k*x-t,b=2.3*k*x+2*t+1.1,c=z/1.2+.7*Math.sin(b);
   const w=Math.sin(a)*Math.sin(c);
   return {value:A*env*w,dx:A*env*(k*Math.cos(a)*Math.sin(c)+Math.sin(a)*Math.cos(c)*.7*2.3*k*Math.cos(b)),dz:A*(ez*w+env*Math.sin(a)*Math.cos(c)/1.2)};
 }

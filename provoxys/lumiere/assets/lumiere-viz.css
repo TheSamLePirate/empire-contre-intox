@@ -346,6 +346,7 @@
 .mirage-air-status {display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:12px 16px;background:#112c3a;color:#a9e1f2;font:.75rem/1.6 var(--lv-mono);border-bottom:1px solid #7fd3ff40;}
 .mirage-air-status button {padding:9px 12px;min-height:42px;border:1px solid #7fd3ff70;border-radius:6px;background:#17364b;color:#f3d98a;cursor:pointer;font:inherit;}
 
-.mirage-detail{border-top:1px solid #7fd3ff40;background:#081322;}
-.mirage-detail>div{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:10px 15px;color:#f3d98a;font:.72rem/1.6 var(--lv-mono);}
-.mirage-detail span{color:#9ec3d2;}.mirage-detail canvas{width:100%;height:auto;display:block;max-height:320px;object-fit:contain;}
+
+.mirage-viewport .mirage-frame-fade{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;}
+.mirage-surface-control{padding:12px 16px;border-top:1px solid #7fd3ff30;background:#101c28;}
+.mirage-surface-control small{display:block;color:#97b8c7;font:.65rem/1.5 var(--lv-mono);margin-top:6px;}
