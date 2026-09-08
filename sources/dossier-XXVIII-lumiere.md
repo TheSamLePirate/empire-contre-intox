@@ -131,16 +131,16 @@
 | A.19 | Speckle = interférence des ondelettes renvoyées par les facettes | ✅ | Goodman, *Speckle Phenomena in Optics* (2007) |
 
 
-**Ajout du 7 septembre 2026 — atelier L34 « Les mirages » et formule « Courbure d'un rayon dans l'air stratifié »** (chapitre 7). Les quatre affirmations ci-dessous n'existaient pas dans le script : elles viennent de l'appareil pédagogique ajouté autour de l'arc-en-ciel.
+**Ajout du 7 septembre 2026 — atelier L34 « Les mirages » et formule « Courbure d'un rayon dans l'air stratifié »** (chapitre 7). Les six affirmations ci-dessous n'existaient pas dans le script : elles viennent de l'appareil pédagogique ajouté autour de l'arc-en-ciel.
 
 | # | Affirmation | Verdict | Valeur retenue / source |
 |---|---|---|---|
-| M.1 | Indice de l'air : n − 1 ≈ 2,93 × 10⁻⁴ à 0 °C et 101 325 Pa, ≈ 2,8 × 10⁻⁴ à 15 °C ; (n − 1) ∝ densité ∝ P/T (loi de Gladstone–Dale) | ✅ | Ciddor 1996, *Appl. Opt.* 35, 1566 : n − 1 = 2,7766 × 10⁻⁴ à 15 °C, 101,325 kPa, 589 nm, air sec. Le modèle de l'atelier (2,93 × 10⁻⁴ × 273,15/T) redonne 2,7775 × 10⁻⁴ — écart 0,03 %. La dispersion de l'air (~1 % de n − 1 sur le visible) est ignorée, et l'atelier le dit |
+| M.1 | Indice de l'air : n − 1 ≈ 2,92 × 10⁻⁴ à 0 °C et 101 325 Pa, ≈ 2,8 × 10⁻⁴ à 15 °C ; (n − 1) ∝ densité ∝ P/T (loi de Gladstone–Dale) | ✅ | Ciddor 1996, *Appl. Opt.* 35, 1566, **équation 1** (air standard : 15 °C, 101 325 Pa, sec, 450 ppm de CO₂), implémentée telle quelle dans `src/lib/mirage-optics.ts` avec ses constantes 5 792 105 / 238,0185 / 167 917 / 57,362 (σ en µm⁻¹), puis mise à l'échelle de la densité par (288,15/T) · (P/P₀). Valeurs obtenues en exécutant le moteur : n − 1 = 2,7653 × 10⁻⁴ à 633 nm (concorde avec NIST/Ciddor), **2,7715 × 10⁻⁴ à 589 nm**, 2,9237 × 10⁻⁴ à 0 °C. La dispersion est **calculée**, pas ignorée : pour le Soleil, l'atelier trace trois longueurs d'onde (460, 550 et 620 nm) — voir M.6 |
 | M.2 | Courbure d'un rayon dans un milieu stratifié : dθ/ds = (cos θ / n) · dn/dz ; le rayon tourne vers l'air le plus dense — sol chaud (dn/dz > 0) → mirage inférieur, inversion (dn/dz < 0 renforcé) → mirage supérieur | ✅ | Équation des rayons de l'optique géométrique, d/ds (n **t**) = ∇n, projetée sur la normale au rayon ; Lehn & van der Werf 2005, *Appl. Opt.* 44, 5624 (histoire et physique des deux familles de mirages) |
-| M.3 | Réfraction terrestre « standard » : les rayons se courbent vers le bas avec un rayon de quatre à sept fois celui de la Terre ; un gradient d'environ +0,11 K/m rend leur courbure égale à 1/R (conduit) | ✅ | dn/dz = −1/R = −1,57 × 10⁻⁷ m⁻¹ ; calcul refait avec le terme de pression hydrostatique : dT/dz = **0,112 K/m à 0 °C**, 0,128 K/m à 15 °C — cohérent avec la valeur usuelle « ≈ 0,11 K/m » (A. T. Young, SDSU, pages sur la réfraction atmosphérique) ; coefficient de réfraction géodésique k = R/r ≈ 0,13–0,17, soit r ≈ 6–8 R |
-| M.5 | Réfraction astronomique à l'horizon ≈ 34′ (le Soleil couchant est vu alors qu'il est géométriquement sous l'horizon), plus forte pour le bord bas que pour le bord haut : le disque s'aplatit | ✅ | Formule de Bennett 1982, *J. Navigation* 35, 255 : R = cot(h + 7,31/(h + 4,4)) minutes d'arc pour une hauteur apparente h en degrés, ≈ 34,5′ à h = 0, précise à 0,1′ ; l'atelier l'applique au-delà de son domaine local (40 km, 400 m), en retranchant la part déjà intégrée |
-| M.6 | Dispersion de l'air : le bleu-vert est réfracté ~1,3 % de plus que le rouge ; amplifié par un mirage, ce liseré devient le « rayon vert » du Soleil couchant | ✅ | Ciddor 1996, éq. 1 : (n − 1) à 460 nm / (n − 1) à 620 nm = 1,0126 ; sur 34′ de réfraction, ≈ 0,4′ d'écart, soit un liseré vert de ~25″ au bord haut — invisible à l'œil nu sans le grossissement du mirage (Young 2000, *JOSA A* 17, 2129) |
-| M.4 | Fata Morgana : mirage supérieur à images multiples (droite et inversée empilées, étirées, mouvantes) produit par une couche d'inversion ; l'atelier la reproduit avec une inversion de 12 K entre 8 et 15 m au-dessus d'une mer à 6 °C | ✅ | Young & Frappa 2017, *Appl. Opt.* 56, G59 : mirages photographiés sur le lac Léman et reproduits par tracé de rayons dans des profils de température mesurés ; la couche d'inversion est la condition nécessaire |
+| M.3 | Réfraction terrestre « standard » : les rayons se courbent vers le bas avec un rayon de six à huit fois celui de la Terre (k ≈ 0,13–0,17) ; un gradient d'environ +0,11 K/m rend leur courbure égale à 1/R (conduit) | ✅ | dn/dz = −1/R = −1,57 × 10⁻⁷ m⁻¹ ; calcul refait avec le terme de pression hydrostatique : dT/dz = **≈ 0,114 K/m à 0 °C** (0,13 K/m à 15 °C) — cohérent avec la valeur usuelle « ≈ 0,11 K/m » (A. T. Young, SDSU, pages sur la réfraction atmosphérique) ; coefficient de réfraction géodésique k = |dn/dz| · R : le moteur donne **k = 0,171** pour son atmosphère standard, la littérature 0,13–0,17, soit un rayon de courbure r = R/k ≈ 5,9–7,7 R — « six à huit fois le rayon terrestre » |
+| M.5 | Réfraction astronomique à l'horizon ≈ 34′ (le Soleil couchant est vu alors qu'il est géométriquement sous l'horizon), plus forte pour le bord bas que pour le bord haut : le disque s'aplatit | ✅ | Formule de Bennett 1982, *J. Navigation* 35, 255 : R = cot(h + 7,31/(h + 4,4)) minutes d'arc pour une hauteur apparente h en degrés, ≈ 34,5′ à h = 0, précise à 0,1′. L'atelier l'applique au-delà de son domaine local (40 km, 400 m) : le **raccord** donne à Bennett la **hauteur apparente** du rayon (celle avec laquelle il sort du domaine), puis **retranche le fléchissement déjà intégré** dans le domaine, pour ne pas le compter deux fois. Réfraction totale à l'horizon apparent obtenue : **≈ 34,0′ à 15 °C et 1 013 hPa** (une version antérieure du raccord donnait 35,7′, corrigée) |
+| M.6 | Dispersion de l'air : le bleu-vert est réfracté ~1,3 % de plus que le rouge ; amplifié par un mirage, ce liseré devient le « rayon vert » du Soleil couchant | ✅ | Ciddor 1996, éq. 1 : (n − 1) à 460 nm / (n − 1) à 620 nm = 1,0126 ; sur 34′ de réfraction, ≈ 0,4′ d'écart, soit un liseré vert de **≈ 21–26″** entre 460 et 620 nm au bord haut du disque, à l'horizon — invisible à l'œil nu sans le grossissement du mirage (Young 2000, *JOSA A* 17, 2129). C'est la valeur que redonne le moteur, qui trace le Soleil en trois longueurs d'onde |
+| M.4 | Fata Morgana : mirage supérieur à images multiples (droite et inversée empilées, étirées, mouvantes) produit par une couche d'inversion ; le préréglage de l'atelier la reproduit au-dessus d'une mer à 6 °C avec une inversion de **+10 K centrée à 14 m, d'épaisseur 2 m** (profil en tangente hyperbolique, ≈ 5 K/m au plus fort), qui crée un conduit entre 11,5 et 16,5 m : un **cargo de 18 m de haut à 8 km** y apparaît **trois fois** (deux images droites, une inversée) | ✅ | Young & Frappa 2017, *Appl. Opt.* 56, G59 : mirages photographiés sur le lac Léman et reproduits par tracé de rayons dans des profils de température mesurés ; la couche d'inversion est la condition nécessaire |
 
 **Bilan :** 120 items · ✅ 94 · ⚠️ 18 (corrigés/nuancés) · 🔶 6 (non tranchables ou non lus) · ❌ 4 (corrigés : Bradley 283 000, tache de Newton, scène du geôlier, « réflexion interne totale » de l'arc-en-ciel).
 
@@ -265,9 +265,9 @@ Certaines valeurs du dossier ne viennent pas d'une source mais d'un calcul, refa
 | Temps de vol chez Fizeau | 2 × 8 633 m / 3,15 × 10⁸ m/s | 54,8 µs, première extinction vers 12,6 tr/s | ch. 12, atelier L10 |
 | Décalage Doppler de Hα | Δλ = λ v/c, v = 30 km/s, λ = 656,3 nm | 0,066 nm | ch. 28 |
 | Trois polariseurs à 45° | (cos² 45°)² | 1/4 | ch. 14, atelier L21 |
-| Indice de l'air à 15 °C | 1 + 2,93 × 10⁻⁴ × 273,15 / 288,15 | 1,000 278 — Ciddor : 1,000 277 7 | ch. 7, atelier L34 |
-| Gradient de conduit (mirages) | dT/dz tel que dn/dz = −1/R, terme de pression compris | 0,112 K/m à 0 °C ; 0,128 K/m à 15 °C | ch. 7, atelier L34 |
-| Dispersion de l'air (rayon vert) | (n−1)₄₆₀/(n−1)₆₂₀ par Ciddor éq. 1 | 1,0126 — soit ≈ 0,4′ sur 34′ de réfraction à l'horizon | ch. 7, atelier L34 |
+| Indice de l'air à 15 °C | Ciddor 1996 éq. 1 × (288,15/T) × (P/P₀), exécutée dans le moteur | n − 1 = 2,7715 × 10⁻⁴ à 589 nm, 2,7653 × 10⁻⁴ à 633 nm (NIST/Ciddor concordent) ; 2,9237 × 10⁻⁴ à 0 °C | ch. 7, atelier L34 |
+| Gradient de conduit (mirages) | dT/dz tel que dn/dz = −1/R = −1,57 × 10⁻⁷ m⁻¹, terme de pression compris | ≈ 0,114 K/m à 0 °C ; 0,13 K/m (0,1285) à 15 °C ; k = 0,171 pour l'atmosphère standard du moteur | ch. 7, atelier L34 |
+| Dispersion de l'air (rayon vert) | (n−1)₄₆₀/(n−1)₆₂₀ par Ciddor éq. 1 | 1,0126 — soit ≈ 0,4′ sur 34′ de réfraction à l'horizon, un liseré de 21–26″ | ch. 7, atelier L34 |
 
 ---
 
@@ -279,18 +279,27 @@ Certaines valeurs du dossier ne viennent pas d'une source mais d'un calcul, refa
 
 ### Contrôle de l'atelier L34 après refonte (7 septembre 2026)
 
-Le moteur est vérifié par 14 tests numériques (`tests/mirage-optics.test.ts`) :
-indice à 589 nm, effets de la température et de la dispersion, trajet analytique
-sans réfraction sur une Terre courbe, absence de coordonnées non finies dans les
-cinq découpages et cinq profils, deux images sur route chaude et trois branches
-pour la Fata Morgana à 240, 480 et 960 lignes. Le préréglage Fata Morgana utilisé
-est **+10 K, hauteur 14 m, épaisseur paramétrique 2 m**, air de surface à 6 °C,
-cargo de 60 m à 8 km (ces valeurs remplacent celles de M.4 pour le simulateur).
+Le moteur est vérifié par une suite de tests numériques — **une cinquantaine**,
+répartis en quatre fichiers (`tests/mirage-optics.test.ts`, `mirage-ray`,
+`mirage-composite`, `mirage-worker`), le compte exact est celui que `vitest` affiche.
+Ils contrôlent : l'indice à 589 nm, les effets de la température et de la dispersion,
+le trajet analytique sans réfraction sur une Terre courbe, l'absence de coordonnées
+non finies dans les cinq découpages et cinq profils, deux images sur route chaude
+et trois branches pour la Fata Morgana à 240, 480 et 960 lignes. S'y ajoutent des
+**ancrages physiques** confrontés à des valeurs de référence : le coefficient de
+réfraction terrestre de l'atmosphère standard (k ≈ 0,17), le seuil de conduit
+(dT/dz ≈ 0,114 K/m à 0 °C), Bennett(0°) = 34,5′ et la réfraction totale à l'horizon
+apparent (≈ 34′). Le préréglage Fata Morgana testé est celui décrit en M.4 :
+**+10 K, hauteur 14 m, épaisseur paramétrique 2 m**, air de surface à 6 °C, cargo de
+18 m à 8 km.
 
 Précisions de lecture : le compteur porte sur les branches résolues dans le
 champ actuel ; le maximum des distances de sol échantillonnées ne mesure pas
-exactement l'horizon. Le raccord local à Bennett est approché : la précision
-propre de sa formule n'est pas une garantie de précision du simulateur complet.
+exactement l'horizon. Le raccord à Bennett au-delà du domaine local (voir M.5)
+reçoit la hauteur apparente et retranche le fléchissement déjà intégré — la
+réfraction totale à l'horizon apparent tombe à ≈ 34,0′ à 15 °C et 1 013 hPa. La
+précision propre de la formule de Bennett n'est pas pour autant une garantie de
+précision du simulateur complet.
 La dispersion mentionnée en M.6 contribue au rayon vert, mais les trois bandes
 RGB de l'atelier ne calculent ni extinction spectrale ni adaptation de l'œil.
 La couleur d'un rayon vert réel ne peut donc pas être déduite exactement de ce
@@ -304,7 +313,7 @@ Le préréglage Fata Morgana utilise désormais un cargo de **18 m à 8 km**, av
 
 Le rendu à **2 376 × 1 080 pixels** reconstruit des textures sources RGBA d’après les hauteurs des rayons. Le compteur identifie les branches monotones résolues, pas le nombre d’objets matériels ; certaines images sont partielles. Les textures ont été générées avec imagegen et ne constituent pas des photographies de mirages observés. Le modèle stratifié reproduit ici trois branches de type Fata Morgana ; il ne calcule pas ses variations horizontales et temporelles réelles.
 
-Le calcul continu passe à 240 couches, réparties par quantiles interpolés sur une grille logarithmique : l’arrondi antérieur des frontières à 5 cm perdait la structure près du sol. **27 tests** vérifient les cinq scènes effectives, les témoins sans réfraction et sept trajets confrontés à une intégration RK4 indépendante (écart inférieur à 2 cm à la source sur cet échantillon). Cette validation ne démontre pas une précision uniforme à proximité de toutes les caustiques.
+Le calcul continu passe à 240 couches, réparties par quantiles interpolés sur une grille logarithmique : l’arrondi antérieur des frontières à 5 cm perdait la structure près du sol. La suite (voir le compte ci-dessus) vérifie les cinq scènes effectives, les témoins sans réfraction et sept trajets confrontés à une intégration RK4 indépendante (écart inférieur à 2 cm à la source sur cet échantillon). Cette validation ne démontre pas une précision uniforme à proximité de toutes les caustiques.
 
 Références consultées pour la qualification des effets : [OMM, Atlas international des nuages — Mirage](https://cloudatlas.wmo.int/en/mirage.html), pour les mirages inférieurs et supérieurs ; [A. T. Young, Fata Morgana](https://aty.sdsu.edu/mirages/FM/FM.html), pour les déformations complexes et les images multiples. Les textures et les couleurs d’ambiance sont illustratives ; les positions, inversions et déformations verticales dépendent du tracé optique.
 
@@ -317,9 +326,9 @@ Le mode continu utilise désormais l’équation eikonale sphérique sans approx
 
 L’air peut recevoir une déformation synthétique 2D à trois composantes sinusoïdales, ancrée au sol et amortie jusqu’à zéro entre 40 et 80 m. Le profil matériel est évalué à z − δ(x,z,t). Ses gradients horizontal et vertical entrent dans l’intégration ; les surfaces colorées inversent cette même transformation. L’animation pré-calcule les instantanés optiques HD dans un Web Worker, puis met à jour ensemble l’image et la coupe. La durée de calcul détermine la cadence ; l’horloge simulée est explicitement distincte du temps réel. Ce n’est pas une simulation Navier–Stokes de turbulence et le modèle ne calcule pas la déflection latérale hors du plan vertical.
 
-Les 39 tests optiques couvrent aussi la géométrie analytique exacte du vide, la conservation de n·r·cos θ sur les cinq profils statiques, les terminaisons et points enregistrés, les gradients par différences finies, l’ordre des couches déformées, l’identité à amplitude nulle et la convergence numérique. Une intégration indépendante en coordonnées cartésiennes, paramétrée par longueur d’arc, retrouve à moins de 0,1 mm la hauteur à 800 m d’un rayon traversant le champ ondulé testé. Ce résultat local et les estimations d’erreur affichées ne garantissent pas une précision uniforme près de toutes les caustiques, ni l’exactitude d’une atmosphère réelle.
+Les tests optiques couvrent aussi la géométrie analytique exacte du vide, la conservation de n·r·cos θ sur les cinq profils statiques, les terminaisons et points enregistrés, les gradients par différences finies, l’ordre des couches déformées, l’identité à amplitude nulle et la convergence numérique. Une intégration indépendante en coordonnées cartésiennes, paramétrée par longueur d’arc, retrouve à moins de 0,1 mm la hauteur à 800 m d’un rayon traversant le champ ondulé testé. Ce résultat local et les estimations d’erreur affichées ne garantissent pas une précision uniforme près de toutes les caustiques, ni l’exactitude d’une atmosphère réelle.
 
-Les modes à 3–24 couches restent une comparaison pédagogique paraxiale. Le profil thermique, la pression exponentielle, l’air sec et le raccord solaire approché sont des hypothèses explicites. Références : [A. T. Young, invariant réfractif sphérique](https://aty.sdsu.edu/explain/atmos_refr/invariant.html) ; [NIST, documentation des équations d’indice de l’air](https://emtoolbox.nist.gov/Wavelength/Documentation.asp). La loi utilisée met à l’échelle P/T la réfractivité standard de Ciddor ; elle n’implémente pas son équation complète pour l’air humide.
+Les modes à 3–24 couches restent une comparaison pédagogique paraxiale. Le profil thermique, la pression exponentielle, l’air sec et le raccord solaire à Bennett (hauteur apparente, part locale retranchée) sont des hypothèses explicites. Références : [A. T. Young, invariant réfractif sphérique](https://aty.sdsu.edu/explain/atmos_refr/invariant.html) ; [NIST, documentation des équations d’indice de l’air](https://emtoolbox.nist.gov/Wavelength/Documentation.asp). La loi utilisée met à l’échelle P/T la réfractivité standard de Ciddor ; elle n’implémente pas son équation complète pour l’air humide.
 
 
 ### Visibilité des ondulations — 8 septembre 2026

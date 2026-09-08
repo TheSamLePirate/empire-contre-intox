@@ -127,3 +127,83 @@ describe('HD experiments match their advertised phenomenon', () => {
     }
   });
 });
+
+// Physical anchors from the literature. The standard atmosphere is the `calme`
+// preset (15 °C at the ground, −6.5 K/km, 1013.25 hPa), traced exactly as the
+// component builds `layersG` (240 layers, continuous mode, 0.55 µm, eye 1.6 m).
+import { bennett, bennettScale, farFieldRefraction, skyRefraction, LAMBDA_REF, LAMBDA_RGB, NODE_H, type Hit, type NodeProfile } from '../src/lib/mirage-optics';
+const STD = PRESETS.calme.p, PS = 1013.25 * 100, EYE = 1.6, XFAR = 120000;
+const layersLike = (lambda = LAMBDA_REF, p = STD) => buildLayers(p, 240, true, lambda, PS);
+/** total refraction (arcmin) of a sky ray seen at apparent elevation `deg`: integrated part + far-field remainder */
+function totalRefraction(deg: number, L = layersLike(), p = STD, lambda = LAMBDA_REF): { local: number; rem: number; total: number; hit: Hit } {
+  const hit = trace(L, EYE, rad(deg), MIRAGE_STAGES.calme.D, XFAR);
+  const exitDeg = hit.thf * 180 / Math.PI, local = deg - exitDeg;
+  const rem = farFieldRefraction({ exitDeg, exitX: hit.end!.x, exitY: hit.end!.y, eye: EYE, T: tempAt(p, EYE), P: PS, lambda });
+  return { local: local * 60, rem: rem * 60, total: (local + rem) * 60, hit };
+}
+describe('Physical anchors: standard atmosphere, ducting threshold, Bennett and the far-field junction', () => {
+  it('(a) standard atmosphere: dn/dz ≈ −2.7e-8 /m near the ground and k = |dn/dz|·R ≈ 0.17', () => {
+    const g = indexGradientAt(STD, .5, .1, PS);
+    expect(g).toBeGreaterThan(-2.8e-8);
+    expect(g).toBeLessThan(-2.6e-8);
+    expect(Math.abs(-g * R_EARTH - .17)).toBeLessThan(.02);
+  });
+  it('(b) ducting threshold: dn/dz = −1/R for a linear profile at 0 °C needs dT/dz ≈ +0.114 K/m', () => {
+    // bisection on the lapse rate γ of a linear node profile, through the engine's own gradient
+    const gradientFor = (gamma: number) => { const p: NodeProfile = { kind: 'nodes', temps: NODE_H.map((h) => gamma * h) }; return indexGradientAt(p, .7, .1, PS); };
+    let lo = 0, hi = .3;
+    for (let i = 0; i < 60; i++) { const m = (lo + hi) / 2; if (gradientFor(m) > -1 / R_EARTH) lo = m; else hi = m; }
+    expect(Math.abs((lo + hi) / 2 - .114)).toBeLessThan(.005);
+  });
+  it('(c) Bennett: 34.5′ ± 0.2′ at the apparent horizon, ≈ 0.99′ at 45°', () => {
+    expect(Math.abs(bennett(0) - 34.5)).toBeLessThan(.2);
+    expect(Math.abs(bennett(45) - .99)).toBeLessThan(.03);
+    expect(bennettScale(.55, 10, 101000)).toBeCloseTo(1, 12);
+  });
+  it('(d) far-field junction: the standard profile lands on Bennett(apparent)·scale — 34′ at the horizon, ≈ 28.4′ at 0.5°', () => {
+    const s = bennettScale(LAMBDA_REF, tempAt(STD, EYE), PS);
+    const L = layersLike();
+    const horizon = totalRefraction(0, L);
+    expect(horizon.hit.kind).toBe('sky');
+    expect(Math.abs(horizon.total - 34)).toBeLessThan(.7);
+    expect(Math.abs(horizon.total - bennett(0) * s)).toBeLessThan(.15);        // 33.99′ for 15 °C, 1013.25 hPa
+    expect(horizon.local).toBeGreaterThan(6.5);                                // ≈ 7.1′ integrated over the first 400 m
+    expect(horizon.local).toBeLessThan(7.7);
+    for (const deg of [.25, .5, 1, 3]) expect(Math.abs(totalRefraction(deg, L).total - bennett(deg) * s)).toBeLessThan(.15);
+    const half = totalRefraction(.5, L).total;                                 // 28.35′ : Bennett(0.5°) = 28.7′ scaled to 15 °C
+    expect(half).toBeGreaterThan(27.9);
+    expect(half).toBeLessThan(29);
+    // the legacy junction (Bennett evaluated on the exit direction) overshot by more than 1′ at the horizon
+    const legacy = horizon.local + 60 * skyRefraction(horizon.hit.thf * 180 / Math.PI, horizon.hit.end!.x, LAMBDA_REF, tempAt(STD, 400), PS);
+    expect(legacy - horizon.total).toBeGreaterThan(1);
+    // dispersion: blue is refracted more than red, by about 1.3 % of the total
+    const red = totalRefraction(0, layersLike(LAMBDA_RGB[0]), STD, LAMBDA_RGB[0]).total, blue = totalRefraction(0, layersLike(LAMBDA_RGB[2]), STD, LAMBDA_RGB[2]).total;
+    expect(blue / red - 1).toBeGreaterThan(.011);
+    expect(blue / red - 1).toBeLessThan(.015);
+  });
+  it('(d′) the junction keeps the extra bending of an inversion instead of collapsing to Bennett', () => {
+    const inv = totalRefraction(.15, layersLike(LAMBDA_REF, PRESETS.mer.p), PRESETS.mer.p);
+    expect(inv.hit.kind).toBe('sky');
+    expect(inv.local).toBeGreaterThan(12);                                     // ≈ 14.3′ through the cold-sea inversion, vs 5.5′ standard
+    expect(inv.total - bennett(.15) * bennettScale(LAMBDA_REF, tempAt(PRESETS.mer.p, EYE), PS)).toBeGreaterThan(5);
+    expect(inv.rem).toBeGreaterThan(24);                                       // the remainder above 400 m stays of the standard order
+    expect(inv.rem).toBeLessThan(30);
+  });
+  it('(e) the setting Sun with its lower limb on the apparent horizon is squeezed to ≈ 25–27′ vertically', () => {
+    const SUN_R = .2665, L = layersLike();                                     // same disc as the component
+    const trueEl = (deg: number) => deg - totalRefraction(deg, L).total / 60;
+    const centre = trueEl(0) + SUN_R;                                          // lower limb exactly at apparent 0°
+    let lo = 0, hi = 1;                                                        // apparent elevation of the upper limb
+    for (let i = 0; i < 40; i++) { const m = (lo + hi) / 2; if (trueEl(m) < centre + SUN_R) lo = m; else hi = m; }
+    const diameter = 60 * (lo + hi) / 2;
+    expect(diameter).toBeGreaterThan(25);
+    expect(diameter).toBeLessThan(27);
+    expect(diameter).toBeLessThan(2 * SUN_R * 60);
+  });
+  it('falls back to Bennett seen from the exit point when the ray leaves elsewhere than the domain top', () => {
+    const atTop = farFieldRefraction({ exitDeg: 2, exitX: 10000, exitY: 400, eye: EYE, T: 15, P: PS });
+    const lower = farFieldRefraction({ exitDeg: 2, exitX: 10000, exitY: 200, eye: EYE, T: 15, P: PS });
+    expect(lower).toBeGreaterThan(atTop);                                      // more air left above 200 m than above 400 m
+    expect(farFieldRefraction({ exitDeg: NaN, exitX: 1, eye: EYE })).toBe(0);
+  });
+});

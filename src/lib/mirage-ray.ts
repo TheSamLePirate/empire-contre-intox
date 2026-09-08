@@ -66,7 +66,7 @@ export function straightAltitude(eye: number, theta: number, x: number) {
   return (eye * Math.cos(theta) + R * (2 * Math.sin(u / 2) * Math.sin(theta + u / 2))) / denominator;
 }
 export function traceAdaptive(L: Layers, eye: number, theta: number, D: number, range: number, record = false, segLen = Infinity, options: RayOptions = {}): Hit {
-  const vacuum = L.nb.every(v => v === 1), p = L.profile!;
+  const vacuum = L.nb.every(v => v === 1), p = L.profile;
   const top = options.top ?? 400, tol = options.tolerance ?? 1;
   const field = (x: number, z: number) => vacuum ? { n: 1, nx: 0, nz: 0 } : indexField(p, x, z, L.lambda, L.Ps, L.motion);
   const derivative = (x: number, z: number, a: number): [number, number] => {

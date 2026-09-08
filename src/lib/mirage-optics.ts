@@ -10,8 +10,8 @@ export type { AirMotion } from "./mirage-ray";
    la réfractivité (n − 1) en fonction de la longueur d'onde à 15 °C et 101 325 Pa,
    puis mise à l'échelle par la densité (loi de Gladstone–Dale, n − 1 ∝ P/T).
    Résultat : 2,77 × 10⁻⁴ à 15 °C et 589 nm, 2,92 × 10⁻⁴ à 0 °C — et une dispersion
-   d'environ 1,5 % entre le bleu et le rouge, ce qui suffit à colorer le bord du
-   Soleil couchant (le « rayon vert »).
+   d'environ 1,3 % entre le bleu (460 nm) et le rouge (620 nm), ce qui suffit à
+   colorer le bord du Soleil couchant (le « rayon vert »).
 
    Le profil est ensuite DÉCOUPÉ EN COUCHES. Deux modes :
    · « marches » — indice constant par couche, le rayon est droit dans la couche
@@ -23,8 +23,9 @@ export type { AirMotion } from "./mirage-ray";
      du champ n(x,z) incluent les ondulations. Les anciennes couches discrètes
      restent une comparaison pédagogique paraxiale.
    Le domaine local s'arrête au sol, à 400 m d'altitude ou à la portée demandée.
-   Une limite numérique n'est pas une source lumineuse. L'image du Soleil utilise
-   encore une correction illustrative de Bennett au-delà du domaine local.
+   Une limite numérique n'est pas une source lumineuse. Pour l'image du Soleil, la
+   réfraction RESTANTE au-delà du domaine est raccordée à Bennett (1982) à partir
+   de l'état de sortie du rayon (voir `farFieldRefraction`).
    Références : https://aty.sdsu.edu/explain/atmos_refr/invariant.html
    https://emtoolbox.nist.gov/Wavelength/Documentation.asp
    La mise à l'échelle P/T de la réfractivité standard n'est pas l'équation
@@ -103,15 +104,15 @@ export function ducts(p: Profile, Ps = P0): { z1: number; z2: number }[] {
 
 /* ---------------- couches ---------------- */
 export type Layers = {
-  profile?: Profile;
+  profile: Profile;      // le profil lui-même : en mode « continu », le rayon est intégré dans son champ n(x,z), pas dans les couches
   Ps?: number;
   motion?: AirMotion;
   yb: Float64Array;      // N+1 frontières, croissantes, yb[0] = 0
   n: Float64Array;       // N indices (constants par couche — mode « marches »)
-  nb: Float64Array;      // N+1 indices AUX frontières (mode « continu » : n linéaire dans la couche)
+  nb: Float64Array;      // N+1 indices AUX frontières (affichage, et détection du vide : nb ≡ 1 → pas de réfraction)
   T: Float64Array;       // N températures (°C) au milieu de chaque couche
   nFine: number;         // nombre de couches dans le profil éditable (0 → Y_TOP)
-  continuous: boolean;   // true : gradient continu par morceaux ; false : marches d'indice + Snell
+  continuous: boolean;   // true : eikonale sphérique RK4 dans le profil continu (`traceAdaptive`) ; false : marches d'indice + Snell
   lambda: number;        // µm
 };
 
@@ -201,19 +202,21 @@ function layerOf(L: Layers, y: number): number {
 }
 
 /** Trace un rayon depuis l'œil (x = 0, hauteur y0, pente th0 en radians, > 0 vers
- *  le haut) à travers les couches, en remontant la lumière vers sa source.
- *  `D` : distance du plan de l'objet ; `xFar` : distance au-delà de laquelle on
- *  déclare « ciel ». Repère Terre plate : parabole de courbure +1/R dans chaque couche. */
+ *  le haut), en remontant la lumière vers sa source. `D` : distance du plan de
+ *  l'objet ; `xFar` : distance au-delà de laquelle on déclare « ciel ».
+ *  Mode « continu » : délégué à `traceAdaptive` (équation eikonale sphérique, RK4
+ *  adaptatif dans le champ n(x,z) du profil). Ce qui suit est le mode « marches » :
+ *  indice constant par couche, le rayon y est une parabole de courbure +1/R
+ *  (repère Terre plate) et obéit à Snell-Descartes à chaque frontière. */
 export function trace(L: Layers, y0: number, th0: number, D: number, xFar: number, record = false, segLen = Infinity): Hit {
-  if (L.continuous && L.profile) return traceAdaptive(L, y0, th0, D, xFar, record, segLen);
+  if (L.continuous) return traceAdaptive(L, y0, th0, D, xFar, record, segLen);
   const R = R_EARTH, yb = L.yb, n = L.n, M = n.length;
   let x = 0, y = Math.max(1e-6, y0), th = th0, k = layerOf(L, y), tir = 0, yMin = y, yMax = y;
   const hit: Hit = { hasD: false, yD: NaN, thD: NaN, kind: "unresolved", termination: "limit", xg: NaN, thf: NaN, tir: 0, yMin: y, yMax: y };
   const pts: Pt[] | undefined = record ? [{ x, y }] : undefined;
   const turns: Pt[] | undefined = record ? [] : undefined;
   const push = (px: number, py: number) => { if (pts) pts.push({ x: px, y: py }); };
-  let kap = 1 / R;                                            // courbure du rayon dans la couche courante (repère Terre plate)
-  const curv = (kk: number) => 1 / R + (L.continuous && kk < M ? (L.nb[kk + 1] - L.nb[kk]) / ((yb[kk + 1] - yb[kk]) * n[kk]) : 0);
+  const kap = 1 / R;                                          // courbure du rayon dans une couche d'indice constant (repère Terre plate)
   const yAt = (dx: number) => y + th * dx + kap * dx * dx / 2;
   const cross = (dx: number) => {          // enregistre le passage au plan de l'objet
     if (!hit.hasD && x < D && x + dx >= D) { const d = D - x; hit.hasD = true; hit.yD = yAt(d); hit.thD = th + kap * d; }
@@ -233,7 +236,6 @@ export function trace(L: Layers, y0: number, th0: number, D: number, xFar: numbe
     if (th < 0 && k > 0 && y <= yb[k] + 1e-9) k--;
     else if (th > 0 && k + 1 < M && y >= yb[k + 1] - 1e-9) k++;
     const top = k < M ? yb[k + 1] : Infinity, bot = yb[k];
-    kap = curv(k);
     const dxTop = top !== Infinity ? firstRoot(kap / 2, th, y - top) : Infinity;
     const dxBot = firstRoot(kap / 2, th, y - bot);
     const dxEnd = xFar - x;
@@ -246,20 +248,14 @@ export function trace(L: Layers, y0: number, th0: number, D: number, xFar: numbe
     y = dx === dxBot ? bot : top;                             // recalage exact sur la frontière
     if (dx === dxBot) {
       if (k === 0) { hit.kind = "ground"; hit.termination = "ground"; hit.xg = x; hit.thf = th; break; }
-      if (L.continuous) { k--; }
-      else {
-        const c = (n[k] / n[k - 1]) * Math.cos(th);
-        if (c > 1) { th = Math.abs(th); tir++; if (turns) turns.push({ x, y }); }
-        else { th = -Math.acos(c); k--; }
-      }
+      const c = (n[k] / n[k - 1]) * Math.cos(th);
+      if (c > 1) { th = Math.abs(th); tir++; if (turns) turns.push({ x, y }); }
+      else { th = -Math.acos(c); k--; }
     } else {
       if (k + 1 >= M) { hit.kind = "sky"; hit.termination = "top"; hit.thf = th - x / R; break; }
-      else if (L.continuous) { k++; }
-      else {
-        const c = (n[k] / n[k + 1]) * Math.cos(th);
-        if (c > 1) { th = -Math.abs(th); tir++; if (turns) turns.push({ x, y }); }
-        else { th = Math.acos(c); k++; }
-      }
+      const c = (n[k] / n[k + 1]) * Math.cos(th);
+      if (c > 1) { th = -Math.abs(th); tir++; if (turns) turns.push({ x, y }); }
+      else { th = Math.acos(c); k++; }
     }
   }
   hit.end = { x, y }; if (!Number.isFinite(hit.thf)) hit.thf = th - x / R;
@@ -274,15 +270,121 @@ export const bennett = (hDeg: number) => {
   const h = Math.max(-0.6, hDeg);
   return 1 / Math.tan(((h + 7.31 / (h + 4.4)) * Math.PI) / 180);
 };
-/** Réfraction restante entre la sortie du domaine local et l'espace, en degrés,
- *  pour un rayon qui sort avec l'élévation vraie `elDeg` : Bennett moins la part
- *  déjà intégrée dans le domaine (le fléchissement standard sur xFar), mise à l'échelle
- *  de la densité et de la dispersion. */
+/** Facteur d'échelle de Bennett : densité de l'air À L'OBSERVATEUR (T en °C, P en Pa)
+ *  et dispersion (λ en µm), rapportées à l'air de la formule (10 °C, 1010 hPa, visuel). */
+export const bennettScale = (lambdaUm = LAMBDA_REF, T_C = 10, P = 101_000) =>
+  (refractivityStd(lambdaUm) / refractivityStd(0.55)) * (P / 101_000) * (283.15 / (T_C + 273.15));
+
+/** @deprecated Ancien raccord, conservé tel quel pour compatibilité — préférer `farFieldRefraction`.
+ *  Il évalue Bennett sur la direction de SORTIE du rayon (`elDeg` = thf), alors que la
+ *  formule attend la hauteur APPARENTE à l'œil, et retranche une part locale forfaitaire
+ *  (xFar · 2,7 × 10⁻⁸) au lieu de celle réellement intégrée : à l'horizon, sur le profil
+ *  standard, le total sort à 35,7′ au lieu de 34,0′ (+5 %). */
 export function skyRefraction(elDeg: number, xFar: number, lambdaUm = LAMBDA_REF, T_C = 10, Ps = P0): number {
   const full = bennett(elDeg) / 60;                                       // degrés
   const local = (xFar * 2.7e-8 * 180) / Math.PI;                          // ~ part standard sur le domaine, en degrés
-  const scale = (refractivityStd(lambdaUm) / refractivityStd(0.55)) * ((Ps / 101_000) * (283.15 / (T_C + 273.15)));
-  return Math.max(0, full * scale - local);
+  return Math.max(0, full * bennettScale(lambdaUm, T_C, Ps) - local);
+}
+
+/** Sommet du domaine local (m) : `traceAdaptive` s'y arrête (`options.top`) et
+ *  `buildLayers` y termine ses couches. */
+export const DOMAIN_TOP = 400;
+
+/** État de sortie d'un rayon « ciel », pour `farFieldRefraction`. */
+export type FarFieldExit = {
+  /** direction VRAIE du rayon à sa sortie, vue de l'œil, en degrés : `toDeg(h.thf)` */
+  exitDeg: number;
+  /** abscisse de sortie, en m : `h.end.x` */
+  exitX: number;
+  /** hauteur de sortie, en m : `h.end.y` (DOMAIN_TOP par défaut) */
+  exitY?: number;
+  /** hauteur de l'œil, en m */
+  eye?: number;
+  /** température À L'ŒIL, en °C — c'est la densité à l'observateur qui met Bennett à l'échelle */
+  T?: number;
+  /** pression au sol, en Pa */
+  P?: number;
+  /** longueur d'onde, en µm */
+  lambda?: number;
+};
+
+/** Réfraction RESTANTE (en degrés) entre la sortie du domaine local et l'espace.
+ *
+ *  Pourquoi pas Bennett directement ? La formule de Bennett donne la réfraction
+ *  TOTALE d'un observateur au sol pour une hauteur APPARENTE ; le rayon, lui, a déjà
+ *  été fléchi dans le domaine (≈ 7′ à l'horizon sur les 400 premiers mètres). L'ancien
+ *  raccord évaluait Bennett sur la direction de sortie (plus basse que l'apparente)
+ *  et retranchait une part locale forfaitaire : +1,2 à +1,7′ de trop à l'horizon.
+ *  Et la formule « Bennett(θ₀) moins le fléchissement intégré » ferait du total une
+ *  fonction de la seule hauteur apparente : elle effacerait l'anomalie d'une couche
+ *  d'inversion (à 0,15° sur « Mer froide », 14′ de fléchissement local au lieu de 5,5′)
+ *  dès que celle-ci reste sous Bennett — plus de Soleil déformé.
+ *
+ *  Ce que l'on fait : la part restante ne dépend que de l'ÉTAT DE SORTIE du rayon
+ *  (hauteur et direction locale au sommet du domaine), pas du chemin suivi. On la
+ *  tabule sur la COLONNE STANDARD (T à l'œil, gradient −6,5 K/km, pression au sol) :
+ *  pour chaque hauteur apparente θ, un rayon standard tracé jusqu'au sommet donne sa
+ *  direction locale de sortie a(θ) et la part restante Bennett(θ)·échelle − (θ − thf(θ)),
+ *  qui est bien ce que l'atmosphère AU-DESSUS du domaine ajoute à un rayon sortant
+ *  sous l'angle a(θ). On interpole ensuite sur la direction de sortie réelle du rayon.
+ *  Sur le profil standard, le total (θ₀ − thf) + restante retombe exactement sur
+ *  Bennett(θ₀)·échelle (34,0 / 31,0 / 28,4 / 24,0′ à 0 / 0,25 / 0,5 / 1° pour
+ *  15 °C, 1013,25 hPa) ; sur une inversion, le fléchissement local excédentaire est
+ *  conservé. Hors table (sortie ailleurs qu'au sommet, ou très haute), on retombe
+ *  sur Bennett vu d'un observateur placé au point de sortie, à sa densité. */
+export function farFieldRefraction(e: FarFieldExit): number {
+  const eye = e.eye ?? 1.6, T = e.T ?? 10, P = e.P ?? P0, lambda = e.lambda ?? LAMBDA_REF, exitY = e.exitY ?? DOMAIN_TOP;
+  if (!Number.isFinite(e.exitDeg) || !Number.isFinite(e.exitX)) return 0;
+  const aExit = e.exitDeg + (e.exitX / R_EARTH) * (180 / Math.PI);       // élévation LOCALE à la sortie, en degrés
+  const t = farFieldTable(eye, T, P, lambda);
+  const inTable = Math.abs(exitY - DOMAIN_TOP) < 1 && aExit >= 0 && aExit <= t.aExit[t.aExit.length - 1]!;
+  if (!inTable) {                                                       // repli : Bennett vu du point de sortie
+    const Tz = T + LAPSE_STD * (exitY - eye);
+    return Math.max(0, aExit < 0 ? 0 : (bennett(aExit) / 60) * bennettScale(lambda, Tz, pressureAt(exitY, P)));
+  }
+  const a = t.aExit, r = t.rem;
+  // Sous la table (rayon sorti plus rasant que le rayon standard horizontal — seule une
+  // couche d'inversion le permet) : prolongement linéaire par la pente du début de table.
+  if (aExit <= a[0]!) return Math.max(0, r[0]! + t.slope0 * (aExit - a[0]!));
+  let lo = 0, hi = a.length - 1;                                        // a est croissant : dichotomie
+  while (hi - lo > 1) { const m = (lo + hi) >> 1; if (a[m]! <= aExit) lo = m; else hi = m; }
+  const f = (aExit - a[lo]!) / (a[hi]! - a[lo]!);
+  return Math.max(0, r[lo]! + f * (r[hi]! - r[lo]!));
+}
+
+type FarTable = { aExit: number[]; rem: number[]; slope0: number };
+const farTables = new Map<string, FarTable>();
+/** Table (direction locale de sortie → réfraction restante) de la colonne standard,
+ *  mémorisée par (œil, T, P, λ). ~150 rayons `traceAdaptive`, une fois par réglage. */
+function farFieldTable(eye: number, T: number, P: number, lambda: number): FarTable {
+  const key = `${eye.toFixed(3)}|${T.toFixed(2)}|${Math.round(P)}|${lambda.toFixed(4)}`;
+  const hit = farTables.get(key); if (hit) return hit;
+  // T(z) = T + LAPSE_STD · (z − œil) : la colonne standard passe par la température de l'œil
+  const column: ParamProfile = { kind: "param", Ta: T - LAPSE_STD * eye, dTs: 0, hInv: 20, dInv: 6, aInv: 0 };
+  const L = buildLayers(column, 12, true, lambda, P), s = bennettScale(lambda, T, P);
+  // Hauteurs apparentes ≥ 0 seulement : sous l'horizontale, le rayon standard plonge
+  // puis remonte et ressort dans le MÊME état qu'un rayon lancé à +|θ| (symétrie de la
+  // stratification) — Bennett n'y est de toute façon qu'une extrapolation.
+  const thetas: number[] = [];
+  for (let d = 0; d <= 0.6001; d += 0.01) thetas.push(d);
+  for (let d = 0.65; d <= 3.001; d += 0.05) thetas.push(d);
+  for (let d = 3.25; d <= 15.001; d += 0.25) thetas.push(d);
+  const aExit: number[] = [], rem: number[] = [];
+  for (const th of thetas) {
+    const h = traceAdaptive(L, eye, (th * Math.PI) / 180, Infinity, 1e6, false, Infinity, { top: DOMAIN_TOP });
+    if (h.termination !== "top" || !h.end) continue;                     // le rayon standard touche le sol : pas de sortie
+    const thf = (h.thf * 180) / Math.PI, a = thf + (h.end.x / R_EARTH) * (180 / Math.PI);
+    if (aExit.length && a <= aExit[aExit.length - 1]!) continue;         // garde la monotonie stricte
+    aExit.push(a); rem.push(Math.max(0, (bennett(th) / 60) * s - (th - thf)));
+  }
+  // pente (°/°) du début de table, prise sur ~0,02° de direction de sortie : les tout
+  // premiers points sont trop serrés en `a` pour qu'une différence finie y soit propre
+  let j = 1; while (j < aExit.length - 1 && aExit[j]! < aExit[0]! + 0.02) j++;
+  const slope0 = (rem[j]! - rem[0]!) / (aExit[j]! - aExit[0]!);
+  const table = { aExit, rem, slope0 };
+  if (farTables.size >= 24) farTables.clear();
+  farTables.set(key, table);
+  return table;
 }
 
 /* ---------------- préréglages ---------------- */

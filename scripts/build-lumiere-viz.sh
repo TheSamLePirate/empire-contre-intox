@@ -26,10 +26,13 @@ npx esbuild src/lib/mirage-worker.ts --bundle --minify --format=iife --target=es
 echo "▶ 2/5 empreintes embarquées (worker, atlas)"
 wh="$(hash12 "$OUT/mirage-worker.js")"
 ah="$(hash12 "$OUT/mirage-objects-hd.png")"
+aw="$(hash12 "$OUT/mirage-objects-hd.webp")"
 perl -pi -e "s#(assets/mirage-worker\.js\?v=)[0-9a-f]+#\${1}$wh#" "$SRC/components/L34Mirages.tsx"
 perl -pi -e "s#(assets/mirage-objects-hd\.png\?v=)[0-9a-f]+#\${1}$ah#" "$SRC/shared/mirage-renderer.ts"
+perl -pi -e "s#(assets/mirage-objects-hd\.webp\?v=)[0-9a-f]+#\${1}$aw#" "$SRC/shared/mirage-renderer.ts"
 grep -q "mirage-worker.js?v=$wh" "$SRC/components/L34Mirages.tsx" || { echo "Empreinte du worker non posée dans L34Mirages.tsx" >&2; exit 1; }
-grep -q "mirage-objects-hd.png?v=$ah" "$SRC/shared/mirage-renderer.ts" || { echo "Empreinte de l'atlas non posée dans mirage-renderer.ts" >&2; exit 1; }
+grep -q "mirage-objects-hd.png?v=$ah" "$SRC/shared/mirage-renderer.ts" || { echo "Empreinte de l'atlas PNG non posée dans mirage-renderer.ts" >&2; exit 1; }
+grep -q "mirage-objects-hd.webp?v=$aw" "$SRC/shared/mirage-renderer.ts" || { echo "Empreinte de l'atlas WebP non posée dans mirage-renderer.ts" >&2; exit 1; }
 
 echo "▶ 3/5 bundle des ateliers"
 npx esbuild "$SRC/mount.tsx" --bundle --minify --format=iife --jsx=automatic \
