@@ -114,6 +114,14 @@ else
   warn "Régénération RSS ignorée (--no-rss)"
 fi
 
+log "Empreintes de cache des scripts et styles (?v=)"
+if python3 scripts/stamp-assets.py --check >/tmp/eci-stamp.log 2>&1; then
+  ok "Empreintes à jour"
+else
+  python3 scripts/stamp-assets.py
+  warn "Des références ont été restampées : committer ces fichiers HTML (le miroir GitHub Pages publie depuis main)."
+fi
+
 log "Validation RSS XML"
 python3 - <<'PY'
 import xml.dom.minidom

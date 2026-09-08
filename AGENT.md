@@ -118,6 +118,8 @@ sources/                        ← Dossier XXVIII « Les Sources » — vérifi
   refs-doi-*.md                 ← références primaires à comité de lecture (DOI vérifiés)
   chronos-bibliographie.md · sources_audit_scientifique_chronos.csv
 LICENCE-CONTENU.md              ← licence de contenu CC BY-NC-ND 4.0 (textes, transcriptions, images, médias)
+scripts/stamp-assets.py         ← empreintes de cache ?v= des scripts/styles (voir « Cache navigateur »)
+scripts/build-lumiere-viz.sh    ← build complet des ateliers du Dossier XXVIII + empreintes
 Dockerfile · nginx.conf · docker-compose.yml · .dockerignore
                                 ← déploiement statique Nginx vers Portainer (`empire-contre-intox-site`)
 ```
@@ -171,6 +173,7 @@ Voir `provoxys/Artemis2.html` (classes `.eci-home`, `.eci-collective`, `.eci-btn
 12. Mettre à jour `index.html` (carte + compteurs + numérotation — voir « Mise à jour de l'index »).
 13. **Régénérer le flux RSS** : `python3 scripts/generate-rss.py` (relit `index.html` → réécrit `rss.xml`). **OBLIGATOIRE pour tout dossier** ajouté/modifié/réordonné — voir « Flux RSS ».
 13 bis. **Déclarer tous les fichiers du dossier dans `config/legacy-public-manifest.json`** (allowlist du build Astro : page, `assets/*`, avatars, fichiers `sources/`). Un fichier absent n'est **pas publié**, et le build **échoue** si l'image de la carte d'index manque (`Missing social image for dossier`) — c'est aussi elle qui alimente l'`og:image`. Le transcript `.txt` est exclu volontairement. Vérifier avec `npx --yes tsx scripts/prepare-legacy.ts`, puis `rm -rf .legacy-public`. **OBLIGATOIRE pour tout dossier** — détails dans la skill `nouveau-dossier` (« Manifeste public »).
+13 ter. **Poser les empreintes de cache** : `python3 scripts/stamp-assets.py` (réécrit les `?v=<hash>` des scripts et styles référencés par les pages). **OBLIGATOIRE dès qu'un `.js`/`.css` change** (bundle d'atelier, feuille de style, `visit-counter.js`) — voir « Cache navigateur et empreintes ». Pour le Dossier XXVIII, `scripts/build-lumiere-viz.sh` enchaîne build + empreintes.
 14. Ajouter/maintenir la licence de contenu sur la page : métadonnées `<link rel="license">` + `<meta name="rights">`, cartouche `.eci-license` dans le footer, lien relatif vers `LICENCE-CONTENU.md`.
 15. Vérifier en local : images chargées, liens corrects, pas de scroll horizontal, licence visible, aucune mention technique obsolète du type « Page HTML autonome créée à partir… ».
 
@@ -457,6 +460,30 @@ Le site expose un **flux RSS riche** à `rss.xml` (racine), servi sur
 - À la **publication**, stager `rss.xml` **avec** `index.html` (sinon le flux pointe
   vers un dossier non publié, ou omet le nouveau — cf. piège des références orphelines).
 
+## Cache navigateur et empreintes (`?v=`) — obligatoire à chaque modification de script ou de style
+
+Nginx (`nginx.conf`) ne met en cache **un an, immuable** que les URL qui portent une
+**empreinte de contenu** `?v=<12 hex du SHA-256>`. Sans empreinte, un `.js`/`.css` est
+**revalidé à chaque visite** (`no-cache`, ETag → 304) et une image garde un jour de
+cache. Une ressource modifiée change donc d'URL et se recharge d'elle-même : **personne
+n'a plus à vider son cache** après la mise à jour d'un atelier. Le miroir GitHub Pages
+sert tout en `max-age=600`, l'empreinte y accélère aussi la prise en compte.
+
+- **`scripts/stamp-assets.py`** parcourt les pages HTML publiées et réécrit le `?v=` de
+  chaque `<script src>` / `<link href>` local (`.js`, `.mjs`, `.css`). `--check` renvoie
+  1 si quelque chose est périmé ; un chemin en argument limite la passe à un dossier.
+  À lancer **après** toute modification d'un script ou d'une feuille de style, et
+  **committer les pages restampées avec la ressource** (Pages publie depuis `main`).
+- **Empreintes embarquées dans un bundle** (URL de worker, d'atlas d'images chargées par
+  le code) : elles vivent dans les sources TSX, pas dans le HTML. Un script de build par
+  dossier les recalcule avant de bundler — gabarit : **`scripts/build-lumiere-viz.sh`**
+  (worker → empreintes dans les sources → bundle → CSS → `stamp-assets.py`). Ne plus
+  éditer ces hachages à la main.
+- **`scripts/deploy-portainer.sh`** vérifie les empreintes en préflight et restampe
+  lui-même si nécessaire, en avertissant qu'il reste à committer.
+- Ne pas remettre de compteur manuel (`?v=5`) ni de nom de fichier « versionné » :
+  l'empreinte est calculée, jamais devinée.
+
 ## Licence de contenu (obligatoire)
 
 Sauf mention contraire, les contenus éditoriaux, textes, transcriptions, images et médias du site sont publiés sous licence **Creative Commons Attribution – Pas d’Utilisation Commerciale – Pas de Modification 4.0 International** (**CC BY-NC-ND 4.0**) : https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr
@@ -680,6 +707,7 @@ Avant de terminer :
 - vérifier images chargées, liens (nav, retour accueil, compagnons externes), pas de scroll horizontal ;
 - vérifier numérotation et compteurs cohérents (index ↔ eyebrows des pages) ;
 - **vérifier que chaque affirmation et donnée du dossier est sourcée** dans `sources/` (audit `.md` + références DOI) **et surfacée** dans `sources/sources.html` (fiche + référence) ;
+- **empreintes de cache à jour** : `python3 scripts/stamp-assets.py --check` doit sortir en 0 (sinon restamper et committer les pages avec la ressource) ;
 - **régénérer `rss.xml`** (`python3 scripts/generate-rss.py`) et vérifier qu'il est bien formé + qu'il contient le nouveau dossier (voir « Flux RSS ») ;
 - si publication demandée : confirmer build Pages `built` + `200` sur les URLs, puis redéployer Portainer si le domaine principal doit refléter la modification ;
 - vérifier que les pages touchées contiennent la licence (`.eci-license`, métadonnées de licence, lien local `LICENCE-CONTENU.md`) ;
