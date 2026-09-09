@@ -122,3 +122,71 @@ it('closes the precalculated thermal and displacement cycle without a seam',()=>
     expect(Math.abs(layerHeight(123,z,m)-layerHeight(123,z,end))).toBeLessThan(1e-10);
   }
 });
+
+// A clipped local ray must acquire its background from a continued physical
+// path, including trapped rays released by the end of the thermal anomaly.
+describe('Far atmosphere continuation', () => {
+  it.each([true, false])('resolves backgrounds and preserves object crossings (continuous=%s)', async continuous => {
+    const { trace } = await import('../src/lib/mirage-optics');
+    for (const preset of Object.values(PRESETS)) {
+      const L = buildLayers(preset.p, 60, continuous);
+      for (const deg of [-.2, 0, .1, .3]) {
+        const h = trace(L, 1.6, rad(deg), 800, 2000, true, 1000);
+        expect(h.kind).not.toBe('unresolved');
+        expect(h.termination).toMatch(/^(ground|top)$/);
+        expect(h.pts!.at(-1)!.x).toBeCloseTo(h.end!.x, 8);
+        expect(h.pts!.at(-1)!.y).toBeCloseTo(h.end!.y, 8);
+        expect(h.pts!.every((p,i) => !i || p.x >= h.pts![i-1].x)).toBe(true);
+        if (continuous) {
+          const local = traceAdaptive(L, 1.6, rad(deg), 800, 2000);
+          expect(h.hasD).toBe(local.hasD);
+          if (local.hasD) expect(h.yD).toBe(local.yD);
+          if (local.termination === 'range') expect(h.continued).toBe(true);
+        }
+      }
+    }
+  });
+  it('leaves vacuum propagation straight through the extension', async () => {
+    const { trace } = await import('../src/lib/mirage-optics');
+    const L = buildLayers(PRESETS.route.p, 60, true); L.nb.fill(1);
+    const h = trace(L, 1.6, 0, 800, 2000, true, 1000);
+    expect(h.kind).toBe('sky');
+    expect(h.continued).toBe(true);
+    for (const p of h.pts!) expect(Math.abs(p.y-straightAltitude(1.6,0,p.x))).toBeLessThan(2e-6);
+  });
+});
+
+
+it('resolves the previously clipped Fata Morgana background at the workshop range', async () => {
+  const { trace } = await import('../src/lib/mirage-optics');
+  const L = buildLayers(PRESETS.fata.p, 240, true);
+  let clipped = 0;
+  for (let i = 0; i < 360; i++) {
+    const angle = rad(.12 + .6 * (.5 - i / 359));
+    const local = traceAdaptive(L, 1.6, angle, 8000, 120000);
+    if (local.kind !== 'unresolved') continue;
+    clipped++;
+    const h = trace(L, 1.6, angle, 8000, 120000);
+    expect(h.continued).toBe(true);
+    expect(h.kind).not.toBe('unresolved');
+    expect(h.hasD).toBe(local.hasD);
+    expect(h.yD).toBe(local.yD);
+  }
+  expect(clipped).toBeGreaterThan(30);
+});
+
+// Short, strong air motion forces a 12.5 m step below 85 m; a ray trapped in a duct
+// must still reach the ground, the sky or the range instead of running out of steps.
+it('never exhausts its step budget with the shortest, strongest air motion', async () => {
+  const { trace } = await import('../src/lib/mirage-optics');
+  const motion = { amplitude: 1, thermal: 1.5, wavelength: 100, frequency: .4, time: .8 };
+  for (const id of ['fata', 'mer'] as const) {
+    const L = { ...buildLayers(PRESETS[id].p, 240, true), motion };
+    for (let i = 0; i < 24; i++) {
+      const angle = rad(.12 + .6 * (.5 - i / 23));
+      const h = trace(L, 1.6, angle, 8000, 120000);
+      expect(h.termination).toMatch(/^(ground|top)$/);
+      expect(h.kind).not.toBe('unresolved');
+    }
+  }
+}, 120000);

@@ -7,7 +7,7 @@
  */
 import { R_EARTH as R, tempAt, refractivityStd, NODE_H, type Profile, type Layers, type Hit, type Pt } from './mirage-optics';
 export type AirMotion = { amplitude: number; wavelength: number; frequency: number; time: number; thermal?: number };
-export type RayOptions = { tolerance?: number; maxSteps?: number; top?: number };
+export type RayOptions = { tolerance?: number; maxSteps?: number; top?: number; startX?: number; normalFrom?: number };
 const TWO_PI = 2 * Math.PI;
 export function displacement(x: number, z: number, m?: AirMotion) {
   if (!m || m.amplitude === 0 || z >= 80) return { value: 0, dx: 0, dz: 0 };
@@ -68,7 +68,21 @@ export function straightAltitude(eye: number, theta: number, x: number) {
 export function traceAdaptive(L: Layers, eye: number, theta: number, D: number, range: number, record = false, segLen = Infinity, options: RayOptions = {}): Hit {
   const vacuum = L.nb.every(v => v === 1), p = L.profile;
   const top = options.top ?? 400, tol = options.tolerance ?? 1;
-  const field = (x: number, z: number) => vacuum ? { n: 1, nx: 0, nz: 0 } : indexField(p, x, z, L.lambda, L.Ps, L.motion);
+  // The far atmosphere has the standard lapse rate, anchored to the air
+  // above the editable layers. Blend n and BOTH derivatives over 10 km.
+  const standard: Profile = { kind: 'param', Ta: tempAt(p, 80) + .0065 * 80, dTs: 0, aInv: 0, hInv: 20, dInv: 6 };
+  const field = (x: number, z: number) => {
+    if (vacuum) return { n: 1, nx: 0, nz: 0 };
+    if (options.normalFrom !== undefined && x >= options.normalFrom + 10000) return indexField(standard, x, z, L.lambda, L.Ps);
+    const local = indexField(p, x, z, L.lambda, L.Ps, L.motion);
+    if (options.normalFrom === undefined) return local;
+    const u = Math.max(0, Math.min(1, (x - options.normalFrom) / 10000));
+    const w = u*u*(3-2*u), dw = 6*u*(1-u)/10000;
+    const normal = indexField(standard, x, z, L.lambda, L.Ps);
+    return { n: local.n + w*(normal.n-local.n),
+      nz: local.nz + w*(normal.nz-local.nz),
+      nx: (1-w)*local.nx + dw*(normal.n-local.n) };
+  };
   const derivative = (x: number, z: number, a: number): [number, number] => {
     const f = field(x, z), tangent = Math.tan(a), rho = 1 + z / R;
     return [rho * tangent, 1 / R + rho * f.nz / f.n - f.nx * tangent / f.n];
@@ -79,16 +93,25 @@ export function traceAdaptive(L: Layers, eye: number, theta: number, D: number, 
     return [z + h / 6 * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]), a + h / 6 * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1])];
   };
   const twice = (x: number, z: number, a: number, h: number) => { const mid = rk(x, z, a, h / 2); return rk(x + h / 2, mid[0], mid[1], h / 2); };
-  let x = 0, z = eye, a = theta, step = 20, count = 0, rejected = 0, maxError = 0, drift = 0;
-  const invariant = field(0, z).n * (R + z) * Math.cos(a);
-  const conserved = !L.motion || (L.motion.amplitude === 0 && !L.motion.thermal);
+  let x = options.startX ?? 0, z = eye, a = theta, step = 20, count = 0, rejected = 0, maxError = 0, drift = 0;
+  const invariant = field(x, z).n * (R + z) * Math.cos(a);
+  const conserved = options.normalFrom === undefined && (!L.motion || (L.motion.amplitude === 0 && !L.motion.thermal));
   const pts: Pt[] = [{ x, y: z }], turns: Pt[] = [];
   const result: Hit = { hasD: false, yD: NaN, thD: NaN, kind: 'unresolved', xg: NaN, thf: a, tir: 0, yMin: z, yMax: z };
   let termination: NonNullable<Hit['termination']> = 'limit';
-  for (let attempt = 0; attempt < (options.maxSteps ?? 12000); attempt++) {
+  // Perturbed air (ondulations, cellules thermiques) impose un pas ≤ λ/8 sous 85 m,
+  // mais seulement là où la perturbation existe : elle s'éteint avec le profil local
+  // au raccord (`normalFrom` + 10 km). Le budget de pas suit la portée à parcourir à
+  // ce pas minimal, pour qu'un rayon piégé dans un conduit ne s'arrête jamais par
+  // épuisement avant d'avoir atteint le sol, le ciel ou la portée.
+  const perturbed = !!(L.motion?.amplitude || L.motion?.thermal);
+  const motionCap = perturbed ? Math.max(100, L.motion!.wavelength) / 8 : 1500;
+  const motionEnd = options.normalFrom === undefined ? Infinity : options.normalFrom + 10000;
+  const maxSteps = options.maxSteps ?? Math.max(12000, Math.ceil((Math.min(range, motionEnd) - x) / motionCap) * 3 + 4000);
+  for (let attempt = 0; attempt < maxSteps; attempt++) {
     if (x >= range - 1e-8) { termination = 'range'; break; }
     if (Math.abs(a) >= 1.4 || !Number.isFinite(z + a)) break;
-    const h = Math.min(step, range - x, (L.motion?.amplitude || L.motion?.thermal) && z < 85 ? Math.max(100,L.motion.wavelength) / 8 : 1500);
+    const h = Math.min(step, range - x, perturbed && z < 85 && x < motionEnd ? motionCap : 1500);
     const full = rk(x, z, a, h), half = twice(x, z, a, h);
     const ez = Math.abs(half[0] - full[0]) / 15, ea = Math.abs(half[1] - full[1]) / 15;
     const error = Math.max(ez / (tol * (2e-5 + Math.abs(z) * 1e-8)), ea / (tol * 2e-10));

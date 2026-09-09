@@ -56,3 +56,18 @@ it('abandons a multi-frame trace when cancelled, still signalling done', async (
   expect(frames.length).toBeGreaterThanOrEqual(1); expect(frames.length).toBeLessThan(6);
   expect(received.at(-1)).toEqual({ type: 'done', id: 7 });
 });
+
+it('keeps the atmosphere cache when the vacuum reference is traced afterwards', async () => {
+  const { received, scope } = makeWorker();
+  const G = buildLayers(PRESETS.route.p, 240, true);
+  const vacuum = { ...G, n: G.n.map(() => 1), nb: G.nb.map(() => 1), continuous: true };
+  await scope.onmessage({ data: { type: 'trace', id: 1, G, R: null, B: null, frames: 1, paint: paint(6) } });
+  await scope.onmessage({ data: { type: 'trace', id: 2, G: vacuum, R: null, B: null, frames: 1, paint: paint(6, true) } });
+  await scope.onmessage({ data: { type: 'paint', id: 3, paint: { ...paint(6), surfaceBlend: .2 } } });
+  await scope.onmessage({ data: { type: 'paint', id: 4, paint: { ...paint(6, true), surfaceBlend: .2 } } });
+  const frames = received.filter((x) => x.type === 'frame');
+  expect(frames.map((x) => x.id)).toEqual([1, 2, 3, 4]);
+  expect(frames[2].rows).toEqual(frames[0].rows);          // l'atmosphère est repeinte depuis SES rayons…
+  expect(frames[2].rows).not.toEqual(frames[1].rows);      // … pas depuis ceux du témoin
+  expect(frames[3].rows).toEqual(frames[1].rows);
+});

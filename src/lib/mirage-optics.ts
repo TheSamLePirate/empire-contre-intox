@@ -22,7 +22,9 @@ export type { AirMotion } from "./mirage-ray";
      par RK4 adaptatif, sans approximation paraxiale. Les gradients analytiques
      du champ n(x,z) incluent les ondulations. Les anciennes couches discrètes
      restent une comparaison pédagogique paraxiale.
-   Le domaine local s'arrête au sol, à 400 m d'altitude ou à la portée demandée.
+   Le domaine local rejoint le sol, 400 m d’altitude ou la portée demandée.
+   À cette portée, trace prolonge le rayon avec un retour progressif à un
+   gradient standard sur 10 km, jusqu’au sol ou au ciel (garde numérique conservée).
    Une limite numérique n'est pas une source lumineuse. Pour l'image du Soleil, la
    réfraction RESTANTE au-delà du domaine est raccordée à Bennett (1982) à partir
    de l'état de sortie du rayon (voir `farFieldRefraction`).
@@ -174,6 +176,8 @@ function firstRoot(a: number, b: number, c: number): number {
 
 export type Pt = { x: number; y: number };
 export type Hit = {
+  /** Trajet prolongé dans une atmosphère redevenant standard au loin. */
+  continued?: boolean;
   termination?: 'ground' | 'top' | 'range' | 'limit';
   end?: Pt;
   steps?: number;
@@ -203,12 +207,32 @@ function layerOf(L: Layers, y: number): number {
 
 /** Trace un rayon depuis l'œil (x = 0, hauteur y0, pente th0 en radians, > 0 vers
  *  le haut), en remontant la lumière vers sa source. `D` : distance du plan de
- *  l'objet ; `xFar` : distance au-delà de laquelle on déclare « ciel ».
+ *  l'objet ; `xFar` : fin du profil local, avant le raccord à une atmosphère standard.
  *  Mode « continu » : délégué à `traceAdaptive` (équation eikonale sphérique, RK4
  *  adaptatif dans le champ n(x,z) du profil). Ce qui suit est le mode « marches » :
  *  indice constant par couche, le rayon y est une parabole de courbure +1/R
  *  (repère Terre plate) et obéit à Snell-Descartes à chaque frontière. */
+/** Continue range exits through a gradual return to ordinary air. The local
+ * object crossing is retained; a finite range alone never establishes a source. */
 export function trace(L: Layers, y0: number, th0: number, D: number, xFar: number, record = false, segLen = Infinity): Hit {
+  const local = traceLocal(L, y0, th0, D, xFar, record, segLen);
+  if (local.termination !== 'range' || !local.end) return local;
+  const far = traceAdaptive(L, local.end.y, local.thf + local.end.x / R_EARTH,
+    local.hasD ? Infinity : D, local.end.x + 300000, record, segLen,
+    { startX: local.end.x, normalFrom: local.end.x });
+  return { ...far,
+    ...(local.hasD ? { hasD: true, yD: local.yD, thD: local.thD } : {}),
+    continued: true,
+    tir: local.tir + far.tir,
+    yMin: Math.min(local.yMin, far.yMin), yMax: Math.max(local.yMax, far.yMax),
+    steps: (local.steps ?? 0) + (far.steps ?? 0),
+    rejected: (local.rejected ?? 0) + (far.rejected ?? 0),
+    errorEstimate: Math.max(local.errorEstimate ?? 0, far.errorEstimate ?? 0),
+    ...(record ? { pts: [...local.pts!, ...far.pts!.slice(1)], turns: [...local.turns!, ...far.turns!] } : {}),
+  };
+}
+
+function traceLocal(L: Layers, y0: number, th0: number, D: number, xFar: number, record = false, segLen = Infinity): Hit {
   if (L.continuous) return traceAdaptive(L, y0, th0, D, xFar, record, segLen);
   const R = R_EARTH, yb = L.yb, n = L.n, M = n.length;
   let x = 0, y = Math.max(1e-6, y0), th = th0, k = layerOf(L, y), tir = 0, yMin = y, yMax = y;

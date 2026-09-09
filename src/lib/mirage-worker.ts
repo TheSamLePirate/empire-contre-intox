@@ -4,8 +4,10 @@
  *        (1 = statique ; > 1 = période d'ondulation, `motion.time` = f/frames) puis
  *        peint chacun ; répond { type:"frame", id, frame, frames, rows, fan, pixels }
  *        par instantané, puis { type:"done", id }.
- *    → { type:"paint", id, paint }   repeint les instantanés du DERNIER tracé (même
- *        géométrie, autre apparence : Soleil, sol, fusion…) sans retracer.
+ *    → { type:"paint", id, paint }   repeint les instantanés du dernier tracé DE MÊME
+ *        NATURE (`paint.reference` : atmosphère simulée ou témoin sans réfraction) —
+ *        même géométrie, autre apparence : Soleil, sol, fusion… — sans retracer. Les
+ *        deux caches sont distincts : tracer le témoin n'efface pas l'atmosphère.
  *    → { type:"cancel" }             abandonne le tracé en cours entre deux instantanés.
  *  Le fil principal ne garde qu'une requête en vol et n'envoie que la dernière
  *  demandée ; les réponses d'un `id` périmé sont ignorées. */
@@ -25,7 +27,9 @@ const scope = globalThis as unknown as Scope;
 const yieldToQueue = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
 
 let current = 0;                                             // id de la requête en cours (0 = libre)
-let last: { G: Layers; R: Layers | null; B: Layers | null; frames: { rows: RowSet; fan: FanRay[] | null }[]; paint: PaintParams } | null = null;
+type Cached = { G: Layers; R: Layers | null; B: Layers | null; frames: { rows: RowSet; fan: FanRay[] | null }[]; paint: PaintParams };
+const last: { atmosphere: Cached | null; reference: Cached | null } = { atmosphere: null, reference: null };
+const cacheKey = (p: PaintParams) => (p.reference ? "reference" : "atmosphere") as const;
 
 const withTime = (L: Layers | null, frame: number, frames: number): Layers | null =>
   L && L.motion && frames > 1 ? { ...L, motion: { ...L.motion, frequency: 1, time: frame / frames } } : L;
@@ -67,7 +71,8 @@ function reply(id: number, frame: number, frames: number, rows: RowSet, fan: Fan
 
 async function runTrace(req: TraceRequest) {
   current = req.id;
-  last = { G: req.G, R: req.R, B: req.B, frames: [], paint: req.paint };
+  const cache: Cached = { G: req.G, R: req.R, B: req.B, frames: [], paint: req.paint };
+  last[cacheKey(req.paint)] = cache;
   const frames = Math.max(1, req.frames | 0);
   for (let f = 0; f < frames; f++) {
     if (current !== req.id) break;
@@ -75,7 +80,7 @@ async function runTrace(req: TraceRequest) {
     const rows = traceRows(G, R, B, req.paint);
     const fan = req.fan ? traceFan(G, req.paint, req.fan) : null;
     if (current !== req.id) break;
-    last.frames[f] = { rows, fan };
+    cache.frames[f] = { rows, fan };
     reply(req.id, f, frames, rows, fan, req.paint);
     if (frames > 1) await yieldToQueue();                    // laisse passer un éventuel « cancel » ou une nouvelle requête
   }
@@ -86,7 +91,7 @@ async function runTrace(req: TraceRequest) {
 
 async function runPaint(req: PaintRequest) {
   current = req.id;
-  const cached = last;
+  const cached = last[cacheKey(req.paint)];
   if (cached) {
     cached.paint = req.paint;
     const frames = cached.frames.length;
