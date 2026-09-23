@@ -12,9 +12,9 @@ texte rendu de la page.
 Usage :
     python3 check-coverage.py <page.html> <transcript1.txt> [transcript2.txt ...] [--coquilles <fichier.md>]
 
-Coquilles : si `<dossier de la page>/coquilles.md` existe (ou si `--coquilles` est
-donné), ses corrections « transcript → page » sont APPLIQUÉES au transcript avant
-la comparaison. Une coquille corrigée dans la page et consignée dans coquilles.md ne
+Coquilles : si `<dossier de la page>/coquilles.md` et/ou `grammalecte.md` existent
+(ou si `--coquilles` est donné), leurs corrections « transcript → page » sont
+APPLIQUÉES au transcript avant la comparaison. Une coquille corrigée dans la page et consignée dans coquilles.md ne
 compte donc plus comme manquante ; une coquille corrigée mais NON consignée reste
 un manquant — c'est voulu, coquilles.md est la seule trace autorisée (la page ne
 mentionne jamais la correction). Format attendu : un tableau Markdown dont les deux
@@ -69,13 +69,22 @@ def html_text(path: str) -> str:
 
 
 def load_coquilles(path: str):
-    """Lit les paires (transcript → page) d'un coquilles.md (tableau Markdown)."""
-    pairs = []
-    for line in open(path, encoding="utf-8").read().splitlines():
+    """Paires (transcript → page) d'un coquilles.md ou grammalecte.md : seules les
+    tables dont l'en-tête contient « Transcript » sont lues (les corrections
+    éditoriales et les faux positifs d'un grammalecte.md sont ignorés)."""
+    pairs, active = [], False
+    lines = open(path, encoding="utf-8").read().splitlines()
+    for i, line in enumerate(lines):
         if not line.strip().startswith("|"):
+            active = False
             continue
         cells = [c.strip().strip("`").strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) < 2 or set(cells[0]) <= set("-: ") or cells[0].lower().startswith(("#", "n°", "transcript")):
+        nxt = lines[i + 1].strip() if i + 1 < len(lines) else ""
+        if re.match(r"^\|\s*:?-{2,}", nxt):  # en-tête = ligne suivie du séparateur |---|
+            low = " ".join(cells).lower()
+            active = "transcript" in low and "page" in low
+            continue
+        if not active or len(cells) < 2 or set(cells[0]) <= set("-: "):
             continue
         if cells[0].isdigit():
             cells = cells[1:]
@@ -120,14 +129,14 @@ def main():
     if "--coquilles" in argv:
         i = argv.index("--coquilles"); coq = argv[i + 1]; del argv[i:i + 2]
     page, transcripts = argv[0], argv[1:]
-    if coq is None:
-        auto = os.path.join(os.path.dirname(page), "coquilles.md")
-        coq = auto if os.path.isfile(auto) else None
-    pairs = load_coquilles(coq) if coq else []
-    if coq:
-        raw = "".join(open(t, encoding="utf-8").read() for t in transcripts)
-        _, unused = apply_coquilles(raw, pairs)
-        print(f"coquilles.md : {len(pairs)} correction(s) appliquée(s) depuis {coq}")
+    sources = [coq] if coq else [f for f in (os.path.join(os.path.dirname(page), n) for n in ("coquilles.md", "grammalecte.md")) if os.path.isfile(f)]
+    pairs = []
+    cur = "".join(open(t, encoding="utf-8").read() for t in transcripts)
+    for f in sources:  # coquilles.md puis grammalecte.md : les paires s'enchaînent
+        pf = load_coquilles(f)
+        pairs += pf
+        cur, unused = apply_coquilles(cur, pf)
+        print(f"{os.path.basename(f)} : {len(pf)} correction(s) appliquée(s) depuis {f}")
         for u in unused:
             print(f"   ⚠ entrée introuvable dans le transcript (périmée ?) : {u[:100]}")
     H = html_text(page)

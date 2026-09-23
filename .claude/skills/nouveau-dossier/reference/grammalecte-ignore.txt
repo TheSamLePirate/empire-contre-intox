@@ -1,0 +1,53 @@
+# Mots acceptés par grammalecte-check.py (un par ligne, sensible à la casse, « # » = commentaire).
+# Noms propres du collectif, jargon du site, latin courant des dossiers.
+# Les noms propres d'UN dossier vont plutôt dans « ## Faux positifs » de son grammalecte.md.
+Intox
+Samlepirate
+Provoxys
+Ymir
+Lalie
+Phantom
+ECI
+KaTeX
+Crossref
+DOI
+RSS
+Wikipédia
+Pages
+Portainer
+Nginx
+Codex
+ap
+av
+Ga
+Ma
+ka
+# Devise, licence et crédits d'images (présents sur toutes les pages)
+Veritas
+omnia
+vincit
+BY-NC-ND
+BY-SA
+CC0
+Commons
+Wikimedia
+BnF
+# Abréviations et jargon
+apr
+rééd
+inline
+# Bibliographies (anglais, éditeurs, corpus en ligne)
+the
+of
+and
+University
+Press
+CUP
+Loeb
+Budé
+OpenEdition
+Perseus
+LacusCurtius
+remacle
+PLoS
+ONE

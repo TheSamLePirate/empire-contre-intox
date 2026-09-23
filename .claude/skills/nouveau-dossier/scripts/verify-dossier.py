@@ -78,23 +78,46 @@ else:
     r = run([sys.executable, os.path.join(HERE, "check-coverage.py"), page] + transcripts)
     m = re.search(r"TOTAL manquants : (\d+)", r.stdout)
     missing = int(m.group(1)) if m else -1
-    coq_line = re.search(r"coquilles\.md : (\d+) correction", r.stdout)
-    n_coq = int(coq_line.group(1)) if coq_line else 0
+    n_coq = sum(int(x) for x in re.findall(r"\.md : (\d+) correction", r.stdout))
     stale = re.findall(r"entrée introuvable dans le transcript[^\n]*", r.stdout)
     if r.returncode == 0 and missing == 0:
-        rep("PASS", "verbatim", f"{len(transcripts)} transcript(s), 0 segment manquant" + (f" ({n_coq} coquille(s) appliquée(s) depuis coquilles.md)" if n_coq else ""))
+        rep("PASS", "verbatim", f"{len(transcripts)} transcript(s), 0 segment manquant" + (f" ({n_coq} correction(s) appliquée(s) depuis coquilles.md / grammalecte.md)" if n_coq else ""))
     else:
         tail = "\n".join(r.stdout.strip().splitlines()[-12:])
         rep("FAIL", "verbatim", f"{missing} segment(s) manquant(s) — verbatim à réintroduire, ou coquille corrigée à consigner dans {rel_dir}/coquilles.md\n{tail}")
     for st in stale:
         rep("WARN", "verbatim", "coquilles.md : " + st)
-coq_path = os.path.join(page_dir, "coquilles.md")
-if os.path.isfile(coq_path):
-    rep("PASS", "verbatim", "coquilles.md présent")
-    for avant, apres in re.findall(r"^\|\s*(?:\d+\s*\|\s*)?`?([^|`]+?)`?\s*\|\s*`?([^|`]+?)`?\s*\|", read(coq_path), re.M):
-        avant, apres = avant.strip(), apres.strip()
-        if avant and not set(avant) <= set("-: ") and not avant.lower().startswith(("#", "transcript")) and avant in re.sub(r"<[^>]+>", " ", page_src):
-            rep("FAIL", "verbatim", f"la page contient encore la coquille « {avant[:60]} » consignée comme corrigée")
+def trace_pairs(path, header_words):
+    """Lignes (avant, après) des tables dont l'en-tête contient tous les mots donnés."""
+    pairs, active = [], False
+    lines = read(path).splitlines()
+    for i, line in enumerate(lines):
+        if not line.strip().startswith("|"):
+            active = False; continue
+        cells = [c.strip().strip("`").strip() for c in line.strip().strip("|").split("|")]
+        nxt = lines[i + 1].strip() if i + 1 < len(lines) else ""
+        if re.match(r"^\|\s*:?-{2,}", nxt):
+            low = " ".join(cells).lower()
+            active = all(w in low for w in header_words); continue
+        if not active or len(cells) < 2 or set(cells[0]) <= set("-: "):
+            continue
+        if cells[0].isdigit():
+            cells = cells[1:]
+        if len(cells) >= 2 and cells[0]:
+            pairs.append((cells[0], cells[1]))
+    return pairs
+page_text_raw = re.sub(r"<[^>]+>", " ", page_src)
+for name in ("coquilles.md", "grammalecte.md"):
+    tp = os.path.join(page_dir, name)
+    if not os.path.isfile(tp):
+        continue
+    rep("PASS", "verbatim", f"{name} présent")
+    prs = trace_pairs(tp, ("transcript", "page"))
+    if name == "grammalecte.md":
+        prs += trace_pairs(tp, ("avant", "après"))
+    for avant, apres in prs:
+        if avant in page_text_raw or avant in page_src:
+            rep("FAIL", "verbatim", f"{name} : la page contient encore « {avant[:60]} » consigné comme corrigé")
 # la page ne commente jamais une coquille : la trace est coquilles.md
 page_text = re.sub(r"<(script|style).*?</\1>", " ", page_src, flags=re.S)
 page_text = re.sub(r"<[^>]+>", " ", page_text)
@@ -320,8 +343,8 @@ for root_, dirs, files in os.walk(page_dir):
         if f.startswith(".") or os.path.splitext(f)[1].lower() in bad_ext:
             continue
         r_ = os.path.join(root_, f).replace(os.sep, "/")
-        if f == "coquilles.md":
-            continue  # trace interne, versionnée mais non publiée par défaut
+        if f in ("coquilles.md", "grammalecte.md"):
+            continue  # traces internes, versionnées mais non publiées
         if r_ not in manifest:
             absent.append(r_)
 if card:
@@ -373,6 +396,14 @@ audits = [f for f in os.listdir("sources") if f.startswith("dossier-") and slug.
 rep("PASS" if audits else "WARN", "sources", ("audit trouvé : " + ", ".join(audits)) if audits else f"aucun sources/dossier-*{slug.split('-')[0]}*.md — l'audit par dossier manque ?")
 if slug not in read("sources/README.md"):
     rep("WARN", "sources", "sources/README.md ne mentionne pas le dossier")
+
+# ----------------------------------------------------------- 12. grammalecte
+gm = os.path.join(page_dir, "grammalecte.md")
+if os.path.isfile(gm):
+    b = re.search(r"Bilan\s*:\s*([^\n]+)", read(gm))
+    rep("PASS", "grammalecte", "passe consignée — " + (b.group(1)[:140] if b else "sans ligne « Bilan »"))
+else:
+    rep("WARN", "grammalecte", "aucun grammalecte.md : lancer grammalecte-check.py puis l'agent tri-grammalecte (skill, « Orthographe & grammaire »)")
 
 # --------------------------------------------------------------- rapport
 order = {"FAIL": 0, "WARN": 1, "PASS": 2}

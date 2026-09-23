@@ -45,3 +45,6 @@ provoxys/sondes/assets/radio-univers.png
 # Expérience « Entropia » : clé brute et code archivé, hors manifeste public
 provoxys/entropie/Entropie-Mots/openrouter-key.txt
 provoxys/entropie/Entropie-Mots/_archive/
+
+# Outillage de l'agent (skills, archive Grammalecte) : jamais dans l'image
+.claude/

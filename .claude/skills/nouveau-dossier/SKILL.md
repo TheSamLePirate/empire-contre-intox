@@ -28,6 +28,9 @@ au transcript, **factuellement vérifiée**, intégrée à l'index et au dossier
 > - `scripts/verify-dossier.py` — **TOUS les contrôles de fin en une commande**
 >   (verbatim, formules, page, liens, JS, index, manifeste, RSS, cache, sources)
 > - `scripts/optimize-pngs.sh` — optimisation PNG du site
+> - `scripts/grammalecte-check.py` + `scripts/grammalecte-apply.py` + `tools/Grammalecte-fr-v2.3.0.zip`
+>   — **orthographe et grammaire** (transcript `.txt` ou page `.html`), trié par l'agent
+>   `tri-grammalecte`, trace dans `<dossier>/grammalecte.md` — voir « Orthographe & grammaire »
 > - `.claude/agents/verif-claims.md` — **l'agent de vérification factuelle** (format
 >   de sortie fixé, DOI Crossref, noms tels qu'écrits dans le transcript, effort `high`)
 
@@ -78,6 +81,11 @@ Les chemins ci-dessous sont relatifs à la racine du dépôt et à
    qui se prononcent mal (`∂` = « d rond », `Tr` = « trace », `ħ` = « h barre »…).
    Du français écrit, jamais de phonétique. Les `.imath` inline n'en reçoivent pas —
    le signaler dans le récapitulatif. Détail : **§7 d bis**.
+6 bis. **Orthographe et grammaire (Grammalecte)** — sur la page une fois le verbatim
+   en place (et, en option, sur le `.txt` dès l'étape 1) : `grammalecte-check.py`
+   → agent **`tri-grammalecte`** (vraies fautes / faux positifs → `grammalecte.md`)
+   → `grammalecte-apply.py` → `check-coverage.py` de nouveau. Rien ne se corrige
+   à la main : la trace est la source de l'édition. Voir « Orthographe & grammaire ».
 7. Intégrer les **nuances** des agents en **encadrés « anti-intox »** (sans toucher
    au verbatim). Crédit auteur (bandeau + collective-footer + carte d'index).
 8. Créer **`images_a_generer.md`** (gabarit `reference/images-template.md`).
@@ -295,9 +303,9 @@ PY
 
 - Les extensions **interdites** (`.txt`, `.odt`, `.docx`, `.pptx`, `.doc`) sont
   filtrées : le **transcript source n'est jamais publié**, c'est voulu — ne pas
-  l'ajouter à la main. **`coquilles.md` n'est pas déclaré non plus** : c'est une
-  trace interne versionnée, pas une page du site (`verify-dossier.py` ne le réclame
-  pas dans le manifeste).
+  l'ajouter à la main. **`coquilles.md` et `grammalecte.md` ne sont pas déclarés non
+  plus** : traces internes versionnées, pas des pages du site (`verify-dossier.py` ne
+  les réclame pas dans le manifeste).
 - **Vérifier ensuite que le build passe** (obligatoire, ~20 s) :
 
   ```bash
@@ -398,8 +406,11 @@ Restent à faire **à la main**, parce qu'ils demandent un navigateur ou un œil
       sections hautes ;
 - [ ] si publication : `git status` propre côté fichiers du dossier, **pas de
       référence orpheline** ; build Pages `built` + `200` sur les URLs touchées ;
+- [ ] **Grammalecte** : passe faite sur la page, `grammalecte.md` écrit par l'agent,
+      corrections appliquées par script, couverture toujours à 0 manquant ;
 - [ ] mentionner les fichiers créés/modifiés ; les coquilles sont dans `coquilles.md`
-      (le récapitulatif en donne le compte et le chemin, pas la liste).
+      et les corrections Grammalecte dans `grammalecte.md` (le récapitulatif en donne
+      les comptes et les chemins, pas la liste).
 
 ---
 
@@ -407,7 +418,8 @@ Restent à faire **à la main**, parce qu'ils demandent un navigateur ou un œil
 
 - `verify-dossier.py` à **0 FAIL** juste avant de stager (il vérifie aussi que
   `rss.xml`, le manifeste et les empreintes sont à jour).
-- Stager **précisément** les fichiers du dossier (page, **`coquilles.md`**, avatars,
+- Stager **précisément** les fichiers du dossier (page, **`coquilles.md`**,
+  **`grammalecte.md`**, avatars,
   `assets/*.png` optimisés, `index.html`, **`rss.xml`**,
   **`config/legacy-public-manifest.json`**, `sources/*`) — **ne pas** balayer les
   dossiers non suivis sans rapport (`.pi/`, `a_traiter/`, etc.). Utiliser
@@ -422,6 +434,58 @@ Restent à faire **à la main**, parce qu'ils demandent un navigateur ou un œil
   du câblage vers un autre dossier **non commité** publie des liens cassés → vérifier
   les fichiers non suivis référencés et les committer aussi, ou prévenir l'utilisateur
   (cf. `reference/sources-and-index.md` §E).
+
+---
+
+## Orthographe & grammaire (Grammalecte → `grammalecte.md`)
+
+Grammalecte (correcteur français, moteur **vendu avec la skill** dans `tools/`,
+décompressé dans `~/.cache/eci-grammalecte/` au premier usage) relit un transcript ou
+une page. Il signale beaucoup — noms romains, latin, oral — donc **un agent trie**, et
+la page n'est corrigée **que par script**, depuis la trace. Trois temps, quatre
+commandes :
+
+```bash
+# 1. analyser (14 s pour une page de 33 000 mots) — .txt ou .html
+python3 .claude/skills/nouveau-dossier/scripts/grammalecte-check.py <equipe>/<dossier>/index.html
+#    → a_traiter/grammalecte/<dossier>-index/rapport.md + alertes.json (non versionnés)
+
+# 2. trier : agent `tri-grammalecte` (Agent, subagent_type "tri-grammalecte"), en lui
+#    donnant : le rapport, la page, le(s) transcript(s), le chemin de
+#    <equipe>/<dossier>/grammalecte.md à écrire. Il décide corriger / laisser, et écrit
+#    le fichier. Il ne touche pas à la page. (Type absent de la liste des agents ? Il
+#    a été créé dans la session : lancer un agent general-purpose avec le corps de
+#    .claude/agents/tri-grammalecte.md en tête de prompt.)
+
+# 3. appliquer, puis re-vérifier le verbatim
+python3 .claude/skills/nouveau-dossier/scripts/grammalecte-apply.py <equipe>/<dossier>/index.html
+python3 .claude/skills/nouveau-dossier/scripts/check-coverage.py <equipe>/<dossier>/index.html <transcripts…>
+```
+
+Règles :
+
+- **Ce qui se corrige** : orthographe avérée, accords, conjugaison, participes,
+  infinitifs, homophones — **dans le verbatim aussi** (en silence, comme une coquille).
+  **Ce qui reste** : langage oral, tournures d'auteur, noms propres, latin, citations.
+  En cas de doute, l'agent laisse et le dit (« à confirmer ») : c'est toi qui tranches,
+  en ajoutant la ligne à la table si tu confirmes.
+- **`grammalecte.md`** (un par dossier, à côté de la page, versionné, non publié) est
+  lu par **trois scripts** : `grammalecte-apply.py` (tables « Corrections ») ;
+  `check-coverage.py` (table du verbatim, en plus de `coquilles.md`) ; et
+  `grammalecte-check.py` lui-même (table « Faux positifs » = liste d'exclusion des
+  passes suivantes). Son format est fixé dans l'agent — ne pas improviser.
+- **`coquilles.md`** garde les fautes de frappe repérées à la main pendant la
+  construction ; **`grammalecte.md`** reçoit ce que la passe Grammalecte a trouvé.
+  Les deux s'appliquent au transcript avant la couverture.
+- **Liste d'exclusion du projet** : `reference/grammalecte-ignore.txt` (jargon du site,
+  noms du collectif). Les noms propres **d'un** dossier vont dans ses « Faux positifs ».
+- Sur un **`.txt`** (avant la page) : mêmes étapes, mais rien à appliquer — on écrit
+  directement la forme corrigée dans la page, et la table du verbatim de
+  `grammalecte.md` fait le lien pour `check-coverage.py`.
+- **Relancer** la passe après toute retouche importante de la page : la liste des faux
+  positifs consignés rend la seconde passe courte.
+- Le texte injecté par JavaScript (ateliers React) n'est pas analysé : si un atelier
+  porte beaucoup de texte, passer sa source `.tsx` en `.txt` temporaire.
 
 ---
 
@@ -444,9 +508,10 @@ des noms propres déformés, des espaces collées. La règle :
   **N'est pas une coquille** : une formulation orale, un mot familier, une
   répétition, une erreur factuelle — ceux-là restent verbatim (l'erreur factuelle
   se traite en encadré anti-intox).
-- `check-coverage.py` **lit ce fichier automatiquement** (même dossier que la page)
-  et applique les corrections au transcript avant de comparer : une coquille
-  consignée ne compte plus comme manquante ; non consignée, elle le reste.
+- `check-coverage.py` **lit ce fichier automatiquement** (même dossier que la page),
+  ainsi que la table du verbatim de `grammalecte.md`, et applique les corrections au
+  transcript avant de comparer : une coquille consignée ne compte plus comme
+  manquante ; non consignée, elle le reste.
 
 Gabarit (les deux premières colonnes de contenu sont lues par le script, le reste
 est libre) :
@@ -505,7 +570,7 @@ disque**, à côté du transcript (dossier `a_traiter/`, non publié, ignoré pa
 ## Périmètre et points d'arrêt
 
 **Périmètre** — la skill touche : le dossier `<equipe>/<dossier>/` (page, `assets/`,
-`coquilles.md`, `images_a_generer.md`), les avatars de l'équipe, `index.html` (carte + compteurs + nav de pied), `rss.xml`,
+`coquilles.md`, `grammalecte.md`, `images_a_generer.md`), les avatars de l'équipe, `index.html` (carte + compteurs + nav de pied), `rss.xml`,
 `config/legacy-public-manifest.json`, `sources/` (audit, refs, `README.md`,
 `sources.html`), et les `?v=` des pages qui référencent une ressource **modifiée**.
 Elle ne touche **pas** : les autres dossiers, `AGENT.md`, les scripts du site, la
@@ -547,8 +612,9 @@ session. Le construire depuis le journal :
 2. **Tableau des fichiers** créés ou modifiés (chemin → ce qui a changé).
 3. **Contrôles** : sortie de `verify-dossier.py` (PASS/WARN/FAIL) + résultat du
    balayage navigateur (largeurs, révélation, console).
-4. **Coquilles** : compte et chemin de `coquilles.md` (pas la liste, elle est dans
-   le fichier) ; s'il y en a, formules inline sans « Se lit » (c'est la règle, le
+4. **Coquilles et grammaire** : comptes et chemins de `coquilles.md` et de
+   `grammalecte.md` (pas les listes, elles sont dans les fichiers), plus les
+   corrections « à confirmer » laissées par l'agent de tri ; s'il y en a, formules inline sans « Se lit » (c'est la règle, le
    dire), dossier sans transcription (`check-coverage.py` non appliqué, le dire).
 5. **Vérification factuelle** : compte des verdicts, corrections ❌ appliquées,
    encadrés anti-intox ajoutés.
@@ -566,7 +632,8 @@ Prose littérale : dire ce qui a été fait, pas le mettre en scène.
 - Miroir secondaire : `https://thesamlepirate.github.io/empire-contre-intox/`.
 - Sceau ECI **unique** : `ymir-lalie/assets/logo-eci.jpg` (référencer au bon chemin
   relatif).
-- Outils requis (skill) : `codex` (génération des images, `codex exec`), `python3`,
+- Outils requis (skill) : `codex` (génération des images, `codex exec`), `python3`
+  (Grammalecte est fourni dans `tools/`, sans dépendance),
   `node`, `pngquant`, `oxipng` (les deux derniers : `brew install pngquant oxipng`),
   `gh`, et le **navigateur intégré** de Claude Code pour la vérif (config
   `.claude/launch.json`, serveur `site-statique`).

@@ -27,7 +27,11 @@ Le site est publié sur deux canaux :
 >   (verbatim, formules, page, liens, JS, index, manifeste, RSS, cache, sources) ;
 > - **`scripts/optimize-pngs.sh`** — optimisation PNG du site (pngquant + oxipng) ;
 > - **`.claude/agents/verif-claims.md`** — l'**agent de vérification factuelle**
->   (effort `high`, DOI Crossref, noms cherchés tels qu'écrits, résumés reformulés).
+>   (effort `high`, DOI Crossref, noms cherchés tels qu'écrits, résumés reformulés) ;
+> - **`scripts/grammalecte-check.py`** + **`grammalecte-apply.py`** + agent
+>   **`tri-grammalecte`** — **orthographe et grammaire** (Grammalecte, fourni dans la
+>   skill) sur un transcript ou une page ; l'agent trie vraies fautes et faux positifs,
+>   la trace `<dossier>/grammalecte.md` pilote l'application et la couverture.
 >
 > À la racine du dépôt : **`scripts/generate-rss.py`** — régénère **`rss.xml`**
 > (flux RSS riche) depuis `index.html` ; à relancer **pour chaque dossier** (voir
@@ -191,7 +195,7 @@ Voir `provoxys/Artemis2.html` (classes `.eci-home`, `.eci-collective`, `.eci-btn
 
 1. Lire **tout** le déroulé avant de coder.
 2. Identifier le titre, le ton, les actes/chapitres naturels, les passages forts, la chute.
-3. Ne pas corriger ni réécrire la transcription centrale (seules des normalisations typo légères sont tolérées : `$CO_2$`→`CO₂`, accents/espaces, coquilles évidentes, noms propres mal transcrits). Une coquille se corrige **sans aucune mention dans la page** et se **consigne dans `<equipe>/<dossier>/coquilles.md`** (tableau transcript → page, un fichier par dossier, versionné, non publié) ; `check-coverage.py` lit ce fichier et n'y voit plus de manquant.
+3. Ne pas corriger ni réécrire la transcription centrale (seules des normalisations typo légères sont tolérées : `$CO_2$`→`CO₂`, accents/espaces, coquilles évidentes, noms propres mal transcrits). Une coquille se corrige **sans aucune mention dans la page** et se **consigne dans `<equipe>/<dossier>/coquilles.md`** (tableau transcript → page, un fichier par dossier, versionné, non publié) ; `check-coverage.py` lit ce fichier et n'y voit plus de manquant. Une **faute d'orthographe ou de grammaire avérée** (accord, conjugaison, participe) suit la même règle, verbatim compris : repérée par la passe **Grammalecte** de la skill, triée par l'agent `tri-grammalecte`, consignée dans **`grammalecte.md`** et appliquée par script. Le langage oral et les tournures d'auteur ne sont pas des fautes.
 4. Créer la page HTML autonome **dans le dossier de son auteur**, CSS + JS intégrés.
 5. Référencer le sceau ECI avec le bon chemin relatif.
 6. Créer/placer une **image hero** pertinente dans `<dossier-auteur>/assets/` (nom explicite, ex. `artemis2-hero.png`).
