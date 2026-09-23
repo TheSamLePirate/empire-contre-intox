@@ -458,7 +458,19 @@
     .formula:empty { display:none; }
     .formula-block .fb-note { padding:2px 22px 18px; margin:0; font-family:var(--serif); font-size:.96rem; line-height:1.62; color:var(--muted); }
     .formula-block .fb-note b { color:var(--ink); font-weight:600; }
-    @media (max-width:640px){ .formula .katex{ font-size:1.2rem; } .formula-block .fb-head{ padding:10px 16px; } .formula,.formula-block .fb-note{ padding-left:16px; padding-right:16px; } }
+    /* « SE LIT » — prononciation française de la formule */
+    .formula-block .fb-say { margin:0 22px 16px; padding:11px 15px; display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px;
+      border:1px solid var(--line); border-left:2px solid var(--gold-deep); border-radius:2px; background:rgba(5,8,17,.40); }
+    .formula-block .fb-say .say-k { flex:none; font-family:var(--roman); font-size:.58rem; font-weight:700; letter-spacing:.22em;
+      text-transform:uppercase; color:var(--gold); }
+    .formula-block .fb-say .say-t { flex:1 1 260px; min-width:0; font-family:var(--serif); font-style:italic; font-size:.98rem;
+      line-height:1.62; color:var(--parch); overflow-wrap:break-word; }
+    .formula-block .fb-say .say-t b { font-style:normal; color:var(--ink); font-weight:600; }
+    .formula-block .fb-say .say-x { display:block; margin-top:7px; font-style:normal; font-size:.86rem; line-height:1.56; color:var(--soft); }
+    .formula-block .fb-say .say-x b { color:var(--muted); font-weight:600; }
+    .formula-block .fb-say .say-x .imath .katex { font-size:1em; color:var(--muted); }
+    .formula + .fb-say { margin-top:-2px; }
+    @media (max-width:640px){ .formula .katex{ font-size:1.2rem; } .formula-block .fb-head{ padding:10px 16px; } .formula,.formula-block .fb-note{ padding-left:16px; padding-right:16px; } .formula-block .fb-say{ margin-left:16px; margin-right:16px; } }
 
     /* ===== Frise interactive des empires ===== */
     .viz-section { width:min(100% - 40px, var(--max)); margin:48px auto; }
@@ -550,7 +562,7 @@
           <p class="hero-lead">D'Uruk à la Chine des Qin, comment une poignée de cités est devenue une machine à gouverner la distance — en inventant la bureaucratie, l'acier, le harnais à collier et la première mondialisation. « <em>Au-delà des murailles : Comment les empires ont inventé notre monde…</em> »</p>
           <p class="hero-quote">« L'Empire n'est pas qu'une conquête de terres, c'est une conquête de la complexité. »</p>
           <div class="hero-actions">
-            <a class="button primary" href="#introduction">Lire le dossier</a>
+            <a class="button primary" href="#fil">Lire le dossier</a>
             <a class="button" href="#bronze">L'Âge du Bronze</a>
             <a class="button" href="../../index.html">Accueil ECI</a>
           </div>
@@ -934,15 +946,11 @@
             <p>« Pourquoi, quand nous voyageons aujourd'hui, pouvons-nous utiliser une monnaie ou comprendre des mesures standardisées ? C'est un héritage direct. Les Empires, pour fonctionner, ont dû imposer des poids, des mesures et des monnaies uniques.  Cette "lisibilité du monde" était une nécessité administrative pour gérer des territoires immenses. C'est ce réflexe d'unification que nous utilisons encore chaque jour, sans même nous en rendre compte. »</p>
 
             <p class="group-title">C. Exemple de l'innovation médicale : L'héritage silencieux</p>
-            <p>« Regardez les techniques médicales anciennes. Il a  étébien mis en lumière que les savoirs accumulés dans les centres impériaux (l'herboristerie, les méthodes de diagnostic) n'ont pas été perdus à la chute des dynasties. Ils ont circulé, ont été traduits, adaptés et intégrés dans les pharmacopées de cultures très éloignées. C'est ça, l'héritage invisible : une accumulation de connaissances qui, bien après la disparition des bâtisseurs, continue de servir l'humanité. »</p>
+            <p>« Regardez les techniques médicales anciennes. Il a  été bien mis en lumière que les savoirs accumulés dans les centres impériaux (l'herboristerie, les méthodes de diagnostic) n'ont pas été perdus à la chute des dynasties. Ils ont circulé, ont été traduits, adaptés et intégrés dans les pharmacopées de cultures très éloignées. C'est ça, l'héritage invisible : une accumulation de connaissances qui, bien après la disparition des bâtisseurs, continue de servir l'humanité. »</p>
           </div>
           <aside class="side-note">
             <h3>Ce qui a vraiment voyagé</h3>
             <p>Le papier et la boussole ont bel et bien gagné l'Occident par ces routes — mais <strong>tardivement</strong> : le papier vers le VIII<sup>e</sup> siècle (via Samarcande), la boussole au XII<sup>e</sup>–XIII<sup>e</sup>. « Premier Internet » et « infusé tout le bassin méditerranéen » sont des <strong>images</strong> : les échanges étaient réels mais lents, de proche en proche.</p>
-            <div class="science-block">
-              <span class="block-label">Note de transcription</span>
-              <p>Une coquille du live conservée telle quelle : « Il a <em>étébien</em> mis en lumière » (pour « il a bien été mis en lumière »). La transcription reste mot pour mot.</p>
-            </div>
             <div class="tag-list">
               <span class="tag">Route de la Soie</span>
               <span class="tag">Standardisation</span>
@@ -1422,6 +1430,7 @@
             <div class="formula-block">
               <div class="fb-head">Le premier matériau de synthèse <span class="fb-tag">Métallurgie</span></div>
               <div class="formula" data-tex="\mathrm{Cu} \;+\; \mathrm{Sn} \;\longrightarrow\; \text{Bronze}"></div>
+              <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;cuivre plus étain donne bronze&nbsp;»<span class="say-x">Les symboles chimiques se lisent par le nom du corps : <b>Cu</b> se dit «&nbsp;cuivre&nbsp;» (du latin <em>cuprum</em>) et <b>Sn</b> «&nbsp;étain&nbsp;» (du latin <em>stannum</em>), jamais «&nbsp;C-U&nbsp;» ni «&nbsp;S-N&nbsp;». La flèche se lit «&nbsp;donne&nbsp;» : c'est une réaction de mélange, pas une égalité.</span></span></p>
               <p class="fb-note">Le bronze n'a pas de symbole propre : c'est un <b>alliage</b>, pas un élément. On allie le <b>cuivre</b> (<span class="imath" data-tex="\mathrm{Cu}"></span>, ductile mais mou) à l'<b>étain</b> (<span class="imath" data-tex="\mathrm{Sn}"></span>) — typiquement <b>~90 % Cu / ~10 % Sn</b> — pour obtenir un métal bien plus dur. Tout le drame de l'Âge du Bronze tient dans ce « + » : les deux ingrédients ne se trouvent presque jamais au même endroit, d'où la nécessité d'un réseau commercial à l'échelle d'un continent.</p>
             </div>
 
