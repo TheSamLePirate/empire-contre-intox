@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="v16-title v16-desc" fill="#e8eef6" font-family="Arial, Helvetica, sans-serif" role="img" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg"><title id="v16-title">Schéma animé — pulse / écho / buzz (même dessin que Langevin)</title><desc id="v16-desc">Distinguer fréquence du cri et cadence des émissions. Le buzz terminal augmente la cadence, pas nécessairement la fréquence porteuse. Les signaux écoutés sont transposés avec un facteur explicite.</desc><style>text{font-family:Arial,Helvetica,sans-serif} @keyframes waveShift{to{stroke-dashoffset:-240}} @keyframes pulseEnv{0%,100%{opacity:.35}50%{opacity:1}} @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-80px)}} .anim-wave{stroke-dasharray:8 10;animation:waveShift 2.4s linear infinite}.anim-env{animation:pulseEnv 1.6s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.anim-wave,.anim-env{animation:none}}</style>
+<rect fill="#0a1220" height="220" width="900"/>
+<text fill="#d4b36a" font-family="Source Sans 3,sans-serif" font-size="16" x="20" y="26">Schéma animé — pulse / écho / buzz (même dessin que Langevin)</text>
+<circle cx="80" cy="110" fill="none" r="18" stroke="#6fd4c7" stroke-width="2"/>
+<text fill="#6fd4c7" font-size="11" x="68" y="115">bat</text>
+<path class="anim-wave" d="M100 110 H 520" stroke="#6fd4c7" stroke-width="2"/>
+<circle cx="560" cy="110" fill="#f0d9a0" r="10"/>
+<text fill="#f0d9a0" font-size="11" x="548" y="88">proie</text>
+<path class="anim-wave" d="M548 118 C 400 160, 250 160, 110 125" fill="none" stroke="#d4b36a" stroke-width="2" style="animation-duration:1.4s"/>
+<text fill="#9aa8bc" font-size="12" x="200" y="100">search → approach → terminal buzz (Griffin, Webster, Michael 1960)</text>
+<text fill="#9aa8bc" font-size="12" x="40" y="200">Air : λ millimétrique, portée courte. Eau : même f, portée de chasse au calmar.</text>
+</svg>

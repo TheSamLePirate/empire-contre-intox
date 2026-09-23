@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="v19-title v19-desc" fill="#e8eef6" font-family="Arial, Helvetica, sans-serif" role="img" viewBox="0 0 900 170" xmlns="http://www.w3.org/2000/svg"><title id="v19-title">Schéma — type III (Ginzburg → Gurnett → LOFAR)</title><desc id="v19-desc">La dérive d’un sursaut de type III renseigne sur le faisceau et le plasma traversé. Les oscillations de Langmuir ne sont pas elles-mêmes l’onde radio qui atteint une antenne distante.</desc><style>text{font-family:Arial,Helvetica,sans-serif} @keyframes waveShift{to{stroke-dashoffset:-240}} @keyframes pulseEnv{0%,100%{opacity:.35}50%{opacity:1}} @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-80px)}} .anim-wave{stroke-dasharray:8 10;animation:waveShift 2.4s linear infinite}.anim-env{animation:pulseEnv 1.6s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.anim-wave,.anim-env{animation:none}}</style>
+<rect fill="#0a1220" height="170" width="900"/>
+<text fill="#d4b36a" font-family="Source Sans 3,sans-serif" font-size="15" x="20" y="24">Schéma — type III (Ginzburg → Gurnett → LOFAR)</text>
+<text fill="#6fd4c7" font-size="13" x="30" y="80">faisceau e⁻</text>
+<text fill="#d4b36a" x="140" y="80">→</text>
+<text fill="#6fd4c7" font-size="13" x="165" y="80">Langmuir fpe</text>
+<text fill="#d4b36a" x="310" y="80">→</text>
+<text fill="#6fd4c7" font-size="13" x="335" y="80">conversion</text>
+<text fill="#d4b36a" x="450" y="80">→</text>
+<text fill="#f0d9a0" font-size="13" x="475" y="80">radio type III (dérive f↓)</text>
+<text fill="#9aa8bc" font-size="12" x="30" y="120">Plus le faisceau s’éloigne, plus ne baisse, plus fpe baisse : le sifflement descend. C’est un diagnostic de densité, pas une sirène dans le vide.</text>
+</svg>

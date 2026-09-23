@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="v12-title v12-desc" fill="#e8eef6" font-family="Arial, Helvetica, sans-serif" role="img" viewBox="0 0 900 160" xmlns="http://www.w3.org/2000/svg"><title id="v12-title">Schéma 7 — Chaîne de l’audition</title><desc id="v12-desc">L’oreille moyenne améliore la transmission entre air et liquide ; la cochlée comprend un mécanisme actif. Le trajet neural réel comporte plusieurs relais avant le cortex.</desc><style>text{font-family:Arial,Helvetica,sans-serif} @keyframes waveShift{to{stroke-dashoffset:-240}} @keyframes pulseEnv{0%,100%{opacity:.35}50%{opacity:1}} @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-80px)}} .anim-wave{stroke-dasharray:8 10;animation:waveShift 2.4s linear infinite}.anim-env{animation:pulseEnv 1.6s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.anim-wave,.anim-env{animation:none}}</style>
+<rect fill="#0a1220" height="160" width="900"/>
+<text fill="#d4b36a" font-family="Source Sans 3,sans-serif" font-size="15" x="20" y="24">Schéma 7 — Chaîne de l’audition</text>
+<text fill="#6fd4c7" font-size="14" x="30" y="85">pavillon</text>
+<text fill="#d4b36a" x="130" y="85">→</text>
+<text fill="#6fd4c7" font-size="14" x="160" y="85">tympan</text>
+<text fill="#d4b36a" x="250" y="85">→</text>
+<text fill="#6fd4c7" font-size="14" x="280" y="85">osselets</text>
+<text fill="#d4b36a" x="380" y="85">→</text>
+<text fill="#6fd4c7" font-size="14" x="410" y="85">cochlée</text>
+<text fill="#d4b36a" x="500" y="85">→</text>
+<text fill="#6fd4c7" font-size="14" x="530" y="85">nerf VIII</text>
+<text fill="#d4b36a" x="630" y="85">→</text>
+<text fill="#f0d9a0" font-size="14" x="660" y="85">cortex</text>
+<text fill="#9aa8bc" font-size="12" x="30" y="125">Impédance air → liquide. Tonotopie : base = aigus, apex = graves. Cellules ciliées externes = ampli actif (Kemp 1978).</text>
+</svg>

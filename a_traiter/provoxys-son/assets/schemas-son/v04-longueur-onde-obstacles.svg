@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="v04-title v04-desc" fill="#e8eef6" font-family="Arial, Helvetica, sans-serif" role="img" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg"><title id="v04-title">Schéma — la règle de λ</title><desc id="v04-desc">Lire les trois rapports de taille ; ne pas confondre diffraction autour de l’obstacle et transmission à travers une paroi. Le matériau et les conditions aux limites comptent aussi.</desc><style>text{font-family:Arial,Helvetica,sans-serif} @keyframes waveShift{to{stroke-dashoffset:-240}} @keyframes pulseEnv{0%,100%{opacity:.35}50%{opacity:1}} @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-80px)}} .anim-wave{stroke-dasharray:8 10;animation:waveShift 2.4s linear infinite}.anim-env{animation:pulseEnv 1.6s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.anim-wave,.anim-env{animation:none}}</style>
+<rect fill="#0a1220" height="200" width="900"/>
+<text fill="#d4b36a" font-family="Source Sans 3,sans-serif" font-size="16" x="20" y="26">Schéma — la règle de λ</text>
+<rect fill="#152033" height="70" rx="8" stroke="#6fd4c7" width="250" x="30" y="60"/>
+<text fill="#e8eef6" font-size="13" x="45" y="88">obstacle ≫ λ</text>
+<text fill="#9aa8bc" font-size="12" x="45" y="112">réflexion nette, ombre, écho (aigus, mur)</text>
+<rect fill="#152033" height="70" rx="8" stroke="#6fd4c7" width="250" x="320" y="60"/>
+<text fill="#e8eef6" font-size="13" x="335" y="88">obstacle ≈ λ</text>
+<text fill="#9aa8bc" font-size="12" x="335" y="112">diffraction forte, filtrage (gradins, pavillon)</text>
+<rect fill="#152033" height="70" rx="8" stroke="#d4b36a" width="260" x="610" y="60"/>
+<text fill="#f0d9a0" font-size="13" x="625" y="88">obstacle ≪ λ</text>
+<text fill="#9aa8bc" font-size="12" x="625" y="105"><tspan dy="0" x="625">diffraction marquée (graves, infra)</tspan></text>
+<text fill="#9aa8bc" font-size="13" x="30" y="157"><tspan dy="0" x="30">1 kHz : λ = 34 cm. 100 Hz : 3,4 m. 40 kHz : 8,6 mm.</tspan><tspan dy="16" x="30">Contournement ≠ transmission dans le mur : matériau et montage comptent.</tspan></text>
+</svg>

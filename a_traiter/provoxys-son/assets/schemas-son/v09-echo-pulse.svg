@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="v09-title v09-desc" fill="#e8eef6" font-family="Arial, Helvetica, sans-serif" role="img" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg"><title id="v09-title">Schéma 5 — Écho pulsé (Langevin → sonar → échographe)</title><desc id="v09-desc">Δt est le temps total aller-retour ; un trajet vaut Δt/2 si la cible et le milieu sont immobiles. La profondeur est cΔt/2.</desc><style>text{font-family:Arial,Helvetica,sans-serif} @keyframes waveShift{to{stroke-dashoffset:-240}} @keyframes pulseEnv{0%,100%{opacity:.35}50%{opacity:1}} @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-80px)}} .anim-wave{stroke-dasharray:8 10;animation:waveShift 2.4s linear infinite}.anim-env{animation:pulseEnv 1.6s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.anim-wave,.anim-env{animation:none}}</style>
+<rect fill="#0a1220" height="200" width="900"/>
+<text fill="#d4b36a" font-family="Source Sans 3,sans-serif" font-size="16" x="20" y="26">Schéma 5 — Écho pulsé (Langevin → sonar → échographe)</text>
+<rect fill="#152033" height="50" rx="6" stroke="#6fd4c7" width="90" x="40" y="70"/>
+<text fill="#e8eef6" font-size="13" x="55" y="100">quartz</text>
+<path d="M140 95 H 430" stroke="#6fd4c7" stroke-dasharray="6 6" stroke-width="2"/>
+<polygon fill="#6fd4c7" points="430,85 460,95 430,105"/>
+<rect fill="#152033" height="50" rx="6" stroke="#d4b36a" width="100" x="470" y="70"/>
+<text fill="#f0d9a0" font-size="13" x="488" y="100">cible</text>
+<path d="M470 130 H 160" stroke="#d4b36a" stroke-dasharray="4 6" stroke-width="2"/>
+<polygon fill="#d4b36a" points="160,120 130,130 160,140"/>
+<text fill="#9aa8bc" font-size="12" x="200" y="60">émission Δt/2</text>
+<text fill="#9aa8bc" font-size="12" x="250" y="168">retour Δt/2 — la forme de l’écho encode la cible</text>
+</svg>

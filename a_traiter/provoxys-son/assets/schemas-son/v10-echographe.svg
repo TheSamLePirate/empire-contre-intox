@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="v10-title v10-desc" fill="#e8eef6" font-family="Arial, Helvetica, sans-serif" role="img" viewBox="0 0 900 160" xmlns="http://www.w3.org/2000/svg"><title id="v10-title">Schéma — chaîne d’un échographe</title><desc id="v10-desc">R désigne ici un coefficient en amplitude à incidence normale. Le gel évite surtout une lame d’air. Une image B représente les échos traités ; elle ne lit pas directement une impédance absolue en chaque pixel.</desc><style>text{font-family:Arial,Helvetica,sans-serif} @keyframes waveShift{to{stroke-dashoffset:-240}} @keyframes pulseEnv{0%,100%{opacity:.35}50%{opacity:1}} @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-80px)}} .anim-wave{stroke-dasharray:8 10;animation:waveShift 2.4s linear infinite}.anim-env{animation:pulseEnv 1.6s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.anim-wave,.anim-env{animation:none}}</style>
+<rect fill="#0a1220" height="160" width="900"/>
+<text fill="#d4b36a" font-family="Source Sans 3,sans-serif" font-size="15" x="20" y="24">Schéma — chaîne d’un échographe</text>
+<text fill="#6fd4c7" font-size="13" x="30" y="80">PZT</text>
+<text fill="#d4b36a" x="80" y="80">→</text>
+<text fill="#6fd4c7" font-size="13" x="110" y="80">gel</text>
+<text fill="#d4b36a" x="160" y="80">→</text>
+<text fill="#6fd4c7" font-size="13" x="190" y="80">tissu c≈1540 m/s</text>
+<text fill="#d4b36a" x="360" y="80">→</text>
+<text fill="#6fd4c7" font-size="13" x="390" y="80">écho Z</text>
+<text fill="#d4b36a" x="480" y="80">→</text>
+<text fill="#f0d9a0" font-size="13" x="510" y="80">coupe B + Doppler</text>
+<text fill="#9aa8bc" font-size="12" x="30" y="120">Lame d’air : réflexion presque totale. Profondeur calculée avec c = 1540 m/s.</text>
+</svg>

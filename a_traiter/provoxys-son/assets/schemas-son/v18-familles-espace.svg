@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="v18-title v18-desc" fill="#e8eef6" font-family="Arial, Helvetica, sans-serif" role="img" viewBox="0 0 900 210" xmlns="http://www.w3.org/2000/svg"><title id="v18-title">Infographie — trois familles, un seul mot « son »</title><desc id="v18-desc">A et B décrivent la physique des exemples ; C décrit une opération de mise en audio. Persée relève de A puis de C ; LIGO mesure une onde gravitationnelle, autre physique, que l’on peut aussi rendre audible.</desc><style>text{font-family:Arial,Helvetica,sans-serif} @keyframes waveShift{to{stroke-dashoffset:-240}} @keyframes pulseEnv{0%,100%{opacity:.35}50%{opacity:1}} @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-80px)}} .anim-wave{stroke-dasharray:8 10;animation:waveShift 2.4s linear infinite}.anim-env{animation:pulseEnv 1.6s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.anim-wave,.anim-env{animation:none}}</style>
+<rect fill="#0a1220" height="210" width="900"/>
+<text fill="#d4b36a" font-family="Source Sans 3,sans-serif" font-size="16" x="20" y="26">Infographie — trois familles, un seul mot « son »</text>
+<rect fill="#152033" height="120" rx="10" stroke="#6fd4c7" width="280" x="20" y="50"/>
+<text fill="#6fd4c7" font-size="14" x="35" y="78">A. Acoustique de fluide</text>
+<text fill="#9aa8bc" font-size="12" x="35" y="104">Soleil, étoiles, amas,</text>
+<text fill="#9aa8bc" font-size="12" x="35" y="122">plasma baryons-photons</text>
+<text fill="#f0d9a0" font-size="12" x="35" y="148">mHz (Soleil) ; fHz (Persée)</text>
+<rect fill="#152033" height="120" rx="10" stroke="#e08a6a" width="280" x="310" y="50"/>
+<text fill="#e08a6a" font-size="14" x="325" y="78">B. Plasma / Langmuir</text>
+<text fill="#9aa8bc" font-size="12" x="325" y="104">fpe, type III, Voyager</text>
+<text fill="#9aa8bc" font-size="12" x="325" y="122">pas une pression d’air</text>
+<text fill="#f0d9a0" font-size="12" x="325" y="148">kHz → MHz = « ultra » chiffré</text>
+<rect fill="#152033" height="120" rx="10" stroke="#d4b36a" width="280" x="600" y="50"/>
+<text fill="#d4b36a" font-size="14" x="615" y="78">C. Sonification</text>
+<text fill="#9aa8bc" font-size="12" x="615" y="104">Persée : +57 / +58 octaves</text>
+<text fill="#9aa8bc" font-size="12" x="615" y="122">LIGO chirp, images NASA</text>
+<text fill="#f0d9a0" font-size="12" x="615" y="143"><tspan dy="0" x="615">opération de mise en audio</tspan><tspan dy="16" x="615">de données de diverses physiques</tspan></text>
+</svg>

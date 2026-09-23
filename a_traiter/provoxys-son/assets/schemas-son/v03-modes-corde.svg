@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="v03-title v03-desc" fill="#e8eef6" font-family="Arial, Helvetica, sans-serif" role="img" viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg"><title id="v03-title">Schéma 3 — Modes d’une corde fixée aux deux bouts</title><desc id="v03-desc">Nœuds de déplacement aux extrémités ; n = 1, 2, 3 donnent fondamentale, octave et douzième. La corde est idéale ; sa raideur peut déplacer les partiels.</desc><style>text{font-family:Arial,Helvetica,sans-serif} @keyframes waveShift{to{stroke-dashoffset:-240}} @keyframes pulseEnv{0%,100%{opacity:.35}50%{opacity:1}} @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-80px)}} .anim-wave{stroke-dasharray:8 10;animation:waveShift 2.4s linear infinite}.anim-env{animation:pulseEnv 1.6s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.anim-wave,.anim-env{animation:none}}</style>
+<rect fill="#0a1220" height="230" width="900"/>
+<text fill="#d4b36a" font-family="Source Sans 3,sans-serif" font-size="16" x="20" y="26">Schéma 3 — Modes d’une corde fixée aux deux bouts</text>
+<line stroke="#3a4c66" x1="60" x2="840" y1="70" y2="70"/>
+<path d="M60 70 Q 450 20 840 70" fill="none" stroke="#6fd4c7" stroke-width="2.5"/>
+<text fill="#6fd4c7" font-size="12" x="850" y="74">n=1</text>
+<line stroke="#3a4c66" x1="60" x2="840" y1="130" y2="130"/>
+<path d="M60 130 Q 255 95 450 130 Q 645 165 840 130" fill="none" stroke="#d4b36a" stroke-width="2.5"/>
+<text fill="#d4b36a" font-size="12" x="850" y="134">n=2</text>
+<line stroke="#3a4c66" x1="60" x2="840" y1="190" y2="190"/>
+<path d="M60 190 Q 190 160 320 190 Q 450 220 580 190 Q 710 160 840 190" fill="none" stroke="#f0d9a0" stroke-width="2.5"/>
+<text fill="#f0d9a0" font-size="12" x="850" y="194">n=3</text>
+</svg>

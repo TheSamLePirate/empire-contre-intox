@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="v08-title v08-desc" fill="#e8eef6" font-family="Arial, Helvetica, sans-serif" role="img" viewBox="0 0 900 120" xmlns="http://www.w3.org/2000/svg"><title id="v08-title">Schéma — la trace</title><desc id="v08-desc">La flèche relie plusieurs techniques, pas une seule machine. La copie et la mémoire conduisent à la question des droits, déjà présente avant le phonographe.</desc><style>text{font-family:Arial,Helvetica,sans-serif} @keyframes waveShift{to{stroke-dashoffset:-240}} @keyframes pulseEnv{0%,100%{opacity:.35}50%{opacity:1}} @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-80px)}} .anim-wave{stroke-dasharray:8 10;animation:waveShift 2.4s linear infinite}.anim-env{animation:pulseEnv 1.6s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.anim-wave,.anim-env{animation:none}}</style>
+<rect fill="#0a1220" height="120" width="900"/>
+<text fill="#d4b36a" font-family="Source Sans 3,sans-serif" font-size="15" x="20" y="24">Schéma — la trace</text>
+<text fill="#6fd4c7" font-size="14" x="30" y="70">pression</text>
+<text fill="#d4b36a" x="130" y="70">→</text>
+<text fill="#6fd4c7" font-size="14" x="160" y="70">sillon / champ / bit</text>
+<text fill="#d4b36a" x="360" y="70">→</text>
+<text fill="#6fd4c7" font-size="14" x="390" y="70">copie</text>
+<text fill="#d4b36a" x="470" y="70">→</text>
+<text fill="#f0d9a0" font-size="14" x="500" y="70">droit + mémoire</text>
+</svg>

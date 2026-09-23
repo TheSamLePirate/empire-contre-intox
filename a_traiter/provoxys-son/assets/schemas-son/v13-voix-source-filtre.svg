@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg aria-labelledby="v13-title v13-desc" fill="#e8eef6" font-family="Arial, Helvetica, sans-serif" role="img" viewBox="0 0 900 150" xmlns="http://www.w3.org/2000/svg"><title id="v13-title">Schéma — source / filtre</title><desc id="v13-desc">À conduit maintenu fixe, déplacer f0 change la hauteur ; déplacer F1/F2 change la voyelle. Dans la voix réelle, les deux systèmes peuvent interagir, surtout dans certains registres chantés.</desc><style>text{font-family:Arial,Helvetica,sans-serif} @keyframes waveShift{to{stroke-dashoffset:-240}} @keyframes pulseEnv{0%,100%{opacity:.35}50%{opacity:1}} @keyframes drift{0%{transform:translateX(0)}100%{transform:translateX(-80px)}} .anim-wave{stroke-dasharray:8 10;animation:waveShift 2.4s linear infinite}.anim-env{animation:pulseEnv 1.6s ease-in-out infinite}@media(prefers-reduced-motion:reduce){.anim-wave,.anim-env{animation:none}}</style>
+<rect fill="#0a1220" height="150" width="900"/>
+<text fill="#d4b36a" font-family="Source Sans 3,sans-serif" font-size="15" x="20" y="24">Schéma — source / filtre</text>
+<text fill="#6fd4c7" font-size="14" x="30" y="80">glotte f0 + harmoniques</text>
+<text fill="#d4b36a" x="280" y="80">→</text>
+<text fill="#6fd4c7" font-size="14" x="310" y="80">conduit (F1 F2 F3)</text>
+<text fill="#d4b36a" x="520" y="80">→</text>
+<text fill="#f0d9a0" font-size="14" x="550" y="80">voyelle rayonnée</text>
+<text fill="#9aa8bc" font-size="12" x="30" y="120">On peut changer f0 sans changer F1–F2 (mélodie) et F1–F2 sans changer f0 (articulation).</text>
+</svg>
