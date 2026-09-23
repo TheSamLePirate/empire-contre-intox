@@ -356,7 +356,21 @@ if card:
         cands = [full + e for e in (".png", ".jpg", ".jpeg", ".webp") if (full + e) in manifest]
         if not cands and img.group(1).endswith(".index.webp"):
             rep("WARN", "manifeste", f"image pleine taille du hero ({full}.png/.jpg) absente du manifeste → pas d'og:image")
-rep("PASS" if not absent else "FAIL", "manifeste", "tous les fichiers du dossier sont déclarés" if not absent else f"{len(absent)} fichier(s) non déclaré(s) : " + ", ".join(absent[:8]))
+referenced = set()
+for attr, val in re.findall(r'\b(src|href|poster|data-src)="([^"]+)"', page_src):
+    v = html.unescape(val).strip().split("#")[0].split("?")[0]
+    if v and not v.startswith(("http", "mailto:", "tel:", "data:", "javascript:", "//", "#")) and "${" not in v:
+        referenced.add(os.path.normpath(os.path.join(page_dir, v)).replace(os.sep, "/"))
+for u in re.findall(r'url\(\s*["\']?([^"\')]+)["\']?\s*\)', page_src):
+    if not u.startswith(("http", "data:", "#", "%23")) and "${" not in u:
+        referenced.add(os.path.normpath(os.path.join(page_dir, u.split("?")[0])).replace(os.sep, "/"))
+must = [a for a in absent if a.split("  ")[0] in referenced or "(image de carte" in a]
+other = [a for a in absent if a not in must]
+if rel_page not in manifest:
+    must.insert(0, rel_page + "  (la page elle-même)")
+rep("PASS" if not must else "FAIL", "manifeste", "la page et tout ce qu'elle référence sont déclarés" if not must else f"{len(must)} fichier(s) référencé(s) mais non déclaré(s) : " + ", ".join(must[:8]))
+if other:
+    rep("WARN", "manifeste", f"{len(other)} fichier(s) du dossier non déclaré(s), donc non publié(s) — voulu ? : " + ", ".join(other[:8]))
 if "--no-build" not in flags:
     r = run(["npx", "--yes", "tsx", "scripts/prepare-legacy.ts"])
     ok = r.returncode == 0

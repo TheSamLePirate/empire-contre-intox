@@ -102,8 +102,13 @@ Bilan : <n> alertes de grammaire et <m> mots inconnus examinés → <a> correcti
 - Les deux tables de corrections n'ont **que** des lignes à appliquer ; pas de ligne
   « à confirmer » dans une table de corrections : une hésitation va dans les faux
   positifs avec la raison, ou dans ta réponse finale.
-- La table « Faux positifs » sert de **liste d'exclusion** aux passes suivantes :
-  l'extrait doit être **exactement** le fragment signalé (un mot inconnu = ce mot).
+- La table « Faux positifs » sert de **liste d'exclusion** aux passes suivantes.
+  Pour un **mot inconnu**, l'extrait est ce mot, exactement. Pour une **alerte de
+  grammaire**, l'extrait est soit le fragment signalé tel quel (colonne « Extrait » du
+  rapport), soit **un morceau de la colonne « Contexte » qui contient ce fragment**
+  (préférable quand le fragment est court comme « à », « une », « la » : « Passez à
+  « Dans la goutte » » plutôt que « à »). Un extrait reformulé ou tronqué autrement
+  n'exclut rien, et l'alerte reviendra à la passe suivante.
 - Aucune ligne vide dans une table, pas de `|` dans les cellules (écrire « ou »).
 
 ## Réponse finale

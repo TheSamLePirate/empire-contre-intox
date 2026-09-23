@@ -158,7 +158,7 @@ def load_false_positives(md):
                 continue  # en-tête
             cells = [c.strip().strip("`").strip() for c in line.strip().strip("|").split("|")]
             if cells and cells[0] and not set(cells[0]) <= set("-: "):
-                frags.add(cells[0])
+                frags.add(cells[0].replace("\u00a0", " "))  # espaces insécables normalisées
     return frags
 
 
@@ -201,8 +201,9 @@ def main():
             frag = b["text"][e["nStart"]:e["nEnd"]]
             if (cat in TYPO_CATEGORIES or e.get("sRuleId", "") in TYPO_RULES) and not keep_typo:
                 excluded[cat if cat in TYPO_CATEGORIES else e.get("sRuleId", "")] += 1; continue
-            ctx = b["text"][max(0, e["nStart"] - 80):e["nEnd"] + 80]
-            if frag in fp or any(frag in x and x in ctx for x in fp):
+            ctx = b["text"][max(0, e["nStart"] - 80):e["nEnd"] + 80].replace("\u00a0", " ")
+            nfrag = frag.replace("\u00a0", " ")
+            if nfrag in fp or any(nfrag in x and x in ctx for x in fp):
                 excluded["faux-positif-consigné"] += 1; continue  # extrait exact, ou extrait consigné englobant le fragment
             grammar.append({
                 "line": lines[min(e["nStart"], len(lines) - 1)], "category": cat, "rule": e.get("sRuleId", ""),
@@ -211,7 +212,7 @@ def main():
             })
         for e in se:
             w = e.get("sValue", "")
-            if w in ignore or w in fp or re.fullmatch(r"[\d\W_]+", w):
+            if w in ignore or w.replace("\u00a0", " ") in fp or re.fullmatch(r"[\d\W_]+", w):
                 excluded["mot-accepté"] += 1; continue
             unknown[w].append({"line": lines[min(e["nStart"], len(lines) - 1)], "sugg": e.get("aSuggestions", [])})
     grammar.sort(key=lambda r: r["line"])
