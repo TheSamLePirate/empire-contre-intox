@@ -184,6 +184,9 @@ vide jusqu'à génération — le signaler à l'utilisateur).
   = `.prose` (le verbatim, en `<p>`/listes/`group-title`/encadrés) + `aside.side-note`
   (avec un encadré « anti-intox » si nuances). Éditorialiser les **titres**, jamais
   le **corps**.
+- **Ajouts éditoriaux** (asides, encadrés, intro, légendes) : phrases courtes, un
+  paragraphe par idée, pas de métaphore ni d'effet de style quand une formulation
+  littérale existe.
 - Convertir les **tableaux** du transcript en `.dtable`, les **citations orales** en
   `.dialogue-block`, les **articles de loi** en `.article-noir`, le **sommaire** en
   `.pillar`, et **toute formule mathématique** (orale ou à rappeler) en **KaTeX** —
@@ -589,6 +592,11 @@ Tout le reste s'enchaîne sans question : les 15 étapes, les boucles de correct
 l'attente des images (en arrière-plan), les corrections ❌ des agents, les
 mises à jour d'index / RSS / manifeste. Une étape décidée se **fait**, elle ne
 s'annonce pas (« je vais maintenant… » puis fin de tour = étape non faite).
+Même chose pour : un long bilan qui se termine sur l'étape suivante sans la lancer ;
+« je continue sauf avis contraire » ; une liste de décisions pour l'utilisateur alors
+qu'aucune ne bloque la suite ; s'arrêter parce qu'un jalon est atteint ou que le tour
+a été long. Un point d'étape s'écrit **dans le même message que l'appel d'outil
+suivant**.
 
 **Édition ciblée** — `index.html`, `sources.html` et le manifeste font plusieurs
 milliers de lignes, la page en fait autant : **modifier chirurgicalement** (Edit,
@@ -596,9 +604,12 @@ milliers de lignes, la page en fait autant : **modifier chirurgicalement** (Edit
 ajouter une carte ou une section. Le nombre de tokens d'édition se minimise quand
 le résultat est le même.
 
-**Effort** — le réglage courant (`high`) est le bon pour tout le process : les
-agents de vérification ne descendent jamais à `low` (recherche sautée), et la
-construction de la page ne monte pas à `xhigh`/`max` (brouillon en double).
+**Effort** — dépend du modèle. **Fable 5.1** : `high` pour tout le process.
+**Opus 5.5** : `medium` suffit pour construire la page (`high` si la qualité baisse) ;
+à niveau égal il réfléchit davantage par tour. Dans les deux cas, les agents de
+vérification restent à `high` (fixé dans leur frontmatter) et ne descendent jamais à
+`low` (recherche sautée), et la construction de la page ne monte pas à `xhigh`/`max`
+(brouillon en double).
 
 ---
 

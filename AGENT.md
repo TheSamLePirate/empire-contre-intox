@@ -183,9 +183,15 @@ Voir `provoxys/Artemis2.html` (classes `.eci-home`, `.eci-collective`, `.eci-btn
   `a_traiter/<dossier>/journal.md` — décisions, verdicts, images à refaire (les
   coquilles ont leur propre fichier, `coquilles.md`, à côté de la page) — parce que la compaction du contexte fait perdre les détails
   exacts. Le récapitulatif final se construit depuis ce journal.
-- **Effort.** Le réglage `high` convient à tout le process : jamais `low` pour la
-  vérification factuelle (la recherche est sautée), jamais `xhigh`/`max` pour
-  rédiger une page (brouillon en double).
+- **Effort.** Fable 5.1 : `high` pour tout le process. Opus 5.5 : `medium` suffit
+  pour rédiger une page (`high` si la qualité baisse). Dans les deux cas : jamais
+  `low` pour la vérification factuelle (la recherche est sautée — les agents
+  `verif-claims` et `tri-grammalecte` sont fixés à `high`), jamais `xhigh`/`max`
+  pour rédiger une page (brouillon en double).
+- **Fins de tour.** Une étape décidée se fait dans le même tour : ni bilan qui
+  annonce la suite sans la lancer, ni « je continue sauf avis contraire », ni liste
+  de décisions non bloquantes, ni arrêt parce qu'un jalon est atteint. Les points
+  d'étape accompagnent l'appel d'outil suivant.
 - **Vérification visuelle.** Navigateur intégré de Claude Code (config
   `.claude/launch.json`, serveur `site-statique`), balayage de largeurs dans un
   seul lot d'actions, `zoom` sur les zones à juger ; pour une image générée,
