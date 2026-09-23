@@ -69,8 +69,10 @@ Composants prêts (classes) : `.script-block`, `.science-block` (accent), `.ques
 (image + figcaption), `.sub` (sous-titres), `.group-title`.
 
 **Encadré « Anti-intox »** = un `.science-block` (ou `.side-note`) qui porte les
-**nuances vérifiées** (fourchettes, dates exactes, « estimation », corrections de
-coquilles) SANS modifier le texte transcrit.
+**nuances vérifiées** (fourchettes, dates exactes, « estimation », corrections
+d'erreurs factuelles) SANS modifier le texte transcrit. Les **coquilles** ne s'y
+commentent jamais : elles se corrigent en silence et se consignent dans
+`coquilles.md` (SKILL.md, « Coquilles »).
 
 ---
 
@@ -149,12 +151,21 @@ CSS/JS de référence : copier depuis `ymir-lalie/esclavage/index.html` (blocs `
 
 - Transcription **visible et intégrale** ; jamais réduite à un résumé.
 - Ne pas corriger le texte transcrit (sauf coquilles évidentes : `$CO_2$`→CO₂,
-  accents, espaces, fautes de frappe manifestes) — **signaler** ces corrections.
+  accents, espaces, fautes de frappe manifestes, noms propres mal transcrits) —
+  corriger **sans le dire dans la page**, et **consigner** chaque correction dans
+  `<equipe>/<dossier>/coquilles.md` (la seule trace).
 - Préfixes de numérotation et libellés de titres : **garder le verbatim** (c'est
   ce qui fait échouer `check-coverage.py`).
 - Marqueurs de prudence : fourchettes, « probablement », « selon les estimations ».
 - Sujets sensibles (esclavage, mémoire, religion, politique) : registre **grave,
   respectueux, non moralisateur, non partisan** ; encadrés « anti-intox » factuels.
+- **Prose des encadrés, notes de marge, intro, « Se lit »** : le codex est
+  cérémoniel par son *design* (or, capitales, devise), pas par sa prose. Le texte
+  pédagogique dit ce qu'il veut dire : phrase littérale quand elle existe, pas de
+  métaphore décorative (« un curseur qu'on tourne » pour « un paramètre qu'on fait
+  varier »), pas de formule qui met en scène l'auteur plutôt que l'idée. Une
+  métaphore traîne des connotations qu'on ne contrôle pas ; un encadré anti-intox
+  doit être exact avant d'être beau.
 
 ---
 
@@ -267,7 +278,8 @@ et `jorge-zalex/elements.html` (Voie A, accents or).
   `.fb-head` / `.fb-note` (frères), **jamais** dans le `.formula[data-tex]`.
 - Note **fidèle** : n'expliquer que des valeurs présentes dans le transcript ou des
   constantes standard ; ne jamais inventer un chiffre. Si la page d'origine porte
-  une coquille de formule, la **corriger** et la signaler (cf. §6).
+  une coquille de formule, la **corriger** sans commentaire et la consigner dans
+  `coquilles.md` (cf. §6).
 
 ### d bis) Lecture orale « Se lit » (OBLIGATOIRE)
 

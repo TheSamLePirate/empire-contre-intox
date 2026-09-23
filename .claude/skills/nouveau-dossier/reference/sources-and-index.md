@@ -5,10 +5,20 @@
 1. **Extraire** toutes les affirmations factuelles et données chiffrées du/des
    transcript(s) : dates, durées, quantités, %, noms (personnes, lieux, missions,
    espèces), bornes, citations de lois, etc.
-2. **Lancer plusieurs agents `Agent` (subagent_type: general-purpose) EN PARALLÈLE**
-   (un même message, plusieurs appels), un par thème/sous-ensemble. Leur demander,
-   pour chaque claim : **verdict** (✅ confirmé · ⚠️ à nuancer · 🔶 débattu · ❌ erroné)
-   + valeur de référence + 1–3 URL réelles vérifiées.
+2. **Lancer plusieurs agents `verif-claims` EN PARALLÈLE** (`subagent_type:
+   "verif-claims"` — défini dans `.claude/agents/verif-claims.md`, effort `high`,
+   format de sortie fixé), un même message, plusieurs appels, un par
+   thème/sous-ensemble. Leur passer la liste numérotée des affirmations **citées
+   telles quelles** ; ils rendent pour chaque claim : **verdict** (✅ confirmé ·
+   ⚠️ à nuancer · 🔶 débattu · ❌ erroné) + valeur de référence + 1–3 URL réelles
+   vérifiées + DOI Crossref + la ligne « Fiche » prête pour `sources.html`.
+   Deux consignes de l'agent à ne pas défaire dans le prompt :
+   - **les noms se cherchent tels qu'ils sont écrits dans le transcript**, en plus
+     des graphies plausibles — la transcription automatique déforme les noms
+     propres, et la graphie correcte est souvent une coquille à corriger ;
+   - **les résumés de sources sont reformulés**, au plus une courte citation
+     marquée par affirmation : ce qui va dans `sources/` et dans le champ `s:` des
+     fiches est publié sous licence CC BY-NC-ND au nom du collectif, pas recopié.
 3. **Hiérarchie des sources** selon le type de dossier :
    - **Science** → NASA, ESA, USGS, IUGS/ICS (stratigraphy.org), Smithsonian,
      articles à comité de lecture **avec DOI vérifié** ; Wikipédia en dernier recours.

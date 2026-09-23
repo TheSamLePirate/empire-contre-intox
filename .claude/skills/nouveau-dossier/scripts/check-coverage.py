@@ -10,7 +10,16 @@ transcript en segments de phrase et vérifie que chacun est un sous-ensemble du
 texte rendu de la page.
 
 Usage :
-    python3 check-coverage.py <page.html> <transcript1.txt> [transcript2.txt ...]
+    python3 check-coverage.py <page.html> <transcript1.txt> [transcript2.txt ...] [--coquilles <fichier.md>]
+
+Coquilles : si `<dossier de la page>/coquilles.md` existe (ou si `--coquilles` est
+donné), ses corrections « transcript → page » sont APPLIQUÉES au transcript avant
+la comparaison. Une coquille corrigée dans la page et consignée dans coquilles.md ne
+compte donc plus comme manquante ; une coquille corrigée mais NON consignée reste
+un manquant — c'est voulu, coquilles.md est la seule trace autorisée (la page ne
+mentionne jamais la correction). Format attendu : un tableau Markdown dont les deux
+premières colonnes de contenu sont « Transcript (verbatim) » et « Page (corrigé) »
+(une colonne numéro en tête est tolérée).
 
 Sortie :
     - liste des segments MANQUANTS (avec un extrait), par fichier.
@@ -23,8 +32,10 @@ Les « manquants » typiques et leur traitement :
       → RESTAURER le préfixe verbatim dans le HTML.
     - titre de section / document éditorialisé → réintroduire le libellé exact.
     - coquille évidente corrigée (ex. "ajoter"→"ajouter", "votreADN"→"votre ADN")
-      → ACCEPTABLE, mais à signaler dans le récap (normalisation typo légère).
+      → ACCEPTABLE, à consigner dans coquilles.md (jamais dans la page) ; une fois
+      consignée, elle n'apparaît plus ici.
 """
+import os
 import re
 import sys
 import unicodedata
@@ -57,9 +68,39 @@ def html_text(path: str) -> str:
     return norm(html)
 
 
-def chunks(path: str):
-    out = []
+def load_coquilles(path: str):
+    """Lit les paires (transcript → page) d'un coquilles.md (tableau Markdown)."""
+    pairs = []
     for line in open(path, encoding="utf-8").read().splitlines():
+        if not line.strip().startswith("|"):
+            continue
+        cells = [c.strip().strip("`").strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 2 or set(cells[0]) <= set("-: ") or cells[0].lower().startswith(("#", "n°", "transcript")):
+            continue
+        if cells[0].isdigit():
+            cells = cells[1:]
+        if len(cells) >= 2 and cells[0] and cells[0] != cells[1]:
+            pairs.append((cells[0], cells[1]))
+    return pairs
+
+
+def apply_coquilles(text: str, pairs):
+    """Applique les corrections au transcript ; renvoie (texte, non trouvées)."""
+    unused = []
+    for avant, apres in pairs:
+        if avant in text:
+            text = text.replace(avant, apres)
+        else:
+            unused.append(avant)
+    return text, unused
+
+
+def chunks(path: str, pairs=()):
+    out = []
+    text = open(path, encoding="utf-8").read()
+    if pairs:
+        text, _ = apply_coquilles(text, pairs)
+    for line in text.splitlines():
         line = line.strip()
         if not line:
             continue
@@ -74,11 +115,25 @@ def main():
     if len(sys.argv) < 3:
         print(__doc__)
         sys.exit(2)
-    page, transcripts = sys.argv[1], sys.argv[2:]
+    argv = sys.argv[1:]
+    coq = None
+    if "--coquilles" in argv:
+        i = argv.index("--coquilles"); coq = argv[i + 1]; del argv[i:i + 2]
+    page, transcripts = argv[0], argv[1:]
+    if coq is None:
+        auto = os.path.join(os.path.dirname(page), "coquilles.md")
+        coq = auto if os.path.isfile(auto) else None
+    pairs = load_coquilles(coq) if coq else []
+    if coq:
+        raw = "".join(open(t, encoding="utf-8").read() for t in transcripts)
+        _, unused = apply_coquilles(raw, pairs)
+        print(f"coquilles.md : {len(pairs)} correction(s) appliquée(s) depuis {coq}")
+        for u in unused:
+            print(f"   ⚠ entrée introuvable dans le transcript (périmée ?) : {u[:100]}")
     H = html_text(page)
     total_missing = 0
     for t in transcripts:
-        segs = chunks(t)
+        segs = chunks(t, pairs)
         missing = [c for c in segs if norm(c) not in H]
         total_missing += len(missing)
         status = "OK" if not missing else f"{len(missing)} MANQUANT(S)"

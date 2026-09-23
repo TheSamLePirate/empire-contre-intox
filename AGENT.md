@@ -23,7 +23,11 @@ Le site est publié sur deux canaux :
 > - **`reference/images-template.md`** — gabarit `images_a_generer.md` (génération
 >   des images confiée à **Codex**, lancée **en parallèle** de la construction) ;
 > - **`scripts/check-coverage.py`** — contrôle **obligatoire** des 100 % mot pour mot ;
-> - **`scripts/optimize-pngs.sh`** — optimisation PNG du site (pngquant + oxipng).
+> - **`scripts/verify-dossier.py`** — **tous les contrôles de fin en une commande**
+>   (verbatim, formules, page, liens, JS, index, manifeste, RSS, cache, sources) ;
+> - **`scripts/optimize-pngs.sh`** — optimisation PNG du site (pngquant + oxipng) ;
+> - **`.claude/agents/verif-claims.md`** — l'**agent de vérification factuelle**
+>   (effort `high`, DOI Crossref, noms cherchés tels qu'écrits, résumés reformulés).
 >
 > À la racine du dépôt : **`scripts/generate-rss.py`** — régénère **`rss.xml`**
 > (flux RSS riche) depuis `index.html` ; à relancer **pour chaque dossier** (voir
@@ -157,11 +161,37 @@ Un créateur invité peut **conserver sa propre identité visuelle** (ex. `provo
 
 Voir `provoxys/Artemis2.html` (classes `.eci-home`, `.eci-collective`, `.eci-btn`) comme gabarit, en reprenant les variables CSS de la page hôte.
 
+## Manière de travailler (valable pour toute tâche du dépôt)
+
+- **Édition ciblée.** `index.html`, `sources/sources.html`, le manifeste et les pages
+  de dossier font des milliers de lignes : modifier chirurgicalement (Edit, `sed`,
+  remplacement scripté), ne jamais réécrire un fichier entier quand le résultat
+  serait le même. Une page se rédige **chapitre par chapitre, en une passe**, pas
+  en brouillon complet puis recopie.
+- **Périmètre = la demande.** Ce qu'on remarque en passant (bug voisin, dette,
+  page à corriger) se signale dans le récapitulatif, il ne se corrige pas dans la
+  foulée. Exception volontaire : un build cassé par un autre dossier se répare et
+  se dit.
+- **Points d'arrêt.** On ne s'arrête pour demander que pour **publier** (commit,
+  push, déploiement) ou pour une **image indigne** sur un sujet sensible. Tout le
+  reste s'enchaîne : une étape décidée se fait, elle ne s'annonce pas.
+- **Journal sur disque.** Sur une tâche longue (un dossier), tenir
+  `a_traiter/<dossier>/journal.md` — décisions, verdicts, images à refaire (les
+  coquilles ont leur propre fichier, `coquilles.md`, à côté de la page) — parce que la compaction du contexte fait perdre les détails
+  exacts. Le récapitulatif final se construit depuis ce journal.
+- **Effort.** Le réglage `high` convient à tout le process : jamais `low` pour la
+  vérification factuelle (la recherche est sautée), jamais `xhigh`/`max` pour
+  rédiger une page (brouillon en double).
+- **Vérification visuelle.** Navigateur intégré de Claude Code (config
+  `.claude/launch.json`, serveur `site-statique`), balayage de largeurs dans un
+  seul lot d'actions, `zoom` sur les zones à juger ; pour une image générée,
+  recadrer les visages et textes avant de conclure.
+
 ## Méthode obligatoire
 
 1. Lire **tout** le déroulé avant de coder.
 2. Identifier le titre, le ton, les actes/chapitres naturels, les passages forts, la chute.
-3. Ne pas corriger ni réécrire la transcription centrale (seules des normalisations typo légères sont tolérées : `$CO_2$`→`CO₂`, accents/espaces, coquilles évidentes — les signaler).
+3. Ne pas corriger ni réécrire la transcription centrale (seules des normalisations typo légères sont tolérées : `$CO_2$`→`CO₂`, accents/espaces, coquilles évidentes, noms propres mal transcrits). Une coquille se corrige **sans aucune mention dans la page** et se **consigne dans `<equipe>/<dossier>/coquilles.md`** (tableau transcript → page, un fichier par dossier, versionné, non publié) ; `check-coverage.py` lit ce fichier et n'y voit plus de manquant.
 4. Créer la page HTML autonome **dans le dossier de son auteur**, CSS + JS intégrés.
 5. Référencer le sceau ECI avec le bon chemin relatif.
 6. Créer/placer une **image hero** pertinente dans `<dossier-auteur>/assets/` (nom explicite, ex. `artemis2-hero.png`).
@@ -719,4 +749,10 @@ Avant de terminer :
   affichée a sa lecture orale (voir « Formules ») ;
 - si le hero de l'accueil a changé, **régénérer `assets/og-index.jpg`**
   (`node scripts/generate-og-hero.mjs`) ;
-- mentionner les fichiers créés ou modifiés.
+- lancer `python3 .claude/skills/nouveau-dossier/scripts/verify-dossier.py <page> <transcripts…>`
+  jusqu'à **0 FAIL** : il enchaîne tous les contrôles ci-dessus qui se font hors
+  navigateur, et sort un rapport unique ;
+- **récapitulatif final à format fixe** (voir la skill) : résultat en une phrase,
+  tableau des fichiers créés ou modifiés, contrôles (rapport du script + balayage
+  navigateur), compte et chemin de `coquilles.md`, bilan de vérification factuelle,
+  reste à faire et hors périmètre. Prose littérale, lisible sans avoir suivi la session.

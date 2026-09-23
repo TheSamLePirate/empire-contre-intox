@@ -25,7 +25,11 @@ au transcript, **factuellement vérifiée**, intégrée à l'index et au dossier
 > - `reference/sources-and-index.md` — vérification, `sources/`, `sources.html`, index
 > - `reference/images-template.md` — gabarit `images_a_generer.md`
 > - `scripts/check-coverage.py` — **contrôle obligatoire** des 100 % verbatim
+> - `scripts/verify-dossier.py` — **TOUS les contrôles de fin en une commande**
+>   (verbatim, formules, page, liens, JS, index, manifeste, RSS, cache, sources)
 > - `scripts/optimize-pngs.sh` — optimisation PNG du site
+> - `.claude/agents/verif-claims.md` — **l'agent de vérification factuelle** (format
+>   de sortie fixé, DOI Crossref, noms tels qu'écrits dans le transcript, effort `high`)
 
 Les chemins ci-dessous sont relatifs à la racine du dépôt et à
 `.claude/skills/nouveau-dossier/`.
@@ -35,22 +39,36 @@ Les chemins ci-dessous sont relatifs à la racine du dépôt et à
 ## Vue d'ensemble — les 15 étapes
 
 0. Lire AGENT.md + ce skill.
-1. **Lire 100 % du/des transcript(s)** (en entier, vraiment).
+1. **Lire 100 % du/des transcript(s)** (en entier, vraiment). Ouvrir dans la
+   foulée le **journal de travail** `a_traiter/<dossier>/journal.md` (voir
+   « Journal de travail » ci-dessous) : il survit à la compaction, pas le contexte.
 2. Repérer titre, ton, actes/chapitres naturels, passages forts, chute. Si plusieurs
    transcripts → plusieurs **Actes** (`section.act-band`).
 3. Localiser le **dossier de l'équipe** (`<equipe>/`), le créer si besoin ; copier
    les **avatars** des auteurs dedans ; créer `assets/`.
-4. **Lancer la vérification factuelle** : plusieurs agents `Agent` en parallèle
-   (voir `reference/sources-and-index.md` §A). Lancer ces agents **tôt**, ils
-   tournent pendant qu'on construit la page.
+4. **Lancer la vérification factuelle** : plusieurs agents **`verif-claims`**
+   (`subagent_type: "verif-claims"`, défini dans `.claude/agents/`) en parallèle,
+   un par thème, **dans un même message** (voir `reference/sources-and-index.md`
+   §A). Lancer ces agents **tôt**, en arrière-plan : ils tournent pendant qu'on
+   construit la page, et leur rapport arrive en notification. **Jamais à effort
+   `low`** : à ce niveau le modèle répond de mémoire au lieu de chercher — l'agent
+   fixe `effort: high` dans son frontmatter, ne pas le surcharger vers le bas.
 5. **Construire la page** `<equipe>/<dossier>/index.html` (ou `<nom>.html`), CSS+JS
    intégrés, en copiant le framework codex d'un dossier abouti
    (`ymir-lalie/esclavage/index.html`) et en adaptant accents + contenu. Inclure le
    **correctif de révélation** (design-system §4) **et le bloc grands écrans
    `<style id="eci-wide-style">`** (design-system §9), copié tel quel du même dossier.
    Voir « Construction » ci-dessous.
-6. **100 % du transcript, mot pour mot.** Puis **vérifier** avec `check-coverage.py`
-   et **corriger jusqu'à 0 manquant** (hors coquilles légères signalées).
+6. **100 % du transcript, mot pour mot.** Écrire la page **chapitre par chapitre,
+   en une passe chacun** : pas de brouillon complet dans la réflexion puis recopie
+   (une page fait souvent plus de cent mille tokens ; la rédiger deux fois double
+   le tour sans rien améliorer). Puis **vérifier** avec `check-coverage.py` et
+   **corriger jusqu'à 0 manquant**. **Coquilles** : une coquille évidente du
+   transcript (`d2 vie` → `de vie`, `ajoter` → `ajouter`) se **corrige dans la page
+   sans aucune mention** — ni encadré, ni note, ni parenthèse — et se **consigne
+   dans `<equipe>/<dossier>/coquilles.md`** au moment où on la corrige (voir
+   « Coquilles » ci-dessous). `check-coverage.py` lit ce fichier et n'y voit plus
+   un manquant ; une coquille corrigée mais non consignée reste un manquant.
    **+ Formules en LaTeX (OBLIGATOIRE)** : toute formule prononcée, rappelée ou à
    expliquer est rendue en **KaTeX** (inline `.imath` à l'endroit exact + bloc
    `.formula-block` titré et **expliqué** à sa 1ʳᵉ occurrence). Jamais de formule en
@@ -67,8 +85,10 @@ Les chemins ci-dessous sont relatifs à la racine du dépôt et à
    illustrations de chapitre** (une par grand thème). **Le faire TÔT** (dès que le
    plan des chapitres et les noms de fichiers sont arrêtés) puis **confier la
    génération à Codex EN PARALLÈLE** — voir « Parallélisation » ci-dessous.
-9. **Vérifier la page en navigateur** (Chrome headless) : sections hautes révélées,
-   pas de scroll horizontal, JS sans erreur, ancres nav OK.
+9. **Vérifier la page en navigateur** — **navigateur intégré** de Claude Code
+   (`preview_start` sur la config `site-statique` de `.claude/launch.json`, voir
+   « Vérification navigateur ») : sections hautes révélées, balayage de largeurs
+   360 → 3840 px sans scroll horizontal, JS sans erreur console, ancres nav OK.
 10. **Documenter `sources/`** : `dossier-<N>-<nom>.md` + références (DOI ou
     institutionnelles), mettre à jour `sources/README.md`, **surfacer dans
     `sources.html`** (section + fiches + compteurs). Voir `reference/sources-and-index.md`.
@@ -93,8 +113,11 @@ Les chemins ci-dessous sont relatifs à la racine du dépôt et à
 
 Trois pistes tournent **en parallèle** ; ne pas les attendre l'une l'autre :
 
-1. **Vérification factuelle** — plusieurs agents `Agent` lancés tôt (étape 4),
-   pendant qu'on construit la page.
+1. **Vérification factuelle** — plusieurs agents `verif-claims` lancés tôt
+   (étape 4), pendant qu'on construit la page. Leur rapport est déjà au format
+   de l'audit et des fiches : l'étape 10 (`sources/`) peut elle aussi être
+   **déléguée à un sous-agent** pendant que l'agent principal écrit les chapitres —
+   fichiers différents, pas de conflit.
 2. **Génération des images par Codex** (`codex` CLI, déjà installé) — dès que le
    plan des chapitres et les **noms de fichiers** sont figés, écrire
    `images_a_generer.md` (étape 8) puis **lancer Codex en arrière-plan** et
@@ -113,9 +136,12 @@ Trois pistes tournent **en parallèle** ; ne pas les attendre l'une l'autre :
 3. **Construction de la page + sources + index** — le travail principal, en
    parallèle des deux tracks ci-dessus.
 
-Quand Codex a fini (notification du job en arrière-plan), **reprendre l'étape 12** :
+Quand Codex a fini (notification du job en arrière-plan), **reprendre l'étape 13** :
 vérifier visuellement **chaque** image (Read sur le PNG ; sujets sensibles →
-contrôler la **dignité** et la fidélité au propos ; **regénérer** une image ratée
+contrôler la **dignité** et la fidélité au propos ; **recadrer avant de juger** les
+zones à risque — visages, mains, texte incrusté — avec
+`sips -c <h> <w> --cropOffset <y> <x> in.png --out /tmp/crop.png` puis Read, une image
+entière lue en petit cache les défauts ; **regénérer** une image ratée
 en relançant Codex sur le seul fichier concerné), intégrer (hero déjà câblé +
 `figure.chapter-figure` pour les illustrations), **optimiser**
 (`scripts/optimize-pngs.sh <equipe>/<dossier>/assets/`), et réutiliser dans les
@@ -166,7 +192,9 @@ vide jusqu'à génération — le signaler à l'utilisateur).
 - intitulés de sections/documents éditorialisés → réintroduire le libellé exact ;
 - guillemets/espaces : `« x »` vs `"x"` sont tolérés (le script normalise) ;
 - coquilles évidentes corrigées (`ajoter`→`ajouter`, `votreADN`→`votre ADN`) :
-  **acceptable**, mais **lister** ces corrections dans le récap final.
+  **acceptable**, à condition d'être **consignées dans `coquilles.md`** (le script
+  les applique alors au transcript avant de comparer) — **jamais commentées dans la
+  page**.
 
 ```
 python3 .claude/skills/nouveau-dossier/scripts/check-coverage.py \
@@ -176,23 +204,51 @@ python3 .claude/skills/nouveau-dossier/scripts/check-coverage.py \
 
 ---
 
-## Vérification navigateur (recommandée)
+## Vérification navigateur (obligatoire)
 
-Avec `playwright-core` (Chrome système, sans téléchargement) :
-`cd /tmp/<dir> && npm i playwright-core`, puis un script
-`chromium.launch({channel:'chrome'})` qui :
-- scrolle jusqu'aux **chapitres les plus hauts** et vérifie `classList.contains('in')`
-  et `getComputedStyle(s).opacity === '1'` ;
-- (si dataviz) clique les éléments interactifs et vérifie les mises à jour + 0 erreur
-  console ;
-- prend des **screenshots** pour juger le rendu (et les envoyer à l'utilisateur).
+**Outil : le navigateur intégré de Claude Code** (`mcp__Claude_Browser__*`), testé
+en septembre 2026 sur ce Mac : `preview_start` avec `name: "site-statique"` lance un
+`python3 -m http.server 8765` depuis la racine (config dans `.claude/launch.json`),
+puis `navigate` vers `http://localhost:8765/<equipe>/<dossier>/index.html`. Un
+serveur HTTP est indispensable : les pages à bundle module ES et à `fetch()` ne se
+chargent pas en `file://`.
 
-**Balayage de largeurs (obligatoire)** — à **360 / 768 / 1280 / 1920 / 2560 / 3840 px**,
-sur chaque page touchée : `window.scrollTo(9999,0)` doit laisser `window.scrollX === 0`,
-et aucun élément ne doit avoir `getBoundingClientRect().right > clientWidth` — sauf à
-l'intérieur d'un conteneur volontairement défilant (`.dtable-wrap`, `.formula`, `.nav`).
-Vérifier au passage que la ligne de lecture reste sous ~100 signes aux grands paliers.
-Détail et pièges connus : design-system §9.
+Enchaîner **dans un seul `browser_batch`** (pas un appel par largeur) :
+
+1. `resize_window` à **360 / 768 / 1280 / 1920 / 2560 / 3840 px** ; à chaque palier,
+   `javascript_tool` :
+
+   ```js
+   window.scrollTo(9999,0);
+   const cw=document.documentElement.clientWidth;
+   const over=[...document.querySelectorAll('body *')].filter(e=>{
+     if(e.closest('svg,.dtable-wrap,.formula,.nav')) return false;      // enfants de SVG et conteneurs défilants
+     if(getComputedStyle(e).position==='fixed') return false;          // .grain, .atmos, .frame
+     const r=e.getBoundingClientRect(); return r.width>0 && r.right>cw+1;
+   }).slice(0,8).map(e=>e.tagName+'.'+e.className);
+   const p=document.querySelector('.transcript .prose p');
+   ({cw, scrollX, scrollWidth:document.documentElement.scrollWidth, over,
+     chars: p ? Math.round(p.getBoundingClientRect().width/(parseFloat(getComputedStyle(p).fontSize)*0.5)) : null})
+   ```
+
+   Attendu : `scrollX === 0`, `scrollWidth === cw`, `over` vide, `chars` sous ~100 aux
+   grands paliers. Sans le filtre, `.grain` (fixe) et les enfants de `<svg>` sortent
+   en faux positifs.
+2. Révélation des sections hautes : scroller jusqu'aux premiers chapitres et vérifier
+   `classList.contains('in')` + `getComputedStyle(s).opacity === '1'`.
+3. `read_console_messages` avec `onlyErrors: true` → aucune entrée.
+4. (dataviz) cliquer les éléments interactifs, relire la valeur affichée.
+5. `computer` **`zoom`** sur une région (hero, un encadré, une formule) plutôt qu'une
+   capture pleine page à 3840 px, qui est réduite à l'échelle du panneau et illisible.
+   Envoyer les captures utiles à l'utilisateur.
+6. Terminer par `resize_window` preset `desktop`.
+
+Repli si le navigateur intégré est indisponible : Chrome en **CDP brut** (voir la
+mémoire `browser-verify-cdp`) — jamais `--virtual-time-budget` (les viz React
+bouclent en `requestAnimationFrame`), et écrire les captures **en fichier** puis
+`Read`, jamais du base64 dans la sortie d'outil.
+
+Détail et pièges connus des largeurs : design-system §9.
 
 ---
 
@@ -239,7 +295,9 @@ PY
 
 - Les extensions **interdites** (`.txt`, `.odt`, `.docx`, `.pptx`, `.doc`) sont
   filtrées : le **transcript source n'est jamais publié**, c'est voulu — ne pas
-  l'ajouter à la main.
+  l'ajouter à la main. **`coquilles.md` n'est pas déclaré non plus** : c'est une
+  trace interne versionnée, pas une page du site (`verify-dossier.py` ne le réclame
+  pas dans le manifeste).
 - **Vérifier ensuite que le build passe** (obligatoire, ~20 s) :
 
   ```bash
@@ -287,7 +345,35 @@ de `index.html`. Il est **généré**, jamais édité à la main.
 
 ## Vérification finale (checklist)
 
-- [ ] `check-coverage.py` → **0 manquant** sur chaque transcript ;
+**Une seule commande** couvre tout ce qui se vérifie hors navigateur — la lancer
+depuis la racine, et boucler jusqu'à **0 FAIL** :
+
+```bash
+python3 .claude/skills/nouveau-dossier/scripts/verify-dossier.py \
+    <equipe>/<dossier>/index.html a_traiter/<dossier>/<transcript>.txt [autres .txt]
+# options : --no-build (saute prepare-legacy, ~20 s) · --no-katex · --no-verbatim (dossier sans transcription)
+```
+
+Elle enchaîne : verbatim (`check-coverage.py`), formules (compte `.fb-say` =
+`.formula-block`, accolades, **rendu KaTeX réel**, caractères combinants), structure
+de page (licence, compteur, sceau, devise, `eci-wide-style` en dernier `<style>`,
+polices interdites, mention obsolète), **liens locaux et ancres** (chaque `src`/`href`
+relatif existe, chaque `#id` a sa cible), équilibre des balises, `node --check` sur
+les scripts inline, index (carte, **numéro carte ↔ eyebrow**, cartes I → N sans
+trou, compteur du hero, « Les Sources » en dernier, somme des `group-count`),
+manifeste (fichiers déclarés + **build `prepare-legacy.ts`** + `og:image`), RSS
+(bien formé + dossier présent), empreintes de cache, présence dans `sources.html`,
+`README.md` et audit `dossier-*.md`.
+
+Un segment verbatim « manquant » qui correspond à une **coquille corrigée** se règle
+en **consignant la coquille dans `coquilles.md`** (le script la prend alors en
+compte), pas en réintroduisant la faute, et pas en la commentant dans la page. Le
+script signale aussi une coquille consignée mais encore présente dans la page, une
+entrée périmée, et le mot « coquille » s'il apparaît dans le texte de la page.
+
+Restent à faire **à la main**, parce qu'ils demandent un navigateur ou un œil :
+
+- [ ] `check-coverage.py` → **0 manquant** sur chaque transcript (via `verify-dossier.py`) ;
 - [ ] **formules** : toutes en KaTeX (inline + blocs expliqués), rendu réel vérifié
       → **0 failure** (script de validation §7), aucune formule en texte brut ;
 - [ ] **lecture orale** : autant de `.fb-say` que de `.formula-block`
@@ -312,15 +398,18 @@ de `index.html`. Il est **généré**, jamais édité à la main.
       sections hautes ;
 - [ ] si publication : `git status` propre côté fichiers du dossier, **pas de
       référence orpheline** ; build Pages `built` + `200` sur les URLs touchées ;
-- [ ] mentionner les fichiers créés/modifiés et les corrections de coquilles.
+- [ ] mentionner les fichiers créés/modifiés ; les coquilles sont dans `coquilles.md`
+      (le récapitulatif en donne le compte et le chemin, pas la liste).
 
 ---
 
 ## Publication (uniquement quand l'utilisateur le demande)
 
-- Stager **précisément** les fichiers du dossier (page, .txt, avatars, `assets/*.png`
-  optimisés, `index.html`, **`rss.xml`**, **`config/legacy-public-manifest.json`**,
-  `sources/*`) — **ne pas** balayer les
+- `verify-dossier.py` à **0 FAIL** juste avant de stager (il vérifie aussi que
+  `rss.xml`, le manifeste et les empreintes sont à jour).
+- Stager **précisément** les fichiers du dossier (page, **`coquilles.md`**, avatars,
+  `assets/*.png` optimisés, `index.html`, **`rss.xml`**,
+  **`config/legacy-public-manifest.json`**, `sources/*`) — **ne pas** balayer les
   dossiers non suivis sans rapport (`.pi/`, `a_traiter/`, etc.). Utiliser
   `git add <chemins explicites>`.
 - Message de commit **en français**, terminé par :
@@ -336,6 +425,140 @@ de `index.html`. Il est **généré**, jamais édité à la main.
 
 ---
 
+## Coquilles (`<equipe>/<dossier>/coquilles.md`)
+
+Le transcript est une prise orale retranscrite : il contient des fautes de frappe,
+des noms propres déformés, des espaces collées. La règle :
+
+- **La page corrige, en silence.** Aucune mention dans la page — pas d'encadré
+  « la coquille X a été corrigée », pas de note de marge, pas de « [sic] ». Le lecteur
+  lit un texte propre.
+- **`coquilles.md` est la seule trace**, un fichier par dossier, à côté de la page,
+  versionné dans git (le transcript, lui, reste dans `a_traiter/`), **non déclaré**
+  dans le manifeste public.
+- **Se consigne au moment de la correction**, pas à la fin (le journal renvoie
+  simplement au fichier et à son compte).
+- **Périmètre d'une coquille** : faute de frappe, lettre ou chiffre parasite,
+  espace manquante ou en trop, nom propre mal transcrit dont la graphie correcte
+  est établie (les agents `verif-claims` la signalent dans leur ligne « Graphie »).
+  **N'est pas une coquille** : une formulation orale, un mot familier, une
+  répétition, une erreur factuelle — ceux-là restent verbatim (l'erreur factuelle
+  se traite en encadré anti-intox).
+- `check-coverage.py` **lit ce fichier automatiquement** (même dossier que la page)
+  et applique les corrections au transcript avant de comparer : une coquille
+  consignée ne compte plus comme manquante ; non consignée, elle le reste.
+
+Gabarit (les deux premières colonnes de contenu sont lues par le script, le reste
+est libre) :
+
+```markdown
+# Coquilles — <Titre> (Dossier <N>)
+
+Transcript : `a_traiter/<dossier>/<fichier>.txt` · Page : `index.html`
+La page corrige sans le dire ; ce fichier est la seule trace. Non publié.
+
+| # | Transcript (verbatim) | Page (corrigé) | Emplacement | Nature |
+|---|---|---|---|---|
+| 1 | d2 vie ou de mort | de vie ou de mort | chap. 4 · imperium | chiffre parasite |
+| 2 | Tarquin le superb | Tarquin le Superbe | chap. 1 · les rois | nom propre |
+| 3 | votreADN | votre ADN | chap. 2 | espace manquante |
+```
+
+La colonne « Transcript » doit reproduire la chaîne **exactement** telle qu'elle est
+dans le `.txt` (c'est ce que le script remplace) ; assez longue pour être unique si
+la faute est courte (« d2 vie ou de mort » plutôt que « d2 »).
+
+---
+
+## Journal de travail (`a_traiter/<dossier>/journal.md`)
+
+Un dossier occupe plusieurs heures de session : la **compaction du contexte
+arrive forcément**, et un résumé perd ce qui est précis — décisions, verdicts, numérotation retenue, images à refaire. Le journal met ces faits **sur
+disque**, à côté du transcript (dossier `a_traiter/`, non publié, ignoré par git).
+`images_a_generer.md` joue déjà ce rôle pour les images ; le journal le généralise.
+
+- **Créé à l'étape 1**, avant de lire le transcript ; **mis à jour au fil des
+  étapes**, pas à la fin. Après une compaction, **le relire d'abord**.
+- Gabarit :
+
+  ```markdown
+  # Journal — <Titre> (Dossier <N>)
+  ## Décisions
+  - Numéro : <N> · équipe : <equipe> · dossier : <equipe>/<dossier>/ · accent : #xxxxxx
+  - Parcours d'index : <nom> (group-count <k> → <k+1>)
+  - Voie A/B, compagnons, particularités
+  ## Coquilles
+  - consignées dans <equipe>/<dossier>/coquilles.md (compte : 3)
+  ## Verdicts des agents (résumé)
+  - ❌ <affirmation> → corrigée en encadré <id>
+  - ⚠️ <affirmation> → nuance en encadré <id>
+  ## Images
+  - hero : <fichier> ✅ · chap.2 : <fichier> à régénérer (texte illisible)
+  ## Étapes faites / restantes
+  - [x] 1–7 · [ ] 8 images (Codex lancé 14:02) · [ ] 10 sources · …
+  ```
+
+- Le **récapitulatif final** se construit **depuis le journal**, pas de mémoire.
+
+---
+
+## Périmètre et points d'arrêt
+
+**Périmètre** — la skill touche : le dossier `<equipe>/<dossier>/` (page, `assets/`,
+`coquilles.md`, `images_a_generer.md`), les avatars de l'équipe, `index.html` (carte + compteurs + nav de pied), `rss.xml`,
+`config/legacy-public-manifest.json`, `sources/` (audit, refs, `README.md`,
+`sources.html`), et les `?v=` des pages qui référencent une ressource **modifiée**.
+Elle ne touche **pas** : les autres dossiers, `AGENT.md`, les scripts du site, la
+config de déploiement. Ce qu'on remarque en passant (bug voisin, page à corriger,
+dette) se **signale dans le récapitulatif**, il ne se corrige pas dans la foulée —
+**une exception, volontaire** : si `prepare-legacy.ts` échoue sur un *autre* dossier,
+le corriger (le site ne se déploie pas sinon) et le dire.
+
+**Points d'arrêt** — on ne s'arrête pour demander que dans deux cas :
+
+1. la **publication** (commit / push / déploiement) : jamais sans demande explicite ;
+2. une **image jugée indigne** ou infidèle au propos sur un sujet sensible, quand la
+   régénération ne suffit pas : proposer, ne pas trancher seul.
+
+Tout le reste s'enchaîne sans question : les 15 étapes, les boucles de correction,
+l'attente des images (en arrière-plan), les corrections ❌ des agents, les
+mises à jour d'index / RSS / manifeste. Une étape décidée se **fait**, elle ne
+s'annonce pas (« je vais maintenant… » puis fin de tour = étape non faite).
+
+**Édition ciblée** — `index.html`, `sources.html` et le manifeste font plusieurs
+milliers de lignes, la page en fait autant : **modifier chirurgicalement** (Edit,
+`sed`, script Python à remplacement), jamais réécrire un fichier entier pour y
+ajouter une carte ou une section. Le nombre de tokens d'édition se minimise quand
+le résultat est le même.
+
+**Effort** — le réglage courant (`high`) est le bon pour tout le process : les
+agents de vérification ne descendent jamais à `low` (recherche sautée), et la
+construction de la page ne monte pas à `xhigh`/`max` (brouillon en double).
+
+---
+
+## Récapitulatif final (format fixe)
+
+Le dernier message doit se lire **seul**, par quelqu'un qui n'a pas suivi la
+session. Le construire depuis le journal :
+
+1. **Résultat** en une phrase : dossier N, titre, page, état (prêt à publier / en
+   attente d'images / bloqué sur X).
+2. **Tableau des fichiers** créés ou modifiés (chemin → ce qui a changé).
+3. **Contrôles** : sortie de `verify-dossier.py` (PASS/WARN/FAIL) + résultat du
+   balayage navigateur (largeurs, révélation, console).
+4. **Coquilles** : compte et chemin de `coquilles.md` (pas la liste, elle est dans
+   le fichier) ; s'il y en a, formules inline sans « Se lit » (c'est la règle, le
+   dire), dossier sans transcription (`check-coverage.py` non appliqué, le dire).
+5. **Vérification factuelle** : compte des verdicts, corrections ❌ appliquées,
+   encadrés anti-intox ajoutés.
+6. **Reste à faire / hors périmètre** : images non générées, dette repérée ailleurs,
+   publication (non faite sans demande).
+
+Prose littérale : dire ce qui a été fait, pas le mettre en scène.
+
+---
+
 ## Conventions du dépôt (rappels)
 
 - Dépôt : `TheSamLePirate/empire-contre-intox` — GitHub Pages, branche `main`, racine.
@@ -345,6 +568,7 @@ de `index.html`. Il est **généré**, jamais édité à la main.
   relatif).
 - Outils requis (skill) : `codex` (génération des images, `codex exec`), `python3`,
   `node`, `pngquant`, `oxipng` (les deux derniers : `brew install pngquant oxipng`),
-  `gh`, et `playwright-core` pour la vérif navigateur.
+  `gh`, et le **navigateur intégré** de Claude Code pour la vérif (config
+  `.claude/launch.json`, serveur `site-statique`).
 - Ne jamais committer `.DS_Store`, fichiers verrou office (`.~lock.*#`), ni les
   répertoires de travail non suivis.
