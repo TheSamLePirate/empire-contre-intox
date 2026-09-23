@@ -45,7 +45,8 @@ Chaque créateur ou équipe a **son propre dossier** à la racine ; `index.html`
 | XXV | L'Entropie, le temps et l'Univers | `provoxys/entropie/` | Provoxys, avec la participation de Samlepirate |
 | XXVI | Alexandre le Grand | `ymir-lalie/alexandre-le-grand/` | Ymir & Lalie |
 | XXVII | L'Ordinateur de 1983 | `samlepirate/ordinateur-1983/` | Samlepirate |
-| XXVIII | Les Sources | `sources/sources.html` | Empire contre Intox (collectif) |
+| XXX | Rome, grandeur et faux-semblants | `ymir-lalie/rome/index.html` | Ymir & Lalie |
+| XXXI | Les Sources | `sources/sources.html` | Empire contre Intox (collectif) |
 
 > La numérotation suit **l'ordre d'affichage** de l'index : si l'on réordonne, on renumérote partout (cartes, nav de pied, eyebrows des pages, `sources/sources.html`). « Les Sources » reste **le dernier numéro**. La carte « Calendrier des lives » est un agenda externe, pas un dossier numéroté.
 
