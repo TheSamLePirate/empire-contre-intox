@@ -50,7 +50,7 @@ h1,h2,h3,h4,.kicker,.btn,.eyebrow,.tag,.lbl{font-family:var(--roman);text-transf
 h1,h2,h3{text-wrap:balance}.prose p,.prose li{text-wrap:pretty}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
 ::selection{background:rgba(95,227,200,.25);color:#fff}
-.anchor{display:block;position:relative;top:-80px;visibility:hidden}
+.anchor{display:block;height:0;visibility:hidden}
 code{font-family:var(--mono);font-size:.88em;color:var(--gold-bright);background:rgba(214,172,85,.08);padding:1px 5px;border-radius:2px}
 
 /* ================= ATMOSPHÈRE ================= */
@@ -5083,6 +5083,57 @@ document.addEventListener('click', e => { const p = e.target.closest('.at-poster
     read.textContent = weight ? 'Poids remis sur B : il vibre naturellement 4 Hz plus bas. Frappez A.' : 'Poids retiré : A et B ont presque la même cadence. Frappez A.'; }));
   addEventListener('load', draw); draw();
 })();
+
+/* ================================================================ LIENS INTERNES : saut fiable
+   Page très longue, chapitres en content-visibility:auto (hauteur estimée tant qu'ils ne sont pas
+   rendus), images et formules qui arrivent après coup : un défilement animé vers une ancre voit sa
+   cible bouger pendant le trajet et s'arrête au mauvais endroit. On saute donc INSTANTANÉMENT
+   (behavior 'instant' : 'auto' suivrait scroll-behavior:smooth), puis on recale tant que la cible
+   bouge ; le recalage s'arrête dès que le lecteur fait défiler lui-même. */
+const topOffset = () => { const t = document.getElementById('topbar'); return (t ? t.getBoundingClientRect().height : 60) + 12; };
+const targetY = el => Math.max(0, el.getBoundingClientRect().top + window.scrollY - topOffset());
+let settleTok = 0;
+function settle(el, long){
+  const tok = ++settleTok; let stable = 0, n = 0;
+  const maxN = long ? 70 : 40, need = long ? 8 : 4;
+  const stop = () => { settleTok++; off(); };
+  const off = () => ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(ev => removeEventListener(ev, stop, true));
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(ev => addEventListener(ev, stop, { capture: true, passive: true }));
+  const step = () => {
+    if (tok !== settleTok) return;
+    const y = targetY(el);
+    if (Math.abs(y - window.scrollY) > 2){ window.scrollTo({ top: y, behavior: 'instant' }); stable = 0; } else stable++;
+    if (++n < maxN && stable < need) setTimeout(step, n < 6 ? 50 : long ? 250 : 160); else off();
+  };
+  setTimeout(step, 50);
+}
+function jumpTo(id, push, long){
+  let el = document.getElementById(id);
+  if (!el) return false;
+  // la cible et sa section doivent être visibles tout de suite (révélation, <details> repliés)
+  el.classList.add('in'); const sec = el.closest('.reveal, .fx'); if (sec) sec.classList.add('in');
+  for (let d = el.closest('details'); d; d = d.parentElement && d.parentElement.closest('details')) d.open = true;
+  const html = document.documentElement, prev = html.style.scrollBehavior;
+  html.style.scrollBehavior = 'auto';
+  window.scrollTo({ top: targetY(el), behavior: 'instant' });
+  html.style.scrollBehavior = prev;
+  if (push && location.hash !== '#' + id) history.pushState(null, '', '#' + id);
+  settle(el, long);
+  safetyReveal();
+  return true;
+}
+document.addEventListener('click', e => {
+  if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  const a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+  const id = decodeURIComponent(a.getAttribute('href').slice(1)); if (!id) return;
+  if (jumpTo(id, true)) e.preventDefault();
+});
+addEventListener('popstate', () => { const id = decodeURIComponent(location.hash.slice(1)); if (id) jumpTo(id, false); });
+/* arrivée directe avec une ancre (lien partagé) : on recale après le chargement des images et des formules */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (location.hash.length > 1){ const id = decodeURIComponent(location.hash.slice(1));
+  addEventListener('load', () => jumpTo(id, false, true), { once: true });
+  if (document.readyState !== 'loading') jumpTo(id, false, true); else document.addEventListener('DOMContentLoaded', () => jumpTo(id, false, true), { once: true }); }
 })();
 
 </script>
