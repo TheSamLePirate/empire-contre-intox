@@ -26,3 +26,38 @@
 - **Dernières décisions** : voix clonée produite en direct par l'animateur (aucun clone dans le dossier, fiche 11 reformulée dans les deux scripts) ; activation par image fixe + bouton ; portraits.html = 20 fiches (3 portraits + mesureurs) + easter egg Bob Marley (accroche proposée : sound systems, dub, écho comme instrument — à valider). Plus de question bloquante ; prêt à construire sur demande.
 - **Thème visuel fixé** : `08-design-son.md` (palette phosphore + rampes de données, catalogue d'effets avec coût, identité par acte, deux états d'atelier, budget de performance chiffré, ordre de production avec `design-preview.html` d'abord). Accent secondaire retenu : `--phos` (vert-turquoise d'oscilloscope) à la place du teal générique du script.
 - **Schémas SVG** : jugés de mauvaise qualité par l'auteur → décision par schéma dans `09-schemas-decisions.md` : 17 remplacés par des ateliers (S01, S04, S09 ×2, S13, S14, S16, S23, S41, S43 élargi à toute la chaîne de l'oreille, S46, S49, S51, S54 ×3, nouvel **S56 « La règle des fréquences »**), 2 refaits au build (V07, V08, chaînes conceptuelles). Lignes « À l'écran » du maître et fiches V01–V19 de la banque visuelle annotées ; périmètre v1 = 29 ateliers (25 ★★★ + DAW + S43, S49, S56). `ateliers.py` a été refactorisé entre-temps par Codex (Path, inserts) : mes ajouts (REMPLACE, S56, S43) s'y greffent.
+
+## 24 septembre 2026 — construction du dossier (skill nouveau-dossier)
+
+### Décisions
+- Numéro : **XXXII** · « Les Sources » → **XXXIII** · équipe : provoxys · dossier : `provoxys/son/` · accent `--phos:#5fe3c8`
+- Parcours d'index : III « Lois du réel & modèles » (group-count 7 → 8)
+- Voie A codex + phosphore ; dossier **sans transcription** (source = `script-live-son.md`, pas de check-coverage) → `--no-verbatim`
+- Page produite par convertisseur `a_traiter/provoxys-son/build/build_page.py` (script .md → HTML codex) ; consignes de plateau (« À dire », « Geste de plateau », « À l'écran Vxx ») retirées ou transformées (« À dire » après formule → `.fb-say`)
+- Ateliers : 29 (25 ★★★ + S34 + S43, S49, S56), sources React dans `a_traiter/provoxys-son/visualisations/`, bundle `provoxys/son/assets/son-viz.js` chargé au 1er « Activer », build `scripts/build-son-viz.sh`
+- Les 26 autres ateliers : fiche visible « à venir » dans la page
+- Images : hero + 9 illustrations d'acte via Codex (`provoxys/son/images_a_generer.md`)
+- portraits.html : 20 fiches + easter egg Marley, portraits Wikimedia (PD / CC) crédités, comme Lumière
+- Pas de `design-preview.html` séparé : le hero est validé directement dans la page au navigateur
+
+### Étapes
+- [ ] images (Codex) · [ ] sources/ (agent) · [ ] socle ateliers · [ ] ateliers (agents) · [ ] page · [ ] portraits · [ ] index/RSS/manifeste · [ ] Grammalecte · [ ] navigateur · [ ] verify-dossier
+- 24/09 : images Codex livrées (10 PNG + WebP + son-hero.index.webp) ; agent sources lancé ; socle ateliers écrit (shared/, S01, S14, harnais dev + dev/shot.mjs) ; 7 agents ateliers lancés (A: S03 S04 S06 S11 · B: S09 S13 S16 S49 S56 · C: S17 S18 S19 S22 S23 · D: S27–S30 · E: S34 S24 · F: S36 S41 S42 S43 · G: S46 S51 S54)
+- 24/09 : **sources/ fait** (agent) : dossier-XXXII-son.md (237 affirmations), refs-doi-XXXII-son.md (220 DOI revérifiés Crossref, aucun retiré), README, sources.html (section #son, 63 fiches, eyebrow → XXXIII, compteurs 504 fiches / 599 DOI / 136 sources / 28 dossiers). Hors périmètre signalé : pas de lien Lumière dans le pied de sources.html, date « Vérifié le 25 juillet 2026 ».
+- Page : générée par `build/build_page.py` (mdparse.py, formulas.py = 39 lectures Se lit réécrites sans phonétique, ∂ = d rond ; editorial.py). Ateliers hors v1 : pas de bloc « à venir » dans les chapitres, liste « prochains ateliers » dans la section Ateliers. Annexes gardées : frise, glossaire, expériences réelles (filtrées), sources ; retirées : mode d'emploi du maître, suivre les démonstrations (plateau), suivi documentaire.
+- **Numérotation corrigée** : l'index compte 31 dossiers (Rome XXX, Les Sources XXXI) → **Le Son = XXXI**, **Les Sources = XXXII** (la préparation disait XXXII/XXXIII par erreur). Fichiers renommés : sources/dossier-XXXI-son.md, sources/refs-doi-XXXI-son.md ; sources.html, README renumérotés.
+- Agent A (S03 S04 S06 S11) livré ; réserves : S03 valeurs de chemin solide illustratives (dit en limites), S04 f « mesurée » sur somme de modes non amortie.
+- Agent D (S27–S30) livré ; shared/s28-voice.ts, s29-tuning.ts ; réserves : S29 à 360 px affiche parfois 2 intervalles sur 3 ; S28 sans spectrogramme ; pas de tempéraments 19/31/53.
+- Index : carte XXXI dans parcours III (8 dossiers), compteur XXXII, pied de page, Sources → XXXII, décret « près de 600 articles (DOI) ».
+- scripts/build-son-viz.sh écrit ; page : build/build_page.py + pshot.mjs (captures headless).
+- Grammalecte : check fait (174 alertes, 1165 inconnus) → agent tri en cours → provoxys/son/grammalecte.md, appliqué après chaque build.
+- Portraits : agent en cours (20 fiches + Marley caché, images Wikimedia créditées).
+- Agent E (S34 DAW, S24 Sabine) livré ; LUFS BS.1770 vérifié hors navigateur ; DIN 18041 plages de volume = hypothèse de l'agent ; export WAV non testé iOS. Règle commune `.sv button{font:inherit}` passée en :where() (boutons trop gros).
+- Agent F (S36 S41 S42 S43) livré ; valeurs ISO 226 vérifiées, formants Calliope (Georgeton 2012), Greenwood ; réserves : S42 sans jitter/shimmer, S43 petit à 360 px.
+- Grammalecte : 1 correction (tymbal→tymbale), 1293 faux positifs ; à confirmer : « formules ouverts/fermés », « masse adduite », « préset ».
+- Agent C (S17 S18 S19 S22 S23) livré ; réserves : S22 sans cepstre, S18 sans mel, S23 bandes d'octave simplifiées ; micro testé seulement en faux micro. Scène collante (sticky) quand le panneau est plus haut.
+- Portraits livrés : 20 fiches + Marley caché (triple clic « écho » ou taper « dub » ou #marley) ; 17 images Commons (13 PD, 4 CC), cases vides Hooke, Sauveur, Kemp, Griffin ; crédits a_traiter/provoxys-son/portraits-credits.md.
+- Agent G (S46 S51 S54) livré ; valeurs de mémoire (Persée 9,6 Ma, Voyager 2,2/2,6 kHz, GW150914, tissus, TS mite, rhinolophe, DIN 18041) → agent verif-claims lancé.
+- Manifeste : 44 entrées, prepare-legacy OK, og:image OK. verify-dossier : 30 PASS · 3 WARN · 0 FAIL (sans verbatim). Plein écran de repli corrigé (contention/transform des ancêtres, sortie native).
+- Chiffres de mémoire vérifiés (8 : 4 ✅, 4 ⚠️) → Persée « ≈ 57 octaves (arrondi NASA, ≈ 56) », Voyager 2,1–2,2 kHz, TS réf. 1 m explicitée ; tissus S51 dans les fourchettes.
+- Agent B (S09 S13 S16 S49 S56) livré. Bundle final 711 ko. 29/29 ateliers montés sans erreur. verify-dossier : 32 PASS · 3 WARN · 0 FAIL. Prêt à publier (non commité).

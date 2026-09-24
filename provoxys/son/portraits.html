@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Les oreilles du Son — Portraits — Empire contre Intox</title>
+  <meta name="description" content="Vingt fiches, dans l'ordre du récit : Mersenne, Langevin, Gurnett, puis Pythagore, Galilée, Boyle, Hooke, Newton, Sauveur, Laplace, Chladni, Fourier, Helmholtz, Doppler, Rayleigh, Sabine, Békésy, Kemp, Griffin, Shannon. Ce que chacun a réellement montré, et ce qu'on lui prête à tort. Compagnon du Dossier XXXI « Le Son ».">
+  <meta name="theme-color" content="#050811">
+  <meta name="author" content="Provoxys, avec la participation de Samlepirate">
+
+  <link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr">
+  <meta name="rights" content="Contenu éditorial sous licence Creative Commons Attribution – Pas d'Utilisation Commerciale – Pas de Modification 4.0 International (CC BY-NC-ND 4.0). Les portraits issus de Wikimedia Commons relèvent de leur propre licence, indiquée sous chaque image.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Les oreilles du Son — Portraits">
+  <meta property="og:description" content="Vingt fiches, de Pythagore à Voyager 1 : ce que chacun a réellement montré, et ce qu'on lui prête à tort.">
+  <meta property="og:image" content="https://empire-contre-intox.com/provoxys/son/assets/son-hero.png">
+  <link rel="icon" href="../../ymir-lalie/assets/logo-eci.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+<style>
+/* ================= DOSSIER XXXI · LE SON — PORTRAITS — codex ECI + phosphore ================= */
+:root{
+  --void:#050811;--abyss:#070c1a;--navy:#0e1a2e;--ink:#f4ecd8;--parch:#e7dcc1;--muted:#c0b59a;--soft:#8f8c78;
+  --gold:#d6ac55;--gold-bright:#f3d98a;--gold-deep:#9c7228;--line:rgba(214,172,85,.20);--line-2:rgba(244,236,216,.10);
+  --ease:cubic-bezier(.22,1,.36,1);--roman:'Cinzel',serif;--serif:'Fraunces',serif;
+  --phos:#5fe3c8;--phos-deep:#1f9c86;--phos-glow:rgba(95,227,200,.35);
+  --grid:rgba(95,227,200,.10);
+  --glass-bg:linear-gradient(160deg,rgba(14,26,46,.72),rgba(7,12,26,.55));
+  --max:1180px;
+  --act:#5fe3c8;--act-rgb:95,227,200;
+}
+[data-act="0"]{--act:#5fe3c8;--act-rgb:95,227,200}[data-act="1"]{--act:#d6ac55;--act-rgb:214,172,85}
+[data-act="2"]{--act:#5fe3c8;--act-rgb:95,227,200}[data-act="3"]{--act:#f3d98a;--act-rgb:243,217,138}
+[data-act="4"]{--act:#ff9a6e;--act-rgb:255,154,110}[data-act="5"]{--act:#d6ac55;--act-rgb:214,172,85}
+[data-act="6"]{--act:#4ee38a;--act-rgb:78,227,138}[data-act="7"]{--act:#e8b04a;--act-rgb:232,176,74}
+[data-act="8"]{--act:#c79bff;--act-rgb:199,155,255}[data-act="9"]{--act:#7fb8ff;--act-rgb:127,184,255}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{margin:0;background:var(--void);color:var(--parch);font-family:var(--serif);font-optical-sizing:auto;font-size:17px;line-height:1.66;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--gold-bright)}img{max-width:100%;display:block}
+h1,h2,h3,h4,.kicker,.btn,.eyebrow,.lbl{font-family:var(--roman);text-transform:uppercase;letter-spacing:.14em;font-weight:600}
+h1,h2,h3{text-wrap:balance}.prose p{text-wrap:pretty}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+::selection{background:rgba(95,227,200,.25);color:#fff}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ================= ATMOSPHÈRE ================= */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(ellipse 80% 38% at 50% 106%,rgba(31,156,134,.14),transparent 70%),
+  radial-gradient(ellipse 45% 30% at 88% 6%,rgba(214,172,85,.05),transparent 70%),
+  linear-gradient(180deg,#081020 0%,var(--abyss) 35%,var(--void) 100%)}
+.atmos{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%,rgba(244,236,216,.55),transparent 60%),radial-gradient(1px 1px at 72% 12%,rgba(244,236,216,.45),transparent 60%),
+    radial-gradient(1.4px 1.4px at 38% 68%,rgba(244,236,216,.4),transparent 60%),radial-gradient(1px 1px at 86% 58%,rgba(244,236,216,.5),transparent 60%),
+    radial-gradient(1px 1px at 58% 88%,rgba(244,236,216,.35),transparent 60%),radial-gradient(1.2px 1.2px at 24% 84%,rgba(95,227,200,.4),transparent 60%),
+    linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:auto,auto,auto,auto,auto,auto,48px 48px,48px 48px;
+  mask-image:radial-gradient(ellipse 72% 62% at 50% 45%,#000,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 72% 62% at 50% 45%,#000,transparent 100%);
+  animation:twinkle 7s ease-in-out infinite alternate}
+@keyframes twinkle{from{opacity:.42}to{opacity:.6}}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.frame{position:fixed;inset:18px;z-index:40;pointer-events:none}
+.frame i{position:absolute;width:28px;height:28px;border:1px solid var(--gold);opacity:.8}
+.frame i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}.frame i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+.frame i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}.frame i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+.progress-top{position:fixed;top:0;left:0;height:2px;width:0;z-index:50;background:var(--phos);box-shadow:0 0 10px var(--phos),0 0 22px var(--phos-glow)}
+main{position:relative;z-index:2}
+
+/* ================= BARRE HAUTE ================= */
+.topbar{position:sticky;top:0;z-index:30;background:rgba(5,8,17,.66);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border-bottom:1px solid var(--line-2)}
+.topbar .wrap{display:flex;align-items:center;gap:18px;height:60px;position:relative}
+.seal{display:block;width:36px;height:36px;border-radius:50%;padding:2px;background:conic-gradient(from 0deg,var(--gold-deep),var(--gold-bright),var(--gold-deep),var(--gold-bright),var(--gold-deep));flex:none;box-shadow:0 0 18px rgba(214,172,85,.25)}
+.seal img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.topbar .t{font-family:var(--roman);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.nav{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;justify-content:flex-end}
+.nav a{font-family:var(--roman);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--muted);position:relative;padding:8px 0;white-space:nowrap}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.nav a:hover::after,.nav a:focus-visible::after{transform:scaleX(1)}
+.nav a[data-act]::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--act);margin:0 5px 0 0;vertical-align:middle;opacity:.7}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--gold-bright);font-family:var(--roman);font-size:.6rem;letter-spacing:.2em;padding:8px 12px;border-radius:2px;cursor:pointer}
+.topbar.open .nav{display:flex;position:absolute;top:60px;left:0;right:0;background:rgba(5,8,17,.97);border-bottom:1px solid var(--line);padding:16px 28px;flex-direction:column;gap:10px;align-items:flex-start;max-height:70vh;overflow-y:auto}
+
+/* ================= HERO ================= */
+.hero{position:relative;min-height:min(78vh,720px);display:grid;align-items:center;overflow:hidden;isolation:isolate}
+.hero-art{position:absolute;inset:0;z-index:-2;pointer-events:none}
+.hero-art img{width:100%;height:100%;object-fit:cover;object-position:62% 50%;opacity:.42;filter:saturate(.95)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,var(--void) 0%,rgba(5,8,17,.88) 34%,rgba(5,8,17,.35) 70%,rgba(5,8,17,.3) 100%),
+             linear-gradient(180deg,rgba(5,8,17,.5),rgba(5,8,17,0) 22%,rgba(5,8,17,0) 70%,var(--void) 100%)}
+.hero .wrap{position:relative;width:100%;padding-top:64px;padding-bottom:64px}
+.hero-copy{max-width:720px}
+.eyebrow{font-size:.62rem;letter-spacing:.34em;color:var(--gold);margin:0 0 18px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);flex:none}
+.hero h1{font-size:clamp(2.3rem,6vw,4.6rem);line-height:.98;margin:0 0 24px;color:var(--ink);letter-spacing:.05em;font-weight:700;text-shadow:0 0 40px rgba(244,236,216,.12)}
+.phos{display:inline-block;background:linear-gradient(100deg,var(--phos) 0%,#c8fff1 30%,var(--gold-bright) 55%,var(--phos) 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:foil 9s ease-in-out infinite;filter:drop-shadow(0 0 14px rgba(95,227,200,.45))}
+@keyframes foil{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero-lead{font-size:1.2rem;max-width:56ch;color:var(--parch);margin:0 0 14px;font-weight:300}
+.hero-quote{font-style:italic;color:var(--gold-bright);max-width:56ch;margin:0 0 30px;font-size:1.04rem}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:2px;font-size:.64rem;letter-spacing:.24em;text-decoration:none;transition:transform .5s var(--ease),box-shadow .5s var(--ease);border:0;cursor:pointer}
+.btn-1{background:linear-gradient(135deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep));color:#1a1408;box-shadow:0 0 0 1px rgba(214,172,85,.4),0 10px 30px -14px rgba(214,172,85,.6)}
+.btn-2{border:1px solid var(--gold);color:var(--gold-bright);background:rgba(214,172,85,.04)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px -14px rgba(214,172,85,.55)}
+.signal-board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin-top:36px;background:var(--line);border:1px solid var(--line);position:relative}
+.signal-board::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--phos),transparent)}
+.signal-board div{background:rgba(5,8,17,.74);padding:14px 12px;backdrop-filter:blur(6px);min-width:0}
+.signal-board b{display:block;font-family:var(--roman);font-size:1.02rem;color:var(--gold-bright);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.signal-board span{font-size:.74rem;color:var(--soft)}
+
+/* ================= RAMPE D'ACCÈS ================= */
+.phos-rule{height:1px;border:0;margin:0;background:linear-gradient(90deg,transparent,rgba(95,227,200,.55),rgba(214,172,85,.45),transparent);opacity:.8}
+.band{padding:72px 0}
+.intro-band{background:linear-gradient(180deg,rgba(14,26,46,0),rgba(14,26,46,.45) 30%,rgba(14,26,46,.45) 70%,rgba(14,26,46,0))}
+.intro-band .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:start}
+.lbl{font-size:.56rem;letter-spacing:.28em;color:var(--phos);margin:0 0 8px}
+.manifesto h2{font-size:1.35rem;color:var(--ink);letter-spacing:.12em;margin:0 0 14px;line-height:1.3}
+.manifesto p{color:var(--muted);margin:0 0 12px;font-size:1.02rem}
+.manifesto p b{color:var(--parch);font-weight:600}
+.echo-word{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;position:relative;display:inline;border-radius:1px}
+.echo-word::after{content:"";position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;border:1px solid var(--phos);opacity:0;pointer-events:none}
+.echo-word.ping::after{animation:ping .9s var(--ease)}
+@keyframes ping{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(9)}}
+.timeline{list-style:none;margin:0;padding:0 0 0 22px;border-left:1px solid var(--line);position:relative}
+.timeline li{position:relative;padding:0 0 16px 12px;font-size:.95rem;color:var(--parch)}
+.timeline li::before{content:"";position:absolute;left:-27px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--void);border:1px solid var(--act);box-shadow:0 0 0 3px var(--void),0 0 10px rgba(var(--act-rgb),.55)}
+.timeline li b{font-family:var(--roman);font-size:.6rem;letter-spacing:.22em;color:var(--act);display:block;margin-bottom:2px}
+.timeline a{color:inherit;text-decoration:none}.timeline a:hover{color:var(--gold-bright)}
+.learn{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
+.glass{position:relative;border:1px solid var(--line-2);border-radius:3px;background:var(--glass-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:20px 22px;overflow:hidden;box-shadow:inset 0 1px 0 rgba(244,236,216,.08),0 20px 40px -30px rgba(0,0,0,.8)}
+.glass::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--phos),rgba(95,227,200,.1))}
+.glass h4{font-size:.8rem;letter-spacing:.14em;color:var(--ink);margin:0 0 8px}
+.glass p{margin:0;font-size:.92rem;color:var(--muted)}
+
+/* ================= GALERIE ================= */
+.chapter{padding:56px 0;scroll-margin-top:66px}
+.chapter-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:20px;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--line);position:relative}
+.chapter-head::after{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1px;background:linear-gradient(90deg,var(--act),rgba(var(--act-rgb),0));transition:width 1.6s var(--ease) .25s}
+.reveal.in .chapter-head::after{width:160px}
+.kicker{font-size:.6rem;letter-spacing:.3em;color:var(--act);margin:0 0 10px;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:18px;height:1px;background:var(--act);box-shadow:0 0 8px rgba(var(--act-rgb),.6);flex:none}
+.chapter-head h2{font-size:1.5rem;margin:0;color:var(--ink);letter-spacing:.09em;line-height:1.28}
+.chapter-number{font-family:var(--roman);font-size:3.2rem;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(var(--act-rgb),.75);flex:none}
+.portraits{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(140px,100%),1fr));gap:14px;margin-top:26px}
+.gcard{position:relative;display:block;text-decoration:none;border:1px solid var(--line-2);border-radius:3px;overflow:hidden;background:var(--abyss);transition:transform .7s var(--ease),box-shadow .7s var(--ease)}
+.gcard img{aspect-ratio:3/4;object-fit:cover;object-position:50% 20%;width:100%;filter:grayscale(1) contrast(1.08) brightness(.92);transition:filter .8s var(--ease),transform 1.2s var(--ease)}
+.gcard:hover img,.gcard:focus-visible img{filter:grayscale(0) contrast(1.05);transform:scale(1.04)}
+.gcard:hover{transform:translateY(-5px);box-shadow:0 30px 50px -30px rgba(var(--act-rgb),.5)}
+.gcard::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--act);opacity:.55;transition:opacity .6s;z-index:2}
+.gcard:hover::before{opacity:1}
+.gcard .m{position:absolute;left:0;right:0;bottom:0;padding:34px 10px 10px;background:linear-gradient(180deg,transparent,rgba(5,8,17,.86) 38%,rgba(5,8,17,.97));font-family:var(--roman);font-size:.55rem;letter-spacing:.14em;color:var(--ink);text-transform:uppercase}
+.gcard .m small{display:block;color:var(--soft);font-family:var(--serif);text-transform:none;letter-spacing:0;font-size:.72rem;margin-top:2px}
+.gcard.no-img .gvide{display:grid;place-items:center;aspect-ratio:3/4;font-family:var(--roman);font-size:1.6rem;color:rgba(var(--act-rgb),.35);background:repeating-linear-gradient(45deg,rgba(244,236,216,.03) 0 10px,transparent 10px 20px)}
+.gcard[hidden],.fiche[hidden]{display:none}
+
+/* ================= PARTIES ================= */
+.part-band{position:relative;padding:84px 0 60px;overflow:hidden;scroll-margin-top:60px}
+.part-band::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 45% 80% at 74% 50%,rgba(var(--act-rgb),.12),transparent 70%)}
+.part-band::after{content:"";position:absolute;left:12%;right:12%;bottom:0;height:1px;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(var(--act-rgb),.6),transparent)}
+.part-band .wrap{position:relative;display:grid;grid-template-columns:150px minmax(0,1fr);gap:34px;align-items:center}
+.part-num{position:relative;width:140px;height:140px;display:grid;place-items:center}
+.part-num svg{position:absolute;inset:0;width:100%;height:100%;color:var(--act);opacity:.55}
+.part-num svg circle{fill:none;stroke:currentColor;stroke-width:.8}
+.part-num span{position:relative;font-family:var(--roman);font-size:4.6rem;line-height:1;color:rgba(5,8,17,.35);-webkit-text-stroke:1.2px var(--gold-bright);text-shadow:0 0 30px rgba(var(--act-rgb),.45);font-weight:600}
+.part-kicker{font-family:var(--roman);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--act);margin:0 0 6px}
+.part-band h2{font-size:clamp(1.4rem,2.6vw,2rem);color:var(--ink);margin:6px 0 12px;letter-spacing:.09em;line-height:1.24}
+.part-band p{color:var(--muted);max-width:62ch;margin:0}
+
+/* ================= FICHES ================= */
+.transcript{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,320px);gap:36px}
+.transcript > *{min-width:0}
+.prose p{margin:0 0 1.05em;font-size:1.04rem}
+.prose h3{font-family:var(--roman);font-size:.8rem;letter-spacing:.16em;color:var(--act);margin:26px 0 10px}
+.prose h3.tort{color:#ff9a6e}
+.prose .tort-box{border:1px solid rgba(255,154,110,.28);border-left:3px solid #ff9a6e;border-radius:3px;background:rgba(255,154,110,.05);padding:14px 18px 2px;margin:0 0 1.1em}
+.prose .tort-box p{font-size:.99rem}
+.prose em{color:var(--ink)}
+.epithete{font-family:var(--serif);font-style:italic;font-size:1.02rem;color:var(--gold-bright);margin:10px 0 0;letter-spacing:0;text-transform:none}
+.idcard{font-size:.94rem!important;color:var(--muted);border-left:2px solid var(--act);padding-left:14px;margin-bottom:1.3em!important}
+.renvoi{margin-top:24px!important;padding-top:14px;border-top:1px solid var(--line-2);display:flex;flex-wrap:wrap;gap:8px 22px}
+.renvoi a{font-family:var(--roman);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--phos)}
+.renvoi a:hover{color:var(--gold-bright)}
+.side-note{align-self:start;position:sticky;top:80px}
+.fiche-img{margin:0;border:1px solid var(--line-2);border-radius:3px;overflow:hidden;background:var(--glass-bg)}
+.fiche-img::before{content:"";display:block;height:2px;background:var(--act)}
+.fiche-img img{width:100%;height:auto;display:block;filter:grayscale(.3) contrast(1.05)}
+.fiche-img figcaption{padding:11px 14px;font-size:.78rem;line-height:1.55;color:var(--soft);border-top:1px solid var(--line-2)}
+.fiche-img figcaption a{color:var(--muted)}
+.fiche-img .vide{display:grid;place-items:center;aspect-ratio:3/4;font-family:var(--roman);font-size:3rem;color:rgba(var(--act-rgb),.3);background:repeating-linear-gradient(45deg,rgba(244,236,216,.03) 0 10px,transparent 10px 20px)}
+.fiche-img.no-img figcaption{border-top:1px solid var(--line-2)}
+.sources-list{font-size:.88rem!important;color:var(--soft)}
+.sources-list a{color:var(--muted)}
+.fiche.surprise .chapter-head{border-bottom-color:rgba(95,227,200,.35)}
+.fiche.surprise .kicker{color:var(--phos)}
+
+/* ================= CRÉDIT / FOOTER ================= */
+.credit-band{display:flex;flex-wrap:wrap;align-items:center;gap:22px;border:1px solid var(--line);border-radius:4px;padding:26px 30px;margin:30px 0 0;background:var(--glass-bg);backdrop-filter:blur(12px)}
+.credit-band .avatars{display:flex}
+.credit-band .avatars img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);margin-left:-14px;box-shadow:0 0 0 2px var(--void)}
+.credit-band .avatars img:first-child{margin-left:0}
+.credit-band .ct{min-width:0}
+.credit-band .ct .over{font-family:var(--roman);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--soft)}
+.credit-band .ct .nm{font-family:var(--roman);font-weight:700;letter-spacing:.06em;font-size:1.18rem;color:var(--gold-bright)}
+.credit-band .ct .note{color:var(--muted);font-size:.88rem;margin-top:4px}
+.collective-footer{position:relative;margin-top:70px;padding:64px 0 90px;border-top:1px solid var(--line);text-align:center;overflow:hidden}
+.collective-footer::before{content:"";position:absolute;left:50%;top:0;width:min(900px,90%);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(95,227,200,.6),transparent)}
+.collective-footer .seal{width:72px;height:72px;margin:0 auto 18px}
+.collective-footer h2{font-size:1rem;letter-spacing:.3em;color:var(--ink);margin:0 0 10px}
+.collective-footer p{max-width:64ch;margin:8px auto;color:var(--muted)}
+.devise{font-family:var(--serif);font-style:italic;color:var(--gold-bright);font-size:1.18rem;margin-top:18px}
+.footer-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:22px}
+.footer-links a{font-family:var(--roman);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--muted);border:1px solid var(--line-2);padding:9px 14px;border-radius:2px;transition:border-color .5s,color .5s}
+.footer-links a:hover{border-color:var(--gold);color:var(--gold-bright)}
+.eci-license{max-width:760px;margin:30px auto 0;padding:18px 22px;border:1px solid var(--line-2);border-radius:3px;font-size:.8rem;color:var(--soft);text-align:left;line-height:1.62}
+.eci-license b{color:var(--parch);font-family:var(--roman);font-weight:600;letter-spacing:.06em}
+.eci-license a{color:var(--gold-bright)}
+.eci-visit-counter{display:block;margin-top:14px;font-size:.74rem;color:var(--soft);letter-spacing:.04em}
+.egg-hint{margin:22px auto 0!important;font-size:.72rem;color:rgba(143,140,120,.7)!important;font-style:italic}
+
+/* ================= RÉVÉLATION / MOTION / RESPONSIVE ================= */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.hero .rise{animation:rise 1.3s var(--ease) both}
+.hero .rise:nth-child(2){animation-delay:.12s}.hero .rise:nth-child(3){animation-delay:.24s}.hero .rise:nth-child(4){animation-delay:.36s}.hero .rise:nth-child(5){animation-delay:.48s}.hero .rise:nth-child(6){animation-delay:.6s}
+:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+@media (max-width:1100px){.part-band .wrap{grid-template-columns:120px minmax(0,1fr)}.part-num{width:110px;height:110px}.part-num span{font-size:3.6rem}}
+@media (max-width:900px){
+  .nav{display:none}.burger{display:block}
+  .intro-band .wrap{grid-template-columns:minmax(0,1fr)}.learn{grid-template-columns:minmax(0,1fr)}
+  .transcript{grid-template-columns:minmax(0,1fr)}.side-note{position:static;max-width:380px}
+  .part-band .wrap{grid-template-columns:minmax(0,1fr);gap:14px}
+  .signal-board{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chapter-head{grid-template-columns:minmax(0,1fr)}.chapter-number{display:none}
+}
+@media (max-width:640px){
+  .wrap{padding:0 18px}.topbar .wrap{gap:12px}
+  .credit-band{padding:22px 18px}
+  .portraits{grid-template-columns:repeat(auto-fill,minmax(min(104px,100%),1fr));gap:10px}
+  .hero-lead{font-size:1.08rem}
+  .prose .tort-box{padding:12px 14px 1px}
+}
+</style>
+
+  <style id="eci-wide-style">
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ———
+     La page s'élargit ET le texte grossit, ensemble : la colonne de lecture garde
+     sa mesure (~100 signes), la largeur gagnée va à la marge (le portrait). */
+  @media (min-width:1440px){
+    :root{ --max:1300px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(300px,430px); gap:52px; }
+    .intro-band .wrap{ grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr); }
+  }
+  @media (min-width:1800px){
+    :root{ --max:1420px; }
+    html{ font-size:17px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(320px,470px); gap:58px; }
+  }
+  @media (min-width:2200px){
+    :root{ --max:1560px; }
+    html{ font-size:18.5px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(340px,530px); gap:64px; }
+  }
+  @media (min-width:2800px){
+    :root{ --max:1820px; }
+    html{ font-size:20px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(380px,700px); gap:74px; }
+  }
+  </style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div><div class="atmos" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div>
+<div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="progress-top" id="prog" aria-hidden="true"></div>
+<p class="sr-only" id="eggLive" aria-live="polite"></p>
+
+<header class="topbar" id="topbar">
+  <div class="wrap">
+    <a class="seal" href="../../index.html" aria-label="Accueil Empire contre Intox"><img src="../../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox"></a>
+    <span class="t">Portraits · Le Son</span>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    <nav class="nav" id="mainnav" aria-label="Sommaire des portraits">
+      <a href="../../index.html">Accueil ECI</a>
+      <a href="index.html">Le dossier</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#bascules" data-act="0">Bascules</a>
+      <a href="#partie-i" data-act="1">I</a><a href="#partie-ii" data-act="2">II</a><a href="#partie-iii" data-act="2">III</a><a href="#partie-iv" data-act="4">IV</a>
+      <a href="../../sources/sources.html#son">Sources</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="ouverture">
+  <div class="hero-art" aria-hidden="true"><picture><source type="image/webp" srcset="assets/son-hero.webp"><img src="assets/son-hero.png" alt="" decoding="async"></picture></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow rise">Compagnon du Dossier XXXI · Le Son</p>
+      <h1 class="rise">Les oreilles du <span class="phos">Son</span></h1>
+      <p class="hero-lead rise">Vingt fiches, dans l'ordre du récit&nbsp;: ce que chacun a réellement montré, et ce qu'on lui prête à tort.</p>
+      <p class="hero-quote rise">Pythagore donne le rapport. Mersenne donne l'horloge. Sauveur donne le nom. Rayleigh donne le traité. Langevin compte ce qui revient. Gurnett change d'onde.</p>
+      <div class="hero-actions rise">
+        <a class="btn btn-1" href="#galerie">Voir la galerie</a>
+        <a class="btn btn-2" href="index.html">Revenir au dossier</a>
+        <a class="btn btn-2" href="../../index.html">Accueil ECI</a>
+      </div>
+      <div class="signal-board rise">
+        <div><b>20</b><span>fiches, en quatre parties</span></div>
+        <div><b>26 siècles</b><span>de Pythagore à Voyager&nbsp;1</span></div>
+        <div><b>16 images</b><span>licence vérifiée une par une</span></div>
+        <div><b>4</b><span>cases laissées vides</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="phos-rule">
+
+<section class="band intro-band reveal" id="rampe">
+  <div class="wrap">
+    <div class="manifesto">
+      <p class="lbl">Pourquoi ces fiches</p>
+      <h2>Une chaîne de gestes, et les légendes qui s'y accrochent</h2>
+      <p>Le dossier suit une onde, un milieu, une oreille. Ces fiches suivent les personnes qui ont fait avancer la question. Chacune tient en deux rubriques&nbsp;: <b>ce qu'il a réellement montré</b>, et, quand il y a lieu, <b>ce qu'on lui prête à tort</b>. La seconde compte autant que la première&nbsp;: le marteau de Pythagore, le «&nbsp;hertz&nbsp;» de Mersenne ou le «&nbsp;son de l'espace&nbsp;» de Voyager circulent plus que les faits.</p>
+      <p>Trois fiches ouvrent la page, parce qu'elles marquent trois bascules du dossier. Mersenne traite l'<button type="button" class="echo-word" id="echoWord">écho</button> comme une réflexion et compte les vibrations d'une corde. Langevin mesure le temps que met un écho à revenir. Gurnett écoute un milieu où il n'y a plus d'air, avec une autre onde.</p>
+      <p>Les faits viennent du texte du dossier et de sa vérification, affirmation par affirmation, dans <a href="../../sources/sources.html#son">Les Sources</a>. Les dates et détails biographiques ajoutés ici ont été vérifiés à part. Chaque portrait porte sa licence, relevée sur sa page Wikimedia Commons. Quatre personnes n'ont pas d'image&nbsp;: aucun portrait à licence claire n'a été trouvé, et une case vide vaut mieux qu'un crédit douteux.</p>
+      <div class="learn">
+        <div class="glass"><p class="lbl">Objectif 1</p><h4>Des gestes précis</h4><p>Compter, pomper l'air, chronométrer, filtrer, échantillonner&nbsp;: chaque fiche nomme une opération.</p></div>
+        <div class="glass"><p class="lbl">Objectif 2</p><h4>Des dates justes</h4><p>1636, 1701, 1816, 1917, 1978, 2012&nbsp;: les dates corrigées par la vérification sont reprises telles quelles.</p></div>
+        <div class="glass"><p class="lbl">Objectif 3</p><h4>Des légendes nommées</h4><p>Une idée reçue se corrige mieux quand on dit d'où elle vient.</p></div>
+      </div>
+    </div>
+    <div>
+      <p class="lbl">Quatre parties, et une ouverture</p>
+      <ul class="timeline">
+        <li data-act="0"><a href="#bascules"><b>Trois bascules</b>Mersenne, Langevin, Gurnett</a></li>
+        <li data-act="1"><a href="#partie-i"><b>Partie I</b>Le lieu et le nombre — Pythagore</a></li>
+        <li data-act="2"><a href="#partie-ii"><b>Partie II</b>Le siècle de la mesure — Galilée, Boyle, Hooke, Newton, Sauveur</a></li>
+        <li data-act="2"><a href="#partie-iii"><b>Partie III</b>Le son mis en équations — Laplace, Chladni, Fourier, Helmholtz, Doppler, Rayleigh</a></li>
+        <li data-act="4"><a href="#partie-iv"><b>Partie IV</b>Le XXe siècle — Sabine, Békésy, Kemp, Griffin, Shannon</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal" id="galerie" data-act="0">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Galerie</p><h2>Vingt visages, quatre absences</h2></div>
+      <div class="chapter-number" aria-hidden="true">20</div>
+    </div>
+    <div class="portraits">
+      <a class="gcard" href="#mersenne" data-act="2"><img src="assets/portraits/mersenne.jpg" alt="" loading="lazy"><span class="m">Marin Mersenne<small>L'horloge du son</small></span></a>
+      <a class="gcard" href="#langevin" data-act="6"><img src="assets/portraits/langevin.jpg" alt="" loading="lazy"><span class="m">Paul Langevin<small>Compter ce qui revient</small></span></a>
+      <a class="gcard" href="#gurnett" data-act="9"><img src="assets/portraits/gurnett.jpg" alt="" loading="lazy"><span class="m">Donald Gurnett<small>Changer d'onde</small></span></a>
+      <a class="gcard" href="#pythagore" data-act="1"><img src="assets/portraits/pythagore.jpg" alt="" loading="lazy"><span class="m">Pythagore<small>Le rapport</small></span></a>
+      <a class="gcard" href="#galilee" data-act="2"><img src="assets/portraits/galilee.jpg" alt="" loading="lazy"><span class="m">Galilée<small>Le nombre des vibrations</small></span></a>
+      <a class="gcard" href="#boyle" data-act="2"><img src="assets/portraits/boyle.jpg" alt="" loading="lazy"><span class="m">Robert Boyle<small>Le milieu nécessaire</small></span></a>
+      <a class="gcard no-img" href="#hooke" data-act="2"><span class="gvide" aria-hidden="true">◻</span><span class="m">Robert Hooke<small>La roue qui chante</small></span></a>
+      <a class="gcard" href="#newton" data-act="2"><img src="assets/portraits/newton.jpg" alt="" loading="lazy"><span class="m">Isaac Newton<small>Le bon cadre, la mauvaise hypothèse</small></span></a>
+      <a class="gcard no-img" href="#sauveur" data-act="2"><span class="gvide" aria-hidden="true">◻</span><span class="m">Joseph Sauveur<small>Le nom de la discipline</small></span></a>
+      <a class="gcard" href="#laplace" data-act="2"><img src="assets/portraits/laplace.jpg" alt="" loading="lazy"><span class="m">Pierre-Simon de Laplace<small>Le facteur manquant</small></span></a>
+      <a class="gcard" href="#chladni" data-act="2"><img src="assets/portraits/chladni.jpg" alt="" loading="lazy"><span class="m">Ernst Chladni<small>Les modes rendus visibles</small></span></a>
+      <a class="gcard" href="#fourier" data-act="2"><img src="assets/portraits/fourier.jpg" alt="" loading="lazy"><span class="m">Joseph Fourier<small>Une somme de sinus</small></span></a>
+      <a class="gcard" href="#helmholtz" data-act="3"><img src="assets/portraits/helmholtz.jpg" alt="" loading="lazy"><span class="m">Hermann von Helmholtz<small>Le timbre est un spectre</small></span></a>
+      <a class="gcard" href="#doppler" data-act="6"><img src="assets/portraits/doppler.jpg" alt="" loading="lazy"><span class="m">Christian Doppler<small>La cadence de rencontre</small></span></a>
+      <a class="gcard" href="#rayleigh" data-act="2"><img src="assets/portraits/rayleigh.jpg" alt="" loading="lazy"><span class="m">Lord Rayleigh<small>Le traité</small></span></a>
+      <a class="gcard" href="#sabine" data-act="7"><img src="assets/portraits/sabine.jpg" alt="" loading="lazy"><span class="m">Wallace Sabine<small>Chronométrer la salle</small></span></a>
+      <a class="gcard" href="#bekesy" data-act="4"><img src="assets/portraits/bekesy.jpg" alt="" loading="lazy"><span class="m">Georg von Békésy<small>L'onde qui voyage</small></span></a>
+      <a class="gcard no-img" href="#kemp" data-act="4"><span class="gvide" aria-hidden="true">◻</span><span class="m">David Kemp<small>L'oreille émet</small></span></a>
+      <a class="gcard no-img" href="#griffin" data-act="8"><span class="gvide" aria-hidden="true">◻</span><span class="m">Donald Griffin<small>Le mot écholocation</small></span></a>
+      <a class="gcard" href="#shannon" data-act="5"><img src="assets/portraits/shannon.jpg" alt="" loading="lazy"><span class="m">Claude Shannon<small>Deux fois la plus haute fréquence</small></span></a>
+      <a class="gcard" href="#marley" data-act="5" id="gcardMarley" hidden><img src="assets/portraits/marley.jpg" alt="" loading="lazy"><span class="m">Bob Marley<small>L'écho devenu instrument</small></span></a>
+    </div>
+  </div>
+</section>
+<hr class="phos-rule">
+
+<!-- ======================= TROIS BASCULES ======================= -->
+<section class="part-band reveal" id="bascules" data-act="0">
+  <div class="wrap">
+    <div class="part-num" aria-hidden="true"><svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="30"/><circle cx="70" cy="70" r="46" opacity=".6"/><circle cx="70" cy="70" r="62" opacity=".3"/></svg><span>3</span></div>
+    <div><p class="part-kicker">Ouverture des portraits</p><h2>Trois bascules</h2><p>Mesurer, interroger l'écho, changer d'onde. Les trois portraits développés du dossier, repris ici en premier&nbsp;: Mersenne fait d'une hauteur un nombre&nbsp;; Langevin fait d'un écho une distance&nbsp;; Gurnett fait d'une fréquence de plasma une densité.</p></div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="mersenne" data-act="2">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 01 · Mesurer · 8 sept. 1588 Oizé – 1er sept. 1648 Paris</p><h2>Marin Mersenne</h2><p class="epithete">« L'horloge du son »</p></div>
+      <div class="chapter-number" aria-hidden="true">01</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Religieux de l'ordre des Minimes, né à Oizé, près du Mans · couvent de la Place Royale, l'actuelle place des Vosges · œuvre : <em>Harmonie universelle</em> (1636–1637).</p>
+        <h3>Le réseau</h3>
+        <p>L'Académie des sciences n'existe pas encore&nbsp;: elle sera fondée en 1666. Sa cellule en tient lieu. Il écrit à Descartes, Gassendi, Fermat, Torricelli, aux Huygens. Il recopie les lettres, relance, confronte les résultats. D'où son surnom de «&nbsp;secrétaire de l'Europe savante&nbsp;». Il défend Galilée sans adopter toute sa physique&nbsp;: il veut des nombres obtenus.</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p><b>Les lois des cordes.</b> La fréquence d'une corde varie comme l'inverse de sa longueur, comme la racine carrée de sa tension, comme l'inverse de la racine carrée de sa masse par unité de longueur. Galilée en discute&nbsp;; Mersenne les écrit comme un protocole&nbsp;: même corde, une seule variable changée, puis on écoute.</p>
+        <p><b>Une fréquence absolue.</b> Il prend une corde longue et grave, assez lente pour que l'œil compte ses allers-retours. Par ses propres lois, il en déduit la fréquence d'une corde courte accordée à l'unisson d'un tuyau d'orgue&nbsp;: environ 84 vibrations par seconde. C'est la première détermination d'un son audible en cycles par seconde. Avant lui, on avait des rapports.</p>
+        <p><b>L'octave en fréquence.</b> L'octave est un rapport 1:2 en fréquence, pas seulement en longueur de corde. C'est le pont entre le monocorde et la physique.</p>
+        <p><b>La vitesse du son et l'écho.</b> Tirs d'arme, échos sur des façades, écart entre l'éclair et le bruit&nbsp;: ses valeurs varient d'un protocole à l'autre, d'environ 316 à 448 m/s, faute de contrôler le vent et la température. Le geste compte plus que le nombre&nbsp;: la célérité est finie et mesurable. L'écho n'est plus une nymphe mais une réflexion.</p>
+        <h3>Ce qu'il ne fait pas encore</h3>
+        <p>Pas d'équation d'onde (d'Alembert, 1747). Pas de correction de Laplace (1816). Pas de spectre. Il reste un mécanicien du nombre.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Il mesurait en hertz.&nbsp;»</b> Il mesure bien un nombre de vibrations par seconde, mais le mot n'existe pas. L'unité est adoptée par la Commission électrotechnique internationale en 1930, puis par la Conférence générale des poids et mesures en 1960. Heinrich Hertz, qui travaillait sur les ondes électromagnétiques, était mort en 1894.</p>
+          <p><b>«&nbsp;Le père de l'acoustique.&nbsp;»</b> Le titre est souvent donné. Il est partagé&nbsp;: Sauveur donne son nom à la discipline, Chladni est souvent dit père de l'acoustique moderne.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#mersenne">Dans le dossier — Acte II, Portrait I →</a><a href="index.html#maths">Atelier S04, la corde →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/mersenne.jpg" alt="Marin Mersenne, gravure" loading="lazy" width="498" height="600"><figcaption>Gravure de Claude Duflos (1665–1727), Bibliothèque nationale de France (Gallica), domaine public, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="langevin" data-act="6">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 02 · Interroger l'écho · 23 janv. 1872 Paris – 19 déc. 1946 Paris</p><h2>Paul Langevin</h2><p class="epithete">« Compter ce qui revient »</p></div>
+      <div class="chapter-number" aria-hidden="true">02</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Physicien · thèse en 1902 sous la direction de Pierre Curie · professeur au Collège de France de 1909 à 1946.</p>
+        <h3>La lignée qu'il reprend</h3>
+        <p>En 1793–1794, Spallanzani observe des chauves-souris qui volent sans voir, et Louis Jurine montre, en leur bouchant les oreilles, que l'audition est en jeu. En 1826, Colladon et Sturm mesurent la vitesse du son dans l'eau du lac Léman. En 1880–1881, les frères Curie découvrent la piézoélectricité et Lippmann prévoit l'effet inverse&nbsp;: un cristal comprimé produit des charges, et une tension le déforme. Après le naufrage du Titanic, Fessenden construit en 1914 un appareil qui détecte un iceberg par l'écho.</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>En 1915, pendant la guerre sous-marine, Langevin et Constantin Chilowsky mettent au point un émetteur d'ultrasons capacitif. En 1917, Langevin seul passe au quartz. Une lame de quartz entre deux armatures reçoit une tension alternative&nbsp;: elle change d'épaisseur au rythme de la fréquence et lance dans l'eau un paquet d'ultrasons. Quand l'écho revient, le même cristal fonctionne comme un micro. C'est le premier transducteur piézoélectrique à quartz, breveté en 1918, base de la technique ultérieure.</p>
+        <p>La distance se lit sur le temps. L'écho fait l'aller et le retour&nbsp;: on multiplie la vitesse du son dans l'eau, environ 1&nbsp;500 m/s, par le temps total, puis on divise par deux. Deux millisecondes d'aller-retour correspondent à une cible à 1,5 m. Le même calcul sert pour un sous-marin, un iceberg, un foie ou un fœtus. Seuls changent la fréquence, la puissance et l'usage.</p>
+        <h3>Après la guerre</h3>
+        <p>L'idée passe au contrôle non destructif des métaux, puis à la médecine&nbsp;: premiers essais de Karl Dussik en 1942, échographie clinique avec Howry, Wild et Ian Donald dans les années 1950 à 1970. L'écho-Doppler associe le sonar de Langevin et l'effet Doppler, appliqués aux globules rouges. Langevin est aussi un homme d'engagement public&nbsp;: arrêté par les Allemands en octobre 1940 et révoqué par Vichy, il est rétabli en 1944. Ses cendres entrent au Panthéon en 1948.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Langevin et Chilowsky ont inventé ensemble le sonar à quartz.&nbsp;»</b> Ils travaillent ensemble en 1915 sur l'émetteur capacitif. Chilowsky quitte le projet en 1916. Le transducteur à quartz est mis au point par Langevin seul, entre avril et novembre 1917.</p>
+          <p><b>«&nbsp;Un hydrophone, c'est un micro sous l'eau.&nbsp;»</b> L'appareil de 1917 est un transducteur de puissance, qui émet et reçoit. Il n'a rien d'un micro de studio.</p>
+          <p><b>«&nbsp;L'inventeur de l'échographie.&nbsp;»</b> L'échographie descend de son transducteur, mais la clinique moderne se construit trente ans plus tard, avec d'autres équipes.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#langevin">Dans le dossier — Acte VI, Portrait II →</a><a href="index.html#atelier-S16">Atelier S16, sonar à impulsion →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/langevin.jpg" alt="Paul Langevin" loading="lazy" width="621" height="800"><figcaption>Photographie d'Henri Manuel, Wellcome Collection, <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener">CC BY 4.0</a>, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="gurnett" data-act="9">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 03 · Changer d'onde · 11 avr. 1940 près de Fairfax (Iowa) – 13 janv. 2022 Iowa City</p><h2>Donald Gurnett</h2><p class="epithete">« Changer d'onde »</p></div>
+      <div class="chapter-number" aria-hidden="true">03</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Physicien des plasmas · Université de l'Iowa, doctorat en 1965 sous la direction de James Van Allen · titulaire de la chaire James A. Van Allen / Roy J. Carver de physique · responsable scientifique du <em>Plasma Wave Subsystem</em> de Voyager à partir de 1988, après Frederick Scarf.</p>
+        <h3>L'école de l'Iowa</h3>
+        <p>L'équipe de Van Allen construit des instruments de mesure des champs et des particules. Gurnett en hérite&nbsp;: une antenne longue, un récepteur, et une bande de fréquences qui tombe dans l'audible. Les <em>whistlers</em> terrestres, des éclairs dont l'onde électromagnétique se disperse dans la magnétosphère et arrive en sifflement descendant, s'écoutent depuis les années 1950. Gurnett emporte cette écoute plus loin, et envoie les données dans un haut-parleur parce que l'oreille repère vite un motif.</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p><b>1979, Jupiter.</b> Voyager 1 passe près de Io. Au casque, Gurnett reconnaît des whistlers&nbsp;: il y a des éclairs dans l'atmosphère de Jupiter. C'est l'une des deux preuves du survol, avec les images de la face de nuit. Il ne faut pas fabriquer de priorité entre les deux.</p>
+        <p><b>2012–2013, le milieu interstellaire.</b> L'instrument mesure des oscillations d'électrons dont la fréquence dépend de la densité du plasma. Dans l'héliogaine, elles sont d'environ 300 à 400 Hz. Deux orages de plasma venus du Soleil excitent le milieu&nbsp;: les oscillations montent à 2,2 kHz en octobre–novembre 2012, puis à 2,6 kHz en avril–mai 2013. La fréquence varie comme la racine carrée de la densité&nbsp;: doubler la fréquence, c'est quadrupler la densité. Voyager 1 est donc dans un plasma plus dense, celui du milieu interstellaire. En remontant le temps, l'équipe date la traversée de l'héliopause au 25 août 2012.</p>
+        <p><b>Une méthode.</b> Il écoute aussi pour diagnostiquer un instrument. Il dirige plus tard l'instrument radio et plasma de Cassini, qui étudie les émissions de Saturne de 2004 à 2017. Ses enregistrements sont archivés et ouverts au public par l'Université de l'Iowa.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Voyager a enregistré le son de l'espace.&nbsp;»</b> Voyager n'a pas de micro. Ses antennes mesurent des champs électriques associés à des ondes de plasma. Leur fréquence tombe dans notre bande audible&nbsp;: on peut les passer dans un haut-parleur sans les transposer. Ce n'est pas un son qui aurait voyagé dans le vide.</p>
+          <p><b>«&nbsp;Il a inventé la sonification.&nbsp;»</b> Les sonifications du télescope Chandra et les «&nbsp;chirps&nbsp;» de LIGO viennent d'autres équipes, pour d'autres physiques. Gurnett a rendu légitime le haut-parleur comme instrument d'astrophysique.</p>
+          <p><b>«&nbsp;Il a découvert les émissions radio de Saturne.&nbsp;»</b> Elles sont connues depuis les survols Voyager. Avec Cassini, son équipe les a suivies pendant treize ans.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#gurnett">Dans le dossier — Acte IX, Portrait III →</a><a href="index.html#atelier-S54">Atelier S54, les trois familles →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/gurnett.jpg" alt="Donald Gurnett lors d'une conférence de presse de la NASA" loading="lazy" width="650" height="800"><figcaption>Conférence de presse sur Voyager 1, siège de la NASA, 12 septembre 2013. Photographie NASA / Carla Cioffi, domaine public, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PARTIE I ======================= -->
+<section class="part-band reveal" id="partie-i" data-act="1">
+  <div class="wrap">
+    <div class="part-num" aria-hidden="true"><svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="30"/><circle cx="70" cy="70" r="46" opacity=".6"/><circle cx="70" cy="70" r="62" opacity=".3"/></svg><span>I</span></div>
+    <div><p class="part-kicker">Acte I du dossier</p><h2>Le lieu et le nombre</h2><p>Avant la mesure, le rapport. Une corde divisée donne des intervalles&nbsp;; une tradition les attribue à un homme dont on ne possède aucun écrit.</p></div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="pythagore" data-act="1">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 04 · v. 570 – v. 490 av. n. è.</p><h2>Pythagore</h2><p class="epithete">« Le rapport »</p></div>
+      <div class="chapter-number" aria-hidden="true">04</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Né à Samos, fondateur d'une école à Crotone, en Grande-Grèce · aucun écrit conservé · sa doctrine est connue par des auteurs plus tardifs.</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>On ne peut pas dire exactement ce qui revient à Pythagore lui-même. La tradition de son école associe des intervalles musicaux à des rapports simples de longueurs de corde, à tension égale&nbsp;: 2:1 pour l'octave, 3:2 pour la quinte, 4:3 pour la quarte. La plus ancienne source écrite claire est Philolaos, au Ve siècle avant notre ère. C'est la première mathématisation documentée du son musical en Occident.</p>
+        <p>Le geste est transmis par Nicomaque de Gérase, Jamblique, puis Boèce, qui le fait passer au Moyen Âge latin. L'«&nbsp;harmonie des sphères&nbsp;» de Platon le prolonge&nbsp;: le cosmos lui-même serait accordé. Ce n'est pas une physique des ondes, c'est une philosophie du nombre.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>Les marteaux de la forge.</b> Le récit d'un Pythagore entendant l'octave et la quinte dans les coups de marteaux de poids différents vient de Nicomaque de Gérase, au IIe siècle. Il est physiquement faux&nbsp;: la hauteur d'un coup sur une enclume ne suit pas ainsi la masse du marteau. Les rapports simples valent pour des longueurs de corde, et le monocorde permet de le vérifier.</p>
+          <p><b>«&nbsp;La gamme est dictée par la physique.&nbsp;»</b> Les vibrations offrent des possibilités et des contraintes. Les usages et les choix culturels organisent aussi les notes.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#antiquite">Dans le dossier — Acte I, l'Antiquité →</a><a href="index.html#atelier-S27">Atelier S27, monocorde →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/pythagore.jpg" alt="Buste romain dit de Pythagore" loading="lazy" width="449" height="599"><figcaption>Buste romain d'après un original grec, Musées du Capitole, Rome. Photographie de Galilea (2005), <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.fr" target="_blank" rel="noopener">CC BY-SA 3.0</a>, via Wikimedia Commons — <em>représentation imaginaire, aucun portrait authentique de Pythagore n'existe</em></figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PARTIE II ======================= -->
+<section class="part-band reveal" id="partie-ii" data-act="2">
+  <div class="wrap">
+    <div class="part-num" aria-hidden="true"><svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="30"/><circle cx="70" cy="70" r="46" opacity=".6"/><circle cx="70" cy="70" r="62" opacity=".3"/></svg><span>II</span></div>
+    <div><p class="part-kicker">Acte II du dossier · XVIIe siècle</p><h2>Le siècle de la mesure</h2><p>Mesurer, c'est changer une chose à la fois, compter, et permettre à quelqu'un d'autre de recommencer. Une corde, une pompe à vide, une roue dentée&nbsp;: le son devient un objet que l'on met à l'épreuve.</p></div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="galilee" data-act="2">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 05 · 15 févr. 1564 Pise – 8 janv. 1642 Arcetri</p><h2>Galilée</h2><p class="epithete">« Le nombre des vibrations »</p></div>
+      <div class="chapter-number" aria-hidden="true">05</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Mathématicien, physicien, astronome · fils du luthiste et théoricien Vincenzo Galilei · œuvre : <em>Discours concernant deux sciences nouvelles</em> (Leyde, 1638).</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>À la fin de la «&nbsp;Première Journée&nbsp;» des <em>Discours</em>, Galilée donne la discussion la plus nette de son époque sur la fréquence, qu'il appelle le nombre des vibrations. Il compare la corde au pendule, examine le rôle de la longueur, de la tension et de la matière de la corde, et relie la consonance à des rapports entiers de fréquences.</p>
+        <p>Le terrain a été préparé par son père. Vincenzo Galilei critique l'autorité pythagoricienne et mesure&nbsp;: vers 1588–1589, il constate que pour obtenir l'octave en tendant une corde, il faut quadrupler le poids, et non le doubler.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Galilée a découvert que la hauteur est une fréquence.&nbsp;»</b> Giovanni Battista Benedetti affirme déjà l'égalité entre rapport de hauteurs et rapport de fréquences, dans des lettres écrites vers 1563 et imprimées en 1585. L'idée est décisive, mais mal diffusée&nbsp;; Galilée lui donne sa forme la plus claire.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#xvii">Dans le dossier — Acte II, le XVIIe siècle →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/galilee.jpg" alt="Galilée" loading="lazy" width="652" height="800"><figcaption>Portrait par Justus Sustermans, vers 1640, National Maritime Museum, Greenwich, domaine public, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="boyle" data-act="2">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 06 · 25 janv. 1627 Lismore – 31 déc. 1691 Londres</p><h2>Robert Boyle</h2><p class="epithete">« Le milieu nécessaire »</p></div>
+      <div class="chapter-number" aria-hidden="true">06</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Philosophe de la nature, chimiste · né en Irlande, actif à Oxford puis Londres · œuvre : <em>New Experiments Physico-Mechanicall, Touching the Spring of the Air</em> (1660).</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>Expérience 27 de 1660&nbsp;: une montre à sonnerie est suspendue sous la cloche d'une pompe à air. À mesure que l'on retire l'air, le tic-tac s'éteint. La démonstration établit que l'air, un milieu, est nécessaire pour que le son arrive jusqu'à l'oreille. La pompe a été conçue et construite par Robert Hooke, alors assistant de Boyle.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Sous la cloche, silence total.&nbsp;»</b> Le tic-tac de la montre devient inaudible, mais une cloche frappée ne fait que s'affaiblir&nbsp;: l'air résiduel et le fil de suspension transmettent encore la vibration. La leçon tient, sans milieu pas de propagation, mais une expérience réelle n'atteint jamais le vide parfait.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#xvii">Dans le dossier — Acte II, le XVIIe siècle →</a><a href="index.html#atelier-S03">Atelier S03, cloche de Boyle →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/boyle.jpg" alt="Robert Boyle" loading="lazy" width="633" height="800"><figcaption>Portrait par Johann Kerseboom, 1689 (« portrait Shannon »), Science History Institute, domaine public, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="hooke" data-act="2">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 07 · 18 juil. 1635 Freshwater – 3 mars 1703 Londres</p><h2>Robert Hooke</h2><p class="epithete">« La roue qui chante »</p></div>
+      <div class="chapter-number" aria-hidden="true">07</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Expérimentateur, architecte · né sur l'île de Wight · responsable des expériences de la Royal Society à partir de 1662 · œuvre : <em>Micrographia</em> (1665).</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p><b>La roue dentée.</b> Une carte frotte contre une roue dentée qui tourne. Plus la roue va vite, plus le son est aigu. Hooke présente l'appareil à la Royal Society en juillet 1681. Le lien entre hauteur et fréquence devient audible et réglable, bien avant la sirène de Cagniard de La Tour (1819).</p>
+        <p><b>La plaque farinée.</b> Le 8 juillet 1680, il passe un archet sur une plaque de verre saupoudrée de farine et observe des figures. Chladni systématisera le phénomène un siècle plus tard.</p>
+        <p><b>La pompe de Boyle.</b> C'est lui qui la construit.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>Un visage.</b> Les portraits de Hooke qui circulent sont des reconstitutions modernes ou des tableaux d'identification discutée. Aucun portrait peint de son vivant n'est identifié avec certitude.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#xvii">Dans le dossier — Acte II, le XVIIe siècle →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img no-img"><div class="vide" aria-hidden="true">◻</div><figcaption>Pas d'image&nbsp;: aucun portrait authentique de Hooke à licence claire n'a été trouvé. Les images disponibles sont une reconstitution de 2004 ou une attribution discutée.</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="newton" data-act="2">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 08 · 25 déc. 1642 Woolsthorpe – 20 mars 1727 Kensington (calendrier julien)</p><h2>Isaac Newton</h2><p class="epithete">« Le bon cadre, la mauvaise hypothèse »</p></div>
+      <div class="chapter-number" aria-hidden="true">08</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Mathématicien, physicien · Trinity College, Cambridge · œuvre : <em>Principia</em> (1687), livre II. Dates en calendrier grégorien&nbsp;: 4 janvier 1643 – 31 mars 1727.</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>Dans le livre II des <em>Principia</em>, Newton donne la première formule analytique de la vitesse du son&nbsp;: la racine carrée du rapport entre la pression de l'air et sa masse volumique. Il suppose que l'air comprimé par l'onde garde sa température.</p>
+        <p>Il publie 968 pieds par seconde en 1687, puis 979 en 1713, soit environ 295 à 298 m/s avec les données de son temps. Les mesures contemporaines donnent déjà 337 à 351 m/s&nbsp;: l'Accademia del Cimento (1666), Cassini (1677), Derham (1708). Newton retouche ses hypothèses pour combler l'écart. Le désaccord durera jusqu'à Laplace.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Newton s'est trompé dans son calcul.&nbsp;»</b> Le calcul est juste&nbsp;; c'est l'hypothèse qui est fausse. La compression dans une onde sonore est trop rapide pour échanger de la chaleur. Une bonne équation posée sur un mauvais modèle physique donne un mauvais nombre.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#physique">Dans le dossier — Ouverture, équation de Newton–Laplace →</a><a href="index.html#xvii">Acte II, le XVIIe siècle →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/newton.jpg" alt="Isaac Newton" loading="lazy" width="569" height="800"><figcaption>Portrait d'après Godfrey Kneller, 1689, domaine public, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="sauveur" data-act="2">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 09 · 24 mars 1653 La Flèche – 9 juil. 1716 Paris</p><h2>Joseph Sauveur</h2><p class="epithete">« Le nom de la discipline »</p></div>
+      <div class="chapter-number" aria-hidden="true">09</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Mathématicien · professeur au Collège royal (1686) · membre de l'Académie royale des sciences à partir de 1696.</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>En 1701, il forge le mot <em>acoustique</em>, du grec <em>akouein</em>, entendre. Il désigne une science du son en général, distincte de la musique, qui s'occupe du son en tant qu'agréable à l'oreille. Il étudie les harmoniques, les nœuds et les ventres des cordes vibrantes, les sons simultanés. Il hérite directement de Mersenne&nbsp;: le nom vient après la mesure.</p>
+        <p>Selon l'éloge de Fontenelle, il fut muet jusqu'à sept ans et resta gêné pour parler. Fontenelle écrit aussi qu'il n'avait «&nbsp;ni voix, ni oreille&nbsp;» pour la musique.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Rameau a fondé son <em>Traité de l'harmonie</em> sur Sauveur.&nbsp;»</b> Rameau ne connaît pas les travaux de Sauveur quand il écrit le <em>Traité</em> (1722). Il les découvre ensuite, et s'y appuie dans la <em>Génération harmonique</em> (1737).</p>
+          <p><b>«&nbsp;Le fondateur de l'acoustique était sourd.&nbsp;»</b> Fontenelle décrit un trouble de la parole et une absence d'oreille musicale, pas une surdité établie.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#xvii">Dans le dossier — Acte II, le XVIIe siècle →</a><a href="index.html#musique">Acte III, la musique →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img no-img"><div class="vide" aria-hidden="true">◻</div><figcaption>Pas d'image&nbsp;: aucun portrait de Joseph Sauveur n'a été trouvé sur Wikimedia Commons.</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PARTIE III ======================= -->
+<section class="part-band reveal" id="partie-iii" data-act="2">
+  <div class="wrap">
+    <div class="part-num" aria-hidden="true"><svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="30"/><circle cx="70" cy="70" r="46" opacity=".6"/><circle cx="70" cy="70" r="62" opacity=".3"/></svg><span>III</span></div>
+    <div><p class="part-kicker">Actes II à VI du dossier · XVIIIe – XIXe siècles</p><h2>Le son mis en équations</h2><p>La vitesse du son est corrigée, les modes deviennent visibles, le timbre devient un spectre, le mouvement change la fréquence. Un traité rassemble le tout en 1877.</p></div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="laplace" data-act="2">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 10 · 23 mars 1749 Beaumont-en-Auge – 5 mars 1827 Paris</p><h2>Pierre-Simon de Laplace</h2><p class="epithete">« Le facteur manquant »</p></div>
+      <div class="chapter-number" aria-hidden="true">10</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Mathématicien, astronome · œuvre : <em>Traité de mécanique céleste</em> (1798–1825) · mémoire «&nbsp;Sur la vitesse du son dans l'air et dans l'eau&nbsp;» (<em>Annales de chimie et de physique</em>, 1816).</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>Laplace referme l'écart laissé par Newton. Les compressions d'une onde sonore sont trop rapides pour que la chaleur ait le temps de s'échanger&nbsp;: le processus est adiabatique, pas isotherme. Il faut donc multiplier la pression par un facteur, le rapport des capacités thermiques de l'air, noté gamma, qui vaut environ 1,40.</p>
+        <p>La valeur calculée à la manière de Newton avec des données modernes est d'environ 280 m/s à 0&nbsp;°C. Multipliée par la racine de 1,4, elle donne environ 331 m/s, en accord avec l'expérience.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Une correction de 1816.&nbsp;»</b> L'idée est plus ancienne&nbsp;: Biot la publie dès 1802 en l'attribuant à Laplace. Le mémoire de 1816 donne la formule, et l'exposé complet paraît dans la <em>Mécanique céleste</em> dans les années 1820.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#physique">Dans le dossier — Ouverture, équation de Newton–Laplace →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/laplace.jpg" alt="Pierre-Simon de Laplace" loading="lazy" width="618" height="800"><figcaption>Portrait posthume par Jean-Baptiste Paulin Guérin, 1838, domaine public, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="chladni" data-act="2">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 11 · 30 nov. 1756 Wittenberg – 3 avr. 1827 Breslau (Wrocław)</p><h2>Ernst Chladni</h2><p class="epithete">« Les modes rendus visibles »</p></div>
+      <div class="chapter-number" aria-hidden="true">11</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Physicien, musicien, formé en droit · œuvres : <em>Entdeckungen über die Theorie des Klanges</em> (1787), <em>Die Akustik</em> (1802) · inventeur d'instruments (euphone, clavicylindre).</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>Il répand du sable sur une plaque et la frotte à l'archet. Le sable quitte les zones qui vibrent et s'accumule sur les lignes nodales, là où la plaque ne bouge pas. Les figures de Chladni sont la première visualisation, montrable à un public, des modes de vibration d'une plaque.</p>
+        <p>Il en fait des tournées de démonstration. Il passe par Paris en 1808, devant Napoléon et l'Institut. Le concours ouvert ensuite sur la théorie mathématique des plaques vibrantes est remporté en 1816 par Sophie Germain. En 1794, Chladni a aussi défendu l'origine extraterrestre des météorites.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;L'Institut couronne Chladni.&nbsp;»</b> Le prix de 1816 va à Sophie Germain, pour la théorie des plaques.</p>
+          <p><b>«&nbsp;Le son crée des formes.&nbsp;»</b> Les figures montrent où la plaque ne vibre pas. À fréquence égale, une plaque de forme différente donne une figure différente. Il n'y a là aucune «&nbsp;cymatique créatrice&nbsp;».</p>
+        </div>
+        <p class="renvoi"><a href="index.html#xviii">Dans le dossier — Acte II, XVIIIe–XIXe →</a><a href="index.html#atelier-S06">Atelier S06, Chladni →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/chladni.jpg" alt="Ernst Chladni" loading="lazy" width="707" height="800"><figcaption>Portrait par Ludwig Albert von Montmorillon, vers 1825, domaine public, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="fourier" data-act="2">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 12 · 21 mars 1768 Auxerre – 16 mai 1830 Paris</p><h2>Joseph Fourier</h2><p class="epithete">« Une somme de sinus »</p></div>
+      <div class="chapter-number" aria-hidden="true">12</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Mathématicien, physicien · membre de l'expédition d'Égypte (1798), préfet de l'Isère (1802–1815) · mémoire du 21 décembre 1807 · <em>Théorie analytique de la chaleur</em> (1822).</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>Un signal périodique peut s'écrire comme une somme de vibrations sinusoïdales, chacune avec son amplitude et sa phase. C'est l'outil de tout spectre et de tout spectrogramme moderne. En 1843, la «&nbsp;loi acoustique d'Ohm&nbsp;» applique l'idée à l'oreille&nbsp;: elle décomposerait un son complexe en composantes sinusoïdales. En 1965, la transformée de Fourier rapide rend le calcul assez rapide pour les machines.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Fourier travaillait sur le son.&nbsp;»</b> Il travaillait sur la propagation de la chaleur. Et les sommes de sinus avaient déjà été discutées vers 1750 pour la corde vibrante, par Daniel Bernoulli, Euler et d'Alembert. Fourier en fait une méthode générale.</p>
+          <p><b>«&nbsp;L'octave étirée du piano viole Fourier.&nbsp;»</b> Non&nbsp;: une corde raide a des partiels légèrement plus aigus que les multiples exacts de la fondamentale. Fourier n'est pas en cause, la corde l'est.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#maths">Dans le dossier — Ouverture, série de Fourier · atelier S17 →</a><a href="index.html#atelier-S28">Atelier S28, timbre additif →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/fourier.jpg" alt="Joseph Fourier" loading="lazy" width="632" height="800"><figcaption>Gravure d'A.&nbsp;F.&nbsp;B. Geille d'après Julien-Léopold Boilly, début du XIXe siècle, domaine public, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="helmholtz" data-act="3">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 13 · 31 août 1821 Potsdam – 8 sept. 1894 Charlottenburg</p><h2>Hermann von Helmholtz</h2><p class="epithete">« Le timbre est un spectre »</p></div>
+      <div class="chapter-number" aria-hidden="true">13</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Médecin militaire de formation, physiologiste puis physicien · inventeur de l'ophtalmoscope (1851) · œuvre : <em>Die Lehre von den Tonempfindungen</em> (1863).</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p><b>Le timbre.</b> Deux instruments qui jouent la même note diffèrent par la répartition de leurs harmoniques&nbsp;: le timbre est un spectre. Ses résonateurs, des sphères creuses accordées chacune sur une fréquence, permettent d'isoler à l'oreille les composantes d'un son.</p>
+        <p><b>La rugosité.</b> Quand les partiels de deux notes tombent presque ensemble, ils battent et l'oreille entend une rugosité. Helmholtz en tire une explication physique de la consonance et de la dissonance, reprise au XXe siècle par Plomp et Levelt, puis Sethares.</p>
+        <p><b>L'audition.</b> Il propose que des fibres de la membrane basilaire résonnent chacune à une fréquence, comme les cordes d'un piano.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;L'oreille est un piano de résonateurs.&nbsp;»</b> Le modèle a été partiellement confirmé et partiellement réfuté par Békésy&nbsp;: la cochlée analyse bien les fréquences selon la position, mais par une onde qui se propage, pas par des fibres isolées.</p>
+          <p><b>«&nbsp;La consonance est purement physique.&nbsp;»</b> La rugosité n'est qu'un étage. La fondamentale virtuelle et la culture en sont d'autres.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#accords">Dans le dossier — Acte III, des intervalles aux accords →</a><a href="index.html#oreille">Acte IV, entendre →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/helmholtz.jpg" alt="Hermann von Helmholtz" loading="lazy" width="432" height="600"><figcaption>Photographie d'un auteur inconnu, avant 1894, domaine public, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="doppler" data-act="6">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 14 · 29 nov. 1803 Salzbourg – 17 mars 1853 Venise</p><h2>Christian Doppler</h2><p class="epithete">« La cadence de rencontre »</p></div>
+      <div class="chapter-number" aria-hidden="true">14</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Mathématicien, physicien · mémoire «&nbsp;Sur la lumière colorée des étoiles doubles&nbsp;», présenté à Prague le 25 mai 1842.</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>Quand une source ou un observateur se déplace, la fréquence reçue n'est plus celle émise. Ce qui compte est la cadence à laquelle l'observateur rencontre les fronts d'onde&nbsp;: plus rapide à l'approche, plus lente à l'éloignement. Doppler formule l'effet pour la lumière des étoiles.</p>
+        <p>L'effet sur le son est vérifié en juin 1845 par Christophorus Buys Ballot, sceptique, avec des cornistes installés sur un train entre Utrecht et Maarssen. Aujourd'hui, l'écho-Doppler mesure la vitesse du sang, et les chauves-souris rhinolophes compensent leur propre vitesse pour garder l'écho dans leur zone d'écoute la plus fine.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Doppler a expliqué la couleur des étoiles.&nbsp;»</b> C'était son idée, et elle était fausse&nbsp;: le décalage est bien trop faible pour changer la couleur d'une étoile. Sa formule du décalage de fréquence, elle, était juste.</p>
+          <p><b>«&nbsp;Il a fait l'expérience du train.&nbsp;»</b> C'est Buys Ballot.</p>
+          <p><b>«&nbsp;Une tierce mineure à 30 m/s.&nbsp;»</b> À 30 m/s, la note monte d'environ 9&nbsp;% pendant l'approche, trois quarts de ton environ. C'est le basculement complet, de l'approche à l'éloignement, qui fait environ 19&nbsp;%, soit une tierce mineure.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#doppler">Dans le dossier — Acte VI, mécanisme Doppler →</a><a href="index.html#atelier-S13">Atelier S13, qui bouge ? →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/doppler.jpg" alt="Christian Doppler" loading="lazy" width="499" height="640"><figcaption>Portrait d'un auteur inconnu, avant 1853, domaine public, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="rayleigh" data-act="2">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 15 · 12 nov. 1842 Langford Grove (Essex) – 30 juin 1919 Terling Place (Essex)</p><h2>Lord Rayleigh</h2><p class="epithete">« Le traité »</p></div>
+      <div class="chapter-number" aria-hidden="true">15</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">John William Strutt, troisième baron Rayleigh · physicien · successeur de Maxwell à la chaire Cavendish de Cambridge (1879–1884) · œuvre : <em>The Theory of Sound</em> (1877–1878).</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p><b>Le traité.</b> <em>The Theory of Sound</em> rassemble les cordes, les membranes, les tuyaux, la propagation et la diffraction dans un même cadre mathématique. C'est la somme fondatrice de l'acoustique moderne.</p>
+        <p><b>Les ondes de surface.</b> En 1885, il décrit les ondes qui courent à la surface d'un solide&nbsp;: les ondes de Rayleigh, qu'on retrouve en sismologie.</p>
+        <p><b>Deux oreilles.</b> En 1907, sa «&nbsp;théorie duplex&nbsp;» explique la localisation d'un son par deux indices&nbsp;: la différence de temps d'arrivée entre les oreilles pour les graves, la différence de niveau pour les aigus. Tout l'audio spatial en descend.</p>
+        <p>L'unité d'impédance acoustique, le <em>rayl</em>, porte son nom.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Un Nobel pour l'acoustique.&nbsp;»</b> Son prix Nobel de physique, en 1904, récompense l'isolement de l'argon.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#xviii">Dans le dossier — Acte II, XVIIIe–XIXe →</a><a href="index.html#psycho">Acte IV, localisation spatiale →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/rayleigh.jpg" alt="Lord Rayleigh" loading="lazy" width="594" height="800"><figcaption>Photographie d'un auteur inconnu, publiée en 1921 dans les <em>Proceedings of the Royal Society</em>, domaine public, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PARTIE IV ======================= -->
+<section class="part-band reveal" id="partie-iv" data-act="4">
+  <div class="wrap">
+    <div class="part-num" aria-hidden="true"><svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="30"/><circle cx="70" cy="70" r="46" opacity=".6"/><circle cx="70" cy="70" r="62" opacity=".3"/></svg><span>IV</span></div>
+    <div><p class="part-kicker">Actes IV, V, VII et VIII du dossier · XXe siècle</p><h2>La salle, l'oreille, le vivant, le nombre</h2><p>Un chronomètre dans un théâtre, des cochlées sous le microscope, une oreille qui émet, des chauves-souris qui crient hors de notre bande, un signal réduit à des échantillons. Chaque fiche garde la couleur de l'acte du dossier qui la raconte.</p></div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="sabine" data-act="7">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 16 · 13 juin 1868 Richwood (Ohio) – 10 janv. 1919 Boston</p><h2>Wallace Clement Sabine</h2><p class="epithete">« Chronométrer la salle »</p></div>
+      <div class="chapter-number" aria-hidden="true">16</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Physicien · Université Harvard · conseiller acoustique du Symphony Hall de Boston, inauguré le 15 octobre 1900.</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>En 1895, Harvard lui confie une salle de cours du Fogg Art Museum où l'on ne comprend rien. Il mesure, avec un tuyau d'orgue et un chronomètre, le temps que met le son à s'éteindre. Nuit après nuit, il déplace les coussins du Sanders Theatre pour faire varier l'absorption.</p>
+        <p>Il en tire une relation simple&nbsp;: le temps de réverbération croît avec le volume de la salle et diminue avec l'absorption totale de ses surfaces. À volume égal, doubler l'absorption divise la durée par deux. On mesure ce temps comme la durée d'une baisse de 60 décibels. L'unité d'absorption, la <em>sabine</em>, porte son nom.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Sabine a construit le Symphony Hall.&nbsp;»</b> Les architectes sont McKim, Mead &amp; White. Sabine est le conseiller acoustique. La salle reste citée parmi les meilleures du monde.</p>
+          <p><b>«&nbsp;Sa formule vaut partout.&nbsp;»</b> Elle suppose un son bien diffus et une absorption modérée. Pour les salles très mates, d'autres formules, comme celle d'Eyring, prennent le relais.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#archi">Dans le dossier — Acte VII, acoustique architecturale →</a><a href="index.html#atelier-S24">Atelier S24, calculateur de Sabine →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/sabine.jpg" alt="Wallace Clement Sabine" loading="lazy" width="264" height="407"><figcaption>Photographie publiée en 1922 dans ses <em>Collected Papers on Acoustics</em>, domaine public, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="bekesy" data-act="4">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 17 · 3 juin 1899 Budapest – 13 juin 1972 Honolulu</p><h2>Georg von Békésy</h2><p class="epithete">« L'onde qui voyage »</p></div>
+      <div class="chapter-number" aria-hidden="true">17</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Physicien, ingénieur au laboratoire de recherche des Postes hongroises (1923–1946) · Harvard (1947–1966), puis Université d'Hawaï · prix Nobel de physiologie ou médecine 1961.</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>En observant des cochlées prélevées sur des cadavres, il voit une onde parcourir la membrane basilaire, de la base vers l'apex. Son maximum se place à un endroit qui dépend de la fréquence&nbsp;: près de la base pour les aigus, vers l'apex pour les graves. C'est la tonotopie. La cochlée fonctionne comme un analyseur de fréquences mécanique.</p>
+        <p>Il est le seul lauréat du Nobel 1961, «&nbsp;pour ses découvertes sur le mécanisme physique de la stimulation dans la cochlée&nbsp;».</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Un Nobel de physique.&nbsp;»</b> Physicien de formation, il reçoit le prix de physiologie ou médecine.</p>
+          <p><b>«&nbsp;La cochlée est passive.&nbsp;»</b> Une oreille morte ne montre pas l'amplification active des cellules ciliées externes. Kemp la mettra en évidence en 1978.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#oreille">Dans le dossier — Acte IV, entendre →</a><a href="index.html#atelier-S43">Atelier S43, la cochlée →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/bekesy.jpg" alt="Georg von Békésy" loading="lazy" width="280" height="396"><figcaption>Photographie de la Fondation Nobel, 1961, domaine public (photographie suédoise), via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="kemp" data-act="4">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 18 · né en 1945</p><h2>David T. Kemp</h2><p class="epithete">« L'oreille émet »</p></div>
+      <div class="chapter-number" aria-hidden="true">18</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Physicien britannique · Institute of Laryngology and Otology, Londres, puis UCL Ear Institute · membre de la Royal Society (2004) · article fondateur : <em>Journal of the Acoustical Society of America</em>, vol. 64, 1978.</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>En 1978, Kemp place un petit micro dans le conduit auditif, envoie un clic, et enregistre un son qui revient de l'oreille elle-même, avec un léger retard. Ce sont les otoémissions acoustiques. Elles prouvent que la cochlée contient un amplificateur actif&nbsp;: les cellules ciliées externes. Leur électromotilité sera décrite dans les années 1980.</p>
+        <p>Les otoémissions provoquées sont devenues un test de dépistage auditif des nouveau-nés, pratiqué à grande échelle avec d'autres mesures automatisées. Kemp fonde en 1988 la société Otodynamics, qui commercialise l'un des premiers appareils de mesure.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p>Rien de particulier. C'est plutôt l'idée inverse qui circule&nbsp;: «&nbsp;l'oreille est un micro&nbsp;». Elle est fausse depuis 1978.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#bio-humaine">Dans le dossier — Acte IV, otoémissions →</a><a href="index.html#atelier-S43">Atelier S43, la cochlée →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img no-img"><div class="vide" aria-hidden="true">◻</div><figcaption>Pas d'image&nbsp;: aucun portrait de David Kemp sous licence libre n'a été trouvé sur Wikimedia Commons. Sa date de naissance exacte n'est donnée que par des sources secondaires&nbsp;: seule l'année est retenue.</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="griffin" data-act="8">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 19 · 3 août 1915 Southampton (New York) – 7 nov. 2003 Lexington (Massachusetts)</p><h2>Donald R. Griffin</h2><p class="epithete">« Le mot écholocation »</p></div>
+      <div class="chapter-number" aria-hidden="true">19</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Zoologiste · Université Harvard · a forgé le mot <em>echolocation</em> (<em>Science</em>, 1944) · plus tard fondateur de l'éthologie cognitive (<em>The Question of Animal Awareness</em>, 1976).</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p><b>1938.</b> Étudiant à Harvard, il apporte des chauves-souris au physicien George W. Pierce, qui dispose d'un détecteur piézoélectrique. Ils entendent pour la première fois leurs cris, à des dizaines de kilohertz, hors de notre bande audible.</p>
+        <p><b>1941–1942.</b> Avec Robert Galambos, il montre qu'une chauve-souris dont on bouche la bouche ou les oreilles heurte les obstacles. La preuve est expérimentale&nbsp;: elle se guide à l'écho de ses propres cris.</p>
+        <p><b>1944.</b> Il forge le mot <em>echolocation</em>. En 1960, avec Webster et Michael, il décrit les phases de la chasse d'un insecte&nbsp;: recherche, approche, puis une salve finale très rapide.</p>
+        <p>Il étudie aussi les salanganes, des oiseaux qui s'orientent dans des grottes par des clics entre 1 et 10 kHz, donc audibles.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Spallanzani a découvert l'écholocation.&nbsp;»</b> Spallanzani observe en 1793 des chauves-souris qui volent sans voir. Louis Jurine montre en 1794 le rôle de l'oreille, et Spallanzani confirme. Le mécanisme, des ultrasons et leur écho, n'est établi qu'avec Griffin.</p>
+          <p><b>«&nbsp;L'écholocation est toujours ultrasonore.&nbsp;»</b> Les salanganes et le guacharo utilisent des clics audibles.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#ultra-animaux">Dans le dossier — Acte VIII, ultrasons animaux →</a><a href="index.html#atelier-S46">Atelier S46, la chauve-souris →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img no-img"><div class="vide" aria-hidden="true">◻</div><figcaption>Pas d'image&nbsp;: aucun portrait de Donald Griffin n'est disponible sur Wikimedia Commons.</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="chapter reveal fiche" id="shannon" data-act="5">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche 20 · 30 avr. 1916 Petoskey (Michigan) – 24 févr. 2001 Medford (Massachusetts)</p><h2>Claude Shannon</h2><p class="epithete">« Deux fois la plus haute fréquence »</p></div>
+      <div class="chapter-number" aria-hidden="true">20</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Mathématicien, ingénieur · Bell Labs, puis MIT · œuvres : «&nbsp;A Mathematical Theory of Communication&nbsp;» (1948), «&nbsp;Communication in the Presence of Noise&nbsp;» (<em>Proceedings of the IRE</em>, 1949).</p>
+        <h3>Ce qu'il a réellement montré</h3>
+        <p>Un microphone numérique ne mesure la pression qu'un certain nombre de fois par seconde. Shannon énonce en 1949 la condition pour ne rien perdre&nbsp;: si le signal ne contient aucune fréquence au-dessus d'une limite, des échantillons pris plus de deux fois plus souvent que cette limite le déterminent exactement. On le reconstruit par interpolation, sans approximation.</p>
+        <p>C'est pourquoi le CD échantillonne à 44,1 kHz pour une oreille qui s'arrête vers 20 kHz. Si la condition n'est pas respectée, les fréquences trop hautes se replient et reviennent comme de fausses notes&nbsp;: c'est le repliement, que le filtre placé avant l'échantillonnage empêche.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Le théorème de Shannon est de Shannon seul.&nbsp;»</b> Le résultat a une histoire&nbsp;: E.&nbsp;T. Whittaker en 1915, Nyquist en 1928 pour la transmission, Kotelnikov en 1933. Shannon cite lui-même Nyquist et J.&nbsp;M. Whittaker. Il lui donne sa forme la plus claire et la plus diffusée.</p>
+        </div>
+        <p class="renvoi"><a href="index.html#numerique">Dans le dossier — Acte V, le son devient nombre →</a><a href="index.html#atelier-S19">Atelier S19, échantillonnage →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/shannon.jpg" alt="Claude Shannon" loading="lazy" width="284" height="400"><figcaption>Photographie de Konrad Jacobs, archives photographiques de l'Institut de recherche mathématique d'Oberwolfach, <a href="https://creativecommons.org/licenses/by-sa/2.0/de/deed.fr" target="_blank" rel="noopener">CC BY-SA 2.0 DE</a>, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FICHE CACHÉE ======================= -->
+<section class="chapter reveal fiche surprise" id="marley" data-act="5" hidden aria-labelledby="marley-t">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="kicker">Fiche cachée · 6 févr. 1945 Nine Mile (Jamaïque) – 11 mai 1981 Miami</p><h2 id="marley-t" tabindex="-1">Bob Marley, et les ingénieurs du dub</h2><p class="epithete">« L'écho devenu instrument »</p></div>
+      <div class="chapter-number" aria-hidden="true">21</div>
+    </div>
+    <div class="transcript">
+      <div class="prose">
+        <p class="idcard">Chanteur, auteur, guitariste · cette fiche n'est pas une biographie&nbsp;: elle suit ce que la Jamaïque des années 1950 à 1970 a fait de l'écho, de la réverbération et des basses.</p>
+        <h3>Des haut-parleurs dans la rue</h3>
+        <p>Dans les années 1950, à Kingston, les <em>sound systems</em> sont des discothèques mobiles&nbsp;: un camion, un groupe électrogène, des platines et de grandes enceintes, qui diffusent d'abord du rhythm and blues américain. Les deux grands rivaux sont Clement «&nbsp;Coxsone&nbsp;» Dodd (Downbeat) et Duke Reid (Trojan). L'ingénieur Hedley Jones construit des caissons de la taille d'une armoire, qu'il appelle <em>House of Joy</em>.</p>
+        <p>À partir de 1967–1968, les 45 tours jamaïcains portent souvent en face B une «&nbsp;version&nbsp;»&nbsp;: le même morceau, sans la voix. On raconte qu'un disque sans chant, passé par erreur dans un sound system, a lancé la mode. L'anecdote est souvent répétée&nbsp;; elle reste une anecdote.</p>
+        <h3>La table de mixage comme instrument</h3>
+        <p>Osbourne Ruddock, dit King Tubby (1941–1989), répare des radios et tient un sound system. Dans son studio du quartier de Waterhouse, il retravaille ces versions&nbsp;: il coupe des pistes, les fait revenir, les filtre. Son filtre passe-haut, qui retire les graves, se règle par un gros bouton rotatif cranté. Il ajoute un écho produit par un magnétophone et une réverbération à ressort. C'est le dub, dont il est l'un des pionniers, avec Lee «&nbsp;Scratch&nbsp;» Perry et Errol Thompson. Sa console est aujourd'hui conservée au Museum of Pop Culture de Seattle.</p>
+        <p>Lee Perry (1936–2021) produit les Wailers, le groupe de Bob Marley, en 1970–1971. Il construit en 1973 son studio, le Black Ark, où il travaille jusqu'en 1979 avec un magnétophone quatre pistes, un écho à bande Roland Space Echo, un Echoplex et une réverbération à ressort. En 1977, Marley et Perry écrivent ensemble «&nbsp;Punky Reggae Party&nbsp;».</p>
+        <h3>Ce que font ces machines</h3>
+        <p><b>L'écho à bande.</b> Une tête enregistre le son sur une boucle de bande magnétique. Plus loin, une tête de lecture le relit. Le retard vaut la distance entre les deux têtes divisée par la vitesse de la bande&nbsp;: 2,5 cm à 38 cm/s donnent environ 66 millisecondes. Si l'on renvoie une partie du son relu vers l'entrée, les répétitions s'enchaînent en s'affaiblissant. C'est l'écho de Mersenne, une réflexion, mais fabriquée et réglable.</p>
+        <p><b>La réverbération à ressort.</b> Un signal électrique fait vibrer un ressort. L'onde fait des allers-retours d'une extrémité à l'autre, et chaque retour ajoute une réflexion. Le principe vient d'un brevet de Laurens Hammond, déposé en 1939 et délivré en 1941, pour ses orgues. Sabine chronométrait la réverbération pour la maîtriser. Le dub en fait un effet qu'on dose.</p>
+        <p><b>Les basses.</b> À fort volume, les basses ne passent pas seulement par l'oreille&nbsp;: le corps les perçoit aussi. Julian Henriques a étudié les sound systems sous cet angle, celui de vibrations entendues et ressenties. Une étude de 2022, faite pendant un vrai concert, a mesuré que des très basses fréquences, que le public ne détectait pas consciemment, augmentaient de 12&nbsp;% la quantité de danse.</p>
+        <h3 class="tort">Ce qu'on lui prête à tort</h3>
+        <div class="tort-box">
+          <p><b>«&nbsp;Bob Marley a inventé le dub.&nbsp;»</b> Le dub vient des ingénieurs et producteurs de studio&nbsp;: King Tubby, Lee Perry, Errol Thompson. Marley a travaillé avec Perry, et ses disques jamaïcains suivaient l'usage de l'époque, comme la plupart des 45 tours.</p>
+        </div>
+        <p class="sources-list">Sources&nbsp;: <a href="https://www.britannica.com/summary/Bob-Marley" target="_blank" rel="noopener">Britannica</a> (dates) · <a href="https://daily.redbullmusicacademy.com/2019/05/hedley-jones-feature/" target="_blank" rel="noopener">Red Bull Music Academy, Hedley Jones</a> · <a href="https://daily.redbullmusicacademy.com/2018/08/the-roots-of-dub/" target="_blank" rel="noopener">RBMA, <em>The Roots of Dub</em></a> · <a href="https://www.nlj.gov.jm/REGGAE%20EXHIBITION/King%20Tubby.htm" target="_blank" rel="noopener">Bibliothèque nationale de Jamaïque, King Tubby</a> · <a href="https://mopop.emuseum.com/objects/95703/mci-mixing-console-formerly-owned-and-operated-by-king-tubby" target="_blank" rel="noopener">MoPOP, console de King Tubby</a> · <a href="https://www.bobmarley.com/release/soul-rebels-1970/" target="_blank" rel="noopener">bobmarley.com, <em>Soul Rebels</em></a> · <a href="https://www.musicradar.com/news/pioneers-lee-scratch-perry" target="_blank" rel="noopener">MusicRadar, Lee Perry</a> · <a href="https://rolandcorp.com.au/blog/the-roland-re-201-space-echo-story" target="_blank" rel="noopener">Roland, RE-201</a> · <a href="https://patents.google.com/patent/US2230836A/en" target="_blank" rel="noopener">brevet US 2 230 836 (Hammond)</a> · <a href="https://www.strymon.net/strymon-dtape-technology-white-paper/" target="_blank" rel="noopener">Strymon, principe de l'écho à bande</a> · J. Henriques, <em>Sonic Bodies</em>, 2011, <a href="https://doi.org/10.5040/9781501382895" target="_blank" rel="noopener">DOI 10.5040/9781501382895</a> · D. J. Cameron et al., <em>Current Biology</em> 32, 2022, <a href="https://doi.org/10.1016/j.cub.2022.09.035" target="_blank" rel="noopener">DOI 10.1016/j.cub.2022.09.035</a>.</p>
+        <p class="renvoi"><a href="index.html#archi">Dans le dossier — Acte VII, Sabine et la réverbération →</a><a href="index.html#atelier-S34">Atelier S34, le studio →</a><a href="index.html#atelier-S23">Atelier S23, réverbération →</a></p>
+      </div>
+      <aside class="side-note"><figure class="fiche-img"><img src="assets/portraits/marley.jpg" alt="Bob Marley en concert, 1980" loading="lazy" width="500" height="744"><figcaption>Bob Marley en concert à Dalymount Park, Dublin, 6 juillet 1980. Photographie d'Eddie Mallin, <a href="https://creativecommons.org/licenses/by/2.0/deed.fr" target="_blank" rel="noopener">CC BY 2.0</a>, via Wikimedia Commons</figcaption></figure></aside>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal" aria-label="Crédits">
+  <div class="credit-band">
+    <div class="avatars"><img src="../provoxys.jpeg" alt="Provoxys"><img src="../samlepirate.jpeg" alt="Samlepirate"></div>
+    <div class="ct"><div class="over">Réalisé par</div><div class="nm">Provoxys</div><div class="note">avec la participation de Samlepirate</div></div>
+  </div>
+</section>
+</main>
+
+<footer class="collective-footer reveal">
+  <div class="wrap">
+    <span class="seal"><img src="../../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox"></span>
+    <h2>Empire contre Intox</h2>
+    <p>Compagnon du <a href="index.html">Dossier XXXI, «&nbsp;Le Son — de la grotte au milieu interstellaire&nbsp;»</a>, porté par <b style="color:var(--gold-bright)">Provoxys</b>, avec la participation de <b style="color:var(--phos)">Samlepirate</b>. Un collectif de vulgarisation qui vérifie avant d'affirmer, et montre ses sources.</p>
+    <div class="footer-links">
+      <a href="index.html">↩ Le dossier</a>
+      <a href="../../index.html">Accueil ECI</a>
+      <a href="../../sources/sources.html#son">Les Sources (Dossier XXXII)</a>
+      <a href="../lumiere/portraits.html">Lumière · Portraits</a>
+      <a href="../entropie/portraits.html">Entropie · Portraits</a>
+    </div>
+    <p class="devise">Veritas omnia vincit.</p>
+    <div class="eci-license">
+      <b>Licence du contenu —</b> les textes de ces fiches sont publiés sous licence <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a>&nbsp;: partage autorisé avec attribution, sans usage commercial ni modification&nbsp;; voir <a href="../../LICENCE-CONTENU.md">LICENCE-CONTENU.md</a>.
+      <b>Œuvres tierces —</b> les portraits proviennent de Wikimedia Commons et <b>ne sont pas couverts par cette licence</b>&nbsp;: treize sont dans le domaine public, quatre sont sous licence Creative Commons (CC BY ou CC BY-SA) avec crédit obligatoire, indiqué sous chaque image. Aucune image n'est chargée depuis un serveur distant.
+      <span class="eci-visit-counter" data-visit-counter>— visites sur cette page</span>
+    </div>
+    <p class="egg-hint">Il y a une vingt et unième fiche. Un écho répété trois fois l'ouvre — ou trois lettres&nbsp;: d, u, b.</p>
+  </div>
+</footer>
+
+<script src="../../assets/visit-counter.js?v=4f7555768f79" defer></script>
+<script>
+(function(){
+'use strict';
+var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* révélation des sections (seuil 0 + filet de sécurité) */
+var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold:0, rootMargin:'0px 0px -4% 0px' });
+document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+function safetyReveal(){ document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ if(el.getBoundingClientRect().top < innerHeight*1.1) el.classList.add('in'); }); }
+setTimeout(safetyReveal,400); setTimeout(safetyReveal,1200); addEventListener('load', safetyReveal);
+addEventListener('hashchange', function(){ setTimeout(safetyReveal,60); });
+
+/* fil de progression */
+var prog = document.getElementById('prog');
+addEventListener('scroll', function(){ var h = document.documentElement; var m = h.scrollHeight - h.clientHeight;
+  prog.style.width = (m > 0 ? h.scrollTop / m * 100 : 0) + '%'; }, { passive:true });
+
+/* menu mobile */
+var burger = document.getElementById('burger'), topbar = document.getElementById('topbar');
+burger.addEventListener('click', function(){ var o = topbar.classList.toggle('open'); burger.setAttribute('aria-expanded', o ? 'true' : 'false'); });
+document.querySelectorAll('#mainnav a').forEach(function(a){ a.addEventListener('click', function(){ topbar.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }); });
+
+/* ——— fiche cachée : trois « écho », ou les lettres d-u-b ——— */
+var fiche = document.getElementById('marley'), card = document.getElementById('gcardMarley'),
+    live = document.getElementById('eggLive'), word = document.getElementById('echoWord');
+function openEgg(scroll){
+  if(!fiche.hidden){ if(scroll) go(); return; }
+  fiche.hidden = false; card.hidden = false; fiche.classList.add('in');
+  live.textContent = 'Fiche cachée ouverte : Bob Marley, et les ingénieurs du dub.';
+  if(scroll) go();
+}
+function go(){
+  fiche.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'start' });
+  var h = document.getElementById('marley-t'); setTimeout(function(){ h.focus({ preventScroll:true }); }, reduce ? 0 : 700);
+  if(history.replaceState) history.replaceState(null, '', '#marley');
+}
+var hits = 0, lastHit = 0;
+word.addEventListener('click', function(){
+  var now = Date.now(); if(now - lastHit > 4000) hits = 0; lastHit = now; hits++;
+  word.classList.remove('ping'); void word.offsetWidth; word.classList.add('ping');
+  if(hits >= 3){ hits = 0; openEgg(true); }
+});
+var typed = '';
+addEventListener('keydown', function(e){
+  if(e.ctrlKey || e.metaKey || e.altKey || e.key.length !== 1) return;
+  var t = e.target; if(t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+  typed = (typed + e.key.toLowerCase()).slice(-3);
+  if(typed === 'dub'){ typed = ''; openEgg(true); }
+});
+if(location.hash === '#marley') openEgg(true);
+})();
+</script>
+</body>
+</html>
