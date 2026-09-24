@@ -62,3 +62,9 @@ Toutes les images vont dans `provoxys/son/assets/`. Génération confiée à **C
 
 ## Après génération
 Vérifier chaque image (recadrer la chauve-souris, la cochlée, le Voyager), convertir en WebP (+ vignette d'index `son-hero.index.webp` 1200 px), optimiser (`scripts/optimize-pngs.sh provoxys/son/assets/`), réutiliser dans les fiches `sources.html`.
+
+## 11. `diapasons-sympathie.png` — Acte III · Expérience réelle « deux diapasons et une boule d'aluminium »
+**Format :** paysage 16:9, ~1920×1080. Illustration de l'expérience réelle (vibration par sympathie), placée au-dessus du schéma animé.
+
+**Prompt :**
+> Ultra-realistic 8K documentary reconstruction of a classic physics demonstration of sympathetic resonance on a dark oak laboratory table: two identical large steel tuning forks, each mounted upright on its own open wooden resonance box, the open ends of the two boxes facing each other about one metre apart. On the LEFT, a hand in a dark sleeve holds the first fork's resonance box in the air by its wooden base, clearly lifted above the table and touching nothing; the other hand has just struck the fork with a rubber mallet, the fork prongs slightly blurred by vibration. On the RIGHT, the second fork rests on its box on the table; a tiny crumpled ball of aluminium foil hangs from a thin thread on a small brass stand and is caught mid-bounce, pushed away from the tip of one prong of the right fork. A small removable metal weight (a clamp-on cylinder) lies on the table beside the right fork, taken off. Between the two boxes, very faint engraved phosphor-green (#5fe3c8) pressure wavefronts travel through the air from the left box mouth to the right box mouth, fine and physically coherent concentric arcs. Warm golden light (#f3d98a) on steel and wood, deep midnight-blue background (#050811), faint engraved grid, fine grain, ceremonial codex atmosphere. No text, no numbers, no letters, no logo, no watermark, no faces.

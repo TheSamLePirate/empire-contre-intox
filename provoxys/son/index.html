@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Le Son — de la grotte au milieu interstellaire — Empire contre Intox</title>
-  <meta name="description" content="Une vibration naît dans un corps, traverse un milieu, rencontre une oreille : elle devient nombre, musique, trace, diagnostic, puis indice astrophysique. Dossier Provoxys, avec la participation de Samlepirate : neuf actes, 29 ateliers sonores interactifs, 39 formules expliquées, 237 affirmations vérifiées et sourcées.">
+  <meta name="description" content="Une vibration naît dans un corps, traverse un milieu, rencontre une oreille : elle devient nombre, musique, trace, diagnostic, puis indice astrophysique. Dossier Provoxys, avec la participation de Samlepirate : neuf actes, 29 ateliers sonores interactifs, 39 formules expliquées, 247 affirmations vérifiées et sourcées.">
   <meta name="theme-color" content="#050811">
   <meta name="author" content="Provoxys, avec la participation de Samlepirate">
   <link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr">
@@ -21,10 +21,10 @@
   <link rel="preload" as="image" href="assets/son-hero.webp" type="image/webp">
   <!-- Ateliers : bundle chargé au premier « Activer » (voir le script en pied de page) -->
   <!-- rel inconnu : rien n'est téléchargé ici ; ces liens portent seulement les URL à empreinte (stamp-assets.py) -->
-  <link rel="x-sonviz" data-sonviz="css" href="assets/son-viz.css?v=320538f01fc3">
-  <link rel="x-sonviz" data-sonviz="js" href="assets/son-viz.js?v=3932dfc4c02c">
+  <link rel="x-sonviz" data-sonviz="css" href="assets/son-viz.css?v=f8fee79d7b3b">
+  <link rel="x-sonviz" data-sonviz="js" href="assets/son-viz.js?v=2f6169dffbe9">
 <style>
-/* ================= DOSSIER XXXII · LE SON — codex ECI + phosphore d'oscilloscope =================
+/* ================= DOSSIER XXXI · LE SON — codex ECI + phosphore d'oscilloscope =================
    Un seul accent secondaire, --phos. Les rampes de spectrogramme et de plasma sont des DONNÉES :
    elles n'apparaissent que là où un spectre est réellement dessiné. */
 :root{
@@ -116,7 +116,7 @@ main{position:relative;z-index:2}
 .spine a.top i{background:none;opacity:1;width:auto;height:auto;margin:0;transform:translate(-50%,-50%);color:var(--gold);font-style:normal;font-family:var(--roman);font-size:.72rem;line-height:1;box-shadow:none}
 @media (max-width:1279px){.spine{display:none}}
 /* le rail des actes est fixé à droite : les ateliers pleine largeur lui laissent sa place */
-@media (min-width:1280px){.atelier-row{padding-left:64px;padding-right:64px}}
+@media (min-width:1280px){.atelier-row{padding-left:78px;padding-right:78px}}
 
 /* ================= HERO ================= */
 .hero{position:relative;min-height:min(94vh,980px);display:grid;align-items:center;overflow:hidden;isolation:isolate}
@@ -477,7 +477,7 @@ details.lex-item[hidden]{display:none}
 .eci-visit-counter{display:block;margin-top:14px;font-family:var(--mono);font-size:.74rem;color:var(--soft);letter-spacing:.04em}
 
 /* ================= RÉVÉLATION, MOUVEMENT ================= */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 .fx{opacity:0;translate:0 14px;transition:opacity .9s var(--ease),translate .9s var(--ease)}
 .fx.in{opacity:1;translate:0 0}
@@ -530,6 +530,133 @@ details.lex-item[hidden]{display:none}
   .topbar .t{font-size:.64rem}
   #sources a,.eci-license a{overflow-wrap:anywhere}
 }
+
+/* ================= ÉCLAT — finitions visuelles et confort de lecture =================
+   Tout ce bloc est décoratif : il se coupe en mouvement réduit, et la page reste lisible sans lui. */
+html{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility;font-kerning:normal}
+body{font-feature-settings:"kern","liga","onum" 0}
+/* barres de défilement (WebKit) dans la palette */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(214,172,85,.28);border:3px solid transparent;border-radius:10px;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:rgba(95,227,200,.45);background-clip:padding-box;border:3px solid transparent}
+
+/* liens du texte : soulignement or qui se remplit */
+.prose a,.glass a,.bilan-card a,.at-guide a,.lex-item a{color:var(--gold-bright);text-decoration:none;
+  background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat,linear-gradient(var(--phos),var(--phos)) 0 100%/0 1px no-repeat;
+  transition:color .35s,background-size .5s var(--ease)}
+.prose a:hover,.glass a:hover,.bilan-card a:hover,.at-guide a:hover,.lex-item a:hover{color:#fff;background-size:100% 1px,100% 1px}
+.prose a:hover,.glass a:hover{text-shadow:0 0 14px rgba(95,227,200,.35)}
+
+/* reflet qui suit le pointeur sur les panneaux (variables --mx/--my posées par page.js) */
+.glass,.pillar,.at-card,.bilan-card,.companion{--mx:50%;--my:-40%}
+.glass::after,.pillar::after,.at-card::after,.bilan-card::after,.companion::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .5s;
+  background:radial-gradient(420px circle at var(--mx) var(--my),rgba(var(--act-rgb),.10),transparent 60%)}
+.glass:hover::after,.pillar:hover::after,.at-card:hover::after,.bilan-card:hover::after,.companion:hover::after{opacity:1}
+.companion{position:relative;overflow:hidden}
+
+/* héros et bandeaux d'acte : parallaxe douce (variable posée par page.js) */
+.hero-art img,.act-art img{will-change:transform;transform:translate3d(0,var(--py,0px),0) scale(1.06)}
+  font-family:var(--roman);font-size:.52rem;letter-spacing:.34em;text-transform:uppercase;color:var(--soft);opacity:0;animation:rise 1.2s var(--ease) 1.2s forwards;transition:color .4s}
+@media (max-height:760px),(max-width:900px){
+/* images d'acte : fondu à l'arrivée (seulement si le script tourne) */
+.js .act-art img{opacity:0;transition:opacity 1.4s var(--ease)}
+.js .act-art img.ld{opacity:.6}
+@media (max-width:900px){.js .act-art img.ld{opacity:.42}}
+
+/* titres de chapitre : le numéro s'allume au passage */
+.chapter-number{transition:-webkit-text-stroke-color .8s,text-shadow .8s,color .8s}
+.chapter:hover .chapter-number{-webkit-text-stroke-color:var(--act);text-shadow:0 0 26px rgba(var(--act-rgb),.35)}
+.chapter-head h2{transition:text-shadow .8s}
+.reveal.in .chapter-head h2{text-shadow:0 0 30px rgba(var(--act-rgb),.10)}
+
+/* formules : un balayage de phosphore traverse le bloc à son arrivée */
+.formula-block .formula::after{content:"";position:absolute;top:0;bottom:0;left:0;width:90px;pointer-events:none;opacity:0;
+  background:linear-gradient(90deg,transparent,rgba(95,227,200,.16),transparent)}
+.in .formula-block .formula::after,.formula-block.in .formula::after{animation:sweep 1.8s var(--ease) .25s 1 both}
+@keyframes sweep{0%{opacity:0;transform:translateX(-90px)}15%{opacity:1}100%{opacity:0;transform:translateX(calc(100vw))}}
+.formula-block{transition:border-color .6s,box-shadow .6s}
+.formula-block:hover{border-color:rgba(95,227,200,.35);box-shadow:0 0 0 1px rgba(95,227,200,.08),0 24px 50px -34px rgba(95,227,200,.45)}
+
+/* encadrés : barre latérale qui respire légèrement au survol */
+.question-block,.lesson-block,.safety,.voice{transition:background .5s,border-color .5s,transform .6s var(--ease)}
+.question-block:hover,.lesson-block:hover,.safety:hover{background-color:rgba(var(--act-rgb),.07)}
+
+/* ================= ATELIERS — affiche de repos ================= */
+.atelier{transition:border-color .6s,box-shadow .6s}
+.atelier:hover{border-color:rgba(var(--act-rgb),.28)}
+.atelier.is-on{border-color:rgba(95,227,200,.30);box-shadow:0 0 0 1px rgba(95,227,200,.06),0 40px 80px -50px rgba(95,227,200,.35)}
+.at-id{box-shadow:0 0 12px rgba(95,227,200,.15) inset}
+.at-poster{min-height:clamp(240px,26vw,380px);cursor:pointer;isolation:isolate;
+  background:radial-gradient(ellipse 70% 80% at 50% 50%,rgba(31,156,134,.10),transparent 70%),
+    linear-gradient(rgba(95,227,200,.05) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(95,227,200,.05) 1px,transparent 1px) 0 0/40px 40px,var(--void)}
+.at-poster::before,.at-poster::after{content:"";position:absolute;z-index:1;width:18px;height:18px;border:1px solid rgba(214,172,85,.55);pointer-events:none}
+.at-poster::before{top:8px;left:8px;border-right:0;border-bottom:0}
+.at-poster::after{bottom:8px;right:8px;border-left:0;border-top:0}
+.at-vign{transition:opacity .6s,filter .6s;opacity:.85}
+.at-poster:hover .at-vign{opacity:1;filter:brightness(1.25)}
+.at-scan{position:absolute;top:0;bottom:0;left:0;width:2px;z-index:0;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(95,227,200,.55),transparent);box-shadow:0 0 14px rgba(95,227,200,.45);opacity:.0;animation:scanx 7s linear infinite}
+@keyframes scanx{0%{transform:translateX(0);opacity:0}6%{opacity:.8}94%{opacity:.8}100%{transform:translateX(calc(100cqw - 2px));opacity:0}}
+.at-poster{container-type:inline-size}
+.at-mark{position:absolute;right:16px;top:10px;z-index:1;font-family:var(--roman);font-size:clamp(2.2rem,5vw,4rem);font-weight:600;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(95,227,200,.18);pointer-events:none;letter-spacing:.04em}
+.at-cta{background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(5,8,17,.78),rgba(5,8,17,0) 80%)}
+.at-on{position:relative}
+.at-ring{position:absolute;inset:-6px;border:1px solid rgba(243,217,138,.55);border-radius:3px;pointer-events:none;animation:ring 2.6s var(--ease) infinite}
+@keyframes ring{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.18,1.5)}}
+.at-poster:hover .at-on{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(214,172,85,.5),0 16px 40px -12px rgba(214,172,85,.7)}
+/* allumage : une trace d'oscilloscope balaie la zone pendant le chargement du code */
+.at-root.loading{position:relative;overflow:hidden;border:1px solid var(--line-2);border-radius:3px;
+  background:linear-gradient(rgba(95,227,200,.05) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(95,227,200,.05) 1px,transparent 1px) 0 0/40px 40px,var(--void)}
+.at-root.loading::before{content:"";position:absolute;left:0;right:0;top:50%;height:40px;margin-top:-20px;opacity:.8;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40' preserveAspectRatio='none'%3E%3Cpath d='M0 20 Q12.5 0 25 20 T50 20 T75 20 T100 20 T125 20 T150 20 T175 20 T200 20' fill='none' stroke='%235fe3c8' stroke-width='1.5' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0/200px 40px repeat-x;
+  animation:carrier 1.2s linear infinite;filter:drop-shadow(0 0 6px rgba(95,227,200,.6))}
+@keyframes carrier{to{background-position:200px 0}}
+.at-root:not(.loading):not([hidden]){animation:power .5s var(--ease) both}
+@keyframes power{from{opacity:0;filter:brightness(1.8) saturate(.5)}to{opacity:1;filter:none}}
+.at-off,.at-fs{transition:border-color .4s,color .4s,background .4s,box-shadow .4s}
+.at-fs:hover{background:rgba(95,227,200,.12);box-shadow:0 0 18px rgba(95,227,200,.18)}
+.at-card .at-vign.mini{transition:filter .6s}
+.at-card:hover .at-vign.mini{filter:brightness(1.35)}
+
+/* grands écrans : l'affiche garde des proportions d'écran */
+@media (min-width:1800px){.at-poster{min-height:clamp(320px,20vw,520px)}}
+.companion .shot img{aspect-ratio:16/10;object-fit:cover;width:100%;height:auto;transition:transform 1.4s var(--ease)}
+.companion:hover .shot img{transform:scale(1.03)}
+
+@media (prefers-reduced-motion:reduce){
+  .hero-art img,.act-art img{transform:none}
+  .at-scan,.at-ring,    .js .act-art img{opacity:.6}
+}
+
+/* ================= EXPÉRIENCE RÉELLE · DEUX DIAPASONS (schéma animé) ================= */
+.sym{margin:26px 0 30px;border:1px solid var(--line);border-radius:3px;padding:18px 18px 16px;background:linear-gradient(160deg,rgba(14,26,46,.62),rgba(5,8,17,.62));position:relative;overflow:hidden}
+.sym::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--phos),transparent)}
+.sym-photo{margin:0 0 14px;border:1px solid var(--line-2);border-radius:2px;overflow:hidden}
+.sym-photo img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;transition:transform 1.6s var(--ease)}
+.sym:hover .sym-photo img{transform:scale(1.02)}
+.sym-stage{position:relative;border:1px solid var(--line-2);border-radius:2px;
+  background:linear-gradient(rgba(95,227,200,.045) 1px,transparent 1px) 0 0/36px 36px,linear-gradient(90deg,rgba(95,227,200,.045) 1px,transparent 1px) 0 0/36px 36px,var(--void)}
+.sym-stage canvas{display:block;width:100%;aspect-ratio:16/10;min-height:340px;max-height:74vh}
+.sym-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:14px}
+.sym-seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:2px;overflow:hidden}
+.sym-seg button{font-family:var(--roman);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;padding:11px 14px;min-height:42px;border:0;background:rgba(5,8,17,.6);color:var(--muted);cursor:pointer;transition:background .35s,color .35s}
+.sym-seg button + button{border-left:1px solid var(--line)}
+.sym-seg button:hover{color:var(--gold-bright)}
+.sym-seg button[aria-pressed="true"]{background:rgba(95,227,200,.12);color:var(--phos);box-shadow:inset 0 -2px 0 var(--phos)}
+.sym-hit{font-size:.62rem}
+.sym-stop{font-family:var(--roman);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;padding:10px 14px;min-height:42px;border:1px solid var(--line-2);border-radius:2px;background:none;color:var(--soft);cursor:pointer;transition:color .35s,border-color .35s}
+.sym-stop:hover{color:var(--gold-bright);border-color:var(--gold)}
+.sym-path{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 0;counter-reset:sp}
+.sym-path li{counter-increment:sp;display:flex;align-items:center;font-family:var(--roman);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.sym-path li b{font-weight:600;padding:6px 10px;border:1px solid var(--line-2);border-radius:2px;transition:color .3s,border-color .3s,box-shadow .3s,background .3s}
+.sym-path li b::before{content:counter(sp) " · ";color:var(--gold-deep)}
+.sym-path li:not(:last-child)::after{content:"→";margin:0 8px;color:var(--gold-deep)}
+.sym-path li.lit b{color:var(--phos);border-color:rgba(95,227,200,.55);background:rgba(95,227,200,.08);box-shadow:0 0 14px rgba(95,227,200,.22)}
+.sym-read{margin:12px 0 0;font-size:.96rem;color:var(--parch);font-style:italic;min-height:1.6em}
+.sym figcaption{margin-top:10px;font-size:.86rem;color:var(--soft);line-height:1.6}
+@media (max-width:640px){.sym{padding:14px 12px}.sym-stage canvas{aspect-ratio:4/5;min-height:380px}.sym-seg{width:100%}.sym-seg button{flex:1 1 50%}.sym-hit{flex:1 1 auto;justify-content:center}}
+.prose ol.sym-path{padding:0;margin:14px 0 0}.prose .sym-path li{margin:0;font-size:.56rem}
+.mini-at a{background:none}
 
 </style>
   <style id="eci-wide-style">
@@ -618,7 +745,7 @@ details.lex-item[hidden]{display:none}
       <div class="hero-meta rise">
         <span class="avatars"><img src="../provoxys.jpeg" alt="Provoxys"><img src="../samlepirate.jpeg" alt="Samlepirate"></span>
         <span class="who"><b>Provoxys</b><small>avec la participation de Samlepirate</small></span>
-        <span class="facts"><b>9</b> actes · <b>29</b> ateliers<br><b>39</b> formules · <b>237</b> affirmations vérifiées</span>
+        <span class="facts"><b>9</b> actes · <b>29</b> ateliers<br><b>39</b> formules · <b>247</b> affirmations vérifiées</span>
       </div>
     </div>
     <p class="hero-hint rise" aria-hidden="true">Passez le pointeur sur l'onde : vous lui ajoutez un harmonique.</p>
@@ -709,8 +836,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="particles" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S01</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S01">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S01"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -749,8 +878,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="ruler" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S56</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S56">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S56"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -791,8 +922,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="string" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S04</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S04">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S04"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -803,7 +936,7 @@ details.lex-item[hidden]{display:none}
     </div>
   </div>
   <figcaption class="at-guide">
-    <p><span class="at-k">Comment l'utiliser</span>Pincer la corde à la souris, écouter, lire la fréquence mesurée. Doubler la tension, puis la longueur&nbsp;; pincer au milieu, puis près du chevalet.</p>
+    <p><span class="at-k">Comment l'utiliser</span>Pincer la corde à la souris, écouter, lire la fréquence mesurée. Multiplier la tension par quatre (la fréquence double), puis doubler la longueur (elle est divisée par deux)&nbsp;; pincer au milieu, puis près du chevalet.</p>
     <p><span class="at-k">Ce que ça montre</span>Une corde résolue numériquement (équation d’onde 1D)&nbsp;: deux ondes qui partent et se réfléchissent, les modes affichés en barres, et f₁ = (1/2L)√(τ/µ) confrontée à la mesure. Le son sort de la simulation, pas d’un sample.</p>
     <p><span class="at-k">Sens de lecture</span>D’abord la forme de la corde juste après le pincement (deux fronts qui s’éloignent), puis les barres de modes&nbsp;: pincer au milieu éteint les harmoniques pairs. Enfin vérifier que quadrupler τ monte d’une octave.</p>
   </figcaption>
@@ -832,8 +965,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="fourier" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S17</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S17">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S17"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -880,8 +1015,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="ripples" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S09</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S09">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S09"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -901,6 +1038,23 @@ details.lex-item[hidden]{display:none}
 <div class="transcript solo"><div class="prose"><h3>5. Résonance — le verre, la salle, le pont</h3>
 <p>Un système avec une fréquence propre répond fort si on l’excite à cette fréquence, d’autant plus que son amortissement est faible (facteur de qualité <span class="imath" data-tex="Q">Q</span> élevé). Verre de cristal (doigt mouillé = excitation par stick-slip, même famille que l’archet), colonne d’air (Helmholtz), corde (Mersenne), cochlée (chapitre oreille), pièce (modes ci-dessus). Le tableau à garder&nbsp;: la résonance ne crée pas d’énergie, elle l’accumule cycle après cycle. Le verre casse si l’amplitude dépasse la limite du matériau, pas parce qu’une fréquence serait «&nbsp;magique&nbsp;» — encadré Tacoma / Angers au chapitre expériences.</p>
 <span id="experience-diapasons" class="anchor"></span><h4 class="group-title">Expérience réelle — deux diapasons et une boule d’aluminium&nbsp;: voir la vibration par sympathie</h4>
+<figure class="sym fx" id="schema-diapasons" aria-labelledby="sym-k">
+  <p class="chain-k" id="sym-k">Schéma animé · Deux diapasons et une boule d’aluminium</p><div class="sym-photo"><picture><source type="image/webp" srcset="assets/diapasons-sympathie.webp"><img src="assets/diapasons-sympathie.png" alt="Reconstitution : deux diapasons sur caisses de résonance, ouvertures face à face ; le diapason de gauche est tenu en l’air par sa caisse, une boule de papier d’aluminium suspendue saute contre une branche du diapason de droite." loading="lazy" width="1920" height="1080"></picture></div>
+  <div class="sym-stage"><canvas id="symCanvas" role="img" aria-label="Schéma : le diapason A, tenu en l’air, est frappé ; son onde traverse l’air jusqu’au diapason B, posé sur la table, contre lequel une boule d’aluminium est suspendue. Sous le schéma, l’amplitude de A et de B au cours du temps."></canvas></div>
+  <div class="sym-ctl">
+    <div class="sym-seg" role="group" aria-label="Réglage du diapason B">
+      <button type="button" data-w="1" aria-pressed="true">Avec le poids · désaccordés</button>
+      <button type="button" data-w="0" aria-pressed="false">Sans le poids · accordés</button>
+    </div>
+    <button type="button" class="btn btn-1 sym-hit">◉ Frapper A</button>
+    <button type="button" class="sym-stop">Arrêter les vibrations</button>
+  </div>
+  <ol class="sym-path" aria-label="Trajet de l’énergie">
+    <li data-k="0"><b>Maillet</b></li><li data-k="1"><b>Métal et caisse de A</b></li><li data-k="2"><b>Air</b></li><li data-k="3"><b>Caisse et métal de B</b></li><li data-k="4"><b>Boule</b></li>
+  </ol>
+  <p class="sym-read" id="symRead" aria-live="polite">Frappez A, avec puis sans le poids, et comparez la boule.</p>
+  <figcaption>Modèle, pas mesure&nbsp;: B est un oscillateur amorti, forcé par l’onde de A. Valeurs choisies pour le modèle, dans l’ordre de grandeur de diapasons sur caisse&nbsp;: A et B à 440&nbsp;Hz, amortissement de même durée pour les deux (amplitude divisée par <i>e</i> en 2,9&nbsp;s, facteur de qualité d’environ 4&nbsp;000), poids qui abaisse B de 4&nbsp;Hz. La boule et les courbes sont en temps réel&nbsp;; la vibration des branches et l’onde dans l’air sont dessinées 88 fois plus lentes, pour être visibles, avec la longueur d’onde réelle (78&nbsp;cm pour un mètre entre les caisses). Le schéma est muet&nbsp;: pour entendre des battements, voir l’<a href="#atelier-S14">atelier S14</a>.</figcaption>
+</figure>
 <div class="question-block fx"><p class="blk-label">Question</p><p>«&nbsp;Peut-on faire bouger cette boule en frappant un diapason qui ne la touche pas&nbsp;?&nbsp;» Montrer tout le montage avant de commencer, puis laisser le public prédire ce que changera le retrait du poids.</p></div>
 <p><b>Matériel et rôles.</b> Deux gros diapasons de fréquence nominale <b>440 Hz</b>, chacun sur sa caisse de résonance&nbsp;; un poids amovible qui désaccorde l’un d’eux&nbsp;; un maillet adapté&nbsp;; une boule très légère de papier d’aluminium suspendue à un fil. <b>A est celui que l’on frappe&nbsp;; B est celui que touche la boule.</b> Pour fixer les noms dans ce déroulé, le poids est placé sur B. S’il est sur A dans le matériel utilisé, garder cette disposition et l’annoncer&nbsp;: on compare toujours deux diapasons désaccordés, puis accordés.</p>
 <p><b>Montage.</b> <b>Tenir A à la main par sa caisse de résonance</b>, en laissant ses branches libres et l’ouverture dégagée. A et sa caisse ne touchent ni la table, ni B, ni le support du fil&nbsp;; ne pas prendre appui sur la table avec la main ou le bras qui porte A. B reste posé sur sa caisse. Orienter les ouvertures des caisses l’une vers l’autre, à une distance préparée en répétition. La boule effleure une branche de B, près de son extrémité libre, sans appuyer dessus. Installer le fil sur un support stable&nbsp;; cadrer à la fois le contact et le déplacement de la boule. Le montage à deux caisses et témoin suspendu est une démonstration classique de <a href="https://www.physics.purdue.edu/demos/display_page.php?item=4B-11" target="_blank" rel="noopener">Purdue — résonance entre diapasons</a>.</p>
@@ -932,8 +1086,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="spheres" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S11</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S11">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S11"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -981,8 +1137,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="monochord" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S27</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S27">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S27"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1030,8 +1188,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="belljar" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S03</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S03">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S03"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1084,8 +1244,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="chladni" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S06</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S06">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S06"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1114,8 +1276,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="bars" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S28</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S28">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S28"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1162,8 +1326,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="keys" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S29</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S29">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S29"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1204,8 +1370,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="beats" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S14</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S14">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S14"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p><p class="at-hint">Casque recommandé pour le mode « casque séparé ».</p>
       </div>
     </div>
@@ -1241,8 +1409,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="tuner" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S22</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S22">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S22"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p><p class="at-hint at-mic">Le micro n'est demandé que si vous cliquez sur « Utiliser le micro » ; le son est analysé sur votre appareil, rien n'est envoyé ni enregistré.</p>
       </div>
     </div>
@@ -1287,8 +1457,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="dissonance" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S30</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S30">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S30"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1342,8 +1514,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="isophones" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S36</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S36">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S36"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1392,8 +1566,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="cochlea" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S43</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S43">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S43"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1428,8 +1604,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="formants" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S41</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S41">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S41"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1440,7 +1618,7 @@ details.lex-item[hidden]{display:none}
     </div>
   </div>
   <figcaption class="at-guide">
-    <p><span class="at-k">Comment l'utiliser</span>Choisir une voyelle, faire varier f₀ sans toucher au conduit&nbsp;; puis garder f₀ et changer de voyelle&nbsp;; activer le formant du chanteur sur un accompagnement d’orchestre.</p>
+    <p><span class="at-k">Comment l'utiliser</span>Choisir une voyelle, faire varier f₀ sans toucher au conduit&nbsp;; puis garder f₀ et changer de voyelle&nbsp;; activer le formant du chanteur sur un accompagnement d’orchestre. Passer la voix de «&nbsp;Naturelle&nbsp;» à «&nbsp;Brute (machine)&nbsp;»&nbsp;: une source parfaitement périodique sonne comme une machine.</p>
     <p><span class="at-k">Ce que ça montre</span>Une source glottique, des résonances de tube (F1, F2, F3), la carte F1/F2 des voyelles, la voyelle rayonnée.</p>
     <p><span class="at-k">Sens de lecture</span>Sur la carte F1/F2, le point ne bouge pas quand f₀ change et bouge quand la voyelle change&nbsp;: deux étages indépendants. Le formant du chanteur est une bosse vers 3 kHz qui passe au-dessus de l’orchestre.</p>
   </figcaption>
@@ -1456,8 +1634,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="vowels" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S42</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S42">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S42"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p><p class="at-hint at-mic">Le micro n'est demandé que si vous cliquez sur « Utiliser le micro » ; le son est analysé sur votre appareil, rien n'est envoyé ni enregistré.</p>
       </div>
     </div>
@@ -1468,7 +1648,7 @@ details.lex-item[hidden]{display:none}
     </div>
   </div>
   <figcaption class="at-guide">
-    <p><span class="at-k">Comment l'utiliser</span>Tenir un [a] dans le micro, regarder le point apparaître sur la carte des voyelles, puis passer à [i] et [u].</p>
+    <p><span class="at-k">Comment l'utiliser</span>Tenir un [a] dans le micro, regarder le point apparaître sur la carte des voyelles, puis passer à [i] et [u]. Sans micro, écouter la voix synthétique, naturelle ou brute, et comparer le point estimé au viseur doré.</p>
     <p><span class="at-k">Ce que ça montre</span>Les formants F1, F2 estimés par LPC en temps réel, f₀, le spectrogramme avec les formants surlignés&nbsp;; jitter et shimmer affichés sans interprétation clinique.</p>
     <p><span class="at-k">Sens de lecture</span>À voyelle et articulation approximativement fixes, f₀ peut varier sans déplacement comparable des formants. Dans la voix réelle, posture et registre peuvent aussi modifier les résonances&nbsp;; la LPC devient moins fiable pour certaines voix aiguës. Aucune interprétation clinique.</p>
   </figcaption>
@@ -1523,8 +1703,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="samples" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S19</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S19">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S19"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1561,8 +1743,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="spectro" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S18</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S18">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S18"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p><p class="at-hint at-mic">Le micro n'est demandé que si vous cliquez sur « Utiliser le micro » ; le son est analysé sur votre appareil, rien n'est envoyé ni enregistré.</p>
       </div>
     </div>
@@ -1600,8 +1784,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="grid" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S34</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S34">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S34"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p><p class="at-hint at-mic">Le micro n'est demandé que si vous cliquez sur « Utiliser le micro » ; le son est analysé sur votre appareil, rien n'est envoyé ni enregistré.</p>
       </div>
     </div>
@@ -1612,9 +1798,9 @@ details.lex-item[hidden]{display:none}
     </div>
   </div>
   <figcaption class="at-guide">
-    <p><span class="at-k">Comment l'utiliser</span>Enregistrer une voix, ajouter une piste de générateur, poser un délai de 10 ms d’un côté (Haas), une réverbération de S24, puis exporter en WAV. Tout reste dans le navigateur.</p>
-    <p><span class="at-k">Ce que ça montre</span>Tout le dossier assemblé dans l’outil qui a remplacé le studio de Schaeffer&nbsp;; le LUFS-mètre qui rend visible la loudness war.</p>
-    <p><span class="at-k">Sens de lecture</span>Regarder le master&nbsp;: le crête-mètre et le LUFS-mètre ne disent pas la même chose. Écraser une piste au compresseur fait monter le LUFS, pas la musique.</p>
+    <p><span class="at-k">Comment l'utiliser</span>Lancer la lecture (barre d’espace), choisir un motif prêt ou poser des pas&nbsp;: un clic pose, un deuxième accentue, un troisième retire&nbsp;; la grille des hauteurs choisit les notes. Dans la table de mixage, régler volumes, panoramique, compression et départs vers la réverbération et le délai&nbsp;; essayer le délai Haas de 10 ms. Le motif «&nbsp;One drop&nbsp;» rejoue le rythme du reggae, et son délai l’écho du dub (<a href="portraits.html#marley">fiche Bob Marley</a>). Enregistrer sa voix, puis exporter deux boucles en WAV. Tout reste dans le navigateur.</p>
+    <p><span class="at-k">Ce que ça montre</span>Tout le dossier assemblé dans l’outil qui a remplacé le studio de Schaeffer&nbsp;: séquenceur, console, effets, et le LUFS-mètre qui rend visible la loudness war.</p>
+    <p><span class="at-k">Sens de lecture</span>Regarder le master&nbsp;: le crête-mètre et le LUFS-mètre ne disent pas la même chose. Charger «&nbsp;Mur de son&nbsp;»&nbsp;: la crête reste collée sous 0 dBFS, la sonie monte, l’écart entre les deux fond. Activer la normalisation à −14 LUFS&nbsp;: le master écrasé est baissé d’autant&nbsp;; il ne gagne plus rien, il reste seulement plus plat.</p>
   </figcaption>
   <noscript><p class="at-ns">Cet atelier demande JavaScript. Les trois paragraphes ci-dessus décrivent ce qu'il montre.</p></noscript>
 </figure></div><div class="wrap">
@@ -1649,8 +1835,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="sonar" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S16</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S16">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S16"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1690,8 +1878,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="echo" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S51</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S51">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S51"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1740,8 +1930,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="doppler" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S13</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S13">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S13"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1790,8 +1982,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="decay" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S23</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S23">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S23"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p><p class="at-hint at-mic">Le micro n'est demandé que si vous cliquez sur « Utiliser le micro » ; le son est analysé sur votre appareil, rien n'est envoyé ni enregistré.</p>
       </div>
     </div>
@@ -1818,8 +2012,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="room" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S24</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S24">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S24"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -1961,8 +2157,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="infra" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S49</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S49">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S49"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -2023,8 +2221,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="bat" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S46</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S46">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S46"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -2167,8 +2367,10 @@ details.lex-item[hidden]{display:none}
   <div class="at-stage">
     <div class="at-poster">
       <canvas class="at-vign" data-vign="plasma" aria-hidden="true"></canvas>
+      <span class="at-scan" aria-hidden="true"></span>
+      <span class="at-mark" aria-hidden="true">S54</span>
       <div class="at-cta">
-        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S54">▶ Activer l'atelier</button>
+        <button class="btn btn-1 at-on" type="button" aria-controls="atroot-S54"><span class="at-ring" aria-hidden="true"></span>▶ Activer l'atelier</button>
         <p class="at-hint">Rien ne tourne avant ce clic : ni son, ni calcul.</p>
       </div>
     </div>
@@ -2209,9 +2411,9 @@ details.lex-item[hidden]{display:none}
     <div class="chapter-head"><div><p class="kicker">Compagnon</p><h2>Les portraits des savants</h2></div><div class="chapter-number" aria-hidden="true">✦</div></div>
     <div class="companion">
       <div>
-        <p class="cl">Compagnon · vingt fiches</p>
+        <p class="cl">Compagnon · vingt et une fiches</p>
         <h4>Ceux qui ont appris à écouter</h4>
-        <p>Mersenne mesure une corde, Langevin interroge un écho, Gurnett lit une frontière dans une onde de plasma. Autour d'eux, dix-sept autres mesureurs du son — de Pythagore à Shannon —, chacun avec ses dates, ce qu'il a réellement montré, et ce qu'on lui prête à tort.</p>
+        <p>Mersenne mesure une corde, Langevin interroge un écho, Gurnett lit une frontière dans une onde de plasma. Autour d'eux, dix-sept autres mesureurs du son — de Pythagore à Shannon —, chacun avec ses dates, ce qu'il a réellement montré, et ce qu'on lui prête à tort. En coda, Bob Marley et les ingénieurs du dub, qui ont fait de l'écho un instrument.</p>
         <div class="ca"><a class="btn btn-2" href="portraits.html">Ouvrir les portraits</a></div>
       </div>
       <div class="shot"><picture><source type="image/webp" srcset="assets/mersenne-monocorde.webp"><img src="assets/mersenne-monocorde.png" alt="Reconstitution : un monocorde de laiton dans le cabinet d'un savant du XVIIe siècle." loading="lazy" width="1920" height="1080"></picture></div>
@@ -2279,7 +2481,7 @@ details.lex-item[hidden]{display:none}
   <div class="wrap">
     <div class="chapter-head"><div><p class="kicker">Annexe · appareil critique</p><h2>Sources et liens</h2></div><div class="chapter-number" aria-hidden="true">✓</div></div>
     <div class="transcript solo"><div class="prose">
-      <div class="lesson-block retain"><p class="blk-label">Vérification</p><p>Les 237 affirmations du script ont été vérifiées une par une : 160 confirmées, 69 nuancées, 2 débattues, 4 erronées puis corrigées, 2 restées sans source suffisante. Chaque verdict, avec ses références et 220 DOI contrôlés, est dans <a href="../../sources/sources.html#son">Les Sources (Dossier XXXII)</a> et dans l'audit <a href="../../sources/dossier-XXXI-son.md">dossier-XXXI-son.md</a>.</p></div>
+      <div class="lesson-block retain"><p class="blk-label">Vérification</p><p>Les 237 affirmations du script ont été vérifiées une par une : 160 confirmées, 69 nuancées, 2 débattues, 4 erronées puis corrigées, 2 restées sans source suffisante. La fiche Bob Marley des portraits en ajoute dix, dont une nuancée puis corrigée. Chaque verdict, avec ses références et 222 DOI contrôlés, est dans <a href="../../sources/sources.html#son">Les Sources</a> et dans l'audit <a href="../../sources/dossier-XXXI-son.md">dossier-XXXI-son.md</a>.</p></div>
       <p>Bibliographie reprise intégralement et complétée dans le maître. Les articles originaux et les institutions priment sur les compilations&nbsp;; les notices historiques parfois abrégées sont reliées aux rapports thématiques de l’annexe documentaire. Les corrections complémentaires ont leurs liens au fil du texte. Les médias restent des références à sélectionner et créditer, pas des fichiers déjà téléchargés ni des droits de diffusion présumés.</p>
 <h3>Institutions et articles de référence</h3>
 <ol><li>Royal Society, «&nbsp;Making waves&nbsp;» (histoire Boyle, Hooke, Chladni, Rayleigh, Langevin) — <a href="https://royalsociety.org/blog/2024/11/making-waves/" target="_blank" rel="noopener">royalsociety.org/blog/2024/11/making-waves</a></li><li>Wikipédia (fr) Acoustique — point de départ à recouper — <a href="https://fr.wikipedia.org/wiki/Acoustique" target="_blank" rel="noopener">fr.wikipedia.org/wiki/Acoustique</a></li><li>International Year of Sound, frise — <a href="https://www.sound2020.org/acoustics/history/" target="_blank" rel="noopener">sound2020.org/acoustics/history</a></li><li>NASA Science, sons du milieu interstellaire — <a href="https://science.nasa.gov/science-research/planetary-science/01nov_ismsounds/" target="_blank" rel="noopener">science.nasa.gov … ismsounds</a></li><li>NASA Photojournal PIA17045 — <a href="https://science.nasa.gov/photojournal/voyager-captures-sounds-of-interstellar-space/" target="_blank" rel="noopener">Voyager captures sounds of interstellar space</a></li><li>University of Iowa, Space Audio (Gurnett) — <a href="https://space-audio.org/" target="_blank" rel="noopener">space-audio.org</a></li><li>NASA Chandra, 9 sept. 2003, «&nbsp;Chandra “Hears” a Black Hole&nbsp;» — <a href="https://chandra.harvard.edu/press/03_releases/press_090903.html" target="_blank" rel="noopener">chandra.harvard.edu … press_090903</a></li><li>NASA, sonifications Persée 2022 — <a href="https://www.nasa.gov/universe/new-nasa-black-hole-sonifications-with-a-remix/" target="_blank" rel="noopener">nasa.gov … black-hole-sonifications</a></li><li>LIGO Lab, «&nbsp;The Sound of Two Black Holes Colliding&nbsp;» — <a href="https://www.youtube.com/watch?v=QyDcTbR-kEA" target="_blank" rel="noopener">youtube.com/watch?v=QyDcTbR-kEA</a></li><li>Laplace, «&nbsp;Sur la vitesse du son dans l’air et dans l’eau&nbsp;», 1816, Wikisource — <a href="https://fr.wikisource.org/wiki/%C5%92uvres_compl%C3%A8tes_de_Laplace/Sur_la_vitesse_du_son_dans_l%E2%80%99air_et_dans_l%E2%80%99eau" target="_blank" rel="noopener">Wikisource Laplace</a></li><li>Finn, B. S., «&nbsp;Laplace and the Speed of Sound&nbsp;», <em>Isis</em> — PDF universitaire souvent repris (histoire de l’écart Newton / expérience).</li><li>Baskevitch, F., «&nbsp;L’émergence de l’acoustique au début du XVIIᵉ siècle&nbsp;: Bacon, Mersenne, Galilée&nbsp;» (2007).</li><li>Lindsay, R. B. (éd.), <em>Acoustics: Historical and Philosophical Development</em> — recueil de textes (Galilée, Mersenne, Boyle, Chladni, Laennec…).</li><li>Rayleigh, J. W. S., <em>The Theory of Sound</em>, 1877–1878.</li><li>Helmholtz, H., <em>Die Lehre von den Tonempfindungen</em>, 1863.</li><li>Sabine, W. C., articles repris dans <em>Collected Papers on Acoustics</em>&nbsp;; synthèse Beranek, JASA 69, 1981.</li><li>Declercq et al. sur le filtre des gradins d’Épidaure (Georgia Tech) — vulgarisation&nbsp;: guides + presse scientifique.</li><li>Díaz-Andreu / Till / projet Artsoundscapes — archéoacoustique des grottes. Synthèse récente&nbsp;: Pour la Science / New Scientist, 2025–2026.</li><li>Journal of Clinical Ultrasound, Rajamani 2024, timeline échographie.</li><li>RSNA, «&nbsp;The History of US: From Bats and Boats to the Bedside&nbsp;», RadioGraphics 2015.</li></ol>
@@ -2303,7 +2505,7 @@ details.lex-item[hidden]{display:none}
     <div class="footer-links">
       <a href="../../index.html">↩ Retour à l'index</a>
       <a href="portraits.html">Portraits des savants</a>
-      <a href="../../sources/sources.html#son">Les Sources (Dossier XXXII)</a>
+      <a href="../../sources/sources.html#son">Les Sources</a>
       <a href="../lumiere/index.html">Provoxys · La Lumière</a><a href="../entropie/index.html">Provoxys · L'Entropie</a><a href="../exoplanetes/index.html">Provoxys · Exoplanètes</a><a href="../sondes/index.html">Provoxys · Les Sondes</a><a href="../../samlepirate/ordinateur-1983/index.html">Samlepirate · L'Ordinateur de 1983</a><a href="../../samlepirate/sophismes/index.html">Samlepirate · Les Sophismes</a>
     </div>
     <p class="devise">Veritas omnia vincit.</p>
@@ -2318,7 +2520,7 @@ details.lex-item[hidden]{display:none}
 (function(){
 'use strict';
 /* ====================================================================================
-   Dossier XXXII · Le Son — script de page.
+   Dossier XXXI · Le Son — script de page.
    Un seul ordonnanceur requestAnimationFrame pour tous les effets ; chaque effet déclare
    sa cadence et ne tourne que si son élément est à l'écran (onglet masqué : tout s'arrête).
    Chaque effet est un SIGNAL CALCULÉ (somme d'harmoniques, fronts à c, spectres), jamais
@@ -2363,7 +2565,7 @@ function run(c, draw, fps, tStatic){
 }
 
 /* ---------------------------------------------------------------- révélation, progression */
-const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold:0, rootMargin:'0px 0px -4% 0px' });
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold:0, rootMargin:'0px 0px 8% 0px' });
 document.querySelectorAll('.reveal, .fx').forEach(el => io.observe(el));
 function safetyReveal(){ document.querySelectorAll('.reveal:not(.in), .fx:not(.in)').forEach(el => { if (el.getBoundingClientRect().top < innerHeight * 1.1) el.classList.add('in'); }); }
 setTimeout(safetyReveal, 400); setTimeout(safetyReveal, 1200); addEventListener('load', safetyReveal);
@@ -2707,6 +2909,183 @@ const offscreen = new IntersectionObserver(es => es.forEach(e => {
 /* lien direct vers un atelier (#atelier-S04) : il est révélé et mis en valeur */
 function focusAtelierFromHash(){ const m = location.hash.match(/^#atelier-(S\d\d)$/); if (!m) return; const f = document.getElementById('atelier-' + m[1]); if (f){ f.classList.add('in'); } }
 addEventListener('hashchange', focusAtelierFromHash); focusAtelierFromHash();
+
+/* ================================================================ ÉCLAT : parallaxe, reflets, images, affiches */
+document.documentElement.classList.add('js');
+/* images d'acte : fondu quand elles sont chargées */
+document.querySelectorAll('.act-art img').forEach(im => { const on = () => im.classList.add('ld'); if (im.complete && im.naturalWidth) on(); else { im.addEventListener('load', on, { once:true }); im.addEventListener('error', on, { once:true }); } });
+/* parallaxe douce du hero et des bandeaux d'acte : seulement les bandeaux à l'écran, une fois par image */
+if (!reduce){
+  const par = new Set(), parObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) par.add(e.target); else par.delete(e.target); }), { rootMargin:'100px 0px' });
+  document.querySelectorAll('.hero, .act-band').forEach(b => parObs.observe(b));
+  let pending = false;
+  const upd = () => { pending = false; const vh = innerHeight;
+    par.forEach(b => { const r = b.getBoundingClientRect(), img = b.querySelector('.hero-art img, .act-art img'); if (!img) return;
+      const p = (r.top + r.height / 2 - vh / 2) / (vh + r.height); img.style.setProperty('--py', (p * -70).toFixed(1) + 'px'); }); };
+  addEventListener('scroll', () => { if (!pending){ pending = true; requestAnimationFrame(upd); } }, { passive:true }); upd();
+}
+/* reflet qui suit le pointeur */
+if (matchMedia('(hover: hover)').matches){
+  document.addEventListener('pointermove', e => { const el = e.target.closest && e.target.closest('.glass, .pillar, .at-card, .bilan-card, .companion'); if (!el) return;
+    const r = el.getBoundingClientRect(); el.style.setProperty('--mx', (e.clientX - r.left) + 'px'); el.style.setProperty('--my', (e.clientY - r.top) + 'px'); }, { passive:true });
+}
+/* toute l'affiche d'un atelier l'allume (le bouton reste la cible clavier) */
+document.addEventListener('click', e => { const p = e.target.closest('.at-poster'); if (!p || e.target.closest('a, button')) return; const b = p.querySelector('.at-on'); if (b) b.click(); });
+
+/* ================================================================ EXPÉRIENCE RÉELLE : DEUX DIAPASONS
+   B est un oscillateur amorti forcé par l'onde de A. Enveloppes complexes (référentiel tournant à fA) :
+     a' = −γ a            (A tenu à la main, frappé une fois)
+     z' = (−γ + i·2πΔ) z + κ·a,   Δ = fB − fA
+   Intégration exacte par pas (exponentielle). Le détail du couplage (distance, caisses) est dans κ,
+   choisi pour que B accordé atteigne ~55 % de l'amplitude initiale de A. La boule est un pendule
+   (fil de 10 cm) poussé par la branche de B quand l'amplitude de B dépasse un seuil. */
+(function(){
+  const cv = document.getElementById('symCanvas'); if (!cv) return;
+  const fig = cv.closest('.sym'), read = document.getElementById('symRead'), steps = [...fig.querySelectorAll('.sym-path li')];
+  const FA = 440, TAU_D = 2.9, GAM = 1 / TAU_D, DET = -4, SLOW = 88, LAMBDA = 343 / FA; // m
+  const THR = 0.12;                        // amplitude de B (relative) à partir de laquelle la boule décolle
+  let weight = true, a = 0, z = { re:0, im:0 }, kappa = 1, running = false, raf = 0, t = 0, last = 0, vis = false, maxB = 0, jumps = 0;
+  const ball = { x:0, v:0 };                // écart à la position de contact (m), vitesse (m/s)
+  const Lf = 0.10, W0 = Math.sqrt(9.81 / Lf);
+  const H = 12, HN = Math.round(H * 30), hA = new Float32Array(HN), hB = new Float32Array(HN); let hi = 0, hAcc = 0;
+  /* κ : réglé une fois par simulation hors ligne du cas accordé */
+  (function calib(){ let aa = 1, zr = 0, zi = 0, pk = 0; const dt = 1 / 200, d = 2 * Math.PI * 0.1;
+    for (let k = 0; k < 200 * 12; k++){ const e = Math.exp(-GAM * dt), c = Math.cos(d * dt), s = Math.sin(d * dt);
+      const nr = e * (zr * c - zi * s) + aa * dt, ni = e * (zr * s + zi * c); zr = nr; zi = ni; aa *= Math.exp(-GAM * dt); pk = Math.max(pk, Math.hypot(zr, zi)); }
+    kappa = 0.55 / pk; })();
+  const det = () => weight ? DET : 0.1;
+  function step(dt){
+    const n = Math.max(1, Math.ceil(dt / 0.004)), h = dt / n, d = 2 * Math.PI * det();
+    for (let k = 0; k < n; k++){
+      const e = Math.exp(-GAM * h), c = Math.cos(d * h), s = Math.sin(d * h);
+      const nr = e * (z.re * c - z.im * s) + kappa * a * h, ni = e * (z.re * s + z.im * c);
+      z.re = nr; z.im = ni; a *= Math.exp(-GAM * h);
+      // boule : pendule, butée sur la branche de B (x ≥ 0)
+      const B = Math.hypot(z.re, z.im);
+      ball.v += (-W0 * W0 * ball.x - 1.2 * ball.v) * h; ball.x += ball.v * h;
+      if (ball.x <= 0){ ball.x = 0;
+        if (B > THR && ball.v <= 0.02){ ball.v = 0.35 * Math.min(1.6, (B - THR) / 0.25 + .15); jumps++; }
+        else ball.v = Math.max(0, -ball.v * 0.2); }
+    }
+    t += dt; hAcc += dt;
+    while (hAcc >= 1 / 30){ hAcc -= 1 / 30; hA[hi] = a; hB[hi] = Math.hypot(z.re, z.im); hi = (hi + 1) % HN; }
+    maxB = Math.max(maxB, Math.hypot(z.re, z.im));
+  }
+  const ro2 = new ResizeObserver(() => { cv._dirty = true; draw(); }); ro2.observe(cv);
+  function size(){ const r = cv.getBoundingClientRect(); const w = Math.max(1, Math.round(r.width)), h = Math.max(1, Math.round(r.height));
+    if (cv._dirty !== false || cv.width !== Math.round(w * DPR)){ cv.width = Math.round(w * DPR); cv.height = Math.round(h * DPR); cv._dirty = false; }
+    const g = cv.getContext('2d'); g.setTransform(DPR, 0, 0, DPR, 0, 0); return { g, w, h }; }
+  function fork(g, x, base, sc, amp, ph, col, withWeight){
+    // caisse
+    const bw = 150 * sc, bh = 46 * sc;
+    const grd = g.createLinearGradient(x - bw / 2, base - bh, x - bw / 2, base); grd.addColorStop(0, '#5a3d1e'); grd.addColorStop(1, '#2c1d0e');
+    g.fillStyle = grd; g.strokeStyle = rgba(C.gold, .55); g.lineWidth = 1;
+    g.fillRect(x - bw / 2, base - bh, bw, bh); g.strokeRect(x - bw / 2 + .5, base - bh + .5, bw - 1, bh - 1);
+    // tige et branches (déplacement ralenti)
+    const stemTop = base - bh - 16 * sc, L = 120 * sc, gap = 12 * sc, off = amp * 9 * sc * Math.sin(ph);
+    g.strokeStyle = '#9aa3ad'; g.lineWidth = 5 * sc; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(x, base - bh); g.lineTo(x, stemTop); g.stroke();
+    g.beginPath(); g.moveTo(x - gap, stemTop); g.quadraticCurveTo(x - gap, stemTop + 8 * sc, x, stemTop + 8 * sc); g.quadraticCurveTo(x + gap, stemTop + 8 * sc, x + gap, stemTop); g.stroke();
+    const tipL = x - gap - off, tipR = x + gap + off;
+    g.beginPath(); g.moveTo(x - gap, stemTop); g.quadraticCurveTo(x - gap, stemTop - L * .5, tipL, stemTop - L); g.stroke();
+    g.beginPath(); g.moveTo(x + gap, stemTop); g.quadraticCurveTo(x + gap, stemTop - L * .5, tipR, stemTop - L); g.stroke();
+    if (amp > .02){ g.strokeStyle = rgba(col, Math.min(.8, amp)); g.lineWidth = 1; g.shadowColor = col; g.shadowBlur = 10;
+      g.beginPath(); g.moveTo(tipL, stemTop - L); g.lineTo(tipL, stemTop - L + 20 * sc); g.moveTo(tipR, stemTop - L); g.lineTo(tipR, stemTop - L + 20 * sc); g.stroke(); g.shadowBlur = 0; }
+    if (withWeight){ const wy = stemTop - L * .72; g.fillStyle = C.goldD; g.strokeStyle = C.goldB; g.lineWidth = 1; g.fillRect(tipR - 6 * sc, wy, 12 * sc, 18 * sc); g.strokeRect(tipR - 6 * sc + .5, wy + .5, 12 * sc - 1, 18 * sc - 1); }
+    return { tipR, top: stemTop - L, stemTop, bw, bh };
+  }
+  function draw(){
+    const { g, w, h } = size(); if (w < 10) return;
+    g.clearRect(0, 0, w, h);
+    const narrow = w < 560, plotH = Math.max(100, Math.round(h * (narrow ? .30 : .28))), sceneB = h - plotH - 34;
+    const table = sceneB - (narrow ? 34 : 44);
+    const sc = Math.min(1.45, Math.max(.5, Math.min(w / (narrow ? 560 : 760), (table - 20) / 250)));
+    const xA = w * (narrow ? .25 : .24), xB = w * (narrow ? .7 : .68);
+    const Bamp = Math.hypot(z.re, z.im), phV = 2 * Math.PI * (FA / SLOW) * t;
+    // table
+    const tg = g.createLinearGradient(0, table, 0, table + 14 * sc); tg.addColorStop(0, 'rgba(214,172,85,.16)'); tg.addColorStop(1, 'rgba(214,172,85,0)');
+    g.fillStyle = tg; g.fillRect(8, table, w - 16, 14 * sc);
+    g.strokeStyle = rgba(C.gold, .55); g.lineWidth = 1; g.beginPath(); g.moveTo(8, table + .5); g.lineTo(w - 8, table + .5); g.stroke();
+    // A tenu en l'air par sa caisse : bras et main stylisés venant de la gauche
+    const lift = 30 * sc, baseA = table - lift;
+    const fa = fork(g, xA, baseA, sc, a, phV, C.goldB, false);
+    // main sous la caisse (paume, doigts, pouce) et manche qui vient de la gauche
+    const px0 = xA - fa.bw * .30, py0 = baseA + 1, pw0 = fa.bw * .62, ph0 = 11 * sc;
+    g.lineCap = 'round';
+    g.strokeStyle = 'rgba(22,28,42,.98)'; g.lineWidth = 24 * sc; g.beginPath(); g.moveTo(-10, py0 + 46 * sc); g.quadraticCurveTo(px0 - 40 * sc, py0 + 36 * sc, px0 + 4 * sc, py0 + ph0); g.stroke();
+    g.strokeStyle = rgba(C.soft, .25); g.lineWidth = 1; g.beginPath(); g.moveTo(-10, py0 + 34 * sc); g.quadraticCurveTo(px0 - 44 * sc, py0 + 24 * sc, px0 - 4 * sc, py0 + 2 * sc); g.stroke();
+    g.fillStyle = 'rgba(206,176,140,.62)'; g.strokeStyle = 'rgba(120,92,64,.8)';
+    g.beginPath(); g.moveTo(px0, py0 + ph0 * 1.2); g.quadraticCurveTo(px0, py0, px0 + 10 * sc, py0);
+    g.lineTo(px0 + pw0 - 6 * sc, py0); g.quadraticCurveTo(px0 + pw0 + 6 * sc, py0 + 2 * sc, px0 + pw0 + 4 * sc, py0 - 7 * sc);
+    g.quadraticCurveTo(px0 + pw0 + 12 * sc, py0 - 6 * sc, px0 + pw0 + 10 * sc, py0 + 4 * sc);
+    g.quadraticCurveTo(px0 + pw0 * .7, py0 + ph0 * 1.5, px0 + 10 * sc, py0 + ph0 * 1.6); g.closePath(); g.fill(); g.stroke();
+    g.strokeStyle = 'rgba(120,92,64,.55)'; g.lineWidth = 1; for (let k = 1; k <= 3; k++){ const fx = px0 + pw0 * (.55 + k * .1); g.beginPath(); g.moveTo(fx, py0 + 1); g.lineTo(fx - 3 * sc, py0 + ph0 * .9); g.stroke(); }
+    g.lineCap = 'butt';
+    // cote : A ne touche pas la table
+    g.setLineDash([3, 4]); g.strokeStyle = rgba(C.soft, .6); g.lineWidth = 1; g.beginPath(); g.moveTo(xA + fa.bw * .56, baseA + 1); g.lineTo(xA + fa.bw * .56, table - 1); g.stroke(); g.setLineDash([]);
+    // B posé
+    const fb = fork(g, xB, table, sc, Bamp, phV + Math.atan2(z.im, z.re), C.phos, weight);
+    // onde dans l'air : fronts espacés de la vraie longueur d'onde (caisses à 1 m), ralentie 88×
+    const mouthA = xA + fa.bw / 2, mouthB = xB - fb.bw / 2, yA = baseA - fa.bh / 2, yB = table - fb.bh / 2, D = mouthB - mouthA, pxPerM = D / 1.0;
+    if (a > .01){ const lam = LAMBDA * pxPerM, ph = ((FA / SLOW) * t) % 1;
+      for (let k = 0; k < 4; k++){ const r = (k + ph) * lam; if (r > D * 1.15) continue; const al = a * .75 * (1 - r / (D * 1.25));
+        for (const [lw, k2] of [[6, .18], [1.6, 1]]){ g.strokeStyle = rgba(C.phos, Math.max(0, al * k2)); g.lineWidth = lw; g.beginPath(); g.ellipse(mouthA, (yA + yB) / 2, r, r * .6, 0, -Math.PI / 2.4, Math.PI / 2.4); g.stroke(); } } }
+    // cote λ
+    g.font = `11px ${'ui-monospace, monospace'}`; g.fillStyle = rgba(C.goldB, .75); g.textAlign = 'center';
+    if (!narrow) g.fillText('λ = 78 cm · caisses à 1 m · onde ralentie 88 ×', (mouthA + mouthB) / 2, Math.min(yA, yB) - 70 * sc);
+    // boule et fil
+    const stX = fb.tipR + 34 * sc, stTop = fb.top - 34 * sc, contact = fb.tipR + 4 * sc + Bamp * 9 * sc * Math.max(0, Math.sin(phV)), by = fb.top + 22 * sc;
+    const bx = Math.max(contact, fb.tipR + 4 * sc) + ball.x * 900 * sc;
+    g.strokeStyle = rgba(C.gold, .6); g.lineWidth = 2; g.beginPath(); g.moveTo(stX + 20 * sc, table); g.lineTo(stX + 20 * sc, stTop); g.lineTo(fb.tipR + 4 * sc, stTop); g.stroke();
+    g.strokeStyle = rgba(C.parch, .6); g.lineWidth = 1; g.beginPath(); g.moveTo(fb.tipR + 4 * sc, stTop); g.lineTo(bx, by); g.stroke();
+    const bg2 = g.createRadialGradient(bx - 2, by - 2, 1, bx, by, 7 * sc); bg2.addColorStop(0, '#ffffff'); bg2.addColorStop(1, '#8e959d');
+    g.fillStyle = bg2; g.beginPath(); g.arc(bx, by, 6 * sc, 0, Math.PI * 2); g.fill();
+    // étiquettes, sous la table
+    g.font = `600 ${narrow ? 10 : 11}px Cinzel, serif`; g.textAlign = 'center'; g.textBaseline = 'top';
+    g.fillStyle = C.goldB; g.fillText('A · 440 HZ', xA, table + 8);
+    g.fillStyle = C.phos; g.fillText(weight ? (narrow ? 'B · 436 HZ' : 'B · 436 HZ (AVEC POIDS)') : 'B · 440 HZ', xB, table + 8);
+    if (!narrow){ g.font = 'italic 12px Fraunces, serif'; g.fillStyle = C.soft; g.fillText('tenu en l’air, sans contact avec la table', xA, table + 24); g.fillText('posé, boule en contact léger', xB, table + 24); }
+    g.textBaseline = 'alphabetic';
+    // courbes d'amplitude (temps réel, 12 s)
+    const px = 30, py = h - plotH + 4, pw = w - px - 10, ph2 = plotH - 12;
+    g.strokeStyle = 'rgba(244,236,216,.10)'; g.lineWidth = 1; g.strokeRect(px + .5, py + .5, pw, ph2);
+    g.font = `600 10px Cinzel, serif`; g.textAlign = 'left'; g.fillStyle = C.soft; g.fillText(narrow ? 'AMPLITUDE · 12 S' : 'AMPLITUDE DES VIBRATIONS · 12 DERNIÈRES SECONDES (TEMPS RÉEL)', px, py - 7);
+    const Y = v => py + ph2 - Math.min(1, v) * (ph2 - 4);
+    g.setLineDash([4, 4]); g.strokeStyle = rgba(C.parch, .35); g.beginPath(); g.moveTo(px, Y(THR) + .5); g.lineTo(px + pw, Y(THR) + .5); g.stroke(); g.setLineDash([]);
+    g.font = `11px ui-monospace, monospace`; g.fillStyle = C.soft; g.textAlign = 'right'; g.fillText('1', px - 6, Y(1) + 4); g.fillText('0', px - 6, Y(0)); 
+    if (w > 480){ g.textAlign = 'left'; g.fillText('la boule décolle', px + 6, Y(THR) - 4); }
+    for (const [buf, col] of [[hA, C.goldB], [hB, C.phos]]){
+      g.strokeStyle = col; g.lineWidth = 1.6; g.beginPath();
+      for (let k = 0; k < HN; k++){ const v = buf[(hi + k) % HN], xx = px + k / (HN - 1) * pw; if (!k) g.moveTo(xx, Y(v)); else g.lineTo(xx, Y(v)); } g.stroke(); }
+    g.textAlign = 'right'; g.fillStyle = C.goldB; g.fillText('A', px + pw - 6, py + 14); g.fillStyle = C.phos; g.fillText('B', px + pw - 20, py + 14);
+  }
+  function lights(){ const B = Math.hypot(z.re, z.im);
+    const on = [a > .9, a > .02, a > .02, B > .03, ball.x > 1e-4 || ball.v > 0];
+    steps.forEach((li, k) => li.classList.toggle('lit', !!on[k])); }
+  function frame(now){
+    raf = 0; if (!running) return;
+    const dt = last ? Math.min(.05, (now - last) / 1000) : 0; last = now;
+    step(dt); draw(); lights();
+    if (t - lastRead > .25){ lastRead = t; report(); }
+    if (a < 2e-3 && Math.hypot(z.re, z.im) < 2e-3 && ball.x < 1e-5 && ball.v < 1e-4){ running = false; report(true); lights(); return; }
+    if (vis) raf = requestAnimationFrame(frame);
+  }
+  let lastRead = 0;
+  function report(end){
+    const pct = Math.round(maxB / 1 * 100);
+    read.textContent = (weight ? 'Désaccordés de 4 Hz : ' : 'Accordés : ') + 'B atteint au plus ' + pct + ' % de l’amplitude de départ de A' +
+      (jumps ? ' ; la boule a sauté ' + jumps + (jumps > 1 ? ' fois.' : ' fois.') : ' ; la boule n’a pas décollé.') + (end ? '' : '');
+  }
+  function go(){ if (!running){ running = true; last = 0; } if (vis && !raf) raf = requestAnimationFrame(frame); }
+  new IntersectionObserver(es => es.forEach(e => { vis = e.isIntersecting; if (vis && running && !raf){ last = 0; raf = requestAnimationFrame(frame); } })).observe(cv);
+  fig.querySelector('.sym-hit').addEventListener('click', () => { a = 1; maxB = Math.hypot(z.re, z.im); jumps = 0; steps[0].classList.add('lit'); go(); });
+  fig.querySelector('.sym-stop').addEventListener('click', () => { a = 0; z = { re:0, im:0 }; ball.x = 0; ball.v = 0; maxB = 0; jumps = 0; draw(); lights(); read.textContent = 'Vibrations arrêtées. Frappez A.'; });
+  fig.querySelectorAll('.sym-seg button').forEach(b => b.addEventListener('click', () => {
+    weight = b.dataset.w === '1'; fig.querySelectorAll('.sym-seg button').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+    a = 0; z = { re:0, im:0 }; ball.x = 0; ball.v = 0; maxB = 0; jumps = 0; draw(); lights();
+    read.textContent = weight ? 'Poids remis sur B : il vibre naturellement 4 Hz plus bas. Frappez A.' : 'Poids retiré : A et B ont presque la même cadence. Frappez A.'; }));
+  addEventListener('load', draw); draw();
+})();
 })();
 
 </script>

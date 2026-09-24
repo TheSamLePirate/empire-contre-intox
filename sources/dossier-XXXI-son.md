@@ -8,7 +8,7 @@
 
 **Légende des verdicts :** ✅ confirmé · ⚠️ nuancé ou corrigé · 🔶 débattu · ❌ erroné (corrigé dans le dossier) · non vérifié (marqué comme tel, reformulé en ordre de grandeur)
 
-**Décompte.** 237 affirmations : **160 ✅ · 69 ⚠️ · 2 🔶 · 4 ❌ · 2 non vérifiées.** Trois lignes que les rapports d'agent notaient ✅ ont quand même donné lieu à une correction du script (Sethares 1998, Opus co-développé avec Skype, « Exxon » retiré de l'histoire de l'Auto-Tune) : elles sont comptées ⚠️ ici, ce qui recale le total sur le bilan consolidé. La répartition par lot peut différer d'une unité de celle des rapports.
+**Décompte.** 247 affirmations : **169 ✅ · 70 ⚠️ · 2 🔶 · 4 ❌ · 2 non vérifiées** — les 237 du script en onze lots, plus les 10 de la fiche 21 du compagnon *Portraits* (Bob Marley et les ingénieurs du dub), vérifiées le 24 septembre 2026. Trois lignes que les rapports d'agent notaient ✅ ont quand même donné lieu à une correction du script (Sethares 1998, Opus co-développé avec Skype, « Exxon » retiré de l'histoire de l'Auto-Tune) : elles sont comptées ⚠️ ici, ce qui recale le total sur le bilan consolidé. La répartition par lot peut différer d'une unité de celle des rapports.
 
 Les URL ont été contrôlées le 24 septembre 2026. Plusieurs sites refusent la lecture automatique (DOSITS, AES, ISO, EUR-Lex, Légifrance, CTBTO, PubMed par moments, AIP, Science) : les faits correspondants ont été recoupés sur d'autres pages ouvertes, et l'URL officielle est gardée.
 
@@ -405,11 +405,36 @@ Les URL ont été contrôlées le 24 septembre 2026. Plusieurs sites refusent la
 - **Graphies** : Plasma Wave Science → Plasma Wave Subsystem ; « Fabian, Sanders, Churazov, 2003 » → « Fabian, Sanders et al., 2003 » ; Zheleznyakov / Zhelezniakov à unifier ; URL Golden Record JPL mortes.
 - **Non lu** : Gurnett & Anderson 1977 (Wiley) ; valeur 5,3 mHz ; formule c_s dans Hu & Dodelson.
 
+## Compagnon Portraits — fiche 21, Bob Marley et les ingénieurs du dub
+
+**Page :** [`provoxys/son/portraits.html#marley`](../provoxys/son/portraits.html#marley) · **vérifiée le 24 septembre 2026** (agent `verif-claims`, effort élevé ; DOI résolus sur Crossref).
+
+**Comptes :** 9 ✅ · 1 ⚠️ · 0 🔶 · 0 ❌
+
+| # | Affirmation | Verdict | Valeur de référence / nuance | Sources |
+|---|---|---|---|---|
+| P21.1 | Né le 6 févr. 1945 à Nine Mile (Jamaïque), mort le 11 mai 1981 à Miami | ✅ | Nine Mile, paroisse de Saint Ann | [britannica.com/summary/Bob-Marley](https://www.britannica.com/summary/Bob-Marley) · [history.com (11 mai, Bob Marley dies)](https://www.history.com/this-day-in-history/may-11/bob-marley-dies) |
+| P21.2 | Sound systems de Kingston : Dodd (Downbeat), Duke Reid (Trojan) ; Hedley Jones et les caissons « House of Joy » | ⚠️ | **Corrigé dans la page** : *House of Joy* n'est pas le nom des caissons de Hedley Jones mais celui du sound system de **Roy Johnson**, l'un de ses premiers clients. Jones construisait amplificateurs et enceintes (pour Tom the Great Sebastian, Roy Johnson, Duke Reid). Trojan (Duke Reid) et Downbeat (Coxsone Dodd) confirmés | [daily.redbullmusicacademy.com (Hedley Jones, 2019)](https://daily.redbullmusicacademy.com/2019/05/hedley-jones-feature/) · [skabook.com (Pioneer Hedley Jones)](https://skabook.com/2014/12/19/pioneer-hedley-jones/) |
+| P21.3 | Faces B « version » dès 1967–1968 ; en 1968, un acétate gravé sans la voix chez Duke Reid fait danser un sound system | ✅ (anecdote) | Acétate de « On the Beach » (Paragons) gravé chez Treasure Isle pour Ruddy Redwood, ingénieur Byron Smith ; la page la présente comme une anecdote. L'article RBMA *The Roots of Dub* ne couvre pas ces dates | [en.wikipedia.org/wiki/Dub_music](https://en.wikipedia.org/wiki/Dub_music) |
+| P21.4 | King Tubby = Osbourne Ruddock (1941–1989), réparateur radio, studio de Waterhouse ; filtre passe-haut à onze crans, 70 Hz – 7,5 kHz ; console au MoPOP | ✅ | 28 janv. 1941 – 6 févr. 1989 ; Tubby's Home Town Hi-Fi (1968) ; studio 18 Drumilly Avenue ; le « Big Knob » est un filtre passif **Altec 9069B** à 11 crans, monté sur une console **MCI** achetée en 1972 à Byron Lee, conservée au Museum of Pop Culture (Seattle) | [nlj.gov.jm (King Tubby)](https://www.nlj.gov.jm/REGGAE%20EXHIBITION/King%20Tubby.htm) · [soundonsound.com (filtre KTBK)](https://www.soundonsound.com/news/audio-merge-ktbk-passive-filter) · [mopop.emuseum.com (console MCI)](https://mopop.emuseum.com/objects/95703/mci-mixing-console-formerly-owned-and-operated-by-king-tubby) |
+| P21.5 | Lee Perry (1936–2021) produit les Wailers en 1970–1971 ; Black Ark 1973–1979 ; 4 pistes, Space Echo, Echoplex, ressort ; « Punky Reggae Party » (1977) Marley–Perry | ✅ | 20 mars 1936 – 29 août 2021 ; *Soul Rebels* (1970), *Soul Revolution Part II* (1971) ; Black Ark 1973–1979 (MusicRadar dit 1974) ; TEAC 4 pistes, Roland RE-201 ; 45 tours Island crédité Marley–Perry | [en.wikipedia.org/wiki/Black_Ark_Studios](https://en.wikipedia.org/wiki/Black_Ark_Studios) · [musicradar.com (Pioneers : Lee Perry)](https://www.musicradar.com/news/pioneers-lee-scratch-perry) · [bobmarley.com (Soul Rebels)](https://www.bobmarley.com/release/soul-rebels-1970/) · [discogs.com (Jamming / Punky Reggae Party)](https://www.discogs.com/release/554936-Bob-Marley-The-Wailers-Jamming-Punky-Reggae-Party) · [rolandcorp.com.au (RE-201)](https://rolandcorp.com.au/blog/the-roland-re-201-space-echo-story) |
+| P21.6 | Écho à bande : retard = distance entre têtes / vitesse ; 2,5 cm à 38 cm/s ≈ 66 ms | ✅ | 1 pouce à 15 ips : 0,025 / 0,38 = 65,8 ms (calcul refait) | [strymon.net (dTape white paper)](https://www.strymon.net/strymon-dtape-technology-white-paper/) · [guitar.com (All about echo)](https://guitar.com/guides/essential-guide/all-about-echo/) |
+| P21.7 | Réverbération à ressort : brevet Hammond déposé en 1939, délivré en 1941 | ✅ | US 2 230 836, déposé le 15 juil. 1939, délivré le 4 févr. 1941 | [patents.google.com/patent/US2230836A](https://patents.google.com/patent/US2230836A/en) |
+| P21.8 | Henriques (sound systems, vibrations entendues et ressenties) ; étude de 2022 en concert : ~12 % de danse en plus avec des très basses fréquences non détectées | ✅ | Henriques, *Sonic Bodies* (2011) ; Cameron et al. 2022 : **+11,8 %** de mouvement (arrondi à « environ 12 % »), concert d'Orphx au LIVELab, fréquences que le public « ne semblait pas détecter » | DOI [10.5040/9781501382895](https://doi.org/10.5040/9781501382895) · DOI [10.1016/j.cub.2022.09.035](https://doi.org/10.1016/j.cub.2022.09.035) · [sciencedaily.com (7 nov. 2022)](https://www.sciencedaily.com/releases/2022/11/221107114445.htm) |
+| P21.9 | Idée reçue : « Bob Marley a inventé le dub » | ✅ (réfutation confirmée) | Faux : le dub vient des ingénieurs et producteurs de studio (King Tubby, Lee Perry, Errol Thompson) ; la page le range dans « Ce qu'on lui prête à tort » | [en.wikipedia.org/wiki/Dub_music](https://en.wikipedia.org/wiki/Dub_music) · [nlj.gov.jm (King Tubby)](https://www.nlj.gov.jm/REGGAE%20EXHIBITION/King%20Tubby.htm) |
+| P21.10 | Photo : Dalymount Park, Dublin, 6 juil. 1980, Eddie Mallin, CC BY 2.0 | ✅ | `File:Bob-Marley.jpg`, licence vérifiée sur Flickr en 2014 (revue de licence Commons) | [commons.wikimedia.org/wiki/File:Bob-Marley.jpg](https://commons.wikimedia.org/wiki/File:Bob-Marley.jpg) |
+
+**Synthèse de la fiche**
+
+- **⚠️ corrigé dans la page** : P21.2, *House of Joy* rendu à Roy Johnson (et non aux caissons de Hedley Jones).
+- **Anecdote signalée comme telle** : l'acétate de 1968 (P21.3), sourcé par Wikipédia seulement.
+- **2 DOI ajoutés** (Crossref) : Henriques 2011, Cameron et al. 2022 → [`refs-doi-XXXI-son.md`](refs-doi-XXXI-son.md), section « Compagnon Portraits ».
+
 ---
 
 ## Synthèse
 
-**Bilan : 237 affirmations — 160 ✅ · 69 ⚠️ · 2 🔶 · 4 ❌ · 2 non vérifiées ; 220 DOI distincts, tous résolus sur Crossref.**
+**Bilan : 247 affirmations — 169 ✅ · 70 ⚠️ · 2 🔶 · 4 ❌ · 2 non vérifiées ; 222 DOI distincts, tous résolus sur Crossref** (dont 10 affirmations et 2 DOI pour la fiche 21 du compagnon *Portraits*).
 
 | Lot | Thème | ✅ | ⚠️ | 🔶 | ❌ | Non vérifié |
 |---|---|---|---|---|---|---|
@@ -424,7 +449,8 @@ Les URL ont été contrôlées le 24 septembre 2026. Plusieurs sites refusent la
 | 09 | Ultrasons chez les animaux | 7 | 10 | 0 | 2 | 1 |
 | 10 | Bruit, industrie, art & intox | 11 | 7 | 1 | 0 | 0 |
 | 11 | Phonons, espace & astronomie | 12 | 5 | 0 | 0 | 0 |
-| **Total** | | **160** | **69** | **2** | **4** | **2** |
+| P21 | Compagnon *Portraits* — Bob Marley et les ingénieurs du dub | 9 | 1 | 0 | 0 | 0 |
+| **Total** | | **169** | **70** | **2** | **4** | **2** |
 
 ### ❌ Erreurs corrigées dans le dossier (4 ❌, plus une erreur de calcul classée ⚠️)
 
@@ -449,6 +475,7 @@ Les URL ont été contrôlées le 24 septembre 2026. Plusieurs sites refusent la
 - **Oreille** : implants commercialisés dans les années 1980 (FDA 1984–1985) ; OMS 53 dB Lden = seuil de **gêne forte**, risque cardiaque +8 % par tranche de 10 dB ; seuil de douleur 120–140 dB ; fondamentale masculine ~90–155 Hz ; Sabine **conseiller acoustique** du Symphony Hall ; régie 0,2–0,3 s.
 - **Vivant** : audiogrammes Heffner (souris ~2–85 kHz ; dauphin mesuré sous l'eau, hors Heffner) ; grillon jusqu'à ~100 kHz ; moustique femelle ~400–500 Hz, mâle ~600 ; canons à air 220–230 dB **crête par canon** ; ncpaprop ; sub-bass 20–70 Hz, orgue de 32 pieds à 16 Hz ; ~1 500 espèces de chauves-souris ; Griffin et Galambos 1941–1942 ; **cris** (pas clics) de 120–140 dB SPL à 10 cm ; Blest, Collett et Pye 1963 ; faisceau du grand dauphin ~10°, lèvres phoniques sous le melon ; buzz jusqu'à ~500 clics/s ; guacharo = Suthers et Hector 1985, salanganes = Griffin et Suthers 1970, Griffin et Thompson 1982 ; fovéa du rhinolophe ~83 kHz.
 - **Intox** : *Healing Codes* de Horowitz et Puleo daté 1999 ; Iaccarino 2016 = **lumière**, Martorell 2019 = son ; essai HOPE achevé à l'été 2026, résultats non publiés au 23 septembre 2026 ; sonification du Soleil ×42 000 ≈ **une quinzaine d'octaves** ; Maxim 1909 = silencieux d'**arme** ; citation « 3-6-9 » attribuée à Tesla sans source ni date ; état des lieux du « syndrome de La Havane » daté (NIH/JAMA 2024, ODNI 2025).
+- **Compagnon Portraits (fiche 21)** : *House of Joy* est le sound system de Roy Johnson, pas le nom des caissons de Hedley Jones (qui construisait amplis et enceintes).
 - **Espace** : phonon = concept de Tamm (1930), mot de Frenkel (1932) ; instrument de Voyager = *Plasma Wave Subsystem*, PI Scarf puis Gurnett (1988) ; ~300–400 Hz dans l'héliogaine ; whistlers de Jupiter = l'une des **deux** preuves d'éclairs, avec les images de nuit ; modes p ~1–5 mHz, pic ~3 mHz, précision ≈ 3 × 10⁻⁶ ; fréquence plasma de centaines de MHz dans la **basse couronne** (pas la photosphère) ; Fabian, Sanders et al. 2003 (Churazov n'est pas coauteur).
 
 ### Non vérifié (marqué tel quel, reformulé en ordre de grandeur)
@@ -463,7 +490,7 @@ Louis Jurine · Terfenol-D · Iégor Reznikoff · Polyclète · Lnight · partie
 
 ### DOI
 
-220 DOI distincts, tous vérifiés sur Crossref par les agents puis de nouveau le 24 septembre 2026 : aucun ne manque, aucun n'a été retiré. Quatre sont signalés « non lus » (existence et métadonnées vérifiées, texte non consulté) et un comme appui secondaire. Deux DOI candidats avaient été **écartés dès la vérification** et ne figurent nulle part : celui d'un article d'histoire de l'Auto-Tune qui n'a pas pu être ouvert, et celui d'un article de Huron (2008) dont les métadonnées Crossref ne concordaient pas avec la revue citée. Seebeck 1841, Schouten 1940, Haas 1951, Feddersen 1957 et Gerzon 1973 : **DOI non trouvé** — cités sans DOI.
+220 DOI distincts, tous vérifiés sur Crossref par les agents puis de nouveau le 24 septembre 2026 : aucun ne manque, aucun n'a été retiré. Deux DOI s'y ajoutent pour la fiche 21 du compagnon *Portraits*, résolus sur Crossref le même jour (Henriques 2011, `10.5040/9781501382895` ; Cameron et al. 2022, `10.1016/j.cub.2022.09.035`), soit **222 DOI distincts**. Quatre sont signalés « non lus » (existence et métadonnées vérifiées, texte non consulté) et un comme appui secondaire. Deux DOI candidats avaient été **écartés dès la vérification** et ne figurent nulle part : celui d'un article d'histoire de l'Auto-Tune qui n'a pas pu être ouvert, et celui d'un article de Huron (2008) dont les métadonnées Crossref ne concordaient pas avec la revue citée. Seebeck 1841, Schouten 1940, Haas 1951, Feddersen 1957 et Gerzon 1973 : **DOI non trouvé** — cités sans DOI.
 
 ## Complément — valeurs employées par les ateliers interactifs (vérifiées le 24 septembre 2026)
 

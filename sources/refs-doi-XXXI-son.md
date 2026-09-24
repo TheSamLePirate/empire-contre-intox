@@ -1,6 +1,6 @@
 # Références primaires — Dossier XXXI « Le Son »
 
-**Deux cent vingt DOI distincts**, tous issus des onze rapports de vérification du dossier (`verif/lot-01…11`), où chacun avait déjà été résolu sur Crossref par l'agent qui le citait. Ils ont été **résolus une seconde fois** le 24 septembre 2026, un par un, via `api.crossref.org/works/<doi>` : les citations ci-dessous (auteurs, année, revue, volume, pages) sont reprises de ces métadonnées, pas recopiées de mémoire. **Aucun DOI n'a été deviné ni reconstruit**, et aucun n'a dû être retiré : les 220 répondent.
+**Deux cent vingt-deux DOI distincts** : 220 issus des onze rapports de vérification du dossier (`verif/lot-01…11`), plus 2 pour la fiche 21 du compagnon *Portraits* (section finale), où chacun avait déjà été résolu sur Crossref par l'agent qui le citait. Ils ont été **résolus une seconde fois** le 24 septembre 2026, un par un, via `api.crossref.org/works/<doi>` : les citations ci-dessous (auteurs, année, revue, volume, pages) sont reprises de ces métadonnées, pas recopiées de mémoire. **Aucun DOI n'a été deviné ni reconstruit**, et aucun n'a dû être retiré : les 220 répondent.
 
 Règle de lecture : la colonne « Donnée » renvoie à l'affirmation du dossier (numéro lot.ligne de [`dossier-XXXI-son.md`](dossier-XXXI-son.md)) ; « Ce que l'article établit » est un résumé reformulé, pas un extrait.
 
@@ -284,3 +284,12 @@ Règle de lecture : la colonne « Donnée » renvoie à l'affirmation du dossier
 | 11.15 — f_pe ; HELIOS 20 kHz à 1 UA ; centaines de MHz près de la photosphère ; ion-acoustique 500 Hz | D. A. Gurnett et R. R. Anderson (1977), « Plasma wave electric fields in the solar wind: Initial results from Helios 1 », *Journal of Geophysical Research 82, 632-650* | [10.1029/JA082i004p00632](https://doi.org/10.1029/JA082i004p00632) | Gurnett et Anderson : ondes de plasma dans le vent solaire mesurées par Helios. |
 | 11.16 — Ginzburg & Zheleznyakov 1958 ; Gurnett & Anderson 1976/77 ; STEREO/WAVES ; Reid & Kontar 2021 ; Solar Orbiter 47–58 kHz | J. L. Bougeret, K. Goetz, M. L. Kaiser et al. (2008), « S/WAVES: The Radio and Plasma Wave Investigation on the STEREO Mission », *Space Science Reviews 136, 487-528* | [10.1007/s11214-007-9298-8](https://doi.org/10.1007/s11214-007-9298-8) | Bougeret et al. : l'instrument S/WAVES de la mission STEREO. |
 | 11.16 — Ginzburg & Zheleznyakov 1958 ; Gurnett & Anderson 1976/77 ; STEREO/WAVES ; Reid & Kontar 2021 ; Solar Orbiter 47–58 kHz | H. A. S. Reid et E. P. Kontar (2021), « Fine structure of type III solar radio bursts from Langmuir wave motion in turbulent plasma », *Nature Astronomy 5, 796-804* | [10.1038/s41550-021-01370-8](https://doi.org/10.1038/s41550-021-01370-8) | Reid et Kontar : structure fine des sursauts de type III liée aux ondes de Langmuir. |
+
+## Compagnon Portraits — fiche 21, Bob Marley et les ingénieurs du dub (2 DOI)
+
+Résolus sur Crossref le 24 septembre 2026 (titre, auteurs, revue, volume, pages concordants). Affirmation P21.8 de [`dossier-XXXI-son.md`](dossier-XXXI-son.md).
+
+| Donnée | Référence | DOI | Ce que l'article établit |
+|---|---|---|---|
+| P21.8 — les basses des sound systems, entendues et ressenties | J. Henriques (2011), *Sonic Bodies: Reggae Sound Systems, Performance Techniques, and Ways of Knowing*, Continuum (livre) | [10.5040/9781501382895](https://doi.org/10.5040/9781501382895) | Étude des sound systems jamaïcains comme dispositif où le son se vit par le corps autant que par l'oreille : techniques des opérateurs, vibration, savoir pratique. |
+| P21.8 — +11,8 % de danse avec des très basses fréquences non détectées | D. J. Cameron, D. Dotov, E. Flaten, D. Bosnyak, M. J. Hove et L. J. Trainor (2022), « Undetectable very-low frequency sound increases dancing at a live concert », *Current Biology 32(21), R1222-R1223* | [10.1016/j.cub.2022.09.035](https://doi.org/10.1016/j.cub.2022.09.035) | Pendant un concert d'Orphx au LIVELab (McMaster), l'activation intermittente de haut-parleurs de très basses fréquences a augmenté le mouvement du public d'environ 11,8 %, alors que ces sons ne semblaient pas perçus consciemment. |
