@@ -1,7 +1,7 @@
 # Grammalecte — Le Son, de la grotte au milieu interstellaire (Dossier XXXI)
 
 Source analysée : `provoxys/son/index.html` · Passe du 2026-09-24 · Grammalecte 2.3.0 · rapport : `a_traiter/grammalecte/son-index/rapport.md`
-Bilan : 174 alertes de grammaire et 1165 mots inconnus examinés → 0 corrections du verbatim, 1 corrections éditoriales, 1293 faux positifs consignés.
+Bilan : 412 alertes de grammaire et 2014 mots inconnus examinés → 0 corrections du verbatim, 2 corrections éditoriales, 2339 faux positifs consignés.
 
 Dossier sans transcription : le texte vient du script de référence `a_traiter/provoxys-son/script-live-son.md`, il n'y a pas de verbatim à couvrir.
 
@@ -10,6 +10,7 @@ Dossier sans transcription : le texte vient du script de référence `a_traiter/
 | # | Avant | Après | Emplacement | Règle |
 |---|---|---|---|---|
 | 1 | ou <b>clics de tymbal</b> | ou <b>clics de tymbale</b> | Acte VIII, papillons de nuit contre chauves-souris (liste « Réponse ») | orthographe : « tymbale » en français (graphie de la page aux lignes 1931-1932), « tymbal » est la forme anglaise |
+| 2 | puis dessiné schématiquement en dent de scie | puis dessiné schématiquement en dents de scie | clé F25 (« Quand les ondes cessent de s’additionner simplement »), légende de figure ; source `a_traiter/provoxys-son/complements/F25.md` l. 59 | locution « en dents de scie » (loc) |
 
 ## Faux positifs et formulations gardées
 
@@ -1308,3 +1309,1049 @@ Dossier sans transcription : le texte vient du script de référence `a_traiter/
 | αi | mot inconnu | notation (coefficient d’absorption) |
 | αᵢSᵢ | mot inconnu | notation |
 | ε₀ | mot inconnu | notation (permittivité du vide) |
+| La vitesse particulaire u | gn | symbole u, pas un nom à accorder (×2) |
+| TU Eindhoven | conf | nom d’université, pas le pronom « tu » (×8) |
+| 60 dB suivie d’une heure | gn | accord avec « une heure », correct |
+| La pondération A atténue | ppas | lettre A (pondération A) suivie du verbe « atténue », correct |
+| Les réglages « Rapide » | gn | nom de réglage cité entre guillemets, invariable |
+| log base dix : le logarithme décimal | maj | glose de symbole en début de phrase, minuscule voulue |
+| où Te est la durée d’exposition | eleu | symbole Te, pas le pronom |
+| un sinus pleine échelle | gn | locution « pleine échelle » invariable |
+| 70 dB mesuré à 1 m | gn | accord avec « un Lp », correct |
+| speed of sound in air | tu | anglais (titre de référence) |
+| électromagnétique, cette | gn | λ désigne la longueur d’onde, féminin défendable |
+| Pression acoustique p | gn | symbole p |
+| k sin θ est la composante | maj | symbole k en début de phrase, minuscule voulue |
+| r p de thêta un égale z deux | gn | lecture orale de formule, ligne « Se lit » (×2) |
+| « thêta un égale zéro » | gn | lecture orale de formule (×2) |
+| mathcal T est ici le rapport | maj | texte de repli d'une formule LaTeX |
+| OpenCourseWare 2.682 | notype | numéro de cours du MIT (×2) |
+| OpenCourseWare 6.013 | notype | numéro de cours du MIT (×2) |
+| v est la vitesse de la source | maj | symbole v en début de phrase, minuscule voulue |
+| NTRS 19920001390 | num | identifiant de rapport NASA |
+| a est le rayon intérieur | maj | symbole a en début de phrase, minuscule voulue |
+| racine de oméga sur c | eleu | lecture orale de formule, symbole détaché (« de oméga ») |
+| pour f inférieure à f c | gn | f désigne la fréquence, féminin correct |
+| un vent parfaitement uniforme ne courbe rien | maj | item de liste en minuscule, voulu |
+| u(z) : vitesse du vent | maj | symbole u en début de phrase, minuscule voulue |
+| la distance horizontale x | gn | symbole x |
+| moyenne de p deux deux | notype | lecture orale de p₂², pas un doublon |
+| Se lit« | conf | libellé « Se lit » de la lecture des formules, pas « ce » (×6) |
+| numérote les creux | maj | symbole n en début de phrase, minuscule voulue |
+| fois a deux, sur r deux | conf | symbole a (rayon), pas la préposition |
+| pertes aller et retour | conf | « aller et retour » nom en apposition |
+| ks (« k s ») | maj | symbole ks en début de phrase, minuscule voulue |
+| x point point | notype | lecture orale de ẍ, pas un doublon (×2) |
+| tous deux « champ proche » | gn | terme cité entre guillemets, invariable |
+| un niveau annoncé « à 10 cm » | maj | item de liste en minuscule, voulu |
+| un bac à ondes calculé dans un plan | gn | item de liste en minuscule ; « calculé » s’accorde avec « bac » (×3) |
+| r^2 se dit | maj | texte de repli d'une formule LaTeX |
+| kr = 1 correspond | maj | symbole kr en début de phrase, minuscule voulue |
+| l’arc tangente vaut presque | gn | « arc tangente », nom de fonction, correct |
+| Ne dépend pas de la fréquence | imp | cellule de tableau, sujet sous-entendu, indicatif |
+| Dépend fortement de la fréquence | imp | cellule de tableau, sujet sous-entendu, indicatif |
+| Dépend de la taille des obstacles | imp | cellule de tableau, sujet sous-entendu, indicatif |
+| la relaxation moléculaire : les molécules | maj | item de liste en minuscule, voulu |
+| m : coefficient d’atténuation | maj | symbole m en début de phrase, minuscule voulue |
+| sinus thêta un sur c un égale sinus thêta L | gn | lecture orale de formule (×2) |
+| (2.067/13.811) | notype | numéros de cours du MIT (×4) |
+| quasi-longitudinal waves | tu | anglais (titre de référence) |
+| série de Fourier mais on laisse | virg | virgule facultative, choix de style |
+| f zéro est la fondamentale | maj | symbole f₀ en début de phrase, minuscule voulue |
+| fixe les An au lieu | gn | symbole Aₙ (amplitudes), pas le nom « an » |
+| un sifflet tonal n'est pas un bruit turbulent | conf | « n'est pas », correct |
+| Modes de la corde (fondamental et partiels) | gn | « fondamental » nom (le fondamental) (×2) |
+| Corde de mi aigu | tu | note « mi » + adjectif « aigu », pas un mot composé |
+| répond à « qu'est-ce qui vibre ? » | conf | préposition « à » devant une question citée |
+| van Waterschoot | maj | particule de nom propre |
+| Une AM et un battement | gn | AM = modulation d’amplitude, féminin |
+| 45 kHz mélangé à 43 kHz | gn | accord avec « cri », correct |
+| cos a+cos b | maj | texte de repli d'une formule LaTeX |
+| p deux sur p un égale A un sur A deux | gn | lecture orale de formule (×2) |
+| v deux sur v un égale l deux sur l un | gn | lecture orale de formule (×2) |
+| p un A un v un égale p deux A deux v deux | gn | lecture orale de formule (×2) |
+| k se dit | maj | symbole k en début de phrase, minuscule voulue |
+| r : distance en mètres | maj | symbole r en début de phrase, minuscule voulue |
+| source petite devant | maj | item de liste en minuscule, voulu |
+| forme et niveau sont deux informations séparées | maj | item de liste en minuscule, voulu |
+| k est le nombre d’onde | maj | symbole k en début de phrase, minuscule voulue |
+| un signal aléatoire — souffle | maj | item de liste en minuscule, voulu |
+| le bruit blanc a la même densité | maj | item de liste en minuscule, voulu |
+| S p p | notype | lecture orale de S_pp, pas un doublon (×3) |
+| paraît 6 dB trop faible | gn | accord avec « une sinusoïde », correct |
+| traité comme une résistance | gn | accord avec « haut-parleur », correct |
+| deux puissance n moins un q | gn | lecture orale de formule |
+| fois deux puissance deux n | gn | lecture orale de formule |
+| À nombre de cycles fixé | gn | accord avec « nombre », correct (×2) |
+| s est l’abscisse | maj | symbole s en début de phrase, minuscule voulue |
+| c de s est la célérité locale | maj | symbole c en début de phrase, minuscule voulue |
+| ne dit pas si une cible | imp | cellule de tableau, sujet sous-entendu, indicatif |
+| TL aller = TL retour | conf | indices de notation (TL aller, TL retour) |
+| k a, produit du nombre d’onde | maj | symbole k a en début de phrase, minuscule voulue |
+| (k a petit) | conf | symbole a (rayon), pas le verbe |
+| ramené à 1 m (dilution | gn | accord avec le niveau (« 110 dB » pris comme une valeur), défendable |
+| 10 log(a²/4) | gn | formule en ligne |
+| z f est la profondeur du foyer | maj | symbole z f en début de phrase, minuscule voulue |
+| x n est la position | maj | symbole x n en début de phrase, minuscule voulue |
+| 30 s choisie arbitrairement | gn | accord avec « constante de temps », correct |
+| f c est la fréquence centrale | maj | symbole f c en début de phrase, minuscule voulue |
+| On musical air-bubbles | conf | anglais (titre de Minnaert) |
+| Lesquelles dépend de son contraste | conj | douteux, laissé : interrogative indirecte en sujet (« lesquelles, cela dépend… ») ; « dépendent » serait un contresens ; reformuler « Lesquelles ? Cela dépend de son contraste » si le lead le souhaite |
+| z est la position le long de l’onde | maj | symbole z en début de phrase, minuscule voulue |
+| le rayon a disparaît | ppas | symbole a (rayon) suivi du verbe « disparaît », correct |
+| E 86, 056307 | num | numéro d’article (Phys. Rev. E) |
+| 88, 085105 | num | numéro d’article (Rev. Sci. Instrum.) |
+| se dit « m seconde » | maj | symbole m'' en début de phrase, minuscule voulue |
+| d : épaisseur de la lame d’air | maj | symbole d en début de phrase, minuscule voulue (×2) |
+| de 50 à 100 mm nécessaire | gn | accord avec « épaisseur », correct |
+| La salle A reçoit | ppas | lettre A (nom de salle) suivie du verbe « reçoit », correct |
+| grave d’une petite pièce | maj | item de liste en minuscule, voulu |
+| grands halls bas et encombrés | maj | item de liste en minuscule, voulu |
+| un son direct et un écho. h(t) | maj | symbole h en début de phrase, minuscule voulue |
+| pour inverser le système, il faudrait | maj | item de liste en minuscule, voulu |
+| en un point due à une source | gn | accord avec « la pression », correct |
+| la réponse impulsionnelle h | gn | symbole h |
+| une double paroi (deux plaques | maj | item de liste en minuscule, voulu |
+| une mousse collée côté émission | gn | « côté » préposition (côté émission), invariable |
+| mathcalT = 10^-5 | maj | texte de repli d'une formule LaTeX |
+| m un seconde plus m deux seconde, sur m un seconde m deux seconde | gn | lecture orale de m₁″ et m₂″ (×4) |
+| se disent « m un seconde » et « m deux seconde » | gn | lecture orale de m₁″ et m₂″ (×2) |
+| zéro de oméga sur k | eleu | lecture orale de formule, symbole détaché (« de oméga ») |
+| a l'écart entre atomes | conf | symbole a (écart), pas le verbe |
+| refroidi sous 25 mK | gn | accord avec « résonateur », correct |
+| gamma un fois P sur rhô | gn | lecture orale de Γ₁ (×2) |
+| gamma un égale d rond log P | gn | lecture orale de Γ₁ (×2) |
+| grand gamma un égale d rond logarithme | gn | lecture orale de Γ₁ (×2) |
+| trois k carré lambda D carré | gn | lecture orale de formule |
+| Te la température des électrons | conf | symbole Te |
+| de 2 kHz issu d'une antenne | gn | accord avec « fichier audio », correct |
+| de 2 kHz issu d'un micro | gn | accord avec « fichier », correct |
+| 0004-6361/201833910 | num | DOI |
+| à une époque précisés | gn | accord avec « un modèle et une époque », masculin pluriel correct |
+| d est la distance au mur | maj | symbole d en début de phrase, minuscule voulue |
+| fois sinus de oméga delta t | eleu | lecture orale de formule, symbole détaché (« de oméga ») |
+| fraction de l’énergie incidente | maj | définition du glossaire, minuscule voulue |
+| coefficient énergétique d’absorption | maj | définition du glossaire, minuscule voulue |
+| perte d’énergie d’une vibration | maj | définition du glossaire, minuscule voulue |
+| lieu d’amplitude maximale | maj | définition du glossaire, minuscule voulue |
+| vibration entretenue par une source | maj | définition du glossaire, minuscule voulue |
+| tout ce que le capteur enregistre | maj | définition du glossaire, minuscule voulue |
+| dans l’air et l’eau, c est la célérité | maj | définition du glossaire, minuscule voulue |
+| relation mesurée entre la sortie | maj | définition du glossaire, minuscule voulue |
+| principe selon lequel un système | maj | définition du glossaire, minuscule voulue |
+| formation, croissance et effondrement | maj | définition du glossaire, minuscule voulue |
+| état idéal d’une salle | maj | définition du glossaire, minuscule voulue |
+| près d’une source, à des distances | maj | définition du glossaire, minuscule voulue |
+| deux signaux sont cohérents | maj | définition du glossaire, minuscule voulue |
+| zones d’une onde où la pression | maj | définition du glossaire, minuscule voulue |
+| dix fois le logarithme décimal | maj | définition du glossaire, minuscule voulue |
+| répartition de la puissance d’un signal aléatoire | maj | définition du glossaire, minuscule voulue |
+| redistribution d’une onde | maj | définition du glossaire, minuscule voulue |
+| variation, selon la direction | maj | définition du glossaire, minuscule voulue |
+| Voir la voix publique | conf | renvoi à la section « Langage et voix publique », pas « voie » |
+| dépendance de la célérité | maj | définition du glossaire, minuscule voulue |
+| transformation de l’énergie acoustique en chaleur | maj | définition du glossaire, minuscule voulue |
+| distance à la source où le niveau | maj | définition du glossaire, minuscule voulue |
+| baisse du niveau due | maj | définition du glossaire, minuscule voulue |
+| changement de la fréquence reçue | maj | définition du glossaire, minuscule voulue |
+| densité d’énergie acoustique | maj | définition du glossaire, minuscule voulue |
+| un milieu au repos a un état | maj | définition du glossaire, minuscule voulue |
+| fréquence f, en hertz | maj | définition du glossaire, minuscule voulue |
+| puissance acoustique qui traverse | maj | définition du glossaire, minuscule voulue |
+| concentration de l’énergie | maj | définition du glossaire, minuscule voulue |
+| rapport, fréquence par fréquence | maj | définition du glossaire, minuscule voulue |
+| étalement de l’énergie | maj | définition du glossaire, minuscule voulue |
+| rapport entre une pression et une vitesse | maj | définition du glossaire, minuscule voulue |
+| apparition, dans un système non linéaire | maj | définition du glossaire, minuscule voulue |
+| capacité d’une construction | maj | définition du glossaire, minuscule voulue |
+| Ne pas confondre isolement et absorption | conf | nom « isolement » (acoustique du bâtiment), pas l’adverbe |
+| niveau de pression, 20log10 | maj | définition du glossaire, minuscule voulue |
+| étendue de fréquences | maj | définition du glossaire, minuscule voulue |
+| approximation qui ne garde | maj | définition du glossaire, minuscule voulue |
+| modèle qui décrit l’air | maj | définition du glossaire, minuscule voulue |
+| ou mode propre : façon de vibrer | maj | définition du glossaire, minuscule voulue |
+| onde dont l’amplitude décroît | maj | définition du glossaire, minuscule voulue |
+| valeur fixée par convention | maj | définition du glossaire, minuscule voulue |
+| comportement d’un système | maj | définition du glossaire, minuscule voulue |
+| lieu où l’amplitude | maj | définition du glossaire, minuscule voulue |
+| front où pression | maj | définition du glossaire, minuscule voulue |
+| taille d’un émetteur | maj | définition du glossaire, minuscule voulue |
+| pression d’équilibre, environ | maj | définition du glossaire, minuscule voulue |
+| position dans le cycle | maj | définition du glossaire, minuscule voulue |
+| en un lieu donnés | gn | accord avec « un instant et un lieu », pluriel correct |
+| pics du spectre | maj | définition du glossaire, minuscule voulue |
+| signe d’un signal | maj | définition du glossaire, minuscule voulue |
+| filtre normalisé appliqué | maj | définition du glossaire, minuscule voulue |
+| distance maximale qu’un sonar | maj | définition du glossaire, minuscule voulue |
+| réflexions sur les surfaces proches | maj | définition du glossaire, minuscule voulue |
+| repère de 50 ms utilisé | gn | accord avec « repère », correct |
+| force moyenne non nulle | maj | définition du glossaire, minuscule voulue |
+| facteur de qualité, sans unité | maj | définition du glossaire, minuscule voulue |
+| rapport entre la puissance du signal utile | maj | définition du glossaire, minuscule voulue |
+| transfert d’énergie d’une surface | maj | définition du glossaire, minuscule voulue |
+| opération qui refait un signal | maj | définition du glossaire, minuscule voulue |
+| signal de sortie d’un système linéaire | maj | définition du glossaire, minuscule voulue |
+| la résolution est le plus petit écart | maj | définition du glossaire, minuscule voulue |
+| la résolution axiale est | maj | définition du glossaire, minuscule voulue |
+| grande réponse d’un système forcé | maj | définition du glossaire, minuscule voulue |
+| masse volumique d’équilibre | maj | définition du glossaire, minuscule voulue |
+| racine de la moyenne du carré | maj | définition du glossaire, minuscule voulue |
+| vibration transmise par les structures | maj | définition du glossaire, minuscule voulue |
+| transformation volontaire de données | maj | définition du glossaire, minuscule voulue |
+| ou vent acoustique | maj | définition du glossaire, minuscule voulue |
+| chemin de transmission qui contourne | maj | définition du glossaire, minuscule voulue |
+| passage d’une partie de l’énergie | maj | définition du glossaire, minuscule voulue |
+| la vitesse de phase ω/k | maj | définition du glossaire, minuscule voulue |
+| vitesse u, en m/s, à laquelle | maj | définition du glossaire, minuscule voulue |
+| déplacement particulaire xi | maj | définition du glossaire, minuscule voulue |
+| vitesse particulaire u, en m/s | gn | symbole u (glossaire) |
+| impédance spécifique z | maj, gn | définition du glossaire, minuscule voulue ; symbole z (×2) |
+| ρ0 | mot inconnu | notation (masse volumique au repos) |
+| Penn | mot inconnu | nom propre (Penn State) |
+| doi | mot inconnu | sigle (identifiant d’article) |
+| Lrm | mot inconnu | texte de repli d'une formule LaTeX |
+| mathcal | mot inconnu | commande LaTeX |
+| fc | mot inconnu | notation (fréquence de coupure ou porteuse) |
+| mathbf | mot inconnu | commande LaTeX |
+| eff | mot inconnu | notation (indice « effectif ») |
+| rp | mot inconnu | notation (coefficient de réflexion) |
+| Gamma1 | mot inconnu | texte de repli d'une formule LaTeX (Γ₁) |
+| P0 | mot inconnu | notation (pression au repos) |
+| mathbfn | mot inconnu | texte de repli d'une formule LaTeX |
+| prm | mot inconnu | texte de repli d'une formule LaTeX |
+| z2 | mot inconnu | notation (impédance) |
+| Hann | mot inconnu | nom propre (fenêtre de Hann) |
+| tp | mot inconnu | notation (coefficient de transmission) |
+| z1 | mot inconnu | notation (impédance) |
+| Acoust | mot inconnu | abréviation de revue |
+| Physclips | mot inconnu | nom propre (site de l’UNSW) |
+| hf | mot inconnu | notation (quantum h f) |
+| langle | mot inconnu | commande LaTeX |
+| LW | mot inconnu | notation (niveau de puissance) |
+| OpenCourseWare | mot inconnu | nom propre (MIT OpenCourseWare) |
+| PRF | mot inconnu | sigle (fréquence de répétition des impulsions) |
+| dt | mot inconnu | notation |
+| hat | mot inconnu | commande LaTeX |
+| hatp | mot inconnu | texte de repli d'une formule LaTeX |
+| hatxi | mot inconnu | texte de repli d'une formule LaTeX |
+| kd | mot inconnu | notation |
+| mathcalT | mot inconnu | texte de repli d'une formule LaTeX |
+| rm | mot inconnu | commande LaTeX |
+| Hirschberg | mot inconnu | nom propre (acousticien) |
+| INRS | mot inconnu | sigle (Institut national de recherche et de sécurité) |
+| Pa² | mot inconnu | unité |
+| Rienstra | mot inconnu | nom propre (acousticien) |
+| m1 | mot inconnu | notation |
+| m2 | mot inconnu | notation |
+| barα | mot inconnu | texte de repli d'une formule LaTeX |
+| eq | mot inconnu | notation (indice « équivalent ») |
+| erm | mot inconnu | texte de repli d'une formule LaTeX |
+| kBT | mot inconnu | notation (énergie thermique) |
+| kasinθ | mot inconnu | notation |
+| kr | mot inconnu | notation |
+| prms | mot inconnu | notation (pression efficace) |
+| psin | mot inconnu | texte de repli d'une formule LaTeX |
+| rangle | mot inconnu | commande LaTeX |
+| vvarphi | mot inconnu | texte de repli d'une formule LaTeX |
+| τa | mot inconnu | notation |
+| equation | mot inconnu | anglais (référence bibliographique) |
+| f2-f1 | mot inconnu | notation |
+| kperp | mot inconnu | texte de repli d'une formule LaTeX |
+| mathbfvs | mot inconnu | texte de repli d'une formule LaTeX |
+| tbig | mot inconnu | texte de repli d'une formule LaTeX |
+| varphi | mot inconnu | commande LaTeX |
+| Γ₁ | mot inconnu | notation (exposant adiabatique) |
+| C80 | mot inconnu | notation (clarté) |
+| DOSITS | mot inconnu | sigle (site Discovery of Sound in the Sea) |
+| J1 | mot inconnu | notation (fonction de Bessel) |
+| Raff | mot inconnu | notation (indice d’affaiblissement) |
+| SL | mot inconnu | sigle (niveau de source) |
+| Wolfe | mot inconnu | nom propre (physicien) |
+| Wrm | mot inconnu | texte de repli d'une formule LaTeX |
+| acoustic | mot inconnu | anglais (référence bibliographique) |
+| ax | mot inconnu | notation (indice « axial ») |
+| c0 | mot inconnu | notation |
+| cright | mot inconnu | texte de repli d'une formule LaTeX |
+| dτ | mot inconnu | notation |
+| fLO | mot inconnu | notation (oscillateur local) |
+| fτ | mot inconnu | notation |
+| gg | mot inconnu | commande LaTeX |
+| p1 | mot inconnu | notation |
+| p2 | mot inconnu | notation |
+| r0 | mot inconnu | notation |
+| rc | mot inconnu | notation (rayon critique) |
+| sinθ0 | mot inconnu | notation |
+| αatt | mot inconnu | notation (coefficient d’atténuation) |
+| βrm | mot inconnu | texte de repli d'une formule LaTeX |
+| ρc | mot inconnu | notation (impédance caractéristique) |
+| ρ₀c | mot inconnu | notation (impédance caractéristique) |
+| τE | mot inconnu | notation |
+| Brüel | mot inconnu | nom propre (Brüel & Kjær) |
+| EDT | mot inconnu | sigle (early decay time) |
+| JCGM | mot inconnu | sigle (comité commun pour les guides en métrologie) |
+| Kjær | mot inconnu | nom propre (Brüel & Kjær) |
+| NDE-Ed | mot inconnu | nom propre (site NDE-Ed.org) |
+| Omegabh | mot inconnu | texte de repli d'une formule LaTeX |
+| R0 | mot inconnu | notation |
+| S57 | mot inconnu | identifiant d’atelier |
+| Spp | mot inconnu | notation (densité spectrale de puissance) |
+| Wac | mot inconnu | notation (puissance acoustique) |
+| abs | mot inconnu | notation (indice « absorption ») |
+| bafflé | mot inconnu | jargon (haut-parleur monté sur baffle) |
+| dk | mot inconnu | notation |
+| dmax | mot inconnu | notation |
+| dω | mot inconnu | notation |
+| int | mot inconnu | commande LaTeX |
+| mathcalR | mot inconnu | texte de repli d'une formule LaTeX |
+| ocean | mot inconnu | anglais (référence bibliographique) |
+| pa | mot inconnu | notation (amplitude de pression) |
+| s² | mot inconnu | unité |
+| xr | mot inconnu | notation |
+| xs | mot inconnu | notation |
+| zf | mot inconnu | notation |
+| σd | mot inconnu | notation (incertitude) |
+| Biol | mot inconnu | abréviation de revue |
+| Delft | mot inconnu | nom propre (TU Delft) |
+| ECE | mot inconnu | sigle (cours ECE/TAM) |
+| Evident | mot inconnu | nom propre (firme Evident Olympus) |
+| L1 | mot inconnu | notation |
+| Leq | mot inconnu | notation (niveau équivalent) |
+| Lf1 | mot inconnu | notation |
+| Marley | mot inconnu | nom propre (Bob Marley) |
+| Minnaert | mot inconnu | nom propre (physicien) |
+| Oelze | mot inconnu | nom propre (acousticien) |
+| Olympus | mot inconnu | nom propre (firme) |
+| Puria | mot inconnu | nom propre (chercheur) |
+| RES | mot inconnu | identifiant de cours (MIT RES.8-009) |
+| RT | mot inconnu | notation |
+| Solid | mot inconnu | anglais (Open Solid State Notes) |
+| Sonic | mot inconnu | anglais (référence bibliographique) |
+| TAM | mot inconnu | sigle (cours ECE/TAM) |
+| Wmono | mot inconnu | notation |
+| Zc | mot inconnu | notation (impédance) |
+| acos | mot inconnu | texte de repli d'une formule LaTeX |
+| aff | mot inconnu | notation (indice « affaiblissement ») |
+| analysis | mot inconnu | anglais (référence bibliographique) |
+| baffled | mot inconnu | anglais (référence bibliographique) |
+| bw | mot inconnu | notation (largeur de bande) |
+| c2 | mot inconnu | notation |
+| ceff | mot inconnu | notation (célérité effective) |
+| cia | mot inconnu | notation (célérité ion-acoustique) |
+| ck | mot inconnu | notation |
+| dE | mot inconnu | notation |
+| example | mot inconnu | anglais (référence bibliographique) |
+| frequency | mot inconnu | anglais (référence bibliographique) |
+| kx | mot inconnu | notation |
+| log10e | mot inconnu | texte de repli d'une formule LaTeX |
+| lévitateur | mot inconnu | jargon (lévitation acoustique) |
+| mathbfvr | mot inconnu | texte de repli d'une formule LaTeX |
+| mathbfxA | mot inconnu | texte de repli d'une formule LaTeX |
+| mathbfxB | mot inconnu | texte de repli d'une formule LaTeX |
+| mathcalA | mot inconnu | texte de repli d'une formule LaTeX |
+| mid | mot inconnu | commande LaTeX |
+| prestine | mot inconnu | jargon (protéine motrice des cellules ciliées) |
+| r1 | mot inconnu | notation |
+| r2 | mot inconnu | notation |
+| rep | mot inconnu | notation (indice « répétition ») |
+| tildekappa | mot inconnu | texte de repli d'une formule LaTeX |
+| time | mot inconnu | anglais (référence bibliographique) |
+| ultrasound | mot inconnu | anglais (référence bibliographique) |
+| vmax | mot inconnu | notation |
+| z₁ | mot inconnu | notation (impédance) |
+| z₂ | mot inconnu | notation (impédance) |
+| µrm | mot inconnu | texte de repli d'une formule LaTeX |
+| δrm | mot inconnu | texte de repli d'une formule LaTeX |
+| δx | mot inconnu | notation |
+| λn | mot inconnu | notation |
+| ρ0c | mot inconnu | notation (impédance caractéristique) |
+| ρp | mot inconnu | notation (masse volumique de la particule) |
+| ρ₀ | mot inconnu | notation |
+| σc | mot inconnu | notation (incertitude) |
+| σt | mot inconnu | notation (incertitude) |
+| τn | mot inconnu | notation |
+| ℓ1 | mot inconnu | notation |
+| ℓ2 | mot inconnu | notation |
+| Advanced | mot inconnu | anglais (référence bibliographique) |
+| Aibara | mot inconnu | nom propre (chercheur) |
+| Astrophysics | mot inconnu | anglais (titre de revue) |
+| Attenuation | mot inconnu | anglais (référence bibliographique) |
+| BIPM | mot inconnu | sigle (Bureau international des poids et mesures) |
+| Beam | mot inconnu | anglais (référence bibliographique) |
+| Bows | mot inconnu | anglais (référence bibliographique) |
+| Bruus | mot inconnu | nom propre (physicien) |
+| CCRMA | mot inconnu | sigle (centre de Stanford) |
+| Dynamics | mot inconnu | anglais (référence bibliographique) |
+| Effect | mot inconnu | anglais (référence bibliographique) |
+| Flexural | mot inconnu | anglais (référence bibliographique) |
+| Foundation | mot inconnu | anglais (nom d’institution) |
+| GUM | mot inconnu | sigle (guide pour l’expression de l’incertitude de mesure) |
+| Glasberg | mot inconnu | nom propre (chercheur) |
+| Gol’dberg | mot inconnu | nom propre (physicien) |
+| Goode | mot inconnu | nom propre (chercheur) |
+| Harris | mot inconnu | nom propre (ingénieur) |
+| Hn | mot inconnu | notation (réponse modale) |
+| How | mot inconnu | anglais (référence bibliographique) |
+| Human | mot inconnu | anglais (référence bibliographique) |
+| I0 | mot inconnu | notation (intensité de référence) |
+| IT’IS | mot inconnu | nom propre (fondation IT’IS) |
+| Krm | mot inconnu | texte de repli d'une formule LaTeX |
+| L2 | mot inconnu | notation |
+| LS | mot inconnu | notation |
+| MathWorks | mot inconnu | nom propre (firme) |
+| Med | mot inconnu | abréviation de revue |
+| Method | mot inconnu | anglais (référence bibliographique) |
+| NFFT | mot inconnu | notation (taille de FFT) |
+| NTi | mot inconnu | nom propre (NTi Audio) |
+| O'Connell | mot inconnu | nom propre (physicien) |
+| Radiopaedia | mot inconnu | nom propre (site médical) |
+| Resolution | mot inconnu | anglais (référence bibliographique) |
+| Reviews | mot inconnu | anglais (titre de revue) |
+| Rosowski | mot inconnu | nom propre (chercheur) |
+| apodisation | mot inconnu | jargon (terme établi) |
+| arg | mot inconnu | notation (argument d’un complexe) |
+| array | mot inconnu | anglais (référence bibliographique) |
+| att | mot inconnu | notation (indice « atténuation ») |
+| cell | mot inconnu | anglais (référence bibliographique) |
+| characteristics | mot inconnu | anglais (référence bibliographique) |
+| circular | mot inconnu | anglais (référence bibliographique) |
+| cochlear | mot inconnu | anglais (référence bibliographique) |
+| control | mot inconnu | anglais (référence bibliographique) |
+| cosbig | mot inconnu | texte de repli d'une formule LaTeX |
+| cosvarphi | mot inconnu | texte de repli d'une formule LaTeX |
+| cosφ | mot inconnu | notation |
+| cp | mot inconnu | notation (capacité thermique) |
+| crm | mot inconnu | texte de repli d'une formule LaTeX |
+| c² | mot inconnu | notation |
+| dceff | mot inconnu | notation |
+| df | mot inconnu | notation |
+| diff | mot inconnu | notation (indice « diffusé ») |
+| dip | mot inconnu | notation (indice « dipôle ») |
+| discrete | mot inconnu | anglais (référence bibliographique) |
+| does | mot inconnu | anglais (référence bibliographique) |
+| dright | mot inconnu | texte de repli d'une formule LaTeX |
+| dtright | mot inconnu | texte de repli d'une formule LaTeX |
+| dz | mot inconnu | notation |
+| débruitage | mot inconnu | jargon (terme établi) |
+| echocardiographer | mot inconnu | anglais (référence bibliographique) |
+| evanescent | mot inconnu | anglais (référence bibliographique) |
+| fc-fm | mot inconnu | notation |
+| frac12cosbig | mot inconnu | texte de repli d'une formule LaTeX |
+| fracprm | mot inconnu | texte de repli d'une formule LaTeX |
+| frép | mot inconnu | notation (fréquence de répétition) |
+| f₂ | mot inconnu | notation |
+| harmonic | mot inconnu | anglais (référence bibliographique) |
+| hatU | mot inconnu | texte de repli d'une formule LaTeX |
+| hbarω | mot inconnu | texte de repli d'une formule LaTeX |
+| heat | mot inconnu | anglais (référence bibliographique) |
+| hr | mot inconnu | notation (hauteur du récepteur) |
+| hétérodynage | mot inconnu | jargon (terme établi) |
+| inc | mot inconnu | notation (indice « incident ») |
+| is | mot inconnu | anglais (référence bibliographique) |
+| k1 | mot inconnu | notation |
+| k2 | mot inconnu | notation |
+| kB | mot inconnu | notation (constante de Boltzmann) |
+| kz | mot inconnu | notation |
+| lectureDans | mot inconnu | concaténation HTML (« Sens de lecture » + « Dans »), pas un mot |
+| lesssim | mot inconnu | commande LaTeX |
+| log10bigl | mot inconnu | texte de repli d'une formule LaTeX |
+| log10left | mot inconnu | texte de repli d'une formule LaTeX |
+| log10r | mot inconnu | texte de repli d'une formule LaTeX |
+| log₁₀ | mot inconnu | notation (log base dix) |
+| mathbfw | mot inconnu | texte de repli d'une formule LaTeX |
+| mathcalTmoy | mot inconnu | texte de repli d'une formule LaTeX |
+| mcos | mot inconnu | texte de repli d'une formule LaTeX |
+| measurements | mot inconnu | anglais (référence bibliographique) |
+| mechanisms | mot inconnu | anglais (référence bibliographique) |
+| monostatique | mot inconnu | jargon (sonar monostatique) |
+| partialln | mot inconnu | texte de repli d'une formule LaTeX |
+| partialmathbf | mot inconnu | texte de repli d'une formule LaTeX |
+| partialρ | mot inconnu | texte de repli d'une formule LaTeX |
+| pmathbf | mot inconnu | texte de repli d'une formule LaTeX |
+| radiated | mot inconnu | anglais (référence bibliographique) |
+| rectangular | mot inconnu | anglais (référence bibliographique) |
+| repetition | mot inconnu | anglais (référence bibliographique) |
+| scattering | mot inconnu | anglais (référence bibliographique) |
+| sinµ | mot inconnu | notation (sinus de l’angle de Mach) |
+| sinθL | mot inconnu | notation |
+| sinθT | mot inconnu | notation |
+| sinθg | mot inconnu | notation |
+| specific | mot inconnu | anglais (référence bibliographique) |
+| speckle | mot inconnu | jargon (échographie) |
+| t0 | mot inconnu | notation |
+| tildeρ | mot inconnu | texte de repli d'une formule LaTeX |
+| transform | mot inconnu | anglais (référence bibliographique) |
+| tright | mot inconnu | texte de repli d'une formule LaTeX |
+| v1 | mot inconnu | notation |
+| v2 | mot inconnu | notation |
+| windows | mot inconnu | anglais (référence bibliographique) |
+| xmax | mot inconnu | notation |
+| z1cosθ2 | mot inconnu | notation |
+| z2cosθ1 | mot inconnu | notation |
+| z₀ | mot inconnu | notation (impédance) |
+| µPa² | mot inconnu | unité |
+| ½ | mot inconnu | notation (un demi) |
+| Δφ | mot inconnu | notation (déphasage) |
+| αabs | mot inconnu | notation (coefficient d’absorption) |
+| γt | mot inconnu | notation |
+| γ² | mot inconnu | notation |
+| δax | mot inconnu | notation (résolution axiale) |
+| θ0 | mot inconnu | notation |
+| θ1 | mot inconnu | notation |
+| θc | mot inconnu | notation (angle critique) |
+| θ₁ | mot inconnu | notation |
+| θ₂ | mot inconnu | notation |
+| λD | mot inconnu | notation (longueur de Debye) |
+| πfτ | mot inconnu | notation |
+| πΔf | mot inconnu | notation |
+| ρ0c0 | mot inconnu | notation |
+| τI | mot inconnu | notation |
+| ω0 | mot inconnu | notation |
+| ω1 | mot inconnu | notation |
+| ω2 | mot inconnu | notation |
+| ω₀ | mot inconnu | notation |
+| ω₀² | mot inconnu | notation |
+| A6 | mot inconnu | identifiant d’article (Astronomy & Astrophysics) |
+| AEI | mot inconnu | sigle (institut Albert-Einstein) |
+| Acoustical | mot inconnu | anglais (référence bibliographique) |
+| Acoustofluidics | mot inconnu | anglais (référence bibliographique) |
+| Aeq | mot inconnu | notation (indice « A équivalent ») |
+| Ainslie | mot inconnu | nom propre (acousticien) |
+| Airy | mot inconnu | nom propre (tache d’Airy) |
+| Annual | mot inconnu | anglais (titre de revue) |
+| Antia | mot inconnu | nom propre (astrophysicien) |
+| Around | mot inconnu | anglais (référence bibliographique) |
+| Arup | mot inconnu | nom propre (bureau d’ingénierie) |
+| Ashmore | mot inconnu | nom propre (physiologiste) |
+| Augustsson | mot inconnu | nom propre (physicien) |
+| Autocorrélation | mot inconnu | jargon (terme établi) |
+| Bailey | mot inconnu | nom propre (chercheur) |
+| Barnes | mot inconnu | nom propre (chercheur) |
+| Barnkob | mot inconnu | nom propre (physicien) |
+| Bass | mot inconnu | nom propre (acousticien) |
+| Basu | mot inconnu | nom propre (astrophysicien) |
+| Biophys | mot inconnu | abréviation de revue |
+| Blackman | mot inconnu | nom propre (fenêtre de Blackman) |
+| Blackstock | mot inconnu | nom propre (acousticien) |
+| Bogacz | mot inconnu | nom propre (auteur) |
+| Bone-conducted | mot inconnu | anglais (référence bibliographique) |
+| Boric | mot inconnu | anglais (référence bibliographique) |
+| C50 | mot inconnu | notation (clarté) |
+| Cafe | mot inconnu | anglais (site Radiology Cafe) |
+| Can | mot inconnu | anglais (référence bibliographique) |
+| Castellani | mot inconnu | nom propre (chercheur) |
+| Circular | mot inconnu | anglais (référence bibliographique) |
+| Clarinet | mot inconnu | anglais (référence bibliographique) |
+| Clearance | mot inconnu | anglais (référence bibliographique) |
+| Cochlea | mot inconnu | anglais (référence bibliographique) |
+| Cochlear | mot inconnu | anglais (référence bibliographique) |
+| College | mot inconnu | anglais (nom d’institution) |
+| Compton | mot inconnu | nom propre (chercheur) |
+| Control | mot inconnu | anglais (référence bibliographique) |
+| Cosmic | mot inconnu | anglais (référence bibliographique) |
+| Cosmological | mot inconnu | anglais (référence bibliographique) |
+| Coupled | mot inconnu | anglais (référence bibliographique) |
+| DC | mot inconnu | sigle (composante continue) |
+| DFT | mot inconnu | sigle (transformée de Fourier discrète) |
+| Damped | mot inconnu | anglais (référence bibliographique) |
+| Derivation | mot inconnu | anglais (référence bibliographique) |
+| Does | mot inconnu | anglais (référence bibliographique) |
+| Drinkwater | mot inconnu | nom propre (physicien) |
+| Driven | mot inconnu | anglais (référence bibliographique) |
+| EB | mot inconnu | notation (énergie de battement) |
+| EI | mot inconnu | notation (rigidité de flexion) |
+| Eac | mot inconnu | notation (densité d’énergie acoustique) |
+| Ears | mot inconnu | anglais (référence bibliographique) |
+| Effects | mot inconnu | anglais (référence bibliographique) |
+| Electrochim | mot inconnu | abréviation de revue |
+| Electrons | mot inconnu | anglais (référence bibliographique) |
+| Embleton | mot inconnu | nom propre (acousticien) |
+| Evanescent | mot inconnu | anglais (référence bibliographique) |
+| Explainer | mot inconnu | anglais (référence bibliographique) |
+| Fast | mot inconnu | anglais (référence bibliographique) |
+| Field | mot inconnu | anglais (référence bibliographique) |
+| Fifty | mot inconnu | anglais (référence bibliographique) |
+| Filling | mot inconnu | anglais (référence bibliographique) |
+| Filters | mot inconnu | anglais (référence bibliographique) |
+| Filtrer145 | mot inconnu | concaténation HTML (label du filtre + « 145 termes »), pas un mot |
+| Further | mot inconnu | anglais (référence bibliographique) |
+| Gamma1p | mot inconnu | texte de repli d'une formule LaTeX |
+| General | mot inconnu | anglais (référence bibliographique) |
+| Godin | mot inconnu | nom propre (acousticien) |
+| Green’s | mot inconnu | anglais (référence bibliographique) |
+| Gélat | mot inconnu | nom propre (physicien) |
+| Gρ | mot inconnu | notation |
+| Hallman | mot inconnu | nom propre (chercheur) |
+| Hear | mot inconnu | anglais (référence bibliographique) |
+| Heinzel | mot inconnu | nom propre (physicien) |
+| Hester | mot inconnu | nom propre (chercheur) |
+| Hynynen | mot inconnu | nom propre (physicien) |
+| HyperPhysics | mot inconnu | nom propre (site de vulgarisation) |
+| Hétérodyner | mot inconnu | jargon (verbe établi) |
+| IEC | mot inconnu | sigle (Commission électrotechnique internationale) |
+| ISNA | mot inconnu | sigle (symposium d’acoustique non linéaire) |
+| Icyl | mot inconnu | notation (intensité cylindrique) |
+| Idiff | mot inconnu | notation (intensité diffusée) |
+| Iinc | mot inconnu | notation (intensité incidente) |
+| Image-guided | mot inconnu | anglais (référence bibliographique) |
+| Instrum | mot inconnu | abréviation de revue |
+| Intensity | mot inconnu | anglais (référence bibliographique) |
+| Ippen | mot inconnu | nom propre (physicien) |
+| Isph | mot inconnu | notation (intensité sphérique) |
+| Iρ0 | mot inconnu | notation |
+| JARO | mot inconnu | sigle (revue) |
+| J₁ | mot inconnu | notation (fonction de Bessel) |
+| Kalimba | mot inconnu | nom d’instrument (kalimba) |
+| Kirchhoff’s | mot inconnu | anglais (référence bibliographique) |
+| Kln | mot inconnu | notation (K ln 2) |
+| LAeq | mot inconnu | notation (niveau équivalent pondéré A) |
+| Laurell | mot inconnu | nom propre (physicien) |
+| Lbande | mot inconnu | notation (niveau de bande) |
+| Lepeshkin | mot inconnu | nom propre (physicien) |
+| Levine | mot inconnu | nom propre (physicien) |
+| Lond | mot inconnu | abréviation de revue |
+| Lowell | mot inconnu | nom propre (UMass Lowell) |
+| Lynch | mot inconnu | nom propre (ingénieur) |
+| Lécho | mot inconnu | notation (niveau d’écho) |
+| Légifrance | mot inconnu | nom propre (site officiel) |
+| MDN | mot inconnu | sigle (documentation web Mozilla) |
+| MPI | mot inconnu | sigle (institut Max-Planck) |
+| Maglieri | mot inconnu | nom propre (ingénieur) |
+| Many | mot inconnu | anglais (référence bibliographique) |
+| Marzari | mot inconnu | nom propre (physicien) |
+| Marzo | mot inconnu | nom propre (ingénieur) |
+| McColm | mot inconnu | nom propre (acousticien) |
+| Measurement | mot inconnu | anglais (référence bibliographique) |
+| MediaTrackConstraints | mot inconnu | identifiant d’API web |
+| Microwave | mot inconnu | anglais (référence bibliographique) |
+| Microwaves | mot inconnu | anglais (référence bibliographique) |
+| Middle | mot inconnu | anglais (référence bibliographique) |
+| Mills | mot inconnu | nom propre (chercheur) |
+| Moonen | mot inconnu | nom propre (ingénieur) |
+| NED | mot inconnu | sigle (base de données) |
+| NRC | mot inconnu | sigle (Conseil national de recherches du Canada) |
+| NTRS | mot inconnu | sigle (serveur de rapports techniques NASA) |
+| NdBFS | mot inconnu | notation |
+| Neurotology | mot inconnu | anglais (référence bibliographique) |
+| Nonlinear | mot inconnu | anglais (référence bibliographique) |
+| OCW | mot inconnu | sigle (OpenCourseWare) |
+| One | mot inconnu | anglais (démo « One drop ») |
+| OpenStax | mot inconnu | nom propre (éditeur) |
+| Otology | mot inconnu | anglais (référence bibliographique) |
+| O’Brien | mot inconnu | nom propre (chercheur) |
+| PMC | mot inconnu | sigle (PubMed Central) |
+| Parametric | mot inconnu | anglais (référence bibliographique) |
+| Pathological | mot inconnu | anglais (référence bibliographique) |
+| Pdiss | mot inconnu | notation (puissance dissipée) |
+| Peake | mot inconnu | nom propre (chercheur) |
+| Pentrée | mot inconnu | notation (puissance d’entrée) |
+| Pentrée-Pray-Pdiss | mot inconnu | notation |
+| Phased | mot inconnu | anglais (référence bibliographique) |
+| Physiological | mot inconnu | anglais (référence bibliographique) |
+| Plotkin | mot inconnu | nom propre (ingénieur) |
+| Pray | mot inconnu | notation (puissance rayonnée) |
+| Proceedings | mot inconnu | anglais (référence bibliographique) |
+| Proximity | mot inconnu | anglais (référence bibliographique) |
+| P² | mot inconnu | notation |
+| Pél | mot inconnu | notation (puissance électrique) |
+| Pędziwiatr | mot inconnu | nom propre (auteur) |
+| P₀ | mot inconnu | notation |
+| QA | mot inconnu | notation (facteur de qualité) |
+| QV | mot inconnu | notation (facteur de qualité) |
+| QW | mot inconnu | notation (facteur de qualité) |
+| Quirt | mot inconnu | nom propre (acousticien) |
+| R206 | mot inconnu | identifiant (pagination d’article) |
+| R248 | mot inconnu | identifiant (pagination d’article) |
+| RF | mot inconnu | sigle (radiofréquence) |
+| Radiology | mot inconnu | anglais (référence bibliographique) |
+| Rebinsky | mot inconnu | nom propre (chercheur) |
+| Refraction | mot inconnu | anglais (référence bibliographique) |
+| Reverberation | mot inconnu | anglais (référence bibliographique) |
+| Rhr | mot inconnu | notation |
+| Rhs | mot inconnu | notation |
+| Rioux | mot inconnu | nom propre (chercheur) |
+| Role | mot inconnu | anglais (référence bibliographique) |
+| Rw | mot inconnu | notation (indice d’affaiblissement pondéré) |
+| Rüdiger | mot inconnu | nom propre (physicien) |
+| S1 | mot inconnu | notation |
+| S1mathcalT1 | mot inconnu | texte de repli d'une formule LaTeX |
+| S2 | mot inconnu | notation |
+| S2mathcalT2 | mot inconnu | texte de repli d'une formule LaTeX |
+| Saldanha | mot inconnu | nom propre (chercheur) |
+| Sauro | mot inconnu | nom propre (acousticien) |
+| Scattering | mot inconnu | anglais (référence bibliographique) |
+| Schwinger | mot inconnu | nom propre (physicien) |
+| SdBFS | mot inconnu | notation |
+| Sln | mot inconnu | notation (S ln) |
+| Sound-pressure | mot inconnu | anglais (référence bibliographique) |
+| Specifications | mot inconnu | anglais (référence bibliographique) |
+| Staelin | mot inconnu | nom propre (physicien) |
+| Steeneken | mot inconnu | nom propre (chercheur) |
+| Stenfelt | mot inconnu | nom propre (chercheur) |
+| Stojanovic | mot inconnu | nom propre (ingénieur) |
+| Strength | mot inconnu | anglais (référence bibliographique) |
+| Sutherland | mot inconnu | nom propre (acousticien) |
+| Sx | mot inconnu | notation |
+| Synthesis | mot inconnu | anglais (référence bibliographique) |
+| Systems | mot inconnu | anglais (référence bibliographique) |
+| TLaller | mot inconnu | notation (pertes de transmission à l’aller) |
+| TLretour | mot inconnu | notation (pertes de transmission au retour) |
+| Target | mot inconnu | anglais (référence bibliographique) |
+| Teacher | mot inconnu | anglais (titre de revue) |
+| Technology | mot inconnu | anglais (référence bibliographique) |
+| Tegg | mot inconnu | texte de repli d'une formule LaTeX |
+| Temperature | mot inconnu | anglais (référence bibliographique) |
+| Tgtrsim2 | mot inconnu | texte de repli d'une formule LaTeX |
+| Tint0 | mot inconnu | texte de repli d'une formule LaTeX |
+| TinyLev | mot inconnu | nom propre (lévitateur acoustique) |
+| Titze | mot inconnu | nom propre (chercheur) |
+| Transducers | mot inconnu | anglais (référence bibliographique) |
+| Trep2 | mot inconnu | texte de repli d'une formule LaTeX |
+| Tubis | mot inconnu | nom propre (physicien) |
+| Tutorial | mot inconnu | anglais (référence bibliographique) |
+| Téch | mot inconnu | notation (durée d’échantillon) |
+| T₆₀ | mot inconnu | notation (temps de réverbération) |
+| UMass | mot inconnu | nom propre (université) |
+| Understanding | mot inconnu | anglais (référence bibliographique) |
+| Unflanged | mot inconnu | anglais (référence bibliographique) |
+| Update | mot inconnu | anglais (référence bibliographique) |
+| Uquad | mot inconnu | texte de repli d'une formule LaTeX |
+| Urick | mot inconnu | nom propre (acousticien) |
+| Vibrational | mot inconnu | anglais (référence bibliographique) |
+| Voice | mot inconnu | anglais (référence bibliographique) |
+| W'ac | mot inconnu | notation |
+| W0 | mot inconnu | notation (puissance de référence) |
+| Warnock | mot inconnu | nom propre (acousticien) |
+| Waterschoot | mot inconnu | nom propre (ingénieur) |
+| Waveform | mot inconnu | anglais (référence bibliographique) |
+| Wavelength | mot inconnu | anglais (référence bibliographique) |
+| Wdip | mot inconnu | notation (puissance d’un dipôle) |
+| We | mot inconnu | anglais (référence bibliographique) |
+| Welch | mot inconnu | nom propre (méthode de Welch) |
+| Welch’s | mot inconnu | anglais (référence bibliographique) |
+| Welsh | mot inconnu | nom propre (chercheur) |
+| Wenz | mot inconnu | nom propre (océanographe) |
+| Westervelt | mot inconnu | nom propre (physicien) |
+| What | mot inconnu | anglais (référence bibliographique) |
+| Whittle | mot inconnu | nom propre (astrophysicien) |
+| Xu | mot inconnu | nom propre (chercheur) |
+| Zahn | mot inconnu | nom propre (physicien) |
+| Zhao | mot inconnu | nom propre (chercheur) |
+| Zuckerwar | mot inconnu | nom propre (physicien) |
+| abbigl | mot inconnu | texte de repli d'une formule LaTeX |
+| abcos | mot inconnu | texte de repli d'une formule LaTeX |
+| acid | mot inconnu | anglais (référence bibliographique) |
+| acrangle | mot inconnu | texte de repli d'une formule LaTeX |
+| adding | mot inconnu | anglais (référence bibliographique) |
+| additifS29TempéramentsS57Fabriquer | mot inconnu | concaténation HTML (cartes d’atelier), pas un mot |
+| aerodynamically | mot inconnu | anglais (référence bibliographique) |
+| air-bubbles | mot inconnu | anglais (référence bibliographique) |
+| ambient | mot inconnu | anglais (référence bibliographique) |
+| ambiguity | mot inconnu | anglais (référence bibliographique) |
+| amplify | mot inconnu | anglais (référence bibliographique) |
+| antenna | mot inconnu | anglais (référence bibliographique) |
+| arrays | mot inconnu | anglais (référence bibliographique) |
+| asin | mot inconnu | texte de repli d'une formule LaTeX |
+| atoms | mot inconnu | anglais (référence bibliographique) |
+| auditory | mot inconnu | anglais (référence bibliographique) |
+| autoGainControl | mot inconnu | identifiant d’API web |
+| a² | mot inconnu | notation |
+| aᵢ | mot inconnu | notation |
+| aⱼ | mot inconnu | notation |
+| barx | mot inconnu | texte de repli d'une formule LaTeX |
+| based | mot inconnu | anglais (référence bibliographique) |
+| bcos | mot inconnu | texte de repli d'une formule LaTeX |
+| beam | mot inconnu | anglais (référence bibliographique) |
+| believed | mot inconnu | anglais (référence bibliographique) |
+| biophysics | mot inconnu | anglais (référence bibliographique) |
+| board | mot inconnu | anglais (référence bibliographique) |
+| cancelled | mot inconnu | anglais (référence bibliographique) |
+| ccorde | mot inconnu | notation (célérité sur la corde) |
+| chamber | mot inconnu | anglais (référence bibliographique) |
+| clePRF | mot inconnu | texte de repli d'une formule LaTeX |
+| clinical | mot inconnu | anglais (référence bibliographique) |
+| cm² | mot inconnu | unité |
+| complex | mot inconnu | anglais (référence bibliographique) |
+| cosa | mot inconnu | texte de repli d'une formule LaTeX |
+| cosa-b | mot inconnu | texte de repli d'une formule LaTeX |
+| cos² | mot inconnu | notation |
+| coupling | mot inconnu | anglais (référence bibliographique) |
+| cues | mot inconnu | anglais (référence bibliographique) |
+| cylinders | mot inconnu | anglais (référence bibliographique) |
+| c₀²ρ | mot inconnu | notation |
+| c₁ | mot inconnu | notation |
+| c₂ | mot inconnu | notation |
+| ddot | mot inconnu | commande LaTeX |
+| dds | mot inconnu | texte de repli d'une formule LaTeX |
+| dead | mot inconnu | anglais (référence bibliographique) |
+| decay | mot inconnu | anglais (référence bibliographique) |
+| defect | mot inconnu | anglais (référence bibliographique) |
+| density | mot inconnu | anglais (référence bibliographique) |
+| detection | mot inconnu | anglais (référence bibliographique) |
+| developments | mot inconnu | anglais (référence bibliographique) |
+| dfrac2 | mot inconnu | texte de repli d'une formule LaTeX |
+| dfrac3432π | mot inconnu | texte de repli d'une formule LaTeX |
+| different | mot inconnu | anglais (référence bibliographique) |
+| dtint80 | mot inconnu | texte de repli d'une formule LaTeX |
+| duct | mot inconnu | anglais (référence bibliographique) |
+| dynamics | mot inconnu | anglais (référence bibliographique) |
+| eac | mot inconnu | notation (densité d’énergie acoustique) |
+| early | mot inconnu | anglais (référence bibliographique) |
+| ears | mot inconnu | anglais (référence bibliographique) |
+| effqquad | mot inconnu | texte de repli d'une formule LaTeX |
+| electrochemistry | mot inconnu | anglais (référence bibliographique) |
+| end | mot inconnu | anglais (référence bibliographique) |
+| energy | mot inconnu | anglais (référence bibliographique) |
+| eqPie | mot inconnu | texte de repli d'une formule LaTeX |
+| equal | mot inconnu | anglais (référence bibliographique) |
+| eqωpe | mot inconnu | texte de repli d'une formule LaTeX |
+| evolution | mot inconnu | anglais (référence bibliographique) |
+| f0cosθ | mot inconnu | notation |
+| f1-fLO | mot inconnu | notation |
+| fLO-Δ | mot inconnu | notation |
+| factor | mot inconnu | anglais (référence bibliographique) |
+| fcases | mot inconnu | notation (écart entre cases de FFT) |
+| fcos | mot inconnu | texte de repli d'une formule LaTeX |
+| field | mot inconnu | anglais (référence bibliographique) |
+| fields | mot inconnu | anglais (référence bibliographique) |
+| filter | mot inconnu | anglais (référence bibliographique) |
+| finite | mot inconnu | anglais (référence bibliographique) |
+| fluid-structure | mot inconnu | anglais (référence bibliographique) |
+| fluids | mot inconnu | anglais (référence bibliographique) |
+| folds | mot inconnu | anglais (référence bibliographique) |
+| frac1-tildekappa3 | mot inconnu | texte de repli d'une formule LaTeX |
+| frac12Big | mot inconnu | texte de repli d'une formule LaTeX |
+| frac4 | mot inconnu | texte de repli d'une formule LaTeX |
+| fracIdiffIinc | mot inconnu | texte de repli d'une formule LaTeX |
+| fracW'ac2π | mot inconnu | texte de repli d'une formule LaTeX |
+| fracWac4π | mot inconnu | texte de repli d'une formule LaTeX |
+| fracWdipWmono | mot inconnu | texte de repli d'une formule LaTeX |
+| fracc | mot inconnu | texte de repli d'une formule LaTeX |
+| fracc-mathbfn | mot inconnu | texte de repli d'une formule LaTeX |
+| frachatpρ0 | mot inconnu | texte de repli d'une formule LaTeX |
+| fracpr | mot inconnu | texte de repli d'une formule LaTeX |
+| fractildeρ-12tildeρ | mot inconnu | texte de repli d'une formule LaTeX |
+| fracρ0 | mot inconnu | texte de repli d'une formule LaTeX |
+| frm | mot inconnu | texte de repli d'une formule LaTeX |
+| fsleft | mot inconnu | texte de repli d'une formule LaTeX |
+| fséparation | mot inconnu | notation (écart de fréquences séparable) |
+| fundamental | mot inconnu | anglais (référence bibliographique) |
+| ge | mot inconnu | commande LaTeX |
+| generated | mot inconnu | anglais (référence bibliographique) |
+| gets | mot inconnu | anglais (référence bibliographique) |
+| give | mot inconnu | anglais (référence bibliographique) |
+| grating | mot inconnu | anglais (référence bibliographique) |
+| ground | mot inconnu | anglais (référence bibliographique) |
+| gypsum | mot inconnu | anglais (référence bibliographique) |
+| hair | mot inconnu | anglais (référence bibliographique) |
+| hatxi2π | mot inconnu | texte de repli d'une formule LaTeX |
+| hbar | mot inconnu | commande LaTeX |
+| hfgg | mot inconnu | texte de repli d'une formule LaTeX |
+| hfll | mot inconnu | texte de repli d'une formule LaTeX |
+| homentropique | mot inconnu | jargon (écoulement homentropique) |
+| hshr | mot inconnu | notation |
+| human | mot inconnu | anglais (référence bibliographique) |
+| human-cadaver | mot inconnu | anglais (référence bibliographique) |
+| humidity | mot inconnu | anglais (référence bibliographique) |
+| hétérodyné | mot inconnu | jargon (terme établi) |
+| i2π | mot inconnu | notation |
+| i2πfτ | mot inconnu | notation |
+| impedance | mot inconnu | anglais (référence bibliographique) |
+| increase | mot inconnu | anglais (référence bibliographique) |
+| intensimètre | mot inconnu | jargon (appareil de mesure) |
+| intensity | mot inconnu | anglais (référence bibliographique) |
+| intf | mot inconnu | texte de repli d'une formule LaTeX |
+| intf1 | mot inconnu | texte de repli d'une formule LaTeX |
+| its | mot inconnu | anglais (référence bibliographique) |
+| k1sinθ1 | mot inconnu | notation |
+| k2sinθ2 | mot inconnu | notation |
+| kBT-1 | mot inconnu | notation |
+| kBTe | mot inconnu | notation |
+| kdright | mot inconnu | texte de repli d'une formule LaTeX |
+| kfm | mot inconnu | notation |
+| kx-ω | mot inconnu | notation |
+| k² | mot inconnu | notation |
+| kλ | mot inconnu | notation |
+| kλD | mot inconnu | notation |
+| lectureDistinguer | mot inconnu | concaténation HTML (« Sens de lecture » + « Distinguer »), pas un mot |
+| lectureIdentifier | mot inconnu | concaténation HTML (« Sens de lecture » + « Identifier »), pas un mot |
+| lectureTrois | mot inconnu | concaténation HTML (« Sens de lecture » + « Trois »), pas un mot |
+| legno | mot inconnu | italien (col legno) |
+| level | mot inconnu | anglais (référence bibliographique) |
+| levitator | mot inconnu | anglais (référence bibliographique) |
+| limit | mot inconnu | anglais (référence bibliographique) |
+| limk | mot inconnu | texte de repli d'une formule LaTeX |
+| log101 | mot inconnu | texte de repli d'une formule LaTeX |
+| log1016 | mot inconnu | texte de repli d'une formule LaTeX |
+| log10256 | mot inconnu | texte de repli d'une formule LaTeX |
+| log1038 | mot inconnu | texte de repli d'une formule LaTeX |
+| log105 | mot inconnu | texte de repli d'une formule LaTeX |
+| log10B | mot inconnu | texte de repli d'une formule LaTeX |
+| log10Big | mot inconnu | texte de repli d'une formule LaTeX |
+| log10I | mot inconnu | texte de repli d'une formule LaTeX |
+| log10R | mot inconnu | texte de repli d'une formule LaTeX |
+| log10a | mot inconnu | texte de repli d'une formule LaTeX |
+| log10frac | mot inconnu | texte de repli d'une formule LaTeX |
+| log10fracPél1 | mot inconnu | texte de repli d'une formule LaTeX |
+| log10fracWacW0 | mot inconnu | texte de repli d'une formule LaTeX |
+| log10fracint0 | mot inconnu | texte de repli d'une formule LaTeX |
+| log10mathcalT | mot inconnu | texte de repli d'une formule LaTeX |
+| loss | mot inconnu | anglais (référence bibliographique) |
+| lower | mot inconnu | anglais (référence bibliographique) |
+| m1m2 | mot inconnu | notation |
+| mathbfvrc-mathbfn | mot inconnu | texte de repli d'une formule LaTeX |
+| mechanical | mot inconnu | anglais (référence bibliographique) |
+| microbaromètre | mot inconnu | jargon (instrument) |
+| middle-ear | mot inconnu | anglais (référence bibliographique) |
+| mm² | mot inconnu | unité |
+| montreDix | mot inconnu | concaténation HTML (« Ce que ça montre » + « Dix »), pas un mot |
+| montreTrois | mot inconnu | concaténation HTML (« Ce que ça montre » + « Trois »), pas un mot |
+| motility | mot inconnu | anglais (référence bibliographique) |
+| multi-emitter | mot inconnu | anglais (référence bibliographique) |
+| mπ | mot inconnu | notation |
+| nBig | mot inconnu | texte de repli d'une formule LaTeX |
+| nature08967 | mot inconnu | identifiant d’article (DOI) |
+| nc | mot inconnu | notation |
+| nf1 | mot inconnu | notation |
+| notched-noise | mot inconnu | anglais (référence bibliographique) |
+| nπ | mot inconnu | notation |
+| nπd | mot inconnu | notation |
+| nπx | mot inconnu | notation |
+| ointS | mot inconnu | texte de repli d'une formule LaTeX |
+| oscillator | mot inconnu | anglais (référence bibliographique) |
+| outdoors | mot inconnu | anglais (référence bibliographique) |
+| outer | mot inconnu | anglais (référence bibliographique) |
+| overlinep | mot inconnu | texte de repli d'une formule LaTeX |
+| overview | mot inconnu | anglais (référence bibliographique) |
+| p1A1v1 | mot inconnu | notation |
+| p1p2rangle | mot inconnu | texte de repli d'une formule LaTeX |
+| p2A2v2 | mot inconnu | notation |
+| pAv | mot inconnu | notation |
+| pacos | mot inconnu | texte de repli d'une formule LaTeX |
+| parameters | mot inconnu | anglais (référence bibliographique) |
+| partiallnρ | mot inconnu | texte de repli d'une formule LaTeX |
+| partiallnρright | mot inconnu | texte de repli d'une formule LaTeX |
+| partialxi | mot inconnu | texte de repli d'une formule LaTeX |
+| partialρright | mot inconnu | texte de repli d'une formule LaTeX |
+| particles | mot inconnu | anglais (référence bibliographique) |
+| pcos | mot inconnu | texte de repli d'une formule LaTeX |
+| per | mot inconnu | anglais (référence bibliographique) |
+| phased | mot inconnu | anglais (référence bibliographique) |
+| phasés | mot inconnu | jargon (réseaux phasés) |
+| physics | mot inconnu | anglais (référence bibliographique) |
+| physiological | mot inconnu | anglais (référence bibliographique) |
+| previously | mot inconnu | anglais (référence bibliographique) |
+| problems | mot inconnu | anglais (référence bibliographique) |
+| propagatifs | mot inconnu | jargon (modes propagatifs) |
+| properties | mot inconnu | anglais (référence bibliographique) |
+| p²rms | mot inconnu | notation |
+| périodogramme | mot inconnu | jargon (terme établi) |
+| périodogrammes | mot inconnu | jargon (terme établi) |
+| p₁p₂ | mot inconnu | notation |
+| p₁² | mot inconnu | notation |
+| qquadpourqquad | mot inconnu | texte de repli d'une formule LaTeX |
+| qquadqquad | mot inconnu | texte de repli d'une formule LaTeX |
+| quadLongrightarrowquad | mot inconnu | texte de repli d'une formule LaTeX |
+| quadetquad | mot inconnu | texte de repli d'une formule LaTeX |
+| random | mot inconnu | anglais (référence bibliographique) |
+| reciprocity | mot inconnu | anglais (référence bibliographique) |
+| redécrit | mot inconnu | verbe « redécrire », correct |
+| representation | mot inconnu | anglais (référence bibliographique) |
+| resonating | mot inconnu | anglais (référence bibliographique) |
+| resonator | mot inconnu | anglais (référence bibliographique) |
+| results | mot inconnu | anglais (référence bibliographique) |
+| revisited | mot inconnu | anglais (référence bibliographique) |
+| right | mot inconnu | commande LaTeX |
+| rod | mot inconnu | anglais (référence bibliographique) |
+| roll | mot inconnu | anglais (piano roll) |
+| rooms | mot inconnu | anglais (référence bibliographique) |
+| s0378-5955 | mot inconnu | identifiant d’article (DOI) |
+| s10162-025-00997-y | mot inconnu | identifiant d’article (DOI) |
+| s41116-020-00028-3 | mot inconnu | identifiant d’article (DOI) |
+| shapes | mot inconnu | anglais (référence bibliographique) |
+| sinka | mot inconnu | notation |
+| sinθc | mot inconnu | notation |
+| size | mot inconnu | anglais (référence bibliographique) |
+| sonS14BattementsS22Accordeur | mot inconnu | concaténation HTML (cartes d’atelier), pas un mot |
+| sones | mot inconnu | unité de sonie |
+| sonic | mot inconnu | anglais (référence bibliographique) |
+| spectra | mot inconnu | anglais (référence bibliographique) |
+| spheres | mot inconnu | anglais (référence bibliographique) |
+| spherical | mot inconnu | anglais (référence bibliographique) |
+| stochastiquement | mot inconnu | adverbe de « stochastique », correct |
+| strength | mot inconnu | anglais (référence bibliographique) |
+| suréchantillonne | mot inconnu | jargon (verbe établi) |
+| suréchantillonner | mot inconnu | jargon (verbe établi) |
+| tanvarphi | mot inconnu | texte de repli d'une formule LaTeX |
+| target | mot inconnu | anglais (référence bibliographique) |
+| technology | mot inconnu | anglais (référence bibliographique) |
+| temperature | mot inconnu | anglais (référence bibliographique) |
+| tfrac12 | mot inconnu | texte de repli d'une formule LaTeX |
+| tfrac169 | mot inconnu | texte de repli d'une formule LaTeX |
+| tfrac32 | mot inconnu | texte de repli d'une formule LaTeX |
+| tfrac43 | mot inconnu | texte de repli d'une formule LaTeX |
+| tfrac43G | mot inconnu | texte de repli d'une formule LaTeX |
+| tfrac43π | mot inconnu | texte de repli d'une formule LaTeX |
+| than | mot inconnu | anglais (référence bibliographique) |
+| that | mot inconnu | anglais (référence bibliographique) |
+| therapeutic | mot inconnu | anglais (référence bibliographique) |
+| therapy | mot inconnu | anglais (référence bibliographique) |
+| through | mot inconnu | anglais (référence bibliographique) |
+| timpani | mot inconnu | anglais (référence bibliographique) |
+| travel | mot inconnu | anglais (référence bibliographique) |
+| tsinω | mot inconnu | notation |
+| two | mot inconnu | anglais (référence bibliographique) |
+| u1 | mot inconnu | notation (incertitude) |
+| u2 | mot inconnu | notation (incertitude) |
+| uc | mot inconnu | notation (incertitude composée) |
+| unquad | mot inconnu | texte de repli d'une formule LaTeX |
+| up | mot inconnu | anglais (référence bibliographique) |
+| urangle | mot inconnu | texte de repli d'une formule LaTeX |
+| using | mot inconnu | anglais (référence bibliographique) |
+| u²rms | mot inconnu | notation |
+| varphinbigr | mot inconnu | texte de repli d'une formule LaTeX |
+| vcosvarphi | mot inconnu | texte de repli d'une formule LaTeX |
+| vecI | mot inconnu | texte de repli d'une formule LaTeX |
+| vecu | mot inconnu | texte de repli d'une formule LaTeX |
+| vll | mot inconnu | texte de repli d'une formule LaTeX |
+| waveguides | mot inconnu | anglais (référence bibliographique) |
+| weighting | mot inconnu | anglais (référence bibliographique) |
+| weightings | mot inconnu | anglais (référence bibliographique) |
+| where | mot inconnu | anglais (référence bibliographique) |
+| xsink | mot inconnu | notation |
+| years | mot inconnu | anglais (référence bibliographique) |
+| z0 | mot inconnu | notation (impédance) |
+| z1z2 | mot inconnu | notation |
+| z1z2cosθ1cosθ2 | mot inconnu | notation |
+| z2-z1 | mot inconnu | notation |
+| z2cosθ1-z1cosθ2 | mot inconnu | notation |
+| écrante | mot inconnu | jargon (verbe « écranter », physique des plasmas) |
+| électromotilité | mot inconnu | jargon (cellules ciliées externes) |
+| Δvarphi | mot inconnu | texte de repli d'une formule LaTeX |
+| αI | mot inconnu | notation |
+| αattΔ | mot inconnu | notation |
+| αmousse | mot inconnu | notation (absorption de la mousse) |
+| αrm | mot inconnu | texte de repli d'une formule LaTeX |
+| βnl | mot inconnu | notation (coefficient de non-linéarité) |
+| βεk | mot inconnu | notation |
+| γP | mot inconnu | notation |
+| γRT | mot inconnu | notation |
+| θL | mot inconnu | notation |
+| θT | mot inconnu | notation |
+| θg | mot inconnu | notation |
+| λf | mot inconnu | notation |
+| λz | mot inconnu | notation |
+| πPhi | mot inconnu | texte de repli d'une formule LaTeX |
+| πa | mot inconnu | notation |
+| πft | mot inconnu | notation |
+| πf₀ | mot inconnu | notation |
+| ρ0ωhatU | mot inconnu | texte de repli d'une formule LaTeX |
+| ρc² | mot inconnu | notation |
+| ρqquad | mot inconnu | texte de repli d'une formule LaTeX |
+| ρright | mot inconnu | texte de repli d'une formule LaTeX |
+| ρv | mot inconnu | notation |
+| τ1 | mot inconnu | notation |
+| τ3 | mot inconnu | notation |
+| ωpe | mot inconnu | notation (pulsation plasma électronique) |
+| ᵏ | mot inconnu | notation (exposant k) |
+| ẋ | mot inconnu | notation (x point) |
+| ẍ | mot inconnu | notation (x point point) |
