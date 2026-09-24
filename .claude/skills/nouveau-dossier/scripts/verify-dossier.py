@@ -152,8 +152,8 @@ else:
         js = r'''
 const fs=require("fs"),katex=require(process.argv[2]);
 const s=fs.readFileSync(process.argv[1],"utf8");
-const dec=t=>t.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,"\"").replace(/&#39;/g,"'");
-let n=0,bad=[];for(const m of s.matchAll(/data-tex="([^"]*)"/g)){n++;try{katex.renderToString(dec(m[1]),{throwOnError:true});}catch(e){bad.push(m[1]);}}
+const dec=t=>t.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,"\"").replace(/&#39;/g,"'").replace(/&#x27;/g,"'");
+let n=0,bad=[];for(const m of s.matchAll(/data-tex="([^"]*)"/g)){n++;try{katex.renderToString(dec(m[1]),{throwOnError:true,trust:c=>c.command==="\\htmlData",strict:c=>c==="htmlExtension"?"ignore":"warn"});}catch(e){bad.push(m[1]);}}
 console.log(JSON.stringify({n,bad}));'''
         r = run(["node", "-e", js, "--", os.path.abspath(page), os.path.join(kx, "node_modules", "katex")])
         try:

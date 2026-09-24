@@ -2,7 +2,7 @@
 
 **Dossier :** [`provoxys/lumiere/index.html`](../provoxys/lumiere/index.html) · compagnon [`portraits.html`](../provoxys/lumiere/portraits.html)
 **Équipe :** Provoxys et Samlepirate, avec la participation de Inepties
-**Audit :** 1ᵉʳ septembre 2026, complété le 3 septembre 2026 à la construction de la page.
+**Audit :** 1ᵉʳ septembre 2026, complété le 3 septembre 2026 à la construction de la page, puis le 25 septembre 2026 pour les fiches de symboles des formules (section F).
 
 **Méthode.** Chaque DOI a été résolu via l'API Crossref (`api.crossref.org/works/<doi>`) et comparé sur le titre, la revue, les auteurs, l'année, le volume et les pages. Les résumés des articles 2026 d'*Optica* et de *JOCN* ont été lus dans Crossref. Les deux *Physical Review Letters* de 2026 n'ont pas de résumé Crossref et l'accès automatisé au site de l'APS est refusé (403), sans préprint arXiv trouvé : **leurs chiffres restent marqués « à confirmer » dans le dossier lui-même**, et le dossier le dit à ses lecteurs plutôt que de le taire. Le communiqué du MIT (2025) a été lu. Les dates et lieux des 21 personnages du compagnon *Portraits* ont été recoupés avec Wikidata (P569/P570/P19/P20) et la licence de chaque image lue sur Wikimedia Commons.
 
@@ -343,3 +343,46 @@ Le test supplémentaire vérifie les dérivées du champ thermique par différen
 Le réglage « Fusion visuelle sol / ciel » combine les couleurs de rayons de sol et de ciel voisins autour de leur transition. Dans la zone de mirage inférieur, un sol projeté géométriquement reste partiellement visible sous le ciel réfracté : ce mélange de couverture est une approximation de rendu réglable, pas une nouvelle loi de réflexion, ni une transparence physique de l’asphalte ou du sable. À zéro, il est désactivé. Il n’affecte ni les impacts, ni les hauteurs d’objet, ni les diagnostics du traceur. Le ciel situé au-dessus de l’horizon géométrique ne reçoit pas cette sous-couche de sol.
 
 Une période de 16 états est maintenant calculée dans un seul worker. Chaque état conserve ses 1080 rayons (trois bandes si le Soleil l’exige), son image HD et les trajectoires de la coupe. Un acquittement après composition évite d’accumuler les images à préparer sur le fil d’interface. La lecture réutilise ce cache borné à 16 images ; le changement de fréquence modifie uniquement la cadence. Les paramètres optiques invalident la séquence, les paramètres d’apparence seulement les images compositées. La fermeture temporelle utilise des harmoniques entières, vérifiées aux limites de période. Un fondu entre les images précalculées lisse leur présentation ; il ne représente pas une intégration optique supplémentaire aux instants intermédiaires. Mettre en pause permet l’inspection d’un état calculé exact du modèle.
+
+
+## F. Formules : fiches de symboles et encadrés « Ce qu'elle dit » — 25 septembre 2026
+
+Les 25 blocs de formule (23 dans `index.html`, 2 dans `portraits.html`) ont reçu le composant du Dossier « Le Son » : symboles survolables, rangée « Les symboles » (définition, unité, ordre de grandeur) et encadré « Ce qu'elle dit ». Les 31 affirmations nouvelles ont été vérifiées par trois agents en parallèle, avec recalcul de chaque valeur. Générateur : `a_traiter/lumiere/build/formules_symboles.py` (non publié). Relecture Grammalecte : 0 faute, faux positifs consignés dans `provoxys/lumiere/grammalecte.md`.
+
+| # | Affirmation | Verdict | Valeur retenue / source |
+|---|---|---|---|
+| F.1 | c ≈ 1,08 milliard de km/h ; ≈ 7,5 tours de Terre par seconde | ✅ | 1 079 252 849 km/h ; 299 792 / 40 075 = 7,48 — [NIST](https://physics.nist.gov/cgi-bin/cuu/Value?c), [NASA](https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html) |
+| F.2 | 500 nm ↔ ≈ 600 THz ; visible 380–780 nm | ✅ | 599,6 THz ; 380–780 nm (ISO 20473, [ICNIRP](https://www.icnirp.org/en/frequencies/visible/index.html)) ; 500 nm est un **bleu-vert** (précisé) |
+| F.3 | Indices air 1,000 28, eau 1,33, verre ≈ 1,5, diamant 2,42 ; 225 000 / 200 000 km/s | ✅ | Ciddor 1996 (air sec standard) ; c/1,333 = 224 900 km/s |
+| F.4 | Ralentissement = onde réémise en retard par les charges (Ewald-Oseen) | ✅ | Vitesse de phase — Ballenegger & Weber 1999 ; [Feynman I-31](https://www.feynmanlectures.caltech.edu/I_31.html) |
+| F.5 | Rugosité de Rayleigh h < λ/(8 cos θ), h = écart quadratique ; < 60 nm | ⚠️ | Démonstration sur la hauteur **creux-sommet** ; σ quadratique dans la forme statistique (précisé) ; 62,5 nm — Bennett & Porteus 1961 |
+| F.6 | Angle limite eau → air ≈ 49° ; 45° → 32° | ✅ | 48,6–48,8° ; 32,0° (calcul) |
+| F.7 | Fermat : minimum, parfois maximum ou col | ✅ | [LibreTexts](https://phys.libretexts.org/Bookshelves/University_Physics/Radically_Modern_Introductory_Physics_Text_I_(Raymond)/03:_Geometrical_Optics/3.05:_Fermats_Principle) |
+| F.8 | Interfrange ≈ 1,3 mm (633 nm, 1 m, 0,5 mm) | ✅ | 1,266 mm — [HyperPhysics](https://hyperphysics.gsu.edu/hbase/phyopt/slits.html) |
+| F.9 | Malus : cos² 45° = 0,5, cos² 60° = 0,25 | ✅ | I₀ = lumière déjà polarisée (précisé) |
+| F.10 | 1,22 = j₁,₁/π ; pupille 5 mm → ≈ 28″ ; Hubble 2,4 m ; Webb 6,5 m | ✅ | 1,2197 ; 27,7″ ; acuité réelle ≈ 1′ (ajoutée) — [NASA](https://science.nasa.gov/mission/webb/webbs-mirrors/) |
+| F.11 | Cheveu ≈ 70 µm par λL/Δx | ⚠️ | Δx = écart entre zones sombres voisines (facteur 2 sinon, précisé) ; cheveu 50–100 µm — [Physics Factbook](https://hypertextbook.com/facts/1999/BrianLey.shtml) |
+| F.12 | μ₀ ≈ 1,256 637 × 10⁻⁶ N/A² ; ε₀ ≈ 8,854 188 × 10⁻¹² F/m | ✅ | CODATA 2022 ; μ₀ **n'est plus exacte depuis 2019** (précision ajoutée dans la fiche) — [BIPM](https://www.bipm.org/documents/20126/41489676/SI-App2-ampere.pdf) |
+| F.13 | h exacte depuis 2019 ; ħ ≈ 1,054 572 × 10⁻³⁴ J·s | ✅ | CODATA 2022 |
+| F.14 | 500 THz → 3,3 × 10⁻¹⁹ J ≈ 2,1 eV ; violet ≈ deux fois le rouge | ⚠️ | 2,068 eV ✅ ; violet/rouge = **1,75** (400/700 nm), corrigé dans « Ce qu'elle dit » |
+| F.15 | Travail d'extraction Na ≈ 2,3 eV, Zn ≈ 4,3 eV ; Millikan 1916 | ⚠️ | Dépend de la surface (précisé) — [HyperPhysics](https://hyperphysics.gsu.edu/hbase/Tables/photoelec.html) ; Millikan 1916 |
+| F.16 | Photon 500 nm : p ≈ 1,3 × 10⁻²⁷ kg·m/s, E ≈ 4 × 10⁻¹⁹ J | ✅ | 1,325 × 10⁻²⁷ ; 3,97 × 10⁻¹⁹ J |
+| F.17 | Pression de radiation 4,5 / 9 µPa ; 1 361 W/m² | ✅ | Kopp & Lean 2011 ; UAI 2015 B3 (Prša 2016) |
+| F.18 | Compton : λ_C = 2,43 pm, Δλ max 4,85 pm | ✅ | CODATA 2022 ; Compton 1923 |
+| F.19 | Électron 54 eV → 0,17 nm ; balle de tennis ~10⁻³⁴ m | ✅ | 0,1669 nm (Davisson & Germer 1927) ; 2 × 10⁻³⁴ m |
+| F.20 | CHSH : angles 0°, 45°, 22,5°, 67,5° → S = 2√2 | ✅ | Recalculé avec E = cos 2(α − β) — CHSH 1969 ; Cirel'son 1980 |
+| F.21 | SPDC : 405 nm → 4,65 × 10¹⁵ rad/s ; conservations → intrication | ⚠️ | Chiffres ✅ ; intrication en **polarisation** = montage dédié (précisé) — Kwiat 1995, 1999 |
+| F.22 | Planck 1900 artifice de calcul ; Einstein 1905 | ⚠️ | Planck quantifie des résonateurs matériels (nuance d'historien, texte gardé) — Planck 1901 ; Einstein 1905 |
+| F.23 | Bell rend le débat expérimental | ✅ | Bell 1964 → CHSH 1969 → Aspect 1982 → Giustina 2015 |
+| F.24 | n − 1 ≈ 2,8 × 10⁻⁴ ; ∝ P/T | ✅ | 2,78 × 10⁻⁴ à 550 nm — Edlén 1966 |
+| F.25 | Gradient standard ≈ −2,7 × 10⁻⁸ m⁻¹ ; rayon de courbure ≈ 37 000 km | ✅ | −2,66 × 10⁻⁸ m⁻¹ ; 37 600 km = 5,9 R⊕ (k ≈ 0,17 ; la convention k = 0,13 donne ≈ 49 000 km) — Hirt 2010 |
+| F.26 | Route brûlante : gradient positif, des centaines de fois plus fort | ✅ | +8,3 × 10⁻⁶ m⁻¹ pour 10 K/m (≈ 310×) — [Stull §22.6](https://geo.libretexts.org/Bookshelves/Meteorology_and_Climate_Science/Practical_Meteorology_(Stull)/22:_Atmospheric_Optics/22.6:_Mirages) |
+| F.27 | Le rayon se courbe vers l'air le plus dense | ✅ | [IOP Spark](https://spark.iop.org/mirages) |
+| F.28 | Rayleigh ∝ 1/λ⁴ ; (700/450)⁴ ≈ 5,9 ; ×16 | ✅ | 5,86 — [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html) |
+| F.29 | Tcherenkov : 41° dans l'eau ; « le cône s'ouvre » avec v | ⚠️ | 41,4° ; l'**angle d'émission** s'ouvre, le front d'onde se resserre (précisé) — [Sheffield](https://sheffield.ac.uk/mps/research/physics/particle/neutrino/water-cherenkov) |
+| F.30 | Hα 656,3 nm à 30 km/s → 0,066 nm | ✅ | 0,0657 nm ; Terre 29,78 km/s (NASA) |
+| F.31 | 1 + z = rapport des facteurs d'échelle ; z ≈ 1 100 ; JWST > 10 ; Lyman-α 121,6 nm | ✅ | Distances **comovantes** (précisé) ; record JWST **z ≈ 14** (mis à jour) — Planck 2018 ; Carniani 2024 |
+
+**Bilan F :** 31 affirmations — 23 ✅, 8 ⚠️, 0 🔶, 0 ❌. Aucune donnée fausse dans la page ; toutes les nuances ⚠️ ont été reportées dans les fiches ou les encadrés. Un « ❌ » rendu par un agent visait une formulation erronée de la *question* (« μ₀ exacte depuis 2019 »), pas la page : il est compté ✅, et la précision historique a été ajoutée à la fiche.
+
+**11 DOI nouveaux, vérifiés Crossref** (portent le total du dossier à 76) : 10.1088/0026-1394/2/2/002 (Edlén 1966) · 10.1029/2010JD014067 (Hirt et al. 2010) · 10.1038/s41586-024-07860-9 (Carniani et al. 2024) · 10.1103/RevModPhys.97.025002 (CODATA 2022) · 10.1029/2010GL045777 (Kopp & Lean 2011) · 10.3847/0004-6256/152/2/41 (Prša et al. 2016) · 10.1007/BF00417500 (Cirel'son 1980) · 10.1103/PhysRevLett.75.4337 (Kwiat et al. 1995) · 10.1103/PhysRevA.60.R773 (Kwiat et al. 1999) · 10.1364/JOSA.51.000123 (Bennett & Porteus 1961) · 10.1119/1.19330 (Ballenegger & Weber 1999). Davisson-Germer 1927 et Giustina 2015, déjà dans les références, entrent en plus dans `sources.html`.

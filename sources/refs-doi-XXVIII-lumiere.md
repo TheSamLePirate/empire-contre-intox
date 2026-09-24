@@ -114,6 +114,22 @@
 
 ---
 
+## Formules — fiches de symboles (25 septembre 2026)
+
+| Référence | DOI | Vérifié |
+|---|---|---|
+| B. Edlén, « The Refractive Index of Air », *Metrologia* 2, 71-80 (1966) | [10.1088/0026-1394/2/2/002](https://doi.org/10.1088/0026-1394/2/2/002) | ✅ |
+| C. Hirt, S. Guillaume, A. Wisbar et al., « Monitoring of the refraction coefficient in the lower atmosphere… », *J. Geophys. Res. Atmos.* 115 (2010) | [10.1029/2010JD014067](https://doi.org/10.1029/2010JD014067) | ✅ |
+| S. Carniani et al., « Spectroscopic confirmation of two luminous galaxies at a redshift of 14 », *Nature* 633, 318-322 (2024) | [10.1038/s41586-024-07860-9](https://doi.org/10.1038/s41586-024-07860-9) | ✅ |
+| P. J. Mohr, D. B. Newell, B. N. Taylor, E. Tiesinga, « CODATA recommended values of the fundamental physical constants: 2022 », *Rev. Mod. Phys.* 97, 025002 (2025) | [10.1103/RevModPhys.97.025002](https://doi.org/10.1103/RevModPhys.97.025002) | ✅ |
+| G. Kopp, J. L. Lean, « A new, lower value of total solar irradiance », *Geophys. Res. Lett.* 38 (2011) | [10.1029/2010GL045777](https://doi.org/10.1029/2010GL045777) | ✅ |
+| A. Prša et al., « Nominal values for selected solar and planetary quantities: IAU 2015 Resolution B3 », *AJ* 152, 41 (2016) | [10.3847/0004-6256/152/2/41](https://doi.org/10.3847/0004-6256/152/2/41) | ✅ |
+| B. S. Cirel'son, « Quantum generalizations of Bell's inequality », *Lett. Math. Phys.* 4, 93-100 (1980) | [10.1007/BF00417500](https://doi.org/10.1007/BF00417500) | ✅ |
+| P. G. Kwiat et al., « New High-Intensity Source of Polarization-Entangled Photon Pairs », *PRL* 75, 4337-4341 (1995) | [10.1103/PhysRevLett.75.4337](https://doi.org/10.1103/PhysRevLett.75.4337) | ✅ |
+| P. G. Kwiat et al., « Ultrabright source of polarization-entangled photons », *PRA* 60, R773-R776 (1999) | [10.1103/PhysRevA.60.R773](https://doi.org/10.1103/PhysRevA.60.R773) | ✅ |
+| H. E. Bennett, J. O. Porteus, « Relation Between Surface Roughness and Specular Reflectance at Normal Incidence », *JOSA* 51, 123 (1961) | [10.1364/JOSA.51.000123](https://doi.org/10.1364/JOSA.51.000123) | ✅ |
+| V. C. Ballenegger, T. A. Weber, « The Ewald–Oseen extinction theorem and extinction lengths », *Am. J. Phys.* 67, 599-605 (1999) | [10.1119/1.19330](https://doi.org/10.1119/1.19330) | ✅ |
+
 ## Refusés — à ne jamais citer sous cette forme
 
 | DOI candidat | Pourquoi |

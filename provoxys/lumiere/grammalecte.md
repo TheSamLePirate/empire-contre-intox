@@ -1,7 +1,8 @@
 # Grammalecte — La Lumière, de la flamme aux photons intriqués (Dossier XXVIII)
 
-Source analysée : `provoxys/lumiere/index.html` · Passe du 2026-09-23 · Grammalecte 2.3.0 · rapport : `a_traiter/grammalecte/lumiere-index/rapport.md`
-Bilan : 84 alertes de grammaire et 649 mots inconnus examinés → 0 corrections du verbatim, 0 corrections éditoriales, 707 faux positifs consignés.
+Source analysée : `provoxys/lumiere/index.html` · Passes du 2026-09-23 et du 2026-09-25 · Grammalecte 2.3.0 · rapport : `a_traiter/grammalecte/lumiere-index/rapport.md`
+Source analysée : `provoxys/lumiere/portraits.html` · Passe du 2026-09-25 · Grammalecte 2.3.0 · rapport : `a_traiter/grammalecte/lumiere-portraits/rapport.md`
+Bilan : 105 alertes de grammaire et 767 mots inconnus examinés → 0 corrections du verbatim, 0 corrections éditoriales, 837 faux positifs consignés.
 
 ## Corrections du verbatim (transcript → page)
 
@@ -724,3 +725,133 @@ Bilan : 84 alertes de grammaire et 649 mots inconnus examinés → 0 corrections
 | s'en tient donc à « aux Pays-Bas | conf | « à » suivi d'une citation entre guillemets, correct |
 | Passez à « Dans la goutte » | conf | « à » suivi d'un titre d'atelier entre guillemets, correct |
 | « choisit »-il une fente | conf | inversion interrogative avec un verbe entre guillemets, correct |
+| 1,000 28 air | gn | rangée « Les symboles » : valeur (1,000 28) et milieu (air) juxtaposés, pas un groupe nominal (index ×2) |
+| 8 facteur de Rayleigh | gn | rangée « Les symboles » : symbole « 8 » collé à sa définition par l'extraction |
+| la normale degré (°) | gn | rangée « Les symboles » : définition (« depuis la normale ») collée à l'unité « degré (°) » (×2) |
+| l’horizontale radian (rad) | gn | rangée « Les symboles » : définition (« depuis l'horizontale ») collée à l'unité « radian (rad) » (2 alertes) |
+| δ(…) = 0 | notype | notation mathématique (variation d'une quantité quelconque), pas une troncature de citation |
+| ds petit élément de longueur | gn | rangée « Les symboles » : symbole « ds » collé à sa définition par l'extraction |
+| la position sur le mur divisée par | gn | « divisée » s'accorde avec « la position », correct |
+| h constante de Planck | gn | rangée « Les symboles » : symbole « h » collé à sa définition (index ×4, portraits ×1) |
+| 2 facteur 2 du miroir | gn | rangée « Les symboles » : symbole « 2 » collé à sa définition par l'extraction |
+| 4 longueur d’onde à la puissance quatre | gn | rangée « Les symboles » : exposant du symbole λ⁴ collé à sa définition |
+| b première orientation de l’analyseur de Bob | gn | rangée « Les symboles » : symbole « b » collé à sa définition (index et portraits) |
+| ks vecteur d’onde du photon signal | gn | rangée « Les symboles » : symbole « k s » collé à sa définition par l'extraction |
+| z = 1 signifie que les distances cosmiques | maj | symbole « z » (décalage spectral) en début de phrase, minuscule voulue |
+| A² | mot inconnu | notation (A carré) |
+| Airy | mot inconnu | nom propre (tache d'Airy) |
+| Bell-CHSH | mot inconnu | nom propre (inégalité de Bell-CHSH, index et portraits) |
+| I0 | mot inconnu | notation (I indice zéro, extraction du KaTeX) |
+| Idiffusée | mot inconnu | notation (I indice « diffusée », extraction du KaTeX) |
+| Js | mot inconnu | notation (unité J·s, extraction du KaTeX) |
+| J₁ | mot inconnu | notation (fonction de Bessel J un) |
+| Lyman-α | mot inconnu | nom propre (raie Lyman alpha) |
+| Squantique | mot inconnu | notation (S indice « quantique », extraction du KaTeX) |
+| dds | mot inconnu | notation (dérivée d/ds, extraction du KaTeX) |
+| dndz | mot inconnu | notation (dérivée dn/dz, extraction du KaTeX) |
+| ki | mot inconnu | notation (vecteur d'onde k indice i) |
+| kp | mot inconnu | notation (vecteur d'onde k indice p) |
+| m-ième | mot inconnu | adjectif ordinal mathématique (la m-ième zone sombre) |
+| m⁴ | mot inconnu | unité (mètre puissance quatre) |
+| n1 | mot inconnu | notation (n indice un, extraction du KaTeX) |
+| n2 | mot inconnu | notation (n indice deux, extraction du KaTeX) |
+| réfractivité | mot inconnu | jargon physique (terme établi, n − 1) |
+| vr | mot inconnu | notation (vitesse radiale v indice r) |
+| πn | mot inconnu | notation (extraction du KaTeX) |
+| BY | mot inconnu | sigle de licence (CC BY) |
+| Göttingen | mot inconnu | nom propre (ville) |
+| Innsbruck | mot inconnu | nom propre (ville) |
+| Pasadena | mot inconnu | nom propre (ville) |
+| Stewart | mot inconnu | nom propre (John Stewart Bell) |
+| Alhasen | mot inconnu | nom propre (graphie latine du frontispice de la Selenographia, citée entre guillemets) |
+| August | mot inconnu | nom propre (August Köhler, copiste) |
+| Bakeriennes | mot inconnu | douteux, laissé : « conférences Bakeriennes » (Bakerian Lectures), même choix que « Bakerienne » dans index.html, majuscule à trancher |
+| BellUn | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| Boÿ | mot inconnu | nom propre (graveur du frontispice) |
+| Brahe | mot inconnu | nom propre (Tycho Brahe) |
+| Briggs | mot inconnu | nom propre (Henry Perronet Briggs, peintre) |
+| Bréda | mot inconnu | nom propre (graphie française de Breda) |
+| Caltech | mot inconnu | nom propre (institut) |
+| Clendening | mot inconnu | nom propre (Clendening History of Medicine Library) |
+| ComptonLe | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| Coning | mot inconnu | nom propre (Jacob Coning, peintre) |
+| Corning | mot inconnu | nom propre (entreprise) |
+| Cuerden | mot inconnu | nom propre (restaurateur de la photographie) |
+| Dioptrice | mot inconnu | latin (titre de Kepler) |
+| Dobkin | mot inconnu | nom propre (photographe) |
+| ENS | mot inconnu | sigle (École normale supérieure) |
+| EinsteinLe | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| Falck | mot inconnu | nom propre (graveur du frontispice) |
+| FizeauUne | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| FresnelLe | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| Godany | mot inconnu | nom propre (Jaqueline Godany, photographe) |
+| Godfrey | mot inconnu | nom propre (Godfrey Kneller, peintre) |
+| Harlow | mot inconnu | nom propre (ville) |
+| HertzLes | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| Hevelius | mot inconnu | nom propre (astronome) |
+| HuygensChaque | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| IIIIII | mot inconnu | concaténation HTML (numéros d'actes de la navigation), pas un mot |
+| IIIMesurer | mot inconnu | concaténation HTML (numéro d'acte + titre), pas un mot |
+| IIRayons | mot inconnu | concaténation HTML (numéro d'acte + titre), pas un mot |
+| IVLes | mot inconnu | concaténation HTML (numéro d'acte + titre), pas un mot |
+| IVVVI | mot inconnu | concaténation HTML (numéros d'actes de la navigation), pas un mot |
+| IVoir | mot inconnu | concaténation HTML (numéro d'acte + titre), pas un mot |
+| Innkreis | mot inconnu | nom propre (Ried im Innkreis) |
+| Jaqueline | mot inconnu | nom propre (Jaqueline Godany, graphie du crédit Commons) |
+| KaoLe | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| Kensington | mot inconnu | nom propre (lieu) |
+| KeplerL'image | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| Kneller | mot inconnu | nom propre (Godfrey Kneller, peintre) |
+| Krewaldt | mot inconnu | nom propre (Robert Krewaldt, photographe) |
+| Köhler | mot inconnu | nom propre (August Köhler, copiste) |
+| Laboratories | mot inconnu | anglais (nom de laboratoire) |
+| Labs | mot inconnu | anglais (Bell Labs) |
+| Library | mot inconnu | anglais (Clendening History of Medicine Library) |
+| Lyons | mot inconnu | nom propre (Peter Lyons, photographe) |
+| MaimanLe | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| Marconi | mot inconnu | nom propre (inventeur) |
+| MaxwellLa | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| Medical | mot inconnu | anglais (University of Kansas Medical Center) |
+| Medicine | mot inconnu | anglais (Clendening History of Medicine Library) |
+| MichelsonLe | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| Milverton | mot inconnu | nom propre (ville natale de Young) |
+| Mondadori | mot inconnu | nom propre (éditeur) |
+| Paris-Saclay | mot inconnu | nom propre (université) |
+| Perronet | mot inconnu | nom propre (Henry Perronet Briggs, peintre) |
+| Physikalisch-Technische | mot inconnu | allemand (Physikalisch-Technische Reichsanstalt) |
+| PlanckUn | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| Polytechnic | mot inconnu | anglais (Woolwich Polytechnic) |
+| Principia | mot inconnu | latin (titre de Newton) |
+| Queen's | mot inconnu | anglais (Queen's University de Belfast) |
+| Queries | mot inconnu | anglais (les « Queries » de l'Opticks, citées entre guillemets) |
+| Reichsanstalt | mot inconnu | allemand (Physikalisch-Technische Reichsanstalt) |
+| Research | mot inconnu | anglais (nom de laboratoire) |
+| Reutlinger | mot inconnu | nom propre (Charles Reutlinger, photographe) |
+| Rublevskiy | mot inconnu | nom propre (Vjacheslav Rublevskiy, peintre) |
+| RømerLa | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| Schmutzer | mot inconnu | nom propre (Ferdinand Schmutzer, photographe) |
+| Selenographia | mot inconnu | latin (titre d'Hevelius) |
+| Stadt | mot inconnu | allemand (Weil der Stadt, ville) |
+| Strelno | mot inconnu | nom propre (nom allemand de Strzelno, ville natale de Michelson) |
+| Strzelno | mot inconnu | nom propre (ville) |
+| TRG | mot inconnu | sigle (Technical Research Group) |
+| Telecommunications | mot inconnu | anglais (Standard Telecommunications) |
+| Tycho | mot inconnu | nom propre (Tycho Brahe) |
+| Tübingen | mot inconnu | nom propre (ville) |
+| VIL'intrication | mot inconnu | concaténation HTML (numéro d'acte + titre), pas un mot |
+| VLa | mot inconnu | concaténation HTML (numéro d'acte + titre), pas un mot |
+| Venteuil | mot inconnu | nom propre (commune où meurt Fizeau) |
+| Vitellionem | mot inconnu | latin (Ad Vitellionem paralipomena, titre) |
+| Vjacheslav | mot inconnu | nom propre (Vjacheslav Rublevskiy, graphie du crédit Commons) |
+| Weil | mot inconnu | allemand (Weil der Stadt, ville) |
+| Wikidata | mot inconnu | nom propre (base de données) |
+| Woolwich | mot inconnu | nom propre (Woolwich Polytechnic) |
+| Wooster | mot inconnu | nom propre (ville) |
+| ZeilingerCeux | mot inconnu | concaténation HTML (nom de la galerie + épithète), pas un mot |
+| héroïser | mot inconnu | verbe attesté (rendre héroïque), éditorial, gardé |
+| imageslicence | mot inconnu | concaténation HTML (« 21 images » + « licence vérifiée »), pas un mot |
+| mc² | mot inconnu | notation (E = mc²) |
+| mohisme | mot inconnu | terme établi (école de Mozi) |
+| mohistes | mot inconnu | terme établi (disciples de Mozi) |
+| paralipomena | mot inconnu | latin (Ad Vitellionem paralipomena, titre) |
+| sièclesde | mot inconnu | concaténation HTML (« 25 siècles » + « de Mozi »), pas un mot |
