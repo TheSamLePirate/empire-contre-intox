@@ -412,7 +412,8 @@ Restent à faire **à la main**, parce qu'ils demandent un navigateur ou un œil
 - [ ] **formules survolables** : `formules-symboles.py --check` → 0, section `formules+`
       de `verify-dossier.py` sans FAIL, `inline-relecture.tsv` relu ; en navigateur, survol
       d'un symbole de bloc et d'un symbole du texte à 1280 et 390 px (fiche dans la
-      fenêtre, formule non masquée), aucune `.katex-error` ;
+      fenêtre, formule non masquée), aucune `.katex-error`, et **test d'accessibilité de tous
+      les symboles → `bloqués: 0`** (`reference/formules-symboles.md` §7, étape 7) ;
 - [ ] images chargées (ou hero briefé si pas encore généré), pas de scroll horizontal ;
 - [ ] **grands écrans** : bloc `<style id="eci-wide-style">` présent juste avant
       `</head>`, et balayage **360 → 3840 px** propre (aucun défilement horizontal,

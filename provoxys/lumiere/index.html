@@ -257,6 +257,8 @@ table.dtable td.wrapok{white-space:normal}
 .formula + .fb-say{margin-top:-2px}
 
 /* ================= FORMULES : symboles survolables, « Ce qu'elle dit », rangée des symboles ================= */
+/* les calques KaTeX (.vlist des fractions et indices, SVG des radicaux) captaient la souris : seuls les symboles la reçoivent */
+.formula .katex *,.imath .katex *{pointer-events:none}.formula .katex [data-sym],.formula .katex [data-sym] *,.imath .katex [data-sym],.imath .katex [data-sym] *{pointer-events:auto}
 .formula [data-sym]{cursor:help;border-radius:3px;transition:background .25s,box-shadow .25s,color .25s}
 .formula [data-sym]:hover,.formula [data-sym].sym-on{background:rgba(127,211,255,.16);box-shadow:0 0 0 2px rgba(127,211,255,.16);color:#fff}
 .formula-block .fb-k{margin:0 0 6px;font-family:var(--roman);font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}

@@ -207,9 +207,41 @@ dictionnaire.
 6. Navigateur : survoler un symbole de bloc et un symbole du texte, à 1280 px et à 390 px (la fiche
    reste dans la fenêtre, ne couvre pas la formule, ne passe pas sous la barre sticky) ; appui
    tactile au mobile ; Tab dans une rangée. Aucune `.katex-error`.
+7. **Test d'accessibilité de TOUS les symboles (obligatoire)** — survoler un symbole ne prouve
+   rien pour les autres : sous une fraction, un indice ou un radical, KaTeX pose des calques qui
+   peuvent capter la souris. Dans le navigateur intégré, à 1280 px puis 390 px (`javascript_tool`) :
+
+   ```js
+   // sections révélées et panneaux ouverts, sinon des symboles cachés passent pour bloqués
+   const st=document.createElement('style'); st.textContent='.reveal,.fx{opacity:1!important;transform:none!important;transition:none!important}';
+   document.head.appendChild(st); document.querySelectorAll('details').forEach(d=>d.open=true);
+   let n=0; const bad=[];
+   for (const f of document.querySelectorAll('.formula, .imath')) {
+     if (!f.querySelector('[data-sym]') || f.closest('.fb-syms,.fs-tip')) continue;
+     f.scrollIntoView({block:'center', behavior:'instant'});
+     for (const s of f.querySelectorAll('[data-sym]')) {
+       let r=s.getBoundingClientRect(); if (r.width<1) continue;
+       if (f.scrollWidth>f.clientWidth) { f.scrollLeft += r.left-(f.getBoundingClientRect().left+f.clientWidth/2); r=s.getBoundingClientRect(); }
+       n++; const h=document.elementFromPoint(r.left+r.width/2, r.top+r.height/2);
+       if (!h || h.closest('[data-sym]')!==s) bad.push(s.textContent+' → '+(h ? h.tagName+'.'+h.getAttribute('class') : 'null'));
+     }
+   }
+   ({n, bloqués: bad.length, ex: bad.slice(0,10)})
+   ```
+
+   Attendu : **`bloqués: 0`**. Sur une page de plus de ~1 000 formules, le script dépasse le
+   délai de l'outil : le découper par tranches (`.slice(i, i+300)` sur la liste des formules).
+   La page doit avoir une taille non nulle : `resize_window` avant (panneau caché → 0×0).
 
 ## 8. Pièges déjà rencontrés
 
+- **Calques KaTeX qui captent la souris** — les colonnes `.vlist` des fractions, indices et
+  exposants, et les SVG des radicaux et des accents, sont posés *au-dessus* des lettres. Sans
+  correctif, seuls les symboles hors fraction et hors racine répondaient (dans
+  `c = \sqrt{\gamma P/\rho}`, seul `c`). `eci-formules.css` rend toute la formule transparente
+  au pointeur, sauf les `[data-sym]` et leur contenu : **ne jamais retirer ces deux règles**, et
+  une page qui porterait sa propre copie du composant (cas historique de la Lumière) doit les
+  avoir aussi. Le test du §7, étape 7, le détecte.
 - **Garder la classe exacte `class="formula-block"`**, marquer par l'attribut `data-fsym`. Une
   classe ajoutée (`class="formula-block fx-sym"`) fait tomber à 0 le compte de `verify-dossier.py`
   et casse les contrôles « Se lit ».

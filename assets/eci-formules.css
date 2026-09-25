@@ -6,7 +6,12 @@
    s'ils existent, avec des valeurs de repli. */
 .formula-block, .fs-tip, .imath { --fx: var(--fx-rgb, 243, 217, 138); }
 
-/* symboles survolables */
+/* symboles survolables. KaTeX empile des calques au-dessus des lettres (colonnes .vlist des fractions,
+   indices et exposants, SVG des radicaux et des accents) : ils captaient la souris et rendaient
+   inaccessibles les symboles pris dessous. La formule laisse donc passer le pointeur, seuls les
+   symboles le reçoivent. */
+.formula .katex *, .imath .katex * { pointer-events: none; }
+.formula .katex [data-sym], .formula .katex [data-sym] *, .imath .katex [data-sym], .imath .katex [data-sym] * { pointer-events: auto; }
 .formula [data-sym], .imath [data-sym] { cursor: help; border-radius: 3px; transition: background .25s, box-shadow .25s, color .25s; }
 .formula [data-sym]:hover, .formula [data-sym].sym-on { background: rgba(var(--fx), .16); box-shadow: 0 0 0 2px rgba(var(--fx), .16); color: #fff; }
 .imath [data-sym]:hover, .imath [data-sym].sym-on { background: rgba(var(--fx), .18); box-shadow: 0 0 0 2px rgba(var(--fx), .18); }

@@ -795,7 +795,9 @@ Avant de terminer :
 - vérifier qu'il y a **autant de `.fb-say` que de `.formula-block`** — chaque formule
   affichée a sa lecture orale (voir « Formules ») ;
 - vérifier que **chaque formule est survolable** : `formules-symboles.py <page> --check` → 0,
-  section `formules+` de `verify-dossier.py` sans FAIL, survol testé à 1280 et 390 px (voir
+  section `formules+` de `verify-dossier.py` sans FAIL, survol testé à 1280 et 390 px, et
+  **chaque symbole atteignable par la souris** (test d'accessibilité du guide, `bloqués: 0` —
+  sous une fraction ou un radical, les calques KaTeX peuvent capter le pointeur) (voir
   « Formules survolables ») ;
 - si le hero de l'accueil a changé, **régénérer `assets/og-index.jpg`**
   (`node scripts/generate-og-hero.mjs`) ;
