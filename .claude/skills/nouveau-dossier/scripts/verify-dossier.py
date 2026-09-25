@@ -266,7 +266,7 @@ for bad_font in ("Inter", "Roboto", "Space Grotesk"):
     if re.search(r'family=' + bad_font.replace(" ", r"\+"), page_src):
         rep("FAIL", "page", f"police interdite chargée : {bad_font}")
 # marqueurs d'autonomie : pas de CDN autre que Google Fonts / KaTeX
-cdns = set(re.findall(r'(?:src|href)="(https?://[^/"]+)', page_src))
+cdns = set(re.findall(r'(?<![\w-])(?:src|href)="(https?://[^/"]+)', page_src))
 allowed = {"https://fonts.googleapis.com", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net", "https://creativecommons.org", "https://empire-contre-intox.com", "https://thesamlepirate.github.io"}
 ext = sorted(c for c in cdns if c not in allowed)
 if ext:
@@ -275,7 +275,7 @@ if ext:
 # ------------------------------------------------------ 4. liens et ancres
 ids = set(re.findall(r'\bid="([^"]+)"', page_src))
 missing_anchor, missing_file = [], []
-for attr, val in re.findall(r'\b(src|href|poster|data-src)="([^"]+)"', page_src):
+for attr, val in re.findall(r'(?<![\w-])(src|href|poster|data-src)="([^"]+)"', page_src):
     v = html.unescape(val).strip()
     if not v or v.startswith(("http://", "https://", "mailto:", "tel:", "data:", "javascript:", "//")) or "${" in v:
         continue  # gabarits JS `${…}` : chemins construits à l'exécution, non vérifiables ici
@@ -421,7 +421,7 @@ if card:
         if not cands and img.group(1).endswith(".index.webp"):
             rep("WARN", "manifeste", f"image pleine taille du hero ({full}.png/.jpg) absente du manifeste → pas d'og:image")
 referenced = set()
-for attr, val in re.findall(r'\b(src|href|poster|data-src)="([^"]+)"', page_src):
+for attr, val in re.findall(r'(?<![\w-])(src|href|poster|data-src)="([^"]+)"', page_src):
     v = html.unescape(val).strip().split("#")[0].split("?")[0]
     if v and not v.startswith(("http", "mailto:", "tel:", "data:", "javascript:", "//", "#")) and "${" not in v:
         referenced.add(os.path.normpath(os.path.join(page_dir, v)).replace(os.sep, "/"))

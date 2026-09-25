@@ -31,6 +31,7 @@
   --gold:#d6ac55;--gold-bright:#f3d98a;--gold-deep:#9c7228;--line:rgba(214,172,85,.20);--line-2:rgba(244,236,216,.10);
   --ease:cubic-bezier(.22,1,.36,1);--roman:'Cinzel',serif;--serif:'Fraunces',serif;--mono:'JetBrains Mono',ui-monospace,monospace;
   --azur:#7fd3ff;--azur-deep:#2a7fb8;--azur-glow:rgba(127,211,255,.35);
+  --fx-rgb:127,211,255;
   --spectre:linear-gradient(90deg,#5b00e6 0%,#2b5cff 16%,#12b7ff 32%,#22d38a 48%,#f6df2c 64%,#ff8a1f 80%,#ff2f3c 100%);
   --spectre-soft:linear-gradient(90deg,rgba(91,0,230,0),rgba(43,92,255,.5) 18%,rgba(18,183,255,.6) 34%,rgba(34,211,138,.6) 50%,rgba(246,223,44,.6) 66%,rgba(255,138,31,.5) 82%,rgba(255,47,60,0));
   --glass-bg:linear-gradient(160deg,rgba(14,26,46,.72),rgba(7,12,26,.55));
@@ -241,34 +242,6 @@ table.dtable td.wrapok{white-space:normal}
 .fb-note .imath .katex{font-size:1em;color:var(--azur)}
 .formula + .fb-say{margin-top:-2px}
 
-/* ================= FORMULES : symboles survolables, « Ce qu'elle dit », rangée des symboles ================= */
-/* les calques KaTeX (.vlist des fractions et indices, SVG des radicaux) captaient la souris : seuls les symboles la reçoivent */
-.formula .katex *,.imath .katex *{pointer-events:none}.formula .katex [data-sym],.formula .katex [data-sym] *,.imath .katex [data-sym],.imath .katex [data-sym] *{pointer-events:auto}
-.formula [data-sym]{cursor:help;border-radius:3px;transition:background .25s,box-shadow .25s,color .25s}
-.formula [data-sym]:hover,.formula [data-sym].sym-on{background:rgba(127,211,255,.16);box-shadow:0 0 0 2px rgba(127,211,255,.16);color:#fff}
-.formula-block .fb-k{margin:0 0 6px;font-family:var(--roman);font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
-.formula-block .fb-k span{margin-left:10px;font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:0;text-transform:none;font-size:.8rem;color:var(--soft)}
-.fb-dit{position:relative;margin:0 22px 16px;padding:11px 15px;border:1px solid var(--line);border-left:2px solid var(--azur);border-radius:2px;background:rgba(127,211,255,.04)}
-.fb-dit .fb-note{padding:0;margin:0;color:var(--parch)}
-.fb-dit .fb-note + .fb-note{margin-top:9px;color:var(--muted)}
-.fb-syms{position:relative;margin:0 22px 18px}
-.fb-syms ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:6px}
-.fb-syms li{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"t n" "t u" "t v";column-gap:10px;align-items:baseline;padding:7px 10px;border:1px solid var(--line-2);border-radius:2px;background:rgba(5,8,17,.5);cursor:help;transition:border-color .25s,background .25s;font-size:.86rem;line-height:1.4}
-.fb-syms li:hover,.fb-syms li.on,.fb-syms li:focus-visible{border-color:rgba(127,211,255,.55);background:rgba(127,211,255,.08)}
-.fs-t{grid-area:t;align-self:center;min-width:2.2em;text-align:center}
-.fs-t .katex{font-size:1.2em;color:var(--gold-bright)}
-.fs-n{grid-area:n;color:var(--parch)}
-.fs-u{grid-area:u;font-family:var(--mono);font-size:.78rem;color:var(--azur)}
-.fs-v{grid-area:v;font-size:.8rem;color:var(--soft);font-style:italic}
-.fs-n .katex,.fs-u .katex,.fs-v .katex{font-size:1em}
-.fs-tip{position:fixed;z-index:70;max-width:min(340px,calc(100vw - 16px));display:grid;grid-template-columns:auto 1fr;grid-template-areas:"t n" "t u" "t v";column-gap:12px;align-items:baseline;
-  padding:11px 14px;border:1px solid rgba(127,211,255,.5);border-radius:3px;background:rgba(7,12,26,.97);box-shadow:0 18px 40px -16px rgba(0,0,0,.9),0 0 22px rgba(127,211,255,.18);
-  font-size:.92rem;line-height:1.45;pointer-events:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.fs-tip[hidden]{display:none}
-.fs-tip .fs-t .katex{font-size:1.6em}
-.fs-tip .fs-u{font-size:.84rem}
-@media (max-width:640px){.fb-dit,.fb-syms{position:relative;margin-left:16px;margin-right:16px}}
-@media (prefers-reduced-motion:reduce){.formula [data-sym],.fb-syms li{transition:none}}
 
 /* ================= ATELIERS ================= */
 .viz-mount{margin:30px 0;scroll-margin-top:74px}
@@ -435,6 +408,7 @@ details.lex-item:last-child{border-bottom:0}
   .portraits{grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr))}
   @media (max-width:900px){ .fiche-img{position:static} .fiche .transcript{grid-template-columns:minmax(0,1fr)} }
 </style>
+<link rel="stylesheet" href="../../assets/eci-formules.css?v=9ccd23e05f87">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -966,26 +940,18 @@ details.lex-item:last-child{border-bottom:0}
       <div><p class="kicker">Deux formules</p><h2>Ce que chacun a laissé, en une ligne</h2></div>
       <div class="chapter-number" aria-hidden="true">2</div>
     </div>
-    <div class="formula-block" data-fsym>
+    <div class="formula-block" data-fsym data-syms="[[&quot;E&quot;, &quot;énergie d’un quantum (d’un photon)&quot;, &quot;joule (J), ou électronvolt (eV)&quot;, &quot;≈ 3,3 × 10⁻¹⁹ J ≈ 2,1 eV à 500 THz (≈ 600 nm, orange)&quot;], [&quot;h&quot;, &quot;constante de Planck&quot;, &quot;joule-seconde (J·s)&quot;, &quot;6,626 070 15 × 10⁻³⁴ J·s, exacte depuis 2019&quot;], [&quot;\\nu&quot;, &quot;fréquence : nombre d’oscillations par seconde&quot;, &quot;hertz (Hz = s⁻¹)&quot;, &quot;≈ 600 THz à 500 nm (bleu-vert)&quot;]]">
       <div class="fb-head">Max Planck · le quantum d'énergie <span class="fb-tag">14 décembre 1900</span></div>
-      <div class="formula" data-tex="\htmlData{sym=0}{E}=\htmlData{sym=1}{h}\,\htmlData{sym=2}{\nu}">E = hν</div>
-      <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;E égale h nu&nbsp;»<span class="say-x"><b>h</b>, la constante de Planck, vaut environ 6,626 × 10⁻³⁴ joule-seconde&nbsp;; elle est exacte par définition depuis 2019. <b>ν</b> («&nbsp;nu&nbsp;», jamais «&nbsp;v&nbsp;») est la fréquence, en hertz.</span></span></p>
-      <div class="fb-dit"><p class="fb-k">Ce qu’elle dit</p>
-        <p class="fb-note">L’énergie n’est échangée entre la lumière et la matière que par paquets, et chaque paquet vaut la fréquence multipliée par la constante <span class="imath" data-tex="h">h</span>. Planck l’introduit en 1900 comme un artifice de calcul pour décrire le rayonnement du corps noir ; Einstein, en 1905, en fait une propriété de la lumière elle-même.</p>
-        <p class="fb-note">Planck a appelé ce choix «&nbsp;un acte de désespoir&nbsp;» et a mis des années à en accepter la réalité physique — il critiquera même, en 1913, l'hypothèse des quanta de lumière d'Einstein.</p>
-      </div>
-      <div class="fb-syms"><p class="fb-k">Les symboles. <span>Survolez la formule ou un symbole.</span></p><ul><li data-k="0" tabindex="0"><span class="fs-t"><span class="imath" data-tex="E">E</span></span> <span class="fs-n">énergie d’un quantum (d’un photon)</span> <span class="fs-u">joule (J), ou électronvolt (eV)</span> <span class="fs-v">≈ 3,3 × 10⁻¹⁹ J ≈ 2,1 eV à 500 THz (≈ 600 nm, orange)</span></li><li data-k="1" tabindex="0"><span class="fs-t"><span class="imath" data-tex="h">h</span></span> <span class="fs-n">constante de Planck</span> <span class="fs-u">joule-seconde (J·s)</span> <span class="fs-v">6,626 070 15 × 10⁻³⁴ J·s, exacte depuis 2019</span></li><li data-k="2" tabindex="0"><span class="fs-t"><span class="imath" data-tex="\nu"></span></span> <span class="fs-n">fréquence : nombre d’oscillations par seconde</span> <span class="fs-u">hertz (Hz = s⁻¹)</span> <span class="fs-v">≈ 600 THz à 500 nm (bleu-vert)</span></li></ul></div>
-    </div>
-    <div class="formula-block" data-fsym>
+      <div class="formula" data-tex="\htmlData{sym=0}{E}=\htmlData{sym=1}{h}\,\htmlData{sym=2}{\nu}" data-tex-src="E = h\,\nu">E = hν</div>
+      <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;E égale h nu&nbsp;»<span class="say-x"><b>h</b>, la constante de Planck, vaut environ 6,626 × 10⁻³⁴ joule-seconde&nbsp;; elle est exacte par définition depuis 2019. <b>ν</b> («&nbsp;nu&nbsp;», jamais «&nbsp;v&nbsp;») est la fréquence, en hertz.</span></span></p><div class="fb-dit" data-fsym-gen><p class="fb-k">Ce qu’elle dit</p><p class="fb-note">L’énergie n’est échangée entre la lumière et la matière que par paquets, et chaque paquet vaut la fréquence multipliée par la constante <span class="imath" data-tex="\htmlData{sym=g0}{h}">h</span>. Planck l’introduit en 1900 comme un artifice de calcul pour décrire le rayonnement du corps noir ; Einstein, en 1905, en fait une propriété de la lumière elle-même.</p></div>
+      <p class="fb-note">Planck a appelé ce choix «&nbsp;un acte de désespoir&nbsp;» et a mis des années à en accepter la réalité physique — il critiquera même, en 1913, l'hypothèse des quanta de lumière d'Einstein.</p>
+    <div class="fb-syms" data-fsym-gen><p class="fb-k">Les symboles. <span>Survolez la formule ou un symbole.</span></p><ul><li data-k="0" tabindex="0"><span class="fs-t"><span class="imath" data-tex="E">E</span></span> <span class="fs-n">énergie d’un quantum (d’un photon)</span> <span class="fs-u">joule (J), ou électronvolt (eV)</span> <span class="fs-v">≈ 3,3 × 10⁻¹⁹ J ≈ 2,1 eV à 500 THz (≈ 600 nm, orange)</span></li><li data-k="1" tabindex="0"><span class="fs-t"><span class="imath" data-tex="h">h</span></span> <span class="fs-n">constante de Planck</span> <span class="fs-u">joule-seconde (J·s)</span> <span class="fs-v">6,626 070 15 × 10⁻³⁴ J·s, exacte depuis 2019</span></li><li data-k="2" tabindex="0"><span class="fs-t"><span class="imath" data-tex="\nu">\nu</span></span> <span class="fs-n">fréquence : nombre d’oscillations par seconde</span> <span class="fs-u">hertz (Hz = s⁻¹)</span> <span class="fs-v">≈ 600 THz à 500 nm (bleu-vert)</span></li></ul></div></div>
+    <div class="formula-block" data-fsym data-syms="[[&quot;S&quot;, &quot;paramètre CHSH : combinaison des quatre corrélations mesurées&quot;, &quot;sans unité&quot;, &quot;≤ 2 si les variables cachées sont locales&quot;], [&quot;E&quot;, &quot;corrélation des résultats (+1 ou −1) d’Alice et de Bob pour un couple d’orientations : moyenne de leur produit&quot;, &quot;sans unité, entre −1 et +1&quot;, &quot;+1 : toujours d’accord · −1 : toujours opposés · 0 : sans lien&quot;], [&quot;a&quot;, &quot;première orientation de l’analyseur d’Alice&quot;, &quot;degré (°)&quot;, &quot;0° dans le réglage qui maximise S&quot;], [&quot;a&#x27;&quot;, &quot;seconde orientation de l’analyseur d’Alice ; le « prime » n’est pas une dérivée&quot;, &quot;degré (°)&quot;, &quot;45°&quot;], [&quot;b&quot;, &quot;première orientation de l’analyseur de Bob&quot;, &quot;degré (°)&quot;, &quot;22,5°&quot;], [&quot;b&#x27;&quot;, &quot;seconde orientation de l’analyseur de Bob&quot;, &quot;degré (°)&quot;, &quot;67,5° ; avec ces quatre angles, S = 2√2&quot;], [&quot;\\le&quot;, &quot;« est inférieur ou égal à »&quot;, &quot;—&quot;, &quot;&quot;]]">
       <div class="fb-head">John Bell · l'inégalité qui rend le débat testable <span class="fb-tag">1964 · forme CHSH 1969</span></div>
-      <div class="formula" data-tex="\htmlData{sym=0}{S}=\htmlData{sym=6}{\bigl|}\htmlData{sym=1}{E}(\htmlData{sym=2}{a},\htmlData{sym=4}{b})-\htmlData{sym=1}{E}(\htmlData{sym=2}{a},\htmlData{sym=5}{b'})+\htmlData{sym=1}{E}(\htmlData{sym=3}{a'},\htmlData{sym=4}{b})+\htmlData{sym=1}{E}(\htmlData{sym=3}{a'},\htmlData{sym=5}{b'})\htmlData{sym=6}{\bigr|}\htmlData{sym=8}{\le}\htmlData{sym=9}{2}">S = |E(a,b) − E(a,b′) + E(a′,b) + E(a′,b′)| ≤ 2</div>
-      <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;S égale la valeur absolue de E de a, b, moins E de a, b prime, plus E de a prime, b, plus E de a prime, b prime&nbsp;; S est inférieur ou égal à deux&nbsp;»<span class="say-x">Le <b>a′</b> se dit «&nbsp;a prime&nbsp;»&nbsp;: c'est une seconde orientation d'analyseur, pas une dérivée. Les barres verticales se disent «&nbsp;valeur absolue&nbsp;».</span></span></p>
-      <div class="fb-dit"><p class="fb-k">Ce qu’elle dit</p>
-        <p class="fb-note">Pour des paires de particules intriquées, on combine les corrélations mesurées avec deux orientations d’analyseur de chaque côté. Si chaque particule emportait d’avance des instructions locales, cette combinaison <span class="imath" data-tex="S">S</span> ne dépasserait jamais 2. Bell montre que la mécanique quantique prédit davantage : le désaccord entre les deux visions devient une question d’expérience, et non plus de philosophie.</p>
-        <p class="fb-note">Toute théorie à variables cachées <b>locales</b> respecte cette borne. La mécanique quantique monte jusqu'à <span class="imath" data-tex="2\sqrt{2}">2√2</span> ≈ 2,83, et les expériences le confirment depuis 1972. C'est ce qui a valu le Nobel 2022 à Clauser, Aspect et Zeilinger — deux ans après la mort de Bell, prématurée à soixante-deux ans.</p>
-      </div>
-      <div class="fb-syms"><p class="fb-k">Les symboles. <span>Survolez la formule ou un symbole.</span></p><ul><li data-k="0" tabindex="0"><span class="fs-t"><span class="imath" data-tex="S">S</span></span> <span class="fs-n">paramètre CHSH : combinaison des quatre corrélations mesurées</span> <span class="fs-u">sans unité</span> <span class="fs-v">≤ 2 si les variables cachées sont locales</span></li><li data-k="1" tabindex="0"><span class="fs-t"><span class="imath" data-tex="E">E</span></span> <span class="fs-n">corrélation des résultats (+1 ou −1) d’Alice et de Bob pour un couple d’orientations : moyenne de leur produit</span> <span class="fs-u">sans unité, entre −1 et +1</span> <span class="fs-v">+1 : toujours d’accord · −1 : toujours opposés · 0 : sans lien</span></li><li data-k="2" tabindex="0"><span class="fs-t"><span class="imath" data-tex="a">a</span></span> <span class="fs-n">première orientation de l’analyseur d’Alice</span> <span class="fs-u">degré (°)</span> <span class="fs-v">0° dans le réglage qui maximise S</span></li><li data-k="3" tabindex="0"><span class="fs-t"><span class="imath" data-tex="a'">a&#x27;</span></span> <span class="fs-n">seconde orientation de l’analyseur d’Alice ; le « prime » n’est pas une dérivée</span> <span class="fs-u">degré (°)</span> <span class="fs-v">45°</span></li><li data-k="4" tabindex="0"><span class="fs-t"><span class="imath" data-tex="b">b</span></span> <span class="fs-n">première orientation de l’analyseur de Bob</span> <span class="fs-u">degré (°)</span> <span class="fs-v">22,5°</span></li><li data-k="5" tabindex="0"><span class="fs-t"><span class="imath" data-tex="b'">b&#x27;</span></span> <span class="fs-n">seconde orientation de l’analyseur de Bob</span> <span class="fs-u">degré (°)</span> <span class="fs-v">67,5° ; avec ces quatre angles, S = 2√2</span></li><li data-k="6" tabindex="0"><span class="fs-t"><span class="imath" data-tex="|\,\cdot\,|">|\,\,|</span></span> <span class="fs-n">valeur absolue : la grandeur sans son signe</span> <span class="fs-u">—</span> <span class="fs-v">|−2,5| = 2,5</span></li><li data-k="8" tabindex="0"><span class="fs-t"><span class="imath" data-tex="\le"></span></span> <span class="fs-n">« est inférieur ou égal à »</span> <span class="fs-u">—</span></li><li data-k="9" tabindex="0"><span class="fs-t"><span class="imath" data-tex="2">2</span></span> <span class="fs-n">borne de Bell-CHSH : le maximum permis par toute théorie à variables cachées locales</span> <span class="fs-u">sans unité</span> <span class="fs-v">exactement 2</span></li></ul></div>
-    </div>
+      <div class="formula" data-tex="\htmlData{sym=0}{S}=\bigl|\htmlData{sym=1}{E}(\htmlData{sym=2}{a},\htmlData{sym=4}{b})-\htmlData{sym=1}{E}(\htmlData{sym=2}{a},\htmlData{sym=5}{b&#x27;})+\htmlData{sym=1}{E}(\htmlData{sym=3}{a&#x27;},\htmlData{sym=4}{b})+\htmlData{sym=1}{E}(\htmlData{sym=3}{a&#x27;},\htmlData{sym=5}{b&#x27;})\bigr|\htmlData{sym=6}{\le}2" data-tex-src="S = \bigl|E(a,b) - E(a,b&#39;) + E(a&#39;,b) + E(a&#39;,b&#39;)\bigr| \le 2">S = |E(a,b) − E(a,b′) + E(a′,b) + E(a′,b′)| ≤ 2</div>
+      <p class="fb-say"><span class="say-k">Se lit</span><span class="say-t">«&nbsp;S égale la valeur absolue de E de a, b, moins E de a, b prime, plus E de a prime, b, plus E de a prime, b prime&nbsp;; S est inférieur ou égal à deux&nbsp;»<span class="say-x">Le <b>a′</b> se dit «&nbsp;a prime&nbsp;»&nbsp;: c'est une seconde orientation d'analyseur, pas une dérivée. Les barres verticales se disent «&nbsp;valeur absolue&nbsp;».</span></span></p><div class="fb-dit" data-fsym-gen><p class="fb-k">Ce qu’elle dit</p><p class="fb-note">Pour des paires de particules intriquées, on combine les corrélations mesurées avec deux orientations d’analyseur de chaque côté. Si chaque particule emportait d’avance des instructions locales, cette combinaison <span class="imath" data-tex="\htmlData{sym=g1}{S}">S</span> ne dépasserait jamais 2. Bell montre que la mécanique quantique prédit davantage : le désaccord entre les deux visions devient une question d’expérience, et non plus de philosophie.</p></div>
+      <p class="fb-note">Toute théorie à variables cachées <b>locales</b> respecte cette borne. La mécanique quantique monte jusqu'à <span class="imath" data-tex="2\sqrt{2}" data-tex-src="2\sqrt{2}">2√2</span> ≈ 2,83, et les expériences le confirment depuis 1972. C'est ce qui a valu le Nobel 2022 à Clauser, Aspect et Zeilinger — deux ans après la mort de Bell, prématurée à soixante-deux ans.</p>
+    <div class="fb-syms" data-fsym-gen><p class="fb-k">Les symboles. <span>Survolez la formule ou un symbole.</span></p><ul><li data-k="0" tabindex="0"><span class="fs-t"><span class="imath" data-tex="S">S</span></span> <span class="fs-n">paramètre CHSH : combinaison des quatre corrélations mesurées</span> <span class="fs-u">sans unité</span> <span class="fs-v">≤ 2 si les variables cachées sont locales</span></li><li data-k="1" tabindex="0"><span class="fs-t"><span class="imath" data-tex="E">E</span></span> <span class="fs-n">corrélation des résultats (+1 ou −1) d’Alice et de Bob pour un couple d’orientations : moyenne de leur produit</span> <span class="fs-u">sans unité, entre −1 et +1</span> <span class="fs-v">+1 : toujours d’accord · −1 : toujours opposés · 0 : sans lien</span></li><li data-k="2" tabindex="0"><span class="fs-t"><span class="imath" data-tex="a">a</span></span> <span class="fs-n">première orientation de l’analyseur d’Alice</span> <span class="fs-u">degré (°)</span> <span class="fs-v">0° dans le réglage qui maximise S</span></li><li data-k="3" tabindex="0"><span class="fs-t"><span class="imath" data-tex="a&#x27;">a'</span></span> <span class="fs-n">seconde orientation de l’analyseur d’Alice ; le « prime » n’est pas une dérivée</span> <span class="fs-u">degré (°)</span> <span class="fs-v">45°</span></li><li data-k="4" tabindex="0"><span class="fs-t"><span class="imath" data-tex="b">b</span></span> <span class="fs-n">première orientation de l’analyseur de Bob</span> <span class="fs-u">degré (°)</span> <span class="fs-v">22,5°</span></li><li data-k="5" tabindex="0"><span class="fs-t"><span class="imath" data-tex="b&#x27;">b'</span></span> <span class="fs-n">seconde orientation de l’analyseur de Bob</span> <span class="fs-u">degré (°)</span> <span class="fs-v">67,5° ; avec ces quatre angles, S = 2√2</span></li><li data-k="6" tabindex="0"><span class="fs-t"><span class="imath" data-tex="\le">\le</span></span> <span class="fs-n">« est inférieur ou égal à »</span> <span class="fs-u">—</span></li></ul></div></div>
   </div>
 </section>
 </main>
@@ -1042,64 +1008,6 @@ function renderMath(){ if(!window.katex) return;
 if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', renderMath); else renderMath();
 addEventListener('load', renderMath);
 
-/* ================================================================ FORMULES : chaque symbole se survole
-   Le générateur (a_traiter/lumiere/build/formules_symboles.py, repris du dossier « Le Son ») a marqué chaque occurrence d'un symbole (\htmlData{sym=k}) ; la rangée « Les symboles »
-   sous la formule porte, pour chaque k, la définition, l'unité et un ordre de grandeur. Survol, toucher
-   ou focus clavier : la fiche s'affiche près du symbole et toutes ses occurrences s'allument. */
-(function(){
-  const tip = document.createElement('div'); tip.className = 'fs-tip'; tip.setAttribute('role', 'tooltip'); tip.hidden = true; document.body.appendChild(tip);
-  let cur = null, pinned = false;
-  function light(block, k){
-    block.querySelectorAll('.formula [data-sym]').forEach(s => s.classList.toggle('sym-on', s.dataset.sym === k));
-    block.querySelectorAll('.fb-syms li').forEach(li => li.classList.toggle('on', li.dataset.k === k));
-  }
-  function show(block, k, anchor0){
-    let anchor = anchor0;
-    const li = block.querySelector('.fb-syms li[data-k="' + k + '"]'); if (!li) return;
-    light(block, k); cur = { block, k };
-    tip.innerHTML = li.innerHTML; tip.hidden = false;
-    // une occurrence hors de l'écran (formule haute, clic dans la rangée du bas) : on s'accroche à la rangée
-    let ar = anchor.getBoundingClientRect();
-    if (ar.bottom < 0 || ar.top > innerHeight) { anchor = li; ar = li.getBoundingClientRect(); }
-    const r = ar, tw = tip.offsetWidth, th = tip.offsetHeight, vw = document.documentElement.clientWidth;
-    let x = r.left + r.width / 2 - tw / 2; x = Math.max(8, Math.min(vw - tw - 8, x));
-    const topbar = document.getElementById('topbar'), minY = (topbar ? topbar.getBoundingClientRect().bottom : 0) + 8;
-    // verticalement, la fiche se pose au-dessus (ou au-dessous) du cadre de la formule : elle ne la cache pas
-    const box = anchor.closest && anchor.closest('.formula') ? anchor.closest('.formula').getBoundingClientRect() : r;
-    let y = box.top - th - 6; if (y < minY) y = box.bottom + 6;
-    y = Math.max(minY, Math.min(innerHeight - th - 8, y));
-    tip.style.left = x + 'px'; tip.style.top = y + 'px';
-  }
-  function hide(){ if (!cur) return; light(cur.block, null); cur = null; pinned = false; tip.hidden = true; }
-  const symAt = t => t && t.closest && t.closest('.formula [data-sym]');
-  document.addEventListener('pointerover', e => {
-    if (pinned) return;
-    const s = symAt(e.target); if (s){ show(s.closest('.formula-block'), s.dataset.sym, s); return; }
-    const li = e.target.closest && e.target.closest('.fb-syms li');
-    if (li){ const b = li.closest('.formula-block'), first = b.querySelector('.formula [data-sym="' + li.dataset.k + '"]'); show(b, li.dataset.k, first || li); }
-  });
-  document.addEventListener('pointerout', e => {
-    if (pinned || !cur) return;
-    const from = symAt(e.target) || (e.target.closest && e.target.closest('.fb-syms li'));
-    const to = e.relatedTarget && (symAt(e.relatedTarget) || (e.relatedTarget.closest && e.relatedTarget.closest('.fb-syms li')));
-    if (from && !to) hide();
-  });
-  /* toucher : un appui épingle la fiche, un appui ailleurs la ferme */
-  document.addEventListener('pointerdown', e => {
-    const s = symAt(e.target), li = e.target.closest && e.target.closest('.fb-syms li');
-    if (s || li){
-      const b = (s || li).closest('.formula-block'), k = s ? s.dataset.sym : li.dataset.k;
-      if (pinned && cur && cur.k === k && cur.block === b){ hide(); return; }
-      show(b, k, s || b.querySelector('.formula [data-sym="' + k + '"]') || li); pinned = e.pointerType !== 'mouse'; return;
-    }
-    if (cur) hide();
-  });
-  document.addEventListener('focusin', e => { const li = e.target.closest && e.target.closest('.fb-syms li');
-    if (li){ const b = li.closest('.formula-block'); show(b, li.dataset.k, b.querySelector('.formula [data-sym="' + li.dataset.k + '"]') || li); } });
-  document.addEventListener('focusout', e => { if (e.target.closest && e.target.closest('.fb-syms li')) hide(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && cur) hide(); });
-  addEventListener('scroll', () => { if (cur) hide(); }, { passive: true });
-})();
 
 (function(){ const c = document.getElementById('stars'); if(!c) return; const x = c.getContext('2d'); let W,H,stars=[];
   function size(){ W=c.width=innerWidth*DPR; H=c.height=innerHeight*DPR; stars=[];
@@ -1137,5 +1045,7 @@ addEventListener('load', renderMath);
   draw(0); if(!reduce) loop(draw); })();
 })();
 </script>
+<script src="../../assets/eci-formules.js?v=652f26e42db3" defer></script>
+<script type="application/json" id="symtab">{"g0": ["h", "constante de Planck", "joule-seconde (J·s)", "6,626 070 15 × 10⁻³⁴ J·s, exacte depuis 2019"], "g1": ["S", "paramètre CHSH : combinaison des quatre corrélations mesurées", "sans unité", "≤ 2 si les variables cachées sont locales"]}</script>
 </body>
 </html>

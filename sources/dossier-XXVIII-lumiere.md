@@ -347,7 +347,7 @@ Une période de 16 états est maintenant calculée dans un seul worker. Chaque �
 
 ## F. Formules : fiches de symboles et encadrés « Ce qu'elle dit » — 25 septembre 2026
 
-Les 25 blocs de formule (23 dans `index.html`, 2 dans `portraits.html`) ont reçu le composant du Dossier « Le Son » : symboles survolables, rangée « Les symboles » (définition, unité, ordre de grandeur) et encadré « Ce qu'elle dit ». Les 31 affirmations nouvelles ont été vérifiées par trois agents en parallèle, avec recalcul de chaque valeur. Générateur : `a_traiter/lumiere/build/formules_symboles.py` (non publié). Relecture Grammalecte : 0 faute, faux positifs consignés dans `provoxys/lumiere/grammalecte.md`.
+Les 25 blocs de formule (23 dans `index.html`, 2 dans `portraits.html`) ont reçu le composant du Dossier « Le Son » : symboles survolables, rangée « Les symboles » (définition, unité, ordre de grandeur) et encadré « Ce qu'elle dit ». Les 31 affirmations nouvelles ont été vérifiées par trois agents en parallèle, avec recalcul de chaque valeur. Données : `provoxys/lumiere/symboles.md` et `symboles-portraits.md` (versionnées, non publiées), appliquées par le composant commun (`assets/eci-formules.*`, outil `formules-symboles.py` de la skill) — qui couvre aussi les 103 formules du texte, lettre par lettre. Relecture Grammalecte : 0 faute, faux positifs consignés dans `provoxys/lumiere/grammalecte.md`.
 
 | # | Affirmation | Verdict | Valeur retenue / source |
 |---|---|---|---|
