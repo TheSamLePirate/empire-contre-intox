@@ -185,6 +185,9 @@ typographie. Deux niveaux :
   occurrence**. Les occurrences suivantes peuvent rester en `.imath`.
 - **lecture orale** `.fb-say` — dans chaque `.formula-block`, entre la formule et
   sa note : **comment la formule se dit en français**. OBLIGATOIRE, voir **d bis**.
+- **symboles survolables** — chaque symbole d'un bloc ou d'une formule du texte
+  affiche sa définition et son unité ; chaque bloc a « Ce qu'elle dit » et sa rangée
+  « Les symboles ». OBLIGATOIRE, voir **g** et `reference/formules-symboles.md`.
 
 Exemple de référence déjà livré : `provoxys/Artemis2.html` (Voie B, accents orange)
 et `jorge-zalex/elements.html` (Voie A, accents or).
@@ -204,7 +207,9 @@ et `jorge-zalex/elements.html` (Voie A, accents or).
       const tex = node.getAttribute("data-tex");
       const display = node.classList.contains("formula");
       if (window.katex) {
-        try { katex.render(tex, node, { throwOnError: false, displayMode: display }); return; }
+        // trust : \htmlData porte les symboles survolables (g) ; sans lui, KaTeX l'affiche en rouge
+        try { katex.render(tex, node, { throwOnError: false, displayMode: display,
+          trust: c => c.command === "\\htmlData", strict: c => c === "htmlExtension" ? "ignore" : "warn" }); return; }
         catch (e) { /* repli ci-dessous */ }
       }
       node.textContent = tex; // repli lisible si KaTeX indisponible
@@ -334,7 +339,7 @@ cd /tmp && mkdir -p kx && cd kx && npm i katex@0.16.11 --no-save --silent && nod
 const fs=require("fs"),katex=require("katex");
 const s=fs.readFileSync(process.argv[1],"utf8");
 const dec=t=>t.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,"\"");
-let n=0,bad=0;for(const m of s.matchAll(/data-tex="([^"]*)"/g)){n++;try{katex.renderToString(dec(m[1]),{throwOnError:true});}catch(e){bad++;console.log("FAIL:",m[1]);}}
+let n=0,bad=0;for(const m of s.matchAll(/data-tex="([^"]*)"/g)){n++;try{katex.renderToString(dec(m[1]),{throwOnError:true,trust:c=>c.command==="\\htmlData",strict:c=>c==="htmlExtension"?"ignore":"warn"});}catch(e){bad++;console.log("FAIL:",m[1]);}}
 console.log(`rendered ${n}, ${bad} failures`);' <chemin absolu>/index.html
 ```
 Compter aussi les lectures orales — le compte doit tomber juste :
@@ -356,6 +361,24 @@ indices nucléaires `{}^{A}_{Z}\mathrm{X}` · `\bar{\nu}_e` · `\hat{H}\psi=E\ps
 `\mathrm{kg}` pour les unités · décimales françaises `931{,}5` (la virgule entre
 accolades garde l'espacement correct). Lettres grecques : `\mu \nu \lambda \psi
 \alpha \beta \gamma \Phi \Omega`.
+
+### g) Symboles survolables, « Ce qu'elle dit », rangée des symboles (OBLIGATOIRE)
+
+Une fois les formules écrites (a → e), elles deviennent **survolables** : chaque symbole
+affiche sa définition, son unité et un ordre de grandeur (souris, toucher, clavier), chaque
+bloc reçoit **« Ce qu'elle dit »** (`.fb-dit`) après « Se lit » puis la rangée **« Les
+symboles »** (`.fb-syms`), et chaque lettre des `.imath` reçoit sa fiche selon son contexte.
+
+- **Rien à écrire à la main dans la page** : les données vont dans `<dossier>/symboles.md`,
+  et `scripts/formules-symboles.py` annote la page (TeX en `\htmlData{sym=…}`, blocs, table
+  `#symtab`, liens vers `assets/eci-formules.css/.js`).
+- **Composant commun** `assets/eci-formules.css` + `assets/eci-formules.js` : ne jamais le
+  recopier dans une page. Accent du dossier : `:root{ --fx-rgb: R, G, B; }` (défaut : or clair).
+- Garder **`class="formula-block"` exact** : le composant marque le bloc par l'attribut
+  `data-fsym`, pas par une classe (sinon les comptes de `verify-dossier.py` tombent à 0).
+- Guide complet — format de `symboles.md`, règles de rédaction, contexte des formules du
+  texte, agents en parallèle, relecture, pièges : **`reference/formules-symboles.md`**.
+  Référence vivante : `provoxys/son/index.html`.
 
 ---
 

@@ -25,6 +25,10 @@ Le site est publié sur deux canaux :
 > - **`scripts/check-coverage.py`** — contrôle **obligatoire** des 100 % mot pour mot ;
 > - **`scripts/verify-dossier.py`** — **tous les contrôles de fin en une commande**
 >   (verbatim, formules, page, liens, JS, index, manifeste, RSS, cache, sources) ;
+> - **`scripts/formules-symboles.py`** + **`reference/formules-symboles.md`** — **formules
+>   survolables** : chaque symbole affiche sa définition et son unité, « Ce qu'elle dit »,
+>   rangée des symboles, formules du texte annotées selon leur contexte (composant commun
+>   `assets/eci-formules.css/.js`, données dans `<dossier>/symboles.md`) ;
 > - **`scripts/optimize-pngs.sh`** — optimisation PNG du site (pngquant + oxipng) ;
 > - **`.claude/agents/verif-claims.md`** — l'**agent de vérification factuelle**
 >   (effort `high`, DOI Crossref, noms cherchés tels qu'écrits, résumés reformulés) ;
@@ -207,6 +211,7 @@ Voir `provoxys/Artemis2.html` (classes `.eci-home`, `.eci-collective`, `.eci-btn
 6. Créer/placer une **image hero** pertinente dans `<dossier-auteur>/assets/` (nom explicite, ex. `artemis2-hero.png`).
 7. Hero fort + nav interne sticky + chapitres + encadrés pédagogiques.
 7 bis. **Chaque bloc de formule porte sa ligne « Se lit »** (`.fb-say`) : la lecture orale de la formule en français, plus une glose des symboles qui se prononcent mal. **OBLIGATOIRE pour toute formule affichée**, voie A comme voie B — voir « Formules ».
+7 ter. **Chaque formule est survolable** : chaque symbole (blocs et formules du texte) affiche sa définition, son unité et un ordre de grandeur ; chaque bloc porte « Ce qu'elle dit » et la rangée « Les symboles ». Composant commun `assets/eci-formules.css/.js`, posé par `formules-symboles.py` d'après `<dossier>/symboles.md`. **OBLIGATOIRE** — voir « Formules survolables ».
 8. **Intégration ECI** : retour à l'index + footer/bandeau ECI (voie A ou voie B selon le design choisi).
 9. Liens croisés : `../index.html` + autres dossiers pertinents.
 10. **Crédit auteur** dans la page (footer ECI et/ou bandeau crédit après le sommaire) ET sur la carte d'index.
@@ -375,6 +380,38 @@ pas l'or.
 - aucun caractère combinant resté en Unicode dans une glose ;
 - un label SVG ou une pastille allongés par une reformulation se **mesurent**
   (`getComputedTextLength()` contre la largeur de leur boîte), ils ne s'estiment pas.
+
+## Formules survolables (obligatoire)
+
+Lire une formule, c'est savoir ce que désigne chaque lettre. **Chaque symbole d'une formule
+affichée** — bloc `.formula-block` ou formule du texte `.imath` — affiche donc, au survol, au
+toucher ou au clavier, **sa définition, son unité et un ordre de grandeur** ; toutes ses
+occurrences s'allument en même temps. Chaque bloc porte en plus, après « Se lit » :
+
+- **« Ce qu'elle dit »** (`.fb-dit`) — deux à quatre phrases : ce que la relation affirme,
+  dans quel sens varient les grandeurs, sous quelles hypothèses ;
+- **« Les symboles »** (`.fb-syms`) — une fiche par symbole, accessible au toucher et au clavier.
+
+Dans une formule du texte, le sens d'une lettre vient de son **contexte** (bloc → clé →
+section → dossier) : `c` n'est pas la même grandeur en acoustique et en cosmologie.
+
+Règles :
+
+- **Composant commun, jamais recopié** : `assets/eci-formules.css` + `assets/eci-formules.js`.
+  Un dossier ne règle que son accent de surbrillance (`:root{ --fx-rgb: R, G, B; }`).
+- **Les données ne s'écrivent pas dans la page** : `<equipe>/<dossier>/symboles.md` (versionné,
+  non publié), puis `.claude/skills/nouveau-dossier/scripts/formules-symboles.py <page>`
+  annote la page en place — idempotent, `--check` pour le contrôle, `--retirer` pour annuler.
+  Un dossier construit par script (Le Son) appelle les mêmes modules depuis son générateur.
+- Symbole **défini tel qu'écrit** dans la formule ; définition au sens physique, unité SI (nom
+  et symbole), valeurs **celles du dossier** — jamais un chiffre inventé pour remplir la case.
+- **Relecture obligatoire** des sens hérités (`inline-relecture.tsv`) : l'héritage de contexte
+  se trompe parfois, et une fiche fausse est une intox de plus.
+- La classe reste **exactement `class="formula-block"`** ; le composant marque par l'attribut
+  `data-fsym`.
+
+Guide complet : `.claude/skills/nouveau-dossier/reference/formules-symboles.md`. Référence
+vivante : `provoxys/son/index.html`.
 
 ## Largeurs d'écran — du mobile au 4K (obligatoire)
 
@@ -757,6 +794,9 @@ Avant de terminer :
   défilement horizontal, rien de coupé, bloc `<style id="eci-wide-style">` présent ;
 - vérifier qu'il y a **autant de `.fb-say` que de `.formula-block`** — chaque formule
   affichée a sa lecture orale (voir « Formules ») ;
+- vérifier que **chaque formule est survolable** : `formules-symboles.py <page> --check` → 0,
+  section `formules+` de `verify-dossier.py` sans FAIL, survol testé à 1280 et 390 px (voir
+  « Formules survolables ») ;
 - si le hero de l'accueil a changé, **régénérer `assets/og-index.jpg`**
   (`node scripts/generate-og-hero.mjs`) ;
 - lancer `python3 .claude/skills/nouveau-dossier/scripts/verify-dossier.py <page> <transcripts…>`

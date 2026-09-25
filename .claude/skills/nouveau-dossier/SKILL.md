@@ -22,11 +22,16 @@ au transcript, **factuellement vérifiée**, intégrée à l'index et au dossier
 > skill en est la mise en œuvre opérationnelle. Ce dossier contient en plus :
 > - `reference/design-system.md` — tokens codex + **correctif révélation** + dataviz
 >   + **formules LaTeX/KaTeX obligatoires (§7)** + **lecture orale « Se lit » (§7 d bis)**
+> - `reference/formules-symboles.md` — **formules survolables (OBLIGATOIRE)** : chaque
+>   symbole affiche sa définition et son unité, « Ce qu'elle dit », rangée des symboles,
+>   formules du texte annotées selon leur contexte ; composant commun `assets/eci-formules.*`
 > - `reference/sources-and-index.md` — vérification, `sources/`, `sources.html`, index
 > - `reference/images-template.md` — gabarit `images_a_generer.md`
 > - `scripts/check-coverage.py` — **contrôle obligatoire** des 100 % verbatim
 > - `scripts/verify-dossier.py` — **TOUS les contrôles de fin en une commande**
 >   (verbatim, formules, page, liens, JS, index, manifeste, RSS, cache, sources)
+> - `scripts/formules-symboles.py` (+ modules `scripts/formules/`) — annote les formules
+>   d'une page d'après `<dossier>/symboles.md` (`--init`, passe, `--check`, `--retirer`)
 > - `scripts/optimize-pngs.sh` — optimisation PNG du site
 > - `scripts/grammalecte-check.py` + `scripts/grammalecte-apply.py` + `tools/Grammalecte-fr-v2.3.0.zip`
 >   — **orthographe et grammaire** (transcript `.txt` ou page `.html`), trié par l'agent
@@ -81,6 +86,16 @@ Les chemins ci-dessous sont relatifs à la racine du dépôt et à
    qui se prononcent mal (`∂` = « d rond », `Tr` = « trace », `ħ` = « h barre »…).
    Du français écrit, jamais de phonétique. Les `.imath` inline n'en reçoivent pas —
    le signaler dans le récapitulatif. Détail : **§7 d bis**.
+6 ter. **Formules survolables (OBLIGATOIRE)** — une fois les formules en place, chaque
+   symbole doit afficher au survol, au toucher ou au clavier **sa définition, son unité et
+   un ordre de grandeur** ; chaque bloc reçoit **« Ce qu'elle dit »** (2 à 4 phrases) et la
+   rangée **« Les symboles »** ; chaque lettre des `.imath` reçoit sa fiche, prise dans son
+   contexte (bloc → clé → section → dossier). Composant commun `assets/eci-formules.css/.js`
+   (jamais recopié), accent par `--fx-rgb`. Déroulé : `formules-symboles.py --init` →
+   `symboles.md` rempli par **agents en parallèle** (blocs d'abord, puis `## Texte` sur
+   `inline-manquants.tsv`) → passe → **relecture obligatoire de `inline-relecture.tsv`**
+   (sens hérités faux → surcharges `section@formule`) → `--check` à 0. Guide complet :
+   **`reference/formules-symboles.md`**.
 6 bis. **Orthographe et grammaire (Grammalecte)** — sur la page une fois le verbatim
    en place (et, en option, sur le `.txt` dès l'étape 1) : `grammalecte-check.py`
    → agent **`tri-grammalecte`** (vraies fautes / faux positifs → `grammalecte.md`)
@@ -191,7 +206,9 @@ vide jusqu'à génération — le signaler à l'utilisateur).
   `.dialogue-block`, les **articles de loi** en `.article-noir`, le **sommaire** en
   `.pillar`, et **toute formule mathématique** (orale ou à rappeler) en **KaTeX** —
   `.imath` inline + `.formula-block` expliqué **et doté de sa ligne « Se lit »**
-  (`.fb-say`) — voir `reference/design-system.md` §7 et §7 d bis.
+  (`.fb-say`) — voir `reference/design-system.md` §7 et §7 d bis — puis rendre toutes
+  ces formules **survolables** (étape 6 ter, `reference/formules-symboles.md`). Garder la
+  classe exacte `class="formula-block"` (le composant marque par l'attribut `data-fsym`).
 - **credit-band** après le sommaire ; **collective-footer** (sceau, texte, actions,
   « Veritas omnia vincit ») ; **footer** technique court mentionnant les .txt sources.
 - Construire **par ajouts successifs** (Edit) sur une page longue : insérer chaque
@@ -366,7 +383,9 @@ python3 .claude/skills/nouveau-dossier/scripts/verify-dossier.py \
 ```
 
 Elle enchaîne : verbatim (`check-coverage.py`), formules (compte `.fb-say` =
-`.formula-block`, accolades, **rendu KaTeX réel**, caractères combinants), structure
+`.formula-block`, accolades, **rendu KaTeX réel**, caractères combinants), formules
+survolables (`formules+` : assets liés, chaque bloc `data-fsym` avec symboles, « Ce
+qu'elle dit » et rangée, chaque lettre des formules du texte couverte, `#symtab`), structure
 de page (licence, compteur, sceau, devise, `eci-wide-style` en dernier `<style>`,
 polices interdites, mention obsolète), **liens locaux et ancres** (chaque `src`/`href`
 relatif existe, chaque `#id` a sa cible), équilibre des balises, `node --check` sur
@@ -390,6 +409,10 @@ Restent à faire **à la main**, parce qu'ils demandent un navigateur ou un œil
 - [ ] **lecture orale** : autant de `.fb-say` que de `.formula-block`
       (`grep -c 'class="fb-say"'` = `grep -c 'class="formula-block"'`), en français
       écrit et sans phonétique (§7 d bis) ;
+- [ ] **formules survolables** : `formules-symboles.py --check` → 0, section `formules+`
+      de `verify-dossier.py` sans FAIL, `inline-relecture.tsv` relu ; en navigateur, survol
+      d'un symbole de bloc et d'un symbole du texte à 1280 et 390 px (fiche dans la
+      fenêtre, formule non masquée), aucune `.katex-error` ;
 - [ ] images chargées (ou hero briefé si pas encore généré), pas de scroll horizontal ;
 - [ ] **grands écrans** : bloc `<style id="eci-wide-style">` présent juste avant
       `</head>`, et balayage **360 → 3840 px** propre (aucun défilement horizontal,
@@ -626,7 +649,8 @@ session. Le construire depuis le journal :
 4. **Coquilles et grammaire** : comptes et chemins de `coquilles.md` et de
    `grammalecte.md` (pas les listes, elles sont dans les fichiers), plus les
    corrections « à confirmer » laissées par l'agent de tri ; s'il y en a, formules inline sans « Se lit » (c'est la règle, le
-   dire), dossier sans transcription (`check-coverage.py` non appliqué, le dire).
+   dire), bilan des formules survolables (blocs complets, formules du texte annotées,
+   fiches corrigées à la relecture, chemin de `symboles.md`), dossier sans transcription (`check-coverage.py` non appliqué, le dire).
 5. **Vérification factuelle** : compte des verdicts, corrections ❌ appliquées,
    encadrés anti-intox ajoutés.
 6. **Reste à faire / hors périmètre** : images non générées, dette repérée ailleurs,

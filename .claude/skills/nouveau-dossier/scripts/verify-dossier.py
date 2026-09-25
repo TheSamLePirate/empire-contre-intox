@@ -165,6 +165,70 @@ console.log(JSON.stringify({n,bad}));'''
         except Exception:
             rep("WARN", "formules", "rendu KaTeX non exécuté (npm/node indisponible ?) : " + (r.stderr.strip()[-200:] or "sans détail"))
 
+# ------------------------------------------- 2 bis. formules survolables
+# Composant commun (assets/eci-formules.*) : chaque bloc porte data-fsym + ses symboles, « Ce qu'elle dit »
+# et la rangée « Les symboles » ; chaque lettre d'une formule du texte a sa fiche. Posé par
+# scripts/formules-symboles.py (ou par le générateur du dossier). Voir reference/formules-symboles.md.
+if n_fb or texs:
+    sys.path.insert(0, os.path.join(HERE, "formules"))
+    try:
+        import fsym
+    except Exception:
+        fsym = None
+    heads = re.findall(r'<div\s+class="formula-block"[^>]*>', page_src)
+    n_fsym = sum(1 for h in heads if re.search(r"\bdata-fsym\b", h))
+    linked = ("eci-formules.js" in page_src, "eci-formules.css" in page_src)
+    if not all(linked):
+        rep("FAIL", "formules+", "assets/eci-formules.css et .js non liés — lancer scripts/formules-symboles.py sur la page")
+    if n_fsym != n_fb:
+        rep("FAIL", "formules+", f"{n_fb - n_fsym} formula-block sur {n_fb} sans symboles survolables (data-fsym) — formules-symboles.py")
+    else:
+        # un bloc = de <div class="formula-block" à sa fermeture : on compte les <div>
+        empty = nodit = nolegend = 0
+        for m in re.finditer(r'<div\s+class="formula-block"[^>]*>', page_src):
+            i, d = m.end(), 1
+            for t in re.finditer(r"<div\b|</div>", page_src[i:]):
+                d += 1 if t.group(0) == "<div" else -1
+                if d == 0:
+                    blk = page_src[m.start():i + t.end()]; break
+            else:
+                continue
+            if re.search(r'data-syms=""', m.group(0)): empty += 1
+            if 'class="fb-dit"' not in blk: nodit += 1
+            if 'class="fb-syms"' not in blk: nolegend += 1
+        if empty or nodit or nolegend:
+            rep("FAIL", "formules+", f"blocs incomplets : {empty} sans symboles, {nodit} sans « Ce qu'elle dit », {nolegend} sans rangée des symboles "
+                "(a_traiter/formules/<dossier>/blocs-incomplets.tsv)")
+        elif n_fb:
+            rep("PASS", "formules+", f"{n_fb} blocs survolables : symboles, « Ce qu'elle dit », rangée des symboles")
+    # formules du texte : hors rangées des symboles, toute lettre doit être couverte par un \htmlData
+    if fsym:
+        body = re.sub(r'<div class="fb-syms"[^>]*>.*?</ul></div>', " ", page_src, flags=re.S)
+        body = re.sub(r'<div class="formula"[^>]*>', " ", body)
+
+        def strip_hd(t):
+            out, i = [], 0
+            while True:
+                j = t.find("\\htmlData{", i)
+                if j < 0: out.append(t[i:]); return "".join(out)
+                out.append(t[i:j] + "\\pi "); k = j + len("\\htmlData")   # symbole couvert → neutre (garde le « d » différentiel)
+                for _ in range(2):                          # {sym=…}{contenu} : deux groupes équilibrés
+                    d, k = 0, k
+                    while k < len(t):
+                        d += (t[k] == "{") - (t[k] == "}"); k += 1
+                        if d == 0: break
+                i = k
+        inl = [html.unescape(t) for t in re.findall(r'<span class="imath" data-tex="([^"]*)"', body)]
+        bare = [t for t in inl if fsym.annotate(strip_hd(t), [])[2]]
+        if inl and bare:
+            rep("FAIL", "formules+", f"formules du texte : {len(bare)} / {len(inl)} avec des lettres sans fiche (ex. {bare[0][:50]!r}) — "
+                "compléter la section « ## Texte » de symboles.md (inline-manquants.tsv)")
+        elif inl:
+            if "\\htmlData{sym=g" in page_src and 'id="symtab"' not in page_src:
+                rep("FAIL", "formules+", "formules du texte annotées mais table #symtab absente")
+            else:
+                rep("PASS", "formules+", f"formules du texte : {len(inl)}, toutes les lettres ont leur fiche")
+
 # -------------------------------------------------------- 3. structure page
 def has(pattern, flags_=0):
     return re.search(pattern, page_src, flags_) is not None

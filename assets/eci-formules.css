@@ -1,0 +1,50 @@
+/* Empire contre Intox — formules survolables (composant commun à tous les dossiers).
+   Structure d'un bloc : .formula-block > .fb-head, .formula, .fb-say (« Se lit »), .fb-dit (« Ce qu'elle dit »),
+   .fb-syms (rangée des symboles). Formules du texte : .imath [data-sym]. Fiche flottante : .fs-tip.
+   Accent de surbrillance réglable par dossier : --fx-rgb (triplet RVB), or clair par défaut.
+   Les jetons du codex (--gold, --parch, --soft, --line, --line-2, --mono, --roman, --serif) sont repris
+   s'ils existent, avec des valeurs de repli. */
+.formula-block, .fs-tip, .imath { --fx: var(--fx-rgb, 243, 217, 138); }
+
+/* symboles survolables */
+.formula [data-sym], .imath [data-sym] { cursor: help; border-radius: 3px; transition: background .25s, box-shadow .25s, color .25s; }
+.formula [data-sym]:hover, .formula [data-sym].sym-on { background: rgba(var(--fx), .16); box-shadow: 0 0 0 2px rgba(var(--fx), .16); color: #fff; }
+.imath [data-sym]:hover, .imath [data-sym].sym-on { background: rgba(var(--fx), .18); box-shadow: 0 0 0 2px rgba(var(--fx), .18); }
+@media (hover: hover) { .prose .imath:has([data-sym]), .fb-note .imath:has([data-sym]) { text-decoration: underline dotted rgba(var(--fx), .35); text-underline-offset: 4px; } }
+
+/* étiquettes des sections du bloc */
+.formula-block .fb-k { margin: 0 0 6px; font-family: var(--roman, "Cinzel", serif); font-size: .58rem; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--gold, #d6ac55); }
+.formula-block .fb-k span { margin-left: 10px; font-family: var(--serif, "Fraunces", serif); font-weight: 400; font-style: italic; letter-spacing: 0;
+  text-transform: none; font-size: .8rem; color: var(--soft, #8f8c78); }
+
+/* « Ce qu'elle dit » */
+.formula-block .fb-dit { margin: 0 22px 16px; padding: 11px 15px; border: 1px solid var(--line, rgba(214,172,85,.2)); border-left: 2px solid rgb(var(--fx));
+  border-radius: 2px; background: rgba(var(--fx), .04); }
+.formula-block .fb-dit .fb-note { padding: 0; margin: 0; color: var(--parch, #e7dcc1); }
+
+/* rangée des symboles */
+.formula-block .fb-syms { margin: 0 22px 18px; }
+.formula-block .fb-syms ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(230px, 100%), 1fr)); gap: 6px; }
+.formula-block .fb-syms li { display: grid; grid-template-columns: auto 1fr; grid-template-areas: "t n" "t u" "t v"; column-gap: 10px; align-items: baseline;
+  padding: 7px 10px; border: 1px solid var(--line-2, rgba(244,236,216,.1)); border-radius: 2px; background: rgba(5,8,17,.5); cursor: help;
+  transition: border-color .25s, background .25s; font-size: .86rem; line-height: 1.4; }
+.formula-block .fb-syms li:hover, .formula-block .fb-syms li.on, .formula-block .fb-syms li:focus-visible { border-color: rgba(var(--fx), .55); background: rgba(var(--fx), .08); }
+.fs-t { grid-area: t; align-self: center; min-width: 2.2em; text-align: center; }
+.fs-t .katex { font-size: 1.2em; color: var(--gold-bright, #f3d98a); }
+.fs-n { grid-area: n; color: var(--parch, #e7dcc1); }
+.fs-u { grid-area: u; font-family: var(--mono, ui-monospace, "SF Mono", Menlo, monospace); font-size: .78rem; color: rgb(var(--fx)); }
+.fs-v { grid-area: v; font-size: .8rem; color: var(--soft, #8f8c78); font-style: italic; }
+.fs-n .katex, .fs-u .katex, .fs-v .katex { font-size: 1em; }
+
+/* fiche flottante */
+.fs-tip { position: fixed; z-index: 70; max-width: min(340px, calc(100vw - 16px)); display: grid; grid-template-columns: auto 1fr; grid-template-areas: "t n" "t u" "t v";
+  column-gap: 12px; align-items: baseline; padding: 11px 14px; border: 1px solid rgba(var(--fx), .5); border-radius: 3px; background: rgba(7,12,26,.97);
+  box-shadow: 0 18px 40px -16px rgba(0,0,0,.9), 0 0 22px rgba(var(--fx), .18); font-family: var(--serif, "Fraunces", serif); font-size: .92rem; line-height: 1.45;
+  color: var(--parch, #e7dcc1); pointer-events: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.fs-tip[hidden] { display: none; }
+.fs-tip .fs-t .katex { font-size: 1.6em; }
+.fs-tip .fs-u { font-size: .84rem; }
+
+@media (max-width: 640px) { .formula-block .fb-dit, .formula-block .fb-syms { margin-left: 16px; margin-right: 16px; } }
+@media (prefers-reduced-motion: reduce) { .formula [data-sym], .imath [data-sym], .formula-block .fb-syms li { transition: none; } }
