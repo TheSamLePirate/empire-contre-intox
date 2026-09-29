@@ -16,7 +16,8 @@ Règles d'appariement (sur des jetons TeX, pas sur du texte brut) :
 import re
 
 TOK = re.compile(r"\\[A-Za-z]+|\\.|\s+|.", re.S)
-PROTECT = {r"\text", r"\mathrm", r"\operatorname", r"\textrm", r"\textit", r"\textbf", r"\mbox", r"\mathrm*"}
+PROTECT = {r"\text", r"\mathrm", r"\operatorname", r"\textrm", r"\textit", r"\textbf", r"\mbox", r"\mathrm*",
+           r"\begin", r"\end"}   # nom d’environnement (aligned, cases…) : pas des lettres à définir
 ACCENTS = {r"\hat", r"\bar", r"\vec", r"\dot", r"\ddot", r"\tilde", r"\overline", r"\widehat", r"\mathbf", r"\boldsymbol", r"\mathcal", r"\mathit"}
 GREEK = {"alpha", "beta", "gamma", "delta", "epsilon", "varepsilon", "zeta", "eta", "theta", "vartheta", "iota", "kappa", "lambda",
          "mu", "nu", "xi", "pi", "rho", "varrho", "sigma", "tau", "upsilon", "phi", "varphi", "chi", "psi", "omega",

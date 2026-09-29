@@ -22,6 +22,9 @@ au transcript, **factuellement vérifiée**, intégrée à l'index et au dossier
 > skill en est la mise en œuvre opérationnelle. Ce dossier contient en plus :
 > - `reference/design-system.md` — tokens codex + **correctif révélation** + dataviz
 >   + **formules LaTeX/KaTeX obligatoires (§7)** + **lecture orale « Se lit » (§7 d bis)**
+> - `reference/parcours-lecture.md` — **parcours de lecture** : trois parcours (Essentiel /
+>   Mécanisme / Complet) et plis dévoilables (`assets/eci-parcours.css/.js`), pour les pages
+>   longues qui mêlent récit, formules et développements experts ;
 > - `reference/formules-symboles.md` — **formules survolables (OBLIGATOIRE)** : chaque
 >   symbole affiche sa définition et son unité, « Ce qu'elle dit », rangée des symboles,
 >   formules du texte annotées selon leur contexte ; composant commun `assets/eci-formules.*`

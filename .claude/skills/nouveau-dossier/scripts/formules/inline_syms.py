@@ -17,6 +17,8 @@ table unique <script type="application/json" id="symtab"> porte les fiches {id: 
 
 Format des dictionnaires : lignes `contexte | tex | définition | unité | remarque`,
 contexte = identifiant de section (« physique »), de clé (« cle-f05 ») ou « * » (tout le dossier).
+Tout élément portant data-fctx="<id>" (ex. un bloc « En profondeur » du composant eci-parcours) est un contexte
+autonome au même titre qu'une clé : contexte « <id> » dans les dictionnaires.
 Surcharge pour UNE formule : contexte « section@formule » (ex. « maths@f(x - ct) + g(x + ct) »), prioritaire.
 Les lignes commençant par # et les lignes vides sont ignorées.
 """
@@ -70,6 +72,7 @@ class _Scan(HTMLParser):
         for tag, cls, id_, attrs in reversed(self.stack):
             if block is None and "formula-block" in cls: block = attrs
             if "fb-syms" in cls or "fs-tip" in cls: in_legend = True
+            if cle is None and attrs.get("data-fctx"): cle = attrs["data-fctx"]
             if cle is None and tag == "aside" and "cle" in cls and id_: cle = id_
             if chap is None and tag == "section" and id_: chap = id_
         return {"cle": cle, "chap": chap, "block": block, "legend": in_legend}

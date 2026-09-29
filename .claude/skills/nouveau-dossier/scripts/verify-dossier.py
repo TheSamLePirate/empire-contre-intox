@@ -229,6 +229,45 @@ if n_fb or texs:
             else:
                 rep("PASS", "formules+", f"formules du texte : {len(inl)}, toutes les lettres ont leur fiche")
 
+# -------------------------------------------------------- 2 ter. parcours de lecture
+# Plis dévoilables <details class="eci-pli" data-famille data-niveau> + sélecteur de parcours, composant
+# commun assets/eci-parcours.css/.js. Voir reference/parcours-lecture.md. Contrôle seulement si la page en a.
+if 'class="eci-pli' in page_src:
+    FAMS = {"maths", "profondeur", "histoire", "cle", "atelier"}
+    if not ("eci-parcours.js" in page_src and "eci-parcours.css" in page_src):
+        rep("FAIL", "parcours", "assets/eci-parcours.css et .js non liés alors que la page a des plis")
+    mh = re.search(r'<html[^>]*\bdata-parcours="([123])"', page_src)
+    if not mh:
+        rep("FAIL", "parcours", '<html data-parcours="2"> manquant : parcours par défaut (CSS utile sans JavaScript)')
+    defaut = int(mh.group(1)) if mh else 2
+    heads = re.findall(r'<details class="eci-pli[^"]*"[^>]*>', page_src)
+    bad_attr, bad_open, fams = [], [], {}
+    for h in heads:
+        f = re.search(r'data-famille="([^"]*)"', h); n = re.search(r'data-niveau="([^"]*)"', h)
+        if not f or f.group(1) not in FAMS or not n or n.group(1) not in ("2", "3"):
+            bad_attr.append(h[:90]); continue
+        fams[f.group(1)] = fams.get(f.group(1), 0) + 1
+        if (int(n.group(1)) <= defaut) != bool(re.search(r"\sopen[\s>]", h)):
+            bad_open.append(h[:90])
+    n_sum = len(re.findall(r'<details class="eci-pli[^"]*"[^>]*>\s*<summary class="eci-pli-s">', page_src))
+    ids = re.findall(r'<details class="eci-pli[^"]*" id="([^"]+)"', page_src)
+    dup = sorted({i for i in ids if ids.count(i) > 1})
+    if bad_attr:
+        rep("FAIL", "parcours", f"{len(bad_attr)} pli(s) sans famille ({', '.join(sorted(FAMS))}) ou niveau (2 ou 3) valides, ex. {bad_attr[0]!r}")
+    if bad_open:
+        rep("FAIL", "parcours", f"{len(bad_open)} pli(s) dont l'attribut open ne suit pas le parcours par défaut {defaut}, ex. {bad_open[0]!r}")
+    if n_sum != len(heads):
+        rep("FAIL", "parcours", f"{len(heads) - n_sum} pli(s) sans <summary class=\"eci-pli-s\"> en premier enfant")
+    if dup:
+        rep("FAIL", "parcours", f"identifiants de plis en double : {', '.join(dup[:5])}")
+    nocx = sum(1 for h in heads if not re.search(r'data-complexite="[123]"', h))
+    if nocx:
+        rep("WARN", "parcours", f"{nocx} pli(s) sans data-complexite=\"1|2|3\" : pas de pictogramme de complexité")
+    if not re.search(r'data-eci-parcours(?!="mini")', page_src):
+        rep("WARN", "parcours", "aucun sélecteur complet [data-eci-parcours] : le lecteur ne voit pas les trois parcours décrits")
+    if not (bad_attr or bad_open or dup) and n_sum == len(heads):
+        rep("PASS", "parcours", f"{len(heads)} plis (" + ", ".join(f"{k} {v}" for k, v in sorted(fams.items())) + f") · parcours par défaut {defaut}")
+
 # -------------------------------------------------------- 3. structure page
 def has(pattern, flags_=0):
     return re.search(pattern, page_src, flags_) is not None

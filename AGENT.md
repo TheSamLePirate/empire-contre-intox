@@ -29,6 +29,9 @@ Le site est publié sur deux canaux :
 >   survolables** : chaque symbole affiche sa définition et son unité, « Ce qu'elle dit »,
 >   rangée des symboles, formules du texte annotées selon leur contexte (composant commun
 >   `assets/eci-formules.css/.js`, données dans `<dossier>/symboles.md`) ;
+> - **`reference/parcours-lecture.md`** — **parcours de lecture** (Essentiel / Mécanisme /
+>   Complet) et plis dévoilables « L'analyse mathématique », « En profondeur », « Histoire &
+>   sources » (composant commun `assets/eci-parcours.css/.js`) ;
 > - **`scripts/optimize-pngs.sh`** — optimisation PNG du site (pngquant + oxipng) ;
 > - **`.claude/agents/verif-claims.md`** — l'**agent de vérification factuelle**
 >   (effort `high`, DOI Crossref, noms cherchés tels qu'écrits, résumés reformulés) ;
@@ -412,6 +415,32 @@ Règles :
 
 Guide complet : `.claude/skills/nouveau-dossier/reference/formules-symboles.md`. Référence
 vivante : `provoxys/son/index.html`.
+
+## Parcours de lecture — plis dévoilables
+
+Une page longue et technique se lit à plusieurs profondeurs. Le composant commun
+`assets/eci-parcours.css` + `assets/eci-parcours.js` propose **trois parcours** —
+**Essentiel** (le récit et les bilans), **Mécanisme** (par défaut : + clés, ateliers,
+encadrés d'entrée), **Complet** (tout déplié) — et des **blocs repliables**
+`<details class="eci-pli" data-famille data-niveau>` que le lecteur ouvre un par un.
+Familles : « L'analyse mathématique », « En profondeur », « Histoire & sources », plus
+« Clé de physique » et « Atelier » pour replier l'existant. Référence vivante :
+`provoxys/son/index.html` (Dossier du Son).
+
+- **Le texte du dossier n'est jamais retiré** : un passage très calculatoire peut être
+  replié dans un pli `maths`, il reste dans la page (ancres, recherche, impression l'ouvrent).
+- Voix du live, bilans, questions au public et anti-intox restent visibles dans tous les parcours.
+- Les blocs rédigés pour les plis sont des ajouts éditoriaux soumis à toute la charte :
+  vérification factuelle, `sources/`, « Se lit », formules survolables, Grammalecte.
+- Chaque pli affiche sa **complexité** (trois barres : verte accessible, ambre intermédiaire, corail
+  expert) et un **temps de lecture** ; la légende est dans le sélecteur de parcours.
+- Composant commun, **jamais recopié** ; un dossier ne règle que ses couleurs de famille
+  (`--pli-<famille>-rgb`). Le HTML porte l'état du parcours par défaut (`open`), pour rester
+  lisible sans JavaScript.
+- Contrôle : section `parcours` de `verify-dossier.py`, puis les trois parcours en navigateur.
+
+Guide : `.claude/skills/nouveau-dossier/reference/parcours-lecture.md`. Facultatif pour un
+dossier court ; recommandé dès qu'une page mêle récit, formules et développements experts.
 
 ## Largeurs d'écran — du mobile au 4K (obligatoire)
 
