@@ -1,0 +1,1863 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Prochainement — Futurs lives à venir — Empire contre Intox</title>
+  <meta name="description" content="Prochainement dans l'Empire contre Intox : quarante-huit lives de sciences à venir, dans l'ordre — fusion nucléaire, JWST, ondes gravitationnelles, CRISPR, Néandertal… Un teasing pour chacun.">
+  <meta name="theme-color" content="#050811">
+  <meta name="author" content="Provoxys">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/prochainement/prochainement-hero.webp" fetchpriority="high">
+  <link rel="icon" href="assets/avatars/logo-eci.webp">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+      /* accent de page : l'azur du limbe terrestre de l'image d'ouverture */
+      --azur:#7eb6ff;
+      /* les quatre thèmes du planning de Provoxys (Terre passée en terre cuite
+         pour ne plus se confondre avec l'or des Lois du réel) */
+      --lois:#e0b35c; --cosmos:#7eb6ff; --terre:#d9895b; --vivant:#7dbe8a;
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --max:1240px;
+      --gut:clamp(16px,4vw,40px);
+      --tb-h:70px;
+      --ease:cubic-bezier(.22,1,.36,1);
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scrollbar-gutter:stable; }
+    html.modal-open { overflow:hidden; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif); font-optical-sizing:auto;
+      font-weight:380; line-height:1.65; overflow-x:hidden;
+      background:
+        radial-gradient(110% 60% at 85% 0%, rgba(126,182,255,.10), transparent 50%),
+        radial-gradient(90% 60% at 5% 8%, rgba(214,172,85,.09), transparent 46%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 38%,var(--abyss) 100%);
+      background-attachment:fixed;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    img, video { max-width:100%; display:block; }
+    a { color:var(--gold-bright); }
+    button { font:inherit; color:inherit; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; }
+    .sr-only { position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+    .ico { width:1.1em; height:1.1em; flex:none; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+
+    /* ATMOSPHÈRE */
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:linear-gradient(rgba(244,236,216,.026) 1px,transparent 1px),linear-gradient(90deg,rgba(244,236,216,.018) 1px,transparent 1px);
+      background-size:80px 80px; -webkit-mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:radial-gradient(1.4px 1.4px at 18% 24%,rgba(255,255,255,.5),transparent),radial-gradient(1.2px 1.2px at 72% 38%,rgba(255,255,255,.42),transparent),radial-gradient(1.5px 1.5px at 44% 72%,rgba(255,255,255,.4),transparent),radial-gradient(1px 1px at 86% 82%,rgba(255,255,255,.4),transparent),radial-gradient(1.3px 1.3px at 8% 88%,rgba(255,255,255,.36),transparent),radial-gradient(1px 1px at 58% 12%,rgba(255,255,255,.4),transparent);
+      animation:twinkle 7s var(--ease) infinite alternate; }
+    @keyframes twinkle { from{opacity:.5} to{opacity:.9} }
+    .grain { position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+    .frame { position:fixed; inset:0; z-index:90; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:14px; left:14px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:14px; right:14px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:14px; left:14px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:14px; right:14px; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; width:100%; height:2px; z-index:95; transform:scaleX(0); transform-origin:0 50%;
+      background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright),var(--azur)); box-shadow:0 0 12px rgba(243,217,138,.5); }
+
+    .shell { position:relative; z-index:3; }
+    .wrap { width:min(100% - 2*var(--gut),var(--max)); margin:0 auto; }
+
+    /* BARRE SUPÉRIEURE */
+    .topbar { position:sticky; top:0; z-index:60; border-bottom:1px solid var(--line); background:rgba(5,8,17,.74); -webkit-backdrop-filter:blur(18px) saturate(140%); backdrop-filter:blur(18px) saturate(140%); view-transition-name:topbar; }
+    .topbar-inner { width:min(100% - 2*var(--gut),var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:68px; }
+    .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink); min-width:0; }
+    .brand img { width:40px; height:40px; border-radius:50%; object-fit:cover; padding:2px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; line-height:1.25; }
+    .brand small { display:block; font-family:var(--serif); font-style:italic; font-weight:400; font-size:.78rem; letter-spacing:.04em; text-transform:none; color:var(--gold); }
+    .nav { display:flex; gap:22px; }
+    .nav a { position:relative; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); text-decoration:none; padding:6px 0; white-space:nowrap; }
+    .nav a::after { content:""; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .4s var(--ease); }
+    .nav a:hover, .nav a:focus-visible { color:var(--gold-bright); }
+    .nav a:hover::after, .nav a:focus-visible::after { transform:scaleX(1); }
+
+    /* HERO */
+    .hero { position:relative; overflow:hidden; padding:clamp(48px,8vw,104px) 0 0; isolation:isolate; }
+    .hero-ambient { position:absolute; inset:-10% -5% 20%; z-index:-1; background:url("assets/prochainement/prochainement-hero.webp") 70% 40%/cover no-repeat; filter:blur(60px) saturate(1.3); opacity:.32; transform:scale(1.1); }
+    .hero::after { content:""; position:absolute; inset:auto 0 0; height:40%; z-index:-1; background:linear-gradient(180deg,transparent,var(--void)); }
+    .hero-inner { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.12fr); gap:clamp(32px,5vw,72px); align-items:center; }
+    .eyebrow { display:flex; align-items:center; gap:12px; margin:0 0 20px; font-family:var(--roman); font-size:.7rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; flex:none; width:38px; height:1px; background:var(--gold); }
+    h1 { margin:0; font-family:var(--roman); font-weight:700; font-size:clamp(2.6rem,6.6vw,5.4rem); line-height:.96; letter-spacing:.005em; text-transform:uppercase; text-wrap:balance; }
+    .foil { background:linear-gradient(100deg,var(--gold-deep) 0%,var(--gold-bright) 30%,#fff5d2 45%,var(--gold) 60%,var(--gold-deep) 100%); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { from{background-position:120% 0} to{background-position:-100% 0} }
+    .lead { max-width:40ch; margin:22px 0 0; font-size:clamp(1.12rem,1.8vw,1.36rem); line-height:1.5; color:var(--parch); }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 0; padding:0; list-style:none; }
+    .chip { font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; padding:7px 12px; border:1px solid var(--line); border-radius:2px; color:var(--gold); background:rgba(214,172,85,.06); }
+    .chip.gold { background:linear-gradient(135deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); color:#1a1206; border-color:transparent; }
+    .stats { display:grid; grid-template-columns:repeat(3,auto); justify-content:start; gap:0; margin:30px 0 0; padding:0; list-style:none; }
+    .stats li { padding:0 clamp(16px,2.4vw,28px); border-left:1px solid var(--line); }
+    .stats li:first-child { padding-left:0; border-left:0; }
+    .stats b { display:block; font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.4vw,2.6rem); line-height:1; color:var(--gold-bright); font-variant-numeric:tabular-nums; }
+    .stats span { display:block; margin-top:6px; font-family:var(--roman); font-size:.58rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--soft); }
+    .hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:12px 18px; margin-top:32px; }
+    .button { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:46px; padding:0 20px; font-family:var(--roman); font-size:.7rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; text-decoration:none; color:var(--gold-bright); border:1px solid rgba(214,172,85,.45); border-radius:2px; background:rgba(214,172,85,.05); cursor:pointer; transition:transform .3s var(--ease),background .3s,box-shadow .3s; }
+    .button:hover { transform:translateY(-2px); background:rgba(214,172,85,.12); }
+    .button.primary { color:#1a1206; border-color:transparent; background:linear-gradient(135deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 34px rgba(214,172,85,.22); }
+    .button.primary:hover { box-shadow:0 18px 44px rgba(214,172,85,.36); }
+    .byline { display:inline-flex; align-items:center; gap:12px; text-decoration:none; }
+    .byline img { width:44px; height:44px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); }
+    .byline span { display:flex; flex-direction:column; line-height:1.25; }
+    .byline small { font-family:var(--roman); font-size:.56rem; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); }
+    .byline strong { font-family:var(--roman); font-size:.95rem; letter-spacing:.08em; text-transform:uppercase; }
+
+    .hero-screen { position:relative; margin:0; padding:10px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.55); box-shadow:0 50px 140px rgba(0,0,0,.6),0 0 80px rgba(126,182,255,.10); }
+    .hero-screen::before, .hero-screen::after { content:""; position:absolute; width:24px; height:24px; border:1.5px solid var(--gold); z-index:2; }
+    .hero-screen::before { top:-7px; left:-7px; border-right:0; border-bottom:0; }
+    .hero-screen::after { bottom:-7px; right:-7px; border-left:0; border-top:0; }
+    .screen { position:relative; aspect-ratio:16/9; overflow:hidden; border-radius:2px; background:#02040a url("assets/prochainement/prochainement-hero.webp") center/cover; }
+    .screen video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1s var(--ease); }
+    .screen video.on { opacity:1; }
+    .screen::after { content:""; position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(180deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px),radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(0,0,0,.5)); }
+    .on-air { position:absolute; top:14px; left:14px; z-index:2; display:inline-flex; align-items:center; gap:8px; padding:6px 10px; font-family:var(--roman); font-size:.58rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--ink); background:rgba(5,8,17,.66); border:1px solid rgba(214,172,85,.4); border-radius:2px; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); }
+    .pulse { width:8px; height:8px; border-radius:50%; background:var(--gold-bright); box-shadow:0 0 0 0 rgba(243,217,138,.7); animation:pulse 2s var(--ease) infinite; }
+    @keyframes pulse { 70% { box-shadow:0 0 0 9px rgba(243,217,138,0); } 100% { box-shadow:0 0 0 0 rgba(243,217,138,0); } }
+    .hero-screen figcaption { display:flex; justify-content:space-between; gap:12px; padding:10px 4px 2px; font-family:var(--roman); font-size:.58rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--soft); }
+    .hero-screen figcaption b { color:var(--gold); font-weight:600; }
+
+    /* BANDEAU DÉFILANT */
+    .marquee { position:relative; margin-top:clamp(48px,7vw,84px); border-block:1px solid var(--line); background:rgba(5,8,17,.55); overflow:hidden;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+    .mq-track { display:flex; width:max-content; animation:marquee 190s linear infinite; }
+    .marquee:hover .mq-track { animation-play-state:paused; }
+    .mq-track span { display:inline-flex; align-items:center; gap:12px; padding:15px 26px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); white-space:nowrap; }
+    .mq-track span::after { content:""; width:5px; height:5px; margin-left:26px; transform:rotate(45deg); background:var(--gold-deep); }
+    .mq-track b { font-weight:700; color:var(--accent); }
+    @keyframes marquee { to { transform:translateX(-50%); } }
+
+    .rise { opacity:0; transform:translateY(22px); animation:rise 1s var(--ease) forwards; }
+    .rise.d1 { animation-delay:.08s } .rise.d2 { animation-delay:.18s } .rise.d3 { animation-delay:.28s } .rise.d4 { animation-delay:.38s } .rise.d5 { animation-delay:.48s } .rise.d6 { animation-delay:.58s }
+    @keyframes rise { to { opacity:1; transform:none; } }
+
+    /* EN-TÊTES */
+    .section-kicker { display:flex; align-items:center; gap:10px; margin:0 0 10px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+    .sec-head { margin:0 0 26px; }
+    .sec-head h2 { margin:0; font-family:var(--roman); font-weight:700; font-size:clamp(1.9rem,3.8vw,2.9rem); line-height:1.04; text-transform:uppercase; letter-spacing:.015em; }
+    .sec-head p { max-width:62ch; margin:12px 0 0; color:var(--muted); font-size:1.04rem; }
+
+    /* À L'AFFICHE */
+    .spotlight { display:grid; grid-template-columns:minmax(0,1fr) minmax(250px,320px); gap:20px; padding:clamp(56px,8vw,96px) 0 0; }
+    .spot-card { position:relative; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); border:1px solid var(--line); border-radius:3px; overflow:hidden; background:linear-gradient(135deg,rgba(214,172,85,.07),var(--glass) 50%); box-shadow:0 30px 90px rgba(0,0,0,.45); }
+    .spot-card::before { content:""; position:absolute; inset:0 0 auto; height:3px; z-index:3; background:linear-gradient(90deg,var(--accent),transparent); }
+    .spot-media { position:relative; min-width:0; min-height:360px; overflow:hidden; background:var(--void); }
+    .spot-media img, .spot-media video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .spot-media video { opacity:0; transition:opacity .9s var(--ease); }
+    .spot-media video.on { opacity:1; }
+    .spot-media::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,transparent 60%,rgba(7,12,26,.85)),linear-gradient(0deg,rgba(5,8,17,.6),transparent 40%); }
+    .spot-num { position:absolute; left:20px; bottom:8px; z-index:2; font-family:var(--roman); font-weight:800; font-size:clamp(4rem,9vw,6.5rem); line-height:1; color:transparent; -webkit-text-stroke:1.2px rgba(243,217,138,.9); }
+    .spot-copy { position:relative; z-index:2; display:flex; flex-direction:column; gap:12px; padding:clamp(24px,3.4vw,40px); }
+    .spot-copy .section-kicker { margin:0; color:var(--accent); }
+    .spot-copy h2 { margin:0; font-family:var(--roman); font-weight:700; font-size:clamp(1.4rem,2.6vw,2rem); line-height:1.15; text-transform:uppercase; }
+    .spot-hook { margin:0; font-style:italic; font-size:1.08rem; color:var(--gold-bright); }
+    .spot-lines { margin:4px 0 0; padding:0; list-style:none; }
+    .spot-lines li { position:relative; padding:5px 0 5px 20px; color:var(--parch); font-size:.98rem; line-height:1.5; }
+    .spot-lines li::before { content:""; position:absolute; left:2px; top:.95em; width:6px; height:6px; transform:rotate(45deg); background:var(--accent); }
+    .spot-meta { display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center; margin-top:auto; padding-top:16px; border-top:1px solid var(--line-2); font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--soft); }
+    .spot-meta .button { margin-left:auto; }
+    .next-up { display:flex; flex-direction:column; padding:22px; border:1px solid var(--line-2); border-radius:3px; background:var(--glass); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); }
+    .next-up ol { flex:1; margin:4px 0 16px; padding:0; list-style:none; }
+    .next-up li + li { border-top:1px solid var(--line-2); }
+    .next-up button { display:grid; grid-template-columns:auto minmax(0,1fr); gap:2px 14px; width:100%; padding:13px 4px; text-align:left; background:none; border:0; cursor:pointer; border-radius:2px; transition:background .25s; }
+    .next-up button:hover { background:rgba(214,172,85,.06); }
+    .nu-n { grid-row:span 2; align-self:center; font-family:var(--roman); font-weight:800; font-size:1.7rem; line-height:1; color:transparent; -webkit-text-stroke:1px var(--accent); }
+    .nu-t { font-family:var(--roman); font-size:.8rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; line-height:1.3; color:var(--ink); }
+    .nu-d { font-style:italic; font-size:.86rem; color:var(--soft); }
+    .next-up .link { font-family:var(--roman); font-size:.64rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; color:var(--gold-bright); }
+
+    /* PROGRAMME */
+    .programme { padding:clamp(64px,9vw,112px) 0 0; }
+    .ribbon { display:flex; gap:4px; margin:0 0 22px; }
+    .rib-seg { display:flex; flex-direction:column; gap:10px; min-width:0; padding:0; background:none; border:0; cursor:pointer; text-align:left; transition:opacity .35s var(--ease); }
+    .rib-bar { height:6px; border-radius:1px; background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%,transparent)); box-shadow:0 0 14px color-mix(in srgb,var(--accent) 35%,transparent); transition:transform .35s var(--ease); transform-origin:bottom; }
+    .rib-seg:hover .rib-bar, .rib-seg.is-on .rib-bar { transform:scaleY(1.7); }
+    .rib-lbl { display:flex; align-items:center; gap:7px; min-width:0; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .rib-lbl .ico { color:var(--accent); }
+    .rib-lbl b { color:var(--accent); font-weight:700; }
+    .ribbon[data-active="true"] .rib-seg:not(.is-on) { opacity:.35; }
+
+    .toolbar { position:sticky; top:var(--tb-h); z-index:40; display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; margin:0 calc(-1 * min(var(--gut),20px)) 26px; padding:12px min(var(--gut),20px); border:1px solid var(--line-2); border-radius:3px; background:rgba(6,10,22,.82); -webkit-backdrop-filter:blur(16px) saturate(140%); backdrop-filter:blur(16px) saturate(140%); box-shadow:0 18px 40px rgba(0,0,0,.35); view-transition-name:toolbar; }
+    .search { position:relative; flex:1 1 220px; min-width:0; }
+    .search .ico { position:absolute; left:13px; top:50%; transform:translateY(-50%); color:var(--gold); pointer-events:none; }
+    .search input { width:100%; height:42px; padding:0 40px 0 38px; font-family:var(--serif); font-size:1rem; color:var(--ink); background:rgba(3,6,14,.7); border:1px solid var(--line); border-radius:2px; transition:border-color .25s,box-shadow .25s; }
+    .search input::placeholder { color:var(--soft); font-style:italic; }
+    .search input:focus { outline:none; border-color:rgba(243,217,138,.7); box-shadow:0 0 0 3px rgba(214,172,85,.15); }
+    .search input::-webkit-search-cancel-button { display:none; }
+    .search kbd { position:absolute; right:10px; top:50%; transform:translateY(-50%); padding:1px 7px; font-family:var(--roman); font-size:.7rem; color:var(--soft); border:1px solid var(--line); border-radius:2px; pointer-events:none; }
+    .search input:focus + kbd, .search input:not(:placeholder-shown) + kbd { display:none; }
+    .filters { display:flex; gap:6px; min-width:0; }
+    .filters button { display:inline-flex; align-items:center; gap:7px; height:42px; padding:0 13px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; white-space:nowrap; color:var(--muted); background:rgba(3,6,14,.5); border:1px solid var(--line-2); border-radius:2px; cursor:pointer; transition:color .25s,background .25s,border-color .25s,box-shadow .25s; }
+    .filters button .ico { color:var(--accent,var(--gold)); }
+    .filters button b { font-weight:600; color:var(--soft); letter-spacing:.04em; }
+    .filters button:hover { color:var(--ink); border-color:color-mix(in srgb,var(--accent,var(--gold)) 55%,transparent); }
+    .filters button[aria-pressed="true"] { color:var(--ink); border-color:var(--accent,var(--gold)); background:color-mix(in srgb,var(--accent,var(--gold)) 16%,rgba(3,6,14,.6)); box-shadow:inset 0 -2px 0 var(--accent,var(--gold)); }
+    .filters button[aria-pressed="true"] b { color:var(--accent,var(--gold-bright)); }
+    .views { display:flex; border:1px solid var(--line-2); border-radius:2px; overflow:hidden; }
+    .views button { display:grid; place-items:center; width:42px; height:40px; background:rgba(3,6,14,.5); border:0; color:var(--soft); cursor:pointer; transition:color .25s,background .25s; }
+    .views button + button { border-left:1px solid var(--line-2); }
+    .views button[aria-pressed="true"] { color:#1a1206; background:linear-gradient(135deg,var(--gold-bright),var(--gold)); }
+    .views .ico { width:18px; height:18px; }
+    .shown { margin:0 0 0 auto; font-family:var(--roman); font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--soft); white-space:nowrap; }
+    .shown b { color:var(--gold-bright); font-weight:700; font-size:1.35em; font-variant-numeric:tabular-nums; }
+
+    /* CARTES */
+    .board { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(270px,100%),1fr)); gap:20px; }
+    .live { position:relative; display:flex; flex-direction:column; min-width:0; border:1px solid var(--line-2); border-radius:3px; background:rgba(8,14,28,.78); overflow:hidden; isolation:isolate;
+      content-visibility:auto; contain-intrinsic-size:auto 420px;
+      transition:transform .35s var(--ease),border-color .35s,box-shadow .5s var(--ease); }
+    .live::before { content:""; position:absolute; inset:0 0 auto; height:2px; z-index:4; background:linear-gradient(90deg,var(--accent),transparent 85%); }
+    .live::after { content:""; position:absolute; inset:0; z-index:3; pointer-events:none; opacity:0; transition:opacity .4s;
+      background:radial-gradient(420px circle at var(--mx,50%) var(--my,30%),color-mix(in srgb,var(--accent) 16%,transparent),transparent 60%); }
+    .live:hover, .live:focus-within { border-color:color-mix(in srgb,var(--accent) 55%,transparent); box-shadow:0 28px 60px rgba(0,0,0,.5),0 0 40px color-mix(in srgb,var(--accent) 18%,transparent); }
+    .live:hover::after, .live:focus-within::after { opacity:1; }
+    .live[hidden] { display:none; }
+    .live-hit { position:absolute; inset:0; z-index:5; width:100%; padding:0; background:none; border:0; cursor:pointer; border-radius:3px; }
+    .live-hit:focus-visible { outline-offset:-3px; }
+    .live-media { position:relative; aspect-ratio:16/9; overflow:hidden; background:var(--void); }
+    .live-poster, .lazy-vid { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .live-poster { transition:transform 1.2s var(--ease),filter .6s; filter:saturate(.9) brightness(.9); }
+    .lazy-vid { opacity:0; transition:opacity .8s var(--ease),transform 1.2s var(--ease); }
+    .lazy-vid.on { opacity:1; }
+    .live:hover .live-poster, .live:hover .lazy-vid { transform:scale(1.06); filter:none; }
+    .live-media::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(5,8,17,0) 45%,rgba(5,8,17,.85) 100%); }
+    .live-num { position:absolute; left:14px; bottom:2px; z-index:2; font-family:var(--roman); font-weight:800; font-size:3.2rem; line-height:1; color:transparent; -webkit-text-stroke:1px rgba(243,217,138,.9); text-shadow:0 4px 24px rgba(0,0,0,.6); transition:transform .5s var(--ease); }
+    .live:hover .live-num { transform:translateY(-3px); }
+    .live-soon { position:absolute; top:11px; right:11px; z-index:2; display:inline-flex; align-items:center; gap:6px; padding:5px 8px; font-family:var(--roman); font-size:.52rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); border:1px solid rgba(214,172,85,.45); border-radius:2px; background:rgba(5,8,17,.7); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); }
+    .live-soon i { width:6px; height:6px; border-radius:50%; background:var(--gold-bright); box-shadow:0 0 8px var(--gold-bright); }
+    .live-body { display:flex; flex-direction:column; gap:8px; flex:1; padding:15px 18px 17px; }
+    .live-kicker { display:flex; align-items:center; gap:7px; margin:0; font-family:var(--roman); font-size:.58rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); }
+    .live-dur { margin-left:auto; font-family:var(--serif); font-style:italic; font-size:.9rem; letter-spacing:0; text-transform:none; color:var(--parch); white-space:nowrap; }
+    .live h3 { margin:0; font-family:var(--roman); font-weight:700; font-size:1rem; line-height:1.3; letter-spacing:.03em; text-transform:uppercase; color:var(--ink); overflow-wrap:break-word; text-wrap:balance; }
+    .live-hook { margin:0; color:var(--muted); font-size:.95rem; line-height:1.5; }
+    .live-cta { display:inline-flex; align-items:center; gap:8px; margin-top:auto; padding-top:12px; border-top:1px solid var(--line-2); font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); transition:color .25s; }
+    .live-cta b { font-weight:700; transition:transform .35s var(--ease); }
+    .live:hover .live-cta { color:var(--gold-bright); }
+    .live:hover .live-cta b { transform:translateX(5px); }
+
+    /* VUE LISTE */
+    .board.is-list { grid-template-columns:1fr; gap:8px; }
+    .is-list .live { flex-direction:row; align-items:stretch; contain-intrinsic-size:auto 120px; }
+    .is-list .live::before { inset:0 auto 0 0; width:2px; height:auto; background:var(--accent); }
+    .is-list .live-media { flex:none; width:clamp(104px,16vw,190px); aspect-ratio:auto; min-height:100%; }
+    .is-list .lazy-vid, .is-list .live-soon, .is-list .live-media::after { display:none; }
+    .is-list .live-num { font-size:2.1rem; left:10px; bottom:4px; }
+    .is-list .live-body { display:grid; grid-template-columns:minmax(0,1fr) auto; grid-template-areas:"k k" "t c" "h c"; align-content:center; gap:4px 20px; padding:14px 18px; }
+    .is-list .live-kicker { grid-area:k; }
+    .is-list .live h3 { grid-area:t; }
+    .is-list .live-hook { grid-area:h; }
+    .is-list .live-cta { grid-area:c; align-self:center; margin:0; padding:0; border:0; }
+    .is-list .live:hover { transform:none !important; }
+
+    .empty { padding:48px 20px; text-align:center; border:1px dashed var(--line); border-radius:3px; color:var(--muted); }
+    .empty p { margin:0 0 16px; font-style:italic; font-size:1.1rem; }
+
+    /* TEASING */
+    dialog.tease { width:min(1100px,calc(100% - 40px)); height:min(640px,calc(100dvh - 60px)); max-width:none; max-height:none; margin:auto; padding:0; color:var(--ink); border:1px solid color-mix(in srgb,var(--accent,var(--gold)) 60%,transparent); border-radius:3px; background:linear-gradient(160deg,#0c1426,#060a16); box-shadow:0 50px 140px rgba(0,0,0,.75); overflow:hidden; }
+    dialog.tease::backdrop { background:rgba(3,5,12,.82); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); }
+    dialog.tease[open] { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); animation:pop .4s var(--ease); }
+    dialog.tease[open]::backdrop { animation:fade .4s var(--ease); }
+    @keyframes pop { from { transform:translateY(18px) scale(.98); opacity:0; } to { transform:none; opacity:1; } }
+    @keyframes fade { from { opacity:0; } }
+    .tz-progress { position:absolute; inset:0 0 auto; height:2px; z-index:4; background:rgba(244,236,216,.06); }
+    .tz-progress span { display:block; height:100%; transform-origin:0 50%; background:var(--accent,var(--gold)); transition:transform .5s var(--ease); }
+    .tz-media { position:relative; overflow:hidden; background:var(--void); }
+    .tz-media img, .tz-media video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .tz-media video { opacity:0; transition:opacity .7s var(--ease); }
+    .tz-media video.on { opacity:1; }
+    .tz-media::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,transparent 55%,rgba(6,10,22,.9)),linear-gradient(0deg,rgba(5,8,17,.75),transparent 45%); }
+    .tz-num { position:absolute; left:24px; bottom:10px; z-index:2; font-family:var(--roman); font-weight:800; font-size:clamp(4rem,10vw,7.5rem); line-height:1; color:transparent; -webkit-text-stroke:1.2px color-mix(in srgb,var(--accent,var(--gold)) 80%,#fff); }
+    .tz-pos { position:absolute; left:24px; top:18px; z-index:2; padding:5px 9px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.2em; color:var(--ink); background:rgba(5,8,17,.66); border:1px solid var(--line); border-radius:2px; font-variant-numeric:tabular-nums; }
+    .tz-main { display:flex; flex-direction:column; min-height:0; }
+    .tz-scroll { flex:1; min-height:0; overflow:auto; overscroll-behavior:contain; padding:34px clamp(22px,3.4vw,40px) 24px; scrollbar-width:thin; scrollbar-color:var(--gold-deep) transparent; }
+    .tz-kicker { display:flex; align-items:center; gap:8px; margin:0 0 10px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--accent,var(--gold)); }
+    .tease h3 { margin:0; padding-right:44px; font-family:var(--roman); font-weight:700; font-size:clamp(1.25rem,2.4vw,1.65rem); line-height:1.22; text-transform:uppercase; letter-spacing:.03em; text-wrap:balance; }
+    .tz-meta { margin:12px 0 16px; padding-bottom:14px; border-bottom:1px solid var(--line); font-family:var(--roman); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
+    .tz-body { margin:0; padding:0; list-style:none; }
+    .tz-body li { position:relative; padding:7px 0 7px 24px; font-size:1.04rem; line-height:1.55; color:var(--parch); opacity:0; animation:line .5s var(--ease) forwards; }
+    .tz-body li + li { border-top:1px solid rgba(244,236,216,.05); }
+    .tz-body li::before { content:""; position:absolute; left:3px; top:1.02em; width:7px; height:7px; transform:rotate(45deg); background:var(--accent,var(--gold)); opacity:.9; }
+    .tz-body li:nth-child(1){animation-delay:.04s} .tz-body li:nth-child(2){animation-delay:.08s} .tz-body li:nth-child(3){animation-delay:.12s} .tz-body li:nth-child(4){animation-delay:.16s} .tz-body li:nth-child(5){animation-delay:.2s} .tz-body li:nth-child(6){animation-delay:.24s} .tz-body li:nth-child(7){animation-delay:.28s} .tz-body li:nth-child(8){animation-delay:.32s} .tz-body li:nth-child(9){animation-delay:.36s} .tz-body li:nth-child(n+10){animation-delay:.4s}
+    @keyframes line { from { opacity:0; transform:translateX(8px); } to { opacity:1; transform:none; } }
+    .tz-close { position:absolute; top:12px; right:12px; z-index:6; display:grid; place-items:center; width:42px; height:42px; color:var(--gold-bright); background:rgba(5,8,17,.75); border:1px solid rgba(214,172,85,.45); border-radius:2px; cursor:pointer; transition:background .25s,transform .3s var(--ease); }
+    .tz-close:hover { background:rgba(214,172,85,.18); transform:rotate(90deg); }
+    .tz-nav { display:flex; align-items:center; gap:8px; flex:none; padding:12px clamp(16px,3vw,28px); border-top:1px solid var(--line); background:rgba(5,8,17,.55); }
+    .tz-nav button { display:inline-flex; align-items:center; gap:8px; height:40px; padding:0 14px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:2px; cursor:pointer; transition:color .25s,border-color .25s,background .25s; }
+    .tz-nav button:hover { color:var(--gold-bright); border-color:rgba(214,172,85,.55); background:rgba(214,172,85,.06); }
+    .tz-nav .tz-share { margin:0 auto; }
+    .tz-hint { display:none; }
+
+    .toast { position:fixed; left:50%; bottom:28px; z-index:200; padding:12px 18px; font-family:var(--roman); font-size:.66rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:#1a1206; background:linear-gradient(135deg,var(--gold-bright),var(--gold)); border-radius:2px; box-shadow:0 18px 40px rgba(0,0,0,.5); transform:translate(-50%,20px); opacity:0; pointer-events:none; transition:opacity .3s,transform .4s var(--ease); max-width:calc(100% - 32px); overflow-wrap:anywhere; }
+    .toast.on { opacity:1; transform:translate(-50%,0); }
+
+    /* RÉVÉLATION */
+    .js .reveal { opacity:0; transform:translateY(26px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .js .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s } .reveal[data-d="2"] { transition-delay:.16s }
+
+    /* PIED DE PAGE COLLECTIF */
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(220px,320px) minmax(0,1fr); margin:clamp(72px,10vw,120px) 0 70px; border:1px solid var(--line); border-radius:3px; background:linear-gradient(135deg,rgba(214,172,85,.08),rgba(7,12,26,.72) 45%); overflow:hidden; }
+    .collective-logo-wrap { display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,240px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { padding:clamp(28px,4vw,50px); }
+    .collective-copy h2 { margin:0; font-family:var(--roman); font-weight:700; font-size:clamp(1.9rem,4vw,2.8rem); line-height:1.05; text-transform:uppercase; }
+    .collective-copy p { max-width:64ch; margin:16px 0 0; color:var(--muted); font-size:1.04rem; }
+    .collective-copy .origin { font-style:italic; color:var(--gold-bright); }
+    .collective-copy .byline { margin-top:20px; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-style:italic; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    /* TRANSITIONS DE VUE (filtres, recherche, mosaïque/liste) */
+    ::view-transition-group(*) { animation-duration:.45s; animation-timing-function:var(--ease); }
+    ::view-transition-old(*), ::view-transition-new(*) { height:100%; }
+
+    @media (max-width:1060px) {
+      .spotlight { grid-template-columns:1fr; }
+      .next-up ol { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 20px; }
+      .next-up li + li { border-top:0; }
+      .next-up li { border-bottom:1px solid var(--line-2); }
+      .filters { order:3; flex:1 1 100%; overflow-x:auto; scrollbar-width:none; padding-bottom:2px; }
+      .filters::-webkit-scrollbar { display:none; }
+      .shown { order:2; margin:0; }
+    }
+    @media (max-width:980px) {
+      .hero-inner { grid-template-columns:1fr; }
+      .hero-screen { max-width:760px; }
+    }
+    @media (max-width:820px) {
+      .spot-card { grid-template-columns:1fr; }
+      .spot-media { aspect-ratio:16/9; min-height:0; }
+      .spot-media::after { background:linear-gradient(0deg,rgba(7,12,26,.9),transparent 55%); }
+      dialog.tease { width:100%; height:100dvh; max-height:100dvh; border:0; border-radius:0; }
+      dialog.tease[open] { grid-template-columns:1fr; grid-template-rows:auto minmax(0,1fr); animation:sheet .45s var(--ease); }
+      @keyframes sheet { from { transform:translateY(40px); opacity:0; } to { transform:none; opacity:1; } }
+      .tz-media { aspect-ratio:16/9; }
+      .tz-media::after { background:linear-gradient(0deg,rgba(6,10,22,.95),transparent 60%); }
+      .tz-num { font-size:4rem; }
+      .tz-scroll { padding-top:18px; }
+      .tz-hint { display:block; margin:0; font-size:.8rem; font-style:italic; color:var(--soft); text-align:center; }
+      .tz-nav { flex-wrap:wrap; justify-content:space-between; padding-bottom:calc(12px + env(safe-area-inset-bottom)); }
+      .tz-nav .tz-hint { flex:1 1 100%; order:4; }
+      .tz-nav .tz-share { margin:0; }
+    }
+    @media (max-width:760px) {
+      .topbar { position:relative; }
+      .topbar-inner { flex-direction:column; align-items:flex-start; gap:8px; min-height:auto; padding:12px 0 10px; }
+      .nav { width:100%; gap:18px; overflow-x:auto; scrollbar-width:none; }
+      .nav::-webkit-scrollbar { display:none; }
+      .toolbar { top:0; margin-inline:calc(-1 * var(--gut)); border-radius:0; border-inline:0; padding:10px var(--gut); }
+      .views { order:1; }
+      .search { order:0; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { border-right:0; border-bottom:1px solid var(--line); padding:28px; }
+      .collective-logo { width:140px; }
+      .frame { display:none; }
+      .is-list .live-body { grid-template-columns:1fr; grid-template-areas:"k" "t" "h"; padding:12px 14px; }
+      .is-list .live-cta { display:none; }
+      .is-list .live-hook { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    }
+    @media (max-width:520px) {
+      .stats b { font-size:1.7rem; }
+      .rib-name { display:none; }
+      .rib-lbl { justify-content:center; }
+      .stats li { padding:0 14px; }
+      .next-up ol { grid-template-columns:1fr; }
+      .spot-meta .button { margin-left:0; width:100%; }
+      .shown { display:none; }
+      .is-list .live-media { width:92px; }
+      .is-list .live-num { font-size:1.6rem; }
+      .is-list .live-kicker .live-tag { display:none; }
+      .is-list .live-dur { margin-left:0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+      .rise, .js .reveal, .tz-body li { opacity:1; transform:none; }
+      .mq-track { flex-wrap:wrap; width:auto; }
+      .mq-track > span:nth-child(n+49) { display:none; }
+    }
+  </style>
+  <link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr">
+  <meta name="rights" content="Sauf mention contraire, les contenus éditoriaux, textes, transcriptions, images et médias du site Empire contre Intox sont sous licence CC BY-NC-ND 4.0. Partage autorisé avec attribution, sans usage commercial ni modification.">
+  <style id="eci-license-style">
+  .eci-license{max-width:1100px;margin:18px auto 0;padding:14px 18px;border:1px solid rgba(214,172,85,.24);border-radius:3px;background:rgba(214,172,85,.06);color:inherit;font-size:.88rem;line-height:1.6;text-align:center;}
+  .eci-license a{color:#f3d98a;text-decoration:underline;text-underline-offset:.18em;}
+  .eci-license strong{color:inherit;font-weight:700;}
+  .eci-license-footer{position:relative;z-index:2;padding:24px 20px;border-top:1px solid rgba(214,172,85,.18);background:rgba(5,8,17,.72);}
+  .eci-counter-sep{opacity:.55;margin:0 .35em;}
+  .eci-visit-counter{white-space:nowrap;color:#c0b59a;}
+</style>
+  <style id="eci-wide-style">
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ———
+     Page-programme (grille de cartes) : la largeur gagnée va aux colonnes de
+     cartes et à la taille du texte, jamais à l'étirement d'une carte. */
+  @media (min-width:1440px){
+    :root{ --max:1320px; }
+  }
+  @media (min-width:1800px){
+    :root{ --max:1580px; }
+    html{ font-size:17px; }
+  }
+  @media (min-width:2200px){
+    :root{ --max:1920px; }
+    html{ font-size:18.5px; }
+  }
+  @media (min-width:2800px){
+    :root{ --max:2520px; }
+    html{ font-size:20px; }
+    .board:not(.is-list){ grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr)); }
+  }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-lois" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-60 12 12)"/></symbol>
+    <symbol id="i-cosmos" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5.2"/><path d="M3.2 15.6c-1.3-1.6 2.1-4.3 7.5-6.1s10.4-1.9 11.1 0c.5 1.4-1.8 3.3-5.5 4.9"/><path d="M19.5 3.5v3M18 5h3" /></symbol>
+    <symbol id="i-terre" viewBox="0 0 24 24"><path d="M2.5 18.5 9 8l3.6 5.4L15 10l6.5 8.5z"/><path d="M5.2 14.2h4.6M13.4 15.6h5.2"/></symbol>
+    <symbol id="i-vivant" viewBox="0 0 24 24"><path d="M5 19c0-8 5-13 15-14-1 10-6 15-14 15"/><path d="M5 19c3-4 6-7 10-9.5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1"/><rect x="13.5" y="3.5" width="7" height="7" rx="1"/><rect x="3.5" y="13.5" width="7" height="7" rx="1"/><rect x="13.5" y="13.5" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><rect x="3.5" y="4" width="5" height="4" rx=".8"/><rect x="3.5" y="10" width="5" height="4" rx=".8"/><rect x="3.5" y="16" width="5" height="4" rx=".8"/><path d="M11.5 6h9M11.5 12h9M11.5 18h9"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M10 14 20 4M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  </svg>
+
+  <div class="atmos" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="progress-top" id="progressTop" aria-hidden="true"></div>
+
+  <div class="shell" id="top">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index.html" aria-label="Accueil Empire contre Intox">
+          <img width="128" height="128" src="assets/avatars/logo-eci.webp" alt="">
+          <span>Empire contre Intox<small>Veritas omnia vincit</small></span>
+        </a>
+        <nav class="nav" aria-label="Navigation de la page">
+          <a href="#affiche">À l'affiche</a>
+          <a href="#programme">Programme</a>
+          <a href="/empire-calendrier">Calendrier</a>
+          <a href="index.html">Accueil ECI</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="titre">
+        <div class="hero-ambient" aria-hidden="true"></div>
+        <div class="wrap hero-inner">
+          <div>
+            <p class="eyebrow rise d1">Prochainement dans l'Empire contre Intox</p>
+            <h1 id="titre" class="rise d2">Futurs lives <span class="foil">à venir</span></h1>
+            <p class="lead rise d3">Quarante-huit lives, dans l’ordre, futurs live à venir.</p>
+            <ul class="chips rise d3" aria-label="En bref">
+              <li class="chip gold">Prochainement</li>
+              <li class="chip">48 lives</li>
+              <li class="chip">Teasing au clic</li>
+            </ul>
+            <ul class="stats rise d4">
+              <li><b data-count="48">48</b><span>Lives</span></li>
+              <li><b data-count="4">4</b><span>Thèmes</span></li>
+              <li><b>≈&nbsp;<span data-count="106" style="display:inline;margin:0;font:inherit;letter-spacing:inherit;color:inherit">106</span>&nbsp;h</b><span>De direct</span></li>
+            </ul>
+            <div class="hero-actions rise d5">
+              <a class="button primary" href="#programme">Voir le programme <span aria-hidden="true">↓</span></a>
+              <span class="byline">
+                <img width="128" height="128" src="assets/avatars/provoxys.webp" alt="Avatar de Provoxys">
+                <span><small>Programme établi par</small><strong>Provoxys</strong></span>
+              </span>
+            </div>
+          </div>
+          <figure class="hero-screen rise d4">
+            <div class="screen">
+              <video id="heroVideo" muted loop playsinline preload="none" data-src="assets/prochainement/prochainement-hero.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="on-air"><i class="pulse" aria-hidden="true"></i>Bientôt à l'antenne</span>
+            </div>
+            <figcaption><span>Empire contre Intox</span><b>Lives sciences</b></figcaption>
+          </figure>
+        </div>
+        <div class="marquee rise d6" aria-hidden="true"><div class="mq-track"><span style="--accent:var(--lois)"><b>01</b>Fusion nucléaire — WEST, EAST, ITER</span><span style="--accent:var(--cosmos)"><b>02</b>Comète interstellaire 3I/ATLAS</span><span style="--accent:var(--cosmos)"><b>03</b>JWST, quatre ans après</span><span style="--accent:var(--cosmos)"><b>04</b>6 000 exoplanètes</span><span style="--accent:var(--cosmos)"><b>05</b>Ondes gravitationnelles</span><span style="--accent:var(--cosmos)"><b>06</b>Énergie noire qui faiblit ?</span><span style="--accent:var(--lois)"><b>07</b>Neutrinos · JUNO</span><span style="--accent:var(--terre)"><b>08</b>Noyau, dynamo, champ B</span><span style="--accent:var(--terre)"><b>09</b>Acidification des océans</span><span style="--accent:var(--cosmos)"><b>10</b>Chang’e-6 · face cachée</span><span style="--accent:var(--vivant)"><b>11</b>CRISPR personnalisé</span><span style="--accent:var(--vivant)"><b>12</b>Protéines inventées par IA</span><span style="--accent:var(--vivant)"><b>13</b>Xénogreffe</span><span style="--accent:var(--vivant)"><b>14</b>Denisoviens · Harbin</span><span style="--accent:var(--terre)"><b>15</b>Néandertal et le feu</span><span style="--accent:var(--cosmos)"><b>16</b>Observatoire Vera C. Rubin</span><span style="--accent:var(--cosmos)"><b>17</b>Eau lourde sur une exoplanète</span><span style="--accent:var(--cosmos)"><b>18</b>Tempêtes stellaires</span><span style="--accent:var(--lois)"><b>19</b>Navier–Stokes et l’IA</span><span style="--accent:var(--lois)"><b>20</b>Limite de Landauer</span><span style="--accent:var(--cosmos)"><b>21</b>Organiques à Jezero</span><span style="--accent:var(--cosmos)"><b>22</b>Océan d’Encelade</span><span style="--accent:var(--terre)"><b>23</b>Mars n’est pas morte</span><span style="--accent:var(--terre)"><b>24</b>Terre boule de neige</span><span style="--accent:var(--terre)"><b>25</b>Grande oxydation</span><span style="--accent:var(--vivant)"><b>26</b>Archées d’Asgard</span><span style="--accent:var(--cosmos)"><b>27</b>Télescope Nancy Grace Roman</span><span style="--accent:var(--lois)"><b>28</b>PROBA-3 · éclipse artificielle</span><span style="--accent:var(--cosmos)"><b>29</b>Foudre martienne</span><span style="--accent:var(--terre)"><b>30</b>Oxygène et dipôle</span><span style="--accent:var(--lois)"><b>31</b>Systèmes complexes et réseaux</span><span style="--accent:var(--lois)"><b>32</b>Temps, irréversibilité, mémoire du temps</span><span style="--accent:var(--lois)"><b>33</b>Physico-chimie de la cuisine</span><span style="--accent:var(--vivant)"><b>34</b>Technologies médicales et corps augmentés</span><span style="--accent:var(--terre)"><b>35</b>Pollution invisible et santé</span><span style="--accent:var(--lois)"><b>36</b>Statistiques criminelles et science du crime</span><span style="--accent:var(--vivant)"><b>37</b>Histoire des épidémies et santé publique</span><span style="--accent:var(--vivant)"><b>38</b>Science des addictions</span><span style="--accent:var(--terre)"><b>39</b>Sciences et religions — dialogues et conflits</span><span style="--accent:var(--lois)"><b>40</b>Futur des transports et de la mobilité</span><span style="--accent:var(--cosmos)"><b>41</b>Exoplanètes et mondes extrêmes</span><span style="--accent:var(--cosmos)"><b>42</b>Étoiles — naissance, vie, mort</span><span style="--accent:var(--lois)"><b>43</b>Histoire de la chimie et thermochimie</span><span style="--accent:var(--lois)"><b>44</b>Qu’est-ce que l’esprit critique</span><span style="--accent:var(--lois)"><b>45</b>Histoire des mathématiques</span><span style="--accent:var(--terre)"><b>46</b>Les femmes oubliées dans les sciences</span><span style="--accent:var(--terre)"><b>47</b>Expériences controversées dans l’histoire des sciences</span><span style="--accent:var(--vivant)"><b>48</b>L’excision et la circoncision</span><span style="--accent:var(--lois)"><b>01</b>Fusion nucléaire — WEST, EAST, ITER</span><span style="--accent:var(--cosmos)"><b>02</b>Comète interstellaire 3I/ATLAS</span><span style="--accent:var(--cosmos)"><b>03</b>JWST, quatre ans après</span><span style="--accent:var(--cosmos)"><b>04</b>6 000 exoplanètes</span><span style="--accent:var(--cosmos)"><b>05</b>Ondes gravitationnelles</span><span style="--accent:var(--cosmos)"><b>06</b>Énergie noire qui faiblit ?</span><span style="--accent:var(--lois)"><b>07</b>Neutrinos · JUNO</span><span style="--accent:var(--terre)"><b>08</b>Noyau, dynamo, champ B</span><span style="--accent:var(--terre)"><b>09</b>Acidification des océans</span><span style="--accent:var(--cosmos)"><b>10</b>Chang’e-6 · face cachée</span><span style="--accent:var(--vivant)"><b>11</b>CRISPR personnalisé</span><span style="--accent:var(--vivant)"><b>12</b>Protéines inventées par IA</span><span style="--accent:var(--vivant)"><b>13</b>Xénogreffe</span><span style="--accent:var(--vivant)"><b>14</b>Denisoviens · Harbin</span><span style="--accent:var(--terre)"><b>15</b>Néandertal et le feu</span><span style="--accent:var(--cosmos)"><b>16</b>Observatoire Vera C. Rubin</span><span style="--accent:var(--cosmos)"><b>17</b>Eau lourde sur une exoplanète</span><span style="--accent:var(--cosmos)"><b>18</b>Tempêtes stellaires</span><span style="--accent:var(--lois)"><b>19</b>Navier–Stokes et l’IA</span><span style="--accent:var(--lois)"><b>20</b>Limite de Landauer</span><span style="--accent:var(--cosmos)"><b>21</b>Organiques à Jezero</span><span style="--accent:var(--cosmos)"><b>22</b>Océan d’Encelade</span><span style="--accent:var(--terre)"><b>23</b>Mars n’est pas morte</span><span style="--accent:var(--terre)"><b>24</b>Terre boule de neige</span><span style="--accent:var(--terre)"><b>25</b>Grande oxydation</span><span style="--accent:var(--vivant)"><b>26</b>Archées d’Asgard</span><span style="--accent:var(--cosmos)"><b>27</b>Télescope Nancy Grace Roman</span><span style="--accent:var(--lois)"><b>28</b>PROBA-3 · éclipse artificielle</span><span style="--accent:var(--cosmos)"><b>29</b>Foudre martienne</span><span style="--accent:var(--terre)"><b>30</b>Oxygène et dipôle</span><span style="--accent:var(--lois)"><b>31</b>Systèmes complexes et réseaux</span><span style="--accent:var(--lois)"><b>32</b>Temps, irréversibilité, mémoire du temps</span><span style="--accent:var(--lois)"><b>33</b>Physico-chimie de la cuisine</span><span style="--accent:var(--vivant)"><b>34</b>Technologies médicales et corps augmentés</span><span style="--accent:var(--terre)"><b>35</b>Pollution invisible et santé</span><span style="--accent:var(--lois)"><b>36</b>Statistiques criminelles et science du crime</span><span style="--accent:var(--vivant)"><b>37</b>Histoire des épidémies et santé publique</span><span style="--accent:var(--vivant)"><b>38</b>Science des addictions</span><span style="--accent:var(--terre)"><b>39</b>Sciences et religions — dialogues et conflits</span><span style="--accent:var(--lois)"><b>40</b>Futur des transports et de la mobilité</span><span style="--accent:var(--cosmos)"><b>41</b>Exoplanètes et mondes extrêmes</span><span style="--accent:var(--cosmos)"><b>42</b>Étoiles — naissance, vie, mort</span><span style="--accent:var(--lois)"><b>43</b>Histoire de la chimie et thermochimie</span><span style="--accent:var(--lois)"><b>44</b>Qu’est-ce que l’esprit critique</span><span style="--accent:var(--lois)"><b>45</b>Histoire des mathématiques</span><span style="--accent:var(--terre)"><b>46</b>Les femmes oubliées dans les sciences</span><span style="--accent:var(--terre)"><b>47</b>Expériences controversées dans l’histoire des sciences</span><span style="--accent:var(--vivant)"><b>48</b>L’excision et la circoncision</span></div></div>
+      </section>
+
+      <div class="wrap">
+        <section class="spotlight" id="affiche" aria-labelledby="spot-title">
+          <article class="spot-card reveal" style="--accent:var(--lois)">
+            <div class="spot-media">
+              <img src="assets/prochainement/01.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/01.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="spot-num" aria-hidden="true">01</span>
+            </div>
+            <div class="spot-copy">
+              <p class="section-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>À l'affiche · Live 01</p>
+              <h2 id="spot-title">Fusion nucléaire — WEST, EAST, ITER</h2>
+              <p class="spot-hook">Le Soleil en boîte. Record CEA. Critère de Lawson.</p>
+              <ul class="spot-lines"><li>Le Soleil tient par la fusion. On essaie de la copier dans une cage magnétique.</li><li>WEST au CEA, EAST en Chine, ITER en construction : trois machines, une même question.</li><li>Le critère de Lawson dit quand le plasma s’entretient.</li><li>Un record de durée n’est pas encore une centrale.</li></ul>
+              <div class="spot-meta">
+                <span>≈ 2 h 30</span><span>LOIS DU RÉEL</span>
+                <button class="button primary" type="button" data-goto="01" aria-haspopup="dialog">Ouvrir le teasing</button>
+              </div>
+            </div>
+          </article>
+          <aside class="next-up reveal" data-d="1" aria-label="Ensuite dans le programme">
+            <p class="section-kicker">Ensuite</p>
+            <ol><li><button type="button" data-goto="02" style="--accent:var(--cosmos)"><span class="nu-n">02</span><span class="nu-t">Comète interstellaire 3I/ATLAS</span><span class="nu-d">≈ 2 h</span></button></li><li><button type="button" data-goto="03" style="--accent:var(--cosmos)"><span class="nu-n">03</span><span class="nu-t">JWST, quatre ans après</span><span class="nu-d">≈ 2 h 30</span></button></li><li><button type="button" data-goto="04" style="--accent:var(--cosmos)"><span class="nu-n">04</span><span class="nu-t">6 000 exoplanètes</span><span class="nu-d">≈ 2 h</span></button></li><li><button type="button" data-goto="05" style="--accent:var(--cosmos)"><span class="nu-n">05</span><span class="nu-t">Ondes gravitationnelles</span><span class="nu-d">≈ 2 h</span></button></li><li><button type="button" data-goto="06" style="--accent:var(--cosmos)"><span class="nu-n">06</span><span class="nu-t">Énergie noire qui faiblit ?</span><span class="nu-d">≈ 2 h 30</span></button></li><li><button type="button" data-goto="07" style="--accent:var(--lois)"><span class="nu-n">07</span><span class="nu-t">Neutrinos · JUNO</span><span class="nu-d">≈ 2 h</span></button></li></ol>
+            <a class="link" href="#programme">Tout le programme ↓</a>
+          </aside>
+        </section>
+
+        <section class="programme" id="programme" aria-labelledby="programme-title">
+          <div class="sec-head reveal">
+            <p class="section-kicker">Le programme</p>
+            <h2 id="programme-title">Quarante-huit lives</h2>
+            <p>Dans l'ordre, du premier au dernier. Filtrez par thème, cherchez un mot — «&nbsp;Mars&nbsp;», «&nbsp;CRISPR&nbsp;», «&nbsp;Einstein&nbsp;» — et ouvrez le teasing d'un clic.</p>
+          </div>
+
+          <div class="ribbon" id="ribbon" aria-label="Répartition des lives par thème"><button type="button" class="rib-seg" data-f="lois" style="--accent:var(--lois);flex:13" aria-label="Lois du réel : 13 lives"><span class="rib-bar"></span><span class="rib-lbl"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="rib-name">Lois du réel</span><b>13</b></span></button><button type="button" class="rib-seg" data-f="cosmos" style="--accent:var(--cosmos);flex:15" aria-label="Cosmos : 15 lives"><span class="rib-bar"></span><span class="rib-lbl"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="rib-name">Cosmos</span><b>15</b></span></button><button type="button" class="rib-seg" data-f="terre" style="--accent:var(--terre);flex:11" aria-label="Terre : 11 lives"><span class="rib-bar"></span><span class="rib-lbl"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg><span class="rib-name">Terre</span><b>11</b></span></button><button type="button" class="rib-seg" data-f="vivant" style="--accent:var(--vivant);flex:9" aria-label="Vivant : 9 lives"><span class="rib-bar"></span><span class="rib-lbl"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg><span class="rib-name">Vivant</span><b>9</b></span></button></div>
+
+          <div class="toolbar" role="search">
+            <label class="search">
+              <span class="sr-only">Chercher un live</span>
+              <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
+              <input id="q" type="search" placeholder="Chercher un live, un mot, un nom…" autocomplete="off" spellcheck="false" enterkeyhint="search">
+              <kbd aria-hidden="true">/</kbd>
+            </label>
+            <div class="filters" role="group" aria-label="Filtrer par thème">
+              <button type="button" data-f="all" aria-pressed="true">Tous<b>48</b></button><button type="button" data-f="lois" aria-pressed="false" style="--accent:var(--lois)"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Lois du réel<b>13</b></button><button type="button" data-f="cosmos" aria-pressed="false" style="--accent:var(--cosmos)"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Cosmos<b>15</b></button><button type="button" data-f="terre" aria-pressed="false" style="--accent:var(--terre)"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg>Terre<b>11</b></button><button type="button" data-f="vivant" aria-pressed="false" style="--accent:var(--vivant)"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg>Vivant<b>9</b></button>
+            </div>
+            <div class="views" role="group" aria-label="Affichage">
+              <button type="button" data-view="grid" aria-pressed="true" aria-label="Mosaïque"><svg class="ico"><use href="#i-grid"/></svg></button>
+              <button type="button" data-view="list" aria-pressed="false" aria-label="Liste"><svg class="ico"><use href="#i-list"/></svg></button>
+            </div>
+            <p class="shown" aria-live="polite"><b id="shownCount">48</b> lives affichés</p>
+          </div>
+
+          <div class="board" id="board">
+          <article class="live" id="live-01" data-t="lois" data-n="01" style="--accent:var(--lois);view-transition-name:live-01">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 01 : Fusion nucléaire — WEST, EAST, ITER"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/01.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/01.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">01</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Fusion nucléaire — WEST, EAST, ITER</h3>
+              <p class="live-hook">Le Soleil en boîte. Record CEA. Critère de Lawson.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 01 · Prochainement</p>
+              <h3 id="tz-title">01 · Fusion nucléaire — WEST, EAST, ITER</h3>
+              <p class="tz-meta">≈ 2 h 30 · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>Le Soleil tient par la fusion. On essaie de la copier dans une cage magnétique.</li><li>WEST au CEA, EAST en Chine, ITER en construction : trois machines, une même question.</li><li>Le critère de Lawson dit quand le plasma s’entretient.</li><li>Un record de durée n’est pas encore une centrale.</li><li>On verra ce qu’on mesure vraiment, et ce que les titres inventent.</li><li>Anti : la fusion n’est pas pour demain matin.</li><li>Histoire courte : tokamak, stellarator, bombe H n’est pas un réacteur.</li><li>Formule dite à voix haute, sans mystère.</li><li>Ce que ça changerait — et ce que ça ne changera pas.</li><li>Sources : CEA, ITER, articles peer-review.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-02" data-t="cosmos" data-n="02" style="--accent:var(--cosmos);view-transition-name:live-02">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 02 : Comète interstellaire 3I/ATLAS"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/02.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/02.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">02</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Comète interstellaire 3I/ATLAS</h3>
+              <p class="live-hook">Troisième visiteur. Eau, nickel, hyperbole.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 02 · Prochainement</p>
+              <h3 id="tz-title">02 · Comète interstellaire 3I/ATLAS</h3>
+              <p class="tz-meta">≈ 2 h · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>3I/ATLAS est le troisième objet interstellaire confirmé.</li><li>Il ne tourne pas autour du Soleil comme une comète locale.</li><li>Eau, nickel, hyperbole : on lit une composition, pas un message.</li><li>Oumuamua a créé le bruit. Ici on compare les données.</li><li>Anti : ce n’est pas une sonde alien tant que rien ne le prouve.</li><li>Comment on calcule une orbite ouverte.</li><li>Ce que le télescope voit vraiment.</li><li>Échelle : un grain de poussière galactique qui traverse.</li><li>Histoire : Halley, puis les visiteurs d’ailleurs.</li><li>Sources : MPC, observatoires, notes IAU.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-03" data-t="cosmos" data-n="03" style="--accent:var(--cosmos);view-transition-name:live-03">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 03 : JWST, quatre ans après"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/03.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/03.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">03</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>JWST, quatre ans après</h3>
+              <p class="live-hook">Exoplanète imagée, glaces organiques hors Voie lactée.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 03 · Prochainement</p>
+              <h3 id="tz-title">03 · JWST, quatre ans après</h3>
+              <p class="tz-meta">≈ 2 h 30 · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>Quatre ans de JWST, ce n’est plus l’effet waouh du premier cliché.</li><li>Des exoplanètes imagées, des glaces organiques loin de la Voie lactée.</li><li>On séparera photo jolie et spectre utile.</li><li>Anti : une image IR n’est pas une preuve de vie.</li><li>Comment un miroir plié voit l’invisible.</li><li>Limites : calibration, temps de pose, files d’attente.</li><li>Ce qui a tenu. Ce qui a surpris.</li><li>Histoire : Hubble, Spitzer, le relais.</li><li>Formules de magnitude et de redshift, dites simplement.</li><li>Sources : NASA/STScI, papers JWST.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-04" data-t="cosmos" data-n="04" style="--accent:var(--cosmos);view-transition-name:live-04">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 04 : 6 000 exoplanètes"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/04.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/04.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">04</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>6 000 exoplanètes</h3>
+              <p class="live-hook">Zone habitable contre réalité. Naines M, biosignatures.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 04 · Prochainement</p>
+              <h3 id="tz-title">04 · 6 000 exoplanètes</h3>
+              <p class="tz-meta">≈ 2 h · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>Plus de 6 000 exoplanètes cataloguées. Le nombre impressionne.</li><li>La zone habitable n’est pas un permis d’habiter.</li><li>Naines M, marées, éruptions : le voisinage compte.</li><li>Anti : jumelle de la Terre est souvent un slogan.</li><li>Méthodes : transit, vitesse radiale, imagerie directe.</li><li>Ce qu’une courbe de lumière contient.</li><li>Échelle des distances, sans poésie creuse.</li><li>Histoire : 51 Pegasi b, 1995.</li><li>Biosignatures : ce qu’on chercherait, ce qu’on n’a pas.</li><li>Sources : NASA Exoplanet Archive.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-05" data-t="cosmos" data-n="05" style="--accent:var(--cosmos);view-transition-name:live-05">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 05 : Ondes gravitationnelles"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/05.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/05.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">05</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Ondes gravitationnelles</h3>
+              <p class="live-hook">128 événements. Trous noirs 130 M☉.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 05 · Prochainement</p>
+              <h3 id="tz-title">05 · Ondes gravitationnelles</h3>
+              <p class="tz-meta">≈ 2 h · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>Une onde gravitationnelle, c’est l’espace-temps qui tremble.</li><li>LIGO, Virgo, KAGRA ont ouvert le compteur : plus de 100 événements.</li><li>Trous noirs lourds, collisions, un ciel devenu son.</li><li>Anti : ce n’est pas un son dans le vide au sens air.</li><li>Comment on filtre un bruit d’un milliardième de proton.</li><li>Formule qualitative de la métrique, sans pose.</li><li>Histoire : Einstein 1916, détection 2015.</li><li>Ce que ça change pour la mort des étoiles.</li><li>Sources : LIGO Scientific Collaboration.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-06" data-t="cosmos" data-n="06" style="--accent:var(--cosmos);view-transition-name:live-06">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 06 : Énergie noire qui faiblit ?"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/06.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/06.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">06</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Énergie noire qui faiblit ?</h3>
+              <p class="live-hook">DESI 2025. w(z) variable. Destin de l’Univers.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 06 · Prochainement</p>
+              <h3 id="tz-title">06 · Énergie noire qui faiblit ?</h3>
+              <p class="tz-meta">≈ 2 h 30 · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>L’Univers accélère. On a nommé ça énergie noire.</li><li>DESI 2025 a relancé l’idée que w pourrait varier.</li><li>Si ça tient, le destin de l’Univers change de scénario.</li><li>Anti : un preprint n’enterre pas Lambda-CDM.</li><li>Ce qu’est w(z), dit en français.</li><li>Mesure : supernovae, BAO, fond diffus.</li><li>Histoire : 1998, prix Nobel 2011.</li><li>Ce qu’on saura seulement avec plus de spectres.</li><li>Sources : DESI, Planck.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-07" data-t="lois" data-n="07" style="--accent:var(--lois);view-transition-name:live-07">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 07 : Neutrinos · JUNO"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/07.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/07.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">07</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Neutrinos · JUNO</h3>
+              <p class="live-hook">Détecteur 2025, 700 m sous terre. Oscillation.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 07 · Prochainement</p>
+              <h3 id="tz-title">07 · Neutrinos · JUNO</h3>
+              <p class="tz-meta">≈ 2 h · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>Le neutrino traverse la Terre comme si elle n’existait pas.</li><li>JUNO, 2025, 700 m sous terre, veut départager les masses.</li><li>Oscillation : l’identité du neutrino change en vol.</li><li>Anti : ce n’est pas de la matière fantôme magique.</li><li>Comment on détecte presque rien.</li><li>Histoire : Pauli, Cowan-Reines, Super-Kamiokande.</li><li>Formule d’oscillation, version novice.</li><li>Ce que ça dit sur le modèle standard.</li><li>Sources : JUNO, PDG.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-08" data-t="terre" data-n="08" style="--accent:var(--terre);view-transition-name:live-08">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 08 : Noyau, dynamo, champ B"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/08.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/08.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">08</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg><span class="live-tag">TERRE</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Noyau, dynamo, champ B</h3>
+              <p class="live-hook">Géodynamo, inversions, aurores, GPS.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg>Live 08 · Prochainement</p>
+              <h3 id="tz-title">08 · Noyau, dynamo, champ B</h3>
+              <p class="tz-meta">≈ 2 h 30 · TERRE · Prochainement</p>
+              <ul class="tz-body"><li>Le noyau tourne, le fer liquide conduit, un champ naît.</li><li>Sans dynamo, pas d’aurores, GPS plus fragile, vent solaire plus rude.</li><li>Les inversions ont eu lieu. On lit ça dans les roches.</li><li>Anti : le pôle ne bascule pas demain.</li><li>Échelle : milliers de kilomètres, millions d’années.</li><li>Histoire : Gilbert, Gauss, InSight.</li><li>Ce qu’on modèle, ce qu’on ignore encore.</li><li>Sources : IAGA, observatoires magnétiques.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-09" data-t="terre" data-n="09" style="--accent:var(--terre);view-transition-name:live-09">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 09 : Acidification des océans"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/09.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/09.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">09</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg><span class="live-tag">TERRE</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Acidification des océans</h3>
+              <p class="live-hook">7ᵉ limite planétaire. pH, carbonates.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg>Live 09 · Prochainement</p>
+              <h3 id="tz-title">09 · Acidification des océans</h3>
+              <p class="tz-meta">≈ 2 h · TERRE · Prochainement</p>
+              <ul class="tz-body"><li>L’océan absorbe le CO2. Le pH baisse. Les carbonates souffrent.</li><li>On parle de 7e limite planétaire pour une raison mesurable.</li><li>Anti : l’océan s’acidifie donc tout meurt demain est faux et paresseux.</li><li>Chimie du système carbonate, version claire.</li><li>Qui est vulnérable : coquilles, récifs, chaînes.</li><li>Histoire : Keeling, mesures in situ.</li><li>Ce qu’on peut suivre, station par station.</li><li>Sources : NOAA, GLODAP, IPBES.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-10" data-t="cosmos" data-n="10" style="--accent:var(--cosmos);view-transition-name:live-10">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 10 : Chang’e-6 · face cachée"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/10.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/10.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">10</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Chang’e-6 · face cachée</h3>
+              <p class="live-hook">Échantillons, manteau plus sec, rebond magnétique.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 10 · Prochainement</p>
+              <h3 id="tz-title">10 · Chang’e-6 · face cachée</h3>
+              <p class="tz-meta">≈ 2 h · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>Chang’e-6 a rapporté des échantillons de la face cachée.</li><li>Le manteau y serait plus sec. Un rebond magnétique se discute.</li><li>Anti : ce n’est pas la Lune habitée en secret.</li><li>Pourquoi la face cachée n’est pas invisible : elle est juste tournée.</li><li>Méthode : spectrométrie d’un gramme de régolithe.</li><li>Histoire : Apollo, Luna, puis la Chine.</li><li>Ce que ça dit de la formation.</li><li>Sources : CNSA, Nature/Science.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-11" data-t="vivant" data-n="11" style="--accent:var(--vivant);view-transition-name:live-11">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 11 : CRISPR personnalisé"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/11.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/11.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">11</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg><span class="live-tag">VIVANT</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>CRISPR personnalisé</h3>
+              <p class="live-hook">Bébé KJ, Huntington. Off-target, éthique adulte.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg>Live 11 · Prochainement</p>
+              <h3 id="tz-title">11 · CRISPR personnalisé</h3>
+              <p class="tz-meta">≈ 2 h 30 · VIVANT · Prochainement</p>
+              <ul class="tz-body"><li>CRISPR n’est plus seulement un ciseau de labo.</li><li>Un bébé traité, des essais Huntington, l’éthique adulte sur la table.</li><li>Anti : on ne réécrit pas l’espèce en un live.</li><li>Off-target : le vrai risque technique.</li><li>Histoire : Charpentier, Doudna, He Jiankui.</li><li>Consentement, germinal vs somatique.</li><li>Ce que la médecine peut viser maintenant.</li><li>Sources : NEJM, régulateurs.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-12" data-t="vivant" data-n="12" style="--accent:var(--vivant);view-transition-name:live-12">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 12 : Protéines inventées par IA"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/12.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/12.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">12</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg><span class="live-tag">VIVANT</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Protéines inventées par IA</h3>
+              <p class="live-hook">AlphaFold, design de novo.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg>Live 12 · Prochainement</p>
+              <h3 id="tz-title">12 · Protéines inventées par IA</h3>
+              <p class="tz-meta">≈ 2 h · VIVANT · Prochainement</p>
+              <ul class="tz-body"><li>AlphaFold a cassé un mur : prédire le pli d’une protéine.</li><li>On design maintenant des protéines qui n’ont jamais existé.</li><li>Anti : une structure prédite n’est pas un médicament.</li><li>Labo vs écran : qui valide.</li><li>Histoire : Anfinsen, CASP, DeepMind.</li><li>Ce que de novo veut dire.</li><li>Limites et réussites 2024-2026.</li><li>Sources : Nature, EMBL-EBI.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-13" data-t="vivant" data-n="13" style="--accent:var(--vivant);view-transition-name:live-13">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 13 : Xénogreffe"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/13.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/13.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">13</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg><span class="live-tag">VIVANT</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Xénogreffe</h3>
+              <p class="live-hook">Rein de porc 271 jours. Pont vers greffe humaine.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg>Live 13 · Prochainement</p>
+              <h3 id="tz-title">13 · Xénogreffe</h3>
+              <p class="tz-meta">≈ 2 h · VIVANT · Prochainement</p>
+              <ul class="tz-body"><li>Un rein de porc a fonctionné 271 jours chez un humain.</li><li>Pont vers la greffe, pas encore la solution de masse.</li><li>Anti : ce n’est pas Frankenstein ni la fin des listes d’attente.</li><li>Rétrovirus porcins, immuno-suppression, éthique animale.</li><li>Histoire : premières xénogreffes ratées.</li><li>Ce qu’il faudra mesurer sur 5 ans.</li><li>Sources : journaux de transplantation.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-14" data-t="vivant" data-n="14" style="--accent:var(--vivant);view-transition-name:live-14">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 14 : Denisoviens · Harbin"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/14.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/14.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">14</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg><span class="live-tag">VIVANT</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Denisoviens · Harbin</h3>
+              <p class="live-hook">146 000 ans, métissage, gènes d’altitude.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg>Live 14 · Prochainement</p>
+              <h3 id="tz-title">14 · Denisoviens · Harbin</h3>
+              <p class="tz-meta">≈ 2 h · VIVANT · Prochainement</p>
+              <ul class="tz-body"><li>Un crâne à Harbin, 146 000 ans, côté dénisovien.</li><li>On n’est pas une lignée pure. Le métissage est dans le génome.</li><li>Anti : race originelle est une fiction.</li><li>Gènes d’altitude, Tibet, histoire démographique.</li><li>Comment on date un os et un ADN ancien.</li><li>Histoire : Denisova 2010.</li><li>Sources : Nature, Max-Planck.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-15" data-t="terre" data-n="15" style="--accent:var(--terre);view-transition-name:live-15">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 15 : Néandertal et le feu"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/15.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/15.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">15</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg><span class="live-tag">TERRE</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Néandertal et le feu</h3>
+              <p class="live-hook">Foyers, suie, isotopes.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg>Live 15 · Prochainement</p>
+              <h3 id="tz-title">15 · Néandertal et le feu</h3>
+              <p class="tz-meta">≈ 2 h · TERRE · Prochainement</p>
+              <ul class="tz-body"><li>Néandertal maîtrisait le feu. La question est : comment, où, depuis quand.</li><li>Foyers, suie, isotopes : on lit la combustion, pas le mythe de la brute.</li><li>Anti : ils n’avaient pas de culture est mort.</li><li>Archéologie du foyer.</li><li>Ce que le feu change pour le cerveau et la cuisine.</li><li>Sources : sites du Paléolithique moyen.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-16" data-t="cosmos" data-n="16" style="--accent:var(--cosmos);view-transition-name:live-16">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 16 : Observatoire Vera C. Rubin"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/16.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/16.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">16</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Observatoire Vera C. Rubin</h3>
+              <p class="live-hook">Le ciel en time-lapse.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 16 · Prochainement</p>
+              <h3 id="tz-title">16 · Observatoire Vera C. Rubin</h3>
+              <p class="tz-meta">≈ 2 h · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>Vera C. Rubin va filmer le ciel en time-lapse.</li><li>Des alertes par millions. Un inventaire du variable.</li><li>Anti : ce n’est pas un Google Earth de l’espace magique.</li><li>Cadence, filtre, archive ouverte.</li><li>Histoire : Palomar, SDSS, LSST.</li><li>Ce qu’un amateur pourra suivre.</li><li>Sources : rubinobservatory.org.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-17" data-t="cosmos" data-n="17" style="--accent:var(--cosmos);view-transition-name:live-17">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 17 : Eau lourde sur une exoplanète"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/17.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/17.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">17</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Eau lourde sur une exoplanète</h3>
+              <p class="live-hook">HDO ≠ H₂O. Origine de l’eau terrestre.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 17 · Prochainement</p>
+              <h3 id="tz-title">17 · Eau lourde sur une exoplanète</h3>
+              <p class="tz-meta">≈ 2 h · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>HDO n’est pas H2O. Le rapport dit d’où vient l’eau.</li><li>Une exoplanète avec eau lourde relance l’origine terrestre.</li><li>Anti : on a trouvé l’océan est souvent un titre.</li><li>Spectre IR, raies, bruit.</li><li>Histoire : comètes, chondrites, océans.</li><li>Sources : JWST papers.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-18" data-t="cosmos" data-n="18" style="--accent:var(--cosmos);view-transition-name:live-18">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 18 : Tempêtes stellaires"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/18.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/18.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">18</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Tempêtes stellaires</h3>
+              <p class="live-hook">CME hors Soleil. Danger Carrington.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 18 · Prochainement</p>
+              <h3 id="tz-title">18 · Tempêtes stellaires</h3>
+              <p class="tz-meta">≈ 2 h · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>Le Soleil crache. D’autres étoiles aussi, plus fort.</li><li>Une CME type Carrington aujourd’hui casserait plus que le télégraphe.</li><li>Anti : ce n’est pas la fin du monde calendaire.</li><li>Orages, satellites, réseaux.</li><li>Histoire : 1859, 1989 Québec.</li><li>Ce qu’on surveille.</li><li>Sources : NOAA SWPC, ESA.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-19" data-t="lois" data-n="19" style="--accent:var(--lois);view-transition-name:live-19">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 19 : Navier–Stokes et l’IA"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/19.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/19.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">19</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Navier–Stokes et l’IA</h3>
+              <p class="live-hook">Preprint ≠ Prix du millénaire.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 19 · Prochainement</p>
+              <h3 id="tz-title">19 · Navier–Stokes et l’IA</h3>
+              <p class="tz-meta">≈ 2 h · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>Navier-Stokes décrit les fluides. Le millénaire n’est pas tombé.</li><li>Une IA qui aide n’est pas une preuve mathématique.</li><li>Anti : preprint n’est pas un théorème.</li><li>Ce qu’est une existence lisse en 3D.</li><li>Histoire : Euler, Reynolds, Clay.</li><li>Sources : Clay Math, arXiv commenté.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-20" data-t="lois" data-n="20" style="--accent:var(--lois);view-transition-name:live-20">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 20 : Limite de Landauer"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/20.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/20.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">20</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Limite de Landauer</h3>
+              <p class="live-hook">Énergie minimale pour effacer 1 bit.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 20 · Prochainement</p>
+              <h3 id="tz-title">20 · Limite de Landauer</h3>
+              <p class="tz-meta">≈ 2 h · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>Effacer un bit a un coût énergétique minimal.</li><li>Landauer : information et chaleur sont cousins.</li><li>Anti : ça ne prouve pas la conscience.</li><li>Ordinateurs, irréversibilité, thermodynamique.</li><li>Histoire : Maxwell, Szilard, Landauer 1961.</li><li>Sources : Phys. Rev. classics.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-21" data-t="cosmos" data-n="21" style="--accent:var(--cosmos);view-transition-name:live-21">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 21 : Organiques à Jezero"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/21.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/21.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">21</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Organiques à Jezero</h3>
+              <p class="live-hook">Taches de léopard. Carbone ≠ preuve de vie.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 21 · Prochainement</p>
+              <h3 id="tz-title">21 · Organiques à Jezero</h3>
+              <p class="tz-meta">≈ 2 h 30 · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>Jezero : taches de léopard, organiques.</li><li>Carbone n’est pas vie. Rocher n’est pas fossile.</li><li>Anti : Perseverance a trouvé des microbes — non démontré.</li><li>Comment on évite le faux positif.</li><li>Histoire : ALH84001, leçon d’humilité.</li><li>Sources : NASA Mars 2020.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-22" data-t="cosmos" data-n="22" style="--accent:var(--cosmos);view-transition-name:live-22">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 22 : Océan d’Encelade"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/22.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/22.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">22</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Océan d’Encelade</h3>
+              <p class="live-hook">Microbes en saumure pH 11. Habitable ≠ habité.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 22 · Prochainement</p>
+              <h3 id="tz-title">22 · Océan d’Encelade</h3>
+              <p class="tz-meta">≈ 2 h · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>Encelade crache des panaches. Océan sous la glace, pH 11.</li><li>Habitable n’est pas habité.</li><li>Anti : microbe confirmé ? Non.</li><li>Saumure, énergie chimique, échantillonnage futur.</li><li>Histoire : Cassini.</li><li>Sources : NASA Saturn.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-23" data-t="terre" data-n="23" style="--accent:var(--terre);view-transition-name:live-23">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 23 : Mars n’est pas morte"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/23.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/23.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">23</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg><span class="live-tag">TERRE</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Mars n’est pas morte</h3>
+              <p class="live-hook">InSight, manteau partiellement fondu.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg>Live 23 · Prochainement</p>
+              <h3 id="tz-title">23 · Mars n’est pas morte</h3>
+              <p class="tz-meta">≈ 2 h · TERRE · Prochainement</p>
+              <ul class="tz-body"><li>Mars a encore un peu de chaleur interne.</li><li>InSight : séismes, noyau, manteau pas totalement mort.</li><li>Anti : on va terraformer l’année prochaine.</li><li>Géophysique d’une planète froide.</li><li>Sources : InSight team.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-24" data-t="terre" data-n="24" style="--accent:var(--terre);view-transition-name:live-24">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 24 : Terre boule de neige"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/24.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/08.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">24</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg><span class="live-tag">TERRE</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Terre boule de neige</h3>
+              <p class="live-hook">Saumures à −15 °C, vie sous la glace.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg>Live 24 · Prochainement</p>
+              <h3 id="tz-title">24 · Terre boule de neige</h3>
+              <p class="tz-meta">≈ 2 h 30 · TERRE · Prochainement</p>
+              <ul class="tz-body"><li>La Terre a été une boule de neige. La vie a tenu dans des saumures.</li><li>-15 C n’est pas zéro vivant.</li><li>Anti : tout n’était pas gelé comme un freezer.</li><li>Preuves : cap carbonates, diamictites.</li><li>Histoire : Hoffman, Schrag.</li><li>Sources : géologie précambrienne.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-25" data-t="terre" data-n="25" style="--accent:var(--terre);view-transition-name:live-25">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 25 : Grande oxydation"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/25.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/25.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">25</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg><span class="live-tag">TERRE</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Grande oxydation</h3>
+              <p class="live-hook">L’oxygène avant l’oxygène. Aérobies ~2,7 Ga.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg>Live 25 · Prochainement</p>
+              <h3 id="tz-title">25 · Grande oxydation</h3>
+              <p class="tz-meta">≈ 2 h 30 · TERRE · Prochainement</p>
+              <ul class="tz-body"><li>L’oxygène a monté avant d’être partout.</li><li>Aérobies vers 2,7 Ga, Grande Oxydation plus tard.</li><li>Anti : une cyanobactérie a tout changé en une nuit.</li><li>Isotopes du soufre, banded iron.</li><li>Sources : géochimie Archéen.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-26" data-t="vivant" data-n="26" style="--accent:var(--vivant);view-transition-name:live-26">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 26 : Archées d’Asgard"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/26.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/26.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">26</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg><span class="live-tag">VIVANT</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Archées d’Asgard</h3>
+              <p class="live-hook">Origine de la cellule à noyau.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg>Live 26 · Prochainement</p>
+              <h3 id="tz-title">26 · Archées d’Asgard</h3>
+              <p class="tz-meta">≈ 2 h 30 · VIVANT · Prochainement</p>
+              <ul class="tz-body"><li>Les archées d’Asgard ressemblent au chaînon vers la cellule à noyau.</li><li>Un vivant qui brouille bactérie et eucaryote.</li><li>Anti : on n’a pas créé Adam cellulaire.</li><li>Génomes, cultures difficiles.</li><li>Histoire : Woese, Lokiarchaeota.</li><li>Sources : Nature microbiology.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-27" data-t="cosmos" data-n="27" style="--accent:var(--cosmos);view-transition-name:live-27">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 27 : Télescope Nancy Grace Roman"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/27.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/27.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">27</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Télescope Nancy Grace Roman</h3>
+              <p class="live-hook">Lancé le 30 août 2026. Grand champ IR.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 27 · Prochainement</p>
+              <h3 id="tz-title">27 · Télescope Nancy Grace Roman</h3>
+              <p class="tz-meta">≈ 2 h · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>Nancy Grace Roman : grand champ infrarouge, lancé le 30 août 2026.</li><li>Complément du JWST, pas un clone.</li><li>Anti : ce n’est pas Hubble 3.</li><li>Microlentilles, énergie noire, exoplanètes.</li><li>Sources : NASA Roman.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-28" data-t="lois" data-n="28" style="--accent:var(--lois);view-transition-name:live-28">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 28 : PROBA-3 · éclipse artificielle"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/28.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/28.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">28</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>PROBA-3 · éclipse artificielle</h3>
+              <p class="live-hook">Deux satellites, couronne pendant des heures.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 28 · Prochainement</p>
+              <h3 id="tz-title">28 · PROBA-3 · éclipse artificielle</h3>
+              <p class="tz-meta">≈ 2 h · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>PROBA-3 : deux satellites font une éclipse à la demande.</li><li>La couronne pendant des heures, pas deux minutes.</li><li>Anti : on n’a pas éteint le Soleil.</li><li>Formation flying, occultation.</li><li>Sources : ESA.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-29" data-t="cosmos" data-n="29" style="--accent:var(--cosmos);view-transition-name:live-29">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 29 : Foudre martienne"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/29.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/29.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">29</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 1 h 30–2 h</span></p>
+              <h3>Foudre martienne</h3>
+              <p class="live-hook">Décharges dans les dust devils.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 29 · Prochainement</p>
+              <h3 id="tz-title">29 · Foudre martienne</h3>
+              <p class="tz-meta">≈ 1 h 30–2 h · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>Dust devil martien, charges, possible décharge.</li><li>Foudre sans orage terrestre.</li><li>Anti : Mars n’est pas Jupiter.</li><li>Mesures in situ vs modèle.</li><li>Sources : missions Mars.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-30" data-t="terre" data-n="30" style="--accent:var(--terre);view-transition-name:live-30">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 30 : Oxygène et dipôle"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/30.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/08.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">30</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg><span class="live-tag">TERRE</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Oxygène et dipôle</h3>
+              <p class="live-hook">540 Ma de parallèle champ B / pO₂.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg>Live 30 · Prochainement</p>
+              <h3 id="tz-title">30 · Oxygène et dipôle</h3>
+              <p class="tz-meta">≈ 2 h · TERRE · Prochainement</p>
+              <ul class="tz-body"><li>540 Ma de parallèle entre champ B et pO2 : corrélation à expliquer.</li><li>Pas une loi magique.</li><li>Anti : un graphe n’est pas une cause.</li><li>Paléomagnétisme et paléo-oxygène.</li><li>Sources : papers 2020s.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-31" data-t="lois" data-n="31" style="--accent:var(--lois);view-transition-name:live-31">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 31 : Systèmes complexes et réseaux"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/31.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/31.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">31</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Systèmes complexes et réseaux</h3>
+              <p class="live-hook">Réseaux, émergence, seuils, avalanches. Du cerveau au climat.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 31 · Prochainement</p>
+              <h3 id="tz-title">31 · Systèmes complexes et réseaux</h3>
+              <p class="tz-meta">≈ 2 h 30 · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>Un réseau, ce n’est pas tout est lié en slogan.</li><li>Noeuds, liens, seuils, avalanches.</li><li>Cerveau, épidémie, climat, web : mêmes outils, pas mêmes leçons.</li><li>Anti : une infographie virale n’est pas un modèle.</li><li>Émergence : ce qui apparaît à l’échelle du tout.</li><li>Histoire : Erdos-Renyi, Watts-Strogatz, Barabasi.</li><li>Ce qu’un seuil change.</li><li>Sources : Newman, manuels réseaux.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-32" data-t="lois" data-n="32" style="--accent:var(--lois);view-transition-name:live-32">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 32 : Temps, irréversibilité, mémoire du temps"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/32.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/32.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">32</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Temps, irréversibilité, mémoire du temps</h3>
+              <p class="live-hook">Flèche du temps, entropie, ce que la matière « retient ».</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 32 · Prochainement</p>
+              <h3 id="tz-title">32 · Temps, irréversibilité, mémoire du temps</h3>
+              <p class="tz-meta">≈ 2 h 30 · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>Le temps des équations peut se reculer. Le temps réel, non.</li><li>Entropie, mémoire de la matière, irréversibilité.</li><li>Un sablier cassé ne se répare pas tout seul.</li><li>Anti : on va inverser le temps en labo comme magie.</li><li>Flèche thermo vs flèche cosmologique.</li><li>Histoire : Boltzmann, Prigogine.</li><li>Ce que la mémoire veut dire hors cerveau.</li><li>Sources : thermo statistique.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-33" data-t="lois" data-n="33" style="--accent:var(--lois);view-transition-name:live-33">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 33 : Physico-chimie de la cuisine"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/33.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/33.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">33</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Physico-chimie de la cuisine</h3>
+              <p class="live-hook">Maillard, émulsions, températures. Gastronomie comme labo.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 33 · Prochainement</p>
+              <h3 id="tz-title">33 · Physico-chimie de la cuisine</h3>
+              <p class="tz-meta">≈ 2 h · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>La cuisine est un labo : Maillard, émulsions, températures.</li><li>Goûter, c’est mesurer sans le dire.</li><li>Anti : moléculaire n’est pas une secte ni une arnaque.</li><li>Histoire : Rumford, This, McGee.</li><li>Réactions, textures, sécurité alimentaire.</li><li>Ce qu’une sonde change dans une casserole.</li><li>Sources : physico-chimie des aliments.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-34" data-t="vivant" data-n="34" style="--accent:var(--vivant);view-transition-name:live-34">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 34 : Technologies médicales et corps augmentés"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/34.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/34.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">34</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg><span class="live-tag">VIVANT</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Technologies médicales et corps augmentés</h3>
+              <p class="live-hook">Prothèses, implants, interfaces. Promesses et limites.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg>Live 34 · Prochainement</p>
+              <h3 id="tz-title">34 · Technologies médicales et corps augmentés</h3>
+              <p class="tz-meta">≈ 2 h 30 · VIVANT · Prochainement</p>
+              <ul class="tz-body"><li>Prothèse, implant, interface : le corps peut être réparé, parfois augmenté.</li><li>Promesse n’est pas un produit vendu sur une pub.</li><li>Anti : transhumanisme magazine n’est pas un essai clinique.</li><li>Histoire : jambes de bois, pacemakers, cochlear.</li><li>Éthique, accès, données neurales.</li><li>Sources : FDA, revues médicales.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-35" data-t="terre" data-n="35" style="--accent:var(--terre);view-transition-name:live-35">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 35 : Pollution invisible et santé"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/35.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/35.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">35</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg><span class="live-tag">TERRE</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Pollution invisible et santé</h3>
+              <p class="live-hook">Particules fines, perturbateurs, bruit, lumière.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg>Live 35 · Prochainement</p>
+              <h3 id="tz-title">35 · Pollution invisible et santé</h3>
+              <p class="tz-meta">≈ 2 h · TERRE · Prochainement</p>
+              <ul class="tz-body"><li>Ce qu’on ne voit pas : PM2.5, perturbateurs, bruit, lumière.</li><li>Santé publique de l’invisible.</li><li>Anti : tout est poison et rien n’est poison sont deux paresses.</li><li>Dose, durée, cocktail.</li><li>Histoire : smog de Londres, plomb, amiante.</li><li>Sources : OMS, ANSES, EPA.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-36" data-t="lois" data-n="36" style="--accent:var(--lois);view-transition-name:live-36">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 36 : Statistiques criminelles et science du crime"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/36.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/36.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">36</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Statistiques criminelles et science du crime</h3>
+              <p class="live-hook">Preuves, biais, ADN, ce que les chiffres ne disent pas.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 36 · Prochainement</p>
+              <h3 id="tz-title">36 · Statistiques criminelles et science du crime</h3>
+              <p class="tz-meta">≈ 2 h · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>Le crime produit des chiffres. Les chiffres produisent des récits.</li><li>ADN, balistique, biais de base.</li><li>Anti : les stats prouvent que — sans dénominateur.</li><li>Histoire : Bertillon, Locard, PCR.</li><li>Ce qu’un tribunal peut demander à une science.</li><li>Sources : forensic science reviews, avec prudence.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-37" data-t="vivant" data-n="37" style="--accent:var(--vivant);view-transition-name:live-37">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 37 : Histoire des épidémies et santé publique"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/37.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/37.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">37</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg><span class="live-tag">VIVANT</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Histoire des épidémies et santé publique</h3>
+              <p class="live-hook">Pestes, vaccine, John Snow, OMS. Méthode avant panique.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg>Live 37 · Prochainement</p>
+              <h3 id="tz-title">37 · Histoire des épidémies et santé publique</h3>
+              <p class="tz-meta">≈ 2 h 30 · VIVANT · Prochainement</p>
+              <ul class="tz-body"><li>Peste, vaccine, John Snow, OMS.</li><li>Une épidémie est une courbe avant d’être une panique.</li><li>Anti : complot sanitaire et naïveté officielle : deux écueils.</li><li>Histoire des cordons, des égouts, des vaccins.</li><li>Méthode : cluster, R, essai.</li><li>Sources : archives OMS, Snow, CDC.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-38" data-t="vivant" data-n="38" style="--accent:var(--vivant);view-transition-name:live-38">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 38 : Science des addictions"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/38.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/38.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">38</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg><span class="live-tag">VIVANT</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Science des addictions</h3>
+              <p class="live-hook">Cerveau, dopamine, tolérance. Ni morale ni déni.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg>Live 38 · Prochainement</p>
+              <h3 id="tz-title">38 · Science des addictions</h3>
+              <p class="tz-meta">≈ 2 h · VIVANT · Prochainement</p>
+              <ul class="tz-body"><li>Addiction : cerveau, dopamine, tolérance, contexte.</li><li>Ni vice pur ni fatalité chimique seule.</li><li>Anti : une fois accro c’est fini, et c’est juste la volonté.</li><li>Histoire : opium, alcool, nicotine, jeux.</li><li>Ce que soigner veut dire.</li><li>Sources : NIDA, Inserm.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-39" data-t="terre" data-n="39" style="--accent:var(--terre);view-transition-name:live-39">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 39 : Sciences et religions — dialogues et conflits"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/39.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/39.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">39</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg><span class="live-tag">TERRE</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Sciences et religions — dialogues et conflits</h3>
+              <p class="live-hook">Galilée n’est pas tout le dossier. Méthode vs dogme.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg>Live 39 · Prochainement</p>
+              <h3 id="tz-title">39 · Sciences et religions — dialogues et conflits</h3>
+              <p class="tz-meta">≈ 2 h 30 · TERRE · Prochainement</p>
+              <ul class="tz-body"><li>Galilée n’est pas tout le dossier.</li><li>Méthode vs dogme, parfois alliance, parfois procès.</li><li>Anti : science égale athéisme, et foi égale anti-science.</li><li>Histoire : universités médiévales, Darwin, Scopes.</li><li>Ce qu’on peut dialoguer sans confondre les genres.</li><li>Sources : histoire des sciences.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-40" data-t="lois" data-n="40" style="--accent:var(--lois);view-transition-name:live-40">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 40 : Futur des transports et de la mobilité"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/40.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/40.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">40</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Futur des transports et de la mobilité</h3>
+              <p class="live-hook">Batteries, hydrogène, rail, aviation. Physique des contraintes.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 40 · Prochainement</p>
+              <h3 id="tz-title">40 · Futur des transports et de la mobilité</h3>
+              <p class="tz-meta">≈ 2 h · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>Batterie, hydrogène, rail, aviation : la physique des contraintes d’abord.</li><li>Un slide 2050 zéro carbone n’est pas un bilan.</li><li>Anti : miracle énergétique sans ordres de grandeur.</li><li>Densité d’énergie, réseau, matériaux.</li><li>Histoire : cheval, vapeur, pétrole, électrique.</li><li>Sources : IEA, analyses cycle de vie.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-41" data-t="cosmos" data-n="41" style="--accent:var(--cosmos);view-transition-name:live-41">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 41 : Exoplanètes et mondes extrêmes"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/41.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/41.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">41</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Exoplanètes et mondes extrêmes</h3>
+              <p class="live-hook">Laves, océans d’hydrogène, Jupiters chauds.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 41 · Prochainement</p>
+              <h3 id="tz-title">41 · Exoplanètes et mondes extrêmes</h3>
+              <p class="tz-meta">≈ 2 h 30 · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>Mondes de lave, océans d’hydrogène, Jupiters chauds.</li><li>L’étrange est la norme hors Système solaire.</li><li>Anti : carte postale égale climat réel.</li><li>Histoire : 51 Peg, hot Jupiters.</li><li>Ce qu’un spectre dit d’une atmosphère.</li><li>Sources : archive exoplanètes.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-42" data-t="cosmos" data-n="42" style="--accent:var(--cosmos);view-transition-name:live-42">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 42 : Étoiles — naissance, vie, mort"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/42.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/42.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">42</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg><span class="live-tag">COSMOS</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Étoiles — naissance, vie, mort</h3>
+              <p class="live-hook">Nuage, séquence principale, géante, supernova, naine.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-cosmos"/></svg>Live 42 · Prochainement</p>
+              <h3 id="tz-title">42 · Étoiles — naissance, vie, mort</h3>
+              <p class="tz-meta">≈ 2 h 30 · COSMOS · Prochainement</p>
+              <ul class="tz-body"><li>Nuage, séquence principale, géante, supernova, naine.</li><li>Une étoile a un budget d’hydrogène.</li><li>Anti : le Soleil n’explose pas bientôt à l’échelle humaine.</li><li>Diagramme HR, masse, destin.</li><li>Histoire : Payne-Gaposchkin, Chandrasekhar.</li><li>Sources : manuels d’astro stellaire.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-43" data-t="lois" data-n="43" style="--accent:var(--lois);view-transition-name:live-43">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 43 : Histoire de la chimie et thermochimie"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/43.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/43.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">43</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Histoire de la chimie et thermochimie</h3>
+              <p class="live-hook">Du phlogistique à ΔH. Chaleur, liaisons, mesures.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 43 · Prochainement</p>
+              <h3 id="tz-title">43 · Histoire de la chimie et thermochimie</h3>
+              <p class="tz-meta">≈ 2 h 30 · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>Du phlogistique à delta H.</li><li>La chaleur d’une réaction s’est apprise en brûlant et en pesant.</li><li>Anti : alchimie n’est pas la chimie.</li><li>Lavoisier, Hess, Gibbs.</li><li>Thermo-chimie utile : cuisine, moteur, climat.</li><li>Sources : histoire de la chimie.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-44" data-t="lois" data-n="44" style="--accent:var(--lois);view-transition-name:live-44">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 44 : Qu’est-ce que l’esprit critique"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/44.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/44.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">44</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h</span></p>
+              <h3>Qu’est-ce que l’esprit critique</h3>
+              <p class="live-hook">Méthode ECI : échelle, mesure, modèle, source.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 44 · Prochainement</p>
+              <h3 id="tz-title">44 · Qu’est-ce que l’esprit critique</h3>
+              <p class="tz-meta">≈ 2 h · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>Esprit critique : échelle, mesure, modèle, source.</li><li>Ce n’est pas douter de tout pour le style.</li><li>Anti : relativisme et autorité aveugle.</li><li>Méthode ECI appliquée à une rumeur.</li><li>Biais, réplication, conflit d’intérêts.</li><li>Histoire : méthode expérimentale.</li><li>Outil réutilisable après le live.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-45" data-t="lois" data-n="45" style="--accent:var(--lois);view-transition-name:live-45">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 45 : Histoire des mathématiques"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/45.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/45.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">45</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg><span class="live-tag">LOIS DU RÉEL</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Histoire des mathématiques</h3>
+              <p class="live-hook">Preuve, zéro, géométrie, analyse. Pas une liste de génies.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-lois"/></svg>Live 45 · Prochainement</p>
+              <h3 id="tz-title">45 · Histoire des mathématiques</h3>
+              <p class="tz-meta">≈ 2 h 30 · LOIS DU RÉEL · Prochainement</p>
+              <ul class="tz-body"><li>Le zéro, la preuve, la géométrie, l’analyse.</li><li>Pas une galerie de génies isolés.</li><li>Anti : les maths c’est fini, l’IA calcule.</li><li>Histoire : Babylon, Euclide, al-Khwarizmi, Newton, Noether.</li><li>Ce qu’est une démonstration.</li><li>Sources : histoire des maths.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-46" data-t="terre" data-n="46" style="--accent:var(--terre);view-transition-name:live-46">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 46 : Les femmes oubliées dans les sciences"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/46.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/46.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">46</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg><span class="live-tag">TERRE</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Les femmes oubliées dans les sciences</h3>
+              <p class="live-hook">Travail réel, signatures volées, archives. Noms et faits.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg>Live 46 · Prochainement</p>
+              <h3 id="tz-title">46 · Les femmes oubliées dans les sciences</h3>
+              <p class="tz-meta">≈ 2 h 30 · TERRE · Prochainement</p>
+              <ul class="tz-body"><li>Des femmes ont produit des mesures, des catalogues, des preuves.</li><li>On a souvent signé autre chose au-dessus.</li><li>Anti : tokenisme et déni : deux fautes.</li><li>Archives, priorités, salaires, noms.</li><li>Histoire : Leavitt, Franklin, Payne, Mirzakhani — et les oubliées sans rue.</li><li>Méthode : sources primaires.</li><li>Hors portraits inventés.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-47" data-t="terre" data-n="47" style="--accent:var(--terre);view-transition-name:live-47">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 47 : Expériences controversées dans l’histoire des sciences"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/47.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/47.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">47</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg><span class="live-tag">TERRE</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>Expériences controversées dans l’histoire des sciences</h3>
+              <p class="live-hook">Tuskegee, Milgram, Willowbrook, Unit 731, eugénisme. Faits, archives, éthique. Pas un mode d’emploi.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-terre"/></svg>Live 47 · Prochainement</p>
+              <h3 id="tz-title">47 · Expériences controversées dans l’histoire des sciences</h3>
+              <p class="tz-meta">≈ 2 h 30 · TERRE · Prochainement</p>
+              <ul class="tz-body"><li>Tuskegee, Milgram, Willowbrook, eugénisme, Unit 731.</li><li>Faits, archives, qui a décidé, ce que ça a changé.</li><li>Code de Nuremberg, Helsinki, comités.</li><li>Anti : ni voyeurisme ni la science excuse tout.</li><li>Pas un mode d’emploi.</li><li>Histoire de l’éthique comme frein nécessaire.</li><li>Ce qu’un novice doit exiger aujourd’hui.</li><li>Sources : archives de santé publique, rapports officiels.</li></ul>
+            </template>
+          </article>
+          <article class="live" id="live-48" data-t="vivant" data-n="48" style="--accent:var(--vivant);view-transition-name:live-48">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live 48 : L’excision et la circoncision"></button>
+            <div class="live-media">
+              <img class="live-poster" src="assets/prochainement/48.webp" width="640" height="430" loading="lazy" decoding="async" alt="">
+              <video class="lazy-vid" muted loop playsinline preload="none" data-src="assets/prochainement/48.mp4" aria-hidden="true" tabindex="-1"></video>
+              <span class="live-num" aria-hidden="true">48</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg><span class="live-tag">VIVANT</span><span class="live-dur">≈ 2 h 30</span></p>
+              <h3>L’excision et la circoncision</h3>
+              <p class="live-hook">Deux actes distincts. Santé, droit, consentement. Pas un mode d’emploi.</p>
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker"><svg class="ico" aria-hidden="true"><use href="#i-vivant"/></svg>Live 48 · Prochainement</p>
+              <h3 id="tz-title">48 · L’excision et la circoncision</h3>
+              <p class="tz-meta">≈ 2 h 30 · VIVANT · Prochainement</p>
+              <ul class="tz-body"><li>Deux gestes trop souvent collés dans la même phrase. Ce n’est pas le même acte.</li><li>Circoncision masculine : prépuce. Débats médicaux, religieux, juridiques — pas un slogan.</li><li>Excision / MGF : l’OMS la classe comme atteinte à la santé et aux droits.</li><li>On distinguera types, géographies, chiffres — sans catalogue opératoire.</li><li>Santé : douleurs, infections, accouchements, séquelles. Sources cliniques, pas des rumeurs.</li><li>Consentement : adulte, enfant, pression sociale. Qui décide du corps.</li><li>Histoire et religions : un rite n’est pas automatiquement un soin.</li><li>Droit français et conventions : l’excision est un crime. La circoncision n’est pas traitée pareil.</li><li>Anti : ni stigmatiser des peuples entiers, ni nier les lésions.</li><li>Live de méthode ECI. Pas un tutoriel.</li></ul>
+            </template>
+          </article>
+          </div>
+          <div class="empty" id="empty" hidden>
+            <p>Aucun live ne correspond à cette recherche.</p>
+            <button class="button" type="button" id="reset">Tout afficher</button>
+          </div>
+        </section>
+
+        <section class="collective-footer reveal" aria-labelledby="collectif">
+          <div class="collective-logo-wrap">
+            <img class="collective-logo" width="640" height="640" loading="lazy" decoding="async" src="assets/avatars/logo-eci-640.webp" alt="Sceau du collectif Empire contre Intox">
+          </div>
+          <div class="collective-copy">
+            <p class="section-kicker">Collectif</p>
+            <h2 id="collectif">Empire contre Intox</h2>
+            <p>Un collectif pour remettre du contexte, de la méthode et du sens critique dans la mémoire collective. Chaque live devient ensuite un dossier&nbsp;: transcription mot pour mot, expériences, formules qui se lisent à voix haute, et chaque affirmation vérifiée dans <a href="sources/sources.html">Les Sources</a>.</p>
+            <p class="origin">Empire contre Intox · Ascèse Lives Sciences</p>
+            <span class="byline">
+              <img width="128" height="128" loading="lazy" src="assets/avatars/provoxys.webp" alt="Avatar de Provoxys">
+              <span><small>Programme établi par</small><strong>Provoxys</strong></span>
+            </span>
+            <div class="collective-actions">
+              <a class="button primary" href="index.html">Retour à l'index</a>
+              <a class="button" href="/empire-calendrier">Calendrier des lives</a>
+              <a class="button" href="provoxys/lumiere/">La Lumière</a>
+              <a class="button" href="provoxys/entropie/">L'Entropie</a>
+              <a class="button" href="sources/sources.html">Les Sources</a>
+            </div>
+            <span class="collective-motto">Veritas omnia vincit</span>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="eci-license-footer">
+      <p class="eci-license"><strong>Licence de contenu :</strong> sauf mention contraire, textes, transcriptions, images et médias sont sous <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr" target="_blank" rel="license noopener">CC BY-NC-ND 4.0</a> — partage autorisé avec attribution, sans usage commercial ni modification. <a href="LICENCE-CONTENU.md">Détails</a>. <span class="eci-counter-sep" aria-hidden="true">·</span> <span class="eci-visit-counter" data-visit-counter>— visites sur cette page</span></p>
+    </footer>
+  </div>
+
+  <dialog class="tease" id="tease" aria-labelledby="tz-title">
+    <div class="tz-progress" aria-hidden="true"><span></span></div>
+    <div class="tz-media" aria-hidden="true">
+      <img alt="" decoding="async">
+      <video muted loop playsinline preload="none" tabindex="-1"></video>
+      <span class="tz-pos" id="tz-pos"></span>
+      <span class="tz-num" id="tz-num"></span>
+    </div>
+    <div class="tz-main">
+      <div class="tz-scroll" id="tz-body"></div>
+      <div class="tz-nav">
+        <button type="button" data-step="-1" aria-label="Live précédent">←<span>Précédent</span></button>
+        <button type="button" class="tz-share" id="tz-share"><svg class="ico" aria-hidden="true"><use href="#i-share"/></svg>Partager</button>
+        <button type="button" data-step="1" aria-label="Live suivant"><span>Suivant</span>→</button>
+        <p class="tz-hint">Balayez pour passer d'un live à l'autre</p>
+      </div>
+    </div>
+    <button class="tz-close" type="button" aria-label="Fermer le teasing"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+  (() => {
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+    const root = document.documentElement;
+    const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SAVE = !!(navigator.connection && navigator.connection.saveData) || matchMedia('(prefers-reduced-data: reduce)').matches;
+    const FINE = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const AUTO = !RM && !SAVE;
+    const store = {
+      get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+      set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+    };
+    const vt = (fn) => (document.startViewTransition && !RM && !document.hidden) ? document.startViewTransition(fn) : fn();
+
+    /* Barre collante : la barre d'outils se cale dessous */
+    const topbar = $('.topbar');
+    const setTb = () => root.style.setProperty('--tb-h', (getComputedStyle(topbar).position === 'sticky' ? topbar.offsetHeight : 0) + 'px');
+    setTb(); addEventListener('resize', setTb, { passive: true });
+
+    /* Fil de progression */
+    const bar = $('#progressTop'); let ticking = false;
+    const onScroll = () => {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(() => {
+        const max = root.scrollHeight - innerHeight;
+        bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+        ticking = false;
+      });
+    };
+    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    /* Révélation (threshold 0 + filet de sécurité) */
+    const reveals = $$('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0, rootMargin: '0px 0px -6% 0px' });
+      reveals.forEach(el => io.observe(el));
+      setTimeout(() => reveals.forEach(el => { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); }), 1200);
+    } else reveals.forEach(el => el.classList.add('in'));
+
+    /* Compteurs du hero */
+    if (!RM) $$('[data-count]').forEach(el => {
+      const end = +el.dataset.count, t0 = performance.now() + 400, d = 1200;
+      const tick = (t) => { const p = Math.min(1, Math.max(0, (t - t0) / d)); el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(tick); };
+      el.textContent = '0'; requestAnimationFrame(tick);
+    });
+
+    /* Images animées : chargées et jouées seulement à l'écran */
+    const board = $('#board');
+    const dlg = $('#tease');
+    const hero = $('#heroVideo');
+    const listMode = () => board.classList.contains('is-list');
+    const play = v => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    const attach = v => {
+      if (v.getAttribute('src')) return;
+      v.addEventListener('playing', () => v.classList.add('on'), { once: true });
+      v.src = v.dataset.src;
+    };
+    const canPlay = v => !dlg.open && !(listMode() && board.contains(v));
+    const vids = $$('.lazy-vid');
+    const onScreen = new Set();
+    const resumeAll = () => {
+      onScreen.forEach(v => { if (canPlay(v)) { attach(v); play(v); } });
+      if (AUTO && !dlg.open) play(hero);
+    };
+    const pauseAll = () => { vids.forEach(v => v.pause()); hero.pause(); };
+    if (AUTO) {
+      attach(hero); play(hero);
+      if ('IntersectionObserver' in window) {
+        const vo = new IntersectionObserver(es => es.forEach(e => {
+          const v = e.target;
+          if (e.isIntersecting) { onScreen.add(v); if (canPlay(v)) { attach(v); play(v); } }
+          else { onScreen.delete(v); v.pause(); }
+        }), { rootMargin: '200px 0px' });
+        vids.forEach(v => vo.observe(v));
+      }
+    } else if (!RM && FINE) {
+      /* économie de données : l'image s'anime au survol seulement */
+      vids.forEach(v => {
+        const host = v.closest('.live, .spot-card');
+        host.addEventListener('mouseenter', () => { if (canPlay(v)) { attach(v); play(v); } });
+        host.addEventListener('mouseleave', () => v.pause());
+      });
+    }
+    /* onglet ouvert en arrière-plan : le navigateur refuse play(), on relance au retour */
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) resumeAll(); });
+
+    /* Filtres, recherche, affichage */
+    const cards = $$('.live', board);
+    const state = { f: 'all', q: '' };
+    const count = $('#shownCount'), empty = $('#empty'), ribbon = $('#ribbon'), q = $('#q');
+    const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ').trim();
+    const hay = new Map(cards.map(c => [c, norm(c.textContent + ' ' + $('template', c).content.textContent)]));
+    function apply(animate) {
+      const words = norm(state.q).split(/\s+/).filter(Boolean);
+      const run = () => {
+        let n = 0;
+        cards.forEach(c => {
+          const on = (state.f === 'all' || c.dataset.t === state.f) && words.every(w => hay.get(c).includes(w));
+          c.hidden = !on; if (on) n++;
+        });
+        count.textContent = n;
+        empty.hidden = n > 0;
+        $$('[data-f]').forEach(b => {
+          const on = b.dataset.f === state.f;
+          b.classList.toggle('is-on', on);
+          if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
+        });
+        ribbon.dataset.active = String(state.f !== 'all');
+      };
+      animate ? vt(run) : run();
+    }
+    $$('[data-f]').forEach(b => b.addEventListener('click', () => {
+      state.f = (b.classList.contains('rib-seg') && state.f === b.dataset.f) ? 'all' : b.dataset.f;
+      apply(true);
+    }));
+    let qt = 0;
+    q.addEventListener('input', () => { clearTimeout(qt); qt = setTimeout(() => { state.q = q.value; apply(false); }, 90); });
+    q.addEventListener('keydown', e => { if (e.key === 'Escape' && q.value) { e.stopPropagation(); q.value = ''; state.q = ''; apply(false); } });
+    $('#reset').addEventListener('click', () => { state.f = 'all'; state.q = ''; q.value = ''; apply(true); });
+    document.addEventListener('keydown', e => {
+      if (e.key !== '/' || dlg.open || e.metaKey || e.ctrlKey || e.altKey) return;
+      const t = e.target; if (t.closest && t.closest('input, textarea, [contenteditable]')) return;
+      e.preventDefault(); q.focus({ preventScroll: true }); q.scrollIntoView({ block: 'nearest' });
+    });
+
+    const setView = (v, save) => {
+      const go = () => {
+        board.classList.toggle('is-list', v === 'list');
+        $$('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === v)));
+      };
+      save ? vt(go) : go();
+      if (save) store.set('eci-prochainement-vue', v);
+      if (v === 'list') vids.forEach(x => { if (board.contains(x)) x.pause(); });
+    };
+    $$('[data-view]').forEach(b => b.addEventListener('click', () => setView(b.dataset.view, true)));
+    if (store.get('eci-prochainement-vue') === 'list') setView('list', false);
+
+    /* Halo et inclinaison au pointeur */
+    if (FINE && !RM) {
+      let raf = 0, ev = null, last = null;
+      board.addEventListener('pointermove', e => {
+        ev = e;
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const c = ev.target.closest('.live');
+          if (last && last !== c) last.style.transform = '';
+          last = c; if (!c) return;
+          const r = c.getBoundingClientRect();
+          const x = (ev.clientX - r.left) / r.width, y = (ev.clientY - r.top) / r.height;
+          c.style.setProperty('--mx', (x * 100) + '%'); c.style.setProperty('--my', (y * 100) + '%');
+          if (!listMode()) c.style.transform = `perspective(1000px) rotateX(${(.5 - y) * 4}deg) rotateY(${(x - .5) * 5}deg) translateY(-6px)`;
+        });
+      });
+      board.addEventListener('pointerleave', () => { if (last) last.style.transform = ''; last = null; });
+    }
+
+    /* Teasing */
+    const tzBody = $('#tz-body'), tzImg = $('.tz-media img', dlg), tzVid = $('.tz-media video', dlg);
+    const tzNum = $('#tz-num'), tzPos = $('#tz-pos'), tzProg = $('.tz-progress span', dlg);
+    let current = null, opener = null;
+    const visible = () => cards.filter(c => !c.hidden);
+    function openTease(card, from) {
+      if (!card) return;
+      if (card.hidden) { state.f = 'all'; state.q = ''; q.value = ''; apply(false); }
+      current = card;
+      if (from) opener = from;
+      tzBody.innerHTML = $('template', card).innerHTML;
+      tzBody.scrollTop = 0;
+      dlg.style.setProperty('--accent', `var(--${card.dataset.t})`);
+      tzImg.src = $('.live-poster', card).getAttribute('src');
+      const src = $('.lazy-vid', card).dataset.src;
+      if (!RM && !SAVE) {
+        if (tzVid.getAttribute('src') !== src) {
+          tzVid.classList.remove('on');
+          tzVid.addEventListener('playing', () => tzVid.classList.add('on'), { once: true });
+          tzVid.src = src;
+        }
+        play(tzVid);
+      }
+      const list = visible(), i = list.indexOf(card);
+      tzNum.textContent = card.dataset.n;
+      tzPos.textContent = `${i + 1} / ${list.length}`;
+      tzProg.style.transform = `scaleX(${(i + 1) / list.length})`;
+      history.replaceState(null, '', '#live-' + card.dataset.n);
+      if (!dlg.open) { pauseAll(); dlg.showModal(); root.classList.add('modal-open'); }
+    }
+    function step(d) {
+      const list = visible(); if (!list.length) return;
+      const i = list.indexOf(current);
+      openTease(list[(i + d + list.length) % list.length]);
+    }
+    board.addEventListener('click', e => {
+      const hit = e.target.closest('.live-hit'); if (!hit) return;
+      openTease(hit.closest('.live'), hit);
+    });
+    $$('[data-goto]').forEach(b => b.addEventListener('click', () => openTease($('#live-' + b.dataset.goto), b)));
+    $('.tz-close', dlg).addEventListener('click', () => dlg.close());
+    $$('[data-step]', dlg).forEach(b => b.addEventListener('click', () => step(+b.dataset.step)));
+    dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+    });
+    let tx = 0, ty = 0;
+    dlg.addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+    dlg.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+      if (Math.abs(dx) > 60 && Math.abs(dy) < 50) step(dx < 0 ? 1 : -1);
+    }, { passive: true });
+    dlg.addEventListener('close', () => {
+      tzVid.pause();
+      root.classList.remove('modal-open');
+      history.replaceState(null, '', location.pathname + location.search);
+      resumeAll();
+      if (opener) opener.focus({ preventScroll: true });
+    });
+
+    /* Partage d'un live */
+    const toastEl = $('#toast'); let toastT = 0;
+    const toast = msg => { toastEl.textContent = msg; toastEl.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('on'), 2400); };
+    $('#tz-share').addEventListener('click', async () => {
+      const url = location.origin + location.pathname + '#live-' + current.dataset.n;
+      const title = 'Prochainement — ' + $('h3', tzBody).textContent;
+      if (navigator.share && !FINE) { try { await navigator.share({ title, url }); } catch (e) {} return; }
+      try { await navigator.clipboard.writeText(url); toast('Lien du live copié'); }
+      catch (e) { toast(url); }
+    });
+
+    /* Lien direct : prochainement.html#live-07 ouvre le teasing du live 07 */
+    const fromHash = () => {
+      const m = location.hash.match(/^#live-(\d{2})$/);
+      if (m && $('#live-' + m[1])) openTease($('#live-' + m[1]), $('#live-' + m[1] + ' .live-hit'));
+    };
+    addEventListener('hashchange', fromHash);
+    fromHash();
+  })();
+  </script>
+  <script src="assets/visit-counter.js?v=4f7555768f79" defer></script>
+</body>
+</html>
