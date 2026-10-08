@@ -22,8 +22,9 @@ OUT=provoxys/son/assets
 
 hash12() { shasum -a 256 "$1" | cut -c1-12; }
 
-echo "▶ 1/5 registre des ateliers"
+echo "▶ 1/5 registres des ateliers et des labos de formule"
 python3 "$SRC/gen-registry.py"
+python3 "$SRC/gen-fx-registry.py"
 
 echo "▶ 2/5 typage strict"
 ( cd "$SRC" && npx --prefix ../../.. -p typescript tsc -p tsconfig.json )

@@ -40,7 +40,7 @@ Sauf mention explicite contraire, elle ne s’applique pas :
 - aux avatars, images, modèles 3D, vidéos, polices, extraits ou ressources tierces crédités séparément ;
 - aux éléments déjà placés dans le domaine public ou soumis à une autre licence.
 
-Les contenus tiers restent soumis à leurs droits propres.
+Les contenus tiers restent soumis à leurs droits propres. Exemple : les deux enregistrements sonores de cachalot et de rorqual bleu du Dossier « Le Son » (`provoxys/son/assets/sons/*-noaa*.mp3`) viennent de NOAA Fisheries et sont crédités à cet organisme.
 
 ## Autorisations particulières
 
