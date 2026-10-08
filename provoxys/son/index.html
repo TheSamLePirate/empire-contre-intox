@@ -255,6 +255,8 @@ main{position:relative;z-index:2}
 
 /* ================= CHAPITRES ================= */
 .chapter{padding:56px 0;scroll-margin-top:100px;content-visibility:auto;contain-intrinsic-size:auto 1400px}
+/* mesure exacte des chapitres avant un saut d'ancre (voir page.js, exactLayout) */
+html.cv-off .chapter{content-visibility:visible}
 .chapter-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--line);position:relative}
 .chapter-head::after{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1px;background:linear-gradient(90deg,var(--act),rgba(var(--act-rgb),0));transition:width 1.6s var(--ease) .25s}
 .reveal.in .chapter-head::after{width:160px}
@@ -6892,9 +6894,23 @@ function settle(el, long){
   };
   setTimeout(step, 50);
 }
+/* Chapitres en content-visibility:auto : tant qu'ils ne sont pas rendus, leur hauteur est ESTIMÉE (1 400 px),
+   alors que la page en compte ~150 000 : un saut vers un chapitre éloigné tombe à des milliers de pixels de la
+   cible et ne se corrige qu'après plusieurs secondes. Avant le premier saut, on rend tout une fois pour MESURER
+   chaque chapitre, on fixe cette hauteur comme estimation, puis on rend de nouveau à la demande : la position
+   de la cible est exacte dès le premier saut. */
+function exactLayout(){
+  const h = document.documentElement; if (h.dataset.cvExact) return; h.dataset.cvExact = '1';
+  const cs = [...document.querySelectorAll('.chapter')];
+  h.classList.add('cv-off');
+  const hs = cs.map(c => c.getBoundingClientRect().height);
+  cs.forEach((c, i) => { if (hs[i] > 0) c.style.containIntrinsicSize = 'auto ' + Math.round(hs[i]) + 'px'; });
+  h.classList.remove('cv-off');
+}
 function jumpTo(id, push, long){
   let el = document.getElementById(id);
   if (!el) return false;
+  exactLayout();
   // la cible et sa section doivent être visibles tout de suite (révélation, <details> repliés)
   el.classList.add('in'); const sec = el.closest('.reveal, .fx'); if (sec) sec.classList.add('in');
   for (let d = el.closest('details'); d; d = d.parentElement && d.parentElement.closest('details')) d.open = true;
