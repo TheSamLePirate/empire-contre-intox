@@ -3,7 +3,7 @@ import { LiveRegistry } from "../watcher.ts";
 import { MediaManager } from "../media.ts";
 import { createLivesApp } from "../app.ts";
 import { parseRoom } from "../tiktok.ts";
-import { parseAccounts } from "../config-client.ts";
+import { configClient, parseAccounts } from "../config-client.ts";
 import { isPublicAddress, safeImage } from "../security.ts";
 import type {
   Provider,
@@ -261,4 +261,40 @@ test("normalizes provider data and prioritizes SD2 without audio-only fallback",
   expect(() =>
     parseAccounts({ accounts: [{ ...account("alice"), published: "yes" }] }),
   ).toThrow();
+});
+
+
+test("configuration HTTP polling renews freshness on 304 and never follows redirects", async () => {
+  const s = setup();
+  let redirect = false, leakedRequests = 0;
+  const server = Bun.serve({
+    hostname: "127.0.0.1", port: 0,
+    fetch(req) {
+      if (new URL(req.url).pathname === "/unexpected") {
+        leakedRequests++;
+        return Response.json({ accounts: [] });
+      }
+      if (redirect) return Response.redirect(new URL("/unexpected", req.url), 302);
+      if (req.headers.get("if-none-match") === '"1"')
+        return new Response(null, { status: 304, headers: { ETag: '"1"' } });
+      return Response.json({ accounts: [account("alice")] }, { headers: { ETag: '"1"' } });
+    },
+  });
+  try {
+    const sync = configClient(s.registry, `http://127.0.0.1:${server.port}/config`, "test-token");
+    await sync();
+    expect(s.registry.fresh()).toBe(true);
+    s.advance(16000);
+    expect(s.registry.fresh()).toBe(false);
+    await sync();
+    expect(s.registry.fresh()).toBe(true);
+    redirect = true;
+    s.advance(16000);
+    await sync();
+    expect(s.registry.fresh()).toBe(false);
+    expect(leakedRequests).toBe(0);
+  } finally {
+    s.registry.close();
+    await server.stop(true);
+  }
 });

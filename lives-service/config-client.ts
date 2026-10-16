@@ -60,7 +60,8 @@ export function configClient(
       const response = await fetch(url, {
         headers,
         signal: AbortSignal.timeout(1500),
-        redirect: "error",
+        // Manual mode refuses redirects without misclassifying Bun 304 responses.
+        redirect: "manual",
       });
       if (response.status === 304) {
         registry.validateConfig();
