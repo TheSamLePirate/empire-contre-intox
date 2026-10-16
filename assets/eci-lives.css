@@ -642,6 +642,7 @@
   overflow-wrap: anywhere;
 }
 .live-video-stage {
+  position: relative;
   padding: 0 14px;
   background: #03050a;
   border-block: 1px solid rgba(214, 172, 85, 0.12);
@@ -1074,3 +1075,26 @@
 .live-chat-heading > .live-meta[data-state="reconnecting"]:before {
   background: #e2c078;
 }
+
+
+.live-play-overlay {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 24px 30px;
+  border: 1px solid rgba(230, 195, 123, .65);
+  border-radius: 22px;
+  background: rgba(6, 12, 22, .88);
+  color: #f4db9c;
+  box-shadow: 0 12px 60px rgba(0, 0, 0, .55);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+}
+.live-play-overlay[hidden] { display: none; }
+.live-play-overlay:hover { background: #172334; border-color: #f4db9c; }
+.live-play-overlay:focus-visible { outline: 3px solid #f4db9c; outline-offset: 5px; }
+.live-play-icon { font: 40px/1 sans-serif; padding-left: 5px; }
+.live-play-caption { font: 600 .75rem/1.4 var(--live-roman); white-space: nowrap; }

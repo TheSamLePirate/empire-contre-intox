@@ -154,6 +154,84 @@ function card(live: PublicLive) {
       });
   return card;
 }
+// Keep cards, loaded images and keyboard focus stable between data refreshes.
+const cardNodes = new Map<string, HTMLElement>();
+const pendingImages = new WeakMap<HTMLElement, string>();
+function text(node: Element | null, value: string) {
+  if (node && node.textContent !== value) node.textContent = value;
+}
+function updateImage(parent: HTMLElement, url: string | null) {
+  const current = parent.querySelector("img");
+  if (!url) {
+    pendingImages.delete(parent);
+    current?.remove();
+    return;
+  }
+  if (current) {
+    const previous = new URL(current.src);
+    const next = new URL(url);
+    // Renewed CDN signatures do not change the image already on screen.
+    if (previous.origin === next.origin && previous.pathname === next.pathname) {
+      pendingImages.delete(parent);
+      return;
+    }
+  }
+  if (pendingImages.get(parent) === url) return;
+  pendingImages.set(parent, url);
+  const image = element("img");
+  image.alt = "";
+  image.referrerPolicy = "no-referrer";
+  image.src = url;
+  void image.decode().then(() => {
+    if (!parent.isConnected || pendingImages.get(parent) !== url) return;
+    pendingImages.delete(parent);
+    if (current?.parentNode === parent) current.replaceWith(image);
+    else parent.prepend(image);
+  }).catch(() => {
+    if (pendingImages.get(parent) === url) pendingImages.delete(parent);
+  });
+}
+function updateCard(node: HTMLElement, live: PublicLive) {
+  const onAir = live.state === "live";
+  node.classList.toggle("is-on-air", onAir);
+  node.classList.toggle("is-offline", !onAir);
+  const badge = node.querySelector(".live-badge")!;
+  text(badge, label(live.state));
+  badge.classList.toggle("is-live", onAir);
+  text(node.querySelector("h3 a"), live.title || live.displayName);
+  text(node.querySelector(".live-host strong"), live.displayName);
+  text(node.querySelector(".live-host small"), `@${live.username}`);
+  text(node.querySelector(".live-meta"), onAir
+    ? `${count(live.viewers)} spectateurs`
+    : "En attendant le prochain rendez-vous");
+  const button = node.querySelector<HTMLAnchorElement>(".live-button")!;
+  const caption = onAir ? "Rejoindre le direct" : "Voir le compte";
+  if (button.firstChild?.nodeValue !== caption) button.firstChild!.nodeValue = caption;
+  button.setAttribute("aria-label", `${onAir ? "Regarder le live de" : "Voir le compte de"} ${live.displayName}`);
+  const avatar = node.querySelector<HTMLElement>(".live-avatar")!;
+  if (avatar.firstChild?.nodeType === Node.TEXT_NODE)
+    avatar.firstChild.nodeValue = live.displayName.slice(0, 2).toUpperCase();
+  updateImage(avatar, live.avatarUrl);
+  updateImage(node.querySelector<HTMLElement>(".live-cover")!, live.coverUrl);
+}
+function updateCards(visible: PublicLive[]) {
+  const ids = new Set(visible.map((live) => live.id));
+  for (const [id, node] of cardNodes) {
+    if (!ids.has(id)) {
+      node.remove();
+      cardNodes.delete(id);
+    }
+  }
+  visible.forEach((live, index) => {
+    let node = cardNodes.get(live.id);
+    if (!node) {
+      node = card(live);
+      cardNodes.set(live.id, node);
+    } else updateCard(node, live);
+    const position = cards.children[index] ?? null;
+    if (position !== node) cards.insertBefore(node, position);
+  });
+}
 async function refresh() {
   if (loading) return;
   loading = true;
@@ -163,31 +241,21 @@ async function refresh() {
     const visible = page
       ? accounts
       : accounts.filter((l) => l.state === "live");
-    const focused =
-      document.activeElement instanceof HTMLAnchorElement &&
-      cards.contains(document.activeElement)
-        ? document.activeElement.href
-        : null;
-    cards.replaceChildren(...visible.map(card));
+    updateCards(visible);
     cards.dataset.count = String(visible.length);
     const active = accounts.filter((l) => l.state === "live").length;
-    liveCount.textContent = active
+    text(liveCount, active
       ? `${active} direct${active > 1 ? "s" : ""} en cours`
-      : "Le collectif";
+      : "Le collectif");
     const homeCount = root.querySelector<HTMLElement>("[data-live-total]");
     if (homeCount)
       homeCount.textContent =
         active > 1 ? `${active} émissions en cours` : "Une émission en cours";
-    if (focused)
-      cards.querySelectorAll<HTMLAnchorElement>("a").forEach((a) => {
-        if (a.href === focused && a.classList.contains("live-button"))
-          a.focus({ preventScroll: true });
-      });
-    notice.textContent = page
+    text(notice, page
       ? visible.some((l) => l.state === "live")
         ? ""
         : "Aucun live en cours. Retrouvez les rendez-vous dans le calendrier."
-      : "";
+      : "");
     root.hidden = !page && !visible.length;
     if (page && !selectedId) {
       const desired = new URL(location.href).searchParams.get("live");
@@ -204,7 +272,7 @@ async function refresh() {
     notice.textContent = "Le suivi des lives est temporairement indisponible.";
     if (!page) {
       root.hidden = false;
-      cards.replaceChildren();
+      // Keep the last confirmed cards visible during a temporary request failure.
       const total = root.querySelector("[data-live-total]");
       if (total) total.textContent = "Suivi indisponible";
     }
@@ -320,7 +388,15 @@ async function select(id: string, push: boolean) {
     );
     programHeader.append(programKicker, title, host);
     const videoStage = element("div", "live-video-stage");
-    videoStage.append(video);
+    const playButton = element("button", "live-play-overlay");
+    playButton.type = "button";
+    playButton.hidden = true;
+    playButton.setAttribute("aria-label", "Lire le live");
+    const playIcon = element("span", "live-play-icon", "▶");
+    playIcon.setAttribute("aria-hidden", "true");
+    playButton.append(playIcon, element("span", "live-play-caption", "Lire le direct"));
+    playButton.addEventListener("click", () => void startPlayback());
+    videoStage.append(video, playButton);
     const programFooter = element("div", "live-program-footer");
     programFooter.append(meta, tiktok);
     main.append(programHeader, videoStage, state, programFooter);
@@ -403,9 +479,21 @@ async function select(id: string, push: boolean) {
       }
     }
     let currentLive = initial.live;
+    let playbackReady = false;
     let preparing = false,
       retries = 0,
       preparedRoom: string | null = null;
+    async function startPlayback() {
+      if (!playbackReady || controller.signal.aborted || currentLive.state !== "live") return;
+      playButton.hidden = true;
+      try {
+        await video.play();
+      } catch (error) {
+        if (!controller.signal.aborted && playbackReady && video.paused && currentLive.state === "live" &&
+            !(error instanceof DOMException && error.name === "AbortError"))
+          playButton.hidden = false;
+      }
+    }
     function scheduleRetry() {
       if (
         controller.signal.aborted ||
@@ -420,6 +508,7 @@ async function select(id: string, push: boolean) {
     video.addEventListener("error", scheduleRetry);
     video.addEventListener("playing", () => {
       retries = 0;
+      playButton.hidden = true;
     });
     const renderState = (live: PublicLive) => {
       currentLive = live;
@@ -437,6 +526,8 @@ async function select(id: string, push: boolean) {
       }[live.chatState];
       if (live.state !== "live") {
         state.textContent = label(live.state);
+        playbackReady = false;
+        playButton.hidden = true;
         video.pause();
         clearInterval(renewTimer);
         release();
@@ -528,7 +619,9 @@ async function select(id: string, push: boolean) {
       )
         return;
       preparing = true;
-      const resume = !video.paused;
+      const resume = preparedRoom !== currentLive.roomId || !video.paused;
+      playbackReady = false;
+      playButton.hidden = true;
       preparedRoom = currentLive.roomId;
       state.textContent = "Préparation de la vidéo…";
       hls?.destroy();
@@ -595,7 +688,11 @@ async function select(id: string, push: boolean) {
           return wait(attempt + 1);
         };
         await wait();
-        if (resume) void video.play().catch(() => {});
+        if (!controller.signal.aborted && currentLive.state === "live") {
+          playbackReady = true;
+          if (resume) void startPlayback();
+          else playButton.hidden = false;
+        }
       } catch (e) {
         if (!controller.signal.aborted) {
           state.textContent =
