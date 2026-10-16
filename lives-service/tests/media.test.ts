@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { mkdtemp, rm, access } from "node:fs/promises";
+import { mkdtemp, rm, access, mkdir, stat, readdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { MediaManager } from "../media.ts";
@@ -91,3 +91,19 @@ test.skipIf(!available)(
   },
   15000,
 );
+
+
+test("cache initialization preserves its mount root and clears stale media", async () => {
+  const root = await mkdtemp(join(tmpdir(), "eci-cache-init-"));
+  try {
+    const inode = (await stat(root)).ino;
+    await mkdir(join(root, "stale", "room"), { recursive: true });
+    await Bun.write(join(root, "stale", "room", "live.m3u8"), "stale");
+    const media = new MediaManager(root);
+    await media.init();
+    expect((await stat(root)).ino).toBe(inode);
+    expect(await readdir(root)).toEqual([]);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

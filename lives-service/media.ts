@@ -45,8 +45,10 @@ export class MediaManager {
     },
   ) {}
   async init() {
-    await rm(this.root, { recursive: true, force: true });
     await mkdir(this.root, { recursive: true });
+    // The cache root can be a Docker tmpfs mount; only remove stale entries.
+    for (const entry of await readdir(this.root))
+      await rm(join(this.root, entry), { recursive: true, force: true });
   }
   state(id: string): Playback {
     const p = this.pipelines.get(id);
