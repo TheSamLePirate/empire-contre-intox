@@ -1,0 +1,1 @@
+{"name":"eci-lives-service","private":true,"type":"module","scripts":{"start":"bun server.ts","check":"tsc --noEmit -p tsconfig.json","test":"bun test ./tests"},"dependencies":{"tiktok-live-connector":"2.5.0","hls.js":"1.7.3"}}

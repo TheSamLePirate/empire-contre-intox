@@ -6,8 +6,44 @@ services:
     image: empire-contre-intox-site:latest
     depends_on:
       - counter
+      - calendar
+      - lives
     ports:
       - "${SITE_PORT:-3004}:80"
+    restart: unless-stopped
+
+  calendar:
+    build:
+      context: .
+      dockerfile: calendar-service/Dockerfile
+    image: empire-contre-intox-calendar:latest
+    environment:
+      PORT: 3002
+      CALENDAR_ORIGIN: "${CALENDAR_ORIGIN:-https://empire-contre-intox.com}"
+      CALENDAR_DATA_DIR: /data
+      CALENDAR_SEED: /app/seed/events.json
+      LIVES_INTERNAL_TOKEN: "${LIVES_INTERNAL_TOKEN:?Set a random token of at least 32 characters}"
+      LIVES_URL: http://lives:3003
+    volumes:
+      - calendar-data:/data
+    restart: unless-stopped
+
+  lives:
+    build:
+      context: .
+      dockerfile: lives-service/Dockerfile
+    image: empire-contre-intox-lives:latest
+    environment:
+      PORT: 3003
+      CALENDAR_URL: http://calendar:3002
+      LIVES_ORIGIN: "${CALENDAR_ORIGIN:-https://empire-contre-intox.com}"
+      LIVES_INTERNAL_TOKEN: "${LIVES_INTERNAL_TOKEN:?Set a random token of at least 32 characters}"
+      TIKTOK_SESSION_FILE: /run/secrets/tiktok_session_id
+      TIKTOK_TARGET_IDC: "${TIKTOK_TARGET_IDC:-}"
+    secrets:
+      - tiktok_session_id
+    tmpfs:
+      - /tmp/eci-lives-media:size=536870912,uid=1000,gid=1000
     restart: unless-stopped
 
   counter:
@@ -31,3 +67,8 @@ services:
 
 volumes:
   counter-data:
+  calendar-data:
+
+secrets:
+  tiktok_session_id:
+    file: "${TIKTOK_SESSION_SECRET_FILE:-./.secrets/tiktok_session_id}"

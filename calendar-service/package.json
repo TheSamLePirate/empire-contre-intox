@@ -1,0 +1,13 @@
+{
+  "name": "eci-calendar-service",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun server.ts",
+    "test": "bun test ./tests.ts",
+    "check": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "sharp": "0.35.5"
+  }
+}

@@ -1,4 +1,7 @@
+FROM oven/bun:1.3.14-alpine AS bun-runtime
+
 FROM node:24-alpine AS build
+COPY --from=bun-runtime /usr/local/bin/bun /usr/local/bin/bun
 
 WORKDIR /app
 
@@ -6,6 +9,8 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+RUN bun install --cwd lives-service --frozen-lockfile --production
+RUN bun scripts/build-lives.ts
 RUN npm run build
 
 FROM nginx:1.27-alpine
@@ -26,6 +31,11 @@ COPY empire-calendrier/index.html \
      /usr/share/nginx/html/empire-calendrier/
 COPY empire-calendrier/*.jpeg /usr/share/nginx/html/empire-calendrier/
 COPY empire-calendrier/data/events.json /usr/share/nginx/html/empire-calendrier/data/events.json
+COPY --from=build /app/empire-calendrier/admin/index.html \
+     /app/empire-calendrier/admin/admin.css \
+     /app/empire-calendrier/admin/admin.js \
+     /app/empire-calendrier/admin/lives-admin.js \
+     /usr/share/nginx/html/empire-calendrier/admin/
 
 EXPOSE 80
 

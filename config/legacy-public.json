@@ -15,9 +15,13 @@
     ".codex-pet-runs",
     "a_traiter",
     "counter",
+    "calendar-service",
+    "plans",
     "empire-calendrier",
     "node_modules",
-    "scripts"
+    "scripts",
+    "lives-service",
+    "web"
   ],
   "forbiddenExtensions": [
     ".doc",

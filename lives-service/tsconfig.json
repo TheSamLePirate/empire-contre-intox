@@ -1,0 +1,1 @@
+{"compilerOptions":{"target":"ES2022","module":"ESNext","moduleResolution":"Bundler","strict":true,"noEmit":true,"allowImportingTsExtensions":true,"skipLibCheck":true,"types":["bun","node"],"lib":["ES2022","DOM","DOM.Iterable"]},"include":["*.ts","tests/*.ts","../web/lives/*.ts","../calendar-service/lives.ts"]}

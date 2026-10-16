@@ -129,6 +129,12 @@ image du dépôt : le régénérer avec `node scripts/generate-og-hero.mjs` dès
 
 Le site expose aussi un **compteur public de visites par page** (service Bun + SQLite dans `counter/`, proxifié par Nginx sur `/api/`) : nombre total de visites, sans IP, sans cookie, sans identifiant.
 
+## Calendrier collaboratif
+
+L’espace `/empire-calendrier/admin/` permet aux membres connectés de modifier tous les événements, de créer les animateurs depuis un événement et de choisir ou importer leurs avatars. Les administrateurs gèrent en plus les comptes. Le service Bun `calendar-service/` stocke SQLite et les images dans le volume persistant `calendar-data` ; le compteur reste indépendant.
+
+Voir **[calendar-service/README.md](calendar-service/README.md)** pour le lancement local, la création du premier administrateur (aucun mot de passe par défaut), les sauvegardes et la publication dans les deux dépôts. Après le premier import, SQLite devient la source en production et le JSON du dépôt reste une amorce.
+
 ## Checklist qualité
 
 - texte source lu en entier ; transcription complète et **vérifiée mot pour mot** (pas un copier-coller brut) ;
@@ -142,3 +148,7 @@ Le site expose aussi un **compteur public de visites par page** (service Bun + S
 - **`config/legacy-public-manifest.json` complété** et `scripts/prepare-legacy.ts` qui passe ;
 - **`rss.xml` régénéré**, bien formé, contenant le nouveau dossier ;
 - licence visible sur chaque page touchée.
+
+## Lives TikTok
+
+La rubrique `lives/`, les affiches de l’accueil et l’onglet administrateur du calendrier utilisent un worker Bun/TypeScript dédié. Installation, secrets, génération des bundles, vérifications et limites : [lives-service/README.md](lives-service/README.md). Le déploiement requiert le jeton interne commun et le fichier de session TikTok ; les données du calendrier existantes sont conservées.

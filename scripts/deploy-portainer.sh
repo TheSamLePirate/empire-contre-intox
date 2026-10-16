@@ -93,6 +93,11 @@ calendar_files=(
   empire-calendrier/background.png
   empire-calendrier/Logo-ECI.jpg
   empire-calendrier/og-image.png
+  empire-calendrier/admin/index.html
+  empire-calendrier/admin/admin.css
+  empire-calendrier/admin/admin.js
+  calendar-service/Dockerfile
+  calendar-service/server.ts
 )
 for calendar_file in "${calendar_files[@]}"; do
   [[ -f "$calendar_file" ]] || {
@@ -130,7 +135,7 @@ print('rss.xml valide')
 PY
 
 log "Validation Docker Compose"
-docker compose config >/tmp/eci-docker-compose.config.yml
+docker compose config --quiet
 ok "docker compose config OK"
 
 if [[ "$CHECK_ONLY" -eq 1 ]]; then
@@ -148,7 +153,7 @@ log "Attente du container healthy"
 start_ts="$(date +%s)"
 last_line=""
 while true; do
-  line="$( (cd "$MANAGER_ABS" && bun run port-manager ps --all) 2>/dev/null | grep -i "${STACK_NAME}.*site" || true)"
+  line="$( (cd "$MANAGER_ABS" && bun run port-manager ps --all) 2>/dev/null | awk -v stack="$STACK_NAME" '$1 ~ ("^" stack "[_-]site[_-][0-9]+$")' || true)"
   [[ -n "$line" ]] && last_line="$line"
   if printf '%s' "$line" | grep -qi 'healthy'; then
     ok "$line"
@@ -170,6 +175,9 @@ if [[ "$HTTP_CHECKS" -eq 1 ]]; then
     "$DOMAIN/"
     "$DOMAIN/empire-calendrier/"
     "$DOMAIN/empire-calendrier/data/events.json"
+    "$DOMAIN/empire-calendrier/admin/"
+    "$DOMAIN/api/calendar/health"
+    "$DOMAIN/api/calendar/public"
     "$DOMAIN/rss.xml"
     "$DOMAIN/LICENCE-CONTENU.md"
     "$DOMAIN/api/count?path=/"

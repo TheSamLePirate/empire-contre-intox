@@ -48,3 +48,11 @@ provoxys/entropie/Entropie-Mots/_archive/
 
 # Outillage de l'agent (skills, archive Grammalecte) : jamais dans l'image
 .claude/
+
+# Runtime calendar data and local plan bridge tokens never enter an image.
+calendar-service/.data/
+plans/
+
+.secrets/
+lives-service/.data/
+lives-service/.media/

@@ -14,10 +14,15 @@
     "build": "astro build",
     "postbuild": "npm run validate:dist",
     "preview": "astro preview",
-    "check": "npm run prepare:legacy && astro check && vitest run",
+    "check": "npm run prepare:legacy && astro check && vitest run && npm run check:calendar && npm run test:calendar",
+    "check:calendar": "tsc --noEmit -p calendar-service/tsconfig.json",
+    "test:calendar": "bun test ./calendar-service/tests.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "validate:dist": "tsx scripts/validate-dist.ts"
+    "validate:dist": "tsx scripts/validate-dist.ts",
+    "build:lives": "bun scripts/build-lives.ts",
+    "check:lives": "tsc --noEmit -p lives-service/tsconfig.json",
+    "test:lives": "bun test ./lives-service/tests ./calendar-service/lives.tests.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "7.0.3",

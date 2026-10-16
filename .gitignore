@@ -36,3 +36,8 @@ provoxys/exoplanetes/script.md
 provoxys/entropie/Entropie-Mots/openrouter-key.txt
 provoxys/entropie/Entropie-Mots/_archive/
 __pycache__/
+
+# Live runtime and local secrets
+.secrets/
+lives-service/.data/
+lives-service/.media/
