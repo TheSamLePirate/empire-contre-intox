@@ -111,7 +111,7 @@ export class LiveRegistry {
       displayName:
         r.account.displayName || room?.displayName || r.account.username,
       state: stale ? "error" : r.state,
-      roomId: room?.roomId ?? null,
+      roomId: room?.roomId || null,
       title: room?.title ?? null,
       avatarUrl: room?.avatarUrl ?? null,
       coverUrl: room?.coverUrl ?? null,

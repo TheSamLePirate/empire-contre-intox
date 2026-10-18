@@ -3,6 +3,8 @@ import {
   ControlEvent,
   WebcastEvent,
   RoomIdRouteConfig,
+  fetchRoomInfoFromHtmlRoute,
+  fetchRoomInfoFromApiLiveRoute,
 } from "tiktok-live-connector";
 import type { Provider, RoomInfo, Variant, ChatCallbacks } from "./protocol.ts";
 import { finiteCount } from "./protocol.ts";
@@ -81,6 +83,57 @@ export function parseRoom(value: unknown): RoomInfo {
     variants,
   };
 }
+// The lightweight status routes can still work when the old room/info endpoint
+// rejects an ended room. Only explicit 2/4 statuses are authoritative.
+export function parseRoomStatus(value: unknown): RoomInfo {
+  const envelope = record(value);
+  if (envelope.statusCode !== undefined && envelope.statusCode !== 0)
+    throw new Error("INVALID_STATUS_RESPONSE");
+  const data = record(envelope.data ?? envelope);
+  const user = record(data.user), live = record(data.liveRoom);
+  if (live.status !== 2 && live.status !== 4)
+    throw new Error("INVALID_LIVE_STATUS");
+  const roomId = typeof user.roomId === "string" && /^[1-9]\d{0,29}$/.test(user.roomId)
+    ? user.roomId : "";
+  if (live.status === 2 && !roomId) throw new Error("INVALID_ROOM_ID");
+  return {
+    roomId,
+    live: live.status === 2,
+    title: str(live.title) || null,
+    displayName: str(user.nickname, 80),
+    avatarUrl: image(user.avatarThumb ?? user.avatar_thumb),
+    coverUrl: image(live.cover) ?? safeImage(live.coverUrl),
+    // Status-only responses use a different schema: leave unsupported fields absent.
+    startedAt: null,
+    viewers: null,
+    likes: null,
+    variants: [],
+  };
+}
+export async function probeRoomWithFallback(
+  details: () => Promise<unknown>,
+  statuses: (() => Promise<unknown>)[],
+  signal: AbortSignal,
+): Promise<RoomInfo> {
+  signal.throwIfAborted();
+  try {
+    const result = await details();
+    signal.throwIfAborted();
+    return parseRoom(result);
+  } catch (error) {
+    signal.throwIfAborted();
+    for (const status of statuses) {
+      try {
+        const result = await status();
+        signal.throwIfAborted();
+        return parseRoomStatus(result);
+      } catch {
+        signal.throwIfAborted();
+      }
+    }
+    throw error;
+  }
+}
 export function createTikTokProvider(
   sessionId: string,
   ttTargetIdc = "",
@@ -124,9 +177,15 @@ export function createTikTokProvider(
       signal.throwIfAborted();
       signal.addEventListener("abort", stop, { once: true });
       try {
-        const result = await conn.fetchRoomInfo();
-        signal.throwIfAborted();
-        return parseRoom(result);
+        const args = { uniqueId: username, webClient: conn.webClient };
+        return await probeRoomWithFallback(
+          () => conn.fetchRoomInfo(),
+          [
+            () => fetchRoomInfoFromHtmlRoute(args),
+            () => fetchRoomInfoFromApiLiveRoute(args),
+          ],
+          signal,
+        );
       } finally {
         signal.removeEventListener("abort", stop);
         conn.disconnect();
