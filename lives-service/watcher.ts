@@ -43,6 +43,7 @@ export class LiveRegistry {
     readonly media: MediaManager,
     private now = Date.now,
     private probeTimeout = 3000,
+    private onObservation?: (live: PublicLive) => void,
   ) {}
   validateConfig(accounts?: WatchAccount[]) {
     this.validatedAt = this.now();
@@ -297,6 +298,10 @@ export class LiveRegistry {
       if (!room.live) {
         this.stopChat(r);
         this.media.stop(r.account.id);
+      }
+      if (r.account.published && this.fresh()) {
+        try { this.onObservation?.(this.public(r)); }
+        catch { console.error("Discord : observation non enregistrée."); }
       }
       this.emit(r, "state", this.public(r));
       if (room.live && !r.stopChat && !r.chatBusy && this.now() >= r.nextChat)

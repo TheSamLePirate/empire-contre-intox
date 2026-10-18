@@ -6,7 +6,7 @@ COPY lives-service/package.json lives-service/bun.lock ./
 RUN bun install --frozen-lockfile --production
 COPY lives-service/*.ts ./
 COPY counter/lib.ts /app/counter/lib.ts
-RUN mkdir -p /tmp/eci-lives-media && chown -R bun:bun /app /tmp/eci-lives-media
+RUN mkdir -p /tmp/eci-lives-media /data && chown -R bun:bun /app /tmp/eci-lives-media /data
 USER bun
 ENV PORT=3003
 EXPOSE 3003

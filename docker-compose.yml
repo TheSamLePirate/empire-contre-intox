@@ -40,8 +40,12 @@ services:
       LIVES_INTERNAL_TOKEN: "${LIVES_INTERNAL_TOKEN:?Set a random token of at least 32 characters}"
       TIKTOK_SESSION_FILE: /run/secrets/tiktok_session_id
       TIKTOK_TARGET_IDC: "${TIKTOK_TARGET_IDC:-}"
+      DISCORD_TOKEN: "${DISCORD_TOKEN:-}"
+      LIVES_DATA_DIR: /data
     secrets:
       - tiktok_session_id
+    volumes:
+      - lives-data:/data
     tmpfs:
       - /tmp/eci-lives-media:size=536870912,uid=1000,gid=1000
     restart: unless-stopped
@@ -66,6 +70,7 @@ services:
     restart: unless-stopped
 
 volumes:
+  lives-data:
   counter-data:
   calendar-data:
 

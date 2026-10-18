@@ -1,10 +1,11 @@
-import { readFile } from "node:fs/promises";
+import { mkdir, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { createTikTokProvider } from "./tiktok.ts";
 import { MediaManager } from "./media.ts";
 import { LiveRegistry } from "./watcher.ts";
 import { configClient } from "./config-client.ts";
 import { createLivesApp } from "./app.ts";
+import { DiscordNotifier } from "./discord.ts";
 
 const token = process.env.LIVES_INTERNAL_TOKEN ?? "";
 if (token.length < 32)
@@ -34,10 +35,23 @@ const media = new MediaManager(
   resolve(process.env.LIVES_MEDIA_DIR ?? "/tmp/eci-lives-media"),
 );
 await media.init();
+let discord: DiscordNotifier | undefined;
 const registry = new LiveRegistry(
   createTikTokProvider(sessionId, process.env.TIKTOK_TARGET_IDC ?? ""),
   media,
+  Date.now,
+  3000,
+  (live) => discord?.observe(live),
 );
+const discordToken = process.env.DISCORD_TOKEN?.trim();
+if (discordToken) {
+  const directory = resolve(process.env.LIVES_DATA_DIR ?? new URL(".data", import.meta.url).pathname);
+  await mkdir(directory, { recursive: true });
+  discord = new DiscordNotifier(resolve(directory, "discord.sqlite"), discordToken, origin, (key) => {
+    try { return registry.list().accounts.some((live) => live.state === "live" && `${live.username}:${live.roomId}` === key); }
+    catch { return false; }
+  });
+}
 const sync = configClient(
   registry,
   `${process.env.CALENDAR_URL ?? "http://calendar:3002"}/api/calendar/internal/live-watch`,
@@ -56,16 +70,17 @@ const server = Bun.serve({
   },
 });
 const configTimer = setInterval(() => void sync(), 2000);
-const tickTimer = setInterval(() => void registry.tick(), 1000);
+const tickTimer = setInterval(() => { void registry.tick(); void discord?.flush(); }, 1000);
 void registry.tick();
 const shutdown = async () => {
   clearInterval(configTimer);
   clearInterval(tickTimer);
   registry.close();
+  await discord?.close();
   await server.stop(true);
 };
 process.on("SIGTERM", () => void shutdown());
 process.on("SIGINT", () => void shutdown());
 console.log(
-  `Lives ECI : port ${server.port}, session ${sessionId ? "configurée" : "absente"}`,
+  `Lives ECI : port ${server.port}, session ${sessionId ? "configurée" : "absente"}, Discord ${discord ? "configuré" : "désactivé"}`,
 );

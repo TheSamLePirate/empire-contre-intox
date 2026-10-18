@@ -14,6 +14,25 @@ L’accueil affiche toutes les diffusions confirmées et publiées. Le lecteur `
 
 La vidéo se prépare à l’ouverture du live et tente de démarrer automatiquement avec le son. Si le navigateur refuse la lecture, un grand bouton Play accessible apparaît sur la vidéo ; les commandes natives restent disponibles, sans bouton séparé sous le lecteur. SD2 est prioritaire. Si SD2 manque, le lecteur choisit automatiquement la plus basse qualité compatible disponible. La qualité est choisie automatiquement, sans avertissement ni confirmation. Les rafraîchissements conservent les cartes et leurs images en place ; les valeurs modifiées sont actualisées sans recréer le lecteur ni interrompre la lecture. Il n’y a pas de transcodage vers une fausse « SD2 ». Quatre pipelines vidéo maximum, partagés entre lecteurs ; baux de soixante secondes renouvelés toutes les vingt secondes. Le dernier bail expiré arrête son pipeline. Les dossiers HLS sont isolés par compte/salle/génération ; fenêtre glissante de trente segments et limite de 128 Mo par pipeline. Les segments déjà téléchargés par un navigateur ne peuvent pas être retirés après masquage.
 
+## Annonces Discord
+
+Lorsqu’un compte surveillé **et publié** passe hors ligne → en direct, le worker envoie un embed dans [amis-en-live](https://discord.com/channels/1427507687792443444/1443295072605962300). Un changement de salle annonce également une nouvelle diffusion. L’embed contient le titre, le créateur, son avatar, la couverture, la date de début et les nombres de spectateurs/j’aime disponibles à la détection, ainsi que les liens vers le lecteur ECI et TikTok. Aucune mention collective n’est déclenchée.
+
+Définir `DISCORD_TOKEN` côté serveur. En local, lancer Bun depuis la racine pour charger le `.env` de ce dépôt. En Compose, ce token est transmis uniquement à `lives`. Si le jeton interne est dans un fichier séparé, charger **les deux fichiers** :
+
+```sh
+docker compose --env-file .env --env-file .secrets/lives.env config --quiet
+docker compose --env-file .env --env-file .secrets/lives.env up -d --build lives
+```
+
+Dans Portainer, fournir `DISCORD_TOKEN` dans l’environnement de la stack. Le bot doit pouvoir voir le salon, envoyer des messages et intégrer des liens (`VIEW_CHANNEL`, `SEND_MESSAGES`, `EMBED_LINKS`). Sans token, les annonces sont désactivées et le suivi reste opérationnel.
+
+La première observation de chaque compte sert de référence : un live déjà en cours à cette première activation n’est pas annoncé rétroactivement. Une erreur TikTok ne constitue pas un passage hors ligne. SQLite conserve les salles traitées et les envois en attente dans `LIVES_DATA_DIR/discord.sqlite` (par défaut `lives-service/.data`, volume `lives-data` en Compose), y compris après redémarrage. Conserver ce volume lors des mises à jour. Une même salle n’est annoncée qu’une fois, même après un bref statut hors ligne.
+
+Les requêtes ont un délai maximal de dix secondes ; les échecs réseau/5xx sont réessayés avec temporisation, les limites 429 respectent `retry_after`, et un nonce stable protège les réessais rapprochés contre les doublons côté Discord. Les annonces expirent après dix minutes et ne sont envoyées que si le compte est toujours publié et confirmé en direct. Les erreurs 401/403/404 suspendent les envois jusqu’au redémarrage après correction ; les logs contiennent uniquement le code HTTP. Le token, la base et le `.env` restent hors Git et des images Docker.
+
+Contrat API : [messages et embeds Discord](https://docs.discord.com/developers/resources/message), [limites de débit](https://docs.discord.com/developers/topics/rate-limits).
+
 ## Secrets et lancement local
 
 Le serveur accepte :
