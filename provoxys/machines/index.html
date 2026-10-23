@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Technologies médicales et corps augmentés — Empire contre Intox</title>
+  <meta name="description" content="Des premières prothèses aux interfaces cerveau-machine : trois actes, douze chapitres illustrés, six ateliers, bio-impression et droits des personnes.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents — mémoire, fer, sang, Atlantique */
+      --ocean:#54bfc1;   /* l'Atlantique */
+      --ember:#6b9cb8;   /* le sang, la braise */
+      --iron:#7c8794;    /* le fer, les chaînes */
+      --sugar:#e6dcc4;   /* l'or blanc / le sucre */
+
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+
+      --hero:url("assets/machines-hero.png");
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(63,107,120,.16), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.13), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(179,80,62,.10), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px; mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.6),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(63,107,120,.6),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(179,80,62,.45),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.32),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate; }
+    .grain { position:fixed; inset:-50%; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--ember),var(--gold-bright),var(--ocean)); box-shadow:0 0 14px rgba(243,217,138,.55); }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(214,172,85,.28); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    /* Hero */
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02); }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2;
+      background:linear-gradient(86deg,rgba(3,6,13,.94) 0%,rgba(3,6,13,.72) 36%,rgba(3,6,13,.18) 68%,rgba(3,6,13,.5) 100%),linear-gradient(180deg,rgba(3,6,13,.1) 0%,rgba(3,6,13,.28) 54%,var(--void) 100%); }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1; background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh; display:grid; grid-template-columns:minmax(0,780px) minmax(250px,340px); gap:46px; align-items:end; }
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:16ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.7rem,7vw,5.8rem); line-height:.96; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil { background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 40%,#fff6dc 50%,var(--gold-bright) 60%,var(--gold-deep)); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% 0; } }
+    .hero-lead { max-width:58ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-quote { max-width:60ch; margin:22px 0 0; padding-left:20px; border-left:2px solid var(--ember); font-family:var(--serif); font-style:italic; color:var(--parch); font-size:clamp(1.05rem,1.5vw,1.26rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px; font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px); transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1 1 auto; min-width:0; -webkit-overflow-scrolling:touch;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent); }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--ember),var(--gold-bright),var(--ocean)); }
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    /* Intro band */
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.9rem); line-height:1.04; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:96px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time { font-family:var(--roman); font-weight:600; font-size:.8rem; letter-spacing:.04em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(63,107,120,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .act-band { margin:70px 0 0; padding:clamp(26px,4vw,46px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(130% 130% at 0% 0%,rgba(214,172,85,.12),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.55),rgba(7,12,26,.6)); text-align:center; }
+    .act-band .act-no { font-family:var(--roman); font-weight:700; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+    .act-band h2 { margin:14px 0 0; font-family:var(--roman); font-weight:800; font-size:clamp(1.9rem,4.4vw,3.2rem); text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .act-band p { max-width:72ch; margin:16px auto 0; color:var(--muted); }
+
+    /* Chapters */
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"❖"; position:absolute; left:0; top:0; color:var(--gold); font-size:.8em; }
+    .prose ol { margin:14px 0 24px; padding-left:24px; }
+    .prose ol li { padding-left:6px; }
+    .prose ol li::before { content:none; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+    .sub { margin:26px 0 10px; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--parch); }
+
+    .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
+    .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); }
+    /* doc-figure — présentation d'un document d'archive (couverture portrait + provenance) */
+    .doc-figure { display:grid; grid-template-columns:minmax(0,210px) 1fr; margin:8px 0 32px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:linear-gradient(180deg,rgba(12,9,7,.55),rgba(3,6,13,.55)); }
+    .doc-figure .doc-img { display:grid; place-items:center; padding:22px; background:radial-gradient(120% 90% at 50% 0%, rgba(179,80,62,.12), transparent 62%); }
+    .doc-figure .doc-img img { width:100%; max-width:186px; height:auto; border-radius:2px; box-shadow:0 16px 42px rgba(0,0,0,.6), 0 0 0 1px var(--line-2); }
+    .doc-figure figcaption { padding:22px 24px; border-left:1px solid var(--line-2); align-self:center; }
+    .doc-figure .doc-k { font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .doc-figure .doc-t { font-family:var(--serif); font-size:1.04rem; color:var(--parch); margin:9px 0 0; line-height:1.5; }
+    .doc-figure .doc-t b { color:var(--gold-bright); font-weight:600; }
+    .doc-figure .doc-m { font-size:.84rem; color:var(--muted); margin:11px 0 0; line-height:1.58; }
+    .doc-figure .doc-m a { color:var(--gold); }
+    @media (max-width:640px){ .doc-figure { grid-template-columns:1fr; } .doc-figure figcaption { border-left:0; border-top:1px solid var(--line-2); } .doc-figure .doc-img img { max-width:150px; } }
+
+    .script-block,.science-block,.question-block,.lesson-block,.dialogue-block {
+      border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
+    .dialogue-block { border-left-color:var(--gold); background:rgba(214,172,85,.06); font-family:var(--serif); }
+    .dialogue-block p { color:var(--parch); font-style:italic; }
+    .science-block { border-left-color:var(--ocean); background:rgba(63,107,120,.09); }
+    .question-block { border-left-color:var(--ember); background:rgba(179,80,62,.1); }
+    .lesson-block { border-left-color:var(--gold-bright); background:rgba(243,217,138,.06); }
+    .script-block p:last-child,.science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,.dialogue-block p:last-child,
+    .science-block ul:last-child,.lesson-block ul:last-child { margin-bottom:0; }
+    .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .science-block .block-label { color:var(--ocean); }
+    .question-block .block-label { color:var(--ember); }
+
+    /* Code Noir articles */
+    .articles { display:grid; gap:14px; margin:18px 0; }
+    .article-noir { border:1px solid var(--line-2); border-left:3px solid var(--ember); border-radius:3px; padding:20px 22px; background:rgba(179,80,62,.07); }
+    .article-noir h4 { font-family:var(--roman); font-size:.82rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ember); margin:0 0 8px; }
+    .article-noir .cite { display:block; font-family:var(--serif); font-style:italic; color:var(--parch); margin:0 0 10px; padding-left:14px; border-left:1px solid var(--line); }
+    .article-noir p { margin:0; color:var(--muted); font-size:.98rem; }
+    .article-noir p strong { color:var(--parch); }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    .dtable { width:100%; border-collapse:collapse; margin:14px 0; border:1px solid var(--line); border-radius:3px; overflow:hidden; font-size:.98rem; }
+    .dtable caption { text-align:left; padding:0 0 14px; color:var(--muted); font-style:italic; font-family:var(--serif); }
+    .dtable th { text-align:left; padding:13px 15px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); background:rgba(214,172,85,.06); border-bottom:1px solid var(--line); }
+    .dtable td { padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--line-2); color:var(--muted); }
+    .dtable tr:last-child td { border-bottom:0; }
+    .dtable td.k { color:var(--parch); font-weight:600; }
+    .dtable tr:hover td { background:rgba(244,236,216,.03); }
+
+    .sommaire-list { display:grid; gap:14px; margin:18px 0; }
+    .pillar { border:1px solid var(--line-2); border-radius:3px; padding:22px 24px; background:rgba(244,236,216,.035); border-left:3px solid rgba(214,172,85,.5); }
+    .pillar h3 { margin:0 0 10px; font-family:var(--serif); font-weight:600; font-size:1.24rem; color:var(--ink); }
+    .pillar p { margin:0 0 8px; }
+    .pillar ul { margin:8px 0 0; }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(179,80,62,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(63,107,120,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left:-14px; }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left:-20px; }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    .reveal[data-d="3"] { transition-delay:.24s; }
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .hero-inner > div > *:nth-child(5){ animation-delay:.5s; }
+    .js .signal-board { animation-delay:.5s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid { grid-template-columns:1fr; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+      .dtable { font-size:.9rem; }
+      .dtable th,.dtable td { padding:10px 11px; }
+    }
+    /* ============ Visualisations interactives ============ */
+    .viz { margin:30px 0; border:1px solid var(--line); border-radius:4px; overflow:hidden;
+      background:radial-gradient(140% 120% at 100% 0%,rgba(63,107,120,.1),transparent 55%),linear-gradient(180deg,rgba(7,12,26,.66),rgba(5,8,17,.74));
+      box-shadow:0 22px 64px rgba(0,0,0,.36); }
+    .viz-head { padding:20px 24px 0; }
+    .viz-eyebrow { display:inline-flex; align-items:center; gap:10px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
+    .viz-eyebrow::before { content:""; width:22px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    .viz-title { margin:10px 0 5px; font-family:var(--serif); font-weight:600; font-size:1.28rem; color:var(--ink); line-height:1.15; }
+    .viz-sub { margin:0; color:var(--soft); font-size:.92rem; }
+    .viz-body { padding:14px 24px 8px; }
+    .viz svg { display:block; width:100%; height:auto; overflow:visible; }
+    .viz-foot { padding:6px 24px 18px; font-family:var(--serif); font-style:italic; color:var(--soft); font-size:.84rem; }
+    .viz-foot a { color:var(--gold); border-bottom:1px solid var(--line); }
+    .viz text { font-family:var(--roman); fill:var(--muted); }
+    .viz-legend { display:flex; flex-wrap:wrap; gap:8px 16px; padding:0 24px 14px; }
+    .viz-legend span { display:inline-flex; align-items:center; gap:7px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .viz-legend i { width:11px; height:11px; border-radius:2px; display:inline-block; }
+
+    /* — Carte triangulaire — */
+    .tri-legs path.hit { stroke:transparent; stroke-width:34; fill:none; cursor:pointer; }
+    .tri-legs path.route { fill:none; stroke-width:2.4; stroke-linecap:round; transition:stroke-width .35s,opacity .35s; }
+    .tri-legs g.leg path.route { opacity:.4; }
+    .tri-legs g.leg.active path.route { opacity:1; stroke-width:3.4; }
+    .tri-legs path.flow { fill:none; stroke-width:3.2; stroke-linecap:round; stroke-dasharray:2 16; opacity:0; }
+    .tri-legs g.leg.active path.flow { opacity:1; animation:triflow 2.4s linear infinite; }
+    @keyframes triflow { to { stroke-dashoffset:-180; } }
+    .tri-node circle { fill:rgba(5,8,17,.9); stroke:var(--gold); stroke-width:1.4; }
+    .tri-node text { fill:var(--parch); font-weight:600; font-size:13px; letter-spacing:.04em; }
+    .tri-node .sub { fill:var(--soft); font-size:10px; font-weight:600; }
+    .leg-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:4px 24px; }
+    .leg-card { border:1px solid var(--line-2); border-left:3px solid var(--lc,var(--gold)); border-radius:3px; padding:13px 15px; background:rgba(244,236,216,.03); cursor:pointer; transition:transform .3s var(--ease),background .3s; text-align:left; }
+    .leg-card:hover { transform:translateY(-3px); background:rgba(244,236,216,.06); }
+    .leg-card.active { background:rgba(244,236,216,.08); box-shadow:0 0 0 1px var(--lc,var(--gold)) inset; }
+    .leg-card h5 { margin:0 0 3px; font-family:var(--roman); font-size:.64rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lc,var(--gold)); }
+    .leg-card p { margin:0; color:var(--muted); font-size:.85rem; }
+    .leg-detail { margin:14px 24px 4px; border-top:1px solid var(--line-2); padding-top:16px; min-height:104px; }
+    .leg-detail .lab { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--lc,var(--gold)); }
+    .leg-detail h4 { margin:7px 0 8px; font-family:var(--serif); font-weight:600; font-size:1.18rem; color:var(--ink); }
+    .leg-detail p { margin:0 0 10px; color:var(--muted); font-size:.96rem; }
+    .leg-detail ul { margin:0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+    .leg-detail li { font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--parch); border:1px solid var(--line); border-radius:2px; padding:5px 10px; background:rgba(214,172,85,.05); }
+    .leg-detail li::before { content:none; }
+
+    /* — Frise chronologique — */
+    .tl-node { cursor:pointer; }
+    .tl-node circle.dot { fill:var(--void); stroke-width:2; transition:r .25s; }
+    .tl-node:hover circle.dot,.tl-node.active circle.dot { r:8.5; }
+    .tl-node text { fill:var(--soft); font-size:10.5px; font-weight:600; letter-spacing:.02em; transition:fill .25s; }
+    .tl-node:hover text,.tl-node.active text { fill:var(--parch); }
+    .tl-detail { margin:6px 24px 4px; border-top:1px solid var(--line-2); padding-top:14px; min-height:74px; }
+    .tl-detail .yr { font-family:var(--roman); font-weight:800; font-size:1.15rem; color:var(--gold-bright); letter-spacing:.02em; }
+    .tl-detail h4 { margin:3px 0 6px; font-family:var(--serif); font-weight:600; font-size:1.1rem; color:var(--ink); }
+    .tl-detail p { margin:0; color:var(--muted); font-size:.95rem; }
+
+    /* — Bar chart Nantes — */
+    .bars-row { cursor:pointer; }
+    .bars-row rect.bar { transition:filter .3s; }
+    .bars-row:hover rect.bar,.bars-row.active rect.bar { filter:brightness(1.3); }
+    .bars-row text.cap { fill:var(--parch); font-size:11px; font-weight:700; }
+    .bars-row text.yr { fill:var(--soft); font-size:10px; font-weight:600; }
+    .bars-detail { margin:10px 24px 4px; border-top:1px solid var(--line-2); padding-top:14px; min-height:58px; color:var(--muted); font-size:.95rem; }
+    .bars-detail b { color:var(--parch); }
+
+    /* — Plan du navire — */
+    .ship-controls { display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; padding:4px 24px 12px; }
+    .ship-toggle { display:inline-flex; border:1px solid var(--line); border-radius:3px; overflow:hidden; }
+    .ship-toggle button { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); background:transparent; border:0; padding:9px 14px; cursor:pointer; transition:background .25s,color .25s; }
+    .ship-toggle button.on { background:linear-gradient(140deg,var(--gold-bright),var(--gold-deep)); color:#14110a; }
+    .ship-readout { font-family:var(--serif); color:var(--muted); font-size:.94rem; }
+    .ship-readout b { font-family:var(--roman); font-weight:800; font-size:1.18rem; color:var(--gold-bright); letter-spacing:.02em; }
+    .ship svg .hull { fill:rgba(124,135,148,.07); stroke:var(--iron); stroke-width:1.4; }
+    .ship svg .deckline { stroke:var(--line); stroke-width:1; stroke-dasharray:3 4; }
+    .ship svg .fig { fill:var(--gold); opacity:.6; }
+    .ship svg .barricado { stroke:var(--ember); stroke-width:2.4; stroke-dasharray:5 4; }
+    .ship svg text.lbl { fill:var(--soft); font-size:10px; font-weight:600; }
+
+    @media (max-width:720px) {
+      .leg-cards { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      .tri-legs g.leg path.flow { opacity:0 !important; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+  <link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr">
+<meta name="rights" content="Sauf mention contraire, les contenus éditoriaux, textes, transcriptions, images et médias du site Empire contre Intox sont sous licence CC BY-NC-ND 4.0. Partage autorisé avec attribution, sans usage commercial ni modification.">
+  <style id="eci-license-style">
+  .eci-license{max-width:1100px;margin:18px auto 0;padding:14px 18px;border:1px solid rgba(214,172,85,.24);border-radius:3px;background:rgba(214,172,85,.06);color:inherit;font-size:.88rem;line-height:1.6;text-align:center;}
+  .eci-license a{color:#f3d98a;text-decoration:underline;text-underline-offset:.18em;}
+  .eci-license strong{color:inherit;font-weight:700;}
+  .eci-license-footer{position:relative;z-index:2;padding:24px 20px;border-top:1px solid rgba(214,172,85,.18);background:rgba(5,8,17,.72);}
+  .eci-counter-sep{opacity:.55;margin:0 .35em;}
+  .eci-visit-counter{white-space:nowrap;color:#c0b59a;}
+</style>
+
+<style id="machines-style">
+:root{--clinic:#54bfc1;--ocean:#54bfc1;--ember:#76abc2}
+html{scroll-padding-top:100px}.hero h1{font-size:clamp(2.25rem,5.4vw,5rem);max-width:18ch}.js .hero-inner>div>*,.js .signal-board{opacity:1;transform:none;animation:none}.hero-actions{gap:12px}.hero-lead{max-width:57ch}.prose{min-width:0;overflow-wrap:anywhere}.prose h3{font-family:var(--roman);font-size:1.1rem;line-height:1.45;color:var(--gold-bright);margin:0 0 18px}.prose p{max-width:72ch}.prose p+p{margin-top:18px}.prose a,.text-link{color:var(--gold-bright);text-decoration:underline;text-underline-offset:.22em}.prose a:hover,.text-link:hover{color:var(--ink)}.skip-link{position:fixed;z-index:100;left:20px;top:16px;padding:12px 18px;background:var(--gold);color:#050811;transform:translateY(-200%)}.skip-link:focus{transform:none}.section-intro{max-width:68ch;color:var(--muted)}.intro-band{align-items:start}.intro-band h2{max-width:16ch}.act-toc{display:grid;gap:22px}.toc-act{border-top:1px solid var(--line);padding-top:18px}.toc-act-title{display:flex;gap:14px;align-items:baseline;font-family:var(--roman);font-size:1rem;color:var(--gold-bright);line-height:1.5}.toc-act-title>span{color:var(--clinic);font-size:1.2rem;min-width:24px}.toc-act ol{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:4px}.toc-act li{margin:0}.toc-act li::before{display:none}.toc-act li a{display:flex;gap:12px;padding:8px 0;color:var(--muted);font-size:.93rem;line-height:1.4}.toc-act li a:hover{color:var(--gold-bright)}.toc-act li a>span{min-width:24px;color:var(--soft);font-size:.8rem}.toc-act li a:focus-visible{outline-offset:3px}.chapter-lead{font-family:var(--serif);font-size:clamp(1.03rem,1.5vw,1.18rem);max-width:68ch;color:var(--muted);line-height:1.6;margin-top:22px}.chapter-head h2{max-width:24ch}.narrative-block{margin:0 0 40px}.narrative-block:last-of-type{margin-bottom:26px}.act-editorial{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:30px;align-items:center;padding:clamp(26px,4vw,48px);overflow:hidden}.act-editorial .act-copy h2{max-width:18ch;font-size:clamp(1.8rem,3.5vw,3rem)}.act-editorial p{max-width:60ch}.act-editorial .chapter-figure{margin:0}.act-editorial .chapter-figure img{aspect-ratio:16/10;object-fit:cover;max-height:390px}.act-editorial .chapter-figure figcaption{font-size:.8rem;line-height:1.6}.act-editorial:not(:has(.chapter-figure)){grid-template-columns:1fr}.act-range{display:inline-block;margin-top:18px;border-top:1px solid var(--line);padding-top:15px;color:var(--clinic);font:600 .68rem var(--roman);letter-spacing:.16em}.chapter-figure{margin:28px 0 32px;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:#0b1220;max-width:100%}.chapter-figure .figure-open{display:block;position:relative;text-decoration:none;background:#0a101b;cursor:zoom-in}.chapter-figure img{display:block;width:100%;height:auto;max-height:550px;object-fit:contain;margin:0}.chapter-figure figcaption{margin:0;padding:17px 20px;color:var(--muted);font-family:var(--serif);font-size:.88rem;line-height:1.6;text-transform:none;letter-spacing:0}.figure-kind{display:block;color:var(--clinic);font:600 .58rem var(--roman);letter-spacing:.13em;margin-bottom:6px;text-transform:uppercase}.figure-zoom{position:absolute;right:10px;bottom:10px;padding:5px 9px;background:rgba(5,8,17,.85);border:1px solid var(--line);color:var(--ink);font-size:.72rem}.figure-open:hover img{filter:brightness(1.05)}.figure-open:focus-visible{outline-offset:-4px}.side-note{padding:23px;position:sticky;top:100px;align-self:start}.side-note h3{font-size:.83rem;line-height:1.5;letter-spacing:.06em}.side-note p{color:var(--muted);line-height:1.65}.side-note .figure-small{margin:18px 0 24px}.side-note .figure-small figcaption{font-size:.82rem;padding:14px}.side-note .figure-small img{max-height:280px;object-fit:contain}.margin-kicker{display:block;color:var(--clinic)!important;font:600 .6rem var(--roman);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px!important}.person-note{padding:0 0 20px;margin:0 0 22px;border-bottom:1px solid var(--line)}.takeaway{margin-bottom:20px}.takeaway h3{color:var(--gold-bright)}.side-note .text-link{font-size:.85rem}.science-block{border-left-color:var(--clinic);background:rgba(84,191,193,.065);padding:22px}.science-block .block-label{color:var(--clinic);font-size:.62rem;line-height:1.65}.chapter-bridge{border-top:1px solid var(--line);padding-top:23px;margin-top:30px}.chapter-bridge span{display:block;color:var(--clinic);font:600 .58rem var(--roman);letter-spacing:.16em;text-transform:uppercase}.chapter-bridge p{font-style:italic;color:var(--parch);font-size:1.07rem;margin-top:10px}.chapter-references{border-top:1px solid var(--line-2);margin-top:26px;padding-top:17px}.chapter-references summary{cursor:pointer;color:var(--gold);font:600 .65rem var(--roman);letter-spacing:.08em;line-height:1.6}.chapter-references ul{padding-left:18px;list-style:disc;font-size:.82rem}.chapter-references li{margin-top:9px;overflow-wrap:anywhere}.chapter-references li::before{content:none}.next-chapter{display:grid;grid-template-columns:minmax(0,1fr) 32px;gap:7px 20px;padding:22px 24px;margin-top:34px;border:1px solid var(--line);background:rgba(214,172,85,.025)}.next-chapter span{color:var(--soft);font:600 .6rem var(--roman);letter-spacing:.12em;text-transform:uppercase}.next-chapter strong{grid-column:1;color:var(--gold-bright);font-weight:500;font-size:1.08rem;line-height:1.5}.next-chapter i{grid-column:2;grid-row:1/3;align-self:center;font-style:normal;font-size:1.6rem;color:var(--clinic)}.next-chapter:hover{background:rgba(84,191,193,.06);border-color:var(--clinic)}.reading-location{font:500 .57rem var(--roman);color:var(--soft);white-space:nowrap;letter-spacing:.05em}.nav a.active{color:var(--clinic)}
+.mechanism{margin:30px 0;border:1px solid var(--line);border-radius:3px;background:linear-gradient(140deg,rgba(84,191,193,.07),rgba(214,172,85,.025));padding:clamp(16px,2.3vw,26px)}.mechanism .work-head h3{font-size:1.04rem;line-height:1.5;margin:0}.mechanism .work-head .section-kicker{font-size:.57rem;line-height:1.6;color:var(--clinic);margin:0 0 12px}.mechanism .chain{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;list-style:none;counter-reset:chain;margin:23px 0 16px;padding:0}.mechanism .chain li{position:relative;min-width:0;display:flex;align-items:center;justify-content:center;gap:7px;margin:0;padding:10px 6px;min-height:42px;font:500 .59rem var(--roman);line-height:1.45;text-align:center;border:1px solid var(--line-2);color:var(--muted)}.mechanism .chain li::before{content:none}.work-scene{border-block:1px solid var(--line-2);padding:10px 0}.work-scene svg{display:block;width:100%;height:auto;overflow:hidden}.work-scene svg text{font-family:var(--serif);font-size:15px;fill:var(--muted)}.work-scene .tissue{fill:#172c39;stroke:#54bfc1;stroke-width:2}.work-scene .gold-stroke,.work-scene .cable{fill:none;stroke:var(--gold);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}.work-scene .cable{stroke-width:3}.work-scene .guide{fill:none;stroke:var(--gold);stroke-width:2;stroke-dasharray:5 5}.work-scene .trace{stroke:var(--soft);stroke-width:1;fill:none}.work-scene .accent-fill{fill:var(--clinic)}.work-scene .gold-fill{fill:var(--gold)}.work-scene .toe-piece{fill:#a47e3d;stroke:var(--gold-bright);stroke-width:2}.work-scene .accent-stroke{fill:none;stroke:var(--clinic);stroke-width:3;stroke-linecap:round}.work-scene .cochlea-line{fill:none;stroke:#617b87;stroke-width:18;stroke-linecap:round}.work-scene .neurons{fill:#274c54;stroke:var(--gold);stroke-width:2}.work-scene .glial-halo{fill:#54bfc126;stroke:#54bfc177;stroke-width:2}.work-scene .electrode{fill:#aebcc7;stroke:var(--gold-bright);stroke-width:1}.work-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px 18px;align-items:center;margin-top:18px}.work-controls label{grid-column:1/-1;font-size:.94rem;color:var(--parch);line-height:1.5}.work-controls input{width:100%;min-height:38px;accent-color:var(--clinic);margin:0}.work-reset{font:500 .7rem var(--serif);background:transparent;color:var(--gold);border:1px solid var(--line);padding:10px 12px;cursor:pointer}.work-reset:hover{border-color:var(--clinic)}.mechanism output{display:block;min-height:95px;margin-top:16px;padding:14px 18px;border-left:2px solid var(--clinic);background:rgba(5,8,17,.35);font-size:.96rem;color:var(--ink);line-height:1.65}.mechanism .schematic{font-size:.79rem;color:var(--soft);line-height:1.65;margin:17px 0 0}.closing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:30px}.closing-grid>div{border-top:1px solid var(--line);padding-top:20px}.closing-grid h3{font:600 .87rem var(--roman);color:var(--gold-bright)}.closing-grid p{font-size:.98rem}.reference-section{margin:70px 0}.reference-section header h2{font:700 clamp(1.7rem,3vw,2.4rem)/1.2 var(--roman);color:var(--ink);max-width:25ch}.reference-section header>p{color:var(--muted);max-width:76ch}.lexicon{margin-top:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 34px}.lexicon>div{padding:22px 0;border-top:1px solid var(--line)}.lexicon dt{font:600 .85rem var(--roman);color:var(--gold-bright);line-height:1.55;margin-bottom:9px}.lexicon dd{margin:0;font-size:.95rem;color:var(--muted);line-height:1.65}.source-paths{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}.source-paths a{display:grid;grid-template-columns:1fr auto;gap:12px;border:1px solid var(--line);padding:24px}.source-paths a>span{font:600 .6rem var(--roman);letter-spacing:.1em;text-transform:uppercase;color:var(--clinic)}.source-paths a>strong{grid-column:1;font-weight:500;line-height:1.5;color:var(--parch)}.source-paths a>i{grid-column:2;grid-row:1/3;align-self:center;font-style:normal;font-size:1.4rem;color:var(--gold)}.source-paths a:hover{background:rgba(84,191,193,.06)}.visual-credit{border-top:1px solid var(--line-2);padding-top:24px;margin-top:25px;color:var(--soft);font-size:.85rem;max-width:95ch}.image-dialog{max-width:min(96vw,1600px);width:fit-content;max-height:96dvh;padding:20px;background:#090e19;color:var(--ink);border:1px solid var(--gold);overflow:auto;box-shadow:var(--shadow)}.image-dialog::backdrop{background:#02040be8}.image-dialog-bar{display:flex;align-items:center;justify-content:space-between;gap:18px;position:sticky;top:-20px;background:#090e19;padding:8px 0 17px;z-index:1}.image-dialog h2{font:600 .8rem var(--roman);line-height:1.6}.image-dialog .dialog-close{border:1px solid var(--line);background:#0e1a2e;color:var(--gold);padding:10px 15px;font:500 .85rem var(--serif);cursor:pointer}.image-dialog>img{max-width:100%;width:auto;max-height:72dvh;margin:auto;object-fit:contain}.image-dialog-caption{max-width:90ch;font-size:.9rem;line-height:1.6;color:var(--muted)}
+@media(max-width:1200px){.reading-location{display:none}}@media(max-width:900px){.act-editorial{grid-template-columns:1fr}.act-editorial .chapter-figure img{max-height:320px}.side-note{position:static}.closing-grid{grid-template-columns:1fr}.hero-inner{gap:30px}}@media(max-width:720px){.hero{padding:22px}.hero .eyebrow{line-height:1.8}.hero h1{font-size:clamp(2.2rem,9.3vw,3.5rem)}.chapter-lead{font-size:1rem}.chapter-head{align-items:start}.chapter-head h2{max-width:19ch}.chapter-number{font-size:2rem}.lexicon,.source-paths{grid-template-columns:1fr}.act-editorial{padding:23px}.narrative-block{margin-bottom:32px}.chapter-figure figcaption{padding:15px}.mechanism .chain{gap:5px}.mechanism .chain li{font-size:.53rem}.work-controls{grid-template-columns:1fr}.work-reset{justify-self:start}.mechanism output{padding:12px;font-size:.9rem}.work-scene svg text{font-size:17px}.next-chapter{padding:18px}.image-dialog{padding:12px}.image-dialog-bar{top:-12px}.image-dialog h2{font-size:.67rem}.credit-band{margin-bottom:34px}.intro-band h2{max-width:18ch}.side-note .figure-small img{max-height:330px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .reveal{opacity:1;transform:none}}@media print{.topbar,.hero-actions,.mechanism .work-controls,.figure-zoom,.next-chapter{display:none!important}.reveal{opacity:1!important;transform:none!important}.side-note{position:static}.image-dialog{display:none}.chapter-figure,.science-block{break-inside:avoid}body{background:#fff;color:#111}.chapter-figure figcaption,.prose p{color:#222}}
+
+</style>
+<style id="eci-wide-style">
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ———
+     La page s'élargit ET le texte grossit, ensemble : la colonne de lecture garde
+     sa mesure (~100 signes), la largeur gagnée va à la marge savante et aux
+     visuels, qui débordent la colonne de texte au-delà de 1800 px. */
+  @media (min-width:1440px){
+    :root{ --max:1300px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(300px,430px); gap:52px; }
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(280px,380px); }
+    .intro-band{ grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr); }
+  }
+  @media (min-width:1800px){
+    :root{ --max:1420px; }
+    html{ font-size:17px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(320px,470px); gap:58px; }
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(300px,410px); }
+    .viz-section{ width:min(100vw - 72px,1720px);
+                  margin-inline:calc((100% - min(100vw - 72px,1720px)) / 2); }
+  }
+  @media (min-width:2200px){
+    :root{ --max:1560px; }
+    html{ font-size:18.5px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(340px,530px); gap:64px; }
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(320px,440px); }
+    .viz-section{ width:min(100vw - 96px,2040px);
+                  margin-inline:calc((100% - min(100vw - 96px,2040px)) / 2); }
+  }
+  @media (min-width:2800px){
+    :root{ --max:1820px; }
+    html{ font-size:20px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(380px,700px); gap:74px; }
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(340px,470px); }
+    .viz-section{ width:min(100vw - 120px,2360px);
+                  margin-inline:calc((100% - min(100vw - 120px,2360px)) / 2); }
+  }
+  </style>
+</head><body><a class="skip-link" href="#transcription">Aller au contenu</a><div class="atmos" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div><div class="progress-top" id="progressTop" aria-hidden="true"></div><div class="page">
+<header class="hero" id="top"><div class="hero-waterline"></div><div class="hero-inner"><div><p class="eyebrow">Dossier XXXII · Médecine &amp; neurotechnologies</p><h1>Technologies médicales &amp; <span class="foil">corps augmentés</span></h1><p class="hero-lead">D’un orteil de bois à une commande cérébrale, les techniques changent. Une question demeure : quelle fonction restaurer, avec quelles preuves et quelle liberté pour la personne ?</p><div class="hero-actions"><a class="button primary" href="#acte-1">Commencer la lecture</a><a class="button" href="#sommaire">Choisir un chapitre</a></div></div><aside class="signal-board" aria-label="Le dossier en quatre repères"><div class="signal"><span>Le parcours</span><strong>3 actes · 12 chapitres</strong></div><div class="signal"><span>Comprendre</span><strong>6 ateliers à manipuler</strong></div><div class="signal"><span>Le fil conducteur</span><strong>Réparer · Interfacer · Protéger</strong></div><div class="signal"><span>La méthode</span><strong>Des mécanismes, des preuves, des limites</strong></div></aside></div></header>
+<nav class="topbar" aria-label="Navigation du dossier"><div class="topbar-inner"><a class="brand" href="#top"><img class="brand-mark" src="../../ymir-lalie/assets/logo-eci.jpg" alt="Sceau ECI" width="46" height="46"><span>Corps &amp; machines</span></a><a class="home-link" href="../../index.html">Accueil ECI</a><button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button><div class="nav" id="navLinks"><a href="#acte-1">I · Réparer</a><a href="#acte-2">II · Interfacer</a><a href="#acte-3">III · Protéger</a><a href="#lexique">Lexique</a><a href="#sources">Sources</a></div><span class="reading-location" aria-live="off">Introduction</span><div class="progress" aria-hidden="true"><span></span></div></div></nav><main id="transcription">
+<section class="intro-band reveal" id="sommaire"><div><p class="section-kicker">Le fil de la lecture</p><h2>Une fonction, une interface, une personne.</h2><p class="section-intro">Une prothèse peut transmettre un effort. Une électrode peut mesurer une activité ou stimuler un tissu. Une structure bio-imprimée doit aussi rester vivante. Comprendre ces différences permet de séparer une avancée réelle d’une promesse trop large.</p><p class="section-intro">Le parcours va des mécanismes de réparation aux interfaces biologiques, puis aux conditions de leur usage. Les illustrations se lisent avec le texte ; chaque schéma peut être agrandi.</p><a class="text-link" href="#sources">Les références scientifiques et institutionnelles →</a></div><div class="act-toc">
+<div class="toc-act"><a class="toc-act-title" href="#acte-1"><span>I</span>Réparer une fonction</a><ol>
+<li><a href="#histoire"><span>01</span>Remplacer n’a rien de nouveau</a></li>
+<li><a href="#mecanique"><span>02</span>Transmettre un mouvement</a></li>
+<li><a href="#ancrage"><span>03</span>Faire tenir la prothèse au corps</a></li>
+<li><a href="#myoelectrique"><span>04</span>Commander une main avec les muscles</a></li>
+<li><a href="#cochleaire"><span>05</span>Transformer le son en stimulation</a></li>
+</ol></div>
+<div class="toc-act"><a class="toc-act-title" href="#acte-2"><span>II</span>Relier le vivant et la machine</a><ol>
+<li><a href="#gliose"><span>06</span>Quand le tissu réagit à l’implant</a></li>
+<li><a href="#icm"><span>07</span>Du signal cérébral à la commande</a></li>
+<li><a href="#stimulation"><span>08</span>Stimuler pour traiter</a></li>
+<li><a href="#bioimpression"><span>09</span>Construire avec des cellules vivantes</a></li>
+</ol></div>
+<div class="toc-act"><a class="toc-act-title" href="#acte-3"><span>III</span>Protéger la personne</a><ol>
+<li><a href="#droit"><span>10</span>Du prototype au produit évalué</a></li>
+<li><a href="#neurodroits"><span>11</span>Consentir et garder la maîtrise de ses données</a></li>
+<li><a href="#acces"><span>12</span>Qui garde la maîtrise dans la durée ?</a></li>
+</ol></div>
+</div></section><section class="credit-band reveal" aria-label="Auteur du dossier"><div class="credit-avatars"><img src="provoxys.jpeg" alt="Avatar de Provoxys" width="128" height="128"></div><div class="credit-text"><span class="lbl">Réalisé par</span><strong>Provoxys</strong><span>Empire contre Intox · Le savoir sans filtre</span></div></section>
+<section class="act-band act-editorial reveal" id="acte-1"><div class="act-copy"><p class="act-no">Acte I</p><h2>Réparer une fonction</h2><p>Avant de décoder le cerveau, il faut comprendre ce qu’une prothèse remplace : un appui, un mouvement ou une sensation. Chaque solution répond à une fonction précise, avec son mode d’action et ses limites.</p><span class="act-range">Chapitres 01–05</span></div><figure class="chapter-figure " data-visual="machines-histoire.png"><a class="figure-open" href="assets/machines-histoire.png" aria-label="Agrandir : Évocation de prothèses anciennes et de mécanismes articulés"><img src="assets/machines-histoire.png" alt="Évocation de prothèses anciennes et de mécanismes articulés" width="1672" height="941" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Illustration</span>Le premier acte suit une fonction du corps, puis le moyen technique proposé pour la restaurer.</figcaption></figure></section>
+<section class="chapter reveal" id="histoire" data-act="acte-1" data-chapter="01"><header class="chapter-head"><div><p class="section-kicker">Acte I · Chapitre 01</p><h2>Remplacer n’a rien de nouveau</h2><p class="chapter-lead">L’histoire des technologies médicales commence par une question concrète : comment retrouver une fonction perdue ?</p></div><span class="chapter-number" aria-hidden="true">01</span></header><div class="transcript"><div class="prose">
+<section class="narrative-block"><h3>Un appui avant un moteur</h3>
+<p>Les dispositifs présentés dans ce dossier mesurent une activité, aident au diagnostic, traitent ou suppléent une fonction du corps. Une prothèse est l’un de ces dispositifs : elle supplée une partie manquante ou une fonction altérée. Un implant, lui, se définit d’abord par son implantation dans le corps ; il ne remplace pas nécessairement un organe.</p>
+<p>L’orteil de bois et de cuir conservé au Caire, daté d’environ 950 à 710 avant notre ère, montre qu’un objet simple peut répondre à un besoin fonctionnel. Sa forme, ses traces d’usage et des essais modernes réalisés avec des répliques soutiennent l’hypothèse d’une aide à la marche. Cela n’en fait pas un dispositif motorisé, ni une preuve que la prothèse moderne serait déjà tout entière inventée.</p>
+<figure class="chapter-figure " data-visual="original-01.jpg"><a class="figure-open" href="assets/original-01.jpg" aria-label="Agrandir : Un pied appareillé d’une pièce évoquant l’orteil égyptien en bois et en cuir"><img src="assets/original-01.jpg" alt="Un pied appareillé d’une pièce évoquant l’orteil égyptien en bois et en cuir" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Illustration</span>Une pièce passive peut participer à l’appui. Cette illustration évoque l’orteil du Caire ; elle ne remplace pas la documentation archéologique.</figcaption></figure>
+<section class="mechanism" data-mechanism="orteil" aria-labelledby="work-title-orteil"><div class="work-head"><p class="section-kicker">Atelier 01 · Manipuler pour comprendre</p><h3 id="work-title-orteil">Comment une pièce passive participe à l’appui</h3></div><ol class="chain"><li>Appui</li><li>Pièce adaptée</li><li>Pas</li></ol><div class="work-scene"><svg viewBox="0 0 640 230" role="img" aria-labelledby="svg-title-orteil"><title id="svg-title-orteil">Comment une pièce passive participe à l’appui</title><path class="tissue" d="M130 88C176 59 260 61 322 85L476 124Q520 135 527 155L531 177H129Q112 136 130 88Z"/><path class="gold-stroke" d="M129 177H531"/><path class="toe-piece" d="M473 124Q529 124 547 151V177H475Z"/><path class="trace" d="M122 197H550"/><circle data-foot-point cx="140" cy="197" r="9" class="accent-fill"/><text x="122" y="220">Talon</text><text x="490" y="220">Avant-pied</text><text x="190" y="30">Appui</text><text x="420" y="30">Pièce passive</text><path class="guide" d="M467 39V113"/></svg></div><div class="work-controls"><label for="range-orteil">Explorer les phases d’un pas</label><input id="range-orteil" type="range" min="0" max="100" value="25" aria-describedby="work-note-orteil"><button type="button" class="work-reset" data-reset>Recommencer</button></div><output for="range-orteil" aria-live="polite"></output><p class="schematic" id="work-note-orteil">Le point représente la progression de l’appui, sans calcul de pression ni mesure de marche. Modèle pédagogique sans valeur de mesure clinique.</p></section>
+</section>
+<section class="narrative-block"><h3>Décrire les mécanismes, transmettre les savoir-faire</h3>
+<p>Au XVIe siècle, Ambroise Paré décrit et diffuse des prothèses articulées. Les ressorts, les verrous et les articulations cherchent à reproduire certains mouvements du membre. Ces réalisations associent la chirurgie aux compétences des artisans : Paré cite notamment le serrurier connu comme le Petit Lorrain.</p>
+<p>Cette histoire est collective. Attribuer à un seul chirurgien l’invention de toutes les mains mécaniques effacerait les objets antérieurs et le travail des fabricants. La question utile est de comprendre ce que chaque mécanisme permet effectivement à son utilisateur.</p>
+<figure class="chapter-figure " data-visual="original-02.jpg"><a class="figure-open" href="assets/original-02.jpg" aria-label="Agrandir : Dessin d’une main mécanique avec articulations et ressorts"><img src="assets/original-02.jpg" alt="Dessin d’une main mécanique avec articulations et ressorts" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Illustration</span>Les articulations et les verrous décomposent le geste en mécanismes. Évocation de prothèses anciennes, sans attribution de ce dessin à une édition précise de Paré.</figcaption></figure>
+</section>
+<section class="narrative-block"><h3>Mesurer et voir : une autre branche de la médecine technique</h3>
+<p>Toutes les machines médicales ne remplacent pas une partie du corps. La découverte des rayons X par Wilhelm Röntgen en 1895 ouvre une autre voie : obtenir des informations sur l’intérieur du corps. L’imagerie aide au diagnostic ; elle ne doit pas être confondue avec la réparation mécanique d’un membre.</p>
+<p>Le fil de ce dossier suit donc trois opérations distinctes : observer une fonction, agir sur elle et, dans certains cas, la remplacer. Nous commençons par le remplacement le plus directement visible : la prothèse mécanique.</p>
+</section>
+<div class="chapter-bridge"><span>La question suivante</span><p>Comment transformer un mouvement du corps en mouvement d’une main artificielle ?</p></div><details class="chapter-references"><summary>Références de ce chapitre</summary><ul><li><a href="https://www.manchester.ac.uk/about/news/mummies-false-toes-helped-ancient-egyptians-walk/" target="_blank" rel="noopener">Université de Manchester, 2011</a></li><li><a href="https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/ar.23135" target="_blank" rel="noopener">Brier et al., étude radiologique</a></li><li><a href="https://surgery.edwardworthlibrary.ie/operations/prosthetics/" target="_blank" rel="noopener">Edward Worth Library, édition et traduction de Paré</a></li><li><a href="https://kasselhand.auburn.edu/historical-background/" target="_blank" rel="noopener">Kassel Hand Project, Auburn University</a></li><li><a href="https://www.nobelprize.org/prizes/physics/1901/rontgen/facts/" target="_blank" rel="noopener">Fondation Nobel — Röntgen</a></li><li><a href="https://imagine.gsfc.nasa.gov/science/toolbox/history_xray1.html" target="_blank" rel="noopener">NASA — découverte des rayons X</a></li><li><a href="https://medicalmuseum.health.mil/index.cfm/visit/exhibits/virtual/xraydiscovery/index" target="_blank" rel="noopener">National Museum of Health and Medicine — imagerie et médecine</a></li></ul></details></div><aside class="side-note">
+<p class="margin-kicker">Un repère dans l’histoire</p><h3>1895 · Voir à l’intérieur</h3><figure class="chapter-figure figure-small" data-visual="original-03.jpg"><a class="figure-open" href="assets/original-03.jpg" aria-label="Agrandir : Évocation d’un savant dans un laboratoire de radiologie"><img src="assets/original-03.jpg" alt="Évocation d’un savant dans un laboratoire de radiologie" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Illustration</span>Röntgen et les rayons X ouvrent la voie à l’imagerie. Le visage représenté est illustratif ; ce n’est pas un portrait historique authentifié.</figcaption></figure>
+<div class="person-note"><span class="margin-kicker">Une figure, une contribution</span><h3>Ambroise Paré</h3><p>Décrire et diffuser les mécanismes, en lien avec les artisans.</p></div>
+<div class="takeaway"><h3>À retenir</h3><p>Une prothèse peut être passive. Sa valeur tient à la fonction qu’elle aide à restaurer, pas au nombre de composants électroniques.</p></div><a class="text-link" href="../../sources/sources.html#machines">Vérifier les références →</a></aside></div>
+<a class="next-chapter" href="#mecanique"><span>Continuer · Chapitre 02</span><strong>Transmettre un mouvement</strong><i aria-hidden="true">→</i></a>
+</section>
+<section class="chapter reveal" id="mecanique" data-act="acte-1" data-chapter="02"><header class="chapter-head"><div><p class="section-kicker">Acte I · Chapitre 02</p><h2>Transmettre un mouvement</h2><p class="chapter-lead">Une prothèse mécanique transforme un effort disponible en un geste utile.</p></div><span class="chapter-number" aria-hidden="true">02</span></header><div class="transcript"><div class="prose">
+<section class="narrative-block"><h3>Le corps fournit l’effort</h3>
+<p>Dans une prothèse commandée par le corps, un mouvement résiduel peut tendre un câble, transmis par un harnais à un mécanisme de préhension. Le montage exact dépend du dispositif. L’utilisateur apprend à mobiliser cette chaîne pour ouvrir ou fermer l’effecteur.</p>
+<p>Les ressorts et les articulations ne recréent pas une main biologique. Ils rendent possibles certaines actions : saisir un objet, le maintenir ou le relâcher. La qualité de l’emboîture, le confort et l’adaptation du geste comptent autant que l’aspect extérieur.</p>
+<figure class="chapter-figure " data-visual="original-04.jpg"><a class="figure-open" href="assets/original-04.jpg" aria-label="Agrandir : Main mécanique et système de transmission visible sur une table"><img src="assets/original-04.jpg" alt="Main mécanique et système de transmission visible sur une table" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Illustration</span>Repérer ce qui transmet l’effort et ce qui produit la fermeture : l’apparence d’une main ne suffit pas à décrire son mode de commande.</figcaption></figure>
+<section class="mechanism" data-mechanism="cable" aria-labelledby="work-title-cable"><div class="work-head"><p class="section-kicker">Atelier 02 · Manipuler pour comprendre</p><h3 id="work-title-cable">Du mouvement du corps à la fermeture du mécanisme</h3></div><ol class="chain"><li>Mouvement</li><li>Transmission</li><li>Préhension</li></ol><div class="work-scene"><svg viewBox="0 0 640 230" role="img" aria-labelledby="svg-title-cable"><title id="svg-title-cable">Du mouvement du corps à la fermeture du mécanisme</title><rect class="tissue" x="35" y="75" width="120" height="90" rx="35"/><path class="cable" d="M90 70V42H350V110"/><path class="guide" d="M159 122H310"/><rect class="tissue" x="315" y="83" width="115" height="78" rx="15"/><g data-jaw-upper><path class="gold-stroke" d="M420 99L510 60L565 96"/></g><g data-jaw-lower><path class="gold-stroke" d="M420 145L510 185L565 150"/></g><circle class="accent-fill" cx="420" cy="122" r="8"/><text x="37" y="204">Mouvement du corps</text><text x="203" y="28">Câble</text><text x="438" y="219">Mécanisme</text><circle data-cable-point cx="90" cy="42" r="6" class="accent-fill"/></svg></div><div class="work-controls"><label for="range-cable">Faire varier une traction schématique</label><input id="range-cable" type="range" min="0" max="100" value="25" aria-describedby="work-note-cable"><button type="button" class="work-reset" data-reset>Recommencer</button></div><output for="range-cable" aria-live="polite"></output><p class="schematic" id="work-note-cable">La géométrie représente une transmission simplifiée, pas le plan d’un modèle commercial. Modèle pédagogique sans valeur de mesure clinique.</p></section>
+</section>
+<section class="narrative-block"><h3>Distinguer énergie et commande</h3>
+<p>Deux questions organisent la suite : qu’est-ce qui fournit l’énergie du mouvement ? Qu’est-ce qui indique au dispositif le mouvement à produire ? Avec un câble, le geste corporel participe directement à l’action mécanique. Avec une prothèse myoélectrique, les muscles fournissent un signal de commande, tandis qu’une alimentation électrique fournit l’énergie des moteurs.</p>
+<p>Ces solutions répondent à des besoins différents. Une technologie plus complexe ne rend pas automatiquement les solutions mécaniques inutiles. Le choix dépend de la personne, de l’activité et des conditions d’utilisation.</p>
+</section>
+<div class="chapter-bridge"><span>La question suivante</span><p>Avant de commander la prothèse, il faut aussi décider comment elle tient au corps.</p></div><details class="chapter-references"><summary>Références de ce chapitre</summary><ul><li><a href="https://pubmed.ncbi.nlm.nih.gov/28579692/" target="_blank" rel="noopener">Kuiken et al., explication de la TMR</a></li><li><a href="https://journals.sagepub.com/doi/10.3109/03093640409167756" target="_blank" rel="noopener">Kuiken et al., étude expérimentale</a></li></ul></details></div><aside class="side-note">
+<div class="takeaway"><h3>À retenir</h3><p>Un câble transmet un effort ; une électrode détecte un signal. Ces deux rôles ne sont pas interchangeables.</p></div><a class="text-link" href="../../sources/sources.html#machines">Vérifier les références →</a></aside></div>
+<a class="next-chapter" href="#ancrage"><span>Continuer · Chapitre 03</span><strong>Faire tenir la prothèse au corps</strong><i aria-hidden="true">→</i></a>
+</section>
+<section class="chapter reveal" id="ancrage" data-act="acte-1" data-chapter="03"><header class="chapter-head"><div><p class="section-kicker">Acte I · Chapitre 03</p><h2>Faire tenir la prothèse au corps</h2><p class="chapter-lead">La fixation est une interface à part entière : elle transmet des efforts et doit rester compatible avec les tissus.</p></div><span class="chapter-number" aria-hidden="true">03</span></header><div class="transcript"><div class="prose">
+<section class="narrative-block"><h3>De l’emboîture à l’ancrage osseux</h3>
+<p>Une prothèse de membre peut prendre appui sur une emboîture qui entoure le segment résiduel. Dans certaines indications, un ancrage directement lié à l’os offre une autre solution. Il faut distinguer ce mode de fixation du système qui commande le mouvement : un ancrage osseux ne lit pas, à lui seul, l’intention motrice.</p>
+<p>Dans les années 1950, Per-Ingvar Brånemark étudie la relation entre le titane et l’os. Ses travaux conduisent à une méthode d’implantation dentaire, avec un premier patient traité en 1965. L’ostéointégration désigne une relation structurelle et fonctionnelle entre l’os vivant et la surface de l’implant. Les applications dentaires et les ancrages de prothèses de membre ont toutefois des contraintes et des parcours cliniques différents.</p>
+<figure class="chapter-figure " data-visual="original-12.jpg"><a class="figure-open" href="assets/original-12.jpg" aria-label="Agrandir : Schéma d’un implant ancré dans l’os et relié à une pièce externe"><img src="assets/original-12.jpg" alt="Schéma d’un implant ancré dans l’os et relié à une pièce externe" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Schéma explicatif</span>L’ancrage transmet les efforts entre l’os et la prothèse. Le dessin ne précise ni une marque, ni une indication, ni le système de commande.</figcaption></figure>
+</section>
+<section class="narrative-block"><h3>Une interface vivante, pas une simple vis</h3>
+<p>L’implant transmet des charges dans un tissu qui se remodèle. Lorsqu’un dispositif traverse la peau, le site de passage demande une attention particulière, notamment face au risque infectieux. La réussite d’une fixation ne se résume donc ni au choix d’un métal ni à la solidité d’une pièce.</p>
+<p>L’image d’un implant dentaire peut aider à comprendre une relation entre matière, os et tissus mous. Elle ne décrit pas à elle seule l’ancrage d’un membre artificiel. Cette distinction évite de généraliser une complication observée dans un contexte à tous les implants.</p>
+<figure class="chapter-figure " data-visual="original-09.jpg"><a class="figure-open" href="assets/original-09.jpg" aria-label="Agrandir : Vue illustrative de tissus buccaux autour d’un pilier de type dentaire"><img src="assets/original-09.jpg" alt="Vue illustrative de tissus buccaux autour d’un pilier de type dentaire" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Schéma explicatif</span>Cet exemple est dentaire : il sert à distinguer les situations anatomiques. L’image ne permet ni de poser un diagnostic ni d’évaluer un ancrage de membre.</figcaption></figure>
+</section>
+<div class="chapter-bridge"><span>La question suivante</span><p>Une fois l’appui compris, voyons comment un muscle peut donner un ordre à un moteur.</p></div><details class="chapter-references"><summary>Références de ce chapitre</summary><ul><li><a href="https://www.epo.org/en/news-events/european-inventor-award/meet-the-finalists/ingvar-branemark" target="_blank" rel="noopener">Office européen des brevets — Brånemark</a></li><li><a href="https://www.gu.se/forskning/per-ingvar-branemark-och-titanimplantatet-hyllas-med-en-arlig-dag" target="_blank" rel="noopener">Université de Göteborg — histoire et recherches</a></li><li><a href="https://www.gu.se/nyheter/titanpionjar-vid-goteborgs-universitet-avliden" target="_blank" rel="noopener">Université de Göteborg — premier patient 1965</a></li><li><a href="https://www.accessdata.fda.gov/cdrh_docs/pdf19/P190009b.pdf" target="_blank" rel="noopener">FDA — OPRA, description officielle, pp. 2–4</a></li></ul></details></div><aside class="side-note">
+<p class="margin-kicker">Un repère dans l’histoire</p><h3>Brånemark · Os et titane</h3><figure class="chapter-figure figure-small" data-visual="original-06.jpg"><a class="figure-open" href="assets/original-06.jpg" aria-label="Agrandir : Évocation d’un chercheur dans un laboratoire"><img src="assets/original-06.jpg" alt="Évocation d’un chercheur dans un laboratoire" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Illustration</span>Des observations des années 1950 à une méthode d’implantation dentaire en 1965. Portrait illustratif, sans identité photographique authentifiée.</figcaption></figure>
+<div class="takeaway"><h3>À retenir</h3><p>Fixer, commander et alimenter une prothèse sont trois problèmes distincts. Chacun demande son évaluation.</p></div><a class="text-link" href="../../sources/sources.html#machines">Vérifier les références →</a></aside></div>
+<a class="next-chapter" href="#myoelectrique"><span>Continuer · Chapitre 04</span><strong>Commander une main avec les muscles</strong><i aria-hidden="true">→</i></a>
+</section>
+<section class="chapter reveal" id="myoelectrique" data-act="acte-1" data-chapter="04"><header class="chapter-head"><div><p class="section-kicker">Acte I · Chapitre 04</p><h2>Commander une main avec les muscles</h2><p class="chapter-lead">La bionique n’implique pas nécessairement une connexion au cerveau : une activité musculaire peut suffire à commander un mouvement.</p></div><span class="chapter-number" aria-hidden="true">04</span></header><div class="transcript"><div class="prose">
+<section class="narrative-block"><h3>Du signal musculaire à l’action</h3>
+<p>Quand un muscle se contracte, son activité électrique peut être détectée par des électrodes. Une prothèse myoélectrique traite ces signaux pour commander des moteurs. Selon le niveau d’amputation et le dispositif, les signaux proviennent des muscles résiduels ou de muscles réinnervés.</p>
+<p>La chaîne comprend donc un capteur, un traitement du signal et un effecteur motorisé. Elle demande un réglage et un apprentissage. Toutes les mains myoélectriques ne possèdent ni les mêmes mouvements indépendants, ni un retour tactile, ni les mêmes algorithmes.</p>
+<figure class="chapter-figure " data-visual="original-11.jpg"><a class="figure-open" href="assets/original-11.jpg" aria-label="Agrandir : Schéma reliant un muscle, un signal enregistré, un traitement et une main prothétique"><img src="assets/original-11.jpg" alt="Schéma reliant un muscle, un signal enregistré, un traitement et une main prothétique" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Schéma explicatif</span>Suivre la chaîne de gauche à droite : activité musculaire, acquisition, traitement, commande de la main. Les graphiques ne sont pas des résultats cliniques attribués.</figcaption></figure>
+<section class="mechanism" data-mechanism="myo" aria-labelledby="work-title-myo"><div class="work-head"><p class="section-kicker">Atelier 03 · Manipuler pour comprendre</p><h3 id="work-title-myo">De l’activité du muscle à la commande motrice</h3></div><ol class="chain"><li>Muscle</li><li>Traitement</li><li>Moteur</li></ol><div class="work-scene"><svg viewBox="0 0 640 230" role="img" aria-labelledby="svg-title-myo"><title id="svg-title-myo">De l’activité du muscle à la commande motrice</title><path class="tissue" d="M22 111Q78 51 143 110Q78 172 22 111Z"/><circle cx="100" cy="85" r="7" class="gold-fill"/><circle cx="100" cy="137" r="7" class="gold-fill"/><path class="guide" d="M107 85H175M107 137H175"/><rect class="tissue" x="175" y="60" width="215" height="105" rx="8"/><path data-wave class="accent-stroke" d="M190 112H376"/><path class="guide" d="M390 112H455"/><path class="gold-stroke" d="M466 174V103Q466 86 480 86H510"/><g data-fingers><path class="gold-stroke" d="M508 86L565 60M510 102L578 83M510 119L579 110M510 136L567 140"/></g><text x="24" y="207">Muscle</text><text x="192" y="207">Signal traité</text><text x="465" y="207">Commande moteur</text></svg></div><div class="work-controls"><label for="range-myo">Explorer une activation musculaire relative</label><input id="range-myo" type="range" min="0" max="100" value="35" aria-describedby="work-note-myo"><button type="button" class="work-reset" data-reset>Recommencer</button></div><output for="range-myo" aria-live="polite"></output><p class="schematic" id="work-note-myo">Le signal et le mouvement sont illustratifs : ils ne calibrent aucune prothèse. Modèle pédagogique sans valeur de mesure clinique.</p></section>
+</section>
+<section class="narrative-block"><h3>La réinnervation musculaire ciblée</h3>
+<p>La réinnervation musculaire ciblée, ou TMR, redirige certains nerfs vers des muscles qui deviennent des sites de commande. Les électrodes enregistrent alors l’activité de ces muscles cibles. Il s’agit de signaux musculaires associés à une intention motrice, pas d’une électrode placée dans le cortex.</p>
+<p>Le cas de Jesse Sullivan, amputé des deux membres supérieurs après un accident électrique, constitue une étape historique du développement humain de la TMR au début des années 2000. La publication de l’équipe de Todd Kuiken paraît en 2004. Distinguer l’intervention, l’article et les démonstrations ultérieures évite de les confondre en une seule date.</p>
+</section>
+<div class="chapter-bridge"><span>La question suivante</span><p>Le même principe de conversion peut concerner une sensation : comment transformer un son en stimulation électrique ?</p></div><details class="chapter-references"><summary>Références de ce chapitre</summary><ul><li><a href="https://journals.sagepub.com/doi/10.3109/03093640409167756" target="_blank" rel="noopener">Kuiken et al., publication originale</a></li><li><a href="https://www.northwestern.edu/magazine/winter2007/feature/kuiken.html" target="_blank" rel="noopener">Northwestern, portrait de l’équipe et du patient</a></li><li><a href="https://pubmed.ncbi.nlm.nih.gov/28579692/" target="_blank" rel="noopener">Kuiken et al., explication de la TMR</a></li></ul></details></div><aside class="side-note">
+<p class="margin-kicker">Un repère dans l’histoire</p><h3>Une main, plusieurs fonctions</h3><figure class="chapter-figure figure-small" data-visual="original-13.jpg"><a class="figure-open" href="assets/original-13.jpg" aria-label="Agrandir : Main prothétique motorisée représentée avec ses articulations"><img src="assets/original-13.jpg" alt="Main prothétique motorisée représentée avec ses articulations" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Illustration</span>La forme visible ne renseigne pas à elle seule sur le mode de commande, la finesse du geste ou le retour sensoriel.</figcaption></figure>
+<div class="takeaway"><h3>À retenir</h3><p>La prothèse interprète une activité musculaire apprise et calibrée. Elle ne restitue pas automatiquement toutes les fonctions d’une main.</p></div><a class="text-link" href="../../sources/sources.html#machines">Vérifier les références →</a></aside></div>
+<a class="next-chapter" href="#cochleaire"><span>Continuer · Chapitre 05</span><strong>Transformer le son en stimulation</strong><i aria-hidden="true">→</i></a>
+</section>
+<section class="chapter reveal" id="cochleaire" data-act="acte-1" data-chapter="05"><header class="chapter-head"><div><p class="section-kicker">Acte I · Chapitre 05</p><h2>Transformer le son en stimulation</h2><p class="chapter-lead">L’implant cochléaire ne remplace pas une oreille à l’identique ; il propose un autre chemin vers une perception sonore.</p></div><span class="chapter-number" aria-hidden="true">05</span></header><div class="transcript"><div class="prose">
+<section class="narrative-block"><h3>Contourner une fonction altérée</h3>
+<p>Un microphone capte le son, un processeur le code et un ensemble d’électrodes stimule électriquement les fibres du nerf auditif dans la cochlée. L’implant contourne ainsi des cellules ciliées endommagées. Il doit être distingué d’une aide auditive qui amplifie les sons et d’un implant du tronc cérébral qui vise une autre structure.</p>
+<p>La perception obtenue varie selon les situations et demande une adaptation. Le réglage et la rééducation font partie du parcours. Présenter l’appareil comme le rétablissement immédiat d’une audition naturelle donnerait une image trompeuse de ses possibilités.</p>
+<figure class="chapter-figure " data-visual="original-14.jpg"><a class="figure-open" href="assets/original-14.jpg" aria-label="Agrandir : Schéma d’un implant cochléaire avec processeur externe et électrodes dans la cochlée"><img src="assets/original-14.jpg" alt="Schéma d’un implant cochléaire avec processeur externe et électrodes dans la cochlée" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Schéma explicatif</span>Le microphone et le processeur préparent le signal ; les électrodes le transmettent au système auditif. Ce trajet diffère d’une simple amplification sonore.</figcaption></figure>
+<section class="mechanism" data-mechanism="cochlee" aria-labelledby="work-title-cochlee"><div class="work-head"><p class="section-kicker">Atelier 04 · Manipuler pour comprendre</p><h3 id="work-title-cochlee">Associer des bandes sonores à des régions de la cochlée</h3></div><ol class="chain"><li>Microphone</li><li>Codage</li><li>Stimulation</li></ol><div class="work-scene"><svg viewBox="0 0 640 230" role="img" aria-labelledby="svg-title-cochlee"><title id="svg-title-cochlee">Associer des bandes sonores à des régions de la cochlée</title><rect class="tissue" x="18" y="72" width="135" height="78" rx="8"/><text x="29" y="104">Son capté</text><text x="29" y="127">puis codé</text><path class="guide" d="M153 112H243"/><path data-cochlea class="cochlea-line"/><g data-electrodes></g><text x="409" y="200">Base · aigus</text><text x="282" y="40">Apex · graves</text><text data-band x="254" y="220">Bande grave</text></svg></div><div class="work-controls"><label for="range-cochlee">Du grave vers l’aigu</label><input id="range-cochlee" type="range" min="0" max="100" value="25" aria-describedby="work-note-cochlee"><button type="button" class="work-reset" data-reset>Recommencer</button></div><output for="range-cochlee" aria-live="polite"></output><p class="schematic" id="work-note-cochlee">Les points schématisent une organisation fréquentielle ; ils ne constituent pas le réglage d’un implant. Modèle pédagogique sans valeur de mesure clinique.</p></section>
+</section>
+<section class="narrative-block"><h3>Une histoire de contributions successives</h3>
+<p>William House est une figure importante de cette histoire, avec des implantations intracochléaires dès 1961. Avant lui, André Djourno et Charles Eyriès avaient provoqué des sensations auditives par stimulation implantée en 1957. L’implant cochléaire résulte ainsi de contributions successives, depuis les premières sensations auditives provoquées jusqu’aux dispositifs intracochléaires.</p>
+<p>Ce premier acte aboutit à une idée commune : une technique aide à restaurer une fonction au moyen d’un mécanisme défini. L’appui, la fixation, la commande et la perception font chacun intervenir une interface avec le corps.</p>
+</section>
+<div class="chapter-bridge"><span>La question suivante</span><p>Pour comprendre les neurotechnologies, il faut d’abord comprendre comment les tissus réagissent à l’implantation.</p></div><details class="chapter-references"><summary>Références de ce chapitre</summary><ul><li><a href="https://www.ncbi.nlm.nih.gov/books/NBK232047/" target="_blank" rel="noopener">National Academy of Sciences, histoire technique</a></li><li><a href="https://jamanetwork.com/journals/jamaotolaryngology/fullarticle/1688121" target="_blank" rel="noopener">JAMA Otolaryngology, étude des archives</a></li><li><a href="https://www.nidcd.nih.gov/health/cochlear-implants" target="_blank" rel="noopener">NIDCD, fiche officielle</a></li></ul></details></div><aside class="side-note">
+<div class="person-note"><span class="margin-kicker">Une figure, une contribution</span><h3>William House</h3><p>Un pionnier de l’implantation intracochléaire dans une histoire collective.</p></div>
+<div class="takeaway"><h3>À retenir</h3><p>L’implant fournit une information sonore codée à apprendre ; il ne recrée pas une audition naturelle identique chez tous les utilisateurs.</p></div><a class="text-link" href="../../sources/sources.html#machines">Vérifier les références →</a></aside></div>
+<a class="next-chapter" href="#gliose"><span>Continuer · Chapitre 06</span><strong>Quand le tissu réagit à l’implant</strong><i aria-hidden="true">→</i></a>
+</section>
+<section class="act-band act-editorial reveal" id="acte-2"><div class="act-copy"><p class="act-no">Acte II</p><h2>Relier le vivant et la machine</h2><p>Les dispositifs précédents rencontrent déjà des tissus vivants. Nous examinons maintenant cette interface : comment le tissu réagit, comment un signal cérébral devient une commande, comment la stimulation agit et ce que change la fabrication d’une structure contenant des cellules.</p><span class="act-range">Chapitres 06–09</span></div><figure class="chapter-figure " data-visual="machines-neurones.png"><a class="figure-open" href="assets/machines-neurones.png" aria-label="Agrandir : Illustration conceptuelle de cellules nerveuses et d’une microélectrode"><img src="assets/machines-neurones.png" alt="Illustration conceptuelle de cellules nerveuses et d’une microélectrode" width="1672" height="941" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Illustration</span>Le deuxième acte examine la rencontre entre un dispositif, un signal et un tissu vivant.</figcaption></figure></section>
+<section class="chapter reveal" id="gliose" data-act="acte-2" data-chapter="06"><header class="chapter-head"><div><p class="section-kicker">Acte II · Chapitre 06</p><h2>Quand le tissu réagit à l’implant</h2><p class="chapter-lead">Une électrode fonctionne dans un environnement biologique qui change ; elle ne reste pas isolée de la vie du tissu.</p></div><span class="chapter-number" aria-hidden="true">06</span></header><div class="transcript"><div class="prose">
+<section class="narrative-block"><h3>La réaction gliale</h3>
+<p>L’insertion d’une électrode peut provoquer une réponse inflammatoire et modifier l’état des cellules autour du site implanté. Les astrocytes et la microglie participent à cette réponse. La gliose ne se réduit donc pas à la prolifération d’un seul type de cellule ni à la formation mécanique d’une coque uniforme.</p>
+<p>Cette réaction peut modifier les conditions d’enregistrement. Elle interagit avec d’autres facteurs : les micromouvements de l’implant, les lésions initiales, les pertes neuronales et l’évolution des matériaux. Une baisse de qualité du signal ne peut pas être attribuée systématiquement à une seule cause.</p>
+<figure class="chapter-figure " data-visual="original-08.jpg"><a class="figure-open" href="assets/original-08.jpg" aria-label="Agrandir : Schéma de cellules et de tissu autour d’une microélectrode"><img src="assets/original-08.jpg" alt="Schéma de cellules et de tissu autour d’une microélectrode" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Schéma explicatif</span>L’environnement de l’électrode participe à l’interface. Cette représentation conceptuelle n’indique ni une durée d’implantation ni une réponse identique chez tous les patients.</figcaption></figure>
+<section class="mechanism" data-mechanism="gliose" aria-labelledby="work-title-gliose"><div class="work-head"><p class="section-kicker">Atelier 05 · Manipuler pour comprendre</p><h3 id="work-title-gliose">Explorer une modification de l’environnement de l’électrode</h3></div><ol class="chain"><li>Tissu</li><li>Interface</li><li>Enregistrement</li></ol><div class="work-scene"><svg viewBox="0 0 640 230" role="img" aria-labelledby="svg-title-gliose"><title id="svg-title-gliose">Explorer une modification de l’environnement de l’électrode</title><g class="neurons"><path d="M90 85L45 44M90 85L35 105M90 85L73 149M90 85L158 82M185 160L143 199M185 160L233 205M185 160L244 133M185 160L169 113M442 68L396 30M442 68L501 34M442 68L488 111"/><circle cx="90" cy="85" r="15"/><circle cx="185" cy="160" r="15"/><circle cx="442" cy="68" r="15"/></g><rect data-glial-halo x="293" y="29" width="54" height="149" rx="27" class="glial-halo"/><path class="electrode" d="M311 15H329V167L320 187L311 167Z"/><path data-recording class="accent-stroke" d="M395 163H600"/><text x="27" y="221">Tissu vivant</text><text x="265" y="221">Électrode</text><text x="449" y="221">Signal illustré</text></svg></div><div class="work-controls"><label for="range-gliose">Explorer une réponse tissulaire fictive</label><input id="range-gliose" type="range" min="0" max="100" value="30" aria-describedby="work-note-gliose"><button type="button" class="work-reset" data-reset>Recommencer</button></div><output for="range-gliose" aria-live="polite"></output><p class="schematic" id="work-note-gliose">La relation représentée est qualitative et volontairement simplifiée ; elle ne prédit ni une durée ni une évolution individuelle. Modèle pédagogique sans valeur de mesure clinique.</p></section>
+</section>
+<section class="narrative-block"><h3>La biocompatibilité est une évaluation</h3>
+<p>La biocompatibilité se rapporte à un matériau, un dispositif et un usage déterminés. Elle ne signifie pas que tout tissu ignorera toujours le dispositif. La série ISO 10993 contribue à évaluer des risques biologiques ; elle ne garantit ni une absence universelle de toxicité ni l’absence de gliose.</p>
+<p>Une interface durable exige donc d’évaluer ensemble le matériau, la géométrie, les conditions d’implantation et la stabilité du signal.</p>
+</section>
+<div class="chapter-bridge"><span>La question suivante</span><p>Que fait-on du signal une fois qu’il a été enregistré ?</p></div><details class="chapter-references"><summary>Références de ce chapitre</summary><ul><li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6187588/" target="_blank" rel="noopener">Publication de synthèse, PMC</a></li><li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6707077/" target="_blank" rel="noopener">Neural Recording and Modulation Technologies</a></li><li><a href="https://health.ec.europa.eu/medical-devices-topics-interest/harmonised-standards_en" target="_blank" rel="noopener">Commission européenne — Normes harmonisées des dispositifs médicaux</a></li><li><a href="https://www.iso.org/standard/10993-1" target="_blank" rel="noopener">ISO — ISO 10993-1:2025</a></li></ul></details></div><aside class="side-note">
+<div class="takeaway"><h3>À retenir</h3><p>La stabilité dépend à la fois du tissu, du matériau et de l’usage. La gliose est un facteur parmi plusieurs.</p></div><a class="text-link" href="../../sources/sources.html#machines">Vérifier les références →</a></aside></div>
+<a class="next-chapter" href="#icm"><span>Continuer · Chapitre 07</span><strong>Du signal cérébral à la commande</strong><i aria-hidden="true">→</i></a>
+</section>
+<section class="chapter reveal" id="icm" data-act="acte-2" data-chapter="07"><header class="chapter-head"><div><p class="section-kicker">Acte II · Chapitre 07</p><h2>Du signal cérébral à la commande</h2><p class="chapter-lead">Une interface cerveau-machine transforme des signaux cérébraux en commandes limitées à une tâche et à un contexte d’apprentissage.</p></div><span class="chapter-number" aria-hidden="true">07</span></header><div class="transcript"><div class="prose">
+<section class="narrative-block"><h3>Enregistrer, décoder, agir</h3>
+<p>Une interface cerveau-machine, ou ICM, acquiert une activité cérébrale, extrait des informations utiles et les traduit en une commande. Certaines interfaces sont invasives ; d’autres enregistrent l’électroencéphalogramme à la surface du cuir chevelu. Toutes ne captent donc pas directement l’activité de neurones isolés dans le cortex.</p>
+<p>Le décodeur est ajusté à une tâche, à des données et à des conditions d’utilisation. Une commande de curseur ou de bras robotique obtenue dans une expérience ne démontre pas une lecture libre et universelle des pensées. Un retour sensoriel peut être ajouté dans certains systèmes, mais il n’est pas une propriété automatique de toute ICM.</p>
+<figure class="chapter-figure " data-visual="original-10.jpg"><a class="figure-open" href="assets/original-10.jpg" aria-label="Agrandir : Mise en scène d’un équipement robotisé près de la tête d’une personne"><img src="assets/original-10.jpg" alt="Mise en scène d’un équipement robotisé près de la tête d’une personne" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Illustration</span>Une interface doit toujours être décrite par ses capteurs, sa tâche et ses résultats. Cette scène illustrative ne documente ni un dispositif commercial précis ni une capacité de lecture des pensées.</figcaption></figure>
+<section class="mechanism" data-mechanism="icm" aria-labelledby="work-title-icm"><div class="work-head"><p class="section-kicker">Atelier 06 · Manipuler pour comprendre</p><h3 id="work-title-icm">Une commande apprise, une action limitée</h3></div><ol class="chain"><li>Activité cérébrale</li><li>Décodeur</li><li>Commande</li></ol><div class="work-scene"><svg viewBox="0 0 640 230" role="img" aria-labelledby="svg-title-icm"><title id="svg-title-icm">Une commande apprise, une action limitée</title><path class="tissue" d="M24 125Q14 41 92 47Q151 43 150 112L124 136V168H70V146Z"/><path class="gold-stroke" d="M45 73Q79 43 126 70"/><circle class="accent-fill" cx="72" cy="58" r="6"/><circle class="accent-fill" cx="100" cy="59" r="6"/><path class="guide" d="M155 100H227"/><rect class="tissue" x="230" y="59" width="144" height="95" rx="8"/><text x="252" y="99">Décodeur</text><text x="252" y="122">entraîné</text><path class="guide" d="M375 104H433"/><rect class="tissue" x="440" y="39" width="175" height="136" rx="8"/><path class="trace" d="M458 109H597"/><circle data-cursor cx="526" cy="109" r="11" class="accent-fill"/><text x="22" y="210">Enregistrement</text><text x="250" y="210">Traduction</text><text x="458" y="210">Commande</text></svg></div><div class="work-controls"><label for="range-icm">Déplacer la commande déjà décodée</label><input id="range-icm" type="range" min="0" max="100" value="50" aria-describedby="work-note-icm"><button type="button" class="work-reset" data-reset>Recommencer</button></div><output for="range-icm" aria-live="polite"></output><p class="schematic" id="work-note-icm">Le curseur est une commande simulée. Aucune pensée ni activité cérébrale réelle n’est enregistrée. Modèle pédagogique sans valeur de mesure clinique.</p></section>
+</section>
+<section class="narrative-block"><h3>Nicolelis : de l’expérience à la démonstration publique</h3>
+<p>En 2000, les travaux de Wessberg, Nicolelis et leurs collègues montrent que des ensembles de signaux neuronaux de primates permettent de prédire une trajectoire de main et de commander des dispositifs robotiques en temps réel. Cette étape s’inscrit dans une histoire plus large de recherche sur les interfaces.</p>
+<p>En 2014, Juliano Pinto participe à un coup d’envoi symbolique de la Coupe du monde au Brésil, aidé par un exosquelette développé par le consortium Walk Again. Cette démonstration, préparée et assistée, n’équivaut ni à une guérison de la paraplégie ni à une autonomie quotidienne démontrée.</p>
+</section>
+<div class="chapter-bridge"><span>La question suivante</span><p>Le cerveau peut fournir une information à une machine ; une machine peut aussi envoyer une stimulation au système nerveux.</p></div><details class="chapter-references"><summary>Références de ce chapitre</summary><ul><li><a href="https://scholars.duke.edu/publication/645070" target="_blank" rel="noopener">Article et fiche Duke</a></li><li><a href="https://www.nature.com/articles/35042582" target="_blank" rel="noopener">Nature, publication originale</a></li><li><a href="https://today.duke.edu/2014/10/nicolelis" target="_blank" rel="noopener">Duke, compte rendu après la démonstration</a></li><li><a href="https://actu.epfl.ch/news/a-high-tech-kickoff-for-the-world-cup/" target="_blank" rel="noopener">EPFL, équipe participante</a></li><li><a href="https://commonfund.nih.gov/newinnovator/highlights/new-ai-powered-device-help-regain-motor-control" target="_blank" rel="noopener">NIH, système non invasif et aide algorithmique</a></li></ul></details></div><aside class="side-note">
+<div class="person-note"><span class="margin-kicker">Une figure, une contribution</span><h3>Miguel Nicolelis</h3><p>Des signaux neuronaux à la commande robotique : une recherche expérimentale, avec ses protocoles.</p></div>
+<div class="takeaway"><h3>À retenir</h3><p>Décoder une commande entraînée n’est pas lire toutes les pensées. Une démonstration doit être interprétée dans son protocole.</p></div><a class="text-link" href="../../sources/sources.html#machines">Vérifier les références →</a></aside></div>
+<a class="next-chapter" href="#stimulation"><span>Continuer · Chapitre 08</span><strong>Stimuler pour traiter</strong><i aria-hidden="true">→</i></a>
+</section>
+<section class="chapter reveal" id="stimulation" data-act="acte-2" data-chapter="08"><header class="chapter-head"><div><p class="section-kicker">Acte II · Chapitre 08</p><h2>Stimuler pour traiter</h2><p class="chapter-lead">Enregistrer et stimuler sont deux opérations différentes. Leur confusion fait perdre le sens médical du dispositif.</p></div><span class="chapter-number" aria-hidden="true">08</span></header><div class="transcript"><div class="prose">
+<section class="narrative-block"><h3>Un signal va vers le tissu</h3>
+<p>Une électrode d’enregistrement mesure une activité. Une électrode de stimulation applique un signal électrique à un tissu. Un dispositif peut combiner ces deux fonctions, mais elles doivent être décrites séparément : le trajet d’une information n’est pas forcément celui de l’action thérapeutique.</p>
+<p>Un stimulateur cardiaque et un dispositif de stimulation cérébrale profonde ont des cibles et des indications différentes. Leur point commun tient à l’utilisation de signaux électriques pour agir sur une fonction ; cela n’en fait pas des machines capables de prendre le contrôle général du corps.</p>
+<p>Un pacemaker peut détecter et stimuler différentes régions du cœur selon sa configuration. Les dispositifs classiques comportent des sondes ; d’autres sont placés directement dans une cavité cardiaque. De même, une stimulation cérébrale profonde conventionnelle suit des réglages définis, tandis que certaines formes adaptatives ajustent la stimulation en fonction de signaux enregistrés. La boucle de retour dépend donc du système décrit.</p>
+</section>
+<section class="narrative-block"><h3>Benabid, Pollak et la stimulation cérébrale profonde</h3>
+<p>Une publication de 1987 de l’équipe d’Alim-Louis Benabid et de Pierre Pollak constitue une étape fondatrice de la stimulation à haute fréquence pour le tremblement. Les développements concernant le noyau sous-thalamique suivent dans les années 1990, dans une histoire collective qui comprend notamment les travaux de Mahlon DeLong.</p>
+<p>La stimulation cérébrale profonde peut atténuer certains symptômes moteurs chez des patients sélectionnés. Elle ne guérit pas la maladie de Parkinson et n’en arrête pas nécessairement l’évolution. Ses indications, son réglage et ses risques demandent une évaluation médicale spécifique.</p>
+</section>
+<section class="narrative-block"><h3>Le précédent des implants électroniques</h3>
+<p>En 1958 à Stockholm, Åke Senning implante un stimulateur cardiaque conçu par Rune Elmqvist. Ce repère historique permet de comprendre l’entrée de l’électronique dans le corps ; il ne doit pas faire oublier l’évolution des dispositifs, de leur fiabilité et de leur suivi.</p>
+<p>Jusqu’ici, les dispositifs ont été fabriqués puis mis en relation avec le vivant. L’ingénierie tissulaire change la question : la structure fabriquée peut contenir elle-même des cellules vivantes.</p>
+<figure class="chapter-figure " data-visual="original-05.jpg"><a class="figure-open" href="assets/original-05.jpg" aria-label="Agrandir : Reconstitution illustrée d’une équipe opératoire et d’un appareil électronique"><img src="assets/original-05.jpg" alt="Reconstitution illustrée d’une équipe opératoire et d’un appareil électronique" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Illustration</span>La chirurgie, l’électronique et le suivi participent à l’histoire des implants. Cette reconstitution n’authentifie ni les personnes ni l’intervention de Stockholm en 1958.</figcaption></figure>
+</section>
+<div class="chapter-bridge"><span>La question suivante</span><p>De l’électrode au tissu cultivé : la bio-impression déplace la frontière entre matériau et vivant.</p></div><details class="chapter-references"><summary>Références de ce chapitre</summary><ul><li><a href="https://pubmed.ncbi.nlm.nih.gov/3329873/" target="_blank" rel="noopener">Publication originale, PubMed</a></li><li><a href="https://laskerfoundation.org/2014-lasker-awards-winners/" target="_blank" rel="noopener">Fondation Lasker, prix 2014</a></li><li><a href="https://news.cision.com/se/karolinska-universitetssjukhuset/r/karolinska-universitetssjukhuset--forsta-operation-med-tradlos-pacemaker-genomford-i-nya-sjukhusbygg,c2292166" target="_blank" rel="noopener">Hôpital universitaire Karolinska — historique</a></li><li><a href="https://www.hjart-lungfonden.se/forskning/stora-genombrott/pacemakern/svensk-uppfann-pacemakern/" target="_blank" rel="noopener">Hjärt-Lungfonden — fondation soutenant ces recherches</a></li><li><a href="https://www.nhlbi.nih.gov/health/pacemakers/how-it-works" target="_blank" rel="noopener">NHLBI — fonctionnement des pacemakers</a></li><li><a href="https://www.nice.org.uk/guidance/HTG770/chapter/2-information-about-the-procedure" target="_blank" rel="noopener">NICE — pacemakers sans sonde, février 2026</a></li><li><a href="https://www.ninds.nih.gov/health-information/disorders/deep-brain-stimulation-dbs" target="_blank" rel="noopener">NINDS — deep brain stimulation</a></li><li><a href="https://www.nih.gov/news-events/news-releases/self-adjusting-brain-pacemaker-may-help-reduce-parkinson-s-disease-symptoms" target="_blank" rel="noopener">NIH — étude sur la stimulation adaptative, 2024</a></li></ul></details></div><aside class="side-note">
+<div class="person-note"><span class="margin-kicker">Une figure, une contribution</span><h3>Alim-Louis Benabid</h3><p>La stimulation à haute fréquence comme outil thérapeutique ciblé.</p></div>
+<div class="takeaway"><h3>À retenir</h3><p>Stimuler une zone pour traiter un symptôme ne revient pas à décoder une intention ou à guérir une maladie.</p></div><a class="text-link" href="../../sources/sources.html#machines">Vérifier les références →</a></aside></div>
+<a class="next-chapter" href="#bioimpression"><span>Continuer · Chapitre 09</span><strong>Construire avec des cellules vivantes</strong><i aria-hidden="true">→</i></a>
+</section>
+<section class="chapter reveal" id="bioimpression" data-act="acte-2" data-chapter="09"><header class="chapter-head"><div><p class="section-kicker">Acte II · Chapitre 09</p><h2>Construire avec des cellules vivantes</h2><p class="chapter-lead">Assembler un tissu est un problème différent de fabriquer une pièce : il faut aussi maintenir les cellules en vie et obtenir une fonction.</p></div><span class="chapter-number" aria-hidden="true">09</span></header><div class="transcript"><div class="prose">
+<section class="narrative-block"><h3>Ce que signifie bio-imprimer</h3>
+<p>La bio-impression 3D organise des matériaux contenant des cellules, souvent associés à des hydrogels, pour produire des structures en trois dimensions. Elle se distingue de l’impression d’une pièce inerte en titane ou en résine. Elle se distingue aussi d’autres formes d’ingénierie tissulaire qui ne passent pas par une imprimante.</p>
+<p>Les recherches concernent notamment la peau, le cartilage, l’os et certains tissus cardiaques ou oculaires. Ces domaines ne partagent pas tous le même niveau de maturité. Une expérience en laboratoire, un résultat chez l’animal, un essai humain et un traitement disponible constituent des étapes distinctes.</p>
+<figure class="chapter-figure " data-visual="machines-tissus.png"><a class="figure-open" href="assets/machines-tissus.png" aria-label="Agrandir : Petite structure de tissu en cours de bio-impression en laboratoire"><img src="assets/machines-tissus.png" alt="Petite structure de tissu en cours de bio-impression en laboratoire" width="1672" height="941" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Illustration</span>L’imprimante organise une structure. La viabilité, la maturation et la fonction doivent encore être évaluées.</figcaption></figure>
+<aside class="science-block"><span class="block-label">Anti-intox · À chaque résultat, son niveau de preuve</span><p>Laboratoire, résultat chez l’animal, essai humain et usage clinique sont des niveaux distincts. La réussite d’une étape ne démontre pas automatiquement le bénéfice et la sécurité de la suivante.</p></aside>
+</section>
+<section class="narrative-block"><h3>Atala : une avancée réelle, une technique à nommer</h3>
+<p>L’étude publiée en 2006 par Anthony Atala et ses collègues porte sur sept patients recevant des tissus vésicaux cultivés à partir de leurs propres cellules sur des matrices biodégradables. Les greffons servent à une reconstruction ou à un agrandissement de vessies existantes.</p>
+<p>Ces tissus ne sont ni des vessies complètes bio-imprimées ni la preuve que l’on sait produire n’importe quel organe à la demande. Nommer précisément la technique permet d’expliquer l’avancée sans lui attribuer une promesse qu’elle n’établit pas.</p>
+</section>
+<section class="narrative-block"><h3>Les verrous qui demeurent</h3>
+<p>Les cellules ont besoin d’oxygène, de nutriments et d’un environnement approprié. Imprimer des canaux ne suffit pas à obtenir un réseau capillaire fonctionnel et durable, connecté à l’organisme. La vascularisation, l’innervation, la maturation et la fonction à l’échelle d’un organe restent des difficultés importantes.</p>
+<p>Des bio-encres plus adaptées et des matériaux évoluant sous l’effet de stimuli ouvrent des pistes. On parle parfois de bio-impression 4D pour ces changements dans le temps. Cela décrit une stratégie de recherche, pas la disponibilité d’un organe greffable.</p>
+<p>Les organoïdes et les organes sur puce apportent d’autres modèles : un organoïde implique notamment l’auto-organisation de cellules ; un organe sur puce organise un environnement expérimental contrôlé. Ils peuvent être combinés et ne sont pas nécessairement bio-imprimés. Ils peuvent contribuer à réduire certains essais animaux, sans garantir leur remplacement intégral.</p>
+</section>
+<div class="chapter-bridge"><span>La question suivante</span><p>Avant de passer du laboratoire au soin, comment établir les preuves et déterminer les règles applicables à ce produit ?</p></div><details class="chapter-references"><summary>Références de ce chapitre</summary><ul><li><a href="https://www.sciencedirect.com/science/article/pii/S0140673606684389" target="_blank" rel="noopener">The Lancet, étude originale</a></li><li><a href="https://newsroom.wakehealth.edu/news-releases/2006/04/wake-forest-physician-reports-first-human-recipients-of-laboratorygrown-organs" target="_blank" rel="noopener">Wake Forest, annonce de l’étude</a></li><li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6372693/" target="_blank" rel="noopener">Albanna et al., étude originale peau</a></li><li><a href="https://www.eurekalert.org/news-releases/740015" target="_blank" rel="noopener">Wake Forest, communiqué des chercheurs</a></li><li><a href="https://www.sciencedirect.com/science/article/pii/S1359836825002938" target="_blank" rel="noopener">Suo et al., recherche originale 2025</a></li><li><a href="https://www.nature.com/articles/s44286-026-00401-3" target="_blank" rel="noopener">Nature Chemical Engineering, perspective 2026</a></li><li><a href="https://www.nih.gov/news-events/news-releases/new-3-d-model-offers-insights-into-role-glucose-deadly-kidney-disease" target="_blank" rel="noopener">NIH, distinction des technologies</a></li><li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7764943/" target="_blank" rel="noopener">Park et al., article des chercheurs</a></li><li><a href="https://www.ema.europa.eu/en/human-regulatory-overview/advanced-therapy-medicinal-products-overview" target="_blank" rel="noopener">EMA — Advanced therapy medicinal products: Overview</a></li><li><a href="https://www.ema.europa.eu/en/human-regulatory-overview/marketing-authorisation/advanced-therapies-marketing-authorisation/scientific-recommendations-classification-advanced-therapy-medicinal-products" target="_blank" rel="noopener">EMA — Recommandations scientifiques de classification des MTI</a></li></ul></details></div><aside class="side-note">
+<div class="person-note"><span class="margin-kicker">Une figure, une contribution</span><h3>Anthony Atala</h3><p>Distinguer tissu cultivé sur matrice et tissu bio-imprimé.</p></div>
+<div class="takeaway"><h3>À retenir</h3><p>Un assemblage vivant n’est pas encore un organe greffable. L’échelle, la circulation et la fonction changent le niveau de difficulté.</p></div><a class="text-link" href="../../sources/sources.html#machines">Vérifier les références →</a></aside></div>
+<a class="next-chapter" href="#droit"><span>Continuer · Chapitre 10</span><strong>Du prototype au produit évalué</strong><i aria-hidden="true">→</i></a>
+</section>
+<section class="act-band act-editorial reveal" id="acte-3"><div class="act-copy"><p class="act-no">Acte III</p><h2>Protéger la personne</h2><p>Une prouesse technique ne règle ni la sécurité, ni le consentement, ni l’accès aux soins. Nous examinons maintenant les preuves, les droits et les responsabilités qui doivent accompagner le dispositif, de la recherche à son utilisation quotidienne.</p><span class="act-range">Chapitres 10–12</span></div></section>
+<section class="chapter reveal" id="droit" data-act="acte-3" data-chapter="10"><header class="chapter-head"><div><p class="section-kicker">Acte III · Chapitre 10</p><h2>Du prototype au produit évalué</h2><p class="chapter-lead">Faire fonctionner un prototype ne suffit pas à établir son bénéfice clinique ni à remplir les conditions de son utilisation en soins.</p></div><span class="chapter-number" aria-hidden="true">10</span></header><div class="transcript"><div class="prose">
+<section class="narrative-block"><h3>Qualifier le produit avant d’annoncer ses obligations</h3>
+<p>Dans l’Union européenne, le règlement 2017/745 encadre les dispositifs médicaux, leur évaluation clinique et leur conformité. Le marquage CE est une règle centrale de mise sur le marché ; les dispositifs sur mesure et ceux destinés aux investigations cliniques suivent des dispositions particulières.</p>
+<p>Certains produits de stimulation cérébrale sans finalité médicale relèvent aussi d’un encadrement spécifique, notamment le règlement d’exécution 2022/2346. Cela ne classe pas automatiquement un casque EEG qui se contente d’enregistrer une activité cérébrale dans la même catégorie qu’un appareil de stimulation.</p>
+<p>Un logiciel utilisé en santé n’est pas automatiquement un dispositif médical. Sa destination et ses fonctions déterminent sa qualification. Les guides du groupe MDCG aident à raisonner sur cette classification ; ils ne remplacent pas le texte juridiquement applicable.</p>
+<p>De même, la bio-impression ne déclenche pas automatiquement un double régime complet « dispositif médical et médicament ». Un produit peut relever des médicaments de thérapie innovante selon ses cellules, leurs manipulations et son usage. Certains médicaments de thérapie innovante intègrent un dispositif médical ; la qualification de l’ensemble doit être établie au cas par cas.</p>
+<aside class="science-block"><span class="block-label">Anti-intox · Une qualification, plusieurs conséquences</span><p>Dispositif médical, médicament de thérapie innovante et produit de stimulation sans finalité médicale ne suivent pas un régime unique. La destination et les caractéristiques du produit déterminent les règles à examiner.</p></aside>
+</section>
+<section class="narrative-block"><h3>Organiser la recherche et le consentement</h3>
+<p>En France, la procédure d’une investigation dépend du projet, du dispositif et de son usage. L’ANSM et les comités de protection des personnes interviennent selon les dispositions applicables. Il faut distinguer cette recherche de celle des médicaments, notamment régie par le règlement 536/2014, et ne pas annoncer une procédure unique pour toute innovation. Le cadre français des recherches impliquant la personne humaine, issu notamment de la loi Jardé, complète ces dispositions.</p>
+<p>Les participants doivent recevoir une information adaptée et bénéficier des garanties prévues, notamment lorsqu’ils sont vulnérables. Ils peuvent quitter une investigation sans justification ni préjudice dans les conditions prévues par les textes. L’évaluation clinique est obligatoire, mais un nouvel essai humain n’est pas systématique : des données existantes peuvent être utilisées dans les cas et sous les conditions prévus par le règlement.</p>
+<figure class="chapter-figure " data-visual="original-07.jpg"><a class="figure-open" href="assets/original-07.jpg" aria-label="Agrandir : Équipe médicale travaillant dans un environnement opératoire"><img src="assets/original-07.jpg" alt="Équipe médicale travaillant dans un environnement opératoire" width="1168" height="784" loading="lazy" decoding="async"><span class="figure-zoom" aria-hidden="true">Agrandir ↗</span></a><figcaption><span class="figure-kind">Illustration</span>L’implantation s’inscrit dans un parcours : indication, information, intervention et suivi. La sécurité ne se réduit pas à l’objet implanté. Scène illustrative.</figcaption></figure>
+</section>
+<section class="narrative-block"><h3>Normes, matériaux et intelligence artificielle</h3>
+<p>Les exigences légales de sécurité sont obligatoires. L’usage des normes harmonisées constitue généralement une voie volontaire pour contribuer à démontrer la conformité. La série ISO 10993 aide à évaluer les risques biologiques ; son application ne garantit pas l’absence de complication. L’édition ISO 10993-1:2025 s’inscrit dans cette évaluation des risques. La publication d’une nouvelle édition ne prouve pas qu’elle est déjà harmonisée dans l’Union européenne.</p>
+<p>Dans le cas des produits médicaux, le classement à haut risque de l’AI Act dépend notamment de deux critères : l’IA est elle-même un produit ou un composant de sécurité relevant de l’annexe I, et le produit est soumis à une évaluation de conformité par un tiers. La présence d’un algorithme ne suffit donc pas à classer toutes les prothèses de la même manière.</p>
+<p>Au 23 octobre 2026, l’application des règles reste progressive. Le calendrier actualisé prévoit les obligations relatives aux systèmes à haut risque intégrés aux produits de l’annexe I au 2 août 2028 et celles de l’annexe III au 2 décembre 2027. Il faut donc distinguer l’existence du règlement, ses dispositions déjà applicables et les échéances à venir.</p>
+</section>
+<div class="chapter-bridge"><span>La question suivante</span><p>Évaluer la machine ne suffit pas : qui peut décider de son usage et du traitement des données ?</p></div><details class="chapter-references"><summary>Références de ce chapitre</summary><ul><li><a href="https://eur-lex.europa.eu/eli/reg/2017/745/oj/eng" target="_blank" rel="noopener">EUR-Lex — Règlement 2017/745, art. 20, 21, 61–82</a></li><li><a href="https://eur-lex.europa.eu/eli/reg_impl/2022/2346/2023-06-22/eng/pdf" target="_blank" rel="noopener">EUR-Lex — Règlement 2022/2346, annexe VII</a></li><li><a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072665/LEGISCTA000006154978/2026-03-02/" target="_blank" rel="noopener">Légifrance — Recherches impliquant la personne humaine, dispositions dispositifs</a></li><li><a href="https://ansm.sante.fr/uploads/2021/07/02/info-investigations-cliniques-v5-3.pdf" target="_blank" rel="noopener">ANSM — Schéma des demandes d’investigation clinique</a></li><li><a href="https://eur-lex.europa.eu/eli/reg/2024/1689" target="_blank" rel="noopener">EUR-Lex — AI Act consolidé au 27 juillet 2026</a></li><li><a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener">Commission européenne — AI Act, calendrier actualisé</a></li><li><a href="https://www.consilium.europa.eu/en/policies/artificial-intelligence-act/timeline-artificial-intelligence/" target="_blank" rel="noopener">Conseil de l’UE — chronologie AI Act 2026</a></li><li><a href="https://health.ec.europa.eu/document/download/b45335c5-1679-4c71-a91c-fc7a4d37f12b_en?filename=md_mdcg_2019_11_guidance_qualification_classification_software_en.pdf" target="_blank" rel="noopener">MDCG 2019-11 révision 1, juin 2025</a></li><li><a href="https://health.ec.europa.eu/medical-devices-topics-interest/harmonised-standards_en" target="_blank" rel="noopener">Commission européenne — Normes harmonisées des dispositifs médicaux</a></li><li><a href="https://www.iso.org/standard/10993-1" target="_blank" rel="noopener">ISO — ISO 10993-1:2025</a></li></ul></details></div><aside class="side-note">
+<div class="takeaway"><h3>À retenir</h3><p>Destination du produit, niveau de preuve et calendrier d’application doivent être lus séparément. Aucun sigle ne remplace cette analyse.</p></div><a class="text-link" href="../../sources/sources.html#machines">Vérifier les références →</a></aside></div>
+<a class="next-chapter" href="#neurodroits"><span>Continuer · Chapitre 11</span><strong>Consentir et garder la maîtrise de ses données</strong><i aria-hidden="true">→</i></a>
+</section>
+<section class="chapter reveal" id="neurodroits" data-act="acte-3" data-chapter="11"><header class="chapter-head"><div><p class="section-kicker">Acte III · Chapitre 11</p><h2>Consentir et garder la maîtrise de ses données</h2><p class="chapter-lead">L’accès au corps et l’accès aux informations qu’il produit posent des questions différentes, mais étroitement liées.</p></div><span class="chapter-number" aria-hidden="true">11</span></header><div class="transcript"><div class="prose">
+<section class="narrative-block"><h3>Le corps n’est pas un bien appropriable</h3>
+<p>En droit français, les articles 16 et suivants du Code civil protègent la personne, l’intégrité du corps et sa non-patrimonialité. Le consentement préalable est un principe fondamental. Lorsqu’une personne n’est pas en état de consentir, la loi encadre les interventions thérapeutiques nécessaires.</p>
+<p>Ce principe ne signifie ni que les actes de soins sont gratuits par nature ni qu’une prothèse ne peut pas être commercialisée. Il distingue la personne et son corps des biens et services qui peuvent participer à son traitement.</p>
+</section>
+<section class="narrative-block"><h3>Des données sensibles, pas une lecture transparente de l’esprit</h3>
+<p>Le RGPD protège particulièrement certaines catégories de données, dont les données de santé. Le consentement explicite est l’une des dérogations prévues à l’interdiction de principe de leur traitement ; d’autres concernent notamment les soins, la recherche ou l’intérêt public, sous les conditions du texte. En France, la loi Informatique et Libertés complète ce cadre.</p>
+<p>Toutes les neurodonnées ne reçoivent pas automatiquement la même qualification. Les données biométriques relèvent de la catégorie particulière lorsqu’elles servent à identifier une personne de manière unique. Il faut examiner ce que les données révèlent et l’usage qui en est fait, sans assimiler un enregistrement neuronal à une pensée entièrement lisible.</p>
+</section>
+<section class="narrative-block"><h3>Neurodroits : une proposition, des textes et des dates</h3>
+<p>En 2017, un groupe réuni à Columbia autour du neurobiologiste Rafael Yuste propose des neurodroits pour protéger notamment la vie mentale, l’identité et la liberté de décision face aux neurotechnologies. Yuste dirige le NeuroTechnology Center de Columbia et a contribué à l’origine de la BRAIN Initiative.</p>
+<p>Le Chili a modifié sa Constitution par la loi 21.383 en 2021. Le Conseil des droits de l’homme de l’ONU a adopté la résolution 51/3 sur les neurotechnologies en 2022. L’UNESCO a adopté sa recommandation sur l’éthique des neurotechnologies le 11 novembre 2025. Une recommandation internationale, une proposition éthique et une règle nationale n’ont pas la même portée juridique.</p>
+<p>Le Conseil de l’Europe examine également l’adéquation du cadre existant de protection des droits humains aux neurotechnologies. Ces travaux aident à préciser les enjeux sans créer, à eux seuls, un régime juridique identique dans tous les pays.</p>
+<aside class="science-block"><span class="block-label">Anti-intox · Trois textes, trois portées</span><p>Chili, 2021 : une modification constitutionnelle. ONU, 2022 : une résolution du Conseil des droits de l’homme. UNESCO, 2025 : une recommandation internationale. Les dates ne suffisent pas : la nature du texte détermine aussi sa portée.</p></aside>
+</section>
+<section class="narrative-block"><h3>La cybersécurité fait partie du soin</h3>
+<p>Un dispositif connecté doit être examiné aussi sous l’angle de ses vulnérabilités numériques et de sa maintenance. Le terme brainjacking désigne notamment le risque d’un détournement malveillant d’un dispositif neuronal. Une faille ou une démonstration expérimentale ne prouve pas une attaque clinique ayant blessé un patient.</p>
+<p>La confidentialité mentale et la liberté cognitive donnent un cadre de discussion à ces enjeux. Leur protection passe notamment par des finalités précises, des accès limités aux données, des règles claires sur le retrait du consentement et des mesures de sécurité adaptées.</p>
+</section>
+<div class="chapter-bridge"><span>La question suivante</span><p>L’autonomie dépend aussi des prix, de la maintenance et de la responsabilité lorsque le dispositif tombe en panne.</p></div><details class="chapter-references"><summary>Références de ce chapitre</summary><ul><li><a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006419297/2026-07-29" target="_blank" rel="noopener">Légifrance — Code civil, article 16-3</a></li><li><a href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees/chapitre2" target="_blank" rel="noopener">CNIL — RGPD, articles 6 et 9</a></li><li><a href="https://www.coe.int/en/web/human-rights-and-biomedicine/assessing-the-relevance-and-sufficiency-of-the-existing-human-rights-framework-to-address-the-issues-raised-by-the-applications-of-neurotechnologies" target="_blank" rel="noopener">Conseil de l’Europe — Neurotechnologies, travaux 2021–2026</a></li><li><a href="https://www.bcn.cl/leychile/navegar?idNorma=1166983" target="_blank" rel="noopener">Bibliothèque du Congrès du Chili — Loi 21.383</a></li><li><a href="https://prod.minciencia.gob.cl/noticias/subsecretaria-carolina-gainza-en-conferencia-sobre-neurotecnologia-es-tiempo-de-que-tengamos-una-discusion-seria-sobre-cual-es-la-sociedad-a-la-que-queremos-apuntar/" target="_blank" rel="noopener">Ministère chilien de la Science — Protection constitutionnelle pionnière</a></li><li><a href="https://www.magazine.columbia.edu/article/need-protect-data-our-brains" target="_blank" rel="noopener">Columbia Magazine — The Need to Protect the Data in Our Brains</a></li><li><a href="https://digitallibrary.un.org/record/3991860?ln=en" target="_blank" rel="noopener">ONU — A/HRC/RES/51/3</a></li><li><a href="https://www.unesco.org/en/node/86248" target="_blank" rel="noopener">UNESCO — Recommandation : historique officiel</a></li><li><a href="https://www.unesco.org/en/legal-affairs/table" target="_blank" rel="noopener">UNESCO — Instruments juridiques, date officielle d’adoption</a></li><li><a href="https://ntc.columbia.edu/rafael-yuste/" target="_blank" rel="noopener">Columbia NeuroTechnology Center — Rafael Yuste</a></li><li><a href="https://www.fda.gov/medical-devices/digital-health-center-excellence/cybersecurity" target="_blank" rel="noopener">FDA — Cybersecurity</a></li><li><a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006419293/2021-05-03" target="_blank" rel="noopener">Légifrance — Code civil, article 16-1</a></li><li><a href="https://cnil.fr/fr/cnil-direct/question/2564" target="_blank" rel="noopener">CNIL — Le RGPD, c’est quoi ?</a></li><li><a href="https://news.columbia.edu/news/professor-rafael-yuste-tapped-advise-white-house-brain-study-initiative" target="_blank" rel="noopener">Columbia, rôle dans la proposition en 2013</a></li><li><a href="https://beta.nih.gov/brain/about" target="_blank" rel="noopener">NIH, présentation de BRAIN</a></li><li><a href="https://pubmed.ncbi.nlm.nih.gov/27184896/" target="_blank" rel="noopener">Pycroft et al., publication</a></li><li><a href="https://ora.ox.ac.uk/objects/uuid%3A72f1b591-da44-475f-8145-c1d29ad91094/files/m01ca649f308804889bd729be09dde74e" target="_blank" rel="noopener">Manuscrit des auteurs, Oxford</a></li></ul></details></div><aside class="side-note">
+<div class="person-note"><span class="margin-kicker">Une figure, une contribution</span><h3>Rafael Yuste</h3><p>Interroger les droits et libertés à l’échelle de la vie mentale.</p></div>
+<div class="takeaway"><h3>À retenir</h3><p>Le consentement, la protection des données et les neurodroits se complètent, sans se confondre en un droit unique et identique partout.</p></div><a class="text-link" href="../../sources/sources.html#machines">Vérifier les références →</a></aside></div>
+<a class="next-chapter" href="#acces"><span>Continuer · Chapitre 12</span><strong>Qui garde la maîtrise dans la durée ?</strong><i aria-hidden="true">→</i></a>
+</section>
+<section class="chapter reveal" id="acces" data-act="acte-3" data-chapter="12"><header class="chapter-head"><div><p class="section-kicker">Acte III · Chapitre 12</p><h2>Qui garde la maîtrise dans la durée ?</h2><p class="chapter-lead">L’innovation doit être appréciée dans la durée : accès au dispositif, suivi, maintenance et possibilité de choisir.</p></div><span class="chapter-number" aria-hidden="true">12</span></header><div class="transcript"><div class="prose">
+<section class="narrative-block"><h3>Rendre l’accès effectif</h3>
+<p>En France, la mise sur le marché et le remboursement répondent à des décisions distinctes. La CNEDiMTS, commission spécialisée de la HAS, évalue l’intérêt clinique des dispositifs qui lui sont soumis en vue d’une prise en charge. Le CEPS intervient sur les tarifs et, selon les cas, les prix limites de vente. L’inscription sur la liste des produits et prestations remboursables relève d’une décision ministérielle.</p>
+<p>L’absence d’inscription à la LPPR ne suffit pas à conclure qu’aucun financement n’est possible : les circuits hospitaliers et les situations prises en charge doivent aussi être examinés. L’enjeu reste concret : une technique ne devient pas accessible à tous par sa seule existence.</p>
+</section>
+<section class="narrative-block"><h3>Dépendance technique et propriété intellectuelle</h3>
+<p>Une prothèse peut associer du matériel, un logiciel, des mises à jour et un service de suivi. Les questions de maintenance et d’interopérabilité sont donc aussi des questions d’autonomie. Les conditions d’accès aux mises à jour, à la maintenance et aux services associés varient selon le produit et le contrat.</p>
+<p>Le corps humain et la simple découverte d’un de ses éléments ne sont pas, en tant que tels, des inventions brevetables. Une invention technique peut l’être sous les conditions du droit des brevets. Un brevet sur un dispositif n’est pas un titre de propriété sur la personne qui l’utilise.</p>
+</section>
+<section class="narrative-block"><h3>Un dommage ne désigne pas automatiquement un responsable</h3>
+<p>Une panne, une complication et une faute ne sont pas des notions équivalentes. La responsabilité dépend du défaut ou de la faute, du dommage, du lien de causalité et du régime applicable. En matière pénale, une intervention qui échoue ne démontre pas à elle seule une infraction.</p>
+<p>L’ONIAM peut intervenir pour certains accidents médicaux sans faute lorsque les conditions légales sont réunies. L’absence de faute ne suffit pas à ouvrir automatiquement un droit à indemnisation : l’imputabilité, l’anormalité et la gravité sont notamment prises en compte, avec des dispositions particulières pour la recherche.</p>
+<p>La directive européenne 2024/2853 étend explicitement le régime des produits défectueux aux logiciels et adapte certaines règles de preuve aux produits complexes. Les États doivent la transposer au plus tard le 9 décembre 2026 ; le nouveau régime vise les produits mis sur le marché ou en service après cette date. Un dommage, un défaut et un lien de causalité restent à établir, avec les présomptions prévues par les textes.</p>
+</section>
+<section class="narrative-block"><h3>Réparer et augmenter : une discussion politique</h3>
+<p>Les recherches civiles et militaires peuvent se croiser. Le règlement européen sur les biens à double usage ne classe toutefois pas automatiquement tout exosquelette ou toute interface neuronale comme un bien contrôlé : les listes, les caractéristiques et la destination comptent. En France, l’avis de 2020 du Comité d’éthique de la défense sur le soldat augmenté examine notamment les risques, le consentement et la réversibilité.</p>
+<p>Publié en 1985, le Manifeste pour les cyborgs de Donna Haraway mobilise la figure du cyborg dans une réflexion féministe sur les frontières entre humain et machine, nature et technique, et sur les rapports de pouvoir qui les traversent. Cette perspective invite à demander qui conçoit les technologies, qui en bénéficie et qui en dépend.</p>
+<p>Réparer une fonction et augmenter une capacité ne se séparent pas toujours par une frontière simple. Le point de départ doit rester la personne : ce qu’elle souhaite faire, ce qu’elle comprend du dispositif, les risques qu’elle accepte et les choix qu’elle conserve dans la durée.</p>
+</section>
+<details class="chapter-references"><summary>Références de ce chapitre</summary><ul><li><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX%3A32024L2853" target="_blank" rel="noopener">EUR-Lex — Directive 2024/2853, responsabilité des produits</a></li><li><a href="https://transition-pathways.europa.eu/retail/legislation/new-eu-product-liability-rules-will-apply-online-platforms-and-software-december" target="_blank" rel="noopener">Union européenne — Application des nouvelles règles en décembre 2026</a></li><li><a href="https://eur-lex.europa.eu/eli/reg/2017/745/oj/eng" target="_blank" rel="noopener">EUR-Lex — Règlement 2017/745, art. 20, 21, 61–82</a></li><li><a href="https://www.fda.gov/medical-devices/digital-health-center-excellence/cybersecurity" target="_blank" rel="noopener">FDA — Cybersecurity</a></li><li><a href="https://www.epo.org/en/legal/epc/2020/r29.html" target="_blank" rel="noopener">OEB — Règle 29, corps humain et ses éléments</a></li><li><a href="https://www.epo.org/en/legal/epc/2020/a53.html" target="_blank" rel="noopener">OEB — Article 53, exceptions à la brevetabilité</a></li><li><a href="https://www.has-sante.fr/jcms/c_1766352/fr/foire-aux-questions-faq-cnedimts" target="_blank" rel="noopener">HAS — FAQ CNEDiMTS, parcours de remboursement</a></li><li><a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000024042647/2026-06-18" target="_blank" rel="noopener">Légifrance — Code pénal, article 221-6</a></li><li><a href="https://www.oniam.fr/accidents-medicaux" target="_blank" rel="noopener">ONIAM — Accidents médicaux, conditions légales</a></li><li><a href="https://www.entreprises.gouv.fr/espace-entreprises/s-informer-sur-la-reglementation/mon-bien-est-il-double-usage" target="_blank" rel="noopener">Direction générale des Entreprises — Mon bien est-il à double usage ?</a></li><li><a href="https://www.defense.gouv.fr/sites/default/files/ministere-armees/20200921_Comit%C3%A9%20d%27%C3%A9thique%20de%20la%20d%C3%A9fense%20-%20Avis%20soldat%20augment%C3%A9.pdf" target="_blank" rel="noopener">Ministère des Armées — Avis sur le soldat augmenté</a></li><li><a href="https://campusdirectory.ucsc.edu/cd_detail?guid=G000107826" target="_blank" rel="noopener">UC Santa Cruz, profil et bibliographie</a></li></ul></details></div><aside class="side-note">
+<div class="person-note"><span class="margin-kicker">Une figure, une contribution</span><h3>Donna Haraway</h3><p>Penser les frontières entre corps, technique et organisation sociale.</p></div>
+<div class="takeaway"><h3>À retenir</h3><p>La maîtrise se mesure tout au long de l’usage : accès aux soins, continuité du suivi, sécurité et liberté de décision.</p></div><a class="text-link" href="../../sources/sources.html#machines">Vérifier les références →</a></aside></div>
+<a class="next-chapter" href="#bilan"><span>Terminer la lecture</span><strong>Les trois questions à garder</strong><i aria-hidden="true">→</i></a>
+</section>
+<section class="closing reveal" id="bilan"><p class="section-kicker">Au terme des trois actes</p><h2>Quelle fonction ? Quelles preuves ? Quelle autonomie ?</h2><div class="closing-grid"><div><h3>La fonction</h3><p>Mesurer, remplacer, commander et stimuler sont des opérations différentes. Nommer le mécanisme évite de prêter au dispositif une capacité qu’il n’a pas.</p></div><div><h3>Les preuves</h3><p>Une expérience de laboratoire, une démonstration assistée et un bénéfice clinique durable répondent à des questions différentes.</p></div><div><h3>La personne</h3><p>Consentement, accès aux soins, sécurité, suivi et liberté de décision font partie de l’évaluation, tout au long de l’usage.</p></div></div><p>Réparer une fonction ou augmenter une capacité engage une vie réelle. Le progrès s’évalue avec la personne qui utilise la technologie, dans les conditions où elle devra vivre avec elle.</p></section>
+<section class="reference-section reveal" id="lexique"><header><p class="section-kicker">Repères de lecture</p><h2>Les mots du dossier</h2><p>Revenir à une définition, puis poursuivre le fil de la lecture.</p></header><dl class="lexicon"><div><dt>Prothèse</dt><dd>Dispositif qui supplée une partie du corps ou une fonction. Elle peut être passive, mécanique ou motorisée.</dd></div><div><dt>Implant</dt><dd>Dispositif placé dans le corps. Il peut servir à fixer, mesurer, stimuler ou remplacer une fonction.</dd></div><div><dt>Ostéointégration</dt><dd>Relation structurelle et fonctionnelle entre l’os vivant et la surface d’un implant ; elle concerne une fixation, pas une commande nerveuse.</dd></div><div><dt>Électromyographie — EMG</dt><dd>Enregistrement de l’activité électrique musculaire, utilisé notamment pour commander certaines prothèses.</dd></div><div><dt>Réinnervation musculaire ciblée — TMR</dt><dd>Redirection de nerfs vers des muscles cibles qui peuvent fournir des signaux de commande.</dd></div><div><dt>Interface cerveau-machine — ICM ou BCI</dt><dd>Système qui traduit des signaux cérébraux en commandes dans un contexte et pour une tâche déterminés.</dd></div><div><dt>Gliose</dt><dd>Réponse de cellules gliales à une lésion ou à une modification du tissu nerveux ; elle participe à la réponse biologique à certains implants.</dd></div><div><dt>Stimulation cérébrale profonde — SCP</dt><dd>Application de signaux électriques à des cibles cérébrales précises pour traiter certains symptômes dans des indications définies.</dd></div><div><dt>Implant cochléaire</dt><dd>Dispositif qui code des sons et stimule électriquement le nerf auditif dans la cochlée.</dd></div><div><dt>Bio-impression 3D</dt><dd>Organisation en trois dimensions de matériaux et de cellules pour produire des structures vivantes expérimentales.</dd></div><div><dt>Organoïde</dt><dd>Modèle vivant issu notamment de l’auto-organisation cellulaire ; il n’est pas nécessairement imprimé.</dd></div><div><dt>Organe sur puce</dt><dd>Système expérimental qui organise un environnement contrôlé pour étudier des fonctions biologiques ; il peut accueillir un organoïde.</dd></div><div><dt>Médicament de thérapie innovante — MTI</dt><dd>Catégorie réglementaire européenne dont peuvent relever certains produits cellulaires ou d’ingénierie tissulaire, selon leurs caractéristiques.</dd></div><div><dt>Neurodroits</dt><dd>Ensemble de propositions et d’évolutions juridiques visant à protéger la personne face aux usages des neurotechnologies ; leur statut varie selon les textes et les pays.</dd></div><div><dt>Confidentialité mentale</dt><dd>Enjeu de protection des informations liées à la vie mentale, à examiner avec les droits et régimes de données applicables.</dd></div><div><dt>Liberté cognitive</dt><dd>Principe de maîtrise de sa vie mentale et de protection contre des interventions non librement consenties.</dd></div><div><dt>Brainjacking</dt><dd>Terme désignant le détournement malveillant possible d’un dispositif neuronal ; un risque doit être distingué d’une attaque clinique documentée.</dd></div><div><dt>Biens à double usage</dt><dd>Biens ou technologies soumis à des contrôles définis, notamment en fonction de leurs caractéristiques, de leur destination et des listes réglementaires.</dd></div></dl></section>
+<section class="reference-section reveal" id="sources"><header><p class="section-kicker">Traçabilité</p><h2>Les sources, au plus près des affirmations</h2><p>Chaque chapitre donne ses références. L’appareil critique commun regroupe les vérifications scientifiques, historiques et juridiques, ainsi que neuf publications identifiées par leur DOI.</p></header><div class="source-paths"><a href="../../sources/sources.html#machines"><span>Appareil critique</span><strong>Consulter les vérifications et les textes de référence</strong><i aria-hidden="true">↗</i></a><a href="../../sources/sources.html#refs"><span>Publications scientifiques</span><strong>Retrouver les études et leurs DOI</strong><i aria-hidden="true">↗</i></a></div><p class="visual-credit">Les visuels sont des illustrations et des schémas explicatifs. Les scènes historiques, les portraits et les scènes cliniques sans provenance documentaire établie ne sont pas présentés comme des photographies authentifiées. Une image ne constitue pas, à elle seule, une preuve de performance.</p></section>
+<section class="collective-footer reveal" aria-labelledby="collectif"><div class="collective-logo-wrap"><img class="collective-logo" src="../../ymir-lalie/assets/logo-eci.jpg" alt="Sceau Empire contre Intox" loading="lazy" width="280" height="280"></div><div class="collective-copy"><p class="section-kicker">Collectif</p><h2 id="collectif">Empire contre Intox</h2><p>Un dossier réalisé par Provoxys pour comprendre les technologies médicales, leurs possibilités et leurs limites.</p><div class="collective-actions"><a class="button primary" href="../../index.html">Retour à l’index</a><a class="button" href="../son/index.html">Le Son</a><a class="button" href="#top">Revenir au début</a></div><span class="collective-motto">Veritas omnia vincit</span></div></section></main><footer><p class="eci-license"><strong>Licence de contenu :</strong> sauf mention contraire, les contenus originaux sont sous <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr" target="_blank" rel="license noopener">CC BY-NC-ND 4.0</a>. Les éventuels documents tiers conservent leurs droits. <a href="../../LICENCE-CONTENU.md">Détails</a>. <span data-visit-counter>— visites sur cette page</span></p></footer></div>
+<dialog class="image-dialog" aria-labelledby="image-dialog-title"><div class="image-dialog-bar"><h2 id="image-dialog-title">Illustration agrandie</h2><button type="button" class="dialog-close" aria-label="Fermer l’illustration agrandie">Fermer ×</button></div><img alt=""><p class="image-dialog-caption"></p></dialog>
+<script>
+(() => {
+  'use strict';
+  const bar = document.querySelector('.progress span');
+  const topBar = document.getElementById('progressTop');
+  const chapterNodes = [...document.querySelectorAll('.chapter[data-chapter]')];
+  const locationText = document.querySelector('.reading-location');
+  const nav = document.getElementById('navLinks');
+  const menu = document.querySelector('.mobile-menu');
+  let pending = false;
+  function updateReading() {
+    pending = false;
+    const height = document.documentElement.scrollHeight - innerHeight;
+    const pct = height > 0 ? Math.min(100, Math.max(0, scrollY / height * 100)) : 0;
+    bar.style.width = pct + '%'; topBar.style.width = pct + '%';
+    let current = null;
+    for (const chapter of chapterNodes) if (chapter.getBoundingClientRect().top < innerHeight * .4) current = chapter;
+    locationText.textContent = current ? 'Chapitre ' + current.dataset.chapter + ' / 12' : 'Introduction';
+    let active = current ? '#' + current.dataset.act : '';
+    if (document.getElementById('lexique').getBoundingClientRect().top < innerHeight * .4) active = '#lexique';
+    if (document.getElementById('sources').getBoundingClientRect().top < innerHeight * .4) active = '#sources';
+    nav.querySelectorAll('a').forEach(link => {
+      const on = link.getAttribute('href') === active;
+      link.classList.toggle('active', on);
+      if (on) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+    });
+    revealTall();
+  }
+  function scheduleReading() { if (!pending) { pending = true; requestAnimationFrame(updateReading); } }
+  addEventListener('scroll', scheduleReading, { passive: true });
+  addEventListener('resize', scheduleReading, { passive: true });
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+    for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+  }, { threshold: 0, rootMargin: '0px 0px -6% 0px' }) : null;
+  document.querySelectorAll('.reveal').forEach(el => { if (io) io.observe(el); else el.classList.add('in'); });
+  function revealTall() {
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+      if (el.getBoundingClientRect().top < innerHeight * .9) { el.classList.add('in'); if (io) io.unobserve(el); }
+    });
+  }
+  function closeMenu() { menu.setAttribute('aria-expanded', 'false'); nav.classList.remove('open'); }
+  menu.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') !== 'true'; menu.setAttribute('aria-expanded', String(open)); nav.classList.toggle('open', open); });
+  nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') { closeMenu(); menu.focus(); } });
+  document.addEventListener('click', event => { if (!nav.contains(event.target) && !menu.contains(event.target)) closeMenu(); });
+  // Conserver les anciennes destinations de l’appareil critique sans titres ni chapitres fantômes.
+  const legacyAnchors = { portraits: 'histoire', visuels: 'sommaire', ateliers: 'work-title-orteil' };
+  function resolveLegacyAnchor() {
+    const key = location.hash.slice(1);
+    if (legacyAnchors[key]) {
+      const target = document.getElementById(legacyAnchors[key]);
+      if (target) { history.replaceState(null, '', '#' + legacyAnchors[key]); target.scrollIntoView(); }
+    }
+  }
+  addEventListener('hashchange', resolveLegacyAnchor);
+  const descriptions = {
+    orteil: v => v < 33 ? 'Début du pas : l’appui se situe vers l’arrière du pied. La pièce prothétique reste passive.' : v < 67 ? 'L’appui progresse vers l’avant. La forme de la pièce participe à la transmission des efforts.' : 'Fin du pas : l’appui atteint l’avant-pied. Le mouvement ne vient pas d’un moteur dans la pièce.',
+    cable: v => v < 20 ? 'Faible traction : le mécanisme est proche de sa position ouverte.' : v < 70 ? 'La traction se transmet par le câble et rapproche les deux parties du mécanisme.' : 'Traction plus forte dans ce schéma : le mécanisme se rapproche de sa position fermée.',
+    myo: v => v < 20 ? 'Faible activation illustrée : le signal musculaire et la commande restent proches du repos.' : v < 65 ? 'L’activité musculaire est détectée puis traduite en une commande du moteur.' : 'L’activation représentée augmente. Le traitement commande une autre position de la main, sans mesure clinique.',
+    cochlee: v => v < 33 ? 'Bande grave : la stimulation est représentée vers la région apicale de la cochlée.' : v < 67 ? 'Bande intermédiaire : un autre emplacement schématique est sélectionné le long de la cochlée.' : 'Bande aiguë : la stimulation se déplace vers la région basale de la cochlée.',
+    gliose: v => v < 25 ? 'Dans ce modèle, la réponse tissulaire représentée est faible ; le signal illustré est peu atténué.' : v < 65 ? 'L’environnement de l’électrode se modifie. Le signal illustré diminue dans ce modèle simplifié.' : 'La réaction représentée est plus marquée et le signal illustré s’atténue. L’évolution réelle dépend aussi du tissu et du matériel.',
+    icm: v => 'Commande déjà décodée : ' + (v < 33 ? 'déplacer le curseur vers la gauche.' : v < 67 ? 'maintenir le curseur dans la zone centrale.' : 'déplacer le curseur vers la droite.')
+  };
+  function wave(x, y, width, amplitude, cycles) {
+    let path = '';
+    for (let i = 0; i <= 80; i++) {
+      const px = x + width * i / 80;
+      const py = y + Math.sin(i / 80 * Math.PI * 2 * cycles) * amplitude * (.55 + .45 * Math.sin(i / 13) ** 2);
+      path += (i ? 'L' : 'M') + px.toFixed(1) + ' ' + py.toFixed(1);
+    }
+    return path;
+  }
+  const ns = 'http://www.w3.org/2000/svg';
+  document.querySelectorAll('[data-mechanism]').forEach(box => {
+    const key = box.dataset.mechanism; const input = box.querySelector('input'); const initial = input.value;
+    let electrodeNodes = [];
+    if (key === 'cochlee') {
+      const points = [];
+      for (let i = 0; i <= 150; i++) {
+        const t = .8 + i / 150 * 10.5; const r = 7 + t * 6.5;
+        points.push([(350 + r * Math.cos(t)).toFixed(1), (112 + r * Math.sin(t)).toFixed(1)]);
+      }
+      box.querySelector('[data-cochlea]').setAttribute('d', points.map((p, i) => (i ? 'L' : 'M') + p.join(' ')).join(''));
+      const group = box.querySelector('[data-electrodes]');
+      for (let i = 0; i < 10; i++) {
+        const p = points[Math.round(i / 9 * 150)]; const node = document.createElementNS(ns, 'circle');
+        node.setAttribute('cx', p[0]); node.setAttribute('cy', p[1]); node.setAttribute('r', '4'); group.append(node); electrodeNodes.push(node);
+      }
+    }
+    function refresh() {
+      const v = Number(input.value); box.querySelector('output').textContent = descriptions[key](v);
+      if (key === 'orteil') box.querySelector('[data-foot-point]').setAttribute('cx', String(140 + v * 3.8));
+      if (key === 'cable') {
+        const angle = v * .28;
+        box.querySelector('[data-jaw-upper]').setAttribute('transform', 'rotate(' + angle + ' 420 122)');
+        box.querySelector('[data-jaw-lower]').setAttribute('transform', 'rotate(' + -angle + ' 420 122)');
+        box.querySelector('[data-cable-point]').setAttribute('cx', String(90 + v * 2.6));
+      }
+      if (key === 'myo') {
+        box.querySelector('[data-wave]').setAttribute('d', wave(190, 112, 185, 3 + v * .32, 4));
+        box.querySelector('[data-fingers]').setAttribute('transform', 'rotate(' + v * .38 + ' 510 119)');
+      }
+      if (key === 'cochlee') {
+        const selected = Math.min(9, Math.floor(v / 100 * 10));
+        electrodeNodes.forEach((node, i) => { node.setAttribute('fill', i === selected ? '#f3d98a' : '#54bfc1'); node.setAttribute('r', i === selected ? '8' : '4'); node.setAttribute('opacity', i === selected ? '1' : '.5'); });
+        box.querySelector('[data-band]').textContent = v < 33 ? 'Bande grave' : v < 67 ? 'Bande intermédiaire' : 'Bande aiguë';
+      }
+      if (key === 'gliose') {
+        const halo = box.querySelector('[data-glial-halo]'); const width = 30 + v * .8;
+        halo.setAttribute('x', String(320 - width / 2)); halo.setAttribute('width', String(width));
+        box.querySelector('[data-recording]').setAttribute('d', wave(395, 163, 205, 32 - v * .27, 3));
+      }
+      if (key === 'icm') box.querySelector('[data-cursor]').setAttribute('cx', String(458 + v * 1.39));
+    }
+    input.addEventListener('input', refresh);
+    box.querySelector('[data-reset]').addEventListener('click', () => { input.value = initial; refresh(); input.focus(); });
+    refresh();
+  });
+  const dialog = document.querySelector('.image-dialog');
+  if (dialog && typeof dialog.showModal === 'function') {
+    const largeImage = dialog.querySelector('img'); const caption = dialog.querySelector('.image-dialog-caption');
+    document.querySelectorAll('.figure-open').forEach(link => link.addEventListener('click', event => {
+      event.preventDefault(); const image = link.querySelector('img'); largeImage.src = link.href; largeImage.alt = image.alt;
+      caption.textContent = link.closest('figure').querySelector('figcaption').textContent;
+      dialog.showModal();
+    }));
+    dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
+  }
+  addEventListener('load', () => { resolveLegacyAnchor(); updateReading(); });
+  resolveLegacyAnchor(); updateReading();
+})();
+
+</script><script src="../../assets/visit-counter.js?v=4f7555768f79" defer></script></body></html>

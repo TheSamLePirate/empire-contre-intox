@@ -9,6 +9,7 @@ Vérifié le **1ᵉʳ juin 2026** par recherche web (sources autoritatives : NAS
 
 | Dossier | Fichier de sources | Couverture |
 |---|---|---|
+| XXXII | [`dossier-XXXII-machines.md`](dossier-XXXII-machines.md) | Technologies médicales et corps augmentés — Provoxys : 3 actes, 12 chapitres, 6 ateliers ; histoire, prothèses, gliose, ICM, implants cochléaires, bio-impression, droit et neurodroits. **60 unités de vérification du corpus initial et des compléments : 19 confirmées, 36 nuances/actualisations, 1 débattue, 4 erreurs initiales corrigées dans le récit** ; recoupements entre lots explicités. **9 DOI vérifiés Crossref** → [`refs-doi-XXXII-machines.md`](refs-doi-XXXII-machines.md) |
 | XXXI | [`dossier-XXXI-terre-sphere.md`](dossier-XXXI-terre-sphere.md) | La Terre, à l’épreuve des mesures — Provoxys : géométrie, WGS 84, géoïde, rotation, marées, télémétrie laser ; sources primaires institutionnelles, ateliers avec hypothèses et limites explicites |
 | — | [`chronos-bibliographie.md`](chronos-bibliographie.md) | Bibliographie maîtresse (24 réf.) du Dossier IV — rendu de `sources_audit_scientifique_chronos.csv` |
 | IV | [`dossier-IV-1-cosmologie.md`](dossier-IV-1-cosmologie.md) | Big Bang, inflation, Planck, CMB, BBN, galaxies, midi cosmique |
@@ -55,6 +56,7 @@ Couche « sources scientifiques » : **près de 200 articles à comité de lectu
 
 | Fichier | DOI | Couverture |
 |---|---|---|
+| [`refs-doi-XXXII-machines.md`](refs-doi-XXXII-machines.md) | 9 | Orteils égyptiens (Brier et al. 2015), BCI chez le primate, TMR, tissus vésicaux d’Atala, stimulation profonde (1987), bio-impression de peau et vascularisation, organoïdes sur puce, cybersécurité des implants — tous vérifiés Crossref |
 | [`refs-doi-1-cosmologie.md`](refs-doi-1-cosmologie.md) | 11 | Planck 2018, Fixsen (CMB), BBN, Guth, Madau & Dickinson, Robertson, Curtis-Lake (JWST), Conselice/Lauer |
 | [`refs-doi-2-terre-vie-precambrien.md`](refs-doi-2-terre-vie-precambrien.md) | 18 | Connelly, Patterson, Canup & Asphaug, Wilde/Valley, Nutman/Dodd/Allwood, Lyons, Gumsley, Gibson (Bangiomorpha), Li, Hoffman |
 | [`refs-doi-3-phanerozoique-extinctions.md`](refs-doi-3-phanerozoique-extinctions.md) | 15 | GTS2020, Raup & Sepkoski, Stanley, Burgess, Schulte/Alvarez (Chicxulub), Renne/Schoene/Sprain (Deccan), Nesbitt, Zachos |
@@ -247,3 +249,11 @@ Les grands repères des dossiers sont corrects et sourcés. Restent des points *
 ### Dossier XXXI — La Terre, à l’épreuve des mesures
 - Audit ciblé : [`dossier-XXXI-terre-sphere.md`](dossier-XXXI-terre-sphere.md). Il vérifie les affirmations à risque et les calculs consignés, sans certifier chaque phrase du document. Page reconstruite à partir du document HTML de Provoxys ; les observations sont confrontées à des modèles pédagogiques, avec distinction entre sphère, ellipsoïde, géoïde et relief.
 - Six fiches dans `sources.html` : NGA (paramètres WGS 84), NOAA (géoïde et marées), NASA (dimensions et mouvement terrestres), IERS (rotation), ILRS (télémétrie Terre–Lune). Les taux actuels de rotation et d’éloignement lunaire ne sont pas extrapolés comme des constantes historiques.
+
+
+### Dossier XXXII — Technologies médicales et corps augmentés
+
+- Audit : [`dossier-XXXII-machines.md`](dossier-XXXII-machines.md) ; références : [`refs-doi-XXXII-machines.md`](refs-doi-XXXII-machines.md), **9 DOI vérifiés Crossref**, inchangés par les compléments. **60 unités de vérification** portent sur le corpus initial et les compléments éditoriaux : **19 confirmées, 36 nuances ou actualisations, 1 débattue et 4 erreurs initiales corrigées dans le récit**. Ce total additionne les lots science/histoire (18), droit/éthique (34) et compléments (8), avec recoupements (Yuste et brainjacking) : ce ne sont pas 60 propositions indépendantes.
+- À la demande de l’utilisateur du **23 octobre 2026**, le [dossier](../provoxys/machines/index.html) est réécrit en **3 actes, 12 chapitres et 6 ateliers** ; les images sont intégrées à leur contexte et les documents bureautiques/sources du script retirés de la lecture publique. Le corpus original est archivé dans les fichiers de travail. Cette version ne revendique pas une conservation mot pour mot du texte initial ; les citations d’origine restent dans l’audit pour expliquer les corrections.
+- Corrections principales : le serrurier **le Petit Lorrain**, la fonction de **Rafael Yuste**, les tissus vésicaux cultivés d’**Atala** distincts de la bio-impression, **1987** pour Benabid et vascularisation encore non résolue. Les huit compléments précisent **Röntgen 1895**, le **pacemaker entièrement implantable de 1958**, la méthode dentaire de **Brånemark en 1965**, les différences entre ancrage dentaire et transcutané et entre stimulation profonde conventionnelle, adaptative et ICM de commande. Les portraits, scènes opératoires et diagnostics ne sont pas authentifiés à partir des illustrations.
+- Droit : recommandation UNESCO du **11 novembre 2025** ; ISO 10993, statut MTI/RDM, calendrier AI Act, exceptions RGPD et conditions de responsabilité, remboursement et indemnisation explicités. Les fiches renvoient désormais aux chapitres réels, notamment **Neurodroits** et **Accès**, plutôt qu’à une ancienne galerie de portraits.
