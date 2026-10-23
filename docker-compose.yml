@@ -38,12 +38,11 @@ services:
       CALENDAR_URL: http://calendar:3002
       LIVES_ORIGIN: "${CALENDAR_ORIGIN:-https://empire-contre-intox.com}"
       LIVES_INTERNAL_TOKEN: "${LIVES_INTERNAL_TOKEN:?Set a random token of at least 32 characters}"
-      TIKTOK_SESSION_FILE: /run/secrets/tiktok_session_id
+      # Fourni par le .env du dépôt (envoyé comme environnement de la stack) : aucun fichier hôte requis.
+      TIKTOK_SESSION_ID: "${TIKTOK_SESSION_ID:?Set TIKTOK_SESSION_ID in .env}"
       TIKTOK_TARGET_IDC: "${TIKTOK_TARGET_IDC:-}"
       DISCORD_TOKEN: "${DISCORD_TOKEN:-}"
       LIVES_DATA_DIR: /data
-    secrets:
-      - tiktok_session_id
     volumes:
       - lives-data:/data
     tmpfs:
@@ -73,7 +72,3 @@ volumes:
   lives-data:
   counter-data:
   calendar-data:
-
-secrets:
-  tiktok_session_id:
-    file: "${TIKTOK_SESSION_SECRET_FILE:-./.secrets/tiktok_session_id}"
