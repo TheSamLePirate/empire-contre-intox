@@ -35,6 +35,7 @@ COPY --from=build /app/empire-calendrier/admin/index.html \
      /app/empire-calendrier/admin/admin.css \
      /app/empire-calendrier/admin/admin.js \
      /app/empire-calendrier/admin/lives-admin.js \
+     /app/empire-calendrier/admin/upcoming-admin.js \
      /usr/share/nginx/html/empire-calendrier/admin/
 
 EXPOSE 80

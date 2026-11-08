@@ -51,6 +51,25 @@ function portrait(name: string, url: string | null) {
   }
   return wrapper;
 }
+/** Dossier pages live next to /lives/: resolve them from the site root, same origin only. */
+const siteRoot = new URL(page ? "../" : "./", location.href);
+function dossierUrl(path: string): URL | null {
+  if (
+    !/^[A-Za-z0-9_-][A-Za-z0-9._~\/-]{0,199}(?:#[A-Za-z0-9_-][A-Za-z0-9_.-]{0,79})?$/.test(path) ||
+    path.includes("..")
+  )
+    return null;
+  const url = new URL(path, siteRoot);
+  return url.origin === location.origin ? url : null;
+}
+const studyKey = "eci-lives-dossier-layout";
+const storedLayout = () => {
+  try {
+    return localStorage.getItem(studyKey);
+  } catch {
+    return null;
+  }
+};
 const cards = element("div", "live-cards");
 const notice = element("p", "live-notice");
 notice.setAttribute("role", "status");
@@ -139,8 +158,11 @@ function card(live: PublicLive) {
     `${live.state === "live" ? "Regarder le live de" : "Voir le compte de"} ${live.displayName}`,
   );
   footer.append(metrics, cta);
-  body.append(top, title, host, footer);
+  const dossier = element("p", "live-card-dossier");
+  dossier.hidden = true;
+  body.append(top, title, host, dossier, footer);
   card.append(cover, body);
+  updateCardDossier(card, live);
   if (live.id === selectedId) {
     card.classList.add("is-selected");
     cta.setAttribute("aria-current", "true");
@@ -153,6 +175,21 @@ function card(live: PublicLive) {
         void select(live.id, true);
       });
   return card;
+}
+function updateCardDossier(node: HTMLElement, live: PublicLive) {
+  const line = node.querySelector<HTMLElement>(".live-card-dossier");
+  if (!line) return;
+  const d = live.state === "live" ? live.dossier : null;
+  line.hidden = !d;
+  const value = d ? d.title : "";
+  if (line.dataset.title === value) return;
+  line.dataset.title = value;
+  line.replaceChildren();
+  if (d)
+    line.append(
+      element("span", "live-card-dossier-label", "Dossier du live"),
+      element("span", "live-card-dossier-title", d.title),
+    );
 }
 // Keep cards, loaded images and keyboard focus stable between data refreshes.
 const cardNodes = new Map<string, HTMLElement>();
@@ -213,6 +250,7 @@ function updateCard(node: HTMLElement, live: PublicLive) {
     avatar.firstChild.nodeValue = live.displayName.slice(0, 2).toUpperCase();
   updateImage(avatar, live.avatarUrl);
   updateImage(node.querySelector<HTMLElement>(".live-cover")!, live.coverUrl);
+  updateCardDossier(node, live);
 }
 function updateCards(visible: PublicLive[]) {
   const ids = new Set(visible.map((live) => live.id));
@@ -331,6 +369,7 @@ async function select(id: string, push: boolean) {
   };
   destroy = () => {
     controller.abort();
+    player.classList.remove("has-dossier", "is-study");
     source?.close();
     hls?.destroy();
     clearInterval(renewTimer);
@@ -398,7 +437,12 @@ async function select(id: string, push: boolean) {
     playButton.addEventListener("click", () => void startPlayback());
     videoStage.append(video, playButton);
     const programFooter = element("div", "live-program-footer");
-    programFooter.append(meta, tiktok);
+    const toDossier = element("a", "live-external live-to-dossier", "Le dossier du live ↓");
+    toDossier.href = "#live-dossier";
+    toDossier.hidden = true;
+    const footerLinks = element("div", "live-program-links");
+    footerLinks.append(toDossier, tiktok);
+    programFooter.append(meta, footerLinks);
     main.append(programHeader, videoStage, state, programFooter);
     const heading = element("div", "live-chat-heading");
     const chatStatus = element("span", "live-meta");
@@ -512,6 +556,7 @@ async function select(id: string, push: boolean) {
     });
     const renderState = (live: PublicLive) => {
       currentLive = live;
+      renderDossier(live.dossier);
       programBadge.textContent =
         live.state === "live" ? "À l’antenne" : label(live.state);
       programBadge.classList.toggle("is-live", live.state === "live");
@@ -551,7 +596,129 @@ async function select(id: string, push: boolean) {
       feed,
       controls,
     );
-    player.replaceChildren(main, aside);
+    /* ── Le dossier du live : la page du dossier, intégrée sous (ou à côté du) direct ── */
+    const dossier = element("section", "live-dossier");
+    dossier.id = "live-dossier";
+    dossier.hidden = true;
+    dossier.tabIndex = -1;
+    const dossierHead = element("header", "live-dossier-head");
+    const dossierTitles = element("div", "live-dossier-titles");
+    const dossierKicker = element("p", "live-dossier-kicker", "Le dossier du live");
+    const dossierTitle = element("h2", "");
+    dossierTitle.id = "live-dossier-title";
+    dossier.setAttribute("aria-labelledby", dossierTitle.id);
+    dossierTitles.append(dossierKicker, dossierTitle);
+    const dossierActions = element("div", "live-dossier-actions");
+    dossierActions.setAttribute("role", "group");
+    dossierActions.setAttribute("aria-label", "Affichage du dossier");
+    const layoutButton = element("button", "live-quiet live-dossier-layout");
+    layoutButton.type = "button";
+    const sizeButton = element("button", "live-quiet", "Agrandir");
+    sizeButton.type = "button";
+    sizeButton.setAttribute("aria-pressed", "false");
+    const fullButton = element("button", "live-quiet", "Plein écran");
+    fullButton.type = "button";
+    const openLink = element("a", "live-button live-dossier-open", "Ouvrir le dossier");
+    openLink.append(element("span", "live-arrow", "↗"));
+    openLink.target = "_blank";
+    openLink.rel = "noopener";
+    dossierActions.append(layoutButton, sizeButton, fullButton, openLink);
+    dossierHead.append(dossierTitles, dossierActions);
+    const dossierFrameWrap = element("div", "live-dossier-frame");
+    const dossierLoading = element("p", "live-dossier-loading", "Ouverture du dossier…");
+    dossierLoading.setAttribute("aria-hidden", "true");
+    dossierFrameWrap.append(dossierLoading);
+    const dossierStatus = element("p", "live-sr-only");
+    dossierStatus.setAttribute("role", "status");
+    dossier.append(dossierHead, dossierFrameWrap, dossierStatus);
+    let dossierKey = "",
+      frame: HTMLIFrameElement | null = null;
+    const wide = matchMedia("(min-width: 1180px)");
+    const applyLayout = () => {
+      const study = wide.matches && storedLayout() === "study" && !dossier.hidden;
+      player.classList.toggle("has-dossier", !dossier.hidden);
+      player.classList.toggle("is-study", study);
+      layoutButton.hidden = !wide.matches;
+      layoutButton.textContent = study ? "Sous le direct" : "Côte à côte";
+      layoutButton.setAttribute(
+        "aria-label",
+        study ? "Afficher le dossier sous le direct" : "Afficher le dossier à côté du direct",
+      );
+    };
+    layoutButton.onclick = () => {
+      const next = player.classList.contains("is-study") ? "below" : "study";
+      try {
+        localStorage.setItem(studyKey, next);
+      } catch {}
+      applyLayout();
+      dossier.scrollIntoView({ block: "nearest" });
+    };
+    wide.addEventListener("change", applyLayout);
+    controller.signal.addEventListener("abort", () => wide.removeEventListener("change", applyLayout));
+    sizeButton.onclick = () => {
+      const tall = !dossier.classList.contains("is-tall");
+      dossier.classList.toggle("is-tall", tall);
+      sizeButton.textContent = tall ? "Réduire" : "Agrandir";
+      sizeButton.setAttribute("aria-pressed", String(tall));
+    };
+    fullButton.hidden = !document.fullscreenEnabled;
+    fullButton.onclick = () => {
+      if (document.fullscreenElement) void document.exitFullscreen();
+      else void dossierFrameWrap.requestFullscreen?.().catch(() => {});
+    };
+    document.addEventListener(
+      "fullscreenchange",
+      () => {
+        fullButton.textContent =
+          document.fullscreenElement === dossierFrameWrap ? "Quitter le plein écran" : "Plein écran";
+      },
+      { signal: controller.signal },
+    );
+    toDossier.addEventListener("click", (e) => {
+      e.preventDefault();
+      dossier.scrollIntoView({
+        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+        block: "start",
+      });
+      dossier.focus({ preventScroll: true });
+    });
+    function renderDossier(d: PublicLive["dossier"]) {
+      const url = d ? dossierUrl(d.path) : null;
+      const key = d && url ? `${url.href}\n${d.title}` : "";
+      if (key === dossierKey) return;
+      const firstUrl = dossierKey.split("\n")[0];
+      dossierKey = key;
+      if (!d || !url) {
+        frame?.remove();
+        frame = null;
+        dossier.hidden = true;
+        toDossier.hidden = true;
+        if (firstUrl) dossierStatus.textContent = "Le dossier du live a été retiré.";
+        applyLayout();
+        return;
+      }
+      dossierTitle.textContent = d.title;
+      openLink.href = url.href;
+      openLink.setAttribute("aria-label", `Ouvrir le dossier « ${d.title} » dans un nouvel onglet`);
+      // A title change alone must not reload the page the viewer is reading.
+      if (!frame || firstUrl !== url.href) {
+        frame?.remove();
+        frame = element("iframe", "");
+        frame.src = url.href;
+        frame.loading = "lazy";
+        frame.allowFullscreen = true;
+        frame.referrerPolicy = "strict-origin-when-cross-origin";
+        dossierFrameWrap.classList.add("is-loading");
+        frame.addEventListener("load", () => dossierFrameWrap.classList.remove("is-loading"), { once: true });
+        dossierFrameWrap.append(frame);
+      }
+      frame.title = `Dossier du live : ${d.title}`;
+      dossier.hidden = false;
+      toDossier.hidden = false;
+      dossierStatus.textContent = `Le dossier « ${d.title} » accompagne ce direct.`;
+      applyLayout();
+    }
+    player.replaceChildren(main, aside, dossier);
     initial.messages.forEach(appendMessage);
     renderState(initial.live);
     const cursor = `${initial.cursor.epoch}:${initial.cursor.roomId ?? "none"}:${initial.cursor.sequence}`;

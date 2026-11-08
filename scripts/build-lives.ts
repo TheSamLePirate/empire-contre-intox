@@ -33,6 +33,17 @@ await Bun.write(
   resolve(root, "empire-calendrier/admin/lives-admin.js"),
   adminBuild.outputs[0],
 );
+const upcomingBuild = await Bun.build({
+  entrypoints: [resolve(root, "web/lives/upcoming-admin.ts")],
+  target: "browser",
+  minify: true,
+});
+if (!upcomingBuild.success)
+  throw new AggregateError(upcomingBuild.logs, "Compilation « Prochainement » impossible");
+await Bun.write(
+  resolve(root, "empire-calendrier/admin/upcoming-admin.js"),
+  upcomingBuild.outputs[0],
+);
 const manifestPath = resolve(root, "config/legacy-public-manifest.json");
 const manifest: string[] = JSON.parse(await readFile(manifestPath, "utf8"));
 const updated = [

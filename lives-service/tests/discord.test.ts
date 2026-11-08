@@ -10,7 +10,7 @@ const live = (state: PublicLive["state"] = "live", roomId = "123"): PublicLive =
   id: "alice-id", username: "alice", displayName: "Alice", state, roomId,
   title: "Les étoiles", avatarUrl: "https://p.tiktokcdn.com/avatar.jpg", coverUrl: "https://p.tiktokcdn.com/cover.jpg",
   checkedAt: "2026-10-18T12:00:00Z", startedAt: "2026-10-18T11:59:00Z", viewers: 42, likes: 0,
-  tiktokUrl: "https://www.tiktok.com/@alice/live", qualities: [], playback: { state: "idle", quality: null }, chatState: "unavailable",
+  tiktokUrl: "https://www.tiktok.com/@alice/live", qualities: [], playback: { state: "idle", quality: null }, chatState: "unavailable", dossier: null,
 });
 test("embed contains metadata, images and both links; obeys limits and suppresses mentions", () => {
   const payload = liveMessage(live(), "https://empire-contre-intox.com");

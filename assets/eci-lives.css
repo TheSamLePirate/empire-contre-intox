@@ -1098,3 +1098,166 @@
 .live-play-overlay:focus-visible { outline: 3px solid #f4db9c; outline-offset: 5px; }
 .live-play-icon { font: 40px/1 sans-serif; padding-left: 5px; }
 .live-play-caption { font: 600 .75rem/1.4 var(--live-roman); white-space: nowrap; }
+
+/* ── Le dossier du live ────────────────────────────────────────────────
+   Un admin associe un dossier ECI au live en cours : la page du dossier
+   s'intègre sous le direct (ou à côté, sur grand écran, en « côte à côte »). */
+.live-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.live-program-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.live-program-links [hidden] { display: none; }
+.live-player.has-dossier {
+  grid-template-areas: "video chat" "dossier dossier";
+}
+.live-player.has-dossier > .live-video-panel { grid-area: video; }
+.live-player.has-dossier > .live-chat { grid-area: chat; }
+.live-player.has-dossier > .live-dossier { grid-area: dossier; }
+.live-dossier[hidden] { display: none; }
+.live-dossier {
+  min-width: 0;
+  scroll-margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--live-line);
+  border-top: 2px solid var(--live-gold);
+  border-radius: 4px 18px 4px 18px;
+  overflow: hidden;
+  background: linear-gradient(150deg, rgba(15, 22, 40, 0.96), rgba(6, 10, 21, 0.98));
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+}
+.live-dossier:focus { outline: none; }
+.live-dossier:focus-visible { outline: 3px solid #f4db9c; outline-offset: 4px; }
+.live-dossier-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+  flex-wrap: wrap;
+  padding: 20px 24px 18px;
+  border-bottom: 1px solid rgba(214, 172, 85, 0.18);
+}
+.live-dossier-titles { min-width: 0; flex: 1 1 280px; }
+.live-dossier-kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 600 0.56rem var(--live-roman);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--live-gold);
+}
+.live-dossier-kicker:before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--live-gold);
+}
+.live-dossier-head h2 {
+  margin-top: 6px;
+  font: 450 clamp(1.3rem, 2.1vw, 1.9rem)/1.2 var(--live-serif);
+  letter-spacing: -0.02em;
+  color: var(--live-ink);
+  overflow-wrap: anywhere;
+}
+.live-dossier-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.live-dossier-actions .live-quiet { padding: 0 14px; }
+.live-dossier-actions [hidden] { display: none; }
+.live-dossier-open { gap: 12px; }
+.live-dossier-frame {
+  position: relative;
+  flex: none;
+  height: clamp(560px, 80vh, 1100px);
+  background: #050811;
+  transition: height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.live-dossier.is-tall .live-dossier-frame { height: max(700px, calc(100vh - 40px)); }
+.live-dossier-frame iframe {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #050811;
+}
+.live-dossier-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font: 500 0.62rem var(--live-roman);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--live-muted);
+}
+.live-dossier-frame.is-loading iframe { opacity: 0; }
+.live-dossier-frame:not(.is-loading) .live-dossier-loading { visibility: hidden; }
+.live-dossier-frame:fullscreen { height: 100%; }
+/* Carte : le dossier associé au direct en cours */
+.live-card-dossier[hidden] { display: none; }
+.live-card-dossier {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 4px 0 2px;
+  padding: 9px 12px;
+  border-left: 2px solid var(--live-gold);
+  background: rgba(214, 172, 85, 0.06);
+}
+.live-card-dossier-label {
+  font: 600 0.5rem var(--live-roman);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--live-gold);
+}
+.live-card-dossier-title {
+  font: italic 400 0.92rem/1.35 var(--live-serif);
+  color: var(--live-ink);
+  overflow-wrap: anywhere;
+}
+/* Côte à côte : la vidéo et le chat à gauche, le dossier à droite */
+@media (min-width: 1180px) {
+  .live-player.is-study {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr);
+    grid-template-areas: "video dossier" "chat dossier";
+    align-items: start;
+  }
+  .live-player.is-study > .live-chat { height: 520px; }
+  .live-player.is-study .live-video-stage video { height: clamp(240px, 24vw, 420px); }
+  .live-player.is-study > .live-dossier {
+    position: sticky;
+    top: 16px;
+    align-self: start;
+  }
+  .live-player.is-study .live-dossier-frame { height: calc(100vh - 140px); min-height: 640px; }
+}
+@media (max-width: 900px) {
+  .live-player.has-dossier { grid-template-areas: "video" "chat" "dossier"; }
+  .live-dossier-frame { height: min(78vh, 900px); min-height: 480px; }
+  .live-dossier.is-tall .live-dossier-frame { height: calc(100vh - 24px); }
+}
+@media (max-width: 600px) {
+  .live-dossier-head { padding: 16px 16px 14px; }
+  .live-dossier-actions { width: 100%; }
+  .live-dossier-actions > * { flex: 1 1 auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-dossier-frame { transition: none; }
+}

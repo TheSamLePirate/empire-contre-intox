@@ -64,15 +64,22 @@ try {
       throw new Error("Le dossier de sauvegarde doit être nouveau.");
     mkdirSync(destination, { recursive: true });
     store.run("VACUUM INTO ?", join(destination, "calendar.sqlite"));
-    // Avatars are immutable and never deleted: copying after the DB snapshot is coherent.
-    if (existsSync(join(directory, "avatars")))
-      cpSync(join(directory, "avatars"), join(destination, "avatars"), {
-        recursive: true,
-      });
+    // Portraits and « Prochainement » posters are immutable and never deleted:
+    // copying them after the DB snapshot is coherent. Unfinished uploads (*.tmp) are skipped.
+    const copied: string[] = [];
+    for (const folder of ["avatars", "upcoming"])
+      if (existsSync(join(directory, folder))) {
+        cpSync(join(directory, folder), join(destination, folder), {
+          recursive: true,
+          filter: (source) => !source.endsWith(".tmp"),
+        });
+        copied.push(`${folder}/`);
+      }
     await Bun.write(
       join(destination, "README.txt"),
-      "Sauvegarde ECI : calendar.sqlite + avatars/. Restaurer service arrêté. Les sessions sont révoquées au rétablissement par manage.ts revoke-sessions.\n",
+      "Sauvegarde ECI : calendar.sqlite + avatars/ (portraits) + upcoming/ (affiches de Prochainement). Restaurer service arrêté. Les sessions sont révoquées au rétablissement par manage.ts revoke-sessions.\n",
     );
+    if (copied.length) console.log(`Fichiers copiés : ${copied.join(", ")}`);
     console.log(`Sauvegarde créée : ${destination}`);
   } else if (command === "revoke-sessions") {
     store.run("DELETE FROM sessions");

@@ -1,4 +1,11 @@
+export interface LiveDossier {
+  path: string;
+  title: string;
+  roomId: string;
+}
 export interface WatchAccount {
+  /** Optional for older configuration payloads and fixtures. */
+  dossier?: LiveDossier | null;
   id: string;
   username: string;
   displayName: string;
@@ -52,6 +59,8 @@ export interface PublicLive {
     quality: string | null;
   };
   chatState: "connecting" | "connected" | "reconnecting" | "unavailable";
+  /** Dossier attached by an admin to the current room only. */
+  dossier: { path: string; title: string } | null;
 }
 export interface Cursor {
   epoch: string;

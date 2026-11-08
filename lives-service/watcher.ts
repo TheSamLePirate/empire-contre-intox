@@ -64,7 +64,11 @@ export class LiveRegistry {
     for (const a of accounts) {
       const current = this.entries.get(a.id);
       if (current) {
+        const before = JSON.stringify(current.account.dossier ?? null);
         current.account = a;
+        // Viewers already on the page receive the new dossier without reloading.
+        if (before !== JSON.stringify(a.dossier ?? null))
+          this.emit(current, "state", this.public(current));
         continue;
       }
       this.entries.set(a.id, {
@@ -123,6 +127,10 @@ export class LiveRegistry {
       qualities: room?.variants.map((v) => v.quality) ?? [],
       playback: this.media.state(r.account.id),
       chatState: r.chatState,
+      dossier:
+        r.account.dossier && room && room.roomId === r.account.dossier.roomId
+          ? { path: r.account.dossier.path, title: r.account.dossier.title }
+          : null,
     };
   }
   list() {

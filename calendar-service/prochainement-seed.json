@@ -1,0 +1,836 @@
+{
+ "themes": [
+  {
+   "id": "lois",
+   "label": "Lois du réel"
+  },
+  {
+   "id": "cosmos",
+   "label": "Cosmos"
+  },
+  {
+   "id": "terre",
+   "label": "Terre"
+  },
+  {
+   "id": "vivant",
+   "label": "Vivant"
+  }
+ ],
+ "lives": [
+  {
+   "theme": "lois",
+   "title": "Fusion nucléaire — WEST, EAST, ITER",
+   "hook": "Le Soleil en boîte. Record CEA. Critère de Lawson.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Le Soleil tient par la fusion. On essaie de la copier dans une cage magnétique.",
+    "WEST au CEA, EAST en Chine, ITER en construction : trois machines, une même question.",
+    "Le critère de Lawson dit quand le plasma s’entretient.",
+    "Un record de durée n’est pas encore une centrale.",
+    "On verra ce qu’on mesure vraiment, et ce que les titres inventent.",
+    "Anti : la fusion n’est pas pour demain matin.",
+    "Histoire courte : tokamak, stellarator, bombe H n’est pas un réacteur.",
+    "Formule dite à voix haute, sans mystère.",
+    "Ce que ça changerait — et ce que ça ne changera pas.",
+    "Sources : CEA, ITER, articles peer-review."
+   ],
+   "image": "assets/prochainement/01.webp",
+   "video": "assets/prochainement/01.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Comète interstellaire 3I/ATLAS",
+   "hook": "Troisième visiteur. Eau, nickel, hyperbole.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "3I/ATLAS est le troisième objet interstellaire confirmé.",
+    "Il ne tourne pas autour du Soleil comme une comète locale.",
+    "Eau, nickel, hyperbole : on lit une composition, pas un message.",
+    "Oumuamua a créé le bruit. Ici on compare les données.",
+    "Anti : ce n’est pas une sonde alien tant que rien ne le prouve.",
+    "Comment on calcule une orbite ouverte.",
+    "Ce que le télescope voit vraiment.",
+    "Échelle : un grain de poussière galactique qui traverse.",
+    "Histoire : Halley, puis les visiteurs d’ailleurs.",
+    "Sources : MPC, observatoires, notes IAU."
+   ],
+   "image": "assets/prochainement/02.webp",
+   "video": "assets/prochainement/02.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "JWST, quatre ans après",
+   "hook": "Exoplanète imagée, glaces organiques hors Voie lactée.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Quatre ans de JWST, ce n’est plus l’effet waouh du premier cliché.",
+    "Des exoplanètes imagées, des glaces organiques loin de la Voie lactée.",
+    "On séparera photo jolie et spectre utile.",
+    "Anti : une image IR n’est pas une preuve de vie.",
+    "Comment un miroir plié voit l’invisible.",
+    "Limites : calibration, temps de pose, files d’attente.",
+    "Ce qui a tenu. Ce qui a surpris.",
+    "Histoire : Hubble, Spitzer, le relais.",
+    "Formules de magnitude et de redshift, dites simplement.",
+    "Sources : NASA/STScI, papers JWST."
+   ],
+   "image": "assets/prochainement/03.webp",
+   "video": "assets/prochainement/03.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "6 000 exoplanètes",
+   "hook": "Zone habitable contre réalité. Naines M, biosignatures.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Plus de 6 000 exoplanètes cataloguées. Le nombre impressionne.",
+    "La zone habitable n’est pas un permis d’habiter.",
+    "Naines M, marées, éruptions : le voisinage compte.",
+    "Anti : jumelle de la Terre est souvent un slogan.",
+    "Méthodes : transit, vitesse radiale, imagerie directe.",
+    "Ce qu’une courbe de lumière contient.",
+    "Échelle des distances, sans poésie creuse.",
+    "Histoire : 51 Pegasi b, 1995.",
+    "Biosignatures : ce qu’on chercherait, ce qu’on n’a pas.",
+    "Sources : NASA Exoplanet Archive."
+   ],
+   "image": "assets/prochainement/04.webp",
+   "video": "assets/prochainement/04.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Ondes gravitationnelles",
+   "hook": "128 événements. Trous noirs 130 M☉.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Une onde gravitationnelle, c’est l’espace-temps qui tremble.",
+    "LIGO, Virgo, KAGRA ont ouvert le compteur : plus de 100 événements.",
+    "Trous noirs lourds, collisions, un ciel devenu son.",
+    "Anti : ce n’est pas un son dans le vide au sens air.",
+    "Comment on filtre un bruit d’un milliardième de proton.",
+    "Formule qualitative de la métrique, sans pose.",
+    "Histoire : Einstein 1916, détection 2015.",
+    "Ce que ça change pour la mort des étoiles.",
+    "Sources : LIGO Scientific Collaboration."
+   ],
+   "image": "assets/prochainement/05.webp",
+   "video": "assets/prochainement/05.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Énergie noire qui faiblit ?",
+   "hook": "DESI 2025. w(z) variable. Destin de l’Univers.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "L’Univers accélère. On a nommé ça énergie noire.",
+    "DESI 2025 a relancé l’idée que w pourrait varier.",
+    "Si ça tient, le destin de l’Univers change de scénario.",
+    "Anti : un preprint n’enterre pas Lambda-CDM.",
+    "Ce qu’est w(z), dit en français.",
+    "Mesure : supernovae, BAO, fond diffus.",
+    "Histoire : 1998, prix Nobel 2011.",
+    "Ce qu’on saura seulement avec plus de spectres.",
+    "Sources : DESI, Planck."
+   ],
+   "image": "assets/prochainement/06.webp",
+   "video": "assets/prochainement/06.mp4"
+  },
+  {
+   "theme": "lois",
+   "title": "Neutrinos · JUNO",
+   "hook": "Détecteur 2025, 700 m sous terre. Oscillation.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Le neutrino traverse la Terre comme si elle n’existait pas.",
+    "JUNO, 2025, 700 m sous terre, veut départager les masses.",
+    "Oscillation : l’identité du neutrino change en vol.",
+    "Anti : ce n’est pas de la matière fantôme magique.",
+    "Comment on détecte presque rien.",
+    "Histoire : Pauli, Cowan-Reines, Super-Kamiokande.",
+    "Formule d’oscillation, version novice.",
+    "Ce que ça dit sur le modèle standard.",
+    "Sources : JUNO, PDG."
+   ],
+   "image": "assets/prochainement/07.webp",
+   "video": "assets/prochainement/07.mp4"
+  },
+  {
+   "theme": "terre",
+   "title": "Noyau, dynamo, champ B",
+   "hook": "Géodynamo, inversions, aurores, GPS.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Le noyau tourne, le fer liquide conduit, un champ naît.",
+    "Sans dynamo, pas d’aurores, GPS plus fragile, vent solaire plus rude.",
+    "Les inversions ont eu lieu. On lit ça dans les roches.",
+    "Anti : le pôle ne bascule pas demain.",
+    "Échelle : milliers de kilomètres, millions d’années.",
+    "Histoire : Gilbert, Gauss, InSight.",
+    "Ce qu’on modèle, ce qu’on ignore encore.",
+    "Sources : IAGA, observatoires magnétiques."
+   ],
+   "image": "assets/prochainement/08.webp",
+   "video": "assets/prochainement/08.mp4"
+  },
+  {
+   "theme": "terre",
+   "title": "Acidification des océans",
+   "hook": "7ᵉ limite planétaire. pH, carbonates.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "L’océan absorbe le CO2. Le pH baisse. Les carbonates souffrent.",
+    "On parle de 7e limite planétaire pour une raison mesurable.",
+    "Anti : l’océan s’acidifie donc tout meurt demain est faux et paresseux.",
+    "Chimie du système carbonate, version claire.",
+    "Qui est vulnérable : coquilles, récifs, chaînes.",
+    "Histoire : Keeling, mesures in situ.",
+    "Ce qu’on peut suivre, station par station.",
+    "Sources : NOAA, GLODAP, IPBES."
+   ],
+   "image": "assets/prochainement/09.webp",
+   "video": "assets/prochainement/09.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Chang’e-6 · face cachée",
+   "hook": "Échantillons, manteau plus sec, rebond magnétique.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Chang’e-6 a rapporté des échantillons de la face cachée.",
+    "Le manteau y serait plus sec. Un rebond magnétique se discute.",
+    "Anti : ce n’est pas la Lune habitée en secret.",
+    "Pourquoi la face cachée n’est pas invisible : elle est juste tournée.",
+    "Méthode : spectrométrie d’un gramme de régolithe.",
+    "Histoire : Apollo, Luna, puis la Chine.",
+    "Ce que ça dit de la formation.",
+    "Sources : CNSA, Nature/Science."
+   ],
+   "image": "assets/prochainement/10.webp",
+   "video": "assets/prochainement/10.mp4"
+  },
+  {
+   "theme": "vivant",
+   "title": "CRISPR personnalisé",
+   "hook": "Bébé KJ, Huntington. Off-target, éthique adulte.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "CRISPR n’est plus seulement un ciseau de labo.",
+    "Un bébé traité, des essais Huntington, l’éthique adulte sur la table.",
+    "Anti : on ne réécrit pas l’espèce en un live.",
+    "Off-target : le vrai risque technique.",
+    "Histoire : Charpentier, Doudna, He Jiankui.",
+    "Consentement, germinal vs somatique.",
+    "Ce que la médecine peut viser maintenant.",
+    "Sources : NEJM, régulateurs."
+   ],
+   "image": "assets/prochainement/11.webp",
+   "video": "assets/prochainement/11.mp4"
+  },
+  {
+   "theme": "vivant",
+   "title": "Protéines inventées par IA",
+   "hook": "AlphaFold, design de novo.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "AlphaFold a cassé un mur : prédire le pli d’une protéine.",
+    "On design maintenant des protéines qui n’ont jamais existé.",
+    "Anti : une structure prédite n’est pas un médicament.",
+    "Labo vs écran : qui valide.",
+    "Histoire : Anfinsen, CASP, DeepMind.",
+    "Ce que de novo veut dire.",
+    "Limites et réussites 2024-2026.",
+    "Sources : Nature, EMBL-EBI."
+   ],
+   "image": "assets/prochainement/12.webp",
+   "video": "assets/prochainement/12.mp4"
+  },
+  {
+   "theme": "vivant",
+   "title": "Xénogreffe",
+   "hook": "Rein de porc 271 jours. Pont vers greffe humaine.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Un rein de porc a fonctionné 271 jours chez un humain.",
+    "Pont vers la greffe, pas encore la solution de masse.",
+    "Anti : ce n’est pas Frankenstein ni la fin des listes d’attente.",
+    "Rétrovirus porcins, immuno-suppression, éthique animale.",
+    "Histoire : premières xénogreffes ratées.",
+    "Ce qu’il faudra mesurer sur 5 ans.",
+    "Sources : journaux de transplantation."
+   ],
+   "image": "assets/prochainement/13.webp",
+   "video": "assets/prochainement/13.mp4"
+  },
+  {
+   "theme": "vivant",
+   "title": "Denisoviens · Harbin",
+   "hook": "146 000 ans, métissage, gènes d’altitude.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Un crâne à Harbin, 146 000 ans, côté dénisovien.",
+    "On n’est pas une lignée pure. Le métissage est dans le génome.",
+    "Anti : race originelle est une fiction.",
+    "Gènes d’altitude, Tibet, histoire démographique.",
+    "Comment on date un os et un ADN ancien.",
+    "Histoire : Denisova 2010.",
+    "Sources : Nature, Max-Planck."
+   ],
+   "image": "assets/prochainement/14.webp",
+   "video": "assets/prochainement/14.mp4"
+  },
+  {
+   "theme": "terre",
+   "title": "Néandertal et le feu",
+   "hook": "Foyers, suie, isotopes.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Néandertal maîtrisait le feu. La question est : comment, où, depuis quand.",
+    "Foyers, suie, isotopes : on lit la combustion, pas le mythe de la brute.",
+    "Anti : ils n’avaient pas de culture est mort.",
+    "Archéologie du foyer.",
+    "Ce que le feu change pour le cerveau et la cuisine.",
+    "Sources : sites du Paléolithique moyen."
+   ],
+   "image": "assets/prochainement/15.webp",
+   "video": "assets/prochainement/15.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Observatoire Vera C. Rubin",
+   "hook": "Le ciel en time-lapse.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Vera C. Rubin va filmer le ciel en time-lapse.",
+    "Des alertes par millions. Un inventaire du variable.",
+    "Anti : ce n’est pas un Google Earth de l’espace magique.",
+    "Cadence, filtre, archive ouverte.",
+    "Histoire : Palomar, SDSS, LSST.",
+    "Ce qu’un amateur pourra suivre.",
+    "Sources : rubinobservatory.org."
+   ],
+   "image": "assets/prochainement/16.webp",
+   "video": "assets/prochainement/16.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Eau lourde sur une exoplanète",
+   "hook": "HDO ≠ H₂O. Origine de l’eau terrestre.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "HDO n’est pas H2O. Le rapport dit d’où vient l’eau.",
+    "Une exoplanète avec eau lourde relance l’origine terrestre.",
+    "Anti : on a trouvé l’océan est souvent un titre.",
+    "Spectre IR, raies, bruit.",
+    "Histoire : comètes, chondrites, océans.",
+    "Sources : JWST papers."
+   ],
+   "image": "assets/prochainement/17.webp",
+   "video": "assets/prochainement/17.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Tempêtes stellaires",
+   "hook": "CME hors Soleil. Danger Carrington.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Le Soleil crache. D’autres étoiles aussi, plus fort.",
+    "Une CME type Carrington aujourd’hui casserait plus que le télégraphe.",
+    "Anti : ce n’est pas la fin du monde calendaire.",
+    "Orages, satellites, réseaux.",
+    "Histoire : 1859, 1989 Québec.",
+    "Ce qu’on surveille.",
+    "Sources : NOAA SWPC, ESA."
+   ],
+   "image": "assets/prochainement/18.webp",
+   "video": "assets/prochainement/18.mp4"
+  },
+  {
+   "theme": "lois",
+   "title": "Navier–Stokes et l’IA",
+   "hook": "Preprint ≠ Prix du millénaire.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Navier-Stokes décrit les fluides. Le millénaire n’est pas tombé.",
+    "Une IA qui aide n’est pas une preuve mathématique.",
+    "Anti : preprint n’est pas un théorème.",
+    "Ce qu’est une existence lisse en 3D.",
+    "Histoire : Euler, Reynolds, Clay.",
+    "Sources : Clay Math, arXiv commenté."
+   ],
+   "image": "assets/prochainement/19.webp",
+   "video": "assets/prochainement/19.mp4"
+  },
+  {
+   "theme": "lois",
+   "title": "Limite de Landauer",
+   "hook": "Énergie minimale pour effacer 1 bit.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Effacer un bit a un coût énergétique minimal.",
+    "Landauer : information et chaleur sont cousins.",
+    "Anti : ça ne prouve pas la conscience.",
+    "Ordinateurs, irréversibilité, thermodynamique.",
+    "Histoire : Maxwell, Szilard, Landauer 1961.",
+    "Sources : Phys. Rev. classics."
+   ],
+   "image": "assets/prochainement/20.webp",
+   "video": "assets/prochainement/20.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Organiques à Jezero",
+   "hook": "Taches de léopard. Carbone ≠ preuve de vie.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Jezero : taches de léopard, organiques.",
+    "Carbone n’est pas vie. Rocher n’est pas fossile.",
+    "Anti : Perseverance a trouvé des microbes — non démontré.",
+    "Comment on évite le faux positif.",
+    "Histoire : ALH84001, leçon d’humilité.",
+    "Sources : NASA Mars 2020."
+   ],
+   "image": "assets/prochainement/21.webp",
+   "video": "assets/prochainement/21.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Océan d’Encelade",
+   "hook": "Microbes en saumure pH 11. Habitable ≠ habité.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Encelade crache des panaches. Océan sous la glace, pH 11.",
+    "Habitable n’est pas habité.",
+    "Anti : microbe confirmé ? Non.",
+    "Saumure, énergie chimique, échantillonnage futur.",
+    "Histoire : Cassini.",
+    "Sources : NASA Saturn."
+   ],
+   "image": "assets/prochainement/22.webp",
+   "video": "assets/prochainement/22.mp4"
+  },
+  {
+   "theme": "terre",
+   "title": "Mars n’est pas morte",
+   "hook": "InSight, manteau partiellement fondu.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Mars a encore un peu de chaleur interne.",
+    "InSight : séismes, noyau, manteau pas totalement mort.",
+    "Anti : on va terraformer l’année prochaine.",
+    "Géophysique d’une planète froide.",
+    "Sources : InSight team."
+   ],
+   "image": "assets/prochainement/23.webp",
+   "video": "assets/prochainement/23.mp4"
+  },
+  {
+   "theme": "terre",
+   "title": "Terre boule de neige",
+   "hook": "Saumures à −15 °C, vie sous la glace.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "La Terre a été une boule de neige. La vie a tenu dans des saumures.",
+    "-15 C n’est pas zéro vivant.",
+    "Anti : tout n’était pas gelé comme un freezer.",
+    "Preuves : cap carbonates, diamictites.",
+    "Histoire : Hoffman, Schrag.",
+    "Sources : géologie précambrienne."
+   ],
+   "image": "assets/prochainement/24.webp",
+   "video": "assets/prochainement/08.mp4"
+  },
+  {
+   "theme": "terre",
+   "title": "Grande oxydation",
+   "hook": "L’oxygène avant l’oxygène. Aérobies ~2,7 Ga.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "L’oxygène a monté avant d’être partout.",
+    "Aérobies vers 2,7 Ga, Grande Oxydation plus tard.",
+    "Anti : une cyanobactérie a tout changé en une nuit.",
+    "Isotopes du soufre, banded iron.",
+    "Sources : géochimie Archéen."
+   ],
+   "image": "assets/prochainement/25.webp",
+   "video": "assets/prochainement/25.mp4"
+  },
+  {
+   "theme": "vivant",
+   "title": "Archées d’Asgard",
+   "hook": "Origine de la cellule à noyau.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Les archées d’Asgard ressemblent au chaînon vers la cellule à noyau.",
+    "Un vivant qui brouille bactérie et eucaryote.",
+    "Anti : on n’a pas créé Adam cellulaire.",
+    "Génomes, cultures difficiles.",
+    "Histoire : Woese, Lokiarchaeota.",
+    "Sources : Nature microbiology."
+   ],
+   "image": "assets/prochainement/26.webp",
+   "video": "assets/prochainement/26.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Télescope Nancy Grace Roman",
+   "hook": "Lancé le 30 août 2026. Grand champ IR.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Nancy Grace Roman : grand champ infrarouge, lancé le 30 août 2026.",
+    "Complément du JWST, pas un clone.",
+    "Anti : ce n’est pas Hubble 3.",
+    "Microlentilles, énergie noire, exoplanètes.",
+    "Sources : NASA Roman."
+   ],
+   "image": "assets/prochainement/27.webp",
+   "video": "assets/prochainement/27.mp4"
+  },
+  {
+   "theme": "lois",
+   "title": "PROBA-3 · éclipse artificielle",
+   "hook": "Deux satellites, couronne pendant des heures.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "PROBA-3 : deux satellites font une éclipse à la demande.",
+    "La couronne pendant des heures, pas deux minutes.",
+    "Anti : on n’a pas éteint le Soleil.",
+    "Formation flying, occultation.",
+    "Sources : ESA."
+   ],
+   "image": "assets/prochainement/28.webp",
+   "video": "assets/prochainement/28.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Foudre martienne",
+   "hook": "Décharges dans les dust devils.",
+   "duration": "≈ 1 h 30–2 h",
+   "teaser": [
+    "Dust devil martien, charges, possible décharge.",
+    "Foudre sans orage terrestre.",
+    "Anti : Mars n’est pas Jupiter.",
+    "Mesures in situ vs modèle.",
+    "Sources : missions Mars."
+   ],
+   "image": "assets/prochainement/29.webp",
+   "video": "assets/prochainement/29.mp4"
+  },
+  {
+   "theme": "terre",
+   "title": "Oxygène et dipôle",
+   "hook": "540 Ma de parallèle champ B / pO₂.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "540 Ma de parallèle entre champ B et pO2 : corrélation à expliquer.",
+    "Pas une loi magique.",
+    "Anti : un graphe n’est pas une cause.",
+    "Paléomagnétisme et paléo-oxygène.",
+    "Sources : papers 2020s."
+   ],
+   "image": "assets/prochainement/30.webp",
+   "video": "assets/prochainement/08.mp4"
+  },
+  {
+   "theme": "lois",
+   "title": "Systèmes complexes et réseaux",
+   "hook": "Réseaux, émergence, seuils, avalanches. Du cerveau au climat.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Un réseau, ce n’est pas tout est lié en slogan.",
+    "Noeuds, liens, seuils, avalanches.",
+    "Cerveau, épidémie, climat, web : mêmes outils, pas mêmes leçons.",
+    "Anti : une infographie virale n’est pas un modèle.",
+    "Émergence : ce qui apparaît à l’échelle du tout.",
+    "Histoire : Erdos-Renyi, Watts-Strogatz, Barabasi.",
+    "Ce qu’un seuil change.",
+    "Sources : Newman, manuels réseaux."
+   ],
+   "image": "assets/prochainement/31.webp",
+   "video": "assets/prochainement/31.mp4"
+  },
+  {
+   "theme": "lois",
+   "title": "Temps, irréversibilité, mémoire du temps",
+   "hook": "Flèche du temps, entropie, ce que la matière « retient ».",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Le temps des équations peut se reculer. Le temps réel, non.",
+    "Entropie, mémoire de la matière, irréversibilité.",
+    "Un sablier cassé ne se répare pas tout seul.",
+    "Anti : on va inverser le temps en labo comme magie.",
+    "Flèche thermo vs flèche cosmologique.",
+    "Histoire : Boltzmann, Prigogine.",
+    "Ce que la mémoire veut dire hors cerveau.",
+    "Sources : thermo statistique."
+   ],
+   "image": "assets/prochainement/32.webp",
+   "video": "assets/prochainement/32.mp4"
+  },
+  {
+   "theme": "lois",
+   "title": "Physico-chimie de la cuisine",
+   "hook": "Maillard, émulsions, températures. Gastronomie comme labo.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "La cuisine est un labo : Maillard, émulsions, températures.",
+    "Goûter, c’est mesurer sans le dire.",
+    "Anti : moléculaire n’est pas une secte ni une arnaque.",
+    "Histoire : Rumford, This, McGee.",
+    "Réactions, textures, sécurité alimentaire.",
+    "Ce qu’une sonde change dans une casserole.",
+    "Sources : physico-chimie des aliments."
+   ],
+   "image": "assets/prochainement/33.webp",
+   "video": "assets/prochainement/33.mp4"
+  },
+  {
+   "theme": "vivant",
+   "title": "Technologies médicales et corps augmentés",
+   "hook": "Prothèses, implants, interfaces. Promesses et limites.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Prothèse, implant, interface : le corps peut être réparé, parfois augmenté.",
+    "Promesse n’est pas un produit vendu sur une pub.",
+    "Anti : transhumanisme magazine n’est pas un essai clinique.",
+    "Histoire : jambes de bois, pacemakers, cochlear.",
+    "Éthique, accès, données neurales.",
+    "Sources : FDA, revues médicales."
+   ],
+   "image": "assets/prochainement/34.webp",
+   "video": "assets/prochainement/34.mp4"
+  },
+  {
+   "theme": "terre",
+   "title": "Pollution invisible et santé",
+   "hook": "Particules fines, perturbateurs, bruit, lumière.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Ce qu’on ne voit pas : PM2.5, perturbateurs, bruit, lumière.",
+    "Santé publique de l’invisible.",
+    "Anti : tout est poison et rien n’est poison sont deux paresses.",
+    "Dose, durée, cocktail.",
+    "Histoire : smog de Londres, plomb, amiante.",
+    "Sources : OMS, ANSES, EPA."
+   ],
+   "image": "assets/prochainement/35.webp",
+   "video": "assets/prochainement/35.mp4"
+  },
+  {
+   "theme": "lois",
+   "title": "Statistiques criminelles et science du crime",
+   "hook": "Preuves, biais, ADN, ce que les chiffres ne disent pas.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Le crime produit des chiffres. Les chiffres produisent des récits.",
+    "ADN, balistique, biais de base.",
+    "Anti : les stats prouvent que — sans dénominateur.",
+    "Histoire : Bertillon, Locard, PCR.",
+    "Ce qu’un tribunal peut demander à une science.",
+    "Sources : forensic science reviews, avec prudence."
+   ],
+   "image": "assets/prochainement/36.webp",
+   "video": "assets/prochainement/36.mp4"
+  },
+  {
+   "theme": "vivant",
+   "title": "Histoire des épidémies et santé publique",
+   "hook": "Pestes, vaccine, John Snow, OMS. Méthode avant panique.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Peste, vaccine, John Snow, OMS.",
+    "Une épidémie est une courbe avant d’être une panique.",
+    "Anti : complot sanitaire et naïveté officielle : deux écueils.",
+    "Histoire des cordons, des égouts, des vaccins.",
+    "Méthode : cluster, R, essai.",
+    "Sources : archives OMS, Snow, CDC."
+   ],
+   "image": "assets/prochainement/37.webp",
+   "video": "assets/prochainement/37.mp4"
+  },
+  {
+   "theme": "vivant",
+   "title": "Science des addictions",
+   "hook": "Cerveau, dopamine, tolérance. Ni morale ni déni.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Addiction : cerveau, dopamine, tolérance, contexte.",
+    "Ni vice pur ni fatalité chimique seule.",
+    "Anti : une fois accro c’est fini, et c’est juste la volonté.",
+    "Histoire : opium, alcool, nicotine, jeux.",
+    "Ce que soigner veut dire.",
+    "Sources : NIDA, Inserm."
+   ],
+   "image": "assets/prochainement/38.webp",
+   "video": "assets/prochainement/38.mp4"
+  },
+  {
+   "theme": "terre",
+   "title": "Sciences et religions — dialogues et conflits",
+   "hook": "Galilée n’est pas tout le dossier. Méthode vs dogme.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Galilée n’est pas tout le dossier.",
+    "Méthode vs dogme, parfois alliance, parfois procès.",
+    "Anti : science égale athéisme, et foi égale anti-science.",
+    "Histoire : universités médiévales, Darwin, Scopes.",
+    "Ce qu’on peut dialoguer sans confondre les genres.",
+    "Sources : histoire des sciences."
+   ],
+   "image": "assets/prochainement/39.webp",
+   "video": "assets/prochainement/39.mp4"
+  },
+  {
+   "theme": "lois",
+   "title": "Futur des transports et de la mobilité",
+   "hook": "Batteries, hydrogène, rail, aviation. Physique des contraintes.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Batterie, hydrogène, rail, aviation : la physique des contraintes d’abord.",
+    "Un slide 2050 zéro carbone n’est pas un bilan.",
+    "Anti : miracle énergétique sans ordres de grandeur.",
+    "Densité d’énergie, réseau, matériaux.",
+    "Histoire : cheval, vapeur, pétrole, électrique.",
+    "Sources : IEA, analyses cycle de vie."
+   ],
+   "image": "assets/prochainement/40.webp",
+   "video": "assets/prochainement/40.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Exoplanètes et mondes extrêmes",
+   "hook": "Laves, océans d’hydrogène, Jupiters chauds.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Mondes de lave, océans d’hydrogène, Jupiters chauds.",
+    "L’étrange est la norme hors Système solaire.",
+    "Anti : carte postale égale climat réel.",
+    "Histoire : 51 Peg, hot Jupiters.",
+    "Ce qu’un spectre dit d’une atmosphère.",
+    "Sources : archive exoplanètes."
+   ],
+   "image": "assets/prochainement/41.webp",
+   "video": "assets/prochainement/41.mp4"
+  },
+  {
+   "theme": "cosmos",
+   "title": "Étoiles — naissance, vie, mort",
+   "hook": "Nuage, séquence principale, géante, supernova, naine.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Nuage, séquence principale, géante, supernova, naine.",
+    "Une étoile a un budget d’hydrogène.",
+    "Anti : le Soleil n’explose pas bientôt à l’échelle humaine.",
+    "Diagramme HR, masse, destin.",
+    "Histoire : Payne-Gaposchkin, Chandrasekhar.",
+    "Sources : manuels d’astro stellaire."
+   ],
+   "image": "assets/prochainement/42.webp",
+   "video": "assets/prochainement/42.mp4"
+  },
+  {
+   "theme": "lois",
+   "title": "Histoire de la chimie et thermochimie",
+   "hook": "Du phlogistique à ΔH. Chaleur, liaisons, mesures.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Du phlogistique à delta H.",
+    "La chaleur d’une réaction s’est apprise en brûlant et en pesant.",
+    "Anti : alchimie n’est pas la chimie.",
+    "Lavoisier, Hess, Gibbs.",
+    "Thermo-chimie utile : cuisine, moteur, climat.",
+    "Sources : histoire de la chimie."
+   ],
+   "image": "assets/prochainement/43.webp",
+   "video": "assets/prochainement/43.mp4"
+  },
+  {
+   "theme": "lois",
+   "title": "Qu’est-ce que l’esprit critique",
+   "hook": "Méthode ECI : échelle, mesure, modèle, source.",
+   "duration": "≈ 2 h",
+   "teaser": [
+    "Esprit critique : échelle, mesure, modèle, source.",
+    "Ce n’est pas douter de tout pour le style.",
+    "Anti : relativisme et autorité aveugle.",
+    "Méthode ECI appliquée à une rumeur.",
+    "Biais, réplication, conflit d’intérêts.",
+    "Histoire : méthode expérimentale.",
+    "Outil réutilisable après le live."
+   ],
+   "image": "assets/prochainement/44.webp",
+   "video": "assets/prochainement/44.mp4"
+  },
+  {
+   "theme": "lois",
+   "title": "Histoire des mathématiques",
+   "hook": "Preuve, zéro, géométrie, analyse. Pas une liste de génies.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Le zéro, la preuve, la géométrie, l’analyse.",
+    "Pas une galerie de génies isolés.",
+    "Anti : les maths c’est fini, l’IA calcule.",
+    "Histoire : Babylon, Euclide, al-Khwarizmi, Newton, Noether.",
+    "Ce qu’est une démonstration.",
+    "Sources : histoire des maths."
+   ],
+   "image": "assets/prochainement/45.webp",
+   "video": "assets/prochainement/45.mp4"
+  },
+  {
+   "theme": "terre",
+   "title": "Les femmes oubliées dans les sciences",
+   "hook": "Travail réel, signatures volées, archives. Noms et faits.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Des femmes ont produit des mesures, des catalogues, des preuves.",
+    "On a souvent signé autre chose au-dessus.",
+    "Anti : tokenisme et déni : deux fautes.",
+    "Archives, priorités, salaires, noms.",
+    "Histoire : Leavitt, Franklin, Payne, Mirzakhani — et les oubliées sans rue.",
+    "Méthode : sources primaires.",
+    "Hors portraits inventés."
+   ],
+   "image": "assets/prochainement/46.webp",
+   "video": "assets/prochainement/46.mp4"
+  },
+  {
+   "theme": "terre",
+   "title": "Expériences controversées dans l’histoire des sciences",
+   "hook": "Tuskegee, Milgram, Willowbrook, Unit 731, eugénisme. Faits, archives, éthique. Pas un mode d’emploi.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Tuskegee, Milgram, Willowbrook, eugénisme, Unit 731.",
+    "Faits, archives, qui a décidé, ce que ça a changé.",
+    "Code de Nuremberg, Helsinki, comités.",
+    "Anti : ni voyeurisme ni la science excuse tout.",
+    "Pas un mode d’emploi.",
+    "Histoire de l’éthique comme frein nécessaire.",
+    "Ce qu’un novice doit exiger aujourd’hui.",
+    "Sources : archives de santé publique, rapports officiels."
+   ],
+   "image": "assets/prochainement/47.webp",
+   "video": "assets/prochainement/47.mp4"
+  },
+  {
+   "theme": "vivant",
+   "title": "L’excision et la circoncision",
+   "hook": "Deux actes distincts. Santé, droit, consentement. Pas un mode d’emploi.",
+   "duration": "≈ 2 h 30",
+   "teaser": [
+    "Deux gestes trop souvent collés dans la même phrase. Ce n’est pas le même acte.",
+    "Circoncision masculine : prépuce. Débats médicaux, religieux, juridiques — pas un slogan.",
+    "Excision / MGF : l’OMS la classe comme atteinte à la santé et aux droits.",
+    "On distinguera types, géographies, chiffres — sans catalogue opératoire.",
+    "Santé : douleurs, infections, accouchements, séquelles. Sources cliniques, pas des rumeurs.",
+    "Consentement : adulte, enfant, pression sociale. Qui décide du corps.",
+    "Histoire et religions : un rite n’est pas automatiquement un soin.",
+    "Droit français et conventions : l’excision est un crime. La circoncision n’est pas traitée pareil.",
+    "Anti : ni stigmatiser des peuples entiers, ni nier les lésions.",
+    "Live de méthode ECI. Pas un tutoriel."
+   ],
+   "image": "assets/prochainement/48.webp",
+   "video": "assets/prochainement/48.mp4"
+  }
+ ]
+}

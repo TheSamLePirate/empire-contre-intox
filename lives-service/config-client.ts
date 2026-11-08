@@ -29,6 +29,21 @@ export function parseAccounts(value: unknown): WatchAccount[] {
       names.has(a.username)
     )
       throw new Error("INVALID_ACCOUNT");
+    const d = a.dossier;
+    if (
+      d !== undefined &&
+      d !== null &&
+      (typeof d !== "object" ||
+        typeof d.path !== "string" ||
+        !/^[A-Za-z0-9_-][A-Za-z0-9._~\/-]{0,199}(?:#[A-Za-z0-9_-][A-Za-z0-9_.-]{0,79})?$/.test(d.path) ||
+        d.path.includes("..") ||
+        typeof d.title !== "string" ||
+        !d.title ||
+        d.title.length > 160 ||
+        typeof d.roomId !== "string" ||
+        !/^\d{1,30}$/.test(d.roomId))
+    )
+      throw new Error("INVALID_ACCOUNT");
     ids.add(a.id);
     names.add(a.username);
     return {
@@ -39,6 +54,7 @@ export function parseAccounts(value: unknown): WatchAccount[] {
       published: a.published,
       sortOrder: a.sortOrder,
       version: a.version,
+      dossier: d ? { path: d.path, title: d.title, roomId: d.roomId } : null,
     };
   });
 }

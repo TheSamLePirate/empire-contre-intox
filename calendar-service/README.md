@@ -85,7 +85,7 @@ Les images sont immuables, sans suppression depuis l’interface : remplacer un 
 
 ## Sauvegarder et restaurer
 
-Sauvegarder **la base et le dossier `avatars/` ensemble**. Ne pas copier seulement le fichier SQLite à chaud : la base utilise WAL.
+Sauvegarder **la base et les dossiers `avatars/` et `upcoming/` ensemble** (portraits et affiches importées de Prochainement). Ne pas copier seulement le fichier SQLite à chaud : la base utilise WAL.
 
 Depuis la console du conteneur, vers un dossier **nouveau, hors `/data`** :
 
@@ -93,9 +93,9 @@ Depuis la console du conteneur, vers un dossier **nouveau, hors `/data`** :
 bun manage.ts backup /tmp/sauvegarde-calendrier
 ```
 
-La commande utilise `VACUUM INTO` pour une copie cohérente, puis copie les portraits. Ils sont immuables et jamais supprimés, ce qui conserve la cohérence avec l’instantané de base. Copier immédiatement ce dossier vers un stockage durable externe au conteneur (ex. `docker compose cp calendar:/tmp/sauvegarde-calendrier ./sauvegarde-calendrier`). L’export contient des données de comptes et doit rester privé.
+La commande utilise `VACUUM INTO` pour une copie cohérente, puis copie les portraits (`avatars/`) et les affiches de Prochainement (`upcoming/`), sans les imports inachevés (`*.tmp`). Ces images sont immuables et jamais supprimées, ce qui conserve la cohérence avec l’instantané de base. Copier immédiatement ce dossier vers un stockage durable externe au conteneur (ex. `docker compose cp calendar:/tmp/sauvegarde-calendrier ./sauvegarde-calendrier`). L’export contient des données de comptes et doit rester privé.
 
-Restauration : arrêter `calendar`, sauvegarder préalablement l’état courant, restaurer le fichier `calendar.sqlite` et le dossier `avatars/` dans le volume, retirer les anciens fichiers `calendar.sqlite-wal` / `calendar.sqlite-shm` **service arrêté**, rétablir le propriétaire du volume (`bun`), puis exécuter `bun manage.ts revoke-sessions` sur cette base et redémarrer le service. Vérifier une connexion, le JSON public et un portrait importé. Le snapshot ne contient pas les fichiers des portraits d’amorce : ceux-ci restent livrés par le dépôt calendrier dans l’image du site.
+Restauration : arrêter `calendar`, sauvegarder préalablement l’état courant, restaurer le fichier `calendar.sqlite` et les dossiers `avatars/` et `upcoming/` dans le volume, retirer les anciens fichiers `calendar.sqlite-wal` / `calendar.sqlite-shm` **service arrêté**, rétablir le propriétaire du volume (`bun`), puis exécuter `bun manage.ts revoke-sessions` sur cette base et redémarrer le service. Vérifier une connexion, le JSON public, un portrait importé et une affiche importée de Prochainement. Le snapshot ne contient pas les fichiers des portraits d’amorce : ceux-ci restent livrés par le dépôt calendrier dans l’image du site.
 
 ## Contrôles de déploiement
 
@@ -114,3 +114,18 @@ Vérifier le healthcheck `calendar`, `/api/calendar/health`, `/api/calendar/publ
 ## Gestion des lives TikTok
 
 L’onglet « Lives TikTok » est réservé aux administrateurs et conserve sa configuration et son audit dans cette même base. Les routes `/api/calendar/live-watch` réutilisent les sessions et CSRF du calendrier. `/api/calendar/internal/live-watch` est réservé au worker via `LIVES_INTERNAL_TOKEN`, avec ETag ; Nginx bloque son accès public. Voir [le service lives](../lives-service/README.md) pour le lancement de la stack et les secrets supplémentaires.
+
+## Le dossier du live
+
+Dans l’onglet « Lives TikTok », un compte **en direct** affiche le bouton « Associer un dossier ». La fenêtre propose les dossiers lus sur l’index du site (recherche par titre ou numéro), ou un chemin libre sur le site (`provoxys/son/index.html`, ancre `#…` possible), et le titre montré aux spectateurs. `PUT /api/calendar/live-watch/<id>/dossier` (admin, CSRF, version) enregistre `{path, title, roomId}` ; `dossier: null` le retire.
+
+Le dossier est lié à **la salle TikTok du live en cours** : au live suivant (nouvel identifiant de salle), il n’est plus affiché. Le chemin est validé côté serveur (pages du site uniquement : pas d’URL externe, ni `..`, ni l’administration, l’API, les médias ou `/lives/`). Le worker transmet le dossier dans `PublicLive.dossier` et pousse aussitôt un événement `state` aux spectateurs déjà connectés : la page du live l’intègre sans rechargement, sous le direct ou « côte à côte » sur grand écran (≥ 1180 px, préférence mémorisée), avec « Agrandir », « Plein écran » et « Ouvrir le dossier ». Les cartes des lives en cours affichent aussi le dossier associé.
+
+## Prochainement
+
+L’onglet « Prochainement » (tous les membres connectés, comme le calendrier) gère le programme de `/prochainement.html` : ajouter (à une position choisie), modifier, masquer (case « Publié »), réordonner (↑/↓) et supprimer. Chaque live a un thème (Lois du réel, Cosmos, Terre, Vivant), un titre, une accroche, une durée, un teasing (un point par ligne, 16 maximum), une affiche (bibliothèque `assets/prochainement/` ou image importée, réencodée en WebP 960 × 645) et une boucle vidéo facultative (`assets/prochainement/*.mp4`).
+
+- À la première ouverture d’une base, les 48 lives historiques sont importés depuis `calendar-service/prochainement-seed.json` (marqueur `upcoming_seeded` : un live supprimé n’est jamais réimporté). SQLite est ensuite la source de vérité.
+- `GET /api/calendar/upcoming` (public, CORS) renvoie les lives publiés, numérotés dans l’ordre (01, 02…). `GET /upcoming/all`, `POST /upcoming`, `PUT|DELETE /upcoming/item/<id>` (version), `PUT /upcoming/order` (révision de liste) et `POST /upcoming/media` exigent une session et le jeton CSRF. Toutes les écritures sont journalisées dans `upcoming_audit` (2 000 dernières).
+- Les affiches importées sont stockées dans `CALENDAR_DATA_DIR/upcoming/` (même volume ; incluses dans `bun manage.ts backup`) et servies par `/api/calendar/upcoming/media/<id>`.
+- `prochainement.html` garde son programme figé dans le HTML (lecture sans JavaScript, API injoignable) ; au chargement, il lit l’API et reconstruit affiche, « Ensuite », bandeau, ruban, filtres, cartes et compteurs. Le HTML figé n’est pas régénéré automatiquement : il reflète le programme d’origine.

@@ -16,13 +16,13 @@
     "preview": "astro preview",
     "check": "npm run prepare:legacy && astro check && vitest run && npm run check:calendar && npm run test:calendar",
     "check:calendar": "tsc --noEmit -p calendar-service/tsconfig.json",
-    "test:calendar": "bun test ./calendar-service/tests.ts",
+    "test:calendar": "bun test ./calendar-service/tests.ts ./calendar-service/upcoming.tests.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "validate:dist": "tsx scripts/validate-dist.ts",
     "build:lives": "bun scripts/build-lives.ts",
     "check:lives": "tsc --noEmit -p lives-service/tsconfig.json",
-    "test:lives": "bun test ./lives-service/tests ./calendar-service/lives.tests.ts"
+    "test:lives": "bun test ./lives-service/tests ./calendar-service/lives.tests.ts ./calendar-service/upcoming.tests.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "7.0.3",

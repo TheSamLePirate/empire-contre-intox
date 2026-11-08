@@ -1,6 +1,7 @@
 import { join, resolve } from "node:path";
 import { Store } from "./store.ts";
 import { createApp } from "./app.ts";
+import { seedUpcoming } from "./upcoming.ts";
 
 const directory = resolve(process.env.CALENDAR_DATA_DIR || "/data");
 const calendar = resolve(
@@ -17,10 +18,16 @@ const store = new Store(
   join(directory, "calendar.sqlite"),
   process.env.CALENDAR_SEED || join(calendar, "data/events.json"),
 );
+const imported = seedUpcoming(
+  store,
+  process.env.CALENDAR_UPCOMING_SEED || join(import.meta.dir, "prochainement-seed.json"),
+);
+if (imported) console.log(`Prochainement : ${imported} lives importés.`);
 const app = await createApp({
   store,
   publicOrigin: origin,
   uploadsDir: join(directory, "avatars"),
+  upcomingDir: join(directory, "upcoming"),
   internalToken: process.env.LIVES_INTERNAL_TOKEN,
   liveStatus: async () => {
     const response = await fetch(`${process.env.LIVES_URL || "http://lives:3003"}/internal/status`, {
@@ -48,7 +55,7 @@ const server = Bun.serve({
       return Response.redirect(`${origin}/empire-calendrier/`, 302);
     const rel = name || "index.html";
     if (
-      !/^(?:index\.html|data\/events\.json|admin\/(?:index\.html|admin\.js|admin\.css|lives-admin\.js)|[a-zA-Z0-9_.-]+\.(?:jpe?g|png|webp))$/.test(
+      !/^(?:index\.html|data\/events\.json|admin\/(?:index\.html|admin\.js|admin\.css|lives-admin\.js|upcoming-admin\.js)|[a-zA-Z0-9_.-]+\.(?:jpe?g|png|webp))$/.test(
         rel,
       )
     )

@@ -232,6 +232,7 @@
     .live:hover, .live:focus-within { border-color:color-mix(in srgb,var(--accent) 55%,transparent); box-shadow:0 28px 60px rgba(0,0,0,.5),0 0 40px color-mix(in srgb,var(--accent) 18%,transparent); }
     .live:hover::after, .live:focus-within::after { opacity:1; }
     .live[hidden] { display:none; }
+    .spotlight[hidden], .next-up[hidden], .spot-hook[hidden] { display:none !important; }
     .live-hit { position:absolute; inset:0; z-index:5; width:100%; padding:0; background:none; border:0; cursor:pointer; border-radius:3px; }
     .live-hit:focus-visible { outline-offset:-3px; }
     .live-media { position:relative; aspect-ratio:16/9; overflow:hidden; background:var(--void); }
@@ -1620,7 +1621,113 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-  (() => {
+  /* ── Programme géré dans l'administration ──────────────────────────────
+     Le HTML ci-dessus est le programme figé (lecture sans JavaScript, API
+     indisponible). Au chargement, la page lit le programme courant —
+     /api/calendar/upcoming, tenu à jour dans l'onglet « Prochainement » du
+     registre — puis reconstruit affiche, ensuite, ruban, filtres, cartes,
+     compteurs et bandeau avant d'activer les interactions. */
+  const ECI_UPCOMING = (() => {
+    const local = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
+    const url = (local ? '' : 'https://empire-contre-intox.com') + '/api/calendar/upcoming';
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const UNITS = ['zéro', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six', 'sept', 'huit', 'neuf', 'dix', 'onze', 'douze', 'treize', 'quatorze', 'quinze', 'seize'];
+    const TENS = { 2: 'vingt', 3: 'trente', 4: 'quarante', 5: 'cinquante', 6: 'soixante', 8: 'quatre-vingt' };
+    function words(n) {
+      if (n < 17) return UNITS[n];
+      if (n < 20) return 'dix-' + UNITS[n - 10];
+      if (n >= 100) return (n < 200 ? 'cent' : words(Math.floor(n / 100)) + ' cent') + (n % 100 ? ' ' + words(n % 100) : (n >= 200 ? 's' : ''));
+      let t = Math.floor(n / 10), u = n % 10;
+      if (t === 7 || t === 9) { t -= 1; u += 10; }
+      const base = TENS[t];
+      if (!u) return t === 8 ? 'quatre-vingts' : base;
+      if ((u === 1 || u === 11) && t !== 8) return base + ' et ' + words(u);
+      return base + '-' + words(u);
+    }
+    const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+    const hours = d => { const m = /(\d+)\s*h(?:\s*(\d+))?/.exec(d); return m ? +m[1] + (m[2] ? +m[2] / 60 : 0) : 0; };
+    const safeMedia = (p, re) => typeof p === 'string' && (re.test(p) || /^https:\/\/empire-contre-intox\.com\/api\/calendar\/upcoming\/media\/[\w-]{1,80}$/.test(p) || (local && /^https?:\/\/[^/]+\/api\/calendar\/upcoming\/media\/[\w-]{1,80}$/.test(p))) ? p : '';
+    const IMG = /^assets\/prochainement\/[\w-]{1,60}\.(?:webp|jpe?g|png)$/, VID = /^assets\/prochainement\/[\w-]{1,60}\.mp4$/;
+    const FALLBACK = 'assets/prochainement/prochainement-hero.webp';
+    const ico = t => `<svg class="ico" aria-hidden="true"><use href="#i-${t}"/></svg>`;
+    const video = (v, cls) => v ? `<video class="${cls}" muted loop playsinline preload="none" data-src="${esc(v)}" aria-hidden="true" tabindex="-1"></video>` : '';
+    function card(l) {
+      const n = l.number, t = l.theme;
+      return `
+          <article class="live" id="live-${n}" data-t="${t}" data-n="${n}" style="--accent:var(--${t});view-transition-name:live-${n}">
+            <button class="live-hit" type="button" aria-haspopup="dialog" aria-label="Ouvrir le teasing du live ${n} : ${esc(l.title)}"></button>
+            <div class="live-media">
+              <img class="live-poster" src="${esc(l.image)}" width="640" height="430" loading="lazy" decoding="async" alt="">
+              ${video(l.video, 'lazy-vid')}
+              <span class="live-num" aria-hidden="true">${n}</span>
+              <span class="live-soon"><i aria-hidden="true"></i>Prochainement</span>
+            </div>
+            <div class="live-body">
+              <p class="live-kicker">${ico(t)}<span class="live-tag">${esc(l.tag)}</span><span class="live-dur">${esc(l.duration)}</span></p>
+              <h3>${esc(l.title)}</h3>
+              ${l.hook ? `<p class="live-hook">${esc(l.hook)}</p>` : ''}
+              <span class="live-cta" aria-hidden="true">Ouvrir le teasing <b>→</b></span>
+            </div>
+            <template>
+              <p class="tz-kicker">${ico(t)}Live ${n} · Prochainement</p>
+              <h3 id="tz-title">${n} · ${esc(l.title)}</h3>
+              <p class="tz-meta">${esc(l.duration)} · ${esc(l.tag)} · Prochainement</p>
+              <ul class="tz-body">${l.teaser.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+            </template>
+          </article>`;
+    }
+    function render(data) {
+      const $ = (s, r = document) => r.querySelector(s);
+      const themes = (data.themes || []).filter(t => /^[a-z]{2,20}$/.test(t.id));
+      const known = new Set(themes.map(t => t.id));
+      const lives = (data.lives || []).filter(l => l && known.has(l.theme) && /^\d{2,3}$/.test(l.number) && typeof l.title === 'string').map(l => ({
+        ...l,
+        hook: typeof l.hook === 'string' ? l.hook : '',
+        teaser: Array.isArray(l.teaser) ? l.teaser.filter(x => typeof x === 'string') : [],
+        image: safeMedia(l.image, IMG) || FALLBACK,
+        video: safeMedia(l.video, VID),
+      }));
+      const n = lives.length, W = cap(words(n)), s = n > 1 ? 's' : '';
+      const counts = Object.fromEntries(themes.map(t => [t.id, lives.filter(l => l.theme === t.id).length]));
+      const used = themes.filter(t => counts[t.id]);
+      const total = Math.round(lives.reduce((a, l) => a + hours(l.duration), 0));
+      /* Hero */
+      $('.hero .lead').textContent = `${W} live${s}, dans l’ordre, futurs live${s} à venir.`;
+      const chip = $('.hero .chips li:nth-child(2)'); if (chip) chip.textContent = `${n} live${s}`;
+      const stats = [...document.querySelectorAll('.hero .stats [data-count]')];
+      [n, used.length, total].forEach((v, i) => { if (stats[i]) { stats[i].dataset.count = v; stats[i].textContent = v; } });
+      const mq = lives.map(l => `<span style="--accent:var(--${l.theme})"><b>${l.number}</b>${esc(l.title)}</span>`).join('');
+      $('.mq-track').innerHTML = mq + mq;
+      /* À l'affiche + Ensuite */
+      const spot = $('#affiche'), first = lives[0];
+      spot.hidden = !first;
+      if (first) {
+        const sc = $('.spot-card', spot);
+        sc.style.setProperty('--accent', `var(--${first.theme})`);
+        $('.spot-media', sc).innerHTML = `<img src="${esc(first.image)}" width="640" height="430" loading="lazy" decoding="async" alt="">${video(first.video, 'lazy-vid')}<span class="spot-num" aria-hidden="true">${first.number}</span>`;
+        $('.spot-copy .section-kicker', sc).innerHTML = `${ico(first.theme)}À l'affiche · Live ${first.number}`;
+        $('#spot-title').textContent = first.title;
+        const hook = $('.spot-hook', sc); hook.textContent = first.hook; hook.hidden = !first.hook;
+        $('.spot-lines', sc).innerHTML = first.teaser.slice(0, 4).map(x => `<li>${esc(x)}</li>`).join('');
+        $('.spot-meta', sc).innerHTML = `<span>${esc(first.duration)}</span><span>${esc(first.tag)}</span><button class="button primary" type="button" data-goto="${first.number}" aria-haspopup="dialog">Ouvrir le teasing</button>`;
+        const next = lives.slice(1, 7);
+        $('.next-up', spot).hidden = !next.length;
+        $('.next-up ol', spot).innerHTML = next.map(l => `<li><button type="button" data-goto="${l.number}" style="--accent:var(--${l.theme})"><span class="nu-n">${l.number}</span><span class="nu-t">${esc(l.title)}</span><span class="nu-d">${esc(l.duration)}</span></button></li>`).join('');
+      }
+      /* Programme */
+      $('#programme-title').textContent = n ? `${W} live${s}` : 'Le programme se prépare';
+      $('#ribbon').innerHTML = used.map(t => `<button type="button" class="rib-seg" data-f="${t.id}" style="--accent:var(--${t.id});flex:${counts[t.id]}" aria-label="${esc(t.label)} : ${counts[t.id]} live${counts[t.id] > 1 ? 's' : ''}"><span class="rib-bar"></span><span class="rib-lbl">${ico(t.id)}<span class="rib-name">${esc(t.label)}</span><b>${counts[t.id]}</b></span></button>`).join('');
+      $('.filters').innerHTML = `<button type="button" data-f="all" aria-pressed="true">Tous<b>${n}</b></button>` + used.map(t => `<button type="button" data-f="${t.id}" aria-pressed="false" style="--accent:var(--${t.id})">${ico(t.id)}${esc(t.label)}<b>${counts[t.id]}</b></button>`).join('');
+      $('#board').innerHTML = lives.map(card).join('');
+      $('#shownCount').textContent = n;
+      const empty = $('#empty');
+      empty.hidden = n > 0;
+      if (!n) $('p', empty).textContent = 'Le prochain programme sera dévoilé très bientôt.';
+      document.documentElement.dataset.programme = 'live';
+    }
+    return { url, render };
+  })();
+  const boot = () => {
     const $ = (s, r = document) => r.querySelector(s);
     const $$ = (s, r = document) => [...r.querySelectorAll(s)];
     const root = document.documentElement;
@@ -1791,8 +1898,9 @@
       tzBody.scrollTop = 0;
       dlg.style.setProperty('--accent', `var(--${card.dataset.t})`);
       tzImg.src = $('.live-poster', card).getAttribute('src');
-      const src = $('.lazy-vid', card).dataset.src;
-      if (!RM && !SAVE) {
+      const lv = $('.lazy-vid', card), src = lv ? lv.dataset.src : '';
+      if (!src) { tzVid.pause(); tzVid.classList.remove('on'); tzVid.removeAttribute('src'); }
+      else if (!RM && !SAVE) {
         if (tzVid.getAttribute('src') !== src) {
           tzVid.classList.remove('on');
           tzVid.addEventListener('playing', () => tzVid.classList.add('on'), { once: true });
@@ -1856,6 +1964,13 @@
     };
     addEventListener('hashchange', fromHash);
     fromHash();
+  };
+  (async () => {
+    try {
+      const response = await fetch(ECI_UPCOMING.url, { credentials: 'omit', cache: 'no-cache', signal: AbortSignal.timeout ? AbortSignal.timeout(4000) : undefined });
+      if (response.ok) ECI_UPCOMING.render(await response.json());
+    } catch (e) { /* programme figé conservé */ }
+    boot();
   })();
   </script>
   <script src="assets/visit-counter.js?v=4f7555768f79" defer></script>

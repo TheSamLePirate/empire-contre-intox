@@ -3,7 +3,8 @@ WORKDIR /app/calendar-service
 COPY calendar-service/package.json calendar-service/bun.lock ./
 RUN bun install --frozen-lockfile --production
 COPY calendar-service/app.ts calendar-service/store.ts calendar-service/images.ts \
-     calendar-service/validation.ts calendar-service/lives.ts calendar-service/server.ts calendar-service/manage.ts ./
+     calendar-service/validation.ts calendar-service/lives.ts calendar-service/upcoming.ts \
+     calendar-service/prochainement-seed.json calendar-service/server.ts calendar-service/manage.ts ./
 COPY counter/lib.ts /app/counter/lib.ts
 COPY empire-calendrier/data/events.json /app/seed/events.json
 RUN mkdir -p /data && chown -R bun:bun /data /app

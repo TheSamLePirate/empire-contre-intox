@@ -1,4 +1,4 @@
-import { watchAccounts, watchRevision, saveWatchAccount } from "./lives.ts";
+import { watchAccounts, watchRevision, saveWatchAccount, setLiveDossier } from "./lives.ts";
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { join } from "node:path";
 import { RateLimiter } from "../counter/lib.ts";
@@ -12,6 +12,16 @@ import {
   text,
 } from "./validation.ts";
 import { saveAvatar, MAX_IMAGE_BYTES } from "./images.ts";
+import {
+  reorderUpcoming,
+  saveUpcoming,
+  saveUpcomingMedia,
+  upcomingLibrary,
+  upcomingLives,
+  upcomingMediaFile,
+  upcomingPublic,
+  upcomingRevision,
+} from "./upcoming.ts";
 
 const PREFIX = "/api/calendar";
 const SESSION_MS = 8 * 60 * 60 * 1000;
@@ -33,9 +43,12 @@ export interface AppOptions {
   now?: () => number;
   internalToken?: string;
   liveStatus?: () => Promise<unknown>;
+  /** Uploaded posters of the « Prochainement » programme (default: sibling of uploadsDir). */
+  upcomingDir?: string;
 }
 export async function createApp(options: AppOptions) {
   const { store, uploadsDir } = options;
+  const upcomingDir = options.upcomingDir ?? join(uploadsDir, "..", "upcoming");
   const origin = new URL(options.publicOrigin).origin;
   const local = ["127.0.0.1", "localhost", "[::1]"].includes(
     new URL(origin).hostname,
@@ -172,7 +185,9 @@ export async function createApp(options: AppOptions) {
       quota(limiter, (req.headers.get("x-real-ip") || "direct").slice(0, 128));
       if (
         req.method === "OPTIONS" &&
-        (path === "/public" || /^\/media\/[a-zA-Z0-9_-]{1,80}$/.test(path))
+        (path === "/public" ||
+          path === "/upcoming" ||
+          /^\/(?:upcoming\/)?media\/[a-zA-Z0-9_-]{1,80}$/.test(path))
       )
         return new Response(null, {
           status: 204,
@@ -187,6 +202,25 @@ export async function createApp(options: AppOptions) {
         return json(store.export(origin), 200, {
           "Access-Control-Allow-Origin": "*",
         });
+      if (path === "/upcoming" && req.method === "GET")
+        return json(upcomingPublic(store, origin), 200, {
+          "Access-Control-Allow-Origin": "*",
+        });
+      const poster = /^\/upcoming\/media\/([a-zA-Z0-9_-]{1,80})$/.exec(path);
+      if (poster && ["GET", "HEAD"].includes(req.method)) {
+        const file = upcomingMediaFile(store, upcomingDir, poster[1]);
+        if (!file || !(await file.exists()))
+          throw new Problem(404, "Image introuvable.");
+        return new Response(req.method === "HEAD" ? null : file, {
+          headers: {
+            "Content-Type": "image/webp",
+            "Cache-Control": "public, max-age=31536000, immutable",
+            "Access-Control-Allow-Origin": "*",
+            "X-Content-Type-Options": "nosniff",
+            "Content-Security-Policy": "default-src 'none'; sandbox",
+          },
+        });
+      }
       const media = /^\/media\/([a-zA-Z0-9_-]{1,80})$/.exec(path);
       if (media && ["GET", "HEAD"].includes(req.method)) {
         const avatar = store.one<AvatarRow>(
@@ -330,6 +364,14 @@ export async function createApp(options: AppOptions) {
         authorize();
         return value;
       }
+      const dossierRoute = /^\/live-watch\/([a-zA-Z0-9_-]{1,80})\/dossier$/.exec(path);
+      if (dossierRoute) {
+        if (authorize().role !== "admin") throw new Problem(403, "Gestion réservée aux administrateurs.");
+        if (req.method !== "PUT") throw new Problem(405, "Méthode non autorisée.");
+        const data = await contentBody();
+        if (authorize().role !== "admin") throw new Problem(403, "Gestion réservée aux administrateurs.");
+        return json(setLiveDossier(store, dossierRoute[1], data, user.login));
+      }
       const watchRoute = /^\/live-watch(?:\/([a-zA-Z0-9_-]{1,80}))?$/.exec(path);
       if (watchRoute) {
         if (authorize().role !== "admin") throw new Problem(403, "Gestion réservée aux administrateurs.");
@@ -345,6 +387,46 @@ export async function createApp(options: AppOptions) {
           return json(saveWatchAccount(store, watchRoute[1] ?? null, data, user.login, req.method === "DELETE"), req.method === "POST" ? 201 : 200);
         }
         throw new Problem(405, "Méthode non autorisée.");
+      }
+      // « Prochainement » : every signed-in member manages the programme, like the calendar.
+      if (path === "/upcoming/all" && req.method === "GET")
+        return json({
+          lives: upcomingLives(store),
+          revision: upcomingRevision(store),
+          library: upcomingLibrary(store, origin),
+        });
+      if (path === "/upcoming" && req.method === "POST")
+        return json(saveUpcoming(store, null, await contentBody(), user.login), 201);
+      if (path === "/upcoming/order" && req.method === "PUT")
+        return json(reorderUpcoming(store, await contentBody(), user.login));
+      const upcoming = /^\/upcoming\/item\/([a-zA-Z0-9_-]{1,80})$/.exec(path);
+      if (upcoming && ["PUT", "DELETE"].includes(req.method))
+        return json(
+          saveUpcoming(store, upcoming[1], await contentBody(), user.login, req.method === "DELETE"),
+        );
+      if (path === "/upcoming/media" && req.method === "POST") {
+        quota(uploads, user.id);
+        if (processingImages >= 2)
+          throw new Problem(429, "Import d'images occupé. Réessayez dans un instant.");
+        const type = req.headers.get("content-type") || "";
+        if (!type.startsWith("multipart/form-data;"))
+          throw new Problem(415, "Formulaire d'image attendu.");
+        const content = await bytes(req, MAX_IMAGE_BYTES + 16384);
+        let form: FormData;
+        try {
+          form = await new Response(content, { headers: { "Content-Type": type } }).formData();
+        } catch {
+          throw new Problem(400, "Formulaire illisible.");
+        }
+        const file = form.get("file");
+        if (!(file instanceof File)) throw new Problem(400, "Image manquante.");
+        processingImages++;
+        try {
+          const saved = await saveUpcomingMedia(store, upcomingDir, file, form.get("label"), user.id, authorize);
+          return json({ ...saved, url: `${origin}${saved.path}` }, 201);
+        } finally {
+          processingImages--;
+        }
       }
       if (path === "/state" && req.method === "GET")
         return json({

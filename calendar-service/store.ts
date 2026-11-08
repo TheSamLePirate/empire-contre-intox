@@ -1,4 +1,5 @@
 import { initLives } from "./lives.ts";
+import { initUpcoming } from "./upcoming.ts";
 import { Database, type SQLQueryBindings } from "bun:sqlite";
 import { randomUUID } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync } from "node:fs";
@@ -87,6 +88,7 @@ export class Store {
         version INTEGER NOT NULL, deleted INTEGER NOT NULL, actor TEXT NOT NULL, action TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
       CREATE INDEX IF NOT EXISTS event_history ON history(event_id, id);`);
     initLives(this);
+    initUpcoming(this);
     if (
       !this.all<{ name: string }>("PRAGMA table_info(users)").some(
         (c) => c.name === "display_name",

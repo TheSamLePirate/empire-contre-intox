@@ -6,15 +6,12 @@ import { Store, type AvatarRow } from "./store.ts";
 import { Problem, text } from "./validation.ts";
 
 export const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
-export async function saveAvatar(
-  store: Store,
-  directory: string,
+/** Validates signatures, decodes, orients and re-encodes an upload as a bounded WebP. */
+export async function reencodeImage(
   file: File,
-  label: unknown,
-  userId: string,
-  authorize: () => void,
-) {
-  const title = text(label, "Nom du portrait", 80);
+  width: number,
+  height: number,
+): Promise<Buffer> {
   if (!file.size || file.size > MAX_IMAGE_BYTES)
     throw new Problem(413, "Image trop volumineuse : maximum 5 Mo.");
   const input = Buffer.from(await file.arrayBuffer());
@@ -46,7 +43,7 @@ export async function saveAvatar(
     // Re-encoding drops source metadata and produces a bounded, immutable raster.
     output = await pipeline
       .rotate()
-      .resize(512, 512, { fit: "cover" })
+      .resize(width, height, { fit: "cover" })
       .webp({ quality: 85 })
       .toBuffer();
   } catch {
@@ -55,6 +52,18 @@ export async function saveAvatar(
       "Image illisible, animée ou trop grande (maximum 16 millions de pixels).",
     );
   }
+  return output;
+}
+export async function saveAvatar(
+  store: Store,
+  directory: string,
+  file: File,
+  label: unknown,
+  userId: string,
+  authorize: () => void,
+) {
+  const title = text(label, "Nom du portrait", 80);
+  const output = await reencodeImage(file, 512, 512);
   authorize();
   const hash = createHash("sha256").update(output).digest("hex");
   const duplicate = store.one<AvatarRow>(

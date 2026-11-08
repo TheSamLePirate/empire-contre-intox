@@ -298,3 +298,28 @@ test("configuration HTTP polling renews freshness on 304 and never follows redir
     await server.stop(true);
   }
 });
+test("a live dossier is pushed to viewers and only shown for its own room", async () => {
+  const s = setup();
+  s.registry.validateConfig([account("alice")]);
+  await s.registry.tick();
+  await flush();
+  const states: (string | null)[] = [];
+  const off = s.registry.subscribe("alice", null, (e) => {
+    if (e.type === "state") states.push((e.data as { dossier: { title: string } | null }).dossier?.title ?? null);
+  });
+  const withDossier = { ...account("alice"), version: 2, dossier: { path: "provoxys/son/index.html", title: "Le Son", roomId: "123" } };
+  s.registry.validateConfig(parseAccounts({ accounts: [withDossier] }));
+  expect(states).toEqual(["Le Son"]);
+  expect(s.registry.list().accounts[0].dossier).toEqual({ path: "provoxys/son/index.html", title: "Le Son" });
+  // A new room (next live) never inherits the previous dossier.
+  s.setRoom(room("456"));
+  s.advance(61000);
+  s.registry.validateConfig();
+  await s.registry.tick();
+  await flush();
+  expect(s.registry.list().accounts[0].dossier).toBeNull();
+  expect(() => parseAccounts({ accounts: [{ ...withDossier, dossier: { ...withDossier.dossier, path: "../admin.html" } }] })).toThrow();
+  expect(() => parseAccounts({ accounts: [{ ...withDossier, dossier: { ...withDossier.dossier, roomId: "x" } }] })).toThrow();
+  off();
+  s.registry.close();
+});
