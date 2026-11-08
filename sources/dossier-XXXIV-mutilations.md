@@ -616,7 +616,7 @@ Les références attribuées à Marc Goldberg et Marge Karsten, l’entrée Boyl
 ### Images, sommaire et annexes
 
 - Quatre images créées sont des illustrations symboliques : ni planches anatomiques, ni données médicales.
-- Deux analogies fournies sont accessibles dans un volet explicitement légendé ; leurs limites et la formule « excès de tissu » sont signalées.
-- La carte fournie, sans date ni jeu de données vérifiables et présentant des incohérences, n’est pas publiée comme carte sanitaire.
+- Les trois schémas d’analogie fournis (col roulé, banane muette, banane légendée) sont affichés dans un volet explicitement légendé ; leurs limites et la formule « excès de tissu » sont signalées.
+- La carte fournie, sans date ni jeu de données vérifiables, est reproduite comme **document du live**, pas comme carte sanitaire. Confrontée aux estimations de Morris et al. 2016 (tableau 1), elle se trompe notamment sur la Mongolie (classée 50–80 %, estimée 4,4 %), le Brésil (classé 20–50 %, estimé 1,3 %), le Canada (classé < 20 %, estimé 31,9 %, donnée néonatale), la Corée du Sud (77,0 %), l’Indonésie (92,5 %) et les Philippines (91,7 %), laissées en classes basses ; plusieurs étiquettes sont fautives (« Alferia », « Middle Aasia », « Aenta »). Encadré « Une géographie trop générale pour devenir une carte ».
 - Le sommaire annonce des développements absents du document transmis ; aucune transcription de remplacement n’a été inventée. Les pistes de schémas sont conservées comme telles.
 - Le 119 et le 3919 sont distingués des services d’urgence. Les associations de plaidoyer ne sont pas des autorités médicales ; deux noms de réseaux restent non identifiés.

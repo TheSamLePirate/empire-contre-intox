@@ -229,6 +229,6 @@ La déclaration interagences de 2014 identifiée s’intitule *Eliminating force
 
 ## Portée des images et de la carte
 
-Les illustrations créées sont symboliques. Les analogies fournies ne décrivent ni innervation, ni vascularisation, ni résultats cliniques. La carte originale est écartée comme source de prévalence : aucune série traçable, date ou méthode n’y est identifiable. La publication de 2016 sur les prévalences sert à vérifier les limites du commentaire géographique, sans convertir ses estimations en données de 2026.
+Les illustrations créées sont symboliques. Les analogies fournies ne décrivent ni innervation, ni vascularisation, ni résultats cliniques. La carte originale est reproduite comme document du live, et écartée comme source de prévalence : aucune série traçable, date ou méthode n’y est identifiable, et plusieurs classes contredisent le tableau 1 de Morris et al. 2016 (Mongolie, Brésil, Canada, Corée du Sud, Indonésie, Philippines). La publication de 2016 sur les prévalences sert à vérifier les limites du commentaire géographique, sans convertir ses estimations en données de 2026.
 
 Les sources associatives documentent leurs propres missions, pas un consensus scientifique ni un partenariat entre tous les réseaux cités. Les règles médicales et juridiques sont présentées pour éclairer le dossier, sans remplacer l’évaluation d’une situation personnelle.
