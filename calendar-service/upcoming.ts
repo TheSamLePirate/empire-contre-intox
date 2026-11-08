@@ -47,6 +47,8 @@ export interface Upcoming extends UpcomingData {
   version: number;
   updatedAt: string;
   updatedBy: string | null;
+  deletedAt?: string | null;
+  deletedBy?: string | null;
 }
 interface Row {
   id: string;
@@ -55,6 +57,8 @@ interface Row {
   version: number;
   updated_at: string;
   updated_by: string | null;
+  deleted: number;
+  deleted_at: string | null;
 }
 
 export function initUpcoming(store: Store) {
@@ -68,6 +72,13 @@ export function initUpcoming(store: Store) {
     CREATE TABLE IF NOT EXISTS upcoming_media(id TEXT PRIMARY KEY, label TEXT NOT NULL,
     hash TEXT NOT NULL UNIQUE, created_by TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
     INSERT OR IGNORE INTO metadata(key,value) VALUES('upcoming_revision','1');`);
+  const columns = new Set(
+    store.all<{ name: string }>("PRAGMA table_info(upcoming_lives)").map((c) => c.name),
+  );
+  if (!columns.has("deleted"))
+    store.db.exec("ALTER TABLE upcoming_lives ADD COLUMN deleted INTEGER NOT NULL DEFAULT 0");
+  if (!columns.has("deleted_at"))
+    store.db.exec("ALTER TABLE upcoming_lives ADD COLUMN deleted_at TEXT");
 }
 
 /** Imports the historical programme once. Returns the number of imported lives. */
@@ -149,9 +160,13 @@ export function upcomingRevision(store: Store): number {
     )?.value ?? 0,
   );
 }
-export function upcomingLives(store: Store): Upcoming[] {
+/** Programme in display order. Lives in the trash (`deleted`) are excluded unless asked. */
+export function upcomingLives(store: Store, trash = false): Upcoming[] {
   return store
-    .all<Row>("SELECT * FROM upcoming_lives ORDER BY sort_order, created_at, id")
+    .all<Row>(
+      `SELECT * FROM upcoming_lives WHERE deleted=? ORDER BY ${trash ? "deleted_at DESC," : ""} sort_order, created_at, id`,
+      trash ? 1 : 0,
+    )
     .map((r) => ({
       id: r.id,
       ...(JSON.parse(r.data) as UpcomingData),
@@ -159,6 +174,7 @@ export function upcomingLives(store: Store): Upcoming[] {
       version: r.version,
       updatedAt: r.updated_at,
       updatedBy: r.updated_by,
+      ...(trash ? { deletedAt: r.deleted_at, deletedBy: r.updated_by } : {}),
     }));
 }
 function audit(store: Store, id: string, actor: string, action: string, data: unknown) {
@@ -173,10 +189,47 @@ function audit(store: Store, id: string, actor: string, action: string, data: un
     "DELETE FROM upcoming_audit WHERE id NOT IN (SELECT id FROM upcoming_audit ORDER BY id DESC LIMIT 2000)",
   );
 }
+/** Keeps only the editable fields of a live (history snapshots, restorations). */
+function pick(value: unknown): UpcomingData | null {
+  if (!value || typeof value !== "object") return null;
+  const v = value as Record<string, unknown>;
+  try {
+    return upcomingData({
+      theme: v.theme,
+      title: v.title,
+      hook: v.hook,
+      duration: v.duration,
+      teaser: v.teaser,
+      image: v.image,
+      video: v.video,
+      published: v.published,
+    });
+  } catch {
+    return null;
+  }
+}
 const state = (store: Store) => ({
   lives: upcomingLives(store),
+  trash: upcomingLives(store, true),
   revision: upcomingRevision(store),
 });
+/** Rewrites sort_order 0..n-1 for the live programme in the given order. */
+function writeOrder(store: Store, order: string[]) {
+  order.forEach((lid, i) =>
+    store.run("UPDATE upcoming_lives SET sort_order=? WHERE id=?", i, lid),
+  );
+}
+const positionOf = (value: unknown, length: number): number | null =>
+  Number.isInteger(value) && Number(value) >= 0
+    ? Math.min(Number(value), length)
+    : null;
+const current = (store: Store, id: string) => {
+  const live = upcomingLives(store).find((l) => l.id === id);
+  if (live) return live;
+  if (upcomingLives(store, true).some((l) => l.id === id))
+    throw new Problem(409, "Ce live est dans la corbeille. Restaurez-le d’abord.");
+  throw new Problem(404, "Live introuvable : il a peut-être été supprimé.");
+};
 
 export function saveUpcoming(
   store: Store,
@@ -188,17 +241,23 @@ export function saveUpcoming(
   const body = object(input);
   return store.atomic(() => {
     const all = upcomingLives(store);
-    const before = id ? all.find((l) => l.id === id) : null;
-    if (id && !before) throw new Problem(404, "Live introuvable : il a peut-être été supprimé.");
+    const before = id ? current(store, id) : null;
     if (before && revision(body.version) !== before.version)
-      throw new Problem(409, "Ce live a été modifié entre-temps. Rechargez la liste.");
+      throw new Problem(409, "Ce live a été modifié entre-temps : rouvrez-le pour voir la version actuelle.");
     if (remove) {
-      store.run("DELETE FROM upcoming_lives WHERE id=?", before!.id);
-      audit(store, before!.id, actor, "delete", { before });
+      // Soft delete: the live goes to the trash and can be restored.
+      store.run(
+        "UPDATE upcoming_lives SET deleted=1,deleted_at=CURRENT_TIMESTAMP,version=version+1,updated_at=CURRENT_TIMESTAMP,updated_by=? WHERE id=?",
+        actor,
+        before!.id,
+      );
+      writeOrder(store, all.filter((l) => l.id !== before!.id).map((l) => l.id));
+      audit(store, before!.id, actor, "delete", { before: pick(before) });
       bump(store);
       return state(store);
     }
     const data = upcomingData(body);
+    const order = all.map((l) => l.id);
     if (before) {
       store.run(
         "UPDATE upcoming_lives SET data=?,version=version+1,updated_at=CURRENT_TIMESTAMP,updated_by=? WHERE id=?",
@@ -206,17 +265,22 @@ export function saveUpcoming(
         actor,
         before.id,
       );
-      audit(store, before.id, actor, "update", { before, after: data });
+      audit(store, before.id, actor, "update", { before: pick(before), after: data });
+      // Optional move in the same save (0-based `position`).
+      const position = positionOf(body.position, all.length - 1);
+      const index = order.indexOf(before.id);
+      if (position !== null && position !== index) {
+        order.splice(index, 1);
+        order.splice(position, 0, before.id);
+        writeOrder(store, order);
+        audit(store, "*", actor, "reorder", { moved: before.id, from: index, to: position });
+      }
     } else {
-      if (all.length >= MAX_UPCOMING)
-        throw new Problem(409, `Limite de ${MAX_UPCOMING} lives atteinte.`);
+      if (all.length + upcomingLives(store, true).length >= MAX_UPCOMING)
+        throw new Problem(409, `Limite de ${MAX_UPCOMING} lives atteinte (corbeille comprise).`);
       // `position` (0-based) inserts the new live; by default it goes last.
-      const position =
-        Number.isInteger(body.position) && Number(body.position) >= 0
-          ? Math.min(Number(body.position), all.length)
-          : all.length;
+      const position = positionOf(body.position, all.length) ?? all.length;
       const newId = randomUUID();
-      const order = all.map((l) => l.id);
       order.splice(position, 0, newId);
       store.run(
         "INSERT INTO upcoming_lives(id,data,sort_order,updated_by) VALUES(?,?,?,?)",
@@ -225,13 +289,116 @@ export function saveUpcoming(
         position,
         actor,
       );
-      order.forEach((lid, i) =>
-        store.run("UPDATE upcoming_lives SET sort_order=? WHERE id=?", i, lid),
-      );
+      writeOrder(store, order);
       audit(store, newId, actor, "create", { after: data });
     }
     bump(store);
     return state(store);
+  });
+}
+
+/** Brings a live back from the trash, at the end of the programme (or at `position`). */
+export function restoreUpcoming(store: Store, id: string, input: unknown, actor: string) {
+  const body = object(input);
+  return store.atomic(() => {
+    const trashed = upcomingLives(store, true).find((l) => l.id === id);
+    if (!trashed) throw new Problem(404, "Ce live n’est plus dans la corbeille.");
+    if (revision(body.version) !== trashed.version)
+      throw new Problem(409, "Ce live a été modifié entre-temps. Rechargez la liste.");
+    const order = upcomingLives(store).map((l) => l.id);
+    order.splice(positionOf(body.position, order.length) ?? order.length, 0, id);
+    store.run(
+      "UPDATE upcoming_lives SET deleted=0,deleted_at=NULL,version=version+1,updated_at=CURRENT_TIMESTAMP,updated_by=? WHERE id=?",
+      actor,
+      id,
+    );
+    writeOrder(store, order);
+    audit(store, id, actor, "restore", { after: pick(trashed) });
+    bump(store);
+    return state(store);
+  });
+}
+
+/** Permanently removes a live already in the trash (administrators only, checked by the route). */
+export function purgeUpcoming(store: Store, id: string, input: unknown, actor: string) {
+  const body = object(input);
+  return store.atomic(() => {
+    const trashed = upcomingLives(store, true).find((l) => l.id === id);
+    if (!trashed) throw new Problem(404, "Ce live n’est plus dans la corbeille.");
+    if (revision(body.version) !== trashed.version)
+      throw new Problem(409, "Ce live a été modifié entre-temps. Rechargez la liste.");
+    store.run("DELETE FROM upcoming_lives WHERE id=?", id);
+    audit(store, id, actor, "purge", { before: pick(trashed) });
+    bump(store);
+    return state(store);
+  });
+}
+
+export interface UpcomingHistoryEntry {
+  id: number;
+  action: string;
+  actor: string;
+  createdAt: string;
+  /** Content of the live right after this change (before it, for a deletion). */
+  data: UpcomingData | null;
+}
+export function upcomingHistory(store: Store, id: string): UpcomingHistoryEntry[] {
+  const rows = store.all<{ id: number; action: string; actor: string; created_at: string; data: string }>(
+    "SELECT id,action,actor,created_at,data FROM upcoming_audit WHERE live_id=? ORDER BY id DESC LIMIT 100",
+    id,
+  );
+  const entries: UpcomingHistoryEntry[] = rows.map((r) => {
+    const d = JSON.parse(r.data) as { before?: unknown; after?: unknown };
+    return { id: r.id, action: r.action, actor: r.actor, createdAt: r.created_at, data: pick(d.after) ?? pick(d.before) };
+  });
+  // Lives imported from the original programme have no "create" entry: the
+  // content before their oldest change stays restorable as « version d'origine ».
+  const oldest = rows.at(-1);
+  if (oldest && oldest.action !== "create") {
+    const before = pick((JSON.parse(oldest.data) as { before?: unknown }).before);
+    if (before)
+      entries.push({ id: -oldest.id, action: "initial", actor: "import", createdAt: oldest.created_at, data: before });
+  }
+  return entries;
+}
+/** Restores the content of a history entry as a new version of a live in the programme. */
+export function restoreUpcomingVersion(store: Store, id: string, input: unknown, actor: string) {
+  const body = object(input);
+  const entry = upcomingHistory(store, id).find((h) => h.id === body.historyId);
+  if (!entry?.data) throw new Problem(404, "Version introuvable dans l’historique.");
+  return saveUpcoming(store, id, { ...entry.data, version: body.version }, actor);
+}
+
+/** Publishes or hides several lives at once; every version must still be current. */
+export function publishUpcoming(store: Store, input: unknown, actor: string) {
+  const body = object(input);
+  if (typeof body.published !== "boolean" || !Array.isArray(body.items) || !body.items.length || body.items.length > MAX_UPCOMING)
+    throw new Problem(400, "Sélection invalide.");
+  return store.atomic(() => {
+    const all = new Map(upcomingLives(store).map((l) => [l.id, l]));
+    const items = (body.items as unknown[]).map((i) => object(i));
+    for (const item of items) {
+      const live = typeof item.id === "string" ? all.get(item.id) : undefined;
+      if (!live) throw new Problem(404, "Un des lives sélectionnés n’existe plus. Rechargez la liste.");
+      if (revision(item.version) !== live.version)
+        throw new Problem(409, `« ${live.title} » a été modifié entre-temps. Rechargez la liste.`);
+    }
+    let changed = 0;
+    for (const item of items) {
+      const live = all.get(item.id as string)!;
+      if (live.published === body.published) continue;
+      const data = { ...pick(live)!, published: body.published };
+      store.run(
+        "UPDATE upcoming_lives SET data=?,version=version+1,updated_at=CURRENT_TIMESTAMP,updated_by=? WHERE id=?",
+        JSON.stringify(data),
+        actor,
+        live.id,
+      );
+      audit(store, live.id, actor, body.published ? "publish" : "hide", { before: pick(live), after: data });
+      changed++;
+    }
+    if (changed) bump(store);
+    return { ...state(store), changed };
   });
 }
 
@@ -250,9 +417,7 @@ export function reorderUpcoming(store: Store, input: unknown, actor: string) {
       order.some((id) => typeof id !== "string" || !current.includes(id))
     )
       throw new Problem(400, "Ordre invalide. Rechargez la liste.");
-    (order as string[]).forEach((id, i) =>
-      store.run("UPDATE upcoming_lives SET sort_order=? WHERE id=?", i, id),
-    );
+    writeOrder(store, order as string[]);
     audit(store, "*", actor, "reorder", { before: current, after: order });
     bump(store);
     return state(store);

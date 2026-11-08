@@ -13,6 +13,11 @@ import {
 } from "./validation.ts";
 import { saveAvatar, MAX_IMAGE_BYTES } from "./images.ts";
 import {
+  publishUpcoming,
+  purgeUpcoming,
+  restoreUpcoming,
+  restoreUpcomingVersion,
+  upcomingHistory,
   reorderUpcoming,
   saveUpcoming,
   saveUpcomingMedia,
@@ -392,6 +397,7 @@ export async function createApp(options: AppOptions) {
       if (path === "/upcoming/all" && req.method === "GET")
         return json({
           lives: upcomingLives(store),
+          trash: upcomingLives(store, true),
           revision: upcomingRevision(store),
           library: upcomingLibrary(store, origin),
         });
@@ -399,11 +405,29 @@ export async function createApp(options: AppOptions) {
         return json(saveUpcoming(store, null, await contentBody(), user.login), 201);
       if (path === "/upcoming/order" && req.method === "PUT")
         return json(reorderUpcoming(store, await contentBody(), user.login));
-      const upcoming = /^\/upcoming\/item\/([a-zA-Z0-9_-]{1,80})$/.exec(path);
-      if (upcoming && ["PUT", "DELETE"].includes(req.method))
-        return json(
-          saveUpcoming(store, upcoming[1], await contentBody(), user.login, req.method === "DELETE"),
-        );
+      if (path === "/upcoming/publish" && req.method === "PUT")
+        return json(publishUpcoming(store, await contentBody(), user.login));
+      const upcoming = /^\/upcoming\/item\/([a-zA-Z0-9_-]{1,80})(?:\/(history|restore|revert|purge))?$/.exec(path);
+      if (upcoming) {
+        const [, id, action] = upcoming;
+        if (!action && ["PUT", "DELETE"].includes(req.method))
+          return json(
+            saveUpcoming(store, id, await contentBody(), user.login, req.method === "DELETE"),
+          );
+        if (action === "history" && req.method === "GET")
+          return json(upcomingHistory(store, id));
+        if (action === "restore" && req.method === "POST")
+          return json(restoreUpcoming(store, id, await contentBody(), user.login));
+        if (action === "revert" && req.method === "POST")
+          return json(restoreUpcomingVersion(store, id, await contentBody(), user.login));
+        if (action === "purge" && req.method === "POST") {
+          const data = await contentBody();
+          if (authorize().role !== "admin")
+            throw new Problem(403, "Suppression définitive réservée aux administrateurs.");
+          return json(purgeUpcoming(store, id, data, user.login));
+        }
+        throw new Problem(405, "Méthode non autorisée.");
+      }
       if (path === "/upcoming/media" && req.method === "POST") {
         quota(uploads, user.id);
         if (processingImages >= 2)

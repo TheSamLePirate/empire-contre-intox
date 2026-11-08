@@ -181,3 +181,83 @@ test("backup copies the database, portraits and Prochainement posters, without u
   expect(existsSync(join(out, "upcoming", "q.tmp"))).toBe(false);
   rmSync(dir, { recursive: true, force: true });
 });
+
+test("trash, restore, history, revert, bulk publication and move on save", async () => {
+  const store = new Store(":memory:", seed);
+  seedUpcoming(store, programme);
+  const app = await createApp({ store, uploadsDir: "/tmp/eci-no-upload", publicOrigin: "http://localhost" });
+  const password = "Password for upcoming tests!";
+  await createUser(store, "sam", password, "admin");
+  await createUser(store, "member", password, "user");
+  const call = async (path: string, method = "GET", data?: unknown, who?: { cookie: string; csrf: string }) => {
+    const r = await app.fetch(new Request("http://localhost/api/calendar" + path, {
+      method,
+      headers: { Origin: "http://localhost", Cookie: who?.cookie ?? "", "X-CSRF-Token": who?.csrf ?? "", "Content-Type": "application/json" },
+      body: data === undefined ? undefined : JSON.stringify(data),
+    }));
+    return { status: r.status, body: await r.json() };
+  };
+  const login = async (name: string) => {
+    const r = await app.fetch(new Request("http://localhost/api/calendar/login", { method: "POST", headers: { Origin: "http://localhost", "Content-Type": "application/json" }, body: JSON.stringify({ login: name, password }) }));
+    return { cookie: r.headers.get("set-cookie")!.split(";")[0], csrf: (await r.json()).csrf };
+  };
+  const admin = await login("sam"), member = await login("member");
+  let state = (await call("/upcoming/all", "GET", undefined, member)).body;
+  const target = state.lives[2];
+
+  // Edit + move in one save.
+  let r = await call(`/upcoming/item/${target.id}`, "PUT", { ...target, title: "Titre modifié", position: 0 }, member);
+  expect(r.status).toBe(200);
+  expect(r.body.lives[0].id).toBe(target.id);
+  expect(r.body.lives[0].title).toBe("Titre modifié");
+
+  // History lists the update; revert brings the original title back as a new version.
+  let history = (await call(`/upcoming/item/${target.id}/history`, "GET", undefined, member)).body;
+  expect(history[0].action).toBe("update");
+  expect(history[0].data.title).toBe("Titre modifié");
+  const edited = r.body.lives[0];
+  const original = { ...target };
+  // The "before" of the first update is reachable through a later entry: revert to the update entry, then check.
+  r = await call(`/upcoming/item/${target.id}/revert`, "POST", { historyId: history[0].id, version: edited.version - 1 }, member);
+  expect(r.status).toBe(409);
+  await call(`/upcoming/item/${target.id}`, "PUT", { ...edited, title: original.title }, member);
+  history = (await call(`/upcoming/item/${target.id}/history`, "GET", undefined, member)).body;
+  const modified = history.find((h: { data: { title: string } }) => h.data?.title === "Titre modifié");
+  const latest = (await call("/upcoming/all", "GET", undefined, member)).body.lives[0];
+  r = await call(`/upcoming/item/${target.id}/revert`, "POST", { historyId: modified.id, version: latest.version }, member);
+  expect(r.status).toBe(200);
+  expect(r.body.lives[0].title).toBe("Titre modifié");
+
+  // Trash: delete hides it from public and order, restore puts it back at the requested position.
+  const live = r.body.lives[0];
+  r = await call(`/upcoming/item/${live.id}`, "DELETE", { version: live.version }, member);
+  expect(r.body.lives.length).toBe(47);
+  expect(r.body.trash[0].id).toBe(live.id);
+  expect(r.body.trash[0].deletedBy).toBe("member");
+  expect((await call("/upcoming")).body.lives.some((l: { id: string }) => l.id === live.id)).toBe(false);
+  expect((await call(`/upcoming/item/${live.id}`, "PUT", { ...live, version: r.body.trash[0].version }, member)).status).toBe(409);
+  r = await call(`/upcoming/item/${live.id}/restore`, "POST", { version: r.body.trash[0].version, position: 1 }, member);
+  expect(r.status).toBe(200);
+  expect(r.body.lives[1].id).toBe(live.id);
+  expect(r.body.lives.map((l: { sortOrder: number }) => l.sortOrder)).toEqual([...Array(48).keys()]);
+
+  // Purge is admin-only and only from the trash.
+  const again = r.body.lives[1];
+  r = await call(`/upcoming/item/${again.id}`, "DELETE", { version: again.version }, member);
+  const trashed = r.body.trash[0];
+  expect((await call(`/upcoming/item/${again.id}/purge`, "POST", { version: trashed.version }, member)).status).toBe(403);
+  r = await call(`/upcoming/item/${again.id}/purge`, "POST", { version: trashed.version }, admin);
+  expect(r.status).toBe(200);
+  expect(r.body.trash.length).toBe(0);
+  expect(r.body.lives.length).toBe(47);
+
+  // Bulk: hide three, a stale version refuses the whole batch.
+  const three = r.body.lives.slice(0, 3).map((l: { id: string; version: number }) => ({ id: l.id, version: l.version }));
+  expect((await call("/upcoming/publish", "PUT", { items: [{ ...three[0], version: 99 }, three[1]], published: false }, member)).status).toBe(409);
+  r = await call("/upcoming/publish", "PUT", { items: three, published: false }, member);
+  expect(r.status).toBe(200);
+  expect(r.body.changed).toBe(3);
+  expect((await call("/upcoming")).body.lives.length).toBe(44);
+  expect((await call("/upcoming/publish", "PUT", { items: [], published: true }, member)).status).toBe(400);
+  store.db.close();
+});
