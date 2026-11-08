@@ -14,7 +14,7 @@ Mini-site HTML qui transforme des **déroulés de live** (transcriptions, script
 
 Chaque créateur ou équipe a **son propre dossier** à la racine ; `index.html` rassemble une carte par dossier, regroupées en **sept parcours thématiques**. Le **sceau ECI** est partagé : `ymir-lalie/assets/logo-eci.jpg`.
 
-## Dossiers (28)
+## Dossiers (35)
 
 | Nº | Dossier | Page | Auteur(s) |
 |----|---------|------|-----------|
@@ -46,7 +46,9 @@ Chaque créateur ou équipe a **son propre dossier** à la racine ; `index.html`
 | XXVI | Alexandre le Grand | `ymir-lalie/alexandre-le-grand/` | Ymir & Lalie |
 | XXVII | L'Ordinateur de 1983 | `samlepirate/ordinateur-1983/` | Samlepirate |
 | XXX | Rome, grandeur et faux-semblants | `ymir-lalie/rome/index.html` | Ymir & Lalie |
-| XXXI | Les Sources | `sources/sources.html` | Empire contre Intox (collectif) |
+| XXXIII | Souveraines et debout — l’excision | `ymir-lalie/excision/index.html` | Lalie & Ymir |
+| XXXIV | Le Corps souverain — Mutilations sexuelles et génitales | `ymir-lalie/mutilations-sexuelles-genitales/index.html` | Lalie & Ymir |
+| XXXV | Les Sources | `sources/sources.html` | Empire contre Intox (collectif) |
 
 > La numérotation suit **l'ordre d'affichage** de l'index : si l'on réordonne, on renumérote partout (cartes, nav de pied, eyebrows des pages, `sources/sources.html`). « Les Sources » reste **le dernier numéro**. La carte « Calendrier des lives » est un agenda externe, pas un dossier numéroté.
 

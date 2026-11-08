@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Le Corps souverain — Mutilations sexuelles et génitales · ECI</title>
+  <meta name="description" content="Mutilations sexuelles et génitales, traditions, santé et consentement : un dossier de Lalie et Ymir pour comprendre les atteintes à l’intégrité corporelle des enfants, avec vérifications et sources.">
+  <meta name="theme-color" content="#050811">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --void:#050811; --abyss:#070c1a; --navy:#0e1a2e;
+      --ink:#f4ecd8; --parch:#e7dcc1; --muted:#c0b59a; --soft:#8f8c78;
+      --gold:#d6ac55; --gold-bright:#f3d98a; --gold-deep:#9c7228;
+
+      /* Accents — mémoire, fer, sang, Atlantique */
+      --ocean:#5b9d98;   /* l'Atlantique */
+      --ember:#5b9d98;   /* le sang, la braise */
+      --iron:#7c8794;    /* le fer, les chaînes */
+      --sugar:#e6dcc4;   /* l'or blanc / le sucre */
+
+      --line:rgba(214,172,85,.20);
+      --line-2:rgba(244,236,216,.10);
+      --glass:rgba(7,12,26,.72);
+      --shadow:0 40px 120px rgba(0,0,0,.55);
+
+      --serif:"Fraunces",Georgia,"Times New Roman",serif;
+      --roman:"Cinzel",Georgia,serif;
+      --max:1180px;
+      --ease:cubic-bezier(.22,1,.36,1);
+
+      --hero:url("assets/corps-souverain-hero.png");
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; color:var(--ink); font-family:var(--serif);
+      font-optical-sizing:auto; font-weight:380; line-height:1.74; letter-spacing:.002em;
+      background:
+        radial-gradient(130% 80% at 12% 4%, rgba(63,107,120,.16), transparent 44%),
+        radial-gradient(120% 70% at 90% 0%, rgba(214,172,85,.13), transparent 46%),
+        radial-gradient(120% 90% at 50% 100%, rgba(179,80,62,.10), transparent 60%),
+        linear-gradient(180deg,#03050d 0%,var(--void) 42%,var(--abyss) 100%);
+      background-attachment:fixed; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    .atmos { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .atmos::before { content:""; position:absolute; inset:0;
+      background-image:linear-gradient(rgba(244,236,216,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(244,236,216,.02) 1px,transparent 1px);
+      background-size:80px 80px; mask-image:radial-gradient(120% 80% at 50% 30%,#000 30%,transparent 80%); }
+    .atmos::after { content:""; position:absolute; inset:0;
+      background-image:
+        radial-gradient(1.3px 1.3px at 16% 28%,rgba(255,255,255,.5),transparent 60%),
+        radial-gradient(1px 1px at 72% 16%,rgba(243,217,138,.6),transparent 60%),
+        radial-gradient(1.2px 1.2px at 44% 70%,rgba(63,107,120,.6),transparent 60%),
+        radial-gradient(1px 1px at 88% 54%,rgba(255,255,255,.4),transparent 60%),
+        radial-gradient(1.2px 1.2px at 8% 82%,rgba(179,80,62,.45),transparent 60%),
+        radial-gradient(1px 1px at 60% 90%,rgba(255,255,255,.32),transparent 60%);
+      animation:twinkle 7s ease-in-out infinite alternate; }
+    .grain { position:fixed; inset:-50%; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    @keyframes twinkle { from{opacity:.5;} to{opacity:1;} }
+    .frame { position:fixed; inset:0; z-index:45; pointer-events:none; }
+    .frame i { position:absolute; width:26px; height:26px; border:1.5px solid var(--line); }
+    .frame i:nth-child(1){ top:16px; left:16px; border-right:0; border-bottom:0; }
+    .frame i:nth-child(2){ top:16px; right:16px; border-left:0; border-bottom:0; }
+    .frame i:nth-child(3){ bottom:16px; left:16px; border-right:0; border-top:0; }
+    .frame i:nth-child(4){ bottom:16px; right:16px; border-left:0; border-top:0; }
+    .progress-top { position:fixed; top:0; left:0; height:2px; width:0%; z-index:60;
+      background:linear-gradient(90deg,var(--ember),var(--gold-bright),var(--ocean)); box-shadow:0 0 14px rgba(243,217,138,.55); }
+    a { color:inherit; text-decoration:none; }
+    img { display:block; max-width:100%; }
+    ::selection { background:rgba(214,172,85,.28); color:#fff; }
+    :focus-visible { outline:2px solid var(--gold-bright); outline-offset:3px; border-radius:4px; }
+    .page { position:relative; z-index:2; overflow:clip; }
+
+    /* Hero */
+    .hero { min-height:94vh; display:grid; align-items:end; position:relative; isolation:isolate; padding:28px; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-3; background-image:var(--hero); background-size:cover; background-position:center; transform:scale(1.02); }
+    .hero::after { content:""; position:absolute; inset:0; z-index:-2;
+      background:linear-gradient(86deg,rgba(3,6,13,.94) 0%,rgba(3,6,13,.72) 36%,rgba(3,6,13,.18) 68%,rgba(3,6,13,.5) 100%),linear-gradient(180deg,rgba(3,6,13,.1) 0%,rgba(3,6,13,.28) 54%,var(--void) 100%); }
+    .hero-waterline { position:absolute; left:0; right:0; bottom:-1px; height:26vh; z-index:-1; background:linear-gradient(180deg,transparent 0%,rgba(5,8,17,.6) 40%,var(--void) 100%); }
+    .hero-inner { width:min(100%,var(--max)); margin:0 auto 7vh; display:grid; grid-template-columns:minmax(0,780px) minmax(250px,340px); gap:46px; align-items:end; }
+    .eyebrow { display:inline-flex; align-items:center; gap:14px; margin:0 0 22px; font-family:var(--roman); font-size:.72rem; font-weight:600; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .eyebrow::before { content:""; width:44px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    h1,h2,h3,h4 { margin:0; line-height:1.04; }
+    h1 { max-width:16ch; font-family:var(--roman); font-weight:800; font-size:clamp(2.7rem,7vw,5.8rem); line-height:.96; letter-spacing:-.01em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    h1 .foil { background:linear-gradient(96deg,var(--gold-deep),var(--gold-bright) 40%,#fff6dc 50%,var(--gold-bright) 60%,var(--gold-deep)); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:foil 7s linear infinite; }
+    @keyframes foil { to{ background-position:220% 0; } }
+    .hero-lead { max-width:58ch; margin:26px 0 0; color:var(--muted); font-size:clamp(1.04rem,1.4vw,1.2rem); }
+    .hero-quote { max-width:60ch; margin:22px 0 0; padding-left:20px; border-left:2px solid var(--ember); font-family:var(--serif); font-style:italic; color:var(--parch); font-size:clamp(1.05rem,1.5vw,1.26rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+    .button { display:inline-flex; align-items:center; gap:10px; min-height:50px; padding:0 22px; font-family:var(--roman); font-size:.74rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; border-radius:2px; border:1px solid var(--line); color:var(--ink); background:rgba(244,236,216,.05); backdrop-filter:blur(12px); transition:transform .3s var(--ease),background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease); }
+    .button:hover { transform:translateY(-3px); border-color:rgba(214,172,85,.5); background:rgba(244,236,216,.1); }
+    .button.primary { color:#14110a; border-color:transparent; background:linear-gradient(140deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep)); box-shadow:0 14px 38px rgba(214,172,85,.28),inset 0 1px 0 rgba(255,255,255,.5); }
+    .button.primary:hover { box-shadow:0 22px 54px rgba(214,172,85,.4),inset 0 1px 0 rgba(255,255,255,.6); }
+    .signal-board { border:1px solid var(--line); border-radius:3px; background:var(--glass); box-shadow:var(--shadow); backdrop-filter:blur(18px); overflow:hidden; }
+    .signal { padding:18px 20px; border-bottom:1px solid var(--line-2); }
+    .signal:last-child { border-bottom:0; }
+    .signal span { display:block; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .signal strong { display:block; margin-top:7px; color:var(--parch); font-size:1.02rem; font-weight:500; font-family:var(--serif); }
+
+    /* Topbar */
+    .topbar { position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(5,8,17,.72); backdrop-filter:blur(18px) saturate(140%); }
+    .topbar-inner { width:min(100% - 40px,var(--max)); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:70px; }
+    .brand { display:flex; align-items:center; gap:13px; min-width:max-content; }
+    .brand-mark { width:40px; height:40px; border-radius:50%; object-fit:cover; border:1px solid rgba(214,172,85,.5); box-shadow:0 0 0 3px rgba(214,172,85,.1),0 8px 22px rgba(0,0,0,.5); }
+    .brand span { font-family:var(--roman); font-weight:700; font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink); }
+    .nav { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1 1 auto; min-width:0; -webkit-overflow-scrolling:touch;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent); }
+    .nav::-webkit-scrollbar { display:none; }
+    .nav a { position:relative; flex:0 0 auto; padding:10px 13px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); white-space:nowrap; transition:color .3s var(--ease); }
+    .nav a::after { content:""; position:absolute; left:13px; right:13px; bottom:6px; height:1px; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .nav a:hover,.nav a.active { color:var(--ink); }
+    .nav a:hover::after,.nav a.active::after { transform:scaleX(1); }
+    .home-link { flex:0 0 auto; display:inline-flex; align-items:center; min-height:40px; padding:0 14px; font-family:var(--roman); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); white-space:nowrap; transition:border-color .3s var(--ease),background .3s var(--ease); }
+    .home-link:hover { border-color:rgba(214,172,85,.5); background:rgba(214,172,85,.12); }
+    .progress { position:absolute; left:0; right:0; bottom:-1px; height:2px; background:rgba(214,172,85,.1); }
+    .progress span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--ember),var(--gold-bright),var(--ocean)); }
+    main { width:min(100% - 40px,var(--max)); margin:0 auto; }
+
+    /* Intro band */
+    .intro-band { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr); gap:30px; padding:84px 0 50px; align-items:stretch; }
+    .section-kicker { margin:0 0 14px; font-family:var(--roman); font-size:.68rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .manifesto { border-left:2px solid var(--gold); padding-left:26px; }
+    .manifesto h2,.chapter h2 { font-family:var(--roman); font-weight:700; font-size:clamp(1.8rem,3.6vw,2.9rem); line-height:1.04; letter-spacing:.005em; text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .manifesto p { margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .timeline { position:relative; border:1px solid var(--line); border-radius:3px; background:rgba(244,236,216,.03); padding:8px 22px; }
+    .timeline-row { display:grid; grid-template-columns:96px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line-2); }
+    .timeline-row:last-child { border-bottom:0; }
+    .timeline-row time { font-family:var(--roman); font-weight:600; font-size:.8rem; letter-spacing:.04em; color:var(--gold-bright); }
+    .timeline-row p { margin:0; color:var(--muted); }
+
+    .learning-panel { margin:24px 0 56px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(63,107,120,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); padding:clamp(24px,4vw,40px); }
+    .learning-panel h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); line-height:1.12; color:var(--ink); text-wrap:balance; }
+    .learning-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; }
+    .learning-item { border:1px solid var(--line-2); border-radius:3px; padding:22px; background:rgba(244,236,216,.035); border-top:2px solid rgba(214,172,85,.4); transition:transform .4s var(--ease),border-color .4s var(--ease),background .4s var(--ease); }
+    .learning-item:hover { transform:translateY(-4px); border-top-color:var(--gold); background:rgba(244,236,216,.06); }
+    .learning-item span { font-family:var(--roman); font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .learning-item p { margin:12px 0 0; color:var(--muted); font-size:.98rem; }
+
+    .act-band { margin:70px 0 0; padding:clamp(26px,4vw,46px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(130% 130% at 0% 0%,rgba(214,172,85,.12),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.55),rgba(7,12,26,.6)); text-align:center; }
+    .act-band .act-no { font-family:var(--roman); font-weight:700; font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+    .act-band h2 { margin:14px 0 0; font-family:var(--roman); font-weight:800; font-size:clamp(1.9rem,4.4vw,3.2rem); text-transform:uppercase; color:var(--ink); text-wrap:balance; }
+    .act-band p { max-width:72ch; margin:16px auto 0; color:var(--muted); }
+
+    /* Chapters */
+    .chapter { position:relative; padding:80px 0; border-top:1px solid var(--line); }
+    .chapter-head { display:grid; grid-template-columns:minmax(0,1fr) 170px; gap:28px; align-items:end; margin-bottom:34px; }
+    .chapter-number { justify-self:end; color:transparent; -webkit-text-stroke:1px rgba(214,172,85,.45); font-family:var(--roman); font-weight:700; font-size:6rem; line-height:.8; }
+    .transcript { display:grid; grid-template-columns:minmax(0,780px) minmax(240px,1fr); gap:40px; align-items:start; }
+    .prose { min-width:0; }
+    .prose p,.prose li { color:var(--muted); font-size:1.05rem; }
+    .prose p { margin:0 0 20px; }
+    .prose ul { margin:14px 0 24px; padding-left:4px; list-style:none; }
+    .prose li { position:relative; margin:12px 0; padding-left:26px; }
+    .prose li::before { content:"❖"; position:absolute; left:0; top:0; color:var(--gold); font-size:.8em; }
+    .prose ol { margin:14px 0 24px; padding-left:24px; }
+    .prose ol li { padding-left:6px; }
+    .prose ol li::before { content:none; }
+    .prose strong,.prose em { color:var(--parch); font-style:normal; font-weight:600; }
+    .group-title { margin:36px 0 14px; font-family:var(--roman); font-weight:600; font-size:1.05rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+    .lede { font-family:var(--serif); font-style:italic; color:var(--parch) !important; font-size:1.16rem !important; }
+    .sub { margin:26px 0 10px; font-family:var(--serif); font-weight:600; font-size:1.12rem; color:var(--parch); }
+
+    .chapter-figure { margin:8px 0 30px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:rgba(3,6,13,.4); }
+    .chapter-figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .chapter-figure figcaption { padding:12px 16px; font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border-top:1px solid var(--line-2); }
+    /* doc-figure — présentation d'un document d'archive (couverture portrait + provenance) */
+    .doc-figure { display:grid; grid-template-columns:minmax(0,210px) 1fr; margin:8px 0 32px; border:1px solid var(--line); border-radius:3px; overflow:hidden; background:linear-gradient(180deg,rgba(12,9,7,.55),rgba(3,6,13,.55)); }
+    .doc-figure .doc-img { display:grid; place-items:center; padding:22px; background:radial-gradient(120% 90% at 50% 0%, rgba(179,80,62,.12), transparent 62%); }
+    .doc-figure .doc-img img { width:100%; max-width:186px; height:auto; border-radius:2px; box-shadow:0 16px 42px rgba(0,0,0,.6), 0 0 0 1px var(--line-2); }
+    .doc-figure figcaption { padding:22px 24px; border-left:1px solid var(--line-2); align-self:center; }
+    .doc-figure .doc-k { font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .doc-figure .doc-t { font-family:var(--serif); font-size:1.04rem; color:var(--parch); margin:9px 0 0; line-height:1.5; }
+    .doc-figure .doc-t b { color:var(--gold-bright); font-weight:600; }
+    .doc-figure .doc-m { font-size:.84rem; color:var(--muted); margin:11px 0 0; line-height:1.58; }
+    .doc-figure .doc-m a { color:var(--gold); }
+    @media (max-width:640px){ .doc-figure { grid-template-columns:1fr; } .doc-figure figcaption { border-left:0; border-top:1px solid var(--line-2); } .doc-figure .doc-img img { max-width:150px; } }
+
+    .script-block,.science-block,.question-block,.lesson-block,.dialogue-block {
+      border:1px solid var(--line-2); border-left:3px solid var(--gold); border-radius:3px; padding:24px; margin:24px 0; background:rgba(244,236,216,.04); }
+    .dialogue-block { border-left-color:var(--gold); background:rgba(214,172,85,.06); font-family:var(--serif); }
+    .dialogue-block p { color:var(--parch); font-style:italic; }
+    .science-block { border-left-color:var(--ocean); background:rgba(63,107,120,.09); }
+    .question-block { border-left-color:var(--ember); background:rgba(179,80,62,.1); }
+    .lesson-block { border-left-color:var(--gold-bright); background:rgba(243,217,138,.06); }
+    .script-block p:last-child,.science-block p:last-child,.question-block p:last-child,.lesson-block p:last-child,.dialogue-block p:last-child,
+    .science-block ul:last-child,.lesson-block ul:last-child { margin-bottom:0; }
+    .block-label { display:block; margin-bottom:10px; font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .science-block .block-label { color:var(--ocean); }
+    .question-block .block-label { color:var(--ember); }
+
+    /* Code Noir articles */
+    .articles { display:grid; gap:14px; margin:18px 0; }
+    .article-noir { border:1px solid var(--line-2); border-left:3px solid var(--ember); border-radius:3px; padding:20px 22px; background:rgba(179,80,62,.07); }
+    .article-noir h4 { font-family:var(--roman); font-size:.82rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ember); margin:0 0 8px; }
+    .article-noir .cite { display:block; font-family:var(--serif); font-style:italic; color:var(--parch); margin:0 0 10px; padding-left:14px; border-left:1px solid var(--line); }
+    .article-noir p { margin:0; color:var(--muted); font-size:.98rem; }
+    .article-noir p strong { color:var(--parch); }
+
+    .side-note { position:sticky; top:92px; border:1px solid var(--line); border-radius:3px; background:rgba(7,12,26,.6); padding:22px; box-shadow:0 18px 56px rgba(0,0,0,.25); }
+    .side-note h3 { margin:0 0 14px; font-family:var(--roman); font-size:.76rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+    .side-note p { margin:0 0 14px; color:var(--soft); font-size:.94rem; }
+    .side-note p strong { color:var(--parch); font-weight:600; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .tag { display:inline-flex; align-items:center; min-height:28px; padding:0 11px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+
+    .dtable { width:100%; border-collapse:collapse; margin:14px 0; border:1px solid var(--line); border-radius:3px; overflow:hidden; font-size:.98rem; }
+    .dtable caption { text-align:left; padding:0 0 14px; color:var(--muted); font-style:italic; font-family:var(--serif); }
+    .dtable th { text-align:left; padding:13px 15px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); background:rgba(214,172,85,.06); border-bottom:1px solid var(--line); }
+    .dtable td { padding:13px 15px; vertical-align:top; border-bottom:1px solid var(--line-2); color:var(--muted); }
+    .dtable tr:last-child td { border-bottom:0; }
+    .dtable td.k { color:var(--parch); font-weight:600; }
+    .dtable tr:hover td { background:rgba(244,236,216,.03); }
+
+    .sommaire-list { display:grid; gap:14px; margin:18px 0; }
+    .pillar { border:1px solid var(--line-2); border-radius:3px; padding:22px 24px; background:rgba(244,236,216,.035); border-left:3px solid rgba(214,172,85,.5); }
+    .pillar h3 { margin:0 0 10px; font-family:var(--serif); font-weight:600; font-size:1.24rem; color:var(--ink); }
+    .pillar p { margin:0 0 8px; }
+    .pillar ul { margin:8px 0 0; }
+
+    .closing { margin:60px 0 50px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 0% 0%,rgba(179,80,62,.12),transparent 50%),linear-gradient(180deg,rgba(14,26,46,.45),rgba(7,12,26,.5)); padding:clamp(28px,4vw,44px); }
+    .closing h2 { font-family:var(--serif); font-style:italic; font-weight:400; font-size:clamp(1.6rem,3vw,2.3rem); color:var(--ink); line-height:1.14; }
+    .closing p { max-width:82ch; margin:16px 0 0; color:var(--muted); }
+
+    .collective-footer { position:relative; display:grid; grid-template-columns:minmax(230px,360px) minmax(0,1fr); gap:0; align-items:stretch; margin:50px 0 96px; border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 120% at 100% 0%,rgba(63,107,120,.16),transparent 55%),linear-gradient(180deg,rgba(14,26,46,.6),rgba(7,12,26,.66)); box-shadow:var(--shadow); overflow:hidden; }
+    .collective-logo-wrap { position:relative; z-index:1; min-height:360px; display:grid; place-items:center; padding:38px; background:rgba(3,6,13,.3); border-right:1px solid var(--line); }
+    .collective-logo { width:min(100%,280px); aspect-ratio:1; border-radius:50%; object-fit:cover; padding:5px; background:conic-gradient(from 210deg,var(--gold-deep),var(--gold-bright),var(--gold),var(--gold-deep)); box-shadow:0 28px 80px rgba(0,0,0,.55); }
+    .collective-copy { position:relative; z-index:1; padding:clamp(34px,4vw,52px); }
+    .collective-copy h2 { max-width:14ch; font-family:var(--roman); font-weight:700; font-size:clamp(2rem,4vw,3rem); letter-spacing:.01em; text-transform:uppercase; color:var(--ink); }
+    .collective-copy p { max-width:64ch; margin:18px 0 0; color:var(--muted); font-size:1.06rem; }
+    .collective-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .collective-motto { display:inline-flex; align-items:center; min-height:36px; margin-top:24px; padding:0 16px; font-family:var(--serif); font-style:italic; font-size:1rem; letter-spacing:.04em; color:var(--gold); border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.06); }
+    .byline { display:flex; align-items:center; gap:13px; margin-top:26px; }
+    .byline .avatars { display:flex; }
+    .byline .avatars img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 1.5px var(--gold); background:var(--navy); }
+    .byline .avatars img:not(:first-child) { margin-left:-14px; }
+    .byline .who { display:flex; flex-direction:column; gap:2px; font-family:var(--roman); }
+    .byline .who .lbl { font-size:.58rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .byline .who strong { font-size:.88rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink); }
+
+    .credit-band { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:24px; margin:0 0 8px; padding:clamp(26px,4vw,38px); border:1px solid var(--line); border-radius:3px;
+      background:radial-gradient(120% 160% at 50% 0%,rgba(214,172,85,.12),transparent 62%),linear-gradient(180deg,rgba(14,26,46,.4),rgba(7,12,26,.5)); }
+    .credit-band .credit-avatars { display:flex; }
+    .credit-band .credit-avatars img { width:66px; height:66px; border-radius:50%; object-fit:cover; border:2px solid var(--void); box-shadow:0 0 0 2px var(--gold),0 12px 30px rgba(0,0,0,.5); background:var(--navy); }
+    .credit-band .credit-avatars img:not(:first-child) { margin-left:-20px; }
+    .credit-band .credit-text { display:flex; flex-direction:column; gap:5px; }
+    .credit-band .lbl { font-family:var(--roman); font-size:.64rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--gold); }
+    .credit-band strong { font-family:var(--roman); font-size:clamp(1.3rem,2.6vw,1.6rem); font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    footer { border-top:1px solid var(--line); padding:30px 0 44px; color:var(--soft); font-size:.9rem; }
+    footer main { display:block; width:auto; }
+    footer strong { color:var(--parch); }
+    .mobile-menu { display:none; border:1px solid var(--line); border-radius:2px; background:rgba(214,172,85,.07); color:var(--ink); padding:10px 13px; font-family:var(--roman); font-weight:700; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; }
+
+    .js .reveal { opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease),transform .9s var(--ease); }
+    .reveal.in { opacity:1; transform:none; }
+    .reveal[data-d="1"] { transition-delay:.08s; }
+    .reveal[data-d="2"] { transition-delay:.16s; }
+    .reveal[data-d="3"] { transition-delay:.24s; }
+    @keyframes rise { from{ opacity:0; transform:translateY(26px);} to{ opacity:1; transform:none;} }
+    .js .hero-inner > div > *,.js .signal-board { opacity:0; animation:rise .9s var(--ease) forwards; }
+    .js .hero-inner > div > *:nth-child(1){ animation-delay:.1s; }
+    .js .hero-inner > div > *:nth-child(2){ animation-delay:.2s; }
+    .js .hero-inner > div > *:nth-child(3){ animation-delay:.3s; }
+    .js .hero-inner > div > *:nth-child(4){ animation-delay:.4s; }
+    .js .hero-inner > div > *:nth-child(5){ animation-delay:.5s; }
+    .js .signal-board { animation-delay:.5s; }
+
+    @media (max-width:980px) {
+      .hero { min-height:88vh; padding:22px; }
+      .hero-inner,.intro-band,.transcript,.chapter-head { grid-template-columns:1fr; }
+      .signal-board { max-width:560px; }
+      .chapter-number { justify-self:start; font-size:4.4rem; }
+      .side-note { position:static; }
+      .learning-grid { grid-template-columns:1fr; }
+      .collective-footer { grid-template-columns:1fr; }
+      .collective-logo-wrap { min-height:auto; border-right:0; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width:720px) {
+      .topbar-inner { width:min(100% - 24px,var(--max)); min-height:auto; padding:12px 0; flex-wrap:wrap; }
+      .mobile-menu { display:inline-flex; }
+      .nav { display:none; width:100%; padding:8px 0 2px; flex-wrap:wrap; }
+      .nav.open { display:flex; }
+      main { width:min(100% - 24px,var(--max)); }
+      .hero { min-height:86vh; padding:16px; }
+      .hero::after { background:linear-gradient(90deg,rgba(3,6,13,.95),rgba(3,6,13,.5)),linear-gradient(180deg,rgba(3,6,13,.12),var(--void) 100%); }
+      .hero-inner { margin-bottom:5vh; gap:26px; }
+      .chapter { padding:60px 0; }
+      .dtable { font-size:.9rem; }
+      .dtable th,.dtable td { padding:10px 11px; }
+    }
+    /* ============ Visualisations interactives ============ */
+    .viz { margin:30px 0; border:1px solid var(--line); border-radius:4px; overflow:hidden;
+      background:radial-gradient(140% 120% at 100% 0%,rgba(63,107,120,.1),transparent 55%),linear-gradient(180deg,rgba(7,12,26,.66),rgba(5,8,17,.74));
+      box-shadow:0 22px 64px rgba(0,0,0,.36); }
+    .viz-head { padding:20px 24px 0; }
+    .viz-eyebrow { display:inline-flex; align-items:center; gap:10px; font-family:var(--roman); font-size:.6rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
+    .viz-eyebrow::before { content:""; width:22px; height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    .viz-title { margin:10px 0 5px; font-family:var(--serif); font-weight:600; font-size:1.28rem; color:var(--ink); line-height:1.15; }
+    .viz-sub { margin:0; color:var(--soft); font-size:.92rem; }
+    .viz-body { padding:14px 24px 8px; }
+    .viz svg { display:block; width:100%; height:auto; overflow:visible; }
+    .viz-foot { padding:6px 24px 18px; font-family:var(--serif); font-style:italic; color:var(--soft); font-size:.84rem; }
+    .viz-foot a { color:var(--gold); border-bottom:1px solid var(--line); }
+    .viz text { font-family:var(--roman); fill:var(--muted); }
+    .viz-legend { display:flex; flex-wrap:wrap; gap:8px 16px; padding:0 24px 14px; }
+    .viz-legend span { display:inline-flex; align-items:center; gap:7px; font-family:var(--roman); font-size:.6rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .viz-legend i { width:11px; height:11px; border-radius:2px; display:inline-block; }
+
+    /* — Carte triangulaire — */
+    .tri-legs path.hit { stroke:transparent; stroke-width:34; fill:none; cursor:pointer; }
+    .tri-legs path.route { fill:none; stroke-width:2.4; stroke-linecap:round; transition:stroke-width .35s,opacity .35s; }
+    .tri-legs g.leg path.route { opacity:.4; }
+    .tri-legs g.leg.active path.route { opacity:1; stroke-width:3.4; }
+    .tri-legs path.flow { fill:none; stroke-width:3.2; stroke-linecap:round; stroke-dasharray:2 16; opacity:0; }
+    .tri-legs g.leg.active path.flow { opacity:1; animation:triflow 2.4s linear infinite; }
+    @keyframes triflow { to { stroke-dashoffset:-180; } }
+    .tri-node circle { fill:rgba(5,8,17,.9); stroke:var(--gold); stroke-width:1.4; }
+    .tri-node text { fill:var(--parch); font-weight:600; font-size:13px; letter-spacing:.04em; }
+    .tri-node .sub { fill:var(--soft); font-size:10px; font-weight:600; }
+    .leg-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:4px 24px; }
+    .leg-card { border:1px solid var(--line-2); border-left:3px solid var(--lc,var(--gold)); border-radius:3px; padding:13px 15px; background:rgba(244,236,216,.03); cursor:pointer; transition:transform .3s var(--ease),background .3s; text-align:left; }
+    .leg-card:hover { transform:translateY(-3px); background:rgba(244,236,216,.06); }
+    .leg-card.active { background:rgba(244,236,216,.08); box-shadow:0 0 0 1px var(--lc,var(--gold)) inset; }
+    .leg-card h5 { margin:0 0 3px; font-family:var(--roman); font-size:.64rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lc,var(--gold)); }
+    .leg-card p { margin:0; color:var(--muted); font-size:.85rem; }
+    .leg-detail { margin:14px 24px 4px; border-top:1px solid var(--line-2); padding-top:16px; min-height:104px; }
+    .leg-detail .lab { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--lc,var(--gold)); }
+    .leg-detail h4 { margin:7px 0 8px; font-family:var(--serif); font-weight:600; font-size:1.18rem; color:var(--ink); }
+    .leg-detail p { margin:0 0 10px; color:var(--muted); font-size:.96rem; }
+    .leg-detail ul { margin:0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+    .leg-detail li { font-family:var(--roman); font-size:.62rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--parch); border:1px solid var(--line); border-radius:2px; padding:5px 10px; background:rgba(214,172,85,.05); }
+    .leg-detail li::before { content:none; }
+
+    /* — Frise chronologique — */
+    .tl-node { cursor:pointer; }
+    .tl-node circle.dot { fill:var(--void); stroke-width:2; transition:r .25s; }
+    .tl-node:hover circle.dot,.tl-node.active circle.dot { r:8.5; }
+    .tl-node text { fill:var(--soft); font-size:10.5px; font-weight:600; letter-spacing:.02em; transition:fill .25s; }
+    .tl-node:hover text,.tl-node.active text { fill:var(--parch); }
+    .tl-detail { margin:6px 24px 4px; border-top:1px solid var(--line-2); padding-top:14px; min-height:74px; }
+    .tl-detail .yr { font-family:var(--roman); font-weight:800; font-size:1.15rem; color:var(--gold-bright); letter-spacing:.02em; }
+    .tl-detail h4 { margin:3px 0 6px; font-family:var(--serif); font-weight:600; font-size:1.1rem; color:var(--ink); }
+    .tl-detail p { margin:0; color:var(--muted); font-size:.95rem; }
+
+    /* — Bar chart Nantes — */
+    .bars-row { cursor:pointer; }
+    .bars-row rect.bar { transition:filter .3s; }
+    .bars-row:hover rect.bar,.bars-row.active rect.bar { filter:brightness(1.3); }
+    .bars-row text.cap { fill:var(--parch); font-size:11px; font-weight:700; }
+    .bars-row text.yr { fill:var(--soft); font-size:10px; font-weight:600; }
+    .bars-detail { margin:10px 24px 4px; border-top:1px solid var(--line-2); padding-top:14px; min-height:58px; color:var(--muted); font-size:.95rem; }
+    .bars-detail b { color:var(--parch); }
+
+    /* — Plan du navire — */
+    .ship-controls { display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; padding:4px 24px 12px; }
+    .ship-toggle { display:inline-flex; border:1px solid var(--line); border-radius:3px; overflow:hidden; }
+    .ship-toggle button { font-family:var(--roman); font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); background:transparent; border:0; padding:9px 14px; cursor:pointer; transition:background .25s,color .25s; }
+    .ship-toggle button.on { background:linear-gradient(140deg,var(--gold-bright),var(--gold-deep)); color:#14110a; }
+    .ship-readout { font-family:var(--serif); color:var(--muted); font-size:.94rem; }
+    .ship-readout b { font-family:var(--roman); font-weight:800; font-size:1.18rem; color:var(--gold-bright); letter-spacing:.02em; }
+    .ship svg .hull { fill:rgba(124,135,148,.07); stroke:var(--iron); stroke-width:1.4; }
+    .ship svg .deckline { stroke:var(--line); stroke-width:1; stroke-dasharray:3 4; }
+    .ship svg .fig { fill:var(--gold); opacity:.6; }
+    .ship svg .barricado { stroke:var(--ember); stroke-width:2.4; stroke-dasharray:5 4; }
+    .ship svg text.lbl { fill:var(--soft); font-size:10px; font-weight:600; }
+
+    @media (max-width:720px) {
+      .leg-cards { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition:none !important; }
+      .js .reveal { opacity:1; transform:none; }
+      .js .hero-inner > div > *,.js .signal-board { opacity:1; }
+      .tri-legs g.leg path.flow { opacity:0 !important; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+  <link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr">
+<meta name="rights" content="Sauf mention contraire, les contenus éditoriaux, textes, transcriptions, images et médias du site Empire contre Intox sont sous licence CC BY-NC-ND 4.0. Partage autorisé avec attribution, sans usage commercial ni modification.">
+  <style id="eci-license-style">
+  .eci-license{max-width:1100px;margin:18px auto 0;padding:14px 18px;border:1px solid rgba(214,172,85,.24);border-radius:3px;background:rgba(214,172,85,.06);color:inherit;font-size:.88rem;line-height:1.6;text-align:center;}
+  .eci-license a{color:#f3d98a;text-decoration:underline;text-underline-offset:.18em;}
+  .eci-license strong{color:inherit;font-weight:700;}
+  .eci-license-footer{position:relative;z-index:2;padding:24px 20px;border-top:1px solid rgba(214,172,85,.18);background:rgba(5,8,17,.72);}
+  .eci-counter-sep{opacity:.55;margin:0 .35em;}
+  .eci-visit-counter{white-space:nowrap;color:#c0b59a;}
+</style>
+  <style id="corps-style">
+:root{--sea:#5b9d98;--mint:#afd3c7;--mint-line:rgba(175,211,199,.24)}
+.hero{min-height:94svh;padding-top:80px}.hero-inner{position:relative}.hero-copy{max-width:760px}.hero h1{font-size:clamp(3rem,7vw,6rem);max-width:14ch;line-height:1.04}.hero h1 small{display:block;font-size:.22em;letter-spacing:.17em;line-height:1.7;font-weight:500;margin-bottom:20px;color:var(--mint)}.hero-lead{max-width:48ch}.hero .hero-quote{font-size:1.15rem;color:var(--mint)}.hero .signal-board{border-color:var(--mint-line)}.hero .signal strong{font-size:.95rem}
+.suite{display:flex;align-items:center;gap:16px;flex-wrap:wrap;border-block:1px solid var(--mint-line);padding:19px 0;color:var(--muted);margin-bottom:55px;font-size:.9rem}.suite b{color:var(--mint);font-family:var(--roman);font-size:.65rem;letter-spacing:.16em}.suite a{text-decoration:underline;text-underline-offset:4px}.suite span{color:var(--gold)}
+.toc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 34px;margin:30px 0 55px}.toc-grid a{display:flex;gap:15px;border-bottom:1px solid var(--line-2);padding:16px 0;font-size:.93rem;line-height:1.5}.toc-grid a span{color:var(--sea);font-family:var(--roman);font-size:.7rem}.toc-grid a:hover{color:var(--mint)}
+.chapter{padding-block:55px}.chapter-head h2{font-size:clamp(1.85rem,3vw,3rem);line-height:1.15;max-width:24ch}.prose p,.prose li{line-height:1.93;font-size:1.03rem;overflow-wrap:break-word}.prose>.source-heading{font-family:var(--roman);font-size:1rem;line-height:1.7;color:var(--mint);margin:38px 0 20px;letter-spacing:.025em}.prose .source-subheading{font-family:var(--serif);font-size:1.15rem;font-weight:600;line-height:1.6;color:var(--parch);margin:24px 0 12px}.prose .original-title{font-size:1.45rem;color:var(--parch);line-height:1.45;margin:18px 0}.prose .source-chapter{font-family:var(--roman);font-size:.65rem;letter-spacing:.2em;color:var(--sea)}.prose ul{padding-left:24px}.prose li{padding-left:4px;margin:12px 0}.prose li::before{display:none}.prose .source-line{padding-left:18px;border-left:1px solid var(--mint-line)}
+.anti-intox{border:1px solid var(--mint-line);border-top:2px solid var(--sea);padding:23px 24px;margin:0 0 22px;background:rgba(27,55,51,.2);scroll-margin-top:110px}.anti-intox h3{font-family:var(--serif);font-size:1.15rem;font-weight:500;line-height:1.5;margin:0 0 14px}.audit-label{display:block;font-family:var(--roman);font-size:.55rem;letter-spacing:.18em;color:var(--mint);margin-bottom:9px;text-transform:uppercase}.anti-intox p{font-size:.9rem;line-height:1.8;color:var(--muted);margin:12px 0}.anti-intox a,.source-note a,.verified-links a{color:var(--mint);text-decoration:underline;text-underline-offset:3px}.correction-link{display:block;margin-top:7px;font-size:.77rem;color:var(--mint);text-decoration:underline;text-underline-offset:3px}
+.chapter-figure{margin:32px 0 45px}.chapter-figure img{width:100%;max-height:620px;object-fit:cover;border:1px solid var(--mint-line)}.chapter-figure figcaption{max-width:85ch;margin-top:12px;font-size:.85rem;line-height:1.7;color:var(--muted)}
+.boussole{margin:20px 0 65px;border:1px solid var(--mint-line);background:linear-gradient(115deg,rgba(31,67,61,.26),rgba(5,8,17,.8));padding:32px}.boussole h2{font-family:var(--serif);font-size:2.1rem;font-weight:450;line-height:1.2;margin:10px 0 18px}.boussole>p{max-width:75ch;color:var(--muted)}.compass-controls{display:flex;flex-wrap:wrap;gap:10px;margin:25px 0}.compass-controls button{background:transparent;border:1px solid var(--mint-line);color:var(--mint);font:600 .65rem var(--roman);letter-spacing:.08em;text-transform:uppercase;padding:14px 18px;cursor:pointer}.compass-controls button[aria-pressed=true]{background:var(--mint);color:var(--void)}.compass-panel{padding:22px;border-left:2px solid var(--gold);background:rgba(5,8,17,.5)}.compass-panel h3{font:500 1.2rem var(--serif);margin-bottom:10px}.compass-panel p{color:var(--muted);font-size:.98rem;line-height:1.8;margin:0}.compass-panel[hidden]{display:none}
+.help-band{border:1px solid var(--mint-line);padding:32px;margin:40px 0 65px;background:rgba(31,67,61,.17);scroll-margin-top:110px}.help-band h2{font:500 2rem var(--serif);line-height:1.3}.help-numbers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:25px 0}.help-numbers a{display:block;border-top:1px solid var(--mint-line);padding-top:18px}.help-numbers strong{display:block;font:600 1.9rem var(--roman);color:var(--mint)}.help-numbers span{display:block;font-size:.86rem;color:var(--muted);line-height:1.7;margin-top:8px}.help-band p{font-size:.9rem;color:var(--muted)}
+.document-note{font-size:.88rem;color:var(--muted);border-left:2px solid var(--sea);padding:14px 20px;margin:25px 0 35px;background:rgba(31,67,61,.17)}.verified-links{padding:24px;border:1px solid var(--mint-line);margin:30px 0;line-height:1.9}.verified-links h3{font-family:var(--serif);font-size:1.3rem;line-height:1.5;margin-bottom:12px}.original-gallery{margin:30px 0}.original-gallery summary{cursor:pointer;color:var(--mint);padding:16px;border:1px solid var(--mint-line);font-size:.9rem}.original-gallery img{object-fit:contain;max-height:600px}.prose{max-width:49rem}.side-note{align-self:start}.side-note .anti-intox:last-child{margin-bottom:0}.closing-quote{font:italic 400 clamp(1.4rem,3vw,2.2rem)/1.55 var(--serif);color:var(--mint);max-width:32ch;margin:35px auto 75px;text-align:center}.collective-actions{flex-wrap:wrap}.brand span{max-width:15ch}.prose a{overflow-wrap:anywhere}
+@media(max-width:1050px){.transcript{grid-template-columns:minmax(0,1fr);gap:28px}.side-note{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.side-note>.anti-intox:only-child{grid-column:1/-1}.toc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){.hero{padding:65px 20px 30px;min-height:85svh}.hero .hero-inner{gap:25px;margin-bottom:2vh}.hero h1{font-size:clamp(2.8rem,11vw,4.8rem)}.hero h1 small{font-size:.2em}.hero::before{background-position:63% center}.hero-lead{font-size:1rem}.hero .signal-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.signal{padding:15px 12px}.hero .signal strong{font-size:.8rem}.toc-grid,.side-note,.help-numbers{grid-template-columns:minmax(0,1fr)}.boussole,.help-band{padding:24px 20px}.chapter{padding-block:38px}.chapter-head{gap:15px;grid-template-columns:minmax(0,1fr) 55px}.chapter-number{font-size:2rem}.chapter-head h2{font-size:1.8rem}.nav.open{max-height:70svh;overflow:auto}.eci-visit-counter{white-space:normal}}
+</style>
+<style id="eci-wide-style">
+  /* ——— Grands écrans : reprendre la largeur perdue, jusqu'au 4K ———
+     La page s'élargit ET le texte grossit, ensemble : la colonne de lecture garde
+     sa mesure (~100 signes), la largeur gagnée va à la marge savante et aux
+     visuels, qui débordent la colonne de texte au-delà de 1800 px. */
+  @media (min-width:1440px){
+    :root{ --max:1300px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(300px,430px); gap:52px; }
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(280px,380px); }
+    .intro-band{ grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr); }
+  }
+  @media (min-width:1800px){
+    :root{ --max:1420px; }
+    html{ font-size:17px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(320px,470px); gap:58px; }
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(300px,410px); }
+    .viz-section{ width:min(100vw - 72px,1720px);
+                  margin-inline:calc((100% - min(100vw - 72px,1720px)) / 2); }
+  }
+  @media (min-width:2200px){
+    :root{ --max:1560px; }
+    html{ font-size:18.5px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(340px,530px); gap:64px; }
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(320px,440px); }
+    .viz-section{ width:min(100vw - 96px,2040px);
+                  margin-inline:calc((100% - min(100vw - 96px,2040px)) / 2); }
+  }
+  @media (min-width:2800px){
+    :root{ --max:1820px; }
+    html{ font-size:20px; }
+    .transcript{ grid-template-columns:minmax(0,1fr) minmax(380px,700px); gap:74px; }
+    .hero-inner{ grid-template-columns:minmax(0,1fr) minmax(340px,470px); }
+    .viz-section{ width:min(100vw - 120px,2360px);
+                  margin-inline:calc((100% - min(100vw - 120px,2360px)) / 2); }
+  }
+  </style>
+</head><body><div class="atmos" aria-hidden="true"></div><div class="grain" aria-hidden="true"></div><div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="progress-top" id="progressTop" aria-hidden="true"></div><div class="page">
+
+<header class="hero" id="top"><div class="hero-waterline"></div><div class="hero-inner"><div class="hero-copy"><p class="eyebrow">Dossier XXXIV · Lalie &amp; Ymir · Partie II</p><h1><small>Mutilations sexuelles et génitales</small>Le corps <span class="foil">souverain</span></h1><p class="hero-lead">Traditions, médecine, droits de l’enfant : comprendre les atteintes à l’intégrité corporelle et interroger la place du consentement.</p><p class="hero-quote">« Critiquer les actes, respecter les personnes. »</p><div class="hero-actions"><a class="button primary" href="#ouverture">Lire le dossier ↓</a><a class="button" href="#aide">Trouver de l’aide</a><a class="button" href="../excision/index.html">Revenir à la partie I</a></div></div><aside class="signal-board" aria-label="Les repères de lecture"><div class="signal"><span>Le point de départ</span><strong>L’intégrité corporelle</strong></div><div class="signal"><span>La méthode</span><strong>Vérifier les affirmations</strong></div><div class="signal"><span>La distinction</span><strong>Soins et normalisation</strong></div><div class="signal"><span>Le fil conducteur</span><strong>La place du consentement</strong></div></aside></div></header>
+<nav class="topbar" aria-label="Navigation principale"><div class="topbar-inner"><a class="brand" href="#top"><img class="brand-mark" src="../assets/logo-eci.jpg" alt="Sceau ECI"><span>Le corps souverain</span></a><a class="home-link" href="../../index.html">Accueil ECI</a><button class="mobile-menu" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button><div class="nav" id="navLinks"><a href="#sommaire">Sommaire</a><a href="#methode">Comprendre</a><a href="#anatomie">Anatomie</a><a href="#douleur">Douleur</a><a href="#intersexuation">Intersexuation</a><a href="#droit">Droits</a><a href="#references">Sources</a><a href="#aide">Aide</a></div></div><div class="progress" aria-hidden="true"><span></span></div></nav>
+<main id="transcription"><div class="suite"><b>La suite du dossier</b><a href="../excision/index.html">I · Souveraines et debout — l’excision</a><span aria-hidden="true">→</span><span>II · Le corps souverain</span></div>
+<section class="intro-band" id="fil"><div class="manifesto reveal"><p class="section-kicker">Comprendre les actes, respecter les personnes</p><h2>Un enfant. Un corps. Des choix à préserver.</h2><p>Après le dossier sur l’excision, Lalie et Ymir élargissent l’enquête aux interventions sur les garçons et les enfants intersexes, ainsi qu’à d’autres altérations corporelles imposées pendant l’enfance.</p><p>Le déroulé est conservé intégralement. Les encadrés « Anti-intox » apportent les rectifications : ils distinguent les résultats établis, les incertitudes scientifiques, le droit et les positions éthiques du live.</p></div><div class="timeline reveal"><div class="timeline-row"><time>Comprendre</time><p>Décrire une pratique sans réduire une culture à cette pratique.</p></div><div class="timeline-row"><time>Vérifier</time><p>Une structure anatomique, une étude et un témoignage ne disent pas la même chose.</p></div><div class="timeline-row"><time>Distinguer</time><p>Le besoin de soins et la conformité à une norme sociale demandent des analyses différentes.</p></div></div></section>
+<section class="learning-panel reveal" aria-labelledby="objectifs"><h2 id="objectifs">Ce que vous allez apprendre</h2><div class="learning-grid"><div><h3>Nommer les pratiques</h3><p>Repérer le contexte, les tissus concernés et les risques documentés.</p></div><div><h3>Lire les preuves</h3><p>Distinguer un risque possible d’une séquelle systématique.</p></div><div><h3>Comprendre les droits</h3><p>Relier l’intérêt de l’enfant, son avis et la préservation de ses choix futurs.</p></div></div></section>
+<section id="sommaire" aria-labelledby="sommaire-titre"><p class="section-kicker">Le parcours de lecture</p><h2 id="sommaire-titre">Le dossier, chapitre par chapitre</h2><nav class="toc-grid" aria-label="Sommaire du dossier">
+<a href="#ouverture"><span>01</span>Une même question : qui décide ?</a>
+<a href="#methode"><span>02</span>Définir, comprendre, distinguer</a>
+<a href="#panorama"><span>03</span>Des pratiques et des contextes différents</a>
+<a href="#anatomie"><span>04</span>Le prépuce : anatomie et fonctions</a>
+<a href="#histoire"><span>05</span>Les traditions et leur histoire</a>
+<a href="#douleur"><span>06</span>La douleur du nouveau-né</a>
+<a href="#intersexuation"><span>07</span>Respecter les variations, distinguer les soins</a>
+<a href="#droit"><span>08</span>Les droits de l’enfant et leurs limites d’application</a>
+<a href="#accompagnement"><span>09</span>Écouter, orienter, accompagner</a>
+<a href="#corps-souverain"><span>10</span>Le corps souverain</a>
+<a href="#glossaire"><span>11</span>Les mots pour comprendre</a>
+<a href="#references"><span>12</span>Les références du déroulé</a>
+<a href="#medias"><span>13</span>Livres, essais et documentaires</a>
+<a href="#schemas"><span>14</span>Les schémas envisagés</a>
+<a href="#atelier-documentaire"><span>15</span>Les pistes de visuels du live</a></nav></section><section class="credit-band"><div class="byline"><span class="avatars"><img src="lalie.jpeg" alt="Avatar de Lalie" width="64" height="64" loading="lazy"><img src="ymir.jpeg" alt="Avatar d’Ymir" width="64" height="64" loading="lazy"></span><span class="who"><span class="lbl">Réalisé par</span><strong>Lalie &amp; Ymir</strong></span></div></section>
+<section class="boussole reveal" id="boussole"><p class="section-kicker">Quatre questions pour lire le dossier</p><h2>La boussole du consentement</h2><p>Séparez les questions pour mieux examiner une même pratique. Ces repères de lecture ne constituent pas un outil de décision médicale.</p><div class="compass-controls" role="group" aria-label="Choisir un angle de lecture">
+<button type="button" aria-pressed="true" aria-controls="angle-faits" data-angle="faits">Les faits</button>
+<button type="button" aria-pressed="false" aria-controls="angle-soins" data-angle="soins">Les soins</button>
+<button type="button" aria-pressed="false" aria-controls="angle-droits" data-angle="droits">Les droits</button>
+<button type="button" aria-pressed="false" aria-controls="angle-consentement" data-angle="consentement">Le consentement</button>
+</div>
+<div class="compass-panel" id="angle-faits"><h3>Que montre la preuve ?</h3><p>Identifier le geste, le contexte, les bénéfices attendus, les risques et les limites des études. Un résultat moyen ne prédit pas le vécu de chaque personne.</p></div>
+<div class="compass-panel" id="angle-soins" hidden><h3>Y a-t-il une nécessité médicale ?</h3><p>Certaines situations nécessitent un traitement, parfois urgent. Les actes visant seulement à modifier l’apparence ne se confondent pas avec ces soins. L’indication s’apprécie avec une équipe compétente.</p></div>
+<div class="compass-panel" id="angle-droits" hidden><h3>Que dit le texte applicable ?</h3><p>La CIDE protège l’enfant. Les lois nationales diffèrent : une critique éthique ne suffit pas à établir qu’un acte est partout interdit.</p></div>
+<div class="compass-panel" id="angle-consentement" hidden><h3>Quelle place pour la personne ?</h3><p>Informer l’enfant selon sa maturité, rechercher sa participation et considérer les effets durables de la décision. Préserver les possibilités de choix est un objectif éthique central du dossier.</p></div>
+</section>
+<section class="chapter reveal" id="ouverture" aria-labelledby="titre-ouverture"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 01</p><h2 id="titre-ouverture">Une même question : qui décide ?</h2></div><div class="chapter-number">01</div></div>
+<p class="document-note">Le sommaire original est reproduit ci-dessous. Certaines rubriques annoncées, notamment les modifications non génitales, ne sont pas développées dans le document transmis. Les quatre chapitres effectivement rédigés et les annexes sont tous présents.</p>
+<div class="transcript"><article class="prose"><h3 class="original-title" data-source-line="19">Quand la Tradition S'empare de la Chair.....</h3>
+<h3 class="source-heading" data-source-line="20">Rituels, Dogmes et Intégrité Infantile</h3>
+<p data-source-line="22">Le corps de l'enfant n'est pas une page blanche laissée par la nature. C'est le premier parchemin sur lequel les sociétés, les traditions et les dogmes gravent leurs lois, leurs peurs et leurs structures de pouvoir.</p>
+<h3 class="original-title" data-source-line="41">Quand la Tradition S'empare de la Chair.....</h3>
+<h3 class="source-heading" data-source-line="42">Rituels, Dogmes et Intégrité Infantile.</h3>
+<p data-source-line="44">Le corps de l'enfant n'est pas une page blanche laissée par la nature. C'est le premier parchemin sur lequel les sociétés, les traditions et les dogmes gravent leurs lois, leurs peurs et leurs structures de pouvoir.</p>
+<p data-source-line="45">Bonjour à tous, toutes, et bienvenue. Aujourd'hui, nous posons le sensationnalisme et le prêt-à-penser pour faire ce que nous nous efforçons de réaliser ici : remonter aux sources, analyser les structures et appliquer une rigueur méthodologique stricte.</p>
+<p data-source-line="46">Après avoir abordé la question des mutilations génitales féminines, nous élargissons notre focale à l'ensemble des atteintes, mutilations et altérations physiques imposées aux enfants à travers le monde. De la déformation des pieds bandés dans la Chine impériale au repassage des seins, des mutilations génitales masculines et féminines aux interventions médicales non consenties sur les enfants intersexes, jusqu'aux marques rituelles et aux châtiments corporels institutionnalisés, le corps du mineur est, à travers les cultures et les époques, le réceptacle de contraintes physiques majeures.</p>
+<p data-source-line="47"><strong>Face à ces pratiques, notre fil conducteur s'appuie sur un prisme fondamental </strong> : le droit international et la doctrine des Droits de l'Enfant, formalisés notamment par la Convention Internationale des Droits de l'Enfant (CIDE) de l'ONU (1989). Ce cadre rappelle trois principes inaliénables :</p>
+<p class="source-line" data-source-line="48">Le droit à l'intégrité physique et à la protection contre toute forme de violence (Article 19).</p>
+<p class="source-line" data-source-line="49">La protection contre les pratiques traditionnelles préjudiciables à la santé (Article 24.3).</p>
+<p class="source-line" data-source-line="50">Le respect de l'intérêt supérieur de l'enfant et de son autonomie progressive (Articles 3 et 12).</p>
+<p data-source-line="51">Notre objectif, en tant qu'esprits critiques, est de comprendre les logiques anthropologiques, historiques, sociales et religieuses qui sous-tendent ces actes, tout en évaluant objectivement leurs impacts médicaux, psychologiques et juridiques à la lumière de la science et des droits humains universels.</p>
+<h3 class="source-heading" data-source-line="53">Sommaire général</h3>
+<p class="source-line" data-source-line="55"><strong>Introduction </strong> : Le corps comme parchemin de la tribu et le prisme des droits de l'enfant</p>
+<p class="source-line" data-source-line="56"><strong>1. Épistémologie, Sémantique et Anthropologie </strong> : Pourquoi le corps de l'enfant ?</p>
+<h3 class="source-heading" data-source-line="57"><strong>1.1 Sémantique </strong> : Modification, marqueur, rite et mutilation</h3>
+<h3 class="source-heading" data-source-line="58"><strong>1.2 Anthropologie du corps </strong> : La socialisation de la chair et la propriété du groupe</h3>
+<h3 class="source-heading" data-source-line="59"><strong>1.3 Historique du statut de l'enfant </strong> : De l'objet de tutelle au sujet de droit</h3>
+<h3 class="source-heading" data-source-line="60"><strong>1.4 L'épistémologie critique </strong> : Éviter l'ethnocentrisme et le relativisme culturel naïf</h3>
+<p class="source-line" data-source-line="61">2. Panorama global des mutilations et altérations corporelles de genre</p>
+<h3 class="source-heading" data-source-line="62">2.1 Les pieds bandés en Chine (« Les Lotus d'Or »)</h3>
+<h3 class="source-heading" data-source-line="63">2.2 Le repassage des seins (Cameroun et Afrique centrale)</h3>
+<h3 class="source-heading" data-source-line="64">2.3 L'élongation labiale / Gukuna (Afrique orientale et australe)</h3>
+<p class="source-line" data-source-line="65">3. Mutilations et interventions sur l'anatomie masculine et intersexe</p>
+<h3 class="source-heading" data-source-line="66"><strong>3.1 La circoncision rituelle, culturelle et médicale </strong> : Origines, motifs, textes et déconstruction des mythes</h3>
+<h3 class="source-heading" data-source-line="67">3.2 Les interventions chirurgicales précoces de « normalisation » sur les mineurs intersexes (MGD)</h3>
+<p class="source-line" data-source-line="68">4. Les modifications corporelles non génitales à caractère rituel ou traditionnel</p>
+<h3 class="source-heading" data-source-line="69">4.1 Scarifications, tatouages tribaux et modifications dentaires</h3>
+<h3 class="source-heading" data-source-line="70">4.2 Cautérisations, anneaux de cou et déformations crâniennes</h3>
+<p class="source-line" data-source-line="71">5. Le cadre juridique, la prévention et la culture du consentement</p>
+<h3 class="source-heading" data-source-line="72">5.1 La CIDE (Articles 3, 12, 19, 24.3) et la doctrine des Droits de l'Enfant</h3>
+<h3 class="source-heading" data-source-line="73">5.2 Les positions des instances internationales (OMS, UNICEF, HCDH)</h3>
+<h3 class="source-heading" data-source-line="74"><strong>5.3 De la prévention moderne à la souveraineté corporelle </strong> : Le pont analytique avec l'éducation à la vie affective et sexuelle (programmes EVARS) et la culture du consentement</h3>
+<p class="source-line" data-source-line="75">6. Glossaire, références bibliographiques et ressources documentaires</p></article><aside class="side-note"><div class="anti-intox" id="audit-lecture"><h3><span class="audit-label">Anti-intox · vérification</span>Lire le déroulé avec les vérifications</h3><p>Les textes du live expriment une défense de l’intégrité corporelle. Une position éthique ne dispense pas d’examiner les indications médicales, la gravité des pratiques et les différences de droit. Les rectifications ci-dessous s’appliquent également aux résumés et au glossaire.</p><p>Les termes « mutilations génitales féminines » ont une définition de référence de l’OMS. Les interventions masculines et les variations intersexes ne relèvent pas toutes d’une catégorie médicale ou juridique identique.</p><p class="source-note"><a href="https://www.who.int/news-room/fact-sheets/detail/female-genital-mutilation" target="_blank" rel="noopener">OMS · définition des MGF</a> · <a href="../../sources/dossier-XXXIV-mutilations.md" target="_blank" rel="noopener">Audit du dossier</a></p></div>
+<div class="anti-intox" id="audit-education"><h3><span class="audit-label">Anti-intox · vérification</span>EVAR et EVARS : une progression selon l’âge</h3><p>Le programme d’éducation à la vie affective et relationnelle (EVAR) concerne l’école maternelle et élémentaire. L’EVARS ajoute la sexualité au collège et au lycée. Appliqués depuis la rentrée 2025, ces programmes adaptent les apprentissages à l’âge et abordent progressivement le respect du corps et le consentement.</p><p class="source-note"><a href="https://eduscol.education.gouv.fr/5916/mettre-en-oeuvre-le-programme-evarevars" target="_blank" rel="noopener">Éduscol · programme EVAR/EVARS</a></p></div>
+</aside></div>
+<p class="source-note"><a href="#methode">Poursuivre : Définir, comprendre, distinguer →</a></p>
+</section>
+<section class="chapter reveal" id="methode" aria-labelledby="titre-methode"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 02</p><h2 id="titre-methode">Définir, comprendre, distinguer</h2></div><div class="chapter-number">02</div></div>
+<div class="transcript"><article class="prose"><p class="source-chapter" data-source-line="102">CHAPITRE 1</p>
+<h3 class="original-title" data-source-line="103">Épistémologie, Sémantique et Anthropologie</h3>
+<h3 class="source-heading" data-source-line="104">Pourquoi le corps de l'enfant ?</h3>
+<p data-source-line="105">Avant toute analyse clinique, juridique ou historique des pratiques observées à travers le monde, ce premier chapitre établit les fondements méthodologiques de notre démarche. Il permet d'aborder la question de l'intégrité physique de l'enfant avec une rigueur épistémologique stricte, en évitant les écueils du jugement émotif comme du relativisme amoral.</p>
+<h3 class="source-heading" data-source-line="106"><strong>1.1 Sémantique </strong> : Définir les mots pour penser le réel</h3>
+<p data-source-line="107">L'analyse zététique impose d'établir une typologie sémantique précise afin de distinguer ce qui relève du symbole, du rituel ou de l'atteinte anatomique grave. La confusion des termes nuit à la clarté du constat médical et juridique.</p>
+<p class="source-line" data-source-line="108"><strong>La modification corporelle </strong> : Terme générique et neutre englobant toute altération volontaire de l'enveloppe charnelle (qu'elle soit esthétique, rituelle, médicale ou traditionnelle).</p>
+<p class="source-line" data-source-line="109"><strong>Le marqueur / Rite de passage </strong> : Empreinte culturelle, matérielle ou symbolique inscrite sur le corps pour signifier une transition de statut social (changement de classe d'âge, accès au statut d'adulte) ou l'intégration au sein d'une communauté.</p>
+<p class="source-line" data-source-line="110"><strong>La mutilation </strong> : Concept juridique et sanitaire qualifiant une altération physique grave, irréversible et non thérapeutique portant atteinte à l'intégrité anatomique, physiologique ou sensorielle d'un individu, pratiquée en l'absence de son consentement libre et éclairé.<a class="correction-link" href="#audit-definition">Lire la rectification : Une définition de travail, pas une définition juridique unique →</a></p>
+<h3 class="source-heading" data-source-line="111"><strong>1.2 Anthropologie du corps </strong> : Le support social du groupe</h3>
+<p data-source-line="112">L'anthropologie culturelle (notamment les travaux d'Arnold van Gennep sur les rites de passage et de David Le Breton sur la sociologie du corps) met en lumière les logiques collectives qui s'exercent sur la chair des enfants.</p>
+<p class="source-line" data-source-line="113"><strong>L'absence originelle de souveraineté individuelle </strong> : Dans la plupart des sociétés traditionnelles, la notion contemporaine d'individu autonome et propriétaire de son propre corps n'existe pas. Le corps de l'enfant appartient prioritairement à la lignée, au clan, à la communauté ou aux divinités.<a class="correction-link" href="#audit-anthropologie">Lire la rectification : Des interprétations, pas une loi universelle →</a></p>
+<p class="source-line" data-source-line="114"><strong>La socialisation du corps (De la nature à la culture) </strong> : Aux yeux du groupe traditionnel, l'enfant naît incomplet ou « sauvage ». L'intervention physique (marquage, entaille, modelage) agit comme un outil de socialisation. Elle extirpe l'enfant de l'état de nature brute pour l'intégrer au monde codifié de la culture et des adultes. Le corps devient ainsi le parchemin sur lequel la tribu imprime sa grammaire sociale.</p>
+<h3 class="source-heading" data-source-line="115"><strong>1.3 Historique du statut de l'enfant </strong> : De l'objet de tutelle au sujet de droit</h3>
+<p data-source-line="116">Pour évaluer ces pratiques sans anachronisme, il est nécessaire d'analyser l'évolution historique du statut juridique et social du mineur (notamment mis en lumière par les travaux de Philippe Ariès).</p>
+<p class="source-line" data-source-line="117"><strong>L'enfant comme objet de propriété </strong> : Durant la majeure partie de l'histoire humaine, l'enfant n'a pas été conçu comme une personne juridique distincte, mais comme une extension de l'autorité paternelle ou familiale (patria potestas dans le droit romain).<a class="correction-link" href="#audit-anthropologie">Lire la rectification : Des interprétations, pas une loi universelle →</a></p>
+<p class="source-line" data-source-line="118"><strong>L'émergence moderne du corps souverain </strong> : La reconnaissance de l'enfant comme sujet de droit autonome doté d'une intégrité physique et psychologique inaliénable est une conquête philosophique et juridique récente (formalisée au XXᵉ siècle). Ce décalage historique explique pourquoi des traditions physiques millénaires se maintiennent encore dans des cadres où le droit moderne qualifie ces actes de violences ou de mutilations.</p>
+<h3 class="source-heading" data-source-line="119"><strong>1.4 L'épistémologie critique </strong> : Échapper au double écueil</h3>
+<p data-source-line="120">L'étude des altérations corporelles de l'enfant exige une discipline intellectuelle évitant deux biais méthodologiques majeurs :</p>
+<h4 class="source-subheading" data-source-line="121">A. L'ethnocentrisme arrogant :</h4>
+<p class="source-line" data-source-line="122">Consiste à condamner les pratiques d'autres cultures en se fondant uniquement sur ses propres codes culturels, sans chercher à analyser les fonctions sociales, politiques ou rituelles de l'acte au sein du groupe qui le pratique.</p>
+<h4 class="source-subheading" data-source-line="123">B. Le relativisme culturel naïf (ou amoral) :</h4>
+<p class="source-line" data-source-line="124">Consiste à tolérer ou justifier toutes les violences physiques sous prétexte qu'elles appartiennent à une tradition locale (« c'est leur culture, il faut respecter »).</p>
+<p data-source-line="125"><strong>La posture zététique et éthique </strong> : Comprendre la fonction anthropologique ou symbolique d'un rite n'annule ni ne cautionne les conséquences médicales, physiologiques et psychologiques mesurables subies par un enfant non consentant.</p>
+<h3 class="source-heading" data-source-line="126"><strong>1.5 Le paradoxe de l'agentivité </strong> : Quand la violence est exécutée par bienveillance culturelle</h3>
+<p data-source-line="127">Pour analyser rigoureusement ces pratiques sans tomber dans la caricature du « bourreau sadique », l'anthropologie et la sociologie clinique mettent en lumière un mécanisme central : l'intériorisation de la norme violente.</p>
+<p class="source-line" data-source-line="128"><strong>L'absence d'intentionnalité malveillante subjective </strong> : Dans l'immense majorité des cas (qu'il s'agisse du repassage des seins par les mères, des pieds bandés par les tantes ou des rites initiatiques encadrés par les anciens), les acteurs de la violence n'agissent pas par haine ou par cruauté gratuite. Ils agissent par conformisme protecteur ou par amour dévoyé par le dogme : protéger l'enfant du stigmate social, lui garantir un mariage, assurer son salut spirituel ou l'intégrer au groupe.<a class="correction-link" href="#audit-anthropologie">Lire la rectification : Des interprétations, pas une loi universelle →</a></p>
+<p class="source-line" data-source-line="129"><strong>La confusion entre la pureté du mobile et la gravité du fait </strong> : C'est précisément ce paradoxe qui rend l'analyse complexe. La zététique et la critique rationnelle exigent de dissocier radicalement la subjectivité des intentions de l'exécutant (qui croit bien faire) et l'objectivité de la violence anatomique (l'atteinte irréversible subie par le corps de l'enfant).</p></article><aside class="side-note"><div class="anti-intox" id="audit-anthropologie"><h3><span class="audit-label">Anti-intox · vérification</span>Des interprétations, pas une loi universelle</h3><p>Les rites peuvent marquer une appartenance, mais les sociétés, les époques et les motivations diffèrent. Le déroulé généralise lorsqu’il affirme que le corps de l’enfant appartient au groupe dans la plupart des sociétés ou que les exécutants agissent dans l’immense majorité des cas par bienveillance. Aucune proportion n’est établie ici.</p><p>L’histoire de l’enfance ne se réduit pas à un passage uniforme de la propriété au sujet de droit. Les travaux de Philippe Ariès ont été discutés ; l’autorité familiale, l’affection, les protections et les statuts juridiques ne sont pas une même question.</p><p class="source-note"><a href="https://catalogue.bnf.fr/ark:/12148/cb424744735" target="_blank" rel="noopener">Van Gennep · notice BnF</a> · <a href="https://doi.org/10.3406/ahess.1964.421149" target="_blank" rel="noopener">Flandrin · discussion d’Ariès</a></p></div>
+<div class="anti-intox" id="audit-definition"><h3><span class="audit-label">Anti-intox · vérification</span>Une définition de travail, pas une définition juridique unique</h3><p>La définition de « mutilation » donnée dans le déroulé est une proposition de cadrage. Les droits nationaux qualifient les atteintes selon leurs propres textes et critères. Le consentement, l’objectif et l’irréversibilité ne constituent pas à eux seuls une définition juridique universelle.</p><p class="source-note"><a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006417617/" target="_blank" rel="noopener">Code pénal · article 222-9</a> · <a href="https://www.who.int/news-room/fact-sheets/detail/female-genital-mutilation" target="_blank" rel="noopener">OMS · définition des MGF</a></p></div>
+</aside></div>
+<p class="source-note"><a href="#panorama">Poursuivre : Des pratiques et des contextes différents →</a></p>
+</section>
+<section class="chapter reveal" id="panorama" aria-labelledby="titre-panorama"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 03</p><h2 id="titre-panorama">Des pratiques et des contextes différents</h2></div><div class="chapter-number">03</div></div>
+<figure class="chapter-figure"><img src="assets/traditions-empreintes.png" alt="Une chaussure ancienne vide, des rubans dénoués et des archives sur une table." loading="lazy" decoding="async" width="1672" height="941"><figcaption>Les pratiques sont étudiées dans leur contexte. Cette illustration symbolique ne représente ni une victime ni un geste réel.</figcaption></figure>
+<div class="transcript"><article class="prose"><p class="source-chapter" data-source-line="144">CHAPITRE 2</p>
+<h3 class="original-title" data-source-line="145">Panorama global des mutilations et altérations corporelles de genre</h3>
+<p data-source-line="146">Après avoir posé le cadre épistémologique, sémantique et anthropologique, ce deuxième chapitre examine des pratiques spécifiques documentées à travers l'histoire et les géographies. Pour chacune d'entre elles, l'analyse dissèque le geste technique, le contexte historique, les rationalisations culturelles et la réalité sanitaire.</p>
+<h3 class="source-heading" data-source-line="147">2.1 Les mutilations génitales féminines (MGF)</h3>
+<p data-source-line="148">Les MGF désignent l'ensemble des interventions impliquant l'ablation partielle ou totale des organes génitaux externes de la femme ou toute autre lésion des organes génitaux féminins pratiquée pour des raisons non médicales. L’Organisation Mondiale de la Santé (OMS) les classe en 4 types principaux :</p>
+<ul>
+<li data-source-line="149"><strong>Type I (Clitoridectomie) </strong> : Ablation partielle ou totale du clitoris (en particulier du gland clitoridien) et/ou du prépuce clitoridien.<a class="correction-link" href="#audit-mgf">Lire la rectification : Le gland du clitoris et les conséquences possibles →</a></li>
+<li data-source-line="150"><strong>Type II (Excision) </strong> : Ablation partielle ou totale du clitoris et des petites lèvres, avec ou sans excision des grandes lèvres.<a class="correction-link" href="#audit-mgf">Lire la rectification : Le gland du clitoris et les conséquences possibles →</a></li>
+<li data-source-line="151"><strong>Type III (Infibulation) </strong> : Rétrécissement de l'orifice vaginal par la création d'un sceau d'étanchéité obtenu en coupant et en repositionnant les petites et/ou les grandes lèvres, avec ou sans ablation du clitoris.</li>
+<li data-source-line="152"><strong>Type IV </strong> : Toutes les autres interventions nocives pratiquées sur les organes génitaux féminins à des fins non médicales (piqûres, percements, incisions, cautérisations, grattages).</li>
+</ul>
+<p data-source-line="153">Rationalisations et réalité sanitaire</p>
+<p class="source-line" data-source-line="154"><strong>Motifs sociaux et patriarcaux </strong> : Contrôle de la sexualité et de la libido féminine, exigence de virginité avant le mariage, critères de pureté rituelle ou esthétique, et condition d'intégration sociale au sein du groupe.</p>
+<p class="source-line" data-source-line="155"><strong>Conséquences cliniques </strong> : Douleurs intenses, hémorragies sévères, infections (tétanos, septicémie), rétention d'urine, lésions des tissus adjacents, complications majeures lors des accouchements, stress post-traumatique et dysfonctions sexuelles irréversibles.<a class="correction-link" href="#audit-mgf">Lire la rectification : Le gland du clitoris et les conséquences possibles →</a></p>
+<h3 class="source-heading" data-source-line="156">2.2 Les pieds bandés en Chine (« Les Lotus d'Or »)</h3>
+<p class="source-line" data-source-line="157"><strong>Le geste et la technique </strong> : Pratiqué dès l'âge de 4 à 8 ans — période où le squelette et le cartilage sont encore hautement malléables —, le bandage consistait à replier de force les quatre petits orteils sous la plante du pied, puis à briser et contraindre l'arche plantaire et le talon à l'aide de bandes de tissu serrées à l'extrême. L'objectif esthétique ultime était d'atteindre la taille de « lotus d'or » (environ 7 à 8 centimètres).</p>
+<h4 class="source-subheading" data-source-line="158">La trajectoire et l'évolution historique :</h4>
+<p class="source-line" data-source-line="159"><strong>Émergence et légendes (Xe siècle) </strong> : Si le folklore populaire attribue la pratique à une concubine ou à une danseuse de cour sous les Tang ou les Song du Sud qui bandait ses pieds en croissant de lune pour danser sur une estrade d'or, la pratique émerge de manière historiquement attestée sous la dynastie Song (960–1279). Elle débute d'abord au sein de l'aristocratie et des élites urbaines comme un marqueur de distinction ostentatoire.</p>
+<p class="source-line" data-source-line="160"><strong>L'institutionnalisation sous le néo-confucianisme </strong> : À partir des Song, la société chinoise se structure autour d'un renouveau rigoriste néo-confucianiste qui assigne la femme à un rôle strictement domestique et subordonné. Le bandage devient l'outil matériel de ce confinement : l'incapacité physique de marcher ou de se déplacer de manière autonome constitue la garantie matérielle et spatiale de la « vertu » et du contrôle de la mobilité féminine.<a class="correction-link" href="#audit-pieds">Lire la rectification : Un handicap réel, des mobilités et des vies variables →</a></p>
+<p class="source-line" data-source-line="161"><strong>De l'aristocratie à la diffusion de masse (Ming et Qing) </strong> : Sous les dynasties Ming et Qing, la coutume se démocratise massivement. Même dans les familles rurales modestes, les mères persistent à bander les pieds de leurs filles dès l'enfance pour leur garantir un mariage un tant soit peu honorable et leur éviter l'exclusion sociale. Les empereurs mandchous (dynastie Qing) tenteront à plusieurs reprises d'interdire la pratique au XVIIe siècle, la jugeant contraire à leurs propres traditions équestres, mais se heurteront au refus d'abandonner le rite chez les populations Han.</p>
+<p class="source-line" data-source-line="162"><strong>L'abolition progressive (XXe siècle) </strong> : À la fin du XIXe siècle, les intellectuels et réformateurs chinois progressistes (tels que Kang Youwei) créent les premières « sociétés anti-pieds bandés ». La pratique est formellement interdite lors de la proclamation de la République de Chine en 1912, avant d'être définitivement éradiquée par les campagnes d'État au milieu du XXe siècle.<a class="correction-link" href="#audit-pieds">Lire la rectification : Un handicap réel, des mobilités et des vies variables →</a></p>
+<h4 class="source-subheading" data-source-line="163">Les motifs culturels et sociopolitiques :</h4>
+<p class="source-line" data-source-line="164"><strong>Le confinement domestique </strong> : Directement lié aux normes morales assignant la femme à l'espace intérieur du foyer, le handicap moteur induit empêchait toute velléité d'émancipation, de déplacement ou de travail extérieur.<a class="correction-link" href="#audit-pieds">Lire la rectification : Un handicap réel, des mobilités et des vies variables →</a></p>
+<p class="source-line" data-source-line="165"><strong>Le marqueur de classe </strong> : Ne pas bander les pieds d'une fille l'assimilait aux femmes du peuple et aux travailleuses manuelles, l'excluant des alliances matrimoniales de haut rang.</p>
+<p class="source-line" data-source-line="166"><strong>La fétichisation </strong> : La démarche chancelante due à la douleur et à la déformation est devenue un canon de séduction et de domination masculine dans la littérature et les usages aristocratiques.</p>
+<p class="source-line" data-source-line="167">La réalité sanitaire</p>
+<p class="source-line" data-source-line="168">Fractures répétées, nécroses tissulaires, gangrènes, infections chroniques, atrophie des membres inférieurs et handicap moteur irréversible.</p>
+<h3 class="source-heading" data-source-line="169">2.3 Le repassage des seins (Cameroun et Afrique centrale)</h3>
+<p class="source-line" data-source-line="170"><strong>Le geste et la technique </strong> : Pratique consistant à utiliser des objets préalablement chauffés (pierres, spatules métalliques, pilons en bois) pour masser, écraser ou comprimer brutalement la poitrine des jeunes filles dès l'apparition des premiers bourgeons mammaires.</p>
+<p class="source-line" data-source-line="171"><strong>Les motifs culturels et la rationalisation </strong> : Pratique généralement orchestrée par les figures maternelles (mères, tantes, grand-mères). Dans des contextes sociaux où la sexualité précoce, les agressions et les grossesses hors mariage entraînent un opprobre lourd, le repassage est faussement perçu comme un moyen de stopper la croissance des seins pour rendre l'adolescente « invisible » aux prédateurs.</p>
+<p class="source-line" data-source-line="172"><strong>La réalité sanitaire </strong> : Brûlures graves (du premier au troisième degré), infections locales, kystes, abcès, destruction partielle ou totale de la glande mammaire (rendant l'allaitement futur impossible) et traumatismes psychologiques profonds.<a class="correction-link" href="#audit-seins">Lire la rectification : Des lésions possibles, pas un pronostic systématique →</a></p>
+<h3 class="source-heading" data-source-line="173"><strong>2.4 L'élongation labiale </strong> : Le Gukuna (Afrique orientale et australe)</h3>
+<p class="source-line" data-source-line="174"><strong>Le geste et la technique </strong> : Pratique traditionnelle consistant à étirer manuellement, de manière répétée et prolongée, les petites lèvres de la vulve dès l'enfance ou à l'approche de la puberté, parfois à l'aide de plantes médicinales ou d'onguents.</p>
+<p class="source-line" data-source-line="175"><strong>Les motifs culturels </strong> : Rite d'initiation féminin perçu dans certaines communautés comme un marqueur de maturité, un critère d'esthétique corporelle et un attribut érotique destiné à favoriser le plaisir du partenaire conjugal selon les normes locales.</p>
+<p class="source-line" data-source-line="176"><strong>La réalité sanitaire </strong> : Douleurs chroniques, inflammations locales persistantes, œdèmes, cicatrisations rétractiles et altération anatomique d'un tissu érectile sensible en plein développement.<a class="correction-link" href="#audit-gukuna">Lire la rectification : Élongation labiale : distinguer pression et résultats cliniques →</a></p>
+<h3 class="source-heading" data-source-line="177"><strong>2.5 Synthèse comparative </strong> : L'ingénierie sociale et genrée des corps</h3>
+<p class="source-line" data-source-line="178"><strong>La spécialisation des contraintes par genre </strong> : L'analyse globale de ces pratiques montre que les corps des enfants ne sont pas façonnés au hasard. Les interventions subies par les filles (pieds bandés, repassage des seins, élongation labiale, MGF) répondent majoritairement à des impératifs de confinement domestique, de contrôle de la sexualité, de reproduction et de soumission aux canons esthétiques patriarcaux.</p>
+<p class="source-line" data-source-line="179"><strong>L'universalité du marquage </strong> : Qu'il s'agisse de la Chine impériale, de l'Afrique centrale ou orientale, le dénominateur commun reste l'instrumentalisation de la chair infantile par la communauté. Le corps de l'enfant est transformé en un « territoire politique » où la société grave ses hiérarchies avant même que l'individu ne possède la maturité pour consentir ou s'y opposer.</p></article><aside class="side-note"><div class="anti-intox" id="audit-mgf"><h3><span class="audit-label">Anti-intox · vérification</span>Le gland du clitoris et les conséquences possibles</h3><p>Dans la classification de l’OMS, les types I et II portent sur le gland du clitoris et les tissus externes décrits ; il ne s’agit pas de l’ablation de tout l’organe clitoridien, qui comporte des structures internes.</p><p>Les MGF n’ont aucun bénéfice pour la santé et exposent à des complications physiques, psychologiques et sexuelles. Ces risques sont sérieux, mais une dysfonction sexuelle irréversible n’est pas une conséquence inévitable pour chaque personne.</p><p>Le type III crée un rétrécissement par recouvrement tissulaire ; l’expression « sceau d’étanchéité » ne signifie pas une fermeture totalement étanche.</p><p class="source-note"><a href="https://www.who.int/news-room/fact-sheets/detail/female-genital-mutilation" target="_blank" rel="noopener">OMS · classification et risques</a> · <a href="https://www.nhs.uk/conditions/female-genital-mutilation-fgm/" target="_blank" rel="noopener">NHS · santé et soins</a></p></div>
+<div class="anti-intox" id="audit-pieds"><h3><span class="audit-label">Anti-intox · vérification</span>Un handicap réel, des mobilités et des vies variables</h3><p>Le bandage des pieds a pu limiter la mobilité et causer des lésions durables. Il n’empêchait pas toutes les femmes de marcher ou de travailler ; l’activité textile rurale fait partie des facteurs étudiés par les historiennes.</p><p>Le récit associe des légendes d’origine à des dynasties différentes. L’interdiction de 1912 n’a pas entraîné une disparition immédiate : l’abandon a été progressif et inégal. Les explications par le seul confinement domestique sont insuffisantes.</p><p>L’âge et l’intensité du bandage variaient. La taille de 7 à 8 centimètres était un idéal, pas une dimension atteinte par toutes les femmes.</p><p class="source-note"><a href="https://collection.sciencemuseumgroup.org.uk/objects/co76247/plaster-model-of-right-foot-deformed-by-foot-binding" target="_blank" rel="noopener">Science Museum</a> · <a href="https://academic.oup.com/stanford-scholarship-online/book/30599" target="_blank" rel="noopener">Bossen et Gates · travail textile</a></p></div>
+<div class="anti-intox" id="audit-seins"><h3><span class="audit-label">Anti-intox · vérification</span>Des lésions possibles, pas un pronostic systématique</h3><p>Le repassage des seins est documenté, notamment au Cameroun. Les motifs rapportés comprennent la peur des grossesses et des violences sexuelles ; cela ne démontre pas une efficacité protectrice.</p><p>Brûlures, douleurs et atteintes tissulaires sont possibles. La destruction totale de la glande et l’impossibilité future d’allaiter ne doivent pas être présentées comme un résultat systématique ; les données de suivi restent limitées.</p><p class="source-note"><a href="https://doi.org/10.7189/jogh.11.03055" target="_blank" rel="noopener">Amahazion · revue</a> · <a href="https://www.police.uk/advice/advice-and-information/caa/child-abuse/breast-ironing-flattening/" target="_blank" rel="noopener">Police britannique · prévention</a></p></div>
+<div class="anti-intox" id="audit-gukuna"><h3><span class="audit-label">Anti-intox · vérification</span>Élongation labiale : distinguer pression et résultats cliniques</h3><p>Les travaux disponibles décrivent des expériences et des contextes variés, parfois du plaisir partagé, parfois de la pression sociale et des douleurs ou irritations pendant l’étirement.</p><p>La liste de douleurs chroniques, de cicatrices rétractiles et d’atteintes durables du déroulé dépasse ce qui est solidement démontré. L’absence de preuve d’une séquelle systématique ne règle pas la question du consentement des mineures.</p><p class="source-note"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5460297/" target="_blank" rel="noopener">Audet et collègues · enquête</a> · <a href="https://doi.org/10.1080/19317611.2013.851139" target="_blank" rel="noopener">Revue systématique · métadonnées</a></p></div>
+</aside></div>
+<p class="source-note"><a href="#anatomie">Poursuivre : Le prépuce : anatomie et fonctions →</a></p>
+</section>
+<section class="chapter reveal" id="anatomie" aria-labelledby="titre-anatomie"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 04</p><h2 id="titre-anatomie">Le prépuce : anatomie et fonctions</h2></div><div class="chapter-number">04</div></div>
+<div class="transcript"><article class="prose"><p class="source-chapter" data-source-line="196">CHAPITRE 3</p>
+<h3 class="original-title" data-source-line="197">Mutilations et interventions sur l'anatomie masculine et intersexe</h3>
+<p data-source-line="198">Ce troisième chapitre examine les interventions irréversibles pratiquées sur les organes génitaux des mineurs masculins et intersexes. En appliquant le principe de neutralité zététique, l'analyse dissèque la réalité anatomique de ces actes, les mécanismes théologiques et sociaux de leur légitimation, ainsi que leurs impacts physiques, neurobiologiques et psychologiques à long terme.</p>
+<p data-source-line="199">Après avoir exploré comment le corps de l'enfant est façonné, normé ou modifié — qu'il s'agisse des pratiques traditionnelles féminines ou des protocoles médico-chirurgicaux précoces — nous arrivons à un versant tout aussi universel, ancré dans l'histoire longue des sociétés et massivement médiatisé : la circoncision des garçons.</p>
+<p data-source-line="200"><strong>Et là, soyons honnêtes </strong> : quand on écoute les débats en ligne, sur les réseaux ou sur les plateaux de live, nos oreilles saignent ! Entre les poncifs sur la prétendue "banalité" de l'acte et les arguments hygiénistes assénés sans recul, il y a urgence à faire un grand ménage zététique. Ouvrons donc ce chapitre 5 : La circoncision rituelle, culturelle et médicale des garçons. »</p>
+<h3 class="source-heading" data-source-line="202">3.1 Anatomie, histologie et physiologie du prépuce</h3>
+<p data-source-line="203">L'analyse factuelle nécessite de déconstruire le postulat selon lequel le prépuce ne serait qu'un « surplus de peau » indifférencié.</p>
+<h4 class="source-subheading" data-source-line="204">A. Structure histologique et innervation</h4>
+<ul>
+<li data-source-line="205"><strong>Un tissu hautement spécialisé </strong> : Le prépuce est une enveloppe cutanéo-muqueuse fine, extensible et abondamment vascularisée.</li>
+<li data-source-line="206"><strong>Cartographie nerveuse </strong> : Il abrite une concentration exceptionnelle de terminaisons nerveuses libres et de récepteurs tactiles spécialisés (notamment les corpuscules de Meissner, principalement localisés au niveau de la bandelette ridée), constituant l'une des zones réceptrices les plus sensibles de l'anatomie masculine.<a class="correction-link" href="#audit-sensibilite">Lire la rectification : Anatomie, toucher et plaisir ne sont pas interchangeables →</a></li>
+</ul>
+<h4 class="source-subheading" data-source-line="207">B. Rôle physiologique, protecteur et biomécanique sexuelle</h4>
+<ul>
+<li data-source-line="208"><strong>Protection mécanique et biologique </strong> : Durant l'enfance, il recouvre intégralement le gland pour le préserver des agressions extérieures (frottements continus des textiles, irritations dues au contact avec l'urine et les matières fécales) et maintient l'hydratation et le milieu microbien naturel de la muqueuse balanique.</li>
+<li data-source-line="209">Biomécanique sexuelle et stimulation adulte :</li>
+<li data-source-line="210"><strong>Mécanisme de glissement (effet de piston naturel) </strong> : La mobilité et la souplesse du prépuce permettent un va-et-vient coulissant le long du corps de la verge pendant les rapports sexuels, ce qui réduit les frictions mécaniques directes contre les muqueuses et prévient le dessèchement ou les lacérations.<a class="correction-link" href="#audit-sensibilite">Lire la rectification : Anatomie, toucher et plaisir ne sont pas interchangeables →</a></li>
+<li data-source-line="211"><strong>Stimulation sensorielle combinée </strong> : Lors de l'érection et du coït, l'exposition et le recouvrement alternés du gland stimulent de manière rythmée les récepteurs tactiles de la bandelette ridée et du frein, participant activement au déclenchement et à la modulation du plaisir érogène.<a class="correction-link" href="#audit-sensibilite">Lire la rectification : Anatomie, toucher et plaisir ne sont pas interchangeables →</a></li>
+</ul>
+<h4 class="source-subheading" data-source-line="212">C. Conséquences anatomiques de l'ablation</h4>
+<ul>
+<li data-source-line="213"><strong>Perte irréversible de structures nerveuses </strong> : La circoncision supprime définitivement la bandelette ridée et les corpuscules récepteurs associés.</li>
+<li data-source-line="214"><strong>Kératinisation chronique </strong> : Privé de son enveloppe protectrice, le gland subit une exposition permanente à l'air libre et aux frottements des sous-vêtements. En réaction, l'épithélium balanique développe une couche cornée épaissie (kératinisation), entraînant une réduction mesurable de la sensibilité tactile fine.<a class="correction-link" href="#audit-sensibilite">Lire la rectification : Anatomie, toucher et plaisir ne sont pas interchangeables →</a></li>
+</ul></article><aside class="side-note"><div class="anti-intox" id="audit-sensibilite"><h3><span class="audit-label">Anti-intox · vérification</span>Anatomie, toucher et plaisir ne sont pas interchangeables</h3><p>Le prépuce est un tissu vivant, vascularisé et innervé. Son ablation retire ces tissus. Cela ne permet pas, à soi seul, de mesurer le plaisir sexuel ni de prédire le vécu d’un individu.</p><p>Les études n’utilisent pas toutes les mêmes tests. Les résultats sur le toucher fin et sur la sensibilité associée au plaisir divergent. La chaîne « exposition → épaississement certain → perte mesurable de sensibilité » est présentée avec trop de certitude dans le déroulé. Les fonctions mécaniques proposées ne prouvent pas que les rapports après circoncision entraînent des lésions.</p><p>La couverture du gland et la quantité de tissu retiré varient selon les personnes et la technique ; « intégralement » et « définitivement » ne décrivent pas une étendue identique chez tous.</p><p class="source-note"><a href="https://pubmed.ncbi.nlm.nih.gov/26724395/" target="_blank" rel="noopener">Bossio et collègues · 2016</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/17378847/" target="_blank" rel="noopener">Sorrells et collègues · 2007</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/8800902/" target="_blank" rel="noopener">Taylor et collègues · anatomie</a></p></div>
+</aside></div>
+<details class="original-gallery"><summary>Les deux analogies visuelles fournies pour le live</summary><p class="document-note">Ces images sont des analogies simplifiées. Un tissu vivant et innervé ne se réduit ni à un vêtement ni à une peau de fruit. Les légendes intégrées appartiennent aux visuels fournis et ne sont pas des descriptions anatomiques de référence.</p>
+<figure class="chapter-figure"><img src="assets/analogie-col-roule.webp" alt="Illustration fournie comparant le prépuce au col d’un pull." loading="lazy" decoding="async" width="1672" height="941"><figcaption>Analogie fournie avec les documents du live. La mention « excès de tissu » ne décrit pas une anomalie : le prépuce est une structure anatomique normale.</figcaption></figure>
+<figure class="chapter-figure"><img src="assets/analogie-fruit.webp" alt="Une banane partiellement pelée et deux noix utilisées comme analogie anatomique." loading="lazy" decoding="async" width="1672" height="941"><figcaption>Analogie fournie avec le live ; elle n’illustre ni l’innervation ni la vascularisation, et ne permet pas de déduire les effets d’une intervention.</figcaption></figure>
+</details>
+<p class="source-note"><a href="#histoire">Poursuivre : Les traditions et leur histoire →</a></p>
+</section>
+<section class="chapter reveal" id="histoire" aria-labelledby="titre-histoire"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 05</p><h2 id="titre-histoire">Les traditions et leur histoire</h2></div><div class="chapter-number">05</div></div>
+<div class="transcript"><article class="prose"><h3 class="source-heading" data-source-line="215"><strong>3.2 Panorama des rationalisations </strong> : Exégèse, anthropologie et dérives</h3>
+<h4 class="source-subheading" data-source-line="216">A. Origines antiques et anthropologie du marquage</h4>
+<ul>
+<li data-source-line="217"><strong>Le précédent égyptien </strong> : Les bas-reliefs de la nécropole de Saqqarah (vers 2300 av. J.-C.) attestent de la circoncision comme rite de passage, de purification et de distinction de caste (prêtres et scribes).<a class="correction-link" href="#audit-histoire">Lire la rectification : Sources religieuses et ancienneté : ce que l’on peut conclure →</a></li>
+<li data-source-line="218"><strong>La fonction anthropologique universelle </strong> : Selon l'anthropologie comparée (de James Frazer à Claude Lévi-Strauss), le corps humain sert de premier support d'écriture sociale. Marquer la chair de l'enfant permet au groupe de le soustraire à l'état de nature pour imprimer son appartenance au clan ou à la tribu.<a class="correction-link" href="#audit-histoire">Lire la rectification : Sources religieuses et ancienneté : ce que l’on peut conclure →</a></li>
+</ul>
+<h4 class="source-subheading" data-source-line="219">B. Exégèse des textes et traditions religieuses</h4>
+<ul>
+<li data-source-line="220"><strong>Judaïsme (Brit Milah) </strong> : Prescrite au 8ᵉ jour dans la Torah (Genèse 17:10-14), la circoncision est le signe physique indélébile de l'Alliance conclue entre Dieu et la descendance d'Abraham. Le corps du nourrisson devient le support matériel d'un contrat théologique et communautaire qu'il ne négocie pas.</li>
+<li data-source-line="221"><strong>Islam (Khitan) </strong> : Absent du texte coranique normatif, le Khitan repose sur la tradition prophétique (Hadiths) et s'inscrit dans la recherche de la Fitra (la pureté originelle et l'hygiène rituelle). Il agit comme un rite d'intégration sociale et religieuse au sein de la communauté des croyants (Oumma).</li>
+<li data-source-line="222"><strong>Traditions coutumières extra-abrahamiques </strong> : Indépendamment du monothéisme, la circoncision rituelle est pratiquée par de nombreuses sociétés d'Afrique subsaharienne (Xhosa, Kikuyu, Dogons), d'Océanie (Aborigènes d'Australie, peuples du Pacifique) et dans certaines cultures précolombiennes. Elle repose sur des mythes cosmogoniques oraux et sert de rite de passage et d'épreuve de virilité vers l'âge adulte.</li>
+<li data-source-line="223"><strong>Médicalisation hygiéniste séculaire </strong> : Aux XIXᵉ et XXᵉ siècles dans le monde anglo-saxon (notamment aux États-Unis), l'acte a été banalisé sous couvert de discours puritains (lutte contre la masturbation) puis hygiénistes, illustrant comment le dogme médical moderne peut relayer et séculariser un dogme moral ou religieux.</li>
+</ul></article><aside class="side-note"><div class="anti-intox" id="audit-histoire"><h3><span class="audit-label">Anti-intox · vérification</span>Sources religieuses et ancienneté : ce que l’on peut conclure</h3><p>La Genèse 17 situe la circoncision au huitième jour. Dans l’islam, les prescriptions viennent des traditions et de leur interprétation, avec des différences selon les écoles ; le Coran ne prescrit pas directement la circoncision.</p><p>Le relief de Saqqara témoigne d’une pratique dans l’Égypte ancienne. Une scène ne suffit pas à établir que le rite concernait une caste précise, ni que toutes les cultures attribuent la même signification aux marques corporelles.</p><p class="source-note"><a href="https://www.baus.org.uk/museum/76/ancient_egypt" target="_blank" rel="noopener">BAUS · Égypte ancienne</a> · <a href="https://www.aelf.org/bible/Gn/17" target="_blank" rel="noopener">Genèse 17 · texte</a> · <a href="https://sunnah.com/bukhari:5889" target="_blank" rel="noopener">Al-Bukhari · tradition de la fitra</a></p></div>
+</aside></div>
+<p class="source-note"><a href="#douleur">Poursuivre : La douleur du nouveau-né →</a></p>
+</section>
+<section class="chapter reveal" id="douleur" aria-labelledby="titre-douleur"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 06</p><h2 id="titre-douleur">La douleur du nouveau-né</h2></div><div class="chapter-number">06</div></div>
+<figure class="chapter-figure"><img src="assets/science-douleur.png" alt="Un réseau neuronal représenté par des ramifications lumineuses." loading="lazy" decoding="async" width="1672" height="941"><figcaption>Illustration symbolique du système nerveux. La douleur du nouveau-né est reconnue ; ses conséquences ne se déduisent pas d’une image.</figcaption></figure>
+<div class="transcript"><article class="prose"><h3 class="source-heading" data-source-line="224">3.3 Réalité clinique, neurobiologie et traumatologie</h3>
+<h4 class="source-subheading" data-source-line="225">A. Neurobiologie de la douleur néonatale</h4>
+<ul>
+<li data-source-line="226"><strong>Maturation du système nociceptif </strong> : Les travaux cliniques (notamment K. J. S. Anand et A. Taddio) démontrent que les voies ascendantes de la douleur sont opérationnelles dès la naissance, alors que les voies descendantes inhibitrices (qui atténuent la douleur) sont immatures. Le nouveau-né perçoit une douleur brute et non modulée.<a class="correction-link" href="#audit-douleur">Lire la rectification : La douleur est reconnue ; le silence ne suffit pas à diagnostiquer →</a></li>
+<li data-source-line="227"><strong>Mémoire implicite du traumatisme </strong> : Le système nerveux central enregistre le choc neurogène dans sa mémoire implicite. Des études comparatives montrent que les nourrissons circoncis sans analgésie adéquate présentent une hyperalgésie (réactivité accrue à la douleur et réponses de stress amplifiées) lors des vaccinations ultérieures.<a class="correction-link" href="#audit-douleur">Lire la rectification : La douleur est reconnue ; le silence ne suffit pas à diagnostiquer →</a></li>
+<li data-source-line="228"><strong>La dissociation traumatique infantile </strong> : L'arrêt des cris ou la prostration du nourrisson pendant ou immédiatement après l'acte n'indique pas l'absence de souffrance, mais traduit un état de sidération traumatique et d'effondrement neuro-endocrinien.<a class="correction-link" href="#audit-douleur">Lire la rectification : La douleur est reconnue ; le silence ne suffit pas à diagnostiquer →</a></li>
+</ul>
+<h4 class="source-subheading" data-source-line="229">B. Séquelles physiques et psychologiques</h4>
+<ul>
+<li data-source-line="230"><strong>Complications chirurgicales immédiates </strong> : Risques d'hémorragies, de surinfections, de nécroses, de sténose du méat urinaire (rétrécissement inflammatoire de l'orifice urinaire causant des mictions douloureuses chroniques) et d'amputations partielles accidentelles.<a class="correction-link" href="#audit-complications">Lire la rectification : Des risques qui dépendent du contexte →</a></li>
+<li data-source-line="231"><strong>Trauma psychologique et rupture de confiance </strong> : À l'âge adulte, la prise de conscience de l'altération subie sans consentement peut engendrer un sentiment de violation de la souveraineté corporelle, des colères et une dissonance cognitive vis-à-vis du milieu familial ou culturel d'origine.</li>
+</ul></article><aside class="side-note"><div class="anti-intox" id="audit-douleur"><h3><span class="audit-label">Anti-intox · vérification</span>La douleur est reconnue ; le silence ne suffit pas à diagnostiquer</h3><p>Le nouveau-né perçoit la douleur et doit bénéficier d’une prise en charge adaptée. L’étude de Taddio et collègues de 1997 a observé une réponse différente lors d’une vaccination ultérieure, à quelques mois de vie, selon l’exposition à la circoncision et à l’analgésie.</p><p>Ce résultat ne démontre pas à lui seul une mémoire traumatique consciente, un traumatisme permanent ou des conséquences identiques chez tous les adultes. L’arrêt des cris ne prouve ni l’absence de douleur, ni une dissociation traumatique ou un effondrement neuroendocrinien.</p><p class="source-note"><a href="https://doi.org/10.1056/NEJM198711193172105" target="_blank" rel="noopener">Anand et Hickey · 1987</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/9057731/" target="_blank" rel="noopener">Taddio et collègues · 1997</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/8198409/" target="_blank" rel="noopener">Rushforth et Levene · comportement</a></p></div>
+<div class="anti-intox" id="audit-complications"><h3><span class="audit-label">Anti-intox · vérification</span>Des risques qui dépendent du contexte</h3><p>Saignements, infections et autres complications peuvent survenir. Leur fréquence et leur gravité dépendent notamment de l’âge, de l’indication, de la technique et des conditions de réalisation. Un risque n’est pas une séquelle systématique. La sténose du méat peut être tardive ; toute la liste du déroulé ne relève pas de complications immédiates.</p><p>L’OMS recommande la circoncision médicale volontaire dans certains contextes de prévention du VIH. Ce bénéfice concerne surtout le risque d’acquisition hétérosexuelle du VIH chez l’homme ; il ne supprime pas les autres protections et ne tranche pas à lui seul l’éthique d’une intervention néonatale non thérapeutique.</p><p class="source-note"><a href="https://pubmed.ncbi.nlm.nih.gov/20158883/" target="_blank" rel="noopener">Weiss et collègues · complications</a> · <a href="https://www.who.int/publications/i/item/978-92-4-000854-0" target="_blank" rel="noopener">OMS · prévention du VIH</a> · <a href="https://patients.uroweb.org/condition/phimosis/treatment-options-phimosis" target="_blank" rel="noopener">EAU · indications thérapeutiques</a></p></div>
+</aside></div>
+<p class="source-note"><a href="#intersexuation">Poursuivre : Respecter les variations, distinguer les soins →</a></p>
+</section>
+<section class="chapter reveal" id="intersexuation" aria-labelledby="titre-intersexuation"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 07</p><h2 id="titre-intersexuation">Respecter les variations, distinguer les soins</h2></div><div class="chapter-number">07</div></div>
+<div class="transcript"><article class="prose"><h3 class="source-heading" data-source-line="232">3.4 Interventions sur les mineurs intersexes (MGD)</h3>
+<ul>
+<li data-source-line="233"><strong>Définition </strong> : Chirurgies dites de « normalisation » génitale et traitements hormonaux pratiqués sur des nourrissons ou enfants nés avec des variations du développement sexuel (caractéristiques intersexes ne répondant pas aux définitions binaires Mâle/Femelle).</li>
+<li data-source-line="234"><strong>Motif sociétal </strong> : Alignement anatomique forcé pour faire entrer la complexité biologique dans des normes binaires afin de rassurer l'entourage social ou parental.</li>
+<li data-source-line="235"><strong>Condamnation internationale </strong> : Dénoncées par l'ONU, l'OMS et le Conseil de l'Europe comme des violations graves de l'intégrité physique et des mutilations, ces interventions non urgentes provoquent des stérilisations involontaires, des douleurs chroniques, des pertes de sensibilité sexuelle et des traumatismes psychologiques majeurs.<a class="correction-link" href="#audit-intersexe-soins">Lire la rectification : Les variations intersexes et les soins nécessaires →</a></li>
+</ul>
+<h3 class="source-heading" data-source-line="236">3.5 Le double standard juridique et l'immunité culturelle</h3>
+<ul>
+<li data-source-line="237"><strong>Asymétrie de protection légale </strong> : Alors que les Mutilations Génitales Féminines (MGF) sont condamnées sans exception et pénalisées au niveau international, la circoncision rituelle des garçons bénéficie d'une immunité juridique de fait dans la plupart des États occidentaux, sous couvert de liberté religieuse parentale.<a class="correction-link" href="#audit-autorisation">Lire la rectification : La circoncision n’est pas partout interdite par le droit →</a></li>
+<li data-source-line="238"><strong>La question du consentement parental </strong> : Aucun cadre juridique n'autorise un parent à réaliser une ablation non médicale irréversible sur un enfant sain (tatouages, amputations esthétiques). La persistance de ce privilège d'exception pour les rituels masculins et les chirurgies intersexes soulève une contradiction éthique majeure au regard du droit de l'enfant à l'intégrité de son propre corps.<a class="correction-link" href="#audit-autorisation">Lire la rectification : La circoncision n’est pas partout interdite par le droit →</a></li>
+</ul>
+<p data-source-line="243">Focus approfondi</p>
+<h3 class="original-title" data-source-line="244">Anatomie et chirurgies dites de « normalisation » chez les mineurs intersexes (MGD)</h3>
+<h4 class="source-subheading" data-source-line="245">A. Embryologie et développement anatomique originel</h4>
+<ul>
+<li data-source-line="246"><strong>Une structure bipotentielle initiale </strong> : Jusqu'à la 7ᵉ semaine de gestation, l'appareil génital embryonnaire est indifférencié. Le tubercule génital primordial évolue vers le pénis ou le clitoris (organes homologues), tandis que les plis labio-scrotaux se soudent pour former le scrotum ou restent séparés pour constituer les grandes lèvres.<a class="correction-link" href="#audit-intersexe-anatomie">Lire la rectification : Trois précisions sur le développement →</a></li>
+<li data-source-line="247"><strong>Un continuum biologique </strong> : L'intersexuation désigne une grande diversité de variations anatomiques, chromosomiques (XX, XY, XXY, XO...) ou hormonales saines. Il s'agit de trajectoires naturelles de développement et non de malformations pathologiques.<a class="correction-link" href="#audit-intersexe-soins">Lire la rectification : Les variations intersexes et les soins nécessaires →</a></li>
+</ul>
+<h4 class="source-subheading" data-source-line="248">B. Variétés des configurations anatomiques et génétiques</h4>
+<ul>
+<li data-source-line="249"><strong>Hyperplasie Congénitale des Surrénales (HCS) </strong> : Chez les enfants XX, une production d'androgènes surrénaliens entraîne un développement volumineux du tubercule génital (clitoromégalie) ou une fusion partielle des lèvres.</li>
+<li data-source-line="250"><strong>Syndrome d'Insensibilité aux Androgènes (SIA) </strong> : Chez les enfants XY, la non-réceptivité cellulaire à la testostérone produit une anatomie externe féminine naturelle avec des testicules internes.<a class="correction-link" href="#audit-intersexe-anatomie">Lire la rectification : Trois précisions sur le développement →</a></li>
+<li data-source-line="251"><strong>Variations chromosomiques et gonadiques (ex</strong> : 45,X/46,XY) : Présence de structures gonadiques mixtes (ovotestis) ou asymétriques.<a class="correction-link" href="#audit-intersexe-anatomie">Lire la rectification : Trois précisions sur le développement →</a></li>
+</ul>
+<h4 class="source-subheading" data-source-line="252">C. Réalité des actes chirurgicaux de « normalisation »</h4>
+<p data-source-line="253">En l'absence de toute urgence médicale ou vitale, des interventions sont pratiquées dès le jeune âge pour plier le corps à une norme binaire esthétique :</p>
+<ul>
+<li data-source-line="254"><strong>Réductions clitoridiennes / Clitoridectomies partielles </strong> : Ablation du tissu érectile et découpe du gland clitoridien, entraînant la destruction irréversible des réseaux nerveux spécialisés, une perte de sensibilité orgasmique et des névralgies chroniques.</li>
+<li data-source-line="255"><strong>Vaginoplasties prématurées </strong> : Incision et élargissement chirurgical du canal vaginal créant des tissus cicatriciels rigides (sténoses) imposant des dilatations mécaniques répétées particulièrement douloureuses durant l'enfance.</li>
+<li data-source-line="256"><strong>Gonadectomies prophylactiques non urgentes </strong> : Ablation des testicules ou ovaires internes entraînant une castration irréversible, une stérilité définitive et la dépendance à un traitement hormonal à vie.<a class="correction-link" href="#audit-gonadectomie">Lire la rectification : Le risque tumoral demande une évaluation individualisée →</a></li>
+</ul>
+<h4 class="source-subheading" data-source-line="257"><strong>D. Analyse éthique </strong> : La conformité sociale imposée</h4>
+<p data-source-line="258">Sur le plan clinique, la majorité de ces variations n'altère en rien les fonctions physiologiques de base (miction). L'acte opératoire ne répond donc pas à une nécessité médicale du patient, mais à une injonction sociétale d'alignement binaire pour soulager l'anxiété de l'environnement adulte. Il s'agit d'une altération irréversible d'un corps sain non consentant.<a class="correction-link" href="#audit-intersexe-soins">Lire la rectification : Les variations intersexes et les soins nécessaires →</a></p></article><aside class="side-note"><div class="anti-intox" id="audit-intersexe-soins"><h3><span class="audit-label">Anti-intox · vérification</span>Les variations intersexes et les soins nécessaires</h3><p>Les variations des caractéristiques sexuelles sont diverses. Certaines n’entraînent pas de problème de santé ; d’autres nécessitent une surveillance ou un traitement. L’hyperplasie congénitale des surrénales peut provoquer une crise surrénalienne grave : les traitements nécessaires ne se confondent pas avec les interventions destinées à conformer l’apparence.</p><p>Les prises de position internationales dénoncent surtout les interventions irréversibles non nécessaires et sans consentement personnel. Elles n’appellent pas à renoncer aux soins nécessaires. Les risques chirurgicaux ne se réalisent pas systématiquement et varient selon la technique, le diagnostic et le contexte.</p><p>Le sigle « MGD » du live n’est pas une catégorie standard de l’OMS. Un caryotype XX ou XY ne suffit pas à caractériser une intersexuation ; la notation conventionnelle est 45,X plutôt que XO.</p><p class="source-note"><a href="https://www.ncbi.nlm.nih.gov/sites/books/NBK1171/" target="_blank" rel="noopener">GeneReviews · HCS</a> · <a href="https://www.who.int/publications/i/item/9789241507325" target="_blank" rel="noopener">OMS · déclaration interagences</a> · <a href="https://journals.plos.org/globalpublichealth/article?id=10.1371/journal.pgph.0003568" target="_blank" rel="noopener">Muschialli et collègues · revue</a></p></div>
+<div class="anti-intox" id="audit-intersexe-anatomie"><h3><span class="audit-label">Anti-intox · vérification</span>Trois précisions sur le développement</h3><p>Les gonades et les organes génitaux externes n’ont pas la même chronologie de différenciation. Il faut distinguer l’âge après fécondation de l’âge obstétrical : une limite unique de sept semaines pour tout l’appareil génital est trop générale.</p><p>Une anatomie externe féminine est caractéristique de l’insensibilité complète aux androgènes ; les formes partielles présentent d’autres configurations. Le mosaïcisme 45,X/46,XY n’implique pas automatiquement un ovotestis : il est notamment associé à la dysgénésie gonadique mixte.</p><p class="source-note"><a href="https://www.ncbi.nlm.nih.gov/books/NBK279001/" target="_blank" rel="noopener">Endotext · différenciation</a> · <a href="https://www.ncbi.nlm.nih.gov/sites/books/NBK1429/" target="_blank" rel="noopener">GeneReviews · SIA</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/28742519/" target="_blank" rel="noopener">Andrade et collègues · diagnostic</a></p></div>
+<div class="anti-intox" id="audit-gonadectomie"><h3><span class="audit-label">Anti-intox · vérification</span>Le risque tumoral demande une évaluation individualisée</h3><p>L’ablation bilatérale de gonades peut entraîner une perte de fertilité et le besoin d’un traitement hormonal. Le risque tumoral dépend de la variation, de l’âge et des gonades concernées ; toutes les gonadectomies ne relèvent donc pas d’une même situation.</p><p>Les recommandations de droits humains insistent sur la nécessité médicale, l’information, la participation de la personne et le report des actes non nécessaires lorsque cela permet un consentement éclairé.</p><p class="source-note"><a href="https://www.ncbi.nlm.nih.gov/sites/books/NBK1429/" target="_blank" rel="noopener">GeneReviews · SIA et gonades</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12593270/" target="_blank" rel="noopener">Revue clinique · risques tumoraux</a></p></div>
+<div class="anti-intox" id="audit-autorisation"><h3><span class="audit-label">Anti-intox · vérification</span>La circoncision n’est pas partout interdite par le droit</h3><p>L’affirmation « aucun cadre juridique » est fausse : en Allemagne, le § 1631d du Code civil prévoit explicitement, sous conditions, la possibilité pour les titulaires de l’autorité parentale de consentir à une circoncision non médicalement nécessaire.</p><p>Les protections et les qualifications pénales diffèrent selon les pays et les actes. Le désaccord moral avec une règle ne permet pas de présenter cette règle comme inexistante.</p><p>Autorisation ne signifie pas immunité : les conditions de consentement, la qualité des soins et la responsabilité demeurent pertinentes. Les interventions sur les filles, les garçons et les enfants intersexes diffèrent aussi par leurs gestes et leurs conséquences.</p><p class="source-note"><a href="https://www.gesetze-im-internet.de/bgb/__1631d.html" target="_blank" rel="noopener">Allemagne · § 1631d BGB</a> · <a href="https://questions.assemblee-nationale.fr/q14/14-41737QE.htm" target="_blank" rel="noopener">France · réponse gouvernementale</a></p></div>
+</aside></div>
+<p class="source-note"><a href="#droit">Poursuivre : Les droits de l’enfant et leurs limites d’application →</a></p>
+</section>
+<section class="chapter reveal" id="droit" aria-labelledby="titre-droit"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 08</p><h2 id="titre-droit">Les droits de l’enfant et leurs limites d’application</h2></div><div class="chapter-number">08</div></div>
+<figure class="chapter-figure"><img src="assets/droits-avenir.png" alt="Un livre ouvert devant une porte donnant sur un jardin lumineux." loading="lazy" decoding="async" width="1672" height="941"><figcaption>Préserver les choix futurs : une question éthique à distinguer du droit effectivement applicable.</figcaption></figure>
+<div class="transcript"><article class="prose"><p class="source-chapter" data-source-line="278">CHAPITRE 4</p>
+<h3 class="original-title" data-source-line="279">Cadres juridiques internationaux, droits de l'enfant et voies d'émancipation éthique</h3>
+<p data-source-line="280">Ce quatrième et dernier chapitre examine l'architecture du droit international, la doctrine des droits de l'enfant et les leviers éthiques permettant de penser la fin des interventions corporelles non thérapeutiques sur les mineurs. En cohérence avec notre posture zététique, l'analyse confronte les grands textes normatifs aux réalités de leur application géopolitique et culturelle.</p>
+<h3 class="source-heading" data-source-line="281">4.1 La doctrine des droits de l'enfant et le principe de l'intérêt supérieur</h3>
+<p data-source-line="282">L'édifice juridique international repose sur un corpus de textes qui, en théorie, garantissent l'inviolabilité de la personne humaine, mais dont l'application se heurte à des dérogations coutumières.</p>
+<ul>
+<li data-source-line="283">La Convention internationale des droits de l'enfant (CIDE de 1989) :</li>
+<li data-source-line="284">L'article 3-1 pose que « l'intérêt supérieur de l'enfant doit être une considération primordiale » dans toutes les décisions le concernant.</li>
+<li data-source-line="285">L'article 24-3 engage explicitement les États parties à « prendre toutes les mesures efficaces et appropriées en vue d'abolir les pratiques traditionnelles préjudiciables à la santé des enfants ». (Cet article a servi de fondement juridique majeur pour criminaliser les Mutilations Génitales Féminines).</li>
+<li data-source-line="286"><strong>Le droit à l'intégrité corporelle et à l'autonomie future (Open Future Rights) </strong> : Théorisé en bioéthique par Joel Feinberg, le concept du right to an open future (le droit à un avenir ouvert) stipule qu'un enfant possède le droit fondamental de grandir dans un corps intact, lui permettant de faire ses propres choix éthiques, sexuels, religieux et philosophiques une fois parvenu à l'âge adulte. Toute modification irréversible et non thérapeutique prive par définition l'adulte en devenir de cette autonomie originelle.<a class="correction-link" href="#audit-avenir">Lire la rectification : Le droit à un avenir ouvert est un argument philosophique →</a></li>
+</ul>
+<h3 class="source-heading" data-source-line="287">4.2 L'asymétrie normative et le piège du relativisme culturel</h3>
+<p data-source-line="288">La confrontation entre les textes universels des droits humains et les pratiques locales révèle une fracture profonde dans le droit international moderne.</p>
+<ul>
+<li data-source-line="289">L'universalisme des droits vs le relativisme culturel :</li>
+<li data-source-line="290">Le relativisme culturel soutient qu'aucun système de valeurs ne peut prétendre à l'universalité et qu'il faut tolérer les traditions des autres cultures.</li>
+<li data-source-line="291">La posture critique et universaliste objecte que les droits humains protègent les individus contre les groupes, et non les cultures contre les individus. Si une tradition viole l'intégrité physique d'un être vulnérable incapable de consentir, le statut de « tradition ancestrale » ne constitue pas un totem d'immunité juridique.</li>
+<li data-source-line="292"><strong>L'incohérence du standard de protection </strong> : Lorsqu'un État condamne à juste titre la soustraction d'un millimètre de tissu génital chez une fillette au nom de la protection de l'enfance, mais exempte de toute poursuite pénale l'ablation du prépuce chez un nouveau-né garçon ou les chirurgies de normalisation sur un enfant intersexe au nom de la liberté des parents, il consacre un principe de discrimination fondé sur le genre et le dogme. Le droit ne protège plus l'enfant en tant qu'être humain universel, mais en fonction du sexe de son anatomie.<a class="correction-link" href="#audit-cide">Lire la rectification : Le texte international et le droit national →</a></li>
+</ul>
+<h3 class="source-heading" data-source-line="293">4.3 Les résistances institutionnelles et les leviers d'émancipation</h3>
+<p data-source-line="294">Pourquoi, malgré les rapports répétés de comités bioéthiques (comme ceux des pays nordiques ou de pédiatres européens), les législations peinent-elles à évoluer ?</p>
+<ul>
+<li data-source-line="295"><strong>La peur du stigmate politique </strong> : Toute tentative législative visant à encadrer ou à interdire les interventions non thérapeutiques sur les garçons ou les enfants intersexes est immédiatement piégée par le débat mémoriel et géopolitique, s'attirant les foudres conjointes des autorités religieuses traditionnelles (qui y voient une menace existentielle pour leur pérennité) et la frilosité des gouvernements craignant des accusations d'intolérance.</li>
+<li data-source-line="296"><strong>La primauté de la prévention par l'éducation </strong> : L'histoire des droits humains montre que la contrainte pénale seule ne suffit pas ; elle doit s'accompagner d'une pédagogie de l'émancipation. Cela passe par :</li>
+</ul>
+<p class="source-line" data-source-line="297"><strong>1. L'information médicale éclairée </strong> : Informer les futurs parents de la réalité anatomique, histologique et neurologique des interventions de convenance.</p>
+<p class="source-line" data-source-line="298"><strong>2. Le respect du principe de report </strong> : Promouvoir l'idée éthique universelle selon laquelle tout acte chirurgical non vital sur un enfant sain doit être reporté à la majorité, au moment précis où l'individu dispose de la pleine capacité de consentir, de refuser et de disposer souverainement de son propre corps.<a class="correction-link" href="#audit-avenir">Lire la rectification : Le droit à un avenir ouvert est un argument philosophique →</a></p>
+<p data-source-line="299">1. La jurisprudence et la position des instances pédiatriques nordiques et européennes</p>
+<ul>
+<li data-source-line="300"><strong>L'éclairage des pays scandinaves </strong> : En complément des condamnations internationales de l'ONU, il est crucial de mentionner les prises de position pionnières des associations de pédiatrie des pays nordiques (Islande, Norvège, Suède, Danemark, Finlande). Dès 2013, l'Association médicale danoise et ses homologues nordiques ont qualifié la circoncision rituelle sans nécessité médicale de violation des droits de l'enfant, recommandant son report à l'âge où le mineur peut donner un consentement éclairé.<a class="correction-link" href="#audit-nordiques">Lire la rectification : 2013 et 2016 : deux prises de position différentes →</a></li>
+<li data-source-line="301"><strong>L'indépendance de l'éthique médicale face aux cultes </strong> : Rappeler que le serment d'Hippocrate (primum non nocere — d'abord, ne pas nuire) s'adresse au patient individuel et non à la collectivité religieuse ou culturelle. Aucun acte chirurgical sans indication thérapeutique ne devrait s'affranchir de cette règle déontologique fondamentale.<a class="correction-link" href="#audit-nordiques">Lire la rectification : 2013 et 2016 : deux prises de position différentes →</a></li>
+</ul>
+<p data-source-line="302">2. Le concept d'« intégrité somatique » comme droit de l'homme fondamental de première génération</p>
+<ul>
+<li data-source-line="303"><strong>Au-delà du droit à la santé </strong> : Il faut situer l'intégrité corporelle non seulement comme un enjeu de santé publique, mais comme un droit fondamental de première génération (au même titre que l'interdiction de la torture ou des traitements cruels, inhumains et dégradants).</li>
+<li data-source-line="304"><strong>L'intangibilité de l'enveloppe corporelle </strong> : Tout individu, quel que soit son âge, possède une souveraineté native sur son corps. Transgresser cette frontière sous prétexte de tutelle parentale ou coutumière crée un dangereux précédent juridique : celui d'un corps minoritaire qui appartient d'abord au groupe avant d'appartenir à la personne.</li>
+</ul>
+<p data-source-line="305"><strong>3. La voie de la transition culturelle </strong> : L'exemple des rituels alternatifs et symboliques</p>
+<ul>
+<li data-source-line="306"><strong>L'évolution des traditions sans violence physique </strong> : L'histoire anthropologique montre que les cultures ont la capacité de muter pacifiquement. À l'instar de certaines communautés qui remplacent des sacrifices sanglants par des offrandes symboliques, des mouvements progressistes au sein même des traditions religieuses et culturelles commencent à développer des rituels d'accueil non mutilants (cérémonies de bénédiction, d'attribution de nom ou de pacte symbolique sans altération anatomique). Cela démontre que la pérennité d'une culture ne dépend pas de la lésion de la chair de ses enfants.</li>
+</ul>
+<p data-source-line="307">Conclusion générale du rapport</p>
+<p data-source-line="308">Le corps d'un enfant ne saurait être la page sur laquelle une communauté, une religion ou une tradition grave ses dogmes et ses hiérarchies. En unissant la rigueur de la zététique, l'objectivité de l'anatomie, la rigueur de la neurobiologie de la douleur et l'universalité des droits humains, ce rapport démontre que la protection de l'intégrité corporelle est indivisible : elle ne souffre aucune exception de genre, aucune immunité cultuelle et aucune rationalisation a posteriori.</p></article><aside class="side-note"><div class="anti-intox" id="audit-cide"><h3><span class="audit-label">Anti-intox · vérification</span>Le texte international et le droit national</h3><p>La CIDE a été adoptée en 1989. L’article 3 donne une place primordiale à l’intérêt supérieur de l’enfant, l’article 12 porte sur son opinion, l’article 19 sur la protection contre les violences et l’article 24 § 3 sur les pratiques traditionnelles préjudiciables à sa santé. L’article 5 est également pertinent pour l’évolution des capacités de l’enfant.</p><p>Ces dispositions ne constituent pas une interdiction pénale mondiale uniforme de tous les gestes évoqués. Les opinions, recommandations, lois et décisions de justice n’ont pas la même portée. En France, l’article L. 2131-6 du Code de la santé publique encadre la prise en charge des variations du développement génital.</p><p>Pour les variations du développement génital, le cadre français prévoit notamment la concertation spécialisée, l’information sur l’abstention et la recherche du consentement du mineur capable de participer. Il ne donne pas un blanc-seing parental et n’interdit pas toute intervention avant la majorité.</p><p class="source-note"><a href="https://www.unicef.org/fr/convention-droits-enfant/texte-convention" target="_blank" rel="noopener">UNICEF · texte de la CIDE</a> · <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043889073/" target="_blank" rel="noopener">France · article L. 2131-6</a> · <a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046566735" target="_blank" rel="noopener">France · arrêté du 15 novembre 2022</a></p></div>
+<div class="anti-intox" id="audit-nordiques"><h3><span class="audit-label">Anti-intox · vérification</span>2013 et 2016 : deux prises de position différentes</h3><p>La déclaration nordique de 2013 associe des médiateurs des enfants et des professionnels de l’enfance. L’Association médicale danoise a formulé sa position en faveur d’une décision individuelle à l’âge adulte en 2016. Les attribuer toutes à une même association en 2013 mélange les sources.</p><p>« D’abord ne pas nuire » résume un principe médical, mais la locution latine primum non nocere n’est pas une citation littérale du serment d’Hippocrate. Un principe éthique ne produit pas à lui seul une règle de droit.</p><p class="source-note"><a href="https://www.boerneraadet.dk/vores-viden/2014/hoeringssvar/hoeringssvar-omskaering/" target="_blank" rel="noopener">Conseil danois de l’enfance</a> · <a href="https://laeger.dk/nyheder/laegeforeningen-har-tydeliggjort-sin-politik-om-omskaering-af-drenge" target="_blank" rel="noopener">Association médicale danoise</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/15778417/" target="_blank" rel="noopener">Smith · histoire de la maxime</a></p></div>
+<div class="anti-intox" id="audit-avenir"><h3><span class="audit-label">Anti-intox · vérification</span>Le droit à un avenir ouvert est un argument philosophique</h3><p>Joel Feinberg développe ce concept en 1980 pour les possibilités de choix futurs de l’enfant. Son application aux interventions corporelles relève d’une argumentation bioéthique ; il ne s’agit pas d’un article de loi garantissant littéralement un « corps intact » dans toute circonstance.</p><p>Le report de certains actes non nécessaires est défendu pour préserver l’autonomie. Il faut le distinguer d’un report systématique de tout acte « non vital » : des soins utiles peuvent être nécessaires sans relever de l’urgence vitale.</p><p class="source-note"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4279214/" target="_blank" rel="noopener">Millum · philosophie des droits</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/23365468/" target="_blank" rel="noopener">Darby · application discutée</a></p></div>
+</aside></div>
+<p class="source-note"><a href="#accompagnement">Poursuivre : Écouter, orienter, accompagner →</a></p>
+</section>
+<section class="chapter reveal" id="accompagnement" aria-labelledby="titre-accompagnement"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 09</p><h2 id="titre-accompagnement">Écouter, orienter, accompagner</h2></div><div class="chapter-number">09</div></div>
+<div class="transcript"><article class="prose"><p data-source-line="312">Associations, collectifs et réseaux d'aide</p>
+<ul>
+<li data-source-line="313">Droit au Corps (France)</li>
+<li data-source-line="314"><strong>Rôle </strong> : Association française de référence œuvrant pour la défense de l'intégrité physique de tous les enfants, l'information médicale éclairée et l'abolition des mutilations sexuelles non thérapeutiques (garçons et filles).</li>
+<li data-source-line="315"><strong>Action </strong> : Sensibilisation, diffusion de ressources scientifiques, juridiques et soutien aux familles et aux adultes en quête d'information.</li>
+<li data-source-line="316">MIRC (Mouvement International pour le Respect de l'Intégrité Corporelle) / Intact America / Intact Nederland<a class="correction-link" href="#audit-aide">Lire la rectification : Des interlocuteurs aux rôles différents →</a></li>
+<li data-source-line="317"><strong>Rôle </strong> : Réseaux internationaux partenaires luttant contre toutes les formes de mutilations rituelles ou de convenance sur les mineurs.</li>
+<li data-source-line="318">OII Europe (Organisation Internationale des Intersexes - Europe)<a class="correction-link" href="#audit-aide">Lire la rectification : Des interlocuteurs aux rôles différents →</a></li>
+<li data-source-line="319"><strong>Rôle </strong> : Réseau assurant la défense des droits humains des personnes intersexes, luttant contre les mutilations et chirurgies de « normalisation » non consenties sur les nourrissons et les enfants.</li>
+</ul>
+<p data-source-line="320">Numéros d'écoute, signalement et assistance</p>
+<ul>
+<li data-source-line="321">Le 119 (Allô Enfance en Danger) (France)</li>
+<li data-source-line="322"><strong>Rôle </strong> : Numéro national gratuit et confidentiel, accessible 24h/24 et 7j/7 pour signaler toute situation de mise en danger, de violence ou d'atteinte grave à l'intégrité d'un mineur.</li>
+<li data-source-line="323">Le 3919 (Violences Femmes Info) (France)</li>
+<li data-source-line="324"><strong>Rôle </strong> : Numéro d'écoute national de référence pour les violences faites aux femmes, incluant l'accompagnement et l'orientation juridique concernant les mutilations génitales féminines (MGF).</li>
+</ul>
+<p data-source-line="325">Lieux et structures de prise en charge et de reconstruction</p>
+<ul>
+<li data-source-line="326">Centres spécialisés de chirurgie plastique et reconstructrice (CHU universitaires en France)</li>
+<li data-source-line="327"><strong>Modalité </strong> : Les services de chirurgie plastique, reconstructrice et esthétique des grands Centres Hospitaliers Universitaires (CHU) disposent d'unités spécialisées dans la prise en charge des séquelles post-opératoires et les chirurgies réparatrices des organes génitaux (tant pour les victimes de MGF que pour les réparations fonctionnelles ou psychologiques post-traumatiques masculines ou intersexes). Une orientation par un médecin généraliste ou un spécialiste (urologue, andrologue, gynécologue sensibilisé) permet d'accéder à ces parcours de soins pluridisciplinaires (médicaux et psychologiques).</li>
+</ul></article><aside class="side-note"><div class="anti-intox" id="audit-aide"><h3><span class="audit-label">Anti-intox · vérification</span>Des interlocuteurs aux rôles différents</h3><p>Le 119 concerne les enfants en danger ou risquant de l’être. Le 3919 écoute et oriente les femmes victimes de violences. En danger immédiat, appeler les services d’urgence : 112, ou 17 en France.</p><p>Les associations sont des ressources d’information et de défense des droits ; elles ne se substituent pas à une équipe soignante. Les compétences de réparation et d’accompagnement ne sont pas disponibles dans chaque CHU. Une orientation dépend des besoins et de l’offre locale.</p><p>Droit au Corps, Intact America et OII Europe ont des sites identifiables. L’intitulé exact « MIRC » et le réseau « Intact Nederland » n’ont pas été confirmés ; le partenariat commun n’est pas établi. Le nom anglais d’OII Europe est Organisation Intersex International Europe.</p><p class="source-note"><a href="https://lannuaire.service-public.gouv.fr/centres-contact/R20576" target="_blank" rel="noopener">119 · annuaire public</a> · <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F33954" target="_blank" rel="noopener">Numéros d’urgence</a> · <a href="https://www.oiieurope.org/oii/" target="_blank" rel="noopener">OII Europe · présentation</a> · <a href="https://www.droitaucorps.com/droit-au-corps-presentation/" target="_blank" rel="noopener">Droit au Corps</a> · <a href="https://intactamerica.org/our-story/" target="_blank" rel="noopener">Intact America</a></p></div>
+</aside></div>
+<section class="help-band" id="aide" aria-labelledby="aide-titre"><p class="section-kicker">France · Écoute et protection</p><h2 id="aide-titre">Un besoin d’aide, une inquiétude pour un enfant</h2><div class="help-numbers"><a href="tel:119"><strong>119</strong><span>Un enfant en danger ou risquant de l’être. Gratuit, 24 h/24 et 7 j/7.</span></a><a href="tel:3919"><strong>3919</strong><span>Écoute et orientation pour les femmes victimes de violences. Gratuit et anonyme, 24 h/24 et 7 j/7.</span></a><a href="tel:112"><strong>112</strong><span>Danger immédiat : services d’urgence. Le 119 et le 3919 ne remplacent pas les urgences.</span></a></div><p><a href="https://www.allo119.gouv.fr/" target="_blank" rel="noopener">Allô 119</a> · <a href="https://arretonslesviolences.gouv.fr/besoin-d-aide" target="_blank" rel="noopener">Arrêtons les violences</a> · <a href="https://oiieurope.org/" target="_blank" rel="noopener">OII Europe</a></p></section>
+<p class="source-note"><a href="#corps-souverain">Poursuivre : Le corps souverain →</a></p>
+</section>
+<section class="chapter reveal" id="corps-souverain" aria-labelledby="titre-corps-souverain"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 10</p><h2 id="titre-corps-souverain">Le corps souverain</h2></div><div class="chapter-number">10</div></div>
+<div class="transcript"><article class="prose"><h3 class="original-title" data-source-line="344">Le Corps Souverain</h3>
+<p data-source-line="346">Au terme de notre enquête menée avec toute la rigueur de la zététique — cet art du doute méthodique qui trie les faits vérifiables des croyances —, une vérité simple émerge : le corps d'un enfant n'est pas le terrain de jeu des traditions.</p>
+<p data-source-line="347">Voici l'essentiel de ce qu'il faut retenir.</p>
+<h3 class="source-heading" data-source-line="348">Ce que nous dit la science (et qu'on oublie trop souvent)</h3>
+<ul>
+<li data-source-line="349"><strong>Un vrai organe, pas un « bout de peau » </strong> : Qu'il s'agisse des garçons ou des enfants intersexes, les tissus modifiés sans raison médicale ne sont jamais superflus. Ils sont riches en terminaisons nerveuses et jouent un rôle protecteur et sensoriel fondamental.</li>
+<li data-source-line="350"><strong>La douleur est bien réelle </strong> : Le mythe selon lequel « le bébé ne sent rien ou oublie très vite » a été totalement démontré comme faux par la médecine moderne. Le système nerveux du nourrisson est pleinement câblé pour ressentir la douleur de manière brute et non modulée. Un choc traumatique précoce laisse des traces durables dans le corps et la mémoire nerveuse.<a class="correction-link" href="#audit-douleur">Lire la rectification : La douleur est reconnue ; le silence ne suffit pas à diagnostiquer →</a></li>
+</ul>
+<h3 class="source-heading" data-source-line="351">D'où vient cette habitude ?</h3>
+<p data-source-line="352">Depuis la nuit des temps, les sociétés humaines ont cherché à marquer les corps. C'est une façon pour un groupe (qu'il soit religieux, tribal ou culturel) de dire : « Cet enfant nous appartient, il porte nos codes ».</p>
+<ul>
+<li data-source-line="353">Dans certaines traditions, c'est écrit dans des textes anciens.</li>
+<li data-source-line="354">Dans d'autres, c'est un rite de passage ou une norme sociale.</li>
+<li data-source-line="355">Mais dans tous les cas, cela revient à utiliser la vulnérabilité d'un enfant incapable de parler pour graver une identité dans sa chair.</li>
+</ul>
+<h3 class="source-heading" data-source-line="356">Le grand paradoxe de nos lois</h3>
+<h4 class="source-subheading" data-source-line="357">Aujourd'hui, il existe une immense contradiction :</h4>
+<ul>
+<li data-source-line="358">Si l'on touche au corps d'une petite fille, tout le monde s'accorde (à juste titre) pour parler de mutilation et de violence intolérable.</li>
+<li data-source-line="359">Mais si l'on fait la même chose à un petit garçon ou à un bébé né avec un corps atypique (intersexe), la loi ferme souvent les yeux au nom de la « tradition » ou du choix des parents.</li>
+</ul>
+<p data-source-line="360">Pourtant, aucun parent n'a le droit d'imposer une opération chirurgicale irréversible sur un enfant en bonne santé.<a class="correction-link" href="#audit-autorisation">Lire la rectification : La circoncision n’est pas partout interdite par le droit →</a></p>
+<h3 class="source-heading" data-source-line="361">La question finale</h3>
+<p data-source-line="362">Au fond, le véritable progrès ne consiste pas à perpétuer ce que nos ancêtres faisaient par habitude, mais à nous poser la seule question qui vaille :</p>
+<p data-source-line="363">« Au nom de quel droit un adulte décide-t-il de modifier à jamais le corps d'un enfant qui n'a rien demandé ? »</p>
+<p data-source-line="364">Protéger l'intégrité physique de chaque être humain dès sa naissance, c'est lui offrir le plus beau des cadeaux : la liberté absolue de choisir, un jour, ce qu'il voudra faire de son propre corps.</p>
+<p data-source-line="365">Nous critiquerons toujours les textes, non les croyants, nous lutterons contre toutes mutilations faites aux enfants sans consentement.</p>
+<p data-source-line="366">Aucune idéologie, aucune tradition ancestrale et aucun dogme culturel ne devrait jamais primer sur le droit fondamental d'un enfant à grandir dans un corps entier, souverain et intact. C'est tout le sens de ce combat pour la raison, la science et les droits humains.</p></article><aside class="side-note"><div class="anti-intox" id="audit-synthese"><h3><span class="audit-label">Anti-intox · vérification</span>Les mêmes rectifications s’appliquent à la synthèse</h3><p>Le droit, la douleur et les effets des interventions demandent les distinctions données aux chapitres précédents. La conclusion exprime la position éthique des auteurs.</p><p>En particulier, l’absence de cris ne mesure pas la douleur, toutes les variations intersexes ne sont pas médicalement sans conséquence, et certaines lois autorisent une circoncision non thérapeutique sous conditions.</p><p class="source-note"><a href="../../sources/dossier-XXXIV-mutilations.md" target="_blank" rel="noopener">Audit · faits, droit et éthique</a></p></div>
+</aside></div>
+<p class="source-note"><a href="#glossaire">Poursuivre : Les mots pour comprendre →</a></p>
+</section>
+<section class="chapter reveal" id="glossaire" aria-labelledby="titre-glossaire"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 11</p><h2 id="titre-glossaire">Les mots pour comprendre</h2></div><div class="chapter-number">11</div></div>
+<div class="transcript"><article class="prose"><h3 class="source-heading" data-source-line="384">GLOSSAIRE MÉTHODOLOGIQUE ET SCIENTIFIQUE</h3>
+<ul>
+<li data-source-line="385"><strong>Zététique </strong> : Étude méthodique et rationnelle des phénomènes extraordinaires ou des discours prétendant détenir une vérité empirique. Basée sur le doute méthodique, l'examen des preuves et la déconstruction des biais cognitifs, elle vise à séparer les faits scientifiques des croyances ou dogmes.</li>
+<li data-source-line="386"><strong>Charge de la preuve (Onus probandi) </strong> : Principe logique et scientifique stipulant qu'il incombe à celui qui avance une affirmation (théologique, médicale ou culturelle) d'en apporter la preuve vérifiable, et non à l'opposé de prouver son inexactitude.</li>
+<li data-source-line="387"><strong>Consentement éclairé </strong> : Accord libre, préalable et informé donné par un individu en pleine possession de ses facultés pour tout acte médical ou intervention physique sur son corps. Par définition, un nourrisson ou un jeune enfant ne peut pas donner un tel consentement.</li>
+<li data-source-line="388"><strong>Prépuce </strong> : Structure cutanéo-muqueuse fine, souple, innervée et spécialisée recouvrant le gland du pénis. Il assure une protection mécanique de la muqueuse balanique chez l'enfant et joue un rôle érogène et biomécanique (effet de glissement) majeur chez l'adulte.</li>
+<li data-source-line="389"><strong>Kératinisation </strong> : Épaississement protecteur de l'épithélium balanique par formation d'une couche cornée. Chez l'homme circoncis, elle résulte du frottement continu du gland dénudé contre les sous-vêtements et entraîne une baisse de la sensibilité tactile fine.<a class="correction-link" href="#audit-glossaire">Lire la rectification : Des définitions à lire avec leurs limites →</a></li>
+<li data-source-line="390"><strong>Nociception </strong> : Processus neurophysiologique par lequel le système nerveux détecte et transmet les signaux liés à des stimuli potentiellement douloureux ou lésionnels.</li>
+<li data-source-line="391"><strong>Hyperalgésie </strong> : Réactivité et sensibilité accrues à la douleur causées par un traumatisme antérieur ou des lésions répétées sur les voies nerveuses.</li>
+<li data-source-line="392"><strong>Dissociation traumatique (sidération) </strong> : Réaction neurobiologique de défense face à une souffrance ou un stress extrême où le sujet (notamment le nourrisson) s'immobilise et cesse de réagir ou de pleurer, état d'épuisement souvent interprété à tort comme une absence de douleur.<a class="correction-link" href="#audit-glossaire">Lire la rectification : Des définitions à lire avec leurs limites →</a></li>
+<li data-source-line="393"><strong>Mutilations Génitales Féminines (MGF) </strong> : Ensemble des interventions incluant l'ablation partielle ou totale des organes génitaux externes de la femme ou toute autre lésion des organes génitaux féminins pratiquée pour des raisons non médicales.</li>
+<li data-source-line="394"><strong>Intersexuation / Variations des caractéristiques sexuelles </strong> : Terme parapluie désignant les personnes nées avec des caractéristiques sexuelles (chromosomiques, gonadiques ou anatomiques) qui ne correspondent pas aux définitions binaires sous lesquelles on classe habituellement les corps masculins ou féminins.</li>
+<li data-source-line="395"><strong>Mutilations Génitales Dites « Normalisatrices » (MGD) </strong> : Chirurgies non urgentes et traitements hormonaux imposés aux mineurs intersexes pour forcer leur anatomie à correspondre aux normes sociales binaires, dénoncés comme des violations des droits humains par l'ONU et l'OMS.</li>
+<li data-source-line="396"><strong>CIDE (Convention Internationale des Droits de l'Enfant) </strong> : Traité international adopté par l'ONU en 1989 établissant les droits fondamentaux des enfants, notamment l'intérêt supérieur de l'enfant (Art. 3) et la protection contre les pratiques traditionnelles préjudiciables (Art. 24-3).</li>
+<li data-source-line="397"><strong>Droit à un avenir ouvert (Right to an Open Future) </strong> : Concept de bioéthique théorisé par Joel Feinberg stipulant que l'enfant possède le droit fondamental de préserver son intégrité physique et ses options de vie futures jusqu'à ce qu'il soit en âge d'exercer sa propre autonomie.</li>
+</ul></article><aside class="side-note"><div class="anti-intox" id="audit-glossaire"><h3><span class="audit-label">Anti-intox · vérification</span>Des définitions à lire avec leurs limites</h3><p>Le glossaire reprend les formulations du live. La définition de la kératinisation ne doit pas être utilisée comme preuve d’une baisse universelle de sensibilité après circoncision. La définition de la dissociation ne permet pas de diagnostiquer cet état à partir de l’immobilité d’un nourrisson.</p><p>Le consentement et la participation de l’enfant s’apprécient selon le contexte et la maturité. Le sigle « MGD » est employé dans le déroulé ; il ne remplace pas la description précise de l’intervention et de son indication.</p><p class="source-note"><a href="https://pubmed.ncbi.nlm.nih.gov/26724395/" target="_blank" rel="noopener">Bossio · mesures sensorielles</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/8198409/" target="_blank" rel="noopener">Rushforth · évaluation de la douleur</a></p></div>
+</aside></div>
+<p class="source-note"><a href="#references">Poursuivre : Les références du déroulé →</a></p>
+</section>
+<section class="chapter reveal" id="references" aria-labelledby="titre-references"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 12</p><h2 id="titre-references">Les références du déroulé</h2></div><div class="chapter-number">12</div></div>
+<p class="document-note">Document du live : les références et propositions originales sont conservées. Les indications vérifiées et les réserves figurent en marge ; une référence non authentifiée ne constitue pas une recommandation validée.</p>
+<div class="transcript"><article class="prose"><h3 class="source-heading" data-source-line="414">SOURCES SCIENTIFIQUES, HISTORIQUES ET INSTITUTIONNELLES</h3>
+<h3 class="source-heading" data-source-line="415">Neurobiologie de la douleur et pédiatrie</h3>
+<p data-source-line="416">1. Anand, K. J. S., &amp; Hickey, P. R. (1987). Pain and its effects in the human neonate and fetus. The New England Journal of Medicine, 317(21), 1321–1329.</p>
+<p data-source-line="417">2. Taddio, A., Katz, J., Ilersich, A. L., &amp; Koren, G. (1997). Effect of neonatal circumcision on pain response during subsequent routine vaccination. The Lancet, 349(9052), 599–603.</p>
+<p data-source-line="418">3. Nordic Association of Pediatric Surgeons &amp; Nordic Pediatric Associations (2013). Joint statement on non-therapeutic male circumcision.</p>
+<h3 class="source-heading" data-source-line="419">Anatomie, histologie et fonction cutanéo-muqueuse</h3>
+<p data-source-line="420"><strong>4. Taylor, J. R., Lockwood, A. P., &amp; Taylor, A. J. (1996). The prepuce</strong> : specialized mucosa of the penis and its loss to circumcision. British Journal of Urology, 77(2), 291–295.</p>
+<p data-source-line="421">5. Cold, C. J., &amp; Taylor, J. R. (1999). The prepuce. BJU International, 83(S1), 34–44.</p>
+<h3 class="source-heading" data-source-line="422">Anthropologie, sociologie et histoire des religions</h3>
+<p data-source-line="423"><strong>6. Frazer, James G. (1911). The Golden Bough</strong> : A Study in Magic and Religion. Macmillan &amp; Co.</p>
+<p data-source-line="424">7. Lévi-Strauss, Claude (1962). La Pensée sauvage. Éditions Plon.</p>
+<p data-source-line="425"><strong>8. Gollaher, David L. (2000). Circumcision</strong> : A History of the World's Most Controversial Surgery. Basic Books.</p>
+<h3 class="source-heading" data-source-line="426">Éthique médicale, droit international et droits de l'homme</h3>
+<p data-source-line="427">9. Boyle, G. J., &amp; Svoboda, J. S. (2008). Ethical, legal, and human rights aspects of non-therapeutic circumcision. Journal of Medical Ethics, 34(5).<a class="correction-link" href="#audit-bibliographie">Lire la rectification : La liste initiale contient des références à rectifier →</a></p>
+<p data-source-line="428">10. Organisation des Nations Unies (1989). Convention internationale des droits de l'enfant (CIDE). HCDH.</p>
+<p data-source-line="429">11. Organisation Mondiale de la Santé (OMS) / HCDH (2014). Élimination des mutilations génitales féminines et interventions non consenties sur les enfants intersexes : Déclarations conjointes.<a class="correction-link" href="#audit-bibliographie">Lire la rectification : La liste initiale contient des références à rectifier →</a></p>
+<p data-source-line="430">12. Feinberg, Joel (1980). The Child's Right to an Open Future. In Whose Child? Children's Rights, Parental Authority, and State Power, Rowman &amp; Littlefield.</p></article><aside class="side-note"><div class="anti-intox" id="audit-bibliographie"><h3><span class="audit-label">Anti-intox · vérification</span>La liste initiale contient des références à rectifier</h3><p>Les publications d’Anand et Hickey, de Taddio et collègues, de Taylor et collègues et de Cold et Taylor sont identifiables. Leurs résultats et leurs limites sont détaillés dans les références vérifiées.</p><p>La référence « Boyle et Svoboda (2008) » et l’entrée « OMS / HCDH (2014) » ne permettent pas d’identifier exactement les documents tels que cités. Une déclaration interagences de 2014 sur les stérilisations forcées et d’autres textes sur les MGF ou l’intersexuation doivent être distingués.</p><p class="source-note"><a href="../../sources/refs-XXXIV-mutilations.md" target="_blank" rel="noopener">Références contrôlées</a> · <a href="https://www.who.int/publications/i/item/9789241507325" target="_blank" rel="noopener">OMS · déclaration exacte de 2014</a></p></div>
+</aside></div>
+<p class="source-note"><a href="#medias">Poursuivre : Livres, essais et documentaires →</a></p>
+</section>
+<section class="chapter reveal" id="medias" aria-labelledby="titre-medias"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 13</p><h2 id="titre-medias">Livres, essais et documentaires</h2></div><div class="chapter-number">13</div></div>
+<p class="document-note">Document du live : les références et propositions originales sont conservées. Les indications vérifiées et les réserves figurent en marge ; une référence non authentifiée ne constitue pas une recommandation validée.</p>
+<div class="transcript"><article class="prose"><p data-source-line="458">Voici une sélection de livres, reportages et documentaires pour aller plus loin, explorer ces sujets sous un angle factuel, historique ou sociologique, et alimenter votre réflexion.</p>
+<h3 class="source-heading" data-source-line="459">Livres et essais de référence</h3>
+<ul>
+<li data-source-line="460"><strong>David L. Gollaher — Circumcision</strong> : A History of the World's Most Controversial Surgery (Basic Books)</li>
+<li data-source-line="461"><strong>De quoi ça parle </strong> : Une fresque historique rigoureuse qui retrace l'évolution de la circoncision, depuis les rites de l'Égypte antique jusqu'à sa médicalisation zélée dans le monde anglo-saxon aux XIXe et XXe siècles.</li>
+<li data-source-line="462"><strong>Marc Goldberg — La Circoncision </strong> : enjeux médicaux, éthiques et politiques<a class="correction-link" href="#audit-medias">Lire la rectification : Des titres qui restent non authentifiés →</a></li>
+<li data-source-line="463"><strong>De quoi ça parle </strong> : Un ouvrage qui analyse sans tabou la confrontation entre traditions culturelles, déontologie médicale et droits de l'enfant dans le contexte contemporain.</li>
+<li data-source-line="464">Joel Feinberg — The Child's Right to an Open Future (in Whose Child?)</li>
+<li data-source-line="465"><strong>De quoi ça parle </strong> : Le texte fondateur en philosophie du droit et bioéthique qui théorise l'idée selon laquelle on ne doit pas priver un enfant de ses choix futurs par des modifications corporelles irréversibles.</li>
+<li data-source-line="466">Marge Karsten (dir.) — Intégrité physique et droits de l'enfant<a class="correction-link" href="#audit-medias">Lire la rectification : Des titres qui restent non authentifiés →</a></li>
+<li data-source-line="467"><strong>De quoi ça parle </strong> : Une analyse juridique et sociologique de l'asymétrie de protection entre les genres face aux interventions non thérapeutiques.</li>
+</ul>
+<h3 class="source-heading" data-source-line="468">Documentaires et reportages vidéo</h3>
+<ul>
+<li data-source-line="469"><strong>Circumcision </strong> : Le débat tabou (ou reportages d'investigation sur les modifications corporelles rituelles)<a class="correction-link" href="#audit-medias">Lire la rectification : Des titres qui restent non authentifiés →</a></li>
+<li data-source-line="470"><strong>Le sujet </strong> : Plusieurs documentaires indépendants diffusés sur des plateformes ou chaînes européennes donnent la parole à des pédiatres, des historiens, des juristes et des adultes ayant subi ces interventions sans consentement, interrogeant le silence politique autour de la question.</li>
+<li data-source-line="471"><strong>Intersexe </strong> : Les enfants du silence (Documentaires ARTE / enquêtes sociologiques)<a class="correction-link" href="#audit-medias">Lire la rectification : Des titres qui restent non authentifiés →</a></li>
+<li data-source-line="472"><strong>Le sujet </strong> : Des reportages poignants qui lèvent le voile sur les chirurgies de « normalisation » subies par les enfants intersexes, en exposant le témoignage direct des victimes et la lutte des associations pour l'autodétermination corporelle.</li>
+<li data-source-line="473">Conférences et décryptages zététiques (chaînes scientifiques et de pensée critique)</li>
+<li data-source-line="474"><strong>Le sujet </strong> : De nombreuses interventions de vulgarisateurs scientifiques analysent les biais cognitifs, le poids de la tradition et la sociologie des croyances face aux modifications corporelles, parfaits pour alimenter des formats pédagogiques ou des lives de sensibilisation.</li>
+</ul></article><aside class="side-note"><div class="anti-intox" id="audit-medias"><h3><span class="audit-label">Anti-intox · vérification</span>Des titres qui restent non authentifiés</h3><p>Les titres attribués à Marc Goldberg et à Marge Karsten, ainsi que les intitulés de documentaires « Le débat tabou » et « Les enfants du silence », n’ont pas été authentifiés sous cette forme. Ils restent dans le déroulé mais ne sont pas proposés comme références validées.</p><p>Pour poursuivre, consulter les références identifiées et les ressources institutionnelles ou associatives reliées à l’audit. Une absence d’identification ne prouve pas qu’un document n’existe pas : elle empêche de le recommander sous un titre incertain.</p><p class="source-note"><a href="https://wellcomecollection.org/works/krj2cu7m" target="_blank" rel="noopener">Gollaher · notice Wellcome</a> · <a href="https://www.cfrt.tv/ni-deve-ni-dadam-une-histoire-intersexe-de-floriane-devigne/" target="_blank" rel="noopener">CFRT · Ni d’Ève ni d’Adam</a></p></div>
+</aside></div>
+<p class="source-note"><a href="#schemas">Poursuivre : Les schémas envisagés →</a></p>
+</section>
+<section class="chapter reveal" id="schemas" aria-labelledby="titre-schemas"><div class="chapter-head"><div><p class="section-kicker">Le déroulé du live · 14</p><h2 id="titre-schemas">Les schémas envisagés</h2></div><div class="chapter-number">14</div></div>
+<p class="document-note">Document du live : les références et propositions originales sont conservées. Les indications vérifiées et les réserves figurent en marge ; une référence non authentifiée ne constitue pas une recommandation validée.</p>
+<div class="transcript"><article class="prose"><p data-source-line="494">Pour illustrer ce focus anatomique dans votre rapport, le schéma visuel le plus pertinent est celui de la différenciation embryonnaire des organes génitaux externes à partir du tubercule génital bipotentiel.</p>
+<p data-source-line="495">Le visuel ci-dessous permet d'observer directement la trajectoire embryologique commune et l'homologie stricte des tissus avant leur différenciation :</p>
+<h3 class="source-heading" data-source-line="496">Proposition d'organisation des schémas explicatifs dans le rapport</h3>
+<p data-source-line="497">Voici les 4 schémas comparatifs et pédagogiques clés à intégrer ou à modéliser dans le document pour étayer l'analyse factuelle :</p>
+<p data-source-line="498">1. Schéma de la bipotentialité embryonnaire (7ᵉ semaine à la naissance)</p>
+<p class="source-line" data-source-line="499"><strong>Objet </strong> : Montrer le stade indifférencié initial (tubercule génital, plis urogénitaux, bourrelets labio-scrotaux).</p>
+<p class="source-line" data-source-line="500"><strong>Objectif pédagogique </strong> : Prouver la parfaite homologie des tissus. Le schéma met en évidence que le gland du clitoris et le gland du pénis, tout comme les grandes lèvres et le scrotum, procèdent des mêmes structures de départ. Cela permet d'expliquer visuellement pourquoi l'intersexuation représente un continuum anatomique naturel.<a class="correction-link" href="#audit-schemas">Lire la rectification : Des propositions, pas des planches médicales validées →</a></p>
+<p data-source-line="501">2. Schéma des caractéristiques anatomiques et du continuum des variations</p>
+<p data-source-line="502">Le schéma synthétique ci-dessous récapitule la diversité des combinaisons anatomiques (chromosomes, gonades, corps érectiles, tissus labio-scrotaux) montrant qu'il n'existe pas une frontière biologique étanche, mais une variété de formes naturelles :</p>
+<p data-source-line="503"><strong>3. Schéma comparatif </strong> : Anatomie du clitoris vs Chirurgies de « normalisation » (MGD)</p>
+<h4 class="source-subheading" data-source-line="504">Structure visuelle :</h4>
+<p class="source-line" data-source-line="505"><strong>À gauche </strong> : L'anatomie complète du clitoris (gland, capuchon, corps érectile, piliers, bulbes du vestibule) avec l'irrigation nerveuse (nerf dorsal).</p>
+<p class="source-line" data-source-line="506"><strong>À droite </strong> : L'impact d'une clitoridectomie partielle ou d'une réduction (zones de résection du tissu érectile et sectionnement des terminaisons nerveuses).</p>
+<p class="source-line" data-source-line="507"><strong>Objectif pédagogique </strong> : Rendre mesurable la perte tissulaire et nerveuse irrémédiable causée par une opération à visée esthétique.</p>
+<p data-source-line="508"><strong>4. Schéma comparatif </strong> : Pénis intact vs Pénis circoncis</p>
+<h4 class="source-subheading" data-source-line="509">Structure visuelle :</h4>
+<p class="source-line" data-source-line="510"><strong>À gauche (Intact) </strong> : Représentation du prépuce en double feuillet, de la bandelette ridée, du frein et du système de glissement biomécanique sur le gland.</p>
+<p class="source-line" data-source-line="511"><strong>À droite (Circoncis) </strong> : Emplacement de la cicatrice, ablation du feuillet interne/externe et de la bandelette ridée, exposition permanente du gland menant à la kératinisation.<a class="correction-link" href="#audit-schemas">Lire la rectification : Des propositions, pas des planches médicales validées →</a></p>
+<p class="source-line" data-source-line="512"><strong>Objectif pédagogique </strong> : Déconstruire le mythe du « simple bout de peau » en montrant la suppression d'une structure spécialisée et l'altération de la mécanique protectrice.</p>
+<p data-source-line="535">1. La bipotentialité embryonnaire et l'homologie des structures</p>
+<p data-source-line="536">Ce schéma montre l'origine commune des organes génitaux externes au cours du développement embryonnaire, illustrant clairement le continuum biologique entre structures masculines et féminines :</p>
+<p data-source-line="538">2. La complexité anatomique du clitoris (et l'impact des résections)</p>
+<p data-source-line="539">Ce schéma met en évidence l'ensemble du réseau érectile, des bulbes et des faisceaux nerveux du clitoris, rappelant l'ampleur des structures touchées lors des interventions non consenties :</p></article><aside class="side-note"><div class="anti-intox" id="audit-schemas"><h3><span class="audit-label">Anti-intox · vérification</span>Des propositions, pas des planches médicales validées</h3><p>Les passages ci-contre décrivent des schémas envisagés ; aucune planche clinique n’était jointe à ces descriptions. Les illustrations du dossier sont symboliques.</p><p>Les homologies embryologiques ne suffisent pas à déterminer l’état de santé ou l’indication de soins d’une personne. Les passages sur la kératinisation et les conséquences systématiques d’une chirurgie doivent se lire avec les rectifications sur l’anatomie et l’intersexuation.</p><p class="source-note"><a href="https://www.ncbi.nlm.nih.gov/books/NBK279001/" target="_blank" rel="noopener">Endotext · embryologie</a> · <a href="../../sources/refs-XXXIV-mutilations.md" target="_blank" rel="noopener">Références et limites</a></p></div>
+</aside></div>
+</section>
+<section class="chapter reveal" id="atelier-documentaire"><div class="chapter-head"><div><p class="section-kicker">Annexe du live · 15</p><h2>Pistes de visuels et messages de sensibilisation</h2></div><div class="chapter-number">15</div></div><p class="document-note">Les propositions du fichier script.txt sont reproduites intégralement. La géographie très générale du premier passage comporte des limites précisées dans l’encadré. La carte fournie ne possède pas de source ni de date identifiables et comporte des incohérences : elle n’est pas utilisée comme carte de prévalence.</p><div class="transcript"><article class="prose"><p data-source-line="1">Voici une représentation cartographique illustrant les grandes zones du monde où la circoncision (notamment rituelle, culturelle ou médicale de masse) est la plus répandue :</p>
+<ul>
+<li data-source-line="2"><strong>Le Moyen-Orient et l'Afrique du Nord </strong> : Pratique quasi universelle liée aux traditions abrahamiques (islam et judaïsme).<a class="correction-link" href="#audit-geographie">Lire la rectification : Une géographie trop générale pour devenir une carte →</a></li>
+<li data-source-line="3"><strong>L'Afrique subsaharienne </strong> : Très forte prédominance dans de nombreux pays de l'Est, de l'Ouest et du Sud, souvent ancrée dans des rites de passage traditionnels ou généralisée pour des motifs de santé publique (prévention sanitaire).</li>
+<li data-source-line="4"><strong>L'Amérique du Nord (États-Unis et Canada) </strong> : Pratique médicale et culturelle historiquement très répandue dès la naissance, bien qu'en évolution.<a class="correction-link" href="#audit-geographie">Lire la rectification : Une géographie trop générale pour devenir une carte →</a></li>
+<li data-source-line="5"><strong>Le reste du monde (Europe, Asie de l'Est et Amérique latine) </strong> : Des taux de prévalence globale généralement faibles ou cantonnés aux minorités religieuses pratiquantes.<a class="correction-link" href="#audit-geographie">Lire la rectification : Une géographie trop générale pour devenir une carte →</a></li>
+</ul>
+<p data-source-line="6">Pour la carte</p>
+<p data-source-line="10">IDÉES DE VISUEL AVEC SLOGANS</p>
+<p data-source-line="13">1. Le visuel de l'intégrité (Représentation symbolique du corps souverain)</p>
+<ul>
+<li data-source-line="14"><strong>Idée </strong> : Une création graphique épurée sur fond sombre (bleu nuit ou noir) avec des lignes dorées ou blanches représentant la silhouette humaine ou une structure végétale/anatomique intacte et harmonieuse.</li>
+<li data-source-line="15"><strong>Message visuel </strong> : Mettre en avant l'idée que le corps naît complet et que toute altération non consentie est une infraction à cette intégrité originelle.</li>
+</ul>
+<p data-source-line="16">2. Le schéma de la boussole zététique (Science vs Dogme)</p>
+<ul>
+<li data-source-line="17"><strong>Idée </strong> : Un visuel en deux colonnes contrastées :</li>
+<li data-source-line="18"><strong>D'un côté </strong> : Les faits (anatomie, neurobiologie de la douleur, droits de l'enfant).</li>
+<li data-source-line="19"><strong>De l'autre </strong> : Les idées reçues à déconstruire (le « simple bout de peau », la prétendue indolence du nouveau-né, la normalisation esthétique).</li>
+</ul>
+<p data-source-line="20">3. La frise des droits universels</p>
+<ul>
+<li data-source-line="21"><strong>Idée </strong> : Une infographie claire rappelant les articles clés de la Convention Internationale des Droits de l'Enfant (CIDE), illustrant graphiquement le passage de l'enfant comme « objet de tradition » à l'enfant comme « sujet de droit ».</li>
+</ul>
+<p data-source-line="22">Exemples de slogans de sensibilisation</p>
+<ul>
+<li data-source-line="23">Sur la souveraineté corporelle :</li>
+<li data-source-line="24">« Le corps d'un enfant n'est pas le terrain de jeu des traditions. »</li>
+<li data-source-line="25"><strong>« Intact, souverain, libre </strong> : protégeons le droit des enfants à disposer de leur corps. »</li>
+<li data-source-line="26">« On ne grave pas ses croyances dans la chair d'un enfant. »</li>
+<li data-source-line="27">Sur la distinction entre le dogme et la personne :</li>
+<li data-source-line="28"><strong>« Critiquer les actes, respecter les personnes </strong> : pour une conscience émancipée. »</li>
+<li data-source-line="29">« La tradition s'arrête là où commence l'intégrité d'un enfant. »</li>
+<li data-source-line="30">Sur l'universalité et l'égalité des droits :</li>
+<li data-source-line="31"><strong>« Aucune exception de genre, aucune immunité culturelle </strong> : l'intégrité physique est universelle. »</li>
+<li data-source-line="32">« Un droit à l'avenir ouvert commence par un corps entier. »</li>
+</ul></article><aside class="side-note"><div class="anti-intox" id="audit-geographie"><h3><span class="audit-label">Anti-intox · vérification</span>Une géographie trop générale pour devenir une carte</h3><p>Les prévalences diffèrent entre pays, générations et groupes. L’Amérique du Nord n’est pas homogène : les États-Unis et le Canada n’ont pas les mêmes pratiques.</p><p>Des prévalences élevées sont également documentées en Indonésie et aux Philippines. Une carte sans date, méthode ni jeu de données identifiable ne permet pas de vérifier les classes de couleur ou de suivre une évolution. La carte fournie n’est donc pas publiée comme donnée.</p><p class="source-note"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4772313/" target="_blank" rel="noopener">Estimations publiées en 2016 · méthode et limites</a></p></div>
+</aside></div></section>
+<section class="verified-links" aria-labelledby="verifications"><h3 id="verifications">Retrouver les preuves et les rectifications</h3><p><a href="../../sources/sources.html#mutilations">Les fiches de vérification</a> · <a href="../../sources/dossier-XXXIV-mutilations.md">L’audit complet</a> · <a href="../../sources/refs-XXXIV-mutilations.md">Les références vérifiées</a></p></section><p class="closing-quote">« La tradition s’arrête là où commence l’intégrité d’un enfant. »</p><section class="collective-footer reveal" aria-labelledby="collectif"><div class="collective-logo-wrap"><img class="collective-logo" src="../assets/logo-eci.jpg" alt="Logo Empire contre Intox" loading="lazy"></div><div class="collective-copy"><p class="section-kicker">Collectif</p><h2 id="collectif">Empire contre Intox</h2><p>Un dossier de Lalie et Ymir. Comprendre les pratiques, vérifier les faits et défendre la place des personnes concernées.</p><div class="collective-actions"><a class="button primary" href="../../index.html">Accueil ECI</a><a class="button" href="../excision/index.html">Partie I · L’excision</a><a class="button" href="../../provoxys/briser-le-silence/index.html">Briser le silence</a><a class="button" href="../../sources/sources.html#mutilations">Les Sources</a></div><span class="collective-motto">Veritas omnia vincit</span></div></section></main><footer><p class="source-note" style="text-align:center">Déroulé : annexe.txt et script.txt · Lalie &amp; Ymir · Vérifications du 8 novembre 2026.</p><p class="eci-license"><strong>Licence de contenu :</strong> sauf mention contraire, <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fr" target="_blank" rel="license noopener">CC BY-NC-ND 4.0</a> — attribution, sans usage commercial ni modification. <a href="../../LICENCE-CONTENU.md">Détails</a>. Les deux analogies fournies restent soumises aux droits de leurs ayants droit. <span class="eci-visit-counter" data-visit-counter>— visites sur cette page</span></p></footer></div>
+<script>
+    const progressBar = document.querySelector(".progress span");
+    const progressTop = document.getElementById("progressTop");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav");
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct + "%";
+      if (progressTop) progressTop.style.width = pct + "%";
+    }
+    function updateActiveNav() {
+      const y = window.scrollY + 130;
+      let activeId = sections[0]?.id;
+      for (const s of sections) if (s.offsetTop <= y) activeId = s.id;
+      navLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${activeId}`));
+    }
+    mobileMenu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.forEach((l) => l.addEventListener("click", () => { nav.classList.remove("open"); mobileMenu.setAttribute("aria-expanded", "false"); }));
+    document.addEventListener("scroll", () => { updateProgress(); updateActiveNav(); }, { passive: true });
+    updateProgress(); updateActiveNav();
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { threshold: 0, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    // Filet de sécurité pour les sections très hautes (jamais "intersectées" au seuil)
+    function revealTall() {
+      const vh = window.innerHeight;
+      document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
+        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add("in"); io.unobserve(el); }
+      });
+    }
+    document.addEventListener("scroll", revealTall, { passive: true });
+    window.addEventListener("resize", revealTall, { passive: true });
+    revealTall();
+
+
+
+document.querySelectorAll('[data-angle]').forEach(button=>button.addEventListener('click',()=>{
+ document.querySelectorAll('[data-angle]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+ document.querySelectorAll('.compass-panel').forEach(panel=>{panel.hidden=panel.id!=='angle-'+button.dataset.angle;});
+}));
+</script><script src="../../assets/visit-counter.js?v=4f7555768f79" defer></script></body></html>
